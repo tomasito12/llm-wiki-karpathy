@@ -17,8 +17,8 @@ Each entry follows this format:
 
 | Page | Summary | Updated |
 |---|---|---|
-| [[overview]] | High-level synthesis of the entire knowledge base | 2026-04-07 |
-| [[glossary]] | Living terminology, definitions, and style conventions | 2026-04-07 |
+| [[overview]] | High-level synthesis of the entire knowledge base | 2026-04-25 |
+| [[glossary]] | Living terminology, definitions, and style conventions | 2026-04-25 |
 
 ---
 
@@ -26,47 +26,31 @@ Each entry follows this format:
 
 *One entry per raw document ingested. Add entries here after each ingest.*
 
-*(No sources ingested yet — drop a file into `raw/` and say "ingest [filename]" to get started.)*
+- [[how-i-stopped-my-ai-chatbot-from-making-up-answers]] — Source summary of a RAG reliability argument with practical implementation and pitfalls | source | 2026-04-25
 
 ---
 
-## Features
+## Chatbots
 
-*One entry per product feature documented.*
+*One entry per chatbot design pattern or implementation idea.*
 
-*(Empty — will populate as sources are ingested.)*
-
----
-
-## Products
-
-*One entry per product or tool.*
-
-*(Empty — will populate as sources are ingested.)*
+- [[rag-reliability-for-support-chatbots]] — Support chatbot architecture pattern using retrieval grounding to reduce hallucinations | chatbot | 2026-04-25
 
 ---
 
-## Personas
+## Evaluations
 
-*One entry per user persona or audience segment.*
+*One entry per evaluation approach and quality checklist.*
 
-*(Empty — will populate as sources are ingested.)*
-
----
-
-## Concepts
-
-*One entry per core domain concept.*
-
-*(Empty — will populate as sources are ingested.)*
+- [[retrieval-quality-evaluation-checklist]] — Checklist to validate retrieval quality and grounding behavior in RAG systems | evaluation | 2026-04-25
 
 ---
 
-## Style Rules
+## Style
 
-*One entry per writing convention or style guideline.*
+*Reusable writing/process conventions and quality checklists.*
 
-*(Empty — will populate as sources are ingested.)*
+- [[ingest-qa-checklist]] — Standardized checklist for evidence-aware, cross-linked, and auditable ingests | style | 2026-04-25
 
 ---
 

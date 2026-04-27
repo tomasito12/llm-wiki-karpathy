@@ -24,9 +24,9 @@ cd llm-wiki-karpathy
 
 ### 2. Open the project in Cursor
 
-Cursor reads `CLAUDE.md` automatically and understands the wiki's structure, page formats, and workflows.
+Cursor reads `AGENTS.md` and understands the wiki's structure, page formats, and workflows.
 
-If you use a different AI agent (Claude Code, Codex, etc.), paste the contents of `CLAUDE.md` into your agent's context.
+If you use a different AI agent, load the contents of `AGENTS.md` into your agent context.
 
 ### 3. Open the same folder in Obsidian
 
@@ -82,7 +82,7 @@ The AI checks for contradictions between pages, stale claims, orphan pages with 
 
 ```
 llm-wiki-karpathy/
-├── CLAUDE.md          # Schema — the AI's operating manual
+├── AGENTS.md          # Schema — the AI's operating manual
 ├── llm-wiki.md        # Karpathy's original idea document
 ├── article.md         # Walkthrough article explaining this project
 │
@@ -104,7 +104,7 @@ llm-wiki-karpathy/
 |-------|--------|-------------|---------|
 | Raw sources | `raw/` | You | Immutable source documents. The AI reads from here but never modifies anything. |
 | The wiki | `wiki/` | The AI | Structured, interlinked markdown pages. The AI creates, updates, and maintains everything here. |
-| The schema | `CLAUDE.md` | You + AI | Defines page types, workflows, and conventions. Edit this to customize the AI's behavior for your domain. |
+| The schema | `AGENTS.md` | You + AI | Defines page types, workflows, and conventions. Edit this to customize the AI's behavior for your domain. |
 
 ### Wiki page types
 
@@ -124,7 +124,7 @@ The AI creates different page types depending on what it finds in your sources:
 
 ## Customizing for Your Domain
 
-The schema file `CLAUDE.md` is not set in stone. Edit it to fit your needs:
+The schema file `AGENTS.md` is not set in stone. Edit it to fit your needs:
 
 - **Add new page types.** If your domain needs "API endpoints" or "customer segments" or "recipe variations", add them to the entity types table and tell the AI.
 - **Change the ingest workflow.** If you want the AI to skip the discussion step and just process silently, update the workflow section.
@@ -143,6 +143,16 @@ The schema file `CLAUDE.md` is not set in stone. Edit it to fit your needs:
 **Check the glossary before writing.** Open `wiki/glossary.md` before you write anything. It has the right terms, the wrong terms, and the reasons behind each choice.
 
 **Don't write wiki pages yourself.** Your job is to find good sources and ask good questions. The AI handles the summarizing, cross-referencing, filing, and bookkeeping.
+
+---
+
+## Code-Only Git Policy
+
+This repository tracks code and operational configuration only. Treat `raw/` and `wiki/` as local data stores.
+
+- `raw/` and `wiki/` are ignored by Git and should be backed up separately (cloud drive, NAS, or object storage snapshots).
+- Commit files such as `AGENTS.md`, `.gitignore`, scripts, and project automation/config.
+- Do not commit source data dumps, generated wiki content, or local workspace state.
 
 ---
 

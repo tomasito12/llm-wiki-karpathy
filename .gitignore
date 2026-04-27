@@ -1,1 +1,28 @@
 .DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Python caches and tooling artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.coverage
+htmlcov/
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+
+# Data directories (local only, not committed)
+wiki/**
+raw/**
+
+# Obsidian local vault state
+.obsidian/**
