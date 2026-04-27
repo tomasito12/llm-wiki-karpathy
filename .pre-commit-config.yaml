@@ -1,0 +1,16 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.13
+    hooks:
+      - id: ruff-format
+        args: [--respect-gitignore]
+      - id: ruff
+        args: [--fix, --respect-gitignore]
+
+  - repo: local
+    hooks:
+      - id: ty-check
+        name: ty check
+        entry: ty check .
+        language: system
+        pass_filenames: false

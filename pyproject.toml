@@ -1,0 +1,77 @@
+[project]
+name = "llm-wiki-karpathy"
+version = "0.1.0"
+description = "Local wiki workflow tooling"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[tool.hatch.envs.default]
+python = "3"
+installer = "uv"
+skip-install = true
+dependencies = [
+  "pre-commit>=4.2.0",
+  "pytest>=8.3.0",
+  "pytest-cov>=6.0.0",
+  "ruff>=0.11.0",
+  "ty>=0.0.1a17",
+]
+
+[tool.hatch.envs.lint]
+template = "default"
+
+[tool.hatch.envs.lint.scripts]
+check = [
+  "ruff check .",
+  "ty check .",
+]
+format = [
+  "ruff format .",
+]
+
+[tool.hatch.envs.test]
+template = "default"
+
+[tool.hatch.envs.test.scripts]
+run = [
+  "pytest -q",
+]
+cov = [
+  "pytest --cov=. --cov-report=term-missing --cov-report=xml",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+exclude = [
+  ".git",
+  ".hatch",
+  ".venv",
+  "raw",
+  "wiki",
+]
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "F",
+  "I",
+  "UP",
+  "B",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["."]
+omit = [
+  "raw/*",
+  "wiki/*",
+]
