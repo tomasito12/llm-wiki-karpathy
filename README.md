@@ -24,9 +24,12 @@ cd llm-wiki-karpathy
 
 ### 2. Open the project in Cursor
 
-Cursor reads `AGENTS.md` and understands the wiki's structure, page formats, and workflows.
+Cursor reads `AGENTS.md` as a root router. Detailed behavior is scoped:
 
-If you use a different AI agent, load the contents of `AGENTS.md` into your agent context.
+- `wiki/AGENTS.md` for wiki ingest/query/lint workflows
+- `src/AGENTS.md` for code/tooling development workflows
+
+If you use a different AI agent, load root `AGENTS.md` first, then the scoped file for your current task.
 
 ### 3. Open the same folder in Obsidian
 
@@ -82,7 +85,7 @@ The AI checks for contradictions between pages, stale claims, orphan pages with 
 
 ```
 llm-wiki-karpathy/
-├── AGENTS.md          # Schema — the AI's operating manual
+├── AGENTS.md          # Root intent router (wiki_ops vs code_ops)
 ├── llm-wiki.md        # Karpathy's original idea document
 ├── article.md         # Walkthrough article explaining this project
 │
@@ -95,6 +98,9 @@ llm-wiki-karpathy/
 │   ├── glossary.md    # Terms, definitions, and style conventions
 │   └── log.md         # Chronological record of all activity
 │
+├── src/               # Code and automation layer
+│   └── AGENTS.md      # Scoped coding/tooling instructions
+├── docs/              # Supporting docs (routing rubric, etc.)
 └── .obsidian/         # Pre-configured Obsidian vault settings
 ```
 
@@ -104,7 +110,9 @@ llm-wiki-karpathy/
 |-------|--------|-------------|---------|
 | Raw sources | `raw/` | You | Immutable source documents. The AI reads from here but never modifies anything. |
 | The wiki | `wiki/` | The AI | Structured, interlinked markdown pages. The AI creates, updates, and maintains everything here. |
-| The schema | `AGENTS.md` | You + AI | Defines page types, workflows, and conventions. Edit this to customize the AI's behavior for your domain. |
+| Routing policy | `AGENTS.md` | You + AI | Routes requests by intent and enforces fail-closed handling for ambiguity. |
+| Wiki rules | `wiki/AGENTS.md` | You + AI | Defines wiki entity types, ingest/query/lint workflows, and cross-linking standards. |
+| Code rules | `src/AGENTS.md` | You + AI | Defines coding standards, tests, linting, and tooling workflow. |
 
 ### Wiki page types
 
@@ -113,22 +121,23 @@ The AI creates different page types depending on what it finds in your sources:
 | Type | Location | What it captures |
 |------|----------|-----------------|
 | Source | `wiki/sources/` | Summary of a raw document — key facts, quotes, metadata |
-| Feature | `wiki/features/` | A product feature — what it does, how it works |
-| Product | `wiki/products/` | A product or tool — overview, versions, related features |
-| Persona | `wiki/personas/` | A user type — goals, pain points, expertise level |
-| Concept | `wiki/concepts/` | A domain idea — definition, related terms, common misconceptions |
-| Style Rule | `wiki/style/` | A writing convention — when to apply, examples, exceptions |
+| Chatbot | `wiki/bot-design/` | Chatbot/voicebot design pattern and implementation concepts |
+| Evaluation | `wiki/evaluate/` | Evaluation methods, quality checklists, and validation guidance |
+| Transcript | `wiki/transcripts/` | Meeting transcripts, decisions, and timelines |
+| AI-Release | `wiki/ai-releases/` | Model/tool release notes and impact interpretation |
+| Industry News | `wiki/industry-news/` | External AI usage patterns, trends, and pitfalls |
+| Style | `wiki/style/` | Process conventions and wiki maintenance checklists |
 | Analysis | `wiki/analyses/` | A synthesized output — comparison table, gap analysis, outline |
 
 ---
 
 ## Customizing for Your Domain
 
-The schema file `AGENTS.md` is not set in stone. Edit it to fit your needs:
+The routing + scoped instruction files are not set in stone. Edit them to fit your needs:
 
-- **Add new page types.** If your domain needs "API endpoints" or "customer segments" or "recipe variations", add them to the entity types table and tell the AI.
-- **Change the ingest workflow.** If you want the AI to skip the discussion step and just process silently, update the workflow section.
-- **Adjust output formats.** The AI can produce markdown pages, comparison tables, doc outlines, release notes drafts, or persona briefs. Add formats that make sense for your work.
+- **Adjust routing behavior.** Update root `AGENTS.md` to tune intent classification and ambiguity handling.
+- **Change wiki workflow.** Update `wiki/AGENTS.md` for ingest/query/lint behavior.
+- **Change code workflow.** Update `src/AGENTS.md` for coding/testing/tooling standards.
 
 ---
 
