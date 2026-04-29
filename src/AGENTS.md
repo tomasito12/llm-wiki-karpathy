@@ -18,6 +18,24 @@ Applies when the task is about:
 - Prefer clear function boundaries over large scripts.
 - Use existing tooling configuration from `pyproject.toml`.
 
+## Testing Standards
+
+- Every function must have at least one unit test.
+- Prefer tests that use real objects and real logic flows; avoid mocking unless there is a clear need (for example: external APIs, non-deterministic systems, or expensive dependencies).
+- Tests should be easy to read and self-explanatory.
+- Aim for high coverage, including edge cases and error paths.
+- Include explicit edge-case tests where relevant (for example: empty inputs, boundary values, malformed inputs, and failure behavior).
+
+## Function Quality Standards
+
+- Every function must have a docstring.
+- Every function must have type hints on parameters and return values.
+
+## Performance and Readability
+
+- Write code that is both performant and understandable.
+- If performance is not critical for the code path, prefer readability and maintainability over micro-optimizations.
+
 ## Required Quality Checks
 
 Run these after substantive code changes:

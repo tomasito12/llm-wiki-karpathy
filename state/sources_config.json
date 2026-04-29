@@ -1,0 +1,19 @@
+{
+  "sources": [
+    {
+      "name": "medium-chatbots",
+      "kind": "medium",
+      "url": "https://medium.com/tag/chatbots"
+    },
+    {
+      "name": "medium-chatbot-development",
+      "kind": "medium",
+      "url": "https://medium.com/tag/chatbot-development"
+    },
+    {
+      "name": "medium-chatbot-design",
+      "kind": "medium",
+      "url": "https://medium.com/tag/chatbot-design"
+    }
+  ]
+}
