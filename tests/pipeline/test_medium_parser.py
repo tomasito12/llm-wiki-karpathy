@@ -1,7 +1,12 @@
 from pathlib import Path
 
 from src.pipeline.models import DiscoveredItem
-from src.pipeline.parser.medium_parser import parse_medium_html
+from src.pipeline.parser.medium_parser import (
+    _detect_browser_executable,
+    _looks_like_challenge,
+    _looks_like_member_preview,
+    parse_medium_html,
+)
 
 
 def test_parse_medium_html_extracts_main_content_and_strips_noise() -> None:
@@ -30,3 +35,17 @@ def test_parse_medium_html_extracts_main_content_and_strips_noise() -> None:
     assert "> Important quote" in parsed.markdown
     assert "- Claps: 42" in parsed.markdown
     assert "## Response Snippets" in parsed.markdown
+
+
+def test_looks_like_member_preview_detects_cropped_member_story() -> None:
+    body = "Member-only story\n\nSome text here and then it cuts off…"
+    assert _looks_like_member_preview(body)
+
+
+def test_looks_like_challenge_detects_cloudflare_page() -> None:
+    html = "<html><title>Just a moment...</title>https://challenges.cloudflare.com</html>"
+    assert _looks_like_challenge(html=html, status_code=403)
+
+
+def test_detect_browser_executable_returns_none_for_unknown_path(tmp_path: Path) -> None:
+    assert _detect_browser_executable(tmp_path / "unknown") is None

@@ -1,3 +1,4 @@
+import sys
 from datetime import UTC, datetime, timedelta
 from email.utils import format_datetime
 from pathlib import Path
@@ -164,3 +165,36 @@ def test_discover_new_items_rejects_non_medium_source(tmp_path: Path, monkeypatc
         assert "Unsupported source kind" in str(exc)
     else:
         raise AssertionError("Expected ValueError for non-medium source")
+
+
+def test_build_parser_auth_login_defaults() -> None:
+    parser = cli.build_parser()
+    args = parser.parse_args(["auth-login"])
+    assert args.command == "auth-login"
+    assert str(args.output).endswith("state/medium.storage_state.json")
+    assert args.timeout_seconds == 300
+
+
+def test_main_dispatches_auth_login(monkeypatch, tmp_path: Path) -> None:
+    called: dict[str, object] = {}
+
+    def fake_run_auth_login(output: Path, timeout_seconds: int) -> int:
+        called["output"] = output
+        called["timeout_seconds"] = timeout_seconds
+        return 0
+
+    monkeypatch.setattr(cli, "run_auth_login", fake_run_auth_login)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "pipeline",
+            "auth-login",
+            "--output",
+            str(tmp_path / "state.json"),
+            "--timeout-seconds",
+            "42",
+        ],
+    )
+    assert cli.main() == 0
+    assert called["timeout_seconds"] == 42

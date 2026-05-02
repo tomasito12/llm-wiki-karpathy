@@ -41,6 +41,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     check.add_argument("--medium-cookie-file", type=Path)
     check.add_argument("--medium-storage-state", type=Path)
+    check.add_argument("--medium-user-data-dir", type=Path)
 
     pull = subparsers.add_parser("pull", help="Discover, parse, and stage new items")
     pull.add_argument("source_name")
@@ -57,11 +58,29 @@ def build_parser() -> argparse.ArgumentParser:
     )
     pull.add_argument("--medium-cookie-file", type=Path)
     pull.add_argument("--medium-storage-state", type=Path)
+    pull.add_argument("--medium-user-data-dir", type=Path)
 
     mark = subparsers.add_parser("mark", help="Mark an item status")
     mark.add_argument("source_name")
     mark.add_argument("item_id")
     mark.add_argument("--status", choices=["ignored", "ingested", "parsed"], required=True)
+
+    auth_login = subparsers.add_parser(
+        "auth-login",
+        help="Open Medium login and save Playwright storage state",
+    )
+    auth_login.add_argument(
+        "--output",
+        type=Path,
+        default=ROOT / "state" / "medium.storage_state.json",
+        help="Path to write Playwright storage state JSON.",
+    )
+    auth_login.add_argument(
+        "--timeout-seconds",
+        type=int,
+        default=300,
+        help="Seconds to wait for manual Medium sign-in before failing.",
+    )
 
     return parser
 
@@ -217,6 +236,46 @@ def run_mark(source_name: str, item_id: str, status: str) -> int:
     return 0
 
 
+def run_auth_login(output: Path, timeout_seconds: int) -> int:
+    """Open interactive Medium login and persist Playwright auth state."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError as exc:
+        raise RuntimeError(
+            "Playwright is required. Install dependencies and run "
+            "`hatch run playwright install chromium`."
+        ) from exc
+
+    output.parent.mkdir(parents=True, exist_ok=True)
+    print(
+        "Opening Medium login. Complete sign-in in the browser window. "
+        "The command saves auth state after successful login."
+    )
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=False)
+        context = browser.new_context()
+        page = context.new_page()
+        page.goto("https://medium.com/m/signin", wait_until="domcontentloaded", timeout=30000)
+        deadline = datetime.now(tz=UTC).timestamp() + timeout_seconds
+        has_sid = False
+        while datetime.now(tz=UTC).timestamp() < deadline:
+            cookies = context.cookies(["https://medium.com"])
+            has_sid = any(cookie.get("name") == "sid" for cookie in cookies)
+            if has_sid:
+                break
+            page.wait_for_timeout(1000)
+        if not has_sid:
+            browser.close()
+            raise RuntimeError(
+                f"Login timed out after {timeout_seconds}s. "
+                "Re-run `pipeline auth-login` and complete sign-in."
+            )
+        context.storage_state(path=str(output))
+        browser.close()
+    print(f"Saved Medium auth storage state: {output}")
+    return 0
+
+
 def main() -> int:
     """Entry point for CLI execution."""
     parser = build_parser()
@@ -224,6 +283,7 @@ def main() -> int:
     auth = MediumAuthConfig(
         cookie_file=getattr(args, "medium_cookie_file", None),
         storage_state=getattr(args, "medium_storage_state", None),
+        user_data_dir=getattr(args, "medium_user_data_dir", None),
     )
     if args.command == "check":
         return run_check(
@@ -247,6 +307,8 @@ def main() -> int:
         )
     if args.command == "mark":
         return run_mark(source_name=args.source_name, item_id=args.item_id, status=args.status)
+    if args.command == "auth-login":
+        return run_auth_login(output=args.output, timeout_seconds=args.timeout_seconds)
     raise ValueError(f"Unsupported command: {args.command}")
 
 

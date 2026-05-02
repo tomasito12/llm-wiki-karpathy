@@ -16,6 +16,7 @@ class MediumAuthConfig:
     cookie: str | None = None
     cookie_file: Path | None = None
     storage_state: Path | None = None
+    user_data_dir: Path | None = None
 
 
 def build_medium_headers(auth: MediumAuthConfig | None = None) -> dict[str, str]:

@@ -55,6 +55,9 @@ pull = [
 mark = [
   "python -m src.pipeline.cli mark {args}",
 ]
+auth-login = [
+  "python -m src.pipeline.cli auth-login {args}",
+]
 
 [tool.ruff]
 target-version = "py312"

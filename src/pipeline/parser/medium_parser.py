@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import re
+import time
+from pathlib import Path
 from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
@@ -15,9 +17,16 @@ from src.pipeline.state_store import canonicalize_url
 
 def parse_medium_item(item: DiscoveredItem, auth: MediumAuthConfig | None = None) -> ParsedDocument:
     """Fetch and parse a Medium article into markdown text."""
-    request = Request(item.url, headers=build_medium_headers(auth))
-    with urlopen(request, timeout=20) as response:  # noqa: S310
-        html = response.read().decode("utf-8", errors="replace")
+    html = _fetch_medium_html(item.url, auth=auth)
+    preview_body = _extract_article_text(BeautifulSoup(html, "html.parser"))
+    if (
+        _looks_like_member_preview(preview_body)
+        and auth is not None
+        and auth.storage_state is not None
+    ):
+        rendered_html = _fetch_medium_html_with_browser(item.url, auth=auth)
+        if rendered_html:
+            html = rendered_html
     base_doc = parse_medium_html(item=item, html=html)
 
     author_followers = _fetch_author_followers(html=html, fallback_url=item.url, auth=auth)
@@ -33,6 +42,107 @@ def parse_medium_item(item: DiscoveredItem, auth: MediumAuthConfig | None = None
         author_followers=author_followers,
         responses=responses,
     )
+
+
+def _fetch_medium_html(article_url: str, auth: MediumAuthConfig | None = None) -> str:
+    """Fetch Medium article HTML via HTTP request."""
+    request = Request(article_url, headers=build_medium_headers(auth))
+    with urlopen(request, timeout=20) as response:  # noqa: S310
+        return response.read().decode("utf-8", errors="replace")
+
+
+def _fetch_medium_html_with_browser(
+    article_url: str,
+    auth: MediumAuthConfig | None = None,
+) -> str | None:
+    """Fetch rendered article HTML with Playwright and authenticated storage state."""
+    if auth is None:
+        return None
+    has_storage_state = auth.storage_state is not None and auth.storage_state.exists()
+    has_user_data_dir = auth.user_data_dir is not None and auth.user_data_dir.exists()
+    if not has_storage_state and not has_user_data_dir:
+        return None
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return None
+    with sync_playwright() as playwright:  # pragma: no cover - runtime integration path
+        # Medium's anti-bot checks are less aggressive in headed mode.
+        if has_user_data_dir and auth.user_data_dir is not None:
+            executable_path = _detect_browser_executable(auth.user_data_dir)
+            if executable_path is not None:
+                context = playwright.chromium.launch_persistent_context(
+                    user_data_dir=str(auth.user_data_dir),
+                    headless=False,
+                    executable_path=str(executable_path),
+                )
+            else:
+                context = playwright.chromium.launch_persistent_context(
+                    user_data_dir=str(auth.user_data_dir),
+                    headless=False,
+                )
+            browser = None
+        else:
+            browser = playwright.chromium.launch(headless=False)
+            context = browser.new_context(storage_state=str(auth.storage_state))
+        page = context.new_page()
+
+        # Warm-up navigation helps settle challenge/cookie checks.
+        page.goto("https://medium.com", wait_until="domcontentloaded", timeout=30000)
+
+        for attempt in range(4):
+            try:
+                response = page.goto(article_url, wait_until="domcontentloaded", timeout=30000)
+            except Exception:
+                response = None
+            status_code = response.status if response is not None else None
+            html = page.content()
+            blocked = _looks_like_challenge(html=html, status_code=status_code)
+            if not blocked:
+                # Give lazy-loaded article body a brief chance to render.
+                page.wait_for_timeout(1500)
+                html = page.content()
+                context.close()
+                if browser is not None:
+                    browser.close()
+                return html
+            time.sleep(1.5 * (attempt + 1))
+
+        context.close()
+        if browser is not None:
+            browser.close()
+        return None
+
+
+def _looks_like_member_preview(body: str) -> bool:
+    """Heuristic to detect cropped member-only preview content."""
+    return "Member-only story" in body and body.rstrip().endswith("…")
+
+
+def _looks_like_challenge(html: str, status_code: int | None) -> bool:
+    """Return whether the response appears to be a bot/challenge page."""
+    lower = html.lower()
+    if status_code in {403, 429}:
+        return True
+    if "just a moment" in lower:
+        return True
+    if "challenges.cloudflare.com" in lower:
+        return True
+    return False
+
+
+def _detect_browser_executable(user_data_dir: Path) -> Path | None:
+    """Best-effort detect browser executable for known user data directories."""
+    data_path = str(user_data_dir)
+    if "BraveSoftware/Brave-Browser" in data_path:
+        brave_binary = Path("/Applications/Brave Browser.app/Contents/MacOS/Brave Browser")
+        if brave_binary.exists():
+            return brave_binary
+    if "Google/Chrome" in data_path:
+        chrome_binary = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+        if chrome_binary.exists():
+            return chrome_binary
+    return None
 
 
 def parse_medium_html(item: DiscoveredItem, html: str) -> ParsedDocument:

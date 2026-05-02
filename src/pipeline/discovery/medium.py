@@ -19,6 +19,7 @@ ARTICLE_SLUG_PATTERN = re.compile(r"^[a-z0-9-]+-[0-9a-f]{8,}$")
 
 # Browser archive: stop scrolling after this many iterations with no new article links.
 _ARCHIVE_STALL_SCROLL_LIMIT = 5
+_ARCHIVE_NAV_RETRIES = 3
 
 
 def published_at_to_utc_date(published_at: str | None) -> date | None:
@@ -173,10 +174,11 @@ def _discover_from_archive_browser(
         archive_window_start_days is not None and archive_window_end_days is not None
     )
     window_start_date: date | None = None
+    window_end_date: date | None = None
     if use_window_scroll:
         assert archive_window_start_days is not None
         assert archive_window_end_days is not None
-        window_start_date, _window_end_date = archive_scroll_window_calendar_bounds(
+        window_start_date, window_end_date = archive_scroll_window_calendar_bounds(
             archive_window_start_days,
             archive_window_end_days,
         )
@@ -196,64 +198,95 @@ def _discover_from_archive_browser(
 
     with sync_playwright() as playwright:  # pragma: no cover - integration behavior
         browser = playwright.chromium.launch(headless=True)
-        context = browser.new_context(user_agent=USER_AGENT)
-        if auth is not None and auth.storage_state is not None and auth.storage_state.exists():
-            context.close()
-            context = browser.new_context(
-                user_agent=USER_AGENT,
-                storage_state=str(auth.storage_state),
-            )
-        page = context.new_page()
-        page.goto(archive_root, wait_until="domcontentloaded", timeout=30000)
-
-        scroll_index = 0
-        stall_scrolls = 0
-        prev_count = 0
-
-        while True:
-            hrefs = page.eval_on_selector_all("a[href]", "els => els.map(e => e.href)")
-            for href in hrefs:
-                if not isinstance(href, str):
+        if use_window_scroll and window_start_date is not None and window_end_date is not None:
+            current = window_end_date
+            while current >= window_start_date:
+                context = _new_browser_context(browser=browser, auth=auth)
+                page = context.new_page()
+                day_url = f"{archive_root}/{current.year:04d}/{current.month:02d}/{current.day:02d}"
+                if not _goto_archive_page_with_retries(page=page, url=day_url):
+                    context.close()
+                    current = current - timedelta(days=1)
                     continue
-                if not _is_article_link(href):
-                    continue
-                canonical = canonicalize_url(href)
-                if canonical not in links:
-                    links.append(canonical)
-                    fetch_pub_if_needed(canonical)
+                article_hrefs = page.eval_on_selector_all(
+                    "article a[href]",
+                    "els => els.map(e => e.href)",
+                )
+                all_hrefs = page.eval_on_selector_all("a[href]", "els => els.map(e => e.href)")
+                hrefs = list(article_hrefs) + [h for h in all_hrefs if h not in article_hrefs]
+                for href in hrefs:
+                    if not isinstance(href, str):
+                        continue
+                    if not _is_article_link(href):
+                        continue
+                    canonical = canonicalize_url(href)
+                    if canonical not in links:
+                        links.append(canonical)
+                    if len(links) >= max_links:
+                        break
+                if len(links) >= max_links:
+                    context.close()
+                    break
+                context.close()
+                current = current - timedelta(days=1)
+        else:
+            context = _new_browser_context(browser=browser, auth=auth)
+            page = context.new_page()
+            # Warm-up request helps Cloudflare challenge settle before long scrolling.
+            _goto_archive_page_with_retries(page=page, url=archive_root)
+
+            scroll_index = 0
+            stall_scrolls = 0
+            prev_count = 0
+
+            while True:
+                article_hrefs = page.eval_on_selector_all(
+                    "article a[href]",
+                    "els => els.map(e => e.href)",
+                )
+                all_hrefs = page.eval_on_selector_all("a[href]", "els => els.map(e => e.href)")
+                hrefs = list(article_hrefs) + [h for h in all_hrefs if h not in article_hrefs]
+                for href in hrefs:
+                    if not isinstance(href, str):
+                        continue
+                    if not _is_article_link(href):
+                        continue
+                    canonical = canonicalize_url(href)
+                    if canonical not in links:
+                        links.append(canonical)
+                    if len(links) >= max_links:
+                        break
+
                 if len(links) >= max_links:
                     break
 
-            if len(links) >= max_links:
-                break
+                if len(links) == prev_count:
+                    stall_scrolls += 1
+                else:
+                    stall_scrolls = 0
+                prev_count = len(links)
 
-            if len(links) == prev_count:
-                stall_scrolls += 1
-            else:
-                stall_scrolls = 0
-            prev_count = len(links)
+                min_date = min_seen_date()
+                if use_window_scroll and window_start_date is not None:
+                    if archive_scroll_should_stop(
+                        min_published_date=min_date,
+                        window_start_date=window_start_date,
+                        stall_scrolls=stall_scrolls,
+                        scroll_index=scroll_index,
+                        max_scrolls=max_scrolls,
+                    ):
+                        break
+                else:
+                    if stall_scrolls >= _ARCHIVE_STALL_SCROLL_LIMIT:
+                        break
+                    if scroll_index >= max_scrolls:
+                        break
 
-            min_date = min_seen_date()
-            if use_window_scroll and window_start_date is not None:
-                if archive_scroll_should_stop(
-                    min_published_date=min_date,
-                    window_start_date=window_start_date,
-                    stall_scrolls=stall_scrolls,
-                    scroll_index=scroll_index,
-                    max_scrolls=max_scrolls,
-                ):
-                    break
-            else:
-                if stall_scrolls >= _ARCHIVE_STALL_SCROLL_LIMIT:
-                    break
-                if scroll_index >= max_scrolls:
-                    break
+                page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
+                page.wait_for_timeout(1200)
+                scroll_index += 1
 
-            page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
-            page.wait_for_timeout(1200)
-            scroll_index += 1
-
-        context.close()
+            context.close()
         browser.close()
 
     # Ensure every collected link has a publish date (cached where possible).
@@ -273,6 +306,32 @@ def _discover_from_archive_browser(
             )
         )
     return discovered
+
+
+def _goto_archive_page_with_retries(page, url: str, retries: int = _ARCHIVE_NAV_RETRIES) -> bool:
+    """Navigate to archive URL with retries to handle transient challenge pages."""
+    for attempt in range(retries + 1):
+        try:
+            response = page.goto(url, wait_until="domcontentloaded", timeout=30000)
+        except Exception:
+            response = None
+        status_code = response.status if response is not None else None
+        title = page.title().strip().lower()
+        blocked = status_code in {403, 429} or "just a moment" in title
+        if not blocked:
+            return True
+        page.wait_for_timeout(1200 * (attempt + 1))
+    return False
+
+
+def _new_browser_context(browser, auth: MediumAuthConfig | None):
+    """Create a Playwright browser context with optional saved auth state."""
+    if auth is not None and auth.storage_state is not None and auth.storage_state.exists():
+        return browser.new_context(
+            user_agent=USER_AGENT,
+            storage_state=str(auth.storage_state),
+        )
+    return browser.new_context(user_agent=USER_AGENT)
 
 
 def _crawl_archive_pages(
@@ -311,7 +370,8 @@ def _crawl_archive_pages(
 def _extract_medium_links(soup: BeautifulSoup, max_links: int) -> list[str]:
     """Extract candidate article links from archive page markup."""
     links: list[str] = []
-    for anchor in soup.find_all("a"):
+    anchors = soup.select("article a[href]") or soup.find_all("a")
+    for anchor in anchors:
         href = anchor.get("href")
         if not href:
             continue
