@@ -1,0 +1,377 @@
+{
+  "documents": {
+    "01kqahjbfrdxmxktyerhsy6wcc": {
+      "content_sha256": "650f0b0f7d1a3a6cbec1542289f6e418c5d6a74d0316a299bc7ab176c0779581",
+      "html_path": "raw/readwise/openai-models-codex-and-managed-agents-come-to-aws-01kqahjbfrdxmxktyerhsy6wcc.html",
+      "md_path": "raw/readwise/openai-models-codex-and-managed-agents-come-to-aws-01kqahjbfrdxmxktyerhsy6wcc.md",
+      "source_url": "https://openai.com/index/openai-on-aws",
+      "updated_at": "2026-05-02T14:23:37.338224+00:00"
+    },
+    "01kqbexsf1mp7vyh00tfyv531y": {
+      "content_sha256": "3fafe423abcfd12af5271ac1d5f0b289cf95a94f5b830c5934d27f04355201a3",
+      "html_path": "raw/readwise/ainews-not-much-happened-today-01kqbexsf1mp7vyh00tfyv531y.html",
+      "md_path": "raw/readwise/ainews-not-much-happened-today-01kqbexsf1mp7vyh00tfyv531y.md",
+      "source_url": "https://www.latent.space/p/ainews-not-much-happened-today",
+      "updated_at": "2026-05-02T14:23:58.405203+00:00"
+    },
+    "01kqe6j1dkvzgyjehhqca53e60": {
+      "content_sha256": "18db2ff5d37ea3acc65aabf41dfdbf886488acf0158404d405cf6cd3c70dea12",
+      "html_path": "raw/readwise/where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60.html",
+      "md_path": "raw/readwise/where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60.md",
+      "source_url": "https://openai.com/index/where-the-goblins-came-from",
+      "updated_at": "2026-05-02T14:48:41.098705+00:00"
+    },
+    "01kqfgqa7je4vz36s8nywev6j5": {
+      "content_sha256": "b532b99e13b4d508c480b4fa6847948a8ac1d0935e89a33423c1dd6ae953c9a8",
+      "html_path": "raw/readwise/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5.html",
+      "md_path": "raw/readwise/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5.md",
+      "source_url": "https://medium.com/arckit/why-an-enterprise-architecture-toolkit-is-trending-on-github-in-2026-30b21f1d0ef9",
+      "updated_at": "2026-05-02T14:27:32.263132+00:00"
+    },
+    "01kqfgwydn88n3v54mj6ypwa9y": {
+      "content_sha256": "ffb35f436e8727d511c37353890ffb70b8476799b81e4ecedcaad52abeeae89f",
+      "html_path": "raw/readwise/langgraph-memorysaver-concept-internals-and-byte-size-proof-01kqfgwydn88n3v54mj6ypwa9y.html",
+      "md_path": "raw/readwise/langgraph-memorysaver-concept-internals-and-byte-size-proof-01kqfgwydn88n3v54mj6ypwa9y.md",
+      "source_url": "https://medium.com/data-and-beyond/langgraph-memorysaver-concept-internals-and-byte-size-proof-f079e7a9ae09",
+      "updated_at": "2026-05-02T14:24:32.362626+00:00"
+    },
+    "01kqfhwht8d87smkknhrrcgt1x": {
+      "content_sha256": "3ada28c03471c316d2da29e1d644539466be0918168dcaf32797d31790d2707c",
+      "html_path": "raw/readwise/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x.html",
+      "md_path": "raw/readwise/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x.md",
+      "source_url": "https://medium.com/gitconnected/the-4-lines-every-claude-md-needs-2717a46866f6",
+      "updated_at": "2026-05-02T14:24:59.317042+00:00"
+    },
+    "01kqfyrmc31stvazs0r8kbpbbx": {
+      "content_sha256": "d39fd1345b3879515b806f5a18e4eedd6f378a048f8fc6fa5b752435b49705de",
+      "html_path": "raw/readwise/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.html",
+      "md_path": "raw/readwise/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.md",
+      "source_url": "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a",
+      "updated_at": "2026-05-02T14:22:27.073519+00:00"
+    },
+    "01kqfz6p0jfhx9r1y4rd3x27sa": {
+      "content_sha256": "1770c1b40637223f3b6b5d7de1783c85611dc4c83ea9bed2c6822da7ec0d539f",
+      "html_path": "raw/readwise/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-01kqfz6p0jfhx9r1y4rd3x27sa.html",
+      "md_path": "raw/readwise/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-01kqfz6p0jfhx9r1y4rd3x27sa.md",
+      "source_url": "https://medium.com/@visrow/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-cb70a9e8f61a",
+      "updated_at": "2026-05-02T14:22:24.437223+00:00"
+    },
+    "01kqfz8qd4s3rz9n6sx9dma9a8": {
+      "content_sha256": "488eb3626e012b93e55f4d854c6695dbdb089abb2771dab33789f964b741728a",
+      "html_path": "raw/readwise/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8.html",
+      "md_path": "raw/readwise/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8.md",
+      "source_url": "https://medium.com/towards-artificial-intelligence/you-cant-build-ai-systems-without-understanding-these-6-concepts-first-bf20b8469f0d",
+      "updated_at": "2026-05-02T14:22:24.029118+00:00"
+    },
+    "01kqfzks8n4e91tn6m1vs562sk": {
+      "content_sha256": "e87681b0c1e8fc4310533ebc0b54a42e856fffce85a91b522aa7b8891276b8a6",
+      "html_path": "raw/readwise/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk.html",
+      "md_path": "raw/readwise/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk.md",
+      "source_url": "https://medium.com/@kurtis-redux/obsidians-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-6c149aae84f6",
+      "updated_at": "2026-05-02T14:22:23.572864+00:00"
+    },
+    "01kqfzngwjk9z6mbkcj9yx6tfn": {
+      "content_sha256": "8d5776978f4f0ca2da7eb10c7d187dfcf91c97349a3ef2f6c037c9e166afd44f",
+      "html_path": "raw/readwise/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn.html",
+      "md_path": "raw/readwise/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn.md",
+      "source_url": "https://medium.com/data-science-collective/how-to-build-claude-skills-2-0-better-than-99-of-people-af4927dd5335",
+      "updated_at": "2026-05-02T14:22:17.292170+00:00"
+    },
+    "01kqfzr3pa89hbe3smekz5bn7c": {
+      "content_sha256": "4df31074a5b62aff798f5674a587452e35d8535850fa4ec3431e5d600b5e4652",
+      "html_path": "raw/readwise/8-crazy-things-claude-ai-can-do-that-chatgpt-can-t-01kqfzr3pa89hbe3smekz5bn7c.html",
+      "md_path": "raw/readwise/8-crazy-things-claude-ai-can-do-that-chatgpt-can-t-01kqfzr3pa89hbe3smekz5bn7c.md",
+      "source_url": "https://medium.com/no-time/8-crazy-things-claude-ai-can-do-that-chatgpt-cant-ef383eeb16f4",
+      "updated_at": "2026-05-02T14:22:16.851130+00:00"
+    },
+    "01kqfzwx5z81csjrvzvv6xgq9x": {
+      "content_sha256": "0e98ef2024cb9c8e9eeb1e71f63ad6fcb3f13f8866641873b9ae89aacd1225b5",
+      "html_path": "raw/readwise/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x.html",
+      "md_path": "raw/readwise/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x.md",
+      "source_url": "https://medium.com/ai-in-plain-english/i-ran-gemma-4-locally-heres-what-nobody-s-telling-you-806dcd485925",
+      "updated_at": "2026-05-02T14:22:16.390827+00:00"
+    },
+    "01kqg04cw3fx7h5w108h6vsq77": {
+      "content_sha256": "7fea95ed0352f4238c727cee28a06c46e726bcc6fd2b9287a34c66480f9d1f33",
+      "html_path": "raw/readwise/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-01kqg04cw3fx7h5w108h6vsq77.html",
+      "md_path": "raw/readwise/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-01kqg04cw3fx7h5w108h6vsq77.md",
+      "source_url": "https://medium.com/@agentnativedev/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-114296323663",
+      "updated_at": "2026-05-02T14:22:06.884212+00:00"
+    },
+    "01kqgydfks1e2sg9hpxm9ystfc": {
+      "content_sha256": "b41feedbe60f9f66ab1a8e4c22d1865d8672154e66cbd44b1126986b6ac3fa84",
+      "html_path": "raw/readwise/ainews-agents-for-everything-else-codex-for-knowledge-work-claude-for-creative-work-01kqgydfks1e2sg9hpxm9ystfc.html",
+      "md_path": "raw/readwise/ainews-agents-for-everything-else-codex-for-knowledge-work-claude-for-creative-work-01kqgydfks1e2sg9hpxm9ystfc.md",
+      "source_url": "mailto:reader-forwarded-email/3e9240d094814941466d9ad21ac971bc",
+      "updated_at": "2026-05-02T14:22:06.884212+00:00"
+    },
+    "01kqgzxa66k90amgsd20rggc19": {
+      "content_sha256": "a8b77fc4d974a9ae7e7bce6685267c0653f25284873f7e013fbde1611c01418c",
+      "html_path": "raw/readwise/from-data-to-intelligence-why-every-enterprise-needs-an-ai-knowledge-layer-01kqgzxa66k90amgsd20rggc19.html",
+      "md_path": "raw/readwise/from-data-to-intelligence-why-every-enterprise-needs-an-ai-knowledge-layer-01kqgzxa66k90amgsd20rggc19.md",
+      "source_url": "https://neo4j.com/blog/agentic-ai/knowledge-layer/",
+      "updated_at": "2026-05-02T14:22:06.342379+00:00"
+    },
+    "01kqh03nmcmtye4ewv1fv7wcxp": {
+      "content_sha256": "7f4c08b3f3ffff8733d28c2bb700bd95cb5550a6185999bc4088dac54fd9c5b3",
+      "html_path": "raw/readwise/llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp.html",
+      "md_path": "raw/readwise/llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp.md",
+      "source_url": "https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2",
+      "updated_at": "2026-05-02T14:22:05.882073+00:00"
+    },
+    "01kqh06nqcje2w0skbcbhj1fn1": {
+      "content_sha256": "b6b9b24668a33bc311fef957a097d0f7c57491b9ef8c88f54fdec5d7f63c5ce5",
+      "html_path": "raw/readwise/build-a-rag-agent-with-langchain-01kqh06nqcje2w0skbcbhj1fn1.html",
+      "md_path": "raw/readwise/build-a-rag-agent-with-langchain-01kqh06nqcje2w0skbcbhj1fn1.md",
+      "source_url": "https://docs.langchain.com/oss/python/langchain/rag",
+      "updated_at": "2026-05-02T14:22:05.882073+00:00"
+    },
+    "01kqh081eg75gw49db3mqd9cpq": {
+      "content_sha256": "619f37e0bc77e3e464cc77ef0841be95760653b2d09a57ec2a02663617c67f1a",
+      "html_path": "raw/readwise/llm-wiki-github-01kqh081eg75gw49db3mqd9cpq.html",
+      "md_path": "raw/readwise/llm-wiki-github-01kqh081eg75gw49db3mqd9cpq.md",
+      "source_url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+      "updated_at": "2026-05-02T14:22:00.264220+00:00"
+    },
+    "01kqh0a0ndw29gjtjmft53j486": {
+      "content_sha256": "f3c6e863c65f521eb9c15ee6356a62d52421826ef42e29c1985ae9635af88143",
+      "html_path": "raw/readwise/github-garrytan-gbrain-garry-s-opinionated-openclaw-brain-github-01kqh0a0ndw29gjtjmft53j486.html",
+      "md_path": "raw/readwise/github-garrytan-gbrain-garry-s-opinionated-openclaw-brain-github-01kqh0a0ndw29gjtjmft53j486.md",
+      "source_url": "https://github.com/garrytan/gbrain",
+      "updated_at": "2026-05-02T14:22:00.264220+00:00"
+    },
+    "01kqh0spkgqy5bvsgb7w50yb4h": {
+      "content_sha256": "577cdbe65603aa940816613df3093920179a9507fa8d7c7b37f810628a4eb910",
+      "html_path": "raw/readwise/behind-the-scene-of-conversational-ai-agent-01kqh0spkgqy5bvsgb7w50yb4h.html",
+      "md_path": "raw/readwise/behind-the-scene-of-conversational-ai-agent-01kqh0spkgqy5bvsgb7w50yb4h.md",
+      "source_url": "https://medium.com/@yezi.li_jla/behind-the-scene-of-conversational-ai-agent-ae6fb6e5f57c",
+      "updated_at": "2026-05-02T14:21:59.695152+00:00"
+    },
+    "01kqh0vjnrvxfjbkwye8cmrtyv": {
+      "content_sha256": "3aaccfc040e33d50d50b7ab70ae8cfd3b30624ebd2179d72309bac318cfe34e7",
+      "html_path": "raw/readwise/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-01kqh0vjnrvxfjbkwye8cmrtyv.html",
+      "md_path": "raw/readwise/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-01kqh0vjnrvxfjbkwye8cmrtyv.md",
+      "source_url": "https://medium.com/@alessandro-negro/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec",
+      "updated_at": "2026-05-02T14:21:59.695152+00:00"
+    },
+    "01kqks5d5nhe5gz2m534h4ehbh": {
+      "content_sha256": "6768e185f60255b2fe961a208d4d6aaa58ff6a5f28341c907076eaa9128f6e45",
+      "html_path": "raw/readwise/ainews-ai-engineer-world-s-fair-autoresearch-memory-world-models-tokenmaxxing-agentic-commerce-and-vertic-01kqks5d5nhe5gz2m534h4ehbh.html",
+      "md_path": "raw/readwise/ainews-ai-engineer-world-s-fair-autoresearch-memory-world-models-tokenmaxxing-agentic-commerce-and-vertic-01kqks5d5nhe5gz2m534h4ehbh.md",
+      "source_url": "mailto:reader-forwarded-email/5ecd282cf6904eebcab81182c054d897",
+      "updated_at": "2026-05-02T14:21:54.339561+00:00"
+    },
+    "01kqks5stg5hbmkvb9y3c1rrje": {
+      "content_sha256": "436792efc77f4249a631d699b56a68db9d251b8aa6feb03e4dbdac75718c7e3d",
+      "html_path": "raw/readwise/ainews-ai-engineer-world-s-fair-autoresearch-memory-world-models-tokenmaxxing-agentic-commerce-and-vertical-ai-call-for-speakers-01kqks5stg5hbmkvb9y3c1rrje.html",
+      "md_path": "raw/readwise/ainews-ai-engineer-world-s-fair-autoresearch-memory-world-models-tokenmaxxing-agentic-commerce-and-vertical-ai-call-for-speakers-01kqks5stg5hbmkvb9y3c1rrje.md",
+      "source_url": "https://www.latent.space/p/ainews-ai-engineer-worlds-fair-autoresearch",
+      "updated_at": "2026-05-02T14:49:24.330730+00:00"
+    },
+    "01kqktnemtp7dbmtzfbef6h1hr": {
+      "content_sha256": "19a5e7947b92ac07fbaf0397132734572d1861ed536bbd4de2eafab1ea00da35",
+      "html_path": "raw/readwise/karpathy-s-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-01kqktnemtp7dbmtzfbef6h1hr.html",
+      "md_path": "raw/readwise/karpathy-s-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-01kqktnemtp7dbmtzfbef6h1hr.md",
+      "source_url": "https://medium.com/@creativeaininja/karpathys-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-21c5146a7b53",
+      "updated_at": "2026-05-02T14:21:54.339561+00:00"
+    },
+    "01kqkv211fd31ce6qv924evxhr": {
+      "content_sha256": "63a4dc4419e09c0d194e643cdea33aea8fe7cf9e845c47948608aa5d694496e5",
+      "html_path": "raw/readwise/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr.html",
+      "md_path": "raw/readwise/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr.md",
+      "source_url": "https://medium.com/google-cloud/i-ran-gemma-4-as-a-local-model-in-codex-cli-7fda754dc0d4",
+      "updated_at": "2026-05-02T14:21:53.843972+00:00"
+    },
+    "01kqkv78qyrcbmcnbttz4ae769": {
+      "content_sha256": "bc9e1049ec6b74c8d5d95c318ba47d0c5da4d0947eeb2278590ab1f3c3c975d7",
+      "html_path": "raw/readwise/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769.html",
+      "md_path": "raw/readwise/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769.md",
+      "source_url": "https://pub.towardsai.net/i-used-karpathys-llm-wiki-to-build-a-research-brain-that-updates-itself-ff02dda47335",
+      "updated_at": "2026-05-02T14:21:53.337337+00:00"
+    },
+    "01kqkv823tq6868pfbrjg0khg6": {
+      "content_sha256": "829ea5d9f47df0cac28ccee3a5e8a23a932e8d7569349267eef5a0a44afce1cd",
+      "html_path": "raw/readwise/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6.html",
+      "md_path": "raw/readwise/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6.md",
+      "source_url": "https://levelup.gitconnected.com/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-2127bcf65122",
+      "updated_at": "2026-05-02T14:21:53.337337+00:00"
+    },
+    "01kqkv9ej7dxydcbtgnaj5bb1t": {
+      "content_sha256": "53ffd1f048a95a7c68e8f907a8a205f02dd67aa0f57ae2195614c57593e42838",
+      "html_path": "raw/readwise/how-i-turned-andrej-karpathy-s-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-01kqkv9ej7dxydcbtgnaj5bb1t.html",
+      "md_path": "raw/readwise/how-i-turned-andrej-karpathy-s-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-01kqkv9ej7dxydcbtgnaj5bb1t.md",
+      "source_url": "https://medium.com/@k.balu124/how-i-turned-andrej-karpathys-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-cfb7f73afa52",
+      "updated_at": "2026-05-02T14:21:47.983631+00:00"
+    },
+    "01kqkvap8jqv7af5dffdrt82pj": {
+      "content_sha256": "a68eb05b740f56eb628ecdff2cf05be369933aebc01fcd6678855fded40227bc",
+      "html_path": "raw/readwise/lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj.html",
+      "md_path": "raw/readwise/lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj.md",
+      "source_url": "https://medium.com/obsidian-observer/lessons-from-breaking-down-obsidians-ceo-s-personal-vault-template-cf90d90ff40f",
+      "updated_at": "2026-05-02T14:21:47.983631+00:00"
+    },
+    "01kqkvbh9k2p2m6eh234khs2kf": {
+      "content_sha256": "06b2b7a825c5a2905cb977e0e9657b3894386f7ca2bddc91da972c0e732ca86d",
+      "html_path": "raw/readwise/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf.html",
+      "md_path": "raw/readwise/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf.md",
+      "source_url": "https://medium.com/ai-threads/i-spent-3-days-researching-self-hosted-ai-heres-why-you-should-and-shouldn-t-actually-do-it-e62ad7fcd9f1",
+      "updated_at": "2026-05-02T14:21:47.478316+00:00"
+    },
+    "01kqkvcae2nsb4s8s0g9y4tq0h": {
+      "content_sha256": "6c6bdaaa037866f20a10f4568440d96ef098a7529239bd7d145139e7aca03e72",
+      "html_path": "raw/readwise/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h.html",
+      "md_path": "raw/readwise/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h.md",
+      "source_url": "https://medium.com/@lennart.dde/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-463f85509e3b",
+      "updated_at": "2026-05-02T14:21:47.026785+00:00"
+    },
+    "01kqkvd7bwfhpbgqtw20czkk22": {
+      "content_sha256": "3e8dc70ec88852e7d5e3bc59ec2f3ba9d12780c9ac980cdbe95148947222a4df",
+      "html_path": "raw/readwise/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22.html",
+      "md_path": "raw/readwise/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22.md",
+      "source_url": "https://medium.com/@aiwithakashgoyal/beyond-simple-extraction-how-production-grade-ontologies-transform-graphrag-from-prototype-to-333742fa41a6",
+      "updated_at": "2026-05-02T14:21:47.026785+00:00"
+    },
+    "01kqkvebtemtbnrmc9yxr66trm": {
+      "content_sha256": "83092ed86256541c13de58c47df481231ded71b3eca0dc092c3931e867e1ddfe",
+      "html_path": "raw/readwise/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm.html",
+      "md_path": "raw/readwise/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm.md",
+      "source_url": "https://medium.com/data-science-collective/how-to-run-an-open-source-llm-on-your-personal-computer-bc6cca454282",
+      "updated_at": "2026-05-02T14:21:41.818381+00:00"
+    },
+    "01kqkvgnyhw96eaf0eb9fj5gft": {
+      "content_sha256": "c45289853873ebac079497a4694723327c8cf8ba77a9a7fb8394c2ca97bbdcb5",
+      "html_path": "raw/readwise/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft.html",
+      "md_path": "raw/readwise/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft.md",
+      "source_url": "https://medium.com/@KanikaBK/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-7239a07d6b9e",
+      "updated_at": "2026-05-02T14:21:41.818381+00:00"
+    },
+    "01kqkvj2z9yv69c235tfg6b2gk": {
+      "content_sha256": "96a8c90e191608aca41172adf4ab2da1f3f72fbedf0949c7fe592420cbb99df2",
+      "html_path": "raw/readwise/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-01kqkvj2z9yv69c235tfg6b2gk.html",
+      "md_path": "raw/readwise/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-01kqkvj2z9yv69c235tfg6b2gk.md",
+      "source_url": "https://ai.gopubby.com/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-56829e66725c",
+      "updated_at": "2026-05-02T14:21:40.059206+00:00"
+    },
+    "01kqky9zvey7e9mbv4tfscr37y": {
+      "content_sha256": "5b9340398de6c0d6a2bc32ad45df61a6c54e01256ca012c7fef08e1e6301a70d",
+      "html_path": "raw/readwise/how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y.html",
+      "md_path": "raw/readwise/how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y.md",
+      "source_url": "https://medium.com/tech-and-ai-guild/how-claude-code-and-obsidian-broke-personal-knowledge-management-d00dc8ae88d3",
+      "updated_at": "2026-05-02T14:21:39.642166+00:00"
+    },
+    "01kqkyaqcyqgmyjjqs3r374v14": {
+      "content_sha256": "95a5c49263f2075bd39879735f54c78f96da7241a4bc514b321c629b8313ba1b",
+      "html_path": "raw/readwise/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14.html",
+      "md_path": "raw/readwise/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14.md",
+      "source_url": "https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654",
+      "updated_at": "2026-05-02T14:21:39.642166+00:00"
+    },
+    "01kqkybgz2w3786bcejsy8qacb": {
+      "content_sha256": "f4c1f0e53632dcee0fd9830fbd62b3a15ebce8ed73fb735808bc20343a97fa98",
+      "html_path": "raw/readwise/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb.html",
+      "md_path": "raw/readwise/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb.md",
+      "source_url": "https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-44cbee166a5b",
+      "updated_at": "2026-05-02T14:21:38.750614+00:00"
+    },
+    "01kqkyc30kj9jnz7an1hvgb4sg": {
+      "content_sha256": "3f232b22433509aa986a85d61f1192a905dfaa33c73e946a07320ed5dd31f292",
+      "html_path": "raw/readwise/voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg.html",
+      "md_path": "raw/readwise/voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg.md",
+      "source_url": "https://medium.com/@neilaisme/voice-ai-vs-data-ai-5511684c940d",
+      "updated_at": "2026-05-02T14:21:38.331999+00:00"
+    },
+    "01kqkyhgefymbv50vnchz4b8w0": {
+      "content_sha256": "acf0692c7341ef3c007f59d383799d117ea734a21820e90e48c335f718eb0704",
+      "html_path": "raw/readwise/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-01kqkyhgefymbv50vnchz4b8w0.html",
+      "md_path": "raw/readwise/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-01kqkyhgefymbv50vnchz4b8w0.md",
+      "source_url": "https://medium.com/@creativeaininja/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-278441cd1870",
+      "updated_at": "2026-05-02T14:21:37.881620+00:00"
+    },
+    "01kqkyzqa74qr7rxzzjs08gc58": {
+      "content_sha256": "885fb5a84d0462172377aad24f84a6234b6d375b96cbd331318d94e471debf53",
+      "html_path": "raw/readwise/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58.html",
+      "md_path": "raw/readwise/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58.md",
+      "source_url": "https://medium.com/@kurtis-redux/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-82a090bc9672",
+      "updated_at": "2026-05-02T14:21:37.388155+00:00"
+    },
+    "01kqkzbbr47x5jcmdm2wy72k03": {
+      "content_sha256": "6f88517aec06cced1891e67e663d27e54eb0e464172d9aca387db31c63b95cbc",
+      "html_path": "raw/readwise/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03.html",
+      "md_path": "raw/readwise/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03.md",
+      "source_url": "https://medium.com/no-time/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-8337d9233582",
+      "updated_at": "2026-05-02T14:21:32.504402+00:00"
+    },
+    "01kqkzctgpjxtkpzxn009b6tgj": {
+      "content_sha256": "127be3fefa255149fb6fa60c5d8db1cb3b4970739438283e16bbf3902f55be9a",
+      "html_path": "raw/readwise/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj.html",
+      "md_path": "raw/readwise/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj.md",
+      "source_url": "https://medium.com/@pankaj_pandey/the-best-rag-architectures-for-ai-agents-every-developer-must-know-434c97cf1645",
+      "updated_at": "2026-05-02T14:21:32.027015+00:00"
+    },
+    "01kqkzqzvq3q6bbsq60pr92ar9": {
+      "content_sha256": "60d4eff2bab75a76a46580f10b026fd2ba49854aa4c6097fa5510cd9724b82aa",
+      "html_path": "raw/readwise/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9.html",
+      "md_path": "raw/readwise/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9.md",
+      "source_url": "https://medium.com/datadriveninvestor/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-4597c1fc44a6",
+      "updated_at": "2026-05-02T14:21:32.027015+00:00"
+    },
+    "01kqm05wc7wq68ypednrdcpa0b": {
+      "content_sha256": "45700790b74ef25df02da842cf60f3d93ea54ae4c619db3a5f2432b12c4d792d",
+      "html_path": "raw/readwise/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b.html",
+      "md_path": "raw/readwise/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b.md",
+      "source_url": "https://medium.com/towards-deep-learning/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-5a3c56d2b2b3",
+      "updated_at": "2026-05-02T14:21:31.501735+00:00"
+    },
+    "01kqm094n15r71mj5g1xbsk1nj": {
+      "content_sha256": "557130f1ef073b44ae27673dbd1c06a300d37b025fa7691f345892be10e0b451",
+      "html_path": "raw/readwise/creating-a-stateless-chatbot-in-langgraph-01kqm094n15r71mj5g1xbsk1nj.html",
+      "md_path": "raw/readwise/creating-a-stateless-chatbot-in-langgraph-01kqm094n15r71mj5g1xbsk1nj.md",
+      "source_url": "https://medium.com/@nachiket4jan/creating-a-stateless-chatbot-in-langgraph-62a7f6fb753d",
+      "updated_at": "2026-05-02T14:21:30.968330+00:00"
+    },
+    "01kqm0b6gghfh7qbje0ynw6sxd": {
+      "content_sha256": "2130e80d5642ef35bf41da5381743563ac96edc8fb7a9335b7c94bc81d998437",
+      "html_path": "raw/readwise/why-google-is-breaking-its-own-ide-the-antigravity-collapse-01kqm0b6gghfh7qbje0ynw6sxd.html",
+      "md_path": "raw/readwise/why-google-is-breaking-its-own-ide-the-antigravity-collapse-01kqm0b6gghfh7qbje0ynw6sxd.md",
+      "source_url": "https://medium.com/ai-in-plain-english/why-google-is-breaking-its-own-ide-the-antigravity-collapse-d752510662fe",
+      "updated_at": "2026-05-02T14:21:30.414596+00:00"
+    },
+    "01kqm0f601dmv6jmsa9v3y9ry2": {
+      "content_sha256": "3a703e96d611462c794b2a937b2c6895bd2417168c8f9047177f86a19c27b25c",
+      "html_path": "raw/readwise/6-mcp-servers-that-are-so-good-they-feel-illegal-in-2026-01kqm0f601dmv6jmsa9v3y9ry2.html",
+      "md_path": "raw/readwise/6-mcp-servers-that-are-so-good-they-feel-illegal-in-2026-01kqm0f601dmv6jmsa9v3y9ry2.md",
+      "source_url": "https://medium.com/@hii_mohit/6-mcp-servers-that-are-so-good-they-feel-illegal-in-2026-4e080b58de14",
+      "updated_at": "2026-05-02T14:21:29.774806+00:00"
+    },
+    "01kqm0pmnw3vtap5a84xh1r9h4": {
+      "content_sha256": "daa85481acca14bb5deec7a3c458d5fcaaa20e03cab88de112a1352c3117d7d2",
+      "html_path": "raw/readwise/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4.html",
+      "md_path": "raw/readwise/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4.md",
+      "source_url": "https://medium.com/towards-artificial-intelligence/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-bddad36f8934",
+      "updated_at": "2026-05-02T14:21:29.131746+00:00"
+    },
+    "01kqm0rf7jxk8010thyjvag0j8": {
+      "content_sha256": "f30b1853237ce570fa1091a7a048961aa4fd1019f74a5cbeabc63707a620890a",
+      "html_path": "raw/readwise/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8.html",
+      "md_path": "raw/readwise/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8.md",
+      "source_url": "https://medium.com/@evoailabs/why-andrej-karpathys-llm-wiki-is-the-future-of-personal-knowledge-7ac398383772",
+      "updated_at": "2026-05-02T14:21:28.691084+00:00"
+    },
+    "01kqm1b1r3e33mym3vd0d08wbn": {
+      "content_sha256": "1113f60159464ce85dfb3a3beac5ce9869fc2416cb47f5682c645ccc0fcc8527",
+      "html_path": "raw/readwise/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn.html",
+      "md_path": "raw/readwise/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn.md",
+      "source_url": "https://medium.com/graph-praxis/your-obsidian-vault-is-a-knowledge-graph-heres-how-to-make-it-think-quickly-1487614a7682",
+      "updated_at": "2026-05-02T14:21:28.041741+00:00"
+    },
+    "01kqm1ta31yhxbckq1c46n2zja": {
+      "content_sha256": "7233e0f9954939a146a9fbe37a7a85476c3479e56030cb06098e20d051502c3c",
+      "html_path": "raw/readwise/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja.html",
+      "md_path": "raw/readwise/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja.md",
+      "source_url": "https://medium.com/@KanikaBK/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-e11d6542f643",
+      "updated_at": "2026-05-02T14:21:22.973669+00:00"
+    }
+  },
+  "last_updated_after": "2026-05-02T14:49:24.330730+00:00",
+  "version": 1
+}

@@ -100,9 +100,12 @@ llm-wiki-karpathy/
 │
 ├── src/               # Code and automation layer
 │   └── AGENTS.md      # Scoped coding/tooling instructions
+├── state/             # Local pipeline state (e.g. Readwise export index)
 ├── docs/              # Supporting docs (routing rubric, etc.)
 └── .obsidian/         # Pre-configured Obsidian vault settings
 ```
+
+**Readwise Reader:** with `READWISE_TOKEN` set, run `hatch run readwise-sync` to export archived documents tagged `processed` into `raw/readwise/` (paired HTML + Markdown). Details are in [`src/AGENTS.md`](src/AGENTS.md).
 
 ### How the layers work
 

@@ -10,6 +10,8 @@ python = "3"
 installer = "uv"
 skip-install = true
 dependencies = [
+  "httpx>=0.28.0",
+  "python-dotenv>=1.0.0",
   "pre-commit>=4.2.0",
   "pytest>=8.3.0",
   "pytest-cov>=6.0.0",
@@ -27,6 +29,11 @@ check = [
 ]
 format = [
   "ruff format .",
+]
+
+[tool.hatch.envs.default.scripts]
+readwise-sync = [
+  "python -m src.readwise {args}",
 ]
 
 [tool.hatch.envs.test]

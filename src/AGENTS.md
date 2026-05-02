@@ -54,7 +54,14 @@ Run these after substantive code changes:
 - Ensure code quality rules enforced by pre-commit match Hatch lint/type commands.
 - Prefer changing config in one place (`pyproject.toml`) and reusing it from hooks.
 
+## Readwise Reader export
+
+- Set `READWISE_TOKEN` (or `READWISE_API_TOKEN`) from [readwise.io/access_token](https://readwise.io/access_token), or put it in a repo-root `.env` file (loaded automatically; does not override existing shell variables).
+- Run: `hatch run readwise-sync` (optional: `--dry-run`, `--prune-missing`, `--reset-watermark`, `--output-dir`, `--index`).
+- Each run passes Readwise **`updatedAfter`**: either `last_updated_after` from `state/readwise_library.json`, or on the **first run** (no watermark yet) a timestamp **~100 days** in the past so the initial sync still uses a bounded window.
+- Exports Reader **Library Archive** documents tagged **processed** to `raw/readwise/` as paired `.html` + `.md`, with dedupe in `state/readwise_library.json`.
+
 ## Safety
 
-- Do not modify `raw/` source documents.
+- Do not modify `raw/` source documents (except via the explicit Readwise export command above).
 - Avoid touching wiki data unless the user explicitly requests a mixed workflow.

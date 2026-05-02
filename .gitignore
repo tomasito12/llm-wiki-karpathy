@@ -18,6 +18,11 @@ __pycache__/
 coverage.xml
 htmlcov/
 
+# Secrets / local env (never commit tokens)
+.env
+.env.*
+!.env.example
+
 # Temporary files
 *.log
 *.tmp
