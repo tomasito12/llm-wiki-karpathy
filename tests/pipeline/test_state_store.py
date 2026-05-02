@@ -5,14 +5,14 @@ from src.pipeline.state_store import SourceStateStore, canonicalize_url, make_it
 
 def test_canonicalize_url_removes_query_fragment_and_slash() -> None:
     assert (
-        canonicalize_url("https://medium.com/@example/post/?utm_source=rss#part")
-        == "https://medium.com/@example/post"
+        canonicalize_url("https://example.com/@example/post/?utm_source=rss#part")
+        == "https://example.com/@example/post"
     )
 
 
 def test_make_item_id_is_stable() -> None:
-    first = make_item_id("https://medium.com/@example/post?utm_source=x")
-    second = make_item_id("https://medium.com/@example/post")
+    first = make_item_id("https://example.com/@example/post?utm_source=x")
+    second = make_item_id("https://example.com/@example/post")
     assert first == second
 
 
@@ -26,7 +26,7 @@ def test_state_store_upsert_and_seen_lookup(tmp_path: Path) -> None:
         source_name="example",
         item_id="item-1",
         title="Title",
-        canonical_url="https://medium.com/x",
+        canonical_url="https://example.com/x",
         published_at=None,
         local_path=None,
         status="parsed",

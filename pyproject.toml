@@ -10,8 +10,6 @@ python = "3"
 installer = "uv"
 skip-install = true
 dependencies = [
-  "beautifulsoup4>=4.12.0",
-  "playwright>=1.54.0",
   "pre-commit>=4.2.0",
   "pytest>=8.3.0",
   "pytest-cov>=6.0.0",
@@ -40,23 +38,6 @@ run = [
 ]
 cov = [
   "pytest --cov=. --cov-report=term-missing --cov-report=xml",
-]
-
-[tool.hatch.envs.pipeline]
-template = "default"
-
-[tool.hatch.envs.pipeline.scripts]
-check = [
-  "python -m src.pipeline.cli check {args}",
-]
-pull = [
-  "python -m src.pipeline.cli pull {args}",
-]
-mark = [
-  "python -m src.pipeline.cli mark {args}",
-]
-auth-login = [
-  "python -m src.pipeline.cli auth-login {args}",
 ]
 
 [tool.ruff]

@@ -6,15 +6,6 @@ from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
-class SourceConfig:
-    """Defines a configured upstream content source."""
-
-    name: str
-    kind: str
-    url: str
-
-
-@dataclass(frozen=True)
 class DiscoveredItem:
     """Represents a discovered candidate article before parsing."""
 

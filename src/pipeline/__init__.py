@@ -1,1 +1,1 @@
-"""Pipeline package for source discovery, parsing, and staging."""
+"""Pipeline package: shared models, state store, and staging utilities."""

@@ -7,9 +7,9 @@ from src.pipeline.staging import stage_document
 def test_stage_document_writes_markdown_file(tmp_path: Path) -> None:
     item = DiscoveredItem(
         item_id="deadbeef",
-        source_name="example-medium",
-        source_url="https://medium.com/@example",
-        url="https://medium.com/@example/post",
+        source_name="example-source",
+        source_url="https://example.com/feed",
+        url="https://example.com/article/post",
         title="My Test Title",
         published_at=None,
     )
