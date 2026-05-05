@@ -117,20 +117,38 @@ llm-wiki-karpathy/
 | Wiki rules | `wiki/AGENTS.md` | You + AI | Defines wiki entity types, ingest/query/lint workflows, and cross-linking standards. |
 | Code rules | `src/AGENTS.md` | You + AI | Defines coding standards, tests, linting, and tooling workflow. |
 
+### Wiki ingest paths
+
+Ingest is **dual-path** at the top level, with **Path A** splitting into two tracks (see `wiki/AGENTS.md` and `wiki/style/ingest-templates.md`):
+
+- **Path A — Questions (deep article):** structured source summary (driving questions, author’s answer, why it matters, **implications for service-call automation**), then file evidence under canonical **`wiki/questions/q-*.md`** pages; read `wiki/questions/question-catalog.md` first to avoid duplicate questions.
+- **Path A — Tools (deep article):** same source minimum, but **primary filing** is **`wiki/ai-tools/<slug>.md`** — one persistent page **per named product** (listicles: always one file per name, even if thin at first). Read `wiki/ai-tools/tool-catalog.md` first for dedupe; each ingest appends **`### Update YYYY-MM-DD`** on the tool pages. Question pages are **optional** unless the source also establishes a standalone methodology question.
+- **Path B — Radar digest** (e.g. Latent Space, The Sequence, Last Week in AI): merge into **`wiki/ai-news/by-date/YYYY-MM-DD.md`** by publication date; optional **Monday** weekly rollup in `wiki/ai-news/weekly/`.
+
 ### Wiki page types
 
-The AI creates different page types depending on what it finds in your sources:
+The AI creates different page types depending on what it finds in your sources (see `wiki/AGENTS.md` for the full taxonomy):
 
 | Type | Location | What it captures |
 |------|----------|-----------------|
 | Source | `wiki/sources/` | Summary of a raw document — key facts, quotes, metadata |
-| Chatbot | `wiki/bot-design/` | Chatbot/voicebot design pattern and implementation concepts |
-| Evaluation | `wiki/evaluate/` | Evaluation methods, quality checklists, and validation guidance |
+| Question | `wiki/questions/` (`q-*.md`) | One canonical driving question; dated Evidence + citations |
+| Questions catalog | `wiki/questions/question-catalog.md` | Table of all questions for dedupe before Path A — Questions ingest |
+| Tools catalog | `wiki/ai-tools/tool-catalog.md` | Table of per-product tool pages for dedupe before Path A — Tools ingest |
+| Knowledge management | `wiki/knowledge-management/` | RAG, knowledge graphs, LLM-wiki / organizational KM |
+| Personal knowledge | `wiki/personal-knowledge/` | PKM, AI-assisted workflows, overlap with KM |
+| AI tool | `wiki/ai-tools/<slug>.md` | One page per named product; grows with dated **Update** blocks (see `tool-catalog.md`) |
+| AI news | `wiki/ai-news/` | Releases, model updates, industry radar |
+| Local AI | `wiki/local-ai/` | Self-hosting, local inference, privacy vs cloud |
+| Conversational AI | `wiki/conversational-ai/` | Chat/voice and **service automation** (core domain) |
+| Prompting | `wiki/prompting/` | Context and prompt patterns for UX and task quality |
+| Models | `wiki/models/` | Open vs proprietary landscape, hosting realism |
+| AI engineering | `wiki/ai-engineering/` | Practices, spec-driven delivery, engineering trends |
+| Governance & security | `wiki/governance-security/` | Governance and AI security topics |
+| Evaluation | `wiki/evaluate/` | Evaluation methods and checklists (cross-topic) |
 | Transcript | `wiki/transcripts/` | Meeting transcripts, decisions, and timelines |
-| AI-Release | `wiki/ai-releases/` | Model/tool release notes and impact interpretation |
-| Industry News | `wiki/industry-news/` | External AI usage patterns, trends, and pitfalls |
 | Style | `wiki/style/` | Process conventions and wiki maintenance checklists |
-| Analysis | `wiki/analyses/` | A synthesized output — comparison table, gap analysis, outline |
+| Analysis | `wiki/analyses/` | Multi-topic synthesis — comparison, gap analysis, outline |
 
 ---
 

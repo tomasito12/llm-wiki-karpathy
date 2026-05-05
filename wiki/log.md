@@ -1,46 +1,28 @@
-# Wiki Log
-
-Append-only chronological record of all activity: ingests, queries, and lint passes.
-
-To view recent activity: `grep "^## \[" log.md | tail -10`
-
+---
+title: Activity log
+type: log
+created: 2026-05-03
+updated: 2026-05-05
+sources: []
+tags: []
 ---
 
-## [2026-04-07] init | Wiki created
+Append-only log.
 
-Wiki initialized for a technical writer's personal knowledge base.
+## 2026-05-05 — Ingest Readwise / Medium (six concepts)
 
-Structure created:
-- `raw/` — source documents folder
-- `wiki/` — LLM-maintained knowledge base
-- `wiki/sources/` — per-source summary pages
-- `AGENTS.md` — schema and operating instructions
+- **Source:** [[6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8]] (Divy Yadav, Towards AI on Medium).
+- **Stage 1:** Non-radar (foundational primer); Path A — **Questions** (not tools-first).
+- **Questions added/updated:** [[q-what-six-concepts-underpin-production-ai-systems]], [[q-why-context-engineering-matters-for-llm-reliability]], [[q-what-guardrails-do-production-agents-require]], [[q-why-is-rag-effectiveness-mostly-a-retrieval-problem]]; catalog: [[question-catalog]].
+- **Glossary:** token, context window, embedding, RAG, agentic loop, evals, context engineering — see [[glossary/index]].
+- **Housekeeping:** [[index]], [[overview]].
 
-Core pages created:
-- `wiki/index.md`
-- `wiki/log.md`
-- `wiki/overview.md`
-- `wiki/glossary.md`
+## 2026-05-07 — Wiki blank reset
 
-Next step: Drop your first source into `raw/` and say **"ingest [filename]"**.
+- **Removed:** all `wiki/sources/*.md`, all `wiki/questions/q-*.md`, all `wiki/glossary/terms/*.md`.
+- **Cleared:** [[glossary/index]] (empty term table), [[question-catalog]] (tag heading only), [[index]] / [[overview]] stubs.
+- **Kept:** [[AGENTS]], [[ingest-templates]], [[stage1-classifier]], folder layout (`sources/`, `questions/`, `glossary/terms/`).
 
-Migration note:
-- `CLAUDE.md` was renamed to `AGENTS.md`; `AGENTS.md` is now the canonical operating manual reference.
+## Related pages
 
-## [2026-04-25] ingest | How I Stopped My AI Chatbot From Making Up Answers
-
-Pages created:
-- `wiki/sources/how-i-stopped-my-ai-chatbot-from-making-up-answers.md`
-- `wiki/bot-design/rag-reliability-for-support-chatbots.md`
-- `wiki/evaluate/retrieval-quality-evaluation-checklist.md`
-
-Pages updated:
-- `wiki/glossary.md`
-- `wiki/index.md`
-- `wiki/overview.md`
-- `wiki/log.md`
-
-Key additions:
-- First source ingest completed with source summary and reliability-focused extraction
-- Introduced canonical terminology for RAG reliability work
-- Added chatbot design pattern page and retrieval evaluation checklist page
+- [[index]]
