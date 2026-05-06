@@ -35,6 +35,9 @@ format = [
 readwise-sync = [
   "python -m src.readwise {args}",
 ]
+wiki-reset = [
+  "python -m src.wiki_reset {args}",
+]
 
 [tool.hatch.envs.test]
 template = "default"

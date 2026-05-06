@@ -61,6 +61,14 @@ Run these after substantive code changes:
 - Each run passes Readwise **`updatedAfter`**: either `last_updated_after` from `state/readwise_library.json`, or on the **first run** (no watermark yet) a timestamp **~100 days** in the past so the initial sync still uses a bounded window.
 - Exports Reader **Library Archive** documents tagged **processed** to `raw/readwise/` as paired `.html` + `.md`, with dedupe in `state/readwise_library.json`.
 
+## Wiki baseline reset
+
+- Run: `hatch run wiki-reset` interactively. You must type **`RESET-WIKI`** exactly when prompted, or pass `--confirm RESET-WIKI` (non-interactive).
+- **Preserves** only: `wiki/AGENTS.md`, `wiki/stage1-classifier.md`, `wiki/ingest-templates.md`, `wiki/stage2-artifact-router.md`.
+- **Recreates** empty shells: `wiki/index.md`, `wiki/log.md`, `wiki/questions/question-catalog.md`, `wiki/glossary/index.md`, empty `wiki/sources/` and `wiki/glossary/terms/`.
+- **Clears** `state/readwise_library.json` by default (export dedupe + watermark). Use `--keep-readwise-index` to only reset wiki files.
+- Does **not** delete `raw/readwise/` exports.
+
 ## Safety
 
 - Do not modify `raw/` source documents (except via the explicit Readwise export command above).

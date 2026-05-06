@@ -251,9 +251,7 @@ def test_reset_watermark_persists_null_when_api_returns_nothing(tmp_path: Path) 
     """Clearing the watermark is saved even when the list response is empty."""
 
     index_path = tmp_path / "readwise_library.json"
-    LibraryIndex(documents={}, last_updated_after="2020-01-01T00:00:00+00:00").save(
-        index_path
-    )
+    LibraryIndex(documents={}, last_updated_after="2020-01-01T00:00:00+00:00").save(index_path)
 
     def handler(_request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, json={"count": 0, "results": [], "nextPageCursor": None})
