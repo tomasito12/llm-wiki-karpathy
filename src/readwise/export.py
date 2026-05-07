@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from html.parser import HTMLParser
 from pathlib import Path
 
+from src.pipeline.atomic import atomic_write_text
 from src.pipeline.staging import slugify
 from src.readwise.library_index import ExportedRecord
 from src.readwise.models import ReaderDocument
@@ -141,16 +142,16 @@ def write_document_export(
 
     html_body = doc.html_content
     if html_body:
-        paths.html_path.write_text(html_body, encoding="utf-8")
+        atomic_write_text(paths.html_path, html_body)
         digest = sha256_hex(html_body)
     else:
         stub = f"<!-- readwise export: no html_content for id={doc.id} title={doc.title!r} -->\n"
-        paths.html_path.write_text(stub, encoding="utf-8")
+        atomic_write_text(paths.html_path, stub)
         digest = sha256_hex(stub)
 
     excerpt = plaintext_excerpt_from_html(html_body or "")
     md_text = build_markdown_sidecar(doc, excerpt=excerpt)
-    paths.md_path.write_text(md_text, encoding="utf-8")
+    atomic_write_text(paths.md_path, md_text)
 
     rel_html = f"{relative_prefix}/{paths.html_path.name}"
     rel_md = f"{relative_prefix}/{paths.md_path.name}"

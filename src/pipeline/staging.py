@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from src.pipeline.atomic import atomic_write_text
 from src.pipeline.models import ParsedDocument
 
 
@@ -20,5 +21,5 @@ def stage_document(parsed: ParsedDocument, staging_dir: Path) -> Path:
     staging_dir.mkdir(parents=True, exist_ok=True)
     filename = f"{slugify(parsed.item.title)}-{parsed.item.item_id}.md"
     path = staging_dir / filename
-    path.write_text(parsed.markdown, encoding="utf-8")
+    atomic_write_text(path, parsed.markdown)
     return path

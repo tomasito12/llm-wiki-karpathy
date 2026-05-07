@@ -26,3 +26,5 @@ def test_stage_document_writes_markdown_file(tmp_path: Path) -> None:
     output = stage_document(parsed=parsed, staging_dir=tmp_path)
     assert output.exists()
     assert output.read_text(encoding="utf-8").startswith("# Hello")
+    assert list(tmp_path.rglob("*.tmp")) == []
+    assert output.stem == "my-test-title-deadbeef"

@@ -98,3 +98,30 @@ def test_write_document_export_creates_paired_files(tmp_path: Path) -> None:
     assert paths.html_path.read_text(encoding="utf-8") == "<p>Paragraph one.</p>"
     md_text = paths.md_path.read_text(encoding="utf-8")
     assert "Paragraph one." in md_text
+    assert list(tmp_path.rglob("*.tmp")) == []
+    assert paths.stem == "my-article-title-01gwfvp9pyaabcdgmx14f6ha0"
+
+
+def test_write_document_export_no_tmp_artifacts_when_html_stub(tmp_path: Path) -> None:
+    """Atomic writes must not leave ``*.tmp`` files after a successful export."""
+    doc = ReaderDocument(
+        id="01stub00000000000000000001",
+        title="No HTML",
+        author=None,
+        source_url=None,
+        category="article",
+        location="archive",
+        published_date=None,
+        saved_at=None,
+        updated_at=None,
+        summary="",
+        html_content=None,
+        parent_id=None,
+        tags={},
+    )
+    _record, _rel_h, _rel_m = write_document_export(doc, tmp_path)
+    paths = export_paths_for(doc, tmp_path)
+    assert paths.html_path.is_file()
+    assert paths.md_path.is_file()
+    assert list(tmp_path.rglob("*.tmp")) == []
+    assert paths.stem == "no-html-01stub00000000000000000001"
