@@ -8,7 +8,9 @@ from pathlib import Path
 
 from src.wiki_reset.reset import (
     CONFIRMATION_PHRASE,
+    default_ingest_manifest_path,
     default_readwise_index_path,
+    default_sources_seen_path,
     default_wiki_root,
     run_wiki_reset,
 )
@@ -36,9 +38,26 @@ def build_parser() -> argparse.ArgumentParser:
         help="Readwise library JSON path (default: <repo>/state/readwise_library.json).",
     )
     parser.add_argument(
+        "--sources-seen",
+        type=Path,
+        default=default_sources_seen_path(),
+        help="Sources seen JSON path (default: <repo>/state/sources_seen.json).",
+    )
+    parser.add_argument(
+        "--manifest",
+        type=Path,
+        default=default_ingest_manifest_path(),
+        help="Ingest manifest JSON path (default: <repo>/state/ingest_manifest.json).",
+    )
+    parser.add_argument(
         "--keep-readwise-index",
         action="store_true",
         help="Do not clear the Readwise export index; only reset wiki files.",
+    )
+    parser.add_argument(
+        "--keep-ingest-state",
+        action="store_true",
+        help="Do not clear sources_seen.json or ingest_manifest.json.",
     )
     parser.add_argument(
         "--confirm",
@@ -62,14 +81,18 @@ def main() -> int:
             )
             return 1
     else:
+        prompt_state = {
+            "readwise_library": not args.keep_readwise_index,
+            "sources_seen": not args.keep_ingest_state,
+            "ingest_manifest": not args.keep_ingest_state,
+        }
+        prompt_summary = ", ".join(
+            f"{name} {'cleared' if cleared else 'preserved'}"
+            for name, cleared in sorted(prompt_state.items())
+        )
         print(
             "This will DELETE all wiki pages except the four instruction files, "
-            "recreate empty wiki shells, and "
-            + (
-                "CLEAR the Readwise export index (document list + watermark)."
-                if not args.keep_readwise_index
-                else "leave the Readwise index unchanged."
-            )
+            f"recreate empty wiki shells. State: {prompt_summary}."
         )
         print(f"Type {phrase!r} to confirm, or anything else to abort.")
         if input().strip() != phrase:
@@ -77,16 +100,24 @@ def main() -> int:
             return 1
 
     try:
-        deleted, index_cleared = run_wiki_reset(
+        deleted, state_results = run_wiki_reset(
             args.wiki_dir.resolve(),
             args.index.resolve(),
             clear_readwise_index=not args.keep_readwise_index,
+            sources_seen_path=args.sources_seen.resolve(),
+            manifest_path=args.manifest.resolve(),
+            clear_source_state=not args.keep_ingest_state,
+            clear_manifest=not args.keep_ingest_state,
         )
     except FileNotFoundError as err:
         print(str(err), file=sys.stderr)
         return 1
 
-    print(f"Removed {len(deleted)} wiki file(s). Readwise index cleared: {index_cleared}.")
+    state_summary = ", ".join(
+        f"{name} {'cleared' if cleared else 'preserved'}"
+        for name, cleared in sorted(state_results.items())
+    )
+    print(f"Removed {len(deleted)} wiki file(s). State: {state_summary}.")
     return 0
 
 

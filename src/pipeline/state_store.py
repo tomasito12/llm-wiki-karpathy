@@ -8,6 +8,8 @@ from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 
+from src.pipeline.atomic import atomic_write_json
+
 
 def canonicalize_url(url: str) -> str:
     """Return a normalized URL string for deterministic deduping."""
@@ -61,8 +63,7 @@ class SourceStateStore:
                 for source_name, items in state.items()
             }
         }
-        self._state_path.parent.mkdir(parents=True, exist_ok=True)
-        self._state_path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+        atomic_write_json(self._state_path, payload)
 
     def is_seen(self, source_name: str, item_id: str) -> bool:
         """Check whether an item has already been seen for a source."""

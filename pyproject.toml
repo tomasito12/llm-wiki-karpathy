@@ -32,8 +32,14 @@ format = [
 ]
 
 [tool.hatch.envs.default.scripts]
+ingest-manifest = [
+  "python -m src.pipeline.ingest_manifest {args}",
+]
 readwise-sync = [
   "python -m src.readwise {args}",
+]
+wiki-lint = [
+  "python -m src.wiki_lint {args}",
 ]
 wiki-reset = [
   "python -m src.wiki_reset {args}",

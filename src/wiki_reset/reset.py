@@ -5,6 +5,8 @@ from __future__ import annotations
 from datetime import date
 from pathlib import Path
 
+from src.pipeline.atomic import atomic_write_json, atomic_write_text
+from src.pipeline.ingest_manifest import IngestManifest
 from src.readwise.library_index import LibraryIndex
 from src.readwise.sync import _repo_root
 
@@ -33,6 +35,16 @@ def is_instruction_wiki_file(relative_posix: str) -> bool:
 def clear_readwise_export_index(index_path: Path) -> None:
     """Write an empty library index (clears exported-doc list and watermark)."""
     LibraryIndex.empty().save(index_path)
+
+
+def clear_sources_seen_state(state_path: Path) -> None:
+    """Write an empty discovered-sources state file."""
+    atomic_write_json(state_path, {"sources": {}})
+
+
+def clear_ingest_manifest(manifest_path: Path) -> None:
+    """Write an empty ingest manifest file."""
+    IngestManifest.empty().save(manifest_path)
 
 
 def delete_non_instruction_wiki_files(wiki_root: Path) -> list[str]:
@@ -66,7 +78,7 @@ def write_wiki_shell_files(
     wiki_root: Path,
     *,
     today_iso: str,
-    readwise_index_cleared: bool,
+    state_results: dict[str, bool],
 ) -> None:
     """Write minimal hub pages after reset."""
     wiki_root.mkdir(parents=True, exist_ok=True)
@@ -74,7 +86,8 @@ def write_wiki_shell_files(
     (wiki_root / "questions").mkdir(parents=True, exist_ok=True)
     (wiki_root / "glossary" / "terms").mkdir(parents=True, exist_ok=True)
 
-    (wiki_root / "index.md").write_text(
+    atomic_write_text(
+        wiki_root / "index.md",
         "\n".join(
             [
                 "---",
@@ -89,9 +102,13 @@ def write_wiki_shell_files(
                 "",
             ]
         ),
-        encoding="utf-8",
     )
-    (wiki_root / "log.md").write_text(
+    state_summary = ", ".join(
+        f"{name} {'cleared' if cleared else 'preserved'}"
+        for name, cleared in sorted(state_results.items())
+    )
+    atomic_write_text(
+        wiki_root / "log.md",
         "\n".join(
             [
                 "---",
@@ -102,18 +119,13 @@ def write_wiki_shell_files(
                 "---",
                 "",
                 f"- {today_iso}: Reset wiki knowledge baseline. Instruction files retained; "
-                "wiki content cleared. "
-                + (
-                    "Readwise export index cleared."
-                    if readwise_index_cleared
-                    else "Readwise export index left unchanged."
-                ),
+                f"wiki content cleared. State: {state_summary}.",
                 "",
             ]
         ),
-        encoding="utf-8",
     )
-    (wiki_root / "questions" / "question-catalog.md").write_text(
+    atomic_write_text(
+        wiki_root / "questions" / "question-catalog.md",
         "\n".join(
             [
                 "---",
@@ -127,9 +139,9 @@ def write_wiki_shell_files(
                 "",
             ]
         ),
-        encoding="utf-8",
     )
-    (wiki_root / "glossary" / "index.md").write_text(
+    atomic_write_text(
+        wiki_root / "glossary" / "index.md",
         "\n".join(
             [
                 "---",
@@ -144,7 +156,6 @@ def write_wiki_shell_files(
                 "",
             ]
         ),
-        encoding="utf-8",
     )
 
 
@@ -153,7 +164,11 @@ def run_wiki_reset(
     index_path: Path,
     *,
     clear_readwise_index: bool = True,
-) -> tuple[list[str], bool]:
+    sources_seen_path: Path | None = None,
+    manifest_path: Path | None = None,
+    clear_source_state: bool = True,
+    clear_manifest: bool = True,
+) -> tuple[list[str], dict[str, bool]]:
     """Run full reset. Raises ``FileNotFoundError`` if ``wiki_root`` is missing."""
     if not wiki_root.is_dir():
         msg = f"Wiki root is not a directory: {wiki_root}"
@@ -163,18 +178,24 @@ def run_wiki_reset(
     prune_empty_directories(wiki_root)
 
     today_iso = date.today().isoformat()
+    state_results = {
+        "readwise_library": clear_readwise_index,
+        "sources_seen": clear_source_state,
+        "ingest_manifest": clear_manifest,
+    }
     write_wiki_shell_files(
         wiki_root,
         today_iso=today_iso,
-        readwise_index_cleared=clear_readwise_index,
+        state_results=state_results,
     )
 
-    index_cleared = False
     if clear_readwise_index:
-        index_path.parent.mkdir(parents=True, exist_ok=True)
         clear_readwise_export_index(index_path)
-        index_cleared = True
-    return deleted, index_cleared
+    if clear_source_state:
+        clear_sources_seen_state(sources_seen_path or default_sources_seen_path())
+    if clear_manifest:
+        clear_ingest_manifest(manifest_path or default_ingest_manifest_path())
+    return deleted, state_results
 
 
 def default_wiki_root() -> Path:
@@ -185,3 +206,13 @@ def default_wiki_root() -> Path:
 def default_readwise_index_path() -> Path:
     """Default ``state/readwise_library.json`` path."""
     return _repo_root() / "state" / "readwise_library.json"
+
+
+def default_sources_seen_path() -> Path:
+    """Default ``state/sources_seen.json`` path."""
+    return _repo_root() / "state" / "sources_seen.json"
+
+
+def default_ingest_manifest_path() -> Path:
+    """Default ``state/ingest_manifest.json`` path."""
+    return _repo_root() / "state" / "ingest_manifest.json"

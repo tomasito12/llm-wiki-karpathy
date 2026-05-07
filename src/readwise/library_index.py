@@ -7,6 +7,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
+from src.pipeline.atomic import atomic_write_json
+
 INDEX_VERSION = 1
 
 
@@ -64,7 +66,6 @@ class LibraryIndex:
 
     def save(self, path: Path) -> None:
         """Write index to JSON with stable key ordering."""
-        path.parent.mkdir(parents=True, exist_ok=True)
         payload = {
             "version": INDEX_VERSION,
             "last_updated_after": self.last_updated_after,
@@ -72,4 +73,4 @@ class LibraryIndex:
                 doc_id: asdict(record) for doc_id, record in sorted(self.documents.items())
             },
         }
-        path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+        atomic_write_json(path, payload)
