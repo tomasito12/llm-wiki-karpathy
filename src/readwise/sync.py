@@ -34,7 +34,7 @@ def resolved_updated_after_for_list(
     return (base - timedelta(days=INITIAL_LOOKBACK_DAYS)).isoformat()
 
 
-def _max_iso_timestamps(values: list[str | None]) -> str | None:
+def max_iso_timestamps(values: list[str | None]) -> str | None:
     """Return the latest ISO-like timestamp string, or None if empty."""
     parsed: list[tuple[datetime, str]] = []
     for raw in values:
@@ -186,7 +186,7 @@ def run_sync(
                 prune_missing=prune_missing,
             )
 
-    max_seen = _max_iso_timestamps(seen_updated)
+    max_seen = max_iso_timestamps(seen_updated)
     should_save = not dry_run and (
         index_dirty or max_seen is not None or (reset_watermark and examined == 0)
     )

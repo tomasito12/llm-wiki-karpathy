@@ -86,23 +86,24 @@ The AI checks for contradictions between pages, stale claims, orphan pages with 
 ```
 llm-wiki-karpathy/
 ├── AGENTS.md          # Root intent router (wiki_ops vs code_ops)
-├── llm-wiki.md        # Karpathy's original idea document
-├── article.md         # Walkthrough article explaining this project
+├── llm-wiki.md        # Karpathy's original idea document (optional root note)
+├── article.md         # Walkthrough article (optional root note)
 │
-├── raw/               # Your source documents (AI reads, never writes)
+├── raw/               # Your source documents (local only; not in Git)
 │   └── .gitkeep
 │
-├── wiki/              # AI-generated knowledge base (AI owns this layer)
-│   ├── index.md       # Master catalog — the AI reads this first on every query
-│   ├── overview.md    # Big-picture synthesis (evolves with each ingest)
-│   ├── glossary.md    # Terms, definitions, and style conventions
-│   └── log.md         # Chronological record of all activity
+├── wiki/              # Knowledge base (versioned in Git)
+│   ├── AGENTS.md      # Wiki contracts and ingest rules
+│   ├── index.md       # Master catalog
+│   ├── log.md         # Activity log
+│   ├── sources/       # One page per ingested source
+│   └── …              # tools/, foundation-models/, questions/, glossary/, …
 │
 ├── src/               # Code and automation layer
 │   └── AGENTS.md      # Scoped coding/tooling instructions
-├── state/             # Local pipeline state (e.g. Readwise export index)
+├── state/             # Pipeline state (see “What Git tracks” below)
 ├── docs/              # Supporting docs (routing rubric, etc.)
-└── .obsidian/         # Pre-configured Obsidian vault settings
+└── .obsidian/         # Obsidian vault UI state (local only; not in Git)
 ```
 
 **Readwise Reader:** with `READWISE_TOKEN` set, run `hatch run readwise-sync` to export archived documents tagged `processed` into `raw/readwise/` (paired HTML + Markdown). Details are in [`src/AGENTS.md`](src/AGENTS.md).
@@ -176,13 +177,19 @@ The routing + scoped instruction files are not set in stone. Edit them to fit yo
 
 ---
 
-## Code-Only Git Policy
+## What Git tracks
 
-This repository tracks code and operational configuration only. Treat `raw/` and `wiki/` as local data stores.
+| Tracked (commit these) | Not tracked (local only) |
+|------------------------|---------------------------|
+| `wiki/**` — the knowledge base and `wiki/AGENTS.md` contracts | `raw/**` — Readwise exports and other large sources |
+| `src/**`, `tests/**`, `pyproject.toml`, `.pre-commit-config.yaml`, root `AGENTS.md`, `README.md` | `state/readwise_library.json` — export index (rebuild with `hatch run readwise-rebuild-index`) |
+| `state/ingest_manifest.json` — ingest audit log | `.env`, `.obsidian/**`, Python caches, `coverage.xml` |
 
-- `raw/` and `wiki/` are ignored by Git and should be backed up separately (cloud drive, NAS, or object storage snapshots).
-- Commit files such as `AGENTS.md`, `.gitignore`, scripts, and project automation/config.
-- Do not commit source data dumps, generated wiki content, or local workspace state.
+**Backups:** mirror `raw/` (and optionally your local `state/readwise_library.json`) via cloud drive or NAS; the wiki and manifest are recoverable from Git history.
+
+**Optional root files:** `article.md` and `llm-wiki.md` are supplementary notes kept at the repo root for convenience. You may delete them, move content into `wiki/`, or stop tracking them with `git rm --cached` if you prefer a slimmer tree—no tooling depends on their paths.
+
+**Wiki health:** run `hatch run wiki-lint` before pushing wiki changes (see [`src/AGENTS.md`](src/AGENTS.md)).
 
 ---
 

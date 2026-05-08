@@ -14,3 +14,5 @@ def test_hatch_scripts_include_local_clis() -> None:
     assert scripts["wiki-lint"] == ["python -m src.wiki_lint {args}"]
     assert scripts["wiki-reset"] == ["python -m src.wiki_reset {args}"]
     assert scripts["ingest-manifest"] == ["python -m src.pipeline.ingest_manifest {args}"]
+    assert scripts["ingest-queue"] == ["python -m src.ingest_queue {args}"]
+    assert scripts["readwise-rebuild-index"] == ["python -m src.readwise.rebuild {args}"]

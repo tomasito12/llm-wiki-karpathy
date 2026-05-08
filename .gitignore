@@ -28,9 +28,9 @@ htmlcov/
 *.tmp
 *.swp
 
-# Data directories (local only, not committed)
-wiki/**
+# Local-only data (large / machine-specific; not committed)
 raw/**
+state/readwise_library.json
 
 # Obsidian local vault state
 .obsidian/**

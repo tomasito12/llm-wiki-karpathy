@@ -7,15 +7,16 @@ from unittest import mock
 
 import pytest
 
-from src.readwise.library_index import LibraryIndex
+from src.pipeline.ingest_manifest import IngestManifest
+from src.readwise.library_index import ExportedRecord, LibraryIndex
 from src.wiki_reset.reset import (
     CONFIRMATION_PHRASE,
     clear_ingest_manifest,
     clear_readwise_export_index,
-    clear_sources_seen_state,
     default_readwise_index_path,
     delete_non_instruction_wiki_files,
     is_instruction_wiki_file,
+    readwise_library_document_count,
     run_wiki_reset,
     wiki_instruction_relpaths,
     write_wiki_shell_files,
@@ -64,14 +65,6 @@ def test_clear_readwise_export_index_writes_empty(tmp_path: Path) -> None:
     assert loaded.last_updated_after is None
 
 
-def test_clear_sources_seen_state_writes_empty(tmp_path: Path) -> None:
-    """Sources-seen state is cleared to an empty sources map."""
-    path = tmp_path / "sources_seen.json"
-    path.write_text('{"sources": {"rss": {"x": {}}}}', encoding="utf-8")
-    clear_sources_seen_state(path)
-    assert path.read_text(encoding="utf-8").strip() == '{\n  "sources": {}\n}'
-
-
 def test_clear_ingest_manifest_writes_empty(tmp_path: Path) -> None:
     """Ingest manifest is cleared to an empty records map."""
     path = tmp_path / "ingest_manifest.json"
@@ -81,76 +74,103 @@ def test_clear_ingest_manifest_writes_empty(tmp_path: Path) -> None:
     assert '"records": {}' in text
 
 
-def test_run_wiki_reset_creates_shells(tmp_path: Path) -> None:
-    """Reset removes content and writes hub files."""
+def test_readwise_library_document_count_missing_file(tmp_path: Path) -> None:
+    """Missing index path yields zero documents."""
+    assert readwise_library_document_count(tmp_path / "nope.json") == 0
+
+
+def test_readwise_library_document_count_counts_entries(tmp_path: Path) -> None:
+    """Document count matches JSON contents."""
+    path = tmp_path / "lib.json"
+    LibraryIndex(
+        documents={
+            "a": ExportedRecord(
+                html_path="h",
+                md_path="m",
+                source_url=None,
+                updated_at=None,
+                content_sha256=None,
+            )
+        },
+        last_updated_after=None,
+    ).save(path)
+    assert readwise_library_document_count(path) == 1
+
+
+def test_run_wiki_reset_default_preserves_readwise_index(tmp_path: Path) -> None:
+    """Default reset clears wiki and manifest but not Readwise export index."""
     wiki = tmp_path / "wiki"
     wiki.mkdir()
     (wiki / "AGENTS.md").write_text("instr", encoding="utf-8")
     (wiki / "tools").mkdir()
     (wiki / "tools" / "x.md").write_text("bye", encoding="utf-8")
     idx = tmp_path / "state" / "lib.json"
-    sources_seen = tmp_path / "state" / "sources_seen.json"
+    idx.parent.mkdir()
+    LibraryIndex(
+        documents={
+            "keep": ExportedRecord(
+                html_path="raw/readwise/x.html",
+                md_path="raw/readwise/x.md",
+                source_url=None,
+                updated_at="2024-01-01T00:00:00+00:00",
+                content_sha256="abc",
+            )
+        },
+        last_updated_after="2024-01-01T00:00:00+00:00",
+    ).save(idx)
+    before = idx.read_text(encoding="utf-8")
     manifest = tmp_path / "state" / "ingest_manifest.json"
+    manifest.write_text('{"version": 1, "records": {"x": {}}}', encoding="utf-8")
 
-    deleted, state_results = run_wiki_reset(
-        wiki,
-        idx,
-        clear_readwise_index=True,
-        sources_seen_path=sources_seen,
-        manifest_path=manifest,
-    )
+    deleted, state_results = run_wiki_reset(wiki, idx, manifest_path=manifest)
     assert "tools/x.md" in deleted
-    assert state_results == {
-        "readwise_library": True,
-        "sources_seen": True,
-        "ingest_manifest": True,
-    }
-    assert (wiki / "index.md").exists()
-    assert (wiki / "glossary" / "index.md").exists()
-    assert (wiki / "questions" / "question-catalog.md").exists()
-    assert not (wiki / "tools").exists()
-    log_text = (wiki / "log.md").read_text(encoding="utf-8")
-    assert "ingest_manifest cleared" in log_text
-    assert "readwise_library cleared" in log_text
-    assert "sources_seen cleared" in log_text
-    assert '"documents": {}' in idx.read_text(encoding="utf-8")
-    assert '"sources": {}' in sources_seen.read_text(encoding="utf-8")
+    assert state_results == {"readwise_library": False, "ingest_manifest": True}
+    assert idx.read_text(encoding="utf-8") == before
     assert '"records": {}' in manifest.read_text(encoding="utf-8")
+    log_text = (wiki / "log.md").read_text(encoding="utf-8")
+    assert "readwise_library preserved" in log_text
+    assert "ingest_manifest cleared" in log_text
 
 
-def test_run_wiki_reset_keep_readwise_logs_unchanged(tmp_path: Path) -> None:
-    """When skipping index clear, log states Readwise was left unchanged."""
+def test_run_wiki_reset_reset_readwise_clears_index(tmp_path: Path) -> None:
+    """Opt-in flag clears Readwise export index."""
     wiki = tmp_path / "wiki"
     wiki.mkdir()
     (wiki / "AGENTS.md").write_text("x", encoding="utf-8")
     idx = tmp_path / "lib.json"
-    idx.write_text('{"version": 1}', encoding="utf-8")
-    sources_seen = tmp_path / "sources_seen.json"
-    sources_seen.write_text('{"sources": {"rss": {}}}', encoding="utf-8")
-    manifest = tmp_path / "ingest_manifest.json"
-    manifest.write_text('{"records": {"x": {}}}', encoding="utf-8")
+    LibraryIndex(
+        documents={
+            "a": ExportedRecord(
+                html_path="h",
+                md_path="m",
+                source_url=None,
+                updated_at=None,
+                content_sha256=None,
+            )
+        },
+        last_updated_after=None,
+    ).save(idx)
+    manifest = tmp_path / "manifest.json"
 
     _deleted, state_results = run_wiki_reset(
-        wiki,
-        idx,
-        clear_readwise_index=False,
-        sources_seen_path=sources_seen,
-        manifest_path=manifest,
-        clear_source_state=False,
-        clear_manifest=False,
+        wiki, idx, clear_readwise_index=True, manifest_path=manifest
     )
-    assert state_results == {
-        "readwise_library": False,
-        "sources_seen": False,
-        "ingest_manifest": False,
-    }
-    log_text = (wiki / "log.md").read_text(encoding="utf-8")
-    assert "readwise_library preserved" in log_text
-    assert "sources_seen preserved" in log_text
-    assert "ingest_manifest preserved" in log_text
-    assert idx.read_text(encoding="utf-8") == '{"version": 1}'
-    assert sources_seen.read_text(encoding="utf-8") == '{"sources": {"rss": {}}}'
-    assert manifest.read_text(encoding="utf-8") == '{"records": {"x": {}}}'
+    assert state_results["readwise_library"] is True
+    loaded = LibraryIndex.load(idx)
+    assert loaded.documents == {}
+    assert IngestManifest.load(manifest).records == {}
+
+
+def test_run_wiki_reset_manifest_no_tmp_artifacts(tmp_path: Path) -> None:
+    """Manifest clear uses atomic write (no stray .tmp files)."""
+    wiki = tmp_path / "wiki"
+    wiki.mkdir()
+    (wiki / "AGENTS.md").write_text("k", encoding="utf-8")
+    idx = tmp_path / "lib.json"
+    LibraryIndex.empty().save(idx)
+    manifest = tmp_path / "manifest.json"
+    run_wiki_reset(wiki, idx, manifest_path=manifest)
+    assert list(manifest.parent.rglob("*.tmp")) == []
 
 
 def test_default_readwise_index_path_is_under_state() -> None:
@@ -168,8 +188,7 @@ def test_write_wiki_shell_files_writes_expected_frontmatter(tmp_path: Path) -> N
         today_iso="2099-01-01",
         state_results={
             "readwise_library": False,
-            "sources_seen": False,
-            "ingest_manifest": False,
+            "ingest_manifest": True,
         },
     )
     text = (wiki / "index.md").read_text(encoding="utf-8")
@@ -200,8 +219,9 @@ def test_main_confirm_ok_runs_reset(tmp_path: Path) -> None:
     wiki.mkdir()
     (wiki / "AGENTS.md").write_text("k", encoding="utf-8")
     idx = tmp_path / "idx.json"
-    sources_seen = tmp_path / "sources_seen.json"
+    LibraryIndex.empty().save(idx)
     manifest = tmp_path / "manifest.json"
+    IngestManifest.empty().save(manifest)
 
     argv = [
         "wiki-reset",
@@ -209,8 +229,6 @@ def test_main_confirm_ok_runs_reset(tmp_path: Path) -> None:
         str(wiki),
         "--index",
         str(idx),
-        "--sources-seen",
-        str(sources_seen),
         "--manifest",
         str(manifest),
         "--confirm",
@@ -219,7 +237,44 @@ def test_main_confirm_ok_runs_reset(tmp_path: Path) -> None:
     with mock.patch.object(cli.sys, "argv", argv):
         assert cli.main() == 0
     assert (wiki / "index.md").exists()
-    loaded = LibraryIndex.load(idx)
-    assert loaded.documents == {}
-    assert sources_seen.exists()
-    assert manifest.exists()
+    assert LibraryIndex.load(idx).documents == {}
+    assert IngestManifest.load(manifest).records == {}
+
+
+def test_main_reset_readwise_index_flag(tmp_path: Path) -> None:
+    """CLI --reset-readwise-index clears export index."""
+    from src.wiki_reset import cli
+
+    wiki = tmp_path / "wiki"
+    wiki.mkdir()
+    (wiki / "AGENTS.md").write_text("k", encoding="utf-8")
+    idx = tmp_path / "idx.json"
+    LibraryIndex(
+        documents={
+            "z": ExportedRecord(
+                html_path="h",
+                md_path="m",
+                source_url=None,
+                updated_at=None,
+                content_sha256=None,
+            )
+        },
+        last_updated_after=None,
+    ).save(idx)
+    manifest = tmp_path / "manifest.json"
+
+    argv = [
+        "wiki-reset",
+        "--wiki-dir",
+        str(wiki),
+        "--index",
+        str(idx),
+        "--manifest",
+        str(manifest),
+        "--reset-readwise-index",
+        "--confirm",
+        CONFIRMATION_PHRASE,
+    ]
+    with mock.patch.object(cli.sys, "argv", argv):
+        assert cli.main() == 0
+    assert LibraryIndex.load(idx).documents == {}

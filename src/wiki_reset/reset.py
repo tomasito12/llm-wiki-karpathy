@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date
 from pathlib import Path
 
-from src.pipeline.atomic import atomic_write_json, atomic_write_text
+from src.pipeline.atomic import atomic_write_text
 from src.pipeline.ingest_manifest import IngestManifest
 from src.readwise.library_index import LibraryIndex
 from src.readwise.sync import _repo_root
@@ -32,14 +32,16 @@ def is_instruction_wiki_file(relative_posix: str) -> bool:
     return relative_posix in _WIKI_INSTRUCTION_RELPATHS
 
 
+def readwise_library_document_count(index_path: Path) -> int:
+    """Return how many documents are recorded in the Readwise export index."""
+    if not index_path.exists():
+        return 0
+    return len(LibraryIndex.load(index_path).documents)
+
+
 def clear_readwise_export_index(index_path: Path) -> None:
     """Write an empty library index (clears exported-doc list and watermark)."""
     LibraryIndex.empty().save(index_path)
-
-
-def clear_sources_seen_state(state_path: Path) -> None:
-    """Write an empty discovered-sources state file."""
-    atomic_write_json(state_path, {"sources": {}})
 
 
 def clear_ingest_manifest(manifest_path: Path) -> None:
@@ -163,10 +165,8 @@ def run_wiki_reset(
     wiki_root: Path,
     index_path: Path,
     *,
-    clear_readwise_index: bool = True,
-    sources_seen_path: Path | None = None,
+    clear_readwise_index: bool = False,
     manifest_path: Path | None = None,
-    clear_source_state: bool = True,
     clear_manifest: bool = True,
 ) -> tuple[list[str], dict[str, bool]]:
     """Run full reset. Raises ``FileNotFoundError`` if ``wiki_root`` is missing."""
@@ -180,7 +180,6 @@ def run_wiki_reset(
     today_iso = date.today().isoformat()
     state_results = {
         "readwise_library": clear_readwise_index,
-        "sources_seen": clear_source_state,
         "ingest_manifest": clear_manifest,
     }
     write_wiki_shell_files(
@@ -191,8 +190,6 @@ def run_wiki_reset(
 
     if clear_readwise_index:
         clear_readwise_export_index(index_path)
-    if clear_source_state:
-        clear_sources_seen_state(sources_seen_path or default_sources_seen_path())
     if clear_manifest:
         clear_ingest_manifest(manifest_path or default_ingest_manifest_path())
     return deleted, state_results
@@ -206,11 +203,6 @@ def default_wiki_root() -> Path:
 def default_readwise_index_path() -> Path:
     """Default ``state/readwise_library.json`` path."""
     return _repo_root() / "state" / "readwise_library.json"
-
-
-def default_sources_seen_path() -> Path:
-    """Default ``state/sources_seen.json`` path."""
-    return _repo_root() / "state" / "sources_seen.json"
 
 
 def default_ingest_manifest_path() -> Path:

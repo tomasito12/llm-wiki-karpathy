@@ -35,6 +35,12 @@ format = [
 ingest-manifest = [
   "python -m src.pipeline.ingest_manifest {args}",
 ]
+ingest-queue = [
+  "python -m src.ingest_queue {args}",
+]
+readwise-rebuild-index = [
+  "python -m src.readwise.rebuild {args}",
+]
 readwise-sync = [
   "python -m src.readwise {args}",
 ]

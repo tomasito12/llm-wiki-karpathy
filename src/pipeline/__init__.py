@@ -1,1 +1,1 @@
-"""Pipeline package: shared models, state store, and staging utilities."""
+"""Pipeline package: shared utilities for ingest tooling."""

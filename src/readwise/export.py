@@ -10,7 +10,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 from src.pipeline.atomic import atomic_write_text
-from src.pipeline.staging import slugify
+from src.pipeline.slug import slugify
 from src.readwise.library_index import ExportedRecord
 from src.readwise.models import ReaderDocument
 
