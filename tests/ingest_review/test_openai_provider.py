@@ -1,0 +1,61 @@
+"""Tests for OpenAI ingestion provider (mocked HTTP client)."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from unittest.mock import MagicMock
+
+from src.ingest_review.extract import load_readwise_pair
+from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
+from src.ingest_review.schema import LlmClassificationOutput
+from src.ingest_review.wiki_snapshot import WikiSnapshot
+
+
+def test_openai_provider_parses_json_response(tmp_path: Path) -> None:
+    """Provider validates model JSON against the Pydantic schema."""
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-01"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    sample = LlmClassificationOutput()
+    raw_json = json.dumps(sample.model_dump())
+
+    class _Msg:
+        content = raw_json
+
+    class _Choice:
+        message = _Msg()
+
+    class _Usage:
+        def model_dump(self) -> dict:
+            return {"total_tokens": 1}
+
+    class _Completion:
+        id = "cmpl-test"
+        choices = [_Choice()]
+        usage = _Usage()
+
+    fake_client = MagicMock()
+    fake_client.chat.completions.create.return_value = _Completion()
+
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        question_hints=[],
+        tool_names=[],
+        foundation_model_names=[],
+    )
+    prov = OpenAIIngestionProvider(client=fake_client)
+    out, meta = prov.analyze_classification(
+        document=doc,
+        wiki=wiki,
+        tool_tags_allowlist=["mcp-server"],
+        howto_tags_allowlist=["rag-retrieval"],
+        model="gpt-test",
+        prompt_version="1",
+        max_retries=2,
+    )
+    assert isinstance(out, LlmClassificationOutput)
+    assert meta["request_id"] == "cmpl-test"

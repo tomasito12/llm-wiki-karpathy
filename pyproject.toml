@@ -10,8 +10,12 @@ python = "3"
 installer = "uv"
 skip-install = true
 dependencies = [
+  "beautifulsoup4>=4.12.0",
   "httpx>=0.28.0",
+  "openai>=1.59.0",
+  "pydantic>=2.10.0",
   "python-dotenv>=1.0.0",
+  "pyyaml>=6.0.0",
   "pre-commit>=4.2.0",
   "pytest>=8.3.0",
   "pytest-cov>=6.0.0",
@@ -85,6 +89,9 @@ select = [
   "UP",
   "B",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"src/dashboard/app.py" = ["E402"]
 
 [tool.ruff.format]
 quote-style = "double"

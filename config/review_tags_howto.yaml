@@ -1,0 +1,11 @@
+# Allowlist for how-to question proposals (ingestion review).
+tags:
+  - production-ml
+  - rag-retrieval
+  - agents-tooling
+  - evals-measurement
+  - cost-tokens
+  - security-guardrails
+  - onboarding-workflow
+  - local-models
+  - api-integration

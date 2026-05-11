@@ -55,6 +55,17 @@ Run these after substantive code changes:
 - Prefer changing config in one place (`pyproject.toml`) and reusing it from hooks.
 - Wiki content is versioned in Git; run `hatch run wiki-lint` before committing wiki changes (not yet wired into `.pre-commit-config.yaml` by default).
 
+## Ingest review dashboard (classification + human approval)
+
+- Run: `hatch run dashboard` — opens Streamlit at [`src/dashboard/app.py`](src/dashboard/app.py).
+- On startup the app loads **`<repo_root>/.env`** via ``load_repo_dotenv()`` (same rules as Readwise: does **not** override variables already set in your shell). Put **`OPENAI_API_KEY`** there; optionally **`INGEST_OPENAI_MODEL`** (default model shown in the sidebar).
+- **Raw inputs:** paired `raw/readwise/<id>.html` + `<id>.md` (same as wiki ingest hygiene).
+- **Outputs:**
+  - Review artifacts: `state/reviews/<source_id>/review.json` (JSON: `llm_output`, `review` decisions, `analysis_meta`, `source` + `content_sha256`). Safe to commit or keep local-only.
+  - Feedback events (for a future learning loop): `state/review_feedback.sqlite` — **gitignored**; append-only rows when you click **Save review artifact**.
+- **Tag allowlists** for the LLM / UI: [`config/review_tags_tools.yaml`](config/review_tags_tools.yaml), [`config/review_tags_howto.yaml`](config/review_tags_howto.yaml).
+- This stage **does not** write `wiki/sources/*.md`; it only prepares human-reviewed classification. Downstream wiki ingest still re-reads HTML and may use separate LLM prompts.
+
 ## Readwise Reader export
 
 - Set `READWISE_TOKEN` (or `READWISE_API_TOKEN`) from [readwise.io/access_token](https://readwise.io/access_token), or put it in a repo-root `.env` file (loaded automatically; does not override existing shell variables).
@@ -97,6 +108,8 @@ Run these after substantive code changes:
 |------|------|--------|
 | `wiki/**` | Knowledge base + instruction markdown (`wiki/AGENTS.md`, sources, tools, etc.) | **Yes** — commit ingests and instruction updates. |
 | `state/ingest_manifest.json` | Structured ingest audit (Stage 1/2, artifacts, errors). | **Yes** — commit after ingests that update the manifest. |
+| `state/reviews/**` | Human-reviewed ingest classification JSON (per `source_id`). | Optional — commit if you want artifacts in Git. |
+| `state/review_feedback.sqlite` | Append-only reviewer decision log for future tuning. | **No** — gitignored; local only. |
 | `state/readwise_library.json` | Readwise export index (dedupe + `last_updated_after` watermark). | **No** — local cache only; rebuild with `hatch run readwise-rebuild-index` from `raw/readwise/` pairs. **Not** cleared by default `wiki-reset`. |
 | `raw/**` | Readwise exports and other source files. | **No** — keep local / backup separately. |
 
