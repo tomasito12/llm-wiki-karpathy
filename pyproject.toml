@@ -16,6 +16,7 @@ dependencies = [
   "pytest>=8.3.0",
   "pytest-cov>=6.0.0",
   "ruff>=0.11.0",
+  "streamlit>=1.38.0",
   "ty>=0.0.1a17",
 ]
 
@@ -32,6 +33,9 @@ format = [
 ]
 
 [tool.hatch.envs.default.scripts]
+dashboard = [
+  "streamlit run src/dashboard/app.py {args}",
+]
 ingest-manifest = [
   "python -m src.pipeline.ingest_manifest {args}",
 ]
