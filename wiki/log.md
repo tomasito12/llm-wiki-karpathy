@@ -1,14 +1,8 @@
 ---
 title: Wiki log
 type: log
-created: 2026-05-06
-updated: 2026-05-08
+created: 2026-05-11
+updated: 2026-05-11
 ---
 
-- 2026-05-06: Reset wiki knowledge baseline. Instruction files retained; wiki content cleared. Readwise export index cleared.
-- 2026-05-06: Ingested Readwise export `6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8.md` (Medium / Divy Yadav). Stage 1: non-radar, thesis-first → standard source + four `q-*` pages + three glossary terms (`context-engineering`, `retrieval-augmented-generation`, `text-embedding`).
-- 2026-05-07: Ingested Readwise export `6-mcp-servers-that-are-so-good-they-feel-illegal-in-2026-01kqm0f601dmv6jmsa9v3y9ry2.md` (Medium / Mohit Vaswani). Stage 1: tools-overview → source (contract 6) + seven tool pages: six under `tools/mcp-servers/` (Firecrawl, GitHub MCP, Publora, Supabase MCP, E2B MCP, Taskade MCP) and bonus `Another Wrapper` under `tools/ai-app-starters/`. Brought source frontmatter in line with `author` / `publication`; linked `sources/...mcp-servers...` from [[index]].
-- 2026-05-07: Recreated missing `wiki/tools/**` on disk (master index + `mcp-servers/` + `ai-app-starters/` with parity tables). Prior reply incorrectly assumed tool pages existed because editor tooling surfaced paths that were not present in the workspace tree.
-- 2026-05-07: Ingested Readwise `10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja` as **tools overview** (Stage 1). Stage 2: seven app/platform tool pages (new categories: app-builders, video-and-media, speech-input, meetings, local-agents, brand-and-social, workflow-automation), three **foundation-model** pages + [[foundation-models/index]]; [[sources/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja]]. Updated [[tools/index]], [[wiki/index]]. No new `q-*` pages.
-- 2026-05-08: Ingested Readwise `chatgpt-for-operations-teams-01knw8fhapv0s142tzby3ay37b` (OpenAI Academy). Stage 1: **tools-overview** (single-product ops guide for **ChatGPT**). Added [[sources/chatgpt-for-operations-teams-01knw8fhapv0s142tzby3ay37b]], new category **`tools/ai-assistants/`** ([[tools/ai-assistants/index]] + [[tools/ai-assistants/chatgpt]]), [[tools/index]] row, [[wiki/index]] source link. **T0b:** new tool category logged here.
-- 2026-05-08: Ingested Readwise `i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr` (Medium / Daniel Vaughan, Google Cloud). Stage 1: **tools-overview** (hands-on stack piece). Stage 2: [[foundation-models/gemma-4]] + tool pages **Codex CLI** (`tools/coding-agents/`), **Ollama** & **llama.cpp** (`tools/local-llm-runtimes/`). New categories **coding-agents**, **local-llm-runtimes** (**T0b**). Updated [[foundation-models/index]], [[tools/index]], [[wiki/index]].
+- 2026-05-11: Reset wiki knowledge baseline. Instruction files retained; wiki content cleared. State: ingest_manifest cleared, readwise_library preserved.
