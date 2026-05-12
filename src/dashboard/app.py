@@ -19,6 +19,8 @@ from src.ingest_queue.queue import list_ingest_items
 from src.ingest_review.analyze import run_classification
 from src.ingest_review.artifact import (
     aggregate_review_status,
+    apply_regenerated_source_section,
+    attach_error,
     backup_artifact,
     load_artifact,
     review_artifact_path,
@@ -197,10 +199,58 @@ def main() -> None:
         st.info("Run **Analyze source** or **Load saved artifact** to continue.")
         return
 
+    pending_regen = st.session_state.pop("_pending_section_regen", None)
+    if (
+        pending_regen
+        and pending_regen.get("source_id") == source_id
+        and isinstance(pending_regen.get("section"), str)
+    ):
+        if not os.environ.get("OPENAI_API_KEY"):
+            st.error("OPENAI_API_KEY is not set — cannot regenerate a section.")
+        else:
+            sk = str(pending_regen["section"])
+            note = str(pending_regen.get("note") or "")
+            llm_ss = (artifact.get("llm_output") or {}).get("source_summary") or {}
+            if sk == "key_insights":
+                cur_val: str | list[str] | None = llm_ss.get("key_insights") or []
+            elif sk == "sources":
+                cur_val = llm_ss.get("sources") or []
+            else:
+                cur_val = llm_ss.get(sk)
+            try:
+                provider = OpenAIIngestionProvider()
+                with st.spinner(f"Regenerating {sk}…"):
+                    fragment, regen_meta = provider.regenerate_source_section(
+                        document=doc,
+                        section_key=sk,
+                        current_value=cur_val,
+                        reviewer_instruction=note or None,
+                        model=model,
+                        prompt_version=prompt_version,
+                        max_plain_text_chars=int(max_chars),
+                    )
+                apply_regenerated_source_section(
+                    artifact,
+                    str(fragment["section_key"]),
+                    fragment["content"],
+                    model=model,
+                    prompt_version=str(regen_meta.get("prompt_version") or prompt_version),
+                )
+                st.session_state["artifact"] = artifact
+                st.success(f"Regenerated **{sk}**.")
+            except Exception as exc:  # noqa: BLE001
+                attach_error(artifact, f"regenerate {sk}: {exc}")
+                st.session_state["artifact"] = artifact
+                st.error(f"Regeneration failed: {exc}")
+
     key_prefix = source_id[:40]
-    tabs = st.tabs(["Summary", "Classifications", "Roundup", "Debug"])
+    st.caption(
+        f"Artifact schema v{artifact.get('artifact_schema_version', '?')} · "
+        f"Review mix: **{aggregate_review_status(artifact)}**"
+    )
+    tabs = st.tabs(["Source chapters", "Classifications", "Roundup", "Debug"])
     with tabs[0]:
-        render_source_summary_review(st, artifact, key_prefix=key_prefix)
+        render_source_summary_review(st, artifact, key_prefix=key_prefix, source_id=source_id)
     with tabs[1]:
         render_all_proposal_sections(
             st,

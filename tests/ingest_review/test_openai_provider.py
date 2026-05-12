@@ -54,8 +54,51 @@ def test_openai_provider_parses_json_response(tmp_path: Path) -> None:
         tool_tags_allowlist=["mcp-server"],
         howto_tags_allowlist=["rag-retrieval"],
         model="gpt-test",
-        prompt_version="1",
+        prompt_version="2",
         max_retries=2,
     )
     assert isinstance(out, LlmClassificationOutput)
     assert meta["request_id"] == "cmpl-test"
+
+
+def test_openai_regenerate_source_section_parses_json(tmp_path: Path) -> None:
+    """Narrow regen call validates SectionRegenerateOutput JSON."""
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-regen"
+    (raw / f"{stem}.html").write_text("<p>hello world</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    regen_json = '{"section_key": "summary", "content": "Regenerated summary."}'
+
+    class _Msg:
+        content = regen_json
+
+    class _Choice:
+        message = _Msg()
+
+    class _Usage:
+        def model_dump(self) -> dict:
+            return {"total_tokens": 2}
+
+    class _Completion:
+        id = "cmpl-regen"
+        choices = [_Choice()]
+        usage = _Usage()
+
+    fake_client = MagicMock()
+    fake_client.chat.completions.create.return_value = _Completion()
+    prov = OpenAIIngestionProvider(client=fake_client)
+    fragment, meta = prov.regenerate_source_section(
+        document=doc,
+        section_key="summary",
+        current_value="old",
+        reviewer_instruction=None,
+        model="gpt-test",
+        prompt_version="2",
+        max_plain_text_chars=10_000,
+        max_retries=2,
+    )
+    assert fragment["section_key"] == "summary"
+    assert fragment["content"] == "Regenerated summary."
+    assert meta["request_id"] == "cmpl-regen"

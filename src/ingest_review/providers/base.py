@@ -37,3 +37,22 @@ class IngestionProvider(ABC):
             ``(parsed_output, meta)`` where ``meta`` may include ``request_id``,
             ``token_usage``, ``raw_message`` (for debugging).
         """
+
+    @abstractmethod
+    def regenerate_source_section(
+        self,
+        *,
+        document: SourceDocument,
+        section_key: str,
+        current_value: str | list[str] | None,
+        reviewer_instruction: str | None,
+        model: str,
+        prompt_version: str,
+        max_plain_text_chars: int | None = None,
+        max_retries: int = 2,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Regenerate one ``source_summary`` chapter.
+
+        Returns:
+            ``({"section_key": str, "content": str | list[str]}, meta)`` with validated content.
+        """

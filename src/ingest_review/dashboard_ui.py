@@ -5,15 +5,36 @@ from __future__ import annotations
 import json
 from typing import Any
 
+import streamlit as streamlit_runtime
+
+from src.ingest_review.schema import (
+    REGENERATABLE_SOURCE_SECTION_KEYS,
+    SOURCE_SUMMARY_SCALAR_KEYS,
+)
+
 STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
 
-SUMMARY_TEXT_KEYS = (
-    "why_it_matters",
+SOURCE_CHAPTER_DISPLAY_ORDER: tuple[str, ...] = (
+    "summary",
     "key_insights",
+    "why_it_matters",
     "implications_automation",
-    "context_limitations",
-    "contradictions",
+    "practical_relevance",
+    "limitations_and_open_questions",
+    "contradictions_and_skepticism",
+    "sources",
 )
+
+CHAPTER_LABELS: dict[str, str] = {
+    "summary": "Summary",
+    "key_insights": "Key insights",
+    "why_it_matters": "Why it matters",
+    "implications_automation": "Implications for service automation",
+    "practical_relevance": "Practical relevance",
+    "limitations_and_open_questions": "Limitations and open questions",
+    "contradictions_and_skepticism": "Contradictions / skepticism",
+    "sources": "Sources",
+}
 
 
 def _status_index(current: str) -> int:
@@ -23,82 +44,201 @@ def _status_index(current: str) -> int:
     return 0
 
 
+def _queue_section_regen(source_id: str, key_prefix: str, section_key: str) -> None:
+    """Streamlit on_click: store pending regeneration for the app loop."""
+    note_key = f"{key_prefix}_regen_note_{section_key}"
+    streamlit_runtime.session_state["_pending_section_regen"] = {
+        "source_id": source_id,
+        "section": section_key,
+        "note": str(streamlit_runtime.session_state.get(note_key, "")),
+    }
+
+
+def _render_analysis_meta_banner(st: Any, artifact: dict[str, Any]) -> None:
+    meta = artifact.get("analysis_meta") or {}
+    ts = meta.get("analysis_timestamp_utc") or "—"
+    model = meta.get("model") or "—"
+    pv = meta.get("prompt_version") or "—"
+    st.caption(f"Full analysis: **{ts}** UTC · model `{model}` · prompt `{pv}`")
+
+
+def _render_scalar_chapter(
+    st: Any,
+    artifact: dict[str, Any],
+    *,
+    section_key: str,
+    key_prefix: str,
+    source_id: str,
+) -> None:
+    llm = artifact.get("llm_output", {}).get("source_summary") or {}
+    rev = artifact.setdefault("review", {}).setdefault("source_summary", {})
+    label = CHAPTER_LABELS.get(section_key, section_key.replace("_", " ").title())
+    st.markdown(f"### {label}")
+    node = rev.setdefault(
+        section_key,
+        {
+            "status": "pending",
+            "final_text": None,
+            "notes": None,
+            "section_regeneration_meta": None,
+        },
+    )
+    _render_regen_meta_caption(st, node)
+    llm_text = str(llm.get(section_key) or "")
+    st.markdown("**Model draft**")
+    st.text(llm_text[:8000] + ("…" if len(llm_text) > 8000 else ""))
+    st.text_input(
+        "Optional note for regeneration",
+        key=f"{key_prefix}_regen_note_{section_key}",
+        placeholder="e.g. shorter, more skeptical, focus on voicebots",
+    )
+    if section_key in REGENERATABLE_SOURCE_SECTION_KEYS:
+        st.button(
+            "Regenerate section",
+            key=f"{key_prefix}_btn_regen_{section_key}",
+            on_click=_queue_section_regen,
+            args=(source_id, key_prefix, section_key),
+        )
+    node["status"] = st.selectbox(
+        f"{label} — status",
+        STATUS_OPTIONS,
+        index=_status_index(str(node.get("status") or "pending")),
+        key=f"{key_prefix}_sum_{section_key}_st",
+    )
+    if node["status"] in ("modified", "pending"):
+        default = node.get("final_text") if node.get("final_text") else llm_text
+        node["final_text"] = st.text_area(
+            f"{label} — final text",
+            value=default,
+            height=140,
+            key=f"{key_prefix}_sum_{section_key}_txt",
+        )
+    elif node["status"] == "approved":
+        node["final_text"] = None
+    else:
+        node["final_text"] = None
+    node["notes"] = st.text_input(
+        f"{label} — notes",
+        value=str(node.get("notes") or ""),
+        key=f"{key_prefix}_sum_{section_key}_notes",
+    )
+
+
+def _render_regen_meta_caption(st: Any, node: dict[str, Any]) -> None:
+    meta = node.get("section_regeneration_meta")
+    if isinstance(meta, dict) and meta.get("last_regen_at"):
+        cnt = meta.get("regen_count", 0)
+        when = meta["last_regen_at"]
+        mdl = meta.get("model", "")
+        pv = meta.get("prompt_version", "")
+        st.caption(f"Section regen: **{cnt}×** · last **{when}** · `{mdl}` · prompt `{pv}`")
+
+
+def _render_list_chapter(
+    st: Any,
+    artifact: dict[str, Any],
+    *,
+    section_key: str,
+    key_prefix: str,
+    source_id: str,
+) -> None:
+    llm = artifact.get("llm_output", {}).get("source_summary") or {}
+    rev = artifact.setdefault("review", {}).setdefault("source_summary", {})
+    label = CHAPTER_LABELS.get(section_key, section_key.replace("_", " ").title())
+    st.markdown(f"### {label}")
+    llm_list = llm.get(section_key) or []
+    if not isinstance(llm_list, list):
+        llm_list = []
+    if section_key == "key_insights":
+        node = rev.setdefault(
+            section_key,
+            {
+                "status": "pending",
+                "final_list": None,
+                "notes": None,
+                "llm_list": list(llm_list),
+                "section_regeneration_meta": None,
+            },
+        )
+    else:
+        node = rev.setdefault(
+            section_key,
+            {
+                "status": "pending",
+                "final_list": None,
+                "notes": None,
+                "llm_list": list(llm_list),
+                "section_regeneration_meta": None,
+            },
+        )
+    if not node.get("llm_list"):
+        node["llm_list"] = list(llm_list)
+    _render_regen_meta_caption(st, node)
+    st.markdown("**Model draft (list)**")
+    st.json(node["llm_list"])
+    st.text_input(
+        "Optional note for regeneration",
+        key=f"{key_prefix}_regen_note_{section_key}",
+        placeholder="e.g. fewer bullets, more operational",
+    )
+    if section_key in REGENERATABLE_SOURCE_SECTION_KEYS:
+        st.button(
+            "Regenerate section",
+            key=f"{key_prefix}_btn_regen_{section_key}",
+            on_click=_queue_section_regen,
+            args=(source_id, key_prefix, section_key),
+        )
+    node["status"] = st.selectbox(
+        f"{label} — status",
+        STATUS_OPTIONS,
+        index=_status_index(str(node.get("status") or "pending")),
+        key=f"{key_prefix}_sum_{section_key}_st",
+    )
+    default_lines = (
+        node.get("final_list") if node.get("final_list") is not None else node["llm_list"]
+    )
+    raw_list = st.text_area(
+        f"{label} — final list (one item per line)",
+        value="\n".join(str(x) for x in (default_lines or [])),
+        height=120,
+        key=f"{key_prefix}_sum_{section_key}_txt",
+    )
+    lines = [ln.strip() for ln in raw_list.splitlines() if ln.strip()]
+    if section_key == "key_insights":
+        lines = lines[:5]
+    if node["status"] == "modified":
+        node["final_list"] = lines
+    elif node["status"] == "approved":
+        node["final_list"] = None
+    else:
+        node["final_list"] = None
+    node["notes"] = st.text_input(
+        f"{label} — notes",
+        value=str(node.get("notes") or ""),
+        key=f"{key_prefix}_sum_{section_key}_notes",
+    )
+
+
 def render_source_summary_review(
     st: Any,
     artifact: dict[str, Any],
     *,
     key_prefix: str,
+    source_id: str,
 ) -> None:
-    """Render review controls for ``source_summary`` text fields."""
-    llm = artifact.get("llm_output", {}).get("source_summary") or {}
-    rev = artifact.setdefault("review", {}).setdefault("source_summary", {})
-    st.subheader("Source summary")
-    for key in SUMMARY_TEXT_KEYS:
-        label = key.replace("_", " ").title()
-        node = rev.setdefault(
-            key,
-            {"status": "pending", "final_text": None, "notes": None},
-        )
-        llm_text = str(llm.get(key) or "")
-        st.markdown(f"**{label}** (LLM)")
-        st.text(llm_text[:4000] + ("…" if len(llm_text) > 4000 else ""))
-        node["status"] = st.selectbox(
-            f"{label} — status",
-            STATUS_OPTIONS,
-            index=_status_index(str(node.get("status") or "pending")),
-            key=f"{key_prefix}_sum_{key}_st",
-        )
-        if node["status"] in ("modified", "pending"):
-            default = node.get("final_text") if node.get("final_text") else llm_text
-            node["final_text"] = st.text_area(
-                f"{label} — final text",
-                value=default,
-                height=120,
-                key=f"{key_prefix}_sum_{key}_txt",
+    """Render review controls for ``source_summary`` chapters."""
+    st.subheader("Source chapters")
+    _render_analysis_meta_banner(st, artifact)
+    for sk in SOURCE_CHAPTER_DISPLAY_ORDER:
+        if sk in SOURCE_SUMMARY_SCALAR_KEYS:
+            _render_scalar_chapter(
+                st, artifact, section_key=sk, key_prefix=key_prefix, source_id=source_id
             )
-        elif node["status"] == "approved":
-            node["final_text"] = None
-        else:
-            node["final_text"] = None
-        node["notes"] = st.text_input(
-            f"{label} — notes",
-            value=str(node.get("notes") or ""),
-            key=f"{key_prefix}_sum_{key}_notes",
-        )
-
-    src_node = rev.setdefault(
-        "sources",
-        {"status": "pending", "final_list": None, "notes": None, "llm_list": []},
-    )
-    llm_sources = llm.get("sources") or []
-    if not src_node.get("llm_list"):
-        src_node["llm_list"] = list(llm_sources)
-    st.markdown("**Sources (list)**")
-    st.json(src_node["llm_list"])
-    src_node["status"] = st.selectbox(
-        "Sources — status",
-        STATUS_OPTIONS,
-        index=_status_index(str(src_node.get("status") or "pending")),
-        key=f"{key_prefix}_sum_sources_st",
-    )
-    raw_list = st.text_area(
-        "Sources — final list (one URL per line)",
-        value="\n".join(src_node.get("final_list") or src_node["llm_list"] or []),
-        height=80,
-        key=f"{key_prefix}_sum_sources_txt",
-    )
-    lines = [ln.strip() for ln in raw_list.splitlines() if ln.strip()]
-    if src_node["status"] == "modified":
-        src_node["final_list"] = lines
-    elif src_node["status"] == "approved":
-        src_node["final_list"] = None
-    else:
-        src_node["final_list"] = None
-    src_node["notes"] = st.text_input(
-        "Sources — notes",
-        value=str(src_node.get("notes") or ""),
-        key=f"{key_prefix}_sum_sources_notes",
-    )
+        elif sk in ("key_insights", "sources"):
+            _render_list_chapter(
+                st, artifact, section_key=sk, key_prefix=key_prefix, source_id=source_id
+            )
+        st.divider()
 
 
 def render_roundup_review(st: Any, artifact: dict[str, Any], *, key_prefix: str) -> None:

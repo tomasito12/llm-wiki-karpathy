@@ -68,3 +68,25 @@ def test_record_events_records_approved_summary_field(tmp_path: Path) -> None:
     }
     n = record_events_from_artifact(db, artifact)
     assert n == 1
+
+
+def test_record_events_records_approved_key_insights_list(tmp_path: Path) -> None:
+    """Approved key_insights emits feedback with list snapshots."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "2"},
+        "llm_output": {"source_summary": {"key_insights": ["a", "b"]}},
+        "review": {
+            "source_summary": {
+                "key_insights": {
+                    "status": "approved",
+                    "final_list": None,
+                    "llm_list": ["a", "b"],
+                    "notes": "",
+                },
+            },
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 1

@@ -12,20 +12,103 @@ from pydantic import ValidationError
 
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.providers.base import IngestionProvider
-from src.ingest_review.schema import PROMPT_VERSION, LlmClassificationOutput, llm_output_json_schema
+from src.ingest_review.schema import (
+    PROMPT_VERSION,
+    REGENERATABLE_SOURCE_SECTION_KEYS,
+    LlmClassificationOutput,
+    SectionRegenerateOutput,
+    llm_output_json_schema,
+)
 from src.ingest_review.wiki_snapshot import WikiSnapshot
 
 logger = logging.getLogger(__name__)
 
 SYSTEM_PROMPT = """You are an analyst helping curate a personal AI-engineering Markdown wiki.
 Return only valid JSON matching the provided schema. Ground every substantive claim in the \
-source text via supporting_snippet (or section text for summaries). If unknown, use empty \
-strings or empty arrays and low confidence. Do not invent facts.
+source text via supporting_snippet (or source_summary section text for narrative fields). \
+If unknown, use empty strings or empty arrays and low confidence. Do not invent facts.
 For tools and how_to items, proposed_tags MUST be a subset of the allowlists provided in the \
 user message; use [] if none apply.
 Prefer reusing existing wiki pages (match_candidates, similar_existing_questions) when the \
 article overlaps; suggest create only when justified.
-Keep text concise (bullet phrases where possible)."""
+
+Voice for source_summary chapters: concise, direct, practical. Audience is an advanced AI \
+practitioner focused on conversational AI, chatbots, voicebots, and service automation—not a \
+research paper audience. Avoid LinkedIn tone, generic AI hype, buzzword stacking, and \
+exaggerated claims. Prefer clarity and usefulness over completeness."""
+
+
+SOURCE_CHAPTERS_RUBRIC = """## source_summary (required JSON subtree)
+
+Fill every field below from the article. Empty string or [] only when truly absent.
+
+**summary** (string): Usually 4–10 sentences; adapt to complexity. Core ideas and arguments only; \
+no chronological retelling; no filler openers; explain concepts plainly; practical understanding \
+over technical precision.
+
+**key_insights** (array of strings, at most 5): Only insights that are actionable, strategically \
+important, surprising, or practically useful—and non-obvious. One concise sentence per item. \
+No generic observations.
+
+**why_it_matters** (string): Broader significance for AI engineering, software development, AI \
+products, service automation, business transformation, and industry evolution. Long-term and \
+practical implications. No hype.
+
+**implications_automation** (string): Concrete implications for customer-support automation, AI \
+agents, voice/chat workflows, service operations, call-center change, AI-assisted support, \
+manual work reduction, conversational UX, enterprise adoption in service orgs. If there are \
+no meaningful implications, state explicitly that no major implications were identified—do \
+not force weak connections.
+
+**practical_relevance** (string): Short honest judgment (e.g. immediately useful, worth \
+experimenting, strategically important, mostly hype/noise, early but promising, operationally \
+relevant within 1–2 years, incremental improvement, potentially transformative). Nuanced, not \
+certainty theater.
+
+**limitations_and_open_questions** (string): Limitations, weak evidence, benchmark limits, \
+unrealistic assumptions, missing implementation detail, unresolved operational concerns, \
+economics, security/privacy, evaluation weaknesses. Skeptical where warranted.
+
+**contradictions_and_skepticism** (string): Speculative claims, tension with common industry \
+practice, hype without evidence, oversimplifications. Thoughtful skepticism—not a hostile \
+attack. If nothing major, say so briefly.
+
+**sources** (array of strings): URLs or references present in the article or metadata; else []."""
+
+
+def _section_regen_rubric(section_key: str) -> str:
+    """Narrow rubric text for one section (avoid brittle string splits in production)."""
+    fixed = {
+        "summary": (
+            "Usually 4–10 sentences; adapt to complexity. Core ideas only; no chronological "
+            "retelling; no filler; practical clarity."
+        ),
+        "key_insights": (
+            "Array of at most 5 strings: actionable, strategically important, surprising, "
+            "or practically useful—and non-obvious. One sentence each."
+        ),
+        "why_it_matters": (
+            "Significance for AI engineering, software development, AI products, service "
+            "automation, business transformation, industry evolution. No hype."
+        ),
+        "implications_automation": (
+            "Concrete implications for chatbots, voicebots, support automation, agents, "
+            "operations. If none, state that no major implications were identified."
+        ),
+        "practical_relevance": (
+            "Short honest judgment (e.g. immediately useful, hype/noise, incremental, "
+            "transformative). Nuanced."
+        ),
+        "limitations_and_open_questions": (
+            "Weak evidence, scalability, benchmarks, assumptions, missing detail, operations, "
+            "economics, privacy/security, evaluation gaps."
+        ),
+        "contradictions_and_skepticism": (
+            "Speculative claims, hype without evidence, oversimplifications. If none, say briefly."
+        ),
+        "sources": "URLs/references from article or metadata; else empty array.",
+    }
+    return fixed.get(section_key, "")
 
 
 def _build_user_prompt(
@@ -55,11 +138,13 @@ def _build_user_prompt(
         + "\n".join(f"- {m}" for m in wiki.foundation_model_names[:120]),
         "## TOOL_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_tags),
         "## HOWTO_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in howto_tags),
+        "## SOURCE_CHAPTERS_RUBRIC\n" + SOURCE_CHAPTERS_RUBRIC,
         "## JSON_SCHEMA_HINT\n" + schema_hint,
         "## ARTICLE_PLAIN_TEXT\n" + doc.plain_text,
         "## Instructions\n"
         "Output one JSON object matching the schema keys: source_summary, glossary, tools, "
         "foundation_models, how_to, enterprise_studies, industry_trends, roundup. "
+        "Prioritize high-signal source_summary chapters per SOURCE_CHAPTERS_RUBRIC. "
         "Use empty arrays when a category does not apply. For roundup: set is_roundup true only "
         "for digests/newsletters whose primary purpose is listing many external items.",
     ]
@@ -69,6 +154,12 @@ def _build_user_prompt(
 def _parse_json_content(raw: str) -> dict[str, Any]:
     """Parse model string content as JSON object."""
     return json.loads(raw)
+
+
+def _truncate_plain_text(plain: str, max_chars: int | None) -> str:
+    if max_chars is None or len(plain) <= max_chars:
+        return plain
+    return plain[:max_chars] + "\n[TRUNCATED]"
 
 
 class OpenAIIngestionProvider(IngestionProvider):
@@ -173,3 +264,122 @@ class OpenAIIngestionProvider(IngestionProvider):
                 else:
                     fmt_index += 1
         raise RuntimeError(f"OpenAI classification failed: {last_error}")
+
+    def regenerate_source_section(
+        self,
+        *,
+        document: SourceDocument,
+        section_key: str,
+        current_value: str | list[str] | None,
+        reviewer_instruction: str | None,
+        model: str,
+        prompt_version: str,
+        max_plain_text_chars: int | None = None,
+        max_retries: int = 2,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Regenerate one ``source_summary`` field via a narrow JSON completion."""
+        if section_key not in REGENERATABLE_SOURCE_SECTION_KEYS:
+            raise ValueError(f"Unsupported section_key: {section_key}")
+        rubric = _section_regen_rubric(section_key)
+        body = _truncate_plain_text(document.plain_text, max_plain_text_chars)
+        current_json = json.dumps(current_value, ensure_ascii=False)
+        user_blocks = [
+            f"prompt_version: {prompt_version or PROMPT_VERSION}",
+            f"source_id: {document.source_id}",
+            f"SECTION_TO_REGENERATE: {section_key}",
+            f"SECTION_RUBRIC:\n{rubric}",
+            "## REVIEWER_NOTE\n"
+            + (reviewer_instruction.strip() if reviewer_instruction else "(none)"),
+            "## CURRENT_DRAFT_JSON\n" + current_json,
+            "## ARTICLE_PLAIN_TEXT\n" + body,
+            "## Instructions\n"
+            'Return one JSON object: {"section_key": "<same key>", "content": <string OR array '
+            "of strings>}. For key_insights and sources, content MUST be an array of strings. "
+            "For all other keys, content MUST be a single string.",
+        ]
+        user_prompt = "\n\n".join(user_blocks)
+        regen_schema = SectionRegenerateOutput.model_json_schema()
+        messages = [
+            {
+                "role": "system",
+                "content": SYSTEM_PROMPT
+                + " Respond with one JSON object only; keys section_key and content only.",
+            },
+            {"role": "user", "content": user_prompt},
+        ]
+        response_formats: list[dict[str, Any] | None] = [
+            {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "source_section_regen",
+                    "schema": regen_schema,
+                    "strict": False,
+                },
+            },
+            {"type": "json_object"},
+            None,
+        ]
+        last_error: str | None = None
+        max_attempts = max(2, max_retries) * 2
+        fmt_index = 0
+        for attempt in range(max_attempts):
+            response_format = response_formats[min(fmt_index, len(response_formats) - 1)]
+            try:
+                kwargs: dict[str, Any] = {
+                    "model": model,
+                    "messages": messages,
+                    "timeout": 90.0,
+                }
+                if response_format is not None:
+                    kwargs["response_format"] = response_format
+                completion = self._client.chat.completions.create(**kwargs)
+                raw = completion.choices[0].message.content or ""
+                data = _parse_json_content(raw)
+                out = SectionRegenerateOutput.model_validate(data)
+                if out.section_key != section_key:
+                    raise ValueError(
+                        f"mismatched section_key: {out.section_key!r} != {section_key!r}"
+                    )
+                content: str | list[str]
+                if section_key in ("key_insights", "sources"):
+                    if isinstance(out.content, str):
+                        lines = [ln.strip() for ln in out.content.splitlines() if ln.strip()]
+                        content = lines or (
+                            [] if not out.content.strip() else [out.content.strip()]
+                        )
+                    else:
+                        content = [str(x).strip() for x in out.content if str(x).strip()]
+                    if section_key == "key_insights":
+                        content = content[:5]
+                else:
+                    if isinstance(out.content, list):
+                        content = "\n".join(str(x) for x in out.content)
+                    else:
+                        content = str(out.content)
+                meta: dict[str, Any] = {
+                    "request_id": completion.id,
+                    "token_usage": completion.usage.model_dump() if completion.usage else None,
+                    "prompt_version": prompt_version or PROMPT_VERSION,
+                }
+                return {"section_key": section_key, "content": content}, meta
+            except (json.JSONDecodeError, ValidationError, TypeError, ValueError) as exc:
+                last_error = str(exc)
+                logger.warning("Section regen parse/validate failed: %s", last_error)
+                repair = (
+                    "\n\n## Previous output failed\n"
+                    f"{str(exc)[:4000]}\n"
+                    "Return corrected JSON with keys section_key and content only."
+                )
+                messages = [
+                    messages[0],
+                    {"role": "user", "content": user_prompt + repair},
+                ]
+                time.sleep(0.3 * (attempt + 1))
+            except (RateLimitError, APITimeoutError, APIError) as exc:
+                last_error = str(exc)
+                logger.warning("OpenAI section regen HTTP error: %s", last_error)
+                if isinstance(exc, RateLimitError) or "429" in last_error:
+                    time.sleep(2.0 * (attempt + 1))
+                else:
+                    fmt_index += 1
+        raise RuntimeError(f"OpenAI section regeneration failed: {last_error}")

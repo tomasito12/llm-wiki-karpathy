@@ -7,7 +7,11 @@ from pathlib import Path
 from src.ingest_review.artifact import build_new_artifact, default_analysis_meta
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.providers.base import IngestionProvider
-from src.ingest_review.schema import PROMPT_VERSION, LlmClassificationOutput
+from src.ingest_review.schema import (
+    PROMPT_VERSION,
+    LlmClassificationOutput,
+    normalize_source_summary,
+)
 from src.ingest_review.wiki_snapshot import build_wiki_snapshot
 
 
@@ -48,6 +52,9 @@ def run_classification(
         howto_tags_allowlist=howto_tags,
         model=model,
         prompt_version=pv,
+    )
+    parsed = parsed.model_copy(
+        update={"source_summary": normalize_source_summary(parsed.source_summary)}
     )
     parsed = apply_tag_allowlists(parsed, set(tool_tags), set(howto_tags))
     analysis_meta = default_analysis_meta(

@@ -4,18 +4,33 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
-ARTIFACT_SCHEMA_VERSION = 1
-PROMPT_VERSION = "1"
+ARTIFACT_SCHEMA_VERSION = 2
+PROMPT_VERSION = "2"
 
 SuggestedAction = Literal["create", "update", "ignore"]
 MatchKind = Literal["exact", "fuzzy", "none"]
-ReviewStatus = Literal["pending", "approved", "rejected", "modified"]
+
+# String fields under ``source_summary`` that use ``{status, final_text, notes}`` review nodes.
+SOURCE_SUMMARY_SCALAR_KEYS: tuple[str, ...] = (
+    "summary",
+    "why_it_matters",
+    "implications_automation",
+    "practical_relevance",
+    "limitations_and_open_questions",
+    "contradictions_and_skepticism",
+)
+
+# Sections that support per-section LLM regeneration in the review dashboard.
+REGENERATABLE_SOURCE_SECTION_KEYS: tuple[str, ...] = SOURCE_SUMMARY_SCALAR_KEYS + (
+    "key_insights",
+    "sources",
+)
 
 
 class MatchCandidate(BaseModel):
-    """Possible existing wiki page match from LLM."""
+    """Possible existing wiki page match from the LLM."""
 
     title_or_slug: str = ""
     match_kind: MatchKind = "none"
@@ -23,17 +38,75 @@ class MatchCandidate(BaseModel):
 
 
 class SourceSummaryBlock(BaseModel):
-    """Markdown-oriented sections for the source-level analysis."""
+    """Structured source chapters for human review (JSON in review artifact)."""
 
+    summary: str = ""
+    key_insights: list[str] = Field(
+        default_factory=list,
+        description="Up to 5 concise bullets: actionable, non-obvious, non-generic.",
+    )
     why_it_matters: str = ""
-    key_insights: str = ""
     implications_automation: str = Field(
         "",
-        description="Implications for service automation, voicebots, chatbots.",
+        description="Concrete implications for chatbots, voicebots, support automation; "
+        "state explicitly if none.",
     )
-    context_limitations: str = ""
-    contradictions: str = ""
+    practical_relevance: str = Field(
+        "",
+        description="Short honest judgment (e.g. immediately useful, hype, incremental).",
+    )
+    limitations_and_open_questions: str = ""
+    contradictions_and_skepticism: str = ""
     sources: list[str] = Field(default_factory=list)
+
+    @field_validator("key_insights", mode="before")
+    @classmethod
+    def _coerce_key_insights(cls, v: object) -> list[str]:
+        """Accept legacy string from JSON and split into bullets."""
+        if isinstance(v, str):
+            lines: list[str] = []
+            for ln in v.splitlines():
+                t = ln.strip().lstrip("-•* ").strip()
+                if t:
+                    lines.append(t)
+            if not lines and v.strip():
+                lines = [v.strip()]
+            return lines[:5]
+        if v is None:
+            return []
+        if isinstance(v, list):
+            out = [str(x).strip() for x in v if str(x).strip()]
+            return out[:5]
+        return []
+
+    @field_validator("key_insights")
+    @classmethod
+    def _cap_insights(cls, v: list[str]) -> list[str]:
+        return v[:5]
+
+
+def normalize_source_summary(block: SourceSummaryBlock) -> SourceSummaryBlock:
+    """Trim whitespace and cap key_insights length after parsing."""
+    ki = [s.strip() for s in block.key_insights if s.strip()][:5]
+    return block.model_copy(
+        update={
+            "summary": block.summary.strip(),
+            "key_insights": ki,
+            "why_it_matters": block.why_it_matters.strip(),
+            "implications_automation": block.implications_automation.strip(),
+            "practical_relevance": block.practical_relevance.strip(),
+            "limitations_and_open_questions": block.limitations_and_open_questions.strip(),
+            "contradictions_and_skepticism": block.contradictions_and_skepticism.strip(),
+            "sources": [s.strip() for s in block.sources if isinstance(s, str) and s.strip()],
+        }
+    )
+
+
+class SectionRegenerateOutput(BaseModel):
+    """Minimal JSON returned by per-section regeneration."""
+
+    section_key: str = ""
+    content: str | list[str] = ""
 
 
 class GlossaryProposal(BaseModel):

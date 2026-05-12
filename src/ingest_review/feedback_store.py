@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from src.ingest_review.paths import repo_root
+from src.ingest_review.schema import SOURCE_SUMMARY_SCALAR_KEYS
 
 
 def default_feedback_db_path(root: Path | None = None) -> Path:
@@ -116,13 +117,7 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
     count = 0
     ss = review.get("source_summary") or {}
     llm_ss = llm.get("source_summary") or {}
-    for key in (
-        "why_it_matters",
-        "key_insights",
-        "implications_automation",
-        "context_limitations",
-        "contradictions",
-    ):
+    for key in SOURCE_SUMMARY_SCALAR_KEYS:
         node = ss.get(key)
         if not isinstance(node, dict):
             continue
@@ -146,26 +141,29 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
         )
         count += 1
 
-    src_sources = review.get("source_summary", {}).get("sources")
-    if isinstance(src_sources, dict):
-        st = str(src_sources.get("status") or "pending")
-        if st != "pending":
-            append_feedback_event(
-                path,
-                FeedbackEvent(
-                    source_id=source_id,
-                    source_hash=str(source_hash) if source_hash else None,
-                    proposal_id=None,
-                    path_in_json="source_summary.sources",
-                    decision=st,
-                    llm_value_snapshot=src_sources.get("llm_list"),
-                    final_value_snapshot=src_sources.get("final_list"),
-                    provider=str(provider) if provider else None,
-                    model=str(model) if model else None,
-                    prompt_version=str(prompt_version) if prompt_version else None,
-                ),
-            )
-            count += 1
+    for list_key in ("key_insights", "sources"):
+        list_node = ss.get(list_key)
+        if not isinstance(list_node, dict):
+            continue
+        st = str(list_node.get("status") or "pending")
+        if st == "pending":
+            continue
+        append_feedback_event(
+            path,
+            FeedbackEvent(
+                source_id=source_id,
+                source_hash=str(source_hash) if source_hash else None,
+                proposal_id=None,
+                path_in_json=f"source_summary.{list_key}",
+                decision=st,
+                llm_value_snapshot=llm_ss.get(list_key),
+                final_value_snapshot=list_node.get("final_list"),
+                provider=str(provider) if provider else None,
+                model=str(model) if model else None,
+                prompt_version=str(prompt_version) if prompt_version else None,
+            ),
+        )
+        count += 1
 
     roundup_r = review.get("roundup")
     if isinstance(roundup_r, dict):
