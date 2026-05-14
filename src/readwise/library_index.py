@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -40,6 +40,7 @@ class LibraryIndex:
 
     documents: dict[str, ExportedRecord]
     last_updated_after: str | None
+    suppressed_ids: list[str] = field(default_factory=list)
 
     @staticmethod
     def empty() -> LibraryIndex:
@@ -62,15 +63,25 @@ class LibraryIndex:
                     documents[str(doc_id)] = ExportedRecord.from_dict(row)
         last_after = raw.get("last_updated_after")
         last_after_str = str(last_after) if isinstance(last_after, str) else None
-        return LibraryIndex(documents=documents, last_updated_after=last_after_str)
+        suppressed_raw = raw.get("suppressed_ids")
+        suppressed: list[str] = []
+        if isinstance(suppressed_raw, list):
+            suppressed = [str(x) for x in suppressed_raw if isinstance(x, str)]
+        return LibraryIndex(
+            documents=documents,
+            last_updated_after=last_after_str,
+            suppressed_ids=suppressed,
+        )
 
     def save(self, path: Path) -> None:
         """Write index to JSON with stable key ordering."""
-        payload = {
+        payload: dict[str, object] = {
             "version": INDEX_VERSION,
             "last_updated_after": self.last_updated_after,
             "documents": {
                 doc_id: asdict(record) for doc_id, record in sorted(self.documents.items())
             },
         }
+        if self.suppressed_ids:
+            payload["suppressed_ids"] = sorted(set(self.suppressed_ids))
         atomic_write_json(path, payload)

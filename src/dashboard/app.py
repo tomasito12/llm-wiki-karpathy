@@ -49,7 +49,10 @@ from src.ingest_review.impl_study_ui import (
     collect_approved_new_tags,
     render_implementation_studies,
 )
-from src.ingest_review.insights_ui import render_interview_insights
+from src.ingest_review.insights_ui import (
+    collect_insight_approved_new_tags,
+    render_interview_insights,
+)
 from src.ingest_review.models_ui import (
     collect_model_approved_new_types,
     render_model_proposals,
@@ -57,7 +60,10 @@ from src.ingest_review.models_ui import (
 from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.schema import PROMPT_VERSION
-from src.ingest_review.signals_ui import render_roundup_signals
+from src.ingest_review.signals_ui import (
+    collect_signal_approved_new_tags,
+    render_roundup_signals,
+)
 from src.ingest_review.tags import (
     append_tags_to_yaml,
     default_glossary_tags_path,
@@ -438,9 +444,9 @@ def main() -> None:
             impl_study_tags=impl_study_tags,
         )
     with tabs[8]:
-        render_roundup_signals(st, artifact, key_prefix=key_prefix)
+        render_roundup_signals(st, artifact, trend_tags=trend_tags, key_prefix=key_prefix)
     with tabs[9]:
-        render_interview_insights(st, artifact, key_prefix=key_prefix)
+        render_interview_insights(st, artifact, topic_tags=topic_tags, key_prefix=key_prefix)
     with tabs[10]:
         render_source_type_detection(st, artifact, key_prefix=key_prefix)
     with tabs[11]:
@@ -489,6 +495,20 @@ def main() -> None:
                 st.caption(f"Appended {len(new_trend_tags)} trend tag(s) to allowlist.")
             except OSError as exc:
                 st.warning(f"Trend tag allowlist update skipped: {exc}")
+        new_signal_tags = collect_signal_approved_new_tags(artifact)
+        if new_signal_tags:
+            try:
+                append_tags_to_yaml(default_trend_tags_path(root), new_signal_tags)
+                st.caption(f"Appended {len(new_signal_tags)} signal tag(s) to trend allowlist.")
+            except OSError as exc:
+                st.warning(f"Signal tag allowlist update skipped: {exc}")
+        new_insight_tags = collect_insight_approved_new_tags(artifact)
+        if new_insight_tags:
+            try:
+                append_tags_to_yaml(default_topic_tags_path(root), new_insight_tags)
+                st.caption(f"Appended {len(new_insight_tags)} insight tag(s) to topic allowlist.")
+            except OSError as exc:
+                st.warning(f"Insight tag allowlist update skipped: {exc}")
         new_tool_types = collect_tool_approved_new_types(artifact)
         if new_tool_types:
             try:

@@ -123,6 +123,8 @@ def _needs_export(
     prune_missing: bool,
 ) -> bool:
     """Return True if this document should be written to disk."""
+    if doc_id in index.suppressed_ids:
+        return False
     existing = index.documents.get(doc_id)
     if existing is None:
         return True

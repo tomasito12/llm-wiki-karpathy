@@ -7,7 +7,7 @@ from typing import Literal
 from pydantic import BaseModel, Field, field_validator
 
 ARTIFACT_SCHEMA_VERSION = 7
-PROMPT_VERSION = "2"
+PROMPT_VERSION = "5"
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
 MatchKind = Literal["exact", "fuzzy", "none"]
@@ -57,6 +57,10 @@ class SourceSummaryBlock(BaseModel):
     )
     limitations_and_open_questions: str = ""
     contradictions_and_skepticism: str = ""
+    assessed_as_of: str = Field(
+        "",
+        description="Source publication date; anchors all temporal judgments in this block.",
+    )
     sources: list[str] = Field(default_factory=list)
 
     @field_validator("key_insights", mode="before")
@@ -97,6 +101,7 @@ def normalize_source_summary(block: SourceSummaryBlock) -> SourceSummaryBlock:
             "practical_relevance": block.practical_relevance.strip(),
             "limitations_and_open_questions": block.limitations_and_open_questions.strip(),
             "contradictions_and_skepticism": block.contradictions_and_skepticism.strip(),
+            "assessed_as_of": block.assessed_as_of.strip(),
             "sources": [s.strip() for s in block.sources if isinstance(s, str) and s.strip()],
         }
     )
@@ -116,9 +121,13 @@ class GlossaryProposal(BaseModel):
     proposed_definition: str = ""
     extended_explanation: str = ""
     supporting_snippet: str = ""
-    relevance_note: str = ""
+    relevance_note: str = Field(
+        "",
+        description="Durable industry/operational relevance — NOT article-specific context.",
+    )
     related_terms: list[str] = Field(default_factory=list)
     proposed_tags: list[str] = Field(default_factory=list)
+    proposed_new_tags: list[str] = Field(default_factory=list)
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
@@ -147,6 +156,7 @@ class TopicContribution(BaseModel):
     key_points: list[str] = Field(default_factory=list)
     related_topics: list[str] = Field(default_factory=list)
     proposed_tags: list[str] = Field(default_factory=list)
+    proposed_new_tags: list[str] = Field(default_factory=list)
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
@@ -261,6 +271,7 @@ class HowToProposal(BaseModel):
     prerequisites: list[str] = Field(default_factory=list)
     related_howtos: list[str] = Field(default_factory=list)
     proposed_tags: list[str] = Field(default_factory=list)
+    proposed_new_tags: list[str] = Field(default_factory=list)
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
@@ -349,10 +360,15 @@ class IndustryTrendProposal(BaseModel):
     evidence_from_source: str = ""
     time_sensitivity: str = ""
     uncertainty_note: str = ""
+    assessed_as_of: str = Field(
+        "",
+        description="Source publication date; anchors all temporal judgments in this block.",
+    )
     supporting_snippet: str = ""
     supporting_data_points: list[str] = Field(default_factory=list)
     related_trends: list[str] = Field(default_factory=list)
     proposed_tags: list[str] = Field(default_factory=list)
+    proposed_new_tags: list[str] = Field(default_factory=list)
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
@@ -435,6 +451,13 @@ class RoundupSignal(BaseModel):
     signal_strength: SignalStrength = "low"
     time_horizon: TimeHorizon = "transient"
     wiki_worthiness: WikiWorthiness = "ignore"
+    assessed_as_of: str = Field(
+        "",
+        description="Source publication date; anchors all temporal judgments in this block.",
+    )
+
+    proposed_tags: list[str] = Field(default_factory=list)
+    proposed_new_tags: list[str] = Field(default_factory=list)
     suggested_destinations: list[str] = Field(default_factory=list)
     mentioned_entities: list[str] = Field(default_factory=list)
     evidence_snippets: list[str] = Field(default_factory=list)
@@ -471,6 +494,13 @@ class InterviewInsight(BaseModel):
     confidence: InsightConfidence = "low"
     durability_estimate: DurabilityEstimate = "transient"
     wiki_worthiness: WikiWorthiness = "ignore"
+    assessed_as_of: str = Field(
+        "",
+        description="Source publication date; anchors all temporal judgments in this block.",
+    )
+
+    proposed_tags: list[str] = Field(default_factory=list)
+    proposed_new_tags: list[str] = Field(default_factory=list)
     suggested_destinations: list[str] = Field(default_factory=list)
     mentioned_entities: list[str] = Field(default_factory=list)
     contrarian_or_speculative_claims: list[str] = Field(default_factory=list)

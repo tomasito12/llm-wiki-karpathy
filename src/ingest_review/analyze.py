@@ -15,6 +15,22 @@ from src.ingest_review.schema import (
 from src.ingest_review.wiki_snapshot import build_wiki_snapshot
 
 
+def _split_tags(
+    tags: list[str],
+    existing_new: list[str],
+    allowlist: set[str],
+) -> tuple[list[str], list[str]]:
+    """Split *tags* into (allowed, new). Items not in *allowlist* move to new."""
+    allowed: list[str] = []
+    new: list[str] = list(existing_new)
+    for t in tags:
+        if t in allowlist:
+            allowed.append(t)
+        elif t and t not in new:
+            new.append(t)
+    return allowed, new
+
+
 def apply_tag_allowlists(
     parsed: LlmClassificationOutput,
     tool_types: set[str],
@@ -24,35 +40,46 @@ def apply_tag_allowlists(
     trend_tags: set[str] | None = None,
     model_types: set[str] | None = None,
 ) -> LlmClassificationOutput:
-    """Drop LLM-proposed tags/types that are not on the allowlists."""
+    """Split LLM-proposed tags into allowlist-approved and proposed-new buckets."""
     new_tools = [
         tp.model_copy(update={"proposed_types": [x for x in tp.proposed_types if x in tool_types]})
         for tp in parsed.tools
     ]
-    new_how = [
-        hp.model_copy(update={"proposed_tags": [x for x in hp.proposed_tags if x in howto_tags]})
-        for hp in parsed.how_to
-    ]
     gt = glossary_tags or set()
-    new_glossary = [
-        gp.model_copy(update={"proposed_tags": [x for x in gp.proposed_tags if x in gt]})
-        for gp in parsed.glossary
-    ]
+    new_glossary = []
+    for gp in parsed.glossary:
+        kept, new = _split_tags(gp.proposed_tags, gp.proposed_new_tags, gt)
+        new_glossary.append(gp.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
     tt = topic_tags or set()
-    new_topics = [
-        tc.model_copy(update={"proposed_tags": [x for x in tc.proposed_tags if x in tt]})
-        for tc in parsed.topics
-    ]
+    new_topics = []
+    for tc in parsed.topics:
+        kept, new = _split_tags(tc.proposed_tags, tc.proposed_new_tags, tt)
+        new_topics.append(tc.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
+    ht = howto_tags
+    new_how = []
+    for hp in parsed.how_to:
+        kept, new = _split_tags(hp.proposed_tags, hp.proposed_new_tags, ht)
+        new_how.append(hp.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
     trt = trend_tags or set()
-    new_trends = [
-        tr.model_copy(update={"proposed_tags": [x for x in tr.proposed_tags if x in trt]})
-        for tr in parsed.industry_trends
-    ]
+    new_trends = []
+    for tr in parsed.industry_trends:
+        kept, new = _split_tags(tr.proposed_tags, tr.proposed_new_tags, trt)
+        new_trends.append(tr.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
     mt = model_types or set()
     new_models = [
         mp.model_copy(update={"proposed_types": [x for x in mp.proposed_types if x in mt]})
         for mp in parsed.foundation_models
     ]
+    new_signals = []
+    for sig in parsed.roundup_signals:
+        kept, new = _split_tags(sig.proposed_tags, sig.proposed_new_tags, trt)
+        new_signals.append(sig.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
+    new_insights = []
+    for ins in parsed.interview_insights:
+        kept, new = _split_tags(ins.proposed_tags, ins.proposed_new_tags, tt)
+        new_insights.append(
+            ins.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new})
+        )
     return parsed.model_copy(
         update={
             "tools": new_tools,
@@ -61,6 +88,8 @@ def apply_tag_allowlists(
             "topics": new_topics,
             "industry_trends": new_trends,
             "foundation_models": new_models,
+            "roundup_signals": new_signals,
+            "interview_insights": new_insights,
         }
     )
 

@@ -27,8 +27,10 @@ SYSTEM_PROMPT = """You are an analyst helping curate a personal AI-engineering M
 Return only valid JSON matching the provided schema. Ground every substantive claim in the \
 source text via supporting_snippet (or source_summary section text for narrative fields). \
 If unknown, use empty strings or empty arrays and low confidence. Do not invent facts.
-For how_to, topics, and industry_trends items, proposed_tags MUST be a subset of the \
-allowlists provided in the user message; use [] if none apply.
+For glossary, how_to, topics, industry_trends, roundup_signals, and interview_insights \
+items, proposed_tags MUST be a subset of the allowlists provided in the user message; \
+use [] if none apply. Always populate proposed_new_tags with useful tags NOT in the \
+allowlist — these require human approval and are especially valuable during bootstrapping.
 For tools items, proposed_types MUST be a subset of the TOOL_TYPES_ALLOWLIST; use [] if none \
 apply and set proposed_new_type if a new type is warranted.
 For foundation_models items, proposed_types MUST be a subset of the MODEL_TYPES_ALLOWLIST; \
@@ -39,10 +41,37 @@ If the source is an interview_or_transcript, also populate interview_insights. \
 Prefer reusing existing wiki pages (match_candidates) when the article overlaps with existing \
 content; suggest append_to_existing over create_new_page whenever possible.
 
+Anchor all temporal language to the source's published_date; never use unanchored words \
+like "currently", "now", "soon", "recently", or "within 1-2 years".
+
 Voice for source_summary chapters: concise, direct, practical. Audience is an advanced AI \
 practitioner focused on conversational AI, chatbots, voicebots, and service automation—not a \
 research paper audience. Avoid LinkedIn tone, generic AI hype, buzzword stacking, and \
 exaggerated claims. Prefer clarity and usefulness over completeness."""
+
+
+TEMPORAL_ANCHORING_RULE = """\
+## TEMPORAL ANCHORING RULE (applies to ALL output fields)
+
+All temporal judgments in prose fields (practical_relevance, time_sensitivity, \
+why_it_matters, operational_relevance, durability_estimate rationale, etc.) \
+MUST be anchored to the source's published_date from the Metadata section.
+
+Banned unanchored words: "currently", "now", "soon", "recently", "today", \
+"at the time of writing", "in the coming months", "within 1-2 years", \
+"immediately". These words lose meaning once the publication date is forgotten.
+
+Required pattern: always include an explicit date anchor. Examples:
+- "Actionable as of May 2025"
+- "Likely relevant through mid-2027"
+- "Early-stage as of Q2 2025; monitor"
+- "Inference cost trends as of May 2025 suggest..."
+
+Non-temporal qualifiers that need no anchor are fine: "incremental improvement", \
+"potentially transformative", "hype/noise", "strategically important".
+
+For every model that has an assessed_as_of field, copy the published_date from \
+Metadata (empty string if unknown)."""
 
 
 SOURCE_CHAPTERS_RUBRIC = """## source_summary (required JSON subtree)
@@ -67,10 +96,10 @@ manual work reduction, conversational UX, enterprise adoption in service orgs. I
 no meaningful implications, state explicitly that no major implications were identified—do \
 not force weak connections.
 
-**practical_relevance** (string): Short honest judgment (e.g. immediately useful, worth \
-experimenting, strategically important, mostly hype/noise, early but promising, operationally \
-relevant within 1–2 years, incremental improvement, potentially transformative). Nuanced, not \
-certainty theater.
+**practical_relevance** (string): Short honest judgment anchored to the source's publication \
+date (e.g. "actionable as of May 2025", "likely relevant through 2027", "early-stage as of \
+Q2 2025; monitor", strategically important, mostly hype/noise, incremental improvement, \
+potentially transformative). Nuanced, not certainty theater.
 
 **limitations_and_open_questions** (string): Limitations, weak evidence, benchmark limits, \
 unrealistic assumptions, missing implementation detail, unresolved operational concerns, \
@@ -156,13 +185,20 @@ Do NOT reference the article. Empty string only if the source provides \
 no depth beyond a bare definition.
 - supporting_snippet: verbatim quote from the source that supports \
 the definition
-- relevance_note: why this term matters in the context of THIS article \
-and for a practitioner's glossary. This is where article-specific \
-relevance belongs — practical implications, why the source makes this \
-term worth knowing, industry significance. 1-3 sentences.
+- relevance_note: why this concept matters for AI practitioners — NOT \
+why it matters for this article. Focus on: where it appears in \
+real-world AI systems, how it affects AI engineering / orchestration / \
+evaluation / automation / agent workflows, and relevance to \
+conversational AI, chatbots, voicebots, or service automation. \
+NEVER reference the article ("the article focuses on…", "this paper \
+argues…"). 1-3 sentences of durable operational/industry relevance.
 - related_terms: other terms mentioned in the same conceptual context
-- proposed_tags: tags from GLOSSARY_TAGS_ALLOWLIST only; \
-empty array if allowlist is empty
+- proposed_tags: tags from GLOSSARY_TAGS_ALLOWLIST only; [] if none fit
+- proposed_new_tags: tags NOT in the allowlist that you think useful; \
+these require human approval. Use kebab-case. ALWAYS propose at least \
+one tag here — even if the allowlist already covers the term, suggest \
+additional categorization angles (e.g. "inference", "training", \
+"orchestration", "evaluation", "safety")
 - match_candidates: existing glossary terms that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "create" | "update" | "ignore"
@@ -197,7 +233,10 @@ article says..." or "the author argues..."
 - relevance_note: why this matters in the context of this source
 - key_points: specific knowledge bullets worth accumulating (list of strings)
 - related_topics: other topic slugs (list of strings)
-- proposed_tags: tags from TOPIC_TAGS_ALLOWLIST only; [] if allowlist is empty
+- proposed_tags: tags from TOPIC_TAGS_ALLOWLIST only; [] if allowlist is \
+empty or no tags fit
+- proposed_new_tags: tags NOT in the allowlist that you think useful; \
+these require human approval. Use kebab-case
 - match_candidates: existing topic pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
@@ -233,6 +272,8 @@ them (list of strings)
 of strings)
 - related_howtos: cross-references to other how-to slugs (list of strings)
 - proposed_tags: tags from HOWTO_TAGS_ALLOWLIST only; [] if none apply
+- proposed_new_tags: tags NOT in the allowlist that you think useful; \
+these require human approval. Use kebab-case
 - match_candidates: existing how-to pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
@@ -264,7 +305,9 @@ conflicting signals, or limited evidence. Empty string is NOT acceptable
 (list of strings)
 - related_trends: other trend names (list of strings)
 - proposed_tags: tags from TREND_TAGS_ALLOWLIST only; [] if allowlist is \
-empty
+empty or no tags fit
+- proposed_new_tags: tags NOT in the allowlist that you think useful; \
+these require human approval. Use kebab-case
 - match_candidates: existing trend pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
@@ -384,8 +427,9 @@ Classification rule: types describe WHAT THE MODEL IS, not subjective quality. \
 Good: reasoning-model, coding-model, multimodal-model. \
 Bad: powerful, smart, enterprise-ready.
 
-Prioritize observations likely to remain useful in 6-12 months. Transient hype \
-or short-lived benchmark excitement belongs in trends, not model pages.
+Prioritize observations likely to remain useful 6-12 months after the source's \
+publication date. Transient hype or short-lived benchmark excitement belongs in \
+trends, not model pages.
 
 Voice: clear, operational, skeptical. No hype, no certainty theater."""
 
@@ -428,7 +472,7 @@ Decompose the roundup into independent signal items. The roundup itself is \
 NOT the knowledge object — extract the durable operational signals within it.
 
 Most signals should be wiki_worthiness "ignore". Only promote signals that \
-answer: "Will this still matter in 6–12 months?"
+answer: "Will this still matter 6–12 months after the source's publication date?"
 
 Prioritize: recurring patterns, workflow changes, architectural shifts, \
 operational lessons, infrastructure developments, meaningful tooling/model \
@@ -452,6 +496,10 @@ relevance exists, state "No direct service automation implications identified."
 - time_horizon: "transient", "short_term", "medium_term", or "long_term"
 - wiki_worthiness: "ignore", "weak_candidate", "review_candidate", or \
 "strong_candidate"
+- proposed_tags: tags from TREND_TAGS_ALLOWLIST only; [] if allowlist is \
+empty or no tags fit
+- proposed_new_tags: tags NOT in the allowlist that you think useful; \
+these require human approval. Use kebab-case
 - suggested_destinations: routing hints as array of strings (e.g. \
 ["topics/", "trends/"])
 - mentioned_entities: organizations, tools, models mentioned (array of strings)
@@ -496,6 +544,10 @@ identified."
 - durability_estimate: "transient", "medium_term", or "long_term"
 - wiki_worthiness: "ignore", "weak_candidate", "review_candidate", or \
 "strong_candidate"
+- proposed_tags: tags from TOPIC_TAGS_ALLOWLIST only; [] if allowlist is \
+empty or no tags fit
+- proposed_new_tags: tags NOT in the allowlist that you think useful; \
+these require human approval. Use kebab-case
 - suggested_destinations: routing hints (array of strings, e.g. \
 ["topics/", "models/"])
 - mentioned_entities: organizations, tools, models mentioned (array of strings)
@@ -528,7 +580,8 @@ def _section_regen_rubric(section_key: str) -> str:
             "operations. If none, state that no major implications were identified."
         ),
         "practical_relevance": (
-            "Short honest judgment (e.g. immediately useful, hype/noise, incremental, "
+            "Short honest judgment anchored to the source's publication date "
+            "(e.g. 'actionable as of May 2025', hype/noise, incremental, "
             "transformative). Nuanced."
         ),
         "limitations_and_open_questions": (
@@ -578,6 +631,7 @@ def _build_user_prompt(
     trend_titles = wiki.trend_titles[:100] if wiki.trend_titles else []
     blocks = [
         "## Metadata\n" + "\n".join(meta_lines),
+        TEMPORAL_ANCHORING_RULE,
         "## EXISTING_GLOSSARY_TERMS\n" + "\n".join(f"- {t}" for t in wiki.glossary_terms[:150]),
         "## EXISTING_TOOL_NAMES\n" + "\n".join(f"- {t}" for t in wiki.tool_names[:200]),
         "## EXISTING_FOUNDATION_MODEL_NAMES\n"

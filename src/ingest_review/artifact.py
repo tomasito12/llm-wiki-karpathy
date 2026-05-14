@@ -164,6 +164,7 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
                 "tags": {
                     "approved_allowlist_tags": [],
                     "reviewer_tags_added": [],
+                    "approved_new_tags": [],
                 },
             }
         )
@@ -203,6 +204,7 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
                     "tags": {
                         "approved_allowlist_tags": [],
                         "reviewer_tags_added": [],
+                        "approved_new_tags": [],
                     },
                 }
             )

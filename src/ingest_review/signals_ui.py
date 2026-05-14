@@ -134,10 +134,57 @@ def _render_signal_list_section(
     )
 
 
+def _render_signal_tag_panel(
+    st: Any,
+    llm_item: dict[str, Any],
+    tag_node: dict[str, Any],
+    trend_tags: list[str],
+    *,
+    key_prefix: str,
+) -> None:
+    st.markdown("#### Tags")
+    current_approved = tag_node.get("approved_allowlist_tags") or []
+    if trend_tags:
+        chosen = st.multiselect(
+            "Approved tags (from allowlist)",
+            options=trend_tags,
+            default=[t for t in current_approved if t in trend_tags],
+            key=f"{key_prefix}_sig_tags_select",
+        )
+    else:
+        st.caption("Tag allowlist is empty \u2014 add tags via the fields below.")
+        chosen = []
+    tag_node["approved_allowlist_tags"] = chosen
+    extra = st.text_input(
+        "Reviewer tags (comma-separated, not in allowlist)",
+        value=", ".join(tag_node.get("reviewer_tags_added") or []),
+        key=f"{key_prefix}_sig_tags_extra",
+    )
+    tag_node["reviewer_tags_added"] = [x.strip() for x in extra.split(",") if x.strip()]
+
+    proposed_new = llm_item.get("proposed_new_tags") or []
+    already_approved_new = set(tag_node.get("approved_new_tags") or [])
+    if proposed_new:
+        st.markdown("**LLM-proposed new tags** (not in allowlist)")
+        newly_approved: list[str] = list(already_approved_new)
+        for ptag in proposed_new:
+            checked = st.checkbox(
+                f"Approve: {ptag}",
+                value=ptag in already_approved_new,
+                key=f"{key_prefix}_sig_newtag_{ptag}",
+            )
+            if checked and ptag not in newly_approved:
+                newly_approved.append(ptag)
+            elif not checked and ptag in newly_approved:
+                newly_approved.remove(ptag)
+        tag_node["approved_new_tags"] = newly_approved
+
+
 def render_roundup_signals(
     st: Any,
     artifact: dict[str, Any],
     *,
+    trend_tags: list[str] | None = None,
     key_prefix: str,
 ) -> None:
     """Render per-section review for all roundup signal proposals."""
@@ -172,6 +219,11 @@ def render_roundup_signals(
                 )
             for lk in SIGNAL_LIST_KEYS:
                 _render_signal_list_section(st, llm_item, sections, section_key=lk, key_prefix=pfx)
+            tag_node = node.setdefault(
+                "tags",
+                {"approved_allowlist_tags": [], "reviewer_tags_added": [], "approved_new_tags": []},
+            )
+            _render_signal_tag_panel(st, llm_item, tag_node, trend_tags or [], key_prefix=pfx)
             st.divider()
             node["notes"] = st.text_input(
                 "Signal notes",
@@ -180,3 +232,20 @@ def render_roundup_signals(
             )
             with st.expander("Raw JSON (debug)", expanded=False):
                 st.json(llm_item)
+
+
+def collect_signal_approved_new_tags(artifact: dict[str, Any]) -> list[str]:
+    """Return reviewer_tags_added + approved_new_tags across roundup signals."""
+    review = artifact.get("review") or {}
+    tags: list[str] = []
+    for node in review.get("roundup_signals") or []:
+        if not isinstance(node, dict):
+            continue
+        tag_node = node.get("tags") or {}
+        for t in tag_node.get("reviewer_tags_added") or []:
+            if t and t not in tags:
+                tags.append(t)
+        for t in tag_node.get("approved_new_tags") or []:
+            if t and t not in tags:
+                tags.append(t)
+    return tags

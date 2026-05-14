@@ -133,6 +133,7 @@ def _render_topic_list_section(
 
 def _render_topic_tag_panel(
     st: Any,
+    llm_item: dict[str, Any],
     tag_node: dict[str, Any],
     topic_tags: list[str],
     *,
@@ -148,15 +149,32 @@ def _render_topic_tag_panel(
             key=f"{key_prefix}_tp_tags_select",
         )
     else:
-        st.caption("Topic tag allowlist is empty \u2014 add tags via the reviewer field below.")
+        st.caption("Topic tag allowlist is empty \u2014 add tags via the fields below.")
         chosen = []
     tag_node["approved_allowlist_tags"] = chosen
     extra = st.text_input(
-        "Add new tags (comma-separated)",
+        "Reviewer tags (comma-separated, not in allowlist)",
         value=", ".join(tag_node.get("reviewer_tags_added") or []),
         key=f"{key_prefix}_tp_tags_extra",
     )
     tag_node["reviewer_tags_added"] = [x.strip() for x in extra.split(",") if x.strip()]
+
+    proposed_new = llm_item.get("proposed_new_tags") or []
+    already_approved_new = set(tag_node.get("approved_new_tags") or [])
+    if proposed_new:
+        st.markdown("**LLM-proposed new tags** (not in allowlist)")
+        newly_approved: list[str] = list(already_approved_new)
+        for ptag in proposed_new:
+            checked = st.checkbox(
+                f"Approve: {ptag}",
+                value=ptag in already_approved_new,
+                key=f"{key_prefix}_tp_newtag_{ptag}",
+            )
+            if checked and ptag not in newly_approved:
+                newly_approved.append(ptag)
+            elif not checked and ptag in newly_approved:
+                newly_approved.remove(ptag)
+        tag_node["approved_new_tags"] = newly_approved
 
 
 def _render_topic_match_candidates(
@@ -223,7 +241,7 @@ def render_topic_contributions(
                     "reviewer_tags_added": [],
                 },
             )
-            _render_topic_tag_panel(st, tag_node, topic_tags, key_prefix=pfx)
+            _render_topic_tag_panel(st, llm_item, tag_node, topic_tags, key_prefix=pfx)
             _render_topic_match_candidates(st, llm_item, key_prefix=pfx)
             node["notes"] = st.text_input(
                 "Proposal notes",
@@ -235,7 +253,7 @@ def render_topic_contributions(
 
 
 def collect_topic_approved_new_tags(artifact: dict[str, Any]) -> list[str]:
-    """Return all reviewer_tags_added across topic contributions."""
+    """Return reviewer_tags_added + approved_new_tags across topic contributions."""
     review = artifact.get("review") or {}
     tags: list[str] = []
     for node in review.get("topics") or []:
@@ -243,6 +261,9 @@ def collect_topic_approved_new_tags(artifact: dict[str, Any]) -> list[str]:
             continue
         tag_node = node.get("tags") or {}
         for t in tag_node.get("reviewer_tags_added") or []:
+            if t and t not in tags:
+                tags.append(t)
+        for t in tag_node.get("approved_new_tags") or []:
             if t and t not in tags:
                 tags.append(t)
     return tags

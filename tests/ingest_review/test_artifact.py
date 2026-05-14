@@ -774,6 +774,21 @@ def test_aggregate_review_status_includes_model_sections(tmp_path: Path) -> None
     assert aggregate_review_status(art) == "mixed"
 
 
+def test_assessed_as_of_field_exists_on_temporal_models() -> None:
+    """assessed_as_of field exists with empty default on all temporal models."""
+    from src.ingest_review.schema import (
+        IndustryTrendProposal,
+        InterviewInsight,
+        RoundupSignal,
+        SourceSummaryBlock,
+    )
+
+    for cls in (SourceSummaryBlock, IndustryTrendProposal, RoundupSignal, InterviewInsight):
+        instance = cls()
+        assert hasattr(instance, "assessed_as_of"), f"{cls.__name__} missing assessed_as_of"
+        assert instance.assessed_as_of == "", f"{cls.__name__} assessed_as_of default not empty"
+
+
 def test_migrate_v6_to_v7_converts_roundup_to_source_type() -> None:
     """migrate_artifact_to_v7 converts roundup to source_type_detection."""
     art: dict[str, Any] = {
@@ -941,3 +956,69 @@ def test_aggregate_review_status_includes_insight_sections(tmp_path: Path) -> No
     i_sections = art["review"]["interview_insights"][0]["sections"]
     i_sections["insight_title"]["status"] = "approved"
     assert aggregate_review_status(art) == "mixed"
+
+
+def test_proposed_new_tags_field_exists_on_all_tag_models() -> None:
+    """All proposal models that have proposed_tags also have proposed_new_tags."""
+    from src.ingest_review.schema import (
+        GlossaryProposal,
+        HowToProposal,
+        IndustryTrendProposal,
+        InterviewInsight,
+        RoundupSignal,
+        TopicContribution,
+    )
+
+    for cls in (
+        GlossaryProposal,
+        TopicContribution,
+        HowToProposal,
+        IndustryTrendProposal,
+        RoundupSignal,
+        InterviewInsight,
+    ):
+        instance = cls()
+        assert hasattr(instance, "proposed_new_tags"), f"{cls.__name__} missing proposed_new_tags"
+        assert instance.proposed_new_tags == []
+
+
+def test_roundup_signal_has_proposed_tags() -> None:
+    """RoundupSignal has proposed_tags field (newly added)."""
+    from src.ingest_review.schema import RoundupSignal
+
+    sig = RoundupSignal(signal_title="test")
+    assert hasattr(sig, "proposed_tags")
+    assert sig.proposed_tags == []
+
+
+def test_interview_insight_has_proposed_tags() -> None:
+    """InterviewInsight has proposed_tags field (newly added)."""
+    from src.ingest_review.schema import InterviewInsight
+
+    ins = InterviewInsight(insight_title="test")
+    assert hasattr(ins, "proposed_tags")
+    assert ins.proposed_tags == []
+
+
+def test_build_per_section_tag_node_has_approved_new_tags(tmp_path: Path) -> None:
+    """Per-section review nodes include approved_new_tags in tags dict."""
+    from src.ingest_review.schema import GlossaryProposal, TopicContribution
+
+    doc = _minimal_doc(tmp_path)
+    parsed = LlmClassificationOutput(
+        glossary=[GlossaryProposal(term="X")],
+        topics=[TopicContribution(topic_slug="y")],
+    )
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    gl_tags = art["review"]["glossary"][0]["tags"]
+    assert "approved_new_tags" in gl_tags
+    assert gl_tags["approved_new_tags"] == []
+
+    tp_tags = art["review"]["topics"][0]["tags"]
+    assert "approved_new_tags" in tp_tags
+    assert tp_tags["approved_new_tags"] == []
