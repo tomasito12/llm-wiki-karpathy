@@ -1,0 +1,28 @@
+extraction_budgets:
+  glossary:
+    max: 2
+    rank_by: "value_level then confidence"
+  topics:
+    max: 2
+    rank_by: "value_level then confidence"
+  how_to:
+    max: 1
+    rank_by: "value_level then confidence"
+  industry_trends:
+    max: 1
+    rank_by: "value_level then confidence"
+  tools:
+    max: 1
+    only_if: "substantially discussed"
+  foundation_models:
+    max: 1
+    only_if: "substantially discussed"
+  implementation_studies:
+    max: 1
+    only_if: "real implementation described"
+  roundup_signals:
+    max: 5
+    rank_by: "wiki_worthiness then signal_strength"
+  interview_insights:
+    max: 5
+    rank_by: "wiki_worthiness then confidence"

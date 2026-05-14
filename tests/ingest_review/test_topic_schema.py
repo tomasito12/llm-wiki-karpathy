@@ -20,10 +20,13 @@ def test_topic_contribution_defaults() -> None:
     assert tc.relevance_note == ""
     assert tc.key_points == []
     assert tc.related_topics == []
-    assert tc.proposed_tags == []
+    assert tc.primary_tag == ""
+    assert tc.secondary_tag == ""
+    assert tc.suggested_new_tag == ""
     assert tc.match_candidates == []
     assert tc.confidence == 0.0
     assert tc.suggested_action == "ignore"
+    assert tc.value_level == "medium"
 
 
 def test_topic_contribution_accepts_knowledge_action_values() -> None:

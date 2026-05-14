@@ -1,16 +1,20 @@
-"""Streamlit rendering for foundation model proposals (per-section review)."""
+"""Streamlit rendering for foundation model proposals (proposal-level review)."""
 
 from __future__ import annotations
 
-import urllib.parse
+import logging
 from typing import Any
 
-from src.ingest_review.artifact import aggregate_impl_study_section_status
-from src.ingest_review.schema import MODEL_LIST_KEYS, MODEL_SCALAR_KEYS
+from src.ingest_review.schema import MODEL_REVIEWABLE_LIST_KEYS, MODEL_REVIEWABLE_SCALAR_KEYS
 
-STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
+logger = logging.getLogger(__name__)
 
-MODEL_SECTION_LABELS: dict[str, str] = {
+PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
+FIELD_STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
+
+VALUE_LEVEL_ORDER = {"high": 0, "medium": 1, "low": 2}
+
+MODEL_FIELD_LABELS: dict[str, str] = {
     "model_name": "Model name",
     "provider": "Provider",
     "operational_summary": "Operational summary",
@@ -20,130 +24,76 @@ MODEL_SECTION_LABELS: dict[str, str] = {
     "service_automation_implications": "Service automation implications",
     "maturity_signals": "Maturity / adoption signals",
     "pricing_inference_implications": "Pricing / inference implications",
-    "supporting_snippet": "Supporting snippet",
     "core_capabilities": "Core capabilities",
     "benchmark_observations": "Benchmark observations",
     "comparative_observations": "Comparative observations",
-    "related_models": "Related models",
 }
 
-MODEL_DISPLAY_ORDER: tuple[str, ...] = (
-    *MODEL_SCALAR_KEYS,
-    *MODEL_LIST_KEYS,
-)
 
-
-def _status_index(current: str) -> int:
-    if current in STATUS_OPTIONS:
-        return STATUS_OPTIONS.index(current)
+def _proposal_status_index(current: str) -> int:
+    """Return index of *current* in proposal status options, defaulting to 0."""
+    if current in PROPOSAL_STATUS_OPTIONS:
+        return PROPOSAL_STATUS_OPTIONS.index(current)
     return 0
 
 
-def _render_model_scalar_section(
+def _field_status_index(current: str) -> int:
+    """Return index of *current* in field status options, defaulting to 0."""
+    if current in FIELD_STATUS_OPTIONS:
+        return FIELD_STATUS_OPTIONS.index(current)
+    return 0
+
+
+def _sort_key(node: dict[str, Any]) -> tuple[int, float]:
+    """Sort proposals: high value first, then descending confidence."""
+    llm = node.get("llm_item") or {}
+    level = str(llm.get("value_level") or "medium")
+    conf = float(llm.get("confidence") or 0)
+    return (VALUE_LEVEL_ORDER.get(level, 1), -conf)
+
+
+def _render_compact_card(
     st: Any,
+    node: dict[str, Any],
     llm_item: dict[str, Any],
-    sections: dict[str, Any],
+    idx: int,
     *,
-    section_key: str,
     key_prefix: str,
 ) -> None:
-    label = MODEL_SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"#### {label}")
-    node = sections.setdefault(
-        section_key,
-        {"status": "pending", "final_text": None, "notes": None},
-    )
-    llm_text = str(llm_item.get(section_key) or "")
-    st.markdown("**Model draft**")
-    tall = section_key in (
-        "operational_summary",
-        "strengths",
-        "weaknesses_limitations",
-        "workflow_implications",
-        "service_automation_implications",
-    )
-    st.text(llm_text[:6000] + ("\u2026" if len(llm_text) > 6000 else ""))
-    node["status"] = st.selectbox(
-        f"{label} \u2014 status",
-        STATUS_OPTIONS,
-        index=_status_index(str(node.get("status") or "pending")),
-        key=f"{key_prefix}_ml_{section_key}_st",
-    )
-    if node["status"] in ("modified", "pending"):
-        default = node.get("final_text") if node.get("final_text") else llm_text
-        node["final_text"] = st.text_area(
-            f"{label} \u2014 final text",
-            value=default,
-            height=160 if tall else 100,
-            key=f"{key_prefix}_ml_{section_key}_txt",
-        )
-    elif node["status"] == "approved":
-        node["final_text"] = None
-    else:
-        node["final_text"] = None
-    node["notes"] = st.text_input(
-        f"{label} \u2014 notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_ml_{section_key}_notes",
-    )
+    """Render a compact read-only proposal card with action buttons."""
+    value_level = str(llm_item.get("value_level") or "medium").upper()
+    name = llm_item.get("model_name") or f"Model #{idx + 1}"
+    conf = float(llm_item.get("confidence") or 0)
+    status = str(node.get("proposal_status") or "pending")
+
+    st.markdown(f"**[{value_level}] {name}** — confidence: {conf:.0%}")
+
+    summary = str(llm_item.get("operational_summary") or "")
+    if summary:
+        st.text(summary[:2000] + ("\u2026" if len(summary) > 2000 else ""))
+
+    proposed_types = llm_item.get("proposed_types") or []
+    if proposed_types:
+        st.caption(f"Types: {', '.join(str(t) for t in proposed_types)}")
+
+    cols = st.columns(4)
+    pfx = f"{key_prefix}_act"
+    if cols[0].button("Approve", key=f"{pfx}_approve"):
+        node["proposal_status"] = "approved"
+    if cols[1].button("Reject", key=f"{pfx}_reject"):
+        node["proposal_status"] = "rejected"
+    if cols[2].button("Edit", key=f"{pfx}_edit"):
+        st.session_state[f"{pfx}_editing"] = True
+    if cols[3].button("Defer", key=f"{pfx}_defer"):
+        node["proposal_status"] = "deferred"
+
+    if status != str(node.get("proposal_status") or "pending"):
+        st.rerun()
+
+    st.caption(f"Status: **{node.get('proposal_status', 'pending')}**")
 
 
-def _render_model_list_section(
-    st: Any,
-    llm_item: dict[str, Any],
-    sections: dict[str, Any],
-    *,
-    section_key: str,
-    key_prefix: str,
-) -> None:
-    label = MODEL_SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"#### {label}")
-    llm_list = llm_item.get(section_key) or []
-    if not isinstance(llm_list, list):
-        llm_list = []
-    node = sections.setdefault(
-        section_key,
-        {
-            "status": "pending",
-            "final_list": None,
-            "notes": None,
-            "llm_list": list(llm_list),
-        },
-    )
-    if not node.get("llm_list"):
-        node["llm_list"] = list(llm_list)
-    st.markdown("**Model draft (list)**")
-    st.json(node["llm_list"])
-    node["status"] = st.selectbox(
-        f"{label} \u2014 status",
-        STATUS_OPTIONS,
-        index=_status_index(str(node.get("status") or "pending")),
-        key=f"{key_prefix}_ml_{section_key}_st",
-    )
-    default_lines = (
-        node.get("final_list") if node.get("final_list") is not None else node["llm_list"]
-    )
-    raw_list = st.text_area(
-        f"{label} \u2014 final list (one item per line)",
-        value="\n".join(str(x) for x in (default_lines or [])),
-        height=100,
-        key=f"{key_prefix}_ml_{section_key}_txt",
-    )
-    lines = [ln.strip() for ln in raw_list.splitlines() if ln.strip()]
-    if node["status"] == "modified":
-        node["final_list"] = lines
-    elif node["status"] == "approved":
-        node["final_list"] = None
-    else:
-        node["final_list"] = None
-    node["notes"] = st.text_input(
-        f"{label} \u2014 notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_ml_{section_key}_notes",
-    )
-
-
-def _render_model_type_panel(
+def _render_type_panel(
     st: Any,
     node: dict[str, Any],
     llm_item: dict[str, Any],
@@ -151,7 +101,7 @@ def _render_model_type_panel(
     *,
     key_prefix: str,
 ) -> None:
-    st.markdown("#### Model types")
+    """Render the model types editing panel (types system, not tags)."""
     types_node = node.setdefault(
         "types",
         {
@@ -168,7 +118,7 @@ def _render_model_type_panel(
             "Approved types (from registry)",
             options=model_types,
             default=default_sel,
-            key=f"{key_prefix}_ml_types_select",
+            key=f"{key_prefix}_types_select",
         )
     else:
         st.caption("Model type registry is empty.")
@@ -182,7 +132,7 @@ def _render_model_type_panel(
         approved = st.checkbox(
             "Approve this new type",
             value=bool(types_node.get("approved_new_type")),
-            key=f"{key_prefix}_ml_new_type_approve",
+            key=f"{key_prefix}_new_type_approve",
         )
         types_node["proposed_new_type"] = existing_proposed
         types_node["approved_new_type"] = approved
@@ -193,28 +143,96 @@ def _render_model_type_panel(
     extra = st.text_input(
         "Manually add types (comma-separated)",
         value=", ".join(types_node.get("reviewer_types_added") or []),
-        key=f"{key_prefix}_ml_types_extra",
+        key=f"{key_prefix}_types_extra",
     )
     types_node["reviewer_types_added"] = [x.strip() for x in extra.split(",") if x.strip()]
 
 
-def _render_model_match_candidates(
+def _render_edit_mode(
     st: Any,
+    node: dict[str, Any],
     llm_item: dict[str, Any],
     *,
     key_prefix: str,
+    model_types: list[str],
 ) -> None:
-    candidates = llm_item.get("match_candidates") or []
-    if not candidates:
-        return
-    with st.expander("Possible existing matches (from LLM)", expanded=False):
-        for mc in candidates:
-            if not isinstance(mc, dict):
-                continue
-            title = mc.get("title_or_slug", "?")
-            kind = mc.get("match_kind", "?")
-            conf = mc.get("confidence", 0)
-            st.warning(f"**{title}** \u2014 match: {kind}, confidence: {conf:.0%}")
+    """Render the full edit expander with per-field review controls and type editing."""
+    sections = node.setdefault("sections", {})
+
+    for sk in MODEL_REVIEWABLE_SCALAR_KEYS:
+        label = MODEL_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
+        st.markdown(f"#### {label}")
+        sec = sections.setdefault(sk, {"status": "pending", "final_text": None, "notes": None})
+        llm_text = str(llm_item.get(sk) or "")
+        st.text(llm_text[:6000] + ("\u2026" if len(llm_text) > 6000 else ""))
+        sec["status"] = st.selectbox(
+            f"{label} \u2014 status",
+            FIELD_STATUS_OPTIONS,
+            index=_field_status_index(str(sec.get("status") or "pending")),
+            key=f"{key_prefix}_f_{sk}_st",
+        )
+        if sec["status"] == "modified":
+            default = sec.get("final_text") if sec.get("final_text") else llm_text
+            sec["final_text"] = st.text_area(
+                f"{label} \u2014 final text",
+                value=default,
+                height=140,
+                key=f"{key_prefix}_f_{sk}_txt",
+            )
+        else:
+            sec["final_text"] = None
+
+    for lk in MODEL_REVIEWABLE_LIST_KEYS:
+        label = MODEL_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
+        st.markdown(f"#### {label}")
+        llm_list = llm_item.get(lk) or []
+        if not isinstance(llm_list, list):
+            llm_list = []
+        sec = sections.setdefault(
+            lk,
+            {"status": "pending", "final_list": None, "notes": None, "llm_list": list(llm_list)},
+        )
+        if not sec.get("llm_list"):
+            sec["llm_list"] = list(llm_list)
+        st.json(sec["llm_list"])
+        sec["status"] = st.selectbox(
+            f"{label} \u2014 status",
+            FIELD_STATUS_OPTIONS,
+            index=_field_status_index(str(sec.get("status") or "pending")),
+            key=f"{key_prefix}_f_{lk}_st",
+        )
+        if sec["status"] == "modified":
+            default_lines = sec.get("final_list") or sec["llm_list"]
+            raw = st.text_area(
+                f"{label} \u2014 final list (one per line)",
+                value="\n".join(str(x) for x in (default_lines or [])),
+                height=100,
+                key=f"{key_prefix}_f_{lk}_txt",
+            )
+            sec["final_list"] = [ln.strip() for ln in raw.splitlines() if ln.strip()]
+        else:
+            sec["final_list"] = None
+
+    snippet = str(llm_item.get("supporting_snippet") or "")
+    if snippet:
+        with st.expander("Source evidence", expanded=False):
+            st.text(snippet[:4000])
+
+    related = llm_item.get("related_models") or []
+    if related:
+        st.caption(f"Related models: {', '.join(str(r) for r in related)}")
+
+    st.markdown("#### Model types")
+    _render_type_panel(st, node, llm_item, model_types, key_prefix=key_prefix)
+
+    node["notes"] = st.text_input(
+        "Proposal notes",
+        value=str(node.get("notes") or ""),
+        key=f"{key_prefix}_notes",
+    )
+
+    with st.expander("Raw JSON (debug)", expanded=False):
+        st.json(llm_item)
 
 
 def render_model_proposals(
@@ -222,52 +240,77 @@ def render_model_proposals(
     artifact: dict[str, Any],
     *,
     key_prefix: str,
-    model_types: list[str],
+    model_types: list[str] | None = None,
 ) -> None:
-    """Render per-section review for all foundation model proposals."""
+    """Render proposal-level review for all foundation model proposals.
+
+    Args:
+        st: Streamlit module reference.
+        artifact: The full review artifact dict (mutated in place).
+        key_prefix: Unique Streamlit key prefix for this render pass.
+        model_types: Optional type registry list.
+    """
+    types_list = model_types or []
     review = artifact.setdefault("review", {})
     model_nodes = review.setdefault("foundation_models", [])
-    llm_items = artifact.get("llm_output", {}).get("foundation_models") or []
     st.subheader("Foundation Models")
-    if not model_nodes and not llm_items:
+
+    if not model_nodes:
         st.caption("No model proposals.")
         return
 
-    for i, node in enumerate(model_nodes):
-        llm_item = node.get("llm_item") or (llm_items[i] if i < len(llm_items) else {})
+    sorted_nodes = sorted(model_nodes, key=_sort_key)
+
+    high_medium = [n for n in sorted_nodes if (n.get("llm_item") or {}).get("value_level") != "low"]
+    low = [n for n in sorted_nodes if (n.get("llm_item") or {}).get("value_level") == "low"]
+
+    for i, node in enumerate(high_medium):
+        llm_item = node.get("llm_item") or {}
+        value_level = str(llm_item.get("value_level") or "medium")
         name = llm_item.get("model_name") or f"Model #{i + 1}"
-        sections = node.setdefault("sections", {})
-        agg_status = aggregate_impl_study_section_status(sections)
-        header = f"Model #{i + 1}: {name} [{agg_status}]"
-        expanded = len(model_nodes) == 1
-        pfx = f"{key_prefix}_model{i}"
-        with st.expander(header, expanded=expanded):
-            action = llm_item.get("suggested_action") or "\u2014"
-            conf = llm_item.get("confidence", 0)
-            st.caption(f"Confidence: {conf:.0%} \u00b7 Action: {action}")
-            if name and name != f"Model #{i + 1}":
-                search_url = "https://www.google.com/search?" + urllib.parse.urlencode(
-                    {"q": f"{name} AI model"}
-                )
-                st.markdown(f'[Google: "{name}"]({search_url})')
-            for sk in MODEL_SCALAR_KEYS:
-                _render_model_scalar_section(st, llm_item, sections, section_key=sk, key_prefix=pfx)
-            for lk in MODEL_LIST_KEYS:
-                _render_model_list_section(st, llm_item, sections, section_key=lk, key_prefix=pfx)
-            st.divider()
-            _render_model_type_panel(st, node, llm_item, model_types, key_prefix=pfx)
-            _render_model_match_candidates(st, llm_item, key_prefix=pfx)
-            node["notes"] = st.text_input(
-                "Proposal notes",
-                value=str(node.get("notes") or ""),
-                key=f"{pfx}_ml_notes",
-            )
-            with st.expander("Raw JSON (debug)", expanded=False):
-                st.json(llm_item)
+        pfx = f"{key_prefix}_ml{i}"
+
+        auto_expand = value_level == "high"
+        with st.expander(f"Model: {name}", expanded=auto_expand):
+            _render_compact_card(st, node, llm_item, i, key_prefix=pfx)
+            editing = st.session_state.get(f"{pfx}_act_editing", False)
+            if editing:
+                _render_edit_mode(st, node, llm_item, key_prefix=pfx, model_types=types_list)
+
+    if low:
+        with st.expander(f"Low-value items ({len(low)})", expanded=False):
+            for j, node in enumerate(low):
+                llm_item = node.get("llm_item") or {}
+                name = llm_item.get("model_name") or f"Low model #{j + 1}"
+                pfx = f"{key_prefix}_ml_low{j}"
+                st.markdown("---")
+                _render_compact_card(st, node, llm_item, j, key_prefix=pfx)
+                editing = st.session_state.get(f"{pfx}_act_editing", False)
+                if editing:
+                    _render_edit_mode(st, node, llm_item, key_prefix=pfx, model_types=types_list)
 
 
-def collect_model_approved_new_types(artifact: dict[str, Any]) -> list[str]:
-    """Return all approved new types + manually added types across model proposals."""
+def collect_model_new_tags(artifact: dict[str, Any]) -> list[str]:
+    """Return empty list — models use the types system, not tags.
+
+    Args:
+        artifact: The full review artifact dict.
+
+    Returns:
+        Always an empty list.
+    """
+    return []
+
+
+def collect_model_new_types(artifact: dict[str, Any]) -> list[str]:
+    """Return all approved new types + manually added types across model proposals.
+
+    Args:
+        artifact: The full review artifact dict.
+
+    Returns:
+        List of unique approved type strings.
+    """
     review = artifact.get("review") or {}
     types: list[str] = []
     for node in review.get("foundation_models") or []:
@@ -282,3 +325,7 @@ def collect_model_approved_new_types(artifact: dict[str, Any]) -> list[str]:
             if t and t not in types:
                 types.append(t)
     return types
+
+
+# Backwards-compatible alias
+collect_model_approved_new_types = collect_model_new_types

@@ -27,14 +27,32 @@ SYSTEM_PROMPT = """You are an analyst helping curate a personal AI-engineering M
 Return only valid JSON matching the provided schema. Ground every substantive claim in the \
 source text via supporting_snippet (or source_summary section text for narrative fields). \
 If unknown, use empty strings or empty arrays and low confidence. Do not invent facts.
-For glossary, how_to, topics, industry_trends, roundup_signals, and interview_insights \
-items, proposed_tags MUST be a subset of the allowlists provided in the user message; \
-use [] if none apply. Always populate proposed_new_tags with useful tags NOT in the \
-allowlist — these require human approval and are especially valuable during bootstrapping.
+
+CORE PRINCIPLE: maximize durable knowledge gained per minute of human review. \
+Prefer precision over recall, durable knowledge over completeness, review speed over \
+exhaustive extraction, and high-value proposals over many medium-value proposals.
+
+Every proposal MUST include a value_level field: "high", "medium", or "low".
+- high: durable, operationally relevant, novel to the wiki, strong evidence, \
+likely reused across multiple future sources
+- medium: useful but not essential, moderate evidence, incremental contribution
+- low: marginal value, weak evidence, narrow applicability, or already well-covered
+
+Prefer fewer high-value proposals over many medium/low proposals.
+
+For tags: use primary_tag (most fitting tag from the relevant allowlist, or "" if none fit), \
+secondary_tag (optional, from the allowlist, or ""), and suggested_new_tag (if a new tag is \
+warranted, in kebab-case; otherwise ""). Maximum 2 tags per proposal.
 For tools items, proposed_types MUST be a subset of the TOOL_TYPES_ALLOWLIST; use [] if none \
 apply and set proposed_new_type if a new type is warranted.
 For foundation_models items, proposed_types MUST be a subset of the MODEL_TYPES_ALLOWLIST; \
 use [] if none apply and set proposed_new_type if a new type is warranted.
+
+Always fill extraction_meta with skip_recommended, skip_reason, total_candidates_considered, \
+and review_burden_estimate. If the article contains no durable, wiki-worthy knowledge, \
+set skip_recommended=true and skip_reason explaining why; return empty arrays for all \
+entity types. Do NOT force low-value extractions.
+
 Always fill source_type_detection with the detected source type, confidence, and reasoning. \
 If the source is an ai_industry_roundup, also populate roundup_signals. \
 If the source is an interview_or_transcript, also populate interview_insights. \
@@ -72,6 +90,39 @@ Non-temporal qualifiers that need no anchor are fine: "incremental improvement",
 
 For every model that has an assessed_as_of field, copy the published_date from \
 Metadata (empty string if unknown)."""
+
+
+EXTRACTION_BUDGET_RUBRIC = """\
+## EXTRACTION BUDGETS (hard limits)
+
+You MUST respect these limits. If more candidates exist than the budget allows, \
+rank by value_level (high > medium > low) then confidence, and include only the \
+top items within budget. Report total_candidates_considered in extraction_meta.
+
+{budget_lines}
+
+If the article contains no durable, wiki-worthy knowledge, set \
+extraction_meta.skip_recommended = true and skip_reason explaining why. \
+Return empty arrays for all entity types. Do NOT force low-value extractions."""
+
+
+VALUE_RANKING_RUBRIC = """\
+## VALUE RANKING (applies to ALL proposals)
+
+Every proposal MUST include a value_level field: "high", "medium", or "low".
+
+High: durable knowledge likely relevant 12+ months after publication; \
+operationally relevant to AI engineering, service automation, or agent workflows; \
+novel to the wiki; strong evidence quality; high reuse potential.
+
+Medium: useful but incremental; moderate evidence; partially covered by existing \
+wiki content; good-to-have but not essential.
+
+Low: marginal or transient value; weak evidence; already well-covered; very narrow \
+applicability; term merely mentioned, not substantively explained.
+
+Prefer fewer high-value proposals over many medium/low proposals. \
+The system optimizes for: max durable knowledge gained per minute of human review."""
 
 
 SOURCE_CHAPTERS_RUBRIC = """## source_summary (required JSON subtree)
@@ -141,12 +192,13 @@ say so explicitly
 - related_sources: URLs/references from the article
 - evidence_snippets: array of {claim, snippet, provenance} where \
 provenance is "stated", "inferred", or "interpretation"
-- suggested_existing_tags: tags from IMPL_STUDY_TAGS_ALLOWLIST only
-- proposed_new_tags: tags NOT in the allowlist that you think useful; \
-these require human approval
+- primary_tag: most fitting tag from IMPL_STUDY_TAGS_ALLOWLIST; "" if none fit
+- secondary_tag: optional second tag from IMPL_STUDY_TAGS_ALLOWLIST; "" if none
+- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
 - match_candidates: existing wiki implementation-study pages that may overlap
 - confidence: 0.0–1.0
 - suggested_action: "create" | "update" | "ignore"
+- value_level: "high", "medium", or "low"
 
 Voice: concise, direct, practical. Focus on operational reality over marketing \
 claims. Skeptical where warranted. No hype, no LinkedIn tone."""
@@ -155,20 +207,19 @@ claims. Skeptical where warranted. No hype, no LinkedIn tone."""
 GLOSSARY_RUBRIC = """\
 ## glossary (array of objects — glossary term proposals)
 
-Only extract terms where the source provides SUBSTANTIVE explanatory content.
-Do NOT extract terms that are merely mentioned in passing.
+GLOSSARY-WORTHINESS GATE — before proposing any term, ALL must be true:
+1. Would this term deserve a standalone glossary entry in ANY future article?
+2. Is it an established industry term (not article-specific jargon)?
+3. Is it reusable across multiple AI engineering contexts?
+4. Does the source provide enough depth for a useful definition?
+5. Is it NOT merely a supporting term mentioned in passing?
+If any answer is "no", do NOT propose it. Prefer 1-2 high-value terms \
+over 5+ marginal ones.
 
 CRITICAL: Only propose ESTABLISHED industry terms that already exist in \
 professional usage and are verifiable via a web search. Do NOT propose \
 neologisms coined by the article author, ad-hoc phrases, or terms invented \
 for this specific article. If in doubt, omit the term.
-
-A term is a good glossary candidate if the text:
-- explicitly defines it
-- explains what it means in practice
-- contrasts it with related concepts
-- describes how it is used operationally
-- gives enough context to write a useful explanation
 
 Each object MUST include:
 - term: the term or phrase (use the most common established industry form)
@@ -193,15 +244,13 @@ conversational AI, chatbots, voicebots, or service automation. \
 NEVER reference the article ("the article focuses on…", "this paper \
 argues…"). 1-3 sentences of durable operational/industry relevance.
 - related_terms: other terms mentioned in the same conceptual context
-- proposed_tags: tags from GLOSSARY_TAGS_ALLOWLIST only; [] if none fit
-- proposed_new_tags: tags NOT in the allowlist that you think useful; \
-these require human approval. Use kebab-case. ALWAYS propose at least \
-one tag here — even if the allowlist already covers the term, suggest \
-additional categorization angles (e.g. "inference", "training", \
-"orchestration", "evaluation", "safety")
+- primary_tag: most fitting tag from GLOSSARY_TAGS_ALLOWLIST; "" if none fit
+- secondary_tag: optional second tag from GLOSSARY_TAGS_ALLOWLIST; "" if none
+- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
 - match_candidates: existing glossary terms that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "create" | "update" | "ignore"
+- value_level: "high", "medium", or "low"
 
 Voice: clear, practical, accessible. Define for a senior practitioner, \
 not an academic. Prefer operational understanding over theoretical precision."""
@@ -233,13 +282,13 @@ article says..." or "the author argues..."
 - relevance_note: why this matters in the context of this source
 - key_points: specific knowledge bullets worth accumulating (list of strings)
 - related_topics: other topic slugs (list of strings)
-- proposed_tags: tags from TOPIC_TAGS_ALLOWLIST only; [] if allowlist is \
-empty or no tags fit
-- proposed_new_tags: tags NOT in the allowlist that you think useful; \
-these require human approval. Use kebab-case
+- primary_tag: most fitting tag from TOPIC_TAGS_ALLOWLIST; "" if none fit
+- secondary_tag: optional second tag from TOPIC_TAGS_ALLOWLIST; "" if none
+- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
 - match_candidates: existing topic pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
+- value_level: "high", "medium", or "low"
 
 Avoid: article-specific framing, ultra-narrow topics, hype-driven \
 fragmentation, one-off concepts, duplicate existing topics.
@@ -271,12 +320,13 @@ them (list of strings)
 - prerequisites: what a practitioner needs before attempting this (list \
 of strings)
 - related_howtos: cross-references to other how-to slugs (list of strings)
-- proposed_tags: tags from HOWTO_TAGS_ALLOWLIST only; [] if none apply
-- proposed_new_tags: tags NOT in the allowlist that you think useful; \
-these require human approval. Use kebab-case
+- primary_tag: most fitting tag from HOWTO_TAGS_ALLOWLIST; "" if none fit
+- secondary_tag: optional second tag from HOWTO_TAGS_ALLOWLIST; "" if none
+- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
 - match_candidates: existing how-to pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
+- value_level: "high", "medium", or "low"
 
 Voice: direct, practical, implementation-focused. Write as reusable \
 procedural guidance."""
@@ -304,13 +354,13 @@ conflicting signals, or limited evidence. Empty string is NOT acceptable
 - supporting_data_points: specific data or facts that support the trend \
 (list of strings)
 - related_trends: other trend names (list of strings)
-- proposed_tags: tags from TREND_TAGS_ALLOWLIST only; [] if allowlist is \
-empty or no tags fit
-- proposed_new_tags: tags NOT in the allowlist that you think useful; \
-these require human approval. Use kebab-case
+- primary_tag: most fitting tag from TREND_TAGS_ALLOWLIST; "" if none fit
+- secondary_tag: optional second tag from TREND_TAGS_ALLOWLIST; "" if none
+- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
 - match_candidates: existing trend pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
+- value_level: "high", "medium", or "low"
 
 Voice: measured, evidence-grounded, explicitly uncertain where warranted. \
 No hype, no certainty theater."""
@@ -361,6 +411,7 @@ kebab-case; null otherwise. The human reviewer approves or rejects
 - confidence: 0.0-1.0
 - suggested_action: prefer "append_to_existing" for tools already in the wiki; \
 "create_new_page" only for genuinely new tools worth tracking long-term
+- value_level: "high", "medium", or "low"
 
 Classification rule: types describe WHAT THE TOOL IS, not what it does well. \
 Good: coding-assistant, desktop-app, voice-ai. Bad: productivity, useful, fast.
@@ -422,6 +473,7 @@ null otherwise
 - confidence: 0.0-1.0
 - suggested_action: prefer "append_to_existing" for models already in the wiki; \
 "create_new_page" only for genuinely new models worth tracking long-term
+- value_level: "high", "medium", or "low"
 
 Classification rule: types describe WHAT THE MODEL IS, not subjective quality. \
 Good: reasoning-model, coding-model, multimodal-model. \
@@ -496,14 +548,14 @@ relevance exists, state "No direct service automation implications identified."
 - time_horizon: "transient", "short_term", "medium_term", or "long_term"
 - wiki_worthiness: "ignore", "weak_candidate", "review_candidate", or \
 "strong_candidate"
-- proposed_tags: tags from TREND_TAGS_ALLOWLIST only; [] if allowlist is \
-empty or no tags fit
-- proposed_new_tags: tags NOT in the allowlist that you think useful; \
-these require human approval. Use kebab-case
+- primary_tag: most fitting tag from TREND_TAGS_ALLOWLIST; "" if none fit
+- secondary_tag: optional second tag from TREND_TAGS_ALLOWLIST; "" if none
+- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
 - suggested_destinations: routing hints as array of strings (e.g. \
 ["topics/", "trends/"])
 - mentioned_entities: organizations, tools, models mentioned (array of strings)
 - evidence_snippets: supporting source quotes for provenance (array of strings)
+- value_level: "high", "medium", or "low"
 
 If source is NOT a roundup, return an empty array [].
 
@@ -544,16 +596,16 @@ identified."
 - durability_estimate: "transient", "medium_term", or "long_term"
 - wiki_worthiness: "ignore", "weak_candidate", "review_candidate", or \
 "strong_candidate"
-- proposed_tags: tags from TOPIC_TAGS_ALLOWLIST only; [] if allowlist is \
-empty or no tags fit
-- proposed_new_tags: tags NOT in the allowlist that you think useful; \
-these require human approval. Use kebab-case
+- primary_tag: most fitting tag from TOPIC_TAGS_ALLOWLIST; "" if none fit
+- secondary_tag: optional second tag from TOPIC_TAGS_ALLOWLIST; "" if none
+- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
 - suggested_destinations: routing hints (array of strings, e.g. \
 ["topics/", "models/"])
 - mentioned_entities: organizations, tools, models mentioned (array of strings)
 - contrarian_or_speculative_claims: strong predictions, contrarian takes, \
 speculative claims — explicitly mark as speculative (array of strings)
 - evidence_snippets: supporting source quotes for provenance (array of strings)
+- value_level: "high", "medium", or "low"
 
 If source is NOT an interview/transcript, return an empty array [].
 
@@ -607,6 +659,7 @@ def _build_user_prompt(
     trend_tags: list[str] | None = None,
     model_types: list[str] | None = None,
     source_type_override: str | None = None,
+    extraction_budgets: dict[str, int] | None = None,
     *,
     prompt_version: str,
 ) -> str:
@@ -625,6 +678,23 @@ def _build_user_prompt(
     t_tags = topic_tags or []
     tr_tags = trend_tags or []
     m_types = model_types or []
+    budgets = extraction_budgets or {}
+    budget_lines_parts: list[str] = []
+    budget_labels = {
+        "glossary": "glossary",
+        "topics": "topics",
+        "how_to": "how_to",
+        "industry_trends": "industry_trends",
+        "tools": "tools (only if substantially discussed)",
+        "foundation_models": "foundation_models (only if substantially discussed)",
+        "implementation_studies": "implementation_studies (only if real implementation)",
+        "roundup_signals": "roundup_signals",
+        "interview_insights": "interview_insights",
+    }
+    for bk, label in budget_labels.items():
+        mx = budgets.get(bk, 3)
+        budget_lines_parts.append(f"- {label}: max {mx} proposals")
+    budget_block = EXTRACTION_BUDGET_RUBRIC.format(budget_lines="\n".join(budget_lines_parts))
     impl_titles = wiki.implementation_study_titles[:100] if wiki.implementation_study_titles else []
     topic_titles = wiki.topic_titles[:100] if wiki.topic_titles else []
     howto_titles = wiki.howto_titles[:100] if wiki.howto_titles else []
@@ -632,6 +702,8 @@ def _build_user_prompt(
     blocks = [
         "## Metadata\n" + "\n".join(meta_lines),
         TEMPORAL_ANCHORING_RULE,
+        budget_block,
+        VALUE_RANKING_RUBRIC,
         "## EXISTING_GLOSSARY_TERMS\n" + "\n".join(f"- {t}" for t in wiki.glossary_terms[:150]),
         "## EXISTING_TOOL_NAMES\n" + "\n".join(f"- {t}" for t in wiki.tool_names[:200]),
         "## EXISTING_FOUNDATION_MODEL_NAMES\n"
@@ -671,12 +743,17 @@ def _build_user_prompt(
         [
             "## ARTICLE_PLAIN_TEXT\n" + doc.plain_text,
             "## Instructions\n"
-            "Output one JSON object matching the schema keys: source_type_detection, "
-            "source_summary, glossary, tools, foundation_models, how_to, topics, "
-            "implementation_studies, industry_trends, roundup_signals, interview_insights. "
-            "FIRST: fill source_type_detection per SOURCE_TYPE_DETECTION_RUBRIC. "
-            "THEN: always fill source_summary, glossary, tools, foundation_models, how_to, "
+            "Output one JSON object matching the schema keys: extraction_meta, "
+            "source_type_detection, source_summary, glossary, tools, foundation_models, "
+            "how_to, topics, implementation_studies, industry_trends, roundup_signals, "
+            "interview_insights. "
+            "FIRST: fill extraction_meta (skip_recommended, skip_reason, "
+            "total_candidates_considered, review_burden_estimate). "
+            "If skip_recommended is true, return empty arrays for all entity types. "
+            "THEN: fill source_type_detection per SOURCE_TYPE_DETECTION_RUBRIC. "
+            "THEN: fill source_summary, glossary, tools, foundation_models, how_to, "
             "topics, implementation_studies, industry_trends per their rubrics. "
+            "RESPECT extraction budgets. Every proposal MUST have a value_level field. "
             "IF source type is ai_industry_roundup, ALSO fill roundup_signals per "
             "ROUNDUP_SIGNALS_RUBRIC. "
             "IF source type is interview_or_transcript, ALSO fill interview_insights per "
@@ -723,6 +800,7 @@ class OpenAIIngestionProvider(IngestionProvider):
         trend_tags_allowlist: list[str] | None = None,
         model_types_allowlist: list[str] | None = None,
         source_type_override: str | None = None,
+        extraction_budgets: dict[str, int] | None = None,
         model: str,
         prompt_version: str,
         max_retries: int = 3,
@@ -739,6 +817,7 @@ class OpenAIIngestionProvider(IngestionProvider):
             trend_tags_allowlist,
             model_types=model_types_allowlist,
             source_type_override=source_type_override,
+            extraction_budgets=extraction_budgets,
             prompt_version=prompt_version or PROMPT_VERSION,
         )
         messages = [

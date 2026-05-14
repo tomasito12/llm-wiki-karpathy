@@ -60,12 +60,32 @@ CREATE TABLE IF NOT EXISTS feedback_events (
 );
 """
 
+DDL_REVIEW_SESSIONS = """
+CREATE TABLE IF NOT EXISTS review_sessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    source_id TEXT NOT NULL,
+    started_at TEXT,
+    finished_at TEXT,
+    duration_seconds REAL,
+    proposals_total INTEGER DEFAULT 0,
+    proposals_approved INTEGER DEFAULT 0,
+    proposals_rejected INTEGER DEFAULT 0,
+    proposals_deferred INTEGER DEFAULT 0,
+    proposals_modified INTEGER DEFAULT 0,
+    fields_modified INTEGER DEFAULT 0,
+    batch_actions_used TEXT,
+    prompt_version TEXT,
+    model TEXT
+);
+"""
+
 
 def init_feedback_db(path: Path) -> None:
     """Create parent directory and apply schema if missing."""
     path.parent.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(path) as conn:
         conn.execute(DDL)
+        conn.execute(DDL_REVIEW_SESSIONS)
         conn.commit()
 
 
@@ -376,3 +396,47 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
             count += 1
 
     return count
+
+
+def record_review_session(path: Path, artifact: dict[str, Any]) -> int | None:
+    """Persist aggregated review-session analytics from ``review_analytics``."""
+    source = artifact.get("source") or {}
+    source_id = str(source.get("source_id") or "")
+    analytics = artifact.get("review_analytics") or {}
+    meta = artifact.get("analysis_meta") or {}
+
+    started = analytics.get("review_started_at")
+    finished = analytics.get("review_finished_at")
+    duration = analytics.get("review_duration_seconds")
+    if not source_id or not started:
+        return None
+
+    init_feedback_db(path)
+    with sqlite3.connect(path) as conn:
+        cur = conn.execute(
+            """
+            INSERT INTO review_sessions (
+                source_id, started_at, finished_at, duration_seconds,
+                proposals_total, proposals_approved, proposals_rejected,
+                proposals_deferred, proposals_modified, fields_modified,
+                batch_actions_used, prompt_version, model
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                source_id,
+                started,
+                finished,
+                duration,
+                analytics.get("proposals_total", 0),
+                analytics.get("proposals_approved", 0),
+                analytics.get("proposals_rejected", 0),
+                analytics.get("proposals_deferred", 0),
+                analytics.get("proposals_modified", 0),
+                analytics.get("fields_modified", 0),
+                json.dumps(analytics.get("batch_actions_used") or []),
+                str(meta.get("prompt_version") or ""),
+                str(meta.get("model") or ""),
+            ),
+        )
+        conn.commit()
+        return int(cur.lastrowid or 0)

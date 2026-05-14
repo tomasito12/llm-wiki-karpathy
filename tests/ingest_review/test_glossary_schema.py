@@ -19,10 +19,13 @@ def test_glossary_proposal_defaults_are_empty() -> None:
     assert p.supporting_snippet == ""
     assert p.relevance_note == ""
     assert p.related_terms == []
-    assert p.proposed_tags == []
+    assert p.primary_tag == ""
+    assert p.secondary_tag == ""
+    assert p.suggested_new_tag == ""
     assert p.match_candidates == []
     assert p.confidence == 0.0
     assert p.suggested_action == "ignore"
+    assert p.value_level == "medium"
 
 
 def test_glossary_proposal_full_roundtrip() -> None:
@@ -34,7 +37,7 @@ def test_glossary_proposal_full_roundtrip() -> None:
         "supporting_snippet": "The agent decides which tool to call next...",
         "relevance_note": "Core pattern in modern AI application design.",
         "related_terms": ["tool calling", "chain of thought"],
-        "proposed_tags": ["agentic-ai"],
+        "primary_tag": "agentic-ai",
         "match_candidates": [
             {"title_or_slug": "agentic-workflow", "match_kind": "exact", "confidence": 0.95},
         ],
@@ -82,7 +85,7 @@ def test_llm_output_glossary_uses_enriched_model() -> None:
                 "supporting_snippet": "From the article...",
                 "relevance_note": "Core infrastructure concept.",
                 "related_terms": ["tool calling"],
-                "proposed_tags": [],
+                "primary_tag": "",
                 "confidence": 0.8,
                 "suggested_action": "create",
             },
@@ -108,4 +111,6 @@ def test_backward_compat_old_glossary_shape() -> None:
     assert p.extended_explanation == ""
     assert p.relevance_note == ""
     assert p.related_terms == []
-    assert p.proposed_tags == []
+    assert p.primary_tag == ""
+    assert p.secondary_tag == ""
+    assert p.suggested_new_tag == ""

@@ -1,13 +1,23 @@
-"""Streamlit rendering for roundup signal proposals (per-section review)."""
+"""Streamlit rendering for roundup signal proposals (proposal-level review)."""
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 
-from src.ingest_review.artifact import aggregate_impl_study_section_status
-from src.ingest_review.schema import SIGNAL_LIST_KEYS, SIGNAL_SCALAR_KEYS
+from src.ingest_review.schema import (
+    SIGNAL_REVIEWABLE_LIST_KEYS,
+    SIGNAL_REVIEWABLE_SCALAR_KEYS,
+)
 
+logger = logging.getLogger(__name__)
+
+PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
 STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
+
+_VALUE_LEVEL_SORT: dict[str, int] = {"high": 0, "medium": 1, "low": 2}
+_VALUE_LEVEL_BADGE: dict[str, str] = {"high": "H", "medium": "M", "low": "L"}
+_STRENGTH_SORT: dict[str, int] = {"high": 0, "medium": 1, "low": 2}
 
 SIGNAL_SECTION_LABELS: dict[str, str] = {
     "signal_title": "Signal title",
@@ -24,19 +34,69 @@ SIGNAL_SECTION_LABELS: dict[str, str] = {
     "evidence_snippets": "Evidence snippets",
 }
 
-SIGNAL_DISPLAY_ORDER: tuple[str, ...] = (
-    *SIGNAL_SCALAR_KEYS,
-    *SIGNAL_LIST_KEYS,
-)
+
+def _proposal_status_index(current: str) -> int:
+    """Return index into PROPOSAL_STATUS_OPTIONS."""
+    if current in PROPOSAL_STATUS_OPTIONS:
+        return PROPOSAL_STATUS_OPTIONS.index(current)
+    return 0
 
 
 def _status_index(current: str) -> int:
+    """Return index into STATUS_OPTIONS."""
     if current in STATUS_OPTIONS:
         return STATUS_OPTIONS.index(current)
     return 0
 
 
-def _render_signal_scalar_section(
+def _sort_key(node: dict[str, Any]) -> tuple[int, int]:
+    """Sort by value_level (high first) then signal_strength (high first)."""
+    llm = node.get("llm_item") or {}
+    vl = str(llm.get("value_level", "medium"))
+    strength = str(llm.get("signal_strength", "low"))
+    return (_VALUE_LEVEL_SORT.get(vl, 1), _STRENGTH_SORT.get(strength, 2))
+
+
+def _render_card_header(
+    st: Any,
+    llm_item: dict[str, Any],
+    node: dict[str, Any],
+    *,
+    index: int,
+) -> None:
+    """Render compact proposal card header with value badge and key metrics."""
+    vl = str(llm_item.get("value_level", "medium"))
+    badge = _VALUE_LEVEL_BADGE.get(vl, "M")
+    title = llm_item.get("signal_title") or f"Signal #{index + 1}"
+    strength = llm_item.get("signal_strength") or "\u2014"
+    worthiness = llm_item.get("wiki_worthiness") or "\u2014"
+    sig_type = llm_item.get("signal_type") or "\u2014"
+    horizon = llm_item.get("time_horizon") or "\u2014"
+    status = node.get("proposal_status", "pending")
+
+    st.markdown(
+        f"**[{badge}] {title}** \u00b7 strength: {strength} \u00b7 worthiness: {worthiness}"
+    )
+    st.caption(f"Type: {sig_type} \u00b7 Horizon: {horizon} \u00b7 Status: `{status}`")
+
+
+def _render_action_row(
+    st: Any,
+    node: dict[str, Any],
+    *,
+    key_prefix: str,
+) -> None:
+    """Render Approve | Reject | Defer action buttons."""
+    c1, c2, c3 = st.columns(3)
+    if c1.button("\u2713 Approve", key=f"{key_prefix}_approve"):
+        node["proposal_status"] = "approved"
+    if c2.button("\u2717 Reject", key=f"{key_prefix}_reject"):
+        node["proposal_status"] = "rejected"
+    if c3.button("\u23f3 Defer", key=f"{key_prefix}_defer"):
+        node["proposal_status"] = "deferred"
+
+
+def _render_scalar_field(
     st: Any,
     llm_item: dict[str, Any],
     sections: dict[str, Any],
@@ -44,15 +104,14 @@ def _render_signal_scalar_section(
     section_key: str,
     key_prefix: str,
 ) -> None:
+    """Render a reviewable scalar field inside the edit expander."""
     label = SIGNAL_SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"#### {label}")
+    st.markdown(f"##### {label}")
     node = sections.setdefault(
         section_key,
         {"status": "pending", "final_text": None, "notes": None},
     )
     llm_text = str(llm_item.get(section_key) or "")
-    st.markdown("**Model draft**")
-    tall = section_key in ("summary", "operational_relevance", "service_automation_relevance")
     st.text(llm_text[:6000] + ("\u2026" if len(llm_text) > 6000 else ""))
     node["status"] = st.selectbox(
         f"{label} \u2014 status",
@@ -62,14 +121,13 @@ def _render_signal_scalar_section(
     )
     if node["status"] in ("modified", "pending"):
         default = node.get("final_text") if node.get("final_text") else llm_text
+        tall = section_key in ("summary", "operational_relevance", "service_automation_relevance")
         node["final_text"] = st.text_area(
             f"{label} \u2014 final text",
             value=default,
             height=160 if tall else 100,
             key=f"{key_prefix}_sig_{section_key}_txt",
         )
-    elif node["status"] == "approved":
-        node["final_text"] = None
     else:
         node["final_text"] = None
     node["notes"] = st.text_input(
@@ -79,7 +137,7 @@ def _render_signal_scalar_section(
     )
 
 
-def _render_signal_list_section(
+def _render_list_field(
     st: Any,
     llm_item: dict[str, Any],
     sections: dict[str, Any],
@@ -87,23 +145,18 @@ def _render_signal_list_section(
     section_key: str,
     key_prefix: str,
 ) -> None:
+    """Render a reviewable list field inside the edit expander."""
     label = SIGNAL_SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"#### {label}")
+    st.markdown(f"##### {label}")
     llm_list = llm_item.get(section_key) or []
     if not isinstance(llm_list, list):
         llm_list = []
     node = sections.setdefault(
         section_key,
-        {
-            "status": "pending",
-            "final_list": None,
-            "notes": None,
-            "llm_list": list(llm_list),
-        },
+        {"status": "pending", "final_list": None, "notes": None, "llm_list": list(llm_list)},
     )
     if not node.get("llm_list"):
         node["llm_list"] = list(llm_list)
-    st.markdown("**Model draft (list)**")
     st.json(node["llm_list"])
     node["status"] = st.selectbox(
         f"{label} \u2014 status",
@@ -115,7 +168,7 @@ def _render_signal_list_section(
         node.get("final_list") if node.get("final_list") is not None else node["llm_list"]
     )
     raw_list = st.text_area(
-        f"{label} \u2014 final list (one item per line)",
+        f"{label} \u2014 final list (one per line)",
         value="\n".join(str(x) for x in (default_lines or [])),
         height=100,
         key=f"{key_prefix}_sig_{section_key}_txt",
@@ -123,8 +176,6 @@ def _render_signal_list_section(
     lines = [ln.strip() for ln in raw_list.splitlines() if ln.strip()]
     if node["status"] == "modified":
         node["final_list"] = lines
-    elif node["status"] == "approved":
-        node["final_list"] = None
     else:
         node["final_list"] = None
     node["notes"] = st.text_input(
@@ -134,7 +185,7 @@ def _render_signal_list_section(
     )
 
 
-def _render_signal_tag_panel(
+def _render_tag_panel(
     st: Any,
     llm_item: dict[str, Any],
     tag_node: dict[str, Any],
@@ -142,42 +193,55 @@ def _render_signal_tag_panel(
     *,
     key_prefix: str,
 ) -> None:
-    st.markdown("#### Tags")
-    current_approved = tag_node.get("approved_allowlist_tags") or []
-    if trend_tags:
-        chosen = st.multiselect(
-            "Approved tags (from allowlist)",
-            options=trend_tags,
-            default=[t for t in current_approved if t in trend_tags],
-            key=f"{key_prefix}_sig_tags_select",
+    """Render tag review panel with final_primary_tag / final_secondary_tag."""
+    st.markdown("##### Tags")
+    llm_primary = llm_item.get("primary_tag") or ""
+    llm_secondary = llm_item.get("secondary_tag") or ""
+    llm_new = llm_item.get("suggested_new_tag") or ""
+    disp_primary = llm_primary or "\u2014"
+    disp_secondary = llm_secondary or "\u2014"
+
+    if llm_primary or llm_secondary:
+        st.caption(f"LLM suggested: primary={disp_primary}, secondary={disp_secondary}")
+
+    options = [""] + list(trend_tags)
+    for t in (llm_primary, llm_secondary):
+        if t and t not in options:
+            options.append(t)
+
+    current_primary = tag_node.get("final_primary_tag") or llm_primary or ""
+    primary_idx = options.index(current_primary) if current_primary in options else 0
+    tag_node["final_primary_tag"] = (
+        st.selectbox(
+            "Final primary tag",
+            options=options,
+            index=primary_idx,
+            key=f"{key_prefix}_sig_primary_tag",
+        )
+        or None
+    )
+
+    current_secondary = tag_node.get("final_secondary_tag") or llm_secondary or ""
+    secondary_idx = options.index(current_secondary) if current_secondary in options else 0
+    tag_node["final_secondary_tag"] = (
+        st.selectbox(
+            "Final secondary tag",
+            options=options,
+            index=secondary_idx,
+            key=f"{key_prefix}_sig_secondary_tag",
+        )
+        or None
+    )
+
+    if llm_new:
+        st.info(f"LLM proposed new tag: **{llm_new}**")
+        tag_node["new_tag_approved"] = st.checkbox(
+            f"Approve new tag: {llm_new}",
+            value=bool(tag_node.get("new_tag_approved")),
+            key=f"{key_prefix}_sig_new_tag_approve",
         )
     else:
-        st.caption("Tag allowlist is empty \u2014 add tags via the fields below.")
-        chosen = []
-    tag_node["approved_allowlist_tags"] = chosen
-    extra = st.text_input(
-        "Reviewer tags (comma-separated, not in allowlist)",
-        value=", ".join(tag_node.get("reviewer_tags_added") or []),
-        key=f"{key_prefix}_sig_tags_extra",
-    )
-    tag_node["reviewer_tags_added"] = [x.strip() for x in extra.split(",") if x.strip()]
-
-    proposed_new = llm_item.get("proposed_new_tags") or []
-    already_approved_new = set(tag_node.get("approved_new_tags") or [])
-    if proposed_new:
-        st.markdown("**LLM-proposed new tags** (not in allowlist)")
-        newly_approved: list[str] = list(already_approved_new)
-        for ptag in proposed_new:
-            checked = st.checkbox(
-                f"Approve: {ptag}",
-                value=ptag in already_approved_new,
-                key=f"{key_prefix}_sig_newtag_{ptag}",
-            )
-            if checked and ptag not in newly_approved:
-                newly_approved.append(ptag)
-            elif not checked and ptag in newly_approved:
-                newly_approved.remove(ptag)
-        tag_node["approved_new_tags"] = newly_approved
+        tag_node["new_tag_approved"] = False
 
 
 def render_roundup_signals(
@@ -187,44 +251,43 @@ def render_roundup_signals(
     trend_tags: list[str] | None = None,
     key_prefix: str,
 ) -> None:
-    """Render per-section review for all roundup signal proposals."""
+    """Render proposal-level review for all roundup signal proposals.
+
+    Each signal is shown as a compact card with value_level badge,
+    title, and key metrics, followed by an action row and an edit
+    expander for field-level editing. Sorted by value_level then
+    signal_strength (high first).
+    """
     review = artifact.setdefault("review", {})
     signal_nodes = review.setdefault("roundup_signals", [])
-    llm_items = artifact.get("llm_output", {}).get("roundup_signals") or []
     st.subheader("Roundup signals")
-    if not signal_nodes and not llm_items:
+    if not signal_nodes:
         st.caption("No roundup signals extracted (source is not an AI industry roundup).")
         return
 
-    for i, node in enumerate(signal_nodes):
-        llm_item = node.get("llm_item") or (llm_items[i] if i < len(llm_items) else {})
-        title = llm_item.get("signal_title") or f"Signal #{i + 1}"
+    sorted_nodes = sorted(signal_nodes, key=_sort_key)
+
+    for i, node in enumerate(sorted_nodes):
+        llm_item = node.get("llm_item") or {}
+        pid = node.get("proposal_id") or f"anon{i}"
+        pfx = f"{key_prefix}_sig_{pid[:8]}"
+
+        _render_card_header(st, llm_item, node, index=i)
+        _render_action_row(st, node, key_prefix=pfx)
+
         sections = node.setdefault("sections", {})
-        agg_status = aggregate_impl_study_section_status(sections)
-        worthiness = llm_item.get("wiki_worthiness") or "?"
-        header = f"Signal #{i + 1}: {title} [{agg_status}] \u00b7 {worthiness}"
-        expanded = len(signal_nodes) == 1
-        pfx = f"{key_prefix}_sig{i}"
-        with st.expander(header, expanded=expanded):
-            sig_type = llm_item.get("signal_type") or "\u2014"
-            strength = llm_item.get("signal_strength") or "\u2014"
-            horizon = llm_item.get("time_horizon") or "\u2014"
-            st.caption(
-                f"Type: {sig_type} \u00b7 Strength: {strength} "
-                f"\u00b7 Horizon: {horizon} \u00b7 Worthiness: {worthiness}"
-            )
-            for sk in SIGNAL_SCALAR_KEYS:
-                _render_signal_scalar_section(
-                    st, llm_item, sections, section_key=sk, key_prefix=pfx
-                )
-            for lk in SIGNAL_LIST_KEYS:
-                _render_signal_list_section(st, llm_item, sections, section_key=lk, key_prefix=pfx)
-            tag_node = node.setdefault(
-                "tags",
-                {"approved_allowlist_tags": [], "reviewer_tags_added": [], "approved_new_tags": []},
-            )
-            _render_signal_tag_panel(st, llm_item, tag_node, trend_tags or [], key_prefix=pfx)
+        tag_node = node.setdefault(
+            "tags",
+            {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
+        )
+        title = llm_item.get("signal_title") or f"Signal #{i + 1}"
+        with st.expander(f"Edit: {title}", expanded=False):
+            for sk in SIGNAL_REVIEWABLE_SCALAR_KEYS:
+                _render_scalar_field(st, llm_item, sections, section_key=sk, key_prefix=pfx)
+            for lk in SIGNAL_REVIEWABLE_LIST_KEYS:
+                _render_list_field(st, llm_item, sections, section_key=lk, key_prefix=pfx)
             st.divider()
+            _render_tag_panel(st, llm_item, tag_node, trend_tags or [], key_prefix=pfx)
             node["notes"] = st.text_input(
                 "Signal notes",
                 value=str(node.get("notes") or ""),
@@ -232,20 +295,21 @@ def render_roundup_signals(
             )
             with st.expander("Raw JSON (debug)", expanded=False):
                 st.json(llm_item)
+        st.divider()
 
 
-def collect_signal_approved_new_tags(artifact: dict[str, Any]) -> list[str]:
-    """Return reviewer_tags_added + approved_new_tags across roundup signals."""
+def collect_signal_new_tags(artifact: dict[str, Any]) -> list[str]:
+    """Return approved new tags where new_tag_approved is True across signals."""
     review = artifact.get("review") or {}
     tags: list[str] = []
     for node in review.get("roundup_signals") or []:
         if not isinstance(node, dict):
             continue
         tag_node = node.get("tags") or {}
-        for t in tag_node.get("reviewer_tags_added") or []:
-            if t and t not in tags:
-                tags.append(t)
-        for t in tag_node.get("approved_new_tags") or []:
-            if t and t not in tags:
-                tags.append(t)
+        if not tag_node.get("new_tag_approved"):
+            continue
+        llm_item = node.get("llm_item") or {}
+        new_tag = llm_item.get("suggested_new_tag") or ""
+        if new_tag and new_tag not in tags:
+            tags.append(new_tag)
     return tags

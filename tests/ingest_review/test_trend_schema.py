@@ -20,10 +20,13 @@ def test_trend_proposal_defaults() -> None:
     assert tp.supporting_snippet == ""
     assert tp.supporting_data_points == []
     assert tp.related_trends == []
-    assert tp.proposed_tags == []
+    assert tp.primary_tag == ""
+    assert tp.secondary_tag == ""
+    assert tp.suggested_new_tag == ""
     assert tp.match_candidates == []
     assert tp.confidence == 0.0
     assert tp.suggested_action == "ignore"
+    assert tp.value_level == "medium"
 
 
 def test_trend_proposal_no_legacy_fields() -> None:

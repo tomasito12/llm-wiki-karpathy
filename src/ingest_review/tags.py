@@ -93,6 +93,31 @@ def load_impl_study_tags(root: Path | None = None) -> list[str]:
     return load_tag_list(default_impl_study_tags_path(root))
 
 
+def default_extraction_budgets_path(root: Path | None = None) -> Path:
+    """Path to ``config/extraction_budgets.yaml``."""
+    return (root or repo_root()) / "config" / "extraction_budgets.yaml"
+
+
+def load_extraction_budgets(root: Path | None = None) -> dict[str, int]:
+    """Return ``{entity_key: max_proposals}`` from the budgets config."""
+    path = default_extraction_budgets_path(root)
+    if not path.is_file():
+        return {}
+    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(raw, dict):
+        return {}
+    budgets_section = raw.get("extraction_budgets")
+    if not isinstance(budgets_section, dict):
+        return {}
+    result: dict[str, int] = {}
+    for key, val in budgets_section.items():
+        if isinstance(val, dict) and "max" in val:
+            result[str(key)] = int(val["max"])
+        elif isinstance(val, int):
+            result[str(key)] = val
+    return result
+
+
 def append_tags_to_yaml(path: Path, new_tags: list[str]) -> None:
     """Append new tags to a YAML allowlist file, deduplicating."""
     existing = set(load_tag_list(path))

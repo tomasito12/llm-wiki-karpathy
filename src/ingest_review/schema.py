@@ -6,11 +6,12 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
-ARTIFACT_SCHEMA_VERSION = 7
-PROMPT_VERSION = "5"
+ARTIFACT_SCHEMA_VERSION = 8
+PROMPT_VERSION = "6"
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
 MatchKind = Literal["exact", "fuzzy", "none"]
+ValueLevel = Literal["high", "medium", "low"]
 
 # String fields under ``source_summary`` that use ``{status, final_text, notes}`` review nodes.
 SOURCE_SUMMARY_SCALAR_KEYS: tuple[str, ...] = (
@@ -126,11 +127,13 @@ class GlossaryProposal(BaseModel):
         description="Durable industry/operational relevance — NOT article-specific context.",
     )
     related_terms: list[str] = Field(default_factory=list)
-    proposed_tags: list[str] = Field(default_factory=list)
-    proposed_new_tags: list[str] = Field(default_factory=list)
+    primary_tag: str = ""
+    secondary_tag: str = ""
+    suggested_new_tag: str = ""
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
 
 
 GLOSSARY_SCALAR_KEYS: tuple[str, ...] = (
@@ -142,6 +145,15 @@ GLOSSARY_SCALAR_KEYS: tuple[str, ...] = (
 )
 
 GLOSSARY_LIST_KEYS: tuple[str, ...] = ("related_terms",)
+
+GLOSSARY_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
+    "term",
+    "proposed_definition",
+    "extended_explanation",
+    "relevance_note",
+)
+
+GLOSSARY_REVIEWABLE_LIST_KEYS: tuple[str, ...] = ()
 
 
 class TopicContribution(BaseModel):
@@ -155,11 +167,13 @@ class TopicContribution(BaseModel):
     relevance_note: str = ""
     key_points: list[str] = Field(default_factory=list)
     related_topics: list[str] = Field(default_factory=list)
-    proposed_tags: list[str] = Field(default_factory=list)
-    proposed_new_tags: list[str] = Field(default_factory=list)
+    primary_tag: str = ""
+    secondary_tag: str = ""
+    suggested_new_tag: str = ""
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
 
 
 TOPIC_SCALAR_KEYS: tuple[str, ...] = (
@@ -175,6 +189,16 @@ TOPIC_LIST_KEYS: tuple[str, ...] = (
     "key_points",
     "related_topics",
 )
+
+TOPIC_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
+    "topic_slug",
+    "topic_title",
+    "knowledge_summary",
+    "operational_insight",
+    "relevance_note",
+)
+
+TOPIC_REVIEWABLE_LIST_KEYS: tuple[str, ...] = ("key_points",)
 
 
 class ToolProposal(BaseModel):
@@ -195,6 +219,7 @@ class ToolProposal(BaseModel):
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
 
 
 TOOL_SCALAR_KEYS: tuple[str, ...] = (
@@ -211,6 +236,20 @@ TOOL_LIST_KEYS: tuple[str, ...] = (
     "core_capabilities",
     "integration_ecosystem",
     "related_tools",
+)
+
+TOOL_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
+    "name",
+    "short_description",
+    "operational_relevance",
+    "strengths",
+    "weaknesses_limitations",
+    "maturity_signals",
+)
+
+TOOL_REVIEWABLE_LIST_KEYS: tuple[str, ...] = (
+    "core_capabilities",
+    "integration_ecosystem",
 )
 
 
@@ -236,6 +275,7 @@ class FoundationModelProposal(BaseModel):
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
 
 
 MODEL_SCALAR_KEYS: tuple[str, ...] = (
@@ -258,6 +298,24 @@ MODEL_LIST_KEYS: tuple[str, ...] = (
     "related_models",
 )
 
+MODEL_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
+    "model_name",
+    "provider",
+    "operational_summary",
+    "strengths",
+    "weaknesses_limitations",
+    "workflow_implications",
+    "service_automation_implications",
+    "maturity_signals",
+    "pricing_inference_implications",
+)
+
+MODEL_REVIEWABLE_LIST_KEYS: tuple[str, ...] = (
+    "core_capabilities",
+    "benchmark_observations",
+    "comparative_observations",
+)
+
 
 class HowToProposal(BaseModel):
     """Procedural/implementation knowledge extracted from a source."""
@@ -270,11 +328,13 @@ class HowToProposal(BaseModel):
     implementation_steps: list[str] = Field(default_factory=list)
     prerequisites: list[str] = Field(default_factory=list)
     related_howtos: list[str] = Field(default_factory=list)
-    proposed_tags: list[str] = Field(default_factory=list)
-    proposed_new_tags: list[str] = Field(default_factory=list)
+    primary_tag: str = ""
+    secondary_tag: str = ""
+    suggested_new_tag: str = ""
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
 
 
 HOWTO_SCALAR_KEYS: tuple[str, ...] = (
@@ -289,6 +349,18 @@ HOWTO_LIST_KEYS: tuple[str, ...] = (
     "implementation_steps",
     "prerequisites",
     "related_howtos",
+)
+
+HOWTO_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
+    "question_title",
+    "answer_summary",
+    "relevance_note",
+    "caveats",
+)
+
+HOWTO_REVIEWABLE_LIST_KEYS: tuple[str, ...] = (
+    "implementation_steps",
+    "prerequisites",
 )
 
 
@@ -321,11 +393,13 @@ class ImplementationStudyProposal(BaseModel):
     open_questions: list[str] = Field(default_factory=list)
     related_sources: list[str] = Field(default_factory=list)
     evidence_snippets: list[EvidenceSnippet] = Field(default_factory=list)
-    suggested_existing_tags: list[str] = Field(default_factory=list)
-    proposed_new_tags: list[str] = Field(default_factory=list)
+    primary_tag: str = ""
+    secondary_tag: str = ""
+    suggested_new_tag: str = ""
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
 
 
 IMPL_STUDY_SCALAR_KEYS: tuple[str, ...] = (
@@ -351,6 +425,13 @@ IMPL_STUDY_LIST_KEYS: tuple[str, ...] = (
     "related_sources",
 )
 
+IMPL_STUDY_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = IMPL_STUDY_SCALAR_KEYS
+
+IMPL_STUDY_REVIEWABLE_LIST_KEYS: tuple[str, ...] = (
+    "key_lessons",
+    "open_questions",
+)
+
 
 class IndustryTrendProposal(BaseModel):
     """Time-sensitive industry trend or pattern supported by the article."""
@@ -367,11 +448,13 @@ class IndustryTrendProposal(BaseModel):
     supporting_snippet: str = ""
     supporting_data_points: list[str] = Field(default_factory=list)
     related_trends: list[str] = Field(default_factory=list)
-    proposed_tags: list[str] = Field(default_factory=list)
-    proposed_new_tags: list[str] = Field(default_factory=list)
+    primary_tag: str = ""
+    secondary_tag: str = ""
+    suggested_new_tag: str = ""
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
 
 
 TREND_SCALAR_KEYS: tuple[str, ...] = (
@@ -387,6 +470,16 @@ TREND_LIST_KEYS: tuple[str, ...] = (
     "supporting_data_points",
     "related_trends",
 )
+
+TREND_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
+    "trend_name",
+    "trend_description",
+    "evidence_from_source",
+    "time_sensitivity",
+    "uncertainty_note",
+)
+
+TREND_REVIEWABLE_LIST_KEYS: tuple[str, ...] = ("supporting_data_points",)
 
 
 SourceType = Literal[
@@ -456,11 +549,13 @@ class RoundupSignal(BaseModel):
         description="Source publication date; anchors all temporal judgments in this block.",
     )
 
-    proposed_tags: list[str] = Field(default_factory=list)
-    proposed_new_tags: list[str] = Field(default_factory=list)
+    primary_tag: str = ""
+    secondary_tag: str = ""
+    suggested_new_tag: str = ""
     suggested_destinations: list[str] = Field(default_factory=list)
     mentioned_entities: list[str] = Field(default_factory=list)
     evidence_snippets: list[str] = Field(default_factory=list)
+    value_level: ValueLevel = "medium"
 
 
 SIGNAL_SCALAR_KEYS: tuple[str, ...] = (
@@ -481,6 +576,10 @@ SIGNAL_LIST_KEYS: tuple[str, ...] = (
     "evidence_snippets",
 )
 
+SIGNAL_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = SIGNAL_SCALAR_KEYS
+
+SIGNAL_REVIEWABLE_LIST_KEYS: tuple[str, ...] = SIGNAL_LIST_KEYS
+
 
 class InterviewInsight(BaseModel):
     """One durable operational insight extracted from an interview or transcript."""
@@ -499,12 +598,14 @@ class InterviewInsight(BaseModel):
         description="Source publication date; anchors all temporal judgments in this block.",
     )
 
-    proposed_tags: list[str] = Field(default_factory=list)
-    proposed_new_tags: list[str] = Field(default_factory=list)
+    primary_tag: str = ""
+    secondary_tag: str = ""
+    suggested_new_tag: str = ""
     suggested_destinations: list[str] = Field(default_factory=list)
     mentioned_entities: list[str] = Field(default_factory=list)
     contrarian_or_speculative_claims: list[str] = Field(default_factory=list)
     evidence_snippets: list[str] = Field(default_factory=list)
+    value_level: ValueLevel = "medium"
 
 
 INSIGHT_SCALAR_KEYS: tuple[str, ...] = (
@@ -526,10 +627,24 @@ INSIGHT_LIST_KEYS: tuple[str, ...] = (
     "evidence_snippets",
 )
 
+INSIGHT_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = INSIGHT_SCALAR_KEYS
+
+INSIGHT_REVIEWABLE_LIST_KEYS: tuple[str, ...] = INSIGHT_LIST_KEYS
+
+
+class ExtractionMeta(BaseModel):
+    """LLM self-assessment of the extraction pass."""
+
+    skip_recommended: bool = False
+    skip_reason: str = ""
+    total_candidates_considered: int = 0
+    review_burden_estimate: Literal["light", "moderate", "heavy"] = "moderate"
+
 
 class LlmClassificationOutput(BaseModel):
     """Root object returned by the ingestion analysis LLM."""
 
+    extraction_meta: ExtractionMeta = Field(default_factory=ExtractionMeta)
     source_summary: SourceSummaryBlock = Field(default_factory=SourceSummaryBlock)
     source_type_detection: SourceTypeDetection = Field(default_factory=SourceTypeDetection)
     glossary: list[GlossaryProposal] = Field(default_factory=list)

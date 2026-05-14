@@ -17,6 +17,7 @@ from src.ingest_review.artifact import (
     migrate_artifact_to_v5,
     migrate_artifact_to_v6,
     migrate_artifact_to_v7,
+    migrate_artifact_to_v8,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -119,7 +120,7 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 7
+    assert art["artifact_schema_version"] == 8
     assert art["source"]["source_id"] == stem
     assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
     assert "implementation_studies" in art["review"]
@@ -189,7 +190,8 @@ def test_default_review_builds_impl_study_per_section_nodes() -> None:
         assert sections[lk]["final_list"] is None
         assert isinstance(sections[lk]["llm_list"], list)
     assert sections["key_lessons"]["llm_list"] == ["lesson1"]
-    assert node["tags"]["approved_allowlist_tags"] == []
+    assert node["tags"]["final_primary_tag"] is None
+    assert node["tags"]["new_tag_approved"] is False
 
 
 def test_migrate_v2_to_v3_renames_enterprise_studies() -> None:
@@ -269,7 +271,7 @@ def test_default_review_builds_glossary_per_section_nodes() -> None:
                 "supporting_snippet": "...",
                 "relevance_note": "Core pattern.",
                 "related_terms": ["vector search", "embeddings"],
-                "proposed_tags": [],
+                "primary_tag": "",
                 "confidence": 0.85,
                 "suggested_action": "create",
             },
@@ -294,7 +296,8 @@ def test_default_review_builds_glossary_per_section_nodes() -> None:
         assert sections[lk]["final_list"] is None
         assert isinstance(sections[lk]["llm_list"], list)
     assert sections["related_terms"]["llm_list"] == ["vector search", "embeddings"]
-    assert node["tags"]["approved_allowlist_tags"] == []
+    assert node["tags"]["final_primary_tag"] is None
+    assert node["tags"]["new_tag_approved"] is False
 
 
 def test_migrate_v3_upgrades_old_glossary_flat_nodes() -> None:
@@ -958,11 +961,12 @@ def test_aggregate_review_status_includes_insight_sections(tmp_path: Path) -> No
     assert aggregate_review_status(art) == "mixed"
 
 
-def test_proposed_new_tags_field_exists_on_all_tag_models() -> None:
-    """All proposal models that have proposed_tags also have proposed_new_tags."""
+def test_simplified_tag_fields_exist_on_all_tag_models() -> None:
+    """All proposal models have primary_tag, secondary_tag, suggested_new_tag."""
     from src.ingest_review.schema import (
         GlossaryProposal,
         HowToProposal,
+        ImplementationStudyProposal,
         IndustryTrendProposal,
         InterviewInsight,
         RoundupSignal,
@@ -976,32 +980,39 @@ def test_proposed_new_tags_field_exists_on_all_tag_models() -> None:
         IndustryTrendProposal,
         RoundupSignal,
         InterviewInsight,
+        ImplementationStudyProposal,
     ):
         instance = cls()
-        assert hasattr(instance, "proposed_new_tags"), f"{cls.__name__} missing proposed_new_tags"
-        assert instance.proposed_new_tags == []
+        assert hasattr(instance, "primary_tag"), f"{cls.__name__} missing primary_tag"
+        assert hasattr(instance, "suggested_new_tag"), f"{cls.__name__} missing suggested_new_tag"
+        assert instance.primary_tag == ""
+        assert instance.suggested_new_tag == ""
 
 
-def test_roundup_signal_has_proposed_tags() -> None:
-    """RoundupSignal has proposed_tags field (newly added)."""
+def test_roundup_signal_has_simplified_tags() -> None:
+    """RoundupSignal has simplified tag fields."""
     from src.ingest_review.schema import RoundupSignal
 
     sig = RoundupSignal(signal_title="test")
-    assert hasattr(sig, "proposed_tags")
-    assert sig.proposed_tags == []
+    assert sig.primary_tag == ""
+    assert sig.secondary_tag == ""
+    assert sig.suggested_new_tag == ""
+    assert sig.value_level == "medium"
 
 
-def test_interview_insight_has_proposed_tags() -> None:
-    """InterviewInsight has proposed_tags field (newly added)."""
+def test_interview_insight_has_simplified_tags() -> None:
+    """InterviewInsight has simplified tag fields."""
     from src.ingest_review.schema import InterviewInsight
 
     ins = InterviewInsight(insight_title="test")
-    assert hasattr(ins, "proposed_tags")
-    assert ins.proposed_tags == []
+    assert ins.primary_tag == ""
+    assert ins.secondary_tag == ""
+    assert ins.suggested_new_tag == ""
+    assert ins.value_level == "medium"
 
 
-def test_build_per_section_tag_node_has_approved_new_tags(tmp_path: Path) -> None:
-    """Per-section review nodes include approved_new_tags in tags dict."""
+def test_build_per_section_tag_node_has_new_structure(tmp_path: Path) -> None:
+    """Per-section review nodes use simplified tag structure."""
     from src.ingest_review.schema import GlossaryProposal, TopicContribution
 
     doc = _minimal_doc(tmp_path)
@@ -1016,9 +1027,87 @@ def test_build_per_section_tag_node_has_approved_new_tags(tmp_path: Path) -> Non
         root=tmp_path,
     )
     gl_tags = art["review"]["glossary"][0]["tags"]
-    assert "approved_new_tags" in gl_tags
-    assert gl_tags["approved_new_tags"] == []
+    assert "final_primary_tag" in gl_tags
+    assert "new_tag_approved" in gl_tags
+    assert gl_tags["new_tag_approved"] is False
 
     tp_tags = art["review"]["topics"][0]["tags"]
-    assert "approved_new_tags" in tp_tags
-    assert tp_tags["approved_new_tags"] == []
+    assert "final_primary_tag" in tp_tags
+    assert tp_tags["new_tag_approved"] is False
+
+
+def test_proposal_status_on_new_review_nodes(tmp_path: Path) -> None:
+    """New review nodes have proposal_status='pending'."""
+    from src.ingest_review.schema import GlossaryProposal
+
+    doc = _minimal_doc(tmp_path)
+    parsed = LlmClassificationOutput(
+        glossary=[GlossaryProposal(term="X")],
+    )
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    assert art["review"]["glossary"][0]["proposal_status"] == "pending"
+
+
+def test_review_analytics_on_new_artifact(tmp_path: Path) -> None:
+    """New artifacts have review_analytics with expected keys."""
+    doc = _minimal_doc(tmp_path)
+    parsed = LlmClassificationOutput()
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    analytics = art["review_analytics"]
+    assert analytics["review_started_at"] is None
+    assert analytics["proposals_total"] == 0
+    assert analytics["batch_actions_used"] == []
+
+
+def test_migrate_artifact_to_v8_adds_proposal_status() -> None:
+    """migrate_artifact_to_v8 adds proposal_status and converts tag structure."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 7,
+        "llm_output": {"source_summary": {}},
+        "review": {
+            "source_summary": {},
+            "glossary": [
+                {
+                    "proposal_id": "test-id",
+                    "notes": None,
+                    "llm_item": {"term": "RAG"},
+                    "sections": {},
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                        "approved_new_tags": [],
+                    },
+                },
+            ],
+        },
+    }
+    migrate_artifact_to_v8(art)
+    assert art["artifact_schema_version"] == 8
+    node = art["review"]["glossary"][0]
+    assert node["proposal_status"] == "pending"
+    assert node["tags"]["final_primary_tag"] is None
+    assert node["tags"]["new_tag_approved"] is False
+    assert "review_analytics" in art
+    assert "extraction_meta" in art["llm_output"]
+
+
+def test_migrate_v8_is_noop_on_v8() -> None:
+    """Calling migrate_artifact_to_v8 on a v8 artifact is a no-op."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 8,
+        "llm_output": {"extraction_meta": {}},
+        "review": {},
+        "review_analytics": {},
+    }
+    migrate_artifact_to_v8(art)
+    assert art["artifact_schema_version"] == 8

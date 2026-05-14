@@ -20,10 +20,13 @@ def test_howto_proposal_defaults() -> None:
     assert hp.implementation_steps == []
     assert hp.prerequisites == []
     assert hp.related_howtos == []
-    assert hp.proposed_tags == []
+    assert hp.primary_tag == ""
+    assert hp.secondary_tag == ""
+    assert hp.suggested_new_tag == ""
     assert hp.match_candidates == []
     assert hp.confidence == 0.0
     assert hp.suggested_action == "ignore"
+    assert hp.value_level == "medium"
 
 
 def test_howto_proposal_no_legacy_fields() -> None:

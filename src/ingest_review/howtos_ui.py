@@ -1,198 +1,207 @@
-"""Streamlit rendering for how-to proposals (per-section review)."""
+"""Streamlit rendering for how-to proposals (proposal-level review)."""
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 
-from src.ingest_review.artifact import aggregate_impl_study_section_status
-from src.ingest_review.schema import HOWTO_LIST_KEYS, HOWTO_SCALAR_KEYS
+from src.ingest_review.schema import HOWTO_REVIEWABLE_LIST_KEYS, HOWTO_REVIEWABLE_SCALAR_KEYS
 
-STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
+logger = logging.getLogger(__name__)
 
-HOWTO_SECTION_LABELS: dict[str, str] = {
+PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
+FIELD_STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
+
+VALUE_LEVEL_ORDER = {"high": 0, "medium": 1, "low": 2}
+
+HOWTO_FIELD_LABELS: dict[str, str] = {
     "question_title": "Question title",
     "answer_summary": "Answer summary",
-    "supporting_snippet": "Supporting snippet",
     "relevance_note": "Relevance note",
     "caveats": "Caveats",
     "implementation_steps": "Implementation steps",
     "prerequisites": "Prerequisites",
-    "related_howtos": "Related how-tos",
 }
 
-HOWTO_DISPLAY_ORDER: tuple[str, ...] = (
-    *HOWTO_SCALAR_KEYS,
-    *HOWTO_LIST_KEYS,
-)
 
-
-def _status_index(current: str) -> int:
-    if current in STATUS_OPTIONS:
-        return STATUS_OPTIONS.index(current)
+def _proposal_status_index(current: str) -> int:
+    """Return index of *current* in proposal status options, defaulting to 0."""
+    if current in PROPOSAL_STATUS_OPTIONS:
+        return PROPOSAL_STATUS_OPTIONS.index(current)
     return 0
 
 
-def _render_howto_scalar_section(
+def _field_status_index(current: str) -> int:
+    """Return index of *current* in field status options, defaulting to 0."""
+    if current in FIELD_STATUS_OPTIONS:
+        return FIELD_STATUS_OPTIONS.index(current)
+    return 0
+
+
+def _sort_key(node: dict[str, Any]) -> tuple[int, float]:
+    """Sort proposals: high value first, then descending confidence."""
+    llm = node.get("llm_item") or {}
+    level = str(llm.get("value_level") or "medium")
+    conf = float(llm.get("confidence") or 0)
+    return (VALUE_LEVEL_ORDER.get(level, 1), -conf)
+
+
+def _render_compact_card(
     st: Any,
+    node: dict[str, Any],
     llm_item: dict[str, Any],
-    sections: dict[str, Any],
+    idx: int,
     *,
-    section_key: str,
     key_prefix: str,
 ) -> None:
-    label = HOWTO_SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"#### {label}")
-    node = sections.setdefault(
-        section_key,
-        {"status": "pending", "final_text": None, "notes": None},
-    )
-    llm_text = str(llm_item.get(section_key) or "")
-    st.markdown("**Model draft**")
-    tall = section_key in ("answer_summary", "caveats")
-    st.text(llm_text[:6000] + ("\u2026" if len(llm_text) > 6000 else ""))
-    node["status"] = st.selectbox(
-        f"{label} \u2014 status",
-        STATUS_OPTIONS,
-        index=_status_index(str(node.get("status") or "pending")),
-        key=f"{key_prefix}_ht_{section_key}_st",
-    )
-    if node["status"] in ("modified", "pending"):
-        default = node.get("final_text") if node.get("final_text") else llm_text
-        node["final_text"] = st.text_area(
-            f"{label} \u2014 final text",
-            value=default,
-            height=160 if tall else 100,
-            key=f"{key_prefix}_ht_{section_key}_txt",
-        )
-    elif node["status"] == "approved":
-        node["final_text"] = None
-    else:
-        node["final_text"] = None
-    node["notes"] = st.text_input(
-        f"{label} \u2014 notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_ht_{section_key}_notes",
-    )
+    """Render a compact read-only proposal card with action buttons."""
+    value_level = str(llm_item.get("value_level") or "medium").upper()
+    title = llm_item.get("question_title") or f"How-to #{idx + 1}"
+    conf = float(llm_item.get("confidence") or 0)
+    status = str(node.get("proposal_status") or "pending")
+
+    st.markdown(f"**[{value_level}] {title}** — confidence: {conf:.0%}")
+
+    summary = str(llm_item.get("answer_summary") or "")
+    if summary:
+        st.text(summary[:2000] + ("\u2026" if len(summary) > 2000 else ""))
+
+    primary = str(llm_item.get("primary_tag") or "")
+    secondary = str(llm_item.get("secondary_tag") or "")
+    tag_parts = [t for t in (primary, secondary) if t]
+    if tag_parts:
+        st.caption(f"Tags: {', '.join(tag_parts)}")
+
+    cols = st.columns(4)
+    pfx = f"{key_prefix}_act"
+    if cols[0].button("Approve", key=f"{pfx}_approve"):
+        node["proposal_status"] = "approved"
+    if cols[1].button("Reject", key=f"{pfx}_reject"):
+        node["proposal_status"] = "rejected"
+    if cols[2].button("Edit", key=f"{pfx}_edit"):
+        st.session_state[f"{pfx}_editing"] = True
+    if cols[3].button("Defer", key=f"{pfx}_defer"):
+        node["proposal_status"] = "deferred"
+
+    if status != str(node.get("proposal_status") or "pending"):
+        st.rerun()
+
+    st.caption(f"Status: **{node.get('proposal_status', 'pending')}**")
 
 
-def _render_howto_list_section(
+def _render_edit_mode(
     st: Any,
+    node: dict[str, Any],
     llm_item: dict[str, Any],
-    sections: dict[str, Any],
     *,
-    section_key: str,
     key_prefix: str,
-) -> None:
-    label = HOWTO_SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"#### {label}")
-    llm_list = llm_item.get(section_key) or []
-    if not isinstance(llm_list, list):
-        llm_list = []
-    node = sections.setdefault(
-        section_key,
-        {
-            "status": "pending",
-            "final_list": None,
-            "notes": None,
-            "llm_list": list(llm_list),
-        },
-    )
-    if not node.get("llm_list"):
-        node["llm_list"] = list(llm_list)
-    st.markdown("**Model draft (list)**")
-    st.json(node["llm_list"])
-    node["status"] = st.selectbox(
-        f"{label} \u2014 status",
-        STATUS_OPTIONS,
-        index=_status_index(str(node.get("status") or "pending")),
-        key=f"{key_prefix}_ht_{section_key}_st",
-    )
-    default_lines = (
-        node.get("final_list") if node.get("final_list") is not None else node["llm_list"]
-    )
-    raw_list = st.text_area(
-        f"{label} \u2014 final list (one item per line)",
-        value="\n".join(str(x) for x in (default_lines or [])),
-        height=100,
-        key=f"{key_prefix}_ht_{section_key}_txt",
-    )
-    lines = [ln.strip() for ln in raw_list.splitlines() if ln.strip()]
-    if node["status"] == "modified":
-        node["final_list"] = lines
-    elif node["status"] == "approved":
-        node["final_list"] = None
-    else:
-        node["final_list"] = None
-    node["notes"] = st.text_input(
-        f"{label} \u2014 notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_ht_{section_key}_notes",
-    )
-
-
-def _render_howto_tag_panel(
-    st: Any,
-    llm_item: dict[str, Any],
-    tag_node: dict[str, Any],
     howto_tags: list[str],
-    *,
-    key_prefix: str,
 ) -> None:
-    st.markdown("#### Tags")
-    current_approved = tag_node.get("approved_allowlist_tags") or []
-    if howto_tags:
-        chosen = st.multiselect(
-            "Approved tags (from allowlist)",
-            options=howto_tags,
-            default=[t for t in current_approved if t in howto_tags],
-            key=f"{key_prefix}_ht_tags_select",
+    """Render the full edit expander with per-field review controls and tag editing."""
+    sections = node.setdefault("sections", {})
+
+    for sk in HOWTO_REVIEWABLE_SCALAR_KEYS:
+        label = HOWTO_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
+        st.markdown(f"#### {label}")
+        sec = sections.setdefault(sk, {"status": "pending", "final_text": None, "notes": None})
+        llm_text = str(llm_item.get(sk) or "")
+        st.text(llm_text[:6000] + ("\u2026" if len(llm_text) > 6000 else ""))
+        sec["status"] = st.selectbox(
+            f"{label} \u2014 status",
+            FIELD_STATUS_OPTIONS,
+            index=_field_status_index(str(sec.get("status") or "pending")),
+            key=f"{key_prefix}_f_{sk}_st",
         )
-    else:
-        st.caption("How-to tag allowlist is empty \u2014 add tags via the fields below.")
-        chosen = []
-    tag_node["approved_allowlist_tags"] = chosen
-    extra = st.text_input(
-        "Reviewer tags (comma-separated, not in allowlist)",
-        value=", ".join(tag_node.get("reviewer_tags_added") or []),
-        key=f"{key_prefix}_ht_tags_extra",
-    )
-    tag_node["reviewer_tags_added"] = [x.strip() for x in extra.split(",") if x.strip()]
-
-    proposed_new = llm_item.get("proposed_new_tags") or []
-    already_approved_new = set(tag_node.get("approved_new_tags") or [])
-    if proposed_new:
-        st.markdown("**LLM-proposed new tags** (not in allowlist)")
-        newly_approved: list[str] = list(already_approved_new)
-        for ptag in proposed_new:
-            checked = st.checkbox(
-                f"Approve: {ptag}",
-                value=ptag in already_approved_new,
-                key=f"{key_prefix}_ht_newtag_{ptag}",
+        if sec["status"] == "modified":
+            default = sec.get("final_text") if sec.get("final_text") else llm_text
+            sec["final_text"] = st.text_area(
+                f"{label} \u2014 final text",
+                value=default,
+                height=140,
+                key=f"{key_prefix}_f_{sk}_txt",
             )
-            if checked and ptag not in newly_approved:
-                newly_approved.append(ptag)
-            elif not checked and ptag in newly_approved:
-                newly_approved.remove(ptag)
-        tag_node["approved_new_tags"] = newly_approved
+        else:
+            sec["final_text"] = None
 
+    for lk in HOWTO_REVIEWABLE_LIST_KEYS:
+        label = HOWTO_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
+        st.markdown(f"#### {label}")
+        llm_list = llm_item.get(lk) or []
+        if not isinstance(llm_list, list):
+            llm_list = []
+        sec = sections.setdefault(
+            lk,
+            {"status": "pending", "final_list": None, "notes": None, "llm_list": list(llm_list)},
+        )
+        if not sec.get("llm_list"):
+            sec["llm_list"] = list(llm_list)
+        st.json(sec["llm_list"])
+        sec["status"] = st.selectbox(
+            f"{label} \u2014 status",
+            FIELD_STATUS_OPTIONS,
+            index=_field_status_index(str(sec.get("status") or "pending")),
+            key=f"{key_prefix}_f_{lk}_st",
+        )
+        if sec["status"] == "modified":
+            default_lines = sec.get("final_list") or sec["llm_list"]
+            raw = st.text_area(
+                f"{label} \u2014 final list (one per line)",
+                value="\n".join(str(x) for x in (default_lines or [])),
+                height=100,
+                key=f"{key_prefix}_f_{lk}_txt",
+            )
+            sec["final_list"] = [ln.strip() for ln in raw.splitlines() if ln.strip()]
+        else:
+            sec["final_list"] = None
 
-def _render_howto_match_candidates(
-    st: Any,
-    llm_item: dict[str, Any],
-    *,
-    key_prefix: str,
-) -> None:
-    candidates = llm_item.get("match_candidates") or []
-    if not candidates:
-        return
-    with st.expander("Possible existing matches (from LLM)", expanded=False):
-        for mc in candidates:
-            if not isinstance(mc, dict):
-                continue
-            title = mc.get("title_or_slug", "?")
-            kind = mc.get("match_kind", "?")
-            conf = mc.get("confidence", 0)
-            st.warning(f"**{title}** \u2014 match: {kind}, confidence: {conf:.0%}")
+    snippet = str(llm_item.get("supporting_snippet") or "")
+    if snippet:
+        with st.expander("Source evidence", expanded=False):
+            st.text(snippet[:4000])
+
+    related = llm_item.get("related_howtos") or []
+    if related:
+        st.caption(f"Related how-tos: {', '.join(str(r) for r in related)}")
+
+    st.markdown("#### Tags")
+    tag_node = node.setdefault(
+        "tags",
+        {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
+    )
+    llm_primary = str(llm_item.get("primary_tag") or "")
+    llm_secondary = str(llm_item.get("secondary_tag") or "")
+    tag_node["final_primary_tag"] = st.text_input(
+        "Primary tag",
+        value=str(tag_node.get("final_primary_tag") or llm_primary),
+        key=f"{key_prefix}_tag_primary",
+    )
+    tag_node["final_secondary_tag"] = st.text_input(
+        "Secondary tag",
+        value=str(tag_node.get("final_secondary_tag") or llm_secondary),
+        key=f"{key_prefix}_tag_secondary",
+    )
+    llm_new_tag = str(llm_item.get("suggested_new_tag") or "")
+    suggested = st.text_input(
+        "Suggested new tag",
+        value=llm_new_tag,
+        key=f"{key_prefix}_tag_new",
+        disabled=True,
+    )
+    if suggested:
+        tag_node["new_tag_approved"] = st.checkbox(
+            f"Approve new tag: {suggested}",
+            value=bool(tag_node.get("new_tag_approved")),
+            key=f"{key_prefix}_tag_new_approve",
+        )
+
+    node["notes"] = st.text_input(
+        "Proposal notes",
+        value=str(node.get("notes") or ""),
+        key=f"{key_prefix}_notes",
+    )
+
+    with st.expander("Raw JSON (debug)", expanded=False):
+        st.json(llm_item)
 
 
 def render_howto_proposals(
@@ -200,63 +209,78 @@ def render_howto_proposals(
     artifact: dict[str, Any],
     *,
     key_prefix: str,
-    howto_tags: list[str],
+    howto_tags: list[str] | None = None,
 ) -> None:
-    """Render per-section review for all how-to proposals."""
+    """Render proposal-level review for all how-to proposals.
+
+    Args:
+        st: Streamlit module reference.
+        artifact: The full review artifact dict (mutated in place).
+        key_prefix: Unique Streamlit key prefix for this render pass.
+        howto_tags: Optional tag allowlist (kept for API compatibility).
+    """
+    tags_list = howto_tags or []
     review = artifact.setdefault("review", {})
     howto_nodes = review.setdefault("how_to", [])
-    llm_items = artifact.get("llm_output", {}).get("how_to") or []
     st.subheader("How-tos")
-    if not howto_nodes and not llm_items:
+
+    if not howto_nodes:
         st.caption("No how-to proposals.")
         return
 
-    for i, node in enumerate(howto_nodes):
-        llm_item = node.get("llm_item") or (llm_items[i] if i < len(llm_items) else {})
+    sorted_nodes = sorted(howto_nodes, key=_sort_key)
+
+    high_medium = [n for n in sorted_nodes if (n.get("llm_item") or {}).get("value_level") != "low"]
+    low = [n for n in sorted_nodes if (n.get("llm_item") or {}).get("value_level") == "low"]
+
+    for i, node in enumerate(high_medium):
+        llm_item = node.get("llm_item") or {}
+        value_level = str(llm_item.get("value_level") or "medium")
         title = llm_item.get("question_title") or f"How-to #{i + 1}"
-        sections = node.setdefault("sections", {})
-        agg_status = aggregate_impl_study_section_status(sections)
-        header = f"How-to #{i + 1}: {title} [{agg_status}]"
-        expanded = len(howto_nodes) == 1
-        pfx = f"{key_prefix}_h{i}"
-        with st.expander(header, expanded=expanded):
-            action = llm_item.get("suggested_action") or "\u2014"
-            st.caption(f"Confidence: {llm_item.get('confidence', 0):.0%} \u00b7 Action: {action}")
-            for sk in HOWTO_SCALAR_KEYS:
-                _render_howto_scalar_section(st, llm_item, sections, section_key=sk, key_prefix=pfx)
-            for lk in HOWTO_LIST_KEYS:
-                _render_howto_list_section(st, llm_item, sections, section_key=lk, key_prefix=pfx)
-            st.divider()
-            tag_node = node.setdefault(
-                "tags",
-                {
-                    "approved_allowlist_tags": [],
-                    "reviewer_tags_added": [],
-                },
-            )
-            _render_howto_tag_panel(st, llm_item, tag_node, howto_tags, key_prefix=pfx)
-            _render_howto_match_candidates(st, llm_item, key_prefix=pfx)
-            node["notes"] = st.text_input(
-                "Proposal notes",
-                value=str(node.get("notes") or ""),
-                key=f"{pfx}_ht_notes",
-            )
-            with st.expander("Raw JSON (debug)", expanded=False):
-                st.json(llm_item)
+        pfx = f"{key_prefix}_ht{i}"
+
+        auto_expand = value_level == "high"
+        with st.expander(f"How-to: {title}", expanded=auto_expand):
+            _render_compact_card(st, node, llm_item, i, key_prefix=pfx)
+            editing = st.session_state.get(f"{pfx}_act_editing", False)
+            if editing:
+                _render_edit_mode(st, node, llm_item, key_prefix=pfx, howto_tags=tags_list)
+
+    if low:
+        with st.expander(f"Low-value items ({len(low)})", expanded=False):
+            for j, node in enumerate(low):
+                llm_item = node.get("llm_item") or {}
+                title = llm_item.get("question_title") or f"Low how-to #{j + 1}"
+                pfx = f"{key_prefix}_ht_low{j}"
+                st.markdown("---")
+                _render_compact_card(st, node, llm_item, j, key_prefix=pfx)
+                editing = st.session_state.get(f"{pfx}_act_editing", False)
+                if editing:
+                    _render_edit_mode(st, node, llm_item, key_prefix=pfx, howto_tags=tags_list)
 
 
-def collect_howto_approved_new_tags(artifact: dict[str, Any]) -> list[str]:
-    """Return reviewer_tags_added + approved_new_tags across how-to proposals."""
+def collect_howto_new_tags(artifact: dict[str, Any]) -> list[str]:
+    """Return approved new tags across how-to proposals.
+
+    Args:
+        artifact: The full review artifact dict.
+
+    Returns:
+        List of unique approved new tag strings.
+    """
     review = artifact.get("review") or {}
     tags: list[str] = []
     for node in review.get("how_to") or []:
         if not isinstance(node, dict):
             continue
         tag_node = node.get("tags") or {}
-        for t in tag_node.get("reviewer_tags_added") or []:
-            if t and t not in tags:
-                tags.append(t)
-        for t in tag_node.get("approved_new_tags") or []:
-            if t and t not in tags:
-                tags.append(t)
+        if tag_node.get("new_tag_approved"):
+            llm_item = node.get("llm_item") or {}
+            new_tag = str(llm_item.get("suggested_new_tag") or "").strip()
+            if new_tag and new_tag not in tags:
+                tags.append(new_tag)
     return tags
+
+
+# Backwards-compatible alias
+collect_howto_approved_new_tags = collect_howto_new_tags

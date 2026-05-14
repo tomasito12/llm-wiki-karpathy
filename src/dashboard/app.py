@@ -5,13 +5,14 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-# Streamlit adds ``src/dashboard`` to ``sys.path``, not the repo root — ensure ``src`` imports work.
 _repo_root = Path(__file__).resolve().parents[2]
 if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
 import os
 import traceback
+from datetime import UTC, datetime
+from typing import Any
 
 import streamlit as st
 
@@ -28,6 +29,10 @@ from src.ingest_review.artifact import (
     touch_review_session,
 )
 from src.ingest_review.dashboard_ui import (
+    render_batch_actions,
+    render_review_summary_panel,
+    render_review_timer,
+    render_skip_extraction_screen,
     render_source_summary_review,
     render_source_type_detection,
 )
@@ -36,32 +41,36 @@ from src.ingest_review.extract import (
     load_readwise_pair,
     readwise_source_status,
 )
-from src.ingest_review.feedback_store import default_feedback_db_path, record_events_from_artifact
+from src.ingest_review.feedback_store import (
+    default_feedback_db_path,
+    record_events_from_artifact,
+    record_review_session,
+)
 from src.ingest_review.glossary_ui import (
-    collect_glossary_approved_new_tags,
+    collect_glossary_new_tags,
     render_glossary_proposals,
 )
 from src.ingest_review.howtos_ui import (
-    collect_howto_approved_new_tags,
+    collect_howto_new_tags,
     render_howto_proposals,
 )
 from src.ingest_review.impl_study_ui import (
-    collect_approved_new_tags,
+    collect_impl_study_new_tags,
     render_implementation_studies,
 )
 from src.ingest_review.insights_ui import (
-    collect_insight_approved_new_tags,
+    collect_insight_new_tags,
     render_interview_insights,
 )
 from src.ingest_review.models_ui import (
-    collect_model_approved_new_types,
+    collect_model_new_types,
     render_model_proposals,
 )
 from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.schema import PROMPT_VERSION
 from src.ingest_review.signals_ui import (
-    collect_signal_approved_new_tags,
+    collect_signal_new_tags,
     render_roundup_signals,
 )
 from src.ingest_review.tags import (
@@ -73,6 +82,7 @@ from src.ingest_review.tags import (
     default_tool_types_path,
     default_topic_tags_path,
     default_trend_tags_path,
+    load_extraction_budgets,
     load_glossary_tags,
     load_howto_tags,
     load_impl_study_tags,
@@ -82,17 +92,98 @@ from src.ingest_review.tags import (
     load_trend_tags,
 )
 from src.ingest_review.tools_ui import (
-    collect_tool_approved_new_types,
+    collect_tool_new_types,
     render_tool_proposals,
 )
 from src.ingest_review.topics_ui import (
-    collect_topic_approved_new_tags,
-    render_topic_contributions,
+    collect_topic_new_tags,
+    render_topic_proposals,
 )
 from src.ingest_review.trends_ui import (
-    collect_trend_approved_new_tags,
+    collect_trend_new_tags,
     render_trend_proposals,
 )
+
+
+def _finalize_review_analytics(artifact: dict) -> None:
+    """Record review duration on save."""
+    analytics = artifact.setdefault("review_analytics", {})
+    started = analytics.get("review_started_at")
+    if started:
+        try:
+            start_dt = datetime.fromisoformat(started)
+            now = datetime.now(tz=UTC)
+            analytics["review_duration_seconds"] = round((now - start_dt).total_seconds(), 1)
+            analytics["review_finished_at"] = now.isoformat()
+        except (ValueError, TypeError):
+            pass
+    review = artifact.get("review") or {}
+    entity_keys = [
+        "glossary",
+        "topics",
+        "how_to",
+        "industry_trends",
+        "tools",
+        "foundation_models",
+        "implementation_studies",
+        "roundup_signals",
+        "interview_insights",
+    ]
+    total = approved = rejected = deferred = modified = 0
+    for key in entity_keys:
+        nodes = review.get(key) or []
+        for node in nodes:
+            if not isinstance(node, dict):
+                continue
+            total += 1
+            ps = node.get("proposal_status", "pending")
+            if ps == "approved":
+                approved += 1
+            elif ps == "rejected":
+                rejected += 1
+            elif ps == "deferred":
+                deferred += 1
+            if node.get("final_item") is not None:
+                modified += 1
+    analytics["proposals_total"] = total
+    analytics["proposals_approved"] = approved
+    analytics["proposals_rejected"] = rejected
+    analytics["proposals_deferred"] = deferred
+    analytics["proposals_modified"] = modified
+
+
+def _collect_and_persist_tags(st_ref: Any, artifact: dict, root: Path) -> None:
+    """Collect all approved new tags and persist to allowlist YAML files."""
+    tag_actions = [
+        (collect_impl_study_new_tags, default_impl_study_tags_path, "impl-study"),
+        (collect_glossary_new_tags, default_glossary_tags_path, "glossary"),
+        (collect_topic_new_tags, default_topic_tags_path, "topic"),
+        (collect_howto_new_tags, default_howto_tags_path, "how-to"),
+        (collect_trend_new_tags, default_trend_tags_path, "trend"),
+        (collect_signal_new_tags, default_trend_tags_path, "signal"),
+        (collect_insight_new_tags, default_topic_tags_path, "insight"),
+    ]
+    for collector, path_fn, label in tag_actions:
+        new_tags = collector(artifact)
+        if new_tags:
+            try:
+                append_tags_to_yaml(path_fn(root), new_tags)
+                st_ref.caption(f"Appended {len(new_tags)} {label} tag(s) to allowlist.")  # type: ignore[union-attr]
+            except OSError as exc:
+                st_ref.warning(f"{label.title()} tag allowlist update skipped: {exc}")  # type: ignore[union-attr]
+
+    type_actions = [
+        (collect_tool_new_types, default_tool_types_path, "tool type"),
+        (collect_model_new_types, default_model_types_path, "model type"),
+    ]
+    for collector, path_fn, label in type_actions:
+        new_types = collector(artifact)
+        if new_types:
+            try:
+                append_tags_to_yaml(path_fn(root), new_types)
+                st_ref.caption(f"Appended {len(new_types)} {label}(s) to registry.")  # type: ignore[union-attr]
+            except OSError as exc:
+                st_ref.warning(f"{label.title()} registry update skipped: {exc}")  # type: ignore[union-attr]
 
 
 def main() -> None:
@@ -136,6 +227,7 @@ def main() -> None:
     glossary_tags = load_glossary_tags(root)
     topic_tags = load_topic_tags(root)
     trend_tags = load_trend_tags(root)
+    extraction_budgets = load_extraction_budgets(root)
     if not tool_types:
         st.warning("No tool types loaded — check ``config/review_tool_types.yaml``.")
     if not model_types:
@@ -241,6 +333,7 @@ def main() -> None:
                         topic_tags=topic_tags,
                         trend_tags=trend_tags,
                         model_types=model_types,
+                        extraction_budgets=extraction_budgets,
                         model=model,
                         prompt_version=prompt_version,
                     )
@@ -314,6 +407,18 @@ def main() -> None:
         f"Review mix: **{aggregate_review_status(artifact)}**"
     )
 
+    skipped = render_skip_extraction_screen(st, artifact, key_prefix=key_prefix)
+    if skipped:
+        if st.button("Save (skip accepted)"):
+            touch_review_session(artifact)
+            save_artifact(artifact_path, artifact)
+            st.success("Saved (extraction skipped).")
+        return
+
+    render_review_summary_panel(st, artifact)
+    render_batch_actions(st, artifact, key_prefix=key_prefix)
+    render_review_timer(st, artifact, key_prefix=key_prefix)
+
     llm_detection = (artifact.get("llm_output") or {}).get("source_type_detection") or {}
     detected_type = llm_detection.get("detected_source_type") or "unknown"
     detection_conf = llm_detection.get("confidence") or 0
@@ -362,6 +467,7 @@ def main() -> None:
                             topic_tags=topic_tags,
                             trend_tags=trend_tags,
                             model_types=model_types,
+                            extraction_budgets=extraction_budgets,
                             source_type_override=str(override_val),
                             model=model,
                             prompt_version=prompt_version,
@@ -402,7 +508,7 @@ def main() -> None:
             glossary_tags=glossary_tags,
         )
     with tabs[2]:
-        render_topic_contributions(
+        render_topic_proposals(
             st,
             artifact,
             key_prefix=key_prefix,
@@ -454,75 +560,15 @@ def main() -> None:
 
     if st.button("Save review artifact"):
         touch_review_session(artifact)
+        _finalize_review_analytics(artifact)
         save_artifact(artifact_path, artifact)
         fb_path = default_feedback_db_path(root)
         try:
             record_events_from_artifact(fb_path, artifact)
+            record_review_session(fb_path, artifact)
         except OSError as exc:
             st.warning(f"Feedback DB write skipped: {exc}")
-        new_tags = collect_approved_new_tags(artifact)
-        if new_tags:
-            try:
-                append_tags_to_yaml(default_impl_study_tags_path(root), new_tags)
-                st.caption(f"Appended {len(new_tags)} impl-study tag(s) to allowlist.")
-            except OSError as exc:
-                st.warning(f"Impl-study tag allowlist update skipped: {exc}")
-        new_glossary_tags = collect_glossary_approved_new_tags(artifact)
-        if new_glossary_tags:
-            try:
-                append_tags_to_yaml(default_glossary_tags_path(root), new_glossary_tags)
-                st.caption(f"Appended {len(new_glossary_tags)} glossary tag(s) to allowlist.")
-            except OSError as exc:
-                st.warning(f"Glossary tag allowlist update skipped: {exc}")
-        new_topic_tags = collect_topic_approved_new_tags(artifact)
-        if new_topic_tags:
-            try:
-                append_tags_to_yaml(default_topic_tags_path(root), new_topic_tags)
-                st.caption(f"Appended {len(new_topic_tags)} topic tag(s) to allowlist.")
-            except OSError as exc:
-                st.warning(f"Topic tag allowlist update skipped: {exc}")
-        new_howto_tags = collect_howto_approved_new_tags(artifact)
-        if new_howto_tags:
-            try:
-                append_tags_to_yaml(default_howto_tags_path(root), new_howto_tags)
-                st.caption(f"Appended {len(new_howto_tags)} how-to tag(s) to allowlist.")
-            except OSError as exc:
-                st.warning(f"How-to tag allowlist update skipped: {exc}")
-        new_trend_tags = collect_trend_approved_new_tags(artifact)
-        if new_trend_tags:
-            try:
-                append_tags_to_yaml(default_trend_tags_path(root), new_trend_tags)
-                st.caption(f"Appended {len(new_trend_tags)} trend tag(s) to allowlist.")
-            except OSError as exc:
-                st.warning(f"Trend tag allowlist update skipped: {exc}")
-        new_signal_tags = collect_signal_approved_new_tags(artifact)
-        if new_signal_tags:
-            try:
-                append_tags_to_yaml(default_trend_tags_path(root), new_signal_tags)
-                st.caption(f"Appended {len(new_signal_tags)} signal tag(s) to trend allowlist.")
-            except OSError as exc:
-                st.warning(f"Signal tag allowlist update skipped: {exc}")
-        new_insight_tags = collect_insight_approved_new_tags(artifact)
-        if new_insight_tags:
-            try:
-                append_tags_to_yaml(default_topic_tags_path(root), new_insight_tags)
-                st.caption(f"Appended {len(new_insight_tags)} insight tag(s) to topic allowlist.")
-            except OSError as exc:
-                st.warning(f"Insight tag allowlist update skipped: {exc}")
-        new_tool_types = collect_tool_approved_new_types(artifact)
-        if new_tool_types:
-            try:
-                append_tags_to_yaml(default_tool_types_path(root), new_tool_types)
-                st.caption(f"Appended {len(new_tool_types)} tool type(s) to registry.")
-            except OSError as exc:
-                st.warning(f"Tool type registry update skipped: {exc}")
-        new_model_types = collect_model_approved_new_types(artifact)
-        if new_model_types:
-            try:
-                append_tags_to_yaml(default_model_types_path(root), new_model_types)
-                st.caption(f"Appended {len(new_model_types)} model type(s) to registry.")
-            except OSError as exc:
-                st.warning(f"Model type registry update skipped: {exc}")
+        _collect_and_persist_tags(st, artifact, root)
         st.success(f"Saved to {artifact_path}")
 
     st.caption(f"Artifact path: {artifact_path}")

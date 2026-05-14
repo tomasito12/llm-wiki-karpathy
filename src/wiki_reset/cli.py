@@ -8,8 +8,10 @@ from pathlib import Path
 
 from src.wiki_reset.reset import (
     CONFIRMATION_PHRASE,
+    default_feedback_db_path,
     default_ingest_manifest_path,
     default_readwise_index_path,
+    default_reviews_root,
     default_wiki_root,
     readwise_library_document_count,
     run_wiki_reset,
@@ -54,6 +56,14 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--keep-reviews",
+        action="store_true",
+        help=(
+            "Preserve state/reviews/ artifacts and state/review_feedback.sqlite. "
+            "By default both are deleted."
+        ),
+    )
+    parser.add_argument(
         "--confirm",
         default=None,
         metavar="PHRASE",
@@ -69,6 +79,7 @@ def main() -> int:
     index_path = args.index.resolve()
 
     clear_rw = args.reset_readwise_index
+    clear_reviews = not args.keep_reviews
     doc_count = readwise_library_document_count(index_path)
 
     if args.confirm is not None:
@@ -87,6 +98,7 @@ def main() -> int:
         prompt_state = {
             "readwise_library": clear_rw,
             "ingest_manifest": True,
+            "review_state": clear_reviews,
         }
         prompt_summary = ", ".join(
             f"{name} {'cleared' if cleared else 'preserved'}"
@@ -113,6 +125,9 @@ def main() -> int:
             index_path,
             clear_readwise_index=clear_rw,
             manifest_path=args.manifest.resolve(),
+            clear_reviews=clear_reviews,
+            reviews_root=default_reviews_root(),
+            feedback_db_path=default_feedback_db_path(),
         )
     except FileNotFoundError as err:
         print(str(err), file=sys.stderr)

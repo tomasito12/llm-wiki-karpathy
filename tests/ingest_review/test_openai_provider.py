@@ -303,8 +303,8 @@ def test_openai_regenerate_source_section_parses_json(tmp_path: Path) -> None:
     assert meta["request_id"] == "cmpl-regen"
 
 
-def test_rubrics_mention_proposed_new_tags() -> None:
-    """All entity-type rubrics include proposed_new_tags field instructions."""
+def test_rubrics_mention_suggested_new_tag() -> None:
+    """All entity-type rubrics include suggested_new_tag field instructions."""
     from src.ingest_review.providers.openai_provider import (
         GLOSSARY_RUBRIC,
         HOWTOS_RUBRIC,
@@ -322,21 +322,24 @@ def test_rubrics_mention_proposed_new_tags() -> None:
         ("ROUNDUP_SIGNALS_RUBRIC", ROUNDUP_SIGNALS_RUBRIC),
         ("INTERVIEW_INSIGHTS_RUBRIC", INTERVIEW_INSIGHTS_RUBRIC),
     ]:
-        assert "proposed_new_tags" in rubric, f"{name} missing proposed_new_tags"
+        assert "suggested_new_tag" in rubric, f"{name} missing suggested_new_tag"
 
 
-def test_system_prompt_mentions_proposed_new_tags() -> None:
-    """SYSTEM_PROMPT references proposed_new_tags for user awareness."""
+def test_system_prompt_mentions_tag_structure() -> None:
+    """SYSTEM_PROMPT references the simplified tag structure."""
     from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
 
-    assert "proposed_new_tags" in SYSTEM_PROMPT
+    assert "primary_tag" in SYSTEM_PROMPT
+    assert "secondary_tag" in SYSTEM_PROMPT
+    assert "suggested_new_tag" in SYSTEM_PROMPT
 
 
-def test_system_prompt_includes_glossary_in_tag_instruction() -> None:
-    """SYSTEM_PROMPT tag instruction must list glossary alongside other entity types."""
+def test_system_prompt_includes_extraction_meta() -> None:
+    """SYSTEM_PROMPT references extraction_meta and value_level."""
     from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
 
-    assert "glossary" in SYSTEM_PROMPT.lower()
+    assert "extraction_meta" in SYSTEM_PROMPT
+    assert "value_level" in SYSTEM_PROMPT
     assert "roundup_signals" in SYSTEM_PROMPT
     assert "interview_insights" in SYSTEM_PROMPT
 

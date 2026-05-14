@@ -56,6 +56,21 @@ def _empty_scalar_review_node() -> dict[str, Any]:
     }
 
 
+def _empty_review_analytics() -> dict[str, Any]:
+    return {
+        "review_started_at": None,
+        "review_finished_at": None,
+        "review_duration_seconds": None,
+        "proposals_total": 0,
+        "proposals_approved": 0,
+        "proposals_rejected": 0,
+        "proposals_deferred": 0,
+        "proposals_modified": 0,
+        "fields_modified": 0,
+        "batch_actions_used": [],
+    }
+
+
 def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
     """Build initial ``review`` subtree with every node ``pending``."""
     summary = llm.get("source_summary") or {}
@@ -88,6 +103,7 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
                 item = {}
             entry: dict[str, Any] = {
                 "proposal_id": _new_proposal_id(),
+                "proposal_status": "pending",
                 "status": "pending",
                 "notes": None,
                 "llm_item": copy.deepcopy(item),
@@ -122,13 +138,14 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
         impl_review.append(
             {
                 "proposal_id": _new_proposal_id(),
+                "proposal_status": "pending",
                 "notes": None,
                 "llm_item": copy.deepcopy(item),
                 "sections": sections,
                 "tags": {
-                    "approved_allowlist_tags": [],
-                    "reviewer_tags_added": [],
-                    "approved_new_tags": [],
+                    "final_primary_tag": None,
+                    "final_secondary_tag": None,
+                    "new_tag_approved": False,
                 },
             }
         )
@@ -158,13 +175,14 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
         glossary_review.append(
             {
                 "proposal_id": _new_proposal_id(),
+                "proposal_status": "pending",
                 "notes": None,
                 "llm_item": copy.deepcopy(item),
                 "sections": g_sections,
                 "tags": {
-                    "approved_allowlist_tags": [],
-                    "reviewer_tags_added": [],
-                    "approved_new_tags": [],
+                    "final_primary_tag": None,
+                    "final_secondary_tag": None,
+                    "new_tag_approved": False,
                 },
             }
         )
@@ -198,13 +216,14 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
             result.append(
                 {
                     "proposal_id": _new_proposal_id(),
+                    "proposal_status": "pending",
                     "notes": None,
                     "llm_item": copy.deepcopy(item),
                     "sections": sections,
                     "tags": {
-                        "approved_allowlist_tags": [],
-                        "reviewer_tags_added": [],
-                        "approved_new_tags": [],
+                        "final_primary_tag": None,
+                        "final_secondary_tag": None,
+                        "new_tag_approved": False,
                     },
                 }
             )
@@ -282,6 +301,7 @@ def build_new_artifact(
         "llm_output": llm_dict,
         "review": default_review_for_llm_output(llm_dict),
         "review_session": {"last_saved_at": None, "saved_by": None},
+        "review_analytics": _empty_review_analytics(),
         "errors": [],
     }
 
@@ -674,6 +694,58 @@ def migrate_artifact_to_v7(artifact: dict[str, Any]) -> dict[str, Any]:
     return artifact
 
 
+_ENTITY_REVIEW_KEYS = (
+    "glossary",
+    "tools",
+    "foundation_models",
+    "how_to",
+    "topics",
+    "implementation_studies",
+    "industry_trends",
+    "roundup_signals",
+    "interview_insights",
+)
+
+
+def migrate_artifact_to_v8(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v8: add proposal_status, review_analytics, extraction_meta."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 8:
+        return artifact
+
+    review = artifact.setdefault("review", {})
+    for entity_key in _ENTITY_REVIEW_KEYS:
+        nodes = review.get(entity_key)
+        if not isinstance(nodes, list):
+            continue
+        for node in nodes:
+            if not isinstance(node, dict):
+                continue
+            if "proposal_status" not in node:
+                node["proposal_status"] = "pending"
+            tags = node.get("tags")
+            if isinstance(tags, dict) and "approved_allowlist_tags" in tags:
+                tags.clear()
+                tags["final_primary_tag"] = None
+                tags["final_secondary_tag"] = None
+                tags["new_tag_approved"] = False
+
+    llm = artifact.setdefault("llm_output", {})
+    if "extraction_meta" not in llm:
+        llm["extraction_meta"] = {
+            "skip_recommended": False,
+            "skip_reason": "",
+            "total_candidates_considered": 0,
+            "review_burden_estimate": "moderate",
+        }
+
+    if "review_analytics" not in artifact:
+        artifact["review_analytics"] = _empty_review_analytics()
+
+    artifact["artifact_schema_version"] = 8
+    return artifact
+
+
 def aggregate_impl_study_section_status(sections: dict[str, Any]) -> str:
     """Derive a proposal-level status from per-section review nodes."""
     statuses: set[str] = set()
@@ -703,7 +775,8 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = migrate_artifact_to_v4(data)
     data = migrate_artifact_to_v5(data)
     data = migrate_artifact_to_v6(data)
-    return migrate_artifact_to_v7(data)
+    data = migrate_artifact_to_v7(data)
+    return migrate_artifact_to_v8(data)
 
 
 def save_artifact(path: Path, payload: dict[str, Any]) -> None:

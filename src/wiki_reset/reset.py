@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import shutil
 from datetime import date
 from pathlib import Path
 
@@ -161,6 +162,36 @@ def write_wiki_shell_files(
     )
 
 
+def clear_review_artifacts(reviews_root: Path) -> int:
+    """Delete all review artifact directories. Returns count of removed dirs."""
+    if not reviews_root.is_dir():
+        return 0
+    removed = 0
+    for child in sorted(reviews_root.iterdir()):
+        if child.is_dir():
+            shutil.rmtree(child)
+            removed += 1
+    return removed
+
+
+def clear_feedback_db(db_path: Path) -> bool:
+    """Delete the feedback SQLite database if it exists. Returns True if removed."""
+    if db_path.is_file():
+        db_path.unlink()
+        return True
+    return False
+
+
+def default_reviews_root() -> Path:
+    """Default ``state/reviews/`` directory under repo root."""
+    return _repo_root() / "state" / "reviews"
+
+
+def default_feedback_db_path() -> Path:
+    """Default ``state/review_feedback.sqlite`` path."""
+    return _repo_root() / "state" / "review_feedback.sqlite"
+
+
 def run_wiki_reset(
     wiki_root: Path,
     index_path: Path,
@@ -168,6 +199,9 @@ def run_wiki_reset(
     clear_readwise_index: bool = False,
     manifest_path: Path | None = None,
     clear_manifest: bool = True,
+    clear_reviews: bool = True,
+    reviews_root: Path | None = None,
+    feedback_db_path: Path | None = None,
 ) -> tuple[list[str], dict[str, bool]]:
     """Run full reset. Raises ``FileNotFoundError`` if ``wiki_root`` is missing."""
     if not wiki_root.is_dir():
@@ -181,6 +215,7 @@ def run_wiki_reset(
     state_results = {
         "readwise_library": clear_readwise_index,
         "ingest_manifest": clear_manifest,
+        "review_state": clear_reviews,
     }
     write_wiki_shell_files(
         wiki_root,
@@ -192,6 +227,9 @@ def run_wiki_reset(
         clear_readwise_export_index(index_path)
     if clear_manifest:
         clear_ingest_manifest(manifest_path or default_ingest_manifest_path())
+    if clear_reviews:
+        clear_review_artifacts(reviews_root or default_reviews_root())
+        clear_feedback_db(feedback_db_path or default_feedback_db_path())
     return deleted, state_results
 
 

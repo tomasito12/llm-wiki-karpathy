@@ -15,20 +15,21 @@ from src.ingest_review.schema import (
 from src.ingest_review.wiki_snapshot import build_wiki_snapshot
 
 
-def _split_tags(
-    tags: list[str],
-    existing_new: list[str],
+def _validate_tag_pair(
+    primary: str,
+    secondary: str,
+    suggested_new: str,
     allowlist: set[str],
-) -> tuple[list[str], list[str]]:
-    """Split *tags* into (allowed, new). Items not in *allowlist* move to new."""
-    allowed: list[str] = []
-    new: list[str] = list(existing_new)
-    for t in tags:
-        if t in allowlist:
-            allowed.append(t)
-        elif t and t not in new:
-            new.append(t)
-    return allowed, new
+) -> dict[str, str]:
+    """Validate primary/secondary against *allowlist*; demote to suggested_new if invalid."""
+    new = suggested_new
+    p = primary if primary in allowlist else ""
+    if primary and primary not in allowlist and not new:
+        new = primary
+    s = secondary if secondary in allowlist else ""
+    if secondary and secondary not in allowlist and not new:
+        new = secondary
+    return {"primary_tag": p, "secondary_tag": s, "suggested_new_tag": new}
 
 
 def apply_tag_allowlists(
@@ -40,46 +41,58 @@ def apply_tag_allowlists(
     trend_tags: set[str] | None = None,
     model_types: set[str] | None = None,
 ) -> LlmClassificationOutput:
-    """Split LLM-proposed tags into allowlist-approved and proposed-new buckets."""
+    """Validate proposal tags against allowlists; demote unknown tags to suggested_new_tag."""
     new_tools = [
         tp.model_copy(update={"proposed_types": [x for x in tp.proposed_types if x in tool_types]})
         for tp in parsed.tools
     ]
     gt = glossary_tags or set()
-    new_glossary = []
-    for gp in parsed.glossary:
-        kept, new = _split_tags(gp.proposed_tags, gp.proposed_new_tags, gt)
-        new_glossary.append(gp.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
+    new_glossary = [
+        gp.model_copy(
+            update=_validate_tag_pair(gp.primary_tag, gp.secondary_tag, gp.suggested_new_tag, gt)
+        )
+        for gp in parsed.glossary
+    ]
     tt = topic_tags or set()
-    new_topics = []
-    for tc in parsed.topics:
-        kept, new = _split_tags(tc.proposed_tags, tc.proposed_new_tags, tt)
-        new_topics.append(tc.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
+    new_topics = [
+        tc.model_copy(
+            update=_validate_tag_pair(tc.primary_tag, tc.secondary_tag, tc.suggested_new_tag, tt)
+        )
+        for tc in parsed.topics
+    ]
     ht = howto_tags
-    new_how = []
-    for hp in parsed.how_to:
-        kept, new = _split_tags(hp.proposed_tags, hp.proposed_new_tags, ht)
-        new_how.append(hp.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
+    new_how = [
+        hp.model_copy(
+            update=_validate_tag_pair(hp.primary_tag, hp.secondary_tag, hp.suggested_new_tag, ht)
+        )
+        for hp in parsed.how_to
+    ]
     trt = trend_tags or set()
-    new_trends = []
-    for tr in parsed.industry_trends:
-        kept, new = _split_tags(tr.proposed_tags, tr.proposed_new_tags, trt)
-        new_trends.append(tr.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
+    new_trends = [
+        tr.model_copy(
+            update=_validate_tag_pair(tr.primary_tag, tr.secondary_tag, tr.suggested_new_tag, trt)
+        )
+        for tr in parsed.industry_trends
+    ]
     mt = model_types or set()
     new_models = [
         mp.model_copy(update={"proposed_types": [x for x in mp.proposed_types if x in mt]})
         for mp in parsed.foundation_models
     ]
-    new_signals = []
-    for sig in parsed.roundup_signals:
-        kept, new = _split_tags(sig.proposed_tags, sig.proposed_new_tags, trt)
-        new_signals.append(sig.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new}))
-    new_insights = []
-    for ins in parsed.interview_insights:
-        kept, new = _split_tags(ins.proposed_tags, ins.proposed_new_tags, tt)
-        new_insights.append(
-            ins.model_copy(update={"proposed_tags": kept, "proposed_new_tags": new})
+    new_signals = [
+        sig.model_copy(
+            update=_validate_tag_pair(
+                sig.primary_tag, sig.secondary_tag, sig.suggested_new_tag, trt
+            )
         )
+        for sig in parsed.roundup_signals
+    ]
+    new_insights = [
+        ins.model_copy(
+            update=_validate_tag_pair(ins.primary_tag, ins.secondary_tag, ins.suggested_new_tag, tt)
+        )
+        for ins in parsed.interview_insights
+    ]
     return parsed.model_copy(
         update={
             "tools": new_tools,
@@ -107,6 +120,7 @@ def run_classification(
     trend_tags: list[str] | None = None,
     model_types: list[str] | None = None,
     source_type_override: str | None = None,
+    extraction_budgets: dict[str, int] | None = None,
     model: str,
     prompt_version: str | None = None,
 ) -> tuple[dict[str, object], LlmClassificationOutput]:
@@ -124,6 +138,7 @@ def run_classification(
         trend_tags_allowlist=trend_tags,
         model_types_allowlist=model_types,
         source_type_override=source_type_override,
+        extraction_budgets=extraction_budgets,
         model=model,
         prompt_version=pv,
     )

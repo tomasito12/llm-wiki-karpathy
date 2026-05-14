@@ -33,6 +33,7 @@ class IngestionProvider(ABC):
         trend_tags_allowlist: list[str] | None = None,
         model_types_allowlist: list[str] | None = None,
         source_type_override: str | None = None,
+        extraction_budgets: dict[str, int] | None = None,
         model: str,
         prompt_version: str,
         max_retries: int = 3,
