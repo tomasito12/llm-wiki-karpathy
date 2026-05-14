@@ -17,15 +17,16 @@ from src.ingest_review.wiki_snapshot import build_wiki_snapshot
 
 def apply_tag_allowlists(
     parsed: LlmClassificationOutput,
-    tool_tags: set[str],
+    tool_types: set[str],
     howto_tags: set[str],
     glossary_tags: set[str] | None = None,
     topic_tags: set[str] | None = None,
     trend_tags: set[str] | None = None,
+    model_types: set[str] | None = None,
 ) -> LlmClassificationOutput:
-    """Drop LLM-proposed tags that are not on the allowlists."""
+    """Drop LLM-proposed tags/types that are not on the allowlists."""
     new_tools = [
-        tp.model_copy(update={"proposed_tags": [x for x in tp.proposed_tags if x in tool_tags]})
+        tp.model_copy(update={"proposed_types": [x for x in tp.proposed_types if x in tool_types]})
         for tp in parsed.tools
     ]
     new_how = [
@@ -47,6 +48,11 @@ def apply_tag_allowlists(
         tr.model_copy(update={"proposed_tags": [x for x in tr.proposed_tags if x in trt]})
         for tr in parsed.industry_trends
     ]
+    mt = model_types or set()
+    new_models = [
+        mp.model_copy(update={"proposed_types": [x for x in mp.proposed_types if x in mt]})
+        for mp in parsed.foundation_models
+    ]
     return parsed.model_copy(
         update={
             "tools": new_tools,
@@ -54,6 +60,7 @@ def apply_tag_allowlists(
             "glossary": new_glossary,
             "topics": new_topics,
             "industry_trends": new_trends,
+            "foundation_models": new_models,
         }
     )
 
@@ -63,12 +70,14 @@ def run_classification(
     document: SourceDocument,
     *,
     wiki_root: Path,
-    tool_tags: list[str],
+    tool_types: list[str],
     howto_tags: list[str],
     impl_study_tags: list[str] | None = None,
     glossary_tags: list[str] | None = None,
     topic_tags: list[str] | None = None,
     trend_tags: list[str] | None = None,
+    model_types: list[str] | None = None,
+    source_type_override: str | None = None,
     model: str,
     prompt_version: str | None = None,
 ) -> tuple[dict[str, object], LlmClassificationOutput]:
@@ -78,12 +87,14 @@ def run_classification(
     parsed, meta = provider.analyze_classification(
         document=document,
         wiki=wiki,
-        tool_tags_allowlist=tool_tags,
+        tool_types_allowlist=tool_types,
         howto_tags_allowlist=howto_tags,
         impl_study_tags_allowlist=impl_study_tags,
         glossary_tags_allowlist=glossary_tags,
         topic_tags_allowlist=topic_tags,
         trend_tags_allowlist=trend_tags,
+        model_types_allowlist=model_types,
+        source_type_override=source_type_override,
         model=model,
         prompt_version=pv,
     )
@@ -92,11 +103,12 @@ def run_classification(
     )
     parsed = apply_tag_allowlists(
         parsed,
-        set(tool_tags),
+        set(tool_types),
         set(howto_tags),
         set(glossary_tags or []),
         set(topic_tags or []),
         set(trend_tags or []),
+        set(model_types or []),
     )
     analysis_meta = default_analysis_meta(
         provider=provider.provider_name,

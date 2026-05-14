@@ -17,7 +17,15 @@ from src.ingest_review.schema import (
     HOWTO_SCALAR_KEYS,
     IMPL_STUDY_LIST_KEYS,
     IMPL_STUDY_SCALAR_KEYS,
+    INSIGHT_LIST_KEYS,
+    INSIGHT_SCALAR_KEYS,
+    MODEL_LIST_KEYS,
+    MODEL_SCALAR_KEYS,
+    SIGNAL_LIST_KEYS,
+    SIGNAL_SCALAR_KEYS,
     SOURCE_SUMMARY_SCALAR_KEYS,
+    TOOL_LIST_KEYS,
+    TOOL_SCALAR_KEYS,
     TOPIC_LIST_KEYS,
     TOPIC_SCALAR_KEYS,
     TREND_LIST_KEYS,
@@ -177,9 +185,9 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
         )
         count += 1
 
-    roundup_r = review.get("roundup")
-    if isinstance(roundup_r, dict):
-        st = str(roundup_r.get("status") or "pending")
+    src_type_r = review.get("source_type_detection")
+    if isinstance(src_type_r, dict):
+        st = str(src_type_r.get("status") or "pending")
         if st != "pending":
             append_feedback_event(
                 path,
@@ -187,10 +195,10 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
                     source_id=source_id,
                     source_hash=str(source_hash) if source_hash else None,
                     proposal_id=None,
-                    path_in_json="roundup",
+                    path_in_json="source_type_detection",
                     decision=st,
-                    llm_value_snapshot=roundup_r.get("llm_item"),
-                    final_value_snapshot=roundup_r.get("final_item"),
+                    llm_value_snapshot=src_type_r.get("llm_item"),
+                    final_value_snapshot=src_type_r.get("final_item"),
                     provider=str(provider) if provider else None,
                     model=str(model) if model else None,
                     prompt_version=str(prompt_version) if prompt_version else None,
@@ -251,42 +259,14 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
             )
             count += 1
 
-    list_pairs = [
-        ("tools", "tools"),
-        ("foundation_models", "foundation_models"),
-    ]
-    for review_key, llm_key in list_pairs:
-        items_r = review.get(review_key) or []
-        items_l = llm.get(llm_key) or []
-        for idx, item_r in enumerate(items_r):
-            if not isinstance(item_r, dict):
-                continue
-            st = str(item_r.get("status") or "pending")
-            if st == "pending":
-                continue
-            pid = item_r.get("proposal_id")
-            llm_item = items_l[idx] if idx < len(items_l) else None
-            append_feedback_event(
-                path,
-                FeedbackEvent(
-                    source_id=source_id,
-                    source_hash=str(source_hash) if source_hash else None,
-                    proposal_id=str(pid) if pid else None,
-                    path_in_json=f"{review_key}[{idx}]",
-                    decision=st,
-                    llm_value_snapshot=llm_item,
-                    final_value_snapshot=item_r.get("final_item"),
-                    provider=str(provider) if provider else None,
-                    model=str(model) if model else None,
-                    prompt_version=str(prompt_version) if prompt_version else None,
-                ),
-            )
-            count += 1
-
     per_section_types: list[tuple[str, tuple[str, ...], tuple[str, ...]]] = [
+        ("foundation_models", MODEL_SCALAR_KEYS, MODEL_LIST_KEYS),
+        ("tools", TOOL_SCALAR_KEYS, TOOL_LIST_KEYS),
         ("topics", TOPIC_SCALAR_KEYS, TOPIC_LIST_KEYS),
         ("how_to", HOWTO_SCALAR_KEYS, HOWTO_LIST_KEYS),
         ("industry_trends", TREND_SCALAR_KEYS, TREND_LIST_KEYS),
+        ("roundup_signals", SIGNAL_SCALAR_KEYS, SIGNAL_LIST_KEYS),
+        ("interview_insights", INSIGHT_SCALAR_KEYS, INSIGHT_LIST_KEYS),
     ]
     for ps_key, ps_scalar, ps_list in per_section_types:
         for idx, ps_node in enumerate(review.get(ps_key) or []):

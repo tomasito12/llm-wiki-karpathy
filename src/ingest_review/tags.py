@@ -23,9 +23,9 @@ def load_tag_list(path: Path) -> list[str]:
     return []
 
 
-def default_tool_tags_path(root: Path | None = None) -> Path:
-    """Path to ``config/review_tags_tools.yaml``."""
-    return (root or repo_root()) / "config" / "review_tags_tools.yaml"
+def default_tool_types_path(root: Path | None = None) -> Path:
+    """Path to ``config/review_tool_types.yaml``."""
+    return (root or repo_root()) / "config" / "review_tool_types.yaml"
 
 
 def default_howto_tags_path(root: Path | None = None) -> Path:
@@ -33,9 +33,9 @@ def default_howto_tags_path(root: Path | None = None) -> Path:
     return (root or repo_root()) / "config" / "review_tags_howto.yaml"
 
 
-def load_tool_tags(root: Path | None = None) -> list[str]:
-    """Return tool proposal tag allowlist."""
-    return load_tag_list(default_tool_tags_path(root))
+def load_tool_types(root: Path | None = None) -> list[str]:
+    """Return approved tool type registry."""
+    return load_tag_list(default_tool_types_path(root))
 
 
 def load_howto_tags(root: Path | None = None) -> list[str]:
@@ -71,6 +71,16 @@ def default_trend_tags_path(root: Path | None = None) -> Path:
 def load_trend_tags(root: Path | None = None) -> list[str]:
     """Return trend tag allowlist."""
     return load_tag_list(default_trend_tags_path(root))
+
+
+def default_model_types_path(root: Path | None = None) -> Path:
+    """Path to ``config/review_model_types.yaml``."""
+    return (root or repo_root()) / "config" / "review_model_types.yaml"
+
+
+def load_model_types(root: Path | None = None) -> list[str]:
+    """Return approved model type registry."""
+    return load_tag_list(default_model_types_path(root))
 
 
 def default_impl_study_tags_path(root: Path | None = None) -> Path:

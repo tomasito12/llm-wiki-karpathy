@@ -6,7 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
-ARTIFACT_SCHEMA_VERSION = 4
+ARTIFACT_SCHEMA_VERSION = 7
 PROMPT_VERSION = "2"
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
@@ -168,30 +168,85 @@ TOPIC_LIST_KEYS: tuple[str, ...] = (
 
 
 class ToolProposal(BaseModel):
-    """One tool proposal."""
+    """Operational intelligence about a tool extracted from a source."""
 
     name: str = ""
     short_description: str = ""
-    tool_type: str = ""
+    operational_relevance: str = ""
+    strengths: str = ""
+    weaknesses_limitations: str = ""
+    maturity_signals: str = ""
     supporting_snippet: str = ""
+    core_capabilities: list[str] = Field(default_factory=list)
+    integration_ecosystem: list[str] = Field(default_factory=list)
+    related_tools: list[str] = Field(default_factory=list)
+    proposed_types: list[str] = Field(default_factory=list)
+    proposed_new_type: str | None = None
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
-    proposed_tags: list[str] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
-    tag_gap_notes: str | None = None
+
+
+TOOL_SCALAR_KEYS: tuple[str, ...] = (
+    "name",
+    "short_description",
+    "operational_relevance",
+    "strengths",
+    "weaknesses_limitations",
+    "maturity_signals",
+    "supporting_snippet",
+)
+
+TOOL_LIST_KEYS: tuple[str, ...] = (
+    "core_capabilities",
+    "integration_ecosystem",
+    "related_tools",
+)
 
 
 class FoundationModelProposal(BaseModel):
-    """One foundation model the article substantially discusses."""
+    """Operational intelligence about a foundation model extracted from a source."""
 
     model_name: str = ""
-    provider: str | None = None
-    article_summary: str = ""
-    newsworthy_attributes: str = ""
+    provider: str = ""
+    operational_summary: str = ""
+    strengths: str = ""
+    weaknesses_limitations: str = ""
+    workflow_implications: str = ""
+    service_automation_implications: str = ""
+    maturity_signals: str = ""
+    pricing_inference_implications: str = ""
     supporting_snippet: str = ""
+    core_capabilities: list[str] = Field(default_factory=list)
+    benchmark_observations: list[str] = Field(default_factory=list)
+    comparative_observations: list[str] = Field(default_factory=list)
+    related_models: list[str] = Field(default_factory=list)
+    proposed_types: list[str] = Field(default_factory=list)
+    proposed_new_type: str | None = None
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+
+
+MODEL_SCALAR_KEYS: tuple[str, ...] = (
+    "model_name",
+    "provider",
+    "operational_summary",
+    "strengths",
+    "weaknesses_limitations",
+    "workflow_implications",
+    "service_automation_implications",
+    "maturity_signals",
+    "pricing_inference_implications",
+    "supporting_snippet",
+)
+
+MODEL_LIST_KEYS: tuple[str, ...] = (
+    "core_capabilities",
+    "benchmark_observations",
+    "comparative_observations",
+    "related_models",
+)
 
 
 class HowToProposal(BaseModel):
@@ -318,18 +373,135 @@ TREND_LIST_KEYS: tuple[str, ...] = (
 )
 
 
-class RoundupDetection(BaseModel):
-    """Newsletter / radar / roundup classification."""
+SourceType = Literal[
+    "standard_article",
+    "ai_industry_roundup",
+    "interview_or_transcript",
+    "technical_howto",
+    "research_paper_or_report",
+    "unknown",
+]
 
-    is_roundup: bool = False
-    reasoning: str = ""
+SignalStrength = Literal["low", "medium", "high"]
+TimeHorizon = Literal["transient", "short_term", "medium_term", "long_term"]
+WikiWorthiness = Literal["ignore", "weak_candidate", "review_candidate", "strong_candidate"]
+
+SignalType = Literal[
+    "trend",
+    "topic",
+    "tool",
+    "model",
+    "howto",
+    "research_eval",
+    "infrastructure",
+    "pricing_economics",
+    "ignore",
+]
+
+InsightConfidence = Literal["low", "medium", "high"]
+DurabilityEstimate = Literal["transient", "medium_term", "long_term"]
+
+InsightType = Literal[
+    "topic",
+    "trend",
+    "model",
+    "tool",
+    "infrastructure",
+    "orchestration",
+    "service_automation",
+    "privacy_security",
+    "research_eval",
+    "ignore",
+]
+
+
+class SourceTypeDetection(BaseModel):
+    """Automatic detection of the source content type."""
+
+    detected_source_type: SourceType = "unknown"
     confidence: float = Field(0.0, ge=0.0, le=1.0)
+    reasoning: list[str] = Field(default_factory=list)
+
+
+class RoundupSignal(BaseModel):
+    """One durable operational signal extracted from an AI industry roundup."""
+
+    signal_title: str = ""
+    signal_type: SignalType = "ignore"
+    summary: str = ""
+    why_it_matters: str = ""
+    operational_relevance: str = ""
+    service_automation_relevance: str = ""
+    signal_strength: SignalStrength = "low"
+    time_horizon: TimeHorizon = "transient"
+    wiki_worthiness: WikiWorthiness = "ignore"
+    suggested_destinations: list[str] = Field(default_factory=list)
+    mentioned_entities: list[str] = Field(default_factory=list)
+    evidence_snippets: list[str] = Field(default_factory=list)
+
+
+SIGNAL_SCALAR_KEYS: tuple[str, ...] = (
+    "signal_title",
+    "signal_type",
+    "summary",
+    "why_it_matters",
+    "operational_relevance",
+    "service_automation_relevance",
+    "signal_strength",
+    "time_horizon",
+    "wiki_worthiness",
+)
+
+SIGNAL_LIST_KEYS: tuple[str, ...] = (
+    "suggested_destinations",
+    "mentioned_entities",
+    "evidence_snippets",
+)
+
+
+class InterviewInsight(BaseModel):
+    """One durable operational insight extracted from an interview or transcript."""
+
+    insight_title: str = ""
+    insight_type: InsightType = "ignore"
+    summary: str = ""
+    why_it_matters: str = ""
+    operational_relevance: str = ""
+    service_automation_relevance: str = ""
+    confidence: InsightConfidence = "low"
+    durability_estimate: DurabilityEstimate = "transient"
+    wiki_worthiness: WikiWorthiness = "ignore"
+    suggested_destinations: list[str] = Field(default_factory=list)
+    mentioned_entities: list[str] = Field(default_factory=list)
+    contrarian_or_speculative_claims: list[str] = Field(default_factory=list)
+    evidence_snippets: list[str] = Field(default_factory=list)
+
+
+INSIGHT_SCALAR_KEYS: tuple[str, ...] = (
+    "insight_title",
+    "insight_type",
+    "summary",
+    "why_it_matters",
+    "operational_relevance",
+    "service_automation_relevance",
+    "confidence",
+    "durability_estimate",
+    "wiki_worthiness",
+)
+
+INSIGHT_LIST_KEYS: tuple[str, ...] = (
+    "suggested_destinations",
+    "mentioned_entities",
+    "contrarian_or_speculative_claims",
+    "evidence_snippets",
+)
 
 
 class LlmClassificationOutput(BaseModel):
     """Root object returned by the ingestion analysis LLM."""
 
     source_summary: SourceSummaryBlock = Field(default_factory=SourceSummaryBlock)
+    source_type_detection: SourceTypeDetection = Field(default_factory=SourceTypeDetection)
     glossary: list[GlossaryProposal] = Field(default_factory=list)
     tools: list[ToolProposal] = Field(default_factory=list)
     foundation_models: list[FoundationModelProposal] = Field(default_factory=list)
@@ -337,7 +509,8 @@ class LlmClassificationOutput(BaseModel):
     topics: list[TopicContribution] = Field(default_factory=list)
     implementation_studies: list[ImplementationStudyProposal] = Field(default_factory=list)
     industry_trends: list[IndustryTrendProposal] = Field(default_factory=list)
-    roundup: RoundupDetection = Field(default_factory=RoundupDetection)
+    roundup_signals: list[RoundupSignal] = Field(default_factory=list)
+    interview_insights: list[InterviewInsight] = Field(default_factory=list)
 
 
 def llm_output_json_schema() -> dict:

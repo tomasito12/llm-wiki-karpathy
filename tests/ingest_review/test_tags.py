@@ -8,7 +8,9 @@ from src.ingest_review.tags import (
     append_tags_to_yaml,
     load_glossary_tags,
     load_impl_study_tags,
+    load_model_types,
     load_tag_list,
+    load_tool_types,
     load_topic_tags,
     load_trend_tags,
 )
@@ -148,3 +150,55 @@ def test_load_trend_tags_missing_returns_empty(tmp_path: Path) -> None:
     """Missing trend tag file yields empty list."""
     tags = load_trend_tags(tmp_path)
     assert tags == []
+
+
+def test_load_tool_types_from_config(tmp_path: Path) -> None:
+    """load_tool_types reads from config/review_tool_types.yaml."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_tool_types.yaml").write_text(
+        "tags:\n  - coding-agent\n  - mcp-server\n", encoding="utf-8"
+    )
+    types = load_tool_types(tmp_path)
+    assert types == ["coding-agent", "mcp-server"]
+
+
+def test_load_tool_types_missing_returns_empty(tmp_path: Path) -> None:
+    """Missing tool types file yields empty list."""
+    types = load_tool_types(tmp_path)
+    assert types == []
+
+
+def test_load_tool_types_empty_returns_empty(tmp_path: Path) -> None:
+    """Empty tool types file yields empty list."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_tool_types.yaml").write_text("tags: []\n", encoding="utf-8")
+    types = load_tool_types(tmp_path)
+    assert types == []
+
+
+def test_load_model_types_from_config(tmp_path: Path) -> None:
+    """load_model_types reads from config/review_model_types.yaml."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_model_types.yaml").write_text(
+        "tags:\n  - frontier-model\n  - coding-model\n", encoding="utf-8"
+    )
+    types = load_model_types(tmp_path)
+    assert types == ["frontier-model", "coding-model"]
+
+
+def test_load_model_types_missing_returns_empty(tmp_path: Path) -> None:
+    """Missing model types file yields empty list."""
+    types = load_model_types(tmp_path)
+    assert types == []
+
+
+def test_load_model_types_empty_returns_empty(tmp_path: Path) -> None:
+    """Empty model types file yields empty list."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_model_types.yaml").write_text("tags: []\n", encoding="utf-8")
+    types = load_model_types(tmp_path)
+    assert types == []

@@ -1,0 +1,23 @@
+# Approved tool type registry (ingestion review). LLM may only propose types from this list.
+tags:
+  - agent-framework
+  - ai-search
+  - chatbot-platform
+  - cli
+  - cloud-saas
+  - coding-agent
+  - data-pipeline
+  - desktop-app
+  - evaluation-tool
+  - hardware
+  - ide-extension
+  - local-first
+  - local-llm-tooling
+  - mcp-server
+  - multimodal-tool
+  - notebook-research
+  - orchestration-platform
+  - speech-input
+  - video-media
+  - voice-ai
+  - workflow-automation

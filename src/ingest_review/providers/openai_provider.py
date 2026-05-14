@@ -27,8 +27,15 @@ SYSTEM_PROMPT = """You are an analyst helping curate a personal AI-engineering M
 Return only valid JSON matching the provided schema. Ground every substantive claim in the \
 source text via supporting_snippet (or source_summary section text for narrative fields). \
 If unknown, use empty strings or empty arrays and low confidence. Do not invent facts.
-For tools, how_to, topics, and industry_trends items, proposed_tags MUST be a subset of the \
+For how_to, topics, and industry_trends items, proposed_tags MUST be a subset of the \
 allowlists provided in the user message; use [] if none apply.
+For tools items, proposed_types MUST be a subset of the TOOL_TYPES_ALLOWLIST; use [] if none \
+apply and set proposed_new_type if a new type is warranted.
+For foundation_models items, proposed_types MUST be a subset of the MODEL_TYPES_ALLOWLIST; \
+use [] if none apply and set proposed_new_type if a new type is warranted.
+Always fill source_type_detection with the detected source type, confidence, and reasoning. \
+If the source is an ai_industry_roundup, also populate roundup_signals. \
+If the source is an interview_or_transcript, also populate interview_insights. \
 Prefer reusing existing wiki pages (match_candidates) when the article overlaps with existing \
 content; suggest append_to_existing over create_new_page whenever possible.
 
@@ -266,6 +273,241 @@ Voice: measured, evidence-grounded, explicitly uncertain where warranted. \
 No hype, no certainty theater."""
 
 
+TOOLS_RUBRIC = """\
+## tools (array of objects — tool proposals)
+
+Only extract tools where the source provides OPERATIONALLY USEFUL information — \
+not passing mentions. A tool is a distinct product, platform, framework, or \
+application (not a tiny feature inside another tool).
+
+Tool-worthiness criteria (ALL must apply):
+- Operationally relevant: affects real workflows, engineering, automation
+- Reusable: likely to recur across multiple future sources
+- Distinct: meaningful standalone product, not a feature of another tool
+- Accumulative: future sources could meaningfully enrich this tool's page
+If a tool is merely mentioned in passing, set confidence < 0.3 and \
+suggested_action = "ignore".
+
+Each object MUST include:
+- name: the tool's established name (e.g. Cursor, LangGraph, Ollama)
+- short_description: 1-3 concise sentences explaining what the tool IS and does. \
+Avoid hype, focus on practical understanding
+- operational_relevance: 2-5 sentences on where this tool fits into real \
+workflows. Evaluate for: support automation, AI agents, orchestration, \
+evaluation, coding productivity, workflow automation, operational AI systems. \
+Audience is a senior practitioner in conversational AI, chatbots, voicebots, \
+service automation
+- strengths: operational strengths — concrete capabilities, not marketing claims
+- weaknesses_limitations: REQUIRED skeptical assessment — limitations, costs, \
+scalability issues, ecosystem immaturity, missing features. If none are evident \
+from the source, state that explicitly
+- maturity_signals: adoption level, ecosystem health, community size, enterprise \
+readiness. Use honest descriptors: "rapidly growing", "niche developer tool", \
+"experimental", "strong enterprise adoption", etc.
+- supporting_snippet: verbatim evidence from the source
+- core_capabilities: specific features worth noting (list of strings)
+- integration_ecosystem: concrete integrations, APIs, compatibility (list of \
+strings)
+- related_tools: comparable or complementary tools (list of strings)
+- proposed_types: from TOOL_TYPES_ALLOWLIST ONLY. Answer "What kind of thing \
+is this?" — NOT "What is it good for?" A tool can have multiple types. Use [] \
+if no approved type fits
+- proposed_new_type: if no existing type fits, propose ONE new type in \
+kebab-case; null otherwise. The human reviewer approves or rejects
+- match_candidates: existing tool pages that may overlap
+- confidence: 0.0-1.0
+- suggested_action: prefer "append_to_existing" for tools already in the wiki; \
+"create_new_page" only for genuinely new tools worth tracking long-term
+
+Classification rule: types describe WHAT THE TOOL IS, not what it does well. \
+Good: coding-assistant, desktop-app, voice-ai. Bad: productivity, useful, fast.
+
+Voice: clear, operational, skeptical. No hype, no marketing language."""
+
+
+MODELS_RUBRIC = """\
+## foundation_models (array of objects — model proposals)
+
+Only extract models where the source provides OPERATIONALLY USEFUL information — \
+not passing mentions. A model deserves extraction when the source contains \
+meaningful operational evaluation, workflow implications, comparative observations, \
+or strategic significance.
+
+Model-worthiness criteria:
+- Operational evaluation: real-world strengths, weaknesses, workflows, or capabilities
+- Workflow implications: how the model changes engineering or automation workflows
+- Comparative observations: meaningful comparison against other models
+- Strategic significance: important enough that future sources will enrich it
+- Reusable knowledge: observations likely useful beyond this single article
+If a model is merely mentioned without operational depth, set confidence < 0.3 \
+and suggested_action = "ignore".
+
+Each object MUST include:
+- model_name: the model's established name (e.g. GPT-5, Claude Sonnet, Gemini)
+- provider: organization name (OpenAI, Anthropic, Google, Meta, DeepSeek, etc.)
+- operational_summary: 1-3 sentences on what the model is operationally good at \
+and what differentiates it. NOT a generic description like "X is a large language \
+model." Instead: "X appears strong for long-horizon coding and agent orchestration."
+- strengths: operational strengths — concrete capabilities, not marketing claims
+- weaknesses_limitations: REQUIRED skeptical assessment — inference cost, planning \
+weaknesses, formatting instability, hallucination patterns, context degradation. \
+If none evident, state that explicitly
+- workflow_implications: how this model changes AI engineering, orchestration, \
+evaluation, automation workflows. Examples: "enables larger autonomous coding \
+loops", "reduces prompt engineering effort", "lowers orchestration complexity"
+- service_automation_implications: implications for conversational AI, chatbots, \
+voicebots, support automation, containment rates, handoff reduction. If no \
+meaningful implications, state explicitly. Avoid vague business language
+- maturity_signals: adoption, ecosystem maturity, enterprise readiness. Use honest \
+descriptors: "rapidly adopted", "experimental", "strong enterprise momentum", etc.
+- pricing_inference_implications: cost observations, latency, inference economics, \
+deployment feasibility for high-volume use cases
+- supporting_snippet: verbatim evidence from the source
+- core_capabilities: specific capabilities worth noting — coding, long-context, \
+tool calling, voice, structured outputs, planning, etc. (list of strings)
+- benchmark_observations: ONLY operationally meaningful evidence — SWE-Bench \
+discussions, latency comparisons, context-window observations, tool-use evals. \
+Do NOT create benchmark dumps (list of strings)
+- comparative_observations: comparisons against other models — "stronger coding \
+than X", "cheaper than Y", "faster than Z". Extremely valuable (list of strings)
+- related_models: comparable or complementary models (list of strings)
+- proposed_types: from MODEL_TYPES_ALLOWLIST ONLY. Answer "What kind of model \
+is this?" A model can have multiple types. Use [] if no approved type fits
+- proposed_new_type: if no existing type fits, propose ONE new type in kebab-case; \
+null otherwise
+- match_candidates: existing model pages that may overlap
+- confidence: 0.0-1.0
+- suggested_action: prefer "append_to_existing" for models already in the wiki; \
+"create_new_page" only for genuinely new models worth tracking long-term
+
+Classification rule: types describe WHAT THE MODEL IS, not subjective quality. \
+Good: reasoning-model, coding-model, multimodal-model. \
+Bad: powerful, smart, enterprise-ready.
+
+Prioritize observations likely to remain useful in 6-12 months. Transient hype \
+or short-lived benchmark excitement belongs in trends, not model pages.
+
+Voice: clear, operational, skeptical. No hype, no certainty theater."""
+
+
+SOURCE_TYPE_DETECTION_RUBRIC = """\
+## source_type_detection (required JSON subtree)
+
+Classify the source into exactly one type. Be conservative — default to \
+"standard_article" for most content. Only choose specialized types when \
+structural signals are strong.
+
+Supported types:
+- "standard_article" — default for most AI articles, blog posts, reports, \
+opinion pieces
+- "ai_industry_roundup" — digests, newsletters, radar posts, weekly AI news \
+summaries whose primary purpose is aggregating many short items, links, or \
+news blurbs. The key signal is a BUNDLE of loosely related items, not a \
+single coherent argument
+- "interview_or_transcript" — long-form conversations with interviewer/ \
+interviewee structure, Q&A format, multiple speaker perspectives, or \
+transcript-like content
+- "technical_howto" — primarily step-by-step tutorial or implementation guide
+- "research_paper_or_report" — academic paper, formal research report, or \
+technical whitepaper with citations and methodology
+- "unknown" — use when genuinely uncertain
+
+Fields:
+- detected_source_type: one of the types above
+- confidence: 0.0–1.0 (be conservative — 0.9+ only when structural signals \
+are unambiguous)
+- reasoning: array of 1–3 short strings explaining the classification \
+decision"""
+
+
+ROUNDUP_SIGNALS_RUBRIC = """\
+## roundup_signals (array of objects — ONLY when \
+source_type_detection.detected_source_type == "ai_industry_roundup")
+
+Decompose the roundup into independent signal items. The roundup itself is \
+NOT the knowledge object — extract the durable operational signals within it.
+
+Most signals should be wiki_worthiness "ignore". Only promote signals that \
+answer: "Will this still matter in 6–12 months?"
+
+Prioritize: recurring patterns, workflow changes, architectural shifts, \
+operational lessons, infrastructure developments, meaningful tooling/model \
+developments. Avoid: transient hype, engagement bait, vanity metrics, \
+low-signal commentary.
+
+Each object MUST include:
+- signal_title: concise, pattern-oriented title (e.g. "Context pipelines \
+becoming the product boundary", NOT "OpenAI announcement")
+- signal_type: one of "trend", "topic", "tool", "model", "howto", \
+"research_eval", "infrastructure", "pricing_economics", "ignore"
+- summary: 2–5 concise sentences: what the signal is, why it matters, \
+operational implications
+- why_it_matters: broader industry implications
+- operational_relevance: implications for AI engineering, orchestration, \
+evaluation, agents, automation, service automation
+- service_automation_relevance: implications for chatbots, voicebots, \
+customer support automation, AI-assisted support systems. If no meaningful \
+relevance exists, state "No direct service automation implications identified."
+- signal_strength: "low", "medium", or "high"
+- time_horizon: "transient", "short_term", "medium_term", or "long_term"
+- wiki_worthiness: "ignore", "weak_candidate", "review_candidate", or \
+"strong_candidate"
+- suggested_destinations: routing hints as array of strings (e.g. \
+["topics/", "trends/"])
+- mentioned_entities: organizations, tools, models mentioned (array of strings)
+- evidence_snippets: supporting source quotes for provenance (array of strings)
+
+If source is NOT a roundup, return an empty array [].
+
+Voice: clear, operational, durable. No hype."""
+
+
+INTERVIEW_INSIGHTS_RUBRIC = """\
+## interview_insights (array of objects — ONLY when \
+source_type_detection.detected_source_type == "interview_or_transcript")
+
+Extract durable operational knowledge and meaningful viewpoints — NOT a \
+chronological conversation summary. Focus on reusable insights, conceptual \
+shifts, architectural observations, and strategic viewpoints.
+
+Prioritize: operational insights, architectural patterns, workflow \
+implications, implementation lessons, durable conceptual arguments, \
+recurring industry themes. Avoid: conversational filler, personality-driven \
+commentary, repetitive anecdotes, weak predictions.
+
+Each object MUST include:
+- insight_title: concise, reusable title (e.g. "Harness quality becoming \
+more important than raw model quality", NOT "Speaker discusses models")
+- insight_type: one of "topic", "trend", "model", "tool", "infrastructure", \
+"orchestration", "service_automation", "privacy_security", "research_eval", \
+"ignore"
+- summary: 2–6 concise sentences explaining the insight, the reasoning behind \
+it, and why it matters. Avoid chronological interview summaries
+- why_it_matters: broader implications for AI engineering, orchestration, \
+enterprise adoption, automation, service automation
+- operational_relevance: implications for workflows, architecture decisions, \
+orchestration strategies, evaluation approaches, automation systems, \
+coding-agent workflows
+- service_automation_relevance: implications for chatbots, voicebots, \
+support automation, conversational reliability, human handoff systems. If no \
+meaningful relevance exists, state "No direct service automation implications \
+identified."
+- confidence: "low", "medium", or "high"
+- durability_estimate: "transient", "medium_term", or "long_term"
+- wiki_worthiness: "ignore", "weak_candidate", "review_candidate", or \
+"strong_candidate"
+- suggested_destinations: routing hints (array of strings, e.g. \
+["topics/", "models/"])
+- mentioned_entities: organizations, tools, models mentioned (array of strings)
+- contrarian_or_speculative_claims: strong predictions, contrarian takes, \
+speculative claims — explicitly mark as speculative (array of strings)
+- evidence_snippets: supporting source quotes for provenance (array of strings)
+
+If source is NOT an interview/transcript, return an empty array [].
+
+Voice: clear, operational, synthesized. No conversational filler."""
+
+
 def _section_regen_rubric(section_key: str) -> str:
     """Narrow rubric text for one section (avoid brittle string splits in production)."""
     fixed = {
@@ -304,12 +546,14 @@ def _section_regen_rubric(section_key: str) -> str:
 def _build_user_prompt(
     doc: SourceDocument,
     wiki: WikiSnapshot,
-    tool_tags: list[str],
+    tool_types: list[str],
     howto_tags: list[str],
     impl_study_tags: list[str] | None = None,
     glossary_tags: list[str] | None = None,
     topic_tags: list[str] | None = None,
     trend_tags: list[str] | None = None,
+    model_types: list[str] | None = None,
+    source_type_override: str | None = None,
     *,
     prompt_version: str,
 ) -> str:
@@ -327,6 +571,7 @@ def _build_user_prompt(
     gloss_tags = glossary_tags or []
     t_tags = topic_tags or []
     tr_tags = trend_tags or []
+    m_types = model_types or []
     impl_titles = wiki.implementation_study_titles[:100] if wiki.implementation_study_titles else []
     topic_titles = wiki.topic_titles[:100] if wiki.topic_titles else []
     howto_titles = wiki.howto_titles[:100] if wiki.howto_titles else []
@@ -341,32 +586,50 @@ def _build_user_prompt(
         "## EXISTING_TOPIC_TITLES\n" + "\n".join(f"- {t}" for t in topic_titles),
         "## EXISTING_HOWTO_TITLES\n" + "\n".join(f"- {t}" for t in howto_titles),
         "## EXISTING_TREND_TITLES\n" + "\n".join(f"- {t}" for t in trend_titles),
-        "## TOOL_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_tags),
+        "## TOOL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_types),
+        "## MODEL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in m_types),
         "## HOWTO_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in howto_tags),
         "## IMPL_STUDY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in impl_tags),
         "## GLOSSARY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in gloss_tags),
         "## TOPIC_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in t_tags),
         "## TREND_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tr_tags),
+        "## SOURCE_TYPE_DETECTION_RUBRIC\n" + SOURCE_TYPE_DETECTION_RUBRIC,
         "## SOURCE_CHAPTERS_RUBRIC\n" + SOURCE_CHAPTERS_RUBRIC,
         "## GLOSSARY_RUBRIC\n" + GLOSSARY_RUBRIC,
         "## IMPL_STUDY_RUBRIC\n" + IMPL_STUDY_RUBRIC,
         "## TOPICS_RUBRIC\n" + TOPICS_RUBRIC,
         "## HOWTOS_RUBRIC\n" + HOWTOS_RUBRIC,
         "## TRENDS_RUBRIC\n" + TRENDS_RUBRIC,
+        "## TOOLS_RUBRIC\n" + TOOLS_RUBRIC,
+        "## MODELS_RUBRIC\n" + MODELS_RUBRIC,
+        "## ROUNDUP_SIGNALS_RUBRIC\n" + ROUNDUP_SIGNALS_RUBRIC,
+        "## INTERVIEW_INSIGHTS_RUBRIC\n" + INTERVIEW_INSIGHTS_RUBRIC,
         "## JSON_SCHEMA_HINT\n" + schema_hint,
-        "## ARTICLE_PLAIN_TEXT\n" + doc.plain_text,
-        "## Instructions\n"
-        "Output one JSON object matching the schema keys: source_summary, glossary, tools, "
-        "foundation_models, how_to, topics, implementation_studies, industry_trends, roundup. "
-        "Prioritize high-signal source_summary chapters per SOURCE_CHAPTERS_RUBRIC. "
-        "For glossary, follow GLOSSARY_RUBRIC strictly. "
-        "For implementation_studies, follow IMPL_STUDY_RUBRIC strictly. "
-        "For topics, follow TOPICS_RUBRIC strictly. "
-        "For how_to, follow HOWTOS_RUBRIC strictly. "
-        "For industry_trends, follow TRENDS_RUBRIC strictly. "
-        "Use empty arrays when a category does not apply. For roundup: set is_roundup true only "
-        "for digests/newsletters whose primary purpose is listing many external items.",
     ]
+    if source_type_override:
+        blocks.append(
+            f"## SOURCE_TYPE_OVERRIDE\nTreat this source as: {source_type_override}. "
+            "Set source_type_detection.detected_source_type accordingly and populate "
+            "the corresponding specialized extraction (roundup_signals or "
+            "interview_insights) if applicable."
+        )
+    blocks.extend(
+        [
+            "## ARTICLE_PLAIN_TEXT\n" + doc.plain_text,
+            "## Instructions\n"
+            "Output one JSON object matching the schema keys: source_type_detection, "
+            "source_summary, glossary, tools, foundation_models, how_to, topics, "
+            "implementation_studies, industry_trends, roundup_signals, interview_insights. "
+            "FIRST: fill source_type_detection per SOURCE_TYPE_DETECTION_RUBRIC. "
+            "THEN: always fill source_summary, glossary, tools, foundation_models, how_to, "
+            "topics, implementation_studies, industry_trends per their rubrics. "
+            "IF source type is ai_industry_roundup, ALSO fill roundup_signals per "
+            "ROUNDUP_SIGNALS_RUBRIC. "
+            "IF source type is interview_or_transcript, ALSO fill interview_insights per "
+            "INTERVIEW_INSIGHTS_RUBRIC. "
+            "Use empty arrays when a category does not apply.",
+        ]
+    )
     return "\n\n".join(blocks)
 
 
@@ -398,12 +661,14 @@ class OpenAIIngestionProvider(IngestionProvider):
         *,
         document: SourceDocument,
         wiki: WikiSnapshot,
-        tool_tags_allowlist: list[str],
+        tool_types_allowlist: list[str],
         howto_tags_allowlist: list[str],
         impl_study_tags_allowlist: list[str] | None = None,
         glossary_tags_allowlist: list[str] | None = None,
         topic_tags_allowlist: list[str] | None = None,
         trend_tags_allowlist: list[str] | None = None,
+        model_types_allowlist: list[str] | None = None,
+        source_type_override: str | None = None,
         model: str,
         prompt_version: str,
         max_retries: int = 3,
@@ -412,12 +677,14 @@ class OpenAIIngestionProvider(IngestionProvider):
         user_prompt = _build_user_prompt(
             document,
             wiki,
-            tool_tags_allowlist,
+            tool_types_allowlist,
             howto_tags_allowlist,
             impl_study_tags_allowlist,
             glossary_tags_allowlist,
             topic_tags_allowlist,
             trend_tags_allowlist,
+            model_types=model_types_allowlist,
+            source_type_override=source_type_override,
             prompt_version=prompt_version or PROMPT_VERSION,
         )
         messages = [

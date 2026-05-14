@@ -358,6 +358,122 @@ def test_record_events_howto_per_section(tmp_path: Path) -> None:
     assert n == 2
 
 
+def test_record_events_tool_per_section(tmp_path: Path) -> None:
+    """Non-pending tool sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "5"},
+        "llm_output": {
+            "tools": [
+                {
+                    "name": "Cursor",
+                    "short_description": "AI IDE.",
+                    "core_capabilities": ["codebase indexing"],
+                },
+            ],
+        },
+        "review": {
+            "tools": [
+                {
+                    "proposal_id": "tl1",
+                    "notes": None,
+                    "llm_item": {
+                        "name": "Cursor",
+                        "short_description": "AI IDE.",
+                        "core_capabilities": ["codebase indexing"],
+                    },
+                    "sections": {
+                        "name": {"status": "approved", "final_text": None, "notes": None},
+                        "short_description": {
+                            "status": "modified",
+                            "final_text": "Revised.",
+                            "notes": None,
+                        },
+                        "operational_relevance": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "core_capabilities": {
+                            "status": "approved",
+                            "final_list": None,
+                            "notes": None,
+                            "llm_list": ["codebase indexing"],
+                        },
+                    },
+                    "types": {
+                        "approved_types": ["coding-agent"],
+                        "proposed_new_type": None,
+                        "approved_new_type": False,
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 3
+
+
+def test_record_events_model_per_section(tmp_path: Path) -> None:
+    """Non-pending foundation model sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "6"},
+        "llm_output": {
+            "foundation_models": [
+                {
+                    "model_name": "GPT-5",
+                    "provider": "OpenAI",
+                    "operational_summary": "Strong for coding.",
+                    "core_capabilities": ["long-context"],
+                },
+            ],
+        },
+        "review": {
+            "foundation_models": [
+                {
+                    "proposal_id": "m1",
+                    "notes": None,
+                    "llm_item": {
+                        "model_name": "GPT-5",
+                        "provider": "OpenAI",
+                        "operational_summary": "Strong for coding.",
+                        "core_capabilities": ["long-context"],
+                    },
+                    "sections": {
+                        "model_name": {"status": "approved", "final_text": None, "notes": None},
+                        "provider": {
+                            "status": "modified",
+                            "final_text": "OpenAI Inc.",
+                            "notes": None,
+                        },
+                        "operational_summary": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "core_capabilities": {
+                            "status": "approved",
+                            "final_list": None,
+                            "notes": None,
+                            "llm_list": ["long-context"],
+                        },
+                    },
+                    "types": {
+                        "approved_types": ["frontier-model"],
+                        "proposed_new_type": None,
+                        "approved_new_type": False,
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 3
+
+
 def test_record_events_trend_per_section(tmp_path: Path) -> None:
     """Non-pending trend sections emit per-section feedback events."""
     db = tmp_path / "fb.sqlite"
@@ -389,6 +505,146 @@ def test_record_events_trend_per_section(tmp_path: Path) -> None:
                             "final_list": None,
                             "notes": None,
                             "llm_list": ["dp1"],
+                        },
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 2
+
+
+def test_record_events_source_type_detection(tmp_path: Path) -> None:
+    """Approved source_type_detection emits one feedback event."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "7"},
+        "llm_output": {
+            "source_type_detection": {
+                "detected_source_type": "ai_industry_roundup",
+                "confidence": 0.9,
+                "reasoning": ["Multi-item digest"],
+            },
+        },
+        "review": {
+            "source_type_detection": {
+                "status": "approved",
+                "notes": "Confirmed.",
+                "llm_item": {
+                    "detected_source_type": "ai_industry_roundup",
+                    "confidence": 0.9,
+                    "reasoning": ["Multi-item digest"],
+                },
+                "final_item": None,
+            },
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 1
+
+
+def test_record_events_roundup_signal_per_section(tmp_path: Path) -> None:
+    """Non-pending roundup signal sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "7"},
+        "llm_output": {
+            "roundup_signals": [
+                {
+                    "signal_title": "Sig",
+                    "signal_type": "trend",
+                    "suggested_destinations": ["topics/"],
+                },
+            ],
+        },
+        "review": {
+            "roundup_signals": [
+                {
+                    "proposal_id": "s1",
+                    "notes": None,
+                    "llm_item": {
+                        "signal_title": "Sig",
+                        "signal_type": "trend",
+                        "suggested_destinations": ["topics/"],
+                    },
+                    "sections": {
+                        "signal_title": {
+                            "status": "approved",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "signal_type": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "suggested_destinations": {
+                            "status": "modified",
+                            "final_list": ["trends/"],
+                            "notes": None,
+                            "llm_list": ["topics/"],
+                        },
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 2
+
+
+def test_record_events_interview_insight_per_section(tmp_path: Path) -> None:
+    """Non-pending interview insight sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "7"},
+        "llm_output": {
+            "interview_insights": [
+                {
+                    "insight_title": "Insight",
+                    "insight_type": "topic",
+                    "contrarian_or_speculative_claims": ["claim1"],
+                },
+            ],
+        },
+        "review": {
+            "interview_insights": [
+                {
+                    "proposal_id": "i1",
+                    "notes": None,
+                    "llm_item": {
+                        "insight_title": "Insight",
+                        "insight_type": "topic",
+                        "contrarian_or_speculative_claims": ["claim1"],
+                    },
+                    "sections": {
+                        "insight_title": {
+                            "status": "approved",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "insight_type": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "contrarian_or_speculative_claims": {
+                            "status": "rejected",
+                            "final_list": None,
+                            "notes": None,
+                            "llm_list": ["claim1"],
                         },
                     },
                     "tags": {

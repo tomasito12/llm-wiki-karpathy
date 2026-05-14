@@ -18,7 +18,15 @@ from src.ingest_review.schema import (
     HOWTO_SCALAR_KEYS,
     IMPL_STUDY_LIST_KEYS,
     IMPL_STUDY_SCALAR_KEYS,
+    INSIGHT_LIST_KEYS,
+    INSIGHT_SCALAR_KEYS,
+    MODEL_LIST_KEYS,
+    MODEL_SCALAR_KEYS,
+    SIGNAL_LIST_KEYS,
+    SIGNAL_SCALAR_KEYS,
     SOURCE_SUMMARY_SCALAR_KEYS,
+    TOOL_LIST_KEYS,
+    TOOL_SCALAR_KEYS,
     TOPIC_LIST_KEYS,
     TOPIC_SCALAR_KEYS,
     TREND_LIST_KEYS,
@@ -205,23 +213,35 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
     trends_review = build_per_section(
         llm.get("industry_trends") or [], TREND_SCALAR_KEYS, TREND_LIST_KEYS
     )
+    tools_review = build_per_section(llm.get("tools") or [], TOOL_SCALAR_KEYS, TOOL_LIST_KEYS)
+    models_review = build_per_section(
+        llm.get("foundation_models") or [], MODEL_SCALAR_KEYS, MODEL_LIST_KEYS
+    )
+    signals_review = build_per_section(
+        llm.get("roundup_signals") or [], SIGNAL_SCALAR_KEYS, SIGNAL_LIST_KEYS
+    )
+    insights_review = build_per_section(
+        llm.get("interview_insights") or [], INSIGHT_SCALAR_KEYS, INSIGHT_LIST_KEYS
+    )
 
-    roundup = llm.get("roundup") or {}
+    source_type = llm.get("source_type_detection") or {}
     return {
         "source_summary": review_summary,
+        "source_type_detection": {
+            "status": "pending",
+            "notes": None,
+            "llm_item": copy.deepcopy(source_type),
+            "final_item": None,
+        },
         "glossary": glossary_review,
-        "tools": wrap_list(llm.get("tools") or [], "tools"),
-        "foundation_models": wrap_list(llm.get("foundation_models") or [], "foundation_models"),
+        "tools": tools_review,
+        "foundation_models": models_review,
         "how_to": howto_review,
         "topics": topics_review,
         "implementation_studies": impl_review,
         "industry_trends": trends_review,
-        "roundup": {
-            "status": "pending",
-            "notes": None,
-            "llm_item": copy.deepcopy(roundup),
-            "final_item": None,
-        },
+        "roundup_signals": signals_review,
+        "interview_insights": insights_review,
     }
 
 
@@ -529,7 +549,7 @@ def _migrate_flat_to_per_section(
 def migrate_artifact_to_v4(artifact: dict[str, Any]) -> dict[str, Any]:
     """Upgrade artifact from v3 to v4: per-section for howto/trends, add topics."""
     ver = int(artifact.get("artifact_schema_version") or 1)
-    if ver >= ARTIFACT_SCHEMA_VERSION:
+    if ver >= 4:
         return artifact
 
     llm = artifact.setdefault("llm_output", {})
@@ -546,7 +566,109 @@ def migrate_artifact_to_v4(artifact: dict[str, Any]) -> dict[str, Any]:
         fresh = default_review_for_llm_output(llm)
         review["topics"] = fresh.get("topics", [])
 
-    artifact["artifact_schema_version"] = ARTIFACT_SCHEMA_VERSION
+    artifact["artifact_schema_version"] = 4
+    return artifact
+
+
+def migrate_artifact_to_v5(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact from v4 to v5: per-section tools, proposed_tags → proposed_types."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 5:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    review = artifact.setdefault("review", {})
+
+    for tool_item in llm.get("tools") or []:
+        if not isinstance(tool_item, dict):
+            continue
+        if "proposed_tags" in tool_item and "proposed_types" not in tool_item:
+            tool_item["proposed_types"] = tool_item.pop("proposed_tags")
+        if "tool_type" in tool_item and "proposed_types" not in tool_item:
+            old_type = tool_item.pop("tool_type")
+            tool_item["proposed_types"] = [old_type] if old_type else []
+
+    _migrate_flat_to_per_section(llm, review, "tools", "tools", TOOL_SCALAR_KEYS, TOOL_LIST_KEYS)
+
+    artifact["artifact_schema_version"] = 5
+    return artifact
+
+
+def migrate_artifact_to_v6(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact from v5 to v6: per-section foundation_models, enriched schema."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 6:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    review = artifact.setdefault("review", {})
+
+    _migrate_flat_to_per_section(
+        llm,
+        review,
+        "foundation_models",
+        "foundation_models",
+        MODEL_SCALAR_KEYS,
+        MODEL_LIST_KEYS,
+    )
+
+    artifact["artifact_schema_version"] = 6
+    return artifact
+
+
+def migrate_artifact_to_v7(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact from v6 to v7: replace roundup with source_type_detection.
+
+    Converts old ``RoundupDetection`` (``is_roundup`` boolean) into
+    ``SourceTypeDetection`` and initialises empty ``roundup_signals`` /
+    ``interview_insights`` arrays.
+    """
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 7:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    review = artifact.setdefault("review", {})
+
+    old_roundup = llm.pop("roundup", None) or {}
+    if "source_type_detection" not in llm:
+        detected = "unknown"
+        if isinstance(old_roundup, dict) and old_roundup.get("is_roundup"):
+            detected = "ai_industry_roundup"
+        reasoning_raw = old_roundup.get("reasoning", "") if isinstance(old_roundup, dict) else ""
+        reasoning_list = [reasoning_raw] if reasoning_raw else []
+        llm["source_type_detection"] = {
+            "detected_source_type": detected,
+            "confidence": old_roundup.get("confidence", 0.0)
+            if isinstance(old_roundup, dict)
+            else 0.0,
+            "reasoning": reasoning_list,
+        }
+
+    llm.setdefault("roundup_signals", [])
+    llm.setdefault("interview_insights", [])
+
+    old_roundup_review = review.pop("roundup", None)
+    if "source_type_detection" not in review:
+        review["source_type_detection"] = {
+            "status": old_roundup_review.get("status", "pending")
+            if isinstance(old_roundup_review, dict)
+            else "pending",
+            "notes": old_roundup_review.get("notes")
+            if isinstance(old_roundup_review, dict)
+            else None,
+            "llm_item": copy.deepcopy(llm["source_type_detection"]),
+            "final_item": None,
+        }
+
+    if "roundup_signals" not in review:
+        fresh = default_review_for_llm_output(llm)
+        review["roundup_signals"] = fresh.get("roundup_signals", [])
+    if "interview_insights" not in review:
+        fresh = default_review_for_llm_output(llm)
+        review["interview_insights"] = fresh.get("interview_insights", [])
+
+    artifact["artifact_schema_version"] = 7
     return artifact
 
 
@@ -576,7 +698,10 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = json.loads(path.read_text(encoding="utf-8"))
     data = migrate_artifact_to_v2(data)
     data = migrate_artifact_to_v3(data)
-    return migrate_artifact_to_v4(data)
+    data = migrate_artifact_to_v4(data)
+    data = migrate_artifact_to_v5(data)
+    data = migrate_artifact_to_v6(data)
+    return migrate_artifact_to_v7(data)
 
 
 def save_artifact(path: Path, payload: dict[str, Any]) -> None:
@@ -649,9 +774,9 @@ def aggregate_review_status(artifact: dict[str, Any]) -> str:
     for _k, v in ss.items():
         if isinstance(v, dict) and "status" in v:
             collect(str(v["status"]))
-    roundup = review.get("roundup")
-    if isinstance(roundup, dict) and "status" in roundup:
-        collect(str(roundup["status"]))
+    src_type = review.get("source_type_detection")
+    if isinstance(src_type, dict) and "status" in src_type:
+        collect(str(src_type["status"]))
     for glossary_node in review.get("glossary") or []:
         if not isinstance(glossary_node, dict):
             continue
@@ -662,14 +787,16 @@ def aggregate_review_status(artifact: dict[str, Any]) -> str:
                     collect(str(gv["status"]))
         elif "status" in glossary_node:
             collect(str(glossary_node["status"]))
-    for key in (
-        "tools",
+    per_section_keys = (
         "foundation_models",
-    ):
-        for item in review.get(key) or []:
-            if isinstance(item, dict) and "status" in item:
-                collect(str(item["status"]))
-    for per_section_key in ("topics", "how_to", "industry_trends"):
+        "tools",
+        "topics",
+        "how_to",
+        "industry_trends",
+        "roundup_signals",
+        "interview_insights",
+    )
+    for per_section_key in per_section_keys:
         for ps_node in review.get(per_section_key) or []:
             if not isinstance(ps_node, dict):
                 continue

@@ -14,6 +14,9 @@ from src.ingest_review.artifact import (
     migrate_artifact_to_v2,
     migrate_artifact_to_v3,
     migrate_artifact_to_v4,
+    migrate_artifact_to_v5,
+    migrate_artifact_to_v6,
+    migrate_artifact_to_v7,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -26,6 +29,14 @@ from src.ingest_review.schema import (
     HOWTO_SCALAR_KEYS,
     IMPL_STUDY_LIST_KEYS,
     IMPL_STUDY_SCALAR_KEYS,
+    INSIGHT_LIST_KEYS,
+    INSIGHT_SCALAR_KEYS,
+    MODEL_LIST_KEYS,
+    MODEL_SCALAR_KEYS,
+    SIGNAL_LIST_KEYS,
+    SIGNAL_SCALAR_KEYS,
+    TOOL_LIST_KEYS,
+    TOOL_SCALAR_KEYS,
     TOPIC_LIST_KEYS,
     TOPIC_SCALAR_KEYS,
     TREND_LIST_KEYS,
@@ -53,7 +64,9 @@ def test_default_review_all_pending() -> None:
     assert rev["source_summary"]["summary"]["status"] == "pending"
     assert rev["source_summary"]["why_it_matters"]["status"] == "pending"
     assert rev["source_summary"]["key_insights"]["llm_list"] == []
-    assert rev["roundup"]["status"] == "pending"
+    assert rev["source_type_detection"]["status"] == "pending"
+    assert rev["roundup_signals"] == []
+    assert rev["interview_insights"] == []
 
 
 def test_migrate_v1_artifact_maps_legacy_source_summary_fields() -> None:
@@ -106,9 +119,9 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 4
+    assert art["artifact_schema_version"] == 7
     assert art["source"]["source_id"] == stem
-    assert art["llm_output"]["roundup"]["is_roundup"] is False
+    assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
     assert "implementation_studies" in art["review"]
     assert "enterprise_studies" not in art["review"]
 
@@ -534,4 +547,397 @@ def test_aggregate_review_status_includes_topic_sections(tmp_path: Path) -> None
     assert aggregate_review_status(art) == "all_pending"
     t_sections = art["review"]["topics"][0]["sections"]
     t_sections["topic_slug"]["status"] = "approved"
+    assert aggregate_review_status(art) == "mixed"
+
+
+def test_default_review_builds_tool_per_section_nodes() -> None:
+    """Tool proposals get per-section review nodes."""
+    llm: dict[str, Any] = {
+        "tools": [
+            {
+                "name": "Cursor",
+                "short_description": "AI coding assistant.",
+                "operational_relevance": "Improves coding.",
+                "core_capabilities": ["codebase indexing"],
+                "integration_ecosystem": ["MCP"],
+                "related_tools": ["Claude Code"],
+            },
+        ],
+        "source_summary": {},
+    }
+    rev = default_review_for_llm_output(llm)
+    tools = rev["tools"]
+    assert len(tools) == 1
+    node = tools[0]
+    assert "proposal_id" in node
+    assert "sections" in node
+    assert "tags" in node
+    sections = node["sections"]
+    for sk in TOOL_SCALAR_KEYS:
+        assert sk in sections
+        assert sections[sk]["status"] == "pending"
+    for lk in TOOL_LIST_KEYS:
+        assert lk in sections
+        assert sections[lk]["status"] == "pending"
+        assert isinstance(sections[lk]["llm_list"], list)
+    assert sections["core_capabilities"]["llm_list"] == ["codebase indexing"]
+    assert sections["related_tools"]["llm_list"] == ["Claude Code"]
+
+
+def test_migrate_v4_to_v5_converts_flat_tools() -> None:
+    """migrate_artifact_to_v5 rebuilds flat tools nodes to per-section."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 4,
+        "llm_output": {
+            "source_summary": {},
+            "tools": [
+                {"name": "Cursor", "short_description": "IDE.", "proposed_tags": ["coding-agent"]},
+            ],
+        },
+        "review": {
+            "source_summary": {},
+            "tools": [
+                {
+                    "proposal_id": "old-id",
+                    "status": "pending",
+                    "notes": None,
+                    "llm_item": {"name": "Cursor", "proposed_tags": ["coding-agent"]},
+                    "final_item": None,
+                    "reviewer_tags_added": [],
+                },
+            ],
+        },
+    }
+    migrate_artifact_to_v5(art)
+    assert art["artifact_schema_version"] == 5
+    tools = art["review"]["tools"]
+    assert len(tools) == 1
+    assert "sections" in tools[0]
+    llm_tool = art["llm_output"]["tools"][0]
+    assert "proposed_types" in llm_tool
+    assert llm_tool["proposed_types"] == ["coding-agent"]
+    assert "proposed_tags" not in llm_tool
+
+
+def test_migrate_v5_is_noop_on_v5() -> None:
+    """Calling migrate_artifact_to_v5 on a v5 artifact is a no-op."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 5,
+        "llm_output": {"tools": []},
+        "review": {"tools": []},
+    }
+    migrate_artifact_to_v5(art)
+    assert art["artifact_schema_version"] == 5
+
+
+def test_migrate_v5_handles_tool_type_to_proposed_types() -> None:
+    """migrate_artifact_to_v5 converts legacy tool_type string to proposed_types list."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 4,
+        "llm_output": {
+            "source_summary": {},
+            "tools": [
+                {"name": "Ollama", "tool_type": "local-llm-tooling"},
+            ],
+        },
+        "review": {
+            "source_summary": {},
+            "tools": [
+                {
+                    "proposal_id": "old",
+                    "status": "pending",
+                    "notes": None,
+                    "llm_item": {"name": "Ollama", "tool_type": "local-llm-tooling"},
+                    "final_item": None,
+                    "reviewer_tags_added": [],
+                },
+            ],
+        },
+    }
+    migrate_artifact_to_v5(art)
+    llm_tool = art["llm_output"]["tools"][0]
+    assert llm_tool.get("proposed_types") == ["local-llm-tooling"]
+
+
+def test_aggregate_review_status_includes_tool_sections(tmp_path: Path) -> None:
+    """aggregate_review_status counts tool per-section statuses."""
+    doc = _minimal_doc(tmp_path)
+    from src.ingest_review.schema import ToolProposal
+
+    parsed = LlmClassificationOutput(tools=[ToolProposal(name="Cursor", short_description="IDE.")])
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    assert aggregate_review_status(art) == "all_pending"
+    t_sections = art["review"]["tools"][0]["sections"]
+    t_sections["name"]["status"] = "approved"
+    assert aggregate_review_status(art) == "mixed"
+
+
+def test_default_review_builds_model_per_section_nodes() -> None:
+    """Foundation model proposals get per-section review nodes."""
+    llm: dict[str, Any] = {
+        "foundation_models": [
+            {
+                "model_name": "GPT-5",
+                "provider": "OpenAI",
+                "operational_summary": "Strong for coding.",
+                "core_capabilities": ["long-context", "tool calling"],
+                "benchmark_observations": ["SWE-Bench leader"],
+                "comparative_observations": ["outperforms Claude"],
+                "related_models": ["GPT-4o"],
+            },
+        ],
+        "source_summary": {},
+    }
+    rev = default_review_for_llm_output(llm)
+    models = rev["foundation_models"]
+    assert len(models) == 1
+    node = models[0]
+    assert "proposal_id" in node
+    assert "sections" in node
+    assert "tags" in node
+    sections = node["sections"]
+    for sk in MODEL_SCALAR_KEYS:
+        assert sk in sections
+        assert sections[sk]["status"] == "pending"
+    for lk in MODEL_LIST_KEYS:
+        assert lk in sections
+        assert sections[lk]["status"] == "pending"
+        assert isinstance(sections[lk]["llm_list"], list)
+    assert sections["core_capabilities"]["llm_list"] == ["long-context", "tool calling"]
+    assert sections["related_models"]["llm_list"] == ["GPT-4o"]
+
+
+def test_migrate_v5_to_v6_converts_flat_models() -> None:
+    """migrate_artifact_to_v6 rebuilds flat foundation_models nodes to per-section."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 5,
+        "llm_output": {
+            "source_summary": {},
+            "foundation_models": [
+                {"model_name": "GPT-5", "provider": "OpenAI", "article_summary": "Old summary."},
+            ],
+        },
+        "review": {
+            "source_summary": {},
+            "foundation_models": [
+                {
+                    "proposal_id": "old-id",
+                    "status": "pending",
+                    "notes": None,
+                    "llm_item": {"model_name": "GPT-5", "article_summary": "Old summary."},
+                    "final_item": None,
+                    "reviewer_tags_added": [],
+                },
+            ],
+        },
+    }
+    migrate_artifact_to_v6(art)
+    assert art["artifact_schema_version"] == 6
+    models = art["review"]["foundation_models"]
+    assert len(models) == 1
+    assert "sections" in models[0]
+
+
+def test_migrate_v6_is_noop_on_v6() -> None:
+    """Calling migrate_artifact_to_v6 on a v6 artifact is a no-op."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 6,
+        "llm_output": {"foundation_models": []},
+        "review": {"foundation_models": []},
+    }
+    migrate_artifact_to_v6(art)
+    assert art["artifact_schema_version"] == 6
+
+
+def test_aggregate_review_status_includes_model_sections(tmp_path: Path) -> None:
+    """aggregate_review_status counts foundation model per-section statuses."""
+    doc = _minimal_doc(tmp_path)
+    from src.ingest_review.schema import FoundationModelProposal
+
+    parsed = LlmClassificationOutput(
+        foundation_models=[FoundationModelProposal(model_name="GPT-5", provider="OpenAI")]
+    )
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    assert aggregate_review_status(art) == "all_pending"
+    m_sections = art["review"]["foundation_models"][0]["sections"]
+    m_sections["model_name"]["status"] = "approved"
+    assert aggregate_review_status(art) == "mixed"
+
+
+def test_migrate_v6_to_v7_converts_roundup_to_source_type() -> None:
+    """migrate_artifact_to_v7 converts roundup to source_type_detection."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 6,
+        "llm_output": {
+            "source_summary": {},
+            "roundup": {"is_roundup": True, "reasoning": "Multi-item digest.", "confidence": 0.9},
+        },
+        "review": {
+            "source_summary": {},
+            "roundup": {
+                "status": "approved",
+                "notes": "Confirmed roundup.",
+                "llm_item": {"is_roundup": True, "reasoning": "digest", "confidence": 0.9},
+                "final_item": None,
+            },
+        },
+    }
+    migrate_artifact_to_v7(art)
+    assert art["artifact_schema_version"] == 7
+    assert "roundup" not in art["llm_output"]
+    assert "roundup" not in art["review"]
+    std = art["llm_output"]["source_type_detection"]
+    assert std["detected_source_type"] == "ai_industry_roundup"
+    assert std["confidence"] == 0.9
+    assert std["reasoning"] == ["Multi-item digest."]
+    rev_std = art["review"]["source_type_detection"]
+    assert rev_std["status"] == "approved"
+    assert rev_std["notes"] == "Confirmed roundup."
+    assert art["llm_output"]["roundup_signals"] == []
+    assert art["llm_output"]["interview_insights"] == []
+    assert art["review"]["roundup_signals"] == []
+    assert art["review"]["interview_insights"] == []
+
+
+def test_migrate_v7_non_roundup_maps_to_unknown() -> None:
+    """migrate_artifact_to_v7 with is_roundup=False maps to unknown."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 6,
+        "llm_output": {
+            "source_summary": {},
+            "roundup": {"is_roundup": False, "reasoning": "", "confidence": 0.0},
+        },
+        "review": {
+            "source_summary": {},
+            "roundup": {"status": "pending", "notes": None, "llm_item": {}, "final_item": None},
+        },
+    }
+    migrate_artifact_to_v7(art)
+    assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
+
+
+def test_migrate_v7_is_noop_on_v7() -> None:
+    """Calling migrate_artifact_to_v7 on a v7 artifact is a no-op."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 7,
+        "llm_output": {"source_type_detection": {"detected_source_type": "unknown"}},
+        "review": {"source_type_detection": {}},
+    }
+    migrate_artifact_to_v7(art)
+    assert art["artifact_schema_version"] == 7
+
+
+def test_default_review_builds_signal_per_section_nodes() -> None:
+    """Roundup signal proposals get per-section review nodes."""
+    llm: dict[str, Any] = {
+        "roundup_signals": [
+            {
+                "signal_title": "Context pipelines becoming product boundary",
+                "signal_type": "trend",
+                "summary": "Pattern observed.",
+                "suggested_destinations": ["topics/"],
+                "mentioned_entities": ["OpenAI"],
+                "evidence_snippets": ["quote1"],
+            },
+        ],
+        "source_summary": {},
+    }
+    rev = default_review_for_llm_output(llm)
+    signals = rev["roundup_signals"]
+    assert len(signals) == 1
+    node = signals[0]
+    assert "proposal_id" in node
+    assert "sections" in node
+    sections = node["sections"]
+    for sk in SIGNAL_SCALAR_KEYS:
+        assert sk in sections
+        assert sections[sk]["status"] == "pending"
+    for lk in SIGNAL_LIST_KEYS:
+        assert lk in sections
+        assert sections[lk]["status"] == "pending"
+        assert isinstance(sections[lk]["llm_list"], list)
+    assert sections["suggested_destinations"]["llm_list"] == ["topics/"]
+    assert sections["mentioned_entities"]["llm_list"] == ["OpenAI"]
+
+
+def test_default_review_builds_insight_per_section_nodes() -> None:
+    """Interview insight proposals get per-section review nodes."""
+    llm: dict[str, Any] = {
+        "interview_insights": [
+            {
+                "insight_title": "Harness quality > model quality",
+                "insight_type": "topic",
+                "summary": "Key argument.",
+                "suggested_destinations": ["topics/"],
+                "mentioned_entities": ["Anthropic"],
+                "contrarian_or_speculative_claims": ["claim1"],
+                "evidence_snippets": ["quote1"],
+            },
+        ],
+        "source_summary": {},
+    }
+    rev = default_review_for_llm_output(llm)
+    insights = rev["interview_insights"]
+    assert len(insights) == 1
+    node = insights[0]
+    assert "proposal_id" in node
+    assert "sections" in node
+    sections = node["sections"]
+    for sk in INSIGHT_SCALAR_KEYS:
+        assert sk in sections
+        assert sections[sk]["status"] == "pending"
+    for lk in INSIGHT_LIST_KEYS:
+        assert lk in sections
+        assert sections[lk]["status"] == "pending"
+        assert isinstance(sections[lk]["llm_list"], list)
+    assert sections["contrarian_or_speculative_claims"]["llm_list"] == ["claim1"]
+
+
+def test_aggregate_review_status_includes_signal_sections(tmp_path: Path) -> None:
+    """aggregate_review_status counts roundup signal per-section statuses."""
+    doc = _minimal_doc(tmp_path)
+    from src.ingest_review.schema import RoundupSignal
+
+    parsed = LlmClassificationOutput(
+        roundup_signals=[RoundupSignal(signal_title="sig", signal_type="trend")]
+    )
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    assert aggregate_review_status(art) == "all_pending"
+    s_sections = art["review"]["roundup_signals"][0]["sections"]
+    s_sections["signal_title"]["status"] = "approved"
+    assert aggregate_review_status(art) == "mixed"
+
+
+def test_aggregate_review_status_includes_insight_sections(tmp_path: Path) -> None:
+    """aggregate_review_status counts interview insight per-section statuses."""
+    doc = _minimal_doc(tmp_path)
+    from src.ingest_review.schema import InterviewInsight
+
+    parsed = LlmClassificationOutput(
+        interview_insights=[InterviewInsight(insight_title="ins", insight_type="topic")]
+    )
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    assert aggregate_review_status(art) == "all_pending"
+    i_sections = art["review"]["interview_insights"][0]["sections"]
+    i_sections["insight_title"]["status"] = "approved"
     assert aggregate_review_status(art) == "mixed"

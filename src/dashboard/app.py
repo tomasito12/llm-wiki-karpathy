@@ -28,9 +28,8 @@ from src.ingest_review.artifact import (
     touch_review_session,
 )
 from src.ingest_review.dashboard_ui import (
-    render_all_proposal_sections,
-    render_roundup_review,
     render_source_summary_review,
+    render_source_type_detection,
 )
 from src.ingest_review.extract import (
     list_readwise_html_sources,
@@ -50,22 +49,35 @@ from src.ingest_review.impl_study_ui import (
     collect_approved_new_tags,
     render_implementation_studies,
 )
+from src.ingest_review.insights_ui import render_interview_insights
+from src.ingest_review.models_ui import (
+    collect_model_approved_new_types,
+    render_model_proposals,
+)
 from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.schema import PROMPT_VERSION
+from src.ingest_review.signals_ui import render_roundup_signals
 from src.ingest_review.tags import (
     append_tags_to_yaml,
     default_glossary_tags_path,
     default_howto_tags_path,
     default_impl_study_tags_path,
+    default_model_types_path,
+    default_tool_types_path,
     default_topic_tags_path,
     default_trend_tags_path,
     load_glossary_tags,
     load_howto_tags,
     load_impl_study_tags,
-    load_tool_tags,
+    load_model_types,
+    load_tool_types,
     load_topic_tags,
     load_trend_tags,
+)
+from src.ingest_review.tools_ui import (
+    collect_tool_approved_new_types,
+    render_tool_proposals,
 )
 from src.ingest_review.topics_ui import (
     collect_topic_approved_new_tags,
@@ -111,14 +123,17 @@ def main() -> None:
             else "API key: **not set** — add `OPENAI_API_KEY` to `.env` at repo root."
         )
 
-    tool_tags = load_tool_tags(root)
+    tool_types = load_tool_types(root)
+    model_types = load_model_types(root)
     howto_tags = load_howto_tags(root)
     impl_study_tags = load_impl_study_tags(root)
     glossary_tags = load_glossary_tags(root)
     topic_tags = load_topic_tags(root)
     trend_tags = load_trend_tags(root)
-    if not tool_tags:
-        st.warning("No tool tags loaded — check ``config/review_tags_tools.yaml``.")
+    if not tool_types:
+        st.warning("No tool types loaded — check ``config/review_tool_types.yaml``.")
+    if not model_types:
+        st.warning("No model types loaded — check ``config/review_model_types.yaml``.")
     if not howto_tags:
         st.warning("No how-to tags loaded — check ``config/review_tags_howto.yaml``.")
     if not impl_study_tags:
@@ -213,12 +228,13 @@ def main() -> None:
                         provider,
                         doc,
                         wiki_root=wiki_root,
-                        tool_tags=tool_tags,
+                        tool_types=tool_types,
                         howto_tags=howto_tags,
                         impl_study_tags=impl_study_tags,
                         glossary_tags=glossary_tags,
                         topic_tags=topic_tags,
                         trend_tags=trend_tags,
+                        model_types=model_types,
                         model=model,
                         prompt_version=prompt_version,
                     )
@@ -291,6 +307,69 @@ def main() -> None:
         f"Artifact schema v{artifact.get('artifact_schema_version', '?')} · "
         f"Review mix: **{aggregate_review_status(artifact)}**"
     )
+
+    llm_detection = (artifact.get("llm_output") or {}).get("source_type_detection") or {}
+    detected_type = llm_detection.get("detected_source_type") or "unknown"
+    detection_conf = llm_detection.get("confidence") or 0
+    detection_reasons = llm_detection.get("reasoning") or []
+    source_type_options: list[str] = [
+        "standard_article",
+        "ai_industry_roundup",
+        "interview_or_transcript",
+        "technical_howto",
+        "research_paper_or_report",
+        "unknown",
+    ]
+    with st.container():
+        st.markdown("---")
+        c_det, c_over = st.columns([2, 1])
+        with c_det:
+            st.markdown(
+                f"**Detected source type:** `{detected_type}` (confidence: {detection_conf:.0%})"
+            )
+            if detection_reasons:
+                for r in detection_reasons:
+                    st.caption(f"- {r}")
+        with c_over:
+            override_val = st.selectbox(
+                "Override source type",
+                options=["(keep detected)"] + source_type_options,
+                index=0,
+                key=f"{key_prefix}_srctype_override",
+            )
+            if override_val != "(keep detected)" and st.button(
+                "Re-analyze with override", key=f"{key_prefix}_reanalyze_override"
+            ):
+                if not os.environ.get("OPENAI_API_KEY"):
+                    st.error("OPENAI_API_KEY is not set.")
+                else:
+                    try:
+                        provider = OpenAIIngestionProvider()
+                        artifact, _parsed = run_classification(
+                            provider,
+                            doc,
+                            wiki_root=wiki_root,
+                            tool_types=tool_types,
+                            howto_tags=howto_tags,
+                            impl_study_tags=impl_study_tags,
+                            glossary_tags=glossary_tags,
+                            topic_tags=topic_tags,
+                            trend_tags=trend_tags,
+                            model_types=model_types,
+                            source_type_override=str(override_val),
+                            model=model,
+                            prompt_version=prompt_version,
+                        )
+                        st.session_state["artifact"] = artifact
+                        st.session_state["artifact_source_id"] = source_id
+                        st.success(f"Re-analysis complete (override: {override_val}).")
+                        st.rerun()
+                    except Exception as exc:  # noqa: BLE001
+                        st.error(f"Re-analysis failed: {exc}")
+                        with st.expander("Traceback"):
+                            st.text(traceback.format_exc())
+        st.markdown("---")
+
     tabs = st.tabs(
         [
             "Source chapters",
@@ -298,9 +377,12 @@ def main() -> None:
             "Topics",
             "How-tos",
             "Trends",
-            "Classifications",
+            "Tools",
+            "Models",
             "Impl studies",
-            "Roundup",
+            "Signals",
+            "Insights",
+            "Source type",
             "Debug",
         ]
     )
@@ -335,22 +417,33 @@ def main() -> None:
             trend_tags=trend_tags,
         )
     with tabs[5]:
-        render_all_proposal_sections(
+        render_tool_proposals(
             st,
             artifact,
             key_prefix=key_prefix,
-            tool_tags=tool_tags,
+            tool_types=tool_types,
         )
     with tabs[6]:
+        render_model_proposals(
+            st,
+            artifact,
+            key_prefix=key_prefix,
+            model_types=model_types,
+        )
+    with tabs[7]:
         render_implementation_studies(
             st,
             artifact,
             key_prefix=key_prefix,
             impl_study_tags=impl_study_tags,
         )
-    with tabs[7]:
-        render_roundup_review(st, artifact, key_prefix=key_prefix)
     with tabs[8]:
+        render_roundup_signals(st, artifact, key_prefix=key_prefix)
+    with tabs[9]:
+        render_interview_insights(st, artifact, key_prefix=key_prefix)
+    with tabs[10]:
+        render_source_type_detection(st, artifact, key_prefix=key_prefix)
+    with tabs[11]:
         st.json(artifact.get("llm_output"))
 
     if st.button("Save review artifact"):
@@ -396,6 +489,20 @@ def main() -> None:
                 st.caption(f"Appended {len(new_trend_tags)} trend tag(s) to allowlist.")
             except OSError as exc:
                 st.warning(f"Trend tag allowlist update skipped: {exc}")
+        new_tool_types = collect_tool_approved_new_types(artifact)
+        if new_tool_types:
+            try:
+                append_tags_to_yaml(default_tool_types_path(root), new_tool_types)
+                st.caption(f"Appended {len(new_tool_types)} tool type(s) to registry.")
+            except OSError as exc:
+                st.warning(f"Tool type registry update skipped: {exc}")
+        new_model_types = collect_model_approved_new_types(artifact)
+        if new_model_types:
+            try:
+                append_tags_to_yaml(default_model_types_path(root), new_model_types)
+                st.caption(f"Appended {len(new_model_types)} model type(s) to registry.")
+            except OSError as exc:
+                st.warning(f"Model type registry update skipped: {exc}")
         st.success(f"Saved to {artifact_path}")
 
     st.caption(f"Artifact path: {artifact_path}")
