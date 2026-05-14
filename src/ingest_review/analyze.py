@@ -20,6 +20,8 @@ def apply_tag_allowlists(
     tool_tags: set[str],
     howto_tags: set[str],
     glossary_tags: set[str] | None = None,
+    topic_tags: set[str] | None = None,
+    trend_tags: set[str] | None = None,
 ) -> LlmClassificationOutput:
     """Drop LLM-proposed tags that are not on the allowlists."""
     new_tools = [
@@ -35,8 +37,24 @@ def apply_tag_allowlists(
         gp.model_copy(update={"proposed_tags": [x for x in gp.proposed_tags if x in gt]})
         for gp in parsed.glossary
     ]
+    tt = topic_tags or set()
+    new_topics = [
+        tc.model_copy(update={"proposed_tags": [x for x in tc.proposed_tags if x in tt]})
+        for tc in parsed.topics
+    ]
+    trt = trend_tags or set()
+    new_trends = [
+        tr.model_copy(update={"proposed_tags": [x for x in tr.proposed_tags if x in trt]})
+        for tr in parsed.industry_trends
+    ]
     return parsed.model_copy(
-        update={"tools": new_tools, "how_to": new_how, "glossary": new_glossary}
+        update={
+            "tools": new_tools,
+            "how_to": new_how,
+            "glossary": new_glossary,
+            "topics": new_topics,
+            "industry_trends": new_trends,
+        }
     )
 
 
@@ -49,6 +67,8 @@ def run_classification(
     howto_tags: list[str],
     impl_study_tags: list[str] | None = None,
     glossary_tags: list[str] | None = None,
+    topic_tags: list[str] | None = None,
+    trend_tags: list[str] | None = None,
     model: str,
     prompt_version: str | None = None,
 ) -> tuple[dict[str, object], LlmClassificationOutput]:
@@ -62,13 +82,22 @@ def run_classification(
         howto_tags_allowlist=howto_tags,
         impl_study_tags_allowlist=impl_study_tags,
         glossary_tags_allowlist=glossary_tags,
+        topic_tags_allowlist=topic_tags,
+        trend_tags_allowlist=trend_tags,
         model=model,
         prompt_version=pv,
     )
     parsed = parsed.model_copy(
         update={"source_summary": normalize_source_summary(parsed.source_summary)}
     )
-    parsed = apply_tag_allowlists(parsed, set(tool_tags), set(howto_tags), set(glossary_tags or []))
+    parsed = apply_tag_allowlists(
+        parsed,
+        set(tool_tags),
+        set(howto_tags),
+        set(glossary_tags or []),
+        set(topic_tags or []),
+        set(trend_tags or []),
+    )
     analysis_meta = default_analysis_meta(
         provider=provider.provider_name,
         model=model,

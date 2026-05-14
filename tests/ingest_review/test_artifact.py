@@ -13,6 +13,7 @@ from src.ingest_review.artifact import (
     default_review_for_llm_output,
     migrate_artifact_to_v2,
     migrate_artifact_to_v3,
+    migrate_artifact_to_v4,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -21,8 +22,14 @@ from src.ingest_review.extract import SourceDocument, load_readwise_pair
 from src.ingest_review.schema import (
     GLOSSARY_LIST_KEYS,
     GLOSSARY_SCALAR_KEYS,
+    HOWTO_LIST_KEYS,
+    HOWTO_SCALAR_KEYS,
     IMPL_STUDY_LIST_KEYS,
     IMPL_STUDY_SCALAR_KEYS,
+    TOPIC_LIST_KEYS,
+    TOPIC_SCALAR_KEYS,
+    TREND_LIST_KEYS,
+    TREND_SCALAR_KEYS,
     LlmClassificationOutput,
 )
 
@@ -99,7 +106,7 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 3
+    assert art["artifact_schema_version"] == 4
     assert art["source"]["source_id"] == stem
     assert art["llm_output"]["roundup"]["is_roundup"] is False
     assert "implementation_studies" in art["review"]
@@ -201,7 +208,7 @@ def test_migrate_v2_to_v3_renames_enterprise_studies() -> None:
 
 
 def test_migrate_v3_is_noop_on_v3() -> None:
-    """Calling migrate_artifact_to_v3 on a v3 artifact is a no-op."""
+    """Calling migrate_artifact_to_v3 on a v3+ artifact is a no-op."""
     art: dict[str, Any] = {
         "artifact_schema_version": 3,
         "llm_output": {"implementation_studies": []},
@@ -358,4 +365,173 @@ def test_aggregate_review_status_includes_impl_study_sections(tmp_path: Path) ->
     assert aggregate_review_status(art) == "all_pending"
     impl_sections = art["review"]["implementation_studies"][0]["sections"]
     impl_sections["title"]["status"] = "approved"
+    assert aggregate_review_status(art) == "mixed"
+
+
+def test_default_review_builds_topic_per_section_nodes() -> None:
+    """Topic contributions get per-section review nodes."""
+    llm: dict[str, Any] = {
+        "topics": [
+            {
+                "topic_slug": "context-engineering",
+                "topic_title": "Context Engineering",
+                "knowledge_summary": "Summary.",
+                "key_points": ["point1"],
+                "related_topics": ["prompt-engineering"],
+            },
+        ],
+        "source_summary": {},
+    }
+    rev = default_review_for_llm_output(llm)
+    topics = rev["topics"]
+    assert len(topics) == 1
+    node = topics[0]
+    assert "proposal_id" in node
+    assert "sections" in node
+    assert "tags" in node
+    sections = node["sections"]
+    for sk in TOPIC_SCALAR_KEYS:
+        assert sk in sections
+        assert sections[sk]["status"] == "pending"
+    for lk in TOPIC_LIST_KEYS:
+        assert lk in sections
+        assert sections[lk]["status"] == "pending"
+        assert isinstance(sections[lk]["llm_list"], list)
+    assert sections["key_points"]["llm_list"] == ["point1"]
+    assert sections["related_topics"]["llm_list"] == ["prompt-engineering"]
+
+
+def test_default_review_builds_howto_per_section_nodes() -> None:
+    """How-to proposals get per-section review nodes."""
+    llm: dict[str, Any] = {
+        "how_to": [
+            {
+                "question_title": "How to build evals?",
+                "answer_summary": "Answer.",
+                "implementation_steps": ["step1"],
+                "prerequisites": ["req1"],
+            },
+        ],
+        "source_summary": {},
+    }
+    rev = default_review_for_llm_output(llm)
+    howtos = rev["how_to"]
+    assert len(howtos) == 1
+    node = howtos[0]
+    assert "proposal_id" in node
+    assert "sections" in node
+    sections = node["sections"]
+    for sk in HOWTO_SCALAR_KEYS:
+        assert sk in sections
+        assert sections[sk]["status"] == "pending"
+    for lk in HOWTO_LIST_KEYS:
+        assert lk in sections
+        assert isinstance(sections[lk]["llm_list"], list)
+    assert sections["implementation_steps"]["llm_list"] == ["step1"]
+
+
+def test_default_review_builds_trend_per_section_nodes() -> None:
+    """Industry trend proposals get per-section review nodes."""
+    llm: dict[str, Any] = {
+        "industry_trends": [
+            {
+                "trend_name": "inference-cost-collapse",
+                "trend_description": "Costs falling.",
+                "supporting_data_points": ["dp1"],
+                "related_trends": ["model-commoditization"],
+            },
+        ],
+        "source_summary": {},
+    }
+    rev = default_review_for_llm_output(llm)
+    trends = rev["industry_trends"]
+    assert len(trends) == 1
+    node = trends[0]
+    assert "proposal_id" in node
+    assert "sections" in node
+    sections = node["sections"]
+    for sk in TREND_SCALAR_KEYS:
+        assert sk in sections
+        assert sections[sk]["status"] == "pending"
+    for lk in TREND_LIST_KEYS:
+        assert lk in sections
+        assert isinstance(sections[lk]["llm_list"], list)
+    assert sections["supporting_data_points"]["llm_list"] == ["dp1"]
+
+
+def test_migrate_v3_to_v4_converts_flat_howto() -> None:
+    """migrate_artifact_to_v4 rebuilds flat how_to nodes to per-section."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 3,
+        "llm_output": {
+            "source_summary": {},
+            "how_to": [
+                {"question_title": "Q?", "answer_summary": "A."},
+            ],
+            "industry_trends": [],
+        },
+        "review": {
+            "source_summary": {},
+            "how_to": [
+                {
+                    "proposal_id": "old-id",
+                    "status": "pending",
+                    "notes": None,
+                    "llm_item": {"question_title": "Q?"},
+                    "final_item": None,
+                    "reviewer_tags_added": [],
+                },
+            ],
+            "industry_trends": [],
+        },
+    }
+    migrate_artifact_to_v4(art)
+    assert art["artifact_schema_version"] == 4
+    howtos = art["review"]["how_to"]
+    assert len(howtos) == 1
+    assert "sections" in howtos[0]
+    assert "topics" in art["review"]
+
+
+def test_migrate_v4_adds_empty_topics() -> None:
+    """migrate_artifact_to_v4 adds topics review if missing."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 3,
+        "llm_output": {"source_summary": {}, "how_to": [], "industry_trends": []},
+        "review": {"source_summary": {}, "how_to": [], "industry_trends": []},
+    }
+    migrate_artifact_to_v4(art)
+    assert art["artifact_schema_version"] == 4
+    assert "topics" in art["review"]
+    assert art["review"]["topics"] == []
+
+
+def test_migrate_v4_is_noop_on_v4() -> None:
+    """Calling migrate_artifact_to_v4 on a v4 artifact is a no-op."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 4,
+        "llm_output": {},
+        "review": {"topics": [], "how_to": [], "industry_trends": []},
+    }
+    migrate_artifact_to_v4(art)
+    assert art["artifact_schema_version"] == 4
+
+
+def test_aggregate_review_status_includes_topic_sections(tmp_path: Path) -> None:
+    """aggregate_review_status counts topic per-section statuses."""
+    doc = _minimal_doc(tmp_path)
+    from src.ingest_review.schema import TopicContribution
+
+    parsed = LlmClassificationOutput(
+        topics=[TopicContribution(topic_slug="ctx-eng", topic_title="Context Engineering")]
+    )
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    assert aggregate_review_status(art) == "all_pending"
+    t_sections = art["review"]["topics"][0]["sections"]
+    t_sections["topic_slug"]["status"] = "approved"
     assert aggregate_review_status(art) == "mixed"

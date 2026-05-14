@@ -14,9 +14,15 @@ from src.ingest_review.schema import (
     ARTIFACT_SCHEMA_VERSION,
     GLOSSARY_LIST_KEYS,
     GLOSSARY_SCALAR_KEYS,
+    HOWTO_LIST_KEYS,
+    HOWTO_SCALAR_KEYS,
     IMPL_STUDY_LIST_KEYS,
     IMPL_STUDY_SCALAR_KEYS,
     SOURCE_SUMMARY_SCALAR_KEYS,
+    TOPIC_LIST_KEYS,
+    TOPIC_SCALAR_KEYS,
+    TREND_LIST_KEYS,
+    TREND_SCALAR_KEYS,
     LlmClassificationOutput,
 )
 from src.ingest_review.source_regen import apply_regenerated_source_section  # noqa: F401
@@ -154,15 +160,62 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
             }
         )
 
+    def build_per_section(
+        items: list[Any],
+        scalar_keys: tuple[str, ...],
+        list_keys: tuple[str, ...],
+    ) -> list[dict[str, Any]]:
+        result: list[dict[str, Any]] = []
+        for item in items:
+            if not isinstance(item, dict):
+                item = {}
+            sections: dict[str, Any] = {}
+            for sk in scalar_keys:
+                sections[sk] = {
+                    "status": "pending",
+                    "final_text": None,
+                    "notes": None,
+                }
+            for lk in list_keys:
+                llm_list_val = item.get(lk) or []
+                if not isinstance(llm_list_val, list):
+                    llm_list_val = []
+                sections[lk] = {
+                    "status": "pending",
+                    "final_list": None,
+                    "notes": None,
+                    "llm_list": copy.deepcopy(llm_list_val),
+                }
+            result.append(
+                {
+                    "proposal_id": _new_proposal_id(),
+                    "notes": None,
+                    "llm_item": copy.deepcopy(item),
+                    "sections": sections,
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                    },
+                }
+            )
+        return result
+
+    topics_review = build_per_section(llm.get("topics") or [], TOPIC_SCALAR_KEYS, TOPIC_LIST_KEYS)
+    howto_review = build_per_section(llm.get("how_to") or [], HOWTO_SCALAR_KEYS, HOWTO_LIST_KEYS)
+    trends_review = build_per_section(
+        llm.get("industry_trends") or [], TREND_SCALAR_KEYS, TREND_LIST_KEYS
+    )
+
     roundup = llm.get("roundup") or {}
     return {
         "source_summary": review_summary,
         "glossary": glossary_review,
         "tools": wrap_list(llm.get("tools") or [], "tools"),
         "foundation_models": wrap_list(llm.get("foundation_models") or [], "foundation_models"),
-        "how_to": wrap_list(llm.get("how_to") or [], "how_to"),
+        "how_to": howto_review,
+        "topics": topics_review,
         "implementation_studies": impl_review,
-        "industry_trends": wrap_list(llm.get("industry_trends") or [], "industry_trends"),
+        "industry_trends": trends_review,
         "roundup": {
             "status": "pending",
             "notes": None,
@@ -401,7 +454,7 @@ def migrate_artifact_to_v3(artifact: dict[str, Any]) -> dict[str, Any]:
     Rebuilds per-section review nodes for implementation studies.
     """
     ver = int(artifact.get("artifact_schema_version") or 1)
-    if ver >= ARTIFACT_SCHEMA_VERSION:
+    if ver >= 3:
         return artifact
 
     llm = artifact.setdefault("llm_output", {})
@@ -429,7 +482,7 @@ def migrate_artifact_to_v3(artifact: dict[str, Any]) -> dict[str, Any]:
 
     _migrate_glossary_to_per_section(llm, review)
 
-    artifact["artifact_schema_version"] = ARTIFACT_SCHEMA_VERSION
+    artifact["artifact_schema_version"] = 3
     return artifact
 
 
@@ -449,6 +502,52 @@ def _migrate_glossary_to_per_section(
     if isinstance(first, dict) and "status" in first and "sections" not in first:
         fresh = default_review_for_llm_output(llm)
         review["glossary"] = fresh.get("glossary", [])
+
+
+def _migrate_flat_to_per_section(
+    llm: dict[str, Any],
+    review: dict[str, Any],
+    review_key: str,
+    llm_key: str,
+    scalar_keys: tuple[str, ...],
+    list_keys: tuple[str, ...],
+) -> None:
+    """Convert flat wrap_list review nodes to per-section format for a given type."""
+    nodes = review.get(review_key) or []
+    if not isinstance(nodes, list) or not nodes:
+        fresh = default_review_for_llm_output(llm)
+        review[review_key] = fresh.get(review_key, [])
+        return
+    first = nodes[0]
+    if isinstance(first, dict) and "sections" in first:
+        return
+    if isinstance(first, dict) and "status" in first and "sections" not in first:
+        fresh = default_review_for_llm_output(llm)
+        review[review_key] = fresh.get(review_key, [])
+
+
+def migrate_artifact_to_v4(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact from v3 to v4: per-section for howto/trends, add topics."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= ARTIFACT_SCHEMA_VERSION:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    review = artifact.setdefault("review", {})
+
+    _migrate_flat_to_per_section(
+        llm, review, "how_to", "how_to", HOWTO_SCALAR_KEYS, HOWTO_LIST_KEYS
+    )
+    _migrate_flat_to_per_section(
+        llm, review, "industry_trends", "industry_trends", TREND_SCALAR_KEYS, TREND_LIST_KEYS
+    )
+
+    if "topics" not in review:
+        fresh = default_review_for_llm_output(llm)
+        review["topics"] = fresh.get("topics", [])
+
+    artifact["artifact_schema_version"] = ARTIFACT_SCHEMA_VERSION
+    return artifact
 
 
 def aggregate_impl_study_section_status(sections: dict[str, Any]) -> str:
@@ -476,7 +575,8 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
 
     data = json.loads(path.read_text(encoding="utf-8"))
     data = migrate_artifact_to_v2(data)
-    return migrate_artifact_to_v3(data)
+    data = migrate_artifact_to_v3(data)
+    return migrate_artifact_to_v4(data)
 
 
 def save_artifact(path: Path, payload: dict[str, Any]) -> None:
@@ -565,12 +665,21 @@ def aggregate_review_status(artifact: dict[str, Any]) -> str:
     for key in (
         "tools",
         "foundation_models",
-        "how_to",
-        "industry_trends",
     ):
         for item in review.get(key) or []:
             if isinstance(item, dict) and "status" in item:
                 collect(str(item["status"]))
+    for per_section_key in ("topics", "how_to", "industry_trends"):
+        for ps_node in review.get(per_section_key) or []:
+            if not isinstance(ps_node, dict):
+                continue
+            ps_sections = ps_node.get("sections") or {}
+            if ps_sections:
+                for _psk, psv in ps_sections.items():
+                    if isinstance(psv, dict) and "status" in psv:
+                        collect(str(psv["status"]))
+            elif "status" in ps_node:
+                collect(str(ps_node["status"]))
     for impl_node in review.get("implementation_studies") or []:
         if not isinstance(impl_node, dict):
             continue

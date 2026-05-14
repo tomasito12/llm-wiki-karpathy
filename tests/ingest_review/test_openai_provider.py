@@ -43,10 +43,12 @@ def test_openai_provider_parses_json_response(tmp_path: Path) -> None:
 
     wiki = WikiSnapshot(
         glossary_terms=[],
-        question_hints=[],
         tool_names=[],
         foundation_model_names=[],
         implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
     )
     prov = OpenAIIngestionProvider(client=fake_client)
     out, meta = prov.analyze_classification(

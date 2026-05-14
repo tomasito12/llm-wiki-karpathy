@@ -27,10 +27,10 @@ SYSTEM_PROMPT = """You are an analyst helping curate a personal AI-engineering M
 Return only valid JSON matching the provided schema. Ground every substantive claim in the \
 source text via supporting_snippet (or source_summary section text for narrative fields). \
 If unknown, use empty strings or empty arrays and low confidence. Do not invent facts.
-For tools and how_to items, proposed_tags MUST be a subset of the allowlists provided in the \
-user message; use [] if none apply.
-Prefer reusing existing wiki pages (match_candidates, similar_existing_questions) when the \
-article overlaps; suggest create only when justified.
+For tools, how_to, topics, and industry_trends items, proposed_tags MUST be a subset of the \
+allowlists provided in the user message; use [] if none apply.
+Prefer reusing existing wiki pages (match_candidates) when the article overlaps with existing \
+content; suggest append_to_existing over create_new_page whenever possible.
 
 Voice for source_summary chapters: concise, direct, practical. Audience is an advanced AI \
 practitioner focused on conversational AI, chatbots, voicebots, and service automation—not a \
@@ -164,6 +164,108 @@ Voice: clear, practical, accessible. Define for a senior practitioner, \
 not an academic. Prefer operational understanding over theoretical precision."""
 
 
+TOPICS_RUBRIC = """\
+## topics (array of objects — topic contributions)
+
+Extract reusable operational knowledge units, NOT article summaries.
+Each contribution answers: "What does this article teach about [concept X] \
+that is useful long-term?"
+
+Only extract topics that are: reusable across multiple contexts, operationally \
+relevant, likely to reappear, conceptually stable, and broad enough to \
+aggregate knowledge from many future sources.
+
+Default to append_to_existing. New pages (create_new_page) only for genuinely \
+novel, broad, stable concepts not covered by any existing topic.
+
+Each object MUST include:
+- topic_slug: kebab-case stable identifier — broad enough to accumulate many \
+future contributions (e.g. context-engineering, NOT openai-context-engineering-\
+announcement)
+- topic_title: human-readable form of the slug
+- knowledge_summary: 3-8 sentences, source-agnostic, synthesized. No "this \
+article says..." or "the author argues..."
+- operational_insight: practical takeaway for a senior practitioner
+- supporting_snippet: verbatim evidence from the source
+- relevance_note: why this matters in the context of this source
+- key_points: specific knowledge bullets worth accumulating (list of strings)
+- related_topics: other topic slugs (list of strings)
+- proposed_tags: tags from TOPIC_TAGS_ALLOWLIST only; [] if allowlist is empty
+- match_candidates: existing topic pages that may overlap
+- confidence: 0.0-1.0
+- suggested_action: "append_to_existing" | "create_new_page" | "ignore"
+
+Avoid: article-specific framing, ultra-narrow topics, hype-driven \
+fragmentation, one-off concepts, duplicate existing topics.
+
+Voice: clear, operational, synthesized. Write as reusable knowledge, \
+not as article commentary."""
+
+
+HOWTOS_RUBRIC = """\
+## how_to (array of objects — how-to proposals)
+
+Extract procedural/implementation knowledge, NOT theoretical summaries. \
+Only extract how-tos where the source provides enough implementation \
+substance — not vague advice.
+
+Default to append_to_existing. New pages only when the how-to covers a \
+genuinely distinct procedure not addressed by existing pages.
+
+Each object MUST include:
+- question_title: source-agnostic procedural question — no brand names, \
+no article-specific framing, no answer leakage in the question itself
+- answer_summary: synthesized guidance, 3-8 sentences, standalone
+- supporting_snippet: verbatim evidence from the source
+- relevance_note: why this how-to matters
+- caveats: gotchas, failure modes, limitations — skeptical where warranted. \
+Empty string only if genuinely none
+- implementation_steps: concrete, ordered steps when the source supports \
+them (list of strings)
+- prerequisites: what a practitioner needs before attempting this (list \
+of strings)
+- related_howtos: cross-references to other how-to slugs (list of strings)
+- proposed_tags: tags from HOWTO_TAGS_ALLOWLIST only; [] if none apply
+- match_candidates: existing how-to pages that may overlap
+- confidence: 0.0-1.0
+- suggested_action: "append_to_existing" | "create_new_page" | "ignore"
+
+Voice: direct, practical, implementation-focused. Write as reusable \
+procedural guidance."""
+
+
+TRENDS_RUBRIC = """\
+## industry_trends (array of objects — trend observations)
+
+Extract time-sensitive industry patterns, NOT timeless concepts (those \
+belong in topics). Trend pages acknowledge uncertainty by design — no \
+certainty theater.
+
+Default to append_to_existing. New pages only for genuinely novel \
+industry patterns not captured by existing trend pages.
+
+Each object MUST include:
+- trend_name: stable pattern name (e.g. inference-cost-collapse, NOT \
+GPT-4o-price-cut)
+- trend_description: standalone, source-agnostic description of the pattern
+- evidence_from_source: what this article specifically contributes as evidence
+- time_sensitivity: explicitly state how time-bound this observation is
+- uncertainty_note: REQUIRED — explicitly acknowledge uncertainty, \
+conflicting signals, or limited evidence. Empty string is NOT acceptable
+- supporting_snippet: verbatim evidence from the source
+- supporting_data_points: specific data or facts that support the trend \
+(list of strings)
+- related_trends: other trend names (list of strings)
+- proposed_tags: tags from TREND_TAGS_ALLOWLIST only; [] if allowlist is \
+empty
+- match_candidates: existing trend pages that may overlap
+- confidence: 0.0-1.0
+- suggested_action: "append_to_existing" | "create_new_page" | "ignore"
+
+Voice: measured, evidence-grounded, explicitly uncertain where warranted. \
+No hype, no certainty theater."""
+
+
 def _section_regen_rubric(section_key: str) -> str:
     """Narrow rubric text for one section (avoid brittle string splits in production)."""
     fixed = {
@@ -206,6 +308,8 @@ def _build_user_prompt(
     howto_tags: list[str],
     impl_study_tags: list[str] | None = None,
     glossary_tags: list[str] | None = None,
+    topic_tags: list[str] | None = None,
+    trend_tags: list[str] | None = None,
     *,
     prompt_version: str,
 ) -> str:
@@ -221,30 +325,45 @@ def _build_user_prompt(
     schema_hint = json.dumps(llm_output_json_schema(), indent=2)[:24_000]
     impl_tags = impl_study_tags or []
     gloss_tags = glossary_tags or []
+    t_tags = topic_tags or []
+    tr_tags = trend_tags or []
     impl_titles = wiki.implementation_study_titles[:100] if wiki.implementation_study_titles else []
+    topic_titles = wiki.topic_titles[:100] if wiki.topic_titles else []
+    howto_titles = wiki.howto_titles[:100] if wiki.howto_titles else []
+    trend_titles = wiki.trend_titles[:100] if wiki.trend_titles else []
     blocks = [
         "## Metadata\n" + "\n".join(meta_lines),
         "## EXISTING_GLOSSARY_TERMS\n" + "\n".join(f"- {t}" for t in wiki.glossary_terms[:150]),
-        "## EXISTING_QUESTION_HINTS\n" + "\n".join(f"- {q}" for q in wiki.question_hints[:150]),
         "## EXISTING_TOOL_NAMES\n" + "\n".join(f"- {t}" for t in wiki.tool_names[:200]),
         "## EXISTING_FOUNDATION_MODEL_NAMES\n"
         + "\n".join(f"- {m}" for m in wiki.foundation_model_names[:120]),
         "## EXISTING_IMPLEMENTATION_STUDY_TITLES\n" + "\n".join(f"- {t}" for t in impl_titles),
+        "## EXISTING_TOPIC_TITLES\n" + "\n".join(f"- {t}" for t in topic_titles),
+        "## EXISTING_HOWTO_TITLES\n" + "\n".join(f"- {t}" for t in howto_titles),
+        "## EXISTING_TREND_TITLES\n" + "\n".join(f"- {t}" for t in trend_titles),
         "## TOOL_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_tags),
         "## HOWTO_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in howto_tags),
         "## IMPL_STUDY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in impl_tags),
         "## GLOSSARY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in gloss_tags),
+        "## TOPIC_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in t_tags),
+        "## TREND_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tr_tags),
         "## SOURCE_CHAPTERS_RUBRIC\n" + SOURCE_CHAPTERS_RUBRIC,
         "## GLOSSARY_RUBRIC\n" + GLOSSARY_RUBRIC,
         "## IMPL_STUDY_RUBRIC\n" + IMPL_STUDY_RUBRIC,
+        "## TOPICS_RUBRIC\n" + TOPICS_RUBRIC,
+        "## HOWTOS_RUBRIC\n" + HOWTOS_RUBRIC,
+        "## TRENDS_RUBRIC\n" + TRENDS_RUBRIC,
         "## JSON_SCHEMA_HINT\n" + schema_hint,
         "## ARTICLE_PLAIN_TEXT\n" + doc.plain_text,
         "## Instructions\n"
         "Output one JSON object matching the schema keys: source_summary, glossary, tools, "
-        "foundation_models, how_to, implementation_studies, industry_trends, roundup. "
+        "foundation_models, how_to, topics, implementation_studies, industry_trends, roundup. "
         "Prioritize high-signal source_summary chapters per SOURCE_CHAPTERS_RUBRIC. "
         "For glossary, follow GLOSSARY_RUBRIC strictly. "
         "For implementation_studies, follow IMPL_STUDY_RUBRIC strictly. "
+        "For topics, follow TOPICS_RUBRIC strictly. "
+        "For how_to, follow HOWTOS_RUBRIC strictly. "
+        "For industry_trends, follow TRENDS_RUBRIC strictly. "
         "Use empty arrays when a category does not apply. For roundup: set is_roundup true only "
         "for digests/newsletters whose primary purpose is listing many external items.",
     ]
@@ -283,6 +402,8 @@ class OpenAIIngestionProvider(IngestionProvider):
         howto_tags_allowlist: list[str],
         impl_study_tags_allowlist: list[str] | None = None,
         glossary_tags_allowlist: list[str] | None = None,
+        topic_tags_allowlist: list[str] | None = None,
+        trend_tags_allowlist: list[str] | None = None,
         model: str,
         prompt_version: str,
         max_retries: int = 3,
@@ -295,6 +416,8 @@ class OpenAIIngestionProvider(IngestionProvider):
             howto_tags_allowlist,
             impl_study_tags_allowlist,
             glossary_tags_allowlist,
+            topic_tags_allowlist,
+            trend_tags_allowlist,
             prompt_version=prompt_version or PROMPT_VERSION,
         )
         messages = [

@@ -6,10 +6,10 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
-ARTIFACT_SCHEMA_VERSION = 3
+ARTIFACT_SCHEMA_VERSION = 4
 PROMPT_VERSION = "2"
 
-SuggestedAction = Literal["create", "update", "ignore"]
+SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
 MatchKind = Literal["exact", "fuzzy", "none"]
 
 # String fields under ``source_summary`` that use ``{status, final_text, notes}`` review nodes.
@@ -135,6 +135,38 @@ GLOSSARY_SCALAR_KEYS: tuple[str, ...] = (
 GLOSSARY_LIST_KEYS: tuple[str, ...] = ("related_terms",)
 
 
+class TopicContribution(BaseModel):
+    """Reusable operational knowledge contribution for a stable conceptual domain."""
+
+    topic_slug: str = ""
+    topic_title: str = ""
+    knowledge_summary: str = ""
+    operational_insight: str = ""
+    supporting_snippet: str = ""
+    relevance_note: str = ""
+    key_points: list[str] = Field(default_factory=list)
+    related_topics: list[str] = Field(default_factory=list)
+    proposed_tags: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
+    confidence: float = Field(0.0, ge=0.0, le=1.0)
+    suggested_action: SuggestedAction = "ignore"
+
+
+TOPIC_SCALAR_KEYS: tuple[str, ...] = (
+    "topic_slug",
+    "topic_title",
+    "knowledge_summary",
+    "operational_insight",
+    "supporting_snippet",
+    "relevance_note",
+)
+
+TOPIC_LIST_KEYS: tuple[str, ...] = (
+    "key_points",
+    "related_topics",
+)
+
+
 class ToolProposal(BaseModel):
     """One tool proposal."""
 
@@ -163,17 +195,35 @@ class FoundationModelProposal(BaseModel):
 
 
 class HowToProposal(BaseModel):
-    """One practical how-to the article addresses."""
+    """Procedural/implementation knowledge extracted from a source."""
 
     question_title: str = ""
     answer_summary: str = ""
     supporting_snippet: str = ""
-    match_candidates: list[MatchCandidate] = Field(default_factory=list)
-    similar_existing_questions: list[str] = Field(default_factory=list)
+    relevance_note: str = ""
+    caveats: str = ""
+    implementation_steps: list[str] = Field(default_factory=list)
+    prerequisites: list[str] = Field(default_factory=list)
+    related_howtos: list[str] = Field(default_factory=list)
     proposed_tags: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
-    tag_gap_notes: str | None = None
+
+
+HOWTO_SCALAR_KEYS: tuple[str, ...] = (
+    "question_title",
+    "answer_summary",
+    "supporting_snippet",
+    "relevance_note",
+    "caveats",
+)
+
+HOWTO_LIST_KEYS: tuple[str, ...] = (
+    "implementation_steps",
+    "prerequisites",
+    "related_howtos",
+)
 
 
 class EvidenceSnippet(BaseModel):
@@ -237,17 +287,35 @@ IMPL_STUDY_LIST_KEYS: tuple[str, ...] = (
 
 
 class IndustryTrendProposal(BaseModel):
-    """Industry trend / pattern supported by the article."""
+    """Time-sensitive industry trend or pattern supported by the article."""
 
     trend_name: str = ""
-    short_explanation: str = ""
-    why_article_supports: str = ""
-    supporting_snippets: list[str] = Field(default_factory=list)
+    trend_description: str = ""
+    evidence_from_source: str = ""
+    time_sensitivity: str = ""
+    uncertainty_note: str = ""
+    supporting_snippet: str = ""
+    supporting_data_points: list[str] = Field(default_factory=list)
+    related_trends: list[str] = Field(default_factory=list)
     proposed_tags: list[str] = Field(default_factory=list)
-    evidence_as_of: str | None = None
-    claim_type: Literal["source_observation"] = "source_observation"
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+
+
+TREND_SCALAR_KEYS: tuple[str, ...] = (
+    "trend_name",
+    "trend_description",
+    "evidence_from_source",
+    "time_sensitivity",
+    "uncertainty_note",
+    "supporting_snippet",
+)
+
+TREND_LIST_KEYS: tuple[str, ...] = (
+    "supporting_data_points",
+    "related_trends",
+)
 
 
 class RoundupDetection(BaseModel):
@@ -266,6 +334,7 @@ class LlmClassificationOutput(BaseModel):
     tools: list[ToolProposal] = Field(default_factory=list)
     foundation_models: list[FoundationModelProposal] = Field(default_factory=list)
     how_to: list[HowToProposal] = Field(default_factory=list)
+    topics: list[TopicContribution] = Field(default_factory=list)
     implementation_studies: list[ImplementationStudyProposal] = Field(default_factory=list)
     industry_trends: list[IndustryTrendProposal] = Field(default_factory=list)
     roundup: RoundupDetection = Field(default_factory=RoundupDetection)

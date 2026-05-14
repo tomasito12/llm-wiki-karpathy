@@ -46,18 +46,73 @@ def parse_glossary_terms(glossary_index: Path, *, cap: int = 200) -> list[str]:
     return terms[:cap]
 
 
-def parse_wikilink_titles_from_bullets(catalog_path: Path, *, cap: int = 300) -> list[str]:
-    """Extract display hints from ``[[...]]`` bullets (question slugs as titles)."""
-    text = _read_text(catalog_path)
-    out: list[str] = []
+def parse_topic_titles(index_path: Path, *, cap: int = 200) -> list[str]:
+    """Parse topic titles from ``wiki/topics/index.md`` table rows."""
+    text = _read_text(index_path)
+    titles: list[str] = []
     for line in text.splitlines():
-        for m in re.finditer(r"\[\[([^\]]+)\]\]", line):
-            inner = _strip_wikilink(m.group(1))
-            stem = Path(inner).stem
-            if stem.startswith("q-"):
-                titleish = stem[2:].replace("-", " ")
-                out.append(titleish)
-    return out[:cap]
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|--") or "Topic" in line[:15]:
+            continue
+        parts = [p.strip() for p in line.split("|")]
+        parts = [p for p in parts if p]
+        if not parts:
+            continue
+        cell = parts[0]
+        if "[[" in cell:
+            m = re.search(r"\[\[topics/([^]|]+)\]\]", cell)
+            if m:
+                slug = Path(m.group(1)).stem
+                titles.append(slug.replace("-", " "))
+        elif cell and cell != "Topic":
+            titles.append(cell)
+    return titles[:cap]
+
+
+def parse_howto_titles(index_path: Path, *, cap: int = 200) -> list[str]:
+    """Parse how-to titles from ``wiki/howtos/index.md`` table rows."""
+    text = _read_text(index_path)
+    titles: list[str] = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|--") or "How" in line[:15]:
+            continue
+        parts = [p.strip() for p in line.split("|")]
+        parts = [p for p in parts if p]
+        if not parts:
+            continue
+        cell = parts[0]
+        if "[[" in cell:
+            m = re.search(r"\[\[howtos/([^]|]+)\]\]", cell)
+            if m:
+                slug = Path(m.group(1)).stem
+                titles.append(slug.replace("-", " "))
+        elif cell and cell != "How-to":
+            titles.append(cell)
+    return titles[:cap]
+
+
+def parse_trend_titles(index_path: Path, *, cap: int = 200) -> list[str]:
+    """Parse trend titles from ``wiki/trends/index.md`` table rows."""
+    text = _read_text(index_path)
+    titles: list[str] = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|--") or "Trend" in line[:15]:
+            continue
+        parts = [p.strip() for p in line.split("|")]
+        parts = [p for p in parts if p]
+        if not parts:
+            continue
+        cell = parts[0]
+        if "[[" in cell:
+            m = re.search(r"\[\[trends/([^]|]+)\]\]", cell)
+            if m:
+                slug = Path(m.group(1)).stem
+                titles.append(slug.replace("-", " "))
+        elif cell and cell != "Trend":
+            titles.append(cell)
+    return titles[:cap]
 
 
 def parse_tools_index(tools_index: Path, wiki_tools: Path, *, cap: int = 400) -> list[str]:
@@ -162,24 +217,30 @@ class WikiSnapshot:
     """Capped lists for injection into analysis prompts."""
 
     glossary_terms: list[str]
-    question_hints: list[str]
     tool_names: list[str]
     foundation_model_names: list[str]
     implementation_study_titles: list[str] = dataclass_field(default_factory=list)
+    topic_titles: list[str] = dataclass_field(default_factory=list)
+    howto_titles: list[str] = dataclass_field(default_factory=list)
+    trend_titles: list[str] = dataclass_field(default_factory=list)
 
 
 def build_wiki_snapshot(wiki_root: Path, *, cap_per_list: int = 200) -> WikiSnapshot:
     """Scan wiki paths under ``wiki_root`` and return snapshot lists."""
     glossary_index = wiki_root / "glossary" / "index.md"
-    question_catalog = wiki_root / "questions" / "question-catalog.md"
     tools_index = wiki_root / "tools" / "index.md"
     wiki_tools = wiki_root / "tools"
     fm_index = wiki_root / "foundation-models" / "index.md"
     impl_index = wiki_root / "implementations" / "index.md"
+    topics_index = wiki_root / "topics" / "index.md"
+    howtos_index = wiki_root / "howtos" / "index.md"
+    trends_index = wiki_root / "trends" / "index.md"
     return WikiSnapshot(
         glossary_terms=parse_glossary_terms(glossary_index, cap=cap_per_list),
-        question_hints=parse_wikilink_titles_from_bullets(question_catalog, cap=cap_per_list),
         tool_names=parse_tools_index(tools_index, wiki_tools, cap=cap_per_list * 2),
         foundation_model_names=parse_foundation_model_names(fm_index, cap=cap_per_list),
         implementation_study_titles=parse_implementation_study_titles(impl_index, cap=cap_per_list),
+        topic_titles=parse_topic_titles(topics_index, cap=cap_per_list),
+        howto_titles=parse_howto_titles(howtos_index, cap=cap_per_list),
+        trend_titles=parse_trend_titles(trends_index, cap=cap_per_list),
     )

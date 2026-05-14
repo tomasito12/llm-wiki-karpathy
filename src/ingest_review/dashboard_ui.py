@@ -354,9 +354,8 @@ def render_all_proposal_sections(
     *,
     key_prefix: str,
     tool_tags: list[str],
-    howto_tags: list[str],
 ) -> None:
-    """Render all classification list sections."""
+    """Render flat classification list sections (tools + foundation models only)."""
     _render_proposal_list(
         st,
         artifact,
@@ -370,22 +369,6 @@ def render_all_proposal_sections(
         artifact,
         review_key="foundation_models",
         title="Foundation models",
-        key_prefix=key_prefix,
-        tag_allowlist=None,
-    )
-    _render_proposal_list(
-        st,
-        artifact,
-        review_key="how_to",
-        title="How-to",
-        key_prefix=key_prefix,
-        tag_allowlist=howto_tags,
-    )
-    _render_proposal_list(
-        st,
-        artifact,
-        review_key="industry_trends",
-        title="Industry trends",
         key_prefix=key_prefix,
         tag_allowlist=None,
     )

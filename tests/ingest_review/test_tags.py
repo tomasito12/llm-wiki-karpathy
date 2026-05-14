@@ -9,6 +9,8 @@ from src.ingest_review.tags import (
     load_glossary_tags,
     load_impl_study_tags,
     load_tag_list,
+    load_topic_tags,
+    load_trend_tags,
 )
 
 
@@ -103,3 +105,46 @@ def test_append_tags_to_yaml_noop_when_all_exist(tmp_path: Path) -> None:
     p.write_text(content, encoding="utf-8")
     append_tags_to_yaml(p, ["alpha"])
     assert p.read_text(encoding="utf-8") == content
+
+
+def test_load_topic_tags_from_config(tmp_path: Path) -> None:
+    """load_topic_tags reads from config/review_tags_topics.yaml."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_tags_topics.yaml").write_text(
+        "tags:\n  - context-engineering\n  - evaluation\n", encoding="utf-8"
+    )
+    tags = load_topic_tags(tmp_path)
+    assert tags == ["context-engineering", "evaluation"]
+
+
+def test_load_topic_tags_missing_returns_empty(tmp_path: Path) -> None:
+    """Missing topic tag file yields empty list."""
+    tags = load_topic_tags(tmp_path)
+    assert tags == []
+
+
+def test_load_topic_tags_empty_returns_empty(tmp_path: Path) -> None:
+    """Empty topic tag file yields empty list."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_tags_topics.yaml").write_text("tags: []\n", encoding="utf-8")
+    tags = load_topic_tags(tmp_path)
+    assert tags == []
+
+
+def test_load_trend_tags_from_config(tmp_path: Path) -> None:
+    """load_trend_tags reads from config/review_tags_trends.yaml."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_tags_trends.yaml").write_text(
+        "tags:\n  - cost-dynamics\n  - adoption\n", encoding="utf-8"
+    )
+    tags = load_trend_tags(tmp_path)
+    assert tags == ["cost-dynamics", "adoption"]
+
+
+def test_load_trend_tags_missing_returns_empty(tmp_path: Path) -> None:
+    """Missing trend tag file yields empty list."""
+    tags = load_trend_tags(tmp_path)
+    assert tags == []

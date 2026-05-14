@@ -53,6 +53,26 @@ def load_glossary_tags(root: Path | None = None) -> list[str]:
     return load_tag_list(default_glossary_tags_path(root))
 
 
+def default_topic_tags_path(root: Path | None = None) -> Path:
+    """Path to ``config/review_tags_topics.yaml``."""
+    return (root or repo_root()) / "config" / "review_tags_topics.yaml"
+
+
+def load_topic_tags(root: Path | None = None) -> list[str]:
+    """Return topic tag allowlist."""
+    return load_tag_list(default_topic_tags_path(root))
+
+
+def default_trend_tags_path(root: Path | None = None) -> Path:
+    """Path to ``config/review_tags_trends.yaml``."""
+    return (root or repo_root()) / "config" / "review_tags_trends.yaml"
+
+
+def load_trend_tags(root: Path | None = None) -> list[str]:
+    """Return trend tag allowlist."""
+    return load_tag_list(default_trend_tags_path(root))
+
+
 def default_impl_study_tags_path(root: Path | None = None) -> Path:
     """Path to ``config/review_tags_impl_study.yaml``."""
     return (root or repo_root()) / "config" / "review_tags_impl_study.yaml"

@@ -42,6 +42,10 @@ from src.ingest_review.glossary_ui import (
     collect_glossary_approved_new_tags,
     render_glossary_proposals,
 )
+from src.ingest_review.howtos_ui import (
+    collect_howto_approved_new_tags,
+    render_howto_proposals,
+)
 from src.ingest_review.impl_study_ui import (
     collect_approved_new_tags,
     render_implementation_studies,
@@ -52,11 +56,24 @@ from src.ingest_review.schema import PROMPT_VERSION
 from src.ingest_review.tags import (
     append_tags_to_yaml,
     default_glossary_tags_path,
+    default_howto_tags_path,
     default_impl_study_tags_path,
+    default_topic_tags_path,
+    default_trend_tags_path,
     load_glossary_tags,
     load_howto_tags,
     load_impl_study_tags,
     load_tool_tags,
+    load_topic_tags,
+    load_trend_tags,
+)
+from src.ingest_review.topics_ui import (
+    collect_topic_approved_new_tags,
+    render_topic_contributions,
+)
+from src.ingest_review.trends_ui import (
+    collect_trend_approved_new_tags,
+    render_trend_proposals,
 )
 
 
@@ -98,6 +115,8 @@ def main() -> None:
     howto_tags = load_howto_tags(root)
     impl_study_tags = load_impl_study_tags(root)
     glossary_tags = load_glossary_tags(root)
+    topic_tags = load_topic_tags(root)
+    trend_tags = load_trend_tags(root)
     if not tool_tags:
         st.warning("No tool tags loaded — check ``config/review_tags_tools.yaml``.")
     if not howto_tags:
@@ -198,6 +217,8 @@ def main() -> None:
                         howto_tags=howto_tags,
                         impl_study_tags=impl_study_tags,
                         glossary_tags=glossary_tags,
+                        topic_tags=topic_tags,
+                        trend_tags=trend_tags,
                         model=model,
                         prompt_version=prompt_version,
                     )
@@ -274,6 +295,9 @@ def main() -> None:
         [
             "Source chapters",
             "Glossary",
+            "Topics",
+            "How-tos",
+            "Trends",
             "Classifications",
             "Impl studies",
             "Roundup",
@@ -290,23 +314,43 @@ def main() -> None:
             glossary_tags=glossary_tags,
         )
     with tabs[2]:
+        render_topic_contributions(
+            st,
+            artifact,
+            key_prefix=key_prefix,
+            topic_tags=topic_tags,
+        )
+    with tabs[3]:
+        render_howto_proposals(
+            st,
+            artifact,
+            key_prefix=key_prefix,
+            howto_tags=howto_tags,
+        )
+    with tabs[4]:
+        render_trend_proposals(
+            st,
+            artifact,
+            key_prefix=key_prefix,
+            trend_tags=trend_tags,
+        )
+    with tabs[5]:
         render_all_proposal_sections(
             st,
             artifact,
             key_prefix=key_prefix,
             tool_tags=tool_tags,
-            howto_tags=howto_tags,
         )
-    with tabs[3]:
+    with tabs[6]:
         render_implementation_studies(
             st,
             artifact,
             key_prefix=key_prefix,
             impl_study_tags=impl_study_tags,
         )
-    with tabs[4]:
+    with tabs[7]:
         render_roundup_review(st, artifact, key_prefix=key_prefix)
-    with tabs[5]:
+    with tabs[8]:
         st.json(artifact.get("llm_output"))
 
     if st.button("Save review artifact"):
@@ -331,6 +375,27 @@ def main() -> None:
                 st.caption(f"Appended {len(new_glossary_tags)} glossary tag(s) to allowlist.")
             except OSError as exc:
                 st.warning(f"Glossary tag allowlist update skipped: {exc}")
+        new_topic_tags = collect_topic_approved_new_tags(artifact)
+        if new_topic_tags:
+            try:
+                append_tags_to_yaml(default_topic_tags_path(root), new_topic_tags)
+                st.caption(f"Appended {len(new_topic_tags)} topic tag(s) to allowlist.")
+            except OSError as exc:
+                st.warning(f"Topic tag allowlist update skipped: {exc}")
+        new_howto_tags = collect_howto_approved_new_tags(artifact)
+        if new_howto_tags:
+            try:
+                append_tags_to_yaml(default_howto_tags_path(root), new_howto_tags)
+                st.caption(f"Appended {len(new_howto_tags)} how-to tag(s) to allowlist.")
+            except OSError as exc:
+                st.warning(f"How-to tag allowlist update skipped: {exc}")
+        new_trend_tags = collect_trend_approved_new_tags(artifact)
+        if new_trend_tags:
+            try:
+                append_tags_to_yaml(default_trend_tags_path(root), new_trend_tags)
+                st.caption(f"Appended {len(new_trend_tags)} trend tag(s) to allowlist.")
+            except OSError as exc:
+                st.warning(f"Trend tag allowlist update skipped: {exc}")
         st.success(f"Saved to {artifact_path}")
 
     st.caption(f"Artifact path: {artifact_path}")

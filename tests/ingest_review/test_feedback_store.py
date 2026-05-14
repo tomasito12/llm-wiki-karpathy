@@ -258,3 +258,146 @@ def test_record_events_impl_study_all_pending_emits_zero(tmp_path: Path) -> None
     }
     n = record_events_from_artifact(db, artifact)
     assert n == 0
+
+
+def test_record_events_topic_per_section(tmp_path: Path) -> None:
+    """Non-pending topic sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "4"},
+        "llm_output": {
+            "topics": [
+                {
+                    "topic_slug": "ctx-eng",
+                    "topic_title": "Context Engineering",
+                    "key_points": ["p1"],
+                },
+            ],
+        },
+        "review": {
+            "topics": [
+                {
+                    "proposal_id": "t1",
+                    "notes": None,
+                    "llm_item": {
+                        "topic_slug": "ctx-eng",
+                        "topic_title": "Context Engineering",
+                        "key_points": ["p1"],
+                    },
+                    "sections": {
+                        "topic_slug": {"status": "approved", "final_text": None, "notes": None},
+                        "topic_title": {"status": "approved", "final_text": None, "notes": None},
+                        "knowledge_summary": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "key_points": {
+                            "status": "approved",
+                            "final_list": None,
+                            "notes": None,
+                            "llm_list": ["p1"],
+                        },
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 3
+
+
+def test_record_events_howto_per_section(tmp_path: Path) -> None:
+    """Non-pending how-to sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "4"},
+        "llm_output": {
+            "how_to": [
+                {"question_title": "Q?", "answer_summary": "A."},
+            ],
+        },
+        "review": {
+            "how_to": [
+                {
+                    "proposal_id": "h1",
+                    "notes": None,
+                    "llm_item": {"question_title": "Q?", "answer_summary": "A."},
+                    "sections": {
+                        "question_title": {
+                            "status": "approved",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "answer_summary": {
+                            "status": "modified",
+                            "final_text": "Revised.",
+                            "notes": None,
+                        },
+                        "supporting_snippet": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 2
+
+
+def test_record_events_trend_per_section(tmp_path: Path) -> None:
+    """Non-pending trend sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "4"},
+        "llm_output": {
+            "industry_trends": [
+                {"trend_name": "cost-collapse", "supporting_data_points": ["dp1"]},
+            ],
+        },
+        "review": {
+            "industry_trends": [
+                {
+                    "proposal_id": "tr1",
+                    "notes": None,
+                    "llm_item": {
+                        "trend_name": "cost-collapse",
+                        "supporting_data_points": ["dp1"],
+                    },
+                    "sections": {
+                        "trend_name": {
+                            "status": "approved",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "supporting_data_points": {
+                            "status": "rejected",
+                            "final_list": None,
+                            "notes": None,
+                            "llm_list": ["dp1"],
+                        },
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 2

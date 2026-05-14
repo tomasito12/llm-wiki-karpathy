@@ -13,9 +13,15 @@ from src.ingest_review.paths import repo_root
 from src.ingest_review.schema import (
     GLOSSARY_LIST_KEYS,
     GLOSSARY_SCALAR_KEYS,
+    HOWTO_LIST_KEYS,
+    HOWTO_SCALAR_KEYS,
     IMPL_STUDY_LIST_KEYS,
     IMPL_STUDY_SCALAR_KEYS,
     SOURCE_SUMMARY_SCALAR_KEYS,
+    TOPIC_LIST_KEYS,
+    TOPIC_SCALAR_KEYS,
+    TREND_LIST_KEYS,
+    TREND_SCALAR_KEYS,
 )
 
 
@@ -248,8 +254,6 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
     list_pairs = [
         ("tools", "tools"),
         ("foundation_models", "foundation_models"),
-        ("how_to", "how_to"),
-        ("industry_trends", "industry_trends"),
     ]
     for review_key, llm_key in list_pairs:
         items_r = review.get(review_key) or []
@@ -278,6 +282,65 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
                 ),
             )
             count += 1
+
+    per_section_types: list[tuple[str, tuple[str, ...], tuple[str, ...]]] = [
+        ("topics", TOPIC_SCALAR_KEYS, TOPIC_LIST_KEYS),
+        ("how_to", HOWTO_SCALAR_KEYS, HOWTO_LIST_KEYS),
+        ("industry_trends", TREND_SCALAR_KEYS, TREND_LIST_KEYS),
+    ]
+    for ps_key, ps_scalar, ps_list in per_section_types:
+        for idx, ps_node in enumerate(review.get(ps_key) or []):
+            if not isinstance(ps_node, dict):
+                continue
+            pid = ps_node.get("proposal_id")
+            ps_sections = ps_node.get("sections") or {}
+            ps_llm_item = ps_node.get("llm_item") or {}
+            for sk in ps_scalar:
+                sec = ps_sections.get(sk)
+                if not isinstance(sec, dict):
+                    continue
+                st = str(sec.get("status") or "pending")
+                if st == "pending":
+                    continue
+                append_feedback_event(
+                    path,
+                    FeedbackEvent(
+                        source_id=source_id,
+                        source_hash=str(source_hash) if source_hash else None,
+                        proposal_id=str(pid) if pid else None,
+                        path_in_json=f"{ps_key}[{idx}].sections.{sk}",
+                        decision=st,
+                        llm_value_snapshot=ps_llm_item.get(sk),
+                        final_value_snapshot=sec.get("final_text"),
+                        provider=str(provider) if provider else None,
+                        model=str(model) if model else None,
+                        prompt_version=str(prompt_version) if prompt_version else None,
+                    ),
+                )
+                count += 1
+            for lk in ps_list:
+                sec = ps_sections.get(lk)
+                if not isinstance(sec, dict):
+                    continue
+                st = str(sec.get("status") or "pending")
+                if st == "pending":
+                    continue
+                append_feedback_event(
+                    path,
+                    FeedbackEvent(
+                        source_id=source_id,
+                        source_hash=str(source_hash) if source_hash else None,
+                        proposal_id=str(pid) if pid else None,
+                        path_in_json=f"{ps_key}[{idx}].sections.{lk}",
+                        decision=st,
+                        llm_value_snapshot=ps_llm_item.get(lk),
+                        final_value_snapshot=sec.get("final_list"),
+                        provider=str(provider) if provider else None,
+                        model=str(model) if model else None,
+                        prompt_version=str(prompt_version) if prompt_version else None,
+                    ),
+                )
+                count += 1
 
     for idx, impl_node in enumerate(review.get("implementation_studies") or []):
         if not isinstance(impl_node, dict):
