@@ -41,3 +41,42 @@ def load_tool_tags(root: Path | None = None) -> list[str]:
 def load_howto_tags(root: Path | None = None) -> list[str]:
     """Return how-to proposal tag allowlist."""
     return load_tag_list(default_howto_tags_path(root))
+
+
+def default_glossary_tags_path(root: Path | None = None) -> Path:
+    """Path to ``config/review_tags_glossary.yaml``."""
+    return (root or repo_root()) / "config" / "review_tags_glossary.yaml"
+
+
+def load_glossary_tags(root: Path | None = None) -> list[str]:
+    """Return glossary tag allowlist."""
+    return load_tag_list(default_glossary_tags_path(root))
+
+
+def default_impl_study_tags_path(root: Path | None = None) -> Path:
+    """Path to ``config/review_tags_impl_study.yaml``."""
+    return (root or repo_root()) / "config" / "review_tags_impl_study.yaml"
+
+
+def load_impl_study_tags(root: Path | None = None) -> list[str]:
+    """Return implementation-study tag allowlist."""
+    return load_tag_list(default_impl_study_tags_path(root))
+
+
+def append_tags_to_yaml(path: Path, new_tags: list[str]) -> None:
+    """Append new tags to a YAML allowlist file, deduplicating."""
+    existing = set(load_tag_list(path))
+    to_add = [t for t in new_tags if t and t not in existing]
+    if not to_add:
+        return
+    import yaml
+
+    from src.pipeline.atomic import atomic_write_text
+
+    all_tags = list(existing) + to_add
+    all_tags.sort()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    atomic_write_text(
+        path,
+        yaml.dump({"tags": all_tags}, default_flow_style=False, sort_keys=False),
+    )

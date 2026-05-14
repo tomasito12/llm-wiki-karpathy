@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from dataclasses import field as dataclass_field
 from pathlib import Path
 
 
@@ -133,6 +134,29 @@ def parse_foundation_model_names(index_path: Path, *, cap: int = 150) -> list[st
     return names[:cap]
 
 
+def parse_implementation_study_titles(index_path: Path, *, cap: int = 200) -> list[str]:
+    """Parse implementation-study titles from ``wiki/implementations/index.md``."""
+    text = _read_text(index_path)
+    titles: list[str] = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|--") or "Title" in line[:15]:
+            continue
+        parts = [p.strip() for p in line.split("|")]
+        parts = [p for p in parts if p]
+        if not parts:
+            continue
+        cell = parts[0]
+        if "[[" in cell:
+            m = re.search(r"\[\[implementations/([^]|]+)\]\]", cell)
+            if m:
+                slug = Path(m.group(1)).stem
+                titles.append(slug.replace("-", " "))
+        elif cell and cell != "Title":
+            titles.append(cell)
+    return titles[:cap]
+
+
 @dataclass(frozen=True)
 class WikiSnapshot:
     """Capped lists for injection into analysis prompts."""
@@ -141,6 +165,7 @@ class WikiSnapshot:
     question_hints: list[str]
     tool_names: list[str]
     foundation_model_names: list[str]
+    implementation_study_titles: list[str] = dataclass_field(default_factory=list)
 
 
 def build_wiki_snapshot(wiki_root: Path, *, cap_per_list: int = 200) -> WikiSnapshot:
@@ -150,9 +175,11 @@ def build_wiki_snapshot(wiki_root: Path, *, cap_per_list: int = 200) -> WikiSnap
     tools_index = wiki_root / "tools" / "index.md"
     wiki_tools = wiki_root / "tools"
     fm_index = wiki_root / "foundation-models" / "index.md"
+    impl_index = wiki_root / "implementations" / "index.md"
     return WikiSnapshot(
         glossary_terms=parse_glossary_terms(glossary_index, cap=cap_per_list),
         question_hints=parse_wikilink_titles_from_bullets(question_catalog, cap=cap_per_list),
         tool_names=parse_tools_index(tools_index, wiki_tools, cap=cap_per_list * 2),
         foundation_model_names=parse_foundation_model_names(fm_index, cap=cap_per_list),
+        implementation_study_titles=parse_implementation_study_titles(impl_index, cap=cap_per_list),
     )

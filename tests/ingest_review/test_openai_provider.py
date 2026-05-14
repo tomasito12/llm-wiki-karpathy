@@ -46,6 +46,7 @@ def test_openai_provider_parses_json_response(tmp_path: Path) -> None:
         question_hints=[],
         tool_names=[],
         foundation_model_names=[],
+        implementation_study_titles=[],
     )
     prov = OpenAIIngestionProvider(client=fake_client)
     out, meta = prov.analyze_classification(

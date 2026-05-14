@@ -10,7 +10,13 @@ from pathlib import Path
 from typing import Any
 
 from src.ingest_review.paths import repo_root
-from src.ingest_review.schema import SOURCE_SUMMARY_SCALAR_KEYS
+from src.ingest_review.schema import (
+    GLOSSARY_LIST_KEYS,
+    GLOSSARY_SCALAR_KEYS,
+    IMPL_STUDY_LIST_KEYS,
+    IMPL_STUDY_SCALAR_KEYS,
+    SOURCE_SUMMARY_SCALAR_KEYS,
+)
 
 
 def default_feedback_db_path(root: Path | None = None) -> Path:
@@ -186,12 +192,63 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
             )
             count += 1
 
+    for idx, g_node in enumerate(review.get("glossary") or []):
+        if not isinstance(g_node, dict):
+            continue
+        pid = g_node.get("proposal_id")
+        g_sections = g_node.get("sections") or {}
+        g_llm_item = g_node.get("llm_item") or {}
+        for sk in GLOSSARY_SCALAR_KEYS:
+            sec = g_sections.get(sk)
+            if not isinstance(sec, dict):
+                continue
+            st = str(sec.get("status") or "pending")
+            if st == "pending":
+                continue
+            append_feedback_event(
+                path,
+                FeedbackEvent(
+                    source_id=source_id,
+                    source_hash=str(source_hash) if source_hash else None,
+                    proposal_id=str(pid) if pid else None,
+                    path_in_json=f"glossary[{idx}].sections.{sk}",
+                    decision=st,
+                    llm_value_snapshot=g_llm_item.get(sk),
+                    final_value_snapshot=sec.get("final_text"),
+                    provider=str(provider) if provider else None,
+                    model=str(model) if model else None,
+                    prompt_version=str(prompt_version) if prompt_version else None,
+                ),
+            )
+            count += 1
+        for lk in GLOSSARY_LIST_KEYS:
+            sec = g_sections.get(lk)
+            if not isinstance(sec, dict):
+                continue
+            st = str(sec.get("status") or "pending")
+            if st == "pending":
+                continue
+            append_feedback_event(
+                path,
+                FeedbackEvent(
+                    source_id=source_id,
+                    source_hash=str(source_hash) if source_hash else None,
+                    proposal_id=str(pid) if pid else None,
+                    path_in_json=f"glossary[{idx}].sections.{lk}",
+                    decision=st,
+                    llm_value_snapshot=g_llm_item.get(lk),
+                    final_value_snapshot=sec.get("final_list"),
+                    provider=str(provider) if provider else None,
+                    model=str(model) if model else None,
+                    prompt_version=str(prompt_version) if prompt_version else None,
+                ),
+            )
+            count += 1
+
     list_pairs = [
-        ("glossary", "glossary"),
         ("tools", "tools"),
         ("foundation_models", "foundation_models"),
         ("how_to", "how_to"),
-        ("enterprise_studies", "enterprise_studies"),
         ("industry_trends", "industry_trends"),
     ]
     for review_key, llm_key in list_pairs:
@@ -221,4 +278,58 @@ def record_events_from_artifact(path: Path, artifact: dict[str, Any]) -> int:
                 ),
             )
             count += 1
+
+    for idx, impl_node in enumerate(review.get("implementation_studies") or []):
+        if not isinstance(impl_node, dict):
+            continue
+        pid = impl_node.get("proposal_id")
+        sections = impl_node.get("sections") or {}
+        llm_item = impl_node.get("llm_item") or {}
+        for sk in IMPL_STUDY_SCALAR_KEYS:
+            sec = sections.get(sk)
+            if not isinstance(sec, dict):
+                continue
+            st = str(sec.get("status") or "pending")
+            if st == "pending":
+                continue
+            append_feedback_event(
+                path,
+                FeedbackEvent(
+                    source_id=source_id,
+                    source_hash=str(source_hash) if source_hash else None,
+                    proposal_id=str(pid) if pid else None,
+                    path_in_json=f"implementation_studies[{idx}].sections.{sk}",
+                    decision=st,
+                    llm_value_snapshot=llm_item.get(sk),
+                    final_value_snapshot=sec.get("final_text"),
+                    provider=str(provider) if provider else None,
+                    model=str(model) if model else None,
+                    prompt_version=str(prompt_version) if prompt_version else None,
+                ),
+            )
+            count += 1
+        for lk in IMPL_STUDY_LIST_KEYS:
+            sec = sections.get(lk)
+            if not isinstance(sec, dict):
+                continue
+            st = str(sec.get("status") or "pending")
+            if st == "pending":
+                continue
+            append_feedback_event(
+                path,
+                FeedbackEvent(
+                    source_id=source_id,
+                    source_hash=str(source_hash) if source_hash else None,
+                    proposal_id=str(pid) if pid else None,
+                    path_in_json=f"implementation_studies[{idx}].sections.{lk}",
+                    decision=st,
+                    llm_value_snapshot=llm_item.get(lk),
+                    final_value_snapshot=sec.get("final_list"),
+                    provider=str(provider) if provider else None,
+                    model=str(model) if model else None,
+                    prompt_version=str(prompt_version) if prompt_version else None,
+                ),
+            )
+            count += 1
+
     return count

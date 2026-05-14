@@ -90,3 +90,171 @@ def test_record_events_records_approved_key_insights_list(tmp_path: Path) -> Non
     }
     n = record_events_from_artifact(db, artifact)
     assert n == 1
+
+
+def test_record_events_glossary_per_section(tmp_path: Path) -> None:
+    """Non-pending glossary sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "3"},
+        "llm_output": {
+            "glossary": [
+                {
+                    "term": "RAG",
+                    "proposed_definition": "Retrieval-augmented generation.",
+                    "related_terms": ["embeddings"],
+                },
+            ],
+        },
+        "review": {
+            "glossary": [
+                {
+                    "proposal_id": "g1",
+                    "notes": None,
+                    "llm_item": {
+                        "term": "RAG",
+                        "proposed_definition": "Retrieval-augmented generation.",
+                        "related_terms": ["embeddings"],
+                    },
+                    "sections": {
+                        "term": {"status": "approved", "final_text": None, "notes": None},
+                        "proposed_definition": {
+                            "status": "modified",
+                            "final_text": "Revised def.",
+                            "notes": None,
+                        },
+                        "extended_explanation": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "supporting_snippet": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "relevance_note": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "related_terms": {
+                            "status": "approved",
+                            "final_list": None,
+                            "notes": None,
+                            "llm_list": ["embeddings"],
+                        },
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 3
+
+
+def test_record_events_glossary_all_pending_emits_zero(tmp_path: Path) -> None:
+    """All-pending glossary sections emit no events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "3"},
+        "llm_output": {"glossary": [{"term": "RAG"}]},
+        "review": {
+            "glossary": [
+                {
+                    "proposal_id": "g1",
+                    "notes": None,
+                    "llm_item": {"term": "RAG"},
+                    "sections": {
+                        "term": {"status": "pending", "final_text": None, "notes": None},
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 0
+
+
+def test_record_events_impl_study_per_section(tmp_path: Path) -> None:
+    """Non-pending impl study sections emit per-section feedback events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "3"},
+        "llm_output": {
+            "implementation_studies": [
+                {"title": "Pilot", "company": "Co", "overview": "Tested AI."},
+            ],
+        },
+        "review": {
+            "implementation_studies": [
+                {
+                    "proposal_id": "p1",
+                    "notes": None,
+                    "llm_item": {"title": "Pilot", "company": "Co", "overview": "Tested AI."},
+                    "sections": {
+                        "title": {"status": "approved", "final_text": None, "notes": None},
+                        "company": {"status": "approved", "final_text": None, "notes": None},
+                        "overview": {
+                            "status": "modified",
+                            "final_text": "Revised overview.",
+                            "notes": None,
+                        },
+                        "key_lessons": {
+                            "status": "pending",
+                            "final_list": None,
+                            "notes": None,
+                            "llm_list": [],
+                        },
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                        "approved_new_tags": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 3
+
+
+def test_record_events_impl_study_all_pending_emits_zero(tmp_path: Path) -> None:
+    """All-pending impl study sections emit no events."""
+    db = tmp_path / "fb.sqlite"
+    artifact = {
+        "source": {"source_id": "x", "content_sha256": "h"},
+        "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "3"},
+        "llm_output": {"implementation_studies": [{"title": "T"}]},
+        "review": {
+            "implementation_studies": [
+                {
+                    "proposal_id": "p1",
+                    "notes": None,
+                    "llm_item": {"title": "T"},
+                    "sections": {
+                        "title": {"status": "pending", "final_text": None, "notes": None},
+                    },
+                    "tags": {
+                        "approved_allowlist_tags": [],
+                        "reviewer_tags_added": [],
+                        "approved_new_tags": [],
+                    },
+                },
+            ],
+        },
+    }
+    n = record_events_from_artifact(db, artifact)
+    assert n == 0

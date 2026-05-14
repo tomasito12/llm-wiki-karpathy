@@ -39,6 +39,9 @@ wiki/
     <category>/
       index.md
       <tool-slug>.md
+  implementations/
+    index.md
+    <slug>.md
 ```
 
 ## Allowed content tags
@@ -55,7 +58,7 @@ If a new tag is needed, add it here first.
 
 Use these `type` values as documented in each contract below. Do not invent new `type` strings without updating this list.
 
-- `source`, `question`, `glossary`, `glossary-term`, `questions-catalog`, `tool`, `tools-category-index`, `tools-index`, `foundation-model`, `foundation-models-index`, `index`, `log`, `style`, and other meta types already in use under `wiki/`.
+- `source`, `question`, `glossary`, `glossary-term`, `questions-catalog`, `tool`, `tools-category-index`, `tools-index`, `foundation-model`, `foundation-models-index`, `implementation-study`, `implementations-index`, `index`, `log`, `style`, and other meta types already in use under `wiki/`.
 
 ## Filename policy
 
@@ -203,6 +206,47 @@ Use when Stage 1 routes to **software-tool-focused** content (see `wiki/stage1-c
 - No `tags` in frontmatter
 - No "Related pages"
 - Content: a single table `| Model | Page |` with rows wikilinking to every `wiki/foundation-models/<slug>.md` (excluding `index.md`)
+
+### 12) Implementation study page — `wiki/implementations/<slug>.md`
+
+- `type: implementation-study`
+- Frontmatter includes: `title`, `type`, `created`, `updated`, `tags`
+- `tags` values come from the review-layer `config/review_tags_impl_study.yaml` allowlist (mapped at render time)
+- No `aliases`, no YAML `sources`
+- Body headings are **fixed and mandatory** in this order:
+  1. `## Overview`
+  2. `## Company / organization`
+  3. `## Industry / domain`
+  4. `## What was implemented?`
+  5. `## Business objective`
+  6. `## Technical approach`
+  7. `## Deployment context`
+  8. `## Outcome / current status`
+  9. `## Why it succeeded or struggled`
+  10. `## Operational constraints`
+  11. `## AI / model observations`
+  12. `## Implications for service automation`
+  13. `## Strategic signals`
+  14. `## Key lessons` (bullet list)
+  15. `## Open questions` (bullet list)
+  16. `## Sources` (bullet links)
+
+**Note:** No renderer exists yet. This contract documents the target structure so the future wiki page generator knows what to produce from approved `review.json` implementation-study proposals.
+
+### 13) Implementations index — `wiki/implementations/index.md`
+
+- `type: implementations-index`
+- No `tags` in frontmatter
+- Content: a single table `| Title | Company | Page |` with rows wikilinking to every `wiki/implementations/<slug>.md` (excluding `index.md`)
+- Used for duplicate detection (existing titles injected into LLM prompt via `WikiSnapshot`)
+
+## Implementations index parity rule
+
+`wiki/implementations/index.md` and `wiki/implementations/*.md` (excluding `index.md`) must stay in **two-way parity** (same spirit as glossary parity).
+
+- Every row in `wiki/implementations/index.md` must point to an existing `wiki/implementations/<slug>.md`.
+- Every implementation-study page must appear as a row in `wiki/implementations/index.md`.
+- During an ingest, update the study page and index row in the same step.
 
 ## Stage 1 classifier rules
 

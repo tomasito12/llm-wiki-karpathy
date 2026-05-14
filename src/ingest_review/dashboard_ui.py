@@ -360,14 +360,6 @@ def render_all_proposal_sections(
     _render_proposal_list(
         st,
         artifact,
-        review_key="glossary",
-        title="Glossary",
-        key_prefix=key_prefix,
-        tag_allowlist=None,
-    )
-    _render_proposal_list(
-        st,
-        artifact,
         review_key="tools",
         title="Tools",
         key_prefix=key_prefix,
@@ -388,14 +380,6 @@ def render_all_proposal_sections(
         title="How-to",
         key_prefix=key_prefix,
         tag_allowlist=howto_tags,
-    )
-    _render_proposal_list(
-        st,
-        artifact,
-        review_key="enterprise_studies",
-        title="Enterprise implementation",
-        key_prefix=key_prefix,
-        tag_allowlist=None,
     )
     _render_proposal_list(
         st,

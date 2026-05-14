@@ -38,10 +38,26 @@ from src.ingest_review.extract import (
     readwise_source_status,
 )
 from src.ingest_review.feedback_store import default_feedback_db_path, record_events_from_artifact
+from src.ingest_review.glossary_ui import (
+    collect_glossary_approved_new_tags,
+    render_glossary_proposals,
+)
+from src.ingest_review.impl_study_ui import (
+    collect_approved_new_tags,
+    render_implementation_studies,
+)
 from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.schema import PROMPT_VERSION
-from src.ingest_review.tags import load_howto_tags, load_tool_tags
+from src.ingest_review.tags import (
+    append_tags_to_yaml,
+    default_glossary_tags_path,
+    default_impl_study_tags_path,
+    load_glossary_tags,
+    load_howto_tags,
+    load_impl_study_tags,
+    load_tool_tags,
+)
 
 
 def main() -> None:
@@ -80,10 +96,14 @@ def main() -> None:
 
     tool_tags = load_tool_tags(root)
     howto_tags = load_howto_tags(root)
+    impl_study_tags = load_impl_study_tags(root)
+    glossary_tags = load_glossary_tags(root)
     if not tool_tags:
         st.warning("No tool tags loaded — check ``config/review_tags_tools.yaml``.")
     if not howto_tags:
         st.warning("No how-to tags loaded — check ``config/review_tags_howto.yaml``.")
+    if not impl_study_tags:
+        st.warning("No impl-study tags loaded — check ``config/review_tags_impl_study.yaml``.")
 
     html_paths = list_readwise_html_sources(raw_dir)
     labels = []
@@ -176,6 +196,8 @@ def main() -> None:
                         wiki_root=wiki_root,
                         tool_tags=tool_tags,
                         howto_tags=howto_tags,
+                        impl_study_tags=impl_study_tags,
+                        glossary_tags=glossary_tags,
                         model=model,
                         prompt_version=prompt_version,
                     )
@@ -248,10 +270,26 @@ def main() -> None:
         f"Artifact schema v{artifact.get('artifact_schema_version', '?')} · "
         f"Review mix: **{aggregate_review_status(artifact)}**"
     )
-    tabs = st.tabs(["Source chapters", "Classifications", "Roundup", "Debug"])
+    tabs = st.tabs(
+        [
+            "Source chapters",
+            "Glossary",
+            "Classifications",
+            "Impl studies",
+            "Roundup",
+            "Debug",
+        ]
+    )
     with tabs[0]:
         render_source_summary_review(st, artifact, key_prefix=key_prefix, source_id=source_id)
     with tabs[1]:
+        render_glossary_proposals(
+            st,
+            artifact,
+            key_prefix=key_prefix,
+            glossary_tags=glossary_tags,
+        )
+    with tabs[2]:
         render_all_proposal_sections(
             st,
             artifact,
@@ -259,9 +297,16 @@ def main() -> None:
             tool_tags=tool_tags,
             howto_tags=howto_tags,
         )
-    with tabs[2]:
-        render_roundup_review(st, artifact, key_prefix=key_prefix)
     with tabs[3]:
+        render_implementation_studies(
+            st,
+            artifact,
+            key_prefix=key_prefix,
+            impl_study_tags=impl_study_tags,
+        )
+    with tabs[4]:
+        render_roundup_review(st, artifact, key_prefix=key_prefix)
+    with tabs[5]:
         st.json(artifact.get("llm_output"))
 
     if st.button("Save review artifact"):
@@ -272,6 +317,20 @@ def main() -> None:
             record_events_from_artifact(fb_path, artifact)
         except OSError as exc:
             st.warning(f"Feedback DB write skipped: {exc}")
+        new_tags = collect_approved_new_tags(artifact)
+        if new_tags:
+            try:
+                append_tags_to_yaml(default_impl_study_tags_path(root), new_tags)
+                st.caption(f"Appended {len(new_tags)} impl-study tag(s) to allowlist.")
+            except OSError as exc:
+                st.warning(f"Impl-study tag allowlist update skipped: {exc}")
+        new_glossary_tags = collect_glossary_approved_new_tags(artifact)
+        if new_glossary_tags:
+            try:
+                append_tags_to_yaml(default_glossary_tags_path(root), new_glossary_tags)
+                st.caption(f"Appended {len(new_glossary_tags)} glossary tag(s) to allowlist.")
+            except OSError as exc:
+                st.warning(f"Glossary tag allowlist update skipped: {exc}")
         st.success(f"Saved to {artifact_path}")
 
     st.caption(f"Artifact path: {artifact_path}")

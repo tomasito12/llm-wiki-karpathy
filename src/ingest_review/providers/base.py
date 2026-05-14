@@ -27,6 +27,8 @@ class IngestionProvider(ABC):
         wiki: WikiSnapshot,
         tool_tags_allowlist: list[str],
         howto_tags_allowlist: list[str],
+        impl_study_tags_allowlist: list[str] | None = None,
+        glossary_tags_allowlist: list[str] | None = None,
         model: str,
         prompt_version: str,
         max_retries: int = 3,

@@ -2,6 +2,7 @@
 
 from src.ingest_review.analyze import apply_tag_allowlists, run_classification, validate_llm_dict
 from src.ingest_review.artifact import (
+    aggregate_impl_study_section_status,
     aggregate_review_status,
     apply_regenerated_source_section,
     attach_error,
@@ -11,6 +12,7 @@ from src.ingest_review.artifact import (
     load_artifact,
     merge_llm_output_preserving_review,
     migrate_artifact_to_v2,
+    migrate_artifact_to_v3,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -33,23 +35,38 @@ from src.ingest_review.feedback_store import (
 from src.ingest_review.paths import load_repo_dotenv, repo_root
 from src.ingest_review.schema import (
     ARTIFACT_SCHEMA_VERSION,
+    GLOSSARY_LIST_KEYS,
+    GLOSSARY_SCALAR_KEYS,
+    IMPL_STUDY_LIST_KEYS,
+    IMPL_STUDY_SCALAR_KEYS,
     PROMPT_VERSION,
     REGENERATABLE_SOURCE_SECTION_KEYS,
     SOURCE_SUMMARY_SCALAR_KEYS,
     LlmClassificationOutput,
     normalize_source_summary,
 )
-from src.ingest_review.tags import load_howto_tags, load_tag_list, load_tool_tags
+from src.ingest_review.tags import (
+    load_glossary_tags,
+    load_howto_tags,
+    load_impl_study_tags,
+    load_tag_list,
+    load_tool_tags,
+)
 from src.ingest_review.wiki_snapshot import WikiSnapshot, build_wiki_snapshot
 
 __all__ = [
     "ARTIFACT_SCHEMA_VERSION",
+    "GLOSSARY_LIST_KEYS",
+    "GLOSSARY_SCALAR_KEYS",
+    "IMPL_STUDY_LIST_KEYS",
+    "IMPL_STUDY_SCALAR_KEYS",
     "PROMPT_VERSION",
     "LlmClassificationOutput",
     "REGENERATABLE_SOURCE_SECTION_KEYS",
     "SOURCE_SUMMARY_SCALAR_KEYS",
     "WikiSnapshot",
     "SourceDocument",
+    "aggregate_impl_study_section_status",
     "aggregate_review_status",
     "apply_regenerated_source_section",
     "apply_tag_allowlists",
@@ -65,12 +82,15 @@ __all__ = [
     "init_feedback_db",
     "list_readwise_html_sources",
     "load_artifact",
+    "load_glossary_tags",
     "load_howto_tags",
+    "load_impl_study_tags",
     "load_readwise_pair",
     "load_tag_list",
     "load_tool_tags",
     "merge_llm_output_preserving_review",
     "migrate_artifact_to_v2",
+    "migrate_artifact_to_v3",
     "normalize_source_summary",
     "parse_markdown_frontmatter",
     "readwise_source_status",

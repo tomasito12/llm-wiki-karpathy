@@ -19,6 +19,7 @@ def apply_tag_allowlists(
     parsed: LlmClassificationOutput,
     tool_tags: set[str],
     howto_tags: set[str],
+    glossary_tags: set[str] | None = None,
 ) -> LlmClassificationOutput:
     """Drop LLM-proposed tags that are not on the allowlists."""
     new_tools = [
@@ -29,7 +30,14 @@ def apply_tag_allowlists(
         hp.model_copy(update={"proposed_tags": [x for x in hp.proposed_tags if x in howto_tags]})
         for hp in parsed.how_to
     ]
-    return parsed.model_copy(update={"tools": new_tools, "how_to": new_how})
+    gt = glossary_tags or set()
+    new_glossary = [
+        gp.model_copy(update={"proposed_tags": [x for x in gp.proposed_tags if x in gt]})
+        for gp in parsed.glossary
+    ]
+    return parsed.model_copy(
+        update={"tools": new_tools, "how_to": new_how, "glossary": new_glossary}
+    )
 
 
 def run_classification(
@@ -39,6 +47,8 @@ def run_classification(
     wiki_root: Path,
     tool_tags: list[str],
     howto_tags: list[str],
+    impl_study_tags: list[str] | None = None,
+    glossary_tags: list[str] | None = None,
     model: str,
     prompt_version: str | None = None,
 ) -> tuple[dict[str, object], LlmClassificationOutput]:
@@ -50,13 +60,15 @@ def run_classification(
         wiki=wiki,
         tool_tags_allowlist=tool_tags,
         howto_tags_allowlist=howto_tags,
+        impl_study_tags_allowlist=impl_study_tags,
+        glossary_tags_allowlist=glossary_tags,
         model=model,
         prompt_version=pv,
     )
     parsed = parsed.model_copy(
         update={"source_summary": normalize_source_summary(parsed.source_summary)}
     )
-    parsed = apply_tag_allowlists(parsed, set(tool_tags), set(howto_tags))
+    parsed = apply_tag_allowlists(parsed, set(tool_tags), set(howto_tags), set(glossary_tags or []))
     analysis_meta = default_analysis_meta(
         provider=provider.provider_name,
         model=model,

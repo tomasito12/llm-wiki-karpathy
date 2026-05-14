@@ -76,6 +76,94 @@ attack. If nothing major, say so briefly.
 **sources** (array of strings): URLs or references present in the article or metadata; else []."""
 
 
+IMPL_STUDY_RUBRIC = """\
+## implementation_studies (array of objects — implementation studies)
+
+Only populate when the article describes a REAL company attempting to implement
+a specific technology. Not for product announcements, benchmarks, or opinion pieces.
+
+Each object MUST include:
+- title: short descriptive implementation title
+- company: company or organization name
+- industry: business domain (e.g. quick-service restaurant, healthcare, telecom)
+- overview: what happened (real implementation, not generic summary)
+- what_was_implemented: specific technology/system/workflow
+- business_objective: why the company pursued this
+- technical_approach: how they did it (vendors, architecture, methods) — \
+only what the source supports
+- deployment_context: where/how it was tested or deployed
+- outcome_status: what happened (pilot ended, scaled, failed, ongoing)
+- success_or_failure_factors: why it worked or didn't
+- operational_constraints: production constraints that mattered
+- ai_model_observations: what this case suggests about AI systems
+- implications_for_service_automation: what this teaches about support \
+automation, voicebots, chatbots, contact centers — if no implications, \
+say so explicitly
+- strategic_signals: broader strategic patterns
+- key_lessons: short practical lessons (list of strings)
+- open_questions: unresolved questions (list of strings)
+- related_sources: URLs/references from the article
+- evidence_snippets: array of {claim, snippet, provenance} where \
+provenance is "stated", "inferred", or "interpretation"
+- suggested_existing_tags: tags from IMPL_STUDY_TAGS_ALLOWLIST only
+- proposed_new_tags: tags NOT in the allowlist that you think useful; \
+these require human approval
+- match_candidates: existing wiki implementation-study pages that may overlap
+- confidence: 0.0–1.0
+- suggested_action: "create" | "update" | "ignore"
+
+Voice: concise, direct, practical. Focus on operational reality over marketing \
+claims. Skeptical where warranted. No hype, no LinkedIn tone."""
+
+
+GLOSSARY_RUBRIC = """\
+## glossary (array of objects — glossary term proposals)
+
+Only extract terms where the source provides SUBSTANTIVE explanatory content.
+Do NOT extract terms that are merely mentioned in passing.
+
+CRITICAL: Only propose ESTABLISHED industry terms that already exist in \
+professional usage and are verifiable via a web search. Do NOT propose \
+neologisms coined by the article author, ad-hoc phrases, or terms invented \
+for this specific article. If in doubt, omit the term.
+
+A term is a good glossary candidate if the text:
+- explicitly defines it
+- explains what it means in practice
+- contrasts it with related concepts
+- describes how it is used operationally
+- gives enough context to write a useful explanation
+
+Each object MUST include:
+- term: the term or phrase (use the most common established industry form)
+- proposed_definition: a STANDALONE, context-free definition — like a \
+dictionary or encyclopedia entry. 1-3 sentences. MUST NOT reference \
+"this article", "the source", "the author", or any article-specific \
+context. Write as if the reader has never seen the source article. \
+Pure concept definition only. Avoid academic or buzzword-heavy language.
+- extended_explanation: a longer explanation (3-8 sentences when the \
+source supports it) aimed at making the concept accessible to someone \
+who is not yet an expert. Use analogies, simpler terms, concrete \
+examples, or comparisons with related concepts to build understanding. \
+Do NOT reference the article. Empty string only if the source provides \
+no depth beyond a bare definition.
+- supporting_snippet: verbatim quote from the source that supports \
+the definition
+- relevance_note: why this term matters in the context of THIS article \
+and for a practitioner's glossary. This is where article-specific \
+relevance belongs — practical implications, why the source makes this \
+term worth knowing, industry significance. 1-3 sentences.
+- related_terms: other terms mentioned in the same conceptual context
+- proposed_tags: tags from GLOSSARY_TAGS_ALLOWLIST only; \
+empty array if allowlist is empty
+- match_candidates: existing glossary terms that may overlap
+- confidence: 0.0-1.0
+- suggested_action: "create" | "update" | "ignore"
+
+Voice: clear, practical, accessible. Define for a senior practitioner, \
+not an academic. Prefer operational understanding over theoretical precision."""
+
+
 def _section_regen_rubric(section_key: str) -> str:
     """Narrow rubric text for one section (avoid brittle string splits in production)."""
     fixed = {
@@ -116,6 +204,8 @@ def _build_user_prompt(
     wiki: WikiSnapshot,
     tool_tags: list[str],
     howto_tags: list[str],
+    impl_study_tags: list[str] | None = None,
+    glossary_tags: list[str] | None = None,
     *,
     prompt_version: str,
 ) -> str:
@@ -129,6 +219,9 @@ def _build_user_prompt(
         f"canonical_url: {doc.canonical_url or ''}",
     ]
     schema_hint = json.dumps(llm_output_json_schema(), indent=2)[:24_000]
+    impl_tags = impl_study_tags or []
+    gloss_tags = glossary_tags or []
+    impl_titles = wiki.implementation_study_titles[:100] if wiki.implementation_study_titles else []
     blocks = [
         "## Metadata\n" + "\n".join(meta_lines),
         "## EXISTING_GLOSSARY_TERMS\n" + "\n".join(f"- {t}" for t in wiki.glossary_terms[:150]),
@@ -136,15 +229,22 @@ def _build_user_prompt(
         "## EXISTING_TOOL_NAMES\n" + "\n".join(f"- {t}" for t in wiki.tool_names[:200]),
         "## EXISTING_FOUNDATION_MODEL_NAMES\n"
         + "\n".join(f"- {m}" for m in wiki.foundation_model_names[:120]),
+        "## EXISTING_IMPLEMENTATION_STUDY_TITLES\n" + "\n".join(f"- {t}" for t in impl_titles),
         "## TOOL_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_tags),
         "## HOWTO_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in howto_tags),
+        "## IMPL_STUDY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in impl_tags),
+        "## GLOSSARY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in gloss_tags),
         "## SOURCE_CHAPTERS_RUBRIC\n" + SOURCE_CHAPTERS_RUBRIC,
+        "## GLOSSARY_RUBRIC\n" + GLOSSARY_RUBRIC,
+        "## IMPL_STUDY_RUBRIC\n" + IMPL_STUDY_RUBRIC,
         "## JSON_SCHEMA_HINT\n" + schema_hint,
         "## ARTICLE_PLAIN_TEXT\n" + doc.plain_text,
         "## Instructions\n"
         "Output one JSON object matching the schema keys: source_summary, glossary, tools, "
-        "foundation_models, how_to, enterprise_studies, industry_trends, roundup. "
+        "foundation_models, how_to, implementation_studies, industry_trends, roundup. "
         "Prioritize high-signal source_summary chapters per SOURCE_CHAPTERS_RUBRIC. "
+        "For glossary, follow GLOSSARY_RUBRIC strictly. "
+        "For implementation_studies, follow IMPL_STUDY_RUBRIC strictly. "
         "Use empty arrays when a category does not apply. For roundup: set is_roundup true only "
         "for digests/newsletters whose primary purpose is listing many external items.",
     ]
@@ -181,6 +281,8 @@ class OpenAIIngestionProvider(IngestionProvider):
         wiki: WikiSnapshot,
         tool_tags_allowlist: list[str],
         howto_tags_allowlist: list[str],
+        impl_study_tags_allowlist: list[str] | None = None,
+        glossary_tags_allowlist: list[str] | None = None,
         model: str,
         prompt_version: str,
         max_retries: int = 3,
@@ -191,6 +293,8 @@ class OpenAIIngestionProvider(IngestionProvider):
             wiki,
             tool_tags_allowlist,
             howto_tags_allowlist,
+            impl_study_tags_allowlist,
+            glossary_tags_allowlist,
             prompt_version=prompt_version or PROMPT_VERSION,
         )
         messages = [

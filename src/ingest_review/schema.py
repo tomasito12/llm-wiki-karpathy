@@ -6,7 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
-ARTIFACT_SCHEMA_VERSION = 2
+ARTIFACT_SCHEMA_VERSION = 3
 PROMPT_VERSION = "2"
 
 SuggestedAction = Literal["create", "update", "ignore"]
@@ -114,11 +114,25 @@ class GlossaryProposal(BaseModel):
 
     term: str = ""
     proposed_definition: str = ""
+    extended_explanation: str = ""
     supporting_snippet: str = ""
+    relevance_note: str = ""
+    related_terms: list[str] = Field(default_factory=list)
+    proposed_tags: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
-    match_candidates: list[MatchCandidate] = Field(default_factory=list)
-    tag_gap_notes: str | None = None
+
+
+GLOSSARY_SCALAR_KEYS: tuple[str, ...] = (
+    "term",
+    "proposed_definition",
+    "extended_explanation",
+    "supporting_snippet",
+    "relevance_note",
+)
+
+GLOSSARY_LIST_KEYS: tuple[str, ...] = ("related_terms",)
 
 
 class ToolProposal(BaseModel):
@@ -162,18 +176,64 @@ class HowToProposal(BaseModel):
     tag_gap_notes: str | None = None
 
 
-class EnterpriseStudyProposal(BaseModel):
-    """Enterprise implementation pattern."""
+class EvidenceSnippet(BaseModel):
+    """Source-grounded evidence for an implementation-study claim."""
 
-    company_name: str = ""
-    implemented_technology: str = ""
-    business_context: str = ""
-    implementation_pattern: str = ""
-    lessons_learned: str = ""
-    supporting_snippet: str = ""
-    proposed_tags: list[str] = Field(default_factory=list)
+    claim: str = ""
+    snippet: str = ""
+    provenance: Literal["stated", "inferred", "interpretation"] = "stated"
+
+
+class ImplementationStudyProposal(BaseModel):
+    """Rich implementation-study proposal extracted from a source."""
+
+    title: str = ""
+    company: str = ""
+    industry: str = ""
+    overview: str = ""
+    what_was_implemented: str = ""
+    business_objective: str = ""
+    technical_approach: str = ""
+    deployment_context: str = ""
+    outcome_status: str = ""
+    success_or_failure_factors: str = ""
+    operational_constraints: str = ""
+    ai_model_observations: str = ""
+    implications_for_service_automation: str = ""
+    strategic_signals: str = ""
+    key_lessons: list[str] = Field(default_factory=list)
+    open_questions: list[str] = Field(default_factory=list)
+    related_sources: list[str] = Field(default_factory=list)
+    evidence_snippets: list[EvidenceSnippet] = Field(default_factory=list)
+    suggested_existing_tags: list[str] = Field(default_factory=list)
+    proposed_new_tags: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
+
+
+IMPL_STUDY_SCALAR_KEYS: tuple[str, ...] = (
+    "title",
+    "company",
+    "industry",
+    "overview",
+    "what_was_implemented",
+    "business_objective",
+    "technical_approach",
+    "deployment_context",
+    "outcome_status",
+    "success_or_failure_factors",
+    "operational_constraints",
+    "ai_model_observations",
+    "implications_for_service_automation",
+    "strategic_signals",
+)
+
+IMPL_STUDY_LIST_KEYS: tuple[str, ...] = (
+    "key_lessons",
+    "open_questions",
+    "related_sources",
+)
 
 
 class IndustryTrendProposal(BaseModel):
@@ -206,7 +266,7 @@ class LlmClassificationOutput(BaseModel):
     tools: list[ToolProposal] = Field(default_factory=list)
     foundation_models: list[FoundationModelProposal] = Field(default_factory=list)
     how_to: list[HowToProposal] = Field(default_factory=list)
-    enterprise_studies: list[EnterpriseStudyProposal] = Field(default_factory=list)
+    implementation_studies: list[ImplementationStudyProposal] = Field(default_factory=list)
     industry_trends: list[IndustryTrendProposal] = Field(default_factory=list)
     roundup: RoundupDetection = Field(default_factory=RoundupDetection)
 
