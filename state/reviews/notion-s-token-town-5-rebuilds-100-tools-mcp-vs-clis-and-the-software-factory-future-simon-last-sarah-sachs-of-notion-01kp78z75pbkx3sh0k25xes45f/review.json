@@ -1,0 +1,1979 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-15T13:56:56+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "9",
+    "provider": "openai",
+    "request_id": "chatcmpl-DfnJNXdV07LeHrVFyEA01X28T85hA",
+    "token_usage": {
+      "completion_tokens": 5504,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 49470,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 54974
+    }
+  },
+  "artifact_schema_version": 9,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 10
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Design the agent around stable primitives and a thin harness, not around one fragile prompt or one fixed model. Keep the core workflow human-readable, add progressive disclosure so the model only sees the tools it needs, and build strong evals so tool changes can be shipped safely. Use permissions as a first-class product constraint, and let the agent self-setup and self-debug only within tightly controlled boundaries. The result is a system that can evolve with model capabilities without requiring a full rewrite each time the model stack changes.",
+        "caveats": "The source describes a working direction, not a universally validated recipe. It depends on having strong eval infrastructure and a product surface where tools can be made explicit and permissioned.",
+        "confidence": 0.91,
+        "evidence_type": "implementation_case",
+        "implementation_steps": [
+          "Identify the smallest stable primitives for the workflow.",
+          "Expose tools progressively rather than all at once.",
+          "Keep the agent prompt short and move complexity into the harness.",
+          "Add regression, launch-quality, and headroom evals.",
+          "Add explicit permissions for any action that changes state.",
+          "Let bugs route into an internal issue or task flow that the agent can observe and help fix."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A structured system of record such as pages, databases, or tasks",
+          "Tooling to define, permission, and version actions",
+          "An eval framework that can run repeatedly in CI or nightly",
+          "A workflow for human review of failures"
+        ],
+        "primary_tag": "ai-engineering",
+        "question_title": "How should an enterprise agent be designed when models and tools are changing quickly?",
+        "related_howtos": [
+          "agent-harness-design",
+          "progressive-tool-disclosure",
+          "agent-evals"
+        ],
+        "relevance_note": "This is directly reusable for anyone building agentic workflow automation, support assistants, or enterprise copilots on top of frequently changing model APIs.",
+        "secondary_tag": "api-integration",
+        "suggested_action": "create_new_page",
+        "suggested_new_tag": "",
+        "supporting_snippet": "\u201cwe\u2019re fighting to keep the prompt as short as possible now\u201d ... \u201cprogressive disclosure\u201d ... \u201cself verification loop\u201d ... \u201cthe workflow of like. What happens when there\u2019s a bug? How does it flow into the system?\u201d",
+        "value_level": "high"
+      }
+    ],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "The source suggests models work better when given simple, familiar abstractions and when the surrounding harness hides unnecessary complexity. It also suggests that tool overload can degrade agent quality even when the base model is capable.",
+        "business_objective": "Turn Notion into an agent-native system of record for enterprise work and automate workflow steps that previously required manual triage and bookkeeping.",
+        "company": "Notion",
+        "confidence": 0.97,
+        "deployment_context": "Internal use first, then external launch of Custom Agents; the same Notion instance is used for internal prototyping across teams.",
+        "evidence_snippets": [
+          {
+            "claim": "Notion rebuilt Custom Agents several times before launch.",
+            "provenance": "stated",
+            "snippet": "\u201cit\u2019s probably the fourth or fifth time that we rebuilt that.\u201d"
+          },
+          {
+            "claim": "Early attempts failed because tools and context support were immature.",
+            "provenance": "stated",
+            "snippet": "\u201cthere wasn\u2019t even a constant of like tools yet\u201d ... \u201cthe context thing was also way too short\u201d"
+          },
+          {
+            "claim": "The product now relies on explicit permissions for background work.",
+            "provenance": "stated",
+            "snippet": "\u201cby default it has no permission to do anything and then you have to explicitly grant it all its permissions\u201d"
+          }
+        ],
+        "evidence_type": "implementation_case",
+        "implications_for_service_automation": "The case maps directly to service automation patterns such as inbox triage, bug routing, and structured database updates. It shows that agents can replace processes rather than people when they work inside a shared system of record and have controlled write access.",
+        "industry": "software and knowledge management",
+        "key_lessons": [
+          "Build around model-friendly abstractions, not legacy internal formats.",
+          "Keep prompts short and move complexity into tools and evals.",
+          "Make permissions explicit before enabling background autonomy.",
+          "Treat self-debugging as a workflow, not a novelty feature."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How much of this architecture generalizes outside Notion\u2019s own product surface?",
+          "What is the right boundary between self-fixing and permission changes?",
+          "How do these patterns behave under much larger toolsets and more heterogeneous enterprise workflows?"
+        ],
+        "operational_constraints": "Background execution required strict permissioning. Enterprise readiness also required security review, compliance considerations, and robustness before production release.",
+        "outcome_status": "Launched in production after multiple rebuilds; the product is actively evolving.",
+        "overview": "Notion repeatedly rebuilt its Custom Agents product before launching it in production. The final direction combined agent harnesses, progressive tool disclosure, self-setup, self-debugging, and explicit permission controls so agents could work in the background on enterprise tasks.",
+        "primary_tag": "enterprise-ai-adoption",
+        "related_sources": [
+          "https://www.latent.space/p/notion"
+        ],
+        "secondary_tag": "operational-reliability",
+        "strategic_signals": "Notion is treating agents as a platform layer across its product, not a feature. The company expects more traffic to come from agents than from humans over time, so every product surface must work for both.",
+        "success_or_failure_factors": "Success came from waiting for model/tool maturity, keeping the harness simple, investing in evals, and aligning the UX with explicit permissions and self-service setup. Earlier versions failed because the models were too weak, context windows were too short, and the abstractions matched Notion\u2019s data model more than the model\u2019s needs.",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "technical_approach": "The team moved from early JavaScript-based tool use to XML, then Notion-flavored Markdown, SQL-like query abstractions, tool definitions, and progressive disclosure. They also built eval frameworks, nightly checks, and internal issue flows so agents could inspect failures and improve their own setup.",
+        "title": "Notion rebuilds Custom Agents around tool use, evals, and permissions",
+        "value_level": "high",
+        "what_was_implemented": "A custom-agent product inside Notion with tool calling, database and page access, web search enrichment, and admin-controlled permissions."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": 0.87,
+        "evidence_from_source": "Notion says that \u201cover time the majority of our traffic will be coming from agencies using in our interface, not humans\u201d and that the whole product org must build for agents.",
+        "evidence_type": "implementation_case",
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "related_trends": [
+          "knowledge-management-workflows",
+          "enterprise-agent-orchestration"
+        ],
+        "secondary_tag": "ai-governance",
+        "suggested_action": "append_to_existing",
+        "suggested_new_tag": "",
+        "supporting_data_points": [
+          "Notion expects most traffic to come from agents rather than humans over time.",
+          "Product engineering teams are tasked with supporting both humans and agents.",
+          "Agents are treated as part of the core product, not a separate add-on."
+        ],
+        "supporting_snippet": "\u201cour objective is to make it so that the whole product org is building for agents.\u201d",
+        "time_sensitivity": "Actionable as of 2026-04-15; likely to remain relevant through the next product cycles as more enterprise workflows become agent-mediated.",
+        "trend_description": "Enterprise products are shifting from human-only interfaces to systems that must support both humans and agents as first-class users. The product boundary moves from UI alone to the underlying system of record, permissions, and workflow primitives.",
+        "trend_name": "agent-native enterprise software",
+        "uncertainty_note": "This is a strong directional signal from one company, but the exact pace and scope of adoption across the industry remain uncertain.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cwe made an effort basically to treat the eval system as like an agent harness\u201d",
+          "\u201cyou should be able to have an agent end-to-end, download a dataset, run an eval, iterate on a failure, debug, and, and then implement a fix\u201d"
+        ],
+        "evidence_type": "mixed",
+        "insight_title": "Agent products need a harness, not just a wrapper",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "Notion",
+          "OpenAI",
+          "Anthropic"
+        ],
+        "operational_relevance": "Teams should invest in tool schemas, eval loops, and permission layers as core infrastructure rather than glue code.",
+        "primary_tag": "ai-engineering",
+        "secondary_tag": "ai-infrastructure",
+        "service_automation_relevance": "Service automation becomes more reliable when agents work inside controlled harnesses with explicit read/write boundaries and failure triage.",
+        "suggested_destinations": [
+          "topics/",
+          "howto/"
+        ],
+        "suggested_new_tag": "",
+        "summary": "The interview argues that the difference between a toy wrapper and a production agent is the outer harness: tool abstraction, evals, permissions, and failure handling. The model is only one part of the system; the product succeeds when the harness lets the model act safely and recover from errors. This is why Notion keeps rewriting the stack as the model/tool landscape changes.",
+        "value_level": "high",
+        "why_it_matters": "This is a durable operating model for enterprise agent products, where reliability depends on system design more than model size.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cwe\u2019re fighting to keep the prompt as short as possible now\u201d",
+          "\u201cprogressive disclosure becomes really important\u201d",
+          "\u201cit became pretty hard to add new tools\u201d"
+        ],
+        "evidence_type": "implementation_case",
+        "insight_title": "Progressive disclosure is a reliability feature",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "Notion"
+        ],
+        "operational_relevance": "Use staged tool exposure and keep the core prompt short when tool count grows.",
+        "primary_tag": "ai-engineering",
+        "secondary_tag": "",
+        "service_automation_relevance": "Chatbots and support agents are less likely to misfire if they are only shown the actions relevant to the current task.",
+        "suggested_destinations": [
+          "topics/",
+          "howto/"
+        ],
+        "suggested_new_tag": "",
+        "summary": "Notion\u2019s view is that showing fewer tools and exposing them gradually improves agent quality. When too many tools are visible, the agent gets noisier, slower, and less reliable; when tool access is staged, the model can operate with less confusion. The same idea applies to prompt length and system complexity.",
+        "value_level": "high",
+        "why_it_matters": "This is a practical design pattern for any agent platform with a large action surface, especially in enterprise settings.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cwe have the equivalent of unit test. Regression test.\u201d",
+          "\u201cThen we have ... launch quality\u201d",
+          "\u201cfrontier or headroom evals, where we actively wanna be at 30% pass rate\u201d"
+        ],
+        "evidence_type": "implementation_case",
+        "insight_title": "Evals should separate regression quality from headroom",
+        "insight_type": "research_eval",
+        "mentioned_entities": [
+          "Notion",
+          "OpenAI",
+          "Anthropic"
+        ],
+        "operational_relevance": "Maintain separate eval suites for release gating and for frontier exploration so that one does not mask the other.",
+        "primary_tag": "ai-engineering",
+        "secondary_tag": "knowledge-management",
+        "service_automation_relevance": "Automation teams can use launch-quality checks for containment and headroom evals for capability discovery before expanding autonomy.",
+        "suggested_destinations": [
+          "topics/",
+          "howto/"
+        ],
+        "suggested_new_tag": "",
+        "summary": "Notion describes three eval layers: regression tests, launch-quality tests, and headroom tests that intentionally pass only about 30% of the time. This separates production stability from frontier probing, which prevents the evaluation system from saturating too early. It also creates a feedback loop for judging whether the model frontier is moving in useful directions.",
+        "value_level": "high",
+        "why_it_matters": "This is a strong pattern for teams that want both shipping confidence and a way to track model progress.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cthe search load and the search traffic. Majority of it\u2019s coming from agents, not humans\u201d",
+          "\u201cPositional ranking matters less, but top K retrieval mode matters more\u201d"
+        ],
+        "evidence_type": "implementation_case",
+        "insight_title": "Agentic search changes retrieval objectives",
+        "insight_type": "topic",
+        "mentioned_entities": [
+          "Notion"
+        ],
+        "operational_relevance": "Teams should revisit ranking metrics, snippet generation, and query diversity when search traffic shifts toward agents.",
+        "primary_tag": "knowledge-management",
+        "secondary_tag": "ai-infrastructure",
+        "service_automation_relevance": "Support assistants that search internal docs or tickets need retrieval tuned for actionability, not just discoverability.",
+        "suggested_destinations": [
+          "topics/",
+          "howto/"
+        ],
+        "suggested_new_tag": "",
+        "summary": "When agents become the primary search users, ranking objectives change. Top-K quality, snippet selection, and query generation matter more than human click-through behavior or simple embedding choices. Retrieval becomes part of the agent trajectory rather than a standalone information search problem.",
+        "value_level": "high",
+        "why_it_matters": "Enterprise search and knowledge systems need to optimize for machine consumption, not only human browsing.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "medium",
+        "contrarian_or_speculative_claims": [
+          "CLI should be preferred in many self-debugging contexts, but this is presented as a product judgment rather than a benchmark-backed conclusion."
+        ],
+        "durability_estimate": "medium_term",
+        "evidence_snippets": [
+          "\u201cI\u2019m definitely bullish and excited about cli\u201d",
+          "\u201cif there\u2019s an issue, the agent can debug and fix itself within the same environment that it uses the tool\u201d",
+          "\u201cMCP inherently has a really strong permission model\u201d"
+        ],
+        "evidence_type": "expert_opinion",
+        "insight_title": "CLI is favored for self-debugging agents; MCP is better for narrow permissioned access",
+        "insight_type": "tool",
+        "mentioned_entities": [
+          "MCP",
+          "CLI",
+          "Notion"
+        ],
+        "operational_relevance": "Use CLI-like environments for autonomous coding and recovery loops; use MCP for constrained tool access where permissions matter more than self-healing.",
+        "primary_tag": "ai-infrastructure",
+        "secondary_tag": "ai-security",
+        "service_automation_relevance": "Support and operations agents that need bounded access may fit MCP-style tooling, while workflow builders and coding agents may benefit from CLI-style bootstrap paths.",
+        "suggested_destinations": [
+          "topics/",
+          "tools/"
+        ],
+        "suggested_new_tag": "",
+        "summary": "The interview draws a practical split between CLI and MCP. CLI is attractive because an agent can debug and fix itself in the same environment; MCP is useful when you want narrow, permissioned access to tools without giving the agent a broader runtime. The tradeoff is between bootstrapped recovery and tight control.",
+        "value_level": "medium",
+        "why_it_matters": "This is a reusable framework for choosing integration styles in agent systems.",
+        "wiki_worthiness": "review_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cteach at the top of the class\u201d",
+          "\u201cthe more we do that, the more we abstract away that interpretability ... the more we diminish its capabilities\u201d"
+        ],
+        "evidence_type": "expert_opinion",
+        "insight_title": "Agent UX for power users can intentionally avoid abstraction",
+        "insight_type": "topic",
+        "mentioned_entities": [
+          "Notion"
+        ],
+        "operational_relevance": "Do not over-simplify agent setup if users need to inspect tools, prompts, and failure modes to trust the system.",
+        "primary_tag": "ai-engineering",
+        "secondary_tag": "",
+        "service_automation_relevance": "In support automation, operator visibility into routing and actions can improve trust and reduce black-box failures.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "summary": "Notion\u2019s design philosophy is to teach the top of the class rather than hide complexity behind simplified controls. The team argues that over-abstracting the interface can reduce capability and interpretability, which hurts advanced operators. For agent products, exposing how tools work can be a feature rather than a flaw.",
+        "value_level": "high",
+        "why_it_matters": "This is useful for products aimed at sophisticated users who need control, troubleshooting, and transparency.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_summary": {
+      "assessed_as_of": "2026-04-15",
+      "contradictions_and_skepticism": "Several claims are strategically persuasive but not independently validated here, including the view that CLI is generally preferable to MCP in self-debugging environments and that agentic retrieval will dominate human search patterns. The source also leans on internal success metrics and design judgments rather than comparative benchmarks. The strongest takeaway is architectural, not empirical: simpler primitives plus good evals appear to scale better than monolithic prompts.",
+      "implications_automation": "As of 2026-04-15, the clearest service-automation implication is that agents are more reliable when they operate over structured business systems such as databases, inboxes, task trackers, and meeting notes. The interview\u2019s examples map directly to support triage, inbox routing, bug routing, and follow-up task creation. It also suggests that automation quality improves when the agent can read, write, and compose across shared records rather than handing off to disconnected tools. No major voice-specific implications were identified.",
+      "key_insights": [
+        "A useful agent product often needs multiple rebuilds as model behavior, tool standards, and UX constraints change.",
+        "Progressive disclosure and simpler tool abstractions can improve reliability more than adding more prompt complexity.",
+        "Evals need to cover three levels: regression tests, launch-quality journeys, and deliberate headroom tests that pass only part of the time.",
+        "For enterprise agents, permissioning and self-fix flows are product features, not afterthoughts.",
+        "As agent traffic grows, retrieval and ranking need to optimize for agent query patterns, not human click behavior."
+      ],
+      "limitations_and_open_questions": "Much of the evidence is vendor-provided and reflects Notion\u2019s own product strategy, so the claims should be treated as a strong implementation perspective rather than an external evaluation. The interview does not provide hard quantitative results for reliability, containment, or cost. Open questions remain around how portable these patterns are outside Notion\u2019s tightly integrated product surface, how much self-debugging can safely be exposed to users, and how well the approach generalizes to less structured workflows.",
+      "practical_relevance": "Highly actionable as of 2026-04-15 for teams building enterprise agents, workflow automation, and tool-using assistants.",
+      "sources": [
+        "https://www.latent.space/p/notion"
+      ],
+      "summary": "This conversation explains how Notion rebuilt Custom Agents multiple times before launch and why the product only became viable after models, tool calling, and internal harness design improved. The core idea is that agent products should be built around the model\u2019s actual strengths and limits, not around forcing the model to fit a product-shaped abstraction. Notion\u2019s approach combines progressive tool disclosure, strong evals, self-setup/self-debugging workflows, and a product design that keeps humans in control through explicit permissions. The company treats agents as a system-of-record layer over collaboration data, not as a separate chat novelty. Meeting Notes, search, and custom agents are framed as one connected data-and-action loop that makes the product more useful for both humans and agents. The interview also covers a practical view of MCP vs CLI, pricing via credits, and why retrieval/ranking matter more as agent-generated queries replace human search behavior.",
+      "why_it_matters": "As of 2026-04-15, this is a strong case study in how to ship agentic software inside an enterprise product with real workflows, permissions, and data constraints. It shows that durable advantage comes less from raw model access and more from the surrounding harness, evaluation loop, tool design, and product architecture. For AI engineering teams, the interview is useful because it connects model choice, tool abstraction, search, pricing, and org design into one operating model. For service automation, it shows how agents can replace processes, not people, when they are grounded in shared systems of record and explicit guardrails."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "The source is structured as a long-form conversation with multiple named speakers and interviewer turns.",
+        "It includes transcript timestamps, Q&A flow, and discussion-driven sections rather than a single authored narrative.",
+        "The content is centered on interview insights about product and engineering decisions at Notion."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.94,
+        "core_capabilities": [
+          "tool calling",
+          "database writeback",
+          "web search enrichment",
+          "self-setup",
+          "self-debugging",
+          "permissioned background execution",
+          "agent composition"
+        ],
+        "evidence_type": "mixed",
+        "integration_ecosystem": [
+          "Notion databases",
+          "Notion pages",
+          "Slack",
+          "email",
+          "web search",
+          "task databases"
+        ],
+        "match_candidates": [],
+        "maturity_signals": "Shipping product with internal and external use; described as having gone through several rebuilds and a production launch; tied to a broader platform and enterprise packaging effort.",
+        "name": "Notion Custom Agents",
+        "operational_relevance": "This is relevant for teams that want agents embedded in a system of record rather than a standalone chat app. The interview frames it as a way to automate workflows like triage, enrichment, follow-up, and database updates. It matters for service automation because it can sit on top of inboxes, Slack, task databases, and meeting notes. The product is designed for enterprise use where permissioning, tool selection, and reliability matter more than novelty.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "chatbot-platform",
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "Notion Mail",
+          "MCP",
+          "CLI",
+          "Cloud Code"
+        ],
+        "short_description": "A Notion feature for building and running task-oriented agents inside the Notion product. It can read and write Notion data, use tools like search and web lookup, and be configured to work with shared workspaces and permissions.",
+        "strengths": "Strong fit for structured workflows; can compose with Notion databases and pages; supports self-setup and some self-debugging; built with permissions and enterprise constraints in mind.",
+        "suggested_action": "create_new_page",
+        "supporting_snippet": "\u201cCustom Agents\u201d and \u201cwe finally embracing the Agent Lab playbook!\u201d ... \u201cwhy it took years and multiple rebuilds to get right\u201d ... \u201cHow Notion built Custom Agents\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "The source emphasizes that reliability required multiple rebuilds, and that many capabilities depend on careful harness design and evals. It is also constrained by permissions, tool design, and the need to avoid exposing too much complexity to the user."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": "mixed",
+        "key_points": [
+          "A harness can be used to let agents debug and improve their own workflows.",
+          "The outer system should make tool use and failure recovery observable.",
+          "Progressive disclosure helps prevent tool overload as the surface area grows."
+        ],
+        "knowledge_summary": "Agent quality depends heavily on the outer system that surrounds the model: tool definitions, permissions, evaluation loops, and failure-handling matter as much as the model itself. When that harness is too complex, agents become brittle; when it is too thin, they cannot safely act. A good harness makes tools discoverable, keeps prompts short, and allows the system to evolve as models improve. In practice, harness design is an engineering discipline for turning a general model into a reliable workflow participant.",
+        "match_candidates": [],
+        "operational_insight": "Treat the harness as the product surface that determines whether an agent can be shipped safely, not as boilerplate around the model.",
+        "primary_tag": "ai-engineering",
+        "related_topics": [
+          "agent-evals",
+          "progressive-tool-disclosure",
+          "tool-abstraction"
+        ],
+        "relevance_note": "This is durable knowledge for any team building production agents, because most reliability problems show up in the harness rather than in the base model.",
+        "secondary_tag": "",
+        "suggested_action": "create_new_page",
+        "suggested_new_tag": "",
+        "supporting_snippet": "\u201cwe made an effort basically to treat the eval system as like an agent harness\u201d ... \u201cyou should be able to have an agent end-to-end, download a dataset, run an eval, iterate on a failure, debug, and, and then implement a fix\u201d",
+        "topic_slug": "agent-harness-design",
+        "topic_title": "Agent harness design",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.92,
+        "evidence_type": "implementation_case",
+        "key_points": [
+          "Agent-generated queries have different ranking needs than human queries.",
+          "Top-K quality and snippet choice can matter more than exact position.",
+          "Query generation and retrieval should be treated as one pipeline."
+        ],
+        "knowledge_summary": "Retrieval systems that were tuned for human click behavior often need to be reworked when agents become the main search client. Agent queries tend to be more structured, more exhaustive, and less dependent on positional click-through patterns. That shifts attention from simple embeddings toward ranking, top-K quality, snippet selection, and query generation. The practical result is that search must be optimized for downstream agent trajectories, not just for human browsing.",
+        "match_candidates": [],
+        "operational_insight": "If agents are the dominant search users, optimize retrieval for answerability and actionability rather than for traditional click metrics.",
+        "primary_tag": "knowledge-management",
+        "related_topics": [
+          "knowledge-management",
+          "ai-infrastructure"
+        ],
+        "relevance_note": "This matters for knowledge systems, support search, and enterprise assistants because the client of retrieval is changing from a human browser to an agent that needs to act on the result.",
+        "secondary_tag": "ai-infrastructure",
+        "suggested_action": "create_new_page",
+        "suggested_new_tag": "",
+        "supporting_snippet": "\u201cthe search load and the search traffic. Majority of it\u2019s coming from agents, not humans\u201d ... \u201cPositional ranking matters less, but top K retrieval mode matters more\u201d",
+        "topic_slug": "agentic-retrieval-and-ranking",
+        "topic_title": "Agentic retrieval and ranking",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Design the agent around stable primitives and a thin harness, not around one fragile prompt or one fixed model. Keep the core workflow human-readable, add progressive disclosure so the model only sees the tools it needs, and build strong evals so tool changes can be shipped safely. Use permissions as a first-class product constraint, and let the agent self-setup and self-debug only within tightly controlled boundaries. The result is a system that can evolve with model capabilities without requiring a full rewrite each time the model stack changes.",
+          "caveats": "The source describes a working direction, not a universally validated recipe. It depends on having strong eval infrastructure and a product surface where tools can be made explicit and permissioned.",
+          "confidence": 0.91,
+          "evidence_type": "implementation_case",
+          "implementation_steps": [
+            "Identify the smallest stable primitives for the workflow.",
+            "Expose tools progressively rather than all at once.",
+            "Keep the agent prompt short and move complexity into the harness.",
+            "Add regression, launch-quality, and headroom evals.",
+            "Add explicit permissions for any action that changes state.",
+            "Let bugs route into an internal issue or task flow that the agent can observe and help fix."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A structured system of record such as pages, databases, or tasks",
+            "Tooling to define, permission, and version actions",
+            "An eval framework that can run repeatedly in CI or nightly",
+            "A workflow for human review of failures"
+          ],
+          "primary_tag": "ai-engineering",
+          "question_title": "How should an enterprise agent be designed when models and tools are changing quickly?",
+          "related_howtos": [
+            "agent-harness-design",
+            "progressive-tool-disclosure",
+            "agent-evals"
+          ],
+          "relevance_note": "This is directly reusable for anyone building agentic workflow automation, support assistants, or enterprise copilots on top of frequently changing model APIs.",
+          "secondary_tag": "api-integration",
+          "suggested_action": "create_new_page",
+          "suggested_new_tag": "",
+          "supporting_snippet": "\u201cwe\u2019re fighting to keep the prompt as short as possible now\u201d ... \u201cprogressive disclosure\u201d ... \u201cself verification loop\u201d ... \u201cthe workflow of like. What happens when there\u2019s a bug? How does it flow into the system?\u201d",
+          "value_level": "high"
+        },
+        "notes": "",
+        "proposal_id": "9e998f18-849d-4581-8cd0-4fdace3bc816",
+        "proposal_status": "pending",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Identify the smallest stable primitives for the workflow.",
+              "Expose tools progressively rather than all at once.",
+              "Keep the agent prompt short and move complexity into the harness.",
+              "Add regression, launch-quality, and headroom evals.",
+              "Add explicit permissions for any action that changes state.",
+              "Let bugs route into an internal issue or task flow that the agent can observe and help fix."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A structured system of record such as pages, databases, or tasks",
+              "Tooling to define, permission, and version actions",
+              "An eval framework that can run repeatedly in CI or nightly",
+              "A workflow for human review of failures"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": "How should an enterprise agent be designed?",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "agent-harness-design",
+              "progressive-tool-disclosure",
+              "agent-evals"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "ai-engineering",
+          "final_secondary_tag": "api-integration",
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "The source suggests models work better when given simple, familiar abstractions and when the surrounding harness hides unnecessary complexity. It also suggests that tool overload can degrade agent quality even when the base model is capable.",
+          "business_objective": "Turn Notion into an agent-native system of record for enterprise work and automate workflow steps that previously required manual triage and bookkeeping.",
+          "company": "Notion",
+          "confidence": 0.97,
+          "deployment_context": "Internal use first, then external launch of Custom Agents; the same Notion instance is used for internal prototyping across teams.",
+          "evidence_snippets": [
+            {
+              "claim": "Notion rebuilt Custom Agents several times before launch.",
+              "provenance": "stated",
+              "snippet": "\u201cit\u2019s probably the fourth or fifth time that we rebuilt that.\u201d"
+            },
+            {
+              "claim": "Early attempts failed because tools and context support were immature.",
+              "provenance": "stated",
+              "snippet": "\u201cthere wasn\u2019t even a constant of like tools yet\u201d ... \u201cthe context thing was also way too short\u201d"
+            },
+            {
+              "claim": "The product now relies on explicit permissions for background work.",
+              "provenance": "stated",
+              "snippet": "\u201cby default it has no permission to do anything and then you have to explicitly grant it all its permissions\u201d"
+            }
+          ],
+          "evidence_type": "implementation_case",
+          "implications_for_service_automation": "The case maps directly to service automation patterns such as inbox triage, bug routing, and structured database updates. It shows that agents can replace processes rather than people when they work inside a shared system of record and have controlled write access.",
+          "industry": "software and knowledge management",
+          "key_lessons": [
+            "Build around model-friendly abstractions, not legacy internal formats.",
+            "Keep prompts short and move complexity into tools and evals.",
+            "Make permissions explicit before enabling background autonomy.",
+            "Treat self-debugging as a workflow, not a novelty feature."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How much of this architecture generalizes outside Notion\u2019s own product surface?",
+            "What is the right boundary between self-fixing and permission changes?",
+            "How do these patterns behave under much larger toolsets and more heterogeneous enterprise workflows?"
+          ],
+          "operational_constraints": "Background execution required strict permissioning. Enterprise readiness also required security review, compliance considerations, and robustness before production release.",
+          "outcome_status": "Launched in production after multiple rebuilds; the product is actively evolving.",
+          "overview": "Notion repeatedly rebuilt its Custom Agents product before launching it in production. The final direction combined agent harnesses, progressive tool disclosure, self-setup, self-debugging, and explicit permission controls so agents could work in the background on enterprise tasks.",
+          "primary_tag": "enterprise-ai-adoption",
+          "related_sources": [
+            "https://www.latent.space/p/notion"
+          ],
+          "secondary_tag": "operational-reliability",
+          "strategic_signals": "Notion is treating agents as a platform layer across its product, not a feature. The company expects more traffic to come from agents than from humans over time, so every product surface must work for both.",
+          "success_or_failure_factors": "Success came from waiting for model/tool maturity, keeping the harness simple, investing in evals, and aligning the UX with explicit permissions and self-service setup. Earlier versions failed because the models were too weak, context windows were too short, and the abstractions matched Notion\u2019s data model more than the model\u2019s needs.",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "technical_approach": "The team moved from early JavaScript-based tool use to XML, then Notion-flavored Markdown, SQL-like query abstractions, tool definitions, and progressive disclosure. They also built eval frameworks, nightly checks, and internal issue flows so agents could inspect failures and improve their own setup.",
+          "title": "Notion rebuilds Custom Agents around tool use, evals, and permissions",
+          "value_level": "high",
+          "what_was_implemented": "A custom-agent product inside Notion with tool calling, database and page access, web search enrichment, and admin-controlled permissions."
+        },
+        "notes": "",
+        "proposal_id": "8db7fae4-38a3-47a5-92fb-5e7d27321eda",
+        "proposal_status": "pending",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": "The source suggests models work better when given simple, familiar abstractions and when the surrounding harness hides unnecessary complexity. It also suggests that tool overload can degrade agent quality even when the base model is capable.",
+            "notes": "",
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": "Turn Notion into an agent-native system of record for enterprise work and automate workflow steps that previously required manual triage and bookkeeping.",
+            "notes": "",
+            "status": "pending"
+          },
+          "company": {
+            "final_text": "Notion",
+            "notes": "",
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": "Internal use first, then external launch of Custom Agents; the same Notion instance is used for internal prototyping across teams.",
+            "notes": "",
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": "The case maps directly to service automation patterns such as inbox triage, bug routing, and structured database updates. It shows that agents can replace processes rather than people when they work inside a shared system of record and have controlled write access.",
+            "notes": "",
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": "software and knowledge management",
+            "notes": "",
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Build around model-friendly abstractions, not legacy internal formats.",
+              "Keep prompts short and move complexity into tools and evals.",
+              "Make permissions explicit before enabling background autonomy.",
+              "Treat self-debugging as a workflow, not a novelty feature."
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How much of this architecture generalizes outside Notion\u2019s own product surface?",
+              "What is the right boundary between self-fixing and permission changes?",
+              "How do these patterns behave under much larger toolsets and more heterogeneous enterprise workflows?"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": "Background execution required strict permissioning. Enterprise readiness also required security review, compliance considerations, and robustness before production release.",
+            "notes": "",
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": "Launched in production after multiple rebuilds; the product is actively evolving.",
+            "notes": "",
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": "Notion repeatedly rebuilt its Custom Agents product before launching it in production. The final direction combined agent harnesses, progressive tool disclosure, self-setup, self-debugging, and explicit permission controls so agents could work in the background on enterprise tasks.",
+            "notes": "",
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://www.latent.space/p/notion"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": "Notion is treating agents as a platform layer across its product, not a feature. The company expects more traffic to come from agents than from humans over time, so every product surface must work for both.",
+            "notes": "",
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": "Success came from waiting for model/tool maturity, keeping the harness simple, investing in evals, and aligning the UX with explicit permissions and self-service setup. Earlier versions failed because the models were too weak, context windows were too short, and the abstractions matched Notion\u2019s data model more than the model\u2019s needs.",
+            "notes": "",
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": "The team moved from early JavaScript-based tool use to XML, then Notion-flavored Markdown, SQL-like query abstractions, tool definitions, and progressive disclosure. They also built eval frameworks, nightly checks, and internal issue flows so agents could inspect failures and improve their own setup.",
+            "notes": "",
+            "status": "pending"
+          },
+          "title": {
+            "final_text": "Notion rebuilds Custom Agents around tool use, evals, and permissions",
+            "notes": "",
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": "A custom-agent product inside Notion with tool calling, database and page access, web search enrichment, and admin-controlled permissions.",
+            "notes": "",
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "enterprise-ai-adoption",
+          "final_secondary_tag": "operational-reliability",
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": 0.87,
+          "evidence_from_source": "Notion says that \u201cover time the majority of our traffic will be coming from agencies using in our interface, not humans\u201d and that the whole product org must build for agents.",
+          "evidence_type": "implementation_case",
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "related_trends": [
+            "knowledge-management-workflows",
+            "enterprise-agent-orchestration"
+          ],
+          "secondary_tag": "ai-governance",
+          "suggested_action": "append_to_existing",
+          "suggested_new_tag": "",
+          "supporting_data_points": [
+            "Notion expects most traffic to come from agents rather than humans over time.",
+            "Product engineering teams are tasked with supporting both humans and agents.",
+            "Agents are treated as part of the core product, not a separate add-on."
+          ],
+          "supporting_snippet": "\u201cour objective is to make it so that the whole product org is building for agents.\u201d",
+          "time_sensitivity": "Actionable as of 2026-04-15; likely to remain relevant through the next product cycles as more enterprise workflows become agent-mediated.",
+          "trend_description": "Enterprise products are shifting from human-only interfaces to systems that must support both humans and agents as first-class users. The product boundary moves from UI alone to the underlying system of record, permissions, and workflow primitives.",
+          "trend_name": "agent-native enterprise software",
+          "uncertainty_note": "This is a strong directional signal from one company, but the exact pace and scope of adoption across the industry remain uncertain.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "00efea57-5318-422e-9b5c-dc002a03b496",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-management-workflows",
+              "enterprise-agent-orchestration"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Notion expects most traffic to come from agents rather than humans over time.",
+              "Product engineering teams are tasked with supporting both humans and agents.",
+              "Agents are treated as part of the core product, not a separate add-on."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cwe made an effort basically to treat the eval system as like an agent harness\u201d",
+            "\u201cyou should be able to have an agent end-to-end, download a dataset, run an eval, iterate on a failure, debug, and, and then implement a fix\u201d"
+          ],
+          "evidence_type": "mixed",
+          "insight_title": "Agent products need a harness, not just a wrapper",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "Notion",
+            "OpenAI",
+            "Anthropic"
+          ],
+          "operational_relevance": "Teams should invest in tool schemas, eval loops, and permission layers as core infrastructure rather than glue code.",
+          "primary_tag": "ai-engineering",
+          "secondary_tag": "ai-infrastructure",
+          "service_automation_relevance": "Service automation becomes more reliable when agents work inside controlled harnesses with explicit read/write boundaries and failure triage.",
+          "suggested_destinations": [
+            "topics/",
+            "howto/"
+          ],
+          "suggested_new_tag": "",
+          "summary": "The interview argues that the difference between a toy wrapper and a production agent is the outer harness: tool abstraction, evals, permissions, and failure handling. The model is only one part of the system; the product succeeds when the harness lets the model act safely and recover from errors. This is why Notion keeps rewriting the stack as the model/tool landscape changes.",
+          "value_level": "high",
+          "why_it_matters": "This is a durable operating model for enterprise agent products, where reliability depends on system design more than model size.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": "",
+        "proposal_id": "96fe72b4-a38e-4773-b00a-780d04ff5884",
+        "proposal_status": "pending",
+        "sections": {
+          "confidence": {
+            "final_text": "high",
+            "notes": "",
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": "",
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": "long_term",
+            "notes": "",
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cwe made an effort basically to treat the eval system as like an agent harness\u201d",
+              "\u201cyou should be able to have an agent end-to-end, download a dataset, run an eval, iterate on a failure, debug, and, and then implement a fix\u201d"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": "Agent products need a harness, not just a wrapper",
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": "orchestration",
+            "notes": "",
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion",
+              "OpenAI",
+              "Anthropic"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": "Teams should invest in tool schemas, eval loops, and permission layers as core infrastructure rather than glue code.",
+            "notes": "",
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": "Service automation becomes more reliable when agents work inside controlled harnesses with explicit read/write boundaries and failure triage.",
+            "notes": "",
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "howto/"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": "The interview argues that the difference between a toy wrapper and a production agent is the outer harness: tool abstraction, evals, permissions, and failure handling. The model is only one part of the system; the product succeeds when the harness lets the model act safely and recover from errors. This is why Notion keeps rewriting the stack as the model/tool landscape changes.",
+            "notes": "",
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": "This is a durable operating model for enterprise agent products, where reliability depends on system design more than model size.",
+            "notes": "",
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": "strong_candidate",
+            "notes": "",
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "ai-engineering",
+          "final_secondary_tag": "ai-infrastructure",
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cwe\u2019re fighting to keep the prompt as short as possible now\u201d",
+            "\u201cprogressive disclosure becomes really important\u201d",
+            "\u201cit became pretty hard to add new tools\u201d"
+          ],
+          "evidence_type": "implementation_case",
+          "insight_title": "Progressive disclosure is a reliability feature",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "Notion"
+          ],
+          "operational_relevance": "Use staged tool exposure and keep the core prompt short when tool count grows.",
+          "primary_tag": "ai-engineering",
+          "secondary_tag": "",
+          "service_automation_relevance": "Chatbots and support agents are less likely to misfire if they are only shown the actions relevant to the current task.",
+          "suggested_destinations": [
+            "topics/",
+            "howto/"
+          ],
+          "suggested_new_tag": "",
+          "summary": "Notion\u2019s view is that showing fewer tools and exposing them gradually improves agent quality. When too many tools are visible, the agent gets noisier, slower, and less reliable; when tool access is staged, the model can operate with less confusion. The same idea applies to prompt length and system complexity.",
+          "value_level": "high",
+          "why_it_matters": "This is a practical design pattern for any agent platform with a large action surface, especially in enterprise settings.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": "",
+        "proposal_id": "d7e52dab-d83b-43ff-a643-c47758e3712d",
+        "proposal_status": "pending",
+        "sections": {
+          "confidence": {
+            "final_text": "high",
+            "notes": "",
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": "",
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": "long_term",
+            "notes": "",
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cwe\u2019re fighting to keep the prompt as short as possible now\u201d",
+              "\u201cprogressive disclosure becomes really important\u201d",
+              "\u201cit became pretty hard to add new tools\u201d"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": "Progressive disclosure is a reliability feature",
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": "orchestration",
+            "notes": "",
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": "Use staged tool exposure and keep the core prompt short when tool count grows.",
+            "notes": "",
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": "Chatbots and support agents are less likely to misfire if they are only shown the actions relevant to the current task.",
+            "notes": "",
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "howto/"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": "Notion\u2019s view is that showing fewer tools and exposing them gradually improves agent quality. When too many tools are visible, the agent gets noisier, slower, and less reliable; when tool access is staged, the model can operate with less confusion. The same idea applies to prompt length and system complexity.",
+            "notes": "",
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": "This is a practical design pattern for any agent platform with a large action surface, especially in enterprise settings.",
+            "notes": "",
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": "strong_candidate",
+            "notes": "",
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "ai-engineering",
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cwe have the equivalent of unit test. Regression test.\u201d",
+            "\u201cThen we have ... launch quality\u201d",
+            "\u201cfrontier or headroom evals, where we actively wanna be at 30% pass rate\u201d"
+          ],
+          "evidence_type": "implementation_case",
+          "insight_title": "Evals should separate regression quality from headroom",
+          "insight_type": "research_eval",
+          "mentioned_entities": [
+            "Notion",
+            "OpenAI",
+            "Anthropic"
+          ],
+          "operational_relevance": "Maintain separate eval suites for release gating and for frontier exploration so that one does not mask the other.",
+          "primary_tag": "ai-engineering",
+          "secondary_tag": "knowledge-management",
+          "service_automation_relevance": "Automation teams can use launch-quality checks for containment and headroom evals for capability discovery before expanding autonomy.",
+          "suggested_destinations": [
+            "topics/",
+            "howto/"
+          ],
+          "suggested_new_tag": "",
+          "summary": "Notion describes three eval layers: regression tests, launch-quality tests, and headroom tests that intentionally pass only about 30% of the time. This separates production stability from frontier probing, which prevents the evaluation system from saturating too early. It also creates a feedback loop for judging whether the model frontier is moving in useful directions.",
+          "value_level": "high",
+          "why_it_matters": "This is a strong pattern for teams that want both shipping confidence and a way to track model progress.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": "",
+        "proposal_id": "44ef4f53-660f-4cfa-ba09-ec3c5c2ec65f",
+        "proposal_status": "pending",
+        "sections": {
+          "confidence": {
+            "final_text": "high",
+            "notes": "",
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": "",
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": "long_term",
+            "notes": "",
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cwe have the equivalent of unit test. Regression test.\u201d",
+              "\u201cThen we have ... launch quality\u201d",
+              "\u201cfrontier or headroom evals, where we actively wanna be at 30% pass rate\u201d"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": "Evals should separate regression quality from headroom",
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": "research_eval",
+            "notes": "",
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion",
+              "OpenAI",
+              "Anthropic"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": "Maintain separate eval suites for release gating and for frontier exploration so that one does not mask the other.",
+            "notes": "",
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": "Automation teams can use launch-quality checks for containment and headroom evals for capability discovery before expanding autonomy.",
+            "notes": "",
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "howto/"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": "Notion describes three eval layers: regression tests, launch-quality tests, and headroom tests that intentionally pass only about 30% of the time. This separates production stability from frontier probing, which prevents the evaluation system from saturating too early. It also creates a feedback loop for judging whether the model frontier is moving in useful directions.",
+            "notes": "",
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": "This is a strong pattern for teams that want both shipping confidence and a way to track model progress.",
+            "notes": "",
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": "strong_candidate",
+            "notes": "",
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "ai-engineering",
+          "final_secondary_tag": "knowledge-management",
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cthe search load and the search traffic. Majority of it\u2019s coming from agents, not humans\u201d",
+            "\u201cPositional ranking matters less, but top K retrieval mode matters more\u201d"
+          ],
+          "evidence_type": "implementation_case",
+          "insight_title": "Agentic search changes retrieval objectives",
+          "insight_type": "topic",
+          "mentioned_entities": [
+            "Notion"
+          ],
+          "operational_relevance": "Teams should revisit ranking metrics, snippet generation, and query diversity when search traffic shifts toward agents.",
+          "primary_tag": "knowledge-management",
+          "secondary_tag": "ai-infrastructure",
+          "service_automation_relevance": "Support assistants that search internal docs or tickets need retrieval tuned for actionability, not just discoverability.",
+          "suggested_destinations": [
+            "topics/",
+            "howto/"
+          ],
+          "suggested_new_tag": "",
+          "summary": "When agents become the primary search users, ranking objectives change. Top-K quality, snippet selection, and query generation matter more than human click-through behavior or simple embedding choices. Retrieval becomes part of the agent trajectory rather than a standalone information search problem.",
+          "value_level": "high",
+          "why_it_matters": "Enterprise search and knowledge systems need to optimize for machine consumption, not only human browsing.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": "",
+        "proposal_id": "278078e2-1c60-4bb0-93fa-8883aa8abced",
+        "proposal_status": "pending",
+        "sections": {
+          "confidence": {
+            "final_text": "high",
+            "notes": "",
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": "",
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": "long_term",
+            "notes": "",
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cthe search load and the search traffic. Majority of it\u2019s coming from agents, not humans\u201d",
+              "\u201cPositional ranking matters less, but top K retrieval mode matters more\u201d"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": "Agentic search changes retrieval objectives",
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": "topic",
+            "notes": "",
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": "Teams should revisit ranking metrics, snippet generation, and query diversity when search traffic shifts toward agents.",
+            "notes": "",
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": "Support assistants that search internal docs or tickets need retrieval tuned for actionability, not just discoverability.",
+            "notes": "",
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "howto/"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": "When agents become the primary search users, ranking objectives change. Top-K quality, snippet selection, and query generation matter more than human click-through behavior or simple embedding choices. Retrieval becomes part of the agent trajectory rather than a standalone information search problem.",
+            "notes": "",
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": "Enterprise search and knowledge systems need to optimize for machine consumption, not only human browsing.",
+            "notes": "",
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": "strong_candidate",
+            "notes": "",
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "knowledge-management",
+          "final_secondary_tag": "ai-infrastructure",
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "medium",
+          "contrarian_or_speculative_claims": [
+            "CLI should be preferred in many self-debugging contexts, but this is presented as a product judgment rather than a benchmark-backed conclusion."
+          ],
+          "durability_estimate": "medium_term",
+          "evidence_snippets": [
+            "\u201cI\u2019m definitely bullish and excited about cli\u201d",
+            "\u201cif there\u2019s an issue, the agent can debug and fix itself within the same environment that it uses the tool\u201d",
+            "\u201cMCP inherently has a really strong permission model\u201d"
+          ],
+          "evidence_type": "expert_opinion",
+          "insight_title": "CLI is favored for self-debugging agents; MCP is better for narrow permissioned access",
+          "insight_type": "tool",
+          "mentioned_entities": [
+            "MCP",
+            "CLI",
+            "Notion"
+          ],
+          "operational_relevance": "Use CLI-like environments for autonomous coding and recovery loops; use MCP for constrained tool access where permissions matter more than self-healing.",
+          "primary_tag": "ai-infrastructure",
+          "secondary_tag": "ai-security",
+          "service_automation_relevance": "Support and operations agents that need bounded access may fit MCP-style tooling, while workflow builders and coding agents may benefit from CLI-style bootstrap paths.",
+          "suggested_destinations": [
+            "topics/",
+            "tools/"
+          ],
+          "suggested_new_tag": "",
+          "summary": "The interview draws a practical split between CLI and MCP. CLI is attractive because an agent can debug and fix itself in the same environment; MCP is useful when you want narrow, permissioned access to tools without giving the agent a broader runtime. The tradeoff is between bootstrapped recovery and tight control.",
+          "value_level": "medium",
+          "why_it_matters": "This is a reusable framework for choosing integration styles in agent systems.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": "",
+        "proposal_id": "4439d17b-6d8b-4d64-b05c-fd6ea055ef1a",
+        "proposal_status": "pending",
+        "sections": {
+          "confidence": {
+            "final_text": "medium",
+            "notes": "",
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "CLI should be preferred in many self-debugging contexts, but this is presented as a product judgment rather than a benchmark-backed conclusion."
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": "medium_term",
+            "notes": "",
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cI\u2019m definitely bullish and excited about cli\u201d",
+              "\u201cif there\u2019s an issue, the agent can debug and fix itself within the same environment that it uses the tool\u201d",
+              "\u201cMCP inherently has a really strong permission model\u201d"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": "CLI is favored for self-debugging agents; MCP is better for narrow permissioned access",
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": "tool",
+            "notes": "",
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "MCP",
+              "CLI",
+              "Notion"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": "Use CLI-like environments for autonomous coding and recovery loops; use MCP for constrained tool access where permissions matter more than self-healing.",
+            "notes": "",
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": "Support and operations agents that need bounded access may fit MCP-style tooling, while workflow builders and coding agents may benefit from CLI-style bootstrap paths.",
+            "notes": "",
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "tools/"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": "The interview draws a practical split between CLI and MCP. CLI is attractive because an agent can debug and fix itself in the same environment; MCP is useful when you want narrow, permissioned access to tools without giving the agent a broader runtime. The tradeoff is between bootstrapped recovery and tight control.",
+            "notes": "",
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": "This is a reusable framework for choosing integration styles in agent systems.",
+            "notes": "",
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": "review_candidate",
+            "notes": "",
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "ai-infrastructure",
+          "final_secondary_tag": "ai-security",
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cteach at the top of the class\u201d",
+            "\u201cthe more we do that, the more we abstract away that interpretability ... the more we diminish its capabilities\u201d"
+          ],
+          "evidence_type": "expert_opinion",
+          "insight_title": "Agent UX for power users can intentionally avoid abstraction",
+          "insight_type": "topic",
+          "mentioned_entities": [
+            "Notion"
+          ],
+          "operational_relevance": "Do not over-simplify agent setup if users need to inspect tools, prompts, and failure modes to trust the system.",
+          "primary_tag": "ai-engineering",
+          "secondary_tag": "",
+          "service_automation_relevance": "In support automation, operator visibility into routing and actions can improve trust and reduce black-box failures.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "summary": "Notion\u2019s design philosophy is to teach the top of the class rather than hide complexity behind simplified controls. The team argues that over-abstracting the interface can reduce capability and interpretability, which hurts advanced operators. For agent products, exposing how tools work can be a feature rather than a flaw.",
+          "value_level": "high",
+          "why_it_matters": "This is useful for products aimed at sophisticated users who need control, troubleshooting, and transparency.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": "",
+        "proposal_id": "03a614f9-860e-4cb7-8f1e-890fa6559284",
+        "proposal_status": "pending",
+        "sections": {
+          "confidence": {
+            "final_text": "high",
+            "notes": "",
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": "",
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": "long_term",
+            "notes": "",
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cteach at the top of the class\u201d",
+              "\u201cthe more we do that, the more we abstract away that interpretability ... the more we diminish its capabilities\u201d"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": "Agent UX for power users can intentionally avoid abstraction",
+            "notes": "",
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": "topic",
+            "notes": "",
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": "Do not over-simplify agent setup if users need to inspect tools, prompts, and failure modes to trust the system.",
+            "notes": "",
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": "In support automation, operator visibility into routing and actions can improve trust and reduce black-box failures.",
+            "notes": "",
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": "Notion\u2019s design philosophy is to teach the top of the class rather than hide complexity behind simplified controls. The team argues that over-abstracting the interface can reduce capability and interpretability, which hurts advanced operators. For agent products, exposing how tools work can be a feature rather than a flaw.",
+            "notes": "",
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": "This is useful for products aimed at sophisticated users who need control, troubleshooting, and transparency.",
+            "notes": "",
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": "strong_candidate",
+            "notes": "",
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "ai-engineering",
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_summary": {
+      "contradictions_and_skepticism": {
+        "final_text": "Several claims are strategically persuasive but not independently validated here, including the view that CLI is generally preferable to MCP in self-debugging environments and that agentic retrieval will dominate human search patterns. The source also leans on internal success metrics and design judgments rather than comparative benchmarks. The strongest takeaway is architectural, not empirical: simpler primitives plus good evals appear to scale better than monolithic prompts.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "implications_automation": {
+        "final_text": "As of 2026-04-15, the clearest service-automation implication is that agents are more reliable when they operate over structured business systems such as databases, inboxes, task trackers, and meeting notes. The interview\u2019s examples map directly to support triage, inbox routing, bug routing, and follow-up task creation. It also suggests that automation quality improves when the agent can read, write, and compose across shared records rather than handing off to disconnected tools. No major voice-specific implications were identified.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A useful agent product often needs multiple rebuilds as model behavior, tool standards, and UX constraints change.",
+          "Progressive disclosure and simpler tool abstractions can improve reliability more than adding more prompt complexity.",
+          "Evals need to cover three levels: regression tests, launch-quality journeys, and deliberate headroom tests that pass only part of the time.",
+          "For enterprise agents, permissioning and self-fix flows are product features, not afterthoughts.",
+          "As agent traffic grows, retrieval and ranking need to optimize for agent query patterns, not human click behavior."
+        ],
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "limitations_and_open_questions": {
+        "final_text": "Much of the evidence is vendor-provided and reflects Notion\u2019s own product strategy, so the claims should be treated as a strong implementation perspective rather than an external evaluation. The interview does not provide hard quantitative results for reliability, containment, or cost. Open questions remain around how portable these patterns are outside Notion\u2019s tightly integrated product surface, how much self-debugging can safely be exposed to users, and how well the approach generalizes to less structured workflows.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "practical_relevance": {
+        "final_text": "Highly actionable as of 2026-04-15 for teams building enterprise agents, workflow automation, and tool-using assistants.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/notion"
+        ],
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "summary": {
+        "final_text": "This conversation explains how Notion rebuilt Custom Agents multiple times before launch and why the product only became viable after models, tool calling, and internal harness design improved. The core idea is that agent products should be built around the model\u2019s actual strengths and limits, not around forcing the model to fit a product-shaped abstraction. Notion\u2019s approach combines progressive tool disclosure, strong evals, self-setup/self-debugging workflows, and a product design that keeps humans in control through explicit permissions. The company treats agents as a system-of-record layer over collaboration data, not as a separate chat novelty. Meeting Notes, search, and custom agents are framed as one connected data-and-action loop that makes the product more useful for both humans and agents. The interview also covers a practical view of MCP vs CLI, pricing via credits, and why retrieval/ranking matter more as agent-generated queries replace human search behavior.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": "As of 2026-04-15, this is a strong case study in how to ship agentic software inside an enterprise product with real workflows, permissions, and data constraints. It shows that durable advantage comes less from raw model access and more from the surrounding harness, evaluation loop, tool design, and product architecture. For AI engineering teams, the interview is useful because it connects model choice, tool abstraction, search, pricing, and org design into one operating model. For service automation, it shows how agents can replace processes, not people, when they are grounded in shared systems of record and explicit guardrails.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "The source is structured as a long-form conversation with multiple named speakers and interviewer turns.",
+          "It includes transcript timestamps, Q&A flow, and discussion-driven sections rather than a single authored narrative.",
+          "The content is centered on interview insights about product and engineering decisions at Notion."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "core_capabilities": [
+            "tool calling",
+            "database writeback",
+            "web search enrichment",
+            "self-setup",
+            "self-debugging",
+            "permissioned background execution",
+            "agent composition"
+          ],
+          "evidence_type": "mixed",
+          "integration_ecosystem": [
+            "Notion databases",
+            "Notion pages",
+            "Slack",
+            "email",
+            "web search",
+            "task databases"
+          ],
+          "match_candidates": [],
+          "maturity_signals": "Shipping product with internal and external use; described as having gone through several rebuilds and a production launch; tied to a broader platform and enterprise packaging effort.",
+          "name": "Notion Custom Agents",
+          "operational_relevance": "This is relevant for teams that want agents embedded in a system of record rather than a standalone chat app. The interview frames it as a way to automate workflows like triage, enrichment, follow-up, and database updates. It matters for service automation because it can sit on top of inboxes, Slack, task databases, and meeting notes. The product is designed for enterprise use where permissioning, tool selection, and reliability matter more than novelty.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "chatbot-platform",
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "Notion Mail",
+            "MCP",
+            "CLI",
+            "Cloud Code"
+          ],
+          "short_description": "A Notion feature for building and running task-oriented agents inside the Notion product. It can read and write Notion data, use tools like search and web lookup, and be configured to work with shared workspaces and permissions.",
+          "strengths": "Strong fit for structured workflows; can compose with Notion databases and pages; supports self-setup and some self-debugging; built with permissions and enterprise constraints in mind.",
+          "suggested_action": "create_new_page",
+          "supporting_snippet": "\u201cCustom Agents\u201d and \u201cwe finally embracing the Agent Lab playbook!\u201d ... \u201cwhy it took years and multiple rebuilds to get right\u201d ... \u201cHow Notion built Custom Agents\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "The source emphasizes that reliability required multiple rebuilds, and that many capabilities depend on careful harness design and evals. It is also constrained by permissions, tool design, and the need to avoid exposing too much complexity to the user."
+        },
+        "notes": null,
+        "proposal_id": "d3f68930-ae01-45d8-be60-3bc0b21b98c8",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "tool calling",
+              "database writeback",
+              "web search enrichment",
+              "self-setup",
+              "self-debugging",
+              "permissioned background execution",
+              "agent composition"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "Notion databases",
+              "Notion pages",
+              "Slack",
+              "email",
+              "web search",
+              "task databases"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Notion Mail",
+              "MCP",
+              "CLI",
+              "Cloud Code"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": "mixed",
+          "key_points": [
+            "A harness can be used to let agents debug and improve their own workflows.",
+            "The outer system should make tool use and failure recovery observable.",
+            "Progressive disclosure helps prevent tool overload as the surface area grows."
+          ],
+          "knowledge_summary": "Agent quality depends heavily on the outer system that surrounds the model: tool definitions, permissions, evaluation loops, and failure-handling matter as much as the model itself. When that harness is too complex, agents become brittle; when it is too thin, they cannot safely act. A good harness makes tools discoverable, keeps prompts short, and allows the system to evolve as models improve. In practice, harness design is an engineering discipline for turning a general model into a reliable workflow participant.",
+          "match_candidates": [],
+          "operational_insight": "Treat the harness as the product surface that determines whether an agent can be shipped safely, not as boilerplate around the model.",
+          "primary_tag": "ai-engineering",
+          "related_topics": [
+            "agent-evals",
+            "progressive-tool-disclosure",
+            "tool-abstraction"
+          ],
+          "relevance_note": "This is durable knowledge for any team building production agents, because most reliability problems show up in the harness rather than in the base model.",
+          "secondary_tag": "",
+          "suggested_action": "create_new_page",
+          "suggested_new_tag": "",
+          "supporting_snippet": "\u201cwe made an effort basically to treat the eval system as like an agent harness\u201d ... \u201cyou should be able to have an agent end-to-end, download a dataset, run an eval, iterate on a failure, debug, and, and then implement a fix\u201d",
+          "topic_slug": "agent-harness-design",
+          "topic_title": "Agent harness design",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "d5d405c2-66c4-41ee-8fc3-0350b51fcb42",
+        "proposal_status": "approved",
+        "sections": {
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A harness can be used to let agents debug and improve their own workflows.",
+              "The outer system should make tool use and failure recovery observable.",
+              "Progressive disclosure helps prevent tool overload as the surface area grows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-evals",
+              "progressive-tool-disclosure",
+              "tool-abstraction"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": "implementation_case",
+          "key_points": [
+            "Agent-generated queries have different ranking needs than human queries.",
+            "Top-K quality and snippet choice can matter more than exact position.",
+            "Query generation and retrieval should be treated as one pipeline."
+          ],
+          "knowledge_summary": "Retrieval systems that were tuned for human click behavior often need to be reworked when agents become the main search client. Agent queries tend to be more structured, more exhaustive, and less dependent on positional click-through patterns. That shifts attention from simple embeddings toward ranking, top-K quality, snippet selection, and query generation. The practical result is that search must be optimized for downstream agent trajectories, not just for human browsing.",
+          "match_candidates": [],
+          "operational_insight": "If agents are the dominant search users, optimize retrieval for answerability and actionability rather than for traditional click metrics.",
+          "primary_tag": "knowledge-management",
+          "related_topics": [
+            "knowledge-management",
+            "ai-infrastructure"
+          ],
+          "relevance_note": "This matters for knowledge systems, support search, and enterprise assistants because the client of retrieval is changing from a human browser to an agent that needs to act on the result.",
+          "secondary_tag": "ai-infrastructure",
+          "suggested_action": "create_new_page",
+          "suggested_new_tag": "",
+          "supporting_snippet": "\u201cthe search load and the search traffic. Majority of it\u2019s coming from agents, not humans\u201d ... \u201cPositional ranking matters less, but top K retrieval mode matters more\u201d",
+          "topic_slug": "agentic-retrieval-and-ranking",
+          "topic_title": "Agentic retrieval and ranking",
+          "value_level": "high"
+        },
+        "notes": "",
+        "proposal_id": "a464be5a-8fc1-4b91-a3aa-ad09b60a7dd0",
+        "proposal_status": "pending",
+        "sections": {
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Agent-generated queries have different ranking needs than human queries.",
+              "Top-K quality and snippet choice can matter more than exact position.",
+              "Query generation and retrieval should be treated as one pipeline."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-management",
+              "ai-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "knowledge-management",
+          "final_secondary_tag": "ai-infrastructure",
+          "new_tag_approved": false
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 2,
+      "implementation_case": 7,
+      "mixed": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 12,
+    "review_duration_seconds": 650.2,
+    "review_finished_at": "2026-05-15T14:07:46.395174+00:00",
+    "review_started_at": "2026-05-15T13:56:56.175518+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-15T14:07:46+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/notion",
+    "content_sha256": "30cc50e4340c346681021eae57eb692c635318ec1733897fde5cb2f98eddd023",
+    "publication": null,
+    "published_date": "2026-04-15",
+    "raw_html_rel_path": "raw/readwise/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f.html",
+    "raw_md_rel_path": "raw/readwise/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f.md",
+    "source_id": "notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f",
+    "title": "Notion\u2019s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software Factory Future \u2014 Simon Last & Sarah Sachs of Notion"
+  }
+}

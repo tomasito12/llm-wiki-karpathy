@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Any
 
 import streamlit as streamlit_runtime
@@ -183,23 +184,19 @@ def render_proposal_evidence_type_editor(
 
 SOURCE_CHAPTER_DISPLAY_ORDER: tuple[str, ...] = (
     "summary",
+    "accessible_overview",
     "key_insights",
     "why_it_matters",
-    "implications_automation",
-    "practical_relevance",
     "limitations_and_open_questions",
     "contradictions_and_skepticism",
     "sources",
 )
 
-PRIMARY_CHAPTERS: tuple[str, ...] = ("summary", "key_insights")
-
 CHAPTER_LABELS: dict[str, str] = {
     "summary": "Summary",
+    "accessible_overview": "Easy read",
     "key_insights": "Key insights",
     "why_it_matters": "Why it matters",
-    "implications_automation": "Implications for service automation",
-    "practical_relevance": "Practical relevance",
     "limitations_and_open_questions": "Limitations and open questions",
     "contradictions_and_skepticism": "Contradictions / skepticism",
     "sources": "Sources",
@@ -216,6 +213,185 @@ VALUE_LEVEL_COLOR: dict[str, str] = {
     "medium": "orange",
     "low": "red",
 }
+
+
+def normalize_sources_list(raw: Any) -> list[str]:
+    """Return trimmed source URL/reference strings from LLM output."""
+    if not isinstance(raw, list):
+        return []
+    return [str(s).strip() for s in raw if str(s).strip()]
+
+
+def format_source_link_markdown(url: str) -> str:
+    """Format one source entry as a markdown bullet (clickable when http(s))."""
+    text = url.strip()
+    if not text:
+        return ""
+    lower = text.lower()
+    if lower.startswith("http://") or lower.startswith("https://"):
+        return f"- [{text}]({text})"
+    return f"- {text}"
+
+
+def _llm_list_from_summary(llm_ss: dict[str, Any], section_key: str) -> list[str]:
+    raw = llm_ss.get(section_key) or []
+    if not isinstance(raw, list):
+        return []
+    return [str(s).strip() for s in raw if str(s).strip()]
+
+
+def _review_node(rev_ss: dict[str, Any], section_key: str) -> dict[str, Any]:
+    node = rev_ss.get(section_key)
+    return node if isinstance(node, dict) else {}
+
+
+def effective_scalar_chapter_text(
+    llm_ss: dict[str, Any],
+    node: dict[str, Any],
+    section_key: str,
+) -> str:
+    """Return reviewer-final scalar text, else the LLM draft."""
+    final = node.get("final_text")
+    if isinstance(final, str) and final.strip():
+        return final.strip()
+    return str(llm_ss.get(section_key) or "").strip()
+
+
+def effective_list_chapter_lines(
+    llm_ss: dict[str, Any],
+    node: dict[str, Any],
+    section_key: str,
+) -> list[str]:
+    """Return reviewer-final list lines, else ``llm_list`` or LLM draft."""
+    final = node.get("final_list")
+    if isinstance(final, list):
+        return [str(x).strip() for x in final if str(x).strip()]
+    llm_list = node.get("llm_list")
+    if isinstance(llm_list, list) and llm_list:
+        return [str(x).strip() for x in llm_list if str(x).strip()]
+    return _llm_list_from_summary(llm_ss, section_key)
+
+
+def format_chapter_body_markdown(section_key: str, body: str | list[str]) -> str:
+    """Format chapter body for the read-only column."""
+    if section_key == "key_insights":
+        lines = body if isinstance(body, list) else []
+        if not lines:
+            return "*(No key insights.)*"
+        return "\n".join(f"- {line}" for line in lines)
+    text = body if isinstance(body, str) else ""
+    return text if text else "*(empty)*"
+
+
+def format_sources_chapter_markdown(urls: list[str]) -> str:
+    """Format sources as markdown bullets."""
+    if not urls:
+        return "*(No source links extracted.)*"
+    lines = [format_source_link_markdown(u) for u in urls]
+    return "\n".join(line for line in lines if line)
+
+
+def build_readonly_chapters_markdown(artifact: dict[str, Any]) -> str:
+    """Concatenate all source chapters for uninterrupted read-only display."""
+    llm_ss = (artifact.get("llm_output") or {}).get("source_summary") or {}
+    rev_ss = (artifact.get("review") or {}).get("source_summary") or {}
+    parts: list[str] = []
+    for section_key in SOURCE_CHAPTER_DISPLAY_ORDER:
+        label = CHAPTER_LABELS.get(section_key, section_key.replace("_", " ").title())
+        node = _review_node(rev_ss, section_key)
+        if section_key == "sources":
+            urls = effective_list_chapter_lines(llm_ss, node, "sources")
+            body = format_sources_chapter_markdown(urls)
+        elif section_key == "key_insights":
+            lines = effective_list_chapter_lines(llm_ss, node, section_key)
+            body = format_chapter_body_markdown(section_key, lines)
+        elif section_key in SOURCE_SUMMARY_SCALAR_KEYS:
+            text = effective_scalar_chapter_text(llm_ss, node, section_key)
+            body = format_chapter_body_markdown(section_key, text)
+        else:
+            continue
+        parts.append(f"## {label}\n\n{body}")
+    return "\n\n".join(parts)
+
+
+def chapter_edit_textarea_value(artifact: dict[str, Any], section_key: str) -> str:
+    """Default text for the per-chapter edit box."""
+    llm_ss = (artifact.get("llm_output") or {}).get("source_summary") or {}
+    rev_ss = (artifact.get("review") or {}).get("source_summary") or {}
+    node = _review_node(rev_ss, section_key)
+    if section_key == "key_insights":
+        lines = effective_list_chapter_lines(llm_ss, node, section_key)
+        return "\n".join(lines)
+    if section_key in SOURCE_SUMMARY_SCALAR_KEYS:
+        return effective_scalar_chapter_text(llm_ss, node, section_key)
+    return ""
+
+
+def apply_chapter_edit(artifact: dict[str, Any], section_key: str, raw_text: str) -> None:
+    """Persist a chapter edit; infer ``approved`` vs ``modified`` from LLM draft."""
+    llm_ss = (artifact.get("llm_output") or {}).get("source_summary") or {}
+    rev_ss = artifact.setdefault("review", {}).setdefault("source_summary", {})
+
+    if section_key == "key_insights":
+        lines = [ln.strip() for ln in raw_text.splitlines() if ln.strip()][:5]
+        llm_lines = _llm_list_from_summary(llm_ss, "key_insights")
+        node = rev_ss.setdefault(
+            "key_insights",
+            {
+                "status": "pending",
+                "final_list": None,
+                "notes": None,
+                "llm_list": list(llm_lines),
+                "section_regeneration_meta": None,
+            },
+        )
+        if not node.get("llm_list"):
+            node["llm_list"] = list(llm_lines)
+        if lines == llm_lines:
+            node["status"] = "approved"
+            node["final_list"] = None
+        else:
+            node["status"] = "modified"
+            node["final_list"] = lines
+        return
+
+    if section_key in SOURCE_SUMMARY_SCALAR_KEYS:
+        text = raw_text.strip()
+        llm_text = str(llm_ss.get(section_key) or "").strip()
+        node = rev_ss.setdefault(
+            section_key,
+            {
+                "status": "pending",
+                "final_text": None,
+                "notes": None,
+                "section_regeneration_meta": None,
+            },
+        )
+        if text == llm_text:
+            node["status"] = "approved"
+            node["final_text"] = None
+        else:
+            node["status"] = "modified"
+            node["final_text"] = text
+        return
+
+    raise ValueError(f"Chapter not editable: {section_key}")
+
+
+def _on_save_chapter_edit(section_key: str, key_prefix: str, artifact_path: Path) -> None:
+    """Streamlit on_click: apply edit and persist artifact immediately."""
+    from src.ingest_review.artifact import save_artifact, touch_review_session
+
+    edit_key = f"{key_prefix}_edit_{section_key}"
+    raw = str(streamlit_runtime.session_state.get(edit_key, ""))
+    artifact = streamlit_runtime.session_state.get("artifact")
+    if not isinstance(artifact, dict):
+        return
+    apply_chapter_edit(artifact, section_key, raw)
+    touch_review_session(artifact)
+    save_artifact(artifact_path, artifact)
+    label = CHAPTER_LABELS.get(section_key, section_key)
+    streamlit_runtime.session_state["_chapter_save_msg"] = f"Saved **{label}**."
 
 
 def _status_index(current: str) -> int:
@@ -259,139 +435,73 @@ def _render_regen_meta_caption(st: Any, node: dict[str, Any]) -> None:
         st.caption(f"Section regen: **{cnt}×** · last **{when}** · `{mdl}` · prompt `{pv}`")
 
 
-def _render_scalar_chapter(
-    st: Any,
-    artifact: dict[str, Any],
-    *,
-    section_key: str,
-    key_prefix: str,
-    source_id: str,
-) -> None:
-    llm = artifact.get("llm_output", {}).get("source_summary") or {}
-    rev = artifact.setdefault("review", {}).setdefault("source_summary", {})
-    label = CHAPTER_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"### {label}")
-    node = rev.setdefault(
-        section_key,
-        {
-            "status": "pending",
-            "final_text": None,
-            "notes": None,
-            "section_regeneration_meta": None,
-        },
-    )
-    _render_regen_meta_caption(st, node)
-    llm_text = str(llm.get(section_key) or "")
-    st.markdown("**Model draft**")
-    st.text(llm_text[:8000] + ("…" if len(llm_text) > 8000 else ""))
-    st.text_input(
-        "Optional note for regeneration",
-        key=f"{key_prefix}_regen_note_{section_key}",
-        placeholder="e.g. shorter, more skeptical, focus on voicebots",
-    )
-    if section_key in REGENERATABLE_SOURCE_SECTION_KEYS:
-        st.button(
-            "Regenerate section",
-            key=f"{key_prefix}_btn_regen_{section_key}",
-            on_click=_queue_section_regen,
-            args=(source_id, key_prefix, section_key),
-        )
-    node["status"] = st.selectbox(
-        f"{label} — status",
-        STATUS_OPTIONS,
-        index=_status_index(str(node.get("status") or "pending")),
-        key=f"{key_prefix}_sum_{section_key}_st",
-    )
-    if node["status"] in ("modified", "pending"):
-        default = node.get("final_text") if node.get("final_text") else llm_text
-        node["final_text"] = st.text_area(
-            f"{label} — final text",
-            value=default,
-            height=140,
-            key=f"{key_prefix}_sum_{section_key}_txt",
-        )
-    elif node["status"] == "approved":
-        node["final_text"] = None
-    else:
-        node["final_text"] = None
-    node["notes"] = st.text_input(
-        f"{label} — notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_sum_{section_key}_notes",
-    )
+def _sync_sources_review_node(artifact: dict[str, Any]) -> None:
+    """Keep sources review node auto-approved and synced with LLM list."""
+    from src.ingest_review.artifact import ensure_sources_review_auto_approved
 
-
-def _render_list_chapter(
-    st: Any,
-    artifact: dict[str, Any],
-    *,
-    section_key: str,
-    key_prefix: str,
-    source_id: str,
-) -> None:
-    llm = artifact.get("llm_output", {}).get("source_summary") or {}
+    llm_ss = (artifact.get("llm_output") or {}).get("source_summary") or {}
     rev = artifact.setdefault("review", {}).setdefault("source_summary", {})
-    label = CHAPTER_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"### {label}")
-    llm_list = llm.get(section_key) or []
-    if not isinstance(llm_list, list):
-        llm_list = []
+    urls = normalize_sources_list(llm_ss.get("sources"))
     node = rev.setdefault(
-        section_key,
+        "sources",
         {
-            "status": "pending",
+            "status": "approved",
             "final_list": None,
             "notes": None,
-            "llm_list": list(llm_list),
+            "llm_list": list(urls),
             "section_regeneration_meta": None,
         },
     )
-    if not node.get("llm_list"):
-        node["llm_list"] = list(llm_list)
-    _render_regen_meta_caption(st, node)
-    st.markdown("**Model draft (list)**")
-    st.json(node["llm_list"])
-    st.text_input(
-        "Optional note for regeneration",
-        key=f"{key_prefix}_regen_note_{section_key}",
-        placeholder="e.g. fewer bullets, more operational",
-    )
-    if section_key in REGENERATABLE_SOURCE_SECTION_KEYS:
-        st.button(
-            "Regenerate section",
-            key=f"{key_prefix}_btn_regen_{section_key}",
-            on_click=_queue_section_regen,
-            args=(source_id, key_prefix, section_key),
+    node["llm_list"] = list(urls)
+    ensure_sources_review_auto_approved(artifact)
+
+
+def _render_chapter_edit_box(
+    st: Any,
+    artifact: dict[str, Any],
+    *,
+    section_key: str,
+    key_prefix: str,
+    source_id: str,
+    artifact_path: Path,
+) -> None:
+    """One bordered edit box: textarea, save, regen note, regenerate."""
+    rev_ss = artifact.setdefault("review", {}).setdefault("source_summary", {})
+    label = CHAPTER_LABELS.get(section_key, section_key.replace("_", " ").title())
+    node = _review_node(rev_ss, section_key)
+
+    with st.container(border=True):
+        st.markdown(f"**{label}**")
+        _render_regen_meta_caption(st, node)
+        height = 200 if section_key in ("summary", "accessible_overview", "why_it_matters") else 140
+        st.text_area(
+            label,
+            value=chapter_edit_textarea_value(artifact, section_key),
+            height=height,
+            key=f"{key_prefix}_edit_{section_key}",
+            label_visibility="collapsed",
         )
-    node["status"] = st.selectbox(
-        f"{label} — status",
-        STATUS_OPTIONS,
-        index=_status_index(str(node.get("status") or "pending")),
-        key=f"{key_prefix}_sum_{section_key}_st",
-    )
-    default_lines = (
-        node.get("final_list") if node.get("final_list") is not None else node["llm_list"]
-    )
-    raw_list = st.text_area(
-        f"{label} — final list (one item per line)",
-        value="\n".join(str(x) for x in (default_lines or [])),
-        height=120,
-        key=f"{key_prefix}_sum_{section_key}_txt",
-    )
-    lines = [ln.strip() for ln in raw_list.splitlines() if ln.strip()]
-    if section_key == "key_insights":
-        lines = lines[:5]
-    if node["status"] == "modified":
-        node["final_list"] = lines
-    elif node["status"] == "approved":
-        node["final_list"] = None
-    else:
-        node["final_list"] = None
-    node["notes"] = st.text_input(
-        f"{label} — notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_sum_{section_key}_notes",
-    )
+        save_col, regen_col = st.columns(2)
+        save_col.button(
+            "Save edit",
+            key=f"{key_prefix}_save_{section_key}",
+            on_click=_on_save_chapter_edit,
+            args=(section_key, key_prefix, artifact_path),
+            use_container_width=True,
+        )
+        if section_key in REGENERATABLE_SOURCE_SECTION_KEYS:
+            st.text_input(
+                "Optional note for regeneration",
+                key=f"{key_prefix}_regen_note_{section_key}",
+                placeholder="e.g. shorter, more skeptical",
+            )
+            regen_col.button(
+                "Regenerate section",
+                key=f"{key_prefix}_btn_regen_{section_key}",
+                on_click=_queue_section_regen,
+                args=(source_id, key_prefix, section_key),
+                use_container_width=True,
+            )
 
 
 def render_source_summary_review(
@@ -400,38 +510,32 @@ def render_source_summary_review(
     *,
     key_prefix: str,
     source_id: str,
+    artifact_path: Path,
 ) -> None:
-    """Render source summary with progressive disclosure.
-
-    Summary and key_insights are always visible. All other chapters
-    are collapsed behind an expander.
-    """
+    """Two-column source chapters: read-only prose left, per-chapter edit boxes right."""
     st.subheader("Source chapters")
     _render_analysis_meta_banner(st, artifact)
+    _sync_sources_review_node(artifact)
 
-    for sk in PRIMARY_CHAPTERS:
-        if sk in SOURCE_SUMMARY_SCALAR_KEYS:
-            _render_scalar_chapter(
-                st, artifact, section_key=sk, key_prefix=key_prefix, source_id=source_id
-            )
-        elif sk in ("key_insights", "sources"):
-            _render_list_chapter(
-                st, artifact, section_key=sk, key_prefix=key_prefix, source_id=source_id
-            )
-        st.divider()
+    save_msg = streamlit_runtime.session_state.pop("_chapter_save_msg", None)
+    if save_msg:
+        st.success(str(save_msg))
 
-    secondary = [sk for sk in SOURCE_CHAPTER_DISPLAY_ORDER if sk not in PRIMARY_CHAPTERS]
-    with st.expander("Additional source analysis", expanded=False):
-        for sk in secondary:
-            if sk in SOURCE_SUMMARY_SCALAR_KEYS:
-                _render_scalar_chapter(
-                    st, artifact, section_key=sk, key_prefix=key_prefix, source_id=source_id
-                )
-            elif sk in ("key_insights", "sources"):
-                _render_list_chapter(
-                    st, artifact, section_key=sk, key_prefix=key_prefix, source_id=source_id
-                )
-            st.divider()
+    read_col, edit_col = st.columns(2)
+    with read_col:
+        st.markdown(build_readonly_chapters_markdown(artifact))
+    with edit_col:
+        for sk in SOURCE_CHAPTER_DISPLAY_ORDER:
+            if sk == "sources":
+                continue
+            _render_chapter_edit_box(
+                st,
+                artifact,
+                section_key=sk,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                artifact_path=artifact_path,
+            )
 
 
 def render_source_type_detection(st: Any, artifact: dict[str, Any], *, key_prefix: str) -> None:
@@ -474,11 +578,6 @@ def render_source_type_detection(st: Any, artifact: dict[str, Any], *, key_prefi
             rev["final_item"] = None
     else:
         rev["final_item"] = None
-    rev["notes"] = st.text_input(
-        "Source type \u2014 notes",
-        value=str(rev.get("notes") or ""),
-        key=f"{key_prefix}_srctype_notes",
-    )
 
 
 def render_skip_extraction_screen(

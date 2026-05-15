@@ -83,18 +83,22 @@ content; suggest append_to_existing over create_new_page whenever possible.
 Anchor all temporal language to the source's published_date; never use unanchored words \
 like "currently", "now", "soon", "recently", or "within 1-2 years".
 
-Voice for source_summary chapters: concise, direct, practical. Audience is an advanced AI \
-practitioner focused on conversational AI, chatbots, voicebots, and service automation—not a \
-research paper audience. Avoid LinkedIn tone, generic AI hype, buzzword stacking, and \
-exaggerated claims. Prefer clarity and usefulness over completeness."""
+Voice for source_summary chapters (except accessible_overview): concise, direct, practical. \
+Audience is an advanced AI practitioner focused on conversational AI, chatbots, voicebots, \
+and service automation—not a research paper audience. Avoid LinkedIn tone, generic AI hype, \
+buzzword stacking, and exaggerated claims. Prefer clarity and usefulness over completeness.
+
+For accessible_overview only ("Easy read"): write for a curious newcomer to AI—plain \
+everyday language, no abbreviations (spell out terms), gentle pacing, usually 7–10 sentences. \
+Expand and explain; do not compress like the practitioner summary."""
 
 
 TEMPORAL_ANCHORING_RULE = """\
 ## TEMPORAL ANCHORING RULE (applies to ALL output fields)
 
-All temporal judgments in prose fields (practical_relevance, time_sensitivity, \
-why_it_matters, operational_relevance, durability_estimate rationale, etc.) \
-MUST be anchored to the source's published_date from the Metadata section.
+All temporal judgments in prose fields (why_it_matters, time_sensitivity, \
+operational_relevance, durability_estimate rationale, etc.) MUST be anchored to the \
+source's published_date from the Metadata section.
 
 Banned unanchored words: "currently", "now", "soon", "recently", "today", \
 "at the time of writing", "in the coming months", "within 1-2 years", \
@@ -232,26 +236,30 @@ Fill every field below from the article. Empty string or [] only when truly abse
 
 **summary** (string): Usually 4–10 sentences; adapt to complexity. Core ideas and arguments only; \
 no chronological retelling; no filler openers; explain concepts plainly; practical understanding \
-over technical precision.
+over technical precision. Audience: advanced AI practitioner.
+
+**accessible_overview** (string — "Easy read"): Usually 7–10 sentences; shorter only if the \
+article has little substance. Audience: intelligent reader new to AI—interested but not technical. \
+Use everyday language; spell out terms instead of abbreviations (e.g. "large language model" not \
+"LLM"; explain "retrieval-augmented generation" in full if needed). Cover what the article is \
+about, why people care, and the main story in order—not a compressed expert brief. Avoid jargon \
+stacks, acronym dumps, benchmark numbers without explanation, and telegraphic wiki-style bullets. \
+Write after mentally drafting summary: expand and explain; do NOT copy summary verbatim or make \
+this section shorter than summary.
 
 **key_insights** (array of strings, at most 5): Only insights that are actionable, strategically \
 important, surprising, or practically useful—and non-obvious. One concise sentence per item. \
 No generic observations.
 
-**why_it_matters** (string): Broader significance for AI engineering, software development, AI \
-products, service automation, business transformation, and industry evolution. Long-term and \
-practical implications. No hype.
-
-**implications_automation** (string): Concrete implications for customer-support automation, AI \
-agents, voice/chat workflows, service operations, call-center change, AI-assisted support, \
-manual work reduction, conversational UX, enterprise adoption in service orgs. If there are \
-no meaningful implications, state explicitly that no major implications were identified—do \
-not force weak connections.
-
-**practical_relevance** (string): Short honest judgment anchored to the source's publication \
-date (e.g. "actionable as of May 2025", "likely relevant through 2027", "early-stage as of \
-Q2 2025; monitor", strategically important, mostly hype/noise, incremental improvement, \
-potentially transformative). Nuanced, not certainty theater.
+**why_it_matters** (string): Unified significance and relevance (usually 7–12 sentences). \
+Cover in one flowing section: (1) why this source matters for AI engineering, software \
+development, AI products, and industry evolution—long-term and practical significance; \
+(2) operational implications ONLY when the article substantively supports them (e.g. agents, \
+support workflows, contact centers, voice or chat automation)—do NOT add a generic "For \
+service automation…" paragraph unless the source actually discusses those domains; \
+(3) a short honest time-bounded judgment anchored to the source's publication date \
+(e.g. actionable as of that date, likely relevant through a stated horizon, hype vs \
+durable, monitor vs adopt). No hype. No certainty theater.
 
 **limitations_and_open_questions** (string): Limitations, weak evidence, benchmark limits, \
 unrealistic assumptions, missing implementation detail, unresolved operational concerns, \
@@ -841,24 +849,20 @@ def _section_regen_rubric(section_key: str) -> str:
     fixed = {
         "summary": (
             "Usually 4–10 sentences; adapt to complexity. Core ideas only; no chronological "
-            "retelling; no filler; practical clarity."
+            "retelling; no filler; practical clarity for an advanced practitioner."
+        ),
+        "accessible_overview": (
+            "Usually 7–10 sentences (shorter if thin source). Plain language for an AI newcomer; "
+            "no abbreviations; explain the article story gently—not a compressed expert summary."
         ),
         "key_insights": (
             "Array of at most 5 strings: actionable, strategically important, surprising, "
             "or practically useful—and non-obvious. One sentence each."
         ),
         "why_it_matters": (
-            "Significance for AI engineering, software development, AI products, service "
-            "automation, business transformation, industry evolution. No hype."
-        ),
-        "implications_automation": (
-            "Concrete implications for chatbots, voicebots, support automation, agents, "
-            "operations. If none, state that no major implications were identified."
-        ),
-        "practical_relevance": (
-            "Short honest judgment anchored to the source's publication date "
-            "(e.g. 'actionable as of May 2025', hype/noise, incremental, "
-            "transformative). Nuanced."
+            "Unified 7–12 sentences: significance for AI engineering/industry; operational "
+            "implications only if substantiated (no forced service-automation paragraph); "
+            "short time-bounded relevance judgment anchored to publication date."
         ),
         "limitations_and_open_questions": (
             "Weak evidence, scalability, benchmarks, assumptions, missing detail, operations, "

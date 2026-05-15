@@ -64,6 +64,7 @@ def test_default_review_all_pending() -> None:
     llm = LlmClassificationOutput().model_dump(mode="json")
     rev = default_review_for_llm_output(llm)
     assert rev["source_summary"]["summary"]["status"] == "pending"
+    assert rev["source_summary"]["accessible_overview"]["status"] == "pending"
     assert rev["source_summary"]["why_it_matters"]["status"] == "pending"
     assert rev["source_summary"]["key_insights"]["llm_list"] == []
     assert rev["source_type_detection"]["status"] == "pending"
@@ -79,7 +80,6 @@ def test_migrate_v1_artifact_maps_legacy_source_summary_fields() -> None:
             "source_summary": {
                 "why_it_matters": "w",
                 "key_insights": "- one\n- two",
-                "implications_automation": "i",
                 "context_limitations": "legacy lim",
                 "contradictions": "legacy c",
                 "sources": ["https://x"],

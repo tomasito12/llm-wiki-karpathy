@@ -91,7 +91,7 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
     }
     sources_list = summary.get("sources") or []
     review_summary["sources"] = {
-        "status": "pending",
+        "status": "approved",
         "final_list": None,
         "notes": None,
         "llm_list": copy.deepcopy(sources_list),
@@ -327,11 +327,25 @@ def review_artifact_path(source_id: str, *, state_reviews: Path | None = None) -
     return base / source_id / "review.json"
 
 
+def _concat_why_it_matters_parts(*parts: str) -> str:
+    """Join non-empty prose blocks with blank lines."""
+    return "\n\n".join(p.strip() for p in parts if p and p.strip())
+
+
 def migrate_llm_source_summary_dict(ss: dict[str, Any]) -> dict[str, Any]:
     """Map legacy ``source_summary`` keys into v2 field names."""
     if not isinstance(ss, dict):
         return {}
     out = dict(ss)
+    legacy_impl = str(out.get("implications_automation") or "").strip()
+    legacy_practical = str(out.get("practical_relevance") or "").strip()
+    legacy_why = str(out.get("why_it_matters") or "").strip()
+    if legacy_impl or legacy_practical:
+        out["why_it_matters"] = _concat_why_it_matters_parts(
+            legacy_why, legacy_impl, legacy_practical
+        )
+    out.pop("implications_automation", None)
+    out.pop("practical_relevance", None)
     out["summary"] = str(out.get("summary") or "").strip()
     ki = out.get("key_insights")
     if isinstance(ki, str):
@@ -365,7 +379,6 @@ def migrate_llm_source_summary_dict(ss: dict[str, Any]) -> dict[str, Any]:
     else:
         out["contradictions_and_skepticism"] = str(skep_new).strip()
     out.pop("contradictions", None)
-    out["practical_relevance"] = str(out.get("practical_relevance") or "").strip()
     for sk in SOURCE_SUMMARY_SCALAR_KEYS:
         if sk in ("limitations_and_open_questions", "contradictions_and_skepticism"):
             continue
@@ -748,6 +761,78 @@ def migrate_artifact_to_v8(artifact: dict[str, Any]) -> dict[str, Any]:
     return artifact
 
 
+def _merge_review_statuses(statuses: list[str]) -> str:
+    """Pick the most advanced review status from legacy section nodes."""
+    if not statuses:
+        return "pending"
+    if "modified" in statuses:
+        return "modified"
+    if "rejected" in statuses:
+        return "rejected"
+    if all(s == "approved" for s in statuses):
+        return "approved"
+    if "approved" in statuses:
+        return "modified"
+    return "pending"
+
+
+def migrate_review_source_summary_unified_why(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Merge legacy automation/relevance review nodes into why_it_matters."""
+    review = artifact.setdefault("review", {})
+    rev_ss = review.get("source_summary")
+    if not isinstance(rev_ss, dict):
+        return artifact
+    legacy_keys = ("implications_automation", "practical_relevance")
+    if not any(k in rev_ss for k in legacy_keys):
+        return artifact
+
+    llm_raw = (artifact.get("llm_output") or {}).get("source_summary") or {}
+    llm_ss = migrate_llm_source_summary_dict(llm_raw if isinstance(llm_raw, dict) else {})
+
+    def _text_for(key: str) -> str:
+        node = rev_ss.get(key)
+        if isinstance(node, dict):
+            ft = node.get("final_text")
+            if isinstance(ft, str) and ft.strip():
+                return ft.strip()
+        return str(llm_ss.get(key) or "").strip()
+
+    legacy_why_key = "why_it_matters"
+    parts = [_text_for(legacy_why_key)]
+    for lk in legacy_keys:
+        parts.append(_text_for(lk))
+    merged_text = _concat_why_it_matters_parts(*parts)
+
+    statuses: list[str] = []
+    notes_parts: list[str] = []
+    regen_meta = None
+    for key in (legacy_why_key, *legacy_keys):
+        node = rev_ss.get(key)
+        if isinstance(node, dict):
+            statuses.append(str(node.get("status") or "pending"))
+            n = node.get("notes")
+            if isinstance(n, str) and n.strip():
+                notes_parts.append(n.strip())
+            if regen_meta is None and node.get("section_regeneration_meta"):
+                regen_meta = node.get("section_regeneration_meta")
+
+    had_final = any(
+        isinstance(rev_ss.get(k), dict) and rev_ss.get(k, {}).get("final_text")
+        for k in (legacy_why_key, *legacy_keys)
+    )
+    why_node = rev_ss.get(legacy_why_key) if isinstance(rev_ss.get(legacy_why_key), dict) else {}
+
+    rev_ss[legacy_why_key] = {
+        "status": _merge_review_statuses(statuses),
+        "final_text": merged_text if had_final else why_node.get("final_text"),
+        "notes": "\n".join(notes_parts) if notes_parts else why_node.get("notes"),
+        "section_regeneration_meta": regen_meta,
+    }
+    for lk in legacy_keys:
+        rev_ss.pop(lk, None)
+    return artifact
+
+
 def migrate_artifact_to_v9(artifact: dict[str, Any]) -> dict[str, Any]:
     """Upgrade artifact to v9: evidence_type on proposal dicts (default unknown)."""
     ver = int(artifact.get("artifact_schema_version") or 1)
@@ -799,6 +884,18 @@ def aggregate_impl_study_section_status(sections: dict[str, Any]) -> str:
     return "mixed"
 
 
+def ensure_sources_review_auto_approved(artifact: dict[str, Any]) -> None:
+    """Sources links are informational only; mark review node approved in place."""
+    rev_ss = (artifact.get("review") or {}).get("source_summary")
+    if not isinstance(rev_ss, dict):
+        return
+    node = rev_ss.get("sources")
+    if not isinstance(node, dict):
+        return
+    node["status"] = "approved"
+    node["final_list"] = None
+
+
 def load_artifact(path: Path) -> dict[str, Any] | None:
     """Load artifact JSON or return None if missing."""
     if not path.is_file():
@@ -813,7 +910,10 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = migrate_artifact_to_v6(data)
     data = migrate_artifact_to_v7(data)
     data = migrate_artifact_to_v8(data)
-    return migrate_artifact_to_v9(data)
+    data = migrate_artifact_to_v9(data)
+    data = migrate_review_source_summary_unified_why(data)
+    ensure_sources_review_auto_approved(data)
+    return data
 
 
 def save_artifact(path: Path, payload: dict[str, Any]) -> None:
@@ -883,7 +983,9 @@ def aggregate_review_status(artifact: dict[str, Any]) -> str:
         statuses.append(s)
 
     ss = review.get("source_summary") or {}
-    for _k, v in ss.items():
+    for key, v in ss.items():
+        if key == "sources":
+            continue
         if isinstance(v, dict) and "status" in v:
             collect(str(v["status"]))
     src_type = review.get("source_type_detection")

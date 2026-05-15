@@ -7,7 +7,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field, field_validator, model_validator
 
 ARTIFACT_SCHEMA_VERSION = 9
-PROMPT_VERSION = "10"
+PROMPT_VERSION = "12"
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
 MatchKind = Literal["exact", "fuzzy", "none"]
@@ -51,9 +51,8 @@ def normalize_evidence_type(raw: object) -> str:
 # String fields under ``source_summary`` that use ``{status, final_text, notes}`` review nodes.
 SOURCE_SUMMARY_SCALAR_KEYS: tuple[str, ...] = (
     "summary",
+    "accessible_overview",
     "why_it_matters",
-    "implications_automation",
-    "practical_relevance",
     "limitations_and_open_questions",
     "contradictions_and_skepticism",
 )
@@ -77,19 +76,18 @@ class SourceSummaryBlock(BaseModel):
     """Structured source chapters for human review (JSON in review artifact)."""
 
     summary: str = ""
+    accessible_overview: str = Field(
+        "",
+        description="Plain-language 'Easy read' for newcomers: 7–10 sentences, no abbreviations.",
+    )
     key_insights: list[str] = Field(
         default_factory=list,
         description="Up to 5 concise bullets: actionable, non-obvious, non-generic.",
     )
-    why_it_matters: str = ""
-    implications_automation: str = Field(
+    why_it_matters: str = Field(
         "",
-        description="Concrete implications for chatbots, voicebots, support automation; "
-        "state explicitly if none.",
-    )
-    practical_relevance: str = Field(
-        "",
-        description="Short honest judgment (e.g. immediately useful, hype, incremental).",
+        description="Unified significance: industry/engineering relevance, operational "
+        "implications when substantiated, and time-bounded practical judgment.",
     )
     limitations_and_open_questions: str = ""
     contradictions_and_skepticism: str = ""
@@ -131,10 +129,9 @@ def normalize_source_summary(block: SourceSummaryBlock) -> SourceSummaryBlock:
     return block.model_copy(
         update={
             "summary": block.summary.strip(),
+            "accessible_overview": block.accessible_overview.strip(),
             "key_insights": ki,
             "why_it_matters": block.why_it_matters.strip(),
-            "implications_automation": block.implications_automation.strip(),
-            "practical_relevance": block.practical_relevance.strip(),
             "limitations_and_open_questions": block.limitations_and_open_questions.strip(),
             "contradictions_and_skepticism": block.contradictions_and_skepticism.strip(),
             "assessed_as_of": block.assessed_as_of.strip(),

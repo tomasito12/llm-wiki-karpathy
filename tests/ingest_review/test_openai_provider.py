@@ -473,6 +473,63 @@ def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
     assert "at most 2" in TOOLS_RUBRIC
 
 
+def test_source_chapters_rubric_includes_accessible_overview() -> None:
+    """SOURCE_CHAPTERS_RUBRIC defines Easy read for newcomers."""
+    from src.ingest_review.providers.openai_provider import SOURCE_CHAPTERS_RUBRIC
+
+    assert "**accessible_overview**" in SOURCE_CHAPTERS_RUBRIC
+    assert "Easy read" in SOURCE_CHAPTERS_RUBRIC
+    assert "abbreviations" in SOURCE_CHAPTERS_RUBRIC.lower()
+    assert "7–10 sentences" in SOURCE_CHAPTERS_RUBRIC
+
+
+def test_accessible_overview_in_user_prompt(tmp_path: Path) -> None:
+    """Built user prompt includes accessible_overview instructions."""
+    from src.ingest_review.providers.openai_provider import _build_user_prompt
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-easy"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=[],
+        howto_tags=[],
+        prompt_version="11",
+    )
+    assert "accessible_overview" in prompt
+    assert "Easy read" in prompt
+
+
+def test_section_regen_rubric_accessible_overview() -> None:
+    """Per-section regen includes accessible_overview rubric."""
+    from src.ingest_review.providers.openai_provider import _section_regen_rubric
+
+    rubric = _section_regen_rubric("accessible_overview")
+    assert rubric
+    assert "newcomer" in rubric.lower() or "abbreviations" in rubric.lower()
+
+
+def test_system_prompt_dual_voice_for_accessible_overview() -> None:
+    """SYSTEM_PROMPT distinguishes practitioner summary from Easy read voice."""
+    from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
+
+    assert "accessible_overview" in SYSTEM_PROMPT
+    assert "newcomer" in SYSTEM_PROMPT.lower() or "newcomer to AI" in SYSTEM_PROMPT
+
+
 def test_impl_study_rubric_includes_worthiness_gate() -> None:
     """IMPL_STUDY_RUBRIC defines evidence gate, anti-patterns, and routing."""
     from src.ingest_review.providers.openai_provider import IMPL_STUDY_RUBRIC

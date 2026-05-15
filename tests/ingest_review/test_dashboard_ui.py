@@ -2,9 +2,17 @@
 
 from __future__ import annotations
 
+from src.ingest_review.artifact import ensure_sources_review_auto_approved
 from src.ingest_review.dashboard_ui import (
+    apply_chapter_edit,
+    build_readonly_chapters_markdown,
     build_tag_select_options,
+    chapter_edit_textarea_value,
+    effective_list_chapter_lines,
+    effective_scalar_chapter_text,
     format_proposed_tags_caption,
+    format_source_link_markdown,
+    normalize_sources_list,
 )
 
 
@@ -43,3 +51,111 @@ def test_build_tag_select_options_delegates_to_tags_module() -> None:
     assert "" in opts
     assert "a" in opts
     assert "b" in opts
+
+
+def test_normalize_sources_list_filters_empty_and_non_list() -> None:
+    """Non-list input yields empty; blanks are dropped."""
+    assert normalize_sources_list(None) == []
+    assert normalize_sources_list([" https://a.com ", "", "ref"]) == [
+        "https://a.com",
+        "ref",
+    ]
+
+
+def test_format_source_link_markdown_http_is_clickable() -> None:
+    """HTTP(S) URLs render as markdown links."""
+    md = format_source_link_markdown("https://example.com/path")
+    assert md == "- [https://example.com/path](https://example.com/path)"
+
+
+def test_format_source_link_markdown_plain_reference_is_bullet() -> None:
+    """Non-URL references stay plain bullets."""
+    assert format_source_link_markdown("Smith et al., 2024") == "- Smith et al., 2024"
+
+
+def test_ensure_sources_review_auto_approved_sets_status() -> None:
+    """Pending sources review node becomes approved on load."""
+    artifact = {
+        "review": {
+            "source_summary": {
+                "sources": {"status": "pending", "final_list": ["x"], "llm_list": []},
+            }
+        }
+    }
+    ensure_sources_review_auto_approved(artifact)
+    node = artifact["review"]["source_summary"]["sources"]
+    assert node["status"] == "approved"
+    assert node["final_list"] is None
+
+
+def _sample_artifact() -> dict:
+    return {
+        "llm_output": {
+            "source_summary": {
+                "summary": "LLM summary",
+                "key_insights": ["a", "b"],
+                "sources": ["https://example.com"],
+            }
+        },
+        "review": {"source_summary": {}},
+    }
+
+
+def test_effective_scalar_chapter_text_prefers_final_text() -> None:
+    """final_text overrides LLM draft when set."""
+    llm_ss = {"summary": "LLM summary"}
+    node = {"final_text": "Edited"}
+    assert effective_scalar_chapter_text(llm_ss, node, "summary") == "Edited"
+
+
+def test_effective_list_chapter_lines_prefers_final_list() -> None:
+    """final_list overrides llm_list when set."""
+    llm_ss = {"key_insights": ["a"]}
+    node = {"final_list": ["x", "y"], "llm_list": ["a"]}
+    assert effective_list_chapter_lines(llm_ss, node, "key_insights") == ["x", "y"]
+
+
+def test_apply_chapter_edit_modified_when_text_differs() -> None:
+    """Edited scalar sets status modified and stores final_text."""
+    artifact = _sample_artifact()
+    apply_chapter_edit(artifact, "summary", "Reviewer version")
+    node = artifact["review"]["source_summary"]["summary"]
+    assert node["status"] == "modified"
+    assert node["final_text"] == "Reviewer version"
+
+
+def test_apply_chapter_edit_approved_when_unchanged() -> None:
+    """Unchanged scalar clears final_text and sets approved."""
+    artifact = _sample_artifact()
+    apply_chapter_edit(artifact, "summary", "LLM summary")
+    node = artifact["review"]["source_summary"]["summary"]
+    assert node["status"] == "approved"
+    assert node["final_text"] is None
+
+
+def test_apply_chapter_edit_key_insights_caps_at_five() -> None:
+    """key_insights edits are capped at five lines."""
+    artifact = _sample_artifact()
+    raw = "\n".join(f"line{i}" for i in range(7))
+    apply_chapter_edit(artifact, "key_insights", raw)
+    node = artifact["review"]["source_summary"]["key_insights"]
+    assert node["status"] == "modified"
+    assert node["final_list"] == [f"line{i}" for i in range(5)]
+
+
+def test_build_readonly_chapters_markdown_includes_headings() -> None:
+    """Read-only markdown includes chapter headings and body."""
+    md = build_readonly_chapters_markdown(_sample_artifact())
+    assert "## Summary" in md
+    assert "LLM summary" in md
+    assert "## Key insights" in md
+    assert "- a" in md
+    assert "## Sources" in md
+    assert "https://example.com" in md
+
+
+def test_chapter_edit_textarea_value_reflects_effective_text() -> None:
+    """Edit box default uses effective chapter content."""
+    artifact = _sample_artifact()
+    apply_chapter_edit(artifact, "summary", "Edited summary")
+    assert chapter_edit_textarea_value(artifact, "summary") == "Edited summary"

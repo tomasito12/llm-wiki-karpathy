@@ -138,11 +138,6 @@ def _render_scalar_field(
         )
     else:
         node["final_text"] = None
-    node["notes"] = st.text_input(
-        f"{label} \u2014 notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_ins_{section_key}_notes",
-    )
 
 
 def _render_list_field(
@@ -186,11 +181,6 @@ def _render_list_field(
         node["final_list"] = lines
     else:
         node["final_list"] = None
-    node["notes"] = st.text_input(
-        f"{label} \u2014 notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_ins_{section_key}_notes",
-    )
 
 
 def _render_tag_panel(
@@ -252,11 +242,6 @@ def render_interview_insights(
             st.divider()
             _render_tag_panel(st, llm_item, tag_node, topic_tags or [], key_prefix=pfx)
             render_proposal_evidence_type_editor(st, llm_item, key_prefix=pfx)
-            node["notes"] = st.text_input(
-                "Insight notes",
-                value=str(node.get("notes") or ""),
-                key=f"{pfx}_ins_notes",
-            )
             with st.expander("Raw JSON (debug)", expanded=False):
                 st.json(llm_item)
         st.divider()

@@ -1,22 +1,22 @@
-"""Streamlit rendering for glossary proposals (proposal-level review)."""
+"""Streamlit rendering for glossary proposals (two-column read/edit layout)."""
 
 from __future__ import annotations
 
 import logging
 import urllib.parse
+import uuid
+from pathlib import Path
 from typing import Any
 
-from src.ingest_review.artifact import aggregate_impl_study_section_status
+import streamlit as streamlit_runtime
+
 from src.ingest_review.dashboard_ui import (
     format_proposed_tags_caption,
     human_evidence_type_label,
     render_proposal_evidence_type_editor,
     render_proposal_tag_review,
 )
-from src.ingest_review.schema import (
-    GLOSSARY_REVIEWABLE_LIST_KEYS,
-    GLOSSARY_REVIEWABLE_SCALAR_KEYS,
-)
+from src.ingest_review.schema import GLOSSARY_REVIEWABLE_SCALAR_KEYS
 
 logger = logging.getLogger(__name__)
 
@@ -25,9 +25,15 @@ PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
 VALUE_LEVEL_ORDER: dict[str, int] = {"high": 0, "medium": 1, "low": 2}
 
 VALUE_LEVEL_BADGES: dict[str, str] = {
-    "high": "🔴 High",
-    "medium": "🟡 Medium",
-    "low": "⚪ Low",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+}
+
+VALUE_LEVEL_TIER_HEADERS: dict[str, str] = {
+    "high": "### High value",
+    "medium": "### Medium value",
+    "low": "### Low value",
 }
 
 SECTION_LABELS: dict[str, str] = {
@@ -46,144 +52,299 @@ def _proposal_sort_key(node: dict[str, Any]) -> tuple[int, float]:
     return (VALUE_LEVEL_ORDER.get(level, 1), -confidence)
 
 
-def _status_index(current: str) -> int:
-    """Return index of current status in PROPOSAL_STATUS_OPTIONS."""
-    if current in PROPOSAL_STATUS_OPTIONS:
-        return PROPOSAL_STATUS_OPTIONS.index(current)
-    return 0
+def _value_level(node: dict[str, Any]) -> str:
+    llm_item = node.get("llm_item") or {}
+    return str(llm_item.get("value_level") or "medium")
 
 
-def _render_proposal_card(
+def _section_node(sections: dict[str, Any], section_key: str) -> dict[str, Any]:
+    node = sections.get(section_key)
+    return node if isinstance(node, dict) else {}
+
+
+def effective_glossary_scalar(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+    section_key: str,
+) -> str:
+    """Return reviewer-final scalar text, else the LLM draft."""
+    node = _section_node(sections, section_key)
+    final = node.get("final_text")
+    if isinstance(final, str) and final.strip():
+        return final.strip()
+    return str(llm_item.get(section_key) or "").strip()
+
+
+def apply_glossary_scalar_edit(
+    sections: dict[str, Any],
+    llm_item: dict[str, Any],
+    section_key: str,
+    raw_text: str,
+) -> None:
+    """Persist one glossary field edit; infer section status from LLM draft."""
+    text = raw_text.strip()
+    llm_text = str(llm_item.get(section_key) or "").strip()
+    node = sections.setdefault(
+        section_key,
+        {"status": "pending", "final_text": None, "notes": None},
+    )
+    if text == llm_text:
+        node["status"] = "approved"
+        node["final_text"] = None
+    else:
+        node["status"] = "modified"
+        node["final_text"] = text
+
+
+def apply_glossary_proposal_edits(
+    node: dict[str, Any],
+    field_values: dict[str, str],
+) -> None:
+    """Apply all editable scalar fields for one glossary proposal."""
+    llm_item = node.get("llm_item") or {}
+    sections = node.setdefault("sections", {})
+    for sk in GLOSSARY_REVIEWABLE_SCALAR_KEYS:
+        if sk in field_values:
+            apply_glossary_scalar_edit(sections, llm_item, sk, field_values[sk])
+
+
+def glossary_field_edit_value(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+    section_key: str,
+) -> str:
+    """Default textarea value for one glossary field."""
+    return effective_glossary_scalar(llm_item, sections, section_key)
+
+
+def _google_search_markdown(term: str) -> str:
+    if not term.strip():
+        return ""
+    url = "https://www.google.com/search?" + urllib.parse.urlencode({"q": term})
+    return f"[Google: \"{term}\"]({url})"
+
+
+def format_glossary_term_readonly_markdown(
+    node: dict[str, Any],
+    glossary_tags: list[str],
+) -> str:
+    """Format one glossary proposal as markdown for the read-only column."""
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    term = effective_glossary_scalar(llm_item, sections, "term") or "Untitled"
+    value_level = _value_level(node)
+    badge = VALUE_LEVEL_BADGES.get(value_level, "Medium")
+    confidence = float(llm_item.get("confidence") or 0.0)
+    proposal_status = str(node.get("proposal_status") or "pending")
+    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
+    suggested_action = llm_item.get("suggested_action") or "—"
+
+    definition = effective_glossary_scalar(llm_item, sections, "proposed_definition")
+    extended = effective_glossary_scalar(llm_item, sections, "extended_explanation")
+    relevance = effective_glossary_scalar(llm_item, sections, "relevance_note")
+    snippet = str(llm_item.get("supporting_snippet") or "").strip()
+    related = llm_item.get("related_terms") or []
+    if not isinstance(related, list):
+        related = []
+
+    tag_node = node.get("tags") or {}
+    tag_caption = format_proposed_tags_caption(llm_item, tag_node, glossary_tags)
+
+    lines = [
+        f"## {term}",
+        "",
+        f"*{badge} · {proposal_status} · {ev_lbl} · {confidence:.0%} · "
+        f"suggested: `{suggested_action}`*",
+        "",
+    ]
+    google = _google_search_markdown(term)
+    if google:
+        lines.extend([google, ""])
+    if definition:
+        lines.extend(["**Definition**", "", definition, ""])
+    if extended:
+        lines.extend(["**Extended explanation**", "", extended, ""])
+    if relevance:
+        lines.extend(["**Relevance**", "", relevance, ""])
+    if snippet:
+        excerpt = snippet[:2000] + ("…" if len(snippet) > 2000 else "")
+        lines.extend(["> " + excerpt.replace("\n", "\n> "), ""])
+    if tag_caption:
+        lines.extend([f"*{tag_caption}*", ""])
+    if related:
+        lines.extend([f"*Related terms: {', '.join(str(t) for t in related)}*", ""])
+
+    candidates = llm_item.get("match_candidates") or []
+    if isinstance(candidates, list) and candidates:
+        match_bits: list[str] = []
+        for mc in candidates:
+            if not isinstance(mc, dict):
+                continue
+            title = mc.get("title_or_slug", "?")
+            kind = mc.get("match_kind", "?")
+            conf = mc.get("confidence", 0)
+            match_bits.append(f"{title} ({kind}, {conf:.0%})")
+        if match_bits:
+            lines.extend([f"*Possible matches: {'; '.join(match_bits)}*", ""])
+
+    return "\n".join(lines).rstrip()
+
+
+def build_readonly_glossary_markdown(
+    sorted_nodes: list[dict[str, Any]],
+    glossary_tags: list[str],
+) -> str:
+    """Concatenate all glossary proposals for uninterrupted read-only display."""
+    if not sorted_nodes:
+        return "*(No glossary proposals.)*"
+    parts: list[str] = []
+    prev_tier: str | None = None
+    for node in sorted_nodes:
+        tier = _value_level(node)
+        if tier != prev_tier:
+            header = VALUE_LEVEL_TIER_HEADERS.get(tier)
+            if header:
+                parts.append(header)
+            prev_tier = tier
+        parts.append(format_glossary_term_readonly_markdown(node, glossary_tags))
+    return "\n\n---\n\n".join(parts)
+
+
+def _find_glossary_node(artifact: dict[str, Any], proposal_id: str) -> dict[str, Any] | None:
+    for node in (artifact.get("review") or {}).get("glossary") or []:
+        if isinstance(node, dict) and node.get("proposal_id") == proposal_id:
+            return node
+    return None
+
+
+def _prepare_glossary_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
+    review = artifact.setdefault("review", {})
+    glossary_nodes = review.setdefault("glossary", [])
+    llm_items = artifact.get("llm_output", {}).get("glossary") or []
+    for i, node in enumerate(glossary_nodes):
+        if "llm_item" not in node and i < len(llm_items):
+            node["llm_item"] = llm_items[i]
+        if not node.get("proposal_id"):
+            node["proposal_id"] = uuid.uuid4().hex
+    return sorted(glossary_nodes, key=_proposal_sort_key)
+
+
+def _on_save_glossary_proposal(
+    proposal_id: str,
+    key_prefix: str,
+    artifact_path: Path,
+) -> None:
+    """Streamlit on_click: apply field edits and persist artifact immediately."""
+    from src.ingest_review.artifact import save_artifact, touch_review_session
+
+    artifact = streamlit_runtime.session_state.get("artifact")
+    if not isinstance(artifact, dict):
+        return
+    node = _find_glossary_node(artifact, proposal_id)
+    if not node:
+        return
+    field_values = {
+        sk: str(streamlit_runtime.session_state.get(f"{key_prefix}_edit_{sk}", ""))
+        for sk in GLOSSARY_REVIEWABLE_SCALAR_KEYS
+    }
+    apply_glossary_proposal_edits(node, field_values)
+    touch_review_session(artifact)
+    save_artifact(artifact_path, artifact)
+    llm_item = node.get("llm_item") or {}
+    term = field_values.get("term") or llm_item.get("term") or "proposal"
+    streamlit_runtime.session_state["_glossary_save_msg"] = f"Saved **{term}**."
+
+
+def _on_set_glossary_proposal_status(
+    proposal_id: str,
+    status: str,
+    artifact_path: Path,
+) -> None:
+    """Streamlit on_click: set proposal_status and persist immediately."""
+    from src.ingest_review.artifact import save_artifact, touch_review_session
+
+    artifact = streamlit_runtime.session_state.get("artifact")
+    if not isinstance(artifact, dict):
+        return
+    node = _find_glossary_node(artifact, proposal_id)
+    if not node:
+        return
+    node["proposal_status"] = status
+    node.pop("_edit_mode", None)
+    touch_review_session(artifact)
+    save_artifact(artifact_path, artifact)
+
+
+def _render_proposal_action_row(
     st: Any,
     node: dict[str, Any],
-    llm_item: dict[str, Any],
-    glossary_tags: list[str],
     *,
     key_prefix: str,
-    auto_expand: bool,
+    artifact_path: Path,
 ) -> None:
-    """Render a single glossary proposal as a compact card with action buttons."""
-    term = llm_item.get("term") or "Untitled"
-    value_level = str(llm_item.get("value_level") or "medium")
-    confidence = float(llm_item.get("confidence") or 0.0)
-    suggested_action = llm_item.get("suggested_action") or "—"
-    definition = str(llm_item.get("proposed_definition") or "")
-    proposal_status = str(node.get("proposal_status") or "pending")
-
-    badge = VALUE_LEVEL_BADGES.get(value_level, "⚪ Low")
-    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
-    sections = node.setdefault("sections", {})
-    agg = aggregate_impl_study_section_status(sections)
-
-    header = f"{badge} · **{term}** · {ev_lbl} · {confidence:.0%} · {proposal_status}"
-    with st.expander(header, expanded=auto_expand):
-        col_info, col_action = st.columns([3, 1])
-        with col_info:
-            st.caption(f"Suggested action: `{suggested_action}` · Section status: {agg}")
-            search_url = "https://www.google.com/search?" + urllib.parse.urlencode({"q": term})
-            st.markdown(f'[Google: "{term}"]({search_url})')
-        with col_action:
-            st.caption("Proposal decision")
-
-        st.markdown("**Proposed definition**")
-        st.text(definition[:4000] + ("…" if len(definition) > 4000 else ""))
-
-        _render_tag_summary(st, llm_item, node, glossary_tags)
-
-        _render_action_buttons(st, node, key_prefix=key_prefix)
-
-        if node.get("proposal_status") == "pending" or node.get("_edit_mode"):
-            _render_edit_panel(st, llm_item, node, glossary_tags, key_prefix=key_prefix)
-
-        _render_source_evidence(st, llm_item, key_prefix=key_prefix)
-        _render_related_terms(st, llm_item)
-
-        node["notes"] = st.text_input(
-            "Proposal notes",
-            value=str(node.get("notes") or ""),
-            key=f"{key_prefix}_notes",
+    """Approve / Reject / Defer with immediate persistence."""
+    proposal_id = str(node.get("proposal_id") or "")
+    current = str(node.get("proposal_status") or "pending")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.button(
+            "Approve",
+            key=f"{key_prefix}_approve",
+            disabled=(current == "approved"),
+            on_click=_on_set_glossary_proposal_status,
+            args=(proposal_id, "approved", artifact_path),
+            use_container_width=True,
+        )
+    with c2:
+        st.button(
+            "Reject",
+            key=f"{key_prefix}_reject",
+            disabled=(current == "rejected"),
+            on_click=_on_set_glossary_proposal_status,
+            args=(proposal_id, "rejected", artifact_path),
+            use_container_width=True,
+        )
+    with c3:
+        st.button(
+            "Defer",
+            key=f"{key_prefix}_defer",
+            disabled=(current == "deferred"),
+            on_click=_on_set_glossary_proposal_status,
+            args=(proposal_id, "deferred", artifact_path),
+            use_container_width=True,
         )
 
 
-def _render_tag_summary(
+def _render_glossary_edit_box(
     st: Any,
-    llm_item: dict[str, Any],
-    node: dict[str, Any],
-    glossary_tags: list[str],
-) -> None:
-    """Show tags as read-only text in the default card view."""
-    tag_node = node.get("tags") or {}
-    caption = format_proposed_tags_caption(llm_item, tag_node, glossary_tags)
-    if caption:
-        st.caption(caption)
-
-
-def _render_action_buttons(
-    st: Any,
-    node: dict[str, Any],
-    *,
-    key_prefix: str,
-) -> None:
-    """Render 4 action buttons: Approve / Reject / Edit / Defer."""
-    col_approve, col_reject, col_edit, col_defer = st.columns(4)
-    current = str(node.get("proposal_status") or "pending")
-
-    with col_approve:
-        if st.button(
-            "✅ Approve" if current != "approved" else "✅ Approved",
-            key=f"{key_prefix}_approve",
-            disabled=(current == "approved"),
-        ):
-            node["proposal_status"] = "approved"
-            node.pop("_edit_mode", None)
-            st.rerun()
-
-    with col_reject:
-        if st.button(
-            "❌ Reject" if current != "rejected" else "❌ Rejected",
-            key=f"{key_prefix}_reject",
-            disabled=(current == "rejected"),
-        ):
-            node["proposal_status"] = "rejected"
-            node.pop("_edit_mode", None)
-            st.rerun()
-
-    with col_edit:
-        if st.button("✏️ Edit", key=f"{key_prefix}_edit"):
-            node["_edit_mode"] = True
-            node["proposal_status"] = "pending"
-            st.rerun()
-
-    with col_defer:
-        if st.button(
-            "⏸️ Defer" if current != "deferred" else "⏸️ Deferred",
-            key=f"{key_prefix}_defer",
-            disabled=(current == "deferred"),
-        ):
-            node["proposal_status"] = "deferred"
-            node.pop("_edit_mode", None)
-            st.rerun()
-
-
-def _render_edit_panel(
-    st: Any,
-    llm_item: dict[str, Any],
     node: dict[str, Any],
     glossary_tags: list[str],
     *,
     key_prefix: str,
+    artifact_path: Path,
 ) -> None:
-    """Render field-level editing for reviewable scalar fields and tags."""
-    with st.expander("✏️ Edit fields", expanded=bool(node.get("_edit_mode"))):
-        sections = node.setdefault("sections", {})
+    """One bordered edit box per glossary proposal."""
+    llm_item = node.get("llm_item") or {}
+    sections = node.setdefault("sections", {})
+    term = effective_glossary_scalar(llm_item, sections, "term") or "Untitled"
+    value_level = _value_level(node)
+    badge = VALUE_LEVEL_BADGES.get(value_level, "Medium")
+    proposal_status = str(node.get("proposal_status") or "pending")
+
+    with st.container(border=True):
+        st.markdown(f"**{term}** · {badge} · `{proposal_status}`")
+        _render_proposal_action_row(st, node, key_prefix=key_prefix, artifact_path=artifact_path)
 
         for sk in GLOSSARY_REVIEWABLE_SCALAR_KEYS:
-            _render_editable_scalar(st, llm_item, sections, section_key=sk, key_prefix=key_prefix)
+            label = SECTION_LABELS.get(sk, sk.replace("_", " ").title())
+            tall = sk in ("proposed_definition", "extended_explanation")
+            st.text_area(
+                label,
+                value=glossary_field_edit_value(llm_item, sections, sk),
+                height=120 if tall else 72,
+                key=f"{key_prefix}_edit_{sk}",
+            )
 
-        for lk in GLOSSARY_REVIEWABLE_LIST_KEYS:
-            _render_editable_list(st, llm_item, sections, section_key=lk, key_prefix=key_prefix)
-
-        st.divider()
         tag_node = node.setdefault(
             "tags",
             {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
@@ -193,118 +354,18 @@ def _render_edit_panel(
         )
         render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
 
+        snippet = str(llm_item.get("supporting_snippet") or "").strip()
+        if snippet:
+            with st.expander("Source evidence (read-only)", expanded=False):
+                st.text(snippet[:4000] + ("…" if len(snippet) > 4000 else ""))
 
-def _render_editable_scalar(
-    st: Any,
-    llm_item: dict[str, Any],
-    sections: dict[str, Any],
-    *,
-    section_key: str,
-    key_prefix: str,
-) -> None:
-    """Render an editable text area for a scalar review field."""
-    label = SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    node = sections.setdefault(
-        section_key,
-        {"status": "pending", "final_text": None, "notes": None},
-    )
-    llm_text = str(llm_item.get(section_key) or "")
-    tall = section_key in ("extended_explanation", "proposed_definition")
-
-    current_text = node.get("final_text") if node.get("final_text") else llm_text
-    node["final_text"] = st.text_area(
-        label,
-        value=current_text,
-        height=160 if tall else 100,
-        key=f"{key_prefix}_{section_key}_txt",
-    )
-    if node["final_text"] != llm_text:
-        node["status"] = "modified"
-    else:
-        node["final_text"] = None
-        if node["status"] == "modified":
-            node["status"] = "pending"
-
-
-def _render_editable_list(
-    st: Any,
-    llm_item: dict[str, Any],
-    sections: dict[str, Any],
-    *,
-    section_key: str,
-    key_prefix: str,
-) -> None:
-    """Render an editable text area for a list review field."""
-    label = SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    llm_list = llm_item.get(section_key) or []
-    if not isinstance(llm_list, list):
-        llm_list = []
-    node = sections.setdefault(
-        section_key,
-        {"status": "pending", "final_list": None, "notes": None, "llm_list": list(llm_list)},
-    )
-    if not node.get("llm_list"):
-        node["llm_list"] = list(llm_list)
-
-    default_lines = (
-        node.get("final_list") if node.get("final_list") is not None else node["llm_list"]
-    )
-    raw = st.text_area(
-        f"{label} (one per line)",
-        value="\n".join(str(x) for x in (default_lines or [])),
-        height=100,
-        key=f"{key_prefix}_{section_key}_txt",
-    )
-    lines = [ln.strip() for ln in raw.splitlines() if ln.strip()]
-    if lines != node["llm_list"]:
-        node["final_list"] = lines
-        node["status"] = "modified"
-    else:
-        node["final_list"] = None
-        if node["status"] == "modified":
-            node["status"] = "pending"
-
-
-def _render_source_evidence(
-    st: Any,
-    llm_item: dict[str, Any],
-    *,
-    key_prefix: str,
-) -> None:
-    """Render supporting_snippet as read-only in a collapsible expander."""
-    snippet = str(llm_item.get("supporting_snippet") or "")
-    if not snippet.strip():
-        return
-    with st.expander("📄 Source evidence", expanded=False):
-        st.text(snippet[:6000] + ("…" if len(snippet) > 6000 else ""))
-
-
-def _render_related_terms(st: Any, llm_item: dict[str, Any]) -> None:
-    """Render related_terms as a read-only informational note."""
-    related = llm_item.get("related_terms") or []
-    if not isinstance(related, list) or not related:
-        return
-    st.info(f"**Related terms:** {', '.join(str(t) for t in related)}")
-
-
-def _render_match_candidates(
-    st: Any,
-    llm_item: dict[str, Any],
-    *,
-    key_prefix: str,
-) -> None:
-    """Render possible existing matches from the LLM."""
-    candidates = llm_item.get("match_candidates") or []
-    if not candidates:
-        return
-    with st.expander("Possible existing matches (from LLM)", expanded=False):
-        for mc in candidates:
-            if not isinstance(mc, dict):
-                continue
-            title = mc.get("title_or_slug", "?")
-            kind = mc.get("match_kind", "?")
-            conf = mc.get("confidence", 0)
-            st.warning(f"**{title}** — match: {kind}, confidence: {conf:.0%}")
+        st.button(
+            "Save edit",
+            key=f"{key_prefix}_save",
+            on_click=_on_save_glossary_proposal,
+            args=(str(node.get("proposal_id") or ""), key_prefix, artifact_path),
+            use_container_width=True,
+        )
 
 
 def render_glossary_proposals(
@@ -313,96 +374,64 @@ def render_glossary_proposals(
     *,
     key_prefix: str,
     glossary_tags: list[str],
+    artifact_path: Path,
 ) -> None:
-    """Render proposal-level review for all glossary proposals.
-
-    Proposals are sorted by value_level (high first) then confidence descending.
-    High-value proposals are auto-expanded; medium collapsed; low hidden in a
-    separate section.
-    """
-    review = artifact.setdefault("review", {})
-    glossary_nodes = review.setdefault("glossary", [])
-    llm_items = artifact.get("llm_output", {}).get("glossary") or []
+    """Two-column glossary review: read-only catalog left, per-term edit boxes right."""
     st.subheader("Glossary")
+    sorted_nodes = _prepare_glossary_nodes(artifact)
+    llm_items = artifact.get("llm_output", {}).get("glossary") or []
 
-    if not glossary_nodes and not llm_items:
+    if not sorted_nodes and not llm_items:
         st.caption("No glossary proposals.")
         return
 
-    for i, node in enumerate(glossary_nodes):
-        if "llm_item" not in node and i < len(llm_items):
-            node["llm_item"] = llm_items[i]
+    pending = sum(
+        1 for n in sorted_nodes if str(n.get("proposal_status") or "pending") == "pending"
+    )
+    st.caption(f"{len(sorted_nodes)} proposal(s) · {pending} pending")
 
-    sorted_nodes = sorted(glossary_nodes, key=_proposal_sort_key)
+    save_msg = streamlit_runtime.session_state.pop("_glossary_save_msg", None)
+    if save_msg:
+        st.success(str(save_msg))
 
-    high_nodes = [n for n in sorted_nodes if _value_level(n) == "high"]
-    medium_nodes = [n for n in sorted_nodes if _value_level(n) == "medium"]
-    low_nodes = [n for n in sorted_nodes if _value_level(n) == "low"]
-
-    if high_nodes:
-        st.markdown("#### High value")
-        for i, node in enumerate(high_nodes):
-            llm_item = node.get("llm_item") or {}
-            pfx = f"{key_prefix}_gh{i}"
-            _render_proposal_card(
-                st,
-                node,
-                llm_item,
-                glossary_tags,
-                key_prefix=pfx,
-                auto_expand=True,
-            )
-            _render_match_candidates(st, llm_item, key_prefix=pfx)
-
-    if medium_nodes:
-        st.markdown("#### Medium value")
-        for i, node in enumerate(medium_nodes):
-            llm_item = node.get("llm_item") or {}
-            pfx = f"{key_prefix}_gm{i}"
-            _render_proposal_card(
-                st,
-                node,
-                llm_item,
-                glossary_tags,
-                key_prefix=pfx,
-                auto_expand=False,
-            )
-            _render_match_candidates(st, llm_item, key_prefix=pfx)
-
-    if low_nodes:
-        with st.expander(f"⚪ Low value ({len(low_nodes)} proposals)", expanded=False):
-            for i, node in enumerate(low_nodes):
-                llm_item = node.get("llm_item") or {}
-                pfx = f"{key_prefix}_gl{i}"
-                _render_proposal_card(
-                    st,
-                    node,
-                    llm_item,
-                    glossary_tags,
-                    key_prefix=pfx,
-                    auto_expand=False,
+    read_col, edit_col = st.columns(2)
+    with read_col:
+        st.markdown(build_readonly_glossary_markdown(sorted_nodes, glossary_tags))
+    with edit_col:
+        edit_nodes = sorted_nodes
+        if len(sorted_nodes) > 6:
+            labels = [
+                effective_glossary_scalar(
+                    n.get("llm_item") or {},
+                    n.get("sections") or {},
+                    "term",
                 )
-                _render_match_candidates(st, llm_item, key_prefix=pfx)
+                or f"Proposal {i + 1}"
+                for i, n in enumerate(sorted_nodes)
+            ]
+            pick = st.selectbox(
+                "Edit term",
+                options=labels,
+                key=f"{key_prefix}_glossary_jump",
+            )
+            idx = labels.index(pick) if pick in labels else 0
+            edit_nodes = [sorted_nodes[idx]]
+            st.caption("Showing one edit panel — use the selector to switch terms.")
 
-
-def _value_level(node: dict[str, Any]) -> str:
-    """Extract value_level from a glossary review node."""
-    llm_item = node.get("llm_item") or {}
-    return str(llm_item.get("value_level") or "medium")
+        for i, node in enumerate(edit_nodes):
+            pid = str(node.get("proposal_id") or f"idx{i}")
+            pfx = f"{key_prefix}_g_{pid[:8]}"
+            _render_glossary_edit_box(
+                st,
+                node,
+                glossary_tags,
+                key_prefix=pfx,
+                artifact_path=artifact_path,
+            )
 
 
 def collect_glossary_new_tags(artifact: dict[str, Any]) -> list[str]:
-    """Return approved new tags from glossary proposals.
-
-    Collects `suggested_new_tag` where `new_tag_approved` is True across all
-    glossary review nodes.
-
-    Args:
-        artifact: The full review artifact dict.
-
-    Returns:
-        Deduplicated list of approved new tag strings.
-    """
+    """Return approved new tags from glossary proposals."""
     review = artifact.get("review") or {}
     tags: list[str] = []
     for node in review.get("glossary") or []:

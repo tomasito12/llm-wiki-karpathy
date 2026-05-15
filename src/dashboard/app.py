@@ -401,6 +401,8 @@ def main() -> None:
                     prompt_version=str(regen_meta.get("prompt_version") or prompt_version),
                 )
                 st.session_state["artifact"] = artifact
+                touch_review_session(artifact)
+                save_artifact(artifact_path, artifact)
                 st.success(f"Regenerated **{sk}**.")
             except Exception as exc:  # noqa: BLE001
                 attach_error(artifact, f"regenerate {sk}: {exc}")
@@ -505,13 +507,20 @@ def main() -> None:
         ]
     )
     with tabs[0]:
-        render_source_summary_review(st, artifact, key_prefix=key_prefix, source_id=source_id)
+        render_source_summary_review(
+            st,
+            artifact,
+            key_prefix=key_prefix,
+            source_id=source_id,
+            artifact_path=artifact_path,
+        )
     with tabs[1]:
         render_glossary_proposals(
             st,
             artifact,
             key_prefix=key_prefix,
             glossary_tags=glossary_tags,
+            artifact_path=artifact_path,
         )
     with tabs[2]:
         render_topic_proposals(

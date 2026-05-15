@@ -161,11 +161,6 @@ def _render_scalar_field(
         )
     else:
         node["final_text"] = None
-    node["notes"] = st.text_input(
-        f"{label} \u2014 notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_impl_{section_key}_notes",
-    )
 
 
 def _render_list_field(
@@ -209,11 +204,6 @@ def _render_list_field(
         node["final_list"] = lines
     else:
         node["final_list"] = None
-    node["notes"] = st.text_input(
-        f"{label} \u2014 notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_impl_{section_key}_notes",
-    )
 
 
 def _render_evidence_panel(
@@ -326,12 +316,6 @@ def render_implementation_studies(
             _render_tag_panel(st, llm_item, tag_node, impl_study_tags, key_prefix=pfx)
             _render_match_candidates(st, llm_item, key_prefix=pfx)
             render_proposal_evidence_type_editor(st, llm_item, key_prefix=pfx)
-            node["notes"] = st.text_input(
-                "Proposal notes",
-                value=str(node.get("notes") or ""),
-                placeholder="Misclassified (no operational deployment case)",
-                key=f"{pfx}_impl_notes",
-            )
             with st.expander("Raw JSON (debug)", expanded=False):
                 st.json(llm_item)
         st.divider()

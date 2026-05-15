@@ -242,12 +242,6 @@ def _render_edit_mode(
 
     render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
 
-    node["notes"] = st.text_input(
-        "Proposal notes",
-        value=str(node.get("notes") or ""),
-        key=f"{key_prefix}_notes",
-    )
-
     with st.expander("Raw JSON (debug)", expanded=False):
         st.json(llm_item)
 
