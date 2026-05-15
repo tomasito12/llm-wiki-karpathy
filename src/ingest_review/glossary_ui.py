@@ -7,6 +7,10 @@ import urllib.parse
 from typing import Any
 
 from src.ingest_review.artifact import aggregate_impl_study_section_status
+from src.ingest_review.dashboard_ui import (
+    human_evidence_type_label,
+    render_proposal_evidence_type_editor,
+)
 from src.ingest_review.schema import (
     GLOSSARY_REVIEWABLE_LIST_KEYS,
     GLOSSARY_REVIEWABLE_SCALAR_KEYS,
@@ -65,10 +69,11 @@ def _render_proposal_card(
     proposal_status = str(node.get("proposal_status") or "pending")
 
     badge = VALUE_LEVEL_BADGES.get(value_level, "⚪ Low")
+    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
     sections = node.setdefault("sections", {})
     agg = aggregate_impl_study_section_status(sections)
 
-    header = f"{badge} · **{term}** · {confidence:.0%} · {proposal_status}"
+    header = f"{badge} · **{term}** · {ev_lbl} · {confidence:.0%} · {proposal_status}"
     with st.expander(header, expanded=auto_expand):
         col_info, col_action = st.columns([3, 1])
         with col_info:
@@ -188,6 +193,7 @@ def _render_edit_panel(
 
         st.divider()
         _render_tag_edit_panel(st, llm_item, node, glossary_tags, key_prefix=key_prefix)
+        render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
 
 
 def _render_editable_scalar(

@@ -1,8 +1,8 @@
 ---
 title: Wiki log
 type: log
-created: 2026-05-14
-updated: 2026-05-14
+created: 2026-05-15
+updated: 2026-05-15
 ---
 
-- 2026-05-14: Reset wiki knowledge baseline. Instruction files retained; wiki content cleared. State: ingest_manifest cleared, readwise_library preserved.
+- 2026-05-15: Reset wiki knowledge baseline. Instruction files retained; wiki content cleared. State: ingest_manifest cleared, readwise_library preserved, review_state cleared.

@@ -8,13 +8,46 @@ from typing import Any
 import streamlit as streamlit_runtime
 
 from src.ingest_review.schema import (
+    EVIDENCE_TYPE_VALUES,
     REGENERATABLE_SOURCE_SECTION_KEYS,
     SOURCE_SUMMARY_SCALAR_KEYS,
+    normalize_evidence_type,
 )
 
 STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
 
 PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
+
+
+def human_evidence_type_label(raw: object) -> str:
+    """Title-case evidence type for display (e.g. ``vendor_claim`` → Vendor Claim)."""
+    return normalize_evidence_type(raw).replace("_", " ").title()
+
+
+def render_proposal_evidence_type_editor(
+    st: Any,
+    llm_item: dict[str, Any],
+    *,
+    key_prefix: str,
+) -> None:
+    """Selectbox to override ``evidence_type`` on the proposal dict (edit / advanced mode)."""
+    st.markdown("#### Evidence type")
+    opts = list(EVIDENCE_TYPE_VALUES)
+    cur = normalize_evidence_type(llm_item.get("evidence_type"))
+    idx = opts.index(cur) if cur in opts else opts.index("unknown")
+
+    def _fmt(o: str) -> str:
+        return o.replace("_", " ").title()
+
+    llm_item["evidence_type"] = st.selectbox(
+        "What kind of evidence supports this proposal?",
+        opts,
+        index=idx,
+        format_func=_fmt,
+        key=f"{key_prefix}_evidence_type",
+        help="Calibration only: vendor vs independent vs benchmark, etc. Does not auto-reject.",
+    )
+
 
 SOURCE_CHAPTER_DISPLAY_ORDER: tuple[str, ...] = (
     "summary",
@@ -399,6 +432,18 @@ def render_review_summary_panel(
     cols[1].metric("High value", high)
     cols[2].metric("Medium value", medium)
     cols[3].metric("Low value", low)
+
+    ev_counts: dict[str, int] = {}
+    for key, _label in entity_keys:
+        items = llm.get(key) or []
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            et = normalize_evidence_type(item.get("evidence_type"))
+            ev_counts[et] = ev_counts.get(et, 0) + 1
+    if ev_counts and total > 0:
+        parts = [f"{human_evidence_type_label(k)}: {v}" for k, v in sorted(ev_counts.items())]
+        st.caption("Evidence types (LLM draft): " + " · ".join(parts))
 
     if type_counts:
         st.caption(f"Breakdown: {', '.join(type_counts)} · burden: {burden}")

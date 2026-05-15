@@ -5,6 +5,10 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from src.ingest_review.dashboard_ui import (
+    human_evidence_type_label,
+    render_proposal_evidence_type_editor,
+)
 from src.ingest_review.schema import (
     SIGNAL_REVIEWABLE_LIST_KEYS,
     SIGNAL_REVIEWABLE_SCALAR_KEYS,
@@ -74,10 +78,14 @@ def _render_card_header(
     horizon = llm_item.get("time_horizon") or "\u2014"
     status = node.get("proposal_status", "pending")
 
+    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
     st.markdown(
         f"**[{badge}] {title}** \u00b7 strength: {strength} \u00b7 worthiness: {worthiness}"
     )
-    st.caption(f"Type: {sig_type} \u00b7 Horizon: {horizon} \u00b7 Status: `{status}`")
+    st.caption(
+        f"Type: {sig_type} \u00b7 Horizon: {horizon} \u00b7 Evidence: {ev_lbl} \u00b7 "
+        f"Status: `{status}`"
+    )
 
 
 def _render_action_row(
@@ -288,6 +296,7 @@ def render_roundup_signals(
                 _render_list_field(st, llm_item, sections, section_key=lk, key_prefix=pfx)
             st.divider()
             _render_tag_panel(st, llm_item, tag_node, trend_tags or [], key_prefix=pfx)
+            render_proposal_evidence_type_editor(st, llm_item, key_prefix=pfx)
             node["notes"] = st.text_input(
                 "Signal notes",
                 value=str(node.get("notes") or ""),

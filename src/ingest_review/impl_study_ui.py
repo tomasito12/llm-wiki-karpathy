@@ -5,6 +5,10 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from src.ingest_review.dashboard_ui import (
+    human_evidence_type_label,
+    render_proposal_evidence_type_editor,
+)
 from src.ingest_review.schema import (
     IMPL_STUDY_REVIEWABLE_LIST_KEYS,
     IMPL_STUDY_REVIEWABLE_SCALAR_KEYS,
@@ -82,13 +86,17 @@ def _render_card_header(
     industry = llm_item.get("industry") or "\u2014"
     action = llm_item.get("suggested_action") or "\u2014"
     status = node.get("proposal_status", "pending")
+    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
 
     header = f"**[{badge}] {title}**"
     if company:
         header += f" \u2014 {company}"
     header += f" \u00b7 confidence: {conf_display}"
     st.markdown(header)
-    st.caption(f"Industry: {industry} \u00b7 Action: {action} \u00b7 Status: `{status}`")
+    st.caption(
+        f"Industry: {industry} \u00b7 Action: {action} \u00b7 Evidence: {ev_lbl} "
+        f"\u00b7 Status: `{status}`"
+    )
 
 
 def _render_action_row(
@@ -344,6 +352,7 @@ def render_implementation_studies(
             _render_evidence_panel(st, llm_item, key_prefix=pfx)
             _render_tag_panel(st, llm_item, tag_node, impl_study_tags, key_prefix=pfx)
             _render_match_candidates(st, llm_item, key_prefix=pfx)
+            render_proposal_evidence_type_editor(st, llm_item, key_prefix=pfx)
             node["notes"] = st.text_input(
                 "Proposal notes",
                 value=str(node.get("notes") or ""),

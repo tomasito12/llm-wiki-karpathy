@@ -2,16 +2,51 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Any, Literal
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
-ARTIFACT_SCHEMA_VERSION = 8
-PROMPT_VERSION = "6"
+ARTIFACT_SCHEMA_VERSION = 9
+PROMPT_VERSION = "8"
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
 MatchKind = Literal["exact", "fuzzy", "none"]
 ValueLevel = Literal["high", "medium", "low"]
+
+EvidenceType = Literal[
+    "vendor_claim",
+    "independent_analysis",
+    "benchmark",
+    "user_report",
+    "implementation_case",
+    "research_result",
+    "expert_opinion",
+    "speculative_claim",
+    "mixed",
+    "unknown",
+]
+
+EVIDENCE_TYPE_VALUES: tuple[str, ...] = (
+    "vendor_claim",
+    "independent_analysis",
+    "benchmark",
+    "user_report",
+    "implementation_case",
+    "research_result",
+    "expert_opinion",
+    "speculative_claim",
+    "mixed",
+    "unknown",
+)
+
+EVIDENCE_TYPE_SET: frozenset[str] = frozenset(EVIDENCE_TYPE_VALUES)
+
+
+def normalize_evidence_type(raw: object) -> str:
+    """Return *raw* if it is a valid evidence type label, else ``\"unknown\"``."""
+    s = str(raw).strip() if raw is not None else ""
+    return s if s in EVIDENCE_TYPE_SET else "unknown"
+
 
 # String fields under ``source_summary`` that use ``{status, final_text, notes}`` review nodes.
 SOURCE_SUMMARY_SCALAR_KEYS: tuple[str, ...] = (
@@ -134,6 +169,7 @@ class GlossaryProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 GLOSSARY_SCALAR_KEYS: tuple[str, ...] = (
@@ -174,6 +210,7 @@ class TopicContribution(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 TOPIC_SCALAR_KEYS: tuple[str, ...] = (
@@ -220,6 +257,7 @@ class ToolProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 TOOL_SCALAR_KEYS: tuple[str, ...] = (
@@ -276,6 +314,7 @@ class FoundationModelProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 MODEL_SCALAR_KEYS: tuple[str, ...] = (
@@ -335,6 +374,7 @@ class HowToProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 HOWTO_SCALAR_KEYS: tuple[str, ...] = (
@@ -400,6 +440,7 @@ class ImplementationStudyProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 IMPL_STUDY_SCALAR_KEYS: tuple[str, ...] = (
@@ -455,6 +496,7 @@ class IndustryTrendProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 TREND_SCALAR_KEYS: tuple[str, ...] = (
@@ -556,6 +598,7 @@ class RoundupSignal(BaseModel):
     mentioned_entities: list[str] = Field(default_factory=list)
     evidence_snippets: list[str] = Field(default_factory=list)
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 SIGNAL_SCALAR_KEYS: tuple[str, ...] = (
@@ -606,6 +649,7 @@ class InterviewInsight(BaseModel):
     contrarian_or_speculative_claims: list[str] = Field(default_factory=list)
     evidence_snippets: list[str] = Field(default_factory=list)
     value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 INSIGHT_SCALAR_KEYS: tuple[str, ...] = (
@@ -643,6 +687,34 @@ class ExtractionMeta(BaseModel):
 
 class LlmClassificationOutput(BaseModel):
     """Root object returned by the ingestion analysis LLM."""
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_proposal_evidence_types(cls, data: Any) -> Any:
+        """Map invalid or missing evidence_type to ``unknown`` before nested validation."""
+        if not isinstance(data, dict):
+            return data
+        for key in (
+            "glossary",
+            "tools",
+            "foundation_models",
+            "how_to",
+            "topics",
+            "implementation_studies",
+            "industry_trends",
+            "roundup_signals",
+            "interview_insights",
+        ):
+            items = data.get(key)
+            if not isinstance(items, list):
+                continue
+            for item in items:
+                if not isinstance(item, dict):
+                    continue
+                et = item.get("evidence_type")
+                s = str(et).strip() if et is not None else ""
+                item["evidence_type"] = s if s in EVIDENCE_TYPE_SET else "unknown"
+        return data
 
     extraction_meta: ExtractionMeta = Field(default_factory=ExtractionMeta)
     source_summary: SourceSummaryBlock = Field(default_factory=SourceSummaryBlock)

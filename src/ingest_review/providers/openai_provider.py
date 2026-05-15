@@ -38,6 +38,25 @@ likely reused across multiple future sources
 - medium: useful but not essential, moderate evidence, incremental contribution
 - low: marginal value, weak evidence, narrow applicability, or already well-covered
 
+Every proposal MUST include evidence_type — classify the EVIDENCE BASIS for this \
+proposal (not the topic). Use exactly one of: vendor_claim, independent_analysis, \
+benchmark, user_report, implementation_case, research_result, expert_opinion, \
+speculative_claim, mixed, unknown.
+- vendor_claim: the company/vendor/provider/tool-maker/organization discussed is \
+the source of the claim (e.g. their blog, product announcement, press release).
+- independent_analysis: independent writer, analyst, third-party publication — not \
+the vendor speaking for their own product.
+- benchmark: the proposal depends mainly on benchmark numbers, evals, leaderboards, \
+quantitative tests.
+- user_report: practitioner anecdote, forum/social/blog user experience.
+- implementation_case: concrete description of how something was implemented \
+(architecture, rollout, stack).
+- research_result: grounded in paper, formal experiment, or research artifact.
+- expert_opinion: mainly a named expert's judgment or strategic read.
+- speculative_claim: prediction or weakly evidenced forward-looking claim.
+- mixed: multiple evidence types matter equally; no single one dominates.
+- unknown: unclear from the source.
+
 Prefer fewer high-value proposals over many medium/low proposals.
 
 For tags: use primary_tag (most fitting tag from the relevant allowlist, or "" if none fit), \
@@ -125,6 +144,30 @@ Prefer fewer high-value proposals over many medium/low proposals. \
 The system optimizes for: max durable knowledge gained per minute of human review."""
 
 
+EVIDENCE_TYPE_RUBRIC = """\
+## EVIDENCE TYPE (every proposal object)
+
+Classify the evidence basis for THIS proposal — not the topic label.
+Use exactly one string for evidence_type:
+
+- vendor_claim — company/vendor/model-provider/tool-maker claims about their own offering; \
+vendor blog or announcement framing.
+- independent_analysis — third-party or independent author assessment (not the vendor).
+- benchmark — proposal rests mainly on benchmark/eval/leaderboard/quantitative numbers.
+- user_report — practitioner report, anecdote, forum/blog/social experience.
+- implementation_case — concrete how-it-was-built / how-it-was-deployed description.
+- research_result — paper, formal experiment, or cited research artifact.
+- expert_opinion — named expert's judgment or strategic interpretation dominates.
+- speculative_claim — prediction or future-facing claim without strong grounding.
+- mixed — several evidence types are equally important.
+- unknown — basis unclear from text.
+
+Rules: A useful proposal from an OpenAI post about their own model is still often \
+vendor_claim. Use speculative_claim for weak predictions. Use benchmark only when \
+quantitative eval evidence is central. Use implementation_case only with real \
+implementation detail. Do not leave evidence_type blank — use unknown if unsure."""
+
+
 SOURCE_CHAPTERS_RUBRIC = """## source_summary (required JSON subtree)
 
 Fill every field below from the article. Empty string or [] only when truly absent.
@@ -199,6 +242,8 @@ provenance is "stated", "inferred", or "interpretation"
 - confidence: 0.0–1.0
 - suggested_action: "create" | "update" | "ignore"
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Voice: concise, direct, practical. Focus on operational reality over marketing \
 claims. Skeptical where warranted. No hype, no LinkedIn tone."""
@@ -220,6 +265,23 @@ CRITICAL: Only propose ESTABLISHED industry terms that already exist in \
 professional usage and are verifiable via a web search. Do NOT propose \
 neologisms coined by the article author, ad-hoc phrases, or terms invented \
 for this specific article. If in doubt, omit the term.
+
+GLOSSARY EXTRACTION BOUNDARIES — the glossary is for durable conceptual \
+primitives and recurring operational AI concepts, NOT generic business \
+vocabulary, strategy language, management terminology, marketing \
+abstractions, temporary framing, product slogans, or company-specific \
+narratives. Do NOT propose terms such as: flywheel, ecosystem, platform \
+strategy, innovation loop, transformation journey.
+
+Operational or product patterns (e.g. agent-first product design, \
+orchestration-first UX, context-centric workflows, coding-agent development \
+loops) are broader patterns — extract them under topics, not glossary. \
+A glossary entry must be a reusable AI/engineering concept, a durable \
+operational abstraction, a recurring industry term, or a semantically \
+distinct primitive likely to recur across many future sources.
+
+When uncertain whether something is a glossary primitive or a broader \
+pattern, prefer a topic contribution over a glossary term (or omit).
 
 Each object MUST include:
 - term: the term or phrase (use the most common established industry form)
@@ -251,6 +313,8 @@ argues…"). 1-3 sentences of durable operational/industry relevance.
 - confidence: 0.0-1.0
 - suggested_action: "create" | "update" | "ignore"
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Voice: clear, practical, accessible. Define for a senior practitioner, \
 not an academic. Prefer operational understanding over theoretical precision."""
@@ -289,6 +353,8 @@ article says..." or "the author argues..."
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Avoid: article-specific framing, ultra-narrow topics, hype-driven \
 fragmentation, one-off concepts, duplicate existing topics.
@@ -327,6 +393,8 @@ of strings)
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Voice: direct, practical, implementation-focused. Write as reusable \
 procedural guidance."""
@@ -361,6 +429,8 @@ conflicting signals, or limited evidence. Empty string is NOT acceptable
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Voice: measured, evidence-grounded, explicitly uncertain where warranted. \
 No hype, no certainty theater."""
@@ -412,6 +482,8 @@ kebab-case; null otherwise. The human reviewer approves or rejects
 - suggested_action: prefer "append_to_existing" for tools already in the wiki; \
 "create_new_page" only for genuinely new tools worth tracking long-term
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Classification rule: types describe WHAT THE TOOL IS, not what it does well. \
 Good: coding-assistant, desktop-app, voice-ai. Bad: productivity, useful, fast.
@@ -474,6 +546,8 @@ null otherwise
 - suggested_action: prefer "append_to_existing" for models already in the wiki; \
 "create_new_page" only for genuinely new models worth tracking long-term
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Classification rule: types describe WHAT THE MODEL IS, not subjective quality. \
 Good: reasoning-model, coding-model, multimodal-model. \
@@ -556,6 +630,8 @@ relevance exists, state "No direct service automation implications identified."
 - mentioned_entities: organizations, tools, models mentioned (array of strings)
 - evidence_snippets: supporting source quotes for provenance (array of strings)
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 If source is NOT a roundup, return an empty array [].
 
@@ -606,6 +682,8 @@ identified."
 speculative claims — explicitly mark as speculative (array of strings)
 - evidence_snippets: supporting source quotes for provenance (array of strings)
 - value_level: "high", "medium", or "low"
+- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
+implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 If source is NOT an interview/transcript, return an empty array [].
 
@@ -704,6 +782,7 @@ def _build_user_prompt(
         TEMPORAL_ANCHORING_RULE,
         budget_block,
         VALUE_RANKING_RUBRIC,
+        EVIDENCE_TYPE_RUBRIC,
         "## EXISTING_GLOSSARY_TERMS\n" + "\n".join(f"- {t}" for t in wiki.glossary_terms[:150]),
         "## EXISTING_TOOL_NAMES\n" + "\n".join(f"- {t}" for t in wiki.tool_names[:200]),
         "## EXISTING_FOUNDATION_MODEL_NAMES\n"

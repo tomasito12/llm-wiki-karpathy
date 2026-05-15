@@ -18,6 +18,7 @@ from src.ingest_review.artifact import (
     migrate_artifact_to_v6,
     migrate_artifact_to_v7,
     migrate_artifact_to_v8,
+    migrate_artifact_to_v9,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -120,7 +121,7 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 8
+    assert art["artifact_schema_version"] == 9
     assert art["source"]["source_id"] == stem
     assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
     assert "implementation_studies" in art["review"]
@@ -1111,3 +1112,81 @@ def test_migrate_v8_is_noop_on_v8() -> None:
     }
     migrate_artifact_to_v8(art)
     assert art["artifact_schema_version"] == 8
+
+
+def test_migrate_artifact_to_v9_adds_evidence_type() -> None:
+    """migrate_artifact_to_v9 sets evidence_type=unknown on proposals missing the field."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 8,
+        "llm_output": {
+            "extraction_meta": {},
+            "topics": [{"topic_slug": "x", "confidence": 0.5}],
+        },
+        "review": {
+            "topics": [
+                {
+                    "proposal_id": "p1",
+                    "proposal_status": "pending",
+                    "llm_item": {"topic_slug": "x"},
+                    "sections": {},
+                    "tags": {},
+                },
+            ],
+        },
+        "review_analytics": {},
+    }
+    migrate_artifact_to_v9(art)
+    assert art["artifact_schema_version"] == 9
+    assert art["llm_output"]["topics"][0]["evidence_type"] == "unknown"
+    assert art["review"]["topics"][0]["llm_item"]["evidence_type"] == "unknown"
+    assert art["review_analytics"]["evidence_type_counts"] == {}
+
+
+def test_migrate_v9_preserves_valid_evidence_type() -> None:
+    """migrate_artifact_to_v9 keeps valid evidence_type values."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 8,
+        "llm_output": {"glossary": [{"term": "RAG", "evidence_type": "vendor_claim"}]},
+        "review": {},
+        "review_analytics": {},
+    }
+    migrate_artifact_to_v9(art)
+    assert art["llm_output"]["glossary"][0]["evidence_type"] == "vendor_claim"
+
+
+def test_migrate_v9_coerces_invalid_evidence_type() -> None:
+    """Invalid evidence_type values become unknown."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 8,
+        "llm_output": {"tools": [{"name": "X", "evidence_type": "not-a-real-type"}]},
+        "review": {},
+        "review_analytics": {},
+    }
+    migrate_artifact_to_v9(art)
+    assert art["llm_output"]["tools"][0]["evidence_type"] == "unknown"
+
+
+def test_migrate_v9_is_noop_on_v9() -> None:
+    """Calling migrate_artifact_to_v9 on a v9 artifact is a no-op."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 9,
+        "llm_output": {"glossary": [{"term": "X", "evidence_type": "benchmark"}]},
+        "review": {},
+        "review_analytics": {"evidence_type_counts": {}},
+    }
+    migrate_artifact_to_v9(art)
+    assert art["artifact_schema_version"] == 9
+    assert art["llm_output"]["glossary"][0]["evidence_type"] == "benchmark"
+
+
+def test_new_artifact_review_analytics_has_evidence_type_counts(tmp_path: Path) -> None:
+    """New artifacts initialize evidence_type_counts in review_analytics."""
+    doc = _minimal_doc(tmp_path)
+    parsed = LlmClassificationOutput()
+    art = build_new_artifact(
+        doc,
+        parsed,
+        analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
+        root=tmp_path,
+    )
+    assert art["review_analytics"]["evidence_type_counts"] == {}

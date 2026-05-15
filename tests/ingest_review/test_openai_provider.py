@@ -340,8 +340,66 @@ def test_system_prompt_includes_extraction_meta() -> None:
 
     assert "extraction_meta" in SYSTEM_PROMPT
     assert "value_level" in SYSTEM_PROMPT
+    assert "evidence_type" in SYSTEM_PROMPT
+    assert "vendor_claim" in SYSTEM_PROMPT
     assert "roundup_signals" in SYSTEM_PROMPT
     assert "interview_insights" in SYSTEM_PROMPT
+
+
+def test_rubrics_mention_evidence_type() -> None:
+    """Entity rubrics instruct the LLM to set evidence_type."""
+    from src.ingest_review.providers.openai_provider import (
+        GLOSSARY_RUBRIC,
+        HOWTOS_RUBRIC,
+        INTERVIEW_INSIGHTS_RUBRIC,
+        MODELS_RUBRIC,
+        ROUNDUP_SIGNALS_RUBRIC,
+        TOOLS_RUBRIC,
+        TOPICS_RUBRIC,
+        TRENDS_RUBRIC,
+    )
+
+    for name, rubric in [
+        ("GLOSSARY_RUBRIC", GLOSSARY_RUBRIC),
+        ("TOPICS_RUBRIC", TOPICS_RUBRIC),
+        ("HOWTOS_RUBRIC", HOWTOS_RUBRIC),
+        ("TRENDS_RUBRIC", TRENDS_RUBRIC),
+        ("TOOLS_RUBRIC", TOOLS_RUBRIC),
+        ("MODELS_RUBRIC", MODELS_RUBRIC),
+        ("ROUNDUP_SIGNALS_RUBRIC", ROUNDUP_SIGNALS_RUBRIC),
+        ("INTERVIEW_INSIGHTS_RUBRIC", INTERVIEW_INSIGHTS_RUBRIC),
+    ]:
+        assert "evidence_type" in rubric, f"{name} missing evidence_type"
+
+
+def test_evidence_type_rubric_in_user_prompt(tmp_path: Path) -> None:
+    """User prompt includes EVIDENCE_TYPE_RUBRIC block."""
+    from src.ingest_review.providers.openai_provider import EVIDENCE_TYPE_RUBRIC, _build_user_prompt
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-ev"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=[],
+        howto_tags=[],
+        prompt_version="7",
+    )
+    assert EVIDENCE_TYPE_RUBRIC.split("\n")[0] in prompt
+    assert "vendor_claim" in prompt
 
 
 def test_glossary_rubric_has_no_article_referencing_language() -> None:
@@ -359,3 +417,13 @@ def test_glossary_rubric_has_no_article_referencing_language() -> None:
             f"GLOSSARY_RUBRIC still contains banned phrase: {phrase!r}"
         )
     assert "NEVER reference the article" in GLOSSARY_RUBRIC
+
+
+def test_glossary_rubric_includes_extraction_boundaries() -> None:
+    """GLOSSARY_RUBRIC routes generic business terms away and defers patterns to topics."""
+    from src.ingest_review.providers.openai_provider import GLOSSARY_RUBRIC
+
+    assert "GLOSSARY EXTRACTION BOUNDARIES" in GLOSSARY_RUBRIC
+    assert "flywheel" in GLOSSARY_RUBRIC
+    assert "agent-first product design" in GLOSSARY_RUBRIC
+    assert "prefer a topic contribution over a glossary term" in GLOSSARY_RUBRIC

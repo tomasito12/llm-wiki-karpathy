@@ -5,6 +5,10 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from src.ingest_review.dashboard_ui import (
+    human_evidence_type_label,
+    render_proposal_evidence_type_editor,
+)
 from src.ingest_review.schema import TOOL_REVIEWABLE_LIST_KEYS, TOOL_REVIEWABLE_SCALAR_KEYS
 
 logger = logging.getLogger(__name__)
@@ -62,7 +66,8 @@ def _render_compact_card(
     conf = float(llm_item.get("confidence") or 0)
     status = str(node.get("proposal_status") or "pending")
 
-    st.markdown(f"**[{value_level}] {name}** — confidence: {conf:.0%}")
+    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
+    st.markdown(f"**[{value_level}] {name}** — evidence: _{ev_lbl}_ — confidence: {conf:.0%}")
 
     description = str(llm_item.get("short_description") or "")
     if description:
@@ -220,6 +225,8 @@ def _render_edit_mode(
 
     st.markdown("#### Tool types")
     _render_type_panel(st, node, llm_item, tool_types, key_prefix=key_prefix)
+
+    render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
 
     node["notes"] = st.text_input(
         "Proposal notes",

@@ -68,7 +68,7 @@ from src.ingest_review.models_ui import (
 )
 from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
-from src.ingest_review.schema import PROMPT_VERSION
+from src.ingest_review.schema import PROMPT_VERSION, normalize_evidence_type
 from src.ingest_review.signals_ui import (
     collect_signal_new_tags,
     render_roundup_signals,
@@ -130,6 +130,7 @@ def _finalize_review_analytics(artifact: dict) -> None:
         "interview_insights",
     ]
     total = approved = rejected = deferred = modified = 0
+    evidence_counts: dict[str, int] = {}
     for key in entity_keys:
         nodes = review.get(key) or []
         for node in nodes:
@@ -145,11 +146,16 @@ def _finalize_review_analytics(artifact: dict) -> None:
                 deferred += 1
             if node.get("final_item") is not None:
                 modified += 1
+            lit = node.get("llm_item")
+            if isinstance(lit, dict):
+                et = normalize_evidence_type(lit.get("evidence_type"))
+                evidence_counts[et] = evidence_counts.get(et, 0) + 1
     analytics["proposals_total"] = total
     analytics["proposals_approved"] = approved
     analytics["proposals_rejected"] = rejected
     analytics["proposals_deferred"] = deferred
     analytics["proposals_modified"] = modified
+    analytics["evidence_type_counts"] = evidence_counts
 
 
 def _collect_and_persist_tags(st_ref: Any, artifact: dict, root: Path) -> None:

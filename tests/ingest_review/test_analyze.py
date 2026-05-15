@@ -176,3 +176,40 @@ def test_value_level_defaults_on_all_proposals() -> None:
     ):
         instance = cls()
         assert instance.value_level == "medium", f"{cls.__name__} value_level not 'medium'"
+
+
+def test_evidence_type_defaults_on_all_proposals() -> None:
+    """All proposal models default to evidence_type='unknown'."""
+    from src.ingest_review.schema import (
+        FoundationModelProposal,
+        GlossaryProposal,
+        HowToProposal,
+        ImplementationStudyProposal,
+        IndustryTrendProposal,
+        InterviewInsight,
+        RoundupSignal,
+        ToolProposal,
+        TopicContribution,
+    )
+
+    for cls in (
+        GlossaryProposal,
+        TopicContribution,
+        HowToProposal,
+        IndustryTrendProposal,
+        ToolProposal,
+        FoundationModelProposal,
+        ImplementationStudyProposal,
+        RoundupSignal,
+        InterviewInsight,
+    ):
+        instance = cls()
+        assert instance.evidence_type == "unknown", f"{cls.__name__} evidence_type not 'unknown'"
+
+
+def test_validate_llm_dict_coerces_invalid_evidence_type() -> None:
+    """Invalid evidence_type in LLM JSON is coerced to unknown."""
+    data = LlmClassificationOutput().model_dump()
+    data["topics"] = [{"topic_slug": "x", "evidence_type": "bogus"}]
+    again = validate_llm_dict(data)
+    assert again.topics[0].evidence_type == "unknown"

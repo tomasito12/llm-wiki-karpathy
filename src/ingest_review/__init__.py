@@ -18,6 +18,7 @@ from src.ingest_review.artifact import (
     migrate_artifact_to_v6,
     migrate_artifact_to_v7,
     migrate_artifact_to_v8,
+    migrate_artifact_to_v9,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -81,6 +82,7 @@ from src.ingest_review.schema import (
     TREND_REVIEWABLE_SCALAR_KEYS,
     TREND_SCALAR_KEYS,
     DurabilityEstimate,
+    EvidenceType,
     ExtractionMeta,
     InsightConfidence,
     InsightType,
@@ -95,6 +97,7 @@ from src.ingest_review.schema import (
     TopicContribution,
     ValueLevel,
     WikiWorthiness,
+    normalize_evidence_type,
     normalize_source_summary,
 )
 from src.ingest_review.tags import (
@@ -112,6 +115,7 @@ from src.ingest_review.wiki_snapshot import WikiSnapshot, build_wiki_snapshot
 __all__ = [
     "ARTIFACT_SCHEMA_VERSION",
     "DurabilityEstimate",
+    "EvidenceType",
     "ExtractionMeta",
     "GLOSSARY_LIST_KEYS",
     "GLOSSARY_REVIEWABLE_LIST_KEYS",
@@ -201,6 +205,8 @@ __all__ = [
     "migrate_artifact_to_v6",
     "migrate_artifact_to_v7",
     "migrate_artifact_to_v8",
+    "migrate_artifact_to_v9",
+    "normalize_evidence_type",
     "normalize_source_summary",
     "parse_markdown_frontmatter",
     "readwise_source_status",

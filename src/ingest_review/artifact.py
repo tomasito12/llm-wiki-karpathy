@@ -32,6 +32,7 @@ from src.ingest_review.schema import (
     TREND_LIST_KEYS,
     TREND_SCALAR_KEYS,
     LlmClassificationOutput,
+    normalize_evidence_type,
 )
 from src.ingest_review.source_regen import apply_regenerated_source_section  # noqa: F401
 from src.pipeline.atomic import atomic_write_json
@@ -68,6 +69,7 @@ def _empty_review_analytics() -> dict[str, Any]:
         "proposals_modified": 0,
         "fields_modified": 0,
         "batch_actions_used": [],
+        "evidence_type_counts": {},
     }
 
 
@@ -746,6 +748,40 @@ def migrate_artifact_to_v8(artifact: dict[str, Any]) -> dict[str, Any]:
     return artifact
 
 
+def migrate_artifact_to_v9(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v9: evidence_type on proposal dicts (default unknown)."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 9:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    for entity_key in _ENTITY_REVIEW_KEYS:
+        items = llm.get(entity_key)
+        if isinstance(items, list):
+            for item in items:
+                if isinstance(item, dict):
+                    item["evidence_type"] = normalize_evidence_type(item.get("evidence_type"))
+
+    review = artifact.setdefault("review", {})
+    for entity_key in _ENTITY_REVIEW_KEYS:
+        nodes = review.get(entity_key)
+        if not isinstance(nodes, list):
+            continue
+        for node in nodes:
+            if not isinstance(node, dict):
+                continue
+            lit = node.get("llm_item")
+            if isinstance(lit, dict):
+                lit["evidence_type"] = normalize_evidence_type(lit.get("evidence_type"))
+
+    analytics = artifact.setdefault("review_analytics", _empty_review_analytics())
+    if "evidence_type_counts" not in analytics:
+        analytics["evidence_type_counts"] = {}
+
+    artifact["artifact_schema_version"] = 9
+    return artifact
+
+
 def aggregate_impl_study_section_status(sections: dict[str, Any]) -> str:
     """Derive a proposal-level status from per-section review nodes."""
     statuses: set[str] = set()
@@ -776,7 +812,8 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = migrate_artifact_to_v5(data)
     data = migrate_artifact_to_v6(data)
     data = migrate_artifact_to_v7(data)
-    return migrate_artifact_to_v8(data)
+    data = migrate_artifact_to_v8(data)
+    return migrate_artifact_to_v9(data)
 
 
 def save_artifact(path: Path, payload: dict[str, Any]) -> None:
