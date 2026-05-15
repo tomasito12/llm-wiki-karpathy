@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from src.ingest_review.analyze import apply_tag_allowlists, validate_llm_dict
+from src.ingest_review.impl_study_gate import filter_impl_study_proposals
 from src.ingest_review.schema import (
     FoundationModelProposal,
     GlossaryProposal,
     HowToProposal,
+    ImplementationStudyProposal,
     IndustryTrendProposal,
     InterviewInsight,
     LlmClassificationOutput,
@@ -159,6 +161,41 @@ def test_apply_tag_allowlists_preserves_valid_primary_secondary_pair() -> None:
     assert out.glossary[0].primary_tag == "known"
     assert out.glossary[0].secondary_tag == "also-known"
     assert out.glossary[0].suggested_new_tag == ""
+
+
+def test_apply_tag_allowlists_validates_impl_study_tags() -> None:
+    """Implementation study tags not on allowlist are demoted to suggested_new_tag."""
+    parsed = LlmClassificationOutput(
+        implementation_studies=[
+            ImplementationStudyProposal(
+                title="T",
+                company="Co",
+                primary_tag="voice-ai",
+                secondary_tag="not-on-list",
+            ),
+        ],
+    )
+    out = apply_tag_allowlists(
+        parsed,
+        set(),
+        set(),
+        impl_study_tags={"voice-ai"},
+    )
+    assert out.implementation_studies[0].primary_tag == "voice-ai"
+    assert out.implementation_studies[0].secondary_tag == ""
+    assert out.implementation_studies[0].suggested_new_tag == "not-on-list"
+
+
+def test_filter_impl_study_proposals_via_analyze_import() -> None:
+    """filter_impl_study_proposals demotes architecture-essay style proposals."""
+    weak = ImplementationStudyProposal(
+        title="Orchestration layers",
+        company="BlogCo",
+        deployment_context="",
+        outcome_status="unknown",
+    )
+    out = filter_impl_study_proposals([weak])
+    assert out[0].suggested_action == "ignore"
 
 
 def test_apply_tag_allowlists_preserves_existing_suggested_new() -> None:

@@ -1,0 +1,1231 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-15T09:55:32+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "9",
+    "provider": "openai",
+    "request_id": "chatcmpl-DfjY1EjXC6imhqfXAyegQpkqrMXBy",
+    "token_usage": {
+      "completion_tokens": 4079,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 22605,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 26684
+    }
+  },
+  "artifact_schema_version": 9,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 7
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.88,
+        "evidence_type": "expert_opinion",
+        "extended_explanation": "Memex is useful as a reference point when discussing systems that preserve not just documents, but the relationships between documents. The important idea is that knowledge becomes more valuable when it can be connected, revisited, and navigated through links rather than stored as isolated files. In modern AI workflows, the Memex analogy helps frame retrieval, linking, and synthesis as parts of a persistent knowledge environment rather than one-off question answering.",
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "proposed_definition": "A hypothetical personal knowledge machine proposed by Vannevar Bush in 1945 for storing information and linking related ideas through associative trails. It is often used as an early conceptual ancestor of hypertext and personal knowledge systems.",
+        "related_terms": [
+          "LLM Wiki",
+          "associative trails",
+          "personal knowledge base"
+        ],
+        "relevance_note": "Useful for understanding the historical lineage of linked knowledge systems and why persistent cross-referenced context is valuable in AI-assisted documentation and support tooling.",
+        "secondary_tag": "",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "supporting_snippet": "Karpathy mentions in his original document that this idea is related to Vannevar Bush\u2019s Memex from 1945 \u2014 a vision of a personal knowledge store with \u201cassociative trails\u201d between documents.",
+        "term": "Memex",
+        "value_level": "medium"
+      },
+      {
+        "confidence": 0.95,
+        "evidence_type": "vendor_claim",
+        "extended_explanation": "A personal knowledge base is more than a folder of notes. Its job is to preserve useful context, make related information easy to find, and accumulate understanding across projects or time. In AI workflows, it becomes especially useful when an assistant can ingest sources, maintain structure, and update pages automatically so the knowledge store stays coherent.",
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "proposed_definition": "A system for collecting, organizing, linking, and retrieving information for an individual or small team over time. It typically combines source capture, structured notes, cross-references, and search.",
+        "related_terms": [
+          "LLM Wiki",
+          "wiki",
+          "knowledge base"
+        ],
+        "relevance_note": "This is a durable concept for AI-assisted documentation, research, onboarding, and support operations, where information must accumulate instead of getting lost in chat history.",
+        "secondary_tag": "",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "supporting_snippet": "It was just an idea \u2014 written in plain markdown describing a pattern for how to use AI agents to build and maintain personal knowledge bases.",
+        "term": "personal knowledge base",
+        "value_level": "high"
+      }
+    ],
+    "how_to": [
+      {
+        "answer_summary": "Keep the original documents in a read-only raw source folder, let the AI generate and own the wiki folder, and define the workflow in a schema file that tells the agent what page types exist and how to update them. Ingest each new source into the wiki, then have the agent update existing pages, create new ones only when needed, add glossary terms, and log the changes. Add a lint pass so the system can detect contradictions, stale claims, orphan pages, and missing links. The key practice is to treat the wiki as the persistent artifact and the raw documents as immutable inputs.",
+        "caveats": "The article\u2019s evidence is a small personal build, so scaling, permissions, and reliability across many authors or many thousands of documents remain open questions.",
+        "confidence": 0.96,
+        "evidence_type": "implementation_case",
+        "implementation_steps": [
+          "Create a raw/ folder for immutable source documents.",
+          "Create a wiki/ folder that the AI can own and update.",
+          "Define a schema file such as CLAUDE.md that specifies page types and workflows.",
+          "Ingest one source at a time so the AI can be guided during processing.",
+          "Have the AI create or update source summaries, entity pages, glossary entries, and the index.",
+          "Run periodic linting to find contradictions, stale claims, orphan pages, and missing cross-references."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A collection of source documents",
+          "An AI agent that can edit files",
+          "A markdown-based workspace",
+          "A schema or instruction file for the agent"
+        ],
+        "primary_tag": "knowledge-management",
+        "question_title": "How do you build an AI-maintained knowledge base from raw documents and keep it coherent over time?",
+        "related_howtos": [
+          "knowledge-base-ingestion",
+          "wiki-linting"
+        ],
+        "relevance_note": "This is a reusable implementation pattern for knowledge-management systems, internal documentation, and support playbooks that must accumulate over time.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "supporting_snippet": "Three layers... 1. Raw sources \u2014 A folder called raw/. This is where you put your documents... 2. The wiki \u2014 A folder called wiki/. The AI creates and owns everything in this folder... 3. The schema \u2014 A single file called CLAUDE.md. This is the instruction manual for the AI.",
+        "value_level": "high"
+      }
+    ],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "The article suggests the AI can update many related files in one pass, flag contradictions, and maintain a glossary, but provides no quantitative reliability data.",
+        "business_objective": "Reduce the manual burden of maintaining project knowledge, glossaries, links, and summaries across many source documents.",
+        "company": "Balu Kosuri",
+        "confidence": 0.9,
+        "deployment_context": "Personal/workstation setup using Cursor and Obsidian; documents are dropped into raw/ and ingested into the wiki.",
+        "evidence_snippets": [
+          {
+            "claim": "The system was built around raw sources, a generated wiki, and a schema file.",
+            "provenance": "stated",
+            "snippet": "Three layers... 1. Raw sources ... 2. The wiki ... 3. The schema \u2014 A single file called CLAUDE.md."
+          },
+          {
+            "claim": "The repository was created in about 30 minutes using Cursor.",
+            "provenance": "stated",
+            "snippet": "In about 30 minutes, I went from that one-page idea to a fully working personal knowledge base"
+          },
+          {
+            "claim": "The AI can maintain multiple files and flag contradictions.",
+            "provenance": "inferred",
+            "snippet": "The AI will: ... Create new pages ... Update the glossary ... Update the index ... Update the overview if the big picture shifted ... Log everything"
+          }
+        ],
+        "evidence_type": "implementation_case",
+        "implications_for_service_automation": "A similar pattern could support support knowledge bases and agent-assist systems by keeping source-of-truth documentation synchronized, but direct customer-facing automation was not demonstrated.",
+        "industry": "technical writing / knowledge management",
+        "key_lessons": [
+          "Separate immutable source material from AI-owned generated knowledge.",
+          "Use a schema file to constrain the agent\u2019s behavior.",
+          "Ingest one source at a time to keep human oversight meaningful.",
+          "Add linting to catch contradictions and stale content.",
+          "Do not rely on chat history as the durable store of knowledge."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How well does this scale beyond a small personal wiki?",
+          "How should permissions and privacy be handled in shared environments?",
+          "How accurate is contradiction detection across diverse source types?"
+        ],
+        "operational_constraints": "No vector database is used in the described setup; the article emphasizes manual participation during ingestion and periodic linting.",
+        "outcome_status": "Working prototype described as set up in about 30 minutes; no long-term production evaluation is provided.",
+        "overview": "A technical writer built a personal knowledge base around Karpathy\u2019s llm-wiki.md idea using Cursor and Obsidian, aiming to turn scattered documents into a structured wiki that the AI maintains.",
+        "primary_tag": "service-automation",
+        "related_sources": [
+          "https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0",
+          "https://github.com/balukosuri/llm-wiki-karpathy"
+        ],
+        "secondary_tag": "knowledge-management",
+        "strategic_signals": "The most important signal is that maintenance can be shifted from manual wiki editing to AI-assisted bookkeeping if the workflow and schema are disciplined.",
+        "success_or_failure_factors": "Succeeded because the workflow clearly separated raw sources from generated pages and used a schema to constrain the AI; long-term reliability is unproven.",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "technical_approach": "Use Cursor to process sources, a schema file (CLAUDE.md) to define entity types and workflows, markdown pages in wiki/, and Obsidian for navigation and graph visualization.",
+        "title": "Building a self-maintaining personal knowledge base with Karpathy-inspired LLM Wiki",
+        "value_level": "high",
+        "what_was_implemented": "A repository with raw/, wiki/, CLAUDE.md, starter wiki pages, and a pre-configured Obsidian vault for AI-driven ingest, query, and lint workflows."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-07",
+        "confidence": 0.84,
+        "evidence_from_source": "The source describes a workflow where the AI updates existing wiki pages, creates new pages, maintains a glossary, and runs lint checks so the knowledge base compounds over time.",
+        "evidence_type": "implementation_case",
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "related_trends": [
+          "schema-driven-agent-workflows",
+          "ai-assisted-knowledge-bases"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "append_to_existing",
+        "suggested_new_tag": "ai-engineering",
+        "supporting_data_points": [
+          "AI updates existing pages instead of starting from scratch.",
+          "A lint workflow checks contradictions, stale claims, orphan pages, and missing cross-references.",
+          "The repo includes glossary and overview pages that evolve as sources are added."
+        ],
+        "supporting_snippet": "The wiki is the persistent artifact. It compounds over time. The more sources you feed it, the richer and more connected it gets.",
+        "time_sensitivity": "Relevant as of 2026-04-07; likely to remain relevant through the medium term if AI agents continue improving at file-based maintenance tasks.",
+        "trend_description": "AI is increasingly used to maintain internal knowledge systems, not just answer questions from them. The operational shift is from retrieval-only chat interfaces toward persistent, AI-updated artifacts such as wikis, glossaries, and cross-linked documentation.",
+        "trend_name": "ai-maintained-knowledge-management",
+        "uncertainty_note": "This is based on a single implementation story, so it is best read as an emerging pattern rather than a validated industry baseline.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_summary": {
+      "assessed_as_of": "2026-04-07",
+      "contradictions_and_skepticism": "The article assumes an AI can reliably maintain consistency across many pages with limited oversight; that may work for a curated personal system but is not yet validated as a general enterprise pattern. The claim that no vector database or embeddings are needed is plausible for a small wiki, but not evidence of universal search sufficiency. The narrative is strong on workflow design and weaker on measured reliability.",
+      "implications_automation": "For customer-support and service automation, the main implication is that a maintained wiki can become a structured source of truth for chatbot grounding, agent assist, and internal support lookup. A system that keeps summaries, contradictions, and glossary terms current could reduce stale-answer risk and make handoffs more consistent. The article does not describe live chatbot deployment, so the direct automation implication is indirect rather than proven, but the workflow is a plausible upstream knowledge-management layer for support automation.",
+      "key_insights": [
+        "Separating raw sources from AI-owned wiki pages reduces the risk of overwriting originals while enabling iterative synthesis.",
+        "A schema file can act as the control plane for an AI-maintained knowledge base, defining page types, workflows, and update rules.",
+        "The main value of an AI wiki is compounding maintenance: ingesting new sources updates existing pages instead of starting over.",
+        "Glossary hygiene and contradiction checking are first-class tasks if the wiki is meant to stay trustworthy.",
+        "A lightweight index can be sufficient for navigation in a modest wiki, reducing the need for heavier retrieval infrastructure in small setups."
+      ],
+      "limitations_and_open_questions": "The evidence is a single-person build story, so it does not establish robustness at scale, multi-author governance, or cost/performance under large document volumes. The article claims the index works without vector databases up to hundreds of pages, but it does not provide comparative evaluation or failure cases. It is also unclear how well contradiction detection, page updates, and schema drift hold up across diverse domains without tight human supervision. Security, privacy, and permissioning are not addressed.",
+      "practical_relevance": "Actionable as of 2026-04-07; likely relevant through 2027 for teams building AI-assisted knowledge bases.",
+      "sources": [
+        "https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0",
+        "https://github.com/balukosuri/llm-wiki-karpathy"
+      ],
+      "summary": "The article describes a personal knowledge-base workflow inspired by Andrej Karpathy\u2019s llm-wiki.md idea: store raw sources separately, have an AI read them once, and maintain a structured wiki that grows over time. The core claim is that knowledge work fails less because of missing information than because of maintenance overhead: cross-references, summaries, glossary updates, contradiction checks, and page linking become too expensive for humans to sustain. The author reports building a working repo in Cursor plus Obsidian in about 30 minutes, using a schema file (CLAUDE.md) that defines page types and workflows. The resulting system supports ingest, query, and lint operations, and the wiki becomes the persistent artifact rather than chat history or raw documents. The article frames this as a practical answer to the problem of stale wikis and scattered project knowledge.",
+      "why_it_matters": "As of 2026-04-07, this is a concrete pattern for turning scattered project documents into a living knowledge system that can be maintained by AI with less manual bookkeeping. That matters for AI engineering and service organizations because most internal knowledge bases fail on upkeep, not on initial creation. The article\u2019s durable lesson is that the workflow and schema matter as much as the model: if the AI can reliably ingest, link, summarize, and lint, the knowledge base can stay usable longer. This is especially relevant for teams managing product documentation, support playbooks, onboarding material, and cross-functional research."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article centered on one implementation/story, not a bundle of unrelated items.",
+        "Not structured as Q&A or transcript; narrative blog format with sections and steps.",
+        "Contains practical build instructions, but the primary genre is a standard article rather than a pure tutorial."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.92,
+        "core_capabilities": [
+          "AI-assisted code editing",
+          "repository scaffolding",
+          "file generation",
+          "workflow planning",
+          "environment setup"
+        ],
+        "evidence_type": "user_report",
+        "integration_ecosystem": [
+          "Obsidian",
+          "Homebrew",
+          "Markdown repositories"
+        ],
+        "match_candidates": [],
+        "maturity_signals": "Established developer tool with strong practical adoption; used here as a general-purpose AI coding environment rather than a narrow niche utility.",
+        "name": "Cursor",
+        "operational_relevance": "Cursor fits as the build-and-maintain surface for AI-assisted knowledge systems: it can execute repository changes, write instruction files, and drive setup tasks in one conversational loop. For practitioners, the important operational point is that the editor is not just for coding; it can also bootstrap a structured knowledge workflow from a plain markdown spec. That makes it relevant for teams building internal automation around documentation, knowledge bases, or agent-run repo maintenance.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "ide-extension",
+          "coding-agent"
+        ],
+        "related_tools": [
+          "Obsidian",
+          "Claude Code",
+          "Codex"
+        ],
+        "short_description": "An AI-powered code editor used here to read the idea document, plan the repo, generate files, and configure the workflow.",
+        "strengths": "Combines conversational planning with direct file creation and repository editing; supports rapid setup of multi-file projects; can install and configure adjacent tools like Obsidian in the described workflow.",
+        "suggested_action": "create",
+        "supporting_snippet": "I opened Cursor (an AI-powered code editor), dropped Karpathy\u2019s llm-wiki.md file into an empty project folder, and started talking to the AI.",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not evaluate reliability, permission safety, or large-repo behavior. It is presented as effective in a small prototype, but no evidence is given for robustness under complex enterprise workflows."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": "implementation_case",
+        "key_points": [
+          "Preserve raw sources separately from generated pages.",
+          "Update existing pages as new sources arrive instead of rebuilding from scratch.",
+          "Use explicit schema rules to control page types and maintenance behavior.",
+          "Treat contradiction detection and cross-linking as part of the core workflow.",
+          "A persistent wiki can compound value over time if it is actively maintained."
+        ],
+        "knowledge_summary": "AI-maintained knowledge bases are systems where an AI ingests source material, synthesizes structured pages, and updates links and summaries as new information arrives. The durable value comes from maintenance: the AI is used not only for extraction, but also for keeping the knowledge base coherent, current, and interconnected. These systems work best when raw inputs are preserved separately from generated knowledge and when page types and update rules are explicitly defined. A lightweight but disciplined structure can reduce the manual burden that normally causes wikis to stagnate.",
+        "match_candidates": [],
+        "operational_insight": "Use AI to automate the bookkeeping layer of knowledge work, but keep the schema and ownership boundaries explicit so updates remain trustworthy.",
+        "primary_tag": "knowledge-management",
+        "related_topics": [
+          "knowledge-management",
+          "ai-engineering"
+        ],
+        "relevance_note": "This captures the core reusable pattern behind AI-assisted documentation systems, support knowledge bases, and internal research repositories.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "create_new_page",
+        "suggested_new_tag": "",
+        "supporting_snippet": "LLM Wiki flips this around. Instead of searching your raw documents every time, the AI reads your documents once and builds a structured wiki from them... When you add a new document, the AI doesn\u2019t start over. It reads the new source and updates the existing wiki, adding to pages that already exist, creating new ones where needed, flagging contradictions, and keeping everything consistent.",
+        "topic_slug": "ai-maintained-knowledge-bases",
+        "topic_title": "AI-maintained knowledge bases",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": "implementation_case",
+        "key_points": [
+          "The schema is the control plane for agent behavior.",
+          "Explicit page types and workflows make maintenance predictable.",
+          "A schema can be adapted to domain-specific concepts without rewriting the whole system."
+        ],
+        "knowledge_summary": "A schema-driven agent workflow uses a machine-readable or instruction-file schema to constrain what an AI agent can create, update, or check. The schema acts as the operational contract: it defines entity types, page formats, step order, and validation behavior. This reduces prompt drift and makes the agent more predictable across repeated runs. In practice, schema-driven workflows are especially valuable when the agent must maintain state across many files or many sessions.",
+        "match_candidates": [],
+        "operational_insight": "If an AI is responsible for maintaining a knowledge system, define the workflow in a schema file before asking it to generate content.",
+        "primary_tag": "ai-engineering",
+        "related_topics": [
+          "ai-maintained-knowledge-bases",
+          "knowledge-management"
+        ],
+        "relevance_note": "This is broadly useful for AI engineering teams that want repeatable agent behavior rather than one-off chat outputs.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "create_new_page",
+        "suggested_new_tag": "",
+        "supporting_snippet": "Think of it as the rulebook that turns a general-purpose AI into a disciplined wiki maintainer.",
+        "topic_slug": "schema-driven-agent-workflows",
+        "topic_title": "Schema-driven agent workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": "expert_opinion",
+          "extended_explanation": "Memex is useful as a reference point when discussing systems that preserve not just documents, but the relationships between documents. The important idea is that knowledge becomes more valuable when it can be connected, revisited, and navigated through links rather than stored as isolated files. In modern AI workflows, the Memex analogy helps frame retrieval, linking, and synthesis as parts of a persistent knowledge environment rather than one-off question answering.",
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "proposed_definition": "A hypothetical personal knowledge machine proposed by Vannevar Bush in 1945 for storing information and linking related ideas through associative trails. It is often used as an early conceptual ancestor of hypertext and personal knowledge systems.",
+          "related_terms": [
+            "LLM Wiki",
+            "associative trails",
+            "personal knowledge base"
+          ],
+          "relevance_note": "Useful for understanding the historical lineage of linked knowledge systems and why persistent cross-referenced context is valuable in AI-assisted documentation and support tooling.",
+          "secondary_tag": "",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "supporting_snippet": "Karpathy mentions in his original document that this idea is related to Vannevar Bush\u2019s Memex from 1945 \u2014 a vision of a personal knowledge store with \u201cassociative trails\u201d between documents.",
+          "term": "Memex",
+          "value_level": "medium"
+        },
+        "notes": "",
+        "proposal_id": "0a5477fb-42fd-429a-948b-888f49596867",
+        "proposal_status": "rejected",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "LLM Wiki",
+              "associative trails",
+              "personal knowledge base"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "knowledge-management",
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": "user_report",
+          "extended_explanation": "A personal knowledge base is more than a folder of notes. Its job is to preserve useful context, make related information easy to find, and accumulate understanding across projects or time. In AI workflows, it becomes especially useful when an assistant can ingest sources, maintain structure, and update pages automatically so the knowledge store stays coherent.",
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "proposed_definition": "A system for collecting, organizing, linking, and retrieving information for an individual or small team over time. It typically combines source capture, structured notes, cross-references, and search.",
+          "related_terms": [
+            "LLM Wiki",
+            "wiki",
+            "knowledge base"
+          ],
+          "relevance_note": "This is a durable concept for AI-assisted documentation, research, onboarding, and support operations, where information must accumulate instead of getting lost in chat history.",
+          "secondary_tag": "",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "supporting_snippet": "It was just an idea \u2014 written in plain markdown describing a pattern for how to use AI agents to build and maintain personal knowledge bases.",
+          "term": "personal knowledge base",
+          "value_level": "high"
+        },
+        "notes": "",
+        "proposal_id": "e1f3bb88-22ca-43fb-a864-2daad09705f3",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "LLM Wiki",
+              "wiki",
+              "knowledge base"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": "Personal Knowledge Base",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "knowledge-management",
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Keep the original documents in a read-only raw source folder, let the AI generate and own the wiki folder, and define the workflow in a schema file that tells the agent what page types exist and how to update them. Ingest each new source into the wiki, then have the agent update existing pages, create new ones only when needed, add glossary terms, and log the changes. Add a lint pass so the system can detect contradictions, stale claims, orphan pages, and missing links. The key practice is to treat the wiki as the persistent artifact and the raw documents as immutable inputs.",
+          "caveats": "The article\u2019s evidence is a small personal build, so scaling, permissions, and reliability across many authors or many thousands of documents remain open questions.",
+          "confidence": 0.96,
+          "evidence_type": "user_report",
+          "implementation_steps": [
+            "Create a raw/ folder for immutable source documents.",
+            "Create a wiki/ folder that the AI can own and update.",
+            "Define a schema file such as CLAUDE.md that specifies page types and workflows.",
+            "Ingest one source at a time so the AI can be guided during processing.",
+            "Have the AI create or update source summaries, entity pages, glossary entries, and the index.",
+            "Run periodic linting to find contradictions, stale claims, orphan pages, and missing cross-references."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A collection of source documents",
+            "An AI agent that can edit files",
+            "A markdown-based workspace",
+            "A schema or instruction file for the agent"
+          ],
+          "primary_tag": "knowledge-management",
+          "question_title": "How do you build an AI-maintained knowledge base from raw documents and keep it coherent over time?",
+          "related_howtos": [
+            "knowledge-base-ingestion",
+            "wiki-linting"
+          ],
+          "relevance_note": "This is a reusable implementation pattern for knowledge-management systems, internal documentation, and support playbooks that must accumulate over time.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "supporting_snippet": "Three layers... 1. Raw sources \u2014 A folder called raw/. This is where you put your documents... 2. The wiki \u2014 A folder called wiki/. The AI creates and owns everything in this folder... 3. The schema \u2014 A single file called CLAUDE.md. This is the instruction manual for the AI.",
+          "value_level": "high"
+        },
+        "notes": "",
+        "proposal_id": "fd8b4f1a-6404-4e06-836f-bcbea73265a0",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Create a raw/ folder for immutable source documents.",
+              "Create a wiki/ folder that the AI can own and update.",
+              "Define a schema file such as CLAUDE.md that specifies page types and workflows.",
+              "Ingest one source at a time so the AI can be guided during processing.",
+              "Have the AI create or update source summaries, entity pages, glossary entries, and the index.",
+              "Run periodic linting to find contradictions, stale claims, orphan pages, and missing cross-references."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A collection of source documents",
+              "An AI agent that can edit files",
+              "A markdown-based workspace",
+              "A schema or instruction file for the agent"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": "How do you build an AI-maintained knowledge base?",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-ingestion",
+              "wiki-linting"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "knowledge-management",
+          "final_secondary_tag": "ai-engineering",
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "The article suggests the AI can update many related files in one pass, flag contradictions, and maintain a glossary, but provides no quantitative reliability data.",
+          "business_objective": "Reduce the manual burden of maintaining project knowledge, glossaries, links, and summaries across many source documents.",
+          "company": "Balu Kosuri",
+          "confidence": 0.9,
+          "deployment_context": "Personal/workstation setup using Cursor and Obsidian; documents are dropped into raw/ and ingested into the wiki.",
+          "evidence_snippets": [
+            {
+              "claim": "The system was built around raw sources, a generated wiki, and a schema file.",
+              "provenance": "stated",
+              "snippet": "Three layers... 1. Raw sources ... 2. The wiki ... 3. The schema \u2014 A single file called CLAUDE.md."
+            },
+            {
+              "claim": "The repository was created in about 30 minutes using Cursor.",
+              "provenance": "stated",
+              "snippet": "In about 30 minutes, I went from that one-page idea to a fully working personal knowledge base"
+            },
+            {
+              "claim": "The AI can maintain multiple files and flag contradictions.",
+              "provenance": "inferred",
+              "snippet": "The AI will: ... Create new pages ... Update the glossary ... Update the index ... Update the overview if the big picture shifted ... Log everything"
+            }
+          ],
+          "evidence_type": "implementation_case",
+          "implications_for_service_automation": "A similar pattern could support support knowledge bases and agent-assist systems by keeping source-of-truth documentation synchronized, but direct customer-facing automation was not demonstrated.",
+          "industry": "technical writing / knowledge management",
+          "key_lessons": [
+            "Separate immutable source material from AI-owned generated knowledge.",
+            "Use a schema file to constrain the agent\u2019s behavior.",
+            "Ingest one source at a time to keep human oversight meaningful.",
+            "Add linting to catch contradictions and stale content.",
+            "Do not rely on chat history as the durable store of knowledge."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How well does this scale beyond a small personal wiki?",
+            "How should permissions and privacy be handled in shared environments?",
+            "How accurate is contradiction detection across diverse source types?"
+          ],
+          "operational_constraints": "No vector database is used in the described setup; the article emphasizes manual participation during ingestion and periodic linting.",
+          "outcome_status": "Working prototype described as set up in about 30 minutes; no long-term production evaluation is provided.",
+          "overview": "A technical writer built a personal knowledge base around Karpathy\u2019s llm-wiki.md idea using Cursor and Obsidian, aiming to turn scattered documents into a structured wiki that the AI maintains.",
+          "primary_tag": "service-automation",
+          "related_sources": [
+            "https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0",
+            "https://github.com/balukosuri/llm-wiki-karpathy"
+          ],
+          "secondary_tag": "knowledge-management",
+          "strategic_signals": "The most important signal is that maintenance can be shifted from manual wiki editing to AI-assisted bookkeeping if the workflow and schema are disciplined.",
+          "success_or_failure_factors": "Succeeded because the workflow clearly separated raw sources from generated pages and used a schema to constrain the AI; long-term reliability is unproven.",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "technical_approach": "Use Cursor to process sources, a schema file (CLAUDE.md) to define entity types and workflows, markdown pages in wiki/, and Obsidian for navigation and graph visualization.",
+          "title": "Building a self-maintaining personal knowledge base with Karpathy-inspired LLM Wiki",
+          "value_level": "high",
+          "what_was_implemented": "A repository with raw/, wiki/, CLAUDE.md, starter wiki pages, and a pre-configured Obsidian vault for AI-driven ingest, query, and lint workflows."
+        },
+        "notes": "",
+        "proposal_id": "72f99537-0493-4a76-bdff-f2f9f45f1524",
+        "proposal_status": "rejected",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": "The article suggests the AI can update many related files in one pass, flag contradictions, and maintain a glossary, but provides no quantitative reliability data.",
+            "notes": "",
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": "Reduce the manual burden of maintaining project knowledge, glossaries, links, and summaries across many source documents.",
+            "notes": "",
+            "status": "pending"
+          },
+          "company": {
+            "final_text": "Balu Kosuri",
+            "notes": "",
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": "Personal/workstation setup using Cursor and Obsidian; documents are dropped into raw/ and ingested into the wiki.",
+            "notes": "",
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": "A similar pattern could support support knowledge bases and agent-assist systems by keeping source-of-truth documentation synchronized, but direct customer-facing automation was not demonstrated.",
+            "notes": "",
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": "technical writing / knowledge management",
+            "notes": "",
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Separate immutable source material from AI-owned generated knowledge.",
+              "Use a schema file to constrain the agent\u2019s behavior.",
+              "Ingest one source at a time to keep human oversight meaningful.",
+              "Add linting to catch contradictions and stale content.",
+              "Do not rely on chat history as the durable store of knowledge."
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How well does this scale beyond a small personal wiki?",
+              "How should permissions and privacy be handled in shared environments?",
+              "How accurate is contradiction detection across diverse source types?"
+            ],
+            "notes": "",
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": "No vector database is used in the described setup; the article emphasizes manual participation during ingestion and periodic linting.",
+            "notes": "",
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": "Working prototype described as set up in about 30 minutes; no long-term production evaluation is provided.",
+            "notes": "",
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": "A technical writer built a personal knowledge base around Karpathy\u2019s llm-wiki.md idea using Cursor and Obsidian, aiming to turn scattered documents into a structured wiki that the AI maintains.",
+            "notes": "",
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0",
+              "https://github.com/balukosuri/llm-wiki-karpathy"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": "The most important signal is that maintenance can be shifted from manual wiki editing to AI-assisted bookkeeping if the workflow and schema are disciplined.",
+            "notes": "",
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": "Succeeded because the workflow clearly separated raw sources from generated pages and used a schema to constrain the AI; long-term reliability is unproven.",
+            "notes": "",
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": "Use Cursor to process sources, a schema file (CLAUDE.md) to define entity types and workflows, markdown pages in wiki/, and Obsidian for navigation and graph visualization.",
+            "notes": "",
+            "status": "pending"
+          },
+          "title": {
+            "final_text": "Building a self-maintaining personal knowledge base with Karpathy-inspired LLM Wiki",
+            "notes": "",
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": "A repository with raw/, wiki/, CLAUDE.md, starter wiki pages, and a pre-configured Obsidian vault for AI-driven ingest, query, and lint workflows.",
+            "notes": "",
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "service-automation",
+          "final_secondary_tag": "knowledge-management",
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-07",
+          "confidence": 0.84,
+          "evidence_from_source": "The source describes a workflow where the AI updates existing wiki pages, creates new pages, maintains a glossary, and runs lint checks so the knowledge base compounds over time.",
+          "evidence_type": "implementation_case",
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "related_trends": [
+            "schema-driven-agent-workflows",
+            "ai-assisted-knowledge-bases"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "append_to_existing",
+          "suggested_new_tag": "ai-engineering",
+          "supporting_data_points": [
+            "AI updates existing pages instead of starting from scratch.",
+            "A lint workflow checks contradictions, stale claims, orphan pages, and missing cross-references.",
+            "The repo includes glossary and overview pages that evolve as sources are added."
+          ],
+          "supporting_snippet": "The wiki is the persistent artifact. It compounds over time. The more sources you feed it, the richer and more connected it gets.",
+          "time_sensitivity": "Relevant as of 2026-04-07; likely to remain relevant through the medium term if AI agents continue improving at file-based maintenance tasks.",
+          "trend_description": "AI is increasingly used to maintain internal knowledge systems, not just answer questions from them. The operational shift is from retrieval-only chat interfaces toward persistent, AI-updated artifacts such as wikis, glossaries, and cross-linked documentation.",
+          "trend_name": "ai-maintained-knowledge-management",
+          "uncertainty_note": "This is based on a single implementation story, so it is best read as an emerging pattern rather than a validated industry baseline.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "97c03f4a-2024-466b-b847-e5c88cb25f17",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "schema-driven-agent-workflows",
+              "ai-assisted-knowledge-bases"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "AI updates existing pages instead of starting from scratch.",
+              "A lint workflow checks contradictions, stale claims, orphan pages, and missing cross-references.",
+              "The repo includes glossary and overview pages that evolve as sources are added."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_summary": {
+      "contradictions_and_skepticism": {
+        "final_text": "The article assumes an AI can reliably maintain consistency across many pages with limited oversight; that may work for a curated personal system but is not yet validated as a general enterprise pattern. The claim that no vector database or embeddings are needed is plausible for a small wiki, but not evidence of universal search sufficiency. The narrative is strong on workflow design and weaker on measured reliability.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "implications_automation": {
+        "final_text": "For customer-support and service automation, the main implication is that a maintained wiki can become a structured source of truth for chatbot grounding, agent assist, and internal support lookup. A system that keeps summaries, contradictions, and glossary terms current could reduce stale-answer risk and make handoffs more consistent. The article does not describe live chatbot deployment, so the direct automation implication is indirect rather than proven, but the workflow is a plausible upstream knowledge-management layer for support automation.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Separating raw sources from AI-owned wiki pages reduces the risk of overwriting originals while enabling iterative synthesis.",
+          "A schema file can act as the control plane for an AI-maintained knowledge base, defining page types, workflows, and update rules.",
+          "The main value of an AI wiki is compounding maintenance: ingesting new sources updates existing pages instead of starting over.",
+          "Glossary hygiene and contradiction checking are first-class tasks if the wiki is meant to stay trustworthy.",
+          "A lightweight index can be sufficient for navigation in a modest wiki, reducing the need for heavier retrieval infrastructure in small setups."
+        ],
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "limitations_and_open_questions": {
+        "final_text": "The evidence is a single-person build story, so it does not establish robustness at scale, multi-author governance, or cost/performance under large document volumes. The article claims the index works without vector databases up to hundreds of pages, but it does not provide comparative evaluation or failure cases. It is also unclear how well contradiction detection, page updates, and schema drift hold up across diverse domains without tight human supervision. Security, privacy, and permissioning are not addressed.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "practical_relevance": {
+        "final_text": "Actionable as of 2026-04-07; likely relevant through 2027 for teams building AI-assisted knowledge bases.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0",
+          "https://github.com/balukosuri/llm-wiki-karpathy"
+        ],
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "summary": {
+        "final_text": "The article describes a personal knowledge-base workflow inspired by Andrej Karpathy\u2019s llm-wiki.md idea: store raw sources separately, have an AI read them once, and maintain a structured wiki that grows over time. The core claim is that knowledge work fails less because of missing information than because of maintenance overhead: cross-references, summaries, glossary updates, contradiction checks, and page linking become too expensive for humans to sustain. The author reports building a working repo in Cursor plus Obsidian in about 30 minutes, using a schema file (CLAUDE.md) that defines page types and workflows. The resulting system supports ingest, query, and lint operations, and the wiki becomes the persistent artifact rather than chat history or raw documents. The article frames this as a practical answer to the problem of stale wikis and scattered project knowledge.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": "As of 2026-04-07, this is a concrete pattern for turning scattered project documents into a living knowledge system that can be maintained by AI with less manual bookkeeping. That matters for AI engineering and service organizations because most internal knowledge bases fail on upkeep, not on initial creation. The article\u2019s durable lesson is that the workflow and schema matter as much as the model: if the AI can reliably ingest, link, summarize, and lint, the knowledge base can stay usable longer. This is especially relevant for teams managing product documentation, support playbooks, onboarding material, and cross-functional research.",
+        "notes": "",
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article centered on one implementation/story, not a bundle of unrelated items.",
+          "Not structured as Q&A or transcript; narrative blog format with sections and steps.",
+          "Contains practical build instructions, but the primary genre is a standard article rather than a pure tutorial."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "core_capabilities": [
+            "AI-assisted code editing",
+            "repository scaffolding",
+            "file generation",
+            "workflow planning",
+            "environment setup"
+          ],
+          "evidence_type": "user_report",
+          "integration_ecosystem": [
+            "Obsidian",
+            "Homebrew",
+            "Markdown repositories"
+          ],
+          "match_candidates": [],
+          "maturity_signals": "Established developer tool with strong practical adoption; used here as a general-purpose AI coding environment rather than a narrow niche utility.",
+          "name": "Cursor",
+          "operational_relevance": "Cursor fits as the build-and-maintain surface for AI-assisted knowledge systems: it can execute repository changes, write instruction files, and drive setup tasks in one conversational loop. For practitioners, the important operational point is that the editor is not just for coding; it can also bootstrap a structured knowledge workflow from a plain markdown spec. That makes it relevant for teams building internal automation around documentation, knowledge bases, or agent-run repo maintenance.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "ide-extension",
+            "coding-agent"
+          ],
+          "related_tools": [
+            "Obsidian",
+            "Claude Code",
+            "Codex"
+          ],
+          "short_description": "An AI-powered code editor used here to read the idea document, plan the repo, generate files, and configure the workflow.",
+          "strengths": "Combines conversational planning with direct file creation and repository editing; supports rapid setup of multi-file projects; can install and configure adjacent tools like Obsidian in the described workflow.",
+          "suggested_action": "create",
+          "supporting_snippet": "I opened Cursor (an AI-powered code editor), dropped Karpathy\u2019s llm-wiki.md file into an empty project folder, and started talking to the AI.",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not evaluate reliability, permission safety, or large-repo behavior. It is presented as effective in a small prototype, but no evidence is given for robustness under complex enterprise workflows."
+        },
+        "notes": null,
+        "proposal_id": "a8db1e65-81f9-4a47-b5dd-7375722dd05b",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "AI-assisted code editing",
+              "repository scaffolding",
+              "file generation",
+              "workflow planning",
+              "environment setup"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "Homebrew",
+              "Markdown repositories"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "Claude Code",
+              "Codex"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": "implementation_case",
+          "key_points": [
+            "Preserve raw sources separately from generated pages.",
+            "Update existing pages as new sources arrive instead of rebuilding from scratch.",
+            "Use explicit schema rules to control page types and maintenance behavior.",
+            "Treat contradiction detection and cross-linking as part of the core workflow.",
+            "A persistent wiki can compound value over time if it is actively maintained."
+          ],
+          "knowledge_summary": "AI-maintained knowledge bases are systems where an AI ingests source material, synthesizes structured pages, and updates links and summaries as new information arrives. The durable value comes from maintenance: the AI is used not only for extraction, but also for keeping the knowledge base coherent, current, and interconnected. These systems work best when raw inputs are preserved separately from generated knowledge and when page types and update rules are explicitly defined. A lightweight but disciplined structure can reduce the manual burden that normally causes wikis to stagnate.",
+          "match_candidates": [],
+          "operational_insight": "Use AI to automate the bookkeeping layer of knowledge work, but keep the schema and ownership boundaries explicit so updates remain trustworthy.",
+          "primary_tag": "knowledge-management",
+          "related_topics": [
+            "knowledge-management",
+            "ai-engineering"
+          ],
+          "relevance_note": "This captures the core reusable pattern behind AI-assisted documentation systems, support knowledge bases, and internal research repositories.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "create_new_page",
+          "suggested_new_tag": "",
+          "supporting_snippet": "LLM Wiki flips this around. Instead of searching your raw documents every time, the AI reads your documents once and builds a structured wiki from them... When you add a new document, the AI doesn\u2019t start over. It reads the new source and updates the existing wiki, adding to pages that already exist, creating new ones where needed, flagging contradictions, and keeping everything consistent.",
+          "topic_slug": "ai-maintained-knowledge-bases",
+          "topic_title": "AI-maintained knowledge bases",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "495758c0-ec7b-4e31-a498-928853ab98c4",
+        "proposal_status": "approved",
+        "sections": {
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Preserve raw sources separately from generated pages.",
+              "Update existing pages as new sources arrive instead of rebuilding from scratch.",
+              "Use explicit schema rules to control page types and maintenance behavior.",
+              "Treat contradiction detection and cross-linking as part of the core workflow.",
+              "A persistent wiki can compound value over time if it is actively maintained."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-management",
+              "ai-engineering"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": "user_report",
+          "key_points": [
+            "The schema is the control plane for agent behavior.",
+            "Explicit page types and workflows make maintenance predictable.",
+            "A schema can be adapted to domain-specific concepts without rewriting the whole system."
+          ],
+          "knowledge_summary": "A schema-driven agent workflow uses a machine-readable or instruction-file schema to constrain what an AI agent can create, update, or check. The schema acts as the operational contract: it defines entity types, page formats, step order, and validation behavior. This reduces prompt drift and makes the agent more predictable across repeated runs. In practice, schema-driven workflows are especially valuable when the agent must maintain state across many files or many sessions.",
+          "match_candidates": [],
+          "operational_insight": "If an AI is responsible for maintaining a knowledge system, define the workflow in a schema file before asking it to generate content.",
+          "primary_tag": "ai-engineering",
+          "related_topics": [
+            "ai-maintained-knowledge-bases",
+            "knowledge-management"
+          ],
+          "relevance_note": "This is broadly useful for AI engineering teams that want repeatable agent behavior rather than one-off chat outputs.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "create_new_page",
+          "suggested_new_tag": "",
+          "supporting_snippet": "Think of it as the rulebook that turns a general-purpose AI into a disciplined wiki maintainer.",
+          "topic_slug": "schema-driven-agent-workflows",
+          "topic_title": "Schema-driven agent workflows",
+          "value_level": "high"
+        },
+        "notes": "",
+        "proposal_id": "b067e4bc-1263-47eb-b7b5-5d4f6b214aab",
+        "proposal_status": "pending",
+        "sections": {
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The schema is the control plane for agent behavior.",
+              "Explicit page types and workflows make maintenance predictable.",
+              "A schema can be adapted to domain-specific concepts without rewriting the whole system."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "ai-maintained-knowledge-bases",
+              "knowledge-management"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "final_primary_tag": "ai-engineering",
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 1,
+      "implementation_case": 3,
+      "user_report": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 2,
+    "proposals_total": 8,
+    "review_duration_seconds": 652.0,
+    "review_finished_at": "2026-05-15T10:06:24.775066+00:00",
+    "review_started_at": "2026-05-15T09:55:32.767296+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-15T10:06:24+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Balu Kosuri",
+    "canonical_url": "https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0",
+    "content_sha256": "a1753308e8a9d5685e362ccc66c76732eecf30d770caf1eee5bc4dc4fffb902c",
+    "publication": null,
+    "published_date": "2026-04-07",
+    "raw_html_rel_path": "raw/readwise/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee.html",
+    "raw_md_rel_path": "raw/readwise/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee.md",
+    "source_id": "i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee",
+    "title": "I used Karpathy\u2019s LLM Wiki to build a knowledge base that maintains itself with AI"
+  }
+}

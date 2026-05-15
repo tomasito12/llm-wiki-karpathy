@@ -7,7 +7,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field, field_validator, model_validator
 
 ARTIFACT_SCHEMA_VERSION = 9
-PROMPT_VERSION = "9"
+PROMPT_VERSION = "10"
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
 MatchKind = Literal["exact", "fuzzy", "none"]

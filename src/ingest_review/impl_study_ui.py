@@ -10,6 +10,10 @@ from src.ingest_review.dashboard_ui import (
     render_proposal_evidence_type_editor,
     render_proposal_tag_review,
 )
+from src.ingest_review.impl_study_gate import (
+    format_impl_study_evidence_caption,
+    impl_study_likely_misclassified,
+)
 from src.ingest_review.schema import (
     IMPL_STUDY_REVIEWABLE_LIST_KEYS,
     IMPL_STUDY_REVIEWABLE_SCALAR_KEYS,
@@ -57,14 +61,16 @@ def _status_index(current: str) -> int:
     return 0
 
 
-def _sort_key(node: dict[str, Any]) -> tuple[int, float]:
-    """Sort by value_level (high first) then confidence descending."""
+def _sort_key(node: dict[str, Any]) -> tuple[int, int, float]:
+    """Sort by ignore-last, value_level (high first), then confidence descending."""
     llm = node.get("llm_item") or {}
     vl = str(llm.get("value_level", "medium"))
     conf = llm.get("confidence", 0)
     if not isinstance(conf, (int, float)):
         conf = 0.0
-    return (_VALUE_LEVEL_SORT.get(vl, 1), -float(conf))
+    action = str(llm.get("suggested_action") or "")
+    ignore_rank = 1 if action == "ignore" else 0
+    return (ignore_rank, _VALUE_LEVEL_SORT.get(vl, 1), -float(conf))
 
 
 def _render_card_header(
@@ -98,6 +104,12 @@ def _render_card_header(
         f"Industry: {industry} \u00b7 Action: {action} \u00b7 Evidence: {ev_lbl} "
         f"\u00b7 Status: `{status}`"
     )
+    st.caption(format_impl_study_evidence_caption(llm_item))
+    if impl_study_likely_misclassified(llm_item):
+        st.warning(
+            "No stated deployment evidence — likely misclassified. "
+            "Consider Reject or route to topics/how-to."
+        )
 
 
 def _render_action_row(
@@ -317,6 +329,7 @@ def render_implementation_studies(
             node["notes"] = st.text_input(
                 "Proposal notes",
                 value=str(node.get("notes") or ""),
+                placeholder="Misclassified (no operational deployment case)",
                 key=f"{pfx}_impl_notes",
             )
             with st.expander("Raw JSON (debug)", expanded=False):

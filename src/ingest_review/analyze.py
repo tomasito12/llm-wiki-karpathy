@@ -6,6 +6,7 @@ from pathlib import Path
 
 from src.ingest_review.artifact import build_new_artifact, default_analysis_meta
 from src.ingest_review.extract import SourceDocument
+from src.ingest_review.impl_study_gate import filter_impl_study_proposals
 from src.ingest_review.providers.base import IngestionProvider
 from src.ingest_review.schema import (
     PROMPT_VERSION,
@@ -45,6 +46,7 @@ def apply_tag_allowlists(
     topic_tags: set[str] | None = None,
     trend_tags: set[str] | None = None,
     model_types: set[str] | None = None,
+    impl_study_tags: set[str] | None = None,
 ) -> LlmClassificationOutput:
     """Validate proposal tags against allowlists; demote unknown tags to suggested_new_tag."""
     new_tools = [
@@ -98,6 +100,13 @@ def apply_tag_allowlists(
         )
         for ins in parsed.interview_insights
     ]
+    ist = impl_study_tags or set()
+    new_impl = [
+        ip.model_copy(
+            update=_validate_tag_pair(ip.primary_tag, ip.secondary_tag, ip.suggested_new_tag, ist)
+        )
+        for ip in parsed.implementation_studies
+    ]
     return parsed.model_copy(
         update={
             "tools": new_tools,
@@ -108,6 +117,7 @@ def apply_tag_allowlists(
             "foundation_models": new_models,
             "roundup_signals": new_signals,
             "interview_insights": new_insights,
+            "implementation_studies": new_impl,
         }
     )
 
@@ -158,6 +168,12 @@ def run_classification(
         set(topic_tags or []),
         set(trend_tags or []),
         set(model_types or []),
+        set(impl_study_tags or []),
+    )
+    parsed = parsed.model_copy(
+        update={
+            "implementation_studies": filter_impl_study_proposals(parsed.implementation_studies),
+        }
     )
     analysis_meta = default_analysis_meta(
         provider=provider.provider_name,

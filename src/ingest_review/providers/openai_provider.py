@@ -65,6 +65,9 @@ For tools: proposed_types MUST be a subset of TOOL_TYPES_ALLOWLIST (at most 2 un
 genuinely multi-category); first type = primary category, second = optional adjacent role.
 For foundation_models: proposed_types MUST be a subset of MODEL_TYPES_ALLOWLIST (at most 2 \
 unless genuinely multi-category); first = deployment/openness class, second = capability focus.
+For implementation_studies: follow IMPLEMENTATION_STUDY_WORTHINESS GATE in IMPL_STUDY_RUBRIC; \
+if the gate fails, return implementation_studies: [] and extract value via topics, how_to, \
+industry_trends, roundup_signals, or interview_insights instead.
 
 Always fill extraction_meta with skip_recommended, skip_reason, total_candidates_considered, \
 and review_burden_estimate. If the article contains no durable, wiki-worthy knowledge, \
@@ -264,8 +267,62 @@ attack. If nothing major, say so briefly.
 IMPL_STUDY_RUBRIC = """\
 ## implementation_studies (array of objects — implementation studies)
 
-Only populate when the article describes a REAL company attempting to implement
-a specific technology. Not for product announcements, benchmarks, or opinion pieces.
+Implementation studies are organizational operational deployment cases with auditable \
+real-world evidence — NOT generic "someone built something" narratives.
+
+IMPLEMENTATION_STUDY_WORTHINESS GATE — before adding ANY object, the source must \
+support at least ONE of:
+1. Production deployment evidence (live or serious pilot in real operations; not a \
+local-only demo) — populate deployment_context
+2. Operational metrics (latency, cost, volume, accuracy, ROI, headcount, ticket \
+deflection, etc.) — cite in evidence_snippets and outcome_status
+3. Organizational adoption (rollout scope, teams, geographies, user counts, \
+change-management) — not solo "I tried this"
+4. Measurable outcomes (before/after, success/failure with specifics) — outcome_status
+5. Scaling constraints (what broke or limited scale) — operational_constraints
+6. Real-world success/failure lessons grounded in what happened — \
+success_or_failure_factors / key_lessons
+7. Operational maintenance learnings (monitoring, drift, incidents, human handoff)
+8. Non-trivial deployment complexity (integration, safety, compliance, multi-system \
+rollout) — technical_approach + deployment_context
+
+If NONE apply, return implementation_studies: []. Extract value via topics, how_to, \
+industry_trends, roundup_signals, or interview_insights instead.
+
+When the gate passes, ALL hard requirements apply:
+- Named company (explicit organization; not anonymous "a team")
+- At least 2 evidence_snippets with at least 1 provenance: "stated" (verbatim-supported)
+- deployment_context and outcome_status non-empty and specific (not "unknown", "TBD", \
+or generic filler)
+- evidence_type should be implementation_case or mixed when deployment evidence \
+dominates; not speculative_claim or expert_opinion alone
+- Default suggested_action: "ignore" unless confidence >= 0.6 AND value_level is \
+high or medium with clear evidence
+
+IMPLEMENTATION STUDY EXTRACTION BOUNDARIES — do NOT propose for:
+- Personal experiments, weekend builds, solo side projects ("I built this over the weekend")
+- Architecture essays, pattern explainers, stack diagrams without operational outcomes
+- Speculative workflow ideas or future visions without deployment facts
+- Prototype writeups without production or serious pilot evidence
+- Conceptual blog posts or thought leadership without deployment facts
+- Tool tutorials disguised as case studies
+- Generic practitioner narratives ("we use X in our stack") without deployment evidence
+- Vendor marketing with no concrete metrics or deployment detail (usually ignore)
+- Re-describing the article title as a fake "study"
+
+ROUTING (prefer other entity types when gate fails):
+- Procedural knowledge, no org-specific deployment case → how_to (or topics)
+- Durable architecture/operational pattern, no specific org deployment → topics
+- Industry-wide shift, not one org → industry_trends
+- Weak signal in a roundup → roundup_signals
+- Gate passes → at most 1 implementation_study (respect budget)
+- Gate fails → implementation_studies: []
+
+Positive indicators: named org + industry + time-bounded rollout; pilot→production \
+(or pilot ended) arc; production constraints discovered; failure modes with \
+operational root cause; verifiable third-party case study claims.
+
+Not for product announcements, benchmarks-only pieces, or pure opinion.
 
 Each object MUST include:
 - title: short descriptive implementation title
@@ -424,7 +481,10 @@ Voice: clear, operational, synthesized. Write as reusable knowledge, \
 not as article commentary.
 
 Tag semantics (TOPIC_TAGS_ALLOWLIST): strategic/operational domain for the \
-knowledge unit — not the article title. Follow TAG_ONTOLOGY_RUBRIC."""
+knowledge unit — not the article title. Follow TAG_ONTOLOGY_RUBRIC.
+
+Routing: operational or architecture patterns WITHOUT a specific organizational \
+deployment case belong here — NOT in implementation_studies."""
 
 
 HOWTOS_RUBRIC = """\
@@ -464,7 +524,10 @@ Voice: direct, practical, implementation-focused. Write as reusable \
 procedural guidance.
 
 Tag semantics (HOWTO_TAGS_ALLOWLIST): workflow/implementation area — overlap with \
-topic tags is OK. Follow TAG_ONTOLOGY_RUBRIC."""
+topic tags is OK. Follow TAG_ONTOLOGY_RUBRIC.
+
+Routing: reusable procedures without org-specific deployment evidence belong here \
+— NOT in implementation_studies."""
 
 
 TRENDS_RUBRIC = """\
@@ -848,7 +911,9 @@ def _build_user_prompt(
         "industry_trends": "industry_trends",
         "tools": "tools (only if substantially discussed)",
         "foundation_models": "foundation_models (only if substantially discussed)",
-        "implementation_studies": "implementation_studies (only if real implementation)",
+        "implementation_studies": (
+            "implementation_studies (only if worthiness gate passes; else [])"
+        ),
         "roundup_signals": "roundup_signals",
         "interview_insights": "interview_insights",
     }

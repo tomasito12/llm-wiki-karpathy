@@ -197,6 +197,33 @@ Trends are not daily news summaries.
 
 ---
 
+## Implementation studies
+
+Purpose:
+Document **organizational operational deployments** with auditable real-world evidence — not generic “someone built something” narratives.
+
+An implementation study should only be proposed when the source supports at least one of:
+
+* production or serious pilot deployment in real operations
+* operational metrics or measurable outcomes
+* organizational adoption at stated scale
+* scaling constraints discovered in live usage
+* grounded success/failure or maintenance lessons from deployment
+
+The same article may still yield strong **topics**, **how-tos**, or **trends** proposals while correctly producing **zero** implementation studies.
+
+Do **not** use implementation studies for:
+
+* personal experiments or weekend builds
+* architecture essays without operational outcomes
+* speculative workflows or prototype writeups without deployment evidence
+* generic practitioner narratives without deployment facts
+* vendor marketing without concrete deployment detail
+
+Prefer **topics** for durable patterns without a specific org case; prefer **how-tos** for reusable procedures without org-specific deployment evidence.
+
+---
+
 ## Tools
 
 Purpose:

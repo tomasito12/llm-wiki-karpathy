@@ -471,3 +471,61 @@ def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
     assert "Tag sparsity" in prompt
     assert "TOPIC_TAGS_ALLOWLIST" in TOPICS_RUBRIC
     assert "at most 2" in TOOLS_RUBRIC
+
+
+def test_impl_study_rubric_includes_worthiness_gate() -> None:
+    """IMPL_STUDY_RUBRIC defines evidence gate, anti-patterns, and routing."""
+    from src.ingest_review.providers.openai_provider import IMPL_STUDY_RUBRIC
+
+    assert "IMPLEMENTATION_STUDY_WORTHINESS GATE" in IMPL_STUDY_RUBRIC
+    assert "at least ONE" in IMPL_STUDY_RUBRIC
+    assert "weekend" in IMPL_STUDY_RUBRIC.lower()
+    assert "implementation_studies: []" in IMPL_STUDY_RUBRIC
+    assert "EXTRACTION BOUNDARIES" in IMPL_STUDY_RUBRIC
+
+
+def test_impl_study_worthiness_gate_in_user_prompt(tmp_path: Path) -> None:
+    """Built user prompt includes implementation study worthiness gate."""
+    from src.ingest_review.providers.openai_provider import IMPL_STUDY_RUBRIC, _build_user_prompt
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-impl"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=[],
+        howto_tags=[],
+        prompt_version="10",
+    )
+    assert "IMPLEMENTATION_STUDY_WORTHINESS GATE" in prompt
+    assert "worthiness gate passes" in prompt
+    assert IMPL_STUDY_RUBRIC.split("\n")[0] in prompt
+
+
+def test_topics_and_howtos_rubric_route_away_from_impl_studies() -> None:
+    """Topics and how-tos rubrics say not to use implementation_studies."""
+    from src.ingest_review.providers.openai_provider import HOWTOS_RUBRIC, TOPICS_RUBRIC
+
+    assert "NOT in implementation_studies" in TOPICS_RUBRIC
+    assert "NOT in implementation_studies" in HOWTOS_RUBRIC
+
+
+def test_system_prompt_references_impl_study_worthiness_gate() -> None:
+    """SYSTEM_PROMPT delegates implementation studies to the worthiness gate."""
+    from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
+
+    assert "IMPLEMENTATION_STUDY_WORTHINESS GATE" in SYSTEM_PROMPT
+    assert "IMPL_STUDY_RUBRIC" in SYSTEM_PROMPT
