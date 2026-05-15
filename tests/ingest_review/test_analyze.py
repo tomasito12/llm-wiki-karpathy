@@ -117,6 +117,50 @@ def test_apply_tag_allowlists_validates_insight_tags() -> None:
     assert out.interview_insights[0].suggested_new_tag == "novel"
 
 
+def test_apply_tag_allowlists_normalizes_tag_casing() -> None:
+    """Tag validation matches allowlist entries after normalization."""
+    parsed = LlmClassificationOutput(
+        topics=[
+            TopicContribution(
+                topic_slug="x",
+                primary_tag="AI-Safety",
+                secondary_tag="Evaluation",
+            ),
+        ],
+    )
+    out = apply_tag_allowlists(
+        parsed,
+        set(),
+        set(),
+        topic_tags={"ai-safety", "evaluation"},
+    )
+    assert out.topics[0].primary_tag == "ai-safety"
+    assert out.topics[0].secondary_tag == "evaluation"
+    assert out.topics[0].suggested_new_tag == ""
+
+
+def test_apply_tag_allowlists_preserves_valid_primary_secondary_pair() -> None:
+    """Both tags on allowlist are kept unchanged."""
+    parsed = LlmClassificationOutput(
+        glossary=[
+            GlossaryProposal(
+                term="T",
+                primary_tag="known",
+                secondary_tag="also-known",
+            ),
+        ],
+    )
+    out = apply_tag_allowlists(
+        parsed,
+        set(),
+        set(),
+        glossary_tags={"known", "also-known"},
+    )
+    assert out.glossary[0].primary_tag == "known"
+    assert out.glossary[0].secondary_tag == "also-known"
+    assert out.glossary[0].suggested_new_tag == ""
+
+
 def test_apply_tag_allowlists_preserves_existing_suggested_new() -> None:
     """Tags already in suggested_new_tag from LLM are preserved."""
     parsed = LlmClassificationOutput(

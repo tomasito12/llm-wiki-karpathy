@@ -22,13 +22,18 @@ def _validate_tag_pair(
     allowlist: set[str],
 ) -> dict[str, str]:
     """Validate primary/secondary against *allowlist*; demote to suggested_new if invalid."""
-    new = suggested_new
-    p = primary if primary in allowlist else ""
-    if primary and primary not in allowlist and not new:
-        new = primary
-    s = secondary if secondary in allowlist else ""
-    if secondary and secondary not in allowlist and not new:
-        new = secondary
+    from src.ingest_review.tags import normalize_tag
+
+    norm_allow = {normalize_tag(t) for t in allowlist}
+    p_raw = normalize_tag(primary)
+    s_raw = normalize_tag(secondary)
+    new = normalize_tag(suggested_new)
+    p = p_raw if p_raw in norm_allow else ""
+    if p_raw and p_raw not in norm_allow and not new:
+        new = p_raw
+    s = s_raw if s_raw in norm_allow else ""
+    if s_raw and s_raw not in norm_allow and not new:
+        new = s_raw
     return {"primary_tag": p, "secondary_tag": s, "suggested_new_tag": new}
 
 

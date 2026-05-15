@@ -326,12 +326,12 @@ def test_rubrics_mention_suggested_new_tag() -> None:
 
 
 def test_system_prompt_mentions_tag_structure() -> None:
-    """SYSTEM_PROMPT references the simplified tag structure."""
+    """SYSTEM_PROMPT delegates tag rules to TAG_ONTOLOGY_RUBRIC."""
     from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
 
-    assert "primary_tag" in SYSTEM_PROMPT
-    assert "secondary_tag" in SYSTEM_PROMPT
-    assert "suggested_new_tag" in SYSTEM_PROMPT
+    assert "TAG_ONTOLOGY_RUBRIC" in SYSTEM_PROMPT
+    assert "PRIMARY_SECONDARY_SEMANTICS" in SYSTEM_PROMPT
+    assert "proposed_types" in SYSTEM_PROMPT
 
 
 def test_system_prompt_includes_extraction_meta() -> None:
@@ -427,3 +427,47 @@ def test_glossary_rubric_includes_extraction_boundaries() -> None:
     assert "flywheel" in GLOSSARY_RUBRIC
     assert "agent-first product design" in GLOSSARY_RUBRIC
     assert "prefer a topic contribution over a glossary term" in GLOSSARY_RUBRIC
+
+
+def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
+    """Built user prompt includes tag ontology, sparsity, and primary/secondary semantics."""
+    from src.ingest_review.providers.openai_provider import (
+        PRIMARY_SECONDARY_SEMANTICS,
+        TAG_ONTOLOGY_RUBRIC,
+        TOOLS_RUBRIC,
+        TOPICS_RUBRIC,
+        _build_user_prompt,
+    )
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-tags"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=["coding-agent"],
+        howto_tags=["rag"],
+        glossary_tags=["evaluation"],
+        topic_tags=["orchestration"],
+        trend_tags=["adoption"],
+        prompt_version="9",
+    )
+    assert TAG_ONTOLOGY_RUBRIC.split("\n")[0] in prompt
+    assert PRIMARY_SECONDARY_SEMANTICS.split("\n")[0] in prompt
+    assert "prefer reusing an existing approved tag" in prompt.lower()
+    assert "gpt-5-4-launch" in prompt
+    assert "Tag sparsity" in prompt
+    assert "TOPIC_TAGS_ALLOWLIST" in TOPICS_RUBRIC
+    assert "at most 2" in TOOLS_RUBRIC

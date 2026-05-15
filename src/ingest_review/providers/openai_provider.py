@@ -59,13 +59,12 @@ quantitative tests.
 
 Prefer fewer high-value proposals over many medium/low proposals.
 
-For tags: use primary_tag (most fitting tag from the relevant allowlist, or "" if none fit), \
-secondary_tag (optional, from the allowlist, or ""), and suggested_new_tag (if a new tag is \
-warranted, in kebab-case; otherwise ""). Maximum 2 tags per proposal.
-For tools items, proposed_types MUST be a subset of the TOOL_TYPES_ALLOWLIST; use [] if none \
-apply and set proposed_new_type if a new type is warranted.
-For foundation_models items, proposed_types MUST be a subset of the MODEL_TYPES_ALLOWLIST; \
-use [] if none apply and set proposed_new_type if a new type is warranted.
+For tags and types: follow TAG_ONTOLOGY_RUBRIC, PRIMARY_SECONDARY_SEMANTICS, and each \
+entity rubric's tag/type addendum. Do not invent source-level tags.
+For tools: proposed_types MUST be a subset of TOOL_TYPES_ALLOWLIST (at most 2 unless \
+genuinely multi-category); first type = primary category, second = optional adjacent role.
+For foundation_models: proposed_types MUST be a subset of MODEL_TYPES_ALLOWLIST (at most 2 \
+unless genuinely multi-category); first = deployment/openness class, second = capability focus.
 
 Always fill extraction_meta with skip_recommended, skip_reason, total_candidates_considered, \
 and review_burden_estimate. If the article contains no durable, wiki-worthy knowledge, \
@@ -168,6 +167,62 @@ quantitative eval evidence is central. Use implementation_case only with real \
 implementation detail. Do not leave evidence_type blank — use unknown if unsure."""
 
 
+TAG_ONTOLOGY_RUBRIC = """\
+## TAG ONTOLOGY (proposal-level routing — NOT source tags)
+
+Tags classify each PROPOSAL for wiki routing and aggregation. They are NOT article labels, \
+marketing phrases, or title echoes.
+
+Mandatory procedure for every tagged proposal:
+1. Read the entity's TAGS or TYPES allowlist section in this prompt.
+2. Pick the best existing tag(s) from that list whenever reasonably possible.
+3. Set primary_tag to the single best match (or "" if none fit).
+4. Set secondary_tag only when a second allowlist tag adds distinct cross-cutting value \
+(or "" otherwise).
+5. Set suggested_new_tag ONLY when no reasonable allowlist match exists after a semantic \
+scan — including checking near-synonyms (e.g. agent-workflow vs agentic-workflows).
+
+Tag sparsity (strict):
+- Most proposals need only primary_tag; leave secondary_tag "" unless clearly warranted.
+- Never use secondary_tag as a synonym or minor variant of primary_tag.
+- Maximum two allowlist tags per proposal (primary + optional secondary).
+- Empty primary_tag and secondary_tag when nothing fits and you are not confident in a \
+new tag under the new-tag gate below.
+
+New-tag gate — suggest suggested_new_tag only if the concept is: distinct, recurring, \
+broad enough for many future sources, and entity-appropriate. Before suggesting, verify \
+no close allowlist match exists.
+
+Anti-patterns (never use as tags): article-specific slugs, launch/event names, vendor \
+marketing ("enterprise-ready"), quality adjectives ("useful", "important"), title fragments \
+("gpt-5-4-launch", "openai-flywheel"). Use kebab-case for suggested_new_tag.
+
+Prefer reusing an existing approved tag whenever reasonably possible."""
+
+
+PRIMARY_SECONDARY_SEMANTICS = """\
+## PRIMARY / SECONDARY SEMANTICS
+
+Domain entities (glossary, topics, trends, how_to, implementation_studies, roundup_signals, \
+interview_insights):
+- primary_tag: the proposal's main strategic or operational domain (e.g. ai-safety, \
+orchestration, evaluation).
+- secondary_tag: optional cross-cutting relationship only when it adds distinct value \
+(e.g. primary orchestration + secondary evaluation). Not a synonym of primary.
+
+Tools (proposed_types list — same ordering spirit, not primary_tag fields):
+- First type in proposed_types: what kind of tool this is (main category).
+- Second type (if any): adjacent operational role or secondary classification.
+- At most 2 types unless the tool is genuinely multi-category.
+
+Foundation models (proposed_types list):
+- First type: deployment / openness / operational profile (e.g. open-weights, api-hosted).
+- Second type (if any): capability specialization (e.g. coding, reasoning, multimodal).
+
+Roundup signals use TREND_TAGS_ALLOWLIST semantics. Interview insights use \
+TOPIC_TAGS_ALLOWLIST semantics."""
+
+
 SOURCE_CHAPTERS_RUBRIC = """## source_summary (required JSON subtree)
 
 Fill every field below from the article. Empty string or [] only when truly absent.
@@ -246,7 +301,10 @@ provenance is "stated", "inferred", or "interpretation"
 implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Voice: concise, direct, practical. Focus on operational reality over marketing \
-claims. Skeptical where warranted. No hype, no LinkedIn tone."""
+claims. Skeptical where warranted. No hype, no LinkedIn tone.
+
+Tag semantics (IMPL_STUDY_TAGS_ALLOWLIST): domain of the implementation case. \
+Follow TAG_ONTOLOGY_RUBRIC."""
 
 
 GLOSSARY_RUBRIC = """\
@@ -317,7 +375,10 @@ argues…"). 1-3 sentences of durable operational/industry relevance.
 implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Voice: clear, practical, accessible. Define for a senior practitioner, \
-not an academic. Prefer operational understanding over theoretical precision."""
+not an academic. Prefer operational understanding over theoretical precision.
+
+Tag semantics (GLOSSARY_TAGS_ALLOWLIST): broad durable domain for routing — \
+not article-specific labels. Follow TAG_ONTOLOGY_RUBRIC and PRIMARY_SECONDARY_SEMANTICS."""
 
 
 TOPICS_RUBRIC = """\
@@ -360,7 +421,10 @@ Avoid: article-specific framing, ultra-narrow topics, hype-driven \
 fragmentation, one-off concepts, duplicate existing topics.
 
 Voice: clear, operational, synthesized. Write as reusable knowledge, \
-not as article commentary."""
+not as article commentary.
+
+Tag semantics (TOPIC_TAGS_ALLOWLIST): strategic/operational domain for the \
+knowledge unit — not the article title. Follow TAG_ONTOLOGY_RUBRIC."""
 
 
 HOWTOS_RUBRIC = """\
@@ -397,7 +461,10 @@ of strings)
 implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Voice: direct, practical, implementation-focused. Write as reusable \
-procedural guidance."""
+procedural guidance.
+
+Tag semantics (HOWTO_TAGS_ALLOWLIST): workflow/implementation area — overlap with \
+topic tags is OK. Follow TAG_ONTOLOGY_RUBRIC."""
 
 
 TRENDS_RUBRIC = """\
@@ -433,7 +500,10 @@ conflicting signals, or limited evidence. Empty string is NOT acceptable
 implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
 Voice: measured, evidence-grounded, explicitly uncertain where warranted. \
-No hype, no certainty theater."""
+No hype, no certainty theater.
+
+Tag semantics (TREND_TAGS_ALLOWLIST): durable industry pattern domain — not \
+headline or vendor campaign labels. Follow TAG_ONTOLOGY_RUBRIC."""
 
 
 TOOLS_RUBRIC = """\
@@ -472,11 +542,11 @@ readiness. Use honest descriptors: "rapidly growing", "niche developer tool", \
 - integration_ecosystem: concrete integrations, APIs, compatibility (list of \
 strings)
 - related_tools: comparable or complementary tools (list of strings)
-- proposed_types: from TOOL_TYPES_ALLOWLIST ONLY. Answer "What kind of thing \
-is this?" — NOT "What is it good for?" A tool can have multiple types. Use [] \
-if no approved type fits
-- proposed_new_type: if no existing type fits, propose ONE new type in \
-kebab-case; null otherwise. The human reviewer approves or rejects
+- proposed_types: from TOOL_TYPES_ALLOWLIST ONLY; at most 2 unless genuinely \
+multi-category. First = primary category, second = optional adjacent role. \
+Answer "What kind of thing is this?" — NOT quality/popularity. Use [] if none fit
+- proposed_new_type: if no existing type fits after checking near-synonyms in \
+the allowlist, propose ONE new type in kebab-case; null otherwise
 - match_candidates: existing tool pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: prefer "append_to_existing" for tools already in the wiki; \
@@ -488,7 +558,10 @@ implementation_case | research_result | expert_opinion | speculative_claim | mix
 Classification rule: types describe WHAT THE TOOL IS, not what it does well. \
 Good: coding-assistant, desktop-app, voice-ai. Bad: productivity, useful, fast.
 
-Voice: clear, operational, skeptical. No hype, no marketing language."""
+Voice: clear, operational, skeptical. No hype, no marketing language.
+
+Type semantics (TOOL_TYPES_ALLOWLIST): what the tool IS — follow \
+PRIMARY_SECONDARY_SEMANTICS for ordering of proposed_types."""
 
 
 MODELS_RUBRIC = """\
@@ -537,10 +610,11 @@ Do NOT create benchmark dumps (list of strings)
 - comparative_observations: comparisons against other models — "stronger coding \
 than X", "cheaper than Y", "faster than Z". Extremely valuable (list of strings)
 - related_models: comparable or complementary models (list of strings)
-- proposed_types: from MODEL_TYPES_ALLOWLIST ONLY. Answer "What kind of model \
-is this?" A model can have multiple types. Use [] if no approved type fits
-- proposed_new_type: if no existing type fits, propose ONE new type in kebab-case; \
-null otherwise
+- proposed_types: from MODEL_TYPES_ALLOWLIST ONLY; at most 2 unless genuinely \
+multi-category. First = deployment/openness profile, second = capability focus. \
+Use [] if no approved type fits
+- proposed_new_type: if no existing type fits after checking near-synonyms in \
+the allowlist, propose ONE new type in kebab-case; null otherwise
 - match_candidates: existing model pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: prefer "append_to_existing" for models already in the wiki; \
@@ -557,7 +631,10 @@ Prioritize observations likely to remain useful 6-12 months after the source's \
 publication date. Transient hype or short-lived benchmark excitement belongs in \
 trends, not model pages.
 
-Voice: clear, operational, skeptical. No hype, no certainty theater."""
+Voice: clear, operational, skeptical. No hype, no certainty theater.
+
+Type semantics (MODEL_TYPES_ALLOWLIST): operational profile — follow \
+PRIMARY_SECONDARY_SEMANTICS for ordering of proposed_types."""
 
 
 SOURCE_TYPE_DETECTION_RUBRIC = """\
@@ -635,7 +712,10 @@ implementation_case | research_result | expert_opinion | speculative_claim | mix
 
 If source is NOT a roundup, return an empty array [].
 
-Voice: clear, operational, durable. No hype."""
+Voice: clear, operational, durable. No hype.
+
+Tag semantics: use TREND_TAGS_ALLOWLIST (same domain vocabulary as industry_trends). \
+Follow TAG_ONTOLOGY_RUBRIC."""
 
 
 INTERVIEW_INSIGHTS_RUBRIC = """\
@@ -687,7 +767,10 @@ implementation_case | research_result | expert_opinion | speculative_claim | mix
 
 If source is NOT an interview/transcript, return an empty array [].
 
-Voice: clear, operational, synthesized. No conversational filler."""
+Voice: clear, operational, synthesized. No conversational filler.
+
+Tag semantics: use TOPIC_TAGS_ALLOWLIST (same domain vocabulary as topics). \
+Follow TAG_ONTOLOGY_RUBRIC."""
 
 
 def _section_regen_rubric(section_key: str) -> str:
@@ -783,6 +866,8 @@ def _build_user_prompt(
         budget_block,
         VALUE_RANKING_RUBRIC,
         EVIDENCE_TYPE_RUBRIC,
+        TAG_ONTOLOGY_RUBRIC,
+        PRIMARY_SECONDARY_SEMANTICS,
         "## EXISTING_GLOSSARY_TERMS\n" + "\n".join(f"- {t}" for t in wiki.glossary_terms[:150]),
         "## EXISTING_TOOL_NAMES\n" + "\n".join(f"- {t}" for t in wiki.tool_names[:200]),
         "## EXISTING_FOUNDATION_MODEL_NAMES\n"

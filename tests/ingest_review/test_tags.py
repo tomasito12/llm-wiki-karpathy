@@ -6,6 +6,8 @@ from pathlib import Path
 
 from src.ingest_review.tags import (
     append_tags_to_yaml,
+    build_tag_select_options,
+    find_similar_tags,
     load_glossary_tags,
     load_impl_study_tags,
     load_model_types,
@@ -13,6 +15,7 @@ from src.ingest_review.tags import (
     load_tool_types,
     load_topic_tags,
     load_trend_tags,
+    normalize_tag,
 )
 
 
@@ -202,3 +205,42 @@ def test_load_model_types_empty_returns_empty(tmp_path: Path) -> None:
     (cfg / "review_model_types.yaml").write_text("tags: []\n", encoding="utf-8")
     types = load_model_types(tmp_path)
     assert types == []
+
+
+def test_normalize_tag_kebab_case() -> None:
+    """normalize_tag lowercases, strips, and hyphenates."""
+    assert normalize_tag("Foo Bar") == "foo-bar"
+    assert normalize_tag("  AI_Safety  ") == "ai-safety"
+    assert normalize_tag("") == ""
+
+
+def test_find_similar_tags_detects_prefix_family() -> None:
+    """Near-duplicate detection flags overlapping token families."""
+    allowlist = ["agent-workflow", "evaluation", "rag"]
+    similar = find_similar_tags("agentic-workflows", allowlist)
+    assert "agent-workflow" in similar
+
+
+def test_find_similar_tags_exact_match_returns_empty() -> None:
+    """Exact allowlist match does not trigger similar-tag warnings."""
+    allowlist = ["orchestration"]
+    assert find_similar_tags("orchestration", allowlist) == []
+
+
+def test_build_tag_select_options_includes_orphan_llm_tags() -> None:
+    """Select options include allowlist plus LLM values not on the list."""
+    opts = build_tag_select_options(
+        ["rag", "evaluation"],
+        {"primary_tag": "orphan-tag", "secondary_tag": ""},
+    )
+    assert opts[0] == ""
+    assert "rag" in opts
+    assert "orphan-tag" in opts
+
+
+def test_append_tags_to_yaml_normalizes_new_tags(tmp_path: Path) -> None:
+    """New tags are normalized before append."""
+    p = tmp_path / "tags.yaml"
+    p.write_text("tags:\n  - alpha\n", encoding="utf-8")
+    append_tags_to_yaml(p, ["Foo Bar"])
+    assert "foo-bar" in load_tag_list(p)

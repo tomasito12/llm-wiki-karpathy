@@ -6,8 +6,10 @@ import logging
 from typing import Any
 
 from src.ingest_review.dashboard_ui import (
+    format_proposed_tags_caption,
     human_evidence_type_label,
     render_proposal_evidence_type_editor,
+    render_proposal_tag_review,
 )
 from src.ingest_review.schema import TOPIC_REVIEWABLE_LIST_KEYS, TOPIC_REVIEWABLE_SCALAR_KEYS
 
@@ -57,6 +59,7 @@ def _render_compact_card(
     idx: int,
     *,
     key_prefix: str,
+    topic_tags: list[str],
 ) -> None:
     """Render a compact read-only proposal card with action buttons."""
     value_level = str(llm_item.get("value_level") or "medium").upper()
@@ -71,11 +74,9 @@ def _render_compact_card(
     if summary:
         st.text(summary[:2000] + ("\u2026" if len(summary) > 2000 else ""))
 
-    primary = str(llm_item.get("primary_tag") or "")
-    secondary = str(llm_item.get("secondary_tag") or "")
-    tag_parts = [t for t in (primary, secondary) if t]
-    if tag_parts:
-        st.caption(f"Tags: {', '.join(tag_parts)}")
+    tag_caption = format_proposed_tags_caption(llm_item, node.get("tags") or {}, topic_tags)
+    if tag_caption:
+        st.caption(tag_caption)
 
     cols = st.columns(4)
     pfx = f"{key_prefix}_act"
@@ -168,36 +169,13 @@ def _render_edit_mode(
     if related:
         st.caption(f"Related topics: {', '.join(str(r) for r in related)}")
 
-    st.markdown("#### Tags")
     tag_node = node.setdefault(
         "tags",
         {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
     )
-    llm_primary = str(llm_item.get("primary_tag") or "")
-    llm_secondary = str(llm_item.get("secondary_tag") or "")
-    tag_node["final_primary_tag"] = st.text_input(
-        "Primary tag",
-        value=str(tag_node.get("final_primary_tag") or llm_primary),
-        key=f"{key_prefix}_tag_primary",
+    render_proposal_tag_review(
+        st, llm_item, tag_node, topic_tags, key_prefix=key_prefix, entity_kind="domain"
     )
-    tag_node["final_secondary_tag"] = st.text_input(
-        "Secondary tag",
-        value=str(tag_node.get("final_secondary_tag") or llm_secondary),
-        key=f"{key_prefix}_tag_secondary",
-    )
-    llm_new_tag = str(llm_item.get("suggested_new_tag") or "")
-    suggested = st.text_input(
-        "Suggested new tag",
-        value=llm_new_tag,
-        key=f"{key_prefix}_tag_new",
-        disabled=True,
-    )
-    if suggested:
-        tag_node["new_tag_approved"] = st.checkbox(
-            f"Approve new tag: {suggested}",
-            value=bool(tag_node.get("new_tag_approved")),
-            key=f"{key_prefix}_tag_new_approve",
-        )
 
     render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
 
@@ -248,7 +226,7 @@ def render_topic_proposals(
 
         auto_expand = value_level == "high"
         with st.expander(f"Topic: {title}", expanded=auto_expand):
-            _render_compact_card(st, node, llm_item, i, key_prefix=pfx)
+            _render_compact_card(st, node, llm_item, i, key_prefix=pfx, topic_tags=tags_list)
             editing = st.session_state.get(f"{pfx}_act_editing", False)
             if editing:
                 _render_edit_mode(st, node, llm_item, key_prefix=pfx, topic_tags=tags_list)
@@ -264,7 +242,7 @@ def render_topic_proposals(
                 )
                 pfx = f"{key_prefix}_tp_low{j}"
                 st.markdown("---")
-                _render_compact_card(st, node, llm_item, j, key_prefix=pfx)
+                _render_compact_card(st, node, llm_item, j, key_prefix=pfx, topic_tags=tags_list)
                 editing = st.session_state.get(f"{pfx}_act_editing", False)
                 if editing:
                     _render_edit_mode(st, node, llm_item, key_prefix=pfx, topic_tags=tags_list)

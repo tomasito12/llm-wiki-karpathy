@@ -13,6 +13,28 @@ from src.ingest_review.schema import (
     SOURCE_SUMMARY_SCALAR_KEYS,
     normalize_evidence_type,
 )
+from src.ingest_review.tags import (
+    build_tag_select_options,
+    find_similar_tags,
+    normalize_tag,
+)
+
+EntityKind = str  # "domain" | "tool" | "model"
+
+TAG_ROLE_HINTS: dict[str, tuple[str, str]] = {
+    "domain": (
+        "Main strategic domain",
+        "Cross-cutting relationship (optional)",
+    ),
+    "tool": (
+        "Main tool category",
+        "Operational role or adjacent classification (optional)",
+    ),
+    "model": (
+        "Deployment / openness class",
+        "Capability specialization (optional)",
+    ),
+}
 
 STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
 
@@ -22,6 +44,116 @@ PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
 def human_evidence_type_label(raw: object) -> str:
     """Title-case evidence type for display (e.g. ``vendor_claim`` → Vendor Claim)."""
     return normalize_evidence_type(raw).replace("_", " ").title()
+
+
+def format_proposed_tags_caption(
+    llm_item: dict[str, Any],
+    tag_node: dict[str, Any] | None,
+    allowlist: list[str],
+) -> str | None:
+    """Compact caption for primary/secondary tags with allowlist vs proposed-new provenance."""
+    allow_set = {normalize_tag(t) for t in allowlist}
+    shown: set[str] = set()
+    parts: list[str] = []
+    for llm_key, final_key in (
+        ("primary_tag", "final_primary_tag"),
+        ("secondary_tag", "final_secondary_tag"),
+    ):
+        raw = ""
+        if tag_node:
+            raw = str(tag_node.get(final_key) or "")
+        if not raw:
+            raw = str(llm_item.get(llm_key) or "")
+        norm = normalize_tag(raw)
+        if not norm or norm in shown:
+            continue
+        shown.add(norm)
+        provenance = "allowlist" if norm in allow_set else "outside allowlist"
+        parts.append(f"{norm} ({provenance})")
+    suggested = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
+    if suggested and suggested not in shown:
+        parts.append(f"{suggested} (suggested new)")
+    if not parts:
+        return None
+    return "Tags: " + " · ".join(parts)
+
+
+def render_similar_tags_warning(
+    st: Any,
+    candidate: str,
+    allowlist: list[str],
+    *,
+    key_prefix: str,
+) -> None:
+    """Warn when a suggested new tag may duplicate an existing allowlist entry."""
+    norm = normalize_tag(candidate)
+    if not norm:
+        return
+    similar = find_similar_tags(norm, allowlist)
+    if similar:
+        st.warning(
+            "Similar existing tags: "
+            + ", ".join(f"`{t}`" for t in similar)
+            + " — prefer reusing an allowlist tag if one fits."
+        )
+
+
+def render_proposal_tag_review(
+    st: Any,
+    llm_item: dict[str, Any],
+    tag_node: dict[str, Any],
+    allowlist: list[str],
+    *,
+    key_prefix: str,
+    entity_kind: EntityKind = "domain",
+) -> None:
+    """Shared allowlist selectboxes for primary/secondary + new-tag approval."""
+    st.markdown("**Tags**")
+    primary_hint, secondary_hint = TAG_ROLE_HINTS.get(entity_kind, TAG_ROLE_HINTS["domain"])
+    options = build_tag_select_options(allowlist, llm_item)
+
+    llm_primary = normalize_tag(str(llm_item.get("primary_tag") or ""))
+    llm_secondary = normalize_tag(str(llm_item.get("secondary_tag") or ""))
+    suggested_new = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
+
+    primary_default = normalize_tag(str(tag_node.get("final_primary_tag") or "")) or llm_primary
+    secondary_default = (
+        normalize_tag(str(tag_node.get("final_secondary_tag") or "")) or llm_secondary
+    )
+
+    primary_idx = options.index(primary_default) if primary_default in options else 0
+    secondary_idx = options.index(secondary_default) if secondary_default in options else 0
+
+    tag_node["final_primary_tag"] = (
+        st.selectbox(
+            f"Primary tag — {primary_hint}",
+            options=options,
+            index=primary_idx,
+            key=f"{key_prefix}_tag_primary",
+        )
+        or None
+    )
+
+    tag_node["final_secondary_tag"] = (
+        st.selectbox(
+            f"Secondary tag — {secondary_hint}",
+            options=options,
+            index=secondary_idx,
+            key=f"{key_prefix}_tag_secondary",
+        )
+        or None
+    )
+
+    if suggested_new:
+        render_similar_tags_warning(st, suggested_new, allowlist, key_prefix=key_prefix)
+        st.caption(f"LLM suggested new tag: `{suggested_new}`")
+        tag_node["new_tag_approved"] = st.checkbox(
+            f"Approve new tag: `{suggested_new}`",
+            value=bool(tag_node.get("new_tag_approved")),
+            key=f"{key_prefix}_tag_new_approve",
+        )
+    else:
+        st.caption("No new tag suggested by LLM.")
 
 
 def render_proposal_evidence_type_editor(

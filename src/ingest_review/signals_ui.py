@@ -8,6 +8,7 @@ from typing import Any
 from src.ingest_review.dashboard_ui import (
     human_evidence_type_label,
     render_proposal_evidence_type_editor,
+    render_proposal_tag_review,
 )
 from src.ingest_review.schema import (
     SIGNAL_REVIEWABLE_LIST_KEYS,
@@ -202,54 +203,9 @@ def _render_tag_panel(
     key_prefix: str,
 ) -> None:
     """Render tag review panel with final_primary_tag / final_secondary_tag."""
-    st.markdown("##### Tags")
-    llm_primary = llm_item.get("primary_tag") or ""
-    llm_secondary = llm_item.get("secondary_tag") or ""
-    llm_new = llm_item.get("suggested_new_tag") or ""
-    disp_primary = llm_primary or "\u2014"
-    disp_secondary = llm_secondary or "\u2014"
-
-    if llm_primary or llm_secondary:
-        st.caption(f"LLM suggested: primary={disp_primary}, secondary={disp_secondary}")
-
-    options = [""] + list(trend_tags)
-    for t in (llm_primary, llm_secondary):
-        if t and t not in options:
-            options.append(t)
-
-    current_primary = tag_node.get("final_primary_tag") or llm_primary or ""
-    primary_idx = options.index(current_primary) if current_primary in options else 0
-    tag_node["final_primary_tag"] = (
-        st.selectbox(
-            "Final primary tag",
-            options=options,
-            index=primary_idx,
-            key=f"{key_prefix}_sig_primary_tag",
-        )
-        or None
+    render_proposal_tag_review(
+        st, llm_item, tag_node, trend_tags, key_prefix=key_prefix, entity_kind="domain"
     )
-
-    current_secondary = tag_node.get("final_secondary_tag") or llm_secondary or ""
-    secondary_idx = options.index(current_secondary) if current_secondary in options else 0
-    tag_node["final_secondary_tag"] = (
-        st.selectbox(
-            "Final secondary tag",
-            options=options,
-            index=secondary_idx,
-            key=f"{key_prefix}_sig_secondary_tag",
-        )
-        or None
-    )
-
-    if llm_new:
-        st.info(f"LLM proposed new tag: **{llm_new}**")
-        tag_node["new_tag_approved"] = st.checkbox(
-            f"Approve new tag: {llm_new}",
-            value=bool(tag_node.get("new_tag_approved")),
-            key=f"{key_prefix}_sig_new_tag_approve",
-        )
-    else:
-        tag_node["new_tag_approved"] = False
 
 
 def render_roundup_signals(

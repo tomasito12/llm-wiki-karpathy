@@ -8,8 +8,10 @@ from typing import Any
 
 from src.ingest_review.artifact import aggregate_impl_study_section_status
 from src.ingest_review.dashboard_ui import (
+    format_proposed_tags_caption,
     human_evidence_type_label,
     render_proposal_evidence_type_editor,
+    render_proposal_tag_review,
 )
 from src.ingest_review.schema import (
     GLOSSARY_REVIEWABLE_LIST_KEYS,
@@ -86,7 +88,7 @@ def _render_proposal_card(
         st.markdown("**Proposed definition**")
         st.text(definition[:4000] + ("…" if len(definition) > 4000 else ""))
 
-        _render_tag_summary(st, llm_item, node)
+        _render_tag_summary(st, llm_item, node, glossary_tags)
 
         _render_action_buttons(st, node, key_prefix=key_prefix)
 
@@ -107,23 +109,13 @@ def _render_tag_summary(
     st: Any,
     llm_item: dict[str, Any],
     node: dict[str, Any],
+    glossary_tags: list[str],
 ) -> None:
     """Show tags as read-only text in the default card view."""
     tag_node = node.get("tags") or {}
-    primary = tag_node.get("final_primary_tag") or llm_item.get("primary_tag") or ""
-    secondary = tag_node.get("final_secondary_tag") or llm_item.get("secondary_tag") or ""
-    suggested_new = llm_item.get("suggested_new_tag") or ""
-    parts: list[str] = []
-    if primary:
-        parts.append(f"`{primary}`")
-    if secondary:
-        parts.append(f"`{secondary}`")
-    if suggested_new:
-        approved = tag_node.get("new_tag_approved", False)
-        suffix = " ✓" if approved else " (proposed)"
-        parts.append(f"`{suggested_new}`{suffix}")
-    if parts:
-        st.markdown(f"**Tags:** {' · '.join(parts)}")
+    caption = format_proposed_tags_caption(llm_item, tag_node, glossary_tags)
+    if caption:
+        st.caption(caption)
 
 
 def _render_action_buttons(
@@ -192,7 +184,13 @@ def _render_edit_panel(
             _render_editable_list(st, llm_item, sections, section_key=lk, key_prefix=key_prefix)
 
         st.divider()
-        _render_tag_edit_panel(st, llm_item, node, glossary_tags, key_prefix=key_prefix)
+        tag_node = node.setdefault(
+            "tags",
+            {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
+        )
+        render_proposal_tag_review(
+            st, llm_item, tag_node, glossary_tags, key_prefix=key_prefix, entity_kind="domain"
+        )
         render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
 
 
@@ -265,68 +263,6 @@ def _render_editable_list(
         node["final_list"] = None
         if node["status"] == "modified":
             node["status"] = "pending"
-
-
-def _render_tag_edit_panel(
-    st: Any,
-    llm_item: dict[str, Any],
-    node: dict[str, Any],
-    glossary_tags: list[str],
-    *,
-    key_prefix: str,
-) -> None:
-    """Render tag editing: 2 dropdowns + 1 text input for suggested new tag."""
-    st.markdown("**Tags**")
-    tag_node = node.setdefault(
-        "tags",
-        {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
-    )
-
-    llm_primary = llm_item.get("primary_tag") or ""
-    llm_secondary = llm_item.get("secondary_tag") or ""
-    suggested_new = llm_item.get("suggested_new_tag") or ""
-
-    options_with_empty = [""] + glossary_tags
-    primary_default = tag_node.get("final_primary_tag") or llm_primary
-    secondary_default = tag_node.get("final_secondary_tag") or llm_secondary
-
-    primary_idx = (
-        options_with_empty.index(primary_default) if primary_default in options_with_empty else 0
-    )
-    secondary_idx = (
-        options_with_empty.index(secondary_default)
-        if secondary_default in options_with_empty
-        else 0
-    )
-
-    tag_node["final_primary_tag"] = (
-        st.selectbox(
-            "Primary tag",
-            options=options_with_empty,
-            index=primary_idx,
-            key=f"{key_prefix}_tag_primary",
-        )
-        or None
-    )
-
-    tag_node["final_secondary_tag"] = (
-        st.selectbox(
-            "Secondary tag",
-            options=options_with_empty,
-            index=secondary_idx,
-            key=f"{key_prefix}_tag_secondary",
-        )
-        or None
-    )
-
-    if suggested_new:
-        tag_node["new_tag_approved"] = st.checkbox(
-            f"Approve new tag: `{suggested_new}`",
-            value=bool(tag_node.get("new_tag_approved")),
-            key=f"{key_prefix}_tag_new_approve",
-        )
-    else:
-        st.caption("No new tag suggested by LLM.")
 
 
 def _render_source_evidence(

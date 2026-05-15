@@ -8,6 +8,7 @@ from typing import Any
 from src.ingest_review.dashboard_ui import (
     human_evidence_type_label,
     render_proposal_evidence_type_editor,
+    render_similar_tags_warning,
 )
 from src.ingest_review.schema import TOOL_REVIEWABLE_LIST_KEYS, TOOL_REVIEWABLE_SCALAR_KEYS
 
@@ -75,7 +76,13 @@ def _render_compact_card(
 
     proposed_types = llm_item.get("proposed_types") or []
     if proposed_types:
-        st.caption(f"Types: {', '.join(str(t) for t in proposed_types)}")
+        primary = str(proposed_types[0])
+        cap = f"Types: `{primary}` (primary)"
+        if len(proposed_types) > 1:
+            cap += f" · `{proposed_types[1]}` (secondary)"
+        if len(proposed_types) > 2:
+            cap += f" +{len(proposed_types) - 2} more"
+        st.caption(cap)
 
     cols = st.columns(4)
     pfx = f"{key_prefix}_act"
@@ -116,7 +123,7 @@ def _render_type_panel(
     default_sel = [t for t in (current_approved or proposed) if t in tool_types]
     if tool_types:
         chosen = st.multiselect(
-            "Approved types (from registry)",
+            "Approved types (from registry) — first = primary category, second = adjacent role",
             options=tool_types,
             default=default_sel,
             key=f"{key_prefix}_types_select",
@@ -129,6 +136,9 @@ def _render_type_panel(
     llm_new_type = llm_item.get("proposed_new_type") or ""
     existing_proposed = types_node.get("proposed_new_type") or llm_new_type
     if existing_proposed:
+        render_similar_tags_warning(
+            st, str(existing_proposed), tool_types, key_prefix=f"{key_prefix}_type"
+        )
         st.info(f"LLM proposed new type: **{existing_proposed}**")
         approved = st.checkbox(
             "Approve this new type",
