@@ -76,33 +76,59 @@ def human_evidence_type_label(raw: object) -> str:
     return normalize_evidence_type(raw).replace("_", " ").title()
 
 
+def _caption_tag_list(tag_node: dict[str, Any], llm_item: dict[str, Any]) -> list[str]:
+    raw = tag_node.get("final_tags")
+    if isinstance(raw, list) and raw:
+        return [normalize_tag(str(t)) for t in raw if normalize_tag(str(t))]
+    legacy: list[str] = []
+    for key in ("final_primary_tag", "final_secondary_tag"):
+        t = normalize_tag(str(tag_node.get(key) or ""))
+        if t and t not in legacy:
+            legacy.append(t)
+    if legacy:
+        return legacy
+    proposed = llm_item.get("proposed_tags")
+    if isinstance(proposed, list) and proposed:
+        return [normalize_tag(str(t)) for t in proposed if normalize_tag(str(t))]
+    for key in ("primary_tag", "secondary_tag"):
+        t = normalize_tag(str(llm_item.get(key) or ""))
+        if t and t not in legacy:
+            legacy.append(t)
+    return legacy
+
+
+def _caption_suggested_new(llm_item: dict[str, Any]) -> list[str]:
+    raw = llm_item.get("suggested_new_tags")
+    if isinstance(raw, list) and raw:
+        out = [normalize_tag(str(t)) for t in raw if normalize_tag(str(t))]
+    else:
+        out = []
+    legacy = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
+    if legacy and legacy not in out:
+        out.insert(0, legacy)
+    return out
+
+
 def format_proposed_tags_caption(
     llm_item: dict[str, Any],
     tag_node: dict[str, Any] | None,
     allowlist: list[str],
 ) -> str | None:
-    """Compact caption for primary/secondary tags with allowlist vs proposed-new provenance."""
+    """Compact caption for multi-tag routing with allowlist vs proposed-new provenance."""
     allow_set = {normalize_tag(t) for t in allowlist}
+    tag_node = tag_node or {}
     shown: set[str] = set()
     parts: list[str] = []
-    for llm_key, final_key in (
-        ("primary_tag", "final_primary_tag"),
-        ("secondary_tag", "final_secondary_tag"),
-    ):
-        raw = ""
-        if tag_node:
-            raw = str(tag_node.get(final_key) or "")
-        if not raw:
-            raw = str(llm_item.get(llm_key) or "")
-        norm = normalize_tag(raw)
-        if not norm or norm in shown:
+    for t in _caption_tag_list(tag_node, llm_item):
+        if not t or t in shown:
             continue
-        shown.add(norm)
-        provenance = "allowlist" if norm in allow_set else "outside allowlist"
-        parts.append(f"{norm} ({provenance})")
-    suggested = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
-    if suggested and suggested not in shown:
-        parts.append(f"{suggested} (suggested new)")
+        shown.add(t)
+        provenance = "allowlist" if t in allow_set else "outside allowlist"
+        parts.append(f"{t} ({provenance})")
+    for sug in _caption_suggested_new(llm_item):
+        if sug and sug not in shown:
+            shown.add(sug)
+            parts.append(f"{sug} (suggested new)")
     if not parts:
         return None
     return "Tags: " + " · ".join(parts)

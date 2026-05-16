@@ -1,0 +1,1085 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-16T19:47:02+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "26",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgFFypT6pJC9zz6Zs3ZIFamL4yMG3",
+    "token_usage": {
+      "completion_tokens": 4108,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 29835,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 33943
+    }
+  },
+  "artifact_schema_version": 14,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.97,
+        "evidence_type": "mixed",
+        "extended_explanation": "A harness is the practical wrapper around an AI model that gives it direction and limits. It can include instructions, project context, file conventions, tests, review steps, and allowed tools. Without a harness, an agent is more likely to guess, invent missing details, or take actions that do not fit the system. In production settings, the harness often matters as much as the model because it determines whether the agent can work safely and repeatably.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "A harness is the set of constraints, documentation, feedback loops, and permissions that shapes how an AI agent works. In agent systems, it acts as the surrounding control layer that makes model output more reliable and easier to verify.",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_terms": [
+          "context window"
+        ],
+        "relevance_note": "This term is durable because any agentic system needs some combination of guardrails, state, and verification. It is especially relevant in conversational AI, coding agents, and workflow automation where correctness depends on the surrounding process, not just model capability.",
+        "secondary_tag": "",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The harness is everything that isn\u2019t the model itself. It\u2019s the constraints that keep the agent on track, the feedback loops that catch mistakes, the documentation that tells the agent where it is and what\u2019s already been done, and the tools it has permission to use.",
+        "term": "Harness",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": "expert_opinion",
+        "extended_explanation": "Feedforward controls try to prevent mistakes before they happen. Examples include architecture guidelines, task templates, specification documents, and project context files. In agent systems, these controls are useful when the model needs to know the state of the world before generating output. They are usually strongest when paired with feedback controls that check whether the guidance actually worked.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "Feedforward controls are guides or constraints applied before an AI agent acts. They shape the agent\u2019s behavior in advance by providing structure, rules, or context.",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_terms": [
+          "Harness"
+        ],
+        "relevance_note": "This matters because many agent failures come from starting with weak or incomplete context. In production AI systems, feedforward controls reduce hallucinated file paths, bad assumptions, and work that drifts from project conventions.",
+        "secondary_tag": "",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The first axis: feedforward (guides that anticipate agent behavior before execution) versus feedback (sensors that observe results and enable self-correction).",
+        "term": "Feedforward",
+        "value_level": "medium"
+      }
+    ],
+    "how_to": [
+      {
+        "answer_summary": "Start by putting the important project context in files the agent will actually read, such as repo-level instructions and progress trackers. Add simple checks that catch structural mistakes before they spread, then add a separate review step for outputs that tests cannot judge well. Keep work small and incremental so the agent can finish one unit before moving on to the next. Revisit each control over time and remove anything that no longer changes quality. The best setup is one that helps the agent stay grounded and can be simplified as the model improves.",
+        "caveats": "This is not a one-time setup. The source stresses that harness components can become dead weight as models improve, so the procedure needs periodic pruning. It also warns that tests can confirm correctness without confirming whether the output is actually good.",
+        "confidence": 0.95,
+        "evidence_type": "mixed",
+        "implementation_steps": [
+          "Write repo-local instruction files that capture conventions, architecture decisions, and current state.",
+          "Add progress tracking so the agent knows what is already complete and what remains.",
+          "Use structural tests and CI checks to enforce dependency rules and other project constraints.",
+          "Separate planning from implementation so the plan can be reviewed before code is written.",
+          "Add a second evaluation step for outputs that need semantic judgment, not just compilation checks.",
+          "Periodically disable each harness component and measure whether quality changes before keeping it."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A codebase or workflow with enough structure to encode rules and progress.",
+          "A test or validation pipeline the agent can run.",
+          "A place to store project context that is visible to the agent across sessions."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "agents-tooling"
+        ],
+        "question_title": "Agent Harness Design",
+        "related_howtos": [],
+        "secondary_tag": "agents-tooling",
+        "suggested_action": "create_new_page",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "What does the agent need to know before it writes a single line of code? The answer, it turns out, is a lot. Where it is in the codebase, what\u2019s already been done, what \u201cgood\u201d looks like, what\u2019s off limits, and how to verify its own work.",
+        "value_level": "high",
+        "what_and_problem": "This is about setting up the rules, notes, checks, and permissions that help an AI agent do real work safely. It solves the problem that a model alone often lacks project context, can miss constraints, and can produce output that looks plausible but does not fit the system. The goal is to make the agent reliable enough for production work without having a human inspect every line or step. It is most useful when the work spans multiple files, multiple sessions, or multiple checks."
+      }
+    ],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "The case suggests that agent performance improves when the model operates inside a strongly structured codebase with embedded context and automatic validation.",
+        "business_objective": "Ship a production app at scale while keeping agent-generated code reviewable and reliable.",
+        "company": "OpenAI",
+        "confidence": 0.82,
+        "deployment_context": "A production mobile app build for Sora Android, with the article stating four engineers worked for 28 days.",
+        "evidence_snippets": [
+          {
+            "claim": "OpenAI shipped code with agents writing it inside a harness-driven environment.",
+            "provenance": "stated",
+            "snippet": "The post described how a small team shipped one million lines of production code without writing a single line by hand."
+          },
+          {
+            "claim": "The Sora Android build involved four engineers over 28 days and reached a top app-store position.",
+            "provenance": "stated",
+            "snippet": "The proof it worked came from the Sora Android build. Four engineers, 28 days, roughly 5 billion tokens consumed, and the app hit #1 on the Play Store with a 99.9% crash-free rate."
+          }
+        ],
+        "evidence_type": "mixed",
+        "implications_for_service_automation": "The source does not give a direct service automation case, but the same control pattern would matter for any automated workflow where the system must act consistently over many steps.",
+        "industry": "mobile app development",
+        "key_lessons": [
+          "Put project context where the agent will read it at session start.",
+          "Use structural constraints to make output reviewable at scale.",
+          "Automate validation so humans review the harness more than each line of code."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How much of this pattern transfers to smaller codebases with less architectural rigidity?",
+          "How much of the result depended on the specific Codex setup versus the broader harness concept?"
+        ],
+        "operational_constraints": "The team could not review every line manually at this scale, and the approach depended on being able to define the environment comprehensively.",
+        "outcome_status": "The article says the app hit #1 on the Play Store and achieved a 99.9% crash-free rate.",
+        "overview": "OpenAI\u2019s Codex team used a harness-driven workflow to ship the Sora Android build with agents writing the production code. The human role was to design the environment, constraints, and verification layers rather than hand-write the codebase.",
+        "primary_tag": "service-automation",
+        "proposed_tags": [
+          "service-automation",
+          "enterprise-ai-adoption"
+        ],
+        "related_sources": [
+          "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a"
+        ],
+        "secondary_tag": "enterprise-ai-adoption",
+        "strategic_signals": "Environment design can substitute for line-by-line human review when the agent is doing most of the implementation work.",
+        "success_or_failure_factors": "The harness made the codebase legible to the agent and encoded architectural constraints mechanically. The article also implies that the environment-first approach worked because the team could design the structure upfront.",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "technical_approach": "The source says the team used AGENT.md files across the repo, strict dependency flows from Types to UI, structural tests, and CI/CD pipelines that validated every change automatically.",
+        "title": "OpenAI Codex Sora Android Build",
+        "value_level": "medium",
+        "what_was_implemented": "AGENT.md files, dependency flow rules, structural tests, CI/CD validation, and repo-embedded documentation for agent work."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-27",
+        "confidence": 0.87,
+        "evidence_from_source": "The source argues that Opus 4.6 and Opus 4.7 made parts of earlier harnesses unnecessary, and that teams like Manus, LangChain, and Vercel refactored or removed controls as model capability improved.",
+        "evidence_type": "mixed",
+        "match_candidates": [],
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance"
+        ],
+        "related_trends": [],
+        "secondary_tag": "",
+        "suggested_action": "create_new_page",
+        "suggested_new_tag": "ai-infrastructure",
+        "suggested_new_tags": [
+          "ai-infrastructure"
+        ],
+        "supporting_data_points": [
+          "Opus 4.6 removed sprint decomposition and single-pass evaluation replaced per-sprint grading.",
+          "Opus 4.7 was said to self-verify outputs before reporting back and produce fewer tool errors.",
+          "Manus refactored their harness five times in six months.",
+          "Vercel removed 80% of their agent\u2019s tools and got better performance."
+        ],
+        "supporting_snippet": "A harness component that was load-bearing in March was dead weight by April.",
+        "time_sensitivity": "Actionable as of 2026-04-27, but highly model-version-sensitive; the exact shape of the trend can change with the next model release.",
+        "trend_description": "As foundation models improve, the surrounding harness can become simpler because some controls stop adding value. Teams may need to remove once-useful prompts, evaluators, or scaffolding when newer models internalize more of the needed behavior. The practical risk is carrying dead weight in the form of extra latency, cost, and maintenance.",
+        "trend_slug": "harness-decay",
+        "trend_title": "Harness Decay",
+        "uncertainty_note": "The source presents several compelling examples, but they come from a single article and from vendor/practitioner reports rather than a broad independent survey. The pattern is plausible, yet the exact pace and extent of harness simplification remain uncertain.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_summary": {
+      "accessible_overview": "This article is about how people guide AI agents so they do useful work instead of drifting off course. The author says the important job is no longer only writing code by hand, but also setting up the rules, notes, checks, and tools that the AI uses. It compares three different ways of doing that: one built around the codebase itself, one built around multiple AI agents with separate jobs, and one built as a framework for classifying controls. The common idea is that an AI agent works better when it knows where it is, what has already been done, and how to check its own work. The article also says that these setups can be expensive and may need to change as the models get better. That means a harness should be useful, but also easy to remove if it stops helping. For builders, the main lesson is that reliable AI software depends as much on good structure as on a strong model. As of 2026-04-27, the article treats harness design as a practical engineering discipline, not a theory exercise.",
+      "assessed_as_of": "2026-04-27",
+      "contradictions_and_skepticism": "The article\u2019s strongest claims are persuasive but still partly vendor-framed: the best-supported examples come from teams describing their own systems. The \u201cbuild to delete\u201d idea is compelling, but the source does not show a general rule for when a harness component has truly become unnecessary. The comparison between harness styles also risks overstating architectural purity, because real systems often mix environment controls, evaluators, and documentation patterns. The article acknowledges that behavior verification remains weak and that current AI-generated tests can be inadequate, which is an important constraint rather than a solved problem.",
+      "key_insights": [
+        "Grounding agents in the actual codebase outperforms abstract instructions when the agent must write production code.",
+        "Separating planning from execution is a recurring pattern across different harness designs.",
+        "Feedback loops are treated as mandatory; feedforward-only guidance is not enough.",
+        "Harness components should be modular and removable because model improvements can make earlier controls obsolete.",
+        "The codebase itself becomes the agent's documentation and continuity layer."
+      ],
+      "limitations_and_open_questions": "The source relies heavily on vendor blog posts, company papers, and quoted practitioner commentary, so it is rich in operational detail but thin on independent replication. Several numbers are presented as comparisons without full experimental methodology in the article itself, including cost, time, and benchmark gains. The article also mixes product-specific evidence with a broader framework, which makes it hard to separate durable patterns from temporary implementation choices. A major open question is how much of the harness can be standardized across teams versus needing project-specific design. Another open question is whether the more elaborate multi-agent approach will remain worth its cost as models improve further. The service-automation implications are plausible but not deeply evidenced in the source.",
+      "sources": [
+        "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a"
+      ],
+      "summary": "The article argues that harness engineering is the discipline of designing the environment around AI agents so they can produce reliable work, especially code. It defines a harness as the constraints, feedback loops, documentation, and tool permissions that shape agent behavior, then compares three approaches: OpenAI\u2019s environment-first harness, Anthropic\u2019s multi-agent harness, and ThoughtWorks\u2019 taxonomy for classifying controls. The source emphasizes that independent teams converged on the same basics: ground agents in real project state, separate planning from execution, add feedback loops, and keep work incremental. It also argues that harnesses are expensive to build and maintain, but that they can shrink as models improve, so teams should design them to be removable. The practical conclusion is that the best AI engineers are increasingly the ones designing constraints, not writing every line themselves.",
+      "why_it_matters": "The piece is useful because it turns a vague idea about \u201cbetter prompts\u201d into an operational model for building agent systems. It shows concrete harness artifacts such as AGENT.md files, JSON feature lists, sprint contracts, structural tests, and CI pipelines, which are the kinds of controls an AI engineer can actually implement. It also gives a useful way to think about trade-offs: environment-first harnesses favor scale and upfront structure, multi-agent harnesses favor correctness, and taxonomy-based harnesses help teams reason about missing controls. The comparison is strongest where it shows independent convergence across OpenAI, Anthropic, ThoughtWorks, and Red Hat on the same design principles. The evidence is still mostly from vendor and practitioner accounts rather than broad independent validation, so the claims are operationally interesting but not definitive. For service automation, the article matters less directly than it does for coding agents, but the same control ideas map to any workflow where an agent must remember state, verify outputs, and hand off safely. As of 2026-04-27, the advice to build constraints that can later be deleted looks practical and durable, while the exact architectures are still evolving."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent long-form argument rather than a bundle of unrelated items.",
+        "Includes quoted third-party frameworks and examples, but not a transcript or a tool roundup.",
+        "Structured as an analysis piece comparing architectures and trade-offs."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": "mixed",
+        "examples": "",
+        "key_points": [
+          "Repo-local documentation can be more useful to an agent than a separate knowledge base.",
+          "Good harnesses make the current state of work visible across sessions.",
+          "Validation should check both correctness and fit to project conventions.",
+          "Harnesses need a removal plan because model capability changes over time."
+        ],
+        "knowledge_summary": "Agent systems work better when the surrounding environment is designed as carefully as the model prompt. Useful harnesses combine context, constraints, progress state, and verification so the agent can act with less guesswork and fewer silent failures. The most durable pattern is to make the agent work inside a project structure that exposes what is already done, what is allowed, and how success will be checked. Harnesses should also be modular, because model improvements can make older controls unnecessary.",
+        "match_candidates": [],
+        "operational_insight": "Treat harness work as systems design: encode context in the repo, enforce constraints mechanically, and add validation steps that separate execution from judgment.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters long term because every production agent depends on some version of these controls, whether it is a coding assistant, support workflow, or back-office automation system. The pattern helps teams move from prompt-only experiments to systems that can be audited, verified, and maintained.",
+        "secondary_tag": "",
+        "suggested_action": "create_new_page",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The harness is the codebase itself. AGENT.md files provide context. Structural tests enforce architectural rules mechanically. Dependency flows ... prevent agents from building things in the wrong order.",
+        "topic_slug": "agent-harness-design",
+        "topic_title": "Agent Harness Design",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": "mixed",
+        "examples": "",
+        "key_points": [
+          "Feedback-only or feedforward-only systems are incomplete.",
+          "A separate evaluator is easier to make skeptical than a generator is to make self-critical.",
+          "Semantic checks are slower and costlier, so they should usually sit behind cheaper checks.",
+          "Evaluation should reflect the user-facing behavior, not only internal code correctness."
+        ],
+        "knowledge_summary": "Reliable agent workflows usually need a separate mechanism for checking outputs after or during execution. Deterministic tests catch structural mistakes, while semantic reviewers or human-like evaluators catch issues that compile but still fail in practice. The most effective setups layer these checks instead of relying on one type of feedback alone. Evaluation also works better when the evaluator is distinct from the generator.",
+        "match_candidates": [],
+        "operational_insight": "Use layered feedback: start with fast deterministic checks, then add semantic review for usability, correctness, and behavior that tests miss.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is durable because agent systems regularly fail in ways that unit tests do not catch. The same pattern applies to conversational flows, orchestration, and service automation where a result can be technically valid but still unusable.",
+        "secondary_tag": "",
+        "suggested_action": "append_to_existing",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The disagreement isn\u2019t about whether you need feedback. It\u2019s about who provides it. OpenAI uses automated tests and CI. Anthropic uses another LLM. ThoughtWorks says use both, layered: computational feedback first ... inferential feedback second ...",
+        "topic_slug": "agent-evaluation-loops",
+        "topic_title": "Agent Evaluation Loops",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": "mixed",
+          "extended_explanation": "A harness is the practical wrapper around an AI model that gives it direction and limits. It can include instructions, project context, file conventions, tests, review steps, and allowed tools. Without a harness, an agent is more likely to guess, invent missing details, or take actions that do not fit the system. In production settings, the harness often matters as much as the model because it determines whether the agent can work safely and repeatably.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "A harness is the set of constraints, documentation, feedback loops, and permissions that shapes how an AI agent works. In agent systems, it acts as the surrounding control layer that makes model output more reliable and easier to verify.",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_terms": [
+            "context window"
+          ],
+          "relevance_note": "This term is durable because any agentic system needs some combination of guardrails, state, and verification. It is especially relevant in conversational AI, coding agents, and workflow automation where correctness depends on the surrounding process, not just model capability.",
+          "secondary_tag": "",
+          "suggested_action": "create",
+          "suggested_new_tag": "agent-orchestration",
+          "suggested_new_tags": [
+            "agent-orchestration",
+            "agent-control-layer"
+          ],
+          "supporting_snippet": "The harness is everything that isn\u2019t the model itself. It\u2019s the constraints that keep the agent on track, the feedback loops that catch mistakes, the documentation that tells the agent where it is and what\u2019s already been done, and the tools it has permission to use.",
+          "term": "Harness",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "0a7e70b2-0dfa-44c5-aebd-c5fe52a39529",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "context window"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": "expert_opinion",
+          "extended_explanation": "Feedforward controls try to prevent mistakes before they happen. Examples include architecture guidelines, task templates, specification documents, and project context files. In agent systems, these controls are useful when the model needs to know the state of the world before generating output. They are usually strongest when paired with feedback controls that check whether the guidance actually worked.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "Feedforward controls are guides or constraints applied before an AI agent acts. They shape the agent\u2019s behavior in advance by providing structure, rules, or context.",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_terms": [
+            "Harness"
+          ],
+          "relevance_note": "This matters because many agent failures come from starting with weak or incomplete context. In production AI systems, feedforward controls reduce hallucinated file paths, bad assumptions, and work that drifts from project conventions.",
+          "secondary_tag": "",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "The first axis: feedforward (guides that anticipate agent behavior before execution) versus feedback (sensors that observe results and enable self-correction).",
+          "term": "Feedforward",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "a5d037bf-6812-416b-bfa3-49b1f34a8df1",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Harness"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by putting the important project context in files the agent will actually read, such as repo-level instructions and progress trackers. Add simple checks that catch structural mistakes before they spread, then add a separate review step for outputs that tests cannot judge well. Keep work small and incremental so the agent can finish one unit before moving on to the next. Revisit each control over time and remove anything that no longer changes quality. The best setup is one that helps the agent stay grounded and can be simplified as the model improves.",
+          "caveats": "This is not a one-time setup. The source stresses that harness components can become dead weight as models improve, so the procedure needs periodic pruning. It also warns that tests can confirm correctness without confirming whether the output is actually good.",
+          "confidence": 0.95,
+          "evidence_type": "mixed",
+          "implementation_steps": [
+            "Write repo-local instruction files that capture conventions, architecture decisions, and current state.",
+            "Add progress tracking so the agent knows what is already complete and what remains.",
+            "Use structural tests and CI checks to enforce dependency rules and other project constraints.",
+            "Separate planning from implementation so the plan can be reviewed before code is written.",
+            "Add a second evaluation step for outputs that need semantic judgment, not just compilation checks.",
+            "Periodically disable each harness component and measure whether quality changes before keeping it."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A codebase or workflow with enough structure to encode rules and progress.",
+            "A test or validation pipeline the agent can run.",
+            "A place to store project context that is visible to the agent across sessions."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "agents-tooling"
+          ],
+          "question_title": "Agent Harness Design",
+          "related_howtos": [],
+          "secondary_tag": "agents-tooling",
+          "suggested_action": "create_new_page",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "What does the agent need to know before it writes a single line of code? The answer, it turns out, is a lot. Where it is in the codebase, what\u2019s already been done, what \u201cgood\u201d looks like, what\u2019s off limits, and how to verify its own work.",
+          "value_level": "high",
+          "what_and_problem": "This is about setting up the rules, notes, checks, and permissions that help an AI agent do real work safely. It solves the problem that a model alone often lacks project context, can miss constraints, and can produce output that looks plausible but does not fit the system. The goal is to make the agent reliable enough for production work without having a human inspect every line or step. It is most useful when the work spans multiple files, multiple sessions, or multiple checks."
+        },
+        "notes": null,
+        "proposal_id": "cb650b85-e9b8-4321-b6a6-94e5981e4f2b",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Write repo-local instruction files that capture conventions, architecture decisions, and current state.",
+              "Add progress tracking so the agent knows what is already complete and what remains.",
+              "Use structural tests and CI checks to enforce dependency rules and other project constraints.",
+              "Separate planning from implementation so the plan can be reviewed before code is written.",
+              "Add a second evaluation step for outputs that need semantic judgment, not just compilation checks.",
+              "Periodically disable each harness component and measure whether quality changes before keeping it."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A codebase or workflow with enough structure to encode rules and progress.",
+              "A test or validation pipeline the agent can run.",
+              "A place to store project context that is visible to the agent across sessions."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "The case suggests that agent performance improves when the model operates inside a strongly structured codebase with embedded context and automatic validation.",
+          "business_objective": "Ship a production app at scale while keeping agent-generated code reviewable and reliable.",
+          "company": "OpenAI",
+          "confidence": 0.82,
+          "deployment_context": "A production mobile app build for Sora Android, with the article stating four engineers worked for 28 days.",
+          "evidence_snippets": [
+            {
+              "claim": "OpenAI shipped code with agents writing it inside a harness-driven environment.",
+              "provenance": "stated",
+              "snippet": "The post described how a small team shipped one million lines of production code without writing a single line by hand."
+            },
+            {
+              "claim": "The Sora Android build involved four engineers over 28 days and reached a top app-store position.",
+              "provenance": "stated",
+              "snippet": "The proof it worked came from the Sora Android build. Four engineers, 28 days, roughly 5 billion tokens consumed, and the app hit #1 on the Play Store with a 99.9% crash-free rate."
+            }
+          ],
+          "evidence_type": "mixed",
+          "implications_for_service_automation": "The source does not give a direct service automation case, but the same control pattern would matter for any automated workflow where the system must act consistently over many steps.",
+          "industry": "mobile app development",
+          "key_lessons": [
+            "Put project context where the agent will read it at session start.",
+            "Use structural constraints to make output reviewable at scale.",
+            "Automate validation so humans review the harness more than each line of code."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How much of this pattern transfers to smaller codebases with less architectural rigidity?",
+            "How much of the result depended on the specific Codex setup versus the broader harness concept?"
+          ],
+          "operational_constraints": "The team could not review every line manually at this scale, and the approach depended on being able to define the environment comprehensively.",
+          "outcome_status": "The article says the app hit #1 on the Play Store and achieved a 99.9% crash-free rate.",
+          "overview": "OpenAI\u2019s Codex team used a harness-driven workflow to ship the Sora Android build with agents writing the production code. The human role was to design the environment, constraints, and verification layers rather than hand-write the codebase.",
+          "primary_tag": "service-automation",
+          "proposed_tags": [
+            "service-automation",
+            "enterprise-ai-adoption"
+          ],
+          "related_sources": [
+            "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a"
+          ],
+          "secondary_tag": "enterprise-ai-adoption",
+          "strategic_signals": "Environment design can substitute for line-by-line human review when the agent is doing most of the implementation work.",
+          "success_or_failure_factors": "The harness made the codebase legible to the agent and encoded architectural constraints mechanically. The article also implies that the environment-first approach worked because the team could design the structure upfront.",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "technical_approach": "The source says the team used AGENT.md files across the repo, strict dependency flows from Types to UI, structural tests, and CI/CD pipelines that validated every change automatically.",
+          "title": "OpenAI Codex Sora Android Build",
+          "value_level": "medium",
+          "what_was_implemented": "AGENT.md files, dependency flow rules, structural tests, CI/CD validation, and repo-embedded documentation for agent work."
+        },
+        "notes": null,
+        "proposal_id": "7c4fada6-94cb-413c-83cc-659042c6af11",
+        "proposal_status": "approved",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "company": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Put project context where the agent will read it at session start.",
+              "Use structural constraints to make output reviewable at scale.",
+              "Automate validation so humans review the harness more than each line of code."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How much of this pattern transfers to smaller codebases with less architectural rigidity?",
+              "How much of the result depended on the specific Codex setup versus the broader harness concept?"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-27",
+          "confidence": 0.87,
+          "evidence_from_source": "The source argues that Opus 4.6 and Opus 4.7 made parts of earlier harnesses unnecessary, and that teams like Manus, LangChain, and Vercel refactored or removed controls as model capability improved.",
+          "evidence_type": "mixed",
+          "match_candidates": [],
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance"
+          ],
+          "related_trends": [],
+          "secondary_tag": "",
+          "suggested_action": "create_new_page",
+          "suggested_new_tag": "ai-infrastructure",
+          "suggested_new_tags": [
+            "ai-infrastructure"
+          ],
+          "supporting_data_points": [
+            "Opus 4.6 removed sprint decomposition and single-pass evaluation replaced per-sprint grading.",
+            "Opus 4.7 was said to self-verify outputs before reporting back and produce fewer tool errors.",
+            "Manus refactored their harness five times in six months.",
+            "Vercel removed 80% of their agent\u2019s tools and got better performance."
+          ],
+          "supporting_snippet": "A harness component that was load-bearing in March was dead weight by April.",
+          "time_sensitivity": "Actionable as of 2026-04-27, but highly model-version-sensitive; the exact shape of the trend can change with the next model release.",
+          "trend_description": "As foundation models improve, the surrounding harness can become simpler because some controls stop adding value. Teams may need to remove once-useful prompts, evaluators, or scaffolding when newer models internalize more of the needed behavior. The practical risk is carrying dead weight in the form of extra latency, cost, and maintenance.",
+          "trend_slug": "harness-decay",
+          "trend_title": "Harness Decay",
+          "uncertainty_note": "The source presents several compelling examples, but they come from a single article and from vendor/practitioner reports rather than a broad independent survey. The pattern is plausible, yet the exact pace and extent of harness simplification remain uncertain.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "1ebde6af-727b-49d8-b3b9-12a50b71e1df",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Opus 4.6 removed sprint decomposition and single-pass evaluation replaced per-sprint grading.",
+              "Opus 4.7 was said to self-verify outputs before reporting back and produce fewer tool errors.",
+              "Manus refactored their harness five times in six months.",
+              "Vercel removed 80% of their agent\u2019s tools and got better performance."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Grounding agents in the actual codebase outperforms abstract instructions when the agent must write production code.",
+          "Separating planning from execution is a recurring pattern across different harness designs.",
+          "Feedback loops are treated as mandatory; feedforward-only guidance is not enough.",
+          "Harness components should be modular and removable because model improvements can make earlier controls obsolete.",
+          "The codebase itself becomes the agent's documentation and continuity layer."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent long-form argument rather than a bundle of unrelated items.",
+          "Includes quoted third-party frameworks and examples, but not a transcript or a tool roundup.",
+          "Structured as an analysis piece comparing architectures and trade-offs."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": "mixed",
+          "examples": "",
+          "key_points": [
+            "Repo-local documentation can be more useful to an agent than a separate knowledge base.",
+            "Good harnesses make the current state of work visible across sessions.",
+            "Validation should check both correctness and fit to project conventions.",
+            "Harnesses need a removal plan because model capability changes over time."
+          ],
+          "knowledge_summary": "Agent systems work better when the surrounding environment is designed as carefully as the model prompt. Useful harnesses combine context, constraints, progress state, and verification so the agent can act with less guesswork and fewer silent failures. The most durable pattern is to make the agent work inside a project structure that exposes what is already done, what is allowed, and how success will be checked. Harnesses should also be modular, because model improvements can make older controls unnecessary.",
+          "match_candidates": [],
+          "operational_insight": "Treat harness work as systems design: encode context in the repo, enforce constraints mechanically, and add validation steps that separate execution from judgment.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters long term because every production agent depends on some version of these controls, whether it is a coding assistant, support workflow, or back-office automation system. The pattern helps teams move from prompt-only experiments to systems that can be audited, verified, and maintained.",
+          "secondary_tag": "",
+          "suggested_action": "create_new_page",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "The harness is the codebase itself. AGENT.md files provide context. Structural tests enforce architectural rules mechanically. Dependency flows ... prevent agents from building things in the wrong order.",
+          "topic_slug": "agent-harness-design",
+          "topic_title": "Agent Harness Design",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "0577a907-58b6-4be9-8792-bb35a759f67b",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Repo-local documentation can be more useful to an agent than a separate knowledge base.",
+              "Good harnesses make the current state of work visible across sessions.",
+              "Validation should check both correctness and fit to project conventions.",
+              "Harnesses need a removal plan because model capability changes over time."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": "mixed",
+          "examples": "",
+          "key_points": [
+            "Feedback-only or feedforward-only systems are incomplete.",
+            "A separate evaluator is easier to make skeptical than a generator is to make self-critical.",
+            "Semantic checks are slower and costlier, so they should usually sit behind cheaper checks.",
+            "Evaluation should reflect the user-facing behavior, not only internal code correctness."
+          ],
+          "knowledge_summary": "Reliable agent workflows usually need a separate mechanism for checking outputs after or during execution. Deterministic tests catch structural mistakes, while semantic reviewers or human-like evaluators catch issues that compile but still fail in practice. The most effective setups layer these checks instead of relying on one type of feedback alone. Evaluation also works better when the evaluator is distinct from the generator.",
+          "match_candidates": [],
+          "operational_insight": "Use layered feedback: start with fast deterministic checks, then add semantic review for usability, correctness, and behavior that tests miss.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is durable because agent systems regularly fail in ways that unit tests do not catch. The same pattern applies to conversational flows, orchestration, and service automation where a result can be technically valid but still unusable.",
+          "secondary_tag": "",
+          "suggested_action": "append_to_existing",
+          "suggested_new_tag": "agent-evaluation",
+          "suggested_new_tags": [
+            "agent-evaluation"
+          ],
+          "supporting_snippet": "The disagreement isn\u2019t about whether you need feedback. It\u2019s about who provides it. OpenAI uses automated tests and CI. Anthropic uses another LLM. ThoughtWorks says use both, layered: computational feedback first ... inferential feedback second ...",
+          "topic_slug": "agent-evaluation-loops",
+          "topic_title": "Agent Evaluation Loops",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e7e15408-a354-44bd-a549-f79413fd1160",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Feedback-only or feedforward-only systems are incomplete.",
+              "A separate evaluator is easier to make skeptical than a generator is to make self-critical.",
+              "Semantic checks are slower and costlier, so they should usually sit behind cheaper checks.",
+              "Evaluation should reflect the user-facing behavior, not only internal code correctness."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": "2026-05-16T19:47:02.851716+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-16T19:53:31+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Yanli Liu",
+    "canonical_url": "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a",
+    "content_sha256": "14b1d7a9da5ad369719cb9c4c9f325d01f66bfe79bd54379de9108b69951911f",
+    "publication": null,
+    "published_date": "2026-04-27",
+    "raw_html_rel_path": "raw/readwise/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.html",
+    "raw_md_rel_path": "raw/readwise/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.md",
+    "source_id": "harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx",
+    "title": "Harness Engineering: What Every AI Engineer Needs to Know in 2026"
+  }
+}

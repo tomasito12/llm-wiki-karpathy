@@ -11,12 +11,35 @@ from src.ingest_review.paths import repo_root
 
 _TAG_SLUG_RE = re.compile(r"[^a-z0-9]+")
 
+MAX_PROPOSED_TAGS = 5
+
 
 def normalize_tag(raw: str) -> str:
     """Normalize a tag slug: lowercase kebab-case, stripped."""
     s = raw.strip().lower().replace("_", "-")
     s = _TAG_SLUG_RE.sub("-", s)
     return s.strip("-")
+
+
+def normalize_tag_list(
+    raw: list[str] | None,
+    *,
+    cap: int = MAX_PROPOSED_TAGS,
+) -> list[str]:
+    """Dedupe normalized tags; preserve order; apply *cap* when positive."""
+    if not raw:
+        return []
+    out: list[str] = []
+    seen: set[str] = set()
+    for item in raw:
+        nt = normalize_tag(str(item))
+        if not nt or nt in seen:
+            continue
+        seen.add(nt)
+        out.append(nt)
+        if cap > 0 and len(out) >= cap:
+            break
+    return out
 
 
 def _tag_tokens(tag: str) -> set[str]:

@@ -6,8 +6,12 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-ARTIFACT_SCHEMA_VERSION = 13
-PROMPT_VERSION = "25"
+from src.ingest_review.tags import MAX_PROPOSED_TAGS as _MAX_PROPOSED_TAGS
+from src.ingest_review.tags import normalize_tag, normalize_tag_list
+
+ARTIFACT_SCHEMA_VERSION = 14
+PROMPT_VERSION = "26"
+MAX_PROPOSED_TAGS = 5
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
 MatchKind = Literal["exact", "fuzzy", "none"]
@@ -165,12 +169,60 @@ class SectionRegenerateOutput(BaseModel):
 
 
 class GlossaryTagSuggestOutput(BaseModel):
-    """LLM suggestion for one glossary routing tag not covered by the allowlist."""
+    """LLM suggestion for registry tag(s) not covered by the allowlist."""
 
     suggested_tag: str = Field(
         "",
         description="Single kebab-case tag slug, or empty if no new tag is warranted.",
     )
+    suggested_tags: list[str] = Field(
+        default_factory=list,
+        description="Optional list form; merged with suggested_tag on validate.",
+    )
+
+    @model_validator(mode="after")
+    def _merge_suggested_tags(self) -> GlossaryTagSuggestOutput:
+        tags = normalize_tag_list(self.suggested_tags, cap=0)
+        single = normalize_tag(self.suggested_tag)
+        if single and single not in tags:
+            tags.insert(0, single)
+        object.__setattr__(self, "suggested_tags", tags)
+        object.__setattr__(self, "suggested_tag", tags[0] if tags else "")
+        return self
+
+
+def _coerce_multitag_proposal_data(data: Any) -> Any:
+    """Before-validator: build proposed_tags / suggested_new_tags from legacy scalars."""
+    if not isinstance(data, dict):
+        return data
+    out = dict(data)
+    proposed = out.get("proposed_tags")
+    if not isinstance(proposed, list) or not proposed:
+        legacy: list[str] = []
+        for key in ("primary_tag", "secondary_tag"):
+            t = normalize_tag(str(out.get(key) or ""))
+            if t and t not in legacy:
+                legacy.append(t)
+        proposed = legacy
+    out["proposed_tags"] = normalize_tag_list(proposed, cap=_MAX_PROPOSED_TAGS)
+
+    snt = out.get("suggested_new_tags")
+    if not isinstance(snt, list) or not snt:
+        snt = []
+        sn = normalize_tag(str(out.get("suggested_new_tag") or ""))
+        if sn:
+            snt = [sn]
+    out["suggested_new_tags"] = normalize_tag_list(snt, cap=0)
+
+    pts: list[str] = out["proposed_tags"]
+    out["primary_tag"] = pts[0] if pts else normalize_tag(str(out.get("primary_tag") or ""))
+    out["secondary_tag"] = (
+        pts[1] if len(pts) > 1 else normalize_tag(str(out.get("secondary_tag") or ""))
+    )
+    sns: list[str] = out["suggested_new_tags"]
+    if sns and not normalize_tag(str(out.get("suggested_new_tag") or "")):
+        out["suggested_new_tag"] = sns[0]
+    return out
 
 
 class GlossaryProposal(BaseModel):
@@ -185,6 +237,8 @@ class GlossaryProposal(BaseModel):
         description="Durable industry/operational relevance — NOT article-specific context.",
     )
     related_terms: list[str] = Field(default_factory=list)
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -193,6 +247,11 @@ class GlossaryProposal(BaseModel):
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType = "unknown"
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
     @field_validator("term", mode="before")
     @classmethod
@@ -242,6 +301,8 @@ class TopicContribution(BaseModel):
         description="Kebab-case topic_slug cross-references to other topic pages — "
         "never TOPIC_TAGS_ALLOWLIST routing tags.",
     )
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -250,6 +311,11 @@ class TopicContribution(BaseModel):
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType = "unknown"
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
 
 TOPIC_SCALAR_KEYS: tuple[str, ...] = (
@@ -541,6 +607,8 @@ class HowToProposal(BaseModel):
     implementation_steps: list[str] = Field(default_factory=list)
     prerequisites: list[str] = Field(default_factory=list)
     related_howtos: list[str] = Field(default_factory=list)
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -549,6 +617,11 @@ class HowToProposal(BaseModel):
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType = "unknown"
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
 
 HOWTO_SCALAR_KEYS: tuple[str, ...] = (
@@ -607,6 +680,8 @@ class ImplementationStudyProposal(BaseModel):
     open_questions: list[str] = Field(default_factory=list)
     related_sources: list[str] = Field(default_factory=list)
     evidence_snippets: list[EvidenceSnippet] = Field(default_factory=list)
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -615,6 +690,11 @@ class ImplementationStudyProposal(BaseModel):
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType = "unknown"
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
 
 IMPL_STUDY_SCALAR_KEYS: tuple[str, ...] = (
@@ -667,6 +747,8 @@ class IndustryTrendProposal(BaseModel):
         default_factory=list,
         description="Kebab-case trend_slug cross-references to other trend pages.",
     )
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -675,6 +757,11 @@ class IndustryTrendProposal(BaseModel):
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType = "unknown"
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
 
 TREND_SCALAR_KEYS: tuple[str, ...] = (
@@ -772,6 +859,8 @@ class RoundupSignal(BaseModel):
         description="Source publication date; anchors all temporal judgments in this block.",
     )
 
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -780,6 +869,11 @@ class RoundupSignal(BaseModel):
     evidence_snippets: list[str] = Field(default_factory=list)
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType = "unknown"
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
 
 SIGNAL_SCALAR_KEYS: tuple[str, ...] = (
@@ -822,6 +916,8 @@ class InterviewInsight(BaseModel):
         description="Source publication date; anchors all temporal judgments in this block.",
     )
 
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -831,6 +927,11 @@ class InterviewInsight(BaseModel):
     evidence_snippets: list[str] = Field(default_factory=list)
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType = "unknown"
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
 
 INSIGHT_SCALAR_KEYS: tuple[str, ...] = (

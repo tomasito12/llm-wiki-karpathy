@@ -11,7 +11,11 @@ import streamlit as streamlit_runtime
 from src.ingest_review.dashboard_ui import (
     human_evidence_type_label,
     render_proposal_evidence_type_editor,
-    render_similar_tags_warning,
+)
+from src.ingest_review.domain_tag_ui import (
+    DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
+    apply_registry_types_ui_to_node,
+    render_registry_types_section,
 )
 from src.ingest_review.proposal_decision_ui import (
     proposal_status_label,
@@ -25,6 +29,7 @@ from src.ingest_review.proposal_regen_ui import (
     render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import MODEL_REVIEWABLE_LIST_KEYS, MODEL_REVIEWABLE_SCALAR_KEYS
+from src.ingest_review.tags import normalize_tag
 
 VALUE_LEVEL_ORDER: dict[str, int] = {"high": 0, "medium": 1, "low": 2}
 
@@ -272,64 +277,6 @@ def _prepare_model_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
     return sorted(model_nodes, key=_sort_key)
 
 
-def _render_type_panel(
-    st: Any,
-    node: dict[str, Any],
-    llm_item: dict[str, Any],
-    model_types: list[str],
-    *,
-    key_prefix: str,
-) -> None:
-    """Render the model types editing panel (types system, not tags)."""
-    types_node = node.setdefault(
-        "types",
-        {
-            "approved_types": [],
-            "proposed_new_type": None,
-            "approved_new_type": False,
-        },
-    )
-    current_approved = types_node.get("approved_types") or []
-    proposed = llm_item.get("proposed_types") or []
-    default_sel = [t for t in (current_approved or proposed) if t in model_types]
-    if model_types:
-        chosen = st.multiselect(
-            "Approved types — first = deployment/openness, second = capability focus",
-            options=model_types,
-            default=default_sel,
-            key=f"{key_prefix}_types_select",
-        )
-    else:
-        st.caption("Model type registry is empty.")
-        chosen = []
-    types_node["approved_types"] = chosen
-
-    llm_new_type = llm_item.get("proposed_new_type") or ""
-    existing_proposed = types_node.get("proposed_new_type") or llm_new_type
-    if existing_proposed:
-        render_similar_tags_warning(
-            st, str(existing_proposed), model_types, key_prefix=f"{key_prefix}_type"
-        )
-        st.info(f"LLM proposed new type: **{existing_proposed}**")
-        approved = st.checkbox(
-            "Approve this new type",
-            value=bool(types_node.get("approved_new_type")),
-            key=f"{key_prefix}_new_type_approve",
-        )
-        types_node["proposed_new_type"] = existing_proposed
-        types_node["approved_new_type"] = approved
-    else:
-        types_node["proposed_new_type"] = None
-        types_node["approved_new_type"] = False
-
-    extra = st.text_input(
-        "Manually add types (comma-separated)",
-        value=", ".join(types_node.get("reviewer_types_added") or []),
-        key=f"{key_prefix}_types_extra",
-    )
-    types_node["reviewer_types_added"] = [x.strip() for x in extra.split(",") if x.strip()]
-
-
 def _on_save_model_proposal(
     proposal_id: str,
     key_prefix: str,
@@ -370,6 +317,8 @@ def _render_model_edit_box(
     key_prefix: str,
     source_id: str,
     artifact_path: Path,
+    model: str = "",
+    prompt_version: str = "",
 ) -> None:
     """One bordered edit box per model proposal."""
     llm_item = node.get("llm_item") or {}
@@ -410,8 +359,22 @@ def _render_model_edit_box(
         if related:
             st.caption(f"Related models: {', '.join(str(r) for r in related)}")
 
-        st.markdown("#### Model types")
-        _render_type_panel(st, node, llm_item, model_types, key_prefix=key_prefix)
+        tag_allow = {normalize_tag(str(t)) for t in model_types if str(t).strip()}
+        type_ui = render_registry_types_section(
+            st,
+            node,
+            model_types,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            review_list_key="foundation_models",
+            label_widget_key=f"{key_prefix}_edit_model_name",
+            summary_widget_key=f"{key_prefix}_edit_operational_summary",
+            llm_fallback_label_key="model_name",
+            llm_fallback_summary_key="operational_summary",
+            section_title="Model types",
+        )
         render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
 
         proposal_id = str(node.get("proposal_id") or "")
@@ -426,6 +389,7 @@ def _render_model_edit_box(
         )
 
         def _save() -> None:
+            apply_registry_types_ui_to_node(node, llm_item, type_ui, tag_allow)
             _on_save_model_proposal(str(node.get("proposal_id") or ""), key_prefix, artifact_path)
 
         render_proposal_decision_bar(
@@ -451,6 +415,7 @@ def render_model_proposals(
 ) -> None:
     """Two-column model review: read-only catalog left, edit panel right."""
     types_list = model_types or []
+    streamlit_runtime.session_state[DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY] = list(types_list)
     st.subheader("Foundation models")
     sorted_nodes = _prepare_model_nodes(artifact)
     if not sorted_nodes:
@@ -503,6 +468,8 @@ def render_model_proposals(
                 key_prefix=pfx,
                 source_id=source_id,
                 artifact_path=artifact_path,
+                model=model,
+                prompt_version=prompt_version,
             )
 
 
@@ -512,19 +479,27 @@ def collect_model_new_tags(artifact: dict[str, Any]) -> list[str]:
 
 
 def collect_model_new_types(artifact: dict[str, Any]) -> list[str]:
-    """Return all approved new types + manually added types across model proposals."""
+    """Return approved new model types for YAML export."""
+    from src.ingest_review.tags import normalize_tag
+
     review = artifact.get("review") or {}
     types: list[str] = []
     for node in review.get("foundation_models") or []:
         if not isinstance(node, dict):
             continue
         types_node = node.get("types") or {}
-        if types_node.get("approved_new_type") and types_node.get("proposed_new_type"):
-            t = str(types_node["proposed_new_type"]).strip()
+        for raw in types_node.get("approved_new_types") or []:
+            t = normalize_tag(str(raw))
             if t and t not in types:
                 types.append(t)
-        for t in types_node.get("reviewer_types_added") or []:
+        if types_node.get("approved_new_type") and types_node.get("proposed_new_type"):
+            t = normalize_tag(str(types_node["proposed_new_type"]))
             if t and t not in types:
+                types.append(t)
+        llm_item = node.get("llm_item") or {}
+        for raw in llm_item.get("suggested_new_tags") or []:
+            t = normalize_tag(str(raw))
+            if t and t not in types and types_node.get("approved_new_type"):
                 types.append(t)
     return types
 

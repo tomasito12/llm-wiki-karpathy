@@ -165,7 +165,7 @@ def test_format_glossary_term_readonly_hides_offlist_llm_tags_without_final() ->
 def test_format_glossary_term_readonly_shows_final_offlist_tag() -> None:
     """Reviewer final tag is shown even when not yet on the allowlist."""
     node = _sample_node()
-    node["tags"] = {"final_primary_tag": "custom-slug"}
+    node["tags"] = {"final_tags": ["custom-slug"]}
     md = format_glossary_term_readonly_markdown(node, ["rag"])
     assert "**Tags**" in md
     assert "custom-slug" in md
@@ -177,7 +177,7 @@ def test_collect_glossary_new_tags_normalizes_suggested() -> None:
         "review": {
             "glossary": [
                 {
-                    "tags": {"new_tag_approved": True},
+                    "tags": {"approved_new_tags": ["my-tag"]},
                     "llm_item": {"suggested_new_tag": "  My Tag  "},
                 }
             ]

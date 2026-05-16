@@ -429,14 +429,14 @@ def test_openai_suggest_glossary_review_tag_parses_json() -> None:
     fake_client = MagicMock()
     fake_client.chat.completions.create.return_value = _Completion()
     prov = OpenAIIngestionProvider(client=fake_client)
-    tag, meta = prov.suggest_domain_review_tag(
+    tags, meta = prov.suggest_domain_review_tag(
         entity_label="RAG",
         context_summary="Retrieval augments context.",
         allowlist=["orchestration", "evaluation"],
         model="gpt-test",
         prompt_version="9",
     )
-    assert tag == "graph-rag"
+    assert tags == ["graph-rag"]
     assert meta["request_id"] == "cmpl-tag-suggest"
 
 
@@ -462,14 +462,14 @@ def test_openai_suggest_glossary_review_tag_strips_allowlist_collision() -> None
     fake_client = MagicMock()
     fake_client.chat.completions.create.return_value = _Completion()
     prov = OpenAIIngestionProvider(client=fake_client)
-    tag, _meta = prov.suggest_domain_review_tag(
+    tags, _meta = prov.suggest_domain_review_tag(
         entity_label="T",
         context_summary="D",
         allowlist=["orchestration"],
         model="gpt-test",
         prompt_version="1",
     )
-    assert tag == ""
+    assert tags == []
 
 
 def test_rubrics_mention_suggested_new_tag() -> None:
@@ -491,7 +491,12 @@ def test_rubrics_mention_suggested_new_tag() -> None:
         ("ROUNDUP_SIGNALS_RUBRIC", ROUNDUP_SIGNALS_RUBRIC),
         ("INTERVIEW_INSIGHTS_RUBRIC", INTERVIEW_INSIGHTS_RUBRIC),
     ]:
-        assert "suggested_new_tag" in rubric, f"{name} missing suggested_new_tag"
+        assert "proposed_tags" in rubric or "TAG_ONTOLOGY_RUBRIC" in rubric, (
+            f"{name} missing proposed_tags / TAG_ONTOLOGY_RUBRIC"
+        )
+        assert "suggested_new_tags" in rubric or "TAG_ONTOLOGY_RUBRIC" in rubric, (
+            f"{name} missing suggested_new_tags / TAG_ONTOLOGY_RUBRIC"
+        )
 
 
 def test_system_prompt_mentions_tag_structure() -> None:
@@ -499,7 +504,7 @@ def test_system_prompt_mentions_tag_structure() -> None:
     from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
 
     assert "TAG_ONTOLOGY_RUBRIC" in SYSTEM_PROMPT
-    assert "PRIMARY_SECONDARY_SEMANTICS" in SYSTEM_PROMPT
+    assert "REGISTRY_TYPES_SEMANTICS" in SYSTEM_PROMPT
     assert "proposed_types" in SYSTEM_PROMPT
 
 
@@ -626,9 +631,9 @@ def test_glossary_rubric_includes_extraction_boundaries() -> None:
 
 
 def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
-    """Built user prompt includes tag ontology, sparsity, and primary/secondary semantics."""
+    """Built user prompt includes tag ontology and registry types semantics."""
     from src.ingest_review.providers.openai_provider import (
-        PRIMARY_SECONDARY_SEMANTICS,
+        REGISTRY_TYPES_SEMANTICS,
         TAG_ONTOLOGY_RUBRIC,
         TOOLS_RUBRIC,
         TOPICS_RUBRIC,
@@ -661,12 +666,12 @@ def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
         prompt_version="9",
     )
     assert TAG_ONTOLOGY_RUBRIC.split("\n")[0] in prompt
-    assert PRIMARY_SECONDARY_SEMANTICS.split("\n")[0] in prompt
-    assert "prefer reusing an existing approved tag" in prompt.lower()
+    assert REGISTRY_TYPES_SEMANTICS.split("\n")[0] in prompt
+    assert "prefer reusing existing allowlist tags" in prompt.lower()
     assert "gpt-5-4-launch" in prompt
-    assert "Tag sparsity" in prompt
+    assert "proposed_tags" in TAG_ONTOLOGY_RUBRIC
     assert "TOPIC_TAGS_ALLOWLIST" in TOPICS_RUBRIC
-    assert "at most 2" in TOOLS_RUBRIC
+    assert "proposed_types" in TOOLS_RUBRIC
 
 
 def test_source_chapters_rubric_includes_accessible_overview() -> None:
@@ -801,11 +806,20 @@ def test_system_prompt_howto_titles_are_page_names() -> None:
     assert "HOWTOS_RUBRIC" in SYSTEM_PROMPT
 
 
-def test_prompt_version_is_25() -> None:
-    """Prompt version bumped for multi-entity proposal regeneration."""
+def test_prompt_version_is_26() -> None:
+    """Prompt version bumped for multi-tag routing."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "25"
+    assert PROMPT_VERSION == "26"
+
+
+def test_tag_ontology_rubric_uses_proposed_tags() -> None:
+    """TAG_ONTOLOGY_RUBRIC describes multi-tag proposed_tags, not primary/secondary cap."""
+    from src.ingest_review.providers.openai_provider import TAG_ONTOLOGY_RUBRIC
+
+    assert "proposed_tags" in TAG_ONTOLOGY_RUBRIC
+    assert "suggested_new_tags" in TAG_ONTOLOGY_RUBRIC
+    assert "Maximum two allowlist tags" not in TAG_ONTOLOGY_RUBRIC
 
 
 def test_trends_rubric_uses_slug_and_title() -> None:

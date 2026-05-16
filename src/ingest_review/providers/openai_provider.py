@@ -21,7 +21,7 @@ from src.ingest_review.schema import (
     SectionRegenerateOutput,
     llm_output_json_schema,
 )
-from src.ingest_review.tags import normalize_tag
+from src.ingest_review.tags import normalize_tag, normalize_tag_list
 from src.ingest_review.wiki_snapshot import WikiSnapshot
 
 logger = logging.getLogger(__name__)
@@ -66,7 +66,7 @@ quantitative tests.
 
 Prefer fewer high-value proposals over many medium/low proposals.
 
-For tags and types: follow TAG_ONTOLOGY_RUBRIC, PRIMARY_SECONDARY_SEMANTICS, and each \
+For tags and types: follow TAG_ONTOLOGY_RUBRIC, REGISTRY_TYPES_SEMANTICS, and each \
 entity rubric's tag/type addendum. Do not invent source-level tags.
 For tools: proposed_types MUST be a subset of TOOL_TYPES_ALLOWLIST (at most 2 unless \
 genuinely multi-category); first type = primary category, second = optional adjacent role.
@@ -221,55 +221,34 @@ marketing phrases, or title echoes.
 
 Mandatory procedure for every tagged proposal:
 1. Read the entity's TAGS or TYPES allowlist section in this prompt.
-2. Pick the best existing tag(s) from that list whenever reasonably possible.
-3. Set primary_tag to the single best EXACT allowlist string (copy verbatim from the list), \
-or "" if none fit. NEVER put an invented slug, abbreviation, or off-list label in primary_tag.
-4. Set secondary_tag only to a second EXACT allowlist string when it adds distinct \
-cross-cutting value, or "" otherwise. NEVER put off-list text in secondary_tag.
-5. Set suggested_new_tag ONLY when no reasonable allowlist match exists after a semantic \
-scan — including checking near-synonyms (e.g. agent-workflow vs agentic-workflows). \
-If primary_tag and secondary_tag are both "", you MAY leave suggested_new_tag "" as well.
+2. Set proposed_tags to zero or more EXACT allowlist strings (copy verbatim). Quality over \
+quantity: each tag must be clearly warranted — no synonyms, no title echoes, no weak fits.
+3. Default to 1–2 proposed_tags when routing is clear; use 3+ only when each tag is \
+distinct and necessary. Hard maximum: 5 allowlist tags per proposal.
+4. NEVER put invented slugs, abbreviations, or off-list labels in proposed_tags.
+5. Set suggested_new_tags only when the allowlist lacks a reasonable match after checking \
+near-synonyms (e.g. agent-workflow vs agentic-workflows). Each entry must pass the new-tag \
+gate below. Leave suggested_new_tags [] when allowlist tags suffice.
 
-Tag sparsity (strict):
-- Most proposals need only primary_tag; leave secondary_tag "" unless clearly warranted.
-- Never use secondary_tag as a synonym or minor variant of primary_tag.
-- Maximum two allowlist tags per proposal (primary + optional secondary).
-- Empty primary_tag and secondary_tag when nothing fits and you are not confident in a \
-new tag under the new-tag gate below.
-
-New-tag gate — suggest suggested_new_tag only if the concept is: distinct, recurring, \
-broad enough for many future sources, and entity-appropriate. Before suggesting, verify \
-no close allowlist match exists.
+New-tag gate — each suggested_new_tags entry must be: distinct, recurring, broad enough for \
+many future sources, and entity-appropriate. Verify no close allowlist match exists first.
 
 Anti-patterns (never use as tags): article-specific slugs, launch/event names, vendor \
 marketing ("enterprise-ready"), quality adjectives ("useful", "important"), title fragments \
-("gpt-5-4-launch", "openai-flywheel"). Use kebab-case for suggested_new_tag.
+("gpt-5-4-launch", "openai-flywheel"). Use kebab-case for suggested_new_tags entries.
 
-Prefer reusing an existing approved tag whenever reasonably possible."""
+Prefer reusing existing allowlist tags whenever reasonably possible. Leave proposed_tags [] \
+when nothing fits and you are not confident in a new tag."""
 
 
-PRIMARY_SECONDARY_SEMANTICS = """\
-## PRIMARY / SECONDARY SEMANTICS
+REGISTRY_TYPES_SEMANTICS = """\
+## REGISTRY TYPES (tools and foundation models only)
 
-Domain entities (glossary, topics, trends, how_to, implementation_studies, roundup_signals, \
-interview_insights):
-- primary_tag: main strategic domain — the single primary wiki routing bucket this proposal \
-belongs to first (copy exactly from allowlist), e.g. ai-safety, orchestration, evaluation.
-- secondary_tag: cross-cutting relationship — optional second allowlist tag only when the \
-proposal clearly also belongs to another major theme (not a synonym or minor variant of \
-primary).
-
-Tools (proposed_types list — same ordering spirit, not primary_tag fields):
-- First type in proposed_types: what kind of tool this is (main category).
-- Second type (if any): adjacent operational role or secondary classification.
-- At most 2 types unless the tool is genuinely multi-category.
-
-Foundation models (proposed_types list):
-- First type: deployment / openness / operational profile (e.g. open-weights, api-hosted).
-- Second type (if any): capability specialization (e.g. coding, reasoning, multimodal).
-
-Roundup signals use TREND_TAGS_ALLOWLIST semantics. Interview insights use \
-TOPIC_TAGS_ALLOWLIST semantics."""
+Tools and foundation models use proposed_types (not proposed_tags):
+- proposed_types: zero or more EXACT strings from TOOL_TYPES_ALLOWLIST or MODEL_TYPES_ALLOWLIST.
+- Same quality rules as proposed_tags: each type must fit well; max 5; no ordering hierarchy.
+- suggested_new_type: single kebab-case candidate when the type registry lacks a fit (legacy \
+field); prefer filling proposed_types from the allowlist when possible."""
 
 
 SOURCE_CHAPTERS_RUBRIC = """## source_summary (required JSON subtree)
@@ -408,9 +387,8 @@ say so explicitly
 - related_sources: URLs/references from the article
 - evidence_snippets: array of {claim, snippet, provenance} where \
 provenance is "stated", "inferred", or "interpretation"
-- primary_tag: most fitting tag from IMPL_STUDY_TAGS_ALLOWLIST; "" if none fit
-- secondary_tag: optional second tag from IMPL_STUDY_TAGS_ALLOWLIST; "" if none
-- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
+- proposed_tags: allowlist tags from IMPL_STUDY_TAGS_ALLOWLIST (see TAG ONTOLOGY)
+- suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - match_candidates: existing wiki implementation-study pages that may overlap
 - confidence: 0.0–1.0
 - suggested_action: "create" | "update" | "ignore"
@@ -491,9 +469,8 @@ phrase** as the canonical term (e.g. use ``Reinforcement Learning from Human Fee
 ``extended_explanation`` / ``supporting_snippet`` prose; ``related_terms`` must stay aligned to \
 canonical glossary titles. If no exact batch/wiki label applies, omit that edge (leave out the \
 string) rather than approximating.
-- primary_tag: most fitting tag from GLOSSARY_TAGS_ALLOWLIST; "" if none fit
-- secondary_tag: optional second tag from GLOSSARY_TAGS_ALLOWLIST; "" if none
-- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
+- proposed_tags: allowlist tags from GLOSSARY_TAGS_ALLOWLIST (see TAG ONTOLOGY)
+- suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - match_candidates: existing glossary terms that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "create" | "update" | "ignore"
@@ -505,7 +482,7 @@ Voice: clear, practical, accessible. Define for a senior practitioner, \
 not an academic. Prefer operational understanding over theoretical precision.
 
 Tag semantics (GLOSSARY_TAGS_ALLOWLIST): broad durable domain for routing — \
-not article-specific labels. Follow TAG_ONTOLOGY_RUBRIC and PRIMARY_SECONDARY_SEMANTICS."""
+not article-specific labels. Follow TAG_ONTOLOGY_RUBRIC."""
 
 
 TOPICS_RUBRIC = """\
@@ -551,11 +528,10 @@ empty string only if you cannot state industry relevance without article framing
 **EXISTING_TOPIC_TITLES** / the wiki topics index. Use kebab-case stable identifiers \
 (e.g. workflow-automation, context-engineering). Do **NOT** put TOPIC_TAGS_ALLOWLIST \
 entries here (e.g. ai-engineering, knowledge-management, ai-infrastructure) — those \
-belong only in primary_tag/secondary_tag. Do **not** repeat this object's own \
+belong only in proposed_tags. Do **not** repeat this object's own \
 topic_slug. Use [] when no valid cross-link exists.
-- primary_tag: most fitting tag from TOPIC_TAGS_ALLOWLIST; "" if none fit
-- secondary_tag: optional second tag from TOPIC_TAGS_ALLOWLIST; "" if none
-- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
+- proposed_tags: allowlist tags from TOPIC_TAGS_ALLOWLIST (see TAG ONTOLOGY)
+- suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - match_candidates: existing topic pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
@@ -573,7 +549,7 @@ Tag semantics (TOPIC_TAGS_ALLOWLIST): strategic/operational domain for the \
 knowledge unit — not the article title. Follow TAG_ONTOLOGY_RUBRIC.
 
 related_topics vs tags: ``related_topics`` = wiki topic page slugs; \
-``primary_tag``/``secondary_tag`` = allowlist routing tags only. Never interchange them.
+``proposed_tags`` = allowlist routing tags only. Never put allowlist tags in suggested_new_tags.
 
 Routing: operational or architecture patterns WITHOUT a specific organizational \
 deployment case belong here — NOT in implementation_studies."""
@@ -654,9 +630,8 @@ them (list of strings)
 - prerequisites: what a practitioner needs before attempting this (list \
 of strings)
 - related_howtos: cross-references to other how-to slugs (list of strings)
-- primary_tag: most fitting tag from HOWTO_TAGS_ALLOWLIST; "" if none fit
-- secondary_tag: optional second tag from HOWTO_TAGS_ALLOWLIST; "" if none
-- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
+- proposed_tags: allowlist tags from HOWTO_TAGS_ALLOWLIST (see TAG ONTOLOGY)
+- suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - match_candidates: existing how-to pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
@@ -720,9 +695,8 @@ conflicting signals, or limited evidence. Empty string is NOT acceptable
 - supporting_data_points: specific data or facts that support the trend \
 (list of strings)
 - related_trends: other trend_slug values (kebab-case list of strings)
-- primary_tag: most fitting tag from TREND_TAGS_ALLOWLIST; "" if none fit
-- secondary_tag: optional second tag from TREND_TAGS_ALLOWLIST; "" if none
-- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
+- proposed_tags: allowlist tags from TREND_TAGS_ALLOWLIST (see TAG ONTOLOGY)
+- suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - match_candidates: existing trend pages that may overlap
 - confidence: 0.0-1.0
 - suggested_action: "append_to_existing" | "create_new_page" | "ignore"
@@ -822,7 +796,7 @@ Good: coding-assistant, desktop-app, voice-ai. Bad: productivity, useful, fast.
 Voice: clear, operational, skeptical. No hype, no marketing language.
 
 Type semantics (TOOL_TYPES_ALLOWLIST): what the tool IS — follow \
-PRIMARY_SECONDARY_SEMANTICS for ordering of proposed_types."""
+REGISTRY_TYPES_SEMANTICS for proposed_types."""
 
 
 MODELS_RUBRIC = """\
@@ -901,7 +875,7 @@ trends, not model pages.
 Voice: clear, operational, skeptical. No hype, no certainty theater.
 
 Type semantics (MODEL_TYPES_ALLOWLIST): operational profile — follow \
-PRIMARY_SECONDARY_SEMANTICS for ordering of proposed_types."""
+REGISTRY_TYPES_SEMANTICS for proposed_types."""
 
 
 SOURCE_TYPE_DETECTION_RUBRIC = """\
@@ -974,9 +948,8 @@ relevance exists, state "No direct service automation implications identified."
 - time_horizon: "transient", "short_term", "medium_term", or "long_term"
 - wiki_worthiness: "ignore", "weak_candidate", "review_candidate", or \
 "strong_candidate"
-- primary_tag: most fitting tag from TREND_TAGS_ALLOWLIST; "" if none fit
-- secondary_tag: optional second tag from TREND_TAGS_ALLOWLIST; "" if none
-- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
+- proposed_tags: allowlist tags from TREND_TAGS_ALLOWLIST (see TAG ONTOLOGY)
+- suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - suggested_destinations: routing hints as array of strings (e.g. \
 ["topics/", "trends/"])
 - mentioned_entities: organizations, tools, models mentioned (array of strings)
@@ -1027,9 +1000,8 @@ identified."
 - durability_estimate: "transient", "medium_term", or "long_term"
 - wiki_worthiness: "ignore", "weak_candidate", "review_candidate", or \
 "strong_candidate"
-- primary_tag: most fitting tag from TOPIC_TAGS_ALLOWLIST; "" if none fit
-- secondary_tag: optional second tag from TOPIC_TAGS_ALLOWLIST; "" if none
-- suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
+- proposed_tags: allowlist tags from TOPIC_TAGS_ALLOWLIST (see TAG ONTOLOGY)
+- suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - suggested_destinations: routing hints (array of strings, e.g. \
 ["topics/", "models/"])
 - mentioned_entities: organizations, tools, models mentioned (array of strings)
@@ -1144,7 +1116,7 @@ def _build_user_prompt(
         VALUE_RANKING_RUBRIC,
         EVIDENCE_TYPE_RUBRIC,
         TAG_ONTOLOGY_RUBRIC,
-        PRIMARY_SECONDARY_SEMANTICS,
+        REGISTRY_TYPES_SEMANTICS,
         "## EXISTING_GLOSSARY_TERMS\n" + "\n".join(f"- {t}" for t in wiki.glossary_terms[:150]),
         "## EXISTING_TOOL_NAMES\n" + "\n".join(f"- {t}" for t in wiki.tool_names[:200]),
         "## EXISTING_FOUNDATION_MODEL_NAMES\n"
@@ -1536,8 +1508,8 @@ class OpenAIIngestionProvider(IngestionProvider):
         model: str,
         prompt_version: str,
         max_retries: int = 2,
-    ) -> tuple[str, dict[str, Any]]:
-        """Return one kebab-case tag not in allowlist, or ""."""
+    ) -> tuple[list[str], dict[str, Any]]:
+        """Return kebab-case tag(s) not in allowlist (usually zero or one)."""
         allow_norms = {normalize_tag(str(t)) for t in allowlist if str(t).strip()}
         lines = "\n".join(f"- {normalize_tag(str(t))}" for t in allowlist if str(t).strip())
         user_prompt = "\n\n".join(
@@ -1594,15 +1566,17 @@ class OpenAIIngestionProvider(IngestionProvider):
                 raw = completion.choices[0].message.content or ""
                 data = _parse_json_content(raw)
                 out = GlossaryTagSuggestOutput.model_validate(data)
-                sug = normalize_tag(str(out.suggested_tag or ""))
-                if sug and sug in allow_norms:
-                    sug = ""
+                tags = normalize_tag_list(out.suggested_tags, cap=0)
+                single = normalize_tag(str(out.suggested_tag or ""))
+                if single and single not in tags:
+                    tags.insert(0, single)
+                filtered = [t for t in tags if t and t not in allow_norms]
                 meta: dict[str, Any] = {
                     "request_id": completion.id,
                     "token_usage": completion.usage.model_dump() if completion.usage else None,
                     "prompt_version": prompt_version or PROMPT_VERSION,
                 }
-                return sug, meta
+                return filtered, meta
             except (json.JSONDecodeError, ValidationError, TypeError, ValueError) as exc:
                 last_error = str(exc)
                 logger.warning("Domain tag suggest parse failed: %s", last_error)
@@ -1625,4 +1599,4 @@ class OpenAIIngestionProvider(IngestionProvider):
                 else:
                     fmt_index += 1
         logger.warning("Domain tag suggest failed: %s", last_error)
-        return "", {"error": last_error or "unknown"}
+        return [], {"error": last_error or "unknown"}

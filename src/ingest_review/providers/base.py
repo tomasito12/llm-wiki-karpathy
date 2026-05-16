@@ -111,12 +111,9 @@ class IngestionProvider(ABC):
         model: str,
         prompt_version: str,
         max_retries: int = 2,
-    ) -> tuple[str, dict[str, Any]]:
-        """Suggest one kebab-case tag not in *allowlist*, or empty string if none fits.
-
-        Default implementation for providers without a narrow tag suggestion call.
-        """
-        return "", {}
+    ) -> tuple[list[str], dict[str, Any]]:
+        """Suggest kebab-case tag(s) not in *allowlist* (often zero or one entry)."""
+        return [], {}
 
     def suggest_glossary_review_tag(
         self,
@@ -127,7 +124,7 @@ class IngestionProvider(ABC):
         model: str,
         prompt_version: str,
         max_retries: int = 2,
-    ) -> tuple[str, dict[str, Any]]:
+    ) -> tuple[list[str], dict[str, Any]]:
         """Backward-compatible alias for :meth:`suggest_domain_review_tag`."""
         return self.suggest_domain_review_tag(
             entity_label=term,

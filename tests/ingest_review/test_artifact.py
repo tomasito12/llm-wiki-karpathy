@@ -23,6 +23,7 @@ from src.ingest_review.artifact import (
     migrate_artifact_to_v11,
     migrate_artifact_to_v12,
     migrate_artifact_to_v13,
+    migrate_artifact_to_v14,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -125,7 +126,7 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 13
+    assert art["artifact_schema_version"] == 14
     assert art["source"]["source_id"] == stem
     assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
     assert "implementation_studies" in art["review"]
@@ -195,8 +196,8 @@ def test_default_review_builds_impl_study_per_section_nodes() -> None:
         assert sections[lk]["final_list"] is None
         assert isinstance(sections[lk]["llm_list"], list)
     assert sections["key_lessons"]["llm_list"] == ["lesson1"]
-    assert node["tags"]["final_primary_tag"] is None
-    assert node["tags"]["new_tag_approved"] is False
+    assert node["tags"]["final_tags"] == []
+    assert node["tags"]["approved_new_tags"] == []
 
 
 def test_migrate_v2_to_v3_renames_enterprise_studies() -> None:
@@ -301,8 +302,8 @@ def test_default_review_builds_glossary_per_section_nodes() -> None:
         assert sections[lk]["final_list"] is None
         assert isinstance(sections[lk]["llm_list"], list)
     assert sections["related_terms"]["llm_list"] == ["vector search", "embeddings"]
-    assert node["tags"]["final_primary_tag"] is None
-    assert node["tags"]["new_tag_approved"] is False
+    assert node["tags"]["final_tags"] == []
+    assert node["tags"]["approved_new_tags"] == []
 
 
 def test_migrate_v3_upgrades_old_glossary_flat_nodes() -> None:
@@ -1033,13 +1034,12 @@ def test_build_per_section_tag_node_has_new_structure(tmp_path: Path) -> None:
         root=tmp_path,
     )
     gl_tags = art["review"]["glossary"][0]["tags"]
-    assert "final_primary_tag" in gl_tags
-    assert "new_tag_approved" in gl_tags
-    assert gl_tags["new_tag_approved"] is False
+    assert gl_tags["final_tags"] == []
+    assert gl_tags["approved_new_tags"] == []
 
     tp_tags = art["review"]["topics"][0]["tags"]
-    assert "final_primary_tag" in tp_tags
-    assert tp_tags["new_tag_approved"] is False
+    assert tp_tags["final_tags"] == []
+    assert tp_tags["approved_new_tags"] == []
 
 
 def test_proposal_status_on_new_review_nodes(tmp_path: Path) -> None:
@@ -1057,7 +1057,49 @@ def test_proposal_status_on_new_review_nodes(tmp_path: Path) -> None:
         root=tmp_path,
     )
     assert art["review"]["glossary"][0]["proposal_status"] == "approved"
-    assert art["artifact_schema_version"] == 13
+    assert art["artifact_schema_version"] == 14
+
+
+def test_migrate_v14_merges_primary_secondary_into_tag_lists() -> None:
+    """migrate_artifact_to_v14 converts legacy primary/secondary to multi-tag lists."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 13,
+        "llm_output": {
+            "topics": [
+                {
+                    "topic_slug": "x",
+                    "primary_tag": "ai-engineering",
+                    "secondary_tag": "evaluation",
+                    "suggested_new_tag": "new-bucket",
+                },
+            ],
+        },
+        "review": {
+            "topics": [
+                {
+                    "proposal_id": "p1",
+                    "llm_item": {
+                        "topic_slug": "x",
+                        "primary_tag": "ai-engineering",
+                        "secondary_tag": "evaluation",
+                        "suggested_new_tag": "new-bucket",
+                    },
+                    "tags": {
+                        "final_primary_tag": "ai-engineering",
+                        "final_secondary_tag": "evaluation",
+                        "new_tag_approved": True,
+                    },
+                },
+            ],
+        },
+    }
+    migrate_artifact_to_v14(art)
+    assert art["artifact_schema_version"] == 14
+    node = art["review"]["topics"][0]
+    assert node["tags"]["final_tags"] == ["ai-engineering", "evaluation"]
+    assert node["tags"]["approved_new_tags"] == ["new-bucket"]
+    assert art["llm_output"]["topics"][0]["proposed_tags"] == ["ai-engineering", "evaluation"]
+    assert art["llm_output"]["topics"][0]["suggested_new_tags"] == ["new-bucket"]
 
 
 def test_migrate_v13_splits_trend_name_into_slug_and_title() -> None:
@@ -1148,6 +1190,7 @@ def test_migrate_artifact_to_v8_adds_proposal_status() -> None:
     node = art["review"]["glossary"][0]
     assert node["proposal_status"] == "pending"
     assert node["tags"]["final_primary_tag"] is None
+    assert node["tags"]["final_secondary_tag"] is None
     assert node["tags"]["new_tag_approved"] is False
     assert "review_analytics" in art
     assert "extraction_meta" in art["llm_output"]

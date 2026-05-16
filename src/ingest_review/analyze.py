@@ -15,6 +15,7 @@ from src.ingest_review.schema import (
     LlmClassificationOutput,
     normalize_source_summary,
 )
+from src.ingest_review.tags import MAX_PROPOSED_TAGS, normalize_tag, normalize_tag_list
 from src.ingest_review.tools_roundup_model_routing import (
     route_ai_tools_roundup_tools_to_foundation_models,
 )
@@ -22,26 +23,48 @@ from src.ingest_review.topic_related_topics import sanitize_topics_related_topic
 from src.ingest_review.wiki_snapshot import build_wiki_snapshot
 
 
-def _validate_tag_pair(
+def _validate_proposal_tags(
+    proposed_tags: list[str],
+    suggested_new_tags: list[str],
+    *,
     primary: str,
     secondary: str,
     suggested_new: str,
     allowlist: set[str],
-) -> dict[str, str]:
-    """Validate primary/secondary against *allowlist*; demote to suggested_new if invalid."""
-    from src.ingest_review.tags import normalize_tag
-
+) -> dict[str, object]:
+    """Validate tag lists against *allowlist*; demote off-list tags to suggested_new_tags."""
     norm_allow = {normalize_tag(t) for t in allowlist}
-    p_raw = normalize_tag(primary)
-    s_raw = normalize_tag(secondary)
-    new = normalize_tag(suggested_new)
-    p = p_raw if p_raw in norm_allow else ""
-    if p_raw and p_raw not in norm_allow and not new:
-        new = p_raw
-    s = s_raw if s_raw in norm_allow else ""
-    if s_raw and s_raw not in norm_allow and not new:
-        new = s_raw
-    return {"primary_tag": p, "secondary_tag": s, "suggested_new_tag": new}
+    merged_proposed = list(proposed_tags)
+    if not merged_proposed:
+        for legacy in (primary, secondary):
+            t = normalize_tag(legacy)
+            if t and t not in merged_proposed:
+                merged_proposed.append(t)
+    on_list: list[str] = []
+    off_list: list[str] = []
+    for t in normalize_tag_list(merged_proposed, cap=0):
+        if t in norm_allow:
+            if t not in on_list:
+                on_list.append(t)
+        elif t not in off_list:
+            off_list.append(t)
+    on_list = normalize_tag_list(on_list, cap=MAX_PROPOSED_TAGS)
+
+    snt = normalize_tag_list(suggested_new_tags, cap=0)
+    sn_legacy = normalize_tag(suggested_new)
+    if sn_legacy and sn_legacy not in snt:
+        snt.insert(0, sn_legacy)
+    for t in off_list:
+        if t not in on_list and t not in snt:
+            snt.append(t)
+
+    return {
+        "proposed_tags": on_list,
+        "suggested_new_tags": snt,
+        "primary_tag": on_list[0] if on_list else "",
+        "secondary_tag": on_list[1] if len(on_list) > 1 else "",
+        "suggested_new_tag": snt[0] if snt else "",
+    }
 
 
 def apply_tag_allowlists(
@@ -54,7 +77,7 @@ def apply_tag_allowlists(
     model_types: set[str] | None = None,
     impl_study_tags: set[str] | None = None,
 ) -> LlmClassificationOutput:
-    """Validate proposal tags against allowlists; demote unknown tags to suggested_new_tag."""
+    """Validate proposal tags against allowlists; demote unknown tags to suggested_new_tags."""
     new_tools = [
         tp.model_copy(update={"proposed_types": [x for x in tp.proposed_types if x in tool_types]})
         for tp in parsed.tools
@@ -62,14 +85,28 @@ def apply_tag_allowlists(
     gt = glossary_tags or set()
     new_glossary = [
         gp.model_copy(
-            update=_validate_tag_pair(gp.primary_tag, gp.secondary_tag, gp.suggested_new_tag, gt)
+            update=_validate_proposal_tags(
+                gp.proposed_tags,
+                gp.suggested_new_tags,
+                primary=gp.primary_tag,
+                secondary=gp.secondary_tag,
+                suggested_new=gp.suggested_new_tag,
+                allowlist=gt,
+            )
         )
         for gp in parsed.glossary
     ]
     tt = topic_tags or set()
     new_topics = [
         tc.model_copy(
-            update=_validate_tag_pair(tc.primary_tag, tc.secondary_tag, tc.suggested_new_tag, tt)
+            update=_validate_proposal_tags(
+                tc.proposed_tags,
+                tc.suggested_new_tags,
+                primary=tc.primary_tag,
+                secondary=tc.secondary_tag,
+                suggested_new=tc.suggested_new_tag,
+                allowlist=tt,
+            )
         )
         for tc in parsed.topics
     ]
@@ -77,8 +114,13 @@ def apply_tag_allowlists(
     new_how = [
         normalize_howto_proposal(
             hp.model_copy(
-                update=_validate_tag_pair(
-                    hp.primary_tag, hp.secondary_tag, hp.suggested_new_tag, ht
+                update=_validate_proposal_tags(
+                    hp.proposed_tags,
+                    hp.suggested_new_tags,
+                    primary=hp.primary_tag,
+                    secondary=hp.secondary_tag,
+                    suggested_new=hp.suggested_new_tag,
+                    allowlist=ht,
                 )
             )
         )
@@ -87,33 +129,65 @@ def apply_tag_allowlists(
     trt = trend_tags or set()
     new_trends = [
         tr.model_copy(
-            update=_validate_tag_pair(tr.primary_tag, tr.secondary_tag, tr.suggested_new_tag, trt)
+            update=_validate_proposal_tags(
+                tr.proposed_tags,
+                tr.suggested_new_tags,
+                primary=tr.primary_tag,
+                secondary=tr.secondary_tag,
+                suggested_new=tr.suggested_new_tag,
+                allowlist=trt,
+            )
         )
         for tr in parsed.industry_trends
     ]
     mt = model_types or set()
     new_models = [
-        mp.model_copy(update={"proposed_types": [x for x in mp.proposed_types if x in mt]})
+        mp.model_copy(
+            update={
+                "proposed_types": [
+                    normalize_tag(x) for x in mp.proposed_types if normalize_tag(x) in mt
+                ][:MAX_PROPOSED_TAGS]
+            }
+        )
         for mp in parsed.foundation_models
     ]
     new_signals = [
         sig.model_copy(
-            update=_validate_tag_pair(
-                sig.primary_tag, sig.secondary_tag, sig.suggested_new_tag, trt
+            update=_validate_proposal_tags(
+                sig.proposed_tags,
+                sig.suggested_new_tags,
+                primary=sig.primary_tag,
+                secondary=sig.secondary_tag,
+                suggested_new=sig.suggested_new_tag,
+                allowlist=trt,
             )
         )
         for sig in parsed.roundup_signals
     ]
     new_insights = [
         ins.model_copy(
-            update=_validate_tag_pair(ins.primary_tag, ins.secondary_tag, ins.suggested_new_tag, tt)
+            update=_validate_proposal_tags(
+                ins.proposed_tags,
+                ins.suggested_new_tags,
+                primary=ins.primary_tag,
+                secondary=ins.secondary_tag,
+                suggested_new=ins.suggested_new_tag,
+                allowlist=tt,
+            )
         )
         for ins in parsed.interview_insights
     ]
     ist = impl_study_tags or set()
     new_impl = [
         ip.model_copy(
-            update=_validate_tag_pair(ip.primary_tag, ip.secondary_tag, ip.suggested_new_tag, ist)
+            update=_validate_proposal_tags(
+                ip.proposed_tags,
+                ip.suggested_new_tags,
+                primary=ip.primary_tag,
+                secondary=ip.secondary_tag,
+                suggested_new=ip.suggested_new_tag,
+                allowlist=ist,
+            )
         )
         for ip in parsed.implementation_studies
     ]

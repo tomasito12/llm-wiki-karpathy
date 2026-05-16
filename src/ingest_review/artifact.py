@@ -146,9 +146,8 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
                 "llm_item": copy.deepcopy(item),
                 "sections": sections,
                 "tags": {
-                    "final_primary_tag": None,
-                    "final_secondary_tag": None,
-                    "new_tag_approved": False,
+                    "final_tags": [],
+                    "approved_new_tags": [],
                 },
             }
         )
@@ -183,9 +182,8 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
                 "llm_item": copy.deepcopy(item),
                 "sections": g_sections,
                 "tags": {
-                    "final_primary_tag": None,
-                    "final_secondary_tag": None,
-                    "new_tag_approved": False,
+                    "final_tags": [],
+                    "approved_new_tags": [],
                 },
             }
         )
@@ -224,9 +222,8 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
                     "llm_item": copy.deepcopy(item),
                     "sections": sections,
                     "tags": {
-                        "final_primary_tag": None,
-                        "final_secondary_tag": None,
-                        "new_tag_approved": False,
+                        "final_tags": [],
+                        "approved_new_tags": [],
                     },
                 }
             )
@@ -1088,6 +1085,95 @@ def migrate_artifact_to_v13(artifact: dict[str, Any]) -> dict[str, Any]:
     return artifact
 
 
+def _migrate_node_tags_to_multitag(node: dict[str, Any]) -> None:
+    """In-place: primary/secondary → final_tags / proposed_tags lists."""
+    from src.ingest_review.tags import normalize_tag
+
+    llm_item = node.get("llm_item")
+    if not isinstance(llm_item, dict):
+        llm_item = {}
+        node["llm_item"] = llm_item
+
+    tag_node = node.get("tags")
+    if not isinstance(tag_node, dict):
+        tag_node = {}
+        node["tags"] = tag_node
+
+    final_legacy: list[str] = []
+    for key in ("final_primary_tag", "final_secondary_tag"):
+        t = normalize_tag(str(tag_node.get(key) or ""))
+        if t and t not in final_legacy:
+            final_legacy.append(t)
+    if "final_tags" not in tag_node or not tag_node.get("final_tags"):
+        tag_node["final_tags"] = final_legacy
+
+    proposed_legacy: list[str] = []
+    for key in ("primary_tag", "secondary_tag"):
+        t = normalize_tag(str(llm_item.get(key) or ""))
+        if t and t not in proposed_legacy:
+            proposed_legacy.append(t)
+    if "proposed_tags" not in llm_item or not llm_item.get("proposed_tags"):
+        llm_item["proposed_tags"] = proposed_legacy
+
+    sn = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
+    snt = llm_item.get("suggested_new_tags")
+    if not isinstance(snt, list) or not snt:
+        llm_item["suggested_new_tags"] = [sn] if sn else []
+    if tag_node.get("new_tag_approved") and sn:
+        existing = tag_node.get("approved_new_tags")
+        if not isinstance(existing, list) or not existing:
+            tag_node["approved_new_tags"] = [sn]
+    elif "approved_new_tags" not in tag_node:
+        tag_node["approved_new_tags"] = []
+
+
+def migrate_artifact_to_v14(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v14: multi-tag routing (final_tags / proposed_tags)."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 14:
+        return artifact
+
+    review = artifact.setdefault("review", {})
+    tag_entity_keys = (
+        "glossary",
+        "topics",
+        "how_to",
+        "industry_trends",
+        "implementation_studies",
+        "roundup_signals",
+        "interview_insights",
+    )
+    for key in tag_entity_keys:
+        for node in review.get(key) or []:
+            if isinstance(node, dict):
+                _migrate_node_tags_to_multitag(node)
+
+    llm = artifact.setdefault("llm_output", {})
+    for llm_key in tag_entity_keys:
+        for item in llm.get(llm_key) or []:
+            if not isinstance(item, dict):
+                continue
+            proposed: list[str] = []
+            for pk in ("primary_tag", "secondary_tag"):
+                t = str(item.get(pk) or "").strip()
+                if t:
+                    from src.ingest_review.tags import normalize_tag
+
+                    nt = normalize_tag(t)
+                    if nt and nt not in proposed:
+                        proposed.append(nt)
+            if proposed and not item.get("proposed_tags"):
+                item["proposed_tags"] = proposed
+            sn = str(item.get("suggested_new_tag") or "").strip()
+            if sn and not item.get("suggested_new_tags"):
+                from src.ingest_review.tags import normalize_tag
+
+                item["suggested_new_tags"] = [normalize_tag(sn)]
+
+    artifact["artifact_schema_version"] = 14
+    return artifact
+
+
 def aggregate_impl_study_section_status(sections: dict[str, Any]) -> str:
     """Derive a proposal-level status from per-section review nodes."""
     statuses: set[str] = set()
@@ -1136,6 +1222,7 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = migrate_artifact_to_v11(data)
     data = migrate_artifact_to_v12(data)
     data = migrate_artifact_to_v13(data)
+    data = migrate_artifact_to_v14(data)
     data = migrate_review_source_summary_unified_why(data)
     ensure_sources_review_auto_approved(data)
     return data

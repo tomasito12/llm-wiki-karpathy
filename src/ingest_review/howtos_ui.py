@@ -480,19 +480,9 @@ def render_howto_proposals(
 
 def collect_howto_new_tags(artifact: dict[str, Any]) -> list[str]:
     """Return approved new tags across how-to proposals."""
-    review = artifact.get("review") or {}
-    tags: list[str] = []
-    for node in review.get("how_to") or []:
-        if not isinstance(node, dict):
-            continue
-        tag_node = node.get("tags") or {}
-        if not tag_node.get("new_tag_approved"):
-            continue
-        llm_item = node.get("llm_item") or {}
-        new_tag = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
-        if new_tag and new_tag not in tags:
-            tags.append(new_tag)
-    return tags
+    from src.ingest_review.domain_tag_ui import collect_approved_new_tags_from_review
+
+    return collect_approved_new_tags_from_review(artifact, "how_to")
 
 
 collect_howto_approved_new_tags = collect_howto_new_tags

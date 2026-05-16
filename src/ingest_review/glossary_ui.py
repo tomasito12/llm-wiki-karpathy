@@ -504,16 +504,6 @@ def render_glossary_proposals(
 
 def collect_glossary_new_tags(artifact: dict[str, Any]) -> list[str]:
     """Return approved new tags from glossary proposals."""
-    review = artifact.get("review") or {}
-    tags: list[str] = []
-    for node in review.get("glossary") or []:
-        if not isinstance(node, dict):
-            continue
-        tag_node = node.get("tags") or {}
-        if not tag_node.get("new_tag_approved"):
-            continue
-        llm_item = node.get("llm_item") or {}
-        suggested = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
-        if suggested and suggested not in tags:
-            tags.append(suggested)
-    return tags
+    from src.ingest_review.domain_tag_ui import collect_approved_new_tags_from_review
+
+    return collect_approved_new_tags_from_review(artifact, "glossary")

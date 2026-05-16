@@ -5,6 +5,7 @@ from __future__ import annotations
 from src.ingest_review.models_ui import (
     apply_model_scalar_edit,
     build_readonly_models_markdown,
+    collect_model_new_types,
     effective_model_scalar,
     format_model_readonly_markdown,
 )
@@ -45,3 +46,17 @@ def test_format_model_readonly_includes_name() -> None:
 
 def test_build_readonly_models_markdown_empty() -> None:
     assert "No model" in build_readonly_models_markdown([])
+
+
+def test_collect_model_new_types_from_approved_list() -> None:
+    artifact = {
+        "review": {
+            "foundation_models": [
+                {
+                    "types": {"approved_new_types": ["reasoning-model"]},
+                    "llm_item": {},
+                },
+            ],
+        },
+    }
+    assert collect_model_new_types(artifact) == ["reasoning-model"]

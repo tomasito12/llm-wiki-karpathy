@@ -1,4 +1,4 @@
-"""Shared Streamlit UI for domain-entity primary/secondary tags (glossary, topics, etc.)."""
+"""Shared Streamlit UI for multi-tag proposal routing (glossary, topics, etc.)."""
 
 from __future__ import annotations
 
@@ -8,66 +8,91 @@ from typing import Any
 
 import streamlit as streamlit_runtime
 
-from src.ingest_review.dashboard_ui import (
-    TAG_ROLE_HINTS,
-    TAG_SELECT_HELP,
-    render_similar_tags_warning,
-)
+from src.ingest_review.dashboard_ui import render_similar_tags_warning
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
-from src.ingest_review.tags import normalize_tag
+from src.ingest_review.tags import normalize_tag, normalize_tag_list
 
-# Session key for allowlist used by LLM suggest callback (set by each entity tab).
 DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY = "domain_tag_suggest_allowlist"
 
-
-def allowlist_select_options(allowlist: list[str]) -> list[str]:
-    """Select options: empty string plus each allowlist tag once (no off-list LLM slugs)."""
-    options: list[str] = [""]
-    seen: set[str] = set()
-    for t in allowlist:
-        nt = normalize_tag(str(t))
-        if nt and nt not in seen:
-            seen.add(nt)
-            options.append(nt)
-    return options
+_DEFAULT_TAGS_NODE: dict[str, Any] = {
+    "final_tags": [],
+    "approved_new_tags": [],
+}
 
 
-def split_dropdown_and_manual(
-    stored: str,
-    llm: str,
-    allow: set[str],
-) -> tuple[str, str]:
-    """Return (dropdown value from allowlist, manual override) from stored final + LLM draft."""
-    st_n = normalize_tag(stored)
-    lm = normalize_tag(llm)
-    if st_n:
-        if st_n in allow:
-            return st_n, ""
-        return "", st_n
-    if lm in allow:
-        return lm, ""
-    return "", ""
+def default_tags_node() -> dict[str, Any]:
+    """Fresh review ``tags`` sub-object for multi-tag routing."""
+    return {"final_tags": [], "approved_new_tags": []}
 
 
-def effective_readonly_domain_tags(
+def _llm_proposed_tags(llm_item: dict[str, Any]) -> list[str]:
+    raw = llm_item.get("proposed_tags")
+    if isinstance(raw, list) and raw:
+        return normalize_tag_list(raw, cap=0)
+    legacy: list[str] = []
+    for key in ("primary_tag", "secondary_tag"):
+        t = normalize_tag(str(llm_item.get(key) or ""))
+        if t and t not in legacy:
+            legacy.append(t)
+    return legacy
+
+
+def _llm_suggested_new_tags(llm_item: dict[str, Any]) -> list[str]:
+    raw = llm_item.get("suggested_new_tags")
+    if isinstance(raw, list) and raw:
+        tags = normalize_tag_list(raw, cap=0)
+    else:
+        tags = []
+    legacy = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
+    if legacy and legacy not in tags:
+        tags.insert(0, legacy)
+    return tags
+
+
+def _stored_final_tags(tag_node: dict[str, Any]) -> list[str]:
+    raw = tag_node.get("final_tags")
+    if isinstance(raw, list) and raw:
+        return normalize_tag_list(raw, cap=0)
+    legacy: list[str] = []
+    for key in ("final_primary_tag", "final_secondary_tag"):
+        t = normalize_tag(str(tag_node.get(key) or ""))
+        if t and t not in legacy:
+            legacy.append(t)
+    return legacy
+
+
+def _stored_approved_new_tags(tag_node: dict[str, Any], llm_item: dict[str, Any]) -> list[str]:
+    raw = tag_node.get("approved_new_tags")
+    if isinstance(raw, list):
+        approved = normalize_tag_list(raw, cap=0)
+    elif tag_node.get("new_tag_approved"):
+        approved = _llm_suggested_new_tags(llm_item)
+    else:
+        approved = []
+    return approved
+
+
+def effective_readonly_tags(
     llm_item: dict[str, Any],
     tag_node: dict[str, Any] | None,
     allowlist: list[str],
 ) -> list[str]:
-    """Tags for read-only markdown: finals, else LLM values only when on allowlist."""
+    """Tags for read-only markdown: finals, else allowlisted LLM proposals."""
     allow = {normalize_tag(str(t)) for t in allowlist if str(t).strip()}
     tag_node = tag_node or {}
     out: list[str] = []
-    for fk, lk in (
-        ("final_primary_tag", "primary_tag"),
-        ("final_secondary_tag", "secondary_tag"),
-    ):
-        final_v = normalize_tag(str(tag_node.get(fk) or ""))
-        llm_v = normalize_tag(str(llm_item.get(lk) or ""))
-        chosen = final_v or (llm_v if llm_v in allow else "")
-        if chosen and chosen not in out:
-            out.append(chosen)
+    for t in _stored_final_tags(tag_node):
+        if t and t not in out:
+            out.append(t)
+    if out:
+        return out
+    for t in _llm_proposed_tags(llm_item):
+        if t in allow and t not in out:
+            out.append(t)
     return out
+
+
+effective_readonly_domain_tags = effective_readonly_tags
 
 
 def apply_tag_ui_to_node(
@@ -77,32 +102,36 @@ def apply_tag_ui_to_node(
     allow: set[str],
 ) -> None:
     """Persist tag widget values (from this script run) onto the proposal."""
-    tag_node = node.setdefault(
-        "tags",
-        {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
+    tag_node = node.setdefault("tags", default_tags_node())
+    selected = normalize_tag_list(tag_ui.get("selected_allowlist") or [], cap=0)
+    manual = normalize_tag_list(
+        [x.strip() for x in str(tag_ui.get("manual_csv") or "").split(",") if x.strip()],
+        cap=0,
     )
-    sel_p = normalize_tag(str(tag_ui.get("sel_p") or ""))
-    man_p = normalize_tag(str(tag_ui.get("man_p") or ""))
-    tag_node["final_primary_tag"] = (man_p or sel_p) or None
-    sel_s = normalize_tag(str(tag_ui.get("sel_s") or ""))
-    man_s = normalize_tag(str(tag_ui.get("man_s") or ""))
-    tag_node["final_secondary_tag"] = (man_s or sel_s) or None
+    final: list[str] = []
+    for t in selected + manual:
+        if t and t not in final:
+            final.append(t)
+    tag_node["final_tags"] = final
 
-    fp = normalize_tag(str(tag_node.get("final_primary_tag") or ""))
-    fs = normalize_tag(str(tag_node.get("final_secondary_tag") or ""))
-    custom_reg = bool(tag_ui.get("custom_reg"))
-    llm_sug = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
-    llm_ok = bool(tag_ui.get("llm_suggested_approve"))
+    approved_new: list[str] = []
+    for t, checked in (tag_ui.get("approve_new_map") or {}).items():
+        nt = normalize_tag(str(t))
+        if checked and nt and nt not in approved_new:
+            approved_new.append(nt)
+    off_list_manual = [t for t in final if t not in allow]
+    for t in off_list_manual:
+        if tag_ui.get("approve_offlist") and t not in approved_new:
+            approved_new.append(t)
+    tag_node["approved_new_tags"] = approved_new
 
-    off_list = [t for t in (fp, fs) if t and t not in allow]
-
-    if custom_reg and off_list:
-        llm_item["suggested_new_tag"] = off_list[0]
-        tag_node["new_tag_approved"] = True
-    elif llm_ok and llm_sug:
-        tag_node["new_tag_approved"] = True
-    else:
-        tag_node["new_tag_approved"] = False
+    if approved_new:
+        existing = _llm_suggested_new_tags(llm_item)
+        for t in approved_new:
+            if t not in existing:
+                existing.append(t)
+        llm_item["suggested_new_tags"] = existing
+        llm_item["suggested_new_tag"] = existing[0]
 
 
 def find_review_node(
@@ -129,7 +158,7 @@ def on_suggest_domain_review_tag(
     llm_fallback_label_key: str,
     llm_fallback_summary_key: str,
 ) -> None:
-    """Streamlit on_click: LLM tag suggestion; reads widget text from session_state keys."""
+    """Streamlit on_click: LLM tag suggestion appended to suggested_new_tags."""
     from src.ingest_review.artifact import save_artifact, touch_review_session
 
     streamlit_runtime.session_state.pop(f"{key_prefix}_suggest_err", None)
@@ -147,7 +176,7 @@ def on_suggest_domain_review_tag(
     summary_eff = summary or str(llm_item.get(llm_fallback_summary_key) or "").strip()
     try:
         provider = OpenAIIngestionProvider()
-        sug, _meta = provider.suggest_domain_review_tag(
+        suggestions, _meta = provider.suggest_domain_review_tag(
             entity_label=label_eff,
             context_summary=summary_eff,
             allowlist=allowlist,
@@ -160,12 +189,28 @@ def on_suggest_domain_review_tag(
     except Exception as exc:  # noqa: BLE001
         streamlit_runtime.session_state[f"{key_prefix}_suggest_err"] = str(exc)
         return
-    if sug:
-        llm_item["suggested_new_tag"] = sug
-        streamlit_runtime.session_state[f"{key_prefix}_suggest_msg"] = f"Suggested tag `{sug}`."
+
+    existing = _llm_suggested_new_tags(llm_item)
+    added: list[str] = []
+    for s in suggestions:
+        nt = normalize_tag(s)
+        if nt and nt not in existing and nt not in added:
+            existing.append(nt)
+            added.append(nt)
+    llm_item["suggested_new_tags"] = existing
+    if existing:
+        llm_item["suggested_new_tag"] = existing[0]
+    if review_list_key == "foundation_models" and added:
+        llm_item["proposed_new_type"] = added[0]
+        types_node = node.setdefault("types", {})
+        types_node["proposed_new_type"] = added[0]
+    if added:
+        streamlit_runtime.session_state[f"{key_prefix}_suggest_msg"] = (
+            "Suggested tag(s): " + ", ".join(f"`{t}`" for t in added) + "."
+        )
     else:
         streamlit_runtime.session_state[f"{key_prefix}_suggest_msg"] = (
-            "Model returned no new tag (try manual custom slug or pick from allowlist)."
+            "Model returned no new tag (try manual slug or pick from allowlist)."
         )
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
@@ -185,32 +230,22 @@ def render_domain_tag_section(
     summary_widget_key: str,
     llm_fallback_label_key: str,
     llm_fallback_summary_key: str,
+    section_title: str = "Tags",
 ) -> dict[str, Any]:
-    """Tags UI shared by glossary/topics; returns values for this run.
-
-    *label_widget_key* / *summary_widget_key* must match st.text_area keys used elsewhere
-    (for LLM suggest context).
-    """
+    """Multi-tag UI; returns values collected this run for :func:`apply_tag_ui_to_node`."""
     llm_item = node.setdefault("llm_item", {})
-    tag_node = node.setdefault(
-        "tags",
-        {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
-    )
+    tag_node = node.setdefault("tags", default_tags_node())
     allow_full = {normalize_tag(str(t)) for t in allowlist if str(t).strip()}
-    opts = allowlist_select_options(allowlist)
-    llm_p = normalize_tag(str(llm_item.get("primary_tag") or ""))
-    llm_s = normalize_tag(str(llm_item.get("secondary_tag") or ""))
-    stored_p = normalize_tag(str(tag_node.get("final_primary_tag") or ""))
-    stored_s = normalize_tag(str(tag_node.get("final_secondary_tag") or ""))
-    dd_p, man_p0 = split_dropdown_and_manual(stored_p, llm_p, allow_full)
-    dd_s, man_s0 = split_dropdown_and_manual(stored_s, llm_s, allow_full)
+    options = sorted(allow_full)
 
-    primary_hint, secondary_hint = TAG_ROLE_HINTS["domain"]
-    help_primary, help_secondary = TAG_SELECT_HELP["domain"]
-    st.markdown("#### Tags")
+    stored_final = _stored_final_tags(tag_node)
+    llm_proposed = [t for t in _llm_proposed_tags(llm_item) if t in allow_full]
+    default_sel = stored_final if stored_final else llm_proposed
+
+    st.markdown(f"#### {section_title}")
     st.caption(
-        "Primary = main strategic routing bucket on the allowlist. Secondary = optional "
-        "second theme if clearly cross-cutting. Manual kebab-case overrides the dropdown when set."
+        "Add every routing tag that fits this proposal; skip weak or redundant tags. "
+        "Off-list slugs can be added manually and approved for YAML export."
     )
 
     err = streamlit_runtime.session_state.pop(f"{key_prefix}_suggest_err", None)
@@ -220,64 +255,60 @@ def render_domain_tag_section(
     if msg:
         st.success(str(msg))
 
-    idx_p = opts.index(dd_p) if dd_p in opts else 0
-    idx_s = opts.index(dd_s) if dd_s in opts else 0
-    primary_col, primary_manual_col = st.columns(2)
-    with primary_col:
-        sel_p = st.selectbox(
-            f"Primary tag — {primary_hint}",
-            options=opts,
-            index=idx_p,
-            key=f"{key_prefix}_tag_primary",
-            help=help_primary,
-        )
-    with primary_manual_col:
-        man_p = st.text_input(
-            "Custom primary (optional)",
-            value=man_p0,
-            key=f"{key_prefix}_manual_primary",
-            help="Kebab-case slug; when non-empty, overrides the primary dropdown.",
-        )
-    secondary_col, secondary_manual_col = st.columns(2)
-    with secondary_col:
-        sel_s = st.selectbox(
-            f"Secondary tag — {secondary_hint}",
-            options=opts,
-            index=idx_s,
-            key=f"{key_prefix}_tag_secondary",
-            help=help_secondary,
-        )
-    with secondary_manual_col:
-        man_s = st.text_input(
-            "Custom secondary (optional)",
-            value=man_s0,
-            key=f"{key_prefix}_manual_secondary",
-            help="Kebab-case slug; when non-empty, overrides the secondary dropdown.",
-        )
+    llm_draft = _llm_proposed_tags(llm_item)
+    if llm_draft:
+        st.caption("LLM proposed: " + ", ".join(f"`{t}`" for t in llm_draft))
 
-    custom_reg = st.checkbox(
-        "Register custom off-list slug(s) in YAML export (sets suggested_new_tag to the first "
-        "custom primary/secondary)",
-        key=f"{key_prefix}_approve_registry_export",
-        help="When checked and you typed a custom slug not on the allowlist, Save will store it "
-        "as suggested_new_tag for append-to-YAML on finish.",
+    selected = []
+    if options:
+        selected = st.multiselect(
+            "Routing tags (from registry)",
+            options=options,
+            default=[t for t in default_sel if t in options],
+            key=f"{key_prefix}_tags_multiselect",
+            help="Select all allowlist tags that fit; no primary/secondary ordering.",
+        )
+    else:
+        st.caption("Tag registry is empty.")
+
+    manual_csv = st.text_input(
+        "Additional tags (comma-separated, kebab-case)",
+        value=", ".join(t for t in stored_final if t not in allow_full),
+        key=f"{key_prefix}_tags_manual",
+        help="Merged with multiselect; off-list values can be exported if approved below.",
     )
 
-    llm_sug = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
-    if llm_sug:
-        render_similar_tags_warning(st, llm_sug, allowlist, key_prefix=key_prefix)
-        st.caption(f"Registry suggestion on artifact: `{llm_sug}`")
-    llm_suggested_approve = st.checkbox(
-        "Include LLM- or prior suggested_new_tag in YAML export",
-        value=bool(tag_node.get("new_tag_approved")),
-        key=f"{key_prefix}_tag_suggested_approve",
-        help="Approves the current suggested_new_tag field for append when you finish review.",
-    )
+    suggested_new = _llm_suggested_new_tags(llm_item)
+    approved_new = set(_stored_approved_new_tags(tag_node, llm_item))
+    approve_new_map: dict[str, bool] = {}
+    if suggested_new:
+        st.markdown("**Suggested new registry tags**")
+        for i, sug in enumerate(suggested_new):
+            render_similar_tags_warning(st, sug, allowlist, key_prefix=f"{key_prefix}_sug_{i}")
+            approve_new_map[sug] = st.checkbox(
+                f"Include `{sug}` in YAML export",
+                value=sug in approved_new,
+                key=f"{key_prefix}_approve_new_{sug}",
+            )
+
+    offlist_in_manual = [
+        normalize_tag(x)
+        for x in manual_csv.split(",")
+        if normalize_tag(x) and normalize_tag(x) not in allow_full
+    ]
+    approve_offlist = False
+    if offlist_in_manual:
+        approve_offlist = st.checkbox(
+            "Include manual off-list tag(s) in YAML export",
+            value=any(t in approved_new for t in offlist_in_manual),
+            key=f"{key_prefix}_approve_offlist_manual",
+        )
+
     has_key = bool(os.environ.get("OPENAI_API_KEY"))
     st.button(
         "Suggest new registry tag (LLM)",
         key=f"{key_prefix}_suggest_tag",
-        help="Proposes one kebab-case tag not in the allowlist; saves to suggested_new_tag.",
+        help="Appends one kebab-case tag not on the allowlist to suggested_new_tags.",
         disabled=not has_key,
         on_click=on_suggest_domain_review_tag,
         args=(
@@ -298,10 +329,159 @@ def render_domain_tag_section(
         st.caption("Set OPENAI_API_KEY to enable LLM tag suggestion.")
 
     return {
-        "sel_p": sel_p,
-        "man_p": man_p,
-        "sel_s": sel_s,
-        "man_s": man_s,
-        "custom_reg": custom_reg,
-        "llm_suggested_approve": llm_suggested_approve,
+        "selected_allowlist": selected,
+        "manual_csv": manual_csv,
+        "approve_new_map": approve_new_map,
+        "approve_offlist": approve_offlist,
+    }
+
+
+def collect_approved_new_tags_from_review(
+    artifact: dict[str, Any],
+    review_list_key: str,
+) -> list[str]:
+    """Return approved new registry tags for YAML export from one review list."""
+    tags: list[str] = []
+    for node in (artifact.get("review") or {}).get(review_list_key) or []:
+        if not isinstance(node, dict):
+            continue
+        tag_node = node.get("tags") or {}
+        llm_item = node.get("llm_item") or {}
+        for t in _stored_approved_new_tags(tag_node, llm_item):
+            if t and t not in tags:
+                tags.append(t)
+    return tags
+
+
+def apply_registry_types_ui_to_node(
+    node: dict[str, Any],
+    llm_item: dict[str, Any],
+    type_ui: dict[str, Any],
+    allow: set[str],
+) -> None:
+    """Persist model/tool type multiselect UI onto the proposal."""
+    types_node = node.setdefault(
+        "types",
+        {"approved_types": [], "approved_new_types": [], "reviewer_types_added": []},
+    )
+    selected = normalize_tag_list(type_ui.get("selected_allowlist") or [], cap=0)
+    manual = normalize_tag_list(
+        [x.strip() for x in str(type_ui.get("manual_csv") or "").split(",") if x.strip()],
+        cap=0,
+    )
+    final: list[str] = []
+    for t in selected + manual:
+        if t and t not in final:
+            final.append(t)
+    types_node["approved_types"] = final
+
+    approved_new: list[str] = []
+    for t, checked in (type_ui.get("approve_new_map") or {}).items():
+        nt = normalize_tag(str(t))
+        if checked and nt and nt not in approved_new:
+            approved_new.append(nt)
+    types_node["approved_new_types"] = approved_new
+    if approved_new:
+        llm_item["proposed_new_type"] = approved_new[0]
+
+
+def render_registry_types_section(
+    st: Any,
+    node: dict[str, Any],
+    allowlist: list[str],
+    *,
+    key_prefix: str,
+    artifact_path: Path,
+    model: str,
+    prompt_version: str,
+    review_list_key: str,
+    label_widget_key: str,
+    summary_widget_key: str,
+    llm_fallback_label_key: str,
+    llm_fallback_summary_key: str,
+    llm_proposed_key: str = "proposed_types",
+    section_title: str = "Model types",
+) -> dict[str, Any]:
+    """Multi-select registry types (foundation models / tools pattern)."""
+    llm_item = node.setdefault("llm_item", {})
+    types_node = node.setdefault(
+        "types",
+        {"approved_types": [], "approved_new_types": [], "reviewer_types_added": []},
+    )
+    allow_full = {normalize_tag(str(t)) for t in allowlist if str(t).strip()}
+    options = sorted(allow_full)
+
+    stored = normalize_tag_list(types_node.get("approved_types") or [], cap=0)
+    proposed_raw = llm_item.get(llm_proposed_key) or []
+    proposed = normalize_tag_list(proposed_raw, cap=0) if isinstance(proposed_raw, list) else []
+    default_sel = stored if stored else [t for t in proposed if t in allow_full]
+
+    st.markdown(f"#### {section_title}")
+    st.caption(
+        "Select every registry type that fits; skip weak matches. "
+        "Approve new types for YAML export when the registry lacks a label."
+    )
+
+    if proposed:
+        st.caption("LLM proposed: " + ", ".join(f"`{t}`" for t in proposed))
+
+    selected: list[str] = []
+    if options:
+        selected = st.multiselect(
+            "Types (from registry)",
+            options=options,
+            default=[t for t in default_sel if t in options],
+            key=f"{key_prefix}_types_multiselect",
+        )
+    else:
+        st.caption("Type registry is empty.")
+
+    manual_csv = st.text_input(
+        "Additional types (comma-separated)",
+        value=", ".join(t for t in stored if t not in allow_full),
+        key=f"{key_prefix}_types_manual",
+    )
+
+    llm_new = normalize_tag(str(llm_item.get("proposed_new_type") or ""))
+    snt = _llm_suggested_new_tags(llm_item)
+    existing = types_node.get("proposed_new_type") or llm_new or (snt[0] if snt else "")
+    suggested_new = normalize_tag(str(existing)) if existing else ""
+    approved_new = set(normalize_tag_list(types_node.get("approved_new_types") or [], cap=0))
+    approve_new_map: dict[str, bool] = {}
+    if suggested_new:
+        render_similar_tags_warning(
+            st, suggested_new, allowlist, key_prefix=f"{key_prefix}_type_sug"
+        )
+        approve_new_map[suggested_new] = st.checkbox(
+            f"Include new type `{suggested_new}` in YAML export",
+            value=suggested_new in approved_new,
+            key=f"{key_prefix}_approve_new_type",
+        )
+
+    has_key = bool(os.environ.get("OPENAI_API_KEY"))
+    st.button(
+        "Suggest new registry type (LLM)",
+        key=f"{key_prefix}_suggest_type",
+        disabled=not has_key,
+        on_click=on_suggest_domain_review_tag,
+        args=(
+            str(node.get("proposal_id") or ""),
+            key_prefix,
+            artifact_path,
+            model,
+            prompt_version,
+            label_widget_key,
+            summary_widget_key,
+            review_list_key,
+            llm_fallback_label_key,
+            llm_fallback_summary_key,
+        ),
+        use_container_width=True,
+    )
+
+    return {
+        "selected_allowlist": selected,
+        "manual_csv": manual_csv,
+        "approve_new_map": approve_new_map,
+        "approve_offlist": False,
     }
