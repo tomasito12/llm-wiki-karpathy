@@ -15,7 +15,7 @@ def test_howto_proposal_defaults() -> None:
     assert hp.question_title == ""
     assert hp.answer_summary == ""
     assert hp.supporting_snippet == ""
-    assert hp.relevance_note == ""
+    assert hp.what_and_problem == ""
     assert hp.caveats == ""
     assert hp.implementation_steps == []
     assert hp.prerequisites == []
@@ -62,7 +62,7 @@ def test_howto_list_keys_match_model_fields() -> None:
 def test_howto_proposal_roundtrip_json() -> None:
     """Model dump and validate round-trips cleanly."""
     hp = HowToProposal(
-        question_title="How to build evaluation pipelines?",
+        question_title="Evaluation Pipeline Design",
         answer_summary="Summary.",
         implementation_steps=["step 1", "step 2"],
         prerequisites=["prereq 1"],
@@ -71,5 +71,5 @@ def test_howto_proposal_roundtrip_json() -> None:
     )
     data = hp.model_dump(mode="json")
     restored = HowToProposal.model_validate(data)
-    assert restored.question_title == "How to build evaluation pipelines?"
+    assert restored.question_title == "Evaluation Pipeline Design"
     assert restored.implementation_steps == ["step 1", "step 2"]

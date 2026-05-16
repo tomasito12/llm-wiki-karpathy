@@ -15,6 +15,7 @@ def test_topic_contribution_defaults() -> None:
     assert tc.topic_slug == ""
     assert tc.topic_title == ""
     assert tc.knowledge_summary == ""
+    assert tc.examples == ""
     assert tc.operational_insight == ""
     assert tc.supporting_snippet == ""
     assert tc.relevance_note == ""

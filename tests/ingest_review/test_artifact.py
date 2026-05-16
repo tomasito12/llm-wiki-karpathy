@@ -19,6 +19,10 @@ from src.ingest_review.artifact import (
     migrate_artifact_to_v7,
     migrate_artifact_to_v8,
     migrate_artifact_to_v9,
+    migrate_artifact_to_v10,
+    migrate_artifact_to_v11,
+    migrate_artifact_to_v12,
+    migrate_artifact_to_v13,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -121,7 +125,7 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 9
+    assert art["artifact_schema_version"] == 13
     assert art["source"]["source_id"] == stem
     assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
     assert "implementation_studies" in art["review"]
@@ -452,7 +456,8 @@ def test_default_review_builds_trend_per_section_nodes() -> None:
     llm: dict[str, Any] = {
         "industry_trends": [
             {
-                "trend_name": "inference-cost-collapse",
+                "trend_slug": "inference-cost-collapse",
+                "trend_title": "Inference Cost Collapse",
                 "trend_description": "Costs falling.",
                 "supporting_data_points": ["dp1"],
                 "related_trends": ["model-commoditization"],
@@ -1038,7 +1043,7 @@ def test_build_per_section_tag_node_has_new_structure(tmp_path: Path) -> None:
 
 
 def test_proposal_status_on_new_review_nodes(tmp_path: Path) -> None:
-    """New review nodes have proposal_status='pending'."""
+    """New review nodes default to proposal_status='approved'."""
     from src.ingest_review.schema import GlossaryProposal
 
     doc = _minimal_doc(tmp_path)
@@ -1051,7 +1056,53 @@ def test_proposal_status_on_new_review_nodes(tmp_path: Path) -> None:
         analysis_meta=default_analysis_meta(provider="x", model="y", prompt_version="z"),
         root=tmp_path,
     )
-    assert art["review"]["glossary"][0]["proposal_status"] == "pending"
+    assert art["review"]["glossary"][0]["proposal_status"] == "approved"
+    assert art["artifact_schema_version"] == 13
+
+
+def test_migrate_v13_splits_trend_name_into_slug_and_title() -> None:
+    """migrate_artifact_to_v13 maps legacy trend_name to slug + title."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 12,
+        "llm_output": {
+            "industry_trends": [
+                {
+                    "trend_name": "voicebot-evaluation-stack-hardening",
+                    "trend_description": "Eval stacks are maturing.",
+                },
+            ],
+        },
+        "review": {
+            "industry_trends": [
+                {
+                    "proposal_id": "t1",
+                    "proposal_status": "approved",
+                    "llm_item": {
+                        "trend_name": "agent-native enterprise software",
+                    },
+                    "sections": {
+                        "trend_name": {
+                            "status": "modified",
+                            "final_text": "agent-native-enterprise-software",
+                            "notes": None,
+                        },
+                    },
+                },
+            ],
+        },
+    }
+    migrate_artifact_to_v13(art)
+    assert art["artifact_schema_version"] == 13
+    llm0 = art["llm_output"]["industry_trends"][0]
+    assert "trend_name" not in llm0
+    assert llm0["trend_slug"] == "voicebot-evaluation-stack-hardening"
+    assert llm0["trend_title"] == "Voicebot Evaluation Stack Hardening"
+    node = art["review"]["industry_trends"][0]
+    assert node["llm_item"]["trend_slug"] == "agent-native-enterprise-software"
+    assert node["llm_item"]["trend_title"] == "agent-native enterprise software"
+    assert node["sections"]["trend_title"]["final_text"] == "Agent Native Enterprise Software"
+    assert "trend_name" not in node["sections"]
+    assert node["sections"]["trend_slug"]["final_text"] == "agent-native-enterprise-software"
 
 
 def test_review_analytics_on_new_artifact(tmp_path: Path) -> None:
@@ -1166,6 +1217,55 @@ def test_migrate_v9_coerces_invalid_evidence_type() -> None:
     assert art["llm_output"]["tools"][0]["evidence_type"] == "unknown"
 
 
+def test_migrate_artifact_to_v10_adds_topic_examples() -> None:
+    """migrate_artifact_to_v10 adds examples on topic llm_item and per-section review."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 9,
+        "llm_output": {
+            "extraction_meta": {},
+            "topics": [{"topic_slug": "x", "knowledge_summary": "K.", "confidence": 0.5}],
+        },
+        "review": {
+            "topics": [
+                {
+                    "proposal_id": "p1",
+                    "proposal_status": "pending",
+                    "llm_item": {"topic_slug": "x"},
+                    "sections": {
+                        "topic_slug": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                    },
+                    "tags": {},
+                },
+            ],
+        },
+        "review_analytics": {"evidence_type_counts": {}},
+    }
+    migrate_artifact_to_v10(art)
+    assert art["artifact_schema_version"] == 10
+    assert art["llm_output"]["topics"][0]["examples"] == ""
+    assert art["review"]["topics"][0]["llm_item"]["examples"] == ""
+    ex_sec = art["review"]["topics"][0]["sections"]["examples"]
+    assert ex_sec["status"] == "pending"
+    assert ex_sec["final_text"] is None
+
+
+def test_migrate_v10_is_noop_on_v10() -> None:
+    """Calling migrate_artifact_to_v10 on a v10 artifact is a no-op."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 10,
+        "llm_output": {"topics": [{"topic_slug": "z", "examples": "E"}]},
+        "review": {},
+        "review_analytics": {},
+    }
+    migrate_artifact_to_v10(art)
+    assert art["artifact_schema_version"] == 10
+    assert art["llm_output"]["topics"][0]["examples"] == "E"
+
+
 def test_migrate_v9_is_noop_on_v9() -> None:
     """Calling migrate_artifact_to_v9 on a v9 artifact is a no-op."""
     art: dict[str, Any] = {
@@ -1177,6 +1277,84 @@ def test_migrate_v9_is_noop_on_v9() -> None:
     migrate_artifact_to_v9(art)
     assert art["artifact_schema_version"] == 9
     assert art["llm_output"]["glossary"][0]["evidence_type"] == "benchmark"
+
+
+def test_migrate_artifact_to_v11_pending_to_approved() -> None:
+    """migrate_artifact_to_v11 maps pending proposal_status to approved."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 10,
+        "llm_output": {},
+        "review": {
+            "glossary": [
+                {"proposal_id": "a", "proposal_status": "pending", "llm_item": {}, "sections": {}},
+                {"proposal_id": "b", "proposal_status": "rejected", "llm_item": {}, "sections": {}},
+                {"proposal_id": "c", "proposal_status": "deferred", "llm_item": {}, "sections": {}},
+            ],
+        },
+        "review_analytics": {},
+    }
+    migrate_artifact_to_v11(art)
+    assert art["artifact_schema_version"] == 11
+    assert art["review"]["glossary"][0]["proposal_status"] == "approved"
+    assert art["review"]["glossary"][1]["proposal_status"] == "rejected"
+    assert art["review"]["glossary"][2]["proposal_status"] == "deferred"
+
+
+def test_migrate_v11_is_noop_on_v11() -> None:
+    """Calling migrate_artifact_to_v11 on a v11 artifact is a no-op."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 11,
+        "llm_output": {},
+        "review": {"glossary": [{"proposal_status": "approved"}]},
+        "review_analytics": {},
+    }
+    migrate_artifact_to_v11(art)
+    assert art["artifact_schema_version"] == 11
+
+
+def test_migrate_v12_moves_relevance_note_to_what_and_problem() -> None:
+    """migrate_artifact_to_v12 renames how_to relevance_note to what_and_problem."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 11,
+        "llm_output": {
+            "how_to": [
+                {
+                    "question_title": "Eval pipeline",
+                    "relevance_note": "Needed at production scale.",
+                    "answer_summary": "Sample calls.",
+                },
+            ],
+        },
+        "review": {
+            "how_to": [
+                {
+                    "proposal_id": "h1",
+                    "proposal_status": "approved",
+                    "llm_item": {
+                        "question_title": "Eval pipeline",
+                        "relevance_note": "Needed at production scale.",
+                    },
+                    "sections": {
+                        "relevance_note": {
+                            "status": "modified",
+                            "final_text": "Reviewer relevance edit.",
+                            "notes": None,
+                        },
+                    },
+                },
+            ],
+        },
+    }
+    migrate_artifact_to_v12(art)
+    assert art["artifact_schema_version"] == 12
+    llm_item = art["llm_output"]["how_to"][0]
+    assert "relevance_note" not in llm_item
+    assert llm_item["what_and_problem"] == "Needed at production scale."
+    node = art["review"]["how_to"][0]
+    assert "relevance_note" not in node["llm_item"]
+    assert node["llm_item"]["what_and_problem"] == "Needed at production scale."
+    assert "relevance_note" not in node["sections"]
+    assert node["sections"]["what_and_problem"]["final_text"] == "Reviewer relevance edit."
 
 
 def test_new_artifact_review_analytics_has_evidence_type_counts(tmp_path: Path) -> None:

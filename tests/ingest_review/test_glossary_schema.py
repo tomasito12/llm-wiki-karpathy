@@ -7,7 +7,31 @@ from src.ingest_review.schema import (
     GLOSSARY_SCALAR_KEYS,
     GlossaryProposal,
     LlmClassificationOutput,
+    normalize_glossary_term_capitalization,
 )
+
+
+def test_normalize_glossary_term_capitalization_leading_lowercase() -> None:
+    """Lowercase head terms get a leading capital letter."""
+    assert normalize_glossary_term_capitalization("frontmatter") == "Frontmatter"
+    assert normalize_glossary_term_capitalization("kanban") == "Kanban"
+
+
+def test_normalize_glossary_term_capitalization_untouched_when_already_upper() -> None:
+    """First letter already upper or acronym-like stays as-is."""
+    assert normalize_glossary_term_capitalization("RAG") == "RAG"
+    assert normalize_glossary_term_capitalization("API") == "API"
+
+
+def test_normalize_glossary_term_capitalization_leading_non_letter() -> None:
+    """Skip to first alphabetic character."""
+    assert normalize_glossary_term_capitalization("(kanban)") == "(Kanban)"
+
+
+def test_glossary_proposal_term_validator_normalizes_on_validate() -> None:
+    """GlossaryProposal applies capitalization when building from raw dict."""
+    p = GlossaryProposal.model_validate({"term": "frontmatter", "proposed_definition": "x"})
+    assert p.term == "Frontmatter"
 
 
 def test_glossary_proposal_defaults_are_empty() -> None:
@@ -46,7 +70,7 @@ def test_glossary_proposal_full_roundtrip() -> None:
         "suggested_action": "create",
     }
     p = GlossaryProposal.model_validate(data)
-    assert p.term == "agentic workflow"
+    assert p.term == "Agentic workflow"
     assert p.confidence == 0.9
     assert len(p.related_terms) == 2
     assert len(p.match_candidates) == 1

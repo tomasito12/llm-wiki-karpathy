@@ -1,31 +1,54 @@
-"""Streamlit rendering for implementation-study proposals (proposal-level review)."""
+"""Streamlit rendering for implementation-study proposals (two-column read/edit)."""
 
 from __future__ import annotations
 
-import logging
+import uuid
+from pathlib import Path
 from typing import Any
 
-from src.ingest_review.dashboard_ui import (
-    human_evidence_type_label,
-    render_proposal_evidence_type_editor,
-    render_proposal_tag_review,
+import streamlit as streamlit_runtime
+
+from src.ingest_review.dashboard_ui import human_evidence_type_label
+from src.ingest_review.domain_tag_ui import (
+    DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
+    apply_tag_ui_to_node,
+    effective_readonly_domain_tags,
+    render_domain_tag_section,
 )
 from src.ingest_review.impl_study_gate import (
     format_impl_study_evidence_caption,
     impl_study_likely_misclassified,
 )
+from src.ingest_review.proposal_decision_ui import (
+    proposal_status_label,
+    render_proposal_decision_bar,
+)
+from src.ingest_review.proposal_regen_ui import (
+    pop_proposal_regen_msg,
+    proposal_edit_key_prefix,
+    regen_count_from_node,
+    render_proposal_regen_meta_caption,
+    render_regenerate_with_new_title_controls,
+)
 from src.ingest_review.schema import (
     IMPL_STUDY_REVIEWABLE_LIST_KEYS,
     IMPL_STUDY_REVIEWABLE_SCALAR_KEYS,
 )
+from src.ingest_review.tags import normalize_tag
 
-logger = logging.getLogger(__name__)
+VALUE_LEVEL_ORDER: dict[str, int] = {"high": 0, "medium": 1, "low": 2}
 
-PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
-STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
+VALUE_LEVEL_BADGES: dict[str, str] = {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+}
 
-_VALUE_LEVEL_SORT: dict[str, int] = {"high": 0, "medium": 1, "low": 2}
-_VALUE_LEVEL_BADGE: dict[str, str] = {"high": "H", "medium": "M", "low": "L"}
+VALUE_LEVEL_TIER_HEADERS: dict[str, str] = {
+    "high": "### High value",
+    "medium": "### Medium value",
+    "low": "### Low value",
+}
 
 IMPL_STUDY_SECTION_LABELS: dict[str, str] = {
     "title": "Title",
@@ -46,227 +69,363 @@ IMPL_STUDY_SECTION_LABELS: dict[str, str] = {
     "open_questions": "Open questions",
 }
 
-
-def _proposal_status_index(current: str) -> int:
-    """Return index into PROPOSAL_STATUS_OPTIONS."""
-    if current in PROPOSAL_STATUS_OPTIONS:
-        return PROPOSAL_STATUS_OPTIONS.index(current)
-    return 0
-
-
-def _status_index(current: str) -> int:
-    """Return index into STATUS_OPTIONS."""
-    if current in STATUS_OPTIONS:
-        return STATUS_OPTIONS.index(current)
-    return 0
+IMPL_SCALAR_BEFORE_TAGS: tuple[str, ...] = ("title", "company", "industry", "overview")
+IMPL_SCALAR_MID: tuple[str, ...] = (
+    "what_was_implemented",
+    "business_objective",
+    "technical_approach",
+    "deployment_context",
+    "outcome_status",
+)
+IMPL_SCALAR_AFTER_TAGS: tuple[str, ...] = (
+    "success_or_failure_factors",
+    "operational_constraints",
+    "ai_model_observations",
+    "implications_for_service_automation",
+    "strategic_signals",
+)
+IMPL_TALL_SCALAR_KEYS: frozenset[str] = frozenset(
+    {
+        "overview",
+        "what_was_implemented",
+        "technical_approach",
+        "implications_for_service_automation",
+    }
+)
 
 
 def _sort_key(node: dict[str, Any]) -> tuple[int, int, float]:
-    """Sort by ignore-last, value_level (high first), then confidence descending."""
     llm = node.get("llm_item") or {}
     vl = str(llm.get("value_level", "medium"))
-    conf = llm.get("confidence", 0)
-    if not isinstance(conf, (int, float)):
-        conf = 0.0
+    conf = float(llm.get("confidence") or 0)
     action = str(llm.get("suggested_action") or "")
     ignore_rank = 1 if action == "ignore" else 0
-    return (ignore_rank, _VALUE_LEVEL_SORT.get(vl, 1), -float(conf))
+    return (ignore_rank, VALUE_LEVEL_ORDER.get(vl, 1), -conf)
 
 
-def _render_card_header(
-    st: Any,
-    llm_item: dict[str, Any],
-    node: dict[str, Any],
-    *,
-    index: int,
-) -> None:
-    """Render compact proposal card header with value badge and key metrics."""
-    vl = str(llm_item.get("value_level", "medium"))
-    badge = _VALUE_LEVEL_BADGE.get(vl, "M")
-    title = llm_item.get("title") or llm_item.get("company_name") or f"Study #{index + 1}"
-    company = llm_item.get("company") or llm_item.get("company_name") or ""
-    conf = llm_item.get("confidence", 0)
-    if isinstance(conf, (int, float)):
-        conf_display = f"{conf:.0%}"
-    else:
-        conf_display = str(conf)
-    industry = llm_item.get("industry") or "\u2014"
-    action = llm_item.get("suggested_action") or "\u2014"
-    status = node.get("proposal_status", "pending")
-    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
-
-    header = f"**[{badge}] {title}**"
-    if company:
-        header += f" \u2014 {company}"
-    header += f" \u00b7 confidence: {conf_display}"
-    st.markdown(header)
-    st.caption(
-        f"Industry: {industry} \u00b7 Action: {action} \u00b7 Evidence: {ev_lbl} "
-        f"\u00b7 Status: `{status}`"
-    )
-    st.caption(format_impl_study_evidence_caption(llm_item))
-    if impl_study_likely_misclassified(llm_item):
-        st.warning(
-            "No stated deployment evidence — likely misclassified. "
-            "Consider Reject or route to topics/how-to."
-        )
+def _value_level(node: dict[str, Any]) -> str:
+    return str((node.get("llm_item") or {}).get("value_level") or "medium")
 
 
-def _render_action_row(
-    st: Any,
-    node: dict[str, Any],
-    *,
-    key_prefix: str,
-) -> None:
-    """Render Approve | Reject | Defer action buttons."""
-    c1, c2, c3 = st.columns(3)
-    if c1.button("\u2713 Approve", key=f"{key_prefix}_approve"):
-        node["proposal_status"] = "approved"
-    if c2.button("\u2717 Reject", key=f"{key_prefix}_reject"):
-        node["proposal_status"] = "rejected"
-    if c3.button("\u23f3 Defer", key=f"{key_prefix}_defer"):
-        node["proposal_status"] = "deferred"
+def _section_node(sections: dict[str, Any], section_key: str) -> dict[str, Any]:
+    node = sections.get(section_key)
+    return node if isinstance(node, dict) else {}
 
 
-def _render_scalar_field(
-    st: Any,
+def effective_impl_scalar(
     llm_item: dict[str, Any],
     sections: dict[str, Any],
-    *,
     section_key: str,
-    key_prefix: str,
+) -> str:
+    """Return reviewer-final scalar text, else the LLM draft."""
+    node = _section_node(sections, section_key)
+    final = node.get("final_text")
+    if isinstance(final, str) and final.strip():
+        return final.strip()
+    return str(llm_item.get(section_key) or "").strip()
+
+
+def effective_impl_list(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+    list_key: str,
+) -> list[str]:
+    """Return reviewer-final list or LLM list."""
+    sec = _section_node(sections, list_key)
+    if str(sec.get("status") or "pending") == "modified" and sec.get("final_list") is not None:
+        fl = sec.get("final_list")
+        if isinstance(fl, list):
+            return [str(x) for x in fl]
+    raw = llm_item.get(list_key) or []
+    if not isinstance(raw, list):
+        return []
+    return [str(x) for x in raw]
+
+
+def apply_impl_scalar_edit(
+    sections: dict[str, Any],
+    llm_item: dict[str, Any],
+    section_key: str,
+    raw_text: str,
 ) -> None:
-    """Render a reviewable scalar field inside the edit expander."""
-    label = IMPL_STUDY_SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"##### {label}")
+    """Persist one scalar edit; infer section status from LLM draft."""
+    text = raw_text.strip()
+    llm_text = str(llm_item.get(section_key) or "").strip()
     node = sections.setdefault(
         section_key,
         {"status": "pending", "final_text": None, "notes": None},
     )
-    llm_text = str(llm_item.get(section_key) or "")
-    st.text(llm_text[:6000] + ("\u2026" if len(llm_text) > 6000 else ""))
-    node["status"] = st.selectbox(
-        f"{label} \u2014 status",
-        STATUS_OPTIONS,
-        index=_status_index(str(node.get("status") or "pending")),
-        key=f"{key_prefix}_impl_{section_key}_st",
-    )
-    if node["status"] in ("modified", "pending"):
-        default = node.get("final_text") if node.get("final_text") else llm_text
-        node["final_text"] = st.text_area(
-            f"{label} \u2014 final text",
-            value=default,
-            height=120,
-            key=f"{key_prefix}_impl_{section_key}_txt",
-        )
-    else:
+    if text == llm_text:
+        node["status"] = "approved"
         node["final_text"] = None
+    else:
+        node["status"] = "modified"
+        node["final_text"] = text
 
 
-def _render_list_field(
-    st: Any,
-    llm_item: dict[str, Any],
+def apply_impl_list_edit(
     sections: dict[str, Any],
-    *,
-    section_key: str,
-    key_prefix: str,
+    llm_item: dict[str, Any],
+    list_key: str,
+    raw_text: str,
 ) -> None:
-    """Render a reviewable list field inside the edit expander."""
-    label = IMPL_STUDY_SECTION_LABELS.get(section_key, section_key.replace("_", " ").title())
-    st.markdown(f"##### {label}")
-    llm_list = llm_item.get(section_key) or []
+    """Persist list field (one item per line)."""
+    lines = [ln.strip() for ln in raw_text.splitlines() if ln.strip()]
+    llm_list = llm_item.get(list_key) or []
     if not isinstance(llm_list, list):
         llm_list = []
+    llm_norm = [str(x) for x in llm_list]
     node = sections.setdefault(
-        section_key,
-        {"status": "pending", "final_list": None, "notes": None, "llm_list": list(llm_list)},
+        list_key,
+        {"status": "pending", "final_list": None, "notes": None, "llm_list": list(llm_norm)},
     )
     if not node.get("llm_list"):
-        node["llm_list"] = list(llm_list)
-    st.json(node["llm_list"])
-    node["status"] = st.selectbox(
-        f"{label} \u2014 status",
-        STATUS_OPTIONS,
-        index=_status_index(str(node.get("status") or "pending")),
-        key=f"{key_prefix}_impl_{section_key}_st",
-    )
-    default_lines = (
-        node.get("final_list") if node.get("final_list") is not None else node["llm_list"]
-    )
-    raw_list = st.text_area(
-        f"{label} \u2014 final list (one per line)",
-        value="\n".join(str(x) for x in (default_lines or [])),
-        height=100,
-        key=f"{key_prefix}_impl_{section_key}_txt",
-    )
-    lines = [ln.strip() for ln in raw_list.splitlines() if ln.strip()]
-    if node["status"] == "modified":
-        node["final_list"] = lines
-    else:
+        node["llm_list"] = list(llm_norm)
+    if lines == llm_norm:
+        node["status"] = "approved"
         node["final_list"] = None
+    else:
+        node["status"] = "modified"
+        node["final_list"] = lines
 
 
-def _render_evidence_panel(
-    st: Any,
+def apply_impl_proposal_edits(node: dict[str, Any], field_values: dict[str, str]) -> None:
+    """Apply all editable scalar and list fields for one impl-study proposal."""
+    llm_item = node.get("llm_item") or {}
+    sections = node.setdefault("sections", {})
+    for sk in IMPL_STUDY_REVIEWABLE_SCALAR_KEYS:
+        if sk in field_values:
+            apply_impl_scalar_edit(sections, llm_item, sk, field_values[sk])
+    for lk in IMPL_STUDY_REVIEWABLE_LIST_KEYS:
+        if lk in field_values:
+            apply_impl_list_edit(sections, llm_item, lk, field_values[lk])
+
+
+def impl_field_edit_value(
     llm_item: dict[str, Any],
-    *,
-    key_prefix: str,
+    sections: dict[str, Any],
+    section_key: str,
+) -> str:
+    """Default textarea value for one scalar field."""
+    return effective_impl_scalar(llm_item, sections, section_key)
+
+
+def impl_list_edit_value(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+    list_key: str,
+) -> str:
+    """Default textarea value for list fields."""
+    return "\n".join(effective_impl_list(llm_item, sections, list_key))
+
+
+def format_impl_readonly_markdown(node: dict[str, Any], impl_study_tags: list[str]) -> str:
+    """Single implementation-study card for the read-only column."""
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    title = effective_impl_scalar(llm_item, sections, "title") or "Untitled study"
+    tier = _value_level(node)
+    badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
+    proposal_status = proposal_status_label(node)
+    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
+    confidence = float(llm_item.get("confidence") or 0.0)
+    tag_node = node.get("tags") if isinstance(node.get("tags"), dict) else {}
+    tag_slugs = effective_readonly_domain_tags(llm_item, tag_node, impl_study_tags)
+
+    lines = [
+        f"## {title}",
+        "",
+        f"*{badge} · {proposal_status} · {ev_lbl} · {confidence:.0%}*",
+        "",
+    ]
+    company = effective_impl_scalar(llm_item, sections, "company")
+    if company:
+        lines.extend([f"**Company:** {company}", ""])
+    for sk in IMPL_STUDY_REVIEWABLE_SCALAR_KEYS:
+        if sk in ("title", "company"):
+            continue
+        val = effective_impl_scalar(llm_item, sections, sk)
+        if val:
+            label = IMPL_STUDY_SECTION_LABELS.get(sk, sk.replace("_", " ").title())
+            lines.extend([f"**{label}**", "", val, ""])
+    if tag_slugs:
+        lines.extend(["**Tags**", "", ", ".join(tag_slugs), ""])
+    for lk in IMPL_STUDY_REVIEWABLE_LIST_KEYS:
+        items = effective_impl_list(llm_item, sections, lk)
+        if items:
+            label = IMPL_STUDY_SECTION_LABELS.get(lk, lk.replace("_", " ").title())
+            lines.extend([f"**{label}**", ""] + [f"- {p}" for p in items] + [""])
+    cap = format_impl_study_evidence_caption(llm_item)
+    if cap:
+        lines.extend([f"*{cap}*", ""])
+    return "\n".join(lines).rstrip()
+
+
+def build_readonly_impl_studies_markdown(
+    sorted_nodes: list[dict[str, Any]],
+    impl_study_tags: list[str],
+) -> str:
+    """Build full read-only column markdown."""
+    if not sorted_nodes:
+        return "*(No implementation-study proposals.)*"
+    parts: list[str] = []
+    prev_tier: str | None = None
+    for node in sorted_nodes:
+        tier = _value_level(node)
+        if tier != prev_tier:
+            header = VALUE_LEVEL_TIER_HEADERS.get(tier)
+            if header:
+                parts.append(header)
+            prev_tier = tier
+        parts.append(format_impl_readonly_markdown(node, impl_study_tags))
+    return "\n\n---\n\n".join(parts)
+
+
+def _prepare_impl_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
+    review = artifact.setdefault("review", {})
+    impl_nodes = review.setdefault("implementation_studies", [])
+    llm_items = artifact.get("llm_output", {}).get("implementation_studies") or []
+    if not llm_items:
+        llm_items = artifact.get("llm_output", {}).get("enterprise_studies") or []
+    for i, node in enumerate(impl_nodes):
+        if "llm_item" not in node and i < len(llm_items):
+            node["llm_item"] = llm_items[i]
+        if not node.get("proposal_id"):
+            node["proposal_id"] = uuid.uuid4().hex
+    return sorted(impl_nodes, key=_sort_key)
+
+
+def _persist_impl_proposal_from_widgets(
+    node: dict[str, Any],
+    artifact_path: Path,
+    field_values: dict[str, str],
+    tag_ui: dict[str, Any],
+    allow: set[str],
 ) -> None:
-    """Render evidence snippets as a collapsible panel."""
-    snippets = llm_item.get("evidence_snippets") or []
-    if not snippets:
+    """Apply edits and write the artifact."""
+    from src.ingest_review.artifact import save_artifact, touch_review_session
+
+    artifact = streamlit_runtime.session_state.get("artifact")
+    if not isinstance(artifact, dict):
         return
-    with st.expander(f"Evidence snippets ({len(snippets)})", expanded=False):
-        for j, ev in enumerate(snippets):
-            if not isinstance(ev, dict):
-                continue
-            prov = ev.get("provenance", "stated")
-            badge = {"stated": "direct", "inferred": "inferred", "interpretation": "interp"}.get(
-                prov, prov
-            )
-            st.markdown(f"**[{badge}]** {ev.get('claim', '')}")
-            st.caption(ev.get("snippet", ""))
-            if j < len(snippets) - 1:
-                st.divider()
+    apply_impl_proposal_edits(node, field_values)
+    llm_item = node.setdefault("llm_item", {})
+    apply_tag_ui_to_node(node, llm_item, tag_ui, allow)
+    touch_review_session(artifact)
+    save_artifact(artifact_path, artifact)
+    title = field_values.get("title") or llm_item.get("title") or "study"
+    streamlit_runtime.session_state["_impl_save_msg"] = f"Saved **{title}**."
 
 
-def _render_tag_panel(
+def _render_impl_edit_box(
     st: Any,
-    llm_item: dict[str, Any],
-    tag_node: dict[str, Any],
+    node: dict[str, Any],
     impl_study_tags: list[str],
     *,
     key_prefix: str,
+    source_id: str,
+    artifact_path: Path,
+    model: str,
+    prompt_version: str,
+    tag_allow: set[str],
 ) -> None:
-    """Render tag review panel with final_primary_tag / final_secondary_tag."""
-    render_proposal_tag_review(
-        st,
-        llm_item,
-        tag_node,
-        impl_study_tags,
-        key_prefix=key_prefix,
-        entity_kind="domain",
-    )
+    """One bordered edit box per implementation-study proposal."""
+    llm_item = node.get("llm_item") or {}
+    sections = node.setdefault("sections", {})
+    title = effective_impl_scalar(llm_item, sections, "title") or "Untitled"
+    tier = _value_level(node)
+    badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
+    status_lbl = proposal_status_label(node)
 
+    with st.container(border=True):
+        st.markdown(f"**{title}** · {badge} · **{status_lbl}**")
+        render_proposal_regen_meta_caption(st, node, "Implementation study")
+        if impl_study_likely_misclassified(llm_item):
+            st.warning(
+                "No stated deployment evidence — likely misclassified. "
+                "Consider rejecting or routing to topics/how-to."
+            )
 
-def _render_match_candidates(
-    st: Any,
-    llm_item: dict[str, Any],
-    *,
-    key_prefix: str,
-) -> None:
-    """Render possible duplicate matches from the LLM."""
-    candidates = llm_item.get("match_candidates") or []
-    if not candidates:
-        return
-    with st.expander("Possible duplicates (from LLM)", expanded=False):
-        for mc in candidates:
-            if not isinstance(mc, dict):
-                continue
-            title = mc.get("title_or_slug", "?")
-            kind = mc.get("match_kind", "?")
-            conf = mc.get("confidence", 0)
-            st.warning(f"**{title}** \u2014 match: {kind}, confidence: {conf:.0%}")
+        field_values: dict[str, str] = {}
+        for sk in IMPL_SCALAR_BEFORE_TAGS:
+            label = IMPL_STUDY_SECTION_LABELS.get(sk, sk.replace("_", " ").title())
+            field_values[sk] = st.text_area(
+                label,
+                value=impl_field_edit_value(llm_item, sections, sk),
+                height=120 if sk in IMPL_TALL_SCALAR_KEYS else 72,
+                key=f"{key_prefix}_edit_{sk}",
+            )
+
+        tag_ui = render_domain_tag_section(
+            st,
+            node,
+            impl_study_tags,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            review_list_key="implementation_studies",
+            label_widget_key=f"{key_prefix}_edit_title",
+            summary_widget_key=f"{key_prefix}_edit_overview",
+            llm_fallback_label_key="title",
+            llm_fallback_summary_key="overview",
+        )
+
+        for sk in IMPL_SCALAR_MID + IMPL_SCALAR_AFTER_TAGS:
+            label = IMPL_STUDY_SECTION_LABELS.get(sk, sk.replace("_", " ").title())
+            field_values[sk] = st.text_area(
+                label,
+                value=impl_field_edit_value(llm_item, sections, sk),
+                height=120 if sk in IMPL_TALL_SCALAR_KEYS else 72,
+                key=f"{key_prefix}_edit_{sk}",
+            )
+
+        for lk in IMPL_STUDY_REVIEWABLE_LIST_KEYS:
+            label = IMPL_STUDY_SECTION_LABELS.get(lk, lk.replace("_", " ").title())
+            field_values[lk] = st.text_area(
+                label,
+                value=impl_list_edit_value(llm_item, sections, lk),
+                height=100,
+                key=f"{key_prefix}_edit_{lk}",
+                help="One bullet per line.",
+            )
+
+        snippets = llm_item.get("evidence_snippets") or []
+        if snippets:
+            with st.expander(f"Evidence snippets ({len(snippets)})", expanded=False):
+                for ev in snippets:
+                    if isinstance(ev, dict):
+                        st.markdown(f"**{ev.get('claim', '')}**")
+                        st.caption(str(ev.get("snippet") or ""))
+
+        proposal_id = str(node.get("proposal_id") or "")
+        render_regenerate_with_new_title_controls(
+            st,
+            entity_key="impl_study",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=title,
+            title_label="New study title",
+        )
+
+        def _save() -> None:
+            _persist_impl_proposal_from_widgets(
+                node,
+                artifact_path,
+                field_values,
+                tag_ui,
+                tag_allow,
+            )
+
+        render_proposal_decision_bar(
+            st,
+            node,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="implementation_studies",
+            on_save_callback=_save,
+        )
 
 
 def render_implementation_studies(
@@ -274,55 +433,77 @@ def render_implementation_studies(
     artifact: dict[str, Any],
     *,
     key_prefix: str,
+    source_id: str = "",
+    artifact_path: Path,
     impl_study_tags: list[str],
+    model: str = "",
+    prompt_version: str = "",
 ) -> None:
-    """Render proposal-level review for all implementation-study proposals.
+    """Two-column implementation-study review."""
+    tags_list = list(impl_study_tags or [])
+    tag_allow = {normalize_tag(str(t)) for t in tags_list if str(t).strip()}
+    streamlit_runtime.session_state[DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY] = tags_list
 
-    Each study is shown as a compact card with value_level badge,
-    title, company, and confidence, followed by an action row and
-    an edit expander for field-level editing. Sorted by value_level
-    then confidence (high first).
-    """
-    review = artifact.setdefault("review", {})
-    impl_nodes = review.setdefault("implementation_studies", [])
     st.subheader("Implementation studies")
-    if not impl_nodes:
+    sorted_nodes = _prepare_impl_nodes(artifact)
+    if not sorted_nodes:
         st.caption("No implementation-study proposals.")
         return
 
-    sorted_nodes = sorted(impl_nodes, key=_sort_key)
+    rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")
+    st.caption(f"{len(sorted_nodes)} proposal(s) · {rejected} rejected")
 
-    for i, node in enumerate(sorted_nodes):
-        llm_item = node.get("llm_item") or {}
-        pid = node.get("proposal_id") or f"anon{i}"
-        pfx = f"{key_prefix}_is_{pid[:8]}"
+    save_msg = streamlit_runtime.session_state.pop("_impl_save_msg", None)
+    if save_msg:
+        st.success(str(save_msg))
+    regen_msg = pop_proposal_regen_msg("impl_study")
+    if regen_msg:
+        st.success(regen_msg)
 
-        _render_card_header(st, llm_item, node, index=i)
-        _render_action_row(st, node, key_prefix=pfx)
+    read_col, edit_col = st.columns(2)
+    with read_col:
+        st.markdown(build_readonly_impl_studies_markdown(sorted_nodes, tags_list))
+    with edit_col:
+        edit_nodes = sorted_nodes
+        if len(sorted_nodes) > 6:
+            labels = [
+                effective_impl_scalar(
+                    n.get("llm_item") or {},
+                    n.get("sections") or {},
+                    "title",
+                )
+                or f"Study {i + 1}"
+                for i, n in enumerate(sorted_nodes)
+            ]
+            pick = st.selectbox(
+                "Edit study",
+                options=labels,
+                key=f"{key_prefix}_impl_jump",
+            )
+            idx = labels.index(pick) if pick in labels else 0
+            edit_nodes = [sorted_nodes[idx]]
+            st.caption("Showing one edit panel — use the selector to switch studies.")
 
-        sections = node.setdefault("sections", {})
-        tag_node = node.setdefault(
-            "tags",
-            {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
-        )
-        title = llm_item.get("title") or llm_item.get("company_name") or f"Study #{i + 1}"
-        with st.expander(f"Edit: {title}", expanded=False):
-            for sk in IMPL_STUDY_REVIEWABLE_SCALAR_KEYS:
-                _render_scalar_field(st, llm_item, sections, section_key=sk, key_prefix=pfx)
-            for lk in IMPL_STUDY_REVIEWABLE_LIST_KEYS:
-                _render_list_field(st, llm_item, sections, section_key=lk, key_prefix=pfx)
-            st.divider()
-            _render_evidence_panel(st, llm_item, key_prefix=pfx)
-            _render_tag_panel(st, llm_item, tag_node, impl_study_tags, key_prefix=pfx)
-            _render_match_candidates(st, llm_item, key_prefix=pfx)
-            render_proposal_evidence_type_editor(st, llm_item, key_prefix=pfx)
-            with st.expander("Raw JSON (debug)", expanded=False):
-                st.json(llm_item)
-        st.divider()
+        for i, node in enumerate(edit_nodes):
+            pid = str(node.get("proposal_id") or f"idx{i}")
+            pfx = proposal_edit_key_prefix(
+                key_prefix, pid, "impl", regen_count=regen_count_from_node(node)
+            )
+            _render_impl_edit_box(
+                st,
+                node,
+                tags_list,
+                key_prefix=pfx,
+                source_id=source_id,
+                artifact_path=artifact_path,
+                model=model,
+                prompt_version=prompt_version,
+                tag_allow=tag_allow,
+            )
 
 
 def collect_impl_study_new_tags(artifact: dict[str, Any]) -> list[str]:
-    """Return approved new tags where new_tag_approved is True across impl studies."""
+    """Return approved new tags across implementation-study proposals."""
     review = artifact.get("review") or {}
     tags: list[str] = []
     for node in review.get("implementation_studies") or []:
@@ -332,7 +513,7 @@ def collect_impl_study_new_tags(artifact: dict[str, Any]) -> list[str]:
         if not tag_node.get("new_tag_approved"):
             continue
         llm_item = node.get("llm_item") or {}
-        new_tag = llm_item.get("suggested_new_tag") or ""
+        new_tag = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
         if new_tag and new_tag not in tags:
             tags.append(new_tag)
     return tags

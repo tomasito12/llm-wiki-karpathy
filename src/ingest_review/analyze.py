@@ -6,6 +6,8 @@ from pathlib import Path
 
 from src.ingest_review.artifact import build_new_artifact, default_analysis_meta
 from src.ingest_review.extract import SourceDocument
+from src.ingest_review.glossary_related_terms_align import align_glossary_related_terms
+from src.ingest_review.howto_title_normalize import normalize_howto_proposal
 from src.ingest_review.impl_study_gate import filter_impl_study_proposals
 from src.ingest_review.providers.base import IngestionProvider
 from src.ingest_review.schema import (
@@ -13,6 +15,10 @@ from src.ingest_review.schema import (
     LlmClassificationOutput,
     normalize_source_summary,
 )
+from src.ingest_review.tools_roundup_model_routing import (
+    route_ai_tools_roundup_tools_to_foundation_models,
+)
+from src.ingest_review.topic_related_topics import sanitize_topics_related_topics
 from src.ingest_review.wiki_snapshot import build_wiki_snapshot
 
 
@@ -69,8 +75,12 @@ def apply_tag_allowlists(
     ]
     ht = howto_tags
     new_how = [
-        hp.model_copy(
-            update=_validate_tag_pair(hp.primary_tag, hp.secondary_tag, hp.suggested_new_tag, ht)
+        normalize_howto_proposal(
+            hp.model_copy(
+                update=_validate_tag_pair(
+                    hp.primary_tag, hp.secondary_tag, hp.suggested_new_tag, ht
+                )
+            )
         )
         for hp in parsed.how_to
     ]
@@ -122,6 +132,23 @@ def apply_tag_allowlists(
     )
 
 
+def apply_tools_roundup_entity_strip(parsed: LlmClassificationOutput) -> LlmClassificationOutput:
+    """Force tools-only extraction when source type is ai_tools_roundup."""
+    if parsed.source_type_detection.detected_source_type != "ai_tools_roundup":
+        return parsed
+    return parsed.model_copy(
+        update={
+            "glossary": [],
+            "topics": [],
+            "how_to": [],
+            "industry_trends": [],
+            "roundup_signals": [],
+            "implementation_studies": [],
+            "interview_insights": [],
+        }
+    )
+
+
 def run_classification(
     provider: IngestionProvider,
     document: SourceDocument,
@@ -160,6 +187,13 @@ def run_classification(
     parsed = parsed.model_copy(
         update={"source_summary": normalize_source_summary(parsed.source_summary)}
     )
+    parsed = align_glossary_related_terms(parsed, wiki)
+    parsed = route_ai_tools_roundup_tools_to_foundation_models(
+        parsed,
+        wiki,
+        tool_types,
+        list(model_types or []),
+    )
     parsed = apply_tag_allowlists(
         parsed,
         set(tool_types),
@@ -170,6 +204,8 @@ def run_classification(
         set(model_types or []),
         set(impl_study_tags or []),
     )
+    parsed = sanitize_topics_related_topics(parsed, set(topic_tags or []), wiki)
+    parsed = apply_tools_roundup_entity_strip(parsed)
     parsed = parsed.model_copy(
         update={
             "implementation_studies": filter_impl_study_proposals(parsed.implementation_studies),

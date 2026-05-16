@@ -9,7 +9,9 @@ from src.ingest_review.wiki_snapshot import (
     parse_foundation_model_names,
     parse_glossary_terms,
     parse_howto_titles,
+    parse_topic_slugs,
     parse_topic_titles,
+    parse_trend_slugs,
     parse_trend_titles,
 )
 
@@ -48,6 +50,18 @@ def test_parse_topic_titles_reads_table(tmp_path: Path) -> None:
     assert "Context Engineering" in titles
 
 
+def test_parse_topic_slugs_from_wikilink(tmp_path: Path) -> None:
+    """Topic slugs keep kebab-case from wikilink paths."""
+    idx = tmp_path / "topics_index.md"
+    idx.write_text(
+        "| Topic | Page |\n|-------|------|\n"
+        "| Context Engineering | [[topics/context-engineering]] |\n",
+        encoding="utf-8",
+    )
+    slugs = parse_topic_slugs(idx)
+    assert slugs == ["context-engineering"]
+
+
 def test_parse_topic_titles_plain_text_cell(tmp_path: Path) -> None:
     """Topic titles without wikilinks are captured as-is."""
     idx = tmp_path / "topics_index.md"
@@ -83,6 +97,18 @@ def test_parse_trend_titles_reads_table(tmp_path: Path) -> None:
     assert "Inference cost collapse" in titles
 
 
+def test_parse_trend_slugs_reads_table(tmp_path: Path) -> None:
+    """Trend slugs are parsed as kebab-case ids from index wikilinks."""
+    idx = tmp_path / "trends_index.md"
+    idx.write_text(
+        "| Trend | Page |\n|-------|------|\n"
+        "| Inference cost collapse | [[trends/inference-cost-collapse]] |\n",
+        encoding="utf-8",
+    )
+    slugs = parse_trend_slugs(idx)
+    assert slugs == ["inference-cost-collapse"]
+
+
 def test_parse_topic_titles_missing_file(tmp_path: Path) -> None:
     """Missing topic index returns empty list."""
     titles = parse_topic_titles(tmp_path / "nonexistent.md")
@@ -101,6 +127,7 @@ def test_build_wiki_snapshot_empty_dirs(tmp_path: Path) -> None:
     assert snap.topic_titles == []
     assert snap.howto_titles == []
     assert snap.trend_titles == []
+    assert snap.trend_slugs == []
 
 
 def test_wiki_snapshot_no_question_hints_field() -> None:

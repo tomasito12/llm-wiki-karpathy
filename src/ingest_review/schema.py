@@ -6,8 +6,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-ARTIFACT_SCHEMA_VERSION = 9
-PROMPT_VERSION = "12"
+ARTIFACT_SCHEMA_VERSION = 13
+PROMPT_VERSION = "25"
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
 MatchKind = Literal["exact", "fuzzy", "none"]
@@ -25,6 +25,23 @@ EvidenceType = Literal[
     "mixed",
     "unknown",
 ]
+
+
+def normalize_glossary_term_capitalization(term: str) -> str:
+    """Uppercase the first alphabetic character (e.g. ``frontmatter`` → ``Frontmatter``).
+
+    Leaves terms that already start with an uppercase letter or non-letter unchanged.
+    """
+    s = term.strip()
+    if not s:
+        return s
+    for i, ch in enumerate(s):
+        if ch.isalpha():
+            if ch.islower():
+                return s[:i] + ch.upper() + s[i + 1 :]
+            return s
+    return s
+
 
 EVIDENCE_TYPE_VALUES: tuple[str, ...] = (
     "vendor_claim",
@@ -147,6 +164,15 @@ class SectionRegenerateOutput(BaseModel):
     content: str | list[str] = ""
 
 
+class GlossaryTagSuggestOutput(BaseModel):
+    """LLM suggestion for one glossary routing tag not covered by the allowlist."""
+
+    suggested_tag: str = Field(
+        "",
+        description="Single kebab-case tag slug, or empty if no new tag is warranted.",
+    )
+
+
 class GlossaryProposal(BaseModel):
     """One glossary term proposal from the LLM."""
 
@@ -167,6 +193,13 @@ class GlossaryProposal(BaseModel):
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType = "unknown"
+
+    @field_validator("term", mode="before")
+    @classmethod
+    def _normalize_glossary_term_capitalization(cls, v: object) -> str:
+        if v is None:
+            return ""
+        return normalize_glossary_term_capitalization(str(v))
 
 
 GLOSSARY_SCALAR_KEYS: tuple[str, ...] = (
@@ -195,11 +228,20 @@ class TopicContribution(BaseModel):
     topic_slug: str = ""
     topic_title: str = ""
     knowledge_summary: str = ""
+    examples: str = ""
     operational_insight: str = ""
     supporting_snippet: str = ""
-    relevance_note: str = ""
+    relevance_note: str = Field(
+        "",
+        description="Durable industry/operational relevance for the topic — NOT "
+        "article-specific context or what the source emphasizes.",
+    )
     key_points: list[str] = Field(default_factory=list)
-    related_topics: list[str] = Field(default_factory=list)
+    related_topics: list[str] = Field(
+        default_factory=list,
+        description="Kebab-case topic_slug cross-references to other topic pages — "
+        "never TOPIC_TAGS_ALLOWLIST routing tags.",
+    )
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -214,6 +256,7 @@ TOPIC_SCALAR_KEYS: tuple[str, ...] = (
     "topic_slug",
     "topic_title",
     "knowledge_summary",
+    "examples",
     "operational_insight",
     "supporting_snippet",
     "relevance_note",
@@ -228,11 +271,145 @@ TOPIC_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
     "topic_slug",
     "topic_title",
     "knowledge_summary",
+    "examples",
     "operational_insight",
     "relevance_note",
 )
 
 TOPIC_REVIEWABLE_LIST_KEYS: tuple[str, ...] = ("key_points",)
+
+
+class TopicRegenerateOutput(BaseModel):
+    """JSON returned by per-topic regeneration under a reviewer-supplied title."""
+
+    knowledge_summary: str = ""
+    examples: str = ""
+    operational_insight: str = ""
+    relevance_note: str = ""
+    key_points: list[str] = Field(default_factory=list)
+    supporting_snippet: str = ""
+    related_topics: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
+    confidence: float = Field(0.0, ge=0.0, le=1.0)
+    suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
+
+
+class GlossaryRegenerateOutput(BaseModel):
+    """JSON returned by per-glossary-term regeneration (no term field)."""
+
+    proposed_definition: str = ""
+    extended_explanation: str = ""
+    relevance_note: str = ""
+    supporting_snippet: str = ""
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
+    confidence: float = Field(0.0, ge=0.0, le=1.0)
+    suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
+
+
+class HowToRegenerateOutput(BaseModel):
+    """JSON returned by per-how-to regeneration (no question_title field)."""
+
+    what_and_problem: str = ""
+    answer_summary: str = ""
+    caveats: str = ""
+    implementation_steps: list[str] = Field(default_factory=list)
+    prerequisites: list[str] = Field(default_factory=list)
+    related_howtos: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
+    confidence: float = Field(0.0, ge=0.0, le=1.0)
+    suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
+
+
+class TrendRegenerateOutput(BaseModel):
+    """JSON returned by per-trend regeneration (no trend_title or trend_slug)."""
+
+    trend_description: str = ""
+    evidence_from_source: str = ""
+    time_sensitivity: str = ""
+    uncertainty_note: str = ""
+    assessed_as_of: str = ""
+    supporting_snippet: str = ""
+    supporting_data_points: list[str] = Field(default_factory=list)
+    related_trends: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
+    confidence: float = Field(0.0, ge=0.0, le=1.0)
+    suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
+
+
+class ToolRegenerateOutput(BaseModel):
+    """JSON returned by per-tool regeneration (no name field)."""
+
+    short_description: str = ""
+    operational_relevance: str = ""
+    strengths: str = ""
+    weaknesses_limitations: str = ""
+    maturity_signals: str = ""
+    supporting_snippet: str = ""
+    core_capabilities: list[str] = Field(default_factory=list)
+    integration_ecosystem: list[str] = Field(default_factory=list)
+    related_tools: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
+    confidence: float = Field(0.0, ge=0.0, le=1.0)
+    suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
+
+
+class ModelRegenerateOutput(BaseModel):
+    """JSON returned by per-model regeneration (no model_name field)."""
+
+    provider: str = ""
+    operational_summary: str = ""
+    strengths: str = ""
+    weaknesses_limitations: str = ""
+    workflow_implications: str = ""
+    service_automation_implications: str = ""
+    maturity_signals: str = ""
+    pricing_inference_implications: str = ""
+    supporting_snippet: str = ""
+    core_capabilities: list[str] = Field(default_factory=list)
+    benchmark_observations: list[str] = Field(default_factory=list)
+    comparative_observations: list[str] = Field(default_factory=list)
+    related_models: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
+    confidence: float = Field(0.0, ge=0.0, le=1.0)
+    suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
+
+
+class ImplStudyRegenerateOutput(BaseModel):
+    """JSON returned by per-implementation-study regeneration (no title field)."""
+
+    company: str = ""
+    industry: str = ""
+    overview: str = ""
+    what_was_implemented: str = ""
+    business_objective: str = ""
+    technical_approach: str = ""
+    deployment_context: str = ""
+    outcome_status: str = ""
+    success_or_failure_factors: str = ""
+    operational_constraints: str = ""
+    ai_model_observations: str = ""
+    implications_for_service_automation: str = ""
+    strategic_signals: str = ""
+    key_lessons: list[str] = Field(default_factory=list)
+    open_questions: list[str] = Field(default_factory=list)
+    related_sources: list[str] = Field(default_factory=list)
+    match_candidates: list[MatchCandidate] = Field(default_factory=list)
+    confidence: float = Field(0.0, ge=0.0, le=1.0)
+    suggested_action: SuggestedAction = "ignore"
+    value_level: ValueLevel = "medium"
+    evidence_type: EvidenceType = "unknown"
 
 
 class ToolProposal(BaseModel):
@@ -357,9 +534,9 @@ class HowToProposal(BaseModel):
     """Procedural/implementation knowledge extracted from a source."""
 
     question_title: str = ""
+    what_and_problem: str = ""
     answer_summary: str = ""
     supporting_snippet: str = ""
-    relevance_note: str = ""
     caveats: str = ""
     implementation_steps: list[str] = Field(default_factory=list)
     prerequisites: list[str] = Field(default_factory=list)
@@ -376,9 +553,9 @@ class HowToProposal(BaseModel):
 
 HOWTO_SCALAR_KEYS: tuple[str, ...] = (
     "question_title",
+    "what_and_problem",
     "answer_summary",
     "supporting_snippet",
-    "relevance_note",
     "caveats",
 )
 
@@ -390,8 +567,8 @@ HOWTO_LIST_KEYS: tuple[str, ...] = (
 
 HOWTO_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
     "question_title",
+    "what_and_problem",
     "answer_summary",
-    "relevance_note",
     "caveats",
 )
 
@@ -474,7 +651,8 @@ IMPL_STUDY_REVIEWABLE_LIST_KEYS: tuple[str, ...] = (
 class IndustryTrendProposal(BaseModel):
     """Time-sensitive industry trend or pattern supported by the article."""
 
-    trend_name: str = ""
+    trend_slug: str = ""
+    trend_title: str = ""
     trend_description: str = ""
     evidence_from_source: str = ""
     time_sensitivity: str = ""
@@ -485,7 +663,10 @@ class IndustryTrendProposal(BaseModel):
     )
     supporting_snippet: str = ""
     supporting_data_points: list[str] = Field(default_factory=list)
-    related_trends: list[str] = Field(default_factory=list)
+    related_trends: list[str] = Field(
+        default_factory=list,
+        description="Kebab-case trend_slug cross-references to other trend pages.",
+    )
     primary_tag: str = ""
     secondary_tag: str = ""
     suggested_new_tag: str = ""
@@ -497,7 +678,8 @@ class IndustryTrendProposal(BaseModel):
 
 
 TREND_SCALAR_KEYS: tuple[str, ...] = (
-    "trend_name",
+    "trend_slug",
+    "trend_title",
     "trend_description",
     "evidence_from_source",
     "time_sensitivity",
@@ -511,7 +693,8 @@ TREND_LIST_KEYS: tuple[str, ...] = (
 )
 
 TREND_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
-    "trend_name",
+    "trend_slug",
+    "trend_title",
     "trend_description",
     "evidence_from_source",
     "time_sensitivity",
@@ -524,6 +707,7 @@ TREND_REVIEWABLE_LIST_KEYS: tuple[str, ...] = ("supporting_data_points",)
 SourceType = Literal[
     "standard_article",
     "ai_industry_roundup",
+    "ai_tools_roundup",
     "interview_or_transcript",
     "technical_howto",
     "research_paper_or_report",

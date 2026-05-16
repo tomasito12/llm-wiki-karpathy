@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 from unittest.mock import MagicMock
 
+import pytest
+
 from src.ingest_review.extract import load_readwise_pair
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.schema import LlmClassificationOutput
@@ -116,8 +118,12 @@ def test_openai_prompt_contains_source_type_rubrics(tmp_path: Path) -> None:
     call_args = fake_client.chat.completions.create.call_args
     user_msg = call_args.kwargs["messages"][1]["content"]
     assert "SOURCE_TYPE_DETECTION_RUBRIC" in user_msg
+    assert "related_terms" in user_msg
+    assert "exact same spelling" in user_msg
     assert "ROUNDUP_SIGNALS_RUBRIC" in user_msg
     assert "INTERVIEW_INSIGHTS_RUBRIC" in user_msg
+    assert "AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC" in user_msg
+    assert "do NOT cap tools or foundation_models" in user_msg
     assert "source_type_detection" in user_msg
 
 
@@ -303,6 +309,169 @@ def test_openai_regenerate_source_section_parses_json(tmp_path: Path) -> None:
     assert meta["request_id"] == "cmpl-regen"
 
 
+def test_openai_regenerate_topic_proposal_parses_json(tmp_path: Path) -> None:
+    """Narrow topic regen call validates TopicRegenerateOutput JSON."""
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-topic-regen"
+    (raw / f"{stem}.html").write_text("<p>local inference on device</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    regen_json = json.dumps(
+        {
+            "knowledge_summary": "Broader local inference including multimodal stacks.",
+            "examples": "Vision + text on device.",
+            "operational_insight": "Sample eval calls at scale.",
+            "relevance_note": "Core deployment pattern.",
+            "key_points": ["sampling"],
+            "supporting_snippet": "local inference on device",
+            "related_topics": ["edge-inference"],
+            "confidence": 0.75,
+            "suggested_action": "append_to_existing",
+            "value_level": "high",
+            "evidence_type": "independent_analysis",
+        }
+    )
+
+    class _Msg:
+        content = regen_json
+
+    class _Choice:
+        message = _Msg()
+
+    class _Usage:
+        def model_dump(self) -> dict:
+            return {"total_tokens": 4}
+
+    class _Completion:
+        id = "cmpl-topic-regen"
+        choices = [_Choice()]
+        usage = _Usage()
+
+    fake_client = MagicMock()
+    fake_client.chat.completions.create.return_value = _Completion()
+    prov = OpenAIIngestionProvider(client=fake_client)
+    fragment, meta = prov.regenerate_topic_proposal(
+        document=doc,
+        current_topic={"topic_title": "Local Multimodal Inference"},
+        new_title="Local Inference",
+        reviewer_instruction="keep multimodal in summary",
+        topic_tags_allowlist=["ai-infrastructure"],
+        existing_topic_slugs=["edge-inference"],
+        model="gpt-test",
+        prompt_version="21",
+        max_plain_text_chars=10_000,
+        max_retries=2,
+    )
+    assert "multimodal" in fragment["knowledge_summary"]
+    assert "topic_title" not in fragment
+    assert meta["request_id"] == "cmpl-topic-regen"
+    call_kwargs = fake_client.chat.completions.create.call_args.kwargs
+    user_content = call_kwargs["messages"][1]["content"]
+    assert "NEW_TOPIC_TITLE: Local Inference" in user_content
+    assert "keep multimodal in summary" in user_content
+
+
+def test_topic_regen_rubric_emphasizes_broader_title() -> None:
+    """TOPIC_REGEN_RUBRIC reframes under reviewer title and keeps narrow angles in body."""
+    from src.ingest_review.proposal_regen_provider import TOPIC_REGEN_RUBRIC
+
+    assert "NEW_TOPIC_TITLE" in TOPIC_REGEN_RUBRIC
+    assert "broader title NEW_TOPIC_TITLE" in TOPIC_REGEN_RUBRIC
+    assert "knowledge_summary" in TOPIC_REGEN_RUBRIC
+    assert "topic_title or topic_slug" in TOPIC_REGEN_RUBRIC
+
+
+@pytest.mark.parametrize(
+    ("rubric_name", "new_title_token", "forbidden_output"),
+    [
+        ("GLOSSARY_REGEN_RUBRIC", "NEW_TERM", "term"),
+        ("HOWTO_REGEN_RUBRIC", "NEW_PAGE_TITLE", "question_title"),
+        ("TREND_REGEN_RUBRIC", "NEW_TREND_TITLE", "trend_title"),
+        ("TOOL_REGEN_RUBRIC", "NEW_TOOL_NAME", "name"),
+        ("MODEL_REGEN_RUBRIC", "NEW_MODEL_NAME", "model_name"),
+        ("IMPL_STUDY_REGEN_RUBRIC", "NEW_STUDY_TITLE", "title"),
+    ],
+)
+def test_entity_regen_rubrics_mention_new_title_and_exclude_identifier(
+    rubric_name: str,
+    new_title_token: str,
+    forbidden_output: str,
+) -> None:
+    from src.ingest_review import proposal_regen_provider as mod
+
+    rubric = getattr(mod, rubric_name)
+    assert new_title_token in rubric
+    assert (
+        f"Do not output {forbidden_output}" in rubric or f"not output {forbidden_output}" in rubric
+    )
+
+
+def test_openai_suggest_glossary_review_tag_parses_json() -> None:
+    """Narrow tag-suggestion call validates GlossaryTagSuggestOutput JSON."""
+    suggest_json = '{"suggested_tag": "graph-rag"}'
+
+    class _Msg:
+        content = suggest_json
+
+    class _Choice:
+        message = _Msg()
+
+    class _Usage:
+        def model_dump(self) -> dict:
+            return {"total_tokens": 3}
+
+    class _Completion:
+        id = "cmpl-tag-suggest"
+        choices = [_Choice()]
+        usage = _Usage()
+
+    fake_client = MagicMock()
+    fake_client.chat.completions.create.return_value = _Completion()
+    prov = OpenAIIngestionProvider(client=fake_client)
+    tag, meta = prov.suggest_domain_review_tag(
+        entity_label="RAG",
+        context_summary="Retrieval augments context.",
+        allowlist=["orchestration", "evaluation"],
+        model="gpt-test",
+        prompt_version="9",
+    )
+    assert tag == "graph-rag"
+    assert meta["request_id"] == "cmpl-tag-suggest"
+
+
+def test_openai_suggest_glossary_review_tag_strips_allowlist_collision() -> None:
+    """If the model echoes an allowlist tag, return empty string."""
+    suggest_json = '{"suggested_tag": "orchestration"}'
+
+    class _Msg:
+        content = suggest_json
+
+    class _Choice:
+        message = _Msg()
+
+    class _Usage:
+        def model_dump(self) -> dict:
+            return {}
+
+    class _Completion:
+        id = "x"
+        choices = [_Choice()]
+        usage = _Usage()
+
+    fake_client = MagicMock()
+    fake_client.chat.completions.create.return_value = _Completion()
+    prov = OpenAIIngestionProvider(client=fake_client)
+    tag, _meta = prov.suggest_domain_review_tag(
+        entity_label="T",
+        context_summary="D",
+        allowlist=["orchestration"],
+        model="gpt-test",
+        prompt_version="1",
+    )
+    assert tag == ""
+
+
 def test_rubrics_mention_suggested_new_tag() -> None:
     """All entity-type rubrics include suggested_new_tag field instructions."""
     from src.ingest_review.providers.openai_provider import (
@@ -417,6 +586,33 @@ def test_glossary_rubric_has_no_article_referencing_language() -> None:
             f"GLOSSARY_RUBRIC still contains banned phrase: {phrase!r}"
         )
     assert "NEVER reference the article" in GLOSSARY_RUBRIC
+
+
+def test_topics_rubric_relevance_note_avoids_article_framing() -> None:
+    """Topics relevance_note must instruct industry relevance, not article context."""
+    from src.ingest_review.providers.openai_provider import TOPICS_RUBRIC
+
+    assert "why this **topic** matters" in TOPICS_RUBRIC
+    assert "NOT why it appeared in this source" in TOPICS_RUBRIC
+    assert 'NEVER reference the article ("the article"' in TOPICS_RUBRIC
+    banned = [
+        "why this matters in the context of this source",
+        "in the context of this source",
+    ]
+    lower = TOPICS_RUBRIC.lower()
+    for phrase in banned:
+        assert phrase.lower() not in lower, (
+            f"TOPICS_RUBRIC still contains banned phrase: {phrase!r}"
+        )
+
+
+def test_topics_rubric_related_topics_not_tags() -> None:
+    """related_topics must be distinguished from TOPIC_TAGS_ALLOWLIST."""
+    from src.ingest_review.providers.openai_provider import TOPICS_RUBRIC
+
+    assert "Do **NOT** put TOPIC_TAGS_ALLOWLIST" in TOPICS_RUBRIC
+    assert "related_topics vs tags" in TOPICS_RUBRIC
+    assert "ai-engineering" in TOPICS_RUBRIC
 
 
 def test_glossary_rubric_includes_extraction_boundaries() -> None:
@@ -578,6 +774,57 @@ def test_topics_and_howtos_rubric_route_away_from_impl_studies() -> None:
 
     assert "NOT in implementation_studies" in TOPICS_RUBRIC
     assert "NOT in implementation_studies" in HOWTOS_RUBRIC
+
+
+def test_howtos_rubric_title_granularity_rules() -> None:
+    """HOWTOS_RUBRIC requires broad noun-phrase page titles, not interrogative questions."""
+    from src.ingest_review.providers.openai_provider import HOWTOS_RUBRIC
+
+    assert "Title granularity" in HOWTOS_RUBRIC
+    assert "wiki page title" in HOWTOS_RUBRIC
+    assert "short noun phrase" in HOWTOS_RUBRIC
+    assert "How do you" in HOWTOS_RUBRIC
+    assert "Evaluation of a Production Voicebot" in HOWTOS_RUBRIC
+    assert "EXISTING_HOWTO_TITLES" in HOWTOS_RUBRIC
+    assert "append_to_existing" in HOWTOS_RUBRIC
+    assert "micro-howto" in HOWTOS_RUBRIC
+    assert "what_and_problem" in HOWTOS_RUBRIC
+    assert "Plain-language fields" in HOWTOS_RUBRIC
+    assert "relevance_note" not in HOWTOS_RUBRIC
+
+
+def test_system_prompt_howto_titles_are_page_names() -> None:
+    """SYSTEM_PROMPT reinforces how-to titles as page names, not questions."""
+    from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
+
+    assert "question_title is a wiki page name" in SYSTEM_PROMPT
+    assert "HOWTOS_RUBRIC" in SYSTEM_PROMPT
+
+
+def test_prompt_version_is_25() -> None:
+    """Prompt version bumped for multi-entity proposal regeneration."""
+    from src.ingest_review.schema import PROMPT_VERSION
+
+    assert PROMPT_VERSION == "25"
+
+
+def test_trends_rubric_uses_slug_and_title() -> None:
+    from src.ingest_review.providers.openai_provider import TRENDS_RUBRIC
+
+    assert "trend_slug" in TRENDS_RUBRIC
+    assert "trend_title" in TRENDS_RUBRIC
+    assert "trend_name" not in TRENDS_RUBRIC
+
+
+def test_tools_rubric_requires_explanatory_strengths_not_keywords() -> None:
+    """TOOLS_RUBRIC forbids comma-separated keyword dumps in strengths."""
+    from src.ingest_review.providers.openai_provider import TOOLS_RUBRIC
+
+    assert "Explanatory depth" in TOOLS_RUBRIC
+    assert "keyword" in TOOLS_RUBRIC.lower() or "keyword salads" in TOOLS_RUBRIC
+    assert "BAD strengths" in TOOLS_RUBRIC
+    assert "GOOD strengths" in TOOLS_RUBRIC
+    assert "markdown bullets" in TOOLS_RUBRIC.lower() or "bullets" in TOOLS_RUBRIC
 
 
 def test_system_prompt_references_impl_study_worthiness_gate() -> None:

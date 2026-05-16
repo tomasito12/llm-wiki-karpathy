@@ -1,186 +1,405 @@
-"""Streamlit rendering for how-to proposals (proposal-level review)."""
+"""Streamlit rendering for how-to proposals (two-column read/edit + domain tags)."""
 
 from __future__ import annotations
 
-import logging
+import uuid
+from pathlib import Path
 from typing import Any
 
-from src.ingest_review.dashboard_ui import (
-    format_proposed_tags_caption,
-    human_evidence_type_label,
-    render_proposal_evidence_type_editor,
-    render_proposal_tag_review,
+import streamlit as streamlit_runtime
+
+from src.ingest_review.dashboard_ui import human_evidence_type_label
+from src.ingest_review.domain_tag_ui import (
+    DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
+    apply_tag_ui_to_node,
+    effective_readonly_domain_tags,
+    render_domain_tag_section,
+)
+from src.ingest_review.proposal_decision_ui import (
+    proposal_status_label,
+    render_proposal_decision_bar,
+)
+from src.ingest_review.proposal_regen_ui import (
+    pop_proposal_regen_msg,
+    proposal_edit_key_prefix,
+    regen_count_from_node,
+    render_proposal_regen_meta_caption,
+    render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import HOWTO_REVIEWABLE_LIST_KEYS, HOWTO_REVIEWABLE_SCALAR_KEYS
+from src.ingest_review.tags import normalize_tag
 
-logger = logging.getLogger(__name__)
+VALUE_LEVEL_ORDER: dict[str, int] = {"high": 0, "medium": 1, "low": 2}
 
-PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
-FIELD_STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
+VALUE_LEVEL_BADGES: dict[str, str] = {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+}
 
-VALUE_LEVEL_ORDER = {"high": 0, "medium": 1, "low": 2}
+VALUE_LEVEL_TIER_HEADERS: dict[str, str] = {
+    "high": "### High value",
+    "medium": "### Medium value",
+    "low": "### Low value",
+}
 
 HOWTO_FIELD_LABELS: dict[str, str] = {
-    "question_title": "Question title",
+    "question_title": "Page title",
+    "what_and_problem": "What is it and what problem does it solve?",
     "answer_summary": "Answer summary",
-    "relevance_note": "Relevance note",
     "caveats": "Caveats",
     "implementation_steps": "Implementation steps",
     "prerequisites": "Prerequisites",
 }
 
-
-def _proposal_status_index(current: str) -> int:
-    """Return index of *current* in proposal status options, defaulting to 0."""
-    if current in PROPOSAL_STATUS_OPTIONS:
-        return PROPOSAL_STATUS_OPTIONS.index(current)
-    return 0
-
-
-def _field_status_index(current: str) -> int:
-    """Return index of *current* in field status options, defaulting to 0."""
-    if current in FIELD_STATUS_OPTIONS:
-        return FIELD_STATUS_OPTIONS.index(current)
-    return 0
+HOWTO_SCALAR_BEFORE_TAGS: tuple[str, ...] = (
+    "question_title",
+    "what_and_problem",
+    "answer_summary",
+)
+HOWTO_SCALAR_AFTER_TAGS: tuple[str, ...] = ("caveats",)
+HOWTO_TALL_SCALAR_KEYS: frozenset[str] = frozenset({"what_and_problem", "answer_summary"})
 
 
 def _sort_key(node: dict[str, Any]) -> tuple[int, float]:
-    """Sort proposals: high value first, then descending confidence."""
     llm = node.get("llm_item") or {}
     level = str(llm.get("value_level") or "medium")
     conf = float(llm.get("confidence") or 0)
     return (VALUE_LEVEL_ORDER.get(level, 1), -conf)
 
 
-def _render_compact_card(
-    st: Any,
-    node: dict[str, Any],
+def _value_level(node: dict[str, Any]) -> str:
+    return str((node.get("llm_item") or {}).get("value_level") or "medium")
+
+
+def _section_node(sections: dict[str, Any], section_key: str) -> dict[str, Any]:
+    node = sections.get(section_key)
+    return node if isinstance(node, dict) else {}
+
+
+def effective_howto_scalar(
     llm_item: dict[str, Any],
-    idx: int,
-    *,
-    key_prefix: str,
-    howto_tags: list[str],
-) -> None:
-    """Render a compact read-only proposal card with action buttons."""
-    value_level = str(llm_item.get("value_level") or "medium").upper()
-    title = llm_item.get("question_title") or f"How-to #{idx + 1}"
-    conf = float(llm_item.get("confidence") or 0)
-    status = str(node.get("proposal_status") or "pending")
-
-    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
-    st.markdown(f"**[{value_level}] {title}** — evidence: _{ev_lbl}_ — confidence: {conf:.0%}")
-
-    summary = str(llm_item.get("answer_summary") or "")
-    if summary:
-        st.text(summary[:2000] + ("\u2026" if len(summary) > 2000 else ""))
-
-    tag_caption = format_proposed_tags_caption(llm_item, node.get("tags") or {}, howto_tags)
-    if tag_caption:
-        st.caption(tag_caption)
-
-    cols = st.columns(4)
-    pfx = f"{key_prefix}_act"
-    if cols[0].button("Approve", key=f"{pfx}_approve"):
-        node["proposal_status"] = "approved"
-    if cols[1].button("Reject", key=f"{pfx}_reject"):
-        node["proposal_status"] = "rejected"
-    if cols[2].button("Edit", key=f"{pfx}_edit"):
-        st.session_state[f"{pfx}_editing"] = True
-    if cols[3].button("Defer", key=f"{pfx}_defer"):
-        node["proposal_status"] = "deferred"
-
-    if status != str(node.get("proposal_status") or "pending"):
-        st.rerun()
-
-    st.caption(f"Status: **{node.get('proposal_status', 'pending')}**")
+    sections: dict[str, Any],
+    section_key: str,
+) -> str:
+    """Return reviewer-final scalar text, else the LLM draft."""
+    node = _section_node(sections, section_key)
+    final = node.get("final_text")
+    if isinstance(final, str) and final.strip():
+        return final.strip()
+    return str(llm_item.get(section_key) or "").strip()
 
 
-def _render_edit_mode(
-    st: Any,
-    node: dict[str, Any],
+def effective_howto_list(
     llm_item: dict[str, Any],
-    *,
-    key_prefix: str,
-    howto_tags: list[str],
+    sections: dict[str, Any],
+    list_key: str,
+) -> list[str]:
+    """Return reviewer-final list or LLM list."""
+    sec = _section_node(sections, list_key)
+    if str(sec.get("status") or "pending") == "modified" and sec.get("final_list") is not None:
+        fl = sec.get("final_list")
+        if isinstance(fl, list):
+            return [str(x) for x in fl]
+    raw = llm_item.get(list_key) or []
+    if not isinstance(raw, list):
+        return []
+    return [str(x) for x in raw]
+
+
+def apply_howto_scalar_edit(
+    sections: dict[str, Any],
+    llm_item: dict[str, Any],
+    section_key: str,
+    raw_text: str,
 ) -> None:
-    """Render the full edit expander with per-field review controls and tag editing."""
+    """Persist one how-to field edit; infer section status from LLM draft."""
+    text = raw_text.strip()
+    llm_text = str(llm_item.get(section_key) or "").strip()
+    node = sections.setdefault(
+        section_key,
+        {"status": "pending", "final_text": None, "notes": None},
+    )
+    if text == llm_text:
+        node["status"] = "approved"
+        node["final_text"] = None
+    else:
+        node["status"] = "modified"
+        node["final_text"] = text
+
+
+def apply_howto_list_edit(
+    sections: dict[str, Any],
+    llm_item: dict[str, Any],
+    list_key: str,
+    raw_text: str,
+) -> None:
+    """Persist list field (one item per line); infer section status from LLM list."""
+    lines = [ln.strip() for ln in raw_text.splitlines() if ln.strip()]
+    llm_list = llm_item.get(list_key) or []
+    if not isinstance(llm_list, list):
+        llm_list = []
+    llm_norm = [str(x) for x in llm_list]
+    node = sections.setdefault(
+        list_key,
+        {"status": "pending", "final_list": None, "notes": None, "llm_list": list(llm_norm)},
+    )
+    if not node.get("llm_list"):
+        node["llm_list"] = list(llm_norm)
+    if lines == llm_norm:
+        node["status"] = "approved"
+        node["final_list"] = None
+    else:
+        node["status"] = "modified"
+        node["final_list"] = lines
+
+
+def apply_howto_proposal_edits(
+    node: dict[str, Any],
+    field_values: dict[str, str],
+) -> None:
+    """Apply all editable scalar and list fields for one how-to proposal."""
+    llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
-
     for sk in HOWTO_REVIEWABLE_SCALAR_KEYS:
-        label = HOWTO_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-        st.markdown(f"#### {label}")
-        sec = sections.setdefault(sk, {"status": "pending", "final_text": None, "notes": None})
-        llm_text = str(llm_item.get(sk) or "")
-        st.text(llm_text[:6000] + ("\u2026" if len(llm_text) > 6000 else ""))
-        sec["status"] = st.selectbox(
-            f"{label} \u2014 status",
-            FIELD_STATUS_OPTIONS,
-            index=_field_status_index(str(sec.get("status") or "pending")),
-            key=f"{key_prefix}_f_{sk}_st",
-        )
-        if sec["status"] == "modified":
-            default = sec.get("final_text") if sec.get("final_text") else llm_text
-            sec["final_text"] = st.text_area(
-                f"{label} \u2014 final text",
-                value=default,
-                height=140,
-                key=f"{key_prefix}_f_{sk}_txt",
-            )
-        else:
-            sec["final_text"] = None
-
+        if sk in field_values:
+            apply_howto_scalar_edit(sections, llm_item, sk, field_values[sk])
     for lk in HOWTO_REVIEWABLE_LIST_KEYS:
-        label = HOWTO_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
-        st.markdown(f"#### {label}")
-        llm_list = llm_item.get(lk) or []
-        if not isinstance(llm_list, list):
-            llm_list = []
-        sec = sections.setdefault(
-            lk,
-            {"status": "pending", "final_list": None, "notes": None, "llm_list": list(llm_list)},
-        )
-        if not sec.get("llm_list"):
-            sec["llm_list"] = list(llm_list)
-        st.json(sec["llm_list"])
-        sec["status"] = st.selectbox(
-            f"{label} \u2014 status",
-            FIELD_STATUS_OPTIONS,
-            index=_field_status_index(str(sec.get("status") or "pending")),
-            key=f"{key_prefix}_f_{lk}_st",
-        )
-        if sec["status"] == "modified":
-            default_lines = sec.get("final_list") or sec["llm_list"]
-            raw = st.text_area(
-                f"{label} \u2014 final list (one per line)",
-                value="\n".join(str(x) for x in (default_lines or [])),
-                height=100,
-                key=f"{key_prefix}_f_{lk}_txt",
-            )
-            sec["final_list"] = [ln.strip() for ln in raw.splitlines() if ln.strip()]
-        else:
-            sec["final_list"] = None
+        if lk in field_values:
+            apply_howto_list_edit(sections, llm_item, lk, field_values[lk])
 
-    snippet = str(llm_item.get("supporting_snippet") or "")
+
+def howto_field_edit_value(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+    section_key: str,
+) -> str:
+    """Default textarea value for one how-to scalar field."""
+    return effective_howto_scalar(llm_item, sections, section_key)
+
+
+def howto_list_edit_value(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+    list_key: str,
+) -> str:
+    """Default textarea value for list fields (one bullet per line)."""
+    return "\n".join(effective_howto_list(llm_item, sections, list_key))
+
+
+def format_howto_proposal_readonly_markdown(
+    node: dict[str, Any],
+    howto_tags: list[str],
+) -> str:
+    """Single how-to card for the read-only column."""
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    title = effective_howto_scalar(llm_item, sections, "question_title") or "Untitled how-to"
+    tier = _value_level(node)
+    badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
+    proposal_status = proposal_status_label(node)
+    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
+    confidence = float(llm_item.get("confidence") or 0.0)
+    tag_node = node.get("tags") if isinstance(node.get("tags"), dict) else {}
+    tag_slugs = effective_readonly_domain_tags(llm_item, tag_node, howto_tags)
+
+    lines = [
+        f"## {title}",
+        "",
+        f"*{badge} · {proposal_status} · {ev_lbl} · {confidence:.0%}*",
+        "",
+    ]
+    what = effective_howto_scalar(llm_item, sections, "what_and_problem")
+    if what:
+        lines.extend(
+            [
+                "**What is it and what problem does it solve?**",
+                "",
+                what,
+                "",
+            ]
+        )
+    summary = effective_howto_scalar(llm_item, sections, "answer_summary")
+    if summary:
+        lines.extend(["**Answer summary**", "", summary, ""])
+    if tag_slugs:
+        lines.extend(["**Tags**", "", ", ".join(tag_slugs), ""])
+    caveats = effective_howto_scalar(llm_item, sections, "caveats")
+    if caveats:
+        lines.extend(["**Caveats**", "", caveats, ""])
+    for lk in HOWTO_REVIEWABLE_LIST_KEYS:
+        items = effective_howto_list(llm_item, sections, lk)
+        if items:
+            label = HOWTO_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
+            lines.extend([f"**{label}**", ""] + [f"- {p}" for p in items] + [""])
+    snippet = str(llm_item.get("supporting_snippet") or "").strip()
     if snippet:
-        with st.expander("Source evidence", expanded=False):
-            st.text(snippet[:4000])
-
+        excerpt = snippet[:2000] + ("…" if len(snippet) > 2000 else "")
+        lines.extend(["> " + excerpt.replace("\n", "\n> "), ""])
     related = llm_item.get("related_howtos") or []
-    if related:
-        st.caption(f"Related how-tos: {', '.join(str(r) for r in related)}")
+    if isinstance(related, list) and related:
+        lines.extend([f"*Related how-tos: {', '.join(str(r) for r in related)}*", ""])
+    return "\n".join(lines).rstrip()
 
-    tag_node = node.setdefault(
-        "tags",
-        {"final_primary_tag": None, "final_secondary_tag": None, "new_tag_approved": False},
-    )
-    render_proposal_tag_review(
-        st, llm_item, tag_node, howto_tags, key_prefix=key_prefix, entity_kind="domain"
-    )
 
-    render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
+def build_readonly_howtos_markdown(
+    sorted_nodes: list[dict[str, Any]],
+    howto_tags: list[str],
+) -> str:
+    """Build full read-only column markdown for all how-to proposals."""
+    if not sorted_nodes:
+        return "*(No how-to proposals.)*"
+    parts: list[str] = []
+    prev_tier: str | None = None
+    for node in sorted_nodes:
+        tier = _value_level(node)
+        if tier != prev_tier:
+            header = VALUE_LEVEL_TIER_HEADERS.get(tier)
+            if header:
+                parts.append(header)
+            prev_tier = tier
+        parts.append(format_howto_proposal_readonly_markdown(node, howto_tags))
+    return "\n\n---\n\n".join(parts)
 
-    with st.expander("Raw JSON (debug)", expanded=False):
-        st.json(llm_item)
+
+def _prepare_howto_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
+    review = artifact.setdefault("review", {})
+    howto_nodes = review.setdefault("how_to", [])
+    llm_items = artifact.get("llm_output", {}).get("how_to") or []
+    for i, node in enumerate(howto_nodes):
+        if "llm_item" not in node and i < len(llm_items):
+            node["llm_item"] = llm_items[i]
+        if not node.get("proposal_id"):
+            node["proposal_id"] = uuid.uuid4().hex
+    return sorted(howto_nodes, key=_sort_key)
+
+
+def _persist_howto_proposal_from_widgets(
+    node: dict[str, Any],
+    artifact_path: Path,
+    field_values: dict[str, str],
+    tag_ui: dict[str, Any],
+    allow: set[str],
+) -> None:
+    """Apply textarea + tag edits from this run and write the artifact."""
+    from src.ingest_review.artifact import save_artifact, touch_review_session
+
+    artifact = streamlit_runtime.session_state.get("artifact")
+    if not isinstance(artifact, dict):
+        return
+    apply_howto_proposal_edits(node, field_values)
+    llm_item = node.setdefault("llm_item", {})
+    apply_tag_ui_to_node(node, llm_item, tag_ui, allow)
+    touch_review_session(artifact)
+    save_artifact(artifact_path, artifact)
+    title = field_values.get("question_title") or llm_item.get("question_title") or "how-to"
+    streamlit_runtime.session_state["_howto_save_msg"] = f"Saved **{title}**."
+
+
+def _render_howto_edit_box(
+    st: Any,
+    node: dict[str, Any],
+    howto_tags: list[str],
+    *,
+    key_prefix: str,
+    source_id: str,
+    artifact_path: Path,
+    model: str,
+    prompt_version: str,
+    tag_allow: set[str],
+) -> None:
+    """One bordered edit box per how-to proposal."""
+    llm_item = node.get("llm_item") or {}
+    sections = node.setdefault("sections", {})
+    title = effective_howto_scalar(llm_item, sections, "question_title") or "Untitled"
+    tier = _value_level(node)
+    badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
+    status_lbl = proposal_status_label(node)
+
+    with st.container(border=True):
+        st.markdown(f"**{title}** · {badge} · **{status_lbl}**")
+        render_proposal_regen_meta_caption(st, node, "How-to")
+
+        field_values: dict[str, str] = {}
+        for sk in HOWTO_SCALAR_BEFORE_TAGS:
+            label = HOWTO_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
+            field_values[sk] = st.text_area(
+                label,
+                value=howto_field_edit_value(llm_item, sections, sk),
+                height=120 if sk in HOWTO_TALL_SCALAR_KEYS else 72,
+                key=f"{key_prefix}_edit_{sk}",
+            )
+
+        tag_ui = render_domain_tag_section(
+            st,
+            node,
+            howto_tags,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            review_list_key="how_to",
+            label_widget_key=f"{key_prefix}_edit_question_title",
+            summary_widget_key=f"{key_prefix}_edit_answer_summary",
+            llm_fallback_label_key="question_title",
+            llm_fallback_summary_key="answer_summary",
+        )
+
+        for sk in HOWTO_SCALAR_AFTER_TAGS:
+            label = HOWTO_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
+            field_values[sk] = st.text_area(
+                label,
+                value=howto_field_edit_value(llm_item, sections, sk),
+                height=72,
+                key=f"{key_prefix}_edit_{sk}",
+            )
+
+        for lk in HOWTO_REVIEWABLE_LIST_KEYS:
+            label = HOWTO_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
+            field_values[lk] = st.text_area(
+                label,
+                value=howto_list_edit_value(llm_item, sections, lk),
+                height=100,
+                key=f"{key_prefix}_edit_{lk}",
+                help="One bullet per line.",
+            )
+
+        snippet = str(llm_item.get("supporting_snippet") or "").strip()
+        if snippet:
+            with st.expander("Source evidence (read-only)", expanded=False):
+                st.text(snippet[:4000] + ("…" if len(snippet) > 4000 else ""))
+
+        related = llm_item.get("related_howtos") or []
+        if related:
+            st.caption(f"Related how-tos (LLM): {', '.join(str(r) for r in related)}")
+
+        proposal_id = str(node.get("proposal_id") or "")
+        render_regenerate_with_new_title_controls(
+            st,
+            entity_key="how_to",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=title,
+        )
+
+        def _save() -> None:
+            _persist_howto_proposal_from_widgets(
+                node,
+                artifact_path,
+                field_values,
+                tag_ui,
+                tag_allow,
+            )
+
+        render_proposal_decision_bar(
+            st,
+            node,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="how_to",
+            on_save_callback=_save,
+        )
 
 
 def render_howto_proposals(
@@ -188,78 +407,92 @@ def render_howto_proposals(
     artifact: dict[str, Any],
     *,
     key_prefix: str,
+    source_id: str = "",
+    artifact_path: Path,
     howto_tags: list[str] | None = None,
+    model: str = "",
+    prompt_version: str = "",
 ) -> None:
-    """Render proposal-level review for all how-to proposals.
+    """Two-column how-to review: read-only catalog left, edit panel right."""
+    tags_list = list(howto_tags or [])
+    tag_allow = {normalize_tag(str(t)) for t in tags_list if str(t).strip()}
+    streamlit_runtime.session_state[DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY] = tags_list
 
-    Args:
-        st: Streamlit module reference.
-        artifact: The full review artifact dict (mutated in place).
-        key_prefix: Unique Streamlit key prefix for this render pass.
-        howto_tags: Optional tag allowlist (kept for API compatibility).
-    """
-    tags_list = howto_tags or []
-    review = artifact.setdefault("review", {})
-    howto_nodes = review.setdefault("how_to", [])
     st.subheader("How-tos")
+    sorted_nodes = _prepare_howto_nodes(artifact)
+    llm_howtos = artifact.get("llm_output", {}).get("how_to") or []
 
-    if not howto_nodes:
+    if not sorted_nodes and not llm_howtos:
         st.caption("No how-to proposals.")
         return
 
-    sorted_nodes = sorted(howto_nodes, key=_sort_key)
+    rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")
+    st.caption(f"{len(sorted_nodes)} proposal(s) · {rejected} rejected")
 
-    high_medium = [n for n in sorted_nodes if (n.get("llm_item") or {}).get("value_level") != "low"]
-    low = [n for n in sorted_nodes if (n.get("llm_item") or {}).get("value_level") == "low"]
+    save_msg = streamlit_runtime.session_state.pop("_howto_save_msg", None)
+    if save_msg:
+        st.success(str(save_msg))
+    regen_msg = pop_proposal_regen_msg("how_to")
+    if regen_msg:
+        st.success(regen_msg)
 
-    for i, node in enumerate(high_medium):
-        llm_item = node.get("llm_item") or {}
-        value_level = str(llm_item.get("value_level") or "medium")
-        title = llm_item.get("question_title") or f"How-to #{i + 1}"
-        pfx = f"{key_prefix}_ht{i}"
+    read_col, edit_col = st.columns(2)
+    with read_col:
+        st.markdown(build_readonly_howtos_markdown(sorted_nodes, tags_list))
+    with edit_col:
+        edit_nodes = sorted_nodes
+        if len(sorted_nodes) > 6:
+            labels = [
+                effective_howto_scalar(
+                    n.get("llm_item") or {},
+                    n.get("sections") or {},
+                    "question_title",
+                )
+                or f"How-to {i + 1}"
+                for i, n in enumerate(sorted_nodes)
+            ]
+            pick = st.selectbox(
+                "Edit how-to",
+                options=labels,
+                key=f"{key_prefix}_howto_jump",
+            )
+            idx = labels.index(pick) if pick in labels else 0
+            edit_nodes = [sorted_nodes[idx]]
+            st.caption("Showing one edit panel — use the selector to switch how-tos.")
 
-        auto_expand = value_level == "high"
-        with st.expander(f"How-to: {title}", expanded=auto_expand):
-            _render_compact_card(st, node, llm_item, i, key_prefix=pfx, howto_tags=tags_list)
-            editing = st.session_state.get(f"{pfx}_act_editing", False)
-            if editing:
-                _render_edit_mode(st, node, llm_item, key_prefix=pfx, howto_tags=tags_list)
-
-    if low:
-        with st.expander(f"Low-value items ({len(low)})", expanded=False):
-            for j, node in enumerate(low):
-                llm_item = node.get("llm_item") or {}
-                title = llm_item.get("question_title") or f"Low how-to #{j + 1}"
-                pfx = f"{key_prefix}_ht_low{j}"
-                st.markdown("---")
-                _render_compact_card(st, node, llm_item, j, key_prefix=pfx, howto_tags=tags_list)
-                editing = st.session_state.get(f"{pfx}_act_editing", False)
-                if editing:
-                    _render_edit_mode(st, node, llm_item, key_prefix=pfx, howto_tags=tags_list)
+        for i, node in enumerate(edit_nodes):
+            pid = str(node.get("proposal_id") or f"idx{i}")
+            pfx = proposal_edit_key_prefix(
+                key_prefix, pid, "h", regen_count=regen_count_from_node(node)
+            )
+            _render_howto_edit_box(
+                st,
+                node,
+                tags_list,
+                key_prefix=pfx,
+                source_id=source_id,
+                artifact_path=artifact_path,
+                model=model,
+                prompt_version=prompt_version,
+                tag_allow=tag_allow,
+            )
 
 
 def collect_howto_new_tags(artifact: dict[str, Any]) -> list[str]:
-    """Return approved new tags across how-to proposals.
-
-    Args:
-        artifact: The full review artifact dict.
-
-    Returns:
-        List of unique approved new tag strings.
-    """
+    """Return approved new tags across how-to proposals."""
     review = artifact.get("review") or {}
     tags: list[str] = []
     for node in review.get("how_to") or []:
         if not isinstance(node, dict):
             continue
         tag_node = node.get("tags") or {}
-        if tag_node.get("new_tag_approved"):
-            llm_item = node.get("llm_item") or {}
-            new_tag = str(llm_item.get("suggested_new_tag") or "").strip()
-            if new_tag and new_tag not in tags:
-                tags.append(new_tag)
+        if not tag_node.get("new_tag_approved"):
+            continue
+        llm_item = node.get("llm_item") or {}
+        new_tag = normalize_tag(str(llm_item.get("suggested_new_tag") or ""))
+        if new_tag and new_tag not in tags:
+            tags.append(new_tag)
     return tags
 
 
-# Backwards-compatible alias
 collect_howto_approved_new_tags = collect_howto_new_tags

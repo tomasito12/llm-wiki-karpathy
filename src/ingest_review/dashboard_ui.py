@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import urllib.parse
 from pathlib import Path
 from typing import Any
 
@@ -36,6 +37,34 @@ TAG_ROLE_HINTS: dict[str, tuple[str, str]] = {
         "Capability specialization (optional)",
     ),
 }
+
+TAG_SELECT_HELP: dict[str, tuple[str, str]] = {
+    "domain": (
+        "Pick the main wiki routing bucket for this entry (one allowlist tag). This is the "
+        "primary strategic domain—e.g. safety, orchestration, evaluation—not a narrow phrasing "
+        "of the term itself.",
+        "Optional second allowlist tag only when the entry clearly belongs to another "
+        "cross-cutting theme as well (not a synonym or minor variant of primary).",
+    ),
+    "tool": (
+        "Primary category from the tool types allowlist.",
+        "Optional adjacent operational or classification tag from the allowlist.",
+    ),
+    "model": (
+        "Deployment or openness class from the model types allowlist.",
+        "Optional capability focus from the allowlist.",
+    ),
+}
+
+
+def google_search_markdown(query: str) -> str:
+    """Markdown link that opens a Google search for *query* (empty if query is blank)."""
+    if not query.strip():
+        return ""
+    url = "https://www.google.com/search?" + urllib.parse.urlencode({"q": query.strip()})
+    label = query.strip()
+    return f'[Google: "{label}"]({url})'
+
 
 STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
 
@@ -111,6 +140,7 @@ def render_proposal_tag_review(
     """Shared allowlist selectboxes for primary/secondary + new-tag approval."""
     st.markdown("**Tags**")
     primary_hint, secondary_hint = TAG_ROLE_HINTS.get(entity_kind, TAG_ROLE_HINTS["domain"])
+    help_primary, help_secondary = TAG_SELECT_HELP.get(entity_kind, TAG_SELECT_HELP["domain"])
     options = build_tag_select_options(allowlist, llm_item)
 
     llm_primary = normalize_tag(str(llm_item.get("primary_tag") or ""))
@@ -131,6 +161,7 @@ def render_proposal_tag_review(
             options=options,
             index=primary_idx,
             key=f"{key_prefix}_tag_primary",
+            help=help_primary,
         )
         or None
     )
@@ -141,6 +172,7 @@ def render_proposal_tag_review(
             options=options,
             index=secondary_idx,
             key=f"{key_prefix}_tag_secondary",
+            help=help_secondary,
         )
         or None
     )
@@ -679,88 +711,14 @@ def render_review_summary_panel(
     if type_counts:
         st.caption(f"Breakdown: {', '.join(type_counts)} · burden: {burden}")
 
-    pending_count = 0
+    rejected_count = 0
     for key, _ in entity_keys:
         nodes = review.get(key) or []
         for node in nodes:
-            if isinstance(node, dict) and node.get("proposal_status", "pending") == "pending":
-                pending_count += 1
-    if pending_count > 0:
-        st.info(f"{pending_count} proposal(s) still pending review")
-
-
-def render_batch_actions(
-    st: Any,
-    artifact: dict[str, Any],
-    *,
-    key_prefix: str,
-) -> None:
-    """Batch action buttons for fast review."""
-    review = artifact.setdefault("review", {})
-    entity_keys = [
-        "glossary",
-        "topics",
-        "how_to",
-        "industry_trends",
-        "tools",
-        "foundation_models",
-        "implementation_studies",
-        "roundup_signals",
-        "interview_insights",
-    ]
-
-    st.markdown("#### Batch actions")
-    c1, c2, c3, c4 = st.columns(4)
-
-    if c1.button("Approve all high-value", key=f"{key_prefix}_batch_approve_high"):
-        _batch_set_proposal_status(review, entity_keys, "approved", value_filter="high")
-        artifact.setdefault("review_analytics", {}).setdefault("batch_actions_used", []).append(
-            "approve_all_high"
-        )
-
-    if c2.button("Reject all low-value", key=f"{key_prefix}_batch_reject_low"):
-        _batch_set_proposal_status(review, entity_keys, "rejected", value_filter="low")
-        artifact.setdefault("review_analytics", {}).setdefault("batch_actions_used", []).append(
-            "reject_all_low"
-        )
-
-    if c3.button("Defer remaining", key=f"{key_prefix}_batch_defer"):
-        _batch_set_proposal_status(review, entity_keys, "deferred", current_status_filter="pending")
-        artifact.setdefault("review_analytics", {}).setdefault("batch_actions_used", []).append(
-            "defer_remaining"
-        )
-
-    if c4.button("Approve all unchanged", key=f"{key_prefix}_batch_approve_unchanged"):
-        _batch_set_proposal_status(review, entity_keys, "approved", current_status_filter="pending")
-        artifact.setdefault("review_analytics", {}).setdefault("batch_actions_used", []).append(
-            "approve_all_unchanged"
-        )
-
-
-def _batch_set_proposal_status(
-    review: dict[str, Any],
-    entity_keys: list[str],
-    target_status: str,
-    *,
-    value_filter: str | None = None,
-    current_status_filter: str | None = None,
-) -> None:
-    """Set proposal_status on matching nodes."""
-    for key in entity_keys:
-        nodes = review.get(key)
-        if not isinstance(nodes, list):
-            continue
-        for node in nodes:
-            if not isinstance(node, dict):
-                continue
-            if current_status_filter and node.get("proposal_status") != current_status_filter:
-                continue
-            if value_filter:
-                llm_item = node.get("llm_item") or {}
-                vl = llm_item.get("value_level", "medium")
-                if vl != value_filter:
-                    continue
-            node["proposal_status"] = target_status
+            if isinstance(node, dict) and node.get("proposal_status") == "rejected":
+                rejected_count += 1
+    if rejected_count > 0:
+        st.info(f"{rejected_count} proposal(s) rejected — edit or approve from each card.")
 
 
 def render_review_timer(

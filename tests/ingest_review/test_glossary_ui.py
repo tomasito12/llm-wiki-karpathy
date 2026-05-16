@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from src.ingest_review.glossary_related_terms_align import build_related_term_resolution_maps
 from src.ingest_review.glossary_ui import (
     apply_glossary_proposal_edits,
     apply_glossary_scalar_edit,
     build_readonly_glossary_markdown,
+    collect_glossary_new_tags,
     effective_glossary_scalar,
     format_glossary_term_readonly_markdown,
 )
@@ -98,3 +100,87 @@ def test_build_readonly_glossary_markdown_tier_headers() -> None:
     assert "### Low value" in md
     assert "## RAG" in md
     assert "## Low term" in md
+
+
+def test_format_glossary_shows_warning_for_unaligned_related_terms() -> None:
+    """Read-only markdown flags related strings that do not resolve to batch/wiki labels."""
+    node = {
+        "llm_item": {
+            "term": "Alpha",
+            "proposed_definition": "d",
+            "related_terms": ["not-in-index"],
+            "value_level": "high",
+        },
+        "sections": {},
+    }
+    norm_to, acr_to = build_related_term_resolution_maps(["Alpha"], [])
+    md = format_glossary_term_readonly_markdown(
+        node,
+        [],
+        norm_to=norm_to,
+        acr_to=acr_to,
+    )
+    assert "not-in-index" in md
+    assert "not matching any sibling or wiki glossary label" in md
+
+
+def test_effective_glossary_scalar_normalizes_term_display() -> None:
+    """Term field is shown with leading letter capitalized when LLM used lowercase."""
+    llm = {"term": "kanban"}
+    assert effective_glossary_scalar(llm, {}, "term") == "Kanban"
+
+
+def test_apply_glossary_scalar_edit_term_approve_normalizes_llm_item() -> None:
+    """Saving a lowercase term that matches normalized draft approves and updates llm_item."""
+    sections: dict = {}
+    llm: dict = {"term": "frontmatter"}
+    apply_glossary_scalar_edit(sections, llm, "term", "frontmatter")
+    assert sections["term"]["status"] == "approved"
+    assert llm["term"] == "Frontmatter"
+
+
+def test_format_glossary_term_readonly_markdown_tags_after_definition() -> None:
+    """Read-only block places **Tags** after definition and before extended explanation."""
+    node = _sample_node()
+    node["llm_item"] = dict(node["llm_item"])
+    node["llm_item"]["primary_tag"] = "agentic-workflows"
+    node["llm_item"]["extended_explanation"] = "Ext body."
+    md = format_glossary_term_readonly_markdown(node, ["agentic-workflows"])
+    def_pos = md.index("**Definition**")
+    tags_pos = md.index("**Tags**")
+    ext_pos = md.index("**Extended explanation**")
+    assert def_pos < tags_pos < ext_pos
+    assert "agentic-workflows" in md
+
+
+def test_format_glossary_term_readonly_hides_offlist_llm_tags_without_final() -> None:
+    """LLM off-allowlist tags are omitted from read-only until reviewer sets a final.*"""
+    node = _sample_node()
+    node["llm_item"] = dict(node["llm_item"])
+    node["llm_item"]["primary_tag"] = "made-up-slug"
+    md = format_glossary_term_readonly_markdown(node, ["rag", "orchestration"])
+    assert "**Tags**" not in md
+
+
+def test_format_glossary_term_readonly_shows_final_offlist_tag() -> None:
+    """Reviewer final tag is shown even when not yet on the allowlist."""
+    node = _sample_node()
+    node["tags"] = {"final_primary_tag": "custom-slug"}
+    md = format_glossary_term_readonly_markdown(node, ["rag"])
+    assert "**Tags**" in md
+    assert "custom-slug" in md
+
+
+def test_collect_glossary_new_tags_normalizes_suggested() -> None:
+    """Exporter normalizes suggested_new_tag strings."""
+    artifact = {
+        "review": {
+            "glossary": [
+                {
+                    "tags": {"new_tag_approved": True},
+                    "llm_item": {"suggested_new_tag": "  My Tag  "},
+                }
+            ]
+        }
+    }
+    assert collect_glossary_new_tags(artifact) == ["my-tag"]

@@ -2,7 +2,13 @@
 
 from __future__ import annotations
 
-from src.ingest_review.analyze import apply_tag_allowlists, validate_llm_dict
+from src.ingest_review.analyze import (
+    apply_tag_allowlists,
+    apply_tools_roundup_entity_strip,
+    sanitize_topics_related_topics,
+    validate_llm_dict,
+)
+from src.ingest_review.glossary_related_terms_align import align_glossary_related_terms
 from src.ingest_review.impl_study_gate import filter_impl_study_proposals
 from src.ingest_review.schema import (
     FoundationModelProposal,
@@ -13,9 +19,11 @@ from src.ingest_review.schema import (
     InterviewInsight,
     LlmClassificationOutput,
     RoundupSignal,
+    SourceTypeDetection,
     ToolProposal,
     TopicContribution,
 )
+from src.ingest_review.wiki_snapshot import WikiSnapshot
 
 
 def test_apply_tag_allowlists_validates_primary_tag() -> None:
@@ -84,10 +92,40 @@ def test_apply_tag_allowlists_validates_topic_tags() -> None:
     assert out.topics[0].suggested_new_tag == "new-one"
 
 
+def test_sanitize_topics_related_topics_after_tag_allowlists() -> None:
+    """Tag slugs in related_topics are stripped while batch cross-links remain."""
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        topic_slugs=[],
+    )
+    parsed = LlmClassificationOutput(
+        topics=[
+            TopicContribution(
+                topic_slug="alpha",
+                primary_tag="ai-engineering",
+                related_topics=["ai-engineering", "beta"],
+            ),
+            TopicContribution(topic_slug="beta", related_topics=[]),
+        ],
+    )
+    tagged = apply_tag_allowlists(parsed, set(), set(), topic_tags={"ai-engineering"})
+    out = sanitize_topics_related_topics(tagged, {"ai-engineering"}, wiki)
+    assert out.topics[0].related_topics == ["beta"]
+
+
 def test_apply_tag_allowlists_validates_trend_tags() -> None:
     """Trend tags not on allowlist are demoted to suggested_new_tag."""
     parsed = LlmClassificationOutput(
-        industry_trends=[IndustryTrendProposal(trend_name="t", primary_tag="a", secondary_tag="b")],
+        industry_trends=[
+            IndustryTrendProposal(
+                trend_slug="t",
+                trend_title="T",
+                primary_tag="a",
+                secondary_tag="b",
+            )
+        ],
     )
     out = apply_tag_allowlists(parsed, set(), set(), trend_tags={"a"})
     assert out.industry_trends[0].primary_tag == "a"
@@ -221,6 +259,64 @@ def test_validate_llm_dict_round_trip() -> None:
     assert again.source_type_detection.detected_source_type == "unknown"
 
 
+def test_validate_llm_dict_accepts_ai_tools_roundup_source_type() -> None:
+    """detected_source_type may be ai_tools_roundup per schema."""
+    data = LlmClassificationOutput(
+        source_type_detection=SourceTypeDetection(detected_source_type="ai_tools_roundup")
+    ).model_dump()
+    again = validate_llm_dict(data)
+    assert again.source_type_detection.detected_source_type == "ai_tools_roundup"
+
+
+def test_apply_tools_roundup_entity_strip_clears_forbidden_arrays() -> None:
+    """ai_tools_roundup strips non-tool entities while preserving tools and foundation_models."""
+    parsed = LlmClassificationOutput(
+        source_type_detection=SourceTypeDetection(detected_source_type="ai_tools_roundup"),
+        glossary=[GlossaryProposal(term="RAG", primary_tag="a", secondary_tag="")],
+        topics=[TopicContribution(topic_slug="x", primary_tag="b", secondary_tag="")],
+        how_to=[HowToProposal(question_title="Q", primary_tag="c", secondary_tag="")],
+        industry_trends=[
+            IndustryTrendProposal(
+                trend_slug="t",
+                trend_title="T",
+                primary_tag="d",
+                secondary_tag="",
+            )
+        ],
+        roundup_signals=[RoundupSignal(signal_title="s", primary_tag="e", secondary_tag="")],
+        implementation_studies=[
+            ImplementationStudyProposal(title="T", company="Co", primary_tag="f", secondary_tag=""),
+        ],
+        interview_insights=[
+            InterviewInsight(insight_title="i", primary_tag="g", secondary_tag=""),
+        ],
+        tools=[ToolProposal(name="ToolA", proposed_types=["mcp-server"])],
+        foundation_models=[
+            FoundationModelProposal(model_name="M", proposed_types=["frontier-model"]),
+        ],
+    )
+    out = apply_tools_roundup_entity_strip(parsed)
+    assert out.tools == parsed.tools
+    assert out.foundation_models == parsed.foundation_models
+    assert out.glossary == []
+    assert out.topics == []
+    assert out.how_to == []
+    assert out.industry_trends == []
+    assert out.roundup_signals == []
+    assert out.implementation_studies == []
+    assert out.interview_insights == []
+
+
+def test_apply_tools_roundup_entity_strip_noop_for_other_source_types() -> None:
+    """Non-tools roundup source types are unchanged."""
+    parsed = LlmClassificationOutput(
+        source_type_detection=SourceTypeDetection(detected_source_type="standard_article"),
+        topics=[TopicContribution(topic_slug="x", primary_tag="a", secondary_tag="")],
+    )
+    out = apply_tools_roundup_entity_strip(parsed)
+    assert out.topics == parsed.topics
+
+
 def test_extraction_meta_defaults() -> None:
     """ExtractionMeta defaults are present on new LlmClassificationOutput."""
     out = LlmClassificationOutput()
@@ -294,3 +390,24 @@ def test_validate_llm_dict_coerces_invalid_evidence_type() -> None:
     data["topics"] = [{"topic_slug": "x", "evidence_type": "bogus"}]
     again = validate_llm_dict(data)
     assert again.topics[0].evidence_type == "unknown"
+
+
+def test_align_glossary_related_terms_expands_acronym_in_batch() -> None:
+    """align_glossary_related_terms rewrites related_terms using sibling canonical terms."""
+    parsed = LlmClassificationOutput(
+        glossary=[
+            GlossaryProposal(term="Constitutional AI", related_terms=["RLHF"]),
+            GlossaryProposal(term="Reinforcement Learning from Human Feedback"),
+        ],
+    )
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    out = align_glossary_related_terms(parsed, wiki)
+    assert out.glossary[0].related_terms == ["Reinforcement Learning from Human Feedback"]

@@ -12,6 +12,7 @@ from src.ingest_review.dashboard_ui import (
     effective_scalar_chapter_text,
     format_proposed_tags_caption,
     format_source_link_markdown,
+    google_search_markdown,
     normalize_sources_list,
 )
 
@@ -159,3 +160,15 @@ def test_chapter_edit_textarea_value_reflects_effective_text() -> None:
     artifact = _sample_artifact()
     apply_chapter_edit(artifact, "summary", "Edited summary")
     assert chapter_edit_textarea_value(artifact, "summary") == "Edited summary"
+
+
+def test_google_search_markdown_builds_encoded_url() -> None:
+    md = google_search_markdown("RAG patterns")
+    assert '[Google: "RAG patterns"]' in md
+    assert "google.com/search" in md
+    assert "q=RAG+patterns" in md or "q=RAG%20patterns" in md
+
+
+def test_google_search_markdown_empty_query() -> None:
+    assert google_search_markdown("") == ""
+    assert google_search_markdown("   ") == ""

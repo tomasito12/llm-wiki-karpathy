@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import re
 import uuid
 from datetime import UTC, datetime
 from pathlib import Path
@@ -105,7 +106,7 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
                 item = {}
             entry: dict[str, Any] = {
                 "proposal_id": _new_proposal_id(),
-                "proposal_status": "pending",
+                "proposal_status": "approved",
                 "status": "pending",
                 "notes": None,
                 "llm_item": copy.deepcopy(item),
@@ -140,7 +141,7 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
         impl_review.append(
             {
                 "proposal_id": _new_proposal_id(),
-                "proposal_status": "pending",
+                "proposal_status": "approved",
                 "notes": None,
                 "llm_item": copy.deepcopy(item),
                 "sections": sections,
@@ -177,7 +178,7 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
         glossary_review.append(
             {
                 "proposal_id": _new_proposal_id(),
-                "proposal_status": "pending",
+                "proposal_status": "approved",
                 "notes": None,
                 "llm_item": copy.deepcopy(item),
                 "sections": g_sections,
@@ -218,7 +219,7 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
             result.append(
                 {
                     "proposal_id": _new_proposal_id(),
-                    "proposal_status": "pending",
+                    "proposal_status": "approved",
                     "notes": None,
                     "llm_item": copy.deepcopy(item),
                     "sections": sections,
@@ -867,6 +868,226 @@ def migrate_artifact_to_v9(artifact: dict[str, Any]) -> dict[str, Any]:
     return artifact
 
 
+def migrate_artifact_to_v10(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v10: optional ``examples`` on topic contributions and review sections."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 10:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    topics = llm.get("topics")
+    if isinstance(topics, list):
+        for item in topics:
+            if isinstance(item, dict) and "examples" not in item:
+                item["examples"] = ""
+
+    review = artifact.setdefault("review", {})
+    topic_nodes = review.get("topics")
+    if isinstance(topic_nodes, list):
+        empty_scalar = _empty_scalar_review_node()
+        for node in topic_nodes:
+            if not isinstance(node, dict):
+                continue
+            lit = node.get("llm_item")
+            if isinstance(lit, dict) and "examples" not in lit:
+                lit["examples"] = ""
+            sections = node.get("sections")
+            if not isinstance(sections, dict):
+                continue
+            if "examples" not in sections:
+                sections["examples"] = {**empty_scalar}
+
+    artifact["artifact_schema_version"] = 10
+    return artifact
+
+
+def migrate_artifact_to_v11(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v11: default-approved proposals (pending → approved)."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 11:
+        return artifact
+
+    review = artifact.setdefault("review", {})
+    for entity_key in _ENTITY_REVIEW_KEYS:
+        nodes = review.get(entity_key)
+        if not isinstance(nodes, list):
+            continue
+        for node in nodes:
+            if not isinstance(node, dict):
+                continue
+            if node.get("proposal_status") == "pending":
+                node["proposal_status"] = "approved"
+
+    artifact["artifact_schema_version"] = 11
+    return artifact
+
+
+def _migrate_howto_relevance_to_what_and_problem(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+) -> None:
+    """Move legacy relevance_note into what_and_problem on one how-to node."""
+    rel_text = ""
+    if isinstance(llm_item.get("relevance_note"), str):
+        rel_text = str(llm_item.pop("relevance_note")).strip()
+    what = str(llm_item.get("what_and_problem") or "").strip()
+    if not what and rel_text:
+        llm_item["what_and_problem"] = rel_text
+
+    rel_sec = sections.pop("relevance_note", None)
+    what_sec = sections.get("what_and_problem")
+    if not isinstance(what_sec, dict):
+        what_sec = {**_empty_scalar_review_node()}
+        sections["what_and_problem"] = what_sec
+
+    if isinstance(rel_sec, dict):
+        rel_final = rel_sec.get("final_text")
+        if isinstance(rel_final, str) and rel_final.strip():
+            existing_final = what_sec.get("final_text")
+            if not (isinstance(existing_final, str) and existing_final.strip()):
+                what_sec["final_text"] = rel_final.strip()
+                what_sec["status"] = rel_sec.get("status") or what_sec.get("status") or "pending"
+
+
+def migrate_artifact_to_v12(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v12: how_to relevance_note → what_and_problem."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 12:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    review = artifact.setdefault("review", {})
+    howto_llm = llm.get("how_to") or []
+    howto_review = review.get("how_to") or []
+
+    if isinstance(howto_llm, list):
+        for item in howto_llm:
+            if isinstance(item, dict):
+                _migrate_howto_relevance_to_what_and_problem(item, {})
+
+    if isinstance(howto_review, list):
+        for node in howto_review:
+            if not isinstance(node, dict):
+                continue
+            _migrate_howto_relevance_to_what_and_problem(
+                node.setdefault("llm_item", {}),
+                node.setdefault("sections", {}),
+            )
+
+    artifact["artifact_schema_version"] = 12
+    return artifact
+
+
+def _looks_like_kebab_slug(value: str) -> bool:
+    s = value.strip()
+    if not s or " " in s:
+        return False
+    return bool(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", s))
+
+
+def _title_from_slug(slug: str) -> str:
+    words = slug.replace("-", " ").split()
+    return " ".join(w.capitalize() for w in words) if words else slug
+
+
+def _migrate_trend_name_to_slug_and_title(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+) -> None:
+    """Split legacy trend_name into trend_slug + trend_title."""
+    from src.pipeline.slug import slugify
+
+    old_raw = llm_item.pop("trend_name", None)
+    old = str(old_raw).strip() if old_raw is not None else ""
+    slug = str(llm_item.get("trend_slug") or "").strip()
+    title = str(llm_item.get("trend_title") or "").strip()
+
+    if old and not slug and not title:
+        if _looks_like_kebab_slug(old):
+            slug = old
+            title = _title_from_slug(old)
+        else:
+            title = old
+            slug = slugify(old)
+
+    if slug and not title:
+        title = _title_from_slug(slug)
+    if title and not slug:
+        slug = slugify(title)
+
+    if slug:
+        llm_item["trend_slug"] = slug
+    if title:
+        llm_item["trend_title"] = title
+
+    name_sec = sections.pop("trend_name", None)
+    if not isinstance(name_sec, dict):
+        return
+
+    empty = _empty_scalar_review_node()
+    slug_sec = sections.get("trend_slug")
+    if not isinstance(slug_sec, dict):
+        slug_sec = {**empty}
+        sections["trend_slug"] = slug_sec
+    title_sec = sections.get("trend_title")
+    if not isinstance(title_sec, dict):
+        title_sec = {**empty}
+        sections["trend_title"] = title_sec
+
+    final = name_sec.get("final_text")
+    if not isinstance(final, str) or not final.strip():
+        return
+    final = final.strip()
+    status = name_sec.get("status") or "pending"
+    slug_final = slug_sec.get("final_text")
+    title_final = title_sec.get("final_text")
+    slug_has_final = isinstance(slug_final, str) and slug_final.strip()
+    title_has_final = isinstance(title_final, str) and title_final.strip()
+    if _looks_like_kebab_slug(final):
+        if not slug_has_final:
+            slug_sec["final_text"] = final
+            slug_sec["status"] = status
+        if not title_has_final:
+            title_sec["final_text"] = _title_from_slug(final)
+            title_sec["status"] = status
+    else:
+        if not title_has_final:
+            title_sec["final_text"] = final
+            title_sec["status"] = status
+        if not slug_has_final:
+            slug_sec["final_text"] = slugify(final)
+            slug_sec["status"] = status
+
+
+def migrate_artifact_to_v13(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v13: trend_name → trend_slug + trend_title."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 13:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    review = artifact.setdefault("review", {})
+    trend_llm = llm.get("industry_trends") or []
+    trend_review = review.get("industry_trends") or []
+
+    if isinstance(trend_llm, list):
+        for item in trend_llm:
+            if isinstance(item, dict):
+                _migrate_trend_name_to_slug_and_title(item, {})
+
+    if isinstance(trend_review, list):
+        for node in trend_review:
+            if not isinstance(node, dict):
+                continue
+            _migrate_trend_name_to_slug_and_title(
+                node.setdefault("llm_item", {}),
+                node.setdefault("sections", {}),
+            )
+
+    artifact["artifact_schema_version"] = 13
+    return artifact
+
+
 def aggregate_impl_study_section_status(sections: dict[str, Any]) -> str:
     """Derive a proposal-level status from per-section review nodes."""
     statuses: set[str] = set()
@@ -911,6 +1132,10 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = migrate_artifact_to_v7(data)
     data = migrate_artifact_to_v8(data)
     data = migrate_artifact_to_v9(data)
+    data = migrate_artifact_to_v10(data)
+    data = migrate_artifact_to_v11(data)
+    data = migrate_artifact_to_v12(data)
+    data = migrate_artifact_to_v13(data)
     data = migrate_review_source_summary_unified_why(data)
     ensure_sources_review_auto_approved(data)
     return data

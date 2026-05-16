@@ -45,6 +45,44 @@ class IngestionProvider(ABC):
             ``token_usage``, ``raw_message`` (for debugging).
         """
 
+    def regenerate_topic_proposal(
+        self,
+        *,
+        document: SourceDocument,
+        current_topic: dict[str, Any],
+        new_title: str,
+        reviewer_instruction: str | None,
+        topic_tags_allowlist: list[str],
+        existing_topic_slugs: list[str],
+        model: str,
+        prompt_version: str,
+        max_plain_text_chars: int | None = None,
+        max_retries: int = 2,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Regenerate one topic proposal under a reviewer-supplied title.
+
+        Returns:
+            ``(TopicRegenerateOutput dict, meta)`` with usage metadata.
+        """
+        raise NotImplementedError
+
+    def regenerate_proposal(
+        self,
+        *,
+        entity_key: str,
+        document: SourceDocument,
+        current_item: dict[str, Any],
+        new_title: str,
+        reviewer_instruction: str | None,
+        context_sections: dict[str, str],
+        model: str,
+        prompt_version: str,
+        max_plain_text_chars: int | None = None,
+        max_retries: int = 2,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Regenerate one proposal (any entity) under a reviewer-supplied title."""
+        raise NotImplementedError
+
     @abstractmethod
     def regenerate_source_section(
         self,
@@ -63,3 +101,39 @@ class IngestionProvider(ABC):
         Returns:
             ``({"section_key": str, "content": str | list[str]}, meta)`` with validated content.
         """
+
+    def suggest_domain_review_tag(
+        self,
+        *,
+        entity_label: str,
+        context_summary: str,
+        allowlist: list[str],
+        model: str,
+        prompt_version: str,
+        max_retries: int = 2,
+    ) -> tuple[str, dict[str, Any]]:
+        """Suggest one kebab-case tag not in *allowlist*, or empty string if none fits.
+
+        Default implementation for providers without a narrow tag suggestion call.
+        """
+        return "", {}
+
+    def suggest_glossary_review_tag(
+        self,
+        *,
+        term: str,
+        proposed_definition: str,
+        allowlist: list[str],
+        model: str,
+        prompt_version: str,
+        max_retries: int = 2,
+    ) -> tuple[str, dict[str, Any]]:
+        """Backward-compatible alias for :meth:`suggest_domain_review_tag`."""
+        return self.suggest_domain_review_tag(
+            entity_label=term,
+            context_summary=proposed_definition,
+            allowlist=allowlist,
+            model=model,
+            prompt_version=prompt_version,
+            max_retries=max_retries,
+        )

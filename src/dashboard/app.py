@@ -29,7 +29,6 @@ from src.ingest_review.artifact import (
     touch_review_session,
 )
 from src.ingest_review.dashboard_ui import (
-    render_batch_actions,
     render_review_summary_panel,
     render_review_timer,
     render_skip_extraction_screen,
@@ -67,6 +66,7 @@ from src.ingest_review.models_ui import (
     render_model_proposals,
 )
 from src.ingest_review.paths import load_repo_dotenv
+from src.ingest_review.proposal_regen_handler import process_pending_proposal_regen
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.schema import PROMPT_VERSION, normalize_evidence_type
 from src.ingest_review.signals_ui import (
@@ -103,6 +103,7 @@ from src.ingest_review.trends_ui import (
     collect_trend_new_tags,
     render_trend_proposals,
 )
+from src.ingest_review.wiki_snapshot import parse_glossary_terms
 
 
 def _finalize_review_analytics(artifact: dict) -> None:
@@ -190,6 +191,26 @@ def _collect_and_persist_tags(st_ref: Any, artifact: dict, root: Path) -> None:
                 st_ref.caption(f"Appended {len(new_types)} {label}(s) to registry.")  # type: ignore[union-attr]
             except OSError as exc:
                 st_ref.warning(f"{label.title()} registry update skipped: {exc}")  # type: ignore[union-attr]
+
+
+def finish_review_session(
+    st_ref: Any,
+    artifact: dict[str, Any],
+    artifact_path: Path,
+    root: Path,
+) -> None:
+    """Finalize review: analytics, artifact save, feedback DB, tag/type YAML updates."""
+    touch_review_session(artifact)
+    _finalize_review_analytics(artifact)
+    save_artifact(artifact_path, artifact)
+    fb_path = default_feedback_db_path(root)
+    try:
+        record_events_from_artifact(fb_path, artifact)
+        record_review_session(fb_path, artifact)
+    except OSError as exc:
+        st_ref.warning(f"Feedback DB write skipped: {exc}")
+    _collect_and_persist_tags(st_ref, artifact, root)
+    st_ref.success(f"Review finished — saved to {artifact_path}")
 
 
 def main() -> None:
@@ -309,7 +330,7 @@ def main() -> None:
         st.session_state["artifact"] = existing
         st.session_state["artifact_source_id"] = source_id
 
-    col_a, col_b = st.columns(2)
+    col_a, col_b, col_c = st.columns(3)
     with col_a:
         if st.button("Analyze source", type="primary"):
             if not os.environ.get("OPENAI_API_KEY"):
@@ -357,6 +378,11 @@ def main() -> None:
             st.session_state["artifact"] = existing
             st.session_state["artifact_source_id"] = source_id
             st.rerun()
+
+    artifact_early = st.session_state.get("artifact")
+    with col_c:
+        if artifact_early and st.button("Finish review", type="primary"):
+            finish_review_session(st, artifact_early, artifact_path, root)
 
     artifact = st.session_state.get("artifact")
     if not artifact:
@@ -409,7 +435,32 @@ def main() -> None:
                 st.session_state["artifact"] = artifact
                 st.error(f"Regeneration failed: {exc}")
 
+    pending_proposal_regen = st.session_state.pop("_pending_proposal_regen", None)
+    legacy_topic_regen = st.session_state.pop("_pending_topic_regen", None)
+    if pending_proposal_regen or legacy_topic_regen:
+        st.session_state["artifact"] = artifact
+        process_pending_proposal_regen(
+            st,
+            pending_raw=pending_proposal_regen or legacy_topic_regen,
+            source_id=source_id,
+            artifact=artifact,
+            artifact_path=artifact_path,
+            document=doc,
+            wiki_root=wiki_root,
+            model=model,
+            prompt_version=prompt_version,
+            max_plain_text_chars=int(max_chars),
+            topic_tags=topic_tags,
+            trend_tags=trend_tags,
+            howto_tags=howto_tags,
+            glossary_tags=glossary_tags,
+            model_types=model_types,
+            tool_types=tool_types,
+            impl_study_tags=impl_study_tags,
+        )
+
     key_prefix = source_id[:40]
+    wiki_glossary_seed = parse_glossary_terms(wiki_root / "glossary" / "index.md", cap=200)
     st.caption(
         f"Artifact schema v{artifact.get('artifact_schema_version', '?')} · "
         f"Review mix: **{aggregate_review_status(artifact)}**"
@@ -424,7 +475,6 @@ def main() -> None:
         return
 
     render_review_summary_panel(st, artifact)
-    render_batch_actions(st, artifact, key_prefix=key_prefix)
     render_review_timer(st, artifact, key_prefix=key_prefix)
 
     llm_detection = (artifact.get("llm_output") or {}).get("source_type_detection") or {}
@@ -434,6 +484,7 @@ def main() -> None:
     source_type_options: list[str] = [
         "standard_article",
         "ai_industry_roundup",
+        "ai_tools_roundup",
         "interview_or_transcript",
         "technical_howto",
         "research_paper_or_report",
@@ -519,72 +570,108 @@ def main() -> None:
             st,
             artifact,
             key_prefix=key_prefix,
+            source_id=source_id,
             glossary_tags=glossary_tags,
             artifact_path=artifact_path,
+            wiki_glossary_terms=wiki_glossary_seed,
+            model=model,
+            prompt_version=prompt_version,
         )
     with tabs[2]:
         render_topic_proposals(
             st,
             artifact,
             key_prefix=key_prefix,
+            source_id=source_id,
+            artifact_path=artifact_path,
             topic_tags=topic_tags,
+            model=model,
+            prompt_version=prompt_version,
         )
     with tabs[3]:
         render_howto_proposals(
             st,
             artifact,
             key_prefix=key_prefix,
+            source_id=source_id,
+            artifact_path=artifact_path,
             howto_tags=howto_tags,
+            model=model,
+            prompt_version=prompt_version,
         )
     with tabs[4]:
         render_trend_proposals(
             st,
             artifact,
             key_prefix=key_prefix,
+            source_id=source_id,
+            artifact_path=artifact_path,
             trend_tags=trend_tags,
+            model=model,
+            prompt_version=prompt_version,
         )
     with tabs[5]:
         render_tool_proposals(
             st,
             artifact,
             key_prefix=key_prefix,
+            source_id=source_id,
+            artifact_path=artifact_path,
             tool_types=tool_types,
+            model=model,
+            prompt_version=prompt_version,
         )
     with tabs[6]:
         render_model_proposals(
             st,
             artifact,
             key_prefix=key_prefix,
+            source_id=source_id,
+            artifact_path=artifact_path,
             model_types=model_types,
+            model=model,
+            prompt_version=prompt_version,
         )
     with tabs[7]:
         render_implementation_studies(
             st,
             artifact,
             key_prefix=key_prefix,
+            source_id=source_id,
+            artifact_path=artifact_path,
             impl_study_tags=impl_study_tags,
+            model=model,
+            prompt_version=prompt_version,
         )
     with tabs[8]:
-        render_roundup_signals(st, artifact, trend_tags=trend_tags, key_prefix=key_prefix)
+        render_roundup_signals(
+            st,
+            artifact,
+            trend_tags=trend_tags,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+        )
     with tabs[9]:
-        render_interview_insights(st, artifact, topic_tags=topic_tags, key_prefix=key_prefix)
+        render_interview_insights(
+            st,
+            artifact,
+            topic_tags=topic_tags,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+        )
     with tabs[10]:
         render_source_type_detection(st, artifact, key_prefix=key_prefix)
     with tabs[11]:
         st.json(artifact.get("llm_output"))
 
-    if st.button("Save review artifact"):
+    if st.button("Save draft"):
         touch_review_session(artifact)
-        _finalize_review_analytics(artifact)
         save_artifact(artifact_path, artifact)
-        fb_path = default_feedback_db_path(root)
-        try:
-            record_events_from_artifact(fb_path, artifact)
-            record_review_session(fb_path, artifact)
-        except OSError as exc:
-            st.warning(f"Feedback DB write skipped: {exc}")
-        _collect_and_persist_tags(st, artifact, root)
-        st.success(f"Saved to {artifact_path}")
+        st.success(f"Draft saved to {artifact_path}")
 
     st.caption(f"Artifact path: {artifact_path}")
 

@@ -11,14 +11,17 @@ from openai import APIError, APITimeoutError, OpenAI, RateLimitError
 from pydantic import ValidationError
 
 from src.ingest_review.extract import SourceDocument
+from src.ingest_review.proposal_regen_provider import run_proposal_regeneration
 from src.ingest_review.providers.base import IngestionProvider
 from src.ingest_review.schema import (
     PROMPT_VERSION,
     REGENERATABLE_SOURCE_SECTION_KEYS,
+    GlossaryTagSuggestOutput,
     LlmClassificationOutput,
     SectionRegenerateOutput,
     llm_output_json_schema,
 )
+from src.ingest_review.tags import normalize_tag
 from src.ingest_review.wiki_snapshot import WikiSnapshot
 
 logger = logging.getLogger(__name__)
@@ -26,7 +29,11 @@ logger = logging.getLogger(__name__)
 SYSTEM_PROMPT = """You are an analyst helping curate a personal AI-engineering Markdown wiki.
 Return only valid JSON matching the provided schema. Ground every substantive claim in the \
 source text via supporting_snippet (or source_summary section text for narrative fields). \
-If unknown, use empty strings or empty arrays and low confidence. Do not invent facts.
+If unknown, use empty strings or empty arrays and low confidence. Do not invent facts. \
+Do not infer economy-wide or industry-wide shifts, "broader moves", or macro narratives \
+from a single article or roundup unless the source text explicitly argues them with evidence. \
+In prose fields (especially why_it_matters), if stakes are thin or purely promotional, say \
+so briefly instead of padding with confident industry diagnosis.
 
 CORE PRINCIPLE: maximize durable knowledge gained per minute of human review. \
 Prefer precision over recall, durable knowledge over completeness, review speed over \
@@ -76,9 +83,13 @@ entity types. Do NOT force low-value extractions.
 
 Always fill source_type_detection with the detected source type, confidence, and reasoning. \
 If the source is an ai_industry_roundup, also populate roundup_signals. \
+If the source is an ai_tools_roundup, extract ONLY tools and foundation_models per \
+AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC; leave roundup_signals empty []. \
 If the source is an interview_or_transcript, also populate interview_insights. \
 Prefer reusing existing wiki pages (match_candidates) when the article overlaps with existing \
-content; suggest append_to_existing over create_new_page whenever possible.
+content; suggest append_to_existing over create_new_page whenever possible. \
+For how_to: question_title is a wiki page name (noun phrase), not an interview question—see \
+HOWTOS_RUBRIC.
 
 Anchor all temporal language to the source's published_date; never use unanchored words \
 like "currently", "now", "soon", "recently", or "within 1-2 years".
@@ -113,6 +124,10 @@ Required pattern: always include an explicit date anchor. Examples:
 Non-temporal qualifiers that need no anchor are fine: "incremental improvement", \
 "potentially transformative", "hype/noise", "strategically important".
 
+Time-bounded relevance (e.g. actionable as of <date>, monitor vs adopt) must reflect \
+this article's shelf-life or the claims in the source—not general industry timing you \
+have no data for outside what the source states.
+
 For every model that has an assessed_as_of field, copy the published_date from \
 Metadata (empty string if unknown)."""
 
@@ -129,6 +144,30 @@ top items within budget. Report total_candidates_considered in extraction_meta.
 If the article contains no durable, wiki-worthy knowledge, set \
 extraction_meta.skip_recommended = true and skip_reason explaining why. \
 Return empty arrays for all entity types. Do NOT force low-value extractions."""
+
+
+AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC = """\
+## AI_TOOLS_ROUNDUP_EXTRACTION (ONLY when detected_source_type == "ai_tools_roundup")
+
+Mutually exclusive with ai_industry_roundup-style roundup_signals: do NOT fill roundup_signals \
+for this type (return []).
+
+When the source is ai_tools_roundup:
+- glossary, topics, how_to, industry_trends, roundup_signals, implementation_studies, \
+interview_insights MUST each be [] (no exceptions).
+- tools vs foundation_models: Put **application products** (IDEs, agents, SaaS, CLIs, MCP \
+servers, orchestration platforms, etc.) in **tools**. Put **foundation / frontier / base \
+models** and model families the article treats as a primary list subject (e.g. GPT-5, Claude 4, \
+Gemini 2.5, Llama 4) in **foundation_models** — NOT in tools. If the headline is \"tool\" but the \
+entry is clearly a **model release**, use foundation_models.
+- tools: one ToolProposal per distinct PRIMARY enumerated **non-model** entry the article gives \
+substantive coverage to—match the article count when it claims e.g. \"10 tools\" and each item \
+is a real entry.
+- foundation_models: one FoundationModelProposal per distinct PRIMARY enumerated **model** entry \
+(or clearly standalone reviewed model); omit passing name-drops.
+- The numeric max lines under ## EXTRACTION BUDGETS do NOT cap tools or foundation_models for \
+this source type; completeness for listed tools beats those limits. Treat all other proposal \
+arrays as max zero (empty)."""
 
 
 VALUE_RANKING_RUBRIC = """\
@@ -183,11 +222,13 @@ marketing phrases, or title echoes.
 Mandatory procedure for every tagged proposal:
 1. Read the entity's TAGS or TYPES allowlist section in this prompt.
 2. Pick the best existing tag(s) from that list whenever reasonably possible.
-3. Set primary_tag to the single best match (or "" if none fit).
-4. Set secondary_tag only when a second allowlist tag adds distinct cross-cutting value \
-(or "" otherwise).
+3. Set primary_tag to the single best EXACT allowlist string (copy verbatim from the list), \
+or "" if none fit. NEVER put an invented slug, abbreviation, or off-list label in primary_tag.
+4. Set secondary_tag only to a second EXACT allowlist string when it adds distinct \
+cross-cutting value, or "" otherwise. NEVER put off-list text in secondary_tag.
 5. Set suggested_new_tag ONLY when no reasonable allowlist match exists after a semantic \
-scan — including checking near-synonyms (e.g. agent-workflow vs agentic-workflows).
+scan — including checking near-synonyms (e.g. agent-workflow vs agentic-workflows). \
+If primary_tag and secondary_tag are both "", you MAY leave suggested_new_tag "" as well.
 
 Tag sparsity (strict):
 - Most proposals need only primary_tag; leave secondary_tag "" unless clearly warranted.
@@ -212,10 +253,11 @@ PRIMARY_SECONDARY_SEMANTICS = """\
 
 Domain entities (glossary, topics, trends, how_to, implementation_studies, roundup_signals, \
 interview_insights):
-- primary_tag: the proposal's main strategic or operational domain (e.g. ai-safety, \
-orchestration, evaluation).
-- secondary_tag: optional cross-cutting relationship only when it adds distinct value \
-(e.g. primary orchestration + secondary evaluation). Not a synonym of primary.
+- primary_tag: main strategic domain — the single primary wiki routing bucket this proposal \
+belongs to first (copy exactly from allowlist), e.g. ai-safety, orchestration, evaluation.
+- secondary_tag: cross-cutting relationship — optional second allowlist tag only when the \
+proposal clearly also belongs to another major theme (not a synonym or minor variant of \
+primary).
 
 Tools (proposed_types list — same ordering spirit, not primary_tag fields):
 - First type in proposed_types: what kind of tool this is (main category).
@@ -251,15 +293,26 @@ this section shorter than summary.
 important, surprising, or practically useful—and non-obvious. One concise sentence per item. \
 No generic observations.
 
-**why_it_matters** (string): Unified significance and relevance (usually 7–12 sentences). \
-Cover in one flowing section: (1) why this source matters for AI engineering, software \
-development, AI products, and industry evolution—long-term and practical significance; \
-(2) operational implications ONLY when the article substantively supports them (e.g. agents, \
-support workflows, contact centers, voice or chat automation)—do NOT add a generic "For \
-service automation…" paragraph unless the source actually discusses those domains; \
-(3) a short honest time-bounded judgment anchored to the source's publication date \
-(e.g. actionable as of that date, likely relevant through a stated horizon, hype vs \
-durable, monitor vs adopt). No hype. No certainty theater.
+**why_it_matters** (string): One flowing piece of prose (usually 7–12 sentences when the source \
+is rich; shorter when thin). Structure: **Opening (about the first half)** — why the piece \
+matters for AI engineering, building products, or technical reading. Tie every sentence to \
+what the source actually says (claims, listed capabilities, roundup items). **Do not** in the \
+opening mention customer support, contact centers, voicebots, meeting capture, \
+dictation-to-workflow, back-office automation, or the phrase "service automation" — \
+reserve all of that for the closing. \
+**Closing (last 2–4 sentences only)** — \
+service automation/support/voice/meetings/back-office implications **only if** the article \
+substantively discusses them; otherwise omit entirely (no filler). \
+Do **not** repeat the same automation thesis twice; the closing extends or narrows, it does not \
+duplicate the opening. **Anti-patterns** (forbidden as unsourced global claims): "broader shift", \
+"the industry is moving", "reflects a shift from X to Y", "signals that …", framing that the \
+"useful comparison is no longer …" for the whole industry unless the source explicitly argues \
+that. Prefer: "The article argues…", "The piece surfaces…", "The roundup lists…". If the article \
+is shallow or stakes are unclear, say significance is **limited** or **unclear** in a sentence \
+or two. \
+End with a short honest time-bounded judgment anchored to the source's publication date \
+(actionable as of that date, monitor vs adopt, hype vs durable where grounded in the text). \
+No hype. No certainty theater.
 
 **limitations_and_open_questions** (string): Limitations, weak evidence, benchmark limits, \
 unrealistic assumptions, missing implementation detail, unresolved operational concerns, \
@@ -428,7 +481,16 @@ evaluation / automation / agent workflows, and relevance to \
 conversational AI, chatbots, voicebots, or service automation. \
 NEVER reference the article ("the article focuses on…", "this paper \
 argues…"). 1-3 sentences of durable operational/industry relevance.
-- related_terms: other terms mentioned in the same conceptual context
+- related_terms: cross-references ONLY—each string MUST use the **exact same spelling \
+and wording** as the ``term`` field of another object in **this** ``glossary`` array when \
+that concept is also proposed, OR as a term from **EXISTING_GLOSSARY_TERMS** in the prompt \
+when the concept is already in the wiki. Do **not** invent alternate surface forms. Do **not** \
+use abbreviations or acronyms in ``related_terms`` when the batch or wiki uses the **full \
+phrase** as the canonical term (e.g. use ``Reinforcement Learning from Human Feedback``, not \
+``RLHF``, unless ``RLHF`` is itself the established ``term``). You may use acronyms freely in \
+``extended_explanation`` / ``supporting_snippet`` prose; ``related_terms`` must stay aligned to \
+canonical glossary titles. If no exact batch/wiki label applies, omit that edge (leave out the \
+string) rather than approximating.
 - primary_tag: most fitting tag from GLOSSARY_TAGS_ALLOWLIST; "" if none fit
 - secondary_tag: optional second tag from GLOSSARY_TAGS_ALLOWLIST; "" if none
 - suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
@@ -467,11 +529,30 @@ announcement)
 - topic_title: human-readable form of the slug
 - knowledge_summary: 3-8 sentences, source-agnostic, synthesized. No "this \
 article says..." or "the author argues..."
+- examples: OPTIONAL. Only when the source contains a **concrete, quotable \
+illustration** that makes the abstract topic easier to grasp — e.g. a named product \
+integration, a short verbatim quote from the source, or a specific scenario explicitly \
+described. Write 1-4 sentences OR include a brief quoted clause taken from the source. \
+Must be grounded in explicit source text; do **not** invent examples. This is **not** a \
+second abstract summary — if the passage is only generic with no good concrete example, \
+use "" (empty string).
 - operational_insight: practical takeaway for a senior practitioner
 - supporting_snippet: verbatim evidence from the source
-- relevance_note: why this matters in the context of this source
+- relevance_note: why this **topic** matters for AI practitioners and the industry \
+long-term — NOT why it appeared in this source or what the article emphasizes. \
+Focus on durable operational/industry significance: where the pattern shows up in \
+real systems, who benefits, and how it affects engineering, orchestration, evaluation, \
+automation, or agent/service workflows. NEVER reference the article ("the article", \
+"this piece", "the author's strongest distinction", "in this source"). 1-3 sentences; \
+empty string only if you cannot state industry relevance without article framing.
 - key_points: specific knowledge bullets worth accumulating (list of strings)
-- related_topics: other topic slugs (list of strings)
+- related_topics: cross-links to **other topic pages** only — each string MUST be the \
+``topic_slug`` of another object in **this** ``topics`` array and/or a slug from \
+**EXISTING_TOPIC_TITLES** / the wiki topics index. Use kebab-case stable identifiers \
+(e.g. workflow-automation, context-engineering). Do **NOT** put TOPIC_TAGS_ALLOWLIST \
+entries here (e.g. ai-engineering, knowledge-management, ai-infrastructure) — those \
+belong only in primary_tag/secondary_tag. Do **not** repeat this object's own \
+topic_slug. Use [] when no valid cross-link exists.
 - primary_tag: most fitting tag from TOPIC_TAGS_ALLOWLIST; "" if none fit
 - secondary_tag: optional second tag from TOPIC_TAGS_ALLOWLIST; "" if none
 - suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
@@ -491,6 +572,9 @@ not as article commentary.
 Tag semantics (TOPIC_TAGS_ALLOWLIST): strategic/operational domain for the \
 knowledge unit — not the article title. Follow TAG_ONTOLOGY_RUBRIC.
 
+related_topics vs tags: ``related_topics`` = wiki topic page slugs; \
+``primary_tag``/``secondary_tag`` = allowlist routing tags only. Never interchange them.
+
 Routing: operational or architecture patterns WITHOUT a specific organizational \
 deployment case belong here — NOT in implementation_studies."""
 
@@ -505,12 +589,64 @@ substance — not vague advice.
 Default to append_to_existing. New pages only when the how-to covers a \
 genuinely distinct procedure not addressed by existing pages.
 
+### Plain-language fields (what_and_problem, answer_summary)
+
+Write ``what_and_problem`` and ``answer_summary`` for a curious newcomer to AI—plain \
+everyday language, no unexplained abbreviations (spell out terms), gentle pacing.
+
+- ``what_and_problem``: 4–8 sentences. First section a reader sees after the page \
+title. Explain what this how-to is about and which real-world problem or constraint \
+it addresses (e.g. scale, missing data, compliance). No "this article says…"; no \
+article-specific framing.
+- ``answer_summary``: 3–8 sentences in the same easy voice. Summarize how to approach \
+the procedure in plain terms—standalone guidance a non-expert can follow. Open with \
+situational context when the source stresses it.
+
+``implementation_steps``, ``prerequisites``, and ``caveats`` may stay more procedural \
+and practitioner-focused.
+
+### Title granularity (question_title)
+
+The JSON field is ``question_title``, but it is the **wiki page title** for a \
+durable how-to article—not a copy of the source's rhetorical question.
+
+- Use a **short noun phrase** (about 3–8 words): a topic-style label for the \
+core procedure. Title Case is fine.
+- **Do NOT** start titles with: ``How to``, ``How do you``, ``How should``, \
+``What is the best way to``, or similar interrogative/openers.
+- **Do NOT** put situational qualifiers in the title: no trailing ``when …``, \
+``if …``, ``without …``, ``for teams that …``, or article-specific constraints.
+- **Do NOT** use brand names, article-specific framing, or answer leakage in \
+the title (same as before).
+
+Put constraints and scenario context in ``what_and_problem`` (and optionally the \
+open of ``answer_summary`` when the source emphasizes it).
+
+**BAD title:** ``How do you evaluate a production voicebot when you cannot review \
+every call manually?``
+**GOOD title:** ``Evaluation of a Production Voicebot``
+**GOOD what_and_problem:** Explains how to check a production voice assistant when \
+listening to every call by hand is not realistic at high call volume.
+
+**Self-check before output:** ``question_title`` must NOT contain ``?``, must NOT \
+start with ``How``/``What``/``When``/``Why``, and must NOT include ``when``, ``if``, \
+or ``without`` clauses—move those to ``what_and_problem``.
+
+Before ``create_new_page``, compare the **core procedure** to \
+**EXISTING_HOWTO_TITLES** and ``match_candidates``. If an existing page covers the \
+same procedure, use ``append_to_existing`` and align the title with that page's style. \
+Prefer **fewer, broader** how-tos over many micro-variants (same spirit as topics: \
+avoid ultra-narrow fragmentation).
+
+If the source only supports a narrow edge case with no reusable procedure, use \
+``suggested_action: "ignore"`` or merge into a broader existing how-to rather than \
+creating a micro-howto.
+
 Each object MUST include:
-- question_title: source-agnostic procedural question — no brand names, \
-no article-specific framing, no answer leakage in the question itself
-- answer_summary: synthesized guidance, 3-8 sentences, standalone
+- question_title: wiki page title (noun phrase per Title granularity above)
+- what_and_problem: plain-language intro—what this is and what problem it solves
+- answer_summary: plain-language procedural guidance, 3-8 sentences, standalone
 - supporting_snippet: verbatim evidence from the source
-- relevance_note: why this how-to matters
 - caveats: gotchas, failure modes, limitations — skeptical where warranted. \
 Empty string only if genuinely none
 - implementation_steps: concrete, ordered steps when the source supports \
@@ -528,14 +664,36 @@ of strings)
 - evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
 implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
 
-Voice: direct, practical, implementation-focused. Write as reusable \
-procedural guidance.
+Avoid: interrogative titles, conditional clauses in titles, article-specific \
+framing, ultra-narrow micro-howtos, duplicate existing how-tos.
+
+Voice: ``what_and_problem`` and ``answer_summary`` use easy read; other fields stay \
+direct and implementation-focused. Write as reusable procedural guidance.
 
 Tag semantics (HOWTO_TAGS_ALLOWLIST): workflow/implementation area — overlap with \
 topic tags is OK. Follow TAG_ONTOLOGY_RUBRIC.
 
 Routing: reusable procedures without org-specific deployment evidence belong here \
 — NOT in implementation_studies."""
+
+
+TOPIC_REGEN_RUBRIC = """\
+Regenerate ONE topic contribution under a reviewer-supplied NEW_TOPIC_TITLE.
+
+Rules:
+- Reframe all fields for the broader title NEW_TOPIC_TITLE — it must be a stable wiki page \
+name (noun phrase), broad enough to accumulate knowledge across many future sources.
+- If the prior draft was narrower than NEW_TOPIC_TITLE (e.g. "Local Multimodal Inference" → \
+"Local Inference"), move the narrower angle into knowledge_summary and examples — NOT into \
+the title (title is set by the reviewer; you do not output topic_title or topic_slug).
+- Ground every claim in ARTICLE_PLAIN_TEXT via supporting_snippet; do not invent facts.
+- Source-agnostic voice: no "this article says…", no article-specific framing in \
+relevance_note (durable industry significance only).
+- related_topics: kebab-case topic_slug cross-references from EXISTING_TOPIC_SLUGS only; \
+never TOPIC_TAGS_ALLOWLIST entries.
+- Preserve operational usefulness; 3–8 sentences for knowledge_summary when substance allows.
+- examples: concrete illustration from source only, or "" if none.
+- Follow REVIEWER_NOTE when provided."""
 
 
 TRENDS_RUBRIC = """\
@@ -549,8 +707,10 @@ Default to append_to_existing. New pages only for genuinely novel \
 industry patterns not captured by existing trend pages.
 
 Each object MUST include:
-- trend_name: stable pattern name (e.g. inference-cost-collapse, NOT \
-GPT-4o-price-cut)
+- trend_slug: stable kebab-case wiki page id (e.g. inference-cost-collapse, NOT \
+GPT-4o-price-cut or headline labels)
+- trend_title: human-readable page title for the same pattern (e.g. Inference \
+Cost Collapse) — broad enough to accumulate evidence across sources
 - trend_description: standalone, source-agnostic description of the pattern
 - evidence_from_source: what this article specifically contributes as evidence
 - time_sensitivity: explicitly state how time-bound this observation is
@@ -559,7 +719,7 @@ conflicting signals, or limited evidence. Empty string is NOT acceptable
 - supporting_snippet: verbatim evidence from the source
 - supporting_data_points: specific data or facts that support the trend \
 (list of strings)
-- related_trends: other trend names (list of strings)
+- related_trends: other trend_slug values (kebab-case list of strings)
 - primary_tag: most fitting tag from TREND_TAGS_ALLOWLIST; "" if none fit
 - secondary_tag: optional second tag from TREND_TAGS_ALLOWLIST; "" if none
 - suggested_new_tag: if a new tag is warranted, in kebab-case; "" otherwise
@@ -601,17 +761,24 @@ workflows. Evaluate for: support automation, AI agents, orchestration, \
 evaluation, coding productivity, workflow automation, operational AI systems. \
 Audience is a senior practitioner in conversational AI, chatbots, voicebots, \
 service automation
-- strengths: operational strengths — concrete capabilities, not marketing claims
-- weaknesses_limitations: REQUIRED skeptical assessment — limitations, costs, \
-scalability issues, ecosystem immaturity, missing features. If none are evident \
-from the source, state that explicitly
+- strengths: operational strengths in **explanatory prose or markdown bullets** \
+(see Explanatory depth below). Each point must say *why it matters in practice*, \
+not just name a feature. Typically 3-6 bullets or 2-4 sentences minimum when \
+the source supports depth.
+- weaknesses_limitations: REQUIRED skeptical assessment in the same explanatory \
+style — limitations, costs, scalability issues, ecosystem immaturity, missing \
+features, each with enough context that a reader understands the tradeoff. If \
+none are evident from the source, state that explicitly in a full sentence.
 - maturity_signals: adoption level, ecosystem health, community size, enterprise \
-readiness. Use honest descriptors: "rapidly growing", "niche developer tool", \
-"experimental", "strong enterprise adoption", etc.
+readiness — written as 2-4 explanatory sentences (not a comma-separated keyword \
+list). Use honest descriptors: "rapidly growing", "niche developer tool", \
+"experimental", "strong enterprise adoption", etc., with brief evidence from the source.
 - supporting_snippet: verbatim evidence from the source
-- core_capabilities: specific features worth noting (list of strings)
+- core_capabilities: specific capabilities worth noting (list of strings). Each \
+list item must be one **full sentence** explaining what the capability does and \
+why it is notable — NOT a bare noun phrase or comma-joined feature name.
 - integration_ecosystem: concrete integrations, APIs, compatibility (list of \
-strings)
+strings). Same rule: one explanatory sentence per integration, not keyword dumps.
 - related_tools: comparable or complementary tools (list of strings)
 - proposed_types: from TOOL_TYPES_ALLOWLIST ONLY; at most 2 unless genuinely \
 multi-category. First = primary category, second = optional adjacent role. \
@@ -625,6 +792,29 @@ the allowlist, propose ONE new type in kebab-case; null otherwise
 - value_level: "high", "medium", or "low"
 - evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
 implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+
+### Explanatory depth (strengths, weaknesses_limitations, maturity_signals, lists)
+
+These fields capture high-value operational insight — **do not compress into keyword \
+salads**. Forbidden pattern: comma-separated feature names with no explanation \
+(e.g. "self-hosted deployment, multi-tier memory, model-agnostic selection").
+
+Required instead:
+- **Prose**: connected sentences that explain mechanism and practitioner value, OR
+- **Bullets**: markdown lines starting with ``- `` where each bullet is 1-2 sentences \
+explaining one capability/tradeoff and when it matters.
+
+**BAD strengths:** "Self-hosted deployment, internal skill creation, multi-tier memory, \
+model-agnostic model selection, containerized terminal execution."
+**GOOD strengths (bullets):**
+- Supports self-hosted deployment so teams can keep agent memory and execution on \
+their own infrastructure rather than a vendor cloud.
+- Ships a multi-tier memory model (working vs long-term) so recurring tasks can \
+improve without re-prompting from scratch each session.
+
+Use ``core_capabilities`` / ``integration_ecosystem`` for enumerations only when each \
+list entry is already a full explanatory sentence; otherwise put the detail in \
+``strengths`` or ``operational_relevance``.
 
 Classification rule: types describe WHAT THE TOOL IS, not what it does well. \
 Good: coding-assistant, desktop-app, voice-ai. Bad: productivity, useful, fast.
@@ -658,22 +848,28 @@ Each object MUST include:
 - operational_summary: 1-3 sentences on what the model is operationally good at \
 and what differentiates it. NOT a generic description like "X is a large language \
 model." Instead: "X appears strong for long-horizon coding and agent orchestration."
-- strengths: operational strengths — concrete capabilities, not marketing claims
-- weaknesses_limitations: REQUIRED skeptical assessment — inference cost, planning \
-weaknesses, formatting instability, hallucination patterns, context degradation. \
-If none evident, state that explicitly
+- strengths: operational strengths in explanatory prose or markdown bullets (same \
+rules as TOOLS_RUBRIC Explanatory depth) — each point explains *why* the capability \
+matters, not a bare feature label. Typically 3-6 bullets or 2-4 sentences when the \
+source supports depth.
+- weaknesses_limitations: REQUIRED skeptical assessment in the same explanatory \
+style — inference cost, planning weaknesses, formatting instability, hallucination \
+patterns, context degradation, each with enough context to understand the tradeoff. \
+If none evident, state that explicitly in a full sentence.
 - workflow_implications: how this model changes AI engineering, orchestration, \
 evaluation, automation workflows. Examples: "enables larger autonomous coding \
 loops", "reduces prompt engineering effort", "lowers orchestration complexity"
 - service_automation_implications: implications for conversational AI, chatbots, \
 voicebots, support automation, containment rates, handoff reduction. If no \
 meaningful implications, state explicitly. Avoid vague business language
-- maturity_signals: adoption, ecosystem maturity, enterprise readiness. Use honest \
-descriptors: "rapidly adopted", "experimental", "strong enterprise momentum", etc.
+- maturity_signals: adoption, ecosystem maturity, enterprise readiness — 2-4 \
+explanatory sentences (not comma-separated keywords). Use honest descriptors with \
+brief source-backed context.
 - pricing_inference_implications: cost observations, latency, inference economics, \
 deployment feasibility for high-volume use cases
 - supporting_snippet: verbatim evidence from the source
-- core_capabilities: specific capabilities worth noting — coding, long-context, \
+- core_capabilities: specific capabilities worth noting (list of strings) — one \
+full explanatory sentence per item, not bare feature names — coding, long-context, \
 tool calling, voice, structured outputs, planning, etc. (list of strings)
 - benchmark_observations: ONLY operationally meaningful evidence — SWE-Bench \
 discussions, latency comparisons, context-window observations, tool-use evals. \
@@ -722,6 +918,11 @@ opinion pieces
 summaries whose primary purpose is aggregating many short items, links, or \
 news blurbs. The key signal is a BUNDLE of loosely related items, not a \
 single coherent argument
+- "ai_tools_roundup" — curated multi-item piece whose PRIMARY structure is \
+numbered or clearly separated reviews of named AI tools (and optionally \
+models), each with substantive description; "N tools" / "tool 1…N" patterns, \
+repeated per-tool blurbs. Prefer this over ai_industry_roundup when most \
+main items are tools with dedicated coverage—not a general news link digest
 - "interview_or_transcript" — long-form conversations with interviewer/ \
 interviewee structure, Q&A format, multiple speaker perspectives, or \
 transcript-like content
@@ -729,6 +930,9 @@ transcript-like content
 - "research_paper_or_report" — academic paper, formal research report, or \
 technical whitepaper with citations and methodology
 - "unknown" — use when genuinely uncertain
+
+Disambiguation: ai_industry_roundup for general multi-topic news digests; \
+ai_tools_roundup when the centerpiece is a curated tool list with reviews.
 
 Fields:
 - detected_source_type: one of the types above
@@ -860,9 +1064,11 @@ def _section_regen_rubric(section_key: str) -> str:
             "or practically useful—and non-obvious. One sentence each."
         ),
         "why_it_matters": (
-            "Unified 7–12 sentences: significance for AI engineering/industry; operational "
-            "implications only if substantiated (no forced service-automation paragraph); "
-            "short time-bounded relevance judgment anchored to publication date."
+            "One flow: opening half = engineering/product stakes from the source only; "
+            "never mention service automation, support, voicebots, contact centers, or meeting "
+            "capture there. Last 2–4 sentences only = automation/support implications if "
+            "substantiated; no duplicate thesis. No unsourced macro shifts (broader industry "
+            "move, signals that…). Say limited/unclear if thin. Date-anchored closing judgment."
         ),
         "limitations_and_open_questions": (
             "Weak evidence, scalability, benchmarks, assumptions, missing detail, operations, "
@@ -929,10 +1135,12 @@ def _build_user_prompt(
     topic_titles = wiki.topic_titles[:100] if wiki.topic_titles else []
     howto_titles = wiki.howto_titles[:100] if wiki.howto_titles else []
     trend_titles = wiki.trend_titles[:100] if wiki.trend_titles else []
+    trend_slugs = wiki.trend_slugs[:100] if wiki.trend_slugs else []
     blocks = [
         "## Metadata\n" + "\n".join(meta_lines),
         TEMPORAL_ANCHORING_RULE,
         budget_block,
+        AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC,
         VALUE_RANKING_RUBRIC,
         EVIDENCE_TYPE_RUBRIC,
         TAG_ONTOLOGY_RUBRIC,
@@ -945,6 +1153,7 @@ def _build_user_prompt(
         "## EXISTING_TOPIC_TITLES\n" + "\n".join(f"- {t}" for t in topic_titles),
         "## EXISTING_HOWTO_TITLES\n" + "\n".join(f"- {t}" for t in howto_titles),
         "## EXISTING_TREND_TITLES\n" + "\n".join(f"- {t}" for t in trend_titles),
+        "## EXISTING_TREND_SLUGS\n" + "\n".join(f"- {s}" for s in trend_slugs),
         "## TOOL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_types),
         "## MODEL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in m_types),
         "## HOWTO_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in howto_tags),
@@ -968,9 +1177,10 @@ def _build_user_prompt(
     if source_type_override:
         blocks.append(
             f"## SOURCE_TYPE_OVERRIDE\nTreat this source as: {source_type_override}. "
-            "Set source_type_detection.detected_source_type accordingly and populate "
-            "the corresponding specialized extraction (roundup_signals or "
-            "interview_insights) if applicable."
+            "Set source_type_detection.detected_source_type accordingly. If "
+            "ai_industry_roundup, populate roundup_signals; if ai_tools_roundup, "
+            "follow AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC only (no roundup_signals); "
+            "if interview_or_transcript, populate interview_insights."
         )
     blocks.extend(
         [
@@ -984,12 +1194,22 @@ def _build_user_prompt(
             "total_candidates_considered, review_burden_estimate). "
             "If skip_recommended is true, return empty arrays for all entity types. "
             "THEN: fill source_type_detection per SOURCE_TYPE_DETECTION_RUBRIC. "
-            "THEN: fill source_summary, glossary, tools, foundation_models, how_to, "
-            "topics, implementation_studies, industry_trends per their rubrics. "
-            "RESPECT extraction budgets. Every proposal MUST have a value_level field. "
-            "IF source type is ai_industry_roundup, ALSO fill roundup_signals per "
+            "THEN: fill source_summary per SOURCE_CHAPTERS_RUBRIC. "
+            "IF detected_source_type is ai_tools_roundup: follow "
+            "AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC "
+            "exactly—leave glossary, topics, how_to, industry_trends, roundup_signals, "
+            "implementation_studies, interview_insights as []; extract every primary enumerated "
+            "tool; the stated numeric caps under ## EXTRACTION BUDGETS do not limit tools or "
+            "foundation_models for this type only. "
+            "ELSE: fill glossary, tools, foundation_models, how_to, topics, "
+            "implementation_studies, industry_trends per their rubrics and RESPECT extraction "
+            "budgets. Every proposal MUST have a value_level field. "
+            "For glossary, each related_terms entry MUST match a sibling ``term`` or "
+            "EXISTING_GLOSSARY_TERMS exactly (see GLOSSARY_RUBRIC; avoid abbreviations when the "
+            "full form is canonical). "
+            "IF detected_source_type is ai_industry_roundup, ALSO fill roundup_signals per "
             "ROUNDUP_SIGNALS_RUBRIC. "
-            "IF source type is interview_or_transcript, ALSO fill interview_insights per "
+            "IF detected_source_type is interview_or_transcript, ALSO fill interview_insights per "
             "INTERVIEW_INSIGHTS_RUBRIC. "
             "Use empty arrays when a category does not apply.",
         ]
@@ -1243,3 +1463,166 @@ class OpenAIIngestionProvider(IngestionProvider):
                 else:
                     fmt_index += 1
         raise RuntimeError(f"OpenAI section regeneration failed: {last_error}")
+
+    def regenerate_proposal(
+        self,
+        *,
+        entity_key: str,
+        document: SourceDocument,
+        current_item: dict[str, Any],
+        new_title: str,
+        reviewer_instruction: str | None,
+        context_sections: dict[str, str],
+        model: str,
+        prompt_version: str,
+        max_plain_text_chars: int | None = None,
+        max_retries: int = 2,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Regenerate one proposal under a reviewer-supplied title (any entity)."""
+        return run_proposal_regeneration(
+            self._client,
+            entity_key=entity_key,
+            document=document,
+            current_item=current_item,
+            new_title=new_title,
+            reviewer_instruction=reviewer_instruction,
+            context_sections=context_sections,
+            model=model,
+            prompt_version=prompt_version,
+            max_plain_text_chars=max_plain_text_chars,
+            max_retries=max_retries,
+        )
+
+    def regenerate_topic_proposal(
+        self,
+        *,
+        document: SourceDocument,
+        current_topic: dict[str, Any],
+        new_title: str,
+        reviewer_instruction: str | None,
+        topic_tags_allowlist: list[str],
+        existing_topic_slugs: list[str],
+        model: str,
+        prompt_version: str,
+        max_plain_text_chars: int | None = None,
+        max_retries: int = 2,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Regenerate one topic proposal under a reviewer-supplied title."""
+        slug_lines = "\n".join(f"- {s}" for s in existing_topic_slugs[:120] if str(s).strip())
+        tag_lines = "\n".join(f"- {t}" for t in topic_tags_allowlist if str(t).strip())
+        context = {
+            "EXISTING_TOPIC_SLUGS": slug_lines or "(none)",
+            "TOPIC_TAGS_ALLOWLIST": tag_lines or "(none)",
+        }
+        return self.regenerate_proposal(
+            entity_key="topic",
+            document=document,
+            current_item=current_topic,
+            new_title=new_title,
+            reviewer_instruction=reviewer_instruction,
+            context_sections=context,
+            model=model,
+            prompt_version=prompt_version,
+            max_plain_text_chars=max_plain_text_chars,
+            max_retries=max_retries,
+        )
+
+    def suggest_domain_review_tag(
+        self,
+        *,
+        entity_label: str,
+        context_summary: str,
+        allowlist: list[str],
+        model: str,
+        prompt_version: str,
+        max_retries: int = 2,
+    ) -> tuple[str, dict[str, Any]]:
+        """Return one kebab-case tag not in allowlist, or ""."""
+        allow_norms = {normalize_tag(str(t)) for t in allowlist if str(t).strip()}
+        lines = "\n".join(f"- {normalize_tag(str(t))}" for t in allowlist if str(t).strip())
+        user_prompt = "\n\n".join(
+            [
+                f"prompt_version: {prompt_version or PROMPT_VERSION}",
+                "## TASK",
+                "Propose ONE new wiki routing tag in kebab-case for this entity, OR return "
+                "empty suggested_tag if an entry in ALLOWLIST is a reasonable fit (the reviewer "
+                "will map manually). Do NOT output any tag that appears in ALLOWLIST.",
+                "## ENTITY / TITLE\n" + entity_label.strip(),
+                "## SUMMARY / CONTEXT\n" + (context_summary.strip() or "(none)"),
+                "## ALLOWLIST (do not repeat any of these)\n" + (lines or "(empty)"),
+                "## Instructions\n"
+                'Return JSON only: {"suggested_tag": "<kebab-case or empty>"}. '
+                "Distinct, recurring, broad enough for many future wiki entries under this domain. "
+                "No article-specific or vendor-marketing slugs.",
+            ]
+        )
+        schema = GlossaryTagSuggestOutput.model_json_schema()
+        messages = [
+            {
+                "role": "system",
+                "content": SYSTEM_PROMPT
+                + " Respond with one JSON object only; keys as specified in user message.",
+            },
+            {"role": "user", "content": user_prompt},
+        ]
+        response_formats: list[dict[str, Any] | None] = [
+            {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "domain_tag_suggest",
+                    "schema": schema,
+                    "strict": False,
+                },
+            },
+            {"type": "json_object"},
+            None,
+        ]
+        last_error: str | None = None
+        max_attempts = max(2, max_retries) * 2
+        fmt_index = 0
+        for attempt in range(max_attempts):
+            response_format = response_formats[min(fmt_index, len(response_formats) - 1)]
+            try:
+                kwargs: dict[str, Any] = {
+                    "model": model,
+                    "messages": messages,
+                    "timeout": 60.0,
+                }
+                if response_format is not None:
+                    kwargs["response_format"] = response_format
+                completion = self._client.chat.completions.create(**kwargs)
+                raw = completion.choices[0].message.content or ""
+                data = _parse_json_content(raw)
+                out = GlossaryTagSuggestOutput.model_validate(data)
+                sug = normalize_tag(str(out.suggested_tag or ""))
+                if sug and sug in allow_norms:
+                    sug = ""
+                meta: dict[str, Any] = {
+                    "request_id": completion.id,
+                    "token_usage": completion.usage.model_dump() if completion.usage else None,
+                    "prompt_version": prompt_version or PROMPT_VERSION,
+                }
+                return sug, meta
+            except (json.JSONDecodeError, ValidationError, TypeError, ValueError) as exc:
+                last_error = str(exc)
+                logger.warning("Domain tag suggest parse failed: %s", last_error)
+                messages = [
+                    messages[0],
+                    {
+                        "role": "user",
+                        "content": user_prompt
+                        + "\n\n## Previous output invalid\n"
+                        + str(exc)[:2000]
+                        + '\nReturn {"suggested_tag": ""} or one valid kebab-case tag.',
+                    },
+                ]
+                time.sleep(0.3 * (attempt + 1))
+            except (RateLimitError, APITimeoutError, APIError) as exc:
+                last_error = str(exc)
+                logger.warning("Domain tag suggest HTTP error: %s", last_error)
+                if isinstance(exc, RateLimitError) or "429" in last_error:
+                    time.sleep(2.0 * (attempt + 1))
+                else:
+                    fmt_index += 1
+        logger.warning("Domain tag suggest failed: %s", last_error)
+        return "", {"error": last_error or "unknown"}

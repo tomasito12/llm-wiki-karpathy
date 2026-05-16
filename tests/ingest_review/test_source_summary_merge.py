@@ -82,10 +82,32 @@ def test_source_chapters_rubric_single_why_it_matters() -> None:
 
 
 def test_rubric_discourages_forced_service_automation() -> None:
-    """Unified rubric warns against generic service-automation paragraphs."""
+    """Unified rubric reserves service automation for closing only."""
     lower = SOURCE_CHAPTERS_RUBRIC.lower()
     assert "service automation" in lower
-    assert "do not" in lower or "only when" in lower
+    assert "closing" in lower
+
+
+def test_rubric_why_it_matters_bans_unsourced_macro_claims() -> None:
+    """Rubric forbids macro industry-shift phrasing without source support."""
+    lower = SOURCE_CHAPTERS_RUBRIC.lower()
+    assert "broader shift" in lower
+    assert "anti-patterns" in lower
+
+
+def test_rubric_why_it_matters_reserves_automation_for_final_sentences() -> None:
+    """Opening must not preview service automation; phrasing encodes separation."""
+    assert "Do not" in SOURCE_CHAPTERS_RUBRIC
+    assert "reserve" in SOURCE_CHAPTERS_RUBRIC.lower()
+    assert "last 2" in SOURCE_CHAPTERS_RUBRIC or "Last 2" in SOURCE_CHAPTERS_RUBRIC
+
+
+def test_section_regen_rubric_why_it_matters_matches_structure() -> None:
+    """Regen rubric mirrors opening-vs-closing and no-duplicate-automation rules."""
+    regen = _section_regen_rubric("why_it_matters")
+    assert regen
+    assert "opening" in regen.lower()
+    assert "closing" in regen.lower() or "last 2" in regen.lower()
 
 
 def test_section_regen_rubric_no_orphan_keys() -> None:

@@ -486,7 +486,11 @@ def test_record_events_trend_per_section(tmp_path: Path) -> None:
         "analysis_meta": {"provider": "openai", "model": "m", "prompt_version": "4"},
         "llm_output": {
             "industry_trends": [
-                {"trend_name": "cost-collapse", "supporting_data_points": ["dp1"]},
+                {
+                    "trend_slug": "cost-collapse",
+                    "trend_title": "Cost Collapse",
+                    "supporting_data_points": ["dp1"],
+                },
             ],
         },
         "review": {
@@ -495,11 +499,17 @@ def test_record_events_trend_per_section(tmp_path: Path) -> None:
                     "proposal_id": "tr1",
                     "notes": None,
                     "llm_item": {
-                        "trend_name": "cost-collapse",
+                        "trend_slug": "cost-collapse",
+                        "trend_title": "Cost Collapse",
                         "supporting_data_points": ["dp1"],
                     },
                     "sections": {
-                        "trend_name": {
+                        "trend_slug": {
+                            "status": "approved",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "trend_title": {
                             "status": "approved",
                             "final_text": None,
                             "notes": None,
@@ -521,7 +531,7 @@ def test_record_events_trend_per_section(tmp_path: Path) -> None:
         },
     }
     n = record_events_from_artifact(db, artifact)
-    assert n == 2
+    assert n == 3
 
 
 def test_record_events_source_type_detection(tmp_path: Path) -> None:

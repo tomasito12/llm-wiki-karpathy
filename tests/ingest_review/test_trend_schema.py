@@ -12,7 +12,8 @@ from src.ingest_review.schema import (
 def test_trend_proposal_defaults() -> None:
     """All fields default to empty/zero."""
     tp = IndustryTrendProposal()
-    assert tp.trend_name == ""
+    assert tp.trend_slug == ""
+    assert tp.trend_title == ""
     assert tp.trend_description == ""
     assert tp.evidence_from_source == ""
     assert tp.time_sensitivity == ""
@@ -36,6 +37,7 @@ def test_trend_proposal_no_legacy_fields() -> None:
     assert "evidence_as_of" not in IndustryTrendProposal.model_fields
     assert "claim_type" not in IndustryTrendProposal.model_fields
     assert "supporting_snippets" not in IndustryTrendProposal.model_fields
+    assert "trend_name" not in IndustryTrendProposal.model_fields
 
 
 def test_trend_proposal_accepts_knowledge_action_values() -> None:
@@ -63,7 +65,8 @@ def test_trend_list_keys_match_model_fields() -> None:
 def test_trend_proposal_roundtrip_json() -> None:
     """Model dump and validate round-trips cleanly."""
     tp = IndustryTrendProposal(
-        trend_name="inference-cost-collapse",
+        trend_slug="inference-cost-collapse",
+        trend_title="Inference Cost Collapse",
         trend_description="Inference costs are falling rapidly.",
         uncertainty_note="Based on limited data points.",
         supporting_data_points=["GPT-4o 50% cheaper"],
@@ -72,5 +75,6 @@ def test_trend_proposal_roundtrip_json() -> None:
     )
     data = tp.model_dump(mode="json")
     restored = IndustryTrendProposal.model_validate(data)
-    assert restored.trend_name == "inference-cost-collapse"
+    assert restored.trend_slug == "inference-cost-collapse"
+    assert restored.trend_title == "Inference Cost Collapse"
     assert restored.supporting_data_points == ["GPT-4o 50% cheaper"]

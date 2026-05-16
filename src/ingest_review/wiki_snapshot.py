@@ -69,6 +69,35 @@ def parse_topic_titles(index_path: Path, *, cap: int = 200) -> list[str]:
     return titles[:cap]
 
 
+def parse_topic_slugs(index_path: Path, *, cap: int = 200) -> list[str]:
+    """Parse kebab-case topic slugs from ``wiki/topics/index.md`` (for cross-link validation)."""
+    from src.ingest_review.tags import normalize_tag
+
+    text = _read_text(index_path)
+    slugs: list[str] = []
+    seen: set[str] = set()
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|--") or "Topic" in line[:15]:
+            continue
+        parts = [p.strip() for p in line.split("|")]
+        parts = [p for p in parts if p]
+        if not parts:
+            continue
+        cell = parts[0]
+        slug = ""
+        if "[[" in cell:
+            m = re.search(r"\[\[topics/([^]|]+)\]\]", cell)
+            if m:
+                slug = normalize_tag(Path(m.group(1)).stem)
+        elif cell and cell != "Topic":
+            slug = normalize_tag(cell)
+        if slug and slug not in seen:
+            seen.add(slug)
+            slugs.append(slug)
+    return slugs[:cap]
+
+
 def parse_howto_titles(index_path: Path, *, cap: int = 200) -> list[str]:
     """Parse how-to titles from ``wiki/howtos/index.md`` table rows."""
     text = _read_text(index_path)
@@ -113,6 +142,35 @@ def parse_trend_titles(index_path: Path, *, cap: int = 200) -> list[str]:
         elif cell and cell != "Trend":
             titles.append(cell)
     return titles[:cap]
+
+
+def parse_trend_slugs(index_path: Path, *, cap: int = 200) -> list[str]:
+    """Parse kebab-case trend slugs from ``wiki/trends/index.md`` (for cross-link validation)."""
+    from src.ingest_review.tags import normalize_tag
+
+    text = _read_text(index_path)
+    slugs: list[str] = []
+    seen: set[str] = set()
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|--") or "Trend" in line[:15]:
+            continue
+        parts = [p.strip() for p in line.split("|")]
+        parts = [p for p in parts if p]
+        if not parts:
+            continue
+        cell = parts[0]
+        slug = ""
+        if "[[" in cell:
+            m = re.search(r"\[\[trends/([^]|]+)\]\]", cell)
+            if m:
+                slug = normalize_tag(Path(m.group(1)).stem)
+        elif cell and cell != "Trend":
+            slug = normalize_tag(cell)
+        if slug and slug not in seen:
+            seen.add(slug)
+            slugs.append(slug)
+    return slugs[:cap]
 
 
 def parse_tools_index(tools_index: Path, wiki_tools: Path, *, cap: int = 400) -> list[str]:
@@ -221,8 +279,10 @@ class WikiSnapshot:
     foundation_model_names: list[str]
     implementation_study_titles: list[str] = dataclass_field(default_factory=list)
     topic_titles: list[str] = dataclass_field(default_factory=list)
+    topic_slugs: list[str] = dataclass_field(default_factory=list)
     howto_titles: list[str] = dataclass_field(default_factory=list)
     trend_titles: list[str] = dataclass_field(default_factory=list)
+    trend_slugs: list[str] = dataclass_field(default_factory=list)
 
 
 def build_wiki_snapshot(wiki_root: Path, *, cap_per_list: int = 200) -> WikiSnapshot:
@@ -241,6 +301,8 @@ def build_wiki_snapshot(wiki_root: Path, *, cap_per_list: int = 200) -> WikiSnap
         foundation_model_names=parse_foundation_model_names(fm_index, cap=cap_per_list),
         implementation_study_titles=parse_implementation_study_titles(impl_index, cap=cap_per_list),
         topic_titles=parse_topic_titles(topics_index, cap=cap_per_list),
+        topic_slugs=parse_topic_slugs(topics_index, cap=cap_per_list),
         howto_titles=parse_howto_titles(howtos_index, cap=cap_per_list),
         trend_titles=parse_trend_titles(trends_index, cap=cap_per_list),
+        trend_slugs=parse_trend_slugs(trends_index, cap=cap_per_list),
     )

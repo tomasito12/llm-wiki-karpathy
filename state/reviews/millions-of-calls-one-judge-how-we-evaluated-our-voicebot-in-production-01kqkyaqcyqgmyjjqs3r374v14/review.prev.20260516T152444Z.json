@@ -1,0 +1,1053 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-16T13:24:31+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "20",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dg9HmSTEAT8xqeo3OACCfu82Ktzf7",
+    "token_usage": {
+      "completion_tokens": 3986,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 24598,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 28584
+    }
+  },
+  "artifact_schema_version": 11,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.94,
+        "evidence_type": "implementation_case",
+        "extended_explanation": "In practice, the judge model receives a prompt that describes the evaluation task and returns a score, label, or explanation. Teams often use it for content quality, safety, conversation handling, or tool-use checks. The method works best when the criteria are precise and the output is constrained, because vague judgments are hard to debug and compare. It is usually paired with human calibration data so the machine judge stays aligned with human expectations.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "A method of using a large language model to evaluate or score other model outputs, conversations, or artifacts according to explicit criteria. It is commonly used when human review is too slow or expensive at scale.",
+        "related_terms": [
+          "Golden Dataset"
+        ],
+        "relevance_note": "This is a durable evaluation pattern for AI systems that need scalable quality control, especially in conversational AI and service workflows. It matters because it turns expensive human review into a repeatable scoring layer, but only when the rubric is narrow and well calibrated.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "supporting_snippet": "\u201cLLM-as-a-Judge becomes the only viable path. But\u2026 an LLM Judge can only read text. So we evaluate transcripts, not raw audio.\u201d",
+        "term": "LLM-as-a-Judge",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.96,
+        "evidence_type": "implementation_case",
+        "extended_explanation": "A Golden Dataset is not just a random sample of data. It is usually stratified so that important classes, edge cases, and failure modes are represented, and domain experts annotate it carefully. Teams use it to compare automated judgments against human expectations, tune thresholds, and decide whether a metric is ready for production. Because it is expensive to create, it is usually smaller than a training corpus but much more rigorously curated.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "A carefully selected and manually labeled dataset used as a trusted reference for calibration, validation, or evaluation. It is often treated as the ground truth set for checking whether automated scoring or models behave as expected.",
+        "related_terms": [
+          "LLM-as-a-Judge"
+        ],
+        "relevance_note": "This is a core evaluation primitive in AI engineering because it anchors automated scoring, regression testing, and release gating to human-reviewed examples. It is especially important in conversational AI, where edge cases and class imbalance can easily distort quality metrics.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "supporting_snippet": "\u201cWe selected and isolated 500 conversations, but not randomly. The Golden Dataset was built through a stratified sampling process combining manual annotation and actual conversation data.\u201d",
+        "term": "Golden Dataset",
+        "value_level": "high"
+      }
+    ],
+    "how_to": [
+      {
+        "answer_summary": "Use a two-loop system. First, calibrate your judges offline with a carefully sampled and human-annotated Golden Dataset, then validate releases with scripted bot-vs-bot scenarios. Second, add an online safety net with dashboards, kill switches, and an annotation queue so production failures feed back into the calibration set. The key is to make the evaluation stack explainable at the metric level and operationally safe at the deployment level.",
+        "caveats": "The method depends on strong human labels and does not eliminate transcription bias. Scripted scenarios can validate outcomes without revealing the path quality between start and finish, so they should not be the only test layer. The article does not specify exact thresholds or prompt designs, so teams would need to adapt the method to their own domain.",
+        "confidence": 0.95,
+        "evidence_type": "implementation_case",
+        "implementation_steps": [
+          "Define atomic binary metrics instead of a single vague quality score.",
+          "Build a stratified Golden Dataset with enough positive and negative examples for each metric.",
+          "Manually annotate the dataset with domain experts and calibrate the judge until it matches human expectations.",
+          "Run scripted bot-vs-bot scenarios before each release to validate feature behavior.",
+          "Deploy dashboards, kill switches, and an annotation queue for live production monitoring.",
+          "Send judge failures from production back into the Golden Dataset for recalibration."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A representative corpus of real conversations",
+          "Domain experts able to label edge cases",
+          "A transcript or evaluation layer suitable for automated scoring",
+          "Operational dashboards and release gating processes"
+        ],
+        "primary_tag": "evals-measurement",
+        "question_title": "How do you evaluate a production voicebot when you cannot review every call manually?",
+        "related_howtos": [],
+        "relevance_note": "This procedure is reusable for any high-volume conversational system where full manual review is impossible. It is especially relevant for voicebots and support automation because production behavior, transcript quality, and safety thresholds all need continuous monitoring.",
+        "secondary_tag": "production-ml",
+        "suggested_action": "append_to_existing",
+        "suggested_new_tag": "",
+        "supporting_snippet": "\u201cOur evaluation system rests on two pillars: an Offline lab and an Online safety net.\u201d",
+        "value_level": "high"
+      }
+    ],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "The article suggests that model choice upstream in speech-to-text can affect evaluation quality more than prompt refinement on the judge layer. It also suggests that binary judge design is more stable than a single broad scoring prompt.",
+        "business_objective": "To determine whether the voicebot performs as well as a human agent at scale and to monitor quality without manually listening to every call.",
+        "company": "French telecom leader",
+        "confidence": 0.97,
+        "deployment_context": "The voicebot was already deployed in production and was handling millions of calls per year; the evaluation stack was built around that live operating environment.",
+        "evidence_snippets": [
+          {
+            "claim": "The voicebot was deployed in production and handled millions of calls per year.",
+            "provenance": "stated",
+            "snippet": "\u201cour voicebot does\u2026 currently handling millions of calls per year in production.\u201d"
+          },
+          {
+            "claim": "The system used LLM-as-a-Judge on transcripts because the judge could only read text.",
+            "provenance": "stated",
+            "snippet": "\u201cLLM-as-a-Judge becomes the only viable path. But\u2026 an LLM Judge can only read text. So we evaluate transcripts, not raw audio.\u201d"
+          },
+          {
+            "claim": "Offline calibration and live safety monitoring were both part of the evaluation stack.",
+            "provenance": "stated",
+            "snippet": "\u201cOur evaluation system rests on two pillars: an Offline lab and an Online safety net.\u201d"
+          },
+          {
+            "claim": "Transcription model choice materially affected evaluation quality.",
+            "provenance": "stated",
+            "snippet": "\u201cPicking the right transcription model upstream had more impact on our evaluation quality than any prompt engineering we did on the judges themselves.\u201d"
+          }
+        ],
+        "evidence_type": "implementation_case",
+        "implications_for_service_automation": "This is directly relevant to voicebots and support automation because it shows how to gate releases, monitor live quality, and preserve human oversight in high-volume conversational systems.",
+        "industry": "telecom",
+        "key_lessons": [
+          "Use offline calibration before relying on live scores.",
+          "Treat transcription as part of the evaluation stack.",
+          "Prefer atomic checks over one broad conversation score.",
+          "Keep a human annotation loop for production failures.",
+          "Use kill switches when brand risk is high."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How well do the 29 binary metrics generalize beyond the reported examples?",
+          "What are the exact thresholds for automatic shutdown?",
+          "Can audio-native judging replace transcripts without creating new privacy and compliance issues?"
+        ],
+        "operational_constraints": "Systematic human review was impossible at call volume, transcript bias affected judge accuracy, and some edge cases such as sarcasm, mic cutouts, and off-scope drift required expanding the metric set beyond common advice.",
+        "outcome_status": "The evaluation system was operational in production, with metric shipping gated by alignment on the Golden Dataset and failures routed back into continuous improvement.",
+        "overview": "A conversational voicebot handling millions of calls per year was evaluated in production using LLM-based judges, offline calibration, automated scenario testing, and live safety monitoring.",
+        "primary_tag": "service-automation",
+        "related_sources": [
+          "https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654"
+        ],
+        "secondary_tag": "operational-reliability",
+        "strategic_signals": "Production voice automation needs an explicit evaluation architecture, not just a model. Transcript quality and human calibration are part of the operating model, not secondary details.",
+        "success_or_failure_factors": "The atomic judge design improved explainability and actionability, while the main failure risk came from transcription errors rather than the judge prompts themselves.",
+        "suggested_action": "create",
+        "suggested_new_tag": "",
+        "technical_approach": "The team used LLM-as-a-Judge on transcripts, decomposed vague call-quality rubrics into atomic binary checks, calibrated those checks on a stratified Golden Dataset, and benchmarked multiple speech-to-text models to reduce transcription bias.",
+        "title": "Production voicebot evaluation for a French telecom operator",
+        "value_level": "high",
+        "what_was_implemented": "A speech-to-speech voicebot, a set of 29 binary evaluation metrics, a Golden Dataset for calibration, bot-vs-bot scripted scenarios, production dashboards, automatic kill switches, and an annotation queue that feeds failed cases back into the evaluation set."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-30",
+        "confidence": 0.8,
+        "evidence_from_source": "The source describes a production voicebot evaluated with a Golden Dataset, bot-vs-bot scenarios, dashboards, kill switches, and an annotation queue.",
+        "evidence_type": "implementation_case",
+        "match_candidates": [],
+        "primary_tag": "ai-governance",
+        "related_trends": [
+          "evaluation-pipelines-for-conversational-ai"
+        ],
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "append_to_existing",
+        "suggested_new_tag": "",
+        "supporting_data_points": [
+          "500 conversations in the Golden Dataset",
+          "29 binary evaluation metrics",
+          "millions of calls per year in production",
+          "six transcription models benchmarked on 100 conversations"
+        ],
+        "supporting_snippet": "\u201cOur evaluation system rests on two pillars: an Offline lab and an Online safety net.\u201d",
+        "time_sensitivity": "Actionable as of 2026-04-30; relevant while voice automation systems remain high-volume and hard to fully review manually.",
+        "trend_description": "Production voice systems increasingly require a dedicated evaluation stack rather than a single model score. The stack typically combines offline calibration, scenario testing, live monitoring, and human review for failure cases.",
+        "trend_name": "voicebot-evaluation-stack-hardening",
+        "uncertainty_note": "This is supported by one production case, so it is best treated as a strong implementation signal rather than proof of an industry-wide standard.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_summary": {
+      "accessible_overview": "The article is about how a telecom company checked whether its voice-based customer assistant was doing a good job when it was handling millions of phone calls. Instead of listening to every call, the team used an artificial intelligence judge to score conversations. They found that one vague score was not enough, so they broke the work into many small yes-or-no checks like whether the bot was polite, whether it got stuck in a loop, and whether the customer\u2019s request was actually solved. They also built a practice area with carefully chosen sample calls and scripted test conversations before trusting the system in production. A live safety system watched real calls, could shut the bot down if needed, and sent bad cases back for human review. One surprising lesson was that transcription errors could make the judge evaluate a conversation that never really happened. The piece ends by asking whether future systems should judge audio directly instead of relying on text transcripts, but it notes that privacy rules around voice recordings would make that harder. As of 2026-04-30, the workflow described is actionable for teams running speech-based assistants, but the audio-native idea still looks like a next-step problem rather than a finished pattern.",
+      "assessed_as_of": "2026-04-30",
+      "contradictions_and_skepticism": "The article pushes back on the common \u201c4\u20135 metrics max\u201d advice, but the evidence is anecdotal and specific to one production system. The claim that the worst-to-best transcription delta was \u201cstructural\u201d is persuasive, yet the underlying benchmark is not fully reported, so it is hard to generalize the size of the effect. The language around LLM judges and meta-KPIs is practical, but it still depends on human-defined labels and may inherit their blind spots. The audio-native frontier is presented as an obvious next step, but the legal and operational hurdles may be larger than the model-design challenge.",
+      "key_insights": [
+        "Atomic binary judges were more actionable than a single overall quality score because they made failures explainable and debuggable.",
+        "A Golden Dataset with stratified coverage and human annotation was treated as the gate for shipping new evaluation metrics to production.",
+        "Automated bot-vs-bot scenarios caught feature regressions before release, but they did not reveal inefficient or messy conversation paths.",
+        "Transcription quality was more important to judge reliability than prompt tuning, so upstream speech-to-text benchmarking mattered.",
+        "Live monitoring needed both hard kill switches and a human annotation queue to keep production behavior aligned with evolving expectations."
+      ],
+      "limitations_and_open_questions": "The article is strong on process but thin on reproducibility details: it does not disclose the full judge prompts, the exact metric definitions, or the operating thresholds behind the kill switch. The 90% alignment claim is limited to one metric, and the article does not show how well the system held up across all 29 binary metrics. The benchmark for transcription compares six models on 100 conversations, which is useful but still small relative to the scale of millions of calls. The audio-native evaluation idea is interesting, but the piece leaves open how to handle consent, retention, access control, and annotation workflows under GDPR-like constraints.",
+      "sources": [
+        "https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654"
+      ],
+      "summary": "The article describes how a French telecom voicebot deployed in production uses a speech-to-speech architecture and an LLM-as-a-judge evaluation stack to monitor millions of calls per year. The core engineering lesson is that evaluation had to be decomposed into atomic binary checks rather than a vague overall score, then aggregated into business-readable meta-KPIs. The team combined an offline lab built around a stratified Golden Dataset and automated bot-vs-bot scenarios with an online safety net of kill switches, dashboards, and an annotation queue. A major finding was that transcription quality, not judge prompting, was the dominant source of evaluation error. The article also argues that audio-native evaluation may be the next frontier, but compliance constraints such as biometric-data handling matter.",
+      "why_it_matters": "The piece is useful because it turns vague advice about evaluating voice agents into a concrete production system: calibrate judges offline, validate features with scripted scenarios, and add a live safety layer before scale. That is durable engineering knowledge because it ties evaluation design to operational decisions like release gating, failure routing, and metric ownership. The article also shows a practical way to translate technical checks into business-readable KPIs without losing debugging detail. The strongest lesson is that evaluation quality depends on the weakest upstream link, and in this case the transcript layer was the real bottleneck. For teams building speech-based assistants, the closing implication is direct: voice automation at scale needs both continuous monitoring and a human review loop, because production call behavior and transcription errors can drift faster than a static test set. As of 2026-04-30, the evaluation pattern looks reusable and high value; the audio-native next frontier is still speculative and constrained by privacy law."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent engineering case study with sections on evaluation design, transcription benchmarking, and production monitoring.",
+        "Not a roundup, interview, or step-by-step tutorial; the piece narrates one implementation and lessons learned.",
+        "The article is centered on a telecom voicebot in production rather than a multi-item digest or transcript."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.98,
+        "evidence_type": "implementation_case",
+        "examples": "",
+        "key_points": [
+          "Atomic checks make failures explainable.",
+          "Aggregation can happen after validation, not before.",
+          "Business and technical audiences can share the same metric stack at different abstraction levels.",
+          "Binary scoring reduces ambiguity compared with broad rubric scores."
+        ],
+        "knowledge_summary": "Evaluation becomes more actionable when broad quality questions are decomposed into many narrow yes-or-no checks. Atomic judgments are easier to calibrate, easier to debug, and easier to aggregate into business-readable KPIs. This pattern reduces ambiguity and makes failures traceable to specific behaviors rather than a single opaque score.",
+        "match_candidates": [],
+        "operational_insight": "If a quality score cannot tell engineers what broke, it is probably too coarse for production use. Break the score into failure modes first, then combine them with explicit logic only after each check is independently reliable.",
+        "primary_tag": "ai-engineering",
+        "related_topics": [],
+        "relevance_note": "This is a durable pattern for evaluation systems in conversational AI, moderation, and workflow automation because it supports debugging, release gating, and cross-functional communication. It helps teams avoid opaque aggregate scores that do not map cleanly to operational action.",
+        "secondary_tag": "",
+        "suggested_action": "append_to_existing",
+        "suggested_new_tag": "",
+        "supporting_snippet": "\u201cOne judge \u2192 one binary question. Aggregate them with AND/OR logic to build business-readable meta-KPIs.\u201d",
+        "topic_slug": "binary-judge-decomposition",
+        "topic_title": "Binary Judge Decomposition",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": "implementation_case",
+        "examples": "",
+        "key_points": [
+          "Speech-to-speech systems reduce latency and improve naturalness.",
+          "Transcript-based evaluation introduces bias when audio is compressed into text.",
+          "Audio cues such as hesitation and tone can be lost in scoring.",
+          "Evaluation must account for the speech pipeline, not only the language model."
+        ],
+        "knowledge_summary": "End-to-end speech systems change evaluation because the model receives and generates audio directly, which reduces pipeline visibility. Text-based evaluation becomes less faithful when the system\u2019s real behavior depends on tone, interruption handling, hesitations, and other acoustic cues. In such systems, transcript-based scoring is useful but incomplete, and the transcription layer itself becomes a critical dependency.",
+        "match_candidates": [],
+        "operational_insight": "When a voice agent is evaluated through transcripts, the transcript pipeline is part of the product quality stack, not a neutral utility layer. Teams should treat speech recognition quality, audio handling, and evaluation design as one linked system.",
+        "primary_tag": "ai-engineering",
+        "related_topics": [
+          "binary-judge-decomposition"
+        ],
+        "relevance_note": "This topic matters for voice assistants, call automation, and multimodal agents because audio-native systems cannot be judged with text-only assumptions. It also affects debugging, monitoring, and safety design when voice interactions are the user interface.",
+        "secondary_tag": "ai-infrastructure",
+        "suggested_action": "append_to_existing",
+        "suggested_new_tag": "",
+        "supporting_snippet": "\u201cSpeech-to-Speech (S2S) architectures change the evaluation game: You trade pipeline visibility for naturalness, and inherit a transcription bias you have to design around.\u201d",
+        "topic_slug": "speech-to-speech-evaluation",
+        "topic_title": "Speech-to-Speech Evaluation",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": "implementation_case",
+          "extended_explanation": "In practice, the judge model receives a prompt that describes the evaluation task and returns a score, label, or explanation. Teams often use it for content quality, safety, conversation handling, or tool-use checks. The method works best when the criteria are precise and the output is constrained, because vague judgments are hard to debug and compare. It is usually paired with human calibration data so the machine judge stays aligned with human expectations.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "A method of using a large language model to evaluate or score other model outputs, conversations, or artifacts according to explicit criteria. It is commonly used when human review is too slow or expensive at scale.",
+          "related_terms": [
+            "Golden Dataset"
+          ],
+          "relevance_note": "This is a durable evaluation pattern for AI systems that need scalable quality control, especially in conversational AI and service workflows. It matters because it turns expensive human review into a repeatable scoring layer, but only when the rubric is narrow and well calibrated.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "supporting_snippet": "\u201cLLM-as-a-Judge becomes the only viable path. But\u2026 an LLM Judge can only read text. So we evaluate transcripts, not raw audio.\u201d",
+          "term": "LLM-as-a-Judge",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e4d3d3d2-ff34-4080-bb6d-a42bc94b54c0",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Golden Dataset"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": "implementation_case",
+          "extended_explanation": "A Golden Dataset is not just a random sample of data. It is usually stratified so that important classes, edge cases, and failure modes are represented, and domain experts annotate it carefully. Teams use it to compare automated judgments against human expectations, tune thresholds, and decide whether a metric is ready for production. Because it is expensive to create, it is usually smaller than a training corpus but much more rigorously curated.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "A carefully selected and manually labeled dataset used as a trusted reference for calibration, validation, or evaluation. It is often treated as the ground truth set for checking whether automated scoring or models behave as expected.",
+          "related_terms": [
+            "LLM-as-a-Judge"
+          ],
+          "relevance_note": "This is a core evaluation primitive in AI engineering because it anchors automated scoring, regression testing, and release gating to human-reviewed examples. It is especially important in conversational AI, where edge cases and class imbalance can easily distort quality metrics.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "supporting_snippet": "\u201cWe selected and isolated 500 conversations, but not randomly. The Golden Dataset was built through a stratified sampling process combining manual annotation and actual conversation data.\u201d",
+          "term": "Golden Dataset",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "d6b87cec-3ea5-4027-ad68-c5620a6ebe96",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "LLM-as-a-Judge"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Use a two-loop system. First, calibrate your judges offline with a carefully sampled and human-annotated Golden Dataset, then validate releases with scripted bot-vs-bot scenarios. Second, add an online safety net with dashboards, kill switches, and an annotation queue so production failures feed back into the calibration set. The key is to make the evaluation stack explainable at the metric level and operationally safe at the deployment level.",
+          "caveats": "The method depends on strong human labels and does not eliminate transcription bias. Scripted scenarios can validate outcomes without revealing the path quality between start and finish, so they should not be the only test layer. The article does not specify exact thresholds or prompt designs, so teams would need to adapt the method to their own domain.",
+          "confidence": 0.95,
+          "evidence_type": "implementation_case",
+          "implementation_steps": [
+            "Define atomic binary metrics instead of a single vague quality score.",
+            "Build a stratified Golden Dataset with enough positive and negative examples for each metric.",
+            "Manually annotate the dataset with domain experts and calibrate the judge until it matches human expectations.",
+            "Run scripted bot-vs-bot scenarios before each release to validate feature behavior.",
+            "Deploy dashboards, kill switches, and an annotation queue for live production monitoring.",
+            "Send judge failures from production back into the Golden Dataset for recalibration."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A representative corpus of real conversations",
+            "Domain experts able to label edge cases",
+            "A transcript or evaluation layer suitable for automated scoring",
+            "Operational dashboards and release gating processes"
+          ],
+          "primary_tag": "evals-measurement",
+          "question_title": "How do you evaluate a production voicebot when you cannot review every call manually?",
+          "related_howtos": [],
+          "relevance_note": "This procedure is reusable for any high-volume conversational system where full manual review is impossible. It is especially relevant for voicebots and support automation because production behavior, transcript quality, and safety thresholds all need continuous monitoring.",
+          "secondary_tag": "production-ml",
+          "suggested_action": "append_to_existing",
+          "suggested_new_tag": "",
+          "supporting_snippet": "\u201cOur evaluation system rests on two pillars: an Offline lab and an Online safety net.\u201d",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "c0b12e13-5484-4562-acaa-e83c6024f1c7",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Define atomic binary metrics instead of a single vague quality score.",
+              "Build a stratified Golden Dataset with enough positive and negative examples for each metric.",
+              "Manually annotate the dataset with domain experts and calibrate the judge until it matches human expectations.",
+              "Run scripted bot-vs-bot scenarios before each release to validate feature behavior.",
+              "Deploy dashboards, kill switches, and an annotation queue for live production monitoring.",
+              "Send judge failures from production back into the Golden Dataset for recalibration."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A representative corpus of real conversations",
+              "Domain experts able to label edge cases",
+              "A transcript or evaluation layer suitable for automated scoring",
+              "Operational dashboards and release gating processes"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "The article suggests that model choice upstream in speech-to-text can affect evaluation quality more than prompt refinement on the judge layer. It also suggests that binary judge design is more stable than a single broad scoring prompt.",
+          "business_objective": "To determine whether the voicebot performs as well as a human agent at scale and to monitor quality without manually listening to every call.",
+          "company": "French telecom leader",
+          "confidence": 0.97,
+          "deployment_context": "The voicebot was already deployed in production and was handling millions of calls per year; the evaluation stack was built around that live operating environment.",
+          "evidence_snippets": [
+            {
+              "claim": "The voicebot was deployed in production and handled millions of calls per year.",
+              "provenance": "stated",
+              "snippet": "\u201cour voicebot does\u2026 currently handling millions of calls per year in production.\u201d"
+            },
+            {
+              "claim": "The system used LLM-as-a-Judge on transcripts because the judge could only read text.",
+              "provenance": "stated",
+              "snippet": "\u201cLLM-as-a-Judge becomes the only viable path. But\u2026 an LLM Judge can only read text. So we evaluate transcripts, not raw audio.\u201d"
+            },
+            {
+              "claim": "Offline calibration and live safety monitoring were both part of the evaluation stack.",
+              "provenance": "stated",
+              "snippet": "\u201cOur evaluation system rests on two pillars: an Offline lab and an Online safety net.\u201d"
+            },
+            {
+              "claim": "Transcription model choice materially affected evaluation quality.",
+              "provenance": "stated",
+              "snippet": "\u201cPicking the right transcription model upstream had more impact on our evaluation quality than any prompt engineering we did on the judges themselves.\u201d"
+            }
+          ],
+          "evidence_type": "implementation_case",
+          "implications_for_service_automation": "This is directly relevant to voicebots and support automation because it shows how to gate releases, monitor live quality, and preserve human oversight in high-volume conversational systems.",
+          "industry": "telecom",
+          "key_lessons": [
+            "Use offline calibration before relying on live scores.",
+            "Treat transcription as part of the evaluation stack.",
+            "Prefer atomic checks over one broad conversation score.",
+            "Keep a human annotation loop for production failures.",
+            "Use kill switches when brand risk is high."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How well do the 29 binary metrics generalize beyond the reported examples?",
+            "What are the exact thresholds for automatic shutdown?",
+            "Can audio-native judging replace transcripts without creating new privacy and compliance issues?"
+          ],
+          "operational_constraints": "Systematic human review was impossible at call volume, transcript bias affected judge accuracy, and some edge cases such as sarcasm, mic cutouts, and off-scope drift required expanding the metric set beyond common advice.",
+          "outcome_status": "The evaluation system was operational in production, with metric shipping gated by alignment on the Golden Dataset and failures routed back into continuous improvement.",
+          "overview": "A conversational voicebot handling millions of calls per year was evaluated in production using LLM-based judges, offline calibration, automated scenario testing, and live safety monitoring.",
+          "primary_tag": "service-automation",
+          "related_sources": [
+            "https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654"
+          ],
+          "secondary_tag": "operational-reliability",
+          "strategic_signals": "Production voice automation needs an explicit evaluation architecture, not just a model. Transcript quality and human calibration are part of the operating model, not secondary details.",
+          "success_or_failure_factors": "The atomic judge design improved explainability and actionability, while the main failure risk came from transcription errors rather than the judge prompts themselves.",
+          "suggested_action": "create",
+          "suggested_new_tag": "",
+          "technical_approach": "The team used LLM-as-a-Judge on transcripts, decomposed vague call-quality rubrics into atomic binary checks, calibrated those checks on a stratified Golden Dataset, and benchmarked multiple speech-to-text models to reduce transcription bias.",
+          "title": "Production voicebot evaluation for a French telecom operator",
+          "value_level": "high",
+          "what_was_implemented": "A speech-to-speech voicebot, a set of 29 binary evaluation metrics, a Golden Dataset for calibration, bot-vs-bot scripted scenarios, production dashboards, automatic kill switches, and an annotation queue that feeds failed cases back into the evaluation set."
+        },
+        "notes": null,
+        "proposal_id": "6c5b2121-10b6-4b34-8cad-49ef79932488",
+        "proposal_status": "approved",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "company": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Use offline calibration before relying on live scores.",
+              "Treat transcription as part of the evaluation stack.",
+              "Prefer atomic checks over one broad conversation score.",
+              "Keep a human annotation loop for production failures.",
+              "Use kill switches when brand risk is high."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How well do the 29 binary metrics generalize beyond the reported examples?",
+              "What are the exact thresholds for automatic shutdown?",
+              "Can audio-native judging replace transcripts without creating new privacy and compliance issues?"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-30",
+          "confidence": 0.8,
+          "evidence_from_source": "The source describes a production voicebot evaluated with a Golden Dataset, bot-vs-bot scenarios, dashboards, kill switches, and an annotation queue.",
+          "evidence_type": "implementation_case",
+          "match_candidates": [],
+          "primary_tag": "ai-governance",
+          "related_trends": [
+            "evaluation-pipelines-for-conversational-ai"
+          ],
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "append_to_existing",
+          "suggested_new_tag": "",
+          "supporting_data_points": [
+            "500 conversations in the Golden Dataset",
+            "29 binary evaluation metrics",
+            "millions of calls per year in production",
+            "six transcription models benchmarked on 100 conversations"
+          ],
+          "supporting_snippet": "\u201cOur evaluation system rests on two pillars: an Offline lab and an Online safety net.\u201d",
+          "time_sensitivity": "Actionable as of 2026-04-30; relevant while voice automation systems remain high-volume and hard to fully review manually.",
+          "trend_description": "Production voice systems increasingly require a dedicated evaluation stack rather than a single model score. The stack typically combines offline calibration, scenario testing, live monitoring, and human review for failure cases.",
+          "trend_name": "voicebot-evaluation-stack-hardening",
+          "uncertainty_note": "This is supported by one production case, so it is best treated as a strong implementation signal rather than proof of an industry-wide standard.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3dc68183-0e8f-4a33-aa46-6294259c9e04",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "evaluation-pipelines-for-conversational-ai"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "500 conversations in the Golden Dataset",
+              "29 binary evaluation metrics",
+              "millions of calls per year in production",
+              "six transcription models benchmarked on 100 conversations"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Atomic binary judges were more actionable than a single overall quality score because they made failures explainable and debuggable.",
+          "A Golden Dataset with stratified coverage and human annotation was treated as the gate for shipping new evaluation metrics to production.",
+          "Automated bot-vs-bot scenarios caught feature regressions before release, but they did not reveal inefficient or messy conversation paths.",
+          "Transcription quality was more important to judge reliability than prompt tuning, so upstream speech-to-text benchmarking mattered.",
+          "Live monitoring needed both hard kill switches and a human annotation queue to keep production behavior aligned with evolving expectations."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent engineering case study with sections on evaluation design, transcription benchmarking, and production monitoring.",
+          "Not a roundup, interview, or step-by-step tutorial; the piece narrates one implementation and lessons learned.",
+          "The article is centered on a telecom voicebot in production rather than a multi-item digest or transcript."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.98,
+          "evidence_type": "implementation_case",
+          "examples": "",
+          "key_points": [
+            "Atomic checks make failures explainable.",
+            "Aggregation can happen after validation, not before.",
+            "Business and technical audiences can share the same metric stack at different abstraction levels.",
+            "Binary scoring reduces ambiguity compared with broad rubric scores."
+          ],
+          "knowledge_summary": "Evaluation becomes more actionable when broad quality questions are decomposed into many narrow yes-or-no checks. Atomic judgments are easier to calibrate, easier to debug, and easier to aggregate into business-readable KPIs. This pattern reduces ambiguity and makes failures traceable to specific behaviors rather than a single opaque score.",
+          "match_candidates": [],
+          "operational_insight": "If a quality score cannot tell engineers what broke, it is probably too coarse for production use. Break the score into failure modes first, then combine them with explicit logic only after each check is independently reliable.",
+          "primary_tag": "ai-engineering",
+          "related_topics": [],
+          "relevance_note": "This is a durable pattern for evaluation systems in conversational AI, moderation, and workflow automation because it supports debugging, release gating, and cross-functional communication. It helps teams avoid opaque aggregate scores that do not map cleanly to operational action.",
+          "secondary_tag": "",
+          "suggested_action": "append_to_existing",
+          "suggested_new_tag": "",
+          "supporting_snippet": "\u201cOne judge \u2192 one binary question. Aggregate them with AND/OR logic to build business-readable meta-KPIs.\u201d",
+          "topic_slug": "binary-judge-decomposition",
+          "topic_title": "Binary Judge Decomposition",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2787c251-ca11-4d99-84d8-e9e3e4df0d8a",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Atomic checks make failures explainable.",
+              "Aggregation can happen after validation, not before.",
+              "Business and technical audiences can share the same metric stack at different abstraction levels.",
+              "Binary scoring reduces ambiguity compared with broad rubric scores."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": "implementation_case",
+          "examples": "",
+          "key_points": [
+            "Speech-to-speech systems reduce latency and improve naturalness.",
+            "Transcript-based evaluation introduces bias when audio is compressed into text.",
+            "Audio cues such as hesitation and tone can be lost in scoring.",
+            "Evaluation must account for the speech pipeline, not only the language model."
+          ],
+          "knowledge_summary": "End-to-end speech systems change evaluation because the model receives and generates audio directly, which reduces pipeline visibility. Text-based evaluation becomes less faithful when the system\u2019s real behavior depends on tone, interruption handling, hesitations, and other acoustic cues. In such systems, transcript-based scoring is useful but incomplete, and the transcription layer itself becomes a critical dependency.",
+          "match_candidates": [],
+          "operational_insight": "When a voice agent is evaluated through transcripts, the transcript pipeline is part of the product quality stack, not a neutral utility layer. Teams should treat speech recognition quality, audio handling, and evaluation design as one linked system.",
+          "primary_tag": "ai-engineering",
+          "related_topics": [
+            "binary-judge-decomposition"
+          ],
+          "relevance_note": "This topic matters for voice assistants, call automation, and multimodal agents because audio-native systems cannot be judged with text-only assumptions. It also affects debugging, monitoring, and safety design when voice interactions are the user interface.",
+          "secondary_tag": "ai-infrastructure",
+          "suggested_action": "append_to_existing",
+          "suggested_new_tag": "",
+          "supporting_snippet": "\u201cSpeech-to-Speech (S2S) architectures change the evaluation game: You trade pipeline visibility for naturalness, and inherit a transcription bias you have to design around.\u201d",
+          "topic_slug": "speech-to-speech-evaluation",
+          "topic_title": "Speech-to-Speech Evaluation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "02cbdf1b-c551-4853-a613-c720149a1fb1",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Speech-to-speech systems reduce latency and improve naturalness.",
+              "Transcript-based evaluation introduces bias when audio is compressed into text.",
+              "Audio cues such as hesitation and tone can be lost in scoring.",
+              "Evaluation must account for the speech pipeline, not only the language model."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "binary-judge-decomposition"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "final_primary_tag": null,
+          "final_secondary_tag": null,
+          "new_tag_approved": false
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": "2026-05-16T13:24:32.086067+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-16T15:12:32+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Th\u00e9o Belen-Halimi",
+    "canonical_url": "https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654",
+    "content_sha256": "e105aed5beb92ccc955b3a2332cb2f4f097dba150b663c03447261ee8a728f6a",
+    "publication": null,
+    "published_date": "2026-04-30",
+    "raw_html_rel_path": "raw/readwise/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14.html",
+    "raw_md_rel_path": "raw/readwise/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14.md",
+    "source_id": "millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14",
+    "title": "Millions of Calls, One Judge: How We Evaluated Our Voicebot in Production"
+  }
+}
