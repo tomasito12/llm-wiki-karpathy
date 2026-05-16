@@ -186,6 +186,7 @@ def run_proposal_regeneration(
     prompt_version: str,
     max_plain_text_chars: int | None = None,
     max_retries: int = 2,
+    source_entity_key: str | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Call OpenAI to regenerate one proposal; return (output dict, meta)."""
     cfg = PROPOSAL_REGEN_PROVIDER_CONFIGS.get(entity_key)
@@ -208,6 +209,22 @@ def run_proposal_regeneration(
     ]
     for heading, content in context_sections.items():
         user_blocks.append(f"## {heading}\n{content}")
+    if source_entity_key and source_entity_key != entity_key:
+        from src.ingest_review.proposal_regen import REGEN_SPECS
+        from src.ingest_review.proposal_transfer import transfer_target_label
+
+        src_spec = REGEN_SPECS.get(source_entity_key)
+        tgt_spec = REGEN_SPECS.get(entity_key)
+        src_label = src_spec.entity_label if src_spec else source_entity_key
+        tgt_label = tgt_spec.entity_label if tgt_spec else entity_key
+        tgt_display = transfer_target_label(source_entity_key, entity_key)
+        user_blocks.append(
+            "## RECLASSIFICATION\n"
+            f"This proposal was originally classified as a **{src_label}**. "
+            f"Re-extract it as a **{tgt_display}** ({tgt_label}) contribution. "
+            f"Use {tgt_label.lower()}-appropriate fields only; do not copy "
+            f"{src_label.lower()}-specific framing into the output."
+        )
     user_blocks.extend(
         [
             "## ARTICLE_PLAIN_TEXT\n" + body,

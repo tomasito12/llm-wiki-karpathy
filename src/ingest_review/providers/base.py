@@ -79,6 +79,7 @@ class IngestionProvider(ABC):
         prompt_version: str,
         max_plain_text_chars: int | None = None,
         max_retries: int = 2,
+        source_entity_key: str | None = None,
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         """Regenerate one proposal (any entity) under a reviewer-supplied title."""
         raise NotImplementedError

@@ -67,6 +67,7 @@ from src.ingest_review.models_ui import (
 )
 from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.proposal_regen_handler import process_pending_proposal_regen
+from src.ingest_review.proposal_regen_ui import consume_proposal_regen_banner
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.schema import PROMPT_VERSION, normalize_evidence_type
 from src.ingest_review.signals_ui import (
@@ -540,6 +541,10 @@ def main() -> None:
                         with st.expander("Traceback"):
                             st.text(traceback.format_exc())
         st.markdown("---")
+
+    regen_banner = consume_proposal_regen_banner()
+    if regen_banner:
+        st.success(regen_banner)
 
     tabs = st.tabs(
         [

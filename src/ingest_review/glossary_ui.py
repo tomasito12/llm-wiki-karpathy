@@ -33,6 +33,7 @@ from src.ingest_review.proposal_regen_ui import (
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
+    render_reclassify_to_section_controls,
     render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import (
@@ -404,6 +405,15 @@ def _render_glossary_edit_box(
             current_title=term,
             title_label="New term",
             title_help="Reframe this glossary entry under a broader wiki term label.",
+        )
+        render_reclassify_to_section_controls(
+            st,
+            source_entity_key="glossary",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=term,
+            title_label="Title in target section",
         )
 
         def _save() -> None:

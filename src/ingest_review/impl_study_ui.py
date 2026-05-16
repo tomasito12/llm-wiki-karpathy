@@ -28,6 +28,7 @@ from src.ingest_review.proposal_regen_ui import (
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
+    render_reclassify_to_section_controls,
     render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import (
@@ -407,6 +408,14 @@ def _render_impl_edit_box(
             widget_prefix=key_prefix,
             current_title=title,
             title_label="New study title",
+        )
+        render_reclassify_to_section_controls(
+            st,
+            source_entity_key="impl_study",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=title,
         )
 
         def _save() -> None:

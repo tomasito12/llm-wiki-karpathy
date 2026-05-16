@@ -24,6 +24,7 @@ from src.ingest_review.proposal_regen_ui import (
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
+    render_reclassify_to_section_controls,
     render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import TREND_REVIEWABLE_LIST_KEYS, TREND_REVIEWABLE_SCALAR_KEYS
@@ -394,6 +395,16 @@ def _render_trend_edit_box(
             proposal_id=proposal_id,
             widget_prefix=key_prefix,
             current_title=title,
+            title_label="New trend title",
+        )
+        render_reclassify_to_section_controls(
+            st,
+            source_entity_key="trend",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=title,
+            title_label="Title in target section",
         )
 
         def _save() -> None:

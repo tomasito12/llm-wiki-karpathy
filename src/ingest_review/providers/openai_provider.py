@@ -1449,6 +1449,7 @@ class OpenAIIngestionProvider(IngestionProvider):
         prompt_version: str,
         max_plain_text_chars: int | None = None,
         max_retries: int = 2,
+        source_entity_key: str | None = None,
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         """Regenerate one proposal under a reviewer-supplied title (any entity)."""
         return run_proposal_regeneration(
@@ -1463,6 +1464,7 @@ class OpenAIIngestionProvider(IngestionProvider):
             prompt_version=prompt_version,
             max_plain_text_chars=max_plain_text_chars,
             max_retries=max_retries,
+            source_entity_key=source_entity_key,
         )
 
     def regenerate_topic_proposal(
