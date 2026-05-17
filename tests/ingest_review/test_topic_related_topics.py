@@ -17,7 +17,6 @@ def test_sanitize_topic_related_topics_strips_tag_allowlist() -> None:
         ["ai-engineering", "workflow-automation"],
         topic_slug="live-preview-loops",
         tag_allowlist={"ai-engineering", "knowledge-management"},
-        known_topic_slugs={"workflow-automation", "live-preview-loops"},
     )
     assert out == ["workflow-automation"]
 
@@ -27,20 +26,18 @@ def test_sanitize_topic_related_topics_strips_self_and_dedupes() -> None:
         ["rag-patterns", "rag-patterns", "context-engineering"],
         topic_slug="rag-patterns",
         tag_allowlist=set(),
-        known_topic_slugs={"rag-patterns", "context-engineering"},
     )
     assert out == ["context-engineering"]
 
 
-def test_sanitize_topic_related_topics_drops_unknown_slugs() -> None:
-    """Slugs not in wiki/batch known set are removed."""
+def test_sanitize_topic_related_topics_retains_unknown_slugs() -> None:
+    """Slugs not in wiki/batch are kept for reviewer visibility."""
     out = sanitize_topic_related_topics(
         ["orchestration", "context-engineering"],
         topic_slug="agent-memory",
         tag_allowlist=set(),
-        known_topic_slugs={"context-engineering", "agent-memory"},
     )
-    assert out == ["context-engineering"]
+    assert out == ["orchestration", "context-engineering"]
 
 
 def test_sanitize_topics_related_topics_on_parsed_output() -> None:

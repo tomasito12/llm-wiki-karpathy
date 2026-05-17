@@ -23,6 +23,7 @@ class ReaderDocument:
     html_content: str | None
     parent_id: str | None
     tags: dict[str, Any]
+    site_name: str | None = None
 
     @staticmethod
     def from_api_row(row: dict[str, Any]) -> ReaderDocument:
@@ -44,6 +45,7 @@ class ReaderDocument:
             html_content=_optional_str(row.get("html_content")),
             parent_id=_optional_str(row.get("parent_id")),
             tags=tags,
+            site_name=_optional_str(row.get("site_name")),
         )
 
 

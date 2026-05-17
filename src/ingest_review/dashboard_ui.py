@@ -9,6 +9,11 @@ from typing import Any
 
 import streamlit as streamlit_runtime
 
+from src.ingest_review.evidence import (
+    collect_effective_evidence_counts,
+    proposal_evidence_override_raw,
+    source_primary_evidence_type,
+)
 from src.ingest_review.schema import (
     EVIDENCE_TYPE_VALUES,
     REGENERATABLE_SOURCE_SECTION_KEYS,
@@ -69,6 +74,7 @@ def google_search_markdown(query: str) -> str:
 STATUS_OPTIONS = ("pending", "approved", "rejected", "modified")
 
 PROPOSAL_STATUS_OPTIONS = ("pending", "approved", "rejected", "deferred")
+INHERIT_EVIDENCE_VALUE = "__inherit__"
 
 
 def human_evidence_type_label(raw: object) -> str:
@@ -215,29 +221,63 @@ def render_proposal_tag_review(
         st.caption("No new tag suggested by LLM.")
 
 
+def format_proposal_meta_subtitle(
+    artifact: dict[str, Any],
+    node: dict[str, Any],
+    llm_item: dict[str, Any],
+    *,
+    badge: str,
+    confidence: float | None = None,
+    extra_parts: list[str] | None = None,
+) -> str:
+    """Build italic subtitle line (value tier, status, optional override, confidence)."""
+    from src.ingest_review.evidence import proposal_evidence_subtitle_part
+    from src.ingest_review.proposal_decision_ui import proposal_status_label
+
+    parts = [badge, proposal_status_label(node)]
+    if extra_parts:
+        parts.extend(extra_parts)
+    ev_part = proposal_evidence_subtitle_part(artifact, llm_item)
+    if ev_part:
+        parts.append(ev_part)
+    if confidence is not None:
+        parts.append(f"{confidence:.0%}")
+    return "*" + " · ".join(parts) + "*"
+
+
 def render_proposal_evidence_type_editor(
     st: Any,
     llm_item: dict[str, Any],
+    artifact: dict[str, Any],
     *,
     key_prefix: str,
 ) -> None:
-    """Selectbox to override ``evidence_type`` on the proposal dict (edit / advanced mode)."""
-    st.markdown("#### Evidence type")
-    opts = list(EVIDENCE_TYPE_VALUES)
-    cur = normalize_evidence_type(llm_item.get("evidence_type"))
-    idx = opts.index(cur) if cur in opts else opts.index("unknown")
+    """Selectbox to inherit source evidence profile or set a per-proposal override."""
+    primary = source_primary_evidence_type(artifact)
+    inherit_label = f"Inherit from source ({human_evidence_type_label(primary)})"
+    opts = [INHERIT_EVIDENCE_VALUE, *EVIDENCE_TYPE_VALUES]
+    cur_override = proposal_evidence_override_raw(llm_item)
+    cur = cur_override if cur_override is not None else INHERIT_EVIDENCE_VALUE
+    idx = opts.index(cur) if cur in opts else 0
 
     def _fmt(o: str) -> str:
+        if o == INHERIT_EVIDENCE_VALUE:
+            return inherit_label
         return o.replace("_", " ").title()
 
-    llm_item["evidence_type"] = st.selectbox(
-        "What kind of evidence supports this proposal?",
+    selected = st.selectbox(
+        "Evidence basis for this proposal",
         opts,
         index=idx,
         format_func=_fmt,
         key=f"{key_prefix}_evidence_type",
-        help="Calibration only: vendor vs independent vs benchmark, etc. Does not auto-reject.",
+        help="Most proposals inherit the source-level evidence profile. Override only "
+        "when this extraction clearly differs.",
     )
+    if selected == INHERIT_EVIDENCE_VALUE:
+        llm_item.pop("evidence_type", None)
+    else:
+        llm_item["evidence_type"] = selected
 
 
 SOURCE_CHAPTER_DISPLAY_ORDER: tuple[str, ...] = (
@@ -596,6 +636,75 @@ def render_source_summary_review(
             )
 
 
+def render_source_evidence_profile(st: Any, artifact: dict[str, Any], *, key_prefix: str) -> None:
+    """Render source-level evidence profile (dominant basis for the whole source)."""
+    rev = artifact.setdefault("review", {}).setdefault(
+        "source_evidence_profile",
+        {"status": "pending", "notes": None, "llm_item": {}, "final_item": None},
+    )
+    llm_out = artifact.get("llm_output") or {}
+    llm_item = rev.get("llm_item") or llm_out.get("source_evidence_profile") or {}
+    if not rev.get("llm_item"):
+        rev["llm_item"] = dict(llm_item)
+    if not llm_out.get("source_evidence_profile"):
+        llm_out["source_evidence_profile"] = dict(llm_item)
+
+    primary = normalize_evidence_type(llm_item.get("primary_evidence_type"))
+    reasoning = llm_item.get("reasoning") or []
+
+    st.subheader("Source evidence profile")
+    st.caption(
+        "Dominant evidence basis for this source. Individual proposals inherit this "
+        "unless given an explicit override."
+    )
+    opts = list(EVIDENCE_TYPE_VALUES)
+
+    def _fmt(o: str) -> str:
+        return o.replace("_", " ").title()
+
+    new_primary = st.selectbox(
+        "Primary evidence type",
+        opts,
+        index=opts.index(primary) if primary in opts else opts.index("unknown"),
+        format_func=_fmt,
+        key=f"{key_prefix}_src_evidence_primary",
+    )
+    llm_item["primary_evidence_type"] = new_primary
+    llm_out["source_evidence_profile"] = dict(llm_item)
+    rev["llm_item"] = dict(llm_item)
+
+    if reasoning:
+        st.markdown("**LLM reasoning**")
+        for r in reasoning:
+            st.markdown(f"- {r}")
+
+    rev["status"] = st.selectbox(
+        "Source evidence \u2014 review status",
+        STATUS_OPTIONS,
+        index=_status_index(str(rev.get("status") or "pending")),
+        key=f"{key_prefix}_src_evidence_st",
+    )
+    rev["notes"] = st.text_area(
+        "Source evidence \u2014 notes",
+        value=str(rev.get("notes") or ""),
+        key=f"{key_prefix}_src_evidence_notes",
+    )
+    if rev["status"] == "modified":
+        raw_json = st.text_area(
+            "Source evidence \u2014 JSON override",
+            value=json.dumps(llm_item, indent=2),
+            height=120,
+            key=f"{key_prefix}_src_evidence_json",
+        )
+        try:
+            rev["final_item"] = json.loads(raw_json)
+        except json.JSONDecodeError:
+            st.error("Invalid JSON for source evidence profile")
+            rev["final_item"] = None
+    else:
+        rev["final_item"] = None
+
+
 def render_source_type_detection(st: Any, artifact: dict[str, Any], *, key_prefix: str) -> None:
     """Render source-type detection review."""
     rev = artifact.setdefault("review", {}).setdefault(
@@ -722,17 +831,24 @@ def render_review_summary_panel(
     cols[2].metric("Medium value", medium)
     cols[3].metric("Low value", low)
 
-    ev_counts: dict[str, int] = {}
-    for key, _label in entity_keys:
-        items = llm.get(key) or []
-        for item in items:
-            if not isinstance(item, dict):
-                continue
-            et = normalize_evidence_type(item.get("evidence_type"))
-            ev_counts[et] = ev_counts.get(et, 0) + 1
-    if ev_counts and total > 0:
+    profile = llm.get("source_evidence_profile") or {}
+    primary = normalize_evidence_type(profile.get("primary_evidence_type"))
+    if primary != "unknown":
+        st.caption(f"Source evidence profile: **{human_evidence_type_label(primary)}**")
+    ev_counts = collect_effective_evidence_counts(artifact)
+    override_n = sum(
+        1
+        for key, _ in entity_keys
+        for node in (review.get(key) or [])
+        if isinstance(node, dict)
+        and isinstance(node.get("llm_item"), dict)
+        and proposal_evidence_override_raw(node["llm_item"]) is not None
+    )
+    if override_n:
+        st.caption(f"{override_n} proposal(s) with evidence override")
+    if ev_counts and total > 0 and len(ev_counts) > 1:
         parts = [f"{human_evidence_type_label(k)}: {v}" for k, v in sorted(ev_counts.items())]
-        st.caption("Evidence types (LLM draft): " + " · ".join(parts))
+        st.caption("Effective evidence mix: " + " · ".join(parts))
 
     if type_counts:
         st.caption(f"Breakdown: {', '.join(type_counts)} · burden: {burden}")

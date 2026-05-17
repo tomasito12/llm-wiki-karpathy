@@ -1,12 +1,5 @@
-# Approved model type registry (ingestion review). LLM may only propose types from this list.
+# Approved model types (ingestion review). LLM may only propose types from this list.
 tags:
-  - coding-model
-  - embedding-model
-  - frontier-model
-  - image-model
-  - local-model
-  - multimodal-model
-  - open-weight-model
-  - reasoning-model
-  - small-model
-  - voice-model
+- embedding-model
+- frontier-model
+- open-weight-model

@@ -514,14 +514,13 @@ def test_system_prompt_includes_extraction_meta() -> None:
 
     assert "extraction_meta" in SYSTEM_PROMPT
     assert "value_level" in SYSTEM_PROMPT
-    assert "evidence_type" in SYSTEM_PROMPT
-    assert "vendor_claim" in SYSTEM_PROMPT
+    assert "source_evidence_profile" in SYSTEM_PROMPT
     assert "roundup_signals" in SYSTEM_PROMPT
     assert "interview_insights" in SYSTEM_PROMPT
 
 
-def test_rubrics_mention_evidence_type() -> None:
-    """Entity rubrics instruct the LLM to set evidence_type."""
+def test_rubrics_mention_optional_evidence_override() -> None:
+    """Entity rubrics mention optional per-proposal evidence_type override."""
     from src.ingest_review.providers.openai_provider import (
         GLOSSARY_RUBRIC,
         HOWTOS_RUBRIC,
@@ -546,9 +545,12 @@ def test_rubrics_mention_evidence_type() -> None:
         assert "evidence_type" in rubric, f"{name} missing evidence_type"
 
 
-def test_evidence_type_rubric_in_user_prompt(tmp_path: Path) -> None:
-    """User prompt includes EVIDENCE_TYPE_RUBRIC block."""
-    from src.ingest_review.providers.openai_provider import EVIDENCE_TYPE_RUBRIC, _build_user_prompt
+def test_source_evidence_profile_rubric_in_user_prompt(tmp_path: Path) -> None:
+    """User prompt includes SOURCE_EVIDENCE_PROFILE_RUBRIC block."""
+    from src.ingest_review.providers.openai_provider import (
+        SOURCE_EVIDENCE_PROFILE_RUBRIC,
+        _build_user_prompt,
+    )
 
     raw = tmp_path / "raw"
     raw.mkdir()
@@ -572,7 +574,8 @@ def test_evidence_type_rubric_in_user_prompt(tmp_path: Path) -> None:
         howto_tags=[],
         prompt_version="7",
     )
-    assert EVIDENCE_TYPE_RUBRIC.split("\n")[0] in prompt
+    assert SOURCE_EVIDENCE_PROFILE_RUBRIC.split("\n")[0] in prompt
+    assert "source_evidence_profile" in prompt
     assert "vendor_claim" in prompt
 
 
@@ -791,7 +794,7 @@ def test_howtos_rubric_title_granularity_rules() -> None:
     assert "How do you" in HOWTOS_RUBRIC
     assert "Evaluation of a Production Voicebot" in HOWTOS_RUBRIC
     assert "EXISTING_HOWTO_TITLES" in HOWTOS_RUBRIC
-    assert "append_to_existing" in HOWTOS_RUBRIC
+    assert "suggested_action" not in HOWTOS_RUBRIC
     assert "micro-howto" in HOWTOS_RUBRIC
     assert "what_and_problem" in HOWTOS_RUBRIC
     assert "Plain-language fields" in HOWTOS_RUBRIC
@@ -806,11 +809,39 @@ def test_system_prompt_howto_titles_are_page_names() -> None:
     assert "HOWTOS_RUBRIC" in SYSTEM_PROMPT
 
 
-def test_prompt_version_is_26() -> None:
-    """Prompt version bumped for multi-tag routing."""
+def test_prompt_version_is_29() -> None:
+    """Prompt version bumped for source evidence profile."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "26"
+    assert PROMPT_VERSION == "29"
+
+
+def test_title_canonicalization_rubric_replaces_suggested_action() -> None:
+    """Classification uses canonical titles, not append/create routing."""
+    from src.ingest_review.providers.openai_provider import (
+        HOWTOS_RUBRIC,
+        SYSTEM_PROMPT,
+        TITLE_CANONICALIZATION_RUBRIC,
+        TOPICS_RUBRIC,
+        TRENDS_RUBRIC,
+    )
+
+    assert "Canonical titles" in TITLE_CANONICALIZATION_RUBRIC
+    assert "append_to_existing" not in TITLE_CANONICALIZATION_RUBRIC
+    assert "suggested_action" not in TOPICS_RUBRIC
+    assert "match_candidates" not in HOWTOS_RUBRIC
+    assert "SUGGESTED_ACTION_RUBRIC" not in SYSTEM_PROMPT
+    assert "Default to append_to_existing" not in TRENDS_RUBRIC
+
+
+def test_classification_schema_omits_suggested_action() -> None:
+    """LLM classification schema hint excludes deferred routing fields."""
+    from src.ingest_review.schema import llm_output_json_schema_for_classification
+
+    schema = llm_output_json_schema_for_classification()
+    blob = json.dumps(schema)
+    assert "suggested_action" not in blob
+    assert "match_candidates" not in blob
 
 
 def test_tag_ontology_rubric_uses_proposed_tags() -> None:

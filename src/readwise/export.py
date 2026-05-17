@@ -11,6 +11,7 @@ from pathlib import Path
 
 from src.pipeline.atomic import atomic_write_text
 from src.pipeline.slug import slugify
+from src.pipeline.source_publication import resolve_publication
 from src.readwise.library_index import ExportedRecord
 from src.readwise.models import ReaderDocument
 
@@ -81,6 +82,9 @@ def build_markdown_sidecar(doc: ReaderDocument, *, excerpt: str) -> str:
     ]
     if doc.author:
         lines.append(f"author: {_yaml_escape(doc.author)}")
+    publication = resolve_publication(doc.site_name, doc.source_url, author=doc.author)
+    if publication:
+        lines.append(f"publication: {_yaml_escape(publication)}")
     if doc.source_url:
         lines.append(f"source_url: {_yaml_escape(doc.source_url)}")
     if doc.category:

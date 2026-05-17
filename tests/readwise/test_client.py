@@ -36,6 +36,7 @@ def _article_row(
         "html_content": "<article><p>Body</p></article>",
         "parent_id": parent_id,
         "tags": {"processed": True},
+        "site_name": "Example Site",
     }
 
 
@@ -111,6 +112,12 @@ def test_iter_pagination_follows_next_page_cursor() -> None:
     with httpx.Client(transport=transport) as client:
         docs = list(iter_archive_processed_documents(client))
     assert [d.id for d in docs] == ["one", "two"]
+
+
+def test_reader_document_from_api_row_parses_site_name() -> None:
+    row = _article_row("id-site")
+    doc = ReaderDocument.from_api_row(row)
+    assert doc.site_name == "Example Site"
 
 
 def test_reader_document_from_api_row_parses_tags_dict() -> None:

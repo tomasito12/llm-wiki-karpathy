@@ -356,7 +356,7 @@ def test_value_level_defaults_on_all_proposals() -> None:
 
 
 def test_evidence_type_defaults_on_all_proposals() -> None:
-    """All proposal models default to evidence_type='unknown'."""
+    """Proposal models default to no per-proposal evidence override (inherit source)."""
     from src.ingest_review.schema import (
         FoundationModelProposal,
         GlossaryProposal,
@@ -381,15 +381,15 @@ def test_evidence_type_defaults_on_all_proposals() -> None:
         InterviewInsight,
     ):
         instance = cls()
-        assert instance.evidence_type == "unknown", f"{cls.__name__} evidence_type not 'unknown'"
+        assert instance.evidence_type is None, f"{cls.__name__} evidence_type should be None"
 
 
-def test_validate_llm_dict_coerces_invalid_evidence_type() -> None:
-    """Invalid evidence_type in LLM JSON is coerced to unknown."""
+def test_validate_llm_dict_strips_invalid_evidence_type_override() -> None:
+    """Invalid per-proposal evidence_type is dropped (inherit source profile)."""
     data = LlmClassificationOutput().model_dump()
     data["topics"] = [{"topic_slug": "x", "evidence_type": "bogus"}]
     again = validate_llm_dict(data)
-    assert again.topics[0].evidence_type == "unknown"
+    assert again.topics[0].evidence_type is None
 
 
 def test_align_glossary_related_terms_expands_acronym_in_batch() -> None:

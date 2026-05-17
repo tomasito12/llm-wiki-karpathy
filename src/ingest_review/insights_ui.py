@@ -8,7 +8,7 @@ from typing import Any
 
 import streamlit as streamlit_runtime
 
-from src.ingest_review.dashboard_ui import human_evidence_type_label
+from src.ingest_review.dashboard_ui import format_proposal_meta_subtitle
 from src.ingest_review.domain_tag_ui import (
     DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
     apply_tag_ui_to_node,
@@ -192,23 +192,32 @@ def insight_list_edit_value(
     return "\n".join(effective_insight_list(llm_item, sections, list_key))
 
 
-def format_insight_readonly_markdown(node: dict[str, Any], topic_tags: list[str]) -> str:
+def format_insight_readonly_markdown(
+    node: dict[str, Any],
+    topic_tags: list[str],
+    *,
+    artifact: dict[str, Any] | None = None,
+) -> str:
     """Single insight card for the read-only column."""
     llm_item = node.get("llm_item") or {}
     sections = node.get("sections") or {}
     title = effective_insight_scalar(llm_item, sections, "insight_title") or "Untitled insight"
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    proposal_status = proposal_status_label(node)
-    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
+    art = artifact if isinstance(artifact, dict) else {}
     tag_node = node.get("tags") if isinstance(node.get("tags"), dict) else {}
     tag_slugs = effective_readonly_domain_tags(llm_item, tag_node, topic_tags)
 
     lines = [
         f"## {title}",
         "",
-        f"*{badge} · {proposal_status} · {ev_lbl} · "
-        f"worthiness: {llm_item.get('wiki_worthiness', '—')}*",
+        format_proposal_meta_subtitle(
+            art,
+            node,
+            llm_item,
+            badge=badge,
+            extra_parts=[f"worthiness: {llm_item.get('wiki_worthiness', '—')}"],
+        ),
         "",
     ]
     summary = effective_insight_scalar(llm_item, sections, "summary")
@@ -232,6 +241,8 @@ def format_insight_readonly_markdown(node: dict[str, Any], topic_tags: list[str]
 def build_readonly_insights_markdown(
     sorted_nodes: list[dict[str, Any]],
     topic_tags: list[str],
+    *,
+    artifact: dict[str, Any] | None = None,
 ) -> str:
     """Build full read-only column markdown."""
     if not sorted_nodes:
@@ -245,7 +256,7 @@ def build_readonly_insights_markdown(
             if header:
                 parts.append(header)
             prev_tier = tier
-        parts.append(format_insight_readonly_markdown(node, topic_tags))
+        parts.append(format_insight_readonly_markdown(node, topic_tags, artifact=artifact))
     return "\n\n---\n\n".join(parts)
 
 
@@ -398,7 +409,7 @@ def render_interview_insights(
 
     read_col, edit_col = st.columns(2)
     with read_col:
-        st.markdown(build_readonly_insights_markdown(sorted_nodes, tags_list))
+        st.markdown(build_readonly_insights_markdown(sorted_nodes, tags_list, artifact=artifact))
     with edit_col:
         edit_nodes = sorted_nodes
         if len(sorted_nodes) > 6:

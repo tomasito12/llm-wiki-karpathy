@@ -8,7 +8,7 @@ from typing import Any
 
 import streamlit as streamlit_runtime
 
-from src.ingest_review.dashboard_ui import google_search_markdown, human_evidence_type_label
+from src.ingest_review.dashboard_ui import format_proposal_meta_subtitle, google_search_markdown
 from src.ingest_review.domain_tag_ui import (
     DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
     apply_tag_ui_to_node,
@@ -192,6 +192,8 @@ def trend_list_edit_value(
 def format_trend_proposal_readonly_markdown(
     node: dict[str, Any],
     trend_tags: list[str],
+    *,
+    artifact: dict[str, Any] | None = None,
 ) -> str:
     """Single trend card for the read-only column."""
     llm_item = node.get("llm_item") or {}
@@ -204,16 +206,15 @@ def format_trend_proposal_readonly_markdown(
     slug = effective_trend_scalar(llm_item, sections, "trend_slug")
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    proposal_status = proposal_status_label(node)
-    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
     confidence = float(llm_item.get("confidence") or 0.0)
+    art = artifact if isinstance(artifact, dict) else {}
     tag_node = node.get("tags") if isinstance(node.get("tags"), dict) else {}
     tag_slugs = effective_readonly_domain_tags(llm_item, tag_node, trend_tags)
 
     lines = [
         f"## {title}",
         "",
-        f"*{badge} · {proposal_status} · {ev_lbl} · {confidence:.0%}*",
+        format_proposal_meta_subtitle(art, node, llm_item, badge=badge, confidence=confidence),
         "",
     ]
     google = google_search_markdown(title)
@@ -249,6 +250,8 @@ def format_trend_proposal_readonly_markdown(
 def build_readonly_trends_markdown(
     sorted_nodes: list[dict[str, Any]],
     trend_tags: list[str],
+    *,
+    artifact: dict[str, Any] | None = None,
 ) -> str:
     """Build full read-only column markdown for all trend proposals."""
     if not sorted_nodes:
@@ -262,7 +265,7 @@ def build_readonly_trends_markdown(
             if header:
                 parts.append(header)
             prev_tier = tier
-        parts.append(format_trend_proposal_readonly_markdown(node, trend_tags))
+        parts.append(format_trend_proposal_readonly_markdown(node, trend_tags, artifact=artifact))
     return "\n\n---\n\n".join(parts)
 
 
@@ -462,7 +465,7 @@ def render_trend_proposals(
 
     read_col, edit_col = st.columns(2)
     with read_col:
-        st.markdown(build_readonly_trends_markdown(sorted_nodes, tags_list))
+        st.markdown(build_readonly_trends_markdown(sorted_nodes, tags_list, artifact=artifact))
     with edit_col:
         edit_nodes = sorted_nodes
         if len(sorted_nodes) > 6:

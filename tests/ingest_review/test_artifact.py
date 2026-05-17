@@ -24,6 +24,7 @@ from src.ingest_review.artifact import (
     migrate_artifact_to_v12,
     migrate_artifact_to_v13,
     migrate_artifact_to_v14,
+    migrate_artifact_to_v15,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -126,9 +127,10 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 14
+    assert art["artifact_schema_version"] == 15
     assert art["source"]["source_id"] == stem
     assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
+    assert "source_evidence_profile" in art["review"]
     assert "implementation_studies" in art["review"]
     assert "enterprise_studies" not in art["review"]
 
@@ -1057,7 +1059,7 @@ def test_proposal_status_on_new_review_nodes(tmp_path: Path) -> None:
         root=tmp_path,
     )
     assert art["review"]["glossary"][0]["proposal_status"] == "approved"
-    assert art["artifact_schema_version"] == 14
+    assert art["artifact_schema_version"] == 15
 
 
 def test_migrate_v14_merges_primary_secondary_into_tag_lists() -> None:
@@ -1411,3 +1413,29 @@ def test_new_artifact_review_analytics_has_evidence_type_counts(tmp_path: Path) 
         root=tmp_path,
     )
     assert art["review_analytics"]["evidence_type_counts"] == {}
+
+
+def test_migrate_v15_adds_source_evidence_profile_and_compacts() -> None:
+    """migrate_artifact_to_v15 hoists modal evidence_type to source profile."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 14,
+        "llm_output": {
+            "glossary": [
+                {"term": "A", "evidence_type": "vendor_claim"},
+                {"term": "B", "evidence_type": "vendor_claim"},
+            ],
+        },
+        "review": {
+            "glossary": [
+                {"llm_item": {"term": "A", "evidence_type": "vendor_claim"}},
+                {"llm_item": {"term": "B", "evidence_type": "vendor_claim"}},
+            ],
+        },
+        "review_analytics": {},
+    }
+    migrate_artifact_to_v15(art)
+    assert art["artifact_schema_version"] == 15
+    profile = art["llm_output"]["source_evidence_profile"]
+    assert profile["primary_evidence_type"] == "vendor_claim"
+    assert "evidence_type" not in art["llm_output"]["glossary"][0]
+    assert "source_evidence_profile" in art["review"]

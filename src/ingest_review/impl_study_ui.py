@@ -8,7 +8,7 @@ from typing import Any
 
 import streamlit as streamlit_runtime
 
-from src.ingest_review.dashboard_ui import human_evidence_type_label
+from src.ingest_review.dashboard_ui import format_proposal_meta_subtitle
 from src.ingest_review.domain_tag_ui import (
     DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
     apply_tag_ui_to_node,
@@ -99,8 +99,7 @@ def _sort_key(node: dict[str, Any]) -> tuple[int, int, float]:
     llm = node.get("llm_item") or {}
     vl = str(llm.get("value_level", "medium"))
     conf = float(llm.get("confidence") or 0)
-    action = str(llm.get("suggested_action") or "")
-    ignore_rank = 1 if action == "ignore" else 0
+    ignore_rank = 1 if str(llm.get("value_level") or "") == "low" and conf < 0.35 else 0
     return (ignore_rank, VALUE_LEVEL_ORDER.get(vl, 1), -conf)
 
 
@@ -220,23 +219,27 @@ def impl_list_edit_value(
     return "\n".join(effective_impl_list(llm_item, sections, list_key))
 
 
-def format_impl_readonly_markdown(node: dict[str, Any], impl_study_tags: list[str]) -> str:
+def format_impl_readonly_markdown(
+    node: dict[str, Any],
+    impl_study_tags: list[str],
+    *,
+    artifact: dict[str, Any] | None = None,
+) -> str:
     """Single implementation-study card for the read-only column."""
     llm_item = node.get("llm_item") or {}
     sections = node.get("sections") or {}
     title = effective_impl_scalar(llm_item, sections, "title") or "Untitled study"
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    proposal_status = proposal_status_label(node)
-    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
     confidence = float(llm_item.get("confidence") or 0.0)
+    art = artifact if isinstance(artifact, dict) else {}
     tag_node = node.get("tags") if isinstance(node.get("tags"), dict) else {}
     tag_slugs = effective_readonly_domain_tags(llm_item, tag_node, impl_study_tags)
 
     lines = [
         f"## {title}",
         "",
-        f"*{badge} · {proposal_status} · {ev_lbl} · {confidence:.0%}*",
+        format_proposal_meta_subtitle(art, node, llm_item, badge=badge, confidence=confidence),
         "",
     ]
     company = effective_impl_scalar(llm_item, sections, "company")
@@ -265,6 +268,8 @@ def format_impl_readonly_markdown(node: dict[str, Any], impl_study_tags: list[st
 def build_readonly_impl_studies_markdown(
     sorted_nodes: list[dict[str, Any]],
     impl_study_tags: list[str],
+    *,
+    artifact: dict[str, Any] | None = None,
 ) -> str:
     """Build full read-only column markdown."""
     if not sorted_nodes:
@@ -278,7 +283,7 @@ def build_readonly_impl_studies_markdown(
             if header:
                 parts.append(header)
             prev_tier = tier
-        parts.append(format_impl_readonly_markdown(node, impl_study_tags))
+        parts.append(format_impl_readonly_markdown(node, impl_study_tags, artifact=artifact))
     return "\n\n---\n\n".join(parts)
 
 
@@ -471,7 +476,9 @@ def render_implementation_studies(
 
     read_col, edit_col = st.columns(2)
     with read_col:
-        st.markdown(build_readonly_impl_studies_markdown(sorted_nodes, tags_list))
+        st.markdown(
+            build_readonly_impl_studies_markdown(sorted_nodes, tags_list, artifact=artifact)
+        )
     with edit_col:
         edit_nodes = sorted_nodes
         if len(sorted_nodes) > 6:

@@ -9,7 +9,7 @@ from typing import Any
 import streamlit as streamlit_runtime
 
 from src.ingest_review.dashboard_ui import (
-    human_evidence_type_label,
+    format_proposal_meta_subtitle,
     render_proposal_evidence_type_editor,
 )
 from src.ingest_review.domain_tag_ui import (
@@ -203,21 +203,24 @@ def _value_level(node: dict[str, Any]) -> str:
     return str((node.get("llm_item") or {}).get("value_level") or "medium")
 
 
-def format_model_readonly_markdown(node: dict[str, Any]) -> str:
+def format_model_readonly_markdown(
+    node: dict[str, Any],
+    *,
+    artifact: dict[str, Any] | None = None,
+) -> str:
     """Format one model proposal as markdown for the read-only column."""
     llm_item = node.get("llm_item") or {}
     sections = node.get("sections") or {}
     name = effective_model_scalar(llm_item, sections, "model_name") or "Untitled model"
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    proposal_status = proposal_status_label(node)
-    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
     confidence = float(llm_item.get("confidence") or 0.0)
+    art = artifact if isinstance(artifact, dict) else {}
 
     lines = [
         f"## {name}",
         "",
-        f"*{badge} · {proposal_status} · {ev_lbl} · {confidence:.0%}*",
+        format_proposal_meta_subtitle(art, node, llm_item, badge=badge, confidence=confidence),
         "",
     ]
     provider = effective_model_scalar(llm_item, sections, "provider")
@@ -248,7 +251,11 @@ def format_model_readonly_markdown(node: dict[str, Any]) -> str:
     return "\n".join(lines).rstrip()
 
 
-def build_readonly_models_markdown(sorted_nodes: list[dict[str, Any]]) -> str:
+def build_readonly_models_markdown(
+    sorted_nodes: list[dict[str, Any]],
+    *,
+    artifact: dict[str, Any] | None = None,
+) -> str:
     """Build full read-only column markdown for all model proposals."""
     if not sorted_nodes:
         return "*(No model proposals.)*"
@@ -261,7 +268,7 @@ def build_readonly_models_markdown(sorted_nodes: list[dict[str, Any]]) -> str:
             if header:
                 parts.append(header)
             prev_tier = tier
-        parts.append(format_model_readonly_markdown(node))
+        parts.append(format_model_readonly_markdown(node, artifact=artifact))
     return "\n\n---\n\n".join(parts)
 
 
@@ -313,6 +320,7 @@ def _render_model_edit_box(
     st: Any,
     node: dict[str, Any],
     model_types: list[str],
+    artifact: dict[str, Any],
     *,
     key_prefix: str,
     source_id: str,
@@ -375,7 +383,7 @@ def _render_model_edit_box(
             llm_fallback_summary_key="operational_summary",
             section_title="Model types",
         )
-        render_proposal_evidence_type_editor(st, llm_item, key_prefix=key_prefix)
+        render_proposal_evidence_type_editor(st, llm_item, artifact, key_prefix=key_prefix)
 
         proposal_id = str(node.get("proposal_id") or "")
         render_regenerate_with_new_title_controls(
@@ -434,7 +442,7 @@ def render_model_proposals(
 
     read_col, edit_col = st.columns(2)
     with read_col:
-        st.markdown(build_readonly_models_markdown(sorted_nodes))
+        st.markdown(build_readonly_models_markdown(sorted_nodes, artifact=artifact))
     with edit_col:
         edit_nodes = sorted_nodes
         if len(sorted_nodes) > 6:
@@ -465,6 +473,7 @@ def render_model_proposals(
                 st,
                 node,
                 types_list,
+                artifact,
                 key_prefix=pfx,
                 source_id=source_id,
                 artifact_path=artifact_path,

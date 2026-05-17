@@ -10,8 +10,8 @@ from typing import Any
 import streamlit as streamlit_runtime
 
 from src.ingest_review.dashboard_ui import (
+    format_proposal_meta_subtitle,
     google_search_markdown,
-    human_evidence_type_label,
 )
 from src.ingest_review.domain_tag_ui import (
     DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
@@ -154,6 +154,7 @@ def format_glossary_term_readonly_markdown(
     node: dict[str, Any],
     glossary_tags: list[str],
     *,
+    artifact: dict[str, Any] | None = None,
     norm_to: dict[str, str] | None = None,
     acr_to: dict[str, str] | None = None,
 ) -> str:
@@ -164,10 +165,7 @@ def format_glossary_term_readonly_markdown(
     value_level = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(value_level, "Medium")
     confidence = float(llm_item.get("confidence") or 0.0)
-    proposal_status = proposal_status_label(node)
-    ev_lbl = human_evidence_type_label(llm_item.get("evidence_type"))
-    suggested_action = llm_item.get("suggested_action") or "—"
-
+    art = artifact if isinstance(artifact, dict) else {}
     definition = effective_glossary_scalar(llm_item, sections, "proposed_definition")
     extended = effective_glossary_scalar(llm_item, sections, "extended_explanation")
     relevance = effective_glossary_scalar(llm_item, sections, "relevance_note")
@@ -182,8 +180,7 @@ def format_glossary_term_readonly_markdown(
     lines = [
         f"## {term}",
         "",
-        f"*{badge} · {proposal_status} · {ev_lbl} · {confidence:.0%} · "
-        f"suggested: `{suggested_action}`*",
+        format_proposal_meta_subtitle(art, node, llm_item, badge=badge, confidence=confidence),
         "",
     ]
     google = google_search_markdown(term)
@@ -215,19 +212,6 @@ def format_glossary_term_readonly_markdown(
                 )
                 lines.append("")
 
-    candidates = llm_item.get("match_candidates") or []
-    if isinstance(candidates, list) and candidates:
-        match_bits: list[str] = []
-        for mc in candidates:
-            if not isinstance(mc, dict):
-                continue
-            title = mc.get("title_or_slug", "?")
-            kind = mc.get("match_kind", "?")
-            conf = mc.get("confidence", 0)
-            match_bits.append(f"{title} ({kind}, {conf:.0%})")
-        if match_bits:
-            lines.extend([f"*Possible matches: {'; '.join(match_bits)}*", ""])
-
     return "\n".join(lines).rstrip()
 
 
@@ -235,6 +219,8 @@ def build_readonly_glossary_markdown(
     sorted_nodes: list[dict[str, Any]],
     glossary_tags: list[str],
     wiki_glossary_terms: list[str] | None = None,
+    *,
+    artifact: dict[str, Any] | None = None,
 ) -> str:
     """Concatenate all glossary proposals for uninterrupted read-only display."""
     if not sorted_nodes:
@@ -266,6 +252,7 @@ def build_readonly_glossary_markdown(
             format_glossary_term_readonly_markdown(
                 node,
                 glossary_tags,
+                artifact=artifact,
                 norm_to=norm_to,
                 acr_to=acr_to,
             )
@@ -471,7 +458,9 @@ def render_glossary_proposals(
     read_col, edit_col = st.columns(2)
     with read_col:
         st.markdown(
-            build_readonly_glossary_markdown(sorted_nodes, glossary_tags, wiki_glossary_terms)
+            build_readonly_glossary_markdown(
+                sorted_nodes, glossary_tags, wiki_glossary_terms, artifact=artifact
+            )
         )
     with edit_col:
         edit_nodes = sorted_nodes

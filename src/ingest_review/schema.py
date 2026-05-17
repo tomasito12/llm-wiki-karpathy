@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Any, Literal
+from typing import Any, Literal, cast
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
 from src.ingest_review.tags import MAX_PROPOSED_TAGS as _MAX_PROPOSED_TAGS
 from src.ingest_review.tags import normalize_tag, normalize_tag_list
 
-ARTIFACT_SCHEMA_VERSION = 14
-PROMPT_VERSION = "26"
+ARTIFACT_SCHEMA_VERSION = 15
+PROMPT_VERSION = "29"
 MAX_PROPOSED_TAGS = 5
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
@@ -246,7 +246,7 @@ class GlossaryProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -310,7 +310,7 @@ class TopicContribution(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -342,7 +342,7 @@ TOPIC_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
     "relevance_note",
 )
 
-TOPIC_REVIEWABLE_LIST_KEYS: tuple[str, ...] = ("key_points",)
+TOPIC_REVIEWABLE_LIST_KEYS: tuple[str, ...] = ("key_points", "related_topics")
 
 
 class TopicRegenerateOutput(BaseModel):
@@ -359,7 +359,7 @@ class TopicRegenerateOutput(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 class GlossaryRegenerateOutput(BaseModel):
@@ -373,7 +373,7 @@ class GlossaryRegenerateOutput(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 class HowToRegenerateOutput(BaseModel):
@@ -389,7 +389,7 @@ class HowToRegenerateOutput(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 class TrendRegenerateOutput(BaseModel):
@@ -407,7 +407,7 @@ class TrendRegenerateOutput(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 class ToolRegenerateOutput(BaseModel):
@@ -426,7 +426,7 @@ class ToolRegenerateOutput(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 class ModelRegenerateOutput(BaseModel):
@@ -449,7 +449,7 @@ class ModelRegenerateOutput(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 class ImplStudyRegenerateOutput(BaseModel):
@@ -475,7 +475,7 @@ class ImplStudyRegenerateOutput(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 class ToolProposal(BaseModel):
@@ -497,7 +497,7 @@ class ToolProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 TOOL_SCALAR_KEYS: tuple[str, ...] = (
@@ -554,7 +554,7 @@ class FoundationModelProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
 
 MODEL_SCALAR_KEYS: tuple[str, ...] = (
@@ -616,7 +616,7 @@ class HowToProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -689,7 +689,7 @@ class ImplementationStudyProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -756,7 +756,7 @@ class IndustryTrendProposal(BaseModel):
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -842,6 +842,16 @@ class SourceTypeDetection(BaseModel):
     reasoning: list[str] = Field(default_factory=list)
 
 
+class SourceEvidenceProfile(BaseModel):
+    """Dominant evidence basis for the source as a whole."""
+
+    primary_evidence_type: EvidenceType = "unknown"
+    reasoning: list[str] = Field(
+        default_factory=list,
+        description="1–3 bullets: why this source's claims are mainly this evidence type.",
+    )
+
+
 class RoundupSignal(BaseModel):
     """One durable operational signal extracted from an AI industry roundup."""
 
@@ -868,7 +878,7 @@ class RoundupSignal(BaseModel):
     mentioned_entities: list[str] = Field(default_factory=list)
     evidence_snippets: list[str] = Field(default_factory=list)
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -926,7 +936,7 @@ class InterviewInsight(BaseModel):
     contrarian_or_speculative_claims: list[str] = Field(default_factory=list)
     evidence_snippets: list[str] = Field(default_factory=list)
     value_level: ValueLevel = "medium"
-    evidence_type: EvidenceType = "unknown"
+    evidence_type: EvidenceType | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -973,9 +983,14 @@ class LlmClassificationOutput(BaseModel):
     @model_validator(mode="before")
     @classmethod
     def _coerce_proposal_evidence_types(cls, data: Any) -> Any:
-        """Map invalid or missing evidence_type to ``unknown`` before nested validation."""
+        """Drop invalid per-proposal evidence_type overrides before nested validation."""
         if not isinstance(data, dict):
             return data
+        profile = data.get("source_evidence_profile")
+        if isinstance(profile, dict):
+            et = profile.get("primary_evidence_type")
+            s = str(et).strip() if et is not None else ""
+            profile["primary_evidence_type"] = s if s in EVIDENCE_TYPE_SET else "unknown"
         for key in (
             "glossary",
             "tools",
@@ -993,14 +1008,23 @@ class LlmClassificationOutput(BaseModel):
             for item in items:
                 if not isinstance(item, dict):
                     continue
+                if "evidence_type" not in item:
+                    continue
                 et = item.get("evidence_type")
-                s = str(et).strip() if et is not None else ""
-                item["evidence_type"] = s if s in EVIDENCE_TYPE_SET else "unknown"
+                if et is None:
+                    item.pop("evidence_type", None)
+                    continue
+                s = str(et).strip()
+                if s in EVIDENCE_TYPE_SET:
+                    item["evidence_type"] = s
+                else:
+                    item.pop("evidence_type", None)
         return data
 
     extraction_meta: ExtractionMeta = Field(default_factory=ExtractionMeta)
     source_summary: SourceSummaryBlock = Field(default_factory=SourceSummaryBlock)
     source_type_detection: SourceTypeDetection = Field(default_factory=SourceTypeDetection)
+    source_evidence_profile: SourceEvidenceProfile = Field(default_factory=SourceEvidenceProfile)
     glossary: list[GlossaryProposal] = Field(default_factory=list)
     tools: list[ToolProposal] = Field(default_factory=list)
     foundation_models: list[FoundationModelProposal] = Field(default_factory=list)
@@ -1012,6 +1036,36 @@ class LlmClassificationOutput(BaseModel):
     interview_insights: list[InterviewInsight] = Field(default_factory=list)
 
 
+_CLASSIFICATION_SCHEMA_OMIT: frozenset[str] = frozenset({"suggested_action", "match_candidates"})
+
+
+def _strip_properties_from_json_schema(node: object, omit: frozenset[str]) -> None:
+    """Remove *omit* keys from ``properties`` / ``required`` recursively."""
+    if isinstance(node, dict):
+        obj = cast(dict[str, Any], node)
+        props = obj.get("properties")
+        if isinstance(props, dict):
+            for key in omit:
+                props.pop(key, None)
+            required = obj.get("required")
+            if isinstance(required, list):
+                obj["required"] = [r for r in required if r not in omit]
+        for value in obj.values():
+            _strip_properties_from_json_schema(value, omit)
+    elif isinstance(node, list):
+        for item in node:
+            _strip_properties_from_json_schema(item, omit)
+
+
 def llm_output_json_schema() -> dict:
-    """JSON schema dict for OpenAI structured outputs."""
+    """JSON schema dict for OpenAI structured outputs (full model)."""
     return LlmClassificationOutput.model_json_schema()
+
+
+def llm_output_json_schema_for_classification() -> dict:
+    """Classification prompt schema — omits deferred routing fields."""
+    import copy
+
+    schema = copy.deepcopy(LlmClassificationOutput.model_json_schema())
+    _strip_properties_from_json_schema(schema, _CLASSIFICATION_SCHEMA_OMIT)
+    return schema

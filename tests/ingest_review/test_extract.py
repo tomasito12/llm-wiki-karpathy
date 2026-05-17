@@ -54,11 +54,15 @@ def test_load_readwise_pair_roundtrip(tmp_path: Path) -> None:
     html = raw / f"{stem}.html"
     md = raw / f"{stem}.md"
     html.write_text("<html><body><p>Unique content xyz</p></body></html>", encoding="utf-8")
-    md.write_text('---\ntitle: T\nsource_url: "https://ex.test/a"\n---\n', encoding="utf-8")
+    md.write_text(
+        '---\ntitle: T\nsource_url: "https://medium.com/foo"\n---\n',
+        encoding="utf-8",
+    )
     doc = load_readwise_pair(html, max_plain_text_chars=10_000)
     assert doc.source_id == stem
     assert doc.title == "T"
-    assert doc.canonical_url == "https://ex.test/a"
+    assert doc.canonical_url == "https://medium.com/foo"
+    assert doc.publication == "Medium"
     assert "Unique content" in doc.plain_text
     assert len(doc.content_sha256) == 64
 

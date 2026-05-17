@@ -135,12 +135,14 @@ def test_run_wiki_reset_default_preserves_readwise_index(tmp_path: Path) -> None
         manifest_path=manifest,
         reviews_root=reviews,
         feedback_db_path=feedback_db,
+        config_root=tmp_path,
     )
     assert "tools/x.md" in deleted
     assert state_results == {
         "readwise_library": False,
         "ingest_manifest": True,
         "review_state": True,
+        "tag_taxonomy": True,
     }
     assert idx.read_text(encoding="utf-8") == before
     assert '"records": {}' in manifest.read_text(encoding="utf-8")
@@ -150,6 +152,7 @@ def test_run_wiki_reset_default_preserves_readwise_index(tmp_path: Path) -> None
     assert "readwise_library preserved" in log_text
     assert "ingest_manifest cleared" in log_text
     assert "review_state cleared" in log_text
+    assert "tag_taxonomy cleared" in log_text
 
 
 def test_run_wiki_reset_reset_readwise_clears_index(tmp_path: Path) -> None:
@@ -179,6 +182,7 @@ def test_run_wiki_reset_reset_readwise_clears_index(tmp_path: Path) -> None:
         manifest_path=manifest,
         reviews_root=tmp_path / "no-reviews",
         feedback_db_path=tmp_path / "no.db",
+        config_root=tmp_path,
     )
     assert state_results["readwise_library"] is True
     loaded = LibraryIndex.load(idx)
@@ -200,6 +204,7 @@ def test_run_wiki_reset_manifest_no_tmp_artifacts(tmp_path: Path) -> None:
         manifest_path=manifest,
         reviews_root=tmp_path / "no-reviews",
         feedback_db_path=tmp_path / "no.db",
+        config_root=tmp_path,
     )
     assert list(manifest.parent.rglob("*.tmp")) == []
 
@@ -226,8 +231,10 @@ def test_run_wiki_reset_keep_reviews_preserves_artifacts(tmp_path: Path) -> None
         clear_reviews=False,
         reviews_root=reviews,
         feedback_db_path=feedback_db,
+        config_root=tmp_path,
     )
     assert state_results["review_state"] is False
+    assert state_results["tag_taxonomy"] is True
     assert (reviews / "src-id" / "review.json").exists()
     assert feedback_db.exists()
     log_text = (wiki / "log.md").read_text(encoding="utf-8")
@@ -367,6 +374,7 @@ def test_main_confirm_ok_runs_reset(tmp_path: Path) -> None:
         mock.patch.object(cli.sys, "argv", argv),
         mock.patch.object(cli, "default_reviews_root", return_value=tmp_path / "no-reviews"),
         mock.patch.object(cli, "default_feedback_db_path", return_value=tmp_path / "no.db"),
+        mock.patch("src.wiki_reset.reset.reset_tag_taxonomy", return_value=[]),
     ):
         assert cli.main() == 0
     assert (wiki / "index.md").exists()
@@ -409,10 +417,45 @@ def test_main_keep_reviews_flag(tmp_path: Path) -> None:
         mock.patch.object(cli.sys, "argv", argv),
         mock.patch.object(cli, "default_reviews_root", return_value=reviews),
         mock.patch.object(cli, "default_feedback_db_path", return_value=feedback),
+        mock.patch("src.wiki_reset.reset.reset_tag_taxonomy", return_value=[]),
     ):
         assert cli.main() == 0
     assert (reviews / "src-x" / "review.json").exists()
     assert feedback.exists()
+
+
+def test_main_keep_tag_taxonomy_flag(tmp_path: Path) -> None:
+    """CLI --keep-tag-taxonomy skips config allowlist reset."""
+    from src.wiki_reset import cli
+
+    wiki = tmp_path / "wiki"
+    wiki.mkdir()
+    (wiki / "AGENTS.md").write_text("k", encoding="utf-8")
+    idx = tmp_path / "idx.json"
+    LibraryIndex.empty().save(idx)
+    manifest = tmp_path / "manifest.json"
+    IngestManifest.empty().save(manifest)
+
+    argv = [
+        "wiki-reset",
+        "--wiki-dir",
+        str(wiki),
+        "--index",
+        str(idx),
+        "--manifest",
+        str(manifest),
+        "--keep-tag-taxonomy",
+        "--confirm",
+        CONFIRMATION_PHRASE,
+    ]
+    with (
+        mock.patch.object(cli.sys, "argv", argv),
+        mock.patch.object(cli, "default_reviews_root", return_value=tmp_path / "no-reviews"),
+        mock.patch.object(cli, "default_feedback_db_path", return_value=tmp_path / "no.db"),
+        mock.patch("src.wiki_reset.reset.reset_tag_taxonomy") as mock_reset_tags,
+    ):
+        assert cli.main() == 0
+    mock_reset_tags.assert_not_called()
 
 
 def test_main_reset_readwise_index_flag(tmp_path: Path) -> None:
@@ -453,6 +496,7 @@ def test_main_reset_readwise_index_flag(tmp_path: Path) -> None:
         mock.patch.object(cli.sys, "argv", argv),
         mock.patch.object(cli, "default_reviews_root", return_value=tmp_path / "no-reviews"),
         mock.patch.object(cli, "default_feedback_db_path", return_value=tmp_path / "no.db"),
+        mock.patch("src.wiki_reset.reset.reset_tag_taxonomy", return_value=[]),
     ):
         assert cli.main() == 0
     assert LibraryIndex.load(idx).documents == {}

@@ -10,6 +10,7 @@ from src.pipeline.atomic import atomic_write_text
 from src.pipeline.ingest_manifest import IngestManifest
 from src.readwise.library_index import LibraryIndex
 from src.readwise.sync import _repo_root
+from src.wiki_reset.tag_taxonomy import reset_tag_taxonomy
 
 CONFIRMATION_PHRASE = "RESET-WIKI"
 
@@ -200,6 +201,8 @@ def run_wiki_reset(
     manifest_path: Path | None = None,
     clear_manifest: bool = True,
     clear_reviews: bool = True,
+    reset_tag_taxonomy_config: bool = True,
+    config_root: Path | None = None,
     reviews_root: Path | None = None,
     feedback_db_path: Path | None = None,
 ) -> tuple[list[str], dict[str, bool]]:
@@ -216,6 +219,7 @@ def run_wiki_reset(
         "readwise_library": clear_readwise_index,
         "ingest_manifest": clear_manifest,
         "review_state": clear_reviews,
+        "tag_taxonomy": reset_tag_taxonomy_config,
     }
     write_wiki_shell_files(
         wiki_root,
@@ -230,6 +234,8 @@ def run_wiki_reset(
     if clear_reviews:
         clear_review_artifacts(reviews_root or default_reviews_root())
         clear_feedback_db(feedback_db_path or default_feedback_db_path())
+    if reset_tag_taxonomy_config:
+        reset_tag_taxonomy(config_root or _repo_root())
     return deleted, state_results
 
 

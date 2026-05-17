@@ -122,3 +122,26 @@ def test_rebuild_cli_dry_run(tmp_path: Path) -> None:
     argv = ["rebuild", "--raw-dir", str(raw), "--index", str(idx), "--dry-run"]
     with mock.patch("sys.argv", argv):
         assert rebuild_main() == 0
+
+
+def test_rebuild_cli_backfill_only(tmp_path: Path) -> None:
+    raw = tmp_path / "rw"
+    raw.mkdir()
+    idx = tmp_path / "lib.json"
+    (raw / "post.md").write_text(
+        '---\nsource_url: "https://anthropic.com/news/x"\n---\n',
+        encoding="utf-8",
+    )
+    argv = [
+        "rebuild",
+        "--raw-dir",
+        str(raw),
+        "--index",
+        str(idx),
+        "--backfill-publication",
+        "--backfill-only",
+    ]
+    with mock.patch("sys.argv", argv):
+        assert rebuild_main() == 0
+    assert "publication: Anthropic" in (raw / "post.md").read_text(encoding="utf-8")
+    assert not idx.exists()

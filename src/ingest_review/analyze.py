@@ -5,6 +5,11 @@ from __future__ import annotations
 from pathlib import Path
 
 from src.ingest_review.artifact import build_new_artifact, default_analysis_meta
+from src.ingest_review.canonical_titles import (
+    align_parsed_classification_titles,
+    build_canonical_index,
+)
+from src.ingest_review.evidence import apply_evidence_hierarchy
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.glossary_related_terms_align import align_glossary_related_terms
 from src.ingest_review.howto_title_normalize import normalize_howto_proposal
@@ -13,6 +18,7 @@ from src.ingest_review.providers.base import IngestionProvider
 from src.ingest_review.schema import (
     PROMPT_VERSION,
     LlmClassificationOutput,
+    TopicContribution,
     normalize_source_summary,
 )
 from src.ingest_review.tags import MAX_PROPOSED_TAGS, normalize_tag, normalize_tag_list
@@ -20,7 +26,11 @@ from src.ingest_review.tools_roundup_model_routing import (
     route_ai_tools_roundup_tools_to_foundation_models,
 )
 from src.ingest_review.topic_related_topics import sanitize_topics_related_topics
-from src.ingest_review.wiki_snapshot import build_wiki_snapshot
+from src.ingest_review.topic_related_topics_suggest import (
+    build_topic_slug_catalog_from_topics,
+    suggest_related_topics,
+)
+from src.ingest_review.wiki_snapshot import WikiSnapshot, build_wiki_snapshot
 
 
 def _validate_proposal_tags(
@@ -223,6 +233,43 @@ def apply_tools_roundup_entity_strip(parsed: LlmClassificationOutput) -> LlmClas
     )
 
 
+def _backfill_empty_topic_related_topics(
+    parsed: LlmClassificationOutput,
+    wiki: WikiSnapshot,
+    reviews_root: Path | None,
+) -> LlmClassificationOutput:
+    """Fill empty ``related_topics`` with heuristic suggestions (wiki + reviews + batch)."""
+    if not parsed.topics:
+        return parsed
+    new_topics: list[TopicContribution] = []
+    changed = False
+    for tc in parsed.topics:
+        if tc.related_topics:
+            new_topics.append(tc)
+            continue
+        catalog = build_topic_slug_catalog_from_topics(
+            wiki,
+            reviews_root,
+            parsed.topics,
+            exclude_slug=tc.topic_slug,
+        )
+        suggestions = suggest_related_topics(
+            tc.topic_slug,
+            tc.topic_title or "",
+            tc.knowledge_summary or "",
+            catalog,
+        )
+        slugs = [s.slug for s in suggestions]
+        if slugs:
+            new_topics.append(tc.model_copy(update={"related_topics": slugs}))
+            changed = True
+        else:
+            new_topics.append(tc)
+    if not changed:
+        return parsed
+    return parsed.model_copy(update={"topics": new_topics})
+
+
 def run_classification(
     provider: IngestionProvider,
     document: SourceDocument,
@@ -239,10 +286,14 @@ def run_classification(
     extraction_budgets: dict[str, int] | None = None,
     model: str,
     prompt_version: str | None = None,
+    reviews_root: Path | None = None,
 ) -> tuple[dict[str, object], LlmClassificationOutput]:
     """Run provider analysis and return ``(artifact_dict, parsed_output)``."""
     pv = prompt_version or PROMPT_VERSION
     wiki = build_wiki_snapshot(wiki_root)
+    reviews_path = reviews_root
+    if reviews_path is None:
+        reviews_path = wiki_root.parent / "state" / "reviews"
     parsed, meta = provider.analyze_classification(
         document=document,
         wiki=wiki,
@@ -255,9 +306,12 @@ def run_classification(
         model_types_allowlist=model_types,
         source_type_override=source_type_override,
         extraction_budgets=extraction_budgets,
+        reviews_root=reviews_path,
         model=model,
         prompt_version=pv,
     )
+    canonical_index = build_canonical_index(wiki, reviews_path)
+    parsed = align_parsed_classification_titles(parsed, canonical_index)
     parsed = parsed.model_copy(
         update={"source_summary": normalize_source_summary(parsed.source_summary)}
     )
@@ -279,12 +333,14 @@ def run_classification(
         set(impl_study_tags or []),
     )
     parsed = sanitize_topics_related_topics(parsed, set(topic_tags or []), wiki)
+    parsed = _backfill_empty_topic_related_topics(parsed, wiki, reviews_path)
     parsed = apply_tools_roundup_entity_strip(parsed)
     parsed = parsed.model_copy(
         update={
             "implementation_studies": filter_impl_study_proposals(parsed.implementation_studies),
         }
     )
+    parsed = apply_evidence_hierarchy(parsed)
     analysis_meta = default_analysis_meta(
         provider=provider.provider_name,
         model=model,

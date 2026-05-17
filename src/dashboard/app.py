@@ -10,6 +10,7 @@ if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
 import os
+import random
 import traceback
 from datetime import UTC, datetime
 from typing import Any
@@ -32,8 +33,13 @@ from src.ingest_review.dashboard_ui import (
     render_review_summary_panel,
     render_review_timer,
     render_skip_extraction_screen,
+    render_source_evidence_profile,
     render_source_summary_review,
     render_source_type_detection,
+)
+from src.ingest_review.evidence import (
+    effective_proposal_evidence_type,
+    source_primary_evidence_type,
 )
 from src.ingest_review.extract import (
     list_readwise_html_sources,
@@ -69,7 +75,18 @@ from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.proposal_regen_handler import process_pending_proposal_regen
 from src.ingest_review.proposal_regen_ui import consume_proposal_regen_banner
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
-from src.ingest_review.schema import PROMPT_VERSION, normalize_evidence_type
+from src.ingest_review.review_queue_status import (
+    DEFAULT_SOURCE_REVIEW_FILTER,
+    SOURCE_REVIEW_FILTER_OPTIONS,
+    artifact_title_for_source,
+    build_source_status_map,
+    count_by_status,
+    filter_source_ids,
+    filter_statuses_for_label,
+    status_label,
+    unfinished_source_ids,
+)
+from src.ingest_review.schema import PROMPT_VERSION
 from src.ingest_review.signals_ui import (
     collect_signal_new_tags,
     render_roundup_signals,
@@ -150,7 +167,8 @@ def _finalize_review_analytics(artifact: dict) -> None:
                 modified += 1
             lit = node.get("llm_item")
             if isinstance(lit, dict):
-                et = normalize_evidence_type(lit.get("evidence_type"))
+                primary = source_primary_evidence_type(artifact)
+                et = effective_proposal_evidence_type(primary, lit)
                 evidence_counts[et] = evidence_counts.get(et, 0) + 1
     analytics["proposals_total"] = total
     analytics["proposals_approved"] = approved
@@ -266,19 +284,97 @@ def main() -> None:
         st.warning("No impl-study tags loaded — check ``config/review_tags_impl_study.yaml``.")
 
     html_paths = list_readwise_html_sources(raw_dir)
-    labels = []
-    for p in html_paths:
-        status = readwise_source_status(p)
-        suffix = " (incomplete)" if status == "incomplete" else ""
-        labels.append(f"{p.name}{suffix}")
-
     if not html_paths:
         st.info("No ``*.html`` sources found under the raw directory.")
         return
 
-    choice = st.selectbox("Source", range(len(html_paths)), format_func=lambda i: labels[i])
-    selected = html_paths[int(choice)]
+    source_ids = [p.stem for p in html_paths]
+    status_map = build_source_status_map(reviews_root, source_ids)
+    counts = count_by_status(status_map)
+    st.caption(
+        f"{counts['in_progress']} in progress · "
+        f"{counts['not_started']} not started · "
+        f"{counts['finished']} finished "
+        f"(of {len(html_paths)} total)"
+    )
+
+    filter_labels = [label for label, _ in SOURCE_REVIEW_FILTER_OPTIONS]
+    default_idx = (
+        filter_labels.index(DEFAULT_SOURCE_REVIEW_FILTER)
+        if DEFAULT_SOURCE_REVIEW_FILTER in filter_labels
+        else 0
+    )
+    if "review_queue_filter_radio" not in st.session_state:
+        st.session_state["review_queue_filter_radio"] = DEFAULT_SOURCE_REVIEW_FILTER
+
+    pick_col, _filter_col = st.columns([1, 3])
+    with pick_col:
+        if st.button("Random unfinished", help="Pick a random source that is not finished yet."):
+            pool_ids = unfinished_source_ids(source_ids, status_map)
+            id_to_path_all = {p.stem: p for p in html_paths}
+            pool_paths = [
+                id_to_path_all[sid]
+                for sid in pool_ids
+                if sid in id_to_path_all
+                and readwise_source_status(id_to_path_all[sid]) != "incomplete"
+            ]
+            if not pool_paths:
+                st.warning("No unfinished sources available (or only incomplete exports).")
+            else:
+                picked = random.choice(pool_paths)
+                st.session_state["review_queue_filter_radio"] = "Needs work"
+                st.session_state["review_source_pick_id"] = picked.stem
+                st.rerun()
+
+    queue_filter = st.radio(
+        "Show sources",
+        filter_labels,
+        index=default_idx,
+        horizontal=True,
+        key="review_queue_filter_radio",
+    )
+    allowed = filter_statuses_for_label(queue_filter)
+    visible_ids = filter_source_ids(source_ids, status_map, allowed)
+    id_to_path = {p.stem: p for p in html_paths}
+    visible_paths = [id_to_path[sid] for sid in visible_ids if sid in id_to_path]
+
+    if not visible_paths:
+        st.info(f"No sources match **{queue_filter}**. Try another filter.")
+        return
+
+    pick_id = st.session_state.pop("review_source_pick_id", None)
+    if pick_id:
+        for i, path in enumerate(visible_paths):
+            if path.stem == pick_id:
+                st.session_state["review_source_idx"] = i
+                break
+    if "review_source_idx" not in st.session_state:
+        st.session_state["review_source_idx"] = 0
+    st.session_state["review_source_idx"] = min(
+        max(0, int(st.session_state["review_source_idx"])),
+        len(visible_paths) - 1,
+    )
+
+    def _format_source_option(i: int) -> str:
+        path = visible_paths[i]
+        sid = path.stem
+        prefix = status_label(status_map[sid])
+        incom = " (incomplete)" if readwise_source_status(path) == "incomplete" else ""
+        title = artifact_title_for_source(reviews_root, sid)
+        if title:
+            return f"{prefix} — {title}{incom}"
+        return f"{prefix} — {path.name}{incom}"
+
+    choice = st.selectbox(
+        "Source",
+        range(len(visible_paths)),
+        index=st.session_state["review_source_idx"],
+        format_func=_format_source_option,
+        key="review_source_idx",
+    )
+    selected = visible_paths[int(choice)]
     source_id = selected.stem
+    source_review_status = status_map[source_id]
 
     if readwise_source_status(selected) == "incomplete":
         st.error("Missing sibling ``.md`` — export incomplete.")
@@ -296,6 +392,7 @@ def main() -> None:
     wiki_ingested = item is not None and item.status == "ingested"
 
     st.subheader("Source metadata")
+    st.caption(f"Review queue: **{status_label(source_review_status)}**")
     c1, c2, c3 = st.columns(3)
     c1.metric("Wiki source page exists", "yes" if wiki_ingested else "no")
     c2.text(f"SHA256\n{doc.content_sha256[:16]}…")
@@ -304,7 +401,11 @@ def main() -> None:
         {
             "title": doc.title,
             "author": doc.author,
+            "publication": doc.publication,
             "published_date": doc.published_date,
+            "canonical_url": doc.canonical_url,
+            "category": doc.frontmatter.get("category"),
+            "readwise_id": doc.frontmatter.get("readwise_id"),
             "raw_html": str(doc.raw_html_path),
             "raw_md": str(doc.raw_md_path),
         }
@@ -331,7 +432,7 @@ def main() -> None:
         st.session_state["artifact"] = existing
         st.session_state["artifact_source_id"] = source_id
 
-    col_a, col_b, col_c = st.columns(3)
+    col_a, col_b = st.columns(2)
     with col_a:
         if st.button("Analyze source", type="primary"):
             if not os.environ.get("OPENAI_API_KEY"):
@@ -364,6 +465,7 @@ def main() -> None:
                         extraction_budgets=extraction_budgets,
                         model=model,
                         prompt_version=prompt_version,
+                        reviews_root=reviews_root,
                     )
                     st.session_state["artifact"] = artifact
                     st.session_state["artifact_source_id"] = source_id
@@ -374,20 +476,14 @@ def main() -> None:
                     with st.expander("Traceback"):
                         st.text(traceback.format_exc())
 
-    with col_b:
-        if existing and st.button("Load saved artifact"):
-            st.session_state["artifact"] = existing
-            st.session_state["artifact_source_id"] = source_id
-            st.rerun()
-
     artifact_early = st.session_state.get("artifact")
-    with col_c:
+    with col_b:
         if artifact_early and st.button("Finish review", type="primary"):
             finish_review_session(st, artifact_early, artifact_path, root)
 
     artifact = st.session_state.get("artifact")
     if not artifact:
-        st.info("Run **Analyze source** or **Load saved artifact** to continue.")
+        st.info("Run **Analyze source** to continue.")
         return
 
     pending_regen = st.session_state.pop("_pending_section_regen", None)
@@ -458,6 +554,7 @@ def main() -> None:
             model_types=model_types,
             tool_types=tool_types,
             impl_study_tags=impl_study_tags,
+            reviews_root=reviews_root,
         )
 
     key_prefix = source_id[:40]
@@ -531,6 +628,7 @@ def main() -> None:
                             source_type_override=str(override_val),
                             model=model,
                             prompt_version=prompt_version,
+                            reviews_root=reviews_root,
                         )
                         st.session_state["artifact"] = artifact
                         st.session_state["artifact_source_id"] = source_id
@@ -592,6 +690,8 @@ def main() -> None:
             topic_tags=topic_tags,
             model=model,
             prompt_version=prompt_version,
+            wiki_root=wiki_root,
+            reviews_root=reviews_root,
         )
     with tabs[3]:
         render_howto_proposals(
@@ -669,6 +769,7 @@ def main() -> None:
             prompt_version=prompt_version,
         )
     with tabs[10]:
+        render_source_evidence_profile(st, artifact, key_prefix=key_prefix)
         render_source_type_detection(st, artifact, key_prefix=key_prefix)
     with tabs[11]:
         st.json(artifact.get("llm_output"))

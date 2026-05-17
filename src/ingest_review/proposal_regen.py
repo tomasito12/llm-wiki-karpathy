@@ -163,9 +163,7 @@ _TOPIC_MERGE_KEYS: tuple[str, ...] = (
     "supporting_snippet",
     "key_points",
     "related_topics",
-    "match_candidates",
     "confidence",
-    "suggested_action",
     "value_level",
     "evidence_type",
 )
@@ -175,9 +173,7 @@ _GLOSSARY_MERGE_KEYS: tuple[str, ...] = (
     "extended_explanation",
     "relevance_note",
     "supporting_snippet",
-    "match_candidates",
     "confidence",
-    "suggested_action",
     "value_level",
     "evidence_type",
 )
@@ -189,9 +185,7 @@ _HOWTO_MERGE_KEYS: tuple[str, ...] = (
     "implementation_steps",
     "prerequisites",
     "related_howtos",
-    "match_candidates",
     "confidence",
-    "suggested_action",
     "value_level",
     "evidence_type",
 )
@@ -205,9 +199,7 @@ _TREND_MERGE_KEYS: tuple[str, ...] = (
     "supporting_snippet",
     "supporting_data_points",
     "related_trends",
-    "match_candidates",
     "confidence",
-    "suggested_action",
     "value_level",
     "evidence_type",
 )
@@ -222,9 +214,7 @@ _TOOL_MERGE_KEYS: tuple[str, ...] = (
     "core_capabilities",
     "integration_ecosystem",
     "related_tools",
-    "match_candidates",
     "confidence",
-    "suggested_action",
     "value_level",
     "evidence_type",
 )
@@ -243,9 +233,7 @@ _MODEL_MERGE_KEYS: tuple[str, ...] = (
     "benchmark_observations",
     "comparative_observations",
     "related_models",
-    "match_candidates",
     "confidence",
-    "suggested_action",
     "value_level",
     "evidence_type",
 )
@@ -256,9 +244,7 @@ _IMPL_MERGE_KEYS: tuple[str, ...] = tuple(
     "key_lessons",
     "open_questions",
     "related_sources",
-    "match_candidates",
     "confidence",
-    "suggested_action",
     "value_level",
     "evidence_type",
 )

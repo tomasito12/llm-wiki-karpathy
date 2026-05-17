@@ -24,7 +24,8 @@ def build_parser() -> argparse.ArgumentParser:
         prog="wiki-reset",
         description=(
             "Delete all wiki content except instruction markdown, recreate empty hub shells, "
-            "and clear the ingest manifest audit log. "
+            "clear the ingest manifest audit log, and reset config/review_* tag allowlists "
+            "to baseline seeds. "
             "Does not touch raw/readwise exports. "
             "The Readwise export index is preserved unless --reset-readwise-index is set."
         ),
@@ -64,6 +65,14 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--keep-tag-taxonomy",
+        action="store_true",
+        help=(
+            "Preserve config/review_tags_*.yaml and config/review_*_types.yaml. "
+            "By default all are reset to minimal baseline allowlists."
+        ),
+    )
+    parser.add_argument(
         "--confirm",
         default=None,
         metavar="PHRASE",
@@ -80,6 +89,7 @@ def main() -> int:
 
     clear_rw = args.reset_readwise_index
     clear_reviews = not args.keep_reviews
+    reset_tags = not args.keep_tag_taxonomy
     doc_count = readwise_library_document_count(index_path)
 
     if args.confirm is not None:
@@ -99,6 +109,7 @@ def main() -> int:
             "readwise_library": clear_rw,
             "ingest_manifest": True,
             "review_state": clear_reviews,
+            "tag_taxonomy": reset_tags,
         }
         prompt_summary = ", ".join(
             f"{name} {'cleared' if cleared else 'preserved'}"
@@ -126,6 +137,7 @@ def main() -> int:
             clear_readwise_index=clear_rw,
             manifest_path=args.manifest.resolve(),
             clear_reviews=clear_reviews,
+            reset_tag_taxonomy_config=reset_tags,
             reviews_root=default_reviews_root(),
             feedback_db_path=default_feedback_db_path(),
         )

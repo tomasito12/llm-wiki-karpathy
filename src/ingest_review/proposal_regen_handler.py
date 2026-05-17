@@ -76,6 +76,7 @@ def process_pending_proposal_regen(
     model_types: list[str],
     tool_types: list[str],
     impl_study_tags: list[str],
+    reviews_root: Path | None = None,
 ) -> bool:
     """Run queued regeneration if valid. Returns True when a rerun was triggered."""
     pending = _migrate_legacy_topic_pending(pending_raw)
@@ -136,6 +137,7 @@ def process_pending_proposal_regen(
         model_types_allowlist=model_types,
         tool_types_allowlist=tool_types,
         impl_study_tags_allowlist=impl_study_tags,
+        reviews_root=reviews_root,
     )
 
     try:

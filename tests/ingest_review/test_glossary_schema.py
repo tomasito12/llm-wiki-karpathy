@@ -50,7 +50,7 @@ def test_glossary_proposal_defaults_are_empty() -> None:
     assert p.confidence == 0.0
     assert p.suggested_action == "ignore"
     assert p.value_level == "medium"
-    assert p.evidence_type == "unknown"
+    assert p.evidence_type is None
 
 
 def test_glossary_proposal_full_roundtrip() -> None:

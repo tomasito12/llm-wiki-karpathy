@@ -1,14 +1,4 @@
+# How-to proposal tags (ingestion review).
 tags:
-- agents-tooling
 - ai-engineering
-- ai-governance
-- ai-security
-- api-integration
-- cost-tokens
-- evals-measurement
-- knowledge-management
-- local-models
 - onboarding-workflow
-- production-ml
-- rag-retrieval
-- security-guardrails

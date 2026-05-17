@@ -9,6 +9,10 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+from src.ingest_review.evidence import (
+    compact_evidence_in_llm_dict,
+    source_evidence_profile_from_llm,
+)
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.paths import repo_root
 from src.ingest_review.schema import (
@@ -246,12 +250,19 @@ def default_review_for_llm_output(llm: dict[str, Any]) -> dict[str, Any]:
     )
 
     source_type = llm.get("source_type_detection") or {}
+    evidence_profile = source_evidence_profile_from_llm(llm)
     return {
         "source_summary": review_summary,
         "source_type_detection": {
             "status": "pending",
             "notes": None,
             "llm_item": copy.deepcopy(source_type),
+            "final_item": None,
+        },
+        "source_evidence_profile": {
+            "status": "pending",
+            "notes": None,
+            "llm_item": copy.deepcopy(evidence_profile),
             "final_item": None,
         },
         "glossary": glossary_review,
@@ -294,7 +305,7 @@ def build_new_artifact(
             "canonical_url": doc.canonical_url,
             "title": doc.title,
             "author": doc.author,
-            "publication": doc.frontmatter.get("publication"),
+            "publication": doc.publication,
             "published_date": doc.published_date,
         },
         "analysis_meta": analysis_meta,
@@ -1174,6 +1185,67 @@ def migrate_artifact_to_v14(artifact: dict[str, Any]) -> dict[str, Any]:
     return artifact
 
 
+_ENTITY_LLM_KEYS_V15: tuple[str, ...] = (
+    "glossary",
+    "tools",
+    "foundation_models",
+    "how_to",
+    "topics",
+    "implementation_studies",
+    "industry_trends",
+    "roundup_signals",
+    "interview_insights",
+)
+
+
+def migrate_artifact_to_v15(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v15: source_evidence_profile; compact per-proposal evidence_type."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 15:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    compact_evidence_in_llm_dict(llm)
+
+    review = artifact.setdefault("review", {})
+    profile = llm.get("source_evidence_profile") or {}
+    if not isinstance(profile, dict):
+        profile = source_evidence_profile_from_llm(llm)
+        llm["source_evidence_profile"] = profile
+
+    if "source_evidence_profile" not in review:
+        review["source_evidence_profile"] = {
+            "status": "pending",
+            "notes": None,
+            "llm_item": copy.deepcopy(profile),
+            "final_item": None,
+        }
+    else:
+        rev_prof = review["source_evidence_profile"]
+        if isinstance(rev_prof, dict) and not rev_prof.get("llm_item"):
+            rev_prof["llm_item"] = copy.deepcopy(profile)
+
+    for key in _ENTITY_LLM_KEYS_V15:
+        nodes = review.get(key)
+        if not isinstance(nodes, list):
+            continue
+        for node in nodes:
+            if not isinstance(node, dict):
+                continue
+            lit = node.get("llm_item")
+            if not isinstance(lit, dict):
+                continue
+            primary = normalize_evidence_type((profile or {}).get("primary_evidence_type"))
+            et = lit.get("evidence_type")
+            if et is None:
+                continue
+            if normalize_evidence_type(et) == primary:
+                lit.pop("evidence_type", None)
+
+    artifact["artifact_schema_version"] = 15
+    return artifact
+
+
 def aggregate_impl_study_section_status(sections: dict[str, Any]) -> str:
     """Derive a proposal-level status from per-section review nodes."""
     statuses: set[str] = set()
@@ -1223,6 +1295,7 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = migrate_artifact_to_v12(data)
     data = migrate_artifact_to_v13(data)
     data = migrate_artifact_to_v14(data)
+    data = migrate_artifact_to_v15(data)
     data = migrate_review_source_summary_unified_why(data)
     ensure_sources_review_auto_approved(data)
     return data

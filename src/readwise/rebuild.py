@@ -8,6 +8,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from src.pipeline.source_publication import backfill_publications_in_raw_dir
 from src.readwise.export import sha256_hex
 from src.readwise.library_index import ExportedRecord, LibraryIndex
 from src.readwise.sync import max_iso_timestamps
@@ -156,6 +157,19 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Overwrite a non-empty index (required when documents already exist).",
     )
+    parser.add_argument(
+        "--backfill-publication",
+        action="store_true",
+        help=(
+            "Update each raw/readwise/*.md sidecar with a derived publication field "
+            "(from site_name or source_url)."
+        ),
+    )
+    parser.add_argument(
+        "--backfill-only",
+        action="store_true",
+        help="With --backfill-publication, skip rebuilding readwise_library.json.",
+    )
     return parser
 
 
@@ -167,6 +181,13 @@ def main() -> int:
     if not raw_dir.is_dir():
         print(f"raw-dir is not a directory: {raw_dir}", file=sys.stderr)
         return 1
+
+    if args.backfill_publication:
+        updated, skipped = backfill_publications_in_raw_dir(raw_dir)
+        print(f"publication backfill: updated={updated} skipped={skipped}")
+        if args.backfill_only:
+            return 0
+
     try:
         result = rebuild_library_index_from_disk(
             raw_dir,

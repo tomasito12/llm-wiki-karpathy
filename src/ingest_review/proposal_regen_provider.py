@@ -193,6 +193,8 @@ def run_proposal_regeneration(
     if not cfg:
         raise ValueError(f"Unknown proposal regen entity: {entity_key}")
 
+    from src.ingest_review.providers.openai_provider import TITLE_CANONICALIZATION_RUBRIC
+
     title = new_title.strip()
     if not title:
         raise ValueError("new_title must be non-empty")
@@ -204,6 +206,7 @@ def run_proposal_regeneration(
         f"source_id: {document.source_id}",
         f"{cfg.new_title_key}: {title}",
         f"PROPOSAL_REGEN_RUBRIC:\n{cfg.rubric}",
+        f"TITLE_CANONICALIZATION_RUBRIC:\n{TITLE_CANONICALIZATION_RUBRIC}",
         "## REVIEWER_NOTE\n" + (reviewer_instruction.strip() if reviewer_instruction else "(none)"),
         "## CURRENT_PROPOSAL_JSON\n" + current_json,
     ]

@@ -99,8 +99,11 @@ Run these after substantive code changes:
 - **Preserves** only: `wiki/AGENTS.md`, `wiki/stage1-classifier.md`, `wiki/ingest-templates.md`, `wiki/stage2-artifact-router.md`.
 - **Recreates** empty shells: `wiki/index.md`, `wiki/log.md`, `wiki/questions/question-catalog.md`, `wiki/glossary/index.md`, empty `wiki/sources/` and `wiki/glossary/terms/`.
 - **Clears** `state/ingest_manifest.json` by default (ingest audit log).
+- **Resets** `config/review_tags_*.yaml` and `config/review_tool_types.yaml` / `config/review_model_types.yaml` to minimal baseline allowlists (unless **`--keep-tag-taxonomy`**).
+- Readwise exports store **`publication`** on each `raw/readwise/*.md` sidecar (from API `site_name` or URL via `src/pipeline/source_publication.py`). Backfill existing files: `hatch run readwise-rebuild-index --backfill-publication --backfill-only`.
 - **Does not** clear `state/readwise_library.json` unless you pass **`--reset-readwise-index`** (destructive: drops export dedupe + watermark; next sync may use the ~100-day lookback).
 - Does **not** delete `raw/readwise/` exports.
+- Does **not** reset `config/extraction_budgets.yaml` (proposal caps are unchanged).
 
 ## State files and Git
 

@@ -11,6 +11,8 @@ from typing import Any
 import yaml
 from bs4 import BeautifulSoup
 
+from src.pipeline.source_publication import resolve_publication
+
 # Hash the same conceptual content as ingest manifest: UTF-8 normalized extracted text
 # from HTML (whitespace-collapsed lines) so small HTML wrapper changes still correlate.
 
@@ -104,6 +106,16 @@ class SourceDocument:
         """Publication date string from frontmatter when present."""
         d = self.frontmatter.get("published_date")
         return str(d) if d else None
+
+    @property
+    def publication(self) -> str | None:
+        """Venue/platform from frontmatter, Readwise ``site_name``, or URL inference."""
+        explicit = self.frontmatter.get("publication")
+        if explicit is not None and str(explicit).strip():
+            return str(explicit).strip()
+        site = self.frontmatter.get("site_name")
+        site_str = str(site).strip() if site else None
+        return resolve_publication(site_str, self.canonical_url, author=self.author)
 
 
 def load_readwise_pair(

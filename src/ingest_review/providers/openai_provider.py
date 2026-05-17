@@ -5,11 +5,13 @@ from __future__ import annotations
 import json
 import logging
 import time
+from pathlib import Path
 from typing import Any
 
 from openai import APIError, APITimeoutError, OpenAI, RateLimitError
 from pydantic import ValidationError
 
+from src.ingest_review.canonical_titles import build_canonical_title_prompt_blocks
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.proposal_regen_provider import run_proposal_regeneration
 from src.ingest_review.providers.base import IngestionProvider
@@ -19,7 +21,7 @@ from src.ingest_review.schema import (
     GlossaryTagSuggestOutput,
     LlmClassificationOutput,
     SectionRegenerateOutput,
-    llm_output_json_schema,
+    llm_output_json_schema_for_classification,
 )
 from src.ingest_review.tags import normalize_tag, normalize_tag_list
 from src.ingest_review.wiki_snapshot import WikiSnapshot
@@ -45,24 +47,9 @@ likely reused across multiple future sources
 - medium: useful but not essential, moderate evidence, incremental contribution
 - low: marginal value, weak evidence, narrow applicability, or already well-covered
 
-Every proposal MUST include evidence_type — classify the EVIDENCE BASIS for this \
-proposal (not the topic). Use exactly one of: vendor_claim, independent_analysis, \
-benchmark, user_report, implementation_case, research_result, expert_opinion, \
-speculative_claim, mixed, unknown.
-- vendor_claim: the company/vendor/provider/tool-maker/organization discussed is \
-the source of the claim (e.g. their blog, product announcement, press release).
-- independent_analysis: independent writer, analyst, third-party publication — not \
-the vendor speaking for their own product.
-- benchmark: the proposal depends mainly on benchmark numbers, evals, leaderboards, \
-quantitative tests.
-- user_report: practitioner anecdote, forum/social/blog user experience.
-- implementation_case: concrete description of how something was implemented \
-(architecture, rollout, stack).
-- research_result: grounded in paper, formal experiment, or research artifact.
-- expert_opinion: mainly a named expert's judgment or strategic read.
-- speculative_claim: prediction or weakly evidenced forward-looking claim.
-- mixed: multiple evidence types matter equally; no single one dominates.
-- unknown: unclear from the source.
+Always fill source_evidence_profile with the dominant evidence basis for THIS SOURCE \
+(not per topic/term). See SOURCE_EVIDENCE_PROFILE_RUBRIC. Per-proposal evidence_type is \
+**optional** — include only when that extraction's basis differs from the source default.
 
 Prefer fewer high-value proposals over many medium/low proposals.
 
@@ -81,13 +68,14 @@ and review_burden_estimate. If the article contains no durable, wiki-worthy know
 set skip_recommended=true and skip_reason explaining why; return empty arrays for all \
 entity types. Do NOT force low-value extractions.
 
-Always fill source_type_detection with the detected source type, confidence, and reasoning. \
+Always fill source_evidence_profile and source_type_detection. \
+Set source_type_detection with the detected source type, confidence, and reasoning. \
 If the source is an ai_industry_roundup, also populate roundup_signals. \
 If the source is an ai_tools_roundup, extract ONLY tools and foundation_models per \
 AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC; leave roundup_signals empty []. \
 If the source is an interview_or_transcript, also populate interview_insights. \
-Prefer reusing existing wiki pages (match_candidates) when the article overlaps with existing \
-content; suggest append_to_existing over create_new_page whenever possible. \
+For page titles and terms, follow TITLE_CANONICALIZATION_RUBRIC and the ``CANONICAL_*`` \
+lists in the prompt. Append/create wiki routing is **not** part of this step. \
 For how_to: question_title is a wiki page name (noun phrase), not an interview question—see \
 HOWTOS_RUBRIC.
 
@@ -189,28 +177,39 @@ Prefer fewer high-value proposals over many medium/low proposals. \
 The system optimizes for: max durable knowledge gained per minute of human review."""
 
 
-EVIDENCE_TYPE_RUBRIC = """\
-## EVIDENCE TYPE (every proposal object)
+SOURCE_EVIDENCE_PROFILE_RUBRIC = """\
+## source_evidence_profile (required JSON subtree)
 
-Classify the evidence basis for THIS proposal — not the topic label.
-Use exactly one string for evidence_type:
+Classify the dominant evidence basis for the SOURCE as a whole — who is speaking and \
+how claims are supported across the article. This is **not** a property of individual \
+topics, glossary terms, or tools.
 
-- vendor_claim — company/vendor/model-provider/tool-maker claims about their own offering; \
-vendor blog or announcement framing.
-- independent_analysis — third-party or independent author assessment (not the vendor).
-- benchmark — proposal rests mainly on benchmark/eval/leaderboard/quantitative numbers.
-- user_report — practitioner report, anecdote, forum/blog/social experience.
-- implementation_case — concrete how-it-was-built / how-it-was-deployed description.
-- research_result — paper, formal experiment, or cited research artifact.
-- expert_opinion — named expert's judgment or strategic interpretation dominates.
-- speculative_claim — prediction or future-facing claim without strong grounding.
-- mixed — several evidence types are equally important.
-- unknown — basis unclear from text.
+Fields:
+- primary_evidence_type: exactly one of vendor_claim, independent_analysis, benchmark, \
+user_report, implementation_case, research_result, expert_opinion, speculative_claim, \
+mixed, unknown
+- reasoning: array of 1–3 short strings explaining why this source fits that type
 
-Rules: A useful proposal from an OpenAI post about their own model is still often \
-vendor_claim. Use speculative_claim for weak predictions. Use benchmark only when \
-quantitative eval evidence is central. Use implementation_case only with real \
-implementation detail. Do not leave evidence_type blank — use unknown if unsure."""
+Evidence type definitions:
+- vendor_claim — the company/vendor/provider discussed is the source of the claims \
+(e.g. their blog, product announcement, press release, demo video).
+- independent_analysis — independent writer, analyst, or third-party publication — not \
+the vendor speaking for their own product.
+- benchmark — the source depends mainly on benchmark numbers, evals, leaderboards.
+- user_report — practitioner anecdotes, forum/social/blog experience reports dominate.
+- implementation_case — concrete how-it-was-built / deployment descriptions dominate.
+- research_result — grounded in paper, formal experiment, or research artifact.
+- expert_opinion — named expert judgment or strategic interpretation dominates.
+- speculative_claim — predictions or weakly evidenced forward-looking claims dominate.
+- mixed — several evidence types matter equally; no single one dominates.
+- unknown — unclear from the source.
+
+Per-proposal evidence_type (optional on each proposal object):
+- **Omit** evidence_type when the proposal inherits the source default.
+- **Include** evidence_type only when this specific extraction clearly differs \
+(e.g. vendor post with an independent benchmark section extracted as its own proposal).
+
+Do NOT repeat the source default on every proposal."""
 
 
 TAG_ONTOLOGY_RUBRIC = """\
@@ -249,6 +248,23 @@ Tools and foundation models use proposed_types (not proposed_tags):
 - Same quality rules as proposed_tags: each type must fit well; max 5; no ordering hierarchy.
 - suggested_new_type: single kebab-case candidate when the type registry lacks a fit (legacy \
 field); prefer filling proposed_types from the allowlist when possible."""
+
+
+TITLE_CANONICALIZATION_RUBRIC = """\
+## Canonical titles (avoid fragmentation)
+
+Before inventing a new page title, term, or slug, read the entity's ``CANONICAL_*`` list \
+in this prompt (wiki index + approved prior reviews).
+
+- If this source's content clearly belongs on an existing canonical entry, reuse that \
+**title verbatim** (exact spelling and casing) and the listed slug when provided.
+- Do **not** output near-synonyms or rewordings (e.g. "Harness decay" vs "Harness Decay", \
+"eval harness drift" vs "Harness Decay").
+- If no canonical entry fits, invent one broad, stable title per the entity rubric.
+- Within one response, reuse the **same** title for the same concept across multiple \
+extractions — do not create two proposals that differ only in wording.
+
+Wiki append vs create-new-page routing is **out of scope** for this extraction step."""
 
 
 SOURCE_CHAPTERS_RUBRIC = """## source_summary (required JSON subtree)
@@ -334,10 +350,9 @@ When the gate passes, ALL hard requirements apply:
 - At least 2 evidence_snippets with at least 1 provenance: "stated" (verbatim-supported)
 - deployment_context and outcome_status non-empty and specific (not "unknown", "TBD", \
 or generic filler)
-- evidence_type should be implementation_case or mixed when deployment evidence \
-dominates; not speculative_claim or expert_opinion alone
-- Default suggested_action: "ignore" unless confidence >= 0.6 AND value_level is \
-high or medium with clear evidence
+- source_evidence_profile should be implementation_case or mixed when deployment evidence \
+dominates; use per-proposal evidence_type override only when a slice clearly differs
+- Demote weak extractions with low confidence and value_level "low" when evidence is thin
 
 IMPLEMENTATION STUDY EXTRACTION BOUNDARIES — do NOT propose for:
 - Personal experiments, weekend builds, solo side projects ("I built this over the weekend")
@@ -389,12 +404,9 @@ say so explicitly
 provenance is "stated", "inferred", or "interpretation"
 - proposed_tags: allowlist tags from IMPL_STUDY_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
-- match_candidates: existing wiki implementation-study pages that may overlap
 - confidence: 0.0–1.0
-- suggested_action: "create" | "update" | "ignore"
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 Voice: concise, direct, practical. Focus on operational reality over marketing \
 claims. Skeptical where warranted. No hype, no LinkedIn tone.
@@ -471,12 +483,9 @@ canonical glossary titles. If no exact batch/wiki label applies, omit that edge 
 string) rather than approximating.
 - proposed_tags: allowlist tags from GLOSSARY_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
-- match_candidates: existing glossary terms that may overlap
 - confidence: 0.0-1.0
-- suggested_action: "create" | "update" | "ignore"
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 Voice: clear, practical, accessible. Define for a senior practitioner, \
 not an academic. Prefer operational understanding over theoretical precision.
@@ -495,9 +504,6 @@ that is useful long-term?"
 Only extract topics that are: reusable across multiple contexts, operationally \
 relevant, likely to reappear, conceptually stable, and broad enough to \
 aggregate knowledge from many future sources.
-
-Default to append_to_existing. New pages (create_new_page) only for genuinely \
-novel, broad, stable concepts not covered by any existing topic.
 
 Each object MUST include:
 - topic_slug: kebab-case stable identifier — broad enough to accumulate many \
@@ -532,12 +538,9 @@ belong only in proposed_tags. Do **not** repeat this object's own \
 topic_slug. Use [] when no valid cross-link exists.
 - proposed_tags: allowlist tags from TOPIC_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
-- match_candidates: existing topic pages that may overlap
 - confidence: 0.0-1.0
-- suggested_action: "append_to_existing" | "create_new_page" | "ignore"
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 Avoid: article-specific framing, ultra-narrow topics, hype-driven \
 fragmentation, one-off concepts, duplicate existing topics.
@@ -561,9 +564,6 @@ HOWTOS_RUBRIC = """\
 Extract procedural/implementation knowledge, NOT theoretical summaries. \
 Only extract how-tos where the source provides enough implementation \
 substance — not vague advice.
-
-Default to append_to_existing. New pages only when the how-to covers a \
-genuinely distinct procedure not addressed by existing pages.
 
 ### Plain-language fields (what_and_problem, answer_summary)
 
@@ -608,15 +608,10 @@ listening to every call by hand is not realistic at high call volume.
 start with ``How``/``What``/``When``/``Why``, and must NOT include ``when``, ``if``, \
 or ``without`` clauses—move those to ``what_and_problem``.
 
-Before ``create_new_page``, compare the **core procedure** to \
-**EXISTING_HOWTO_TITLES** and ``match_candidates``. If an existing page covers the \
-same procedure, use ``append_to_existing`` and align the title with that page's style. \
-Prefer **fewer, broader** how-tos over many micro-variants (same spirit as topics: \
-avoid ultra-narrow fragmentation).
-
-If the source only supports a narrow edge case with no reusable procedure, use \
-``suggested_action: "ignore"`` or merge into a broader existing how-to rather than \
-creating a micro-howto.
+Compare the **core procedure** to **EXISTING_HOWTO_TITLES**; prefer **fewer, broader** \
+how-tos over micro-variants. If the source only supports a narrow edge case with no \
+If the source only supports a narrow edge case with no reusable procedure, omit the \
+proposal or fold substance into a broader how-to title per TITLE_CANONICALIZATION_RUBRIC.
 
 Each object MUST include:
 - question_title: wiki page title (noun phrase per Title granularity above)
@@ -632,12 +627,9 @@ of strings)
 - related_howtos: cross-references to other how-to slugs (list of strings)
 - proposed_tags: allowlist tags from HOWTO_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
-- match_candidates: existing how-to pages that may overlap
 - confidence: 0.0-1.0
-- suggested_action: "append_to_existing" | "create_new_page" | "ignore"
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 Avoid: interrogative titles, conditional clauses in titles, article-specific \
 framing, ultra-narrow micro-howtos, duplicate existing how-tos.
@@ -678,9 +670,6 @@ Extract time-sensitive industry patterns, NOT timeless concepts (those \
 belong in topics). Trend pages acknowledge uncertainty by design — no \
 certainty theater.
 
-Default to append_to_existing. New pages only for genuinely novel \
-industry patterns not captured by existing trend pages.
-
 Each object MUST include:
 - trend_slug: stable kebab-case wiki page id (e.g. inference-cost-collapse, NOT \
 GPT-4o-price-cut or headline labels)
@@ -697,12 +686,9 @@ conflicting signals, or limited evidence. Empty string is NOT acceptable
 - related_trends: other trend_slug values (kebab-case list of strings)
 - proposed_tags: allowlist tags from TREND_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
-- match_candidates: existing trend pages that may overlap
 - confidence: 0.0-1.0
-- suggested_action: "append_to_existing" | "create_new_page" | "ignore"
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 Voice: measured, evidence-grounded, explicitly uncertain where warranted. \
 No hype, no certainty theater.
@@ -723,8 +709,7 @@ Tool-worthiness criteria (ALL must apply):
 - Reusable: likely to recur across multiple future sources
 - Distinct: meaningful standalone product, not a feature of another tool
 - Accumulative: future sources could meaningfully enrich this tool's page
-If a tool is merely mentioned in passing, set confidence < 0.3 and \
-suggested_action = "ignore".
+If a tool is merely mentioned in passing, set confidence < 0.3 and value_level = "low".
 
 Each object MUST include:
 - name: the tool's established name (e.g. Cursor, LangGraph, Ollama)
@@ -759,13 +744,9 @@ multi-category. First = primary category, second = optional adjacent role. \
 Answer "What kind of thing is this?" — NOT quality/popularity. Use [] if none fit
 - proposed_new_type: if no existing type fits after checking near-synonyms in \
 the allowlist, propose ONE new type in kebab-case; null otherwise
-- match_candidates: existing tool pages that may overlap
 - confidence: 0.0-1.0
-- suggested_action: prefer "append_to_existing" for tools already in the wiki; \
-"create_new_page" only for genuinely new tools worth tracking long-term
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 ### Explanatory depth (strengths, weaknesses_limitations, maturity_signals, lists)
 
@@ -813,8 +794,8 @@ Model-worthiness criteria:
 - Comparative observations: meaningful comparison against other models
 - Strategic significance: important enough that future sources will enrich it
 - Reusable knowledge: observations likely useful beyond this single article
-If a model is merely mentioned without operational depth, set confidence < 0.3 \
-and suggested_action = "ignore".
+If a model is merely mentioned without operational depth, set confidence < 0.3 and \
+value_level = "low".
 
 Each object MUST include:
 - model_name: the model's established name (e.g. GPT-5, Claude Sonnet, Gemini)
@@ -856,13 +837,9 @@ multi-category. First = deployment/openness profile, second = capability focus. 
 Use [] if no approved type fits
 - proposed_new_type: if no existing type fits after checking near-synonyms in \
 the allowlist, propose ONE new type in kebab-case; null otherwise
-- match_candidates: existing model pages that may overlap
 - confidence: 0.0-1.0
-- suggested_action: prefer "append_to_existing" for models already in the wiki; \
-"create_new_page" only for genuinely new models worth tracking long-term
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 Classification rule: types describe WHAT THE MODEL IS, not subjective quality. \
 Good: reasoning-model, coding-model, multimodal-model. \
@@ -955,8 +932,7 @@ relevance exists, state "No direct service automation implications identified."
 - mentioned_entities: organizations, tools, models mentioned (array of strings)
 - evidence_snippets: supporting source quotes for provenance (array of strings)
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 If source is NOT a roundup, return an empty array [].
 
@@ -1009,8 +985,7 @@ identified."
 speculative claims — explicitly mark as speculative (array of strings)
 - evidence_snippets: supporting source quotes for provenance (array of strings)
 - value_level: "high", "medium", or "low"
-- evidence_type: vendor_claim | independent_analysis | benchmark | user_report | \
-implementation_case | research_result | expert_opinion | speculative_claim | mixed | unknown
+- evidence_type: (optional) only if this proposal differs from source_evidence_profile
 
 If source is NOT an interview/transcript, return an empty array [].
 
@@ -1066,6 +1041,7 @@ def _build_user_prompt(
     model_types: list[str] | None = None,
     source_type_override: str | None = None,
     extraction_budgets: dict[str, int] | None = None,
+    reviews_root: Path | None = None,
     *,
     prompt_version: str,
 ) -> str:
@@ -1075,10 +1051,12 @@ def _build_user_prompt(
         f"source_id: {doc.source_id}",
         f"title: {doc.title or ''}",
         f"author: {doc.author or ''}",
+        f"publication: {doc.publication or ''}",
         f"published_date: {doc.published_date or ''}",
         f"canonical_url: {doc.canonical_url or ''}",
     ]
-    schema_hint = json.dumps(llm_output_json_schema(), indent=2)[:24_000]
+    schema_hint = json.dumps(llm_output_json_schema_for_classification(), indent=2)[:24_000]
+    canonical_blocks = build_canonical_title_prompt_blocks(wiki, reviews_root)
     impl_tags = impl_study_tags or []
     gloss_tags = glossary_tags or []
     t_tags = topic_tags or []
@@ -1103,10 +1081,6 @@ def _build_user_prompt(
         mx = budgets.get(bk, 3)
         budget_lines_parts.append(f"- {label}: max {mx} proposals")
     budget_block = EXTRACTION_BUDGET_RUBRIC.format(budget_lines="\n".join(budget_lines_parts))
-    impl_titles = wiki.implementation_study_titles[:100] if wiki.implementation_study_titles else []
-    topic_titles = wiki.topic_titles[:100] if wiki.topic_titles else []
-    howto_titles = wiki.howto_titles[:100] if wiki.howto_titles else []
-    trend_titles = wiki.trend_titles[:100] if wiki.trend_titles else []
     trend_slugs = wiki.trend_slugs[:100] if wiki.trend_slugs else []
     blocks = [
         "## Metadata\n" + "\n".join(meta_lines),
@@ -1114,18 +1088,21 @@ def _build_user_prompt(
         budget_block,
         AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC,
         VALUE_RANKING_RUBRIC,
-        EVIDENCE_TYPE_RUBRIC,
+        SOURCE_EVIDENCE_PROFILE_RUBRIC,
         TAG_ONTOLOGY_RUBRIC,
         REGISTRY_TYPES_SEMANTICS,
-        "## EXISTING_GLOSSARY_TERMS\n" + "\n".join(f"- {t}" for t in wiki.glossary_terms[:150]),
-        "## EXISTING_TOOL_NAMES\n" + "\n".join(f"- {t}" for t in wiki.tool_names[:200]),
-        "## EXISTING_FOUNDATION_MODEL_NAMES\n"
-        + "\n".join(f"- {m}" for m in wiki.foundation_model_names[:120]),
-        "## EXISTING_IMPLEMENTATION_STUDY_TITLES\n" + "\n".join(f"- {t}" for t in impl_titles),
-        "## EXISTING_TOPIC_TITLES\n" + "\n".join(f"- {t}" for t in topic_titles),
-        "## EXISTING_HOWTO_TITLES\n" + "\n".join(f"- {t}" for t in howto_titles),
-        "## EXISTING_TREND_TITLES\n" + "\n".join(f"- {t}" for t in trend_titles),
-        "## EXISTING_TREND_SLUGS\n" + "\n".join(f"- {s}" for s in trend_slugs),
+        TITLE_CANONICALIZATION_RUBRIC,
+        "## CANONICAL_GLOSSARY_TERMS\n" + canonical_blocks["CANONICAL_GLOSSARY_TERMS"],
+        "## CANONICAL_TOOL_NAMES\n" + canonical_blocks["CANONICAL_TOOL_NAMES"],
+        "## CANONICAL_FOUNDATION_MODEL_NAMES\n"
+        + canonical_blocks["CANONICAL_FOUNDATION_MODEL_NAMES"],
+        "## CANONICAL_IMPL_STUDY_TITLES\n" + canonical_blocks["CANONICAL_IMPL_STUDY_TITLES"],
+        "## CANONICAL_TOPIC_TITLES\n" + canonical_blocks["CANONICAL_TOPIC_TITLES"],
+        "## CANONICAL_HOWTO_TITLES\n" + canonical_blocks["CANONICAL_HOWTO_TITLES"],
+        "## CANONICAL_TREND_TITLES\n" + canonical_blocks["CANONICAL_TREND_TITLES"],
+        "## EXISTING_TOPIC_SLUGS\n" + "\n".join(f"- {s}" for s in wiki.topic_slugs[:100])
+        or "(none)",
+        "## EXISTING_TREND_SLUGS\n" + "\n".join(f"- {s}" for s in trend_slugs) or "(none)",
         "## TOOL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_types),
         "## MODEL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in m_types),
         "## HOWTO_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in howto_tags),
@@ -1134,6 +1111,7 @@ def _build_user_prompt(
         "## TOPIC_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in t_tags),
         "## TREND_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tr_tags),
         "## SOURCE_TYPE_DETECTION_RUBRIC\n" + SOURCE_TYPE_DETECTION_RUBRIC,
+        "## SOURCE_EVIDENCE_PROFILE_RUBRIC\n" + SOURCE_EVIDENCE_PROFILE_RUBRIC,
         "## SOURCE_CHAPTERS_RUBRIC\n" + SOURCE_CHAPTERS_RUBRIC,
         "## GLOSSARY_RUBRIC\n" + GLOSSARY_RUBRIC,
         "## IMPL_STUDY_RUBRIC\n" + IMPL_STUDY_RUBRIC,
@@ -1159,13 +1137,15 @@ def _build_user_prompt(
             "## ARTICLE_PLAIN_TEXT\n" + doc.plain_text,
             "## Instructions\n"
             "Output one JSON object matching the schema keys: extraction_meta, "
-            "source_type_detection, source_summary, glossary, tools, foundation_models, "
+            "source_evidence_profile, source_type_detection, source_summary, glossary, "
+            "tools, foundation_models, "
             "how_to, topics, implementation_studies, industry_trends, roundup_signals, "
             "interview_insights. "
             "FIRST: fill extraction_meta (skip_recommended, skip_reason, "
             "total_candidates_considered, review_burden_estimate). "
             "If skip_recommended is true, return empty arrays for all entity types. "
             "THEN: fill source_type_detection per SOURCE_TYPE_DETECTION_RUBRIC. "
+            "THEN: fill source_evidence_profile per SOURCE_EVIDENCE_PROFILE_RUBRIC. "
             "THEN: fill source_summary per SOURCE_CHAPTERS_RUBRIC. "
             "IF detected_source_type is ai_tools_roundup: follow "
             "AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC "
@@ -1226,6 +1206,7 @@ class OpenAIIngestionProvider(IngestionProvider):
         model_types_allowlist: list[str] | None = None,
         source_type_override: str | None = None,
         extraction_budgets: dict[str, int] | None = None,
+        reviews_root: Path | None = None,
         model: str,
         prompt_version: str,
         max_retries: int = 3,
@@ -1243,6 +1224,7 @@ class OpenAIIngestionProvider(IngestionProvider):
             model_types=model_types_allowlist,
             source_type_override=source_type_override,
             extraction_budgets=extraction_budgets,
+            reviews_root=reviews_root,
             prompt_version=prompt_version or PROMPT_VERSION,
         )
         messages = [
@@ -1250,7 +1232,7 @@ class OpenAIIngestionProvider(IngestionProvider):
             {"role": "user", "content": user_prompt},
         ]
         # Prefer json_schema when the API accepts it; fall back to json_object.
-        schema = llm_output_json_schema()
+        schema = llm_output_json_schema_for_classification()
         response_formats: list[dict[str, Any] | None] = [
             {
                 "type": "json_schema",

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from unittest.mock import MagicMock, patch
 
+from src.ingest_review.topic_related_topics_suggest import RelatedTopicCandidate
 from src.ingest_review.topics_ui import (
     apply_topic_list_edit,
     apply_topic_proposal_edits,
@@ -15,6 +16,7 @@ from src.ingest_review.topics_ui import (
     format_topic_proposal_readonly_markdown,
     topic_edit_key_prefix,
 )
+from src.ingest_review.wiki_snapshot import WikiSnapshot
 
 
 def _sample_node() -> dict:
@@ -101,6 +103,22 @@ def test_effective_topic_list_modified_branch() -> None:
     assert effective_topic_list(llm, sections, "key_points") == ["x"]
 
 
+def test_format_topic_readonly_hides_evidence_when_inheriting_source() -> None:
+    artifact = {
+        "llm_output": {
+            "source_evidence_profile": {"primary_evidence_type": "independent_analysis"},
+        },
+        "review": {
+            "source_evidence_profile": {
+                "llm_item": {"primary_evidence_type": "independent_analysis"},
+            },
+        },
+    }
+    md = format_topic_proposal_readonly_markdown(_sample_node(), [], artifact=artifact)
+    assert "Independent Analysis" not in md
+    assert "Override" not in md
+
+
 def test_format_topic_readonly_includes_google_link() -> None:
     md = format_topic_proposal_readonly_markdown(_sample_node(), [])
     assert '[Google: "RAG patterns"]' in md
@@ -172,6 +190,54 @@ def test_build_readonly_topics_markdown_tier_headers() -> None:
 def test_topic_edit_key_prefix_includes_regen_count() -> None:
     assert topic_edit_key_prefix("src", "pid9", regen_count=0) == "src_t_pid9_r0"
     assert topic_edit_key_prefix("src", "pid9", regen_count=2) == "src_t_pid9_r2"
+
+
+def test_format_topic_readonly_related_topics_section_with_suggestions() -> None:
+    suggestions = [
+        RelatedTopicCandidate("context-engineering", "Context Engineering", "wiki"),
+    ]
+    md = format_topic_proposal_readonly_markdown(
+        _sample_node(),
+        [],
+        related_suggestions=suggestions,
+    )
+    assert "**Related topics**" in md
+    assert "*Suggested:*" in md
+    assert "context-engineering" in md
+
+
+def test_apply_topic_proposal_edits_persists_related_topics() -> None:
+    node = _sample_node()
+    apply_topic_proposal_edits(
+        node,
+        {
+            "topic_slug": "rag-patterns",
+            "topic_title": "RAG patterns",
+            "knowledge_summary": "x",
+            "examples": "",
+            "operational_insight": "",
+            "relevance_note": "",
+            "key_points": "",
+            "related_topics": "context-engineering\nprompt-engineering",
+        },
+    )
+    assert effective_topic_list(node["llm_item"], node["sections"], "related_topics") == [
+        "context-engineering",
+        "prompt-engineering",
+    ]
+
+
+def test_build_readonly_topics_markdown_includes_related_when_wiki_passed() -> None:
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        topic_titles=["Context Engineering"],
+        topic_slugs=["context-engineering"],
+    )
+    node = _sample_node()
+    md = build_readonly_topics_markdown([node], [], artifact={}, wiki=wiki, reviews_root=None)
+    assert "**Related topics**" in md
 
 
 def test_queue_topic_regen_sets_pending_payload() -> None:
