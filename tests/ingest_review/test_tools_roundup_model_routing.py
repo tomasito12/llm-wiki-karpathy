@@ -73,7 +73,7 @@ def test_convert_tool_to_foundation_model_maps_fields() -> None:
     )
     m = convert_tool_proposal_to_foundation_model(t)
     assert m.model_name == "MegaLM"
-    assert m.operational_summary == "A big model."
+    assert m.operational_profile == "A big model."
     assert m.service_automation_implications == "API access"
     assert m.core_capabilities == ["reasoning"]
     assert m.comparative_observations == ["vertex"]

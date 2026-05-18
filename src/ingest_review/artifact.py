@@ -1198,6 +1198,131 @@ _ENTITY_LLM_KEYS_V15: tuple[str, ...] = (
 )
 
 
+def _join_nonempty_text_parts(parts: list[str], *, separator: str = "\n\n") -> str:
+    """Join stripped non-empty strings for field consolidation migrations."""
+    cleaned = [p.strip() for p in parts if isinstance(p, str) and p.strip()]
+    return separator.join(cleaned)
+
+
+def _section_final_text(sections: dict[str, Any], key: str) -> str:
+    """Return reviewer-final text for a scalar section key, if any."""
+    sec = sections.get(key)
+    if not isinstance(sec, dict):
+        return ""
+    final = sec.get("final_text")
+    return final.strip() if isinstance(final, str) and final.strip() else ""
+
+
+def _migrate_foundation_model_llm_fields(item: dict[str, Any]) -> None:
+    """Collapse legacy model prose fields into operational_profile / deployment_implications."""
+    if not isinstance(item, dict):
+        return
+    has_legacy = any(
+        k in item for k in ("operational_summary", "strengths", "workflow_implications")
+    )
+    if not has_legacy and "operational_profile" in item:
+        return
+
+    profile_parts = [
+        str(item.get("operational_profile") or "").strip(),
+        str(item.pop("operational_summary", "") or "").strip(),
+        str(item.pop("strengths", "") or "").strip(),
+    ]
+    item["operational_profile"] = _join_nonempty_text_parts(profile_parts)
+
+    deploy_parts = [
+        str(item.get("deployment_implications") or "").strip(),
+        str(item.pop("workflow_implications", "") or "").strip(),
+    ]
+    item["deployment_implications"] = _join_nonempty_text_parts(deploy_parts)
+
+
+def _migrate_foundation_model_review_sections(
+    sections: dict[str, Any],
+    llm_item: dict[str, Any],
+) -> None:
+    """Rename and merge per-section review nodes for foundation model field compression."""
+    if not isinstance(sections, dict):
+        return
+
+    profile_parts = [
+        _section_final_text(sections, "operational_profile"),
+        _section_final_text(sections, "operational_summary"),
+        _section_final_text(sections, "strengths"),
+    ]
+    deploy_parts = [
+        _section_final_text(sections, "deployment_implications"),
+        _section_final_text(sections, "workflow_implications"),
+    ]
+
+    for old_key in (
+        "operational_summary",
+        "strengths",
+        "workflow_implications",
+    ):
+        sections.pop(old_key, None)
+
+    if isinstance(llm_item, dict):
+        item_profile = str(llm_item.get("operational_profile") or "").strip()
+        item_deploy = str(llm_item.get("deployment_implications") or "").strip()
+        if item_profile and item_profile not in profile_parts:
+            profile_parts.insert(0, item_profile)
+        if item_deploy and item_deploy not in deploy_parts:
+            deploy_parts.insert(0, item_deploy)
+
+    merged_profile = _join_nonempty_text_parts(profile_parts)
+    merged_deploy = _join_nonempty_text_parts(deploy_parts)
+
+    if merged_profile:
+        prof_sec = sections.setdefault("operational_profile", _empty_scalar_review_node())
+        if isinstance(prof_sec, dict):
+            prof_sec["final_text"] = merged_profile
+            prof_sec["status"] = "modified"
+    else:
+        sections.setdefault("operational_profile", _empty_scalar_review_node())
+
+    if merged_deploy:
+        dep_sec = sections.setdefault("deployment_implications", _empty_scalar_review_node())
+        if isinstance(dep_sec, dict):
+            dep_sec["final_text"] = merged_deploy
+            dep_sec["status"] = "modified"
+    else:
+        sections.setdefault("deployment_implications", _empty_scalar_review_node())
+
+    for sk in MODEL_SCALAR_KEYS:
+        if sk not in sections:
+            sections[sk] = _empty_scalar_review_node()
+
+
+def migrate_artifact_to_v16(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v16: compress foundation model prose fields."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 16:
+        return artifact
+
+    llm = artifact.setdefault("llm_output", {})
+    models = llm.get("foundation_models")
+    if isinstance(models, list):
+        for item in models:
+            _migrate_foundation_model_llm_fields(item)
+
+    review = artifact.setdefault("review", {})
+    nodes = review.get("foundation_models")
+    if isinstance(nodes, list):
+        for node in nodes:
+            if not isinstance(node, dict):
+                continue
+            llm_item = node.get("llm_item")
+            if isinstance(llm_item, dict):
+                _migrate_foundation_model_llm_fields(llm_item)
+            sections = node.get("sections")
+            if isinstance(sections, dict) and isinstance(llm_item, dict):
+                _migrate_foundation_model_review_sections(sections, llm_item)
+
+    artifact["artifact_schema_version"] = 16
+    return artifact
+
+
 def migrate_artifact_to_v15(artifact: dict[str, Any]) -> dict[str, Any]:
     """Upgrade artifact to v15: source_evidence_profile; compact per-proposal evidence_type."""
     ver = int(artifact.get("artifact_schema_version") or 1)
@@ -1296,6 +1421,7 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = migrate_artifact_to_v13(data)
     data = migrate_artifact_to_v14(data)
     data = migrate_artifact_to_v15(data)
+    data = migrate_artifact_to_v16(data)
     data = migrate_review_source_summary_unified_why(data)
     ensure_sources_review_auto_approved(data)
     return data

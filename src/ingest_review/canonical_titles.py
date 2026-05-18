@@ -234,11 +234,17 @@ def build_canonical_index(
     return index
 
 
+CANONICAL_FUZZY_ALIGN_MIN_SCORE = 0.95
+
+
 def format_canonical_block(entries: list[CanonicalTitleEntry]) -> str:
     """Format prompt block body for one entity."""
     if not entries:
         return "(none — invent a new broad, stable title when warranted)"
-    lines: list[str] = []
+    lines: list[str] = [
+        "Listed pages are **not** default append targets; apply PAGE_MATCHING_RUBRIC "
+        "before reusing any title below.",
+    ]
     for e in entries:
         if e.slug:
             lines.append(f"- {e.title} | {e.slug}")
@@ -274,7 +280,7 @@ def find_canonical_match(
     title: str,
     entries: list[CanonicalTitleEntry],
     *,
-    min_score: float = 0.88,
+    min_score: float = CANONICAL_FUZZY_ALIGN_MIN_SCORE,
 ) -> CanonicalTitleEntry | None:
     """Return best canonical entry for *title*, or None."""
     norm = title.strip()

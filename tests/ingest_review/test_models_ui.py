@@ -17,7 +17,7 @@ def _sample_node() -> dict:
         "llm_item": {
             "model_name": "GPT-5",
             "provider": "OpenAI",
-            "operational_summary": "Strong reasoning.",
+            "operational_profile": "Strong reasoning.",
             "value_level": "high",
             "confidence": 0.95,
             "evidence_type": "benchmark",

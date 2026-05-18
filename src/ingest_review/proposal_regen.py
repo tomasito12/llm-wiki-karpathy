@@ -221,10 +221,9 @@ _TOOL_MERGE_KEYS: tuple[str, ...] = (
 
 _MODEL_MERGE_KEYS: tuple[str, ...] = (
     "provider",
-    "operational_summary",
-    "strengths",
+    "operational_profile",
+    "deployment_implications",
     "weaknesses_limitations",
-    "workflow_implications",
     "service_automation_implications",
     "maturity_signals",
     "pricing_inference_implications",

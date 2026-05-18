@@ -9,8 +9,8 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 from src.ingest_review.tags import MAX_PROPOSED_TAGS as _MAX_PROPOSED_TAGS
 from src.ingest_review.tags import normalize_tag, normalize_tag_list
 
-ARTIFACT_SCHEMA_VERSION = 15
-PROMPT_VERSION = "29"
+ARTIFACT_SCHEMA_VERSION = 16
+PROMPT_VERSION = "35"
 MAX_PROPOSED_TAGS = 5
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
@@ -433,10 +433,9 @@ class ModelRegenerateOutput(BaseModel):
     """JSON returned by per-model regeneration (no model_name field)."""
 
     provider: str = ""
-    operational_summary: str = ""
-    strengths: str = ""
+    operational_profile: str = ""
+    deployment_implications: str = ""
     weaknesses_limitations: str = ""
-    workflow_implications: str = ""
     service_automation_implications: str = ""
     maturity_signals: str = ""
     pricing_inference_implications: str = ""
@@ -536,10 +535,9 @@ class FoundationModelProposal(BaseModel):
 
     model_name: str = ""
     provider: str = ""
-    operational_summary: str = ""
-    strengths: str = ""
+    operational_profile: str = ""
+    deployment_implications: str = ""
     weaknesses_limitations: str = ""
-    workflow_implications: str = ""
     service_automation_implications: str = ""
     maturity_signals: str = ""
     pricing_inference_implications: str = ""
@@ -560,10 +558,9 @@ class FoundationModelProposal(BaseModel):
 MODEL_SCALAR_KEYS: tuple[str, ...] = (
     "model_name",
     "provider",
-    "operational_summary",
-    "strengths",
+    "operational_profile",
+    "deployment_implications",
     "weaknesses_limitations",
-    "workflow_implications",
     "service_automation_implications",
     "maturity_signals",
     "pricing_inference_implications",
@@ -580,10 +577,9 @@ MODEL_LIST_KEYS: tuple[str, ...] = (
 MODEL_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
     "model_name",
     "provider",
-    "operational_summary",
-    "strengths",
+    "operational_profile",
+    "deployment_implications",
     "weaknesses_limitations",
-    "workflow_implications",
     "service_automation_implications",
     "maturity_signals",
     "pricing_inference_implications",

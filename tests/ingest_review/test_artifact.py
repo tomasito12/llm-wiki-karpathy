@@ -26,6 +26,7 @@ from src.ingest_review.artifact import (
     migrate_artifact_to_v13,
     migrate_artifact_to_v14,
     migrate_artifact_to_v15,
+    migrate_artifact_to_v16,
     review_artifact_path,
     save_artifact,
     touch_review_session,
@@ -128,7 +129,7 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 15
+    assert art["artifact_schema_version"] == 16
     assert art["source"]["source_id"] == stem
     assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
     assert "source_evidence_profile" in art["review"]
@@ -697,7 +698,8 @@ def test_default_review_builds_model_per_section_nodes() -> None:
             {
                 "model_name": "GPT-5",
                 "provider": "OpenAI",
-                "operational_summary": "Strong for coding.",
+                "operational_profile": "Strong for coding.",
+                "deployment_implications": "Enables longer agent loops.",
                 "core_capabilities": ["long-context", "tool calling"],
                 "benchmark_observations": ["SWE-Bench leader"],
                 "comparative_observations": ["outperforms Claude"],
@@ -1060,7 +1062,7 @@ def test_proposal_status_on_new_review_nodes(tmp_path: Path) -> None:
         root=tmp_path,
     )
     assert art["review"]["glossary"][0]["proposal_status"] == "approved"
-    assert art["artifact_schema_version"] == 15
+    assert art["artifact_schema_version"] == 16
 
 
 def test_migrate_v14_merges_primary_secondary_into_tag_lists() -> None:
@@ -1440,6 +1442,61 @@ def test_migrate_v15_adds_source_evidence_profile_and_compacts() -> None:
     assert profile["primary_evidence_type"] == "vendor_claim"
     assert "evidence_type" not in art["llm_output"]["glossary"][0]
     assert "source_evidence_profile" in art["review"]
+
+
+def test_migrate_v16_collapses_foundation_model_prose_fields() -> None:
+    """migrate_artifact_to_v16 merges operational_summary/strengths/workflow fields."""
+    art: dict[str, Any] = {
+        "artifact_schema_version": 15,
+        "llm_output": {
+            "foundation_models": [
+                {
+                    "model_name": "GPT-5",
+                    "operational_summary": "Strong for coding.",
+                    "strengths": "- Long-context agent loops.",
+                    "workflow_implications": "Reduces chunking overhead.",
+                },
+            ],
+        },
+        "review": {
+            "foundation_models": [
+                {
+                    "llm_item": {
+                        "model_name": "GPT-5",
+                        "operational_summary": "Strong for coding.",
+                        "strengths": "- Long-context agent loops.",
+                        "workflow_implications": "Reduces chunking overhead.",
+                    },
+                    "sections": {
+                        "operational_summary": {
+                            "status": "pending",
+                            "final_text": None,
+                            "notes": None,
+                        },
+                        "strengths": {
+                            "status": "modified",
+                            "final_text": "Reviewer strength note.",
+                            "notes": None,
+                        },
+                    },
+                },
+            ],
+        },
+    }
+    migrate_artifact_to_v16(art)
+    assert art["artifact_schema_version"] == 16
+    item = art["llm_output"]["foundation_models"][0]
+    assert "operational_summary" not in item
+    assert "strengths" not in item
+    assert "workflow_implications" not in item
+    assert "Strong for coding." in item["operational_profile"]
+    assert "Long-context agent loops." in item["operational_profile"]
+    assert item["deployment_implications"] == "Reduces chunking overhead."
+    sections = art["review"]["foundation_models"][0]["sections"]
+    assert "operational_summary" not in sections
+    assert "strengths" not in sections
+    assert "operational_profile" in sections
+    assert "Reviewer strength note." in sections["operational_profile"]["final_text"]
 
 
 def test_ensure_review_started_sets_timestamp_when_missing() -> None:

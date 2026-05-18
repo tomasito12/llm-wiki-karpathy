@@ -430,7 +430,8 @@ def test_record_events_model_per_section(tmp_path: Path) -> None:
                 {
                     "model_name": "GPT-5",
                     "provider": "OpenAI",
-                    "operational_summary": "Strong for coding.",
+                    "operational_profile": "Strong for coding.",
+                    "deployment_implications": "Agent harness fit.",
                     "core_capabilities": ["long-context"],
                 },
             ],
@@ -443,7 +444,8 @@ def test_record_events_model_per_section(tmp_path: Path) -> None:
                     "llm_item": {
                         "model_name": "GPT-5",
                         "provider": "OpenAI",
-                        "operational_summary": "Strong for coding.",
+                        "operational_profile": "Strong for coding.",
+                    "deployment_implications": "Agent harness fit.",
                         "core_capabilities": ["long-context"],
                     },
                     "sections": {
@@ -453,7 +455,7 @@ def test_record_events_model_per_section(tmp_path: Path) -> None:
                             "final_text": "OpenAI Inc.",
                             "notes": None,
                         },
-                        "operational_summary": {
+                        "operational_profile": {
                             "status": "pending",
                             "final_text": None,
                             "notes": None,

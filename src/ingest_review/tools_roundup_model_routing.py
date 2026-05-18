@@ -68,10 +68,9 @@ def convert_tool_proposal_to_foundation_model(tool: ToolProposal) -> FoundationM
     return FoundationModelProposal(
         model_name=tool.name,
         provider="",
-        operational_summary=tool.short_description,
-        strengths=tool.strengths,
+        operational_profile=tool.short_description,
+        deployment_implications=tool.operational_relevance,
         weaknesses_limitations=tool.weaknesses_limitations,
-        workflow_implications="",
         service_automation_implications=tool.operational_relevance,
         maturity_signals=tool.maturity_signals,
         pricing_inference_implications="",

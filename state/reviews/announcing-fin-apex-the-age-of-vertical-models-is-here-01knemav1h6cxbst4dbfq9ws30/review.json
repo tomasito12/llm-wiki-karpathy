@@ -1,0 +1,1190 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-18T20:18:48+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgyhiqUswmRnkhEbZMmieMG3CSBVg",
+    "token_usage": {
+      "completion_tokens": 4666,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 25182,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 29848
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "The source claims Apex beats \"the very best models in the industry including GPT-5.4 and Opus 4.5,\" but does not provide benchmark methodology or scores.",
+          "The source reports one customer\u2019s resolution rate improving from 68% to 75%, which is a meaningful operational comparison but still vendor-reported."
+        ],
+        "comparative_observations": [
+          "The model is claimed to outperform GPT-5.4 and Opus 4.5 on customer service performance.",
+          "The source says Apex is faster and cheaper than other available models for the same task.",
+          "The post frames Apex as a better fit for customer service than general frontier models because it is specialized on proprietary support data."
+        ],
+        "confidence": 0.92,
+        "core_capabilities": [
+          "The model is tuned to resolve customer issues in a support workflow rather than act as a general-purpose assistant.",
+          "The model is positioned to reduce hallucinations in customer-facing conversations, which matters for policy accuracy and trust.",
+          "The model is designed to be fast enough for real-time customer service use, where response latency affects user experience."
+        ],
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "Intercom says the model is already running on nearly all English chat and email customer conversations, which is a strong production signal. The source also says Fin handles almost 2M customer issues per week, indicating high-scale operational use, but the evidence remains self-reported by the vendor.",
+        "model_name": "Apex 1.0",
+        "operational_summary": "Apex 1.0 is a custom model for customer service workloads inside Fin. The source positions it as a specialized model that outperforms general-purpose frontier models on resolution rate, speed, hallucination rate, and cost for support conversations.",
+        "pricing_inference_implications": "The post claims the model is cheaper than other available models, but gives no numbers. The practical inference is that specialized models may become economically attractive in high-volume support where small per-call savings compound materially, but this needs independent validation.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "proprietary",
+          "interactive-ai"
+        ],
+        "provider": "Intercom",
+        "related_models": [
+          "GPT-5.4",
+          "Opus 4.5",
+          "Sonnet 4.0"
+        ],
+        "service_automation_implications": "The model is explicitly framed for customer service, so the relevance to chatbots and support automation is direct. If the vendor\u2019s claims hold, a specialized model can improve containment and reduce unresolved conversations while also lowering per-ticket inference cost.",
+        "strengths": "- The model is described as materially better at resolving customer issues, which matters because resolution rate is the primary business metric in support automation.\n- The post claims it is faster and cheaper than available alternatives, which is important for high-volume service workloads where latency and per-interaction cost determine viability.\n- It is said to have fewer hallucinations, which is valuable in customer service because incorrect policy or troubleshooting answers can create escalations and rework.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"As of last week, ~100% of all (English language, chat and email) customer conversations are now running on Apex.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source provides no independent benchmark, no latency numbers, and no cost figures, so the strength claims remain vendor-led. It is also unclear how much of the gain comes from the model versus the surrounding Fin system, routing, or proprietary eval process.",
+        "workflow_implications": "This suggests that teams operating support agents may need their own model training and evaluation pipeline rather than relying entirely on off-the-shelf frontier models. It also implies that model selection may become tied to task-specific feedback loops and domain metrics like resolution rate, handoff rate, and hallucination rate."
+      }
+    ],
+    "glossary": [
+      {
+        "confidence": 0.79,
+        "evidence_type": null,
+        "extended_explanation": "Knowledge management in AI usually means turning messy information into something a model or workflow can actually use: searchable documents, structured entries, approved answers, or retrieval indexes. It matters because many production assistants fail not from lack of intelligence, but from poor access to the right information at the right time. Good knowledge management reduces repetition, improves consistency, and can make responses more grounded and easier to audit.",
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "proposed_definition": "The practice of capturing, organizing, and retrieving information so people or systems can use it reliably later. In AI systems, it often includes structuring documents, policies, and historical interactions so models can answer with fewer errors and less repeated work.",
+        "proposed_tags": [
+          "knowledge-management"
+        ],
+        "related_terms": [
+          "Retrieval-Augmented Generation"
+        ],
+        "relevance_note": "Knowledge management is durable in AI systems because the quality of stored and retrievable operational knowledge often determines answer quality more than raw model capability. It is especially important in chatbots, service agents, and internal assistants that need stable, auditable responses across many customer interactions.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"the domain specific proprietary evals that comprise our billions of human and agent customer service interaction data points created by our Fin resolution engine\"",
+        "term": "Knowledge Management",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "extended_explanation": "Fine-tuning lets teams bias a general model toward the language, decisions, and output patterns they need in a particular setting. Instead of asking the model to behave like a specialist through prompts alone, teams can actually change its learned behavior using examples from their own domain. In operational systems, this can reduce prompt length, improve consistency, and make the model better at repeated tasks that have clear success criteria.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "The process of adapting a pretrained model to a narrower task, domain, or style using additional training data. Fine-tuning is used when a general model is good but not specialized enough for a production workflow.",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_terms": [],
+        "relevance_note": "Fine-tuning is a core pattern in production AI because many useful tasks are narrow and benefit from domain adaptation. It is especially relevant for support automation, where tone, policy adherence, and task-specific resolution behavior often matter more than general language fluency.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Since day 1, the Fin engine has comprised a system of models, and last year we started replacing the off-the-shelf models with our own, custom trained on our proprietary data.\"",
+        "term": "Fine-tuning",
+        "value_level": "high"
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "The case suggests that specialized post-training on private operational data can outperform general frontier models on a narrow enterprise task. It also suggests that evaluation design may be as important as model architecture for final results.",
+        "business_objective": "Improve resolution rate, reduce hallucinations, increase speed, lower cost, and maintain differentiation in customer service automation.",
+        "company": "Intercom",
+        "confidence": 0.91,
+        "deployment_context": "As of last week, nearly 100% of English language chat and email customer conversations were running on Apex, and the Fin engine was already resolving almost 2M customer issues per week.",
+        "evidence_snippets": [
+          {
+            "claim": "Intercom replaced the core Fin answering model with Apex 1.0.",
+            "provenance": "stated",
+            "snippet": "\"But now that core answering model is Apex 1.0.\""
+          },
+          {
+            "claim": "The deployment is at scale across English chat and email conversations.",
+            "provenance": "stated",
+            "snippet": "\"As of last week, ~100% of all (English language, chat and email) customer conversations are now running on Apex.\""
+          },
+          {
+            "claim": "A customer saw a resolution-rate lift from 68% to 75% after the switch.",
+            "provenance": "stated",
+            "snippet": "\"One of our largest customers in the gaming space saw their resolution rate improve overnight from 68% to 75%\""
+          }
+        ],
+        "evidence_type": null,
+        "implications_for_service_automation": "This is directly about customer service automation. If the vendor claims hold, a custom model can improve containment and reduce unresolved conversations while keeping response quality, speed, and cost aligned with support operations.",
+        "industry": "customer service software",
+        "key_lessons": [
+          "Track resolution rate, latency, hallucination rate, and cost together rather than optimizing one metric in isolation.",
+          "Private interaction data can be a strategic asset if it is turned into domain evals and training data.",
+          "A specialized model only becomes valuable if it is deployed in a production workflow with enough volume to matter."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How representative is the reported gaming-customer improvement across other customers and issue types?",
+          "What exact benchmark or evaluation protocol showed Apex outperforming GPT-5.4 and Opus 4.5?",
+          "How much of the gain comes from the model versus the surrounding Fin system and routing logic?"
+        ],
+        "operational_constraints": "The source highlights scale, cost, latency, hallucination control, and the need for domain-specific data as the main constraints. It does not provide failure cases, rollback thresholds, or safety incidents.",
+        "outcome_status": "Ongoing production rollout with reported operational gains. Intercom claims a large gaming customer saw resolution rate improve from 68% to 75% overnight after the switch.",
+        "overview": "Intercom says it replaced the core answering model in Fin with a custom model called Apex 1.0 and moved nearly all English chat and email customer conversations onto it. The company frames this as a production deployment at scale, not a small pilot.",
+        "primary_tag": "enterprise-ai-adoption",
+        "proposed_tags": [
+          "enterprise-ai-adoption"
+        ],
+        "related_sources": [
+          "https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/"
+        ],
+        "secondary_tag": "",
+        "strategic_signals": "The source argues that customer service vendors may need to become full-stack AI companies with their own models and evals. It also suggests a competitive shift from using shared frontier models to building task-specific model moats.",
+        "success_or_failure_factors": "Intercom attributes the result to proprietary data, domain-specific evals, and a purpose-built Fin resolution engine that had already been tuned in production. The source also suggests that speed and hallucination reduction mattered alongside raw resolution quality.",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "technical_approach": "Intercom says Apex was trained by its AI Group on proprietary customer-service data and on domain-specific proprietary evals built from billions of human and agent interaction data points. The company had already been replacing off-the-shelf models with custom models before Apex became the core answering model.",
+        "title": "Fin Apex customer-service model rollout",
+        "value_level": "high",
+        "what_was_implemented": "A custom-trained customer-service model, Apex 1.0, embedded in the Fin engine as the core answering model."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-03-26",
+        "confidence": 0.87,
+        "evidence_from_source": "Intercom presents Apex as a custom customer-service model that outperforms frontier generalists on support tasks and argues that customer-service vendors will need their own models to stay differentiated.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_trends": [
+          "models-becoming-execution-layers"
+        ],
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Apex is said to be the highest performing, fastest, and cheapest model for customer service.",
+          "Fin is reportedly resolving almost 2M customer issues per week.",
+          "A gaming customer reportedly improved resolution rate from 68% to 75% after the switch."
+        ],
+        "supporting_snippet": "\"We believe that the winners in such spaces must and will become full stack AI companies.\"",
+        "time_sensitivity": "Actionable as of 2026-03-26; the source suggests this is an emerging competitive pattern, but the evidence is vendor-led and may not generalize across all AI categories.",
+        "trend_description": "Domain-specific models trained for a narrow business function can outperform general-purpose models when the workflow has stable success criteria, enough proprietary data, and operationally important tradeoffs such as cost, speed, and policy compliance.",
+        "trend_slug": "vertical-models",
+        "trend_title": "Vertical Models",
+        "uncertainty_note": "The claim rests on a single vendor launch and one customer example, so it is not enough to prove a broad market transition. It may apply best in high-volume, data-rich domains rather than every AI use case.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The source is Intercom\u2019s own blog post announcing Apex and describing its performance.",
+        "Claims about resolution rate, speed, hallucinations, cost, and deployment are presented by the vendor without independent verification.",
+        "The strategic conclusions are the author\u2019s interpretation of their own product launch."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "Intercom is announcing a new AI model called Apex for its customer service product, Fin. The company says the model is faster, cheaper, and better at solving customer issues than the general-purpose models it used before. It also says the model is now handling almost all English chat and email conversations for Fin. A customer in the gaming industry reportedly saw its resolution rate rise from 68 percent to 75 percent after the switch. The post argues that customer service systems need models trained on their own data and evaluated for their own tasks, not just general models from frontier labs. It also suggests that companies in a few big AI categories may need to build their own specialized models to stay differentiated. The piece is written as a product launch and strategic statement, so the evidence is mostly from the vendor itself. As of 2026-03-26, the practical takeaway is to treat the claims as interesting but vendor-led, with the strongest value in the deployment pattern and specialization argument rather than in universal conclusions.",
+      "assessed_as_of": "2026-03-26",
+      "contradictions_and_skepticism": "The post combines a product launch with a strategic claim that general-purpose frontier models are over-serving customer service, but that is still a vendor argument, not a settled market fact. The claim that pre-training is becoming a commodity and post-training is the frontier is plausible, but the source gives no comparative cost or compute data beyond broad assertions. The \u201cfull stack AI company\u201d framing is also rhetorical; it may fit Intercom\u2019s position, but it should not be generalized from a single launch post without corroboration.",
+      "key_insights": [
+        "Specialized post-training on proprietary support data is presented as the core source of gains, not just better prompting or orchestration.",
+        "The post claims a substantial operational lift for one customer: resolution rate improved from 68% to 75% after switching models.",
+        "Intercom says the model is already serving nearly all English chat and email customer conversations, which makes this a production deployment claim rather than a demo.",
+        "The article frames domain evals as the moat: without task-specific evals and data, general frontier models are treated as insufficient for durable differentiation.",
+        "The strongest reusable lesson is that service-domain model work may shift value toward proprietary data, evals, and specialization rather than generic model access."
+      ],
+      "limitations_and_open_questions": "The evidence is largely vendor-supplied, so the performance claims are not independently audited in the source. The gaming-customer example gives one before/after improvement, but the post does not explain how representative that customer is, what the baseline model was in that specific comparison, or whether other segments saw similar lifts. Cost claims are qualitative rather than quantified, and the post does not provide latency distributions, failure modes, or confidence intervals. It is also unclear how much of the gain comes from the model itself versus the broader Fin system, routing logic, or post-training pipeline. The article argues that competitors will need their own models, but it does not prove that this is the only durable path or that every support vendor will be able to replicate the required data and eval setup.",
+      "sources": [
+        "https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/"
+      ],
+      "summary": "This is a vendor announcement about Intercom\u2019s custom customer-service model, Apex, and the operational results claimed after replacing a frontier third-party model in Fin\u2019s core answering path. The main argument is that customer-service agents benefit from specialized post-training on proprietary support data more than from general-purpose frontier models, because service work needs fast, accurate, low-hallucination, low-cost responses tuned to domain-specific judgment and tone. The post claims Apex is now running on nearly all English chat and email customer conversations, and that it improved resolution rate materially for at least one large gaming customer. It also argues that companies in categories like customer service and coding will need to become full-stack AI companies with their own models and evals if they want durable differentiation. The source is promotional and strategic, but it contains concrete deployment and performance claims that are useful for understanding how vendor-specific model specialization is being framed as a competitive move as of 2026-03-26.",
+      "why_it_matters": "This piece matters because it gives a concrete vendor example of a support product replacing a frontier model with a custom model trained on proprietary operational data. The claim is not just that the model is better in a benchmark sense, but that it is faster, cheaper, and better at resolving real customer issues, which are the core tradeoffs in production customer support systems. The most reusable idea is the emphasis on domain-specific evals and feedback loops: Intercom says Apex was trained on billions of human and agent interactions and on a Fin resolution engine that had already been tuned in production. That makes the article useful as a case study in how vendors may justify building specialized models when generic models are good enough for broad tasks but not tuned enough for a narrow business function. The strategic framing about \u201cfull stack AI companies\u201d is opinionated and vendor-interest aligned, so it should be read as a perspective rather than a general law. For service automation, the practical point is that resolution rate, hallucination rate, latency, and cost all matter at once, and the article argues that a custom model can improve all four in one deployment. The service-automation implication is strongest here because the source explicitly centers customer conversations and says ~100% of English chat and email traffic moved to Apex as of 2026-03-26. Actionable as of 2026-03-26, but the claims remain vendor-led and should be validated against independent data before generalizing."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single-author blog post with a coherent product launch and strategy argument, not a bundle of unrelated items.",
+        "Primary content is one vendor announcing its own model and deployment claims.",
+        "No interview structure, numbered roundup, or step-by-step tutorial structure is present."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Specialization can beat generality when the task is narrow and repetitive.",
+          "Task-specific evals are often the real moat behind a vertical model.",
+          "Operational gains may show up simultaneously in quality, latency, and cost."
+        ],
+        "knowledge_summary": "Vertical models are domain-specialized models trained or adapted for a specific business function rather than broad general use. They tend to win when the task has clear success metrics, repeated workflows, and enough proprietary data to support task-specific training and evaluation. Their value comes from matching the job more tightly than a general model can, especially when speed, cost, and policy compliance all matter together. They are most compelling where generic intelligence is not the bottleneck but task-fit is.",
+        "match_candidates": [],
+        "operational_insight": "If a workflow has stable metrics and enough proprietary interactions, a specialized model can be a better optimization target than a general-purpose frontier model. The engineering work then shifts toward collecting task data, building domain evals, and training for the exact failure modes that matter.",
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "knowledge-base-becomes-runtime-infrastructure",
+          "context-engineering"
+        ],
+        "relevance_note": "Vertical models matter because many production AI systems are not trying to solve every problem; they are trying to solve one business function very well. That makes specialization, data flywheels, and task-specific evaluation durable concerns in conversational AI and service automation.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"It\u2019s a brand new model for Fin trained by our AI Group called Apex, and it\u2019s objectively the highest performing, fastest, and cheapest model for customer service.\"",
+        "topic_slug": "vertical-models",
+        "topic_title": "Vertical Models",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Public benchmarks are often insufficient for narrow business tasks.",
+          "Private evals can double as both measurement and training signal.",
+          "Task-specific metrics are likely to matter more than generic model popularity."
+        ],
+        "knowledge_summary": "Proprietary evals are task-specific evaluation suites built from a company\u2019s own data and operational criteria. They are used to measure what actually matters in production instead of relying only on public benchmarks or generic model scores. In high-stakes workflows, they can become both a training signal and a governance tool because they encode the organization\u2019s definition of success. They are especially important when the value of a model depends on domain nuance, policy adherence, and real user outcomes.",
+        "match_candidates": [],
+        "operational_insight": "If your model is differentiated by private data and private success criteria, you need private evals to match. Without them, you may optimize for the wrong metric and miss the exact failures your users feel.",
+        "primary_tag": "ai-evals",
+        "proposed_tags": [
+          "ai-evals",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "realtime-ai-evaluation",
+          "harness-decay"
+        ],
+        "relevance_note": "Proprietary evals are central to durable AI systems because public benchmarks rarely capture the exact operational tradeoffs of a support bot, assistant, or agent workflow. They matter for conversational AI, where resolution quality, tone, safety, and escalation behavior can only be measured well against the organization\u2019s own standards.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"we owe this breakthrough to the foundational research coming out of our 60-person AI group run by Fergal Reid. But even for elite teams like his, this cannot be replicated without the domain specific proprietary evals\"",
+        "topic_slug": "proprietary-evals",
+        "topic_title": "Proprietary Evals",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The source claims Apex beats \"the very best models in the industry including GPT-5.4 and Opus 4.5,\" but does not provide benchmark methodology or scores.",
+            "The source reports one customer\u2019s resolution rate improving from 68% to 75%, which is a meaningful operational comparison but still vendor-reported."
+          ],
+          "comparative_observations": [
+            "The model is claimed to outperform GPT-5.4 and Opus 4.5 on customer service performance.",
+            "The source says Apex is faster and cheaper than other available models for the same task.",
+            "The post frames Apex as a better fit for customer service than general frontier models because it is specialized on proprietary support data."
+          ],
+          "confidence": 0.92,
+          "core_capabilities": [
+            "The model is tuned to resolve customer issues in a support workflow rather than act as a general-purpose assistant.",
+            "The model is positioned to reduce hallucinations in customer-facing conversations, which matters for policy accuracy and trust.",
+            "The model is designed to be fast enough for real-time customer service use, where response latency affects user experience."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "Intercom says the model is already running on nearly all English chat and email customer conversations, which is a strong production signal. The source also says Fin handles almost 2M customer issues per week, indicating high-scale operational use, but the evidence remains self-reported by the vendor.",
+          "model_name": "Apex 1.0",
+          "operational_summary": "Apex 1.0 is a custom model for customer service workloads inside Fin. The source positions it as a specialized model that outperforms general-purpose frontier models on resolution rate, speed, hallucination rate, and cost for support conversations.",
+          "pricing_inference_implications": "The post claims the model is cheaper than other available models, but gives no numbers. The practical inference is that specialized models may become economically attractive in high-volume support where small per-call savings compound materially, but this needs independent validation.",
+          "proposed_new_type": "customer-service",
+          "proposed_types": [
+            "proprietary",
+            "interactive-ai"
+          ],
+          "provider": "Intercom",
+          "related_models": [
+            "GPT-5.4",
+            "Opus 4.5",
+            "Sonnet 4.0"
+          ],
+          "service_automation_implications": "The model is explicitly framed for customer service, so the relevance to chatbots and support automation is direct. If the vendor\u2019s claims hold, a specialized model can improve containment and reduce unresolved conversations while also lowering per-ticket inference cost.",
+          "strengths": "- The model is described as materially better at resolving customer issues, which matters because resolution rate is the primary business metric in support automation.\n- The post claims it is faster and cheaper than available alternatives, which is important for high-volume service workloads where latency and per-interaction cost determine viability.\n- It is said to have fewer hallucinations, which is valuable in customer service because incorrect policy or troubleshooting answers can create escalations and rework.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"As of last week, ~100% of all (English language, chat and email) customer conversations are now running on Apex.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source provides no independent benchmark, no latency numbers, and no cost figures, so the strength claims remain vendor-led. It is also unclear how much of the gain comes from the model versus the surrounding Fin system, routing, or proprietary eval process.",
+          "workflow_implications": "This suggests that teams operating support agents may need their own model training and evaluation pipeline rather than relying entirely on off-the-shelf frontier models. It also implies that model selection may become tied to task-specific feedback loops and domain metrics like resolution rate, handoff rate, and hallucination rate."
+        },
+        "notes": null,
+        "proposal_id": "9d9bf18b-ed2c-464e-8992-0ddd1fffb5ce",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The source claims Apex beats \"the very best models in the industry including GPT-5.4 and Opus 4.5,\" but does not provide benchmark methodology or scores.",
+              "The source reports one customer\u2019s resolution rate improving from 68% to 75%, which is a meaningful operational comparison but still vendor-reported."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The model is claimed to outperform GPT-5.4 and Opus 4.5 on customer service performance.",
+              "The source says Apex is faster and cheaper than other available models for the same task.",
+              "The post frames Apex as a better fit for customer service than general frontier models because it is specialized on proprietary support data."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "The model is tuned to resolve customer issues in a support workflow rather than act as a general-purpose assistant.",
+              "The model is positioned to reduce hallucinations in customer-facing conversations, which matters for policy accuracy and trust.",
+              "The model is designed to be fast enough for real-time customer service use, where response latency affects user experience."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-5.4",
+              "Opus 4.5",
+              "Sonnet 4.0"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "workflow_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [
+            "customer-service"
+          ],
+          "approved_types": [
+            "proprietary",
+            "customer-service"
+          ],
+          "reviewer_types_added": [
+            "customer-service"
+          ]
+        }
+      }
+    ],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.79,
+          "evidence_type": null,
+          "extended_explanation": "Knowledge management in AI usually means turning messy information into something a model or workflow can actually use: searchable documents, structured entries, approved answers, or retrieval indexes. It matters because many production assistants fail not from lack of intelligence, but from poor access to the right information at the right time. Good knowledge management reduces repetition, improves consistency, and can make responses more grounded and easier to audit.",
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "proposed_definition": "The practice of capturing, organizing, and retrieving information so people or systems can use it reliably later. In AI systems, it often includes structuring documents, policies, and historical interactions so models can answer with fewer errors and less repeated work.",
+          "proposed_tags": [
+            "knowledge-management"
+          ],
+          "related_terms": [
+            "Retrieval-Augmented Generation"
+          ],
+          "relevance_note": "Knowledge management is durable in AI systems because the quality of stored and retrievable operational knowledge often determines answer quality more than raw model capability. It is especially important in chatbots, service agents, and internal assistants that need stable, auditable responses across many customer interactions.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"the domain specific proprietary evals that comprise our billions of human and agent customer service interaction data points created by our Fin resolution engine\"",
+          "term": "Knowledge Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ee4fe73f-c397-43c8-a4fc-4fab3c7fd387",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Retrieval-Augmented Generation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "extended_explanation": "Fine-tuning lets teams bias a general model toward the language, decisions, and output patterns they need in a particular setting. Instead of asking the model to behave like a specialist through prompts alone, teams can actually change its learned behavior using examples from their own domain. In operational systems, this can reduce prompt length, improve consistency, and make the model better at repeated tasks that have clear success criteria.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "The process of adapting a pretrained model to a narrower task, domain, or style using additional training data. Fine-tuning is used when a general model is good but not specialized enough for a production workflow.",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_terms": [],
+          "relevance_note": "Fine-tuning is a core pattern in production AI because many useful tasks are narrow and benefit from domain adaptation. It is especially relevant for support automation, where tone, policy adherence, and task-specific resolution behavior often matter more than general language fluency.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Since day 1, the Fin engine has comprised a system of models, and last year we started replacing the off-the-shelf models with our own, custom trained on our proprietary data.\"",
+          "term": "Fine-tuning",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "161cb949-2823-487a-8956-50fdb859ff07",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "The case suggests that specialized post-training on private operational data can outperform general frontier models on a narrow enterprise task. It also suggests that evaluation design may be as important as model architecture for final results.",
+          "business_objective": "Improve resolution rate, reduce hallucinations, increase speed, lower cost, and maintain differentiation in customer service automation.",
+          "company": "Intercom",
+          "confidence": 0.91,
+          "deployment_context": "As of last week, nearly 100% of English language chat and email customer conversations were running on Apex, and the Fin engine was already resolving almost 2M customer issues per week.",
+          "evidence_snippets": [
+            {
+              "claim": "Intercom replaced the core Fin answering model with Apex 1.0.",
+              "provenance": "stated",
+              "snippet": "\"But now that core answering model is Apex 1.0.\""
+            },
+            {
+              "claim": "The deployment is at scale across English chat and email conversations.",
+              "provenance": "stated",
+              "snippet": "\"As of last week, ~100% of all (English language, chat and email) customer conversations are now running on Apex.\""
+            },
+            {
+              "claim": "A customer saw a resolution-rate lift from 68% to 75% after the switch.",
+              "provenance": "stated",
+              "snippet": "\"One of our largest customers in the gaming space saw their resolution rate improve overnight from 68% to 75%\""
+            }
+          ],
+          "evidence_type": null,
+          "implications_for_service_automation": "This is directly about customer service automation. If the vendor claims hold, a custom model can improve containment and reduce unresolved conversations while keeping response quality, speed, and cost aligned with support operations.",
+          "industry": "customer service software",
+          "key_lessons": [
+            "Track resolution rate, latency, hallucination rate, and cost together rather than optimizing one metric in isolation.",
+            "Private interaction data can be a strategic asset if it is turned into domain evals and training data.",
+            "A specialized model only becomes valuable if it is deployed in a production workflow with enough volume to matter."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How representative is the reported gaming-customer improvement across other customers and issue types?",
+            "What exact benchmark or evaluation protocol showed Apex outperforming GPT-5.4 and Opus 4.5?",
+            "How much of the gain comes from the model versus the surrounding Fin system and routing logic?"
+          ],
+          "operational_constraints": "The source highlights scale, cost, latency, hallucination control, and the need for domain-specific data as the main constraints. It does not provide failure cases, rollback thresholds, or safety incidents.",
+          "outcome_status": "Ongoing production rollout with reported operational gains. Intercom claims a large gaming customer saw resolution rate improve from 68% to 75% overnight after the switch.",
+          "overview": "Intercom says it replaced the core answering model in Fin with a custom model called Apex 1.0 and moved nearly all English chat and email customer conversations onto it. The company frames this as a production deployment at scale, not a small pilot.",
+          "primary_tag": "enterprise-ai-adoption",
+          "proposed_tags": [
+            "enterprise-ai-adoption"
+          ],
+          "related_sources": [
+            "https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/"
+          ],
+          "secondary_tag": "",
+          "strategic_signals": "The source argues that customer service vendors may need to become full-stack AI companies with their own models and evals. It also suggests a competitive shift from using shared frontier models to building task-specific model moats.",
+          "success_or_failure_factors": "Intercom attributes the result to proprietary data, domain-specific evals, and a purpose-built Fin resolution engine that had already been tuned in production. The source also suggests that speed and hallucination reduction mattered alongside raw resolution quality.",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "technical_approach": "Intercom says Apex was trained by its AI Group on proprietary customer-service data and on domain-specific proprietary evals built from billions of human and agent interaction data points. The company had already been replacing off-the-shelf models with custom models before Apex became the core answering model.",
+          "title": "Fin Apex customer-service model rollout",
+          "value_level": "high",
+          "what_was_implemented": "A custom-trained customer-service model, Apex 1.0, embedded in the Fin engine as the core answering model."
+        },
+        "notes": null,
+        "proposal_id": "83d87653-ccb3-4be7-9dfa-629c1473c013",
+        "proposal_status": "rejected",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "company": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Track resolution rate, latency, hallucination rate, and cost together rather than optimizing one metric in isolation.",
+              "Private interaction data can be a strategic asset if it is turned into domain evals and training data.",
+              "A specialized model only becomes valuable if it is deployed in a production workflow with enough volume to matter."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How representative is the reported gaming-customer improvement across other customers and issue types?",
+              "What exact benchmark or evaluation protocol showed Apex outperforming GPT-5.4 and Opus 4.5?",
+              "How much of the gain comes from the model versus the surrounding Fin system and routing logic?"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-03-26",
+          "confidence": 0.87,
+          "evidence_from_source": "Intercom presents Apex as a custom customer-service model that outperforms frontier generalists on support tasks and argues that customer-service vendors will need their own models to stay differentiated.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_trends": [
+            "models-becoming-execution-layers"
+          ],
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "vertical-ai-models",
+          "suggested_new_tags": [
+            "vertical-ai-models",
+            "vertical-models",
+            "ai-economics"
+          ],
+          "supporting_data_points": [
+            "Apex is said to be the highest performing, fastest, and cheapest model for customer service.",
+            "Fin is reportedly resolving almost 2M customer issues per week.",
+            "A gaming customer reportedly improved resolution rate from 68% to 75% after the switch."
+          ],
+          "supporting_snippet": "\"We believe that the winners in such spaces must and will become full stack AI companies.\"",
+          "time_sensitivity": "Actionable as of 2026-03-26; the source suggests this is an emerging competitive pattern, but the evidence is vendor-led and may not generalize across all AI categories.",
+          "trend_description": "Domain-specific models trained for a narrow business function can outperform general-purpose models when the workflow has stable success criteria, enough proprietary data, and operationally important tradeoffs such as cost, speed, and policy compliance.",
+          "trend_slug": "vertical-models",
+          "trend_title": "Vertical Models",
+          "uncertainty_note": "The claim rests on a single vendor launch and one customer example, so it is not enough to prove a broad market transition. It may apply best in high-volume, data-rich domains rather than every AI use case.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "b7b590bd-42fb-4424-978b-47264e48a315",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "models-becoming-execution-layers"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Apex is said to be the highest performing, fastest, and cheapest model for customer service.",
+              "Fin is reportedly resolving almost 2M customer issues per week.",
+              "A gaming customer reportedly improved resolution rate from 68% to 75% after the switch."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ai-economics"
+          ],
+          "final_tags": [
+            "ai-economics"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The source is Intercom\u2019s own blog post announcing Apex and describing its performance.",
+          "Claims about resolution rate, speed, hallucinations, cost, and deployment are presented by the vendor without independent verification.",
+          "The strategic conclusions are the author\u2019s interpretation of their own product launch."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Specialized post-training on proprietary support data is presented as the core source of gains, not just better prompting or orchestration.",
+          "The post claims a substantial operational lift for one customer: resolution rate improved from 68% to 75% after switching models.",
+          "Intercom says the model is already serving nearly all English chat and email customer conversations, which makes this a production deployment claim rather than a demo.",
+          "The article frames domain evals as the moat: without task-specific evals and data, general frontier models are treated as insufficient for durable differentiation.",
+          "The strongest reusable lesson is that service-domain model work may shift value toward proprietary data, evals, and specialization rather than generic model access."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single-author blog post with a coherent product launch and strategy argument, not a bundle of unrelated items.",
+          "Primary content is one vendor announcing its own model and deployment claims.",
+          "No interview structure, numbered roundup, or step-by-step tutorial structure is present."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Specialization can beat generality when the task is narrow and repetitive.",
+            "Task-specific evals are often the real moat behind a vertical model.",
+            "Operational gains may show up simultaneously in quality, latency, and cost."
+          ],
+          "knowledge_summary": "Vertical models are domain-specialized models trained or adapted for a specific business function rather than broad general use. They tend to win when the task has clear success metrics, repeated workflows, and enough proprietary data to support task-specific training and evaluation. Their value comes from matching the job more tightly than a general model can, especially when speed, cost, and policy compliance all matter together. They are most compelling where generic intelligence is not the bottleneck but task-fit is.",
+          "match_candidates": [],
+          "operational_insight": "If a workflow has stable metrics and enough proprietary interactions, a specialized model can be a better optimization target than a general-purpose frontier model. The engineering work then shifts toward collecting task data, building domain evals, and training for the exact failure modes that matter.",
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "knowledge-base-becomes-runtime-infrastructure",
+            "context-engineering"
+          ],
+          "relevance_note": "Vertical models matter because many production AI systems are not trying to solve every problem; they are trying to solve one business function very well. That makes specialization, data flywheels, and task-specific evaluation durable concerns in conversational AI and service automation.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"It\u2019s a brand new model for Fin trained by our AI Group called Apex, and it\u2019s objectively the highest performing, fastest, and cheapest model for customer service.\"",
+          "topic_slug": "vertical-models",
+          "topic_title": "Vertical Models",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "841ea521-e708-4f27-975a-5bdc73c9041b",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Specialization can beat generality when the task is narrow and repetitive.",
+              "Task-specific evals are often the real moat behind a vertical model.",
+              "Operational gains may show up simultaneously in quality, latency, and cost."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure",
+              "context-engineering"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Public benchmarks are often insufficient for narrow business tasks.",
+            "Private evals can double as both measurement and training signal.",
+            "Task-specific metrics are likely to matter more than generic model popularity."
+          ],
+          "knowledge_summary": "Proprietary evals are task-specific evaluation suites built from a company\u2019s own data and operational criteria. They are used to measure what actually matters in production instead of relying only on public benchmarks or generic model scores. In high-stakes workflows, they can become both a training signal and a governance tool because they encode the organization\u2019s definition of success. They are especially important when the value of a model depends on domain nuance, policy adherence, and real user outcomes.",
+          "match_candidates": [],
+          "operational_insight": "If your model is differentiated by private data and private success criteria, you need private evals to match. Without them, you may optimize for the wrong metric and miss the exact failures your users feel.",
+          "primary_tag": "ai-evals",
+          "proposed_tags": [
+            "ai-evals",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "realtime-ai-evaluation",
+            "harness-decay"
+          ],
+          "relevance_note": "Proprietary evals are central to durable AI systems because public benchmarks rarely capture the exact operational tradeoffs of a support bot, assistant, or agent workflow. They matter for conversational AI, where resolution quality, tone, safety, and escalation behavior can only be measured well against the organization\u2019s own standards.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"we owe this breakthrough to the foundational research coming out of our 60-person AI group run by Fergal Reid. But even for elite teams like his, this cannot be replicated without the domain specific proprietary evals\"",
+          "topic_slug": "proprietary-evals",
+          "topic_title": "Proprietary Evals",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "21055be0-6f78-4217-93bb-be39f34529f5",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Public benchmarks are often insufficient for narrow business tasks.",
+              "Private evals can double as both measurement and training signal.",
+              "Task-specific metrics are likely to matter more than generic model popularity."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "realtime-ai-evaluation",
+              "harness-decay"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evals"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 7
+    },
+    "fields_modified": 0,
+    "proposals_approved": 6,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 7,
+    "review_duration_seconds": 599.2,
+    "review_finished_at": "2026-05-18T20:28:47.243748+00:00",
+    "review_started_at": "2026-05-18T20:18:48+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-18T20:28:47+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Eoghan McCabe",
+    "canonical_url": "https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/",
+    "content_sha256": "fcb02c75978a6cfcc413b6ade2f523dfd1d80e451a7e6cfdf6c4f4e3a90fe1c0",
+    "publication": "Intercom",
+    "published_date": "2026-03-26",
+    "raw_html_rel_path": "raw/readwise/announcing-fin-apex-the-age-of-vertical-models-is-here-01knemav1h6cxbst4dbfq9ws30.html",
+    "raw_md_rel_path": "raw/readwise/announcing-fin-apex-the-age-of-vertical-models-is-here-01knemav1h6cxbst4dbfq9ws30.md",
+    "source_id": "announcing-fin-apex-the-age-of-vertical-models-is-here-01knemav1h6cxbst4dbfq9ws30",
+    "title": "Announcing Fin Apex: The age of vertical models is here"
+  }
+}

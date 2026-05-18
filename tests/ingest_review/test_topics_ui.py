@@ -252,6 +252,9 @@ def test_build_readonly_topics_markdown_includes_related_when_wiki_passed() -> N
         topic_slugs=["context-engineering"],
     )
     node = _sample_node()
+    node["llm_item"]["knowledge_summary"] = (
+        "Retrieval augments prompts using context engineering techniques."
+    )
     md = build_readonly_topics_markdown([node], [], artifact={}, wiki=wiki, reviews_root=None)
     assert "**Related topics**" in md
 

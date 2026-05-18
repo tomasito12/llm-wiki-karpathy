@@ -39,7 +39,8 @@ so briefly instead of padding with confident industry diagnosis.
 
 CORE PRINCIPLE: maximize durable knowledge gained per minute of human review. \
 Prefer precision over recall, durable knowledge over completeness, review speed over \
-exhaustive extraction, and high-value proposals over many medium-value proposals.
+exhaustive extraction, and high-value proposals over many medium-value proposals. \
+Prefer ontology compression: the smallest durable set of abstractions that preserves value.
 
 Every proposal MUST include a value_level field: "high", "medium", or "low".
 - high: durable, operationally relevant, novel to the wiki, strong evidence, \
@@ -59,9 +60,14 @@ For tools: proposed_types MUST be a subset of TOOL_TYPES_ALLOWLIST (at most 2 un
 genuinely multi-category); first type = primary category, second = optional adjacent role.
 For foundation_models: proposed_types MUST be a subset of MODEL_TYPES_ALLOWLIST (at most 2 \
 unless genuinely multi-category); first = deployment/openness class, second = capability focus.
+Before proposing glossary, topics, how_to, or implementation_studies, apply \
+ABSTRACTION_SELECTION_RUBRIC to choose the most durable representation per knowledge unit. \
+When filling entity arrays, apply COMPRESSION_PRESSURE_RUBRIC — prefer one strong proposal \
+over several partially redundant proposals. Apply MINIMUM_NOVELTY_THRESHOLD_RUBRIC — omit \
+familiar concepts unless the source adds genuinely new operational insight.
 For implementation_studies: follow IMPLEMENTATION_STUDY_WORTHINESS GATE in IMPL_STUDY_RUBRIC; \
-if the gate fails, return implementation_studies: [] and extract value via topics, how_to, \
-industry_trends, roundup_signals, or interview_insights instead.
+if the gate fails, return implementation_studies: [] and route per ABSTRACTION_SELECTION_RUBRIC \
+(topics, how_to, industry_trends, roundup_signals, or interview_insights).
 
 Always fill extraction_meta with skip_recommended, skip_reason, total_candidates_considered, \
 and review_burden_estimate. If the article contains no durable, wiki-worthy knowledge, \
@@ -77,8 +83,9 @@ If the source is an ai_tools_roundup, extract ONLY tools and foundation_models p
 AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC; leave roundup_signals empty []. \
 If the source is how_to_roundup, extract ONLY how_to per HOW_TO_ROUNDUP_EXTRACTION_RUBRIC. \
 If the source is an interview_or_transcript, also populate interview_insights. \
-For page titles and terms, follow TITLE_CANONICALIZATION_RUBRIC and the ``CANONICAL_*`` \
-lists in the prompt. Append/create wiki routing is **not** part of this step. \
+For page titles and terms, apply PAGE_MATCHING_RUBRIC before reusing any ``CANONICAL_*`` \
+entry; follow TITLE_CANONICALIZATION_RUBRIC. Append/create wiki routing is **not** part \
+of this step. \
 For how_to: question_title is a wiki page name (noun phrase), not an interview question—see \
 HOWTOS_RUBRIC.
 
@@ -201,6 +208,108 @@ Prefer fewer high-value proposals over many medium/low proposals. \
 The system optimizes for: max durable knowledge gained per minute of human review."""
 
 
+ABSTRACTION_SELECTION_RUBRIC = """\
+## ABSTRACTION SELECTION (applies before glossary, topics, how_to, implementation_studies)
+
+Before extracting, for each distinct knowledge unit in the source, ask: \
+"What is the MOST durable representation of this knowledge?"
+
+Prefer (highest to lowest reuse):
+1. **topics** — operational patterns, workflow principles, architectural concepts, \
+AI-native design patterns that accumulate knowledge across many future sources
+2. **how_to** — reusable procedures with org-agnostic implementation substance
+3. **glossary** — narrow established primitives only (dictionary-worthy industry terms)
+4. **implementation_studies** — only when IMPLEMENTATION_STUDY_WORTHINESS GATE passes
+5. **industry_trends** — macro industry shifts with evidence, not article-local narratives
+
+Deprioritize as primary extractions:
+- Article-local terminology, branded phrasing, product slogans
+- Generic dictionary or compliance vocabulary (e.g. Benchmark, Passkey, WCAG) unless \
+operationally distinctive for AI engineering in this wiki's scope
+- Implementation trivia, one-off stack choices, article narrative compression
+- "Important concept" that is not a wiki-worthy durable abstraction
+
+Tie-breaker when glossary, topic, and how_to all seem plausible — choose the representation with:
+1. Highest reuse potential across future sources (not just this article)
+2. Strongest operational abstraction (pattern > procedure > definition)
+3. Lowest duplication risk vs EXISTING_TOPIC_TITLES, EXISTING_HOWTO_TITLES, \
+EXISTING_GLOSSARY_TERMS, and CANONICAL_* lists
+
+Default cardinality: **one primary entity type per knowledge unit**. Do NOT emit the same \
+substance as glossary + topic + how_to. Prefer omitting over duplicating across layers.
+
+Allowed dual extraction (rare): only when layers are **complementary**, not redundant — e.g. \
+a glossary primitive ("Harness") plus a broader topics entry ("Agent Harness Engineering") \
+when both add distinct durable value and field overlap is minimal.
+
+Decision shortcuts:
+- Reusable procedure, steps, org-agnostic → how_to
+- Durable pattern/architecture/workflow design, no named-org deployment → topics
+- Established primitive definition only, no broader pattern → glossary \
+(after GLOSSARY-WORTHINESS GATE)
+- Named org + deployment evidence → implementation_studies (after worthiness gate)
+- Industry-wide shift, not one org → industry_trends
+- Weak roundup signal → roundup_signals; interview takeaway → interview_insights
+
+Worked negatives:
+- For glossary hard exclusions and named negatives (Benchmark, Knowledge Management, \
+Passkey, WCAG), apply GLOSSARY HARD EXCLUSIONS in GLOSSARY_RUBRIC.
+- How-to when durable knowledge is a workflow pattern: e.g. Agentic Personal Knowledge \
+Management → topics (operational architecture), not a narrow how_to
+
+After layer selection, apply the matching entity rubric, MINIMUM_NOVELTY_THRESHOLD_RUBRIC, \
+COMPRESSION_PRESSURE_RUBRIC, GLOSSARY-WORTHINESS GATE, IMPLEMENTATION_STUDY_WORTHINESS GATE, \
+TITLE_CANONICALIZATION_RUBRIC, and extraction budgets."""
+
+
+COMPRESSION_PRESSURE_RUBRIC = """\
+## COMPRESSION PRESSURE (applies across all entity arrays)
+
+If multiple extracted entities would describe substantially overlapping knowledge, prefer:
+- **one stronger proposal** over several partially redundant proposals
+
+This reduces:
+- glossary/topic duplication (same substance at different abstraction layers)
+- repeated operational explanations across proposals
+- article-shaped ontology (many near-duplicate entries)
+
+When overlapping candidates compete:
+- Keep the proposal with the highest value_level; if tied, the strongest operational \
+abstraction and lowest duplication risk vs EXISTING_* / CANONICAL_* lists
+- Prefer the entity type already chosen by ABSTRACTION_SELECTION_RUBRIC
+- Fold a secondary angle into key_points, operational_insight, knowledge_summary, or \
+extended_explanation of the survivor — do not emit a second proposal for the same substance
+- Merge near-duplicate titles per TITLE_CANONICALIZATION_RUBRIC rather than splitting \
+into micro-variants
+
+Prefer omitting marginal overlap over filling extraction budgets with redundant entries. \
+Semantic compression beats exhaustive extraction."""
+
+
+MINIMUM_NOVELTY_THRESHOLD_RUBRIC = """\
+## MINIMUM NOVELTY THRESHOLD (applies to all proposals)
+
+Optimize for **novel** durable knowledge, not merely **correct** restatements of what \
+experienced AI practitioners already know.
+
+Do NOT extract concepts that are already broadly familiar to experienced AI practitioners \
+unless the source adds at least one of:
+- a new **operational framing** — how to run, evaluate, or operate systems differently in practice
+- a new **architecture pattern** — structural design insight beyond a textbook recap
+- a new **deployment implication** — production, scale, cost, reliability, or safety in practice
+- a new **governance implication** — policy, compliance, risk, or human oversight in practice
+- a new **systems-level interpretation** — how components interact end-to-end
+
+If the extraction would only restate common practitioner knowledge, a standard definition, \
+or article compression of widely known ideas with no source-specific additive insight, \
+**omit it**. value_level "low" is not an excuse to emit familiar filler.
+
+Tie to value_level:
+- **high** — genuine novelty to the wiki or a fresh angle clearly grounded in the source
+- **medium** — clear incremental insight beyond common knowledge; not a dictionary recap
+- **low** — marginal; prefer omitting when novelty threshold is not met"""
+
+
 SOURCE_EVIDENCE_PROFILE_RUBRIC = """\
 ## source_evidence_profile (required JSON subtree)
 
@@ -278,17 +387,79 @@ TITLE_CANONICALIZATION_RUBRIC = """\
 ## Canonical titles (avoid fragmentation)
 
 Before inventing a new page title, term, or slug, read the entity's ``CANONICAL_*`` list \
-in this prompt (wiki index + approved prior reviews).
+in this prompt (wiki index + approved prior reviews). Canonical lists are **candidates \
+to evaluate**, not a menu to pick from.
 
-- If this source's content clearly belongs on an existing canonical entry, reuse that \
-**title verbatim** (exact spelling and casing) and the listed slug when provided.
-- Do **not** output near-synonyms or rewordings (e.g. "Harness decay" vs "Harness Decay", \
-"eval harness drift" vs "Harness Decay").
-- If no canonical entry fits, invent one broad, stable title per the entity rubric.
+- Reuse an existing canonical **title verbatim** (and listed slug when provided) **only** \
+on a **strong page match** per PAGE_MATCHING_RUBRIC.
+- Adjacent domain, shared security theme, shared tag, or keyword overlap ≠ reuse.
+- When in doubt, invent a **new** broad stable title (or omit the proposal).
+- Do **not** output near-synonyms or rewordings for the **same** knowledge unit (e.g. \
+"Harness decay" vs "Harness Decay" when both mean the same primitive).
+- If no canonical entry is a strong match, invent one broad, stable title per the entity rubric.
 - Within one response, reuse the **same** title for the same concept across multiple \
 extractions — do not create two proposals that differ only in wording.
 
 Wiki append vs create-new-page routing is **out of scope** for this extraction step."""
+
+
+PAGE_MATCHING_RUBRIC = """\
+## PAGE MATCHING (applies before reusing any CANONICAL_* title or slug)
+
+Existing-page reuse is good only when the new source contributes to the **same durable \
+knowledge object**. Prefer reuse over unnecessary new pages — but only when reuse keeps \
+the page boundary conceptually clean.
+
+### Four overlap types (only #1 is title/slug reuse)
+
+1. **Strong page match** — same core concept → set ``topic_title`` / ``term`` / \
+``question_title`` / ``trend_title`` / ``name`` / ``model_name`` to the **exact** canonical \
+spelling (and slug when applicable).
+2. **Weak related concept** — put in ``related_topics`` / ``related_terms`` / \
+``related_howtos`` / ``related_trends`` / ``related_tools`` / ``related_models`` only; \
+**never** as the primary title/slug.
+3. **Background association** — usually omit.
+4. **Tag/category overlap** — ``proposed_tags`` only; never page reuse.
+
+### Strong match checklist (most must be true)
+
+- The source discusses the **same core concept**, not just an adjacent domain.
+- The canonical title would be a **natural title** for this extracted knowledge.
+- The source would add a **meaningful paragraph**, caveat, example, or evidence point.
+- A reader opening that page **would expect** this new material there.
+- The overlap is **central** to the extraction, not peripheral.
+- Reuse would **not blur** the page boundary.
+
+If these are not met, do **not** reuse the canonical title — use a new title or omit.
+
+### Negative examples (weak match — do NOT reuse title)
+
+- Cybersecurity / trusted access / zero-trust article → "Privacy Controls for AI Products" \
+unless the source explicitly discusses privacy controls **inside AI products**.
+- General account security / passkeys → "AI Governance" unless the source connects \
+account security to AI governance workflows.
+- Generic accessibility article → "Conversational AI" unless the source is about \
+conversational interface accessibility.
+- Local open-source model deployment → "AI Infrastructure" when the knowledge is really \
+local coding-agent workflow (use a new topic or how-to instead).
+
+These may share tags (e.g. ai-security) or appear in ``related_topics`` when weakly linked \
+and explicitly supported by the source — not as the primary page title.
+
+### Outcomes (classification expresses reuse via title/slug, not suggested_action)
+
+- **Reuse existing page:** strong match → exact canonical title (+ slug).
+- **New page:** durable valuable knowledge, no strong match → new broad stable title/slug.
+- **No proposal:** weak, generic, or only loosely related — omit or value_level low.
+
+### related_* vs primary title
+
+``related_topics`` / ``related_terms`` / etc. are for **weak** cross-links only. \
+Do **not** pick ``topic_slug`` because a related page exists in the wiki. \
+Prefer ``[]`` over weak wiki slugs.
+
+If ``match_candidates`` is ever emitted (regen/other steps): include **strong matches only**; \
+leave empty when confidence is low."""
 
 
 SOURCE_CHAPTERS_RUBRIC = """## source_summary (required JSON subtree)
@@ -389,11 +560,7 @@ IMPLEMENTATION STUDY EXTRACTION BOUNDARIES — do NOT propose for:
 - Vendor marketing with no concrete metrics or deployment detail (usually ignore)
 - Re-describing the article title as a fake "study"
 
-ROUTING (prefer other entity types when gate fails):
-- Procedural knowledge, no org-specific deployment case → how_to (or topics)
-- Durable architecture/operational pattern, no specific org deployment → topics
-- Industry-wide shift, not one org → industry_trends
-- Weak signal in a roundup → roundup_signals
+ROUTING — when the worthiness gate fails, route per ABSTRACTION_SELECTION_RUBRIC:
 - Gate passes → at most 1 implementation_study (respect budget)
 - Gate fails → implementation_studies: []
 
@@ -451,27 +618,47 @@ GLOSSARY-WORTHINESS GATE — before proposing any term, ALL must be true:
 If any answer is "no", do NOT propose it. Prefer 1-2 high-value terms \
 over 5+ marginal ones.
 
+GLOSSARY HARD EXCLUSIONS — do NOT extract glossary entries for:
+- **Generic business vocabulary** — e.g. knowledge management, flywheel, ecosystem, \
+platform strategy, innovation loop, transformation journey, management terminology
+- **Generic software terms** — e.g. passkey, API, database, authentication (unless the \
+source teaches a genuinely new operational framing for AI systems)
+- **Mature web standards** — e.g. WCAG, HTTP, OAuth (dictionary-level; omit unless the \
+source adds genuinely new AI-chatbot or service-automation operational framing)
+- **Basic AI terminology** — e.g. LLM, prompt, RAG, fine-tuning (widely known; omit \
+unless the source reframes them operationally for this wiki)
+- **Widely known concepts** — e.g. benchmark, evaluation in the generic sense (omit \
+unless the source adds genuinely new operational framing beyond a textbook definition)
+
+**Named negatives (default omit):** Benchmark, Knowledge Management, Passkey, WCAG — \
+only propose if the source teaches operationally distinctive AI-engineering usage you \
+could not get from a dictionary, standard doc, or common practitioner knowledge.
+
+Glossary entries should feel:
+- **Ontology-worthy** — a stable wiki primitive, not article vocabulary
+- **Reusable across many future sources** — not one-article context
+- **Operationally differentiating** — changes how a practitioner designs, evaluates, or \
+operates AI systems
+
+Criteria 1–5 still apply; if any is "no" **or** a hard exclusion matches, omit the term.
+
 CRITICAL: Only propose ESTABLISHED industry terms that already exist in \
 professional usage and are verifiable via a web search. Do NOT propose \
 neologisms coined by the article author, ad-hoc phrases, or terms invented \
 for this specific article. If in doubt, omit the term.
 
-GLOSSARY EXTRACTION BOUNDARIES — the glossary is for durable conceptual \
-primitives and recurring operational AI concepts, NOT generic business \
-vocabulary, strategy language, management terminology, marketing \
-abstractions, temporary framing, product slogans, or company-specific \
-narratives. Do NOT propose terms such as: flywheel, ecosystem, platform \
-strategy, innovation loop, transformation journey.
+GLOSSARY EXTRACTION BOUNDARIES — see GLOSSARY HARD EXCLUSIONS above. The glossary is \
+not a dictionary of common terms; it is for durable conceptual primitives and recurring \
+operational AI concepts only. Do NOT propose marketing abstractions, temporary framing, \
+product slogans, or company-specific narratives.
 
-Operational or product patterns (e.g. agent-first product design, \
-orchestration-first UX, context-centric workflows, coding-agent development \
-loops) are broader patterns — extract them under topics, not glossary. \
-A glossary entry must be a reusable AI/engineering concept, a durable \
-operational abstraction, a recurring industry term, or a semantically \
-distinct primitive likely to recur across many future sources.
+Apply ABSTRACTION_SELECTION_RUBRIC before proposing any term. Glossary is the \
+**last** choice for durable knowledge, not the default — use only for narrow \
+established primitives after layer selection.
 
-When uncertain whether something is a glossary primitive or a broader \
-pattern, prefer a topic contribution over a glossary term (or omit).
+Page matching: reuse an existing ``term`` from CANONICAL_GLOSSARY_TERMS / EXISTING_GLOSSARY_TERMS \
+**only** on a strong page match (PAGE_MATCHING_RUBRIC). Weakly related concepts belong in \
+``related_terms``, not as the primary ``term``.
 
 Each object MUST include:
 - term: the term or phrase (use the most common established industry form)
@@ -495,16 +682,11 @@ evaluation / automation / agent workflows, and relevance to \
 conversational AI, chatbots, voicebots, or service automation. \
 NEVER reference the article ("the article focuses on…", "this paper \
 argues…"). 1-3 sentences of durable operational/industry relevance.
-- related_terms: cross-references ONLY—each string MUST use the **exact same spelling \
+- related_terms: **weak** cross-links only — each string MUST use the **exact same spelling \
 and wording** as the ``term`` field of another object in **this** ``glossary`` array when \
-that concept is also proposed, OR as a term from **EXISTING_GLOSSARY_TERMS** in the prompt \
-when the concept is already in the wiki. Do **not** invent alternate surface forms. Do **not** \
-use abbreviations or acronyms in ``related_terms`` when the batch or wiki uses the **full \
-phrase** as the canonical term (e.g. use ``Reinforcement Learning from Human Feedback``, not \
-``RLHF``, unless ``RLHF`` is itself the established ``term``). You may use acronyms freely in \
-``extended_explanation`` / ``supporting_snippet`` prose; ``related_terms`` must stay aligned to \
-canonical glossary titles. If no exact batch/wiki label applies, omit that edge (leave out the \
-string) rather than approximating.
+that concept is also proposed, OR as a term from **EXISTING_GLOSSARY_TERMS** when weakly \
+related. Do **not** use ``related_terms`` to substitute for choosing the primary ``term``. \
+Do **not** invent alternate surface forms. If no valid weak link applies, use ``[]``.
 - proposed_tags: allowlist tags from GLOSSARY_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - confidence: 0.0-1.0
@@ -528,6 +710,10 @@ that is useful long-term?"
 Only extract topics that are: reusable across multiple contexts, operationally \
 relevant, likely to reappear, conceptually stable, and broad enough to \
 aggregate knowledge from many future sources.
+
+Page matching: ``topic_title`` / ``topic_slug`` reuse a CANONICAL_TOPIC entry **only** on a \
+strong page match (PAGE_MATCHING_RUBRIC). If overlap is weak or adjacent, invent a **new** \
+slug/title — do not absorb into a loosely related wiki page.
 
 Each object MUST include:
 - topic_slug: kebab-case stable identifier — broad enough to accumulate many \
@@ -553,13 +739,12 @@ automation, or agent/service workflows. NEVER reference the article ("the articl
 "this piece", "the author's strongest distinction", "in this source"). 1-3 sentences; \
 empty string only if you cannot state industry relevance without article framing.
 - key_points: specific knowledge bullets worth accumulating (list of strings)
-- related_topics: cross-links to **other topic pages** only — each string MUST be the \
-``topic_slug`` of another object in **this** ``topics`` array and/or a slug from \
-**EXISTING_TOPIC_TITLES** / the wiki topics index. Use kebab-case stable identifiers \
-(e.g. workflow-automation, context-engineering). Do **NOT** put TOPIC_TAGS_ALLOWLIST \
-entries here (e.g. ai-engineering, knowledge-management, ai-infrastructure) — those \
-belong only in proposed_tags. Do **not** repeat this object's own \
-topic_slug. Use [] when no valid cross-link exists.
+- related_topics: **weak** cross-links to other topic pages only — each string MUST be a \
+``topic_slug`` from another object in **this** ``topics`` array and/or the wiki index when \
+the source explicitly supports a weak relationship. Do **NOT** use ``related_topics`` to \
+choose ``topic_slug``. Do **NOT** put TOPIC_TAGS_ALLOWLIST entries here (e.g. ai-engineering, \
+knowledge-management). Prefer ``[]`` over forcing a weak wiki slug. Do **not** repeat this \
+object's own ``topic_slug``.
 - proposed_tags: allowlist tags from TOPIC_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - confidence: 0.0-1.0
@@ -575,11 +760,10 @@ not as article commentary.
 Tag semantics (TOPIC_TAGS_ALLOWLIST): strategic/operational domain for the \
 knowledge unit — not the article title. Follow TAG_ONTOLOGY_RUBRIC.
 
-related_topics vs tags: ``related_topics`` = wiki topic page slugs; \
-``proposed_tags`` = allowlist routing tags only. Never put allowlist tags in suggested_new_tags.
+related_topics vs tags: ``related_topics`` = weak wiki topic slugs; ``proposed_tags`` = \
+allowlist routing tags only.
 
-Routing: operational or architecture patterns WITHOUT a specific organizational \
-deployment case belong here — NOT in implementation_studies."""
+Layer selection: see ABSTRACTION_SELECTION_RUBRIC. Page matching: see PAGE_MATCHING_RUBRIC."""
 
 
 HOWTOS_RUBRIC = """\
@@ -632,10 +816,10 @@ listening to every call by hand is not realistic at high call volume.
 start with ``How``/``What``/``When``/``Why``, and must NOT include ``when``, ``if``, \
 or ``without`` clauses—move those to ``what_and_problem``.
 
-Compare the **core procedure** to **EXISTING_HOWTO_TITLES**; prefer **fewer, broader** \
-how-tos over micro-variants. If the source only supports a narrow edge case with no \
-If the source only supports a narrow edge case with no reusable procedure, omit the \
-proposal or fold substance into a broader how-to title per TITLE_CANONICALIZATION_RUBRIC.
+Compare the **core procedure** to **EXISTING_HOWTO_TITLES**; reuse a canonical how-to title \
+**only** on a strong page match (PAGE_MATCHING_RUBRIC). Prefer **fewer, broader** how-tos. \
+If the source only supports a narrow edge case with no reusable procedure, omit the proposal \
+or fold substance into a broader how-to title per TITLE_CANONICALIZATION_RUBRIC.
 
 Each object MUST include:
 - question_title: wiki page title (noun phrase per Title granularity above)
@@ -648,7 +832,8 @@ Empty string only if genuinely none
 them (list of strings)
 - prerequisites: what a practitioner needs before attempting this (list \
 of strings)
-- related_howtos: cross-references to other how-to slugs (list of strings)
+- related_howtos: **weak** cross-references to other how-to slugs only; not a substitute for \
+``question_title`` (list of strings)
 - proposed_tags: allowlist tags from HOWTO_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - confidence: 0.0-1.0
@@ -664,8 +849,7 @@ direct and implementation-focused. Write as reusable procedural guidance.
 Tag semantics (HOWTO_TAGS_ALLOWLIST): workflow/implementation area — overlap with \
 topic tags is OK. Follow TAG_ONTOLOGY_RUBRIC.
 
-Routing: reusable procedures without org-specific deployment evidence belong here \
-— NOT in implementation_studies."""
+Layer selection: see ABSTRACTION_SELECTION_RUBRIC. Page matching: see PAGE_MATCHING_RUBRIC."""
 
 
 TOPIC_REGEN_RUBRIC = """\
@@ -694,6 +878,9 @@ Extract time-sensitive industry patterns, NOT timeless concepts (those \
 belong in topics). Trend pages acknowledge uncertainty by design — no \
 certainty theater.
 
+Page matching: reuse ``trend_title`` / ``trend_slug`` from CANONICAL_TREND_TITLES **only** on \
+a strong page match (PAGE_MATCHING_RUBRIC).
+
 Each object MUST include:
 - trend_slug: stable kebab-case wiki page id (e.g. inference-cost-collapse, NOT \
 GPT-4o-price-cut or headline labels)
@@ -707,7 +894,8 @@ conflicting signals, or limited evidence. Empty string is NOT acceptable
 - supporting_snippet: verbatim evidence from the source
 - supporting_data_points: specific data or facts that support the trend \
 (list of strings)
-- related_trends: other trend_slug values (kebab-case list of strings)
+- related_trends: **weak** cross-links to other trend_slug values only; not a substitute \
+for ``trend_slug`` (kebab-case list of strings)
 - proposed_tags: allowlist tags from TREND_TAGS_ALLOWLIST (see TAG ONTOLOGY)
 - suggested_new_tags: off-list registry candidates when warranted (see TAG ONTOLOGY)
 - confidence: 0.0-1.0
@@ -718,7 +906,9 @@ Voice: measured, evidence-grounded, explicitly uncertain where warranted. \
 No hype, no certainty theater.
 
 Tag semantics (TREND_TAGS_ALLOWLIST): durable industry pattern domain — not \
-headline or vendor campaign labels. Follow TAG_ONTOLOGY_RUBRIC."""
+headline or vendor campaign labels. Follow TAG_ONTOLOGY_RUBRIC.
+
+Page matching: see PAGE_MATCHING_RUBRIC."""
 
 
 TOOLS_RUBRIC = """\
@@ -734,6 +924,9 @@ Tool-worthiness criteria (ALL must apply):
 - Distinct: meaningful standalone product, not a feature of another tool
 - Accumulative: future sources could meaningfully enrich this tool's page
 If a tool is merely mentioned in passing, set confidence < 0.3 and value_level = "low".
+
+Page matching: reuse ``name`` from CANONICAL_TOOL_NAMES **only** when the source is about \
+that **same product** (strong identity match per PAGE_MATCHING_RUBRIC).
 
 Each object MUST include:
 - name: the tool's established name (e.g. Cursor, LangGraph, Ollama)
@@ -809,37 +1002,41 @@ MODELS_RUBRIC = """\
 
 Only extract models where the source provides OPERATIONALLY USEFUL information — \
 not passing mentions. A model deserves extraction when the source contains \
-meaningful operational evaluation, workflow implications, comparative observations, \
+meaningful operational evaluation, deployment implications, comparative observations, \
 or strategic significance.
 
 Model-worthiness criteria:
-- Operational evaluation: real-world strengths, weaknesses, workflows, or capabilities
-- Workflow implications: how the model changes engineering or automation workflows
+- Operational evaluation: real-world capabilities, tradeoffs, and differentiators
+- Deployment implications: how the model changes engineering, orchestration, or production \
+workflows when adopted
 - Comparative observations: meaningful comparison against other models
 - Strategic significance: important enough that future sources will enrich it
 - Reusable knowledge: observations likely useful beyond this single article
 If a model is merely mentioned without operational depth, set confidence < 0.3 and \
 value_level = "low".
 
+Page matching: reuse ``model_name`` from CANONICAL_FOUNDATION_MODEL_NAMES **only** for the \
+**same model identity** (strong match per PAGE_MATCHING_RUBRIC).
+
 Each object MUST include:
 - model_name: REQUIRED non-empty string — the model's established name exactly as the source \
 states it (e.g. Mercury 2, Kimi K2.5, DeepSeek V4, GPT-5). Never leave blank; the name must \
-appear in supporting_snippet or operational_summary.
+appear in supporting_snippet or operational_profile.
 - provider: organization name (OpenAI, Anthropic, Google, Meta, DeepSeek, etc.)
-- operational_summary: 1-3 sentences on what the model is operationally good at \
-and what differentiates it. NOT a generic description like "X is a large language \
-model." Instead: "X appears strong for long-horizon coding and agent orchestration."
-- strengths: operational strengths in explanatory prose or markdown bullets (same \
-rules as TOOLS_RUBRIC Explanatory depth) — each point explains *why* the capability \
-matters, not a bare feature label. Typically 3-6 bullets or 2-4 sentences when the \
-source supports depth.
+- operational_profile: **combined** operational identity and strengths — what the model \
+is good at, what differentiates it, and why capabilities matter (explanatory prose or \
+markdown bullets per TOOLS_RUBRIC Explanatory depth). NOT a generic "X is an LLM" blurb. \
+Typically 3-6 bullets or 3-6 sentences when the source supports depth. Do **not** repeat \
+deployment_implications here.
+- deployment_implications: how **adopting or deploying** this model changes AI engineering, \
+orchestration, evaluation, automation, and service workflows — production constraints, \
+integration patterns, harness design, cost/latency tradeoffs at scale. Examples: "enables \
+larger autonomous coding loops", "reduces need for aggressive RAG chunking at 1M context". \
+Do **not** repeat operational_profile strengths here.
 - weaknesses_limitations: REQUIRED skeptical assessment in the same explanatory \
 style — inference cost, planning weaknesses, formatting instability, hallucination \
 patterns, context degradation, each with enough context to understand the tradeoff. \
 If none evident, state that explicitly in a full sentence.
-- workflow_implications: how this model changes AI engineering, orchestration, \
-evaluation, automation workflows. Examples: "enables larger autonomous coding \
-loops", "reduces prompt engineering effort", "lowers orchestration complexity"
 - service_automation_implications: implications for conversational AI, chatbots, \
 voicebots, support automation, containment rates, handoff reduction. If no \
 meaningful implications, state explicitly. Avoid vague business language
@@ -874,6 +1071,10 @@ Bad: powerful, smart, enterprise-ready.
 Prioritize observations likely to remain useful 6-12 months after the source's \
 publication date. Transient hype or short-lived benchmark excitement belongs in \
 trends, not model pages.
+
+Compression: operational_profile + deployment_implications must be **non-overlapping** — \
+one combined profile beats restating the same points in multiple fields (no legacy \
+operational_summary / strengths / workflow_implications split).
 
 Voice: clear, operational, skeptical. No hype, no certainty theater.
 
@@ -1128,10 +1329,14 @@ def _build_user_prompt(
         AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC,
         HOW_TO_ROUNDUP_EXTRACTION_RUBRIC,
         VALUE_RANKING_RUBRIC,
+        ABSTRACTION_SELECTION_RUBRIC,
+        COMPRESSION_PRESSURE_RUBRIC,
+        MINIMUM_NOVELTY_THRESHOLD_RUBRIC,
         SOURCE_EVIDENCE_PROFILE_RUBRIC,
         TAG_ONTOLOGY_RUBRIC,
         REGISTRY_TYPES_SEMANTICS,
         TITLE_CANONICALIZATION_RUBRIC,
+        PAGE_MATCHING_RUBRIC,
         "## CANONICAL_GLOSSARY_TERMS\n" + canonical_blocks["CANONICAL_GLOSSARY_TERMS"],
         "## CANONICAL_TOOL_NAMES\n" + canonical_blocks["CANONICAL_TOOL_NAMES"],
         "## CANONICAL_FOUNDATION_MODEL_NAMES\n"
@@ -1153,6 +1358,10 @@ def _build_user_prompt(
         "## SOURCE_TYPE_DETECTION_RUBRIC\n" + SOURCE_TYPE_DETECTION_RUBRIC,
         "## SOURCE_EVIDENCE_PROFILE_RUBRIC\n" + SOURCE_EVIDENCE_PROFILE_RUBRIC,
         "## SOURCE_CHAPTERS_RUBRIC\n" + SOURCE_CHAPTERS_RUBRIC,
+        "## PAGE_MATCHING_RUBRIC\n" + PAGE_MATCHING_RUBRIC,
+        "## ABSTRACTION_SELECTION_RUBRIC\n" + ABSTRACTION_SELECTION_RUBRIC,
+        "## COMPRESSION_PRESSURE_RUBRIC\n" + COMPRESSION_PRESSURE_RUBRIC,
+        "## MINIMUM_NOVELTY_THRESHOLD_RUBRIC\n" + MINIMUM_NOVELTY_THRESHOLD_RUBRIC,
         "## GLOSSARY_RUBRIC\n" + GLOSSARY_RUBRIC,
         "## IMPL_STUDY_RUBRIC\n" + IMPL_STUDY_RUBRIC,
         "## TOPICS_RUBRIC\n" + TOPICS_RUBRIC,
@@ -1201,9 +1410,16 @@ def _build_user_prompt(
             "roundup_signals, implementation_studies, interview_insights as []; extract every "
             "primary enumerated practice; skip_recommended must be false; numeric caps do not "
             "limit how_to for this type only. "
-            "ELSE: fill glossary, tools, foundation_models, how_to, topics, "
+            "ELSE: apply PAGE_MATCHING_RUBRIC before reusing any CANONICAL_* title or slug. "
+            "For each candidate knowledge unit, apply ABSTRACTION_SELECTION_RUBRIC "
+            "first; then fill glossary, tools, foundation_models, how_to, topics, "
             "implementation_studies, industry_trends per their rubrics and RESPECT extraction "
-            "budgets. Every proposal MUST have a value_level field. "
+            "budgets. Apply MINIMUM_NOVELTY_THRESHOLD_RUBRIC and COMPRESSION_PRESSURE_RUBRIC "
+            "across all proposals before finalizing arrays — omit familiar concepts without "
+            "source-specific additive insight; prefer one stronger proposal over partially "
+            "redundant overlap. "
+            "Do not place the same substance in multiple entity types unless the rubric allows "
+            "complementary dual extraction. Every proposal MUST have a value_level field. "
             "For glossary, each related_terms entry MUST match a sibling ``term`` or "
             "EXISTING_GLOSSARY_TERMS exactly (see GLOSSARY_RUBRIC; avoid abbreviations when the "
             "full form is canonical). "

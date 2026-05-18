@@ -214,6 +214,9 @@ def build_topic_slug_catalog_from_topics(
     )
 
 
+RELATED_TOPIC_SUGGEST_MIN_SCORE = 0.40
+
+
 def suggest_related_topics(
     topic_slug: str,
     topic_title: str,
@@ -221,6 +224,7 @@ def suggest_related_topics(
     catalog: list[RelatedTopicCandidate],
     *,
     cap: int = 3,
+    min_score: float = RELATED_TOPIC_SUGGEST_MIN_SCORE,
 ) -> list[RelatedTopicCandidate]:
     """Return up to *cap* related topic candidates ranked by title/summary similarity."""
     self_slug = normalize_tag(topic_slug)
@@ -235,7 +239,7 @@ def suggest_related_topics(
             continue
         hay = f"{cand.title} {cand.slug}".casefold()
         score = _title_similarity(query, hay)
-        if score <= 0.0:
+        if score < min_score:
             continue
         scored.append((score, cand))
 

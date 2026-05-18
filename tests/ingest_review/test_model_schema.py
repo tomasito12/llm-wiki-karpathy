@@ -14,10 +14,9 @@ def test_foundation_model_proposal_defaults() -> None:
     m = FoundationModelProposal()
     assert m.model_name == ""
     assert m.provider == ""
-    assert m.operational_summary == ""
-    assert m.strengths == ""
+    assert m.operational_profile == ""
+    assert m.deployment_implications == ""
     assert m.weaknesses_limitations == ""
-    assert m.workflow_implications == ""
     assert m.service_automation_implications == ""
     assert m.maturity_signals == ""
     assert m.pricing_inference_implications == ""
@@ -52,6 +51,9 @@ def test_foundation_model_proposal_removed_fields() -> None:
     fields = FoundationModelProposal.model_fields
     assert "article_summary" not in fields
     assert "newsworthy_attributes" not in fields
+    assert "operational_summary" not in fields
+    assert "strengths" not in fields
+    assert "workflow_implications" not in fields
 
 
 def test_foundation_model_proposal_json_round_trip() -> None:
@@ -59,7 +61,8 @@ def test_foundation_model_proposal_json_round_trip() -> None:
     m = FoundationModelProposal(
         model_name="GPT-5",
         provider="OpenAI",
-        operational_summary="Strong for coding.",
+        operational_profile="Strong for coding.",
+        deployment_implications="Fits agent harness loops.",
         core_capabilities=["long-context", "tool calling"],
         proposed_types=["frontier-model", "coding-model"],
         proposed_new_type="agent-model",

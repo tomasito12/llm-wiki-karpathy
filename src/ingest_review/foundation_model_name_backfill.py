@@ -31,8 +31,8 @@ def _text_blobs(proposal: FoundationModelProposal) -> list[str]:
     return [
         proposal.supporting_snippet,
         proposal.maturity_signals,
-        proposal.operational_summary,
-        proposal.strengths,
+        proposal.operational_profile,
+        proposal.deployment_implications,
         proposal.weaknesses_limitations,
         " ".join(proposal.core_capabilities),
         " ".join(proposal.comparative_observations),

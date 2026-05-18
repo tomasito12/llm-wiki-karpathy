@@ -624,13 +624,32 @@ def test_topics_rubric_related_topics_not_tags() -> None:
 
 
 def test_glossary_rubric_includes_extraction_boundaries() -> None:
-    """GLOSSARY_RUBRIC routes generic business terms away and defers patterns to topics."""
+    """GLOSSARY_RUBRIC routes generic terms away and defers to abstraction rubric."""
     from src.ingest_review.providers.openai_provider import GLOSSARY_RUBRIC
 
     assert "GLOSSARY EXTRACTION BOUNDARIES" in GLOSSARY_RUBRIC
+    assert "GLOSSARY HARD EXCLUSIONS" in GLOSSARY_RUBRIC
+    assert "not a dictionary of common terms" in GLOSSARY_RUBRIC
+    assert "ABSTRACTION_SELECTION_RUBRIC" in GLOSSARY_RUBRIC
+    assert "last" in GLOSSARY_RUBRIC.lower()
+
+
+def test_glossary_hard_exclusions_block() -> None:
+    """GLOSSARY_RUBRIC defines hard exclusions, positive bar, and named negatives."""
+    from src.ingest_review.providers.openai_provider import GLOSSARY_RUBRIC
+
+    assert "GLOSSARY HARD EXCLUSIONS" in GLOSSARY_RUBRIC
+    assert "Generic business vocabulary" in GLOSSARY_RUBRIC
+    assert "Generic software terms" in GLOSSARY_RUBRIC
+    assert "Mature web standards" in GLOSSARY_RUBRIC
+    assert "Basic AI terminology" in GLOSSARY_RUBRIC
+    assert "Ontology-worthy" in GLOSSARY_RUBRIC
+    assert "Operationally differentiating" in GLOSSARY_RUBRIC
+    assert "Benchmark" in GLOSSARY_RUBRIC
+    assert "Knowledge Management" in GLOSSARY_RUBRIC
+    assert "Passkey" in GLOSSARY_RUBRIC
+    assert "WCAG" in GLOSSARY_RUBRIC
     assert "flywheel" in GLOSSARY_RUBRIC
-    assert "agent-first product design" in GLOSSARY_RUBRIC
-    assert "prefer a topic contribution over a glossary term" in GLOSSARY_RUBRIC
 
 
 def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
@@ -743,6 +762,7 @@ def test_impl_study_rubric_includes_worthiness_gate() -> None:
     assert "weekend" in IMPL_STUDY_RUBRIC.lower()
     assert "implementation_studies: []" in IMPL_STUDY_RUBRIC
     assert "EXTRACTION BOUNDARIES" in IMPL_STUDY_RUBRIC
+    assert "ABSTRACTION_SELECTION_RUBRIC" in IMPL_STUDY_RUBRIC
 
 
 def test_impl_study_worthiness_gate_in_user_prompt(tmp_path: Path) -> None:
@@ -776,12 +796,12 @@ def test_impl_study_worthiness_gate_in_user_prompt(tmp_path: Path) -> None:
     assert IMPL_STUDY_RUBRIC.split("\n")[0] in prompt
 
 
-def test_topics_and_howtos_rubric_route_away_from_impl_studies() -> None:
-    """Topics and how-tos rubrics say not to use implementation_studies."""
+def test_topics_and_howtos_rubric_reference_abstraction_selection() -> None:
+    """Topics and how-tos rubrics delegate layer selection to global rubric."""
     from src.ingest_review.providers.openai_provider import HOWTOS_RUBRIC, TOPICS_RUBRIC
 
-    assert "NOT in implementation_studies" in TOPICS_RUBRIC
-    assert "NOT in implementation_studies" in HOWTOS_RUBRIC
+    assert "ABSTRACTION_SELECTION_RUBRIC" in TOPICS_RUBRIC
+    assert "ABSTRACTION_SELECTION_RUBRIC" in HOWTOS_RUBRIC
 
 
 def test_howtos_rubric_title_granularity_rules() -> None:
@@ -809,11 +829,297 @@ def test_system_prompt_howto_titles_are_page_names() -> None:
     assert "HOWTOS_RUBRIC" in SYSTEM_PROMPT
 
 
-def test_prompt_version_is_29() -> None:
-    """Prompt version bumped for source evidence profile."""
+def test_abstraction_selection_rubric_content() -> None:
+    """ABSTRACTION_SELECTION_RUBRIC defines layer arbitration and tie-breakers."""
+    from src.ingest_review.providers.openai_provider import ABSTRACTION_SELECTION_RUBRIC
+
+    assert "MOST durable" in ABSTRACTION_SELECTION_RUBRIC
+    assert "Highest reuse potential" in ABSTRACTION_SELECTION_RUBRIC
+    assert "Lowest duplication risk" in ABSTRACTION_SELECTION_RUBRIC
+    assert "complementary" in ABSTRACTION_SELECTION_RUBRIC.lower()
+    assert "one primary entity type" in ABSTRACTION_SELECTION_RUBRIC.lower()
+    assert "Agent Harness Engineering" in ABSTRACTION_SELECTION_RUBRIC
+    assert "GLOSSARY HARD EXCLUSIONS" in ABSTRACTION_SELECTION_RUBRIC
+
+
+def test_system_prompt_references_abstraction_rubric() -> None:
+    """SYSTEM_PROMPT delegates entity-type choice to ABSTRACTION_SELECTION_RUBRIC."""
+    from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
+
+    assert "ABSTRACTION_SELECTION_RUBRIC" in SYSTEM_PROMPT
+    assert "ontology compression" in SYSTEM_PROMPT.lower()
+
+
+def test_abstraction_rubric_in_user_prompt(tmp_path: Path) -> None:
+    """Built user prompt includes abstraction rubric before entity rubrics."""
+    from src.ingest_review.providers.openai_provider import (
+        ABSTRACTION_SELECTION_RUBRIC,
+        _build_user_prompt,
+    )
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-abstraction"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=[],
+        howto_tags=[],
+        prompt_version="30",
+    )
+    assert "## ABSTRACTION_SELECTION_RUBRIC" in prompt
+    assert ABSTRACTION_SELECTION_RUBRIC.split("\n")[0] in prompt
+    assert "ABSTRACTION_SELECTION_RUBRIC first" in prompt
+    gloss_idx = prompt.index("## GLOSSARY_RUBRIC")
+    abs_idx = prompt.index("## ABSTRACTION_SELECTION_RUBRIC")
+    assert abs_idx < gloss_idx
+
+
+def test_entity_rubrics_reference_abstraction_rubric() -> None:
+    """Entity rubrics cross-reference the global abstraction selection rubric."""
+    from src.ingest_review.providers.openai_provider import (
+        GLOSSARY_RUBRIC,
+        HOWTOS_RUBRIC,
+        IMPL_STUDY_RUBRIC,
+        TOPICS_RUBRIC,
+    )
+
+    for name, rubric in [
+        ("GLOSSARY_RUBRIC", GLOSSARY_RUBRIC),
+        ("TOPICS_RUBRIC", TOPICS_RUBRIC),
+        ("HOWTOS_RUBRIC", HOWTOS_RUBRIC),
+        ("IMPL_STUDY_RUBRIC", IMPL_STUDY_RUBRIC),
+    ]:
+        assert "ABSTRACTION_SELECTION_RUBRIC" in rubric, f"{name} missing cross-reference"
+
+
+def test_compression_pressure_rubric_content() -> None:
+    """COMPRESSION_PRESSURE_RUBRIC prefers one strong proposal over redundant overlap."""
+    from src.ingest_review.providers.openai_provider import COMPRESSION_PRESSURE_RUBRIC
+
+    assert "substantially overlapping" in COMPRESSION_PRESSURE_RUBRIC
+    assert "one stronger proposal" in COMPRESSION_PRESSURE_RUBRIC
+    assert "glossary/topic duplication" in COMPRESSION_PRESSURE_RUBRIC
+    assert "repeated operational explanations" in COMPRESSION_PRESSURE_RUBRIC
+
+
+def test_system_prompt_references_compression_pressure() -> None:
+    """SYSTEM_PROMPT applies compression pressure when filling entity arrays."""
+    from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
+
+    assert "COMPRESSION_PRESSURE_RUBRIC" in SYSTEM_PROMPT
+
+
+def test_compression_pressure_rubric_in_user_prompt(tmp_path: Path) -> None:
+    """Built user prompt includes compression rubric before glossary rubric."""
+    from src.ingest_review.providers.openai_provider import (
+        COMPRESSION_PRESSURE_RUBRIC,
+        _build_user_prompt,
+    )
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-compression"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=[],
+        howto_tags=[],
+        prompt_version="32",
+    )
+    assert "## COMPRESSION_PRESSURE_RUBRIC" in prompt
+    assert COMPRESSION_PRESSURE_RUBRIC.split("\n")[0] in prompt
+    assert "COMPRESSION_PRESSURE_RUBRIC across all proposals" in prompt
+    comp_idx = prompt.index("## COMPRESSION_PRESSURE_RUBRIC")
+    gloss_idx = prompt.index("## GLOSSARY_RUBRIC")
+    assert comp_idx < gloss_idx
+
+
+def test_abstraction_rubric_references_compression_pressure() -> None:
+    """ABSTRACTION_SELECTION_RUBRIC chains to compression pressure after layer selection."""
+    from src.ingest_review.providers.openai_provider import ABSTRACTION_SELECTION_RUBRIC
+
+    assert "COMPRESSION_PRESSURE_RUBRIC" in ABSTRACTION_SELECTION_RUBRIC
+
+
+def test_minimum_novelty_threshold_rubric_content() -> None:
+    """MINIMUM_NOVELTY_THRESHOLD_RUBRIC requires source-specific novelty beyond common knowledge."""
+    from src.ingest_review.providers.openai_provider import MINIMUM_NOVELTY_THRESHOLD_RUBRIC
+
+    assert "broadly familiar" in MINIMUM_NOVELTY_THRESHOLD_RUBRIC
+    assert "operational framing" in MINIMUM_NOVELTY_THRESHOLD_RUBRIC
+    assert "architecture pattern" in MINIMUM_NOVELTY_THRESHOLD_RUBRIC
+    assert "deployment implication" in MINIMUM_NOVELTY_THRESHOLD_RUBRIC
+    assert "governance implication" in MINIMUM_NOVELTY_THRESHOLD_RUBRIC
+    assert "systems-level interpretation" in MINIMUM_NOVELTY_THRESHOLD_RUBRIC
+    assert "not merely" in MINIMUM_NOVELTY_THRESHOLD_RUBRIC.lower()
+
+
+def test_system_prompt_references_minimum_novelty_threshold() -> None:
+    """SYSTEM_PROMPT applies minimum novelty threshold to proposals."""
+    from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
+
+    assert "MINIMUM_NOVELTY_THRESHOLD_RUBRIC" in SYSTEM_PROMPT
+
+
+def test_minimum_novelty_threshold_rubric_in_user_prompt(tmp_path: Path) -> None:
+    """Built user prompt includes novelty threshold rubric before entity rubrics."""
+    from src.ingest_review.providers.openai_provider import (
+        MINIMUM_NOVELTY_THRESHOLD_RUBRIC,
+        _build_user_prompt,
+    )
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-novelty"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=[],
+        howto_tags=[],
+        prompt_version="33",
+    )
+    assert "## MINIMUM_NOVELTY_THRESHOLD_RUBRIC" in prompt
+    assert MINIMUM_NOVELTY_THRESHOLD_RUBRIC.split("\n")[0] in prompt
+    assert "MINIMUM_NOVELTY_THRESHOLD_RUBRIC" in prompt.split("## Instructions")[-1]
+    novelty_idx = prompt.index("## MINIMUM_NOVELTY_THRESHOLD_RUBRIC")
+    gloss_idx = prompt.index("## GLOSSARY_RUBRIC")
+    assert novelty_idx < gloss_idx
+
+
+def test_abstraction_rubric_references_minimum_novelty_threshold() -> None:
+    """ABSTRACTION_SELECTION_RUBRIC chains to minimum novelty threshold after layer selection."""
+    from src.ingest_review.providers.openai_provider import ABSTRACTION_SELECTION_RUBRIC
+
+    assert "MINIMUM_NOVELTY_THRESHOLD_RUBRIC" in ABSTRACTION_SELECTION_RUBRIC
+
+
+def test_models_rubric_uses_compressed_prose_fields() -> None:
+    """MODELS_RUBRIC uses operational_profile and deployment_implications only."""
+    from src.ingest_review.providers.openai_provider import MODELS_RUBRIC
+
+    assert "operational_profile" in MODELS_RUBRIC
+    assert "deployment_implications" in MODELS_RUBRIC
+    assert "- operational_summary:" not in MODELS_RUBRIC
+    assert "- strengths:" not in MODELS_RUBRIC
+    assert "- workflow_implications:" not in MODELS_RUBRIC
+    assert "non-overlapping" in MODELS_RUBRIC.lower()
+
+
+def test_page_matching_rubric_content() -> None:
+    """PAGE_MATCHING_RUBRIC defines strong vs weak overlap and named negatives."""
+    from src.ingest_review.providers.openai_provider import PAGE_MATCHING_RUBRIC
+
+    assert "Strong page match" in PAGE_MATCHING_RUBRIC
+    assert "Weak related concept" in PAGE_MATCHING_RUBRIC
+    assert "Privacy Controls for AI Products" in PAGE_MATCHING_RUBRIC
+    assert "passkeys" in PAGE_MATCHING_RUBRIC.lower()
+    assert "related_topics" in PAGE_MATCHING_RUBRIC
+
+
+def test_title_canonicalization_references_page_matching() -> None:
+    """TITLE_CANONICALIZATION_RUBRIC defers reuse to PAGE_MATCHING_RUBRIC."""
+    from src.ingest_review.providers.openai_provider import TITLE_CANONICALIZATION_RUBRIC
+
+    assert "PAGE_MATCHING_RUBRIC" in TITLE_CANONICALIZATION_RUBRIC
+    assert "strong page match" in TITLE_CANONICALIZATION_RUBRIC.lower()
+    assert "clearly belongs" not in TITLE_CANONICALIZATION_RUBRIC.lower()
+
+
+def test_topics_rubric_separates_slug_reuse_from_related_topics() -> None:
+    """TOPICS_RUBRIC must not use related_topics to choose topic_slug."""
+    from src.ingest_review.providers.openai_provider import TOPICS_RUBRIC
+
+    assert "PAGE_MATCHING_RUBRIC" in TOPICS_RUBRIC
+    assert "Do **NOT** use ``related_topics`` to" in TOPICS_RUBRIC
+    assert "weak" in TOPICS_RUBRIC.lower()
+
+
+def test_page_matching_rubric_in_user_prompt(tmp_path: Path) -> None:
+    """Built user prompt includes PAGE_MATCHING_RUBRIC before entity rubrics."""
+    from src.ingest_review.providers.openai_provider import (
+        PAGE_MATCHING_RUBRIC,
+        _build_user_prompt,
+    )
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-page-match"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=[],
+        howto_tags=[],
+        prompt_version="35",
+    )
+    assert "## PAGE_MATCHING_RUBRIC" in prompt
+    assert PAGE_MATCHING_RUBRIC.split("\n")[0] in prompt
+    assert "PAGE_MATCHING_RUBRIC before reusing" in prompt
+    page_idx = prompt.index("## PAGE_MATCHING_RUBRIC")
+    gloss_idx = prompt.index("## GLOSSARY_RUBRIC")
+    assert page_idx < gloss_idx
+
+
+def test_system_prompt_references_page_matching() -> None:
+    """SYSTEM_PROMPT applies page matching before canonical reuse."""
+    from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
+
+    assert "PAGE_MATCHING_RUBRIC" in SYSTEM_PROMPT
+
+
+def test_prompt_version_is_35() -> None:
+    """Prompt version bumped for page matching rubric."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "29"
+    assert PROMPT_VERSION == "35"
 
 
 def test_title_canonicalization_rubric_replaces_suggested_action() -> None:

@@ -55,10 +55,9 @@ VALUE_LEVEL_TIER_HEADERS: dict[str, str] = {
 MODEL_FIELD_LABELS: dict[str, str] = {
     "model_name": "Model name",
     "provider": "Provider",
-    "operational_summary": "Operational summary",
-    "strengths": "Strengths",
+    "operational_profile": "Operational profile",
+    "deployment_implications": "Deployment implications",
     "weaknesses_limitations": "Weaknesses / limitations",
-    "workflow_implications": "Workflow implications",
     "service_automation_implications": "Service automation implications",
     "maturity_signals": "Maturity / adoption signals",
     "pricing_inference_implications": "Pricing / inference implications",
@@ -69,10 +68,9 @@ MODEL_FIELD_LABELS: dict[str, str] = {
 
 MODEL_TALL_SCALAR_KEYS: frozenset[str] = frozenset(
     {
-        "operational_summary",
-        "strengths",
+        "operational_profile",
+        "deployment_implications",
         "weaknesses_limitations",
-        "workflow_implications",
         "service_automation_implications",
     }
 )
@@ -233,11 +231,11 @@ def format_model_readonly_markdown(
     provider = effective_model_scalar(llm_item, sections, "provider")
     if provider:
         lines.extend(["**Provider**", "", provider, ""])
-    summary = effective_model_scalar(llm_item, sections, "operational_summary")
-    if summary:
-        lines.extend(["**Operational summary**", "", summary, ""])
+    profile = effective_model_scalar(llm_item, sections, "operational_profile")
+    if profile:
+        lines.extend(["**Operational profile**", "", profile, ""])
     for sk in MODEL_REVIEWABLE_SCALAR_KEYS:
-        if sk in ("model_name", "provider", "operational_summary"):
+        if sk in ("model_name", "provider", "operational_profile"):
             continue
         val = effective_model_scalar(llm_item, sections, sk)
         if val:
@@ -394,9 +392,9 @@ def _render_model_edit_box(
             prompt_version=prompt_version,
             review_list_key="foundation_models",
             label_widget_key=f"{key_prefix}_edit_model_name",
-            summary_widget_key=f"{key_prefix}_edit_operational_summary",
+            summary_widget_key=f"{key_prefix}_edit_operational_profile",
             llm_fallback_label_key="model_name",
-            llm_fallback_summary_key="operational_summary",
+            llm_fallback_summary_key="operational_profile",
             section_title="Model types",
         )
         render_proposal_evidence_type_editor(st, llm_item, artifact, key_prefix=key_prefix)

@@ -95,7 +95,9 @@ Regenerate ONE foundation model proposal under reviewer-supplied NEW_MODEL_NAME.
 
 Rules:
 - Reframe for NEW_MODEL_NAME; update provider if the source supports a different vendor.
-- strengths / weaknesses_limitations: explanatory prose or bullets — NOT keyword dumps.
+- operational_profile / deployment_implications: non-overlapping explanatory prose or \
+bullets — NOT keyword dumps; do not split the same substance across both fields.
+- weaknesses_limitations: same depth rules.
 - Ground in ARTICLE_PLAIN_TEXT; operational evaluation voice.
 - related_models: names from EXISTING_FOUNDATION_MODEL_NAMES when applicable.
 - Follow REVIEWER_NOTE. Do not output model_name."""
@@ -193,7 +195,10 @@ def run_proposal_regeneration(
     if not cfg:
         raise ValueError(f"Unknown proposal regen entity: {entity_key}")
 
-    from src.ingest_review.providers.openai_provider import TITLE_CANONICALIZATION_RUBRIC
+    from src.ingest_review.providers.openai_provider import (
+        PAGE_MATCHING_RUBRIC,
+        TITLE_CANONICALIZATION_RUBRIC,
+    )
 
     title = new_title.strip()
     if not title:
@@ -207,6 +212,7 @@ def run_proposal_regeneration(
         f"{cfg.new_title_key}: {title}",
         f"PROPOSAL_REGEN_RUBRIC:\n{cfg.rubric}",
         f"TITLE_CANONICALIZATION_RUBRIC:\n{TITLE_CANONICALIZATION_RUBRIC}",
+        f"PAGE_MATCHING_RUBRIC:\n{PAGE_MATCHING_RUBRIC}",
         "## REVIEWER_NOTE\n" + (reviewer_instruction.strip() if reviewer_instruction else "(none)"),
         "## CURRENT_PROPOSAL_JSON\n" + current_json,
     ]
