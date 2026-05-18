@@ -1,0 +1,786 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-18T15:30:46+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DguD8F2igB5M1FEasELfLAlHYB4f1",
+    "token_usage": {
+      "completion_tokens": 3068,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 27330,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 30398
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "extended_explanation": "Instead of expecting the model to remember everything, the system looks up supporting material from a document store, vector database, or search index before answering. This is useful when the underlying knowledge changes often or when the source material is too large to fit in context. The tradeoff is that the system redoes the search-and-stitch process for each question, so it may not build persistent structure across related questions. In practice, it is often used for document question answering, internal knowledge search, and support bots.",
+        "match_candidates": [],
+        "primary_tag": "retrieval-augmented-generation",
+        "proposed_definition": "A method that improves language model answers by retrieving relevant external documents or chunks and feeding them into the model at query time.",
+        "proposed_tags": [
+          "retrieval-augmented-generation",
+          "ai-architecture"
+        ],
+        "related_terms": [
+          "Knowledge Management"
+        ],
+        "relevance_note": "This is a core pattern in document-grounded AI systems, especially for chatbots, enterprise search, and service workflows that need answers from private material. Understanding its strengths and limits helps practitioners decide when retrieval is enough and when they need higher-level structure or curation.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Here\u2019s how it typically works: your documents get chopped into small chunks, those chunks get converted into mathematical representations called embeddings, and when you ask a question, the system searches for the most similar chunks and feeds them to the AI.",
+        "term": "Retrieval-Augmented Generation",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "extended_explanation": "In AI systems, knowledge management covers more than file storage: it includes structure, taxonomy, backlinks, summaries, and maintenance routines that keep information usable over time. A well-managed knowledge base can reduce repeated searching, improve answer consistency, and make human review easier. It becomes especially important when AI outputs need to accumulate rather than disappear after a single chat session. In practice, it is a key layer for research workflows, internal docs, and agent systems that need persistent memory.",
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "proposed_definition": "The practice of organizing, storing, linking, and maintaining information so it can be found and reused effectively.",
+        "proposed_tags": [
+          "knowledge-management",
+          "ai-engineering"
+        ],
+        "related_terms": [
+          "Retrieval-Augmented Generation"
+        ],
+        "relevance_note": "This is a durable operational concept for any AI system that needs reusable memory, auditability, and structure across many documents. It matters for conversational AI and service automation because the quality of answers often depends on how well knowledge is curated, linked, and kept current.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Karpathy\u2019s approach is different. Instead of searching through raw documents on every query, the LLM reads the raw material once and compiles it into a structured, organized wiki.",
+        "term": "Knowledge Management",
+        "value_level": "high"
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-05",
+        "confidence": 0.84,
+        "evidence_from_source": "The article describes an LLM that reads raw material, writes wiki pages, creates backlinks, updates existing pages, runs lint passes, and generates outputs that are filed back into the wiki.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_trends": [
+          "harness-design-becomes-more-important-for-agent-reliability"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "The described system updates 10\u201315 wiki pages when new material is ingested.",
+          "The workflow includes ingest, query, and lint operations.",
+          "Outputs are fed back into the wiki as markdown files."
+        ],
+        "supporting_snippet": "The AI writes the articles, creates backlinks between related ideas, categorizes concepts, and keeps the whole thing updated as new material comes in.",
+        "time_sensitivity": "Actionable as of 2026-04-05; relevant while local agentic file editing remains practical and while teams want model-driven compilation of knowledge artifacts.",
+        "trend_description": "Language models are increasingly used not only to answer questions, but to carry out multi-step operational work across files, notes, and structured outputs. In this pattern, the model acts less like a conversational front end and more like an execution layer that reads, writes, compiles, and maintains artifacts over time.",
+        "trend_slug": "models-becoming-execution-layers",
+        "trend_title": "Models Becoming Execution Layers",
+        "uncertainty_note": "This is an interpretation from one workflow writeup, not a measured industry-wide adoption study. It is plausible as an operating pattern, but the article does not quantify reliability, cost, or failure modes at scale.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is an independent writer interpreting Andrej Karpathy's posted workflow and gist.",
+        "Most claims are explanatory and architectural, not benchmark-driven or deployment-verified.",
+        "The piece also cites VentureBeat and a Substack writer as framing support rather than presenting original experimental data."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about a way to use artificial intelligence as a helper for building a personal knowledge base. Instead of asking the system only to write code, Andrej Karpathy describes using it to sort research notes into a linked wiki that keeps growing over time. You put your original articles, papers, and other files into one folder, and the system turns them into organized notes with links between related ideas. The important part is that the original files are left unchanged, so you always have the source material. The writer compares this approach with retrieval-augmented generation, which is a method where a system searches through documents each time you ask a question. In this workflow, the notes become a kind of second brain that can answer questions using your own collected sources. The article says you can start with simple tools like Obsidian and a browser extension, without needing a full software setup. It also makes a careful point that the system helps with organizing and connecting ideas, but it does not replace human thinking. As of 2026-04-05, the idea looks actionable for people who want a practical research workflow, though the bigger promise is still about knowledge organization rather than fully automated insight.",
+      "assessed_as_of": "2026-04-05",
+      "contradictions_and_skepticism": "The piece pushes back against retrieval-augmented generation, but the critique is framed from a workflow perspective rather than benchmark evidence. It is plausible that compiled markdown helps with organization, yet that does not prove it is always better than search-based retrieval for factual recall or freshness. The strongest speculative jump is the suggestion that a cleaned-up wiki could become training data for a model that internalizes the domain; that is an interesting extension, but it is not shown here. The viral framing may overstate novelty: the underlying ideas\u2014structured notes, backlinks, and periodic cleanup\u2014are familiar, even if the assembled workflow is unusually coherent.",
+      "key_insights": [
+        "A local markdown wiki can preserve accumulated structure better than one-off document retrieval because the knowledge is compiled once and then maintained.",
+        "The source-of-truth/raw-folder split is a useful operational safeguard: original materials stay untouched while the wiki remains a regenerable layer.",
+        "Periodic linting matters because the value of the system depends on backlinks, orphan cleanup, and stale-claim detection staying intact.",
+        "The workflow compounds value when query answers are filed back into the wiki, turning usage into additional knowledge capture.",
+        "The strongest claim is organizational, not epistemic: the system reduces research drudgery, but human synthesis still remains necessary."
+      ],
+      "limitations_and_open_questions": "The article does not provide controlled evidence that the wiki approach outperforms retrieval-augmented generation on accuracy, speed, or maintenance cost. It also leaves open how well the system scales when the raw corpus becomes messy, contradictory, multilingual, or highly dynamic. The maintenance burden of linting, schema tuning, and prompt upkeep is described, but not quantified. The claim that the system can be used by non-developers depends on how comfortable they are with local files, LLM agents, and manual curation. The future idea of generating synthetic training data and fine-tuning a smaller model is mentioned only as a direction, not as a demonstrated outcome.",
+      "sources": [
+        "https://medium.com/neuralnotions/andrej-karpathy-stopped-using-ai-to-write-code-hes-using-it-to-build-a-second-brain-instead-cddceadc5df5",
+        "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+      ],
+      "summary": "The piece explains Andrej Karpathy\u2019s idea of using an LLM as a persistent research librarian rather than only a code generator. Raw documents are stored in a source-of-truth folder, then compiled into a markdown wiki with summaries, concept pages, backlinks, indexes, and periodic lint passes. The author contrasts this with retrieval-augmented generation, arguing that retrieval alone re-discovers knowledge on every query while the wiki accumulates structure over time. The workflow is presented as practical for non-developers because it can start with Obsidian, a browser clipper, and an LLM agent that reads and writes local files. The piece also notes a limit: the system is strong at organizing and reconnecting material, but synthesis still remains a human task.",
+      "why_it_matters": "The piece is useful because it reframes a common AI workflow problem: instead of treating an LLM as a question-answering layer over documents, it treats the model as a compiler that turns raw material into a maintained knowledge base. That is a durable idea for anyone building research tooling, internal knowledge systems, or agent workflows that need more structure than retrieval alone provides. The raw/source-of-truth split is especially practical because it separates immutable evidence from generated summaries, making the compiled layer easier to regenerate or audit. The article also makes clear that markdown, backlinks, indexes, and lint passes are not cosmetic details; they are the operational machinery that lets the knowledge base accumulate over time. The caveat is that the stakes are narrower than the viral framing suggests: the strongest evidence here is an expert-described workflow, not a measured comparison against alternative systems. Actionable as of 2026-04-05, with the core pattern likely durable because it is built around plain files, explicit structure, and local tooling rather than a single vendor feature. For service automation, the closing implication is indirect but real: the same pattern could organize internal documents, meeting transcripts, and support knowledge, but the article does not present a production customer-support deployment."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "This is a single coherent explanatory article, not a bundle of unrelated roundup items.",
+        "The structure is narrative plus walkthrough, not Q&A transcript or step-by-step technical tutorial alone.",
+        "It discusses one workflow centered on Karpathy's knowledge-base idea and supporting commentary from another publication."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": "mixed",
+        "examples": "",
+        "key_points": [
+          "Keep raw sources separate from compiled knowledge so outputs can be regenerated without losing evidence.",
+          "Have the LLM maintain summaries, backlinks, indexes, and comparison pages as first-class artifacts.",
+          "Recompile incrementally when new sources arrive rather than rebuilding the whole system from scratch.",
+          "Run lint passes to find contradictions, orphan pages, missing concepts, and stale claims.",
+          "Store outputs as plain markdown files so they remain editable, portable, and auditable."
+        ],
+        "knowledge_summary": "AI-assisted knowledge compilation treats raw documents as immutable source material and uses an LLM to turn them into a structured, interlinked knowledge layer. The compiled layer can include summaries, concept pages, entity pages, comparisons, indexes, backlinks, and logs, and it can be regenerated incrementally as new material arrives. This approach is presented as an alternative to ad hoc chat histories or retrieval-only systems because the knowledge accumulates over time instead of being rediscovered on each query.",
+        "match_candidates": [],
+        "operational_insight": "Use the LLM as a compiler, librarian, and maintenance worker for a markdown knowledge base: ingest raw sources, generate structured pages, keep links and indexes updated, and run periodic lint passes to catch contradictions or stale claims. The practical advantage is a persistent, auditable knowledge system that improves with each new source and each new query.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "knowledge-management",
+          "local-file-based-ai-workflows"
+        ],
+        "relevance_note": "This pattern is broadly useful anywhere teams accumulate documents that need to become reusable knowledge, especially when structure, traceability, and incremental updates matter more than one-off answers. It fits workflows that need memory across sources without sacrificing the ability to inspect the underlying files.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Instead of searching through raw documents on every query, the LLM reads the raw material once and compiles it into a structured, organized wiki. Summaries, concept articles, backlinks, comparisons, an index the whole thing.",
+        "topic_slug": "ai-assisted-knowledge-compilation",
+        "topic_title": "AI-Assisted Knowledge Compilation",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Plain markdown can be enough for a durable knowledge system when paired with naming rules and backlinks.",
+          "Keeping artifacts local makes it easier to inspect, version, and repurpose outputs.",
+          "A file-first architecture can avoid lock-in to a specific hosted product or database.",
+          "Human editing stays simple because the output remains ordinary text files."
+        ],
+        "knowledge_summary": "Some of the most practical AI workflows use plain files on a local machine as the main interface between the human, the model, and the knowledge base. Markdown, folder structure, and version control can provide enough structure for durable work without requiring a database-first architecture. This makes the system easier to inspect, back up, edit, and regenerate. Local file workflows also reduce dependence on a single cloud platform or proprietary app.",
+        "match_candidates": [],
+        "operational_insight": "When the end state is readable markdown plus clear folder conventions, the system stays inspectable and portable. That lowers operational risk and makes human review much easier than with opaque storage layers.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "knowledge-compilation-workflows"
+        ],
+        "relevance_note": "Local-file workflows are valuable in AI engineering because they preserve transparency, portability, and low-friction automation. They are a strong fit for knowledge bases, agent traces, and team documentation that need to survive tool changes.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "And because everything is stored as plain markdown files you can read yourself, there\u2019s no black box. Every claim can be traced back to a specific file that you can open, read, and edit in any text editor.",
+        "topic_slug": "local-file-based-ai-workflows",
+        "topic_title": "Local File-Based AI Workflows",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "extended_explanation": "Instead of expecting the model to remember everything, the system looks up supporting material from a document store, vector database, or search index before answering. This is useful when the underlying knowledge changes often or when the source material is too large to fit in context. The tradeoff is that the system redoes the search-and-stitch process for each question, so it may not build persistent structure across related questions. In practice, it is often used for document question answering, internal knowledge search, and support bots.",
+          "match_candidates": [],
+          "primary_tag": "retrieval-augmented-generation",
+          "proposed_definition": "A method that improves language model answers by retrieving relevant external documents or chunks and feeding them into the model at query time.",
+          "proposed_tags": [
+            "retrieval-augmented-generation",
+            "ai-architecture"
+          ],
+          "related_terms": [
+            "Knowledge Management"
+          ],
+          "relevance_note": "This is a core pattern in document-grounded AI systems, especially for chatbots, enterprise search, and service workflows that need answers from private material. Understanding its strengths and limits helps practitioners decide when retrieval is enough and when they need higher-level structure or curation.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Here\u2019s how it typically works: your documents get chopped into small chunks, those chunks get converted into mathematical representations called embeddings, and when you ask a question, the system searches for the most similar chunks and feeds them to the AI.",
+          "term": "Retrieval-Augmented Generation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "85c3822a-fb99-4161-9bce-a2304ae39320",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Knowledge Management"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "retrieval-augmented-generation",
+            "ai-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "extended_explanation": "In AI systems, knowledge management covers more than file storage: it includes structure, taxonomy, backlinks, summaries, and maintenance routines that keep information usable over time. A well-managed knowledge base can reduce repeated searching, improve answer consistency, and make human review easier. It becomes especially important when AI outputs need to accumulate rather than disappear after a single chat session. In practice, it is a key layer for research workflows, internal docs, and agent systems that need persistent memory.",
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "proposed_definition": "The practice of organizing, storing, linking, and maintaining information so it can be found and reused effectively.",
+          "proposed_tags": [
+            "knowledge-management",
+            "ai-engineering"
+          ],
+          "related_terms": [
+            "Retrieval-Augmented Generation"
+          ],
+          "relevance_note": "This is a durable operational concept for any AI system that needs reusable memory, auditability, and structure across many documents. It matters for conversational AI and service automation because the quality of answers often depends on how well knowledge is curated, linked, and kept current.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Karpathy\u2019s approach is different. Instead of searching through raw documents on every query, the LLM reads the raw material once and compiles it into a structured, organized wiki.",
+          "term": "Knowledge Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3a82c56f-43fd-4ad9-bb85-6718e36b0d29",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Retrieval-Augmented Generation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-management"
+          ]
+        }
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-05",
+          "confidence": 0.84,
+          "evidence_from_source": "The article describes an LLM that reads raw material, writes wiki pages, creates backlinks, updates existing pages, runs lint passes, and generates outputs that are filed back into the wiki.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_trends": [
+            "harness-design-becomes-more-important-for-agent-reliability"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "The described system updates 10\u201315 wiki pages when new material is ingested.",
+            "The workflow includes ingest, query, and lint operations.",
+            "Outputs are fed back into the wiki as markdown files."
+          ],
+          "supporting_snippet": "The AI writes the articles, creates backlinks between related ideas, categorizes concepts, and keeps the whole thing updated as new material comes in.",
+          "time_sensitivity": "Actionable as of 2026-04-05; relevant while local agentic file editing remains practical and while teams want model-driven compilation of knowledge artifacts.",
+          "trend_description": "Language models are increasingly used not only to answer questions, but to carry out multi-step operational work across files, notes, and structured outputs. In this pattern, the model acts less like a conversational front end and more like an execution layer that reads, writes, compiles, and maintains artifacts over time.",
+          "trend_slug": "models-becoming-execution-layers",
+          "trend_title": "Models Becoming Execution Layers",
+          "uncertainty_note": "This is an interpretation from one workflow writeup, not a measured industry-wide adoption study. It is plausible as an operating pattern, but the article does not quantify reliability, cost, or failure modes at scale.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "546e4216-7533-4412-9d32-8ba787b61cde",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "harness-design-becomes-more-important-for-agent-reliability"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The described system updates 10\u201315 wiki pages when new material is ingested.",
+              "The workflow includes ingest, query, and lint operations.",
+              "Outputs are fed back into the wiki as markdown files."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is an independent writer interpreting Andrej Karpathy's posted workflow and gist.",
+          "Most claims are explanatory and architectural, not benchmark-driven or deployment-verified.",
+          "The piece also cites VentureBeat and a Substack writer as framing support rather than presenting original experimental data."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A local markdown wiki can preserve accumulated structure better than one-off document retrieval because the knowledge is compiled once and then maintained.",
+          "The source-of-truth/raw-folder split is a useful operational safeguard: original materials stay untouched while the wiki remains a regenerable layer.",
+          "Periodic linting matters because the value of the system depends on backlinks, orphan cleanup, and stale-claim detection staying intact.",
+          "The workflow compounds value when query answers are filed back into the wiki, turning usage into additional knowledge capture.",
+          "The strongest claim is organizational, not epistemic: the system reduces research drudgery, but human synthesis still remains necessary."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/neuralnotions/andrej-karpathy-stopped-using-ai-to-write-code-hes-using-it-to-build-a-second-brain-instead-cddceadc5df5",
+          "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "This is a single coherent explanatory article, not a bundle of unrelated roundup items.",
+          "The structure is narrative plus walkthrough, not Q&A transcript or step-by-step technical tutorial alone.",
+          "It discusses one workflow centered on Karpathy's knowledge-base idea and supporting commentary from another publication."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": "mixed",
+          "examples": "",
+          "key_points": [
+            "Keep raw sources separate from compiled knowledge so outputs can be regenerated without losing evidence.",
+            "Have the LLM maintain summaries, backlinks, indexes, and comparison pages as first-class artifacts.",
+            "Recompile incrementally when new sources arrive rather than rebuilding the whole system from scratch.",
+            "Run lint passes to find contradictions, orphan pages, missing concepts, and stale claims.",
+            "Store outputs as plain markdown files so they remain editable, portable, and auditable."
+          ],
+          "knowledge_summary": "AI-assisted knowledge compilation treats raw documents as immutable source material and uses an LLM to turn them into a structured, interlinked knowledge layer. The compiled layer can include summaries, concept pages, entity pages, comparisons, indexes, backlinks, and logs, and it can be regenerated incrementally as new material arrives. This approach is presented as an alternative to ad hoc chat histories or retrieval-only systems because the knowledge accumulates over time instead of being rediscovered on each query.",
+          "match_candidates": [],
+          "operational_insight": "Use the LLM as a compiler, librarian, and maintenance worker for a markdown knowledge base: ingest raw sources, generate structured pages, keep links and indexes updated, and run periodic lint passes to catch contradictions or stale claims. The practical advantage is a persistent, auditable knowledge system that improves with each new source and each new query.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "knowledge-management",
+            "local-file-based-ai-workflows"
+          ],
+          "relevance_note": "This pattern is broadly useful anywhere teams accumulate documents that need to become reusable knowledge, especially when structure, traceability, and incremental updates matter more than one-off answers. It fits workflows that need memory across sources without sacrificing the ability to inspect the underlying files.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "llm-wiki",
+          "suggested_new_tags": [
+            "llm-wiki"
+          ],
+          "supporting_snippet": "Instead of searching through raw documents on every query, the LLM reads the raw material once and compiles it into a structured, organized wiki. Summaries, concept articles, backlinks, comparisons, an index the whole thing.",
+          "topic_slug": "ai-assisted-knowledge-compilation",
+          "topic_title": "AI-Assisted Knowledge Compilation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "33da7e0d-8c28-4912-bb34-0499531ea228",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-18T15:35:22+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "29",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Keep raw sources separate from compiled knowledge so outputs can be regenerated without losing evidence.",
+              "Have the LLM maintain summaries, backlinks, indexes, and comparison pages as first-class artifacts.",
+              "Recompile incrementally when new sources arrive rather than rebuilding the whole system from scratch.",
+              "Run lint passes to find contradictions, orphan pages, missing concepts, and stale claims.",
+              "Store outputs as plain markdown files so they remain editable, portable, and auditable."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-management",
+              "local-file-based-ai-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "llm-wiki"
+          ],
+          "final_tags": [
+            "knowledge-management",
+            "llm-wiki"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Plain markdown can be enough for a durable knowledge system when paired with naming rules and backlinks.",
+            "Keeping artifacts local makes it easier to inspect, version, and repurpose outputs.",
+            "A file-first architecture can avoid lock-in to a specific hosted product or database.",
+            "Human editing stays simple because the output remains ordinary text files."
+          ],
+          "knowledge_summary": "Some of the most practical AI workflows use plain files on a local machine as the main interface between the human, the model, and the knowledge base. Markdown, folder structure, and version control can provide enough structure for durable work without requiring a database-first architecture. This makes the system easier to inspect, back up, edit, and regenerate. Local file workflows also reduce dependence on a single cloud platform or proprietary app.",
+          "match_candidates": [],
+          "operational_insight": "When the end state is readable markdown plus clear folder conventions, the system stays inspectable and portable. That lowers operational risk and makes human review much easier than with opaque storage layers.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "knowledge-compilation-workflows"
+          ],
+          "relevance_note": "Local-file workflows are valuable in AI engineering because they preserve transparency, portability, and low-friction automation. They are a strong fit for knowledge bases, agent traces, and team documentation that need to survive tool changes.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "And because everything is stored as plain markdown files you can read yourself, there\u2019s no black box. Every claim can be traced back to a specific file that you can open, read, and edit in any text editor.",
+          "topic_slug": "local-file-based-ai-workflows",
+          "topic_title": "Local File-Based AI Workflows",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "8176887a-24d0-4a2b-8fa5-c2d8e0d5d5c3",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Plain markdown can be enough for a durable knowledge system when paired with naming rules and backlinks.",
+              "Keeping artifacts local makes it easier to inspect, version, and repurpose outputs.",
+              "A file-first architecture can avoid lock-in to a specific hosted product or database.",
+              "Human editing stays simple because the output remains ordinary text files."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-compilation-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 4,
+      "mixed": 1
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 5,
+    "review_duration_seconds": 368.5,
+    "review_finished_at": "2026-05-18T15:36:54.489985+00:00",
+    "review_started_at": "2026-05-18T15:30:46+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-18T15:36:54+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Nikhil",
+    "canonical_url": "https://medium.com/neuralnotions/andrej-karpathy-stopped-using-ai-to-write-code-hes-using-it-to-build-a-second-brain-instead-cddceadc5df5",
+    "content_sha256": "bf1c17bfe85df4cfcd1f23d4a8f15b9d2b2ca5eb603c0e1d5721cc42bd647085",
+    "publication": "Medium",
+    "published_date": "2026-04-05",
+    "raw_html_rel_path": "raw/readwise/andrej-karpathy-stopped-using-ai-to-write-code-he-s-using-it-to-build-a-second-brain-instead-01kr4392yb22p11v8q7pqc9npw.html",
+    "raw_md_rel_path": "raw/readwise/andrej-karpathy-stopped-using-ai-to-write-code-he-s-using-it-to-build-a-second-brain-instead-01kr4392yb22p11v8q7pqc9npw.md",
+    "source_id": "andrej-karpathy-stopped-using-ai-to-write-code-he-s-using-it-to-build-a-second-brain-instead-01kr4392yb22p11v8q7pqc9npw",
+    "title": "Andrej Karpathy Stopped Using AI to Write Code. He\u2019s Using It to Build a Second Brain Instead"
+  }
+}

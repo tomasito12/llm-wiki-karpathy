@@ -1,5 +1,9 @@
-# Approved model types (ingestion review). LLM may only propose types from this list.
 tags:
+- agentic-coding
 - embedding-model
-- frontier-model
-- open-weight-model
+- interactive-ai
+- local-model-deployment
+- multi-modal
+- open-weight
+- proprietary
+- realtime-voice-model

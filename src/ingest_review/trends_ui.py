@@ -15,9 +15,14 @@ from src.ingest_review.domain_tag_ui import (
     effective_readonly_domain_tags,
     render_domain_tag_section,
 )
+from src.ingest_review.proposal_columns_ui import (
+    build_proposal_expander_label,
+    render_two_column_proposal_review,
+)
 from src.ingest_review.proposal_decision_ui import (
     proposal_status_label,
     render_proposal_decision_bar,
+    set_proposal_save_message,
 )
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
@@ -269,6 +274,18 @@ def build_readonly_trends_markdown(
     return "\n\n---\n\n".join(parts)
 
 
+def _trend_expander_label(node: dict[str, Any], index: int) -> str:
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    title = (
+        effective_trend_scalar(llm_item, sections, "trend_title")
+        or effective_trend_scalar(llm_item, sections, "trend_slug")
+        or f"Trend {index + 1}"
+    )
+    badge = VALUE_LEVEL_BADGES.get(_value_level(node), "Medium")
+    return build_proposal_expander_label(node, title, badge=badge)
+
+
 def _prepare_trend_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
     review = artifact.setdefault("review", {})
     trend_nodes = review.setdefault("industry_trends", [])
@@ -287,6 +304,8 @@ def _persist_trend_proposal_from_widgets(
     field_values: dict[str, str],
     tag_ui: dict[str, Any],
     allow: set[str],
+    *,
+    key_prefix: str,
 ) -> None:
     """Apply textarea + tag edits from this run and write the artifact."""
     from src.ingest_review.artifact import save_artifact, touch_review_session
@@ -306,7 +325,7 @@ def _persist_trend_proposal_from_widgets(
         or llm_item.get("trend_slug")
         or "trend"
     )
-    streamlit_runtime.session_state["_trend_save_msg"] = f"Saved **{title}**."
+    set_proposal_save_message(key_prefix, f"Saved **{title}**.")
 
 
 def _render_trend_edit_box(
@@ -417,6 +436,7 @@ def _render_trend_edit_box(
                 field_values,
                 tag_ui,
                 tag_allow,
+                key_prefix=key_prefix,
             )
 
         render_proposal_decision_bar(
@@ -456,58 +476,41 @@ def render_trend_proposals(
     rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")
     st.caption(f"{len(sorted_nodes)} proposal(s) · {rejected} rejected")
 
-    save_msg = streamlit_runtime.session_state.pop("_trend_save_msg", None)
-    if save_msg:
-        st.success(str(save_msg))
     regen_msg = pop_proposal_regen_msg("trend")
     if regen_msg:
         st.success(regen_msg)
 
-    read_col, edit_col = st.columns(2)
-    with read_col:
-        st.markdown(build_readonly_trends_markdown(sorted_nodes, tags_list, artifact=artifact))
-    with edit_col:
-        edit_nodes = sorted_nodes
-        if len(sorted_nodes) > 6:
-            labels = [
-                effective_trend_scalar(
-                    n.get("llm_item") or {},
-                    n.get("sections") or {},
-                    "trend_title",
-                )
-                or effective_trend_scalar(
-                    n.get("llm_item") or {},
-                    n.get("sections") or {},
-                    "trend_slug",
-                )
-                or f"Trend {i + 1}"
-                for i, n in enumerate(sorted_nodes)
-            ]
-            pick = st.selectbox(
-                "Edit trend",
-                options=labels,
-                key=f"{key_prefix}_trend_jump",
-            )
-            idx = labels.index(pick) if pick in labels else 0
-            edit_nodes = [sorted_nodes[idx]]
-            st.caption("Showing one edit panel — use the selector to switch trends.")
+    def _readonly_md(node: dict[str, Any]) -> str:
+        if len(sorted_nodes) == 1:
+            return build_readonly_trends_markdown([node], tags_list, artifact=artifact)
+        return format_trend_proposal_readonly_markdown(node, tags_list, artifact=artifact)
 
-        for i, node in enumerate(edit_nodes):
-            pid = str(node.get("proposal_id") or f"idx{i}")
-            pfx = proposal_edit_key_prefix(
-                key_prefix, pid, "tr", regen_count=regen_count_from_node(node)
-            )
-            _render_trend_edit_box(
-                st,
-                node,
-                tags_list,
-                key_prefix=pfx,
-                source_id=source_id,
-                artifact_path=artifact_path,
-                model=model,
-                prompt_version=prompt_version,
-                tag_allow=tag_allow,
-            )
+    def _render_edit(node: dict[str, Any], index: int) -> None:
+        pid = str(node.get("proposal_id") or f"idx{index}")
+        pfx = proposal_edit_key_prefix(
+            key_prefix, pid, "tr", regen_count=regen_count_from_node(node)
+        )
+        _render_trend_edit_box(
+            st,
+            node,
+            tags_list,
+            key_prefix=pfx,
+            source_id=source_id,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            tag_allow=tag_allow,
+        )
+
+    render_two_column_proposal_review(
+        st,
+        sorted_nodes,
+        key_prefix=key_prefix,
+        empty_readonly_text="*(No trend proposals.)*",
+        label_for_node=_trend_expander_label,
+        readonly_markdown_for_node=_readonly_md,
+        render_edit_for_node=_render_edit,
+    )
 
 
 def collect_trend_new_tags(artifact: dict[str, Any]) -> list[str]:

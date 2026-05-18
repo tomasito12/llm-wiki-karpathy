@@ -95,6 +95,101 @@ def effective_readonly_tags(
 effective_readonly_domain_tags = effective_readonly_tags
 
 
+def effective_registry_types(
+    llm_item: dict[str, Any],
+    types_node: dict[str, Any] | None,
+    allowlist: list[str] | None = None,
+) -> list[str]:
+    """Types for read-only markdown: reviewer finals, else allowlisted LLM proposals."""
+    types_node = types_node or {}
+    allow = {normalize_tag(str(t)) for t in (allowlist or []) if str(t).strip()}
+    out: list[str] = []
+    for t in normalize_tag_list(types_node.get("approved_types") or [], cap=0):
+        if t and t not in out:
+            out.append(t)
+    for raw in types_node.get("reviewer_types_added") or []:
+        t = normalize_tag(str(raw))
+        if t and t not in out:
+            out.append(t)
+    if out:
+        return out
+    proposed_raw = llm_item.get("proposed_types") or []
+    if isinstance(proposed_raw, list):
+        for t in normalize_tag_list(proposed_raw, cap=0):
+            if t and t not in out and (not allow or t in allow):
+                out.append(t)
+    return out
+
+
+def _registry_types_manual_key(key_prefix: str) -> str:
+    return f"{key_prefix}_types_manual"
+
+
+def widget_resync_key(widget_key: str) -> str:
+    """Session key for deferred widget value sync (apply before widget instantiation)."""
+    return f"{widget_key}__resync"
+
+
+def init_widget_session_value(widget_key: str, stored_value: str) -> None:
+    """Seed a keyed widget from storage; apply any pending post-save resync first."""
+    resync_key = widget_resync_key(widget_key)
+    pending = streamlit_runtime.session_state.pop(resync_key, None)
+    if pending is not None:
+        streamlit_runtime.session_state[widget_key] = str(pending)
+    elif widget_key not in streamlit_runtime.session_state:
+        streamlit_runtime.session_state[widget_key] = stored_value
+
+
+def queue_widget_session_resync(widget_key: str, value: str) -> None:
+    """Queue widget value for next run (cannot set widget keys after they are drawn)."""
+    streamlit_runtime.session_state[widget_resync_key(widget_key)] = value
+
+
+def _init_registry_types_manual_widget(key_prefix: str, stored_manual_csv: str) -> None:
+    """Init manual types input from persisted off-allowlist values (no value= with key=)."""
+    init_widget_session_value(_registry_types_manual_key(key_prefix), stored_manual_csv)
+
+
+def _queue_registry_types_manual_resync(
+    key_prefix: str,
+    approved_types: list[str],
+    allow: set[str],
+) -> None:
+    """After save, queue manual-types widget sync for the next script run."""
+    queue_widget_session_resync(
+        _registry_types_manual_key(key_prefix),
+        ", ".join(t for t in approved_types if t not in allow),
+    )
+
+
+def registry_types_ui_from_session(
+    key_prefix: str,
+    type_ui: dict[str, Any],
+) -> dict[str, Any]:
+    """Read latest multiselect / manual-type widget values from session state (for save)."""
+    merged = dict(type_ui)
+    selected = streamlit_runtime.session_state.get(f"{key_prefix}_types_multiselect")
+    if isinstance(selected, list):
+        merged["selected_allowlist"] = selected
+    merged["manual_csv"] = str(
+        streamlit_runtime.session_state.get(
+            _registry_types_manual_key(key_prefix),
+            merged.get("manual_csv") or "",
+        )
+    )
+    approve_key = f"{key_prefix}_approve_new_type"
+    if approve_key in streamlit_runtime.session_state:
+        suggested = next(iter((type_ui.get("approve_new_map") or {}).keys()), "")
+        if suggested:
+            merged["approve_new_map"] = {
+                suggested: bool(streamlit_runtime.session_state.get(approve_key))
+            }
+    offlist_key = f"{key_prefix}_approve_offlist_manual"
+    if offlist_key in streamlit_runtime.session_state:
+        merged["approve_offlist"] = bool(streamlit_runtime.session_state.get(offlist_key))
+    return merged
+
+
 def apply_tag_ui_to_node(
     node: dict[str, Any],
     llm_item: dict[str, Any],
@@ -271,10 +366,12 @@ def render_domain_tag_section(
     else:
         st.caption("Tag registry is empty.")
 
+    tags_manual_key = f"{key_prefix}_tags_manual"
+    stored_tags_manual = ", ".join(t for t in stored_final if t not in allow_full)
+    init_widget_session_value(tags_manual_key, stored_tags_manual)
     manual_csv = st.text_input(
         "Additional tags (comma-separated, kebab-case)",
-        value=", ".join(t for t in stored_final if t not in allow_full),
-        key=f"{key_prefix}_tags_manual",
+        key=tags_manual_key,
         help="Merged with multiselect; off-list values can be exported if approved below.",
     )
 
@@ -358,6 +455,8 @@ def apply_registry_types_ui_to_node(
     llm_item: dict[str, Any],
     type_ui: dict[str, Any],
     allow: set[str],
+    *,
+    key_prefix: str = "",
 ) -> None:
     """Persist model/tool type multiselect UI onto the proposal."""
     types_node = node.setdefault(
@@ -374,15 +473,22 @@ def apply_registry_types_ui_to_node(
         if t and t not in final:
             final.append(t)
     types_node["approved_types"] = final
+    types_node["reviewer_types_added"] = [t for t in manual if t]
 
     approved_new: list[str] = []
     for t, checked in (type_ui.get("approve_new_map") or {}).items():
         nt = normalize_tag(str(t))
         if checked and nt and nt not in approved_new:
             approved_new.append(nt)
+    off_list_manual = [t for t in final if t not in allow]
+    for t in off_list_manual:
+        if type_ui.get("approve_offlist") and t not in approved_new:
+            approved_new.append(t)
     types_node["approved_new_types"] = approved_new
     if approved_new:
         llm_item["proposed_new_type"] = approved_new[0]
+    if key_prefix:
+        _queue_registry_types_manual_resync(key_prefix, final, allow)
 
 
 def render_registry_types_section(
@@ -436,10 +542,12 @@ def render_registry_types_section(
     else:
         st.caption("Type registry is empty.")
 
+    stored_manual_csv = ", ".join(t for t in stored if t not in allow_full)
+    _init_registry_types_manual_widget(key_prefix, stored_manual_csv)
     manual_csv = st.text_input(
         "Additional types (comma-separated)",
-        value=", ".join(t for t in stored if t not in allow_full),
-        key=f"{key_prefix}_types_manual",
+        key=_registry_types_manual_key(key_prefix),
+        help="Kebab-case slugs merged with the multiselect; saved with “Save edit & approve”.",
     )
 
     llm_new = normalize_tag(str(llm_item.get("proposed_new_type") or ""))
@@ -456,6 +564,19 @@ def render_registry_types_section(
             f"Include new type `{suggested_new}` in YAML export",
             value=suggested_new in approved_new,
             key=f"{key_prefix}_approve_new_type",
+        )
+
+    offlist_in_manual = [
+        normalize_tag(x)
+        for x in manual_csv.split(",")
+        if normalize_tag(x) and normalize_tag(x) not in allow_full
+    ]
+    approve_offlist = False
+    if offlist_in_manual:
+        approve_offlist = st.checkbox(
+            "Include manual off-list type(s) in YAML export",
+            value=any(t in approved_new for t in offlist_in_manual),
+            key=f"{key_prefix}_approve_offlist_manual",
         )
 
     has_key = bool(os.environ.get("OPENAI_API_KEY"))
@@ -483,5 +604,5 @@ def render_registry_types_section(
         "selected_allowlist": selected,
         "manual_csv": manual_csv,
         "approve_new_map": approve_new_map,
-        "approve_offlist": False,
+        "approve_offlist": approve_offlist,
     }

@@ -1,0 +1,925 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-17T19:45:57+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgbiZX5aubr4UxzRqpt8Qd3SVGAkr",
+    "token_usage": {
+      "completion_tokens": 3415,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 23747,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 27162
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "extended_explanation": "Passkeys replace the weakest part of many login systems: passwords that can be guessed, reused, or stolen in phishing attacks. A user usually unlocks the passkey with a device gesture such as a fingerprint, face scan, or device PIN, and the site verifies a cryptographic response rather than a typed secret. That makes passkeys harder to phish than passwords because there is no shared password for an attacker to capture and replay. In practice, passkeys matter most for high-value accounts, admin access, and any workflow where a compromise would expose sensitive data or control other systems.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "A passkey is a phishing-resistant login method that uses cryptographic keys stored on a device or security platform instead of a password. It is designed to reduce account takeover risk by making it harder for attackers to steal reusable credentials.",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_terms": [
+          "Closed-Resource Information Trust"
+        ],
+        "relevance_note": "Passkeys are increasingly important for securing AI accounts, admin consoles, and workflow tools that can expose private prompts, documents, or connected systems. For conversational AI and service automation stacks, phishing-resistant login reduces the chance that an attacker can hijack a support agent console, admin panel, or automation workspace.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Advanced Account Security requires passkeys or physical security keys while disabling password-based login, helping make phishing-resistant sign-in the default for people who need it most.\"",
+        "term": "Passkey",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.87,
+        "evidence_type": null,
+        "extended_explanation": "FIDO-compliant keys are popular because they reduce the risk that a user will be tricked into revealing a reusable secret. Hardware keys such as YubiKeys store private credentials securely and respond only to legitimate login prompts from the expected site or app. Software-based passkeys can provide similar cryptographic protection, though the user experience and portability differ. For operational teams, FIDO support is often a sign that an authentication flow can support stronger security policies without forcing a completely custom login system.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "A FIDO-compliant security key is a hardware or software authentication factor that follows the Fast Identity Online standard for strong, phishing-resistant sign-in. It is used as a second factor or primary factor to verify identity without relying on passwords alone.",
+        "proposed_tags": [
+          "ai-engineering",
+          "ai-architecture"
+        ],
+        "related_terms": [
+          "Passkey"
+        ],
+        "relevance_note": "FIDO support is a durable building block for secure AI systems because it can protect the accounts that sit behind prompts, agents, data connectors, and admin tools. It is especially relevant where account compromise would lead to prompt leakage, workflow abuse, or unauthorized access to connected business systems.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Users will also be able to use any other FIDO-compliant security key, or use software-based passkeys.\"",
+        "term": "FIDO-compliant security key",
+        "value_level": "medium"
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-30",
+        "confidence": 0.9,
+        "evidence_from_source": "OpenAI says Advanced Account Security \"requires passkeys or physical security keys while disabling password-based login\" and that certain cyber users will be required to enable it starting June 1, 2026.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "ai-engineering"
+        ],
+        "related_trends": [],
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Passkeys or physical security keys are required for enrollment.",
+          "Password-based login is disabled for enrolled users.",
+          "Trusted Access for Cyber users on certain models must enable it beginning June 1, 2026."
+        ],
+        "supporting_snippet": "\"Advanced Account Security requires passkeys or physical security keys while disabling password-based login\"",
+        "time_sensitivity": "Actionable as of 2026-04-30; the source shows an active shift toward requiring stronger login methods for selected high-risk accounts, but the broader pace of adoption across other vendors is not established here.",
+        "trend_description": "AI products and other high-value online services increasingly make phishing-resistant authentication the preferred or required login path for sensitive accounts. The pattern usually combines passkeys, physical security keys, and removal of weaker password or SMS recovery paths.",
+        "trend_slug": "phishing-resistant-login-as-default",
+        "trend_title": "Phishing-Resistant Login as Default",
+        "uncertainty_note": "This is one vendor's security policy, not proof that every AI product will adopt the same default. The source gives no comparative adoption data or measured security improvement.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "This is an OpenAI blog post announcing a new security setting for its own products.",
+        "The claims are presented by the vendor describing its own protections, defaults, and partnerships.",
+        "No independent benchmark, user report, or third-party analysis drives the source."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "OpenAI announced a new security setting for ChatGPT accounts called Advanced Account Security. It is meant for people who want stronger protection against someone taking over their account. The setting puts several safety measures in one place, including stronger sign-in methods, tighter recovery options, and shorter login sessions. It also applies to Codex when someone uses that same account. OpenAI says that if people choose this setting, their conversations will not be used to train the company\u2019s models. The company also partnered with Yubico so people can more easily buy physical security keys, which are a strong way to protect an account from phishing. Some users, including certain trusted defenders working in cyber, will be required to turn it on starting June 1, 2026. The main downside is that recovery becomes stricter, so account access is harder to regain if the user loses the required credentials. As of 2026-04-30, this is a practical security upgrade, but it is only useful for people willing to manage the extra recovery burden.",
+      "assessed_as_of": "2026-04-30",
+      "contradictions_and_skepticism": "The strongest protections also create the hardest recovery path, which is a real tradeoff rather than a free security upgrade. The Yubico bundle may reduce friction, but the article does not show that preferred pricing or device design will materially change user behavior. The enterprise and cyber-defender claims are forward-looking and should be treated as policy intent, not evidence of broad operational success.",
+      "key_insights": [
+        "Advanced Account Security bundles multiple controls into one opt-in setting, which lowers the activation friction for stronger account protection.",
+        "Disabling password, email, and SMS recovery makes the sign-in path more phishing-resistant, but it also shifts recovery responsibility onto the user.",
+        "Automatic training exclusion is a meaningful privacy control for sensitive conversations, but the post does not describe any auditing or enforcement details.",
+        "The Yubico bundle is a distribution move for hardware keys, but the article gives no evidence about uptake or effectiveness beyond the general security claim.",
+        "The June 1, 2026 requirement for certain cyber users is the only clearly time-bounded policy change in the post."
+      ],
+      "limitations_and_open_questions": "The post does not quantify risk reduction, adoption, or usability impact, so the practical benefit is asserted rather than measured. Recovery is intentionally harder, and OpenAI says Support will not help enrolled users with account recovery, which could be operationally costly if a user loses passkeys, security keys, or recovery keys. The training-exclusion promise is not described with technical enforcement detail, so it is unclear how users can audit that behavior. The enterprise extension is mentioned only as a future direction, with no implementation specifics.",
+      "sources": [
+        "https://openai.com/index/advanced-account-security"
+      ],
+      "summary": "OpenAI introduces Advanced Account Security, an opt-in security setting for ChatGPT accounts that also applies to Codex when accessed through the same login. The package combines phishing-resistant sign-in, stricter recovery rules, shorter sessions, session visibility, and automatic exclusion from model training. OpenAI positions it for people at higher risk, including journalists, officials, dissidents, researchers, and security-conscious users. The post also highlights a Yubico partnership for hardware security keys and says Trusted Access for Cyber users on certain models will be required to enable it starting June 1, 2026. The main operational tradeoff is stronger protection in exchange for more demanding account recovery.",
+      "why_it_matters": "The post is useful because it shows how a vendor can package stronger account protection into a single account-level control rather than scattering settings across multiple menus. The most durable operational point is the combination of phishing-resistant sign-in, tighter recovery, and shorter sessions, which reduces attack surface but raises the cost of account recovery. For teams evaluating high-risk account hardening, the concrete design choice is to remove weaker recovery channels and rely on backup passkeys, security keys, and recovery keys instead. The training-exclusion default is also notable because it ties account security to data-handling expectations for sensitive users, although the post does not explain how that exclusion is verified. The Yubico partnership adds a practical distribution channel for physical keys, but the article is promotional and gives no evidence that it changes real adoption. For service automation, the relevant detail is that OpenAI says Advanced Account Security also protects Codex accounts tied to the same login, and that stronger account security will matter in enterprise environments, but the post does not provide rollout detail beyond that. As of 2026-04-30, this is actionable for high-risk users who can tolerate stricter recovery; for everyone else, it is mainly a security option to monitor rather than a universal default."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent product announcement rather than a bundle of unrelated news items.",
+        "Written in OpenAI's own voice and structured as a launch post with feature explanation.",
+        "No interview format, tutorial steps, or roundup structure."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.84,
+        "core_capabilities": [
+          "It provides physical security keys that can be used for phishing-resistant sign-in.",
+          "It offers key variants intended for everyday laptop use and for backup across devices."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is presented as part of OpenAI's Advanced Account Security enrollment flow on the web.",
+          "The post says users can also use any other FIDO-compliant security key, which implies compatibility with the broader FIDO ecosystem."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes Yubico as a leader in hardware-based authentication and account protection, which suggests an established vendor rather than an experimental product. The bundle is offered through account security settings, implying enough product maturity to be embedded in a mainstream login workflow. The post does not provide broader market evidence or adoption metrics.",
+        "name": "Yubico",
+        "operational_relevance": "Yubico matters here as a practical distribution channel for hardware-based login protection. For teams protecting high-risk AI accounts, a security-key vendor can reduce friction in deploying strong authentication across users who need more than passwords or phone-based recovery. The operational value is strongest when access to AI systems is tied to sensitive prompts, code, or connected workflows. The article frames Yubico as a way to make stronger authentication easier to adopt, but it does not provide usage data or deployment evidence.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "cloud-saas",
+          "ai-infrastructure"
+        ],
+        "related_tools": [
+          "Passkey ecosystems",
+          "FIDO security keys"
+        ],
+        "short_description": "Yubico makes hardware security keys, including YubiKey devices, used for phishing-resistant authentication. In this post it appears as the partner behind a preferred-pricing bundle for stronger account protection.",
+        "strengths": "- Hardware keys provide a phishing-resistant factor that is harder to intercept than passwords or SMS codes, which matters for accounts that protect sensitive AI workflows.\n- The customized bundle is intended to make daily authentication less awkward, which can improve adoption among users who would otherwise avoid stronger security.\n- The vendor offers both laptop-friendly and backup-oriented key options, which helps users design a more practical recovery and continuity setup.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"we have partnered with Yubico, a leader in hardware-based authentication and account protection, to offer our users preferred pricing on a customized bundle of best in class security keys.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "- The post does not provide evidence that preferred pricing materially improves adoption, so the operational impact is asserted rather than demonstrated.\n- Hardware keys introduce physical dependency and loss risk; if users lose the required key set, recovery becomes harder, especially in a policy that removes easier recovery channels.\n- The source does not describe enterprise provisioning, lifecycle management, or support workflows for large deployments."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Phishing-resistant login matters more when a single account controls multiple connected workflows.",
+          "Recovery design is part of the security model, not just a support issue.",
+          "Session shortening and session visibility reduce the blast radius of device compromise."
+        ],
+        "knowledge_summary": "Account security hardening for AI products means combining stronger sign-in, stricter recovery, session controls, and activity visibility around a single account boundary. The goal is to reduce takeover risk without forcing users to understand each control independently. In practice, the best hardening patterns replace weak recovery paths like email and SMS with stronger factors such as passkeys, recovery keys, or hardware keys. Good hardening also shortens session lifetime and makes active sessions easier to review so compromised devices have less time to be useful.",
+        "match_candidates": [],
+        "operational_insight": "For AI systems, protect the account that sits behind prompts, files, and connected tools as carefully as the model endpoint itself. When an account can expose personal context or trigger workflows, login and recovery design become part of the security architecture.",
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "context-engineering"
+        ],
+        "relevance_note": "Account security hardening is durable because AI products increasingly centralize sensitive data, prompts, and tool access behind a single login. For chatbots, voicebots, and admin consoles, the account boundary often becomes the real security perimeter.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Advanced Account Security brings together a series of controls that strengthen sign-in protections, tighten account recovery, reduce exposure from compromised sessions, and give users more visibility into account activity.\"",
+        "topic_slug": "account-security-hardening",
+        "topic_title": "Account Security Hardening",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Account-level privacy settings are easier to enforce than scattered per-conversation preferences.",
+          "The strongest privacy claims need clear scope boundaries and understandable defaults.",
+          "Security and privacy often have to be designed together because recovery and access control affect data exposure."
+        ],
+        "knowledge_summary": "Privacy controls in AI products let users choose how their conversations or data may be used, especially when prompts contain sensitive personal or professional information. Effective controls are explicit, easy to locate, and tied to the actual account or workflow boundary that stores the data. A useful design also makes the privacy choice understandable at enrollment time rather than burying it in policy text. The main operational issue is trust: users need to know what data is excluded, retained, or processed under the selected setting.",
+        "match_candidates": [],
+        "operational_insight": "When an AI system holds sensitive context, privacy controls should be built into account settings and defaults rather than left as an afterthought in policy pages. The key operational test is whether users can clearly predict how their data will be handled.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "realtime-multimodal-interaction",
+          "realtime-ai-evaluation",
+          "account-security-hardening"
+        ],
+        "relevance_note": "Privacy controls are important in any AI product that stores high-stakes conversations, customer records, or workplace context. They shape whether organizations will trust chatbots and automation systems with sensitive material.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"With Advanced Account Security enabled, that preference is automatic: conversations from those accounts will not be used to train our models.\"",
+        "topic_slug": "privacy-controls-for-ai-products",
+        "topic_title": "Privacy Controls for AI Products",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "extended_explanation": "Passkeys replace the weakest part of many login systems: passwords that can be guessed, reused, or stolen in phishing attacks. A user usually unlocks the passkey with a device gesture such as a fingerprint, face scan, or device PIN, and the site verifies a cryptographic response rather than a typed secret. That makes passkeys harder to phish than passwords because there is no shared password for an attacker to capture and replay. In practice, passkeys matter most for high-value accounts, admin access, and any workflow where a compromise would expose sensitive data or control other systems.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "A passkey is a phishing-resistant login method that uses cryptographic keys stored on a device or security platform instead of a password. It is designed to reduce account takeover risk by making it harder for attackers to steal reusable credentials.",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_terms": [
+            "Closed-Resource Information Trust"
+          ],
+          "relevance_note": "Passkeys are increasingly important for securing AI accounts, admin consoles, and workflow tools that can expose private prompts, documents, or connected systems. For conversational AI and service automation stacks, phishing-resistant login reduces the chance that an attacker can hijack a support agent console, admin panel, or automation workspace.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "it-security",
+          "suggested_new_tags": [
+            "it-security"
+          ],
+          "supporting_snippet": "\"Advanced Account Security requires passkeys or physical security keys while disabling password-based login, helping make phishing-resistant sign-in the default for people who need it most.\"",
+          "term": "Passkey",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6633c1dd-23af-4277-b0e4-6281f2e8feba",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Closed-Resource Information Trust"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "it-security"
+          ],
+          "final_tags": [
+            "it-security"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.87,
+          "evidence_type": null,
+          "extended_explanation": "FIDO-compliant keys are popular because they reduce the risk that a user will be tricked into revealing a reusable secret. Hardware keys such as YubiKeys store private credentials securely and respond only to legitimate login prompts from the expected site or app. Software-based passkeys can provide similar cryptographic protection, though the user experience and portability differ. For operational teams, FIDO support is often a sign that an authentication flow can support stronger security policies without forcing a completely custom login system.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "A FIDO-compliant security key is a hardware or software authentication factor that follows the Fast Identity Online standard for strong, phishing-resistant sign-in. It is used as a second factor or primary factor to verify identity without relying on passwords alone.",
+          "proposed_tags": [
+            "ai-engineering",
+            "ai-architecture"
+          ],
+          "related_terms": [
+            "Passkey"
+          ],
+          "relevance_note": "FIDO support is a durable building block for secure AI systems because it can protect the accounts that sit behind prompts, agents, data connectors, and admin tools. It is especially relevant where account compromise would lead to prompt leakage, workflow abuse, or unauthorized access to connected business systems.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "it-security",
+          "suggested_new_tags": [
+            "it-security"
+          ],
+          "supporting_snippet": "\"Users will also be able to use any other FIDO-compliant security key, or use software-based passkeys.\"",
+          "term": "FIDO-compliant security key",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "3268dc92-b4d8-4eb9-b45b-142d9269f634",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Passkey"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "it-security"
+          ],
+          "final_tags": [
+            "it-security"
+          ]
+        }
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-30",
+          "confidence": 0.9,
+          "evidence_from_source": "OpenAI says Advanced Account Security \"requires passkeys or physical security keys while disabling password-based login\" and that certain cyber users will be required to enable it starting June 1, 2026.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "ai-engineering"
+          ],
+          "related_trends": [],
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Passkeys or physical security keys are required for enrollment.",
+            "Password-based login is disabled for enrolled users.",
+            "Trusted Access for Cyber users on certain models must enable it beginning June 1, 2026."
+          ],
+          "supporting_snippet": "\"Advanced Account Security requires passkeys or physical security keys while disabling password-based login\"",
+          "time_sensitivity": "Actionable as of 2026-04-30; the source shows an active shift toward requiring stronger login methods for selected high-risk accounts, but the broader pace of adoption across other vendors is not established here.",
+          "trend_description": "AI products and other high-value online services increasingly make phishing-resistant authentication the preferred or required login path for sensitive accounts. The pattern usually combines passkeys, physical security keys, and removal of weaker password or SMS recovery paths.",
+          "trend_slug": "phishing-resistant-login-as-default",
+          "trend_title": "Phishing-Resistant Login as Default",
+          "uncertainty_note": "This is one vendor's security policy, not proof that every AI product will adopt the same default. The source gives no comparative adoption data or measured security improvement.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "52e783cc-1ca6-40a5-acb7-9d00282b251e",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Passkeys or physical security keys are required for enrollment.",
+              "Password-based login is disabled for enrolled users.",
+              "Trusted Access for Cyber users on certain models must enable it beginning June 1, 2026."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "This is an OpenAI blog post announcing a new security setting for its own products.",
+          "The claims are presented by the vendor describing its own protections, defaults, and partnerships.",
+          "No independent benchmark, user report, or third-party analysis drives the source."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Advanced Account Security bundles multiple controls into one opt-in setting, which lowers the activation friction for stronger account protection.",
+          "Disabling password, email, and SMS recovery makes the sign-in path more phishing-resistant, but it also shifts recovery responsibility onto the user.",
+          "Automatic training exclusion is a meaningful privacy control for sensitive conversations, but the post does not describe any auditing or enforcement details.",
+          "The Yubico bundle is a distribution move for hardware keys, but the article gives no evidence about uptake or effectiveness beyond the general security claim.",
+          "The June 1, 2026 requirement for certain cyber users is the only clearly time-bounded policy change in the post."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/index/advanced-account-security"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent product announcement rather than a bundle of unrelated news items.",
+          "Written in OpenAI's own voice and structured as a launch post with feature explanation.",
+          "No interview format, tutorial steps, or roundup structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "core_capabilities": [
+            "It provides physical security keys that can be used for phishing-resistant sign-in.",
+            "It offers key variants intended for everyday laptop use and for backup across devices."
+          ],
+          "integration_ecosystem": [
+            "It is presented as part of OpenAI's Advanced Account Security enrollment flow on the web.",
+            "The post says users can also use any other FIDO-compliant security key, which implies compatibility with the broader FIDO ecosystem."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes Yubico as a leader in hardware-based authentication and account protection, which suggests an established vendor rather than an experimental product. The bundle is offered through account security settings, implying enough product maturity to be embedded in a mainstream login workflow. The post does not provide broader market evidence or adoption metrics.",
+          "name": "Yubico",
+          "operational_relevance": "Yubico matters here as a practical distribution channel for hardware-based login protection. For teams protecting high-risk AI accounts, a security-key vendor can reduce friction in deploying strong authentication across users who need more than passwords or phone-based recovery. The operational value is strongest when access to AI systems is tied to sensitive prompts, code, or connected workflows. The article frames Yubico as a way to make stronger authentication easier to adopt, but it does not provide usage data or deployment evidence.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "cloud-saas",
+            "ai-infrastructure"
+          ],
+          "related_tools": [
+            "Passkey ecosystems",
+            "FIDO security keys"
+          ],
+          "short_description": "Yubico makes hardware security keys, including YubiKey devices, used for phishing-resistant authentication. In this post it appears as the partner behind a preferred-pricing bundle for stronger account protection.",
+          "strengths": "- Hardware keys provide a phishing-resistant factor that is harder to intercept than passwords or SMS codes, which matters for accounts that protect sensitive AI workflows.\n- The customized bundle is intended to make daily authentication less awkward, which can improve adoption among users who would otherwise avoid stronger security.\n- The vendor offers both laptop-friendly and backup-oriented key options, which helps users design a more practical recovery and continuity setup.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"we have partnered with Yubico, a leader in hardware-based authentication and account protection, to offer our users preferred pricing on a customized bundle of best in class security keys.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "- The post does not provide evidence that preferred pricing materially improves adoption, so the operational impact is asserted rather than demonstrated.\n- Hardware keys introduce physical dependency and loss risk; if users lose the required key set, recovery becomes harder, especially in a policy that removes easier recovery channels.\n- The source does not describe enterprise provisioning, lifecycle management, or support workflows for large deployments."
+        },
+        "notes": null,
+        "proposal_id": "788721d4-34da-4373-b693-a6b4d372a259",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It provides physical security keys that can be used for phishing-resistant sign-in.",
+              "It offers key variants intended for everyday laptop use and for backup across devices."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is presented as part of OpenAI's Advanced Account Security enrollment flow on the web.",
+              "The post says users can also use any other FIDO-compliant security key, which implies compatibility with the broader FIDO ecosystem."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Passkey ecosystems",
+              "FIDO security keys"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "cloud-saas",
+            "ai-infrastructure"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Phishing-resistant login matters more when a single account controls multiple connected workflows.",
+            "Recovery design is part of the security model, not just a support issue.",
+            "Session shortening and session visibility reduce the blast radius of device compromise."
+          ],
+          "knowledge_summary": "Account security hardening for AI products means combining stronger sign-in, stricter recovery, session controls, and activity visibility around a single account boundary. The goal is to reduce takeover risk without forcing users to understand each control independently. In practice, the best hardening patterns replace weak recovery paths like email and SMS with stronger factors such as passkeys, recovery keys, or hardware keys. Good hardening also shortens session lifetime and makes active sessions easier to review so compromised devices have less time to be useful.",
+          "match_candidates": [],
+          "operational_insight": "For AI systems, protect the account that sits behind prompts, files, and connected tools as carefully as the model endpoint itself. When an account can expose personal context or trigger workflows, login and recovery design become part of the security architecture.",
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "context-engineering"
+          ],
+          "relevance_note": "Account security hardening is durable because AI products increasingly centralize sensitive data, prompts, and tool access behind a single login. For chatbots, voicebots, and admin consoles, the account boundary often becomes the real security perimeter.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Advanced Account Security brings together a series of controls that strengthen sign-in protections, tighten account recovery, reduce exposure from compromised sessions, and give users more visibility into account activity.\"",
+          "topic_slug": "account-security-hardening",
+          "topic_title": "Account Security Hardening",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "85e8c907-2d72-4478-83a6-e64208a41b1e",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Phishing-resistant login matters more when a single account controls multiple connected workflows.",
+              "Recovery design is part of the security model, not just a support issue.",
+              "Session shortening and session visibility reduce the blast radius of device compromise."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "context-engineering"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Account-level privacy settings are easier to enforce than scattered per-conversation preferences.",
+            "The strongest privacy claims need clear scope boundaries and understandable defaults.",
+            "Security and privacy often have to be designed together because recovery and access control affect data exposure."
+          ],
+          "knowledge_summary": "Privacy controls in AI products let users choose how their conversations or data may be used, especially when prompts contain sensitive personal or professional information. Effective controls are explicit, easy to locate, and tied to the actual account or workflow boundary that stores the data. A useful design also makes the privacy choice understandable at enrollment time rather than burying it in policy text. The main operational issue is trust: users need to know what data is excluded, retained, or processed under the selected setting.",
+          "match_candidates": [],
+          "operational_insight": "When an AI system holds sensitive context, privacy controls should be built into account settings and defaults rather than left as an afterthought in policy pages. The key operational test is whether users can clearly predict how their data will be handled.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "realtime-multimodal-interaction",
+            "realtime-ai-evaluation",
+            "account-security-hardening"
+          ],
+          "relevance_note": "Privacy controls are important in any AI product that stores high-stakes conversations, customer records, or workplace context. They shape whether organizations will trust chatbots and automation systems with sensitive material.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-privacy-controls",
+          "suggested_new_tags": [
+            "ai-privacy-controls",
+            "ai-governance",
+            "ai-compliance"
+          ],
+          "supporting_snippet": "\"With Advanced Account Security enabled, that preference is automatic: conversations from those accounts will not be used to train our models.\"",
+          "topic_slug": "privacy-controls-for-ai-products",
+          "topic_title": "Privacy Controls for AI Products",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "15161910-6494-46d9-ab61-e7e4c3cc6908",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Account-level privacy settings are easier to enforce than scattered per-conversation preferences.",
+              "The strongest privacy claims need clear scope boundaries and understandable defaults.",
+              "Security and privacy often have to be designed together because recovery and access control affect data exposure."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "realtime-multimodal-interaction",
+              "realtime-ai-evaluation",
+              "account-security-hardening"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ai-governance",
+            "ai-compliance"
+          ],
+          "final_tags": [
+            "ai-governance",
+            "ai-compliance"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 6
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 2,
+    "proposals_total": 6,
+    "review_duration_seconds": 652.6,
+    "review_finished_at": "2026-05-17T19:56:50.694355+00:00",
+    "review_started_at": "2026-05-17T19:45:58.139583+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-17T19:56:50+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/index/advanced-account-security",
+    "content_sha256": "3175a04d1468980f246a2031d419f3dc996519a83160e4cff0f245046bb9d0d7",
+    "publication": "OpenAI",
+    "published_date": "2026-04-30",
+    "raw_html_rel_path": "raw/readwise/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy.html",
+    "raw_md_rel_path": "raw/readwise/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy.md",
+    "source_id": "introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy",
+    "title": "Introducing Advanced Account Security"
+  }
+}

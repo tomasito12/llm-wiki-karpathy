@@ -1,0 +1,455 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-18T15:27:38+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DguADZgkHEWus6unXW76c88EXaDf1",
+    "token_usage": {
+      "completion_tokens": 2028,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 26485,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 28513
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 10
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The document repeatedly says the lessons come from 'building and running this pattern across thousands of sessions.'",
+        "It describes production learnings from 'building agentmemory,' a persistent memory engine, rather than reporting third-party analysis or formal benchmarks.",
+        "The claims are framed as what 'we learned running the pattern in production,' which is implementation evidence even though it is not quantified."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This document is about making a personal knowledge base that does not turn into a mess as it grows. It starts from an idea by Andrej Karpathy: instead of asking a language model to remember everything from scratch, keep a wiki of useful knowledge that the model can reuse. The author says that idea works, but real systems also need rules for what gets old, what should be replaced, and what should slowly fade away. The document adds ideas like confidence scores, versioning for facts, and layers that turn raw notes into stronger, more reliable knowledge over time. It also suggests building links between people, projects, and concepts so the system can find related information more intelligently. Another major theme is automation: the wiki should update itself when new sources arrive, when a session ends, or when contradictions appear. The writer also calls out privacy, audit logs, and quality checks so the system does not collect sensitive or bad information. The overall message is that a useful memory system is not just storage; it is a set of processes that keep knowledge organized and trustworthy. As of 2026-04-07, the advice is actionable for teams building persistent memory or knowledge systems, but it is still a design pattern rather than a proven standard.",
+      "assessed_as_of": "2026-04-07",
+      "contradictions_and_skepticism": "The strongest claims are architectural, but they are presented without operational evidence, so they should be treated as a useful pattern rather than a validated system. The idea that the wiki should auto-heal, auto-resolve contradictions, and auto-promote knowledge is attractive, but it risks creating false confidence if the underlying extraction or scoring is noisy. The document also leans on a broad set of features; in practice, teams may get more value by implementing only a small subset first rather than adopting the full vision at once.",
+      "key_insights": [
+        "Knowledge stores need lifecycle management, not just retrieval, because older claims should weaken, be superseded, or eventually fade.",
+        "A schema file that defines ingest, query, lint, and governance behavior can be more important than the pages themselves because it turns the system into a disciplined workflow.",
+        "Typed relationships and graph traversal add value beyond flat page links when queries depend on causality, ownership, or dependency chains.",
+        "Automation hooks reduce maintenance burden by making ingestion, contradiction checks, and consolidation event-driven instead of manual.",
+        "Quality scoring, self-healing lint, and audit trails are necessary if the wiki is expected to stay trustworthy over time."
+      ],
+      "limitations_and_open_questions": "The document is a design and experience report, not an evaluation with measured before/after outcomes, so the benefits of the proposed additions are not quantified. Several mechanisms are named but not specified in enough detail to implement consistently, including confidence decay formulas, retention thresholds, contradiction resolution rules, and how quality scores should be calibrated. The graph layer is described conceptually, but the schema for entities and relations is not fully defined. Privacy controls and audit logs are sensible, yet the document does not discuss access control models, encryption, or how to handle regulatory constraints. The approach also assumes an LLM can reliably perform consolidation and self-healing without introducing new errors, which may require tighter human review than the essay implies.",
+      "sources": [
+        "https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2"
+      ],
+      "summary": "This document extends Karpathy's LLM Wiki pattern with production lessons from building agentmemory, a persistent memory engine for AI coding agents. It argues that the original three-layer wiki idea is directionally right, but a useful system also needs memory lifecycle management, confidence scoring, supersession, forgetting, consolidation tiers, typed knowledge graphs, hybrid search, automated hooks, quality control, multi-agent coordination, privacy controls, and crystallization of completed work. The central claim is that bookkeeping is the bottleneck, and a wiki stays useful only if knowledge can be updated, deprioritized, and verified as it ages. The schema document is presented as the real product because it encodes how the system ingests, routes, scores, and repairs knowledge. The piece is practical rather than speculative: it describes what to add as a wiki grows from a minimal setup to a larger system.",
+      "why_it_matters": "The piece matters because it translates a familiar personal-wiki pattern into a more operational memory system with controls for confidence, decay, supersession, graph structure, and automated maintenance. Those additions are useful for AI engineering teams that want a knowledge store to behave more like a living system than a static note dump. The concrete proposals are strongest where they address failure modes that show up as a wiki grows: stale facts, duplicate pages, weak links between entities, and manual upkeep that people stop doing. The emphasis on schema as the real product is especially durable: it frames the prompting and routing rules as an engineered interface, not an implementation detail. The main limitation is that the document is still a design essay; it does not provide measured results, so the practical payoff is asserted rather than demonstrated. For service automation, the closing section is relevant only indirectly: the same lifecycle, quality, and audit ideas would matter in support knowledge bases or agent memory systems, but the source does not discuss support workflows in depth. Actionable as of 2026-04-07, with the strongest value coming from the architectural patterns rather than any claim of proven scale."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "The piece is a single coherent essay with sections and recommendations, not a bundle of unrelated news items or product listings.",
+        "It is not structured as an interview, tutorial, or roundup of multiple practices; it is an argument about how to extend a wiki pattern.",
+        "The content is mainly conceptual and operational guidance drawn from the authors' experience, which fits a standard article best."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Confidence should reflect source support, recency, and contradiction status.",
+          "Older claims should be superseded rather than left as undifferentiated clutter.",
+          "Retention rules help prevent a knowledge base from becoming noisy and untrustworthy."
+        ],
+        "knowledge_summary": "Knowledge systems for AI should do more than store notes or retrieve passages. They need structures for lifecycle management, confidence, supersession, retention, and governance so that older or weaker claims do not carry the same weight as freshly confirmed ones. A durable knowledge base treats facts as stateful artifacts that can be promoted, deprioritized, and audited over time. It also benefits from separating raw observations from consolidated facts and reusable procedures.",
+        "match_candidates": [],
+        "operational_insight": "Treat knowledge as a managed asset with versioning, decay, and review states instead of a flat archive of equal-weight claims.",
+        "primary_tag": "knowledge-management",
+        "proposed_tags": [
+          "knowledge-management",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "retrieval-augmented-generation"
+        ],
+        "relevance_note": "Knowledge management matters in AI systems because retrieval quality depends on whether stored information is current, trusted, and scoped correctly. Persistent memory, support knowledge bases, and agent workspaces all need mechanisms for decay, supersession, and auditability to avoid stale or contradictory outputs.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The original treats all wiki content as equally valid forever. In practice, knowledge has a lifecycle.",
+        "topic_slug": "knowledge-management",
+        "topic_title": "Knowledge Management",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Separate working, episodic, semantic, and procedural memory to control how information is compressed and reused.",
+          "Use confidence and retention to decide what belongs in prompt context.",
+          "Tie context loading to session start, query time, and lifecycle events rather than manual curation alone."
+        ],
+        "knowledge_summary": "Context engineering is the practice of assembling the right information, in the right form, for a model to use effectively. A useful system does not just collect raw text; it consolidates, scores, filters, and routes information so the model sees high-signal context instead of an undifferentiated dump. It also benefits from event-driven updates, because the best context depends on recent activity, contradictions, and task state. Schema and routing rules are part of the context layer because they determine what gets surfaced and when.",
+        "match_candidates": [],
+        "operational_insight": "Design the context pipeline as a layered filter: raw observations, consolidated memories, confidence signals, and retrieval logic should each add structure before the model sees the result.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "retrieval-augmented-generation"
+        ],
+        "relevance_note": "Context engineering is central to AI products because model behavior depends heavily on what is selected, compressed, and prioritized before generation. The pattern is especially relevant for assistants, agent systems, and support workflows where stale or overly broad context can degrade answers.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The three-layer architecture (raw sources, wiki, schema) works.",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The document repeatedly says the lessons come from 'building and running this pattern across thousands of sessions.'",
+          "It describes production learnings from 'building agentmemory,' a persistent memory engine, rather than reporting third-party analysis or formal benchmarks.",
+          "The claims are framed as what 'we learned running the pattern in production,' which is implementation evidence even though it is not quantified."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Knowledge stores need lifecycle management, not just retrieval, because older claims should weaken, be superseded, or eventually fade.",
+          "A schema file that defines ingest, query, lint, and governance behavior can be more important than the pages themselves because it turns the system into a disciplined workflow.",
+          "Typed relationships and graph traversal add value beyond flat page links when queries depend on causality, ownership, or dependency chains.",
+          "Automation hooks reduce maintenance burden by making ingestion, contradiction checks, and consolidation event-driven instead of manual.",
+          "Quality scoring, self-healing lint, and audit trails are necessary if the wiki is expected to stay trustworthy over time."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "The piece is a single coherent essay with sections and recommendations, not a bundle of unrelated news items or product listings.",
+          "It is not structured as an interview, tutorial, or roundup of multiple practices; it is an argument about how to extend a wiki pattern.",
+          "The content is mainly conceptual and operational guidance drawn from the authors' experience, which fits a standard article best."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Confidence should reflect source support, recency, and contradiction status.",
+            "Older claims should be superseded rather than left as undifferentiated clutter.",
+            "Retention rules help prevent a knowledge base from becoming noisy and untrustworthy."
+          ],
+          "knowledge_summary": "Knowledge systems for AI should do more than store notes or retrieve passages. They need structures for lifecycle management, confidence, supersession, retention, and governance so that older or weaker claims do not carry the same weight as freshly confirmed ones. A durable knowledge base treats facts as stateful artifacts that can be promoted, deprioritized, and audited over time. It also benefits from separating raw observations from consolidated facts and reusable procedures.",
+          "match_candidates": [],
+          "operational_insight": "Treat knowledge as a managed asset with versioning, decay, and review states instead of a flat archive of equal-weight claims.",
+          "primary_tag": "knowledge-management",
+          "proposed_tags": [
+            "knowledge-management",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "retrieval-augmented-generation"
+          ],
+          "relevance_note": "Knowledge management matters in AI systems because retrieval quality depends on whether stored information is current, trusted, and scoped correctly. Persistent memory, support knowledge bases, and agent workspaces all need mechanisms for decay, supersession, and auditability to avoid stale or contradictory outputs.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "The original treats all wiki content as equally valid forever. In practice, knowledge has a lifecycle.",
+          "topic_slug": "knowledge-management",
+          "topic_title": "Knowledge Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "4bcb4bcd-fe7b-48f0-8bc9-e40e5cd7ce6f",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Confidence should reflect source support, recency, and contradiction status.",
+              "Older claims should be superseded rather than left as undifferentiated clutter.",
+              "Retention rules help prevent a knowledge base from becoming noisy and untrustworthy."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "retrieval-augmented-generation"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-management"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Separate working, episodic, semantic, and procedural memory to control how information is compressed and reused.",
+            "Use confidence and retention to decide what belongs in prompt context.",
+            "Tie context loading to session start, query time, and lifecycle events rather than manual curation alone."
+          ],
+          "knowledge_summary": "Context engineering is the practice of assembling the right information, in the right form, for a model to use effectively. A useful system does not just collect raw text; it consolidates, scores, filters, and routes information so the model sees high-signal context instead of an undifferentiated dump. It also benefits from event-driven updates, because the best context depends on recent activity, contradictions, and task state. Schema and routing rules are part of the context layer because they determine what gets surfaced and when.",
+          "match_candidates": [],
+          "operational_insight": "Design the context pipeline as a layered filter: raw observations, consolidated memories, confidence signals, and retrieval logic should each add structure before the model sees the result.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "retrieval-augmented-generation"
+          ],
+          "relevance_note": "Context engineering is central to AI products because model behavior depends heavily on what is selected, compressed, and prioritized before generation. The pattern is especially relevant for assistants, agent systems, and support workflows where stale or overly broad context can degrade answers.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "The three-layer architecture (raw sources, wiki, schema) works.",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "64ee71a7-e15b-458e-96c9-aefe5477f65a",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Separate working, episodic, semantic, and procedural memory to control how information is compressed and reused.",
+              "Use confidence and retention to decide what belongs in prompt context.",
+              "Tie context loading to session start, query time, and lifecycle events rather than manual curation alone."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "retrieval-augmented-generation"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "prompt-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 2,
+    "review_duration_seconds": 157.5,
+    "review_finished_at": "2026-05-18T15:30:15.451408+00:00",
+    "review_started_at": "2026-05-18T15:27:38+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-18T15:30:15+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "262588213843476",
+    "canonical_url": "https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2",
+    "content_sha256": "10698aafc3235bdcfc049235b5a029d4cd71fa93496ff000bf76eff6957349d1",
+    "publication": "Github",
+    "published_date": "2026-04-07",
+    "raw_html_rel_path": "raw/readwise/llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp.html",
+    "raw_md_rel_path": "raw/readwise/llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp.md",
+    "source_id": "llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp",
+    "title": "LLM Wiki v2 \u2014 extending Karpathy's LLM Wiki pattern with lessons from building agentmemory \u00b7 GitHub"
+  }
+}

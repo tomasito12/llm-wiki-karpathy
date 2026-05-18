@@ -19,9 +19,14 @@ from src.ingest_review.impl_study_gate import (
     format_impl_study_evidence_caption,
     impl_study_likely_misclassified,
 )
+from src.ingest_review.proposal_columns_ui import (
+    build_proposal_expander_label,
+    render_two_column_proposal_review,
+)
 from src.ingest_review.proposal_decision_ui import (
     proposal_status_label,
     render_proposal_decision_bar,
+    set_proposal_save_message,
 )
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
@@ -287,6 +292,14 @@ def build_readonly_impl_studies_markdown(
     return "\n\n---\n\n".join(parts)
 
 
+def _impl_expander_label(node: dict[str, Any], index: int) -> str:
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    title = effective_impl_scalar(llm_item, sections, "title") or f"Study {index + 1}"
+    badge = VALUE_LEVEL_BADGES.get(_value_level(node), "Medium")
+    return build_proposal_expander_label(node, title, badge=badge)
+
+
 def _prepare_impl_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
     review = artifact.setdefault("review", {})
     impl_nodes = review.setdefault("implementation_studies", [])
@@ -307,6 +320,8 @@ def _persist_impl_proposal_from_widgets(
     field_values: dict[str, str],
     tag_ui: dict[str, Any],
     allow: set[str],
+    *,
+    key_prefix: str,
 ) -> None:
     """Apply edits and write the artifact."""
     from src.ingest_review.artifact import save_artifact, touch_review_session
@@ -320,7 +335,7 @@ def _persist_impl_proposal_from_widgets(
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     title = field_values.get("title") or llm_item.get("title") or "study"
-    streamlit_runtime.session_state["_impl_save_msg"] = f"Saved **{title}**."
+    set_proposal_save_message(key_prefix, f"Saved **{title}**.")
 
 
 def _render_impl_edit_box(
@@ -430,6 +445,7 @@ def _render_impl_edit_box(
                 field_values,
                 tag_ui,
                 tag_allow,
+                key_prefix=key_prefix,
             )
 
         render_proposal_decision_bar(
@@ -467,55 +483,41 @@ def render_implementation_studies(
     rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")
     st.caption(f"{len(sorted_nodes)} proposal(s) · {rejected} rejected")
 
-    save_msg = streamlit_runtime.session_state.pop("_impl_save_msg", None)
-    if save_msg:
-        st.success(str(save_msg))
     regen_msg = pop_proposal_regen_msg("impl_study")
     if regen_msg:
         st.success(regen_msg)
 
-    read_col, edit_col = st.columns(2)
-    with read_col:
-        st.markdown(
-            build_readonly_impl_studies_markdown(sorted_nodes, tags_list, artifact=artifact)
-        )
-    with edit_col:
-        edit_nodes = sorted_nodes
-        if len(sorted_nodes) > 6:
-            labels = [
-                effective_impl_scalar(
-                    n.get("llm_item") or {},
-                    n.get("sections") or {},
-                    "title",
-                )
-                or f"Study {i + 1}"
-                for i, n in enumerate(sorted_nodes)
-            ]
-            pick = st.selectbox(
-                "Edit study",
-                options=labels,
-                key=f"{key_prefix}_impl_jump",
-            )
-            idx = labels.index(pick) if pick in labels else 0
-            edit_nodes = [sorted_nodes[idx]]
-            st.caption("Showing one edit panel — use the selector to switch studies.")
+    def _readonly_md(node: dict[str, Any]) -> str:
+        if len(sorted_nodes) == 1:
+            return build_readonly_impl_studies_markdown([node], tags_list, artifact=artifact)
+        return format_impl_readonly_markdown(node, tags_list, artifact=artifact)
 
-        for i, node in enumerate(edit_nodes):
-            pid = str(node.get("proposal_id") or f"idx{i}")
-            pfx = proposal_edit_key_prefix(
-                key_prefix, pid, "impl", regen_count=regen_count_from_node(node)
-            )
-            _render_impl_edit_box(
-                st,
-                node,
-                tags_list,
-                key_prefix=pfx,
-                source_id=source_id,
-                artifact_path=artifact_path,
-                model=model,
-                prompt_version=prompt_version,
-                tag_allow=tag_allow,
-            )
+    def _render_edit(node: dict[str, Any], index: int) -> None:
+        pid = str(node.get("proposal_id") or f"idx{index}")
+        pfx = proposal_edit_key_prefix(
+            key_prefix, pid, "impl", regen_count=regen_count_from_node(node)
+        )
+        _render_impl_edit_box(
+            st,
+            node,
+            tags_list,
+            key_prefix=pfx,
+            source_id=source_id,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            tag_allow=tag_allow,
+        )
+
+    render_two_column_proposal_review(
+        st,
+        sorted_nodes,
+        key_prefix=key_prefix,
+        empty_readonly_text="*(No implementation-study proposals.)*",
+        label_for_node=_impl_expander_label,
+        readonly_markdown_for_node=_readonly_md,
+        render_edit_for_node=_render_edit,
+    )
 
 
 def collect_impl_study_new_tags(artifact: dict[str, Any]) -> list[str]:

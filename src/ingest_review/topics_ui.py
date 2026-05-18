@@ -15,9 +15,14 @@ from src.ingest_review.domain_tag_ui import (
     effective_readonly_domain_tags,
     render_domain_tag_section,
 )
+from src.ingest_review.proposal_columns_ui import (
+    build_proposal_expander_label,
+    render_two_column_proposal_review,
+)
 from src.ingest_review.proposal_decision_ui import (
     proposal_status_label,
     render_proposal_decision_bar,
+    set_proposal_save_message,
 )
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
@@ -33,7 +38,6 @@ from src.ingest_review.topic_related_topics_suggest import (
     RelatedTopicCandidate,
     build_topic_slug_catalog,
     catalog_by_slug,
-    format_suggestion_line,
     suggest_related_topics,
 )
 from src.ingest_review.wiki_snapshot import WikiSnapshot, build_wiki_snapshot
@@ -214,6 +218,20 @@ def topic_list_edit_value(
     return "\n".join(effective_topic_list(llm_item, sections, list_key))
 
 
+def _related_topics_readonly_slugs(
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+    suggestions: list[RelatedTopicCandidate] | None,
+) -> list[str]:
+    """Slugs for readonly display: stored links only, else suggestion slugs (no provenance)."""
+    stored = effective_topic_list(llm_item, sections, "related_topics")
+    if stored:
+        return stored
+    if suggestions:
+        return [c.slug for c in suggestions]
+    return []
+
+
 def _topic_related_suggestions(
     node: dict[str, Any],
     *,
@@ -289,17 +307,9 @@ def format_topic_proposal_readonly_markdown(
         lines.extend(["**Examples**", "", ex, ""])
     if tag_slugs:
         lines.extend(["**Tags**", "", ", ".join(tag_slugs), ""])
-    stored_related = effective_topic_list(llm_item, sections, "related_topics")
-    sugg = related_suggestions or []
-    if sugg or stored_related:
-        lines.extend(["**Related topics**", ""])
-        if sugg:
-            lines.append("*Suggested:*")
-            lines.extend([f"- {format_suggestion_line(c)}" for c in sugg])
-        if stored_related:
-            lines.append("*Stored:*")
-            lines.extend([f"- `{s}`" for s in stored_related])
-        lines.append("")
+    related_slugs = _related_topics_readonly_slugs(llm_item, sections, related_suggestions)
+    if related_slugs:
+        lines.extend(["**Related topics**", ""] + [f"- {s}" for s in related_slugs] + [""])
     op = effective_topic_scalar(llm_item, sections, "operational_insight")
     if op:
         lines.extend(["**Operational insight**", "", op, ""])
@@ -355,6 +365,18 @@ def build_readonly_topics_markdown(
     return "\n\n---\n\n".join(parts)
 
 
+def _topic_expander_label(node: dict[str, Any], index: int) -> str:
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    title = (
+        effective_topic_scalar(llm_item, sections, "topic_title")
+        or effective_topic_scalar(llm_item, sections, "topic_slug")
+        or f"Topic {index + 1}"
+    )
+    badge = VALUE_LEVEL_BADGES.get(_value_level(node), "Medium")
+    return build_proposal_expander_label(node, title, badge=badge)
+
+
 def _prepare_topic_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
     review = artifact.setdefault("review", {})
     topic_nodes = review.setdefault("topics", [])
@@ -373,6 +395,8 @@ def _persist_topic_proposal_from_widgets(
     field_values: dict[str, str],
     tag_ui: dict[str, Any],
     allow: set[str],
+    *,
+    key_prefix: str,
 ) -> None:
     """Apply textarea + tag edits from this run and write the artifact."""
     from src.ingest_review.artifact import save_artifact, touch_review_session
@@ -386,7 +410,7 @@ def _persist_topic_proposal_from_widgets(
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     title = field_values.get("topic_title") or llm_item.get("topic_slug") or "topic"
-    streamlit_runtime.session_state["_topic_save_msg"] = f"Saved **{title}**."
+    set_proposal_save_message(key_prefix, f"Saved **{title}**.")
 
 
 def _render_topic_edit_box(
@@ -517,6 +541,7 @@ def _render_topic_edit_box(
                 field_values,
                 tag_ui,
                 tag_allow,
+                key_prefix=key_prefix,
             )
 
         render_proposal_decision_bar(
@@ -559,9 +584,6 @@ def render_topic_proposals(
     low_ct = sum(1 for n in sorted_nodes if (n.get("llm_item") or {}).get("value_level") == "low")
     st.caption(f"{len(sorted_nodes)} proposal(s) · {rejected} rejected · {low_ct} low value")
 
-    save_msg = streamlit_runtime.session_state.pop("_topic_save_msg", None)
-    if save_msg:
-        st.success(str(save_msg))
     regen_msg = pop_proposal_regen_msg("topic")
     if regen_msg:
         st.success(regen_msg)
@@ -570,63 +592,60 @@ def render_topic_proposals(
     if wiki_root is not None:
         wiki = build_wiki_snapshot(wiki_root)
 
-    read_col, edit_col = st.columns(2)
-    with read_col:
-        st.markdown(
-            build_readonly_topics_markdown(
-                sorted_nodes,
+    def _readonly_md(node: dict[str, Any]) -> str:
+        if len(sorted_nodes) == 1:
+            return build_readonly_topics_markdown(
+                [node],
                 tags_list,
                 artifact=artifact,
                 wiki=wiki,
                 reviews_root=reviews_root,
             )
-        )
-    with edit_col:
-        edit_nodes = sorted_nodes
-        if len(sorted_nodes) > 6:
-            labels = [
-                effective_topic_scalar(
-                    n.get("llm_item") or {},
-                    n.get("sections") or {},
-                    "topic_title",
-                )
-                or effective_topic_scalar(
-                    n.get("llm_item") or {},
-                    n.get("sections") or {},
-                    "topic_slug",
-                )
-                or f"Topic {i + 1}"
-                for i, n in enumerate(sorted_nodes)
-            ]
-            pick = st.selectbox(
-                "Edit topic",
-                options=labels,
-                key=f"{key_prefix}_topic_jump",
-            )
-            idx = labels.index(pick) if pick in labels else 0
-            edit_nodes = [sorted_nodes[idx]]
-            st.caption("Showing one edit panel — use the selector to switch topics.")
-
-        for i, node in enumerate(edit_nodes):
-            pid = str(node.get("proposal_id") or f"idx{i}")
-            pfx = topic_edit_key_prefix(key_prefix, pid, regen_count=regen_count_from_node(node))
-            if wiki is None:
-                st.warning("Wiki root required to edit related topics.")
-                continue
-            _render_topic_edit_box(
-                st,
+        sugg: list[RelatedTopicCandidate] | None = None
+        if wiki is not None:
+            sugg = _topic_related_suggestions(
                 node,
-                tags_list,
-                key_prefix=pfx,
-                source_id=source_id,
-                artifact_path=artifact_path,
-                model=model,
-                prompt_version=prompt_version,
-                tag_allow=tag_allow,
-                artifact=artifact,
                 wiki=wiki,
                 reviews_root=reviews_root,
+                artifact=artifact,
             )
+        return format_topic_proposal_readonly_markdown(
+            node,
+            tags_list,
+            artifact=artifact,
+            related_suggestions=sugg,
+        )
+
+    def _render_edit(node: dict[str, Any], index: int) -> None:
+        if wiki is None:
+            st.warning("Wiki root required to edit related topics.")
+            return
+        pid = str(node.get("proposal_id") or f"idx{index}")
+        pfx = topic_edit_key_prefix(key_prefix, pid, regen_count=regen_count_from_node(node))
+        _render_topic_edit_box(
+            st,
+            node,
+            tags_list,
+            key_prefix=pfx,
+            source_id=source_id,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            tag_allow=tag_allow,
+            artifact=artifact,
+            wiki=wiki,
+            reviews_root=reviews_root,
+        )
+
+    render_two_column_proposal_review(
+        st,
+        sorted_nodes,
+        key_prefix=key_prefix,
+        empty_readonly_text="*(No topic proposals.)*",
+        label_for_node=_topic_expander_label,
+        readonly_markdown_for_node=_readonly_md,
+        render_edit_for_node=_render_edit,
+    )
 
 
 def collect_topic_new_tags(artifact: dict[str, Any]) -> list[str]:

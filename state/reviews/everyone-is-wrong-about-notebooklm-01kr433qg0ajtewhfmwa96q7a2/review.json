@@ -1,0 +1,768 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-17T13:07:39+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgVV9KbGGx239fFSdoat3TpzYbFye",
+    "token_usage": {
+      "completion_tokens": 2706,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 24399,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 27105
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 7
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.86,
+        "evidence_type": null,
+        "extended_explanation": "This is a useful way to think about assistants that are meant to stay inside a document set, case file, or internal knowledge base. The important property is not just retrieval, but a contract that the system should not wander beyond the allowed sources. In practice, this supports auditability, privacy, and narrower error surfaces. It is especially relevant when users care more about traceable synthesis than creative generation.",
+        "match_candidates": [],
+        "primary_tag": "ai-architecture",
+        "proposed_definition": "A source-bounded information environment in which a model is allowed to reason only over a defined set of user-provided materials. The system\u2019s answers are constrained to that corpus rather than open-ended general knowledge.",
+        "proposed_tags": [
+          "ai-architecture",
+          "knowledge-management"
+        ],
+        "related_terms": [],
+        "relevance_note": "This concept matters wherever teams need AI to stay inside approved documents, such as policy assistants, legal research tools, internal knowledge bots, and governed service workflows. It shapes how systems are evaluated: the key question becomes whether the model stays faithful to the corpus and surfaces citations, not whether it can answer everything.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "It is engineered around a radically different mandate:\nSource-grounded cognition.\nEpistemic certainty. No improvisation allowed.\nNotebookLM will not answer questions that fall outside your uploaded sources. Its job is to build a private micro-universe \u2014 a \u201cClosed-Resource Information Trust\u201d \u2014 and reason only within it.",
+        "term": "Closed-Resource Information Trust",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.74,
+        "evidence_type": null,
+        "extended_explanation": "Retrieval-augmented generation is common in enterprise assistants because it lets a model use a curated knowledge base instead of relying only on parametric memory. The quality of the retrieval step often matters as much as the model itself: bad source selection leads to bad answers. In operational settings, it is often combined with citations, document segmentation, and access controls. It is especially useful when the source material changes frequently or must remain auditable.",
+        "match_candidates": [],
+        "primary_tag": "ai-architecture",
+        "proposed_definition": "A pattern where a model answers by retrieving relevant external documents or passages and then generating a response grounded in that retrieved context. It is used to improve factuality, freshness, and domain specificity.",
+        "proposed_tags": [
+          "ai-architecture",
+          "knowledge-management"
+        ],
+        "related_terms": [],
+        "relevance_note": "This is a core pattern for document assistants, support search, internal copilots, and knowledge-grounded chat systems. It affects chunking, retrieval quality, citation design, and whether an assistant can be trusted in regulated or high-stakes workflows.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "A real API \u2192 NLM becomes a RAG microservice for EVERYTHING",
+        "term": "Retrieval-Augmented Generation",
+        "value_level": "medium"
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2025-11-17",
+        "confidence": 0.77,
+        "evidence_from_source": "The article presents NotebookLM as a \u201cprivate micro-universe\u201d and argues that it is built for \u201cSource-grounded cognition\u201d rather than open-ended chatting.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_trends": [],
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "NotebookLM will not answer outside uploaded sources.",
+          "The article frames the product as auditable, private, and citation-driven.",
+          "The author describes use cases in law, writing, business intelligence, and onboarding."
+        ],
+        "supporting_snippet": "NotebookLM says:\nAbsolutely not.\nIt is engineered around a radically different mandate:\nSource-grounded cognition.\nEpistemic certainty. No improvisation allowed.",
+        "time_sensitivity": "As of 2025-11-17, this is an early but clearly articulated product pattern in the source; it should be treated as directional rather than settled industry fact.",
+        "trend_description": "AI products increasingly act as constrained execution layers over specific knowledge, tools, or workflows rather than as open-ended general chat interfaces. The pattern shows up when a product is valuable because it operates within a defined boundary, enforces citations, or orchestrates a workflow around user-provided context.",
+        "trend_slug": "models-becoming-execution-layers",
+        "trend_title": "Models Becoming Execution Layers",
+        "uncertainty_note": "The source is a single opinion essay, so this is best read as a strong interpretation rather than broad market evidence. It may describe a useful product pattern without proving adoption beyond the author\u2019s examples.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is a first-person interpretive essay about NotebookLM.",
+        "Most claims are framed as the author\u2019s judgment, interpretation, or speculation rather than measured evidence.",
+        "Examples are illustrative and anecdotal, not benchmark-driven or implementation-audited."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about NotebookLM, a Google tool that works differently from a normal chatbot. Instead of answering from general knowledge, it only uses the files and notes you give it. That means it can cite its sources and is less likely to make things up outside your materials. The writer argues that this makes it especially useful for work where accuracy and traceability matter, such as legal documents, research notes, and internal company knowledge. A big idea in the piece is that using the tool well depends on organizing your documents carefully before you ask questions. The article also says people are using it together with other tools: one place for collecting notes, NotebookLM for grounded analysis, and another chatbot for formatting or rewriting. It does have limits, though, including trouble reading some PDF diagrams, no application programming interface, and the need to manually keep files in sync. The overall message is that NotebookLM is less like a writing assistant and more like a private study room for your own documents.",
+      "assessed_as_of": "2025-11-17",
+      "contradictions_and_skepticism": "The piece rejects the chatbot framing, but some of the described value still depends on synthesis behavior that overlaps with ordinary retrieval-augmented generation systems. Claims about \u201cbounded accuracy\u201d and \u201chyper-reliable\u201d performance are persuasive as positioning, but they are stronger than the evidence shown in the article. The article\u2019s future roadmap section is explicitly speculative and should not be treated as evidence of product direction. Its promotional tone is noticeable, so the operational takeaways are more trustworthy than the broader philosophical claims.",
+      "key_insights": [
+        "Corpus selection matters more than clever prompting when the system is restricted to uploaded sources.",
+        "NotebookLM\u2019s value comes from bounded, cited synthesis rather than open-ended generation.",
+        "The strongest workflows pair NotebookLM with other tools instead of asking it to do every job.",
+        "Missing diagrams in PDFs and manual re-uploading are practical constraints that limit reliability.",
+        "Source hygiene and context granularity become core skills when using source-grounded AI."
+      ],
+      "limitations_and_open_questions": "The article is opinion-heavy and does not provide measurements, controlled comparisons, or user-study evidence for its strongest claims. Several benefits are asserted broadly, such as being \u201cfit for high-stakes work,\u201d without concrete error rates, adoption data, or failure analysis. The discussion of legal, executive, and research workflows is illustrative, but it does not show a full deployment path or maintenance burden. The missing PDF diagram support, lack of an API, and manual syncing are real constraints, but their practical severity depends on workflow and file type mix. It also remains unclear how well NotebookLM handles messy, contradictory, or frequently changing corpora at scale.",
+      "sources": [
+        "https://medium.com/@stunspot/everyone-is-wrong-about-notebooklm-802770aa12f7"
+      ],
+      "summary": "The piece argues that NotebookLM is best understood as a closed-resource reasoning system rather than a general chatbot. Its core claim is that source grounding, citation, and strict boundaries make it useful for tasks where auditable synthesis matters more than open-ended generation. The article highlights corpus design as the main skill shift: users must curate what enters the notebook, merge or separate documents deliberately, and think like knowledge architects rather than prompt writers. It also describes real workflows in law, writing, executive synthesis, user research, and onboarding, while noting failure modes such as missed PDF diagrams, residual hallucinations, lack of an API, and manual re-uploading. The broader argument is that NotebookLM changes AI literacy by making source hygiene, context granularity, and citation reasoning central. The speculative section suggests a future where NotebookLM could become a RAG microservice, an enterprise notebook layer, or a visual explanation tool, but those claims are framed as conjecture rather than proven outcomes.",
+      "why_it_matters": "The piece is useful because it draws a clear line between general-purpose chat systems and a source-bounded reasoning workflow. For AI engineers, the durable lesson is that grounding plus citations changes the product contract: the system becomes auditable inside a defined corpus, but only if users curate that corpus well. The article\u2019s strongest operational point is that prompting quality is secondary to corpus architecture, which is a useful reframing for any document-centric assistant. It also makes a practical case for hybrid workflows where one tool handles ingestion and grounded synthesis while another handles drafting and presentation. The limitations are equally important: if PDFs hide diagrams, or if notebooks drift from their source files, the system\u2019s reliability drops fast. As of 2025-11-17, the claims about grounded synthesis and document workflows feel durable, while the future-facing API and enterprise-notebook speculation should be treated as conjecture rather than a plan."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single cohesive opinion/article structure rather than a bundle of short news items or tool reviews.",
+        "No interview transcript format or step-by-step tutorial structure.",
+        "The source is an independent essay interpreting NotebookLM, not a vendor announcement or research report."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Corpus boundaries are part of the model design, not an afterthought.",
+          "Merging documents can help bypass source limits, but it may blur useful distinctions.",
+          "Separating documents can preserve semantic edges that improve retrieval and citation quality.",
+          "Context quality depends on curation, not just token budget."
+        ],
+        "knowledge_summary": "When an AI system is constrained to a source set, the main performance lever becomes the structure of the context rather than prompt cleverness. Practitioners need to decide what enters the corpus, how documents are grouped, and where semantic boundaries should remain separate. The skill is closer to information architecture than to prompt writing. Good context design improves traceability, retrieval quality, and downstream synthesis.",
+        "match_candidates": [],
+        "operational_insight": "Treat corpus design as an engineering task: curate source boundaries, reduce noise, and preserve separations that matter for retrieval and citations.",
+        "primary_tag": "prompt-engineering",
+        "proposed_tags": [
+          "prompt-engineering",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "prompt-engineering",
+          "knowledge-management",
+          "agentic-workflows"
+        ],
+        "relevance_note": "This matters for any AI system whose behavior depends on document selection, chunking, and prompt context. In production assistants, context engineering often determines whether answers are grounded, concise, and maintainable.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "A good NotebookLM session starts before the prompt:\nWhat belongs in this corpus?\nWhat does not?\nWhat needs to be merged into one mega-document to bypass the 50-source limit?\nWhat must stay separate to keep semantic edges sharp?\nWhat is noise?\nWhat is scaffolding?",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A grounded assistant is only as good as the underlying documents.",
+          "Citations make organizational knowledge easier to audit and trust.",
+          "Internal knowledge layers need maintenance, versioning, and ownership.",
+          "Document fragmentation versus consolidation is an explicit design choice."
+        ],
+        "knowledge_summary": "Source-grounded AI tools can act as structured knowledge interfaces for organizations when they are fed curated internal documents. Their value comes from turning scattered files into a searchable, citeable knowledge layer. That makes document hygiene, versioning, and corpus updates operationally important. The result is less about chatting and more about preserving organizational memory.",
+        "match_candidates": [],
+        "operational_insight": "Use grounded AI as an index and synthesis layer over internal documentation, but keep ownership of document freshness and source hygiene explicit.",
+        "primary_tag": "knowledge-management",
+        "proposed_tags": [
+          "knowledge-management",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "context-engineering"
+        ],
+        "relevance_note": "This is durable for internal copilots, onboarding assistants, and policy search systems. The main operational challenge is maintaining source quality and avoiding stale or contradictory knowledge.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Upload all the onboarding docs, all the SOPs, all the historical decisions. New hire asks:\n\u201cHow do we actually do X here?\u201d\nNLM replies with citations from internal sources \u2014 not vibes.",
+        "topic_slug": "knowledge-management",
+        "topic_title": "Knowledge Management",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.86,
+          "evidence_type": null,
+          "extended_explanation": "This is a useful way to think about assistants that are meant to stay inside a document set, case file, or internal knowledge base. The important property is not just retrieval, but a contract that the system should not wander beyond the allowed sources. In practice, this supports auditability, privacy, and narrower error surfaces. It is especially relevant when users care more about traceable synthesis than creative generation.",
+          "match_candidates": [],
+          "primary_tag": "ai-architecture",
+          "proposed_definition": "A source-bounded information environment in which a model is allowed to reason only over a defined set of user-provided materials. The system\u2019s answers are constrained to that corpus rather than open-ended general knowledge.",
+          "proposed_tags": [
+            "ai-architecture",
+            "knowledge-management"
+          ],
+          "related_terms": [],
+          "relevance_note": "This concept matters wherever teams need AI to stay inside approved documents, such as policy assistants, legal research tools, internal knowledge bots, and governed service workflows. It shapes how systems are evaluated: the key question becomes whether the model stays faithful to the corpus and surfaces citations, not whether it can answer everything.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "retrieval-augmented-generation",
+          "suggested_new_tags": [
+            "retrieval-augmented-generation"
+          ],
+          "supporting_snippet": "It is engineered around a radically different mandate:\nSource-grounded cognition.\nEpistemic certainty. No improvisation allowed.\nNotebookLM will not answer questions that fall outside your uploaded sources. Its job is to build a private micro-universe \u2014 a \u201cClosed-Resource Information Trust\u201d \u2014 and reason only within it.",
+          "term": "Closed-Resource Information Trust",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "8b174bbc-a691-4ff7-984a-beb3e2e4b67d",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-management"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.74,
+          "evidence_type": null,
+          "extended_explanation": "Retrieval-augmented generation is common in enterprise assistants because it lets a model use a curated knowledge base instead of relying only on parametric memory. The quality of the retrieval step often matters as much as the model itself: bad source selection leads to bad answers. In operational settings, it is often combined with citations, document segmentation, and access controls. It is especially useful when the source material changes frequently or must remain auditable.",
+          "match_candidates": [],
+          "primary_tag": "ai-architecture",
+          "proposed_definition": "A pattern where a model answers by retrieving relevant external documents or passages and then generating a response grounded in that retrieved context. It is used to improve factuality, freshness, and domain specificity.",
+          "proposed_tags": [
+            "ai-architecture",
+            "knowledge-management"
+          ],
+          "related_terms": [],
+          "relevance_note": "This is a core pattern for document assistants, support search, internal copilots, and knowledge-grounded chat systems. It affects chunking, retrieval quality, citation design, and whether an assistant can be trusted in regulated or high-stakes workflows.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "retrieval-augmented-generation",
+          "suggested_new_tags": [
+            "retrieval-augmented-generation"
+          ],
+          "supporting_snippet": "A real API \u2192 NLM becomes a RAG microservice for EVERYTHING",
+          "term": "Retrieval-Augmented Generation",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "7079d5db-5922-440e-8cba-7ce6722ac926",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "retrieval-augmented-generation"
+          ],
+          "final_tags": [
+            "knowledge-management"
+          ]
+        }
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2025-11-17",
+          "confidence": 0.77,
+          "evidence_from_source": "The article presents NotebookLM as a \u201cprivate micro-universe\u201d and argues that it is built for \u201cSource-grounded cognition\u201d rather than open-ended chatting.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_trends": [],
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "NotebookLM will not answer outside uploaded sources.",
+            "The article frames the product as auditable, private, and citation-driven.",
+            "The author describes use cases in law, writing, business intelligence, and onboarding."
+          ],
+          "supporting_snippet": "NotebookLM says:\nAbsolutely not.\nIt is engineered around a radically different mandate:\nSource-grounded cognition.\nEpistemic certainty. No improvisation allowed.",
+          "time_sensitivity": "As of 2025-11-17, this is an early but clearly articulated product pattern in the source; it should be treated as directional rather than settled industry fact.",
+          "trend_description": "AI products increasingly act as constrained execution layers over specific knowledge, tools, or workflows rather than as open-ended general chat interfaces. The pattern shows up when a product is valuable because it operates within a defined boundary, enforces citations, or orchestrates a workflow around user-provided context.",
+          "trend_slug": "models-becoming-execution-layers",
+          "trend_title": "Models Becoming Execution Layers",
+          "uncertainty_note": "The source is a single opinion essay, so this is best read as a strong interpretation rather than broad market evidence. It may describe a useful product pattern without proving adoption beyond the author\u2019s examples.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "4e978e41-b695-4955-9327-b6358ad1554b",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "NotebookLM will not answer outside uploaded sources.",
+              "The article frames the product as auditable, private, and citation-driven.",
+              "The author describes use cases in law, writing, business intelligence, and onboarding."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is a first-person interpretive essay about NotebookLM.",
+          "Most claims are framed as the author\u2019s judgment, interpretation, or speculation rather than measured evidence.",
+          "Examples are illustrative and anecdotal, not benchmark-driven or implementation-audited."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Corpus selection matters more than clever prompting when the system is restricted to uploaded sources.",
+          "NotebookLM\u2019s value comes from bounded, cited synthesis rather than open-ended generation.",
+          "The strongest workflows pair NotebookLM with other tools instead of asking it to do every job.",
+          "Missing diagrams in PDFs and manual re-uploading are practical constraints that limit reliability.",
+          "Source hygiene and context granularity become core skills when using source-grounded AI."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@stunspot/everyone-is-wrong-about-notebooklm-802770aa12f7"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single cohesive opinion/article structure rather than a bundle of short news items or tool reviews.",
+          "No interview transcript format or step-by-step tutorial structure.",
+          "The source is an independent essay interpreting NotebookLM, not a vendor announcement or research report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Corpus boundaries are part of the model design, not an afterthought.",
+            "Merging documents can help bypass source limits, but it may blur useful distinctions.",
+            "Separating documents can preserve semantic edges that improve retrieval and citation quality.",
+            "Context quality depends on curation, not just token budget."
+          ],
+          "knowledge_summary": "When an AI system is constrained to a source set, the main performance lever becomes the structure of the context rather than prompt cleverness. Practitioners need to decide what enters the corpus, how documents are grouped, and where semantic boundaries should remain separate. The skill is closer to information architecture than to prompt writing. Good context design improves traceability, retrieval quality, and downstream synthesis.",
+          "match_candidates": [],
+          "operational_insight": "Treat corpus design as an engineering task: curate source boundaries, reduce noise, and preserve separations that matter for retrieval and citations.",
+          "primary_tag": "prompt-engineering",
+          "proposed_tags": [
+            "prompt-engineering",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "prompt-engineering",
+            "knowledge-management",
+            "agentic-workflows"
+          ],
+          "relevance_note": "This matters for any AI system whose behavior depends on document selection, chunking, and prompt context. In production assistants, context engineering often determines whether answers are grounded, concise, and maintainable.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "A good NotebookLM session starts before the prompt:\nWhat belongs in this corpus?\nWhat does not?\nWhat needs to be merged into one mega-document to bypass the 50-source limit?\nWhat must stay separate to keep semantic edges sharp?\nWhat is noise?\nWhat is scaffolding?",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "9abaf59b-9f8e-4990-8003-aa4608dd8e44",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Corpus boundaries are part of the model design, not an afterthought.",
+              "Merging documents can help bypass source limits, but it may blur useful distinctions.",
+              "Separating documents can preserve semantic edges that improve retrieval and citation quality.",
+              "Context quality depends on curation, not just token budget."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "prompt-engineering",
+              "knowledge-management",
+              "agentic-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A grounded assistant is only as good as the underlying documents.",
+            "Citations make organizational knowledge easier to audit and trust.",
+            "Internal knowledge layers need maintenance, versioning, and ownership.",
+            "Document fragmentation versus consolidation is an explicit design choice."
+          ],
+          "knowledge_summary": "Source-grounded AI tools can act as structured knowledge interfaces for organizations when they are fed curated internal documents. Their value comes from turning scattered files into a searchable, citeable knowledge layer. That makes document hygiene, versioning, and corpus updates operationally important. The result is less about chatting and more about preserving organizational memory.",
+          "match_candidates": [],
+          "operational_insight": "Use grounded AI as an index and synthesis layer over internal documentation, but keep ownership of document freshness and source hygiene explicit.",
+          "primary_tag": "knowledge-management",
+          "proposed_tags": [
+            "knowledge-management",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "context-engineering"
+          ],
+          "relevance_note": "This is durable for internal copilots, onboarding assistants, and policy search systems. The main operational challenge is maintaining source quality and avoiding stale or contradictory knowledge.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Upload all the onboarding docs, all the SOPs, all the historical decisions. New hire asks:\n\u201cHow do we actually do X here?\u201d\nNLM replies with citations from internal sources \u2014 not vibes.",
+          "topic_slug": "knowledge-management",
+          "topic_title": "Knowledge Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "90e96742-6cd0-4e12-b78f-9ed864c6eb9e",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A grounded assistant is only as good as the underlying documents.",
+              "Citations make organizational knowledge easier to audit and trust.",
+              "Internal knowledge layers need maintenance, versioning, and ownership.",
+              "Document fragmentation versus consolidation is an explicit design choice."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "context-engineering"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-management"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 5,
+    "review_duration_seconds": 668.9,
+    "review_finished_at": "2026-05-17T13:18:48.838481+00:00",
+    "review_started_at": "2026-05-17T13:07:39.942629+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-17T13:18:48+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "stunspot",
+    "canonical_url": "https://medium.com/@stunspot/everyone-is-wrong-about-notebooklm-802770aa12f7",
+    "content_sha256": "0ff8d25769674d78dda0ff812d73f4443f307f9bf23d8b4d27ac45706a223713",
+    "publication": "Medium",
+    "published_date": "2025-11-17",
+    "raw_html_rel_path": "raw/readwise/everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2.html",
+    "raw_md_rel_path": "raw/readwise/everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2.md",
+    "source_id": "everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2",
+    "title": "\ud83d\udca0\ud83c\udf10 Everyone Is Wrong About NotebookLM"
+  }
+}

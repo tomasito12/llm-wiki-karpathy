@@ -13,9 +13,19 @@ from src.ingest_review.dashboard_ui import (
     render_proposal_evidence_type_editor,
     render_similar_tags_warning,
 )
+from src.ingest_review.domain_tag_ui import (
+    effective_registry_types,
+    init_widget_session_value,
+    queue_widget_session_resync,
+)
+from src.ingest_review.proposal_columns_ui import (
+    build_proposal_expander_label,
+    render_two_column_proposal_review,
+)
 from src.ingest_review.proposal_decision_ui import (
     proposal_status_label,
     render_proposal_decision_bar,
+    set_proposal_save_message,
 )
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
@@ -25,6 +35,7 @@ from src.ingest_review.proposal_regen_ui import (
     render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import TOOL_REVIEWABLE_LIST_KEYS, TOOL_REVIEWABLE_SCALAR_KEYS
+from src.ingest_review.tags import normalize_tag_list
 
 VALUE_LEVEL_ORDER = {"high": 0, "medium": 1, "low": 2}
 
@@ -219,13 +230,7 @@ def format_tool_readonly_markdown(
     snippet = str(llm_item.get("supporting_snippet") or "").strip()
 
     types_node = node.get("types") or {}
-    approved_types = types_node.get("approved_types") or []
-    proposed_types = llm_item.get("proposed_types") or []
-    if not isinstance(proposed_types, list):
-        proposed_types = []
-    display_types = approved_types if approved_types else proposed_types
-    if not isinstance(display_types, list):
-        display_types = []
+    display_types = effective_registry_types(llm_item, types_node)
 
     related = llm_item.get("related_tools") or []
     if not isinstance(related, list):
@@ -295,6 +300,14 @@ def build_readonly_tools_markdown(
     return "\n\n---\n\n".join(parts)
 
 
+def _tool_expander_label(node: dict[str, Any], index: int) -> str:
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    name = effective_tool_scalar(llm_item, sections, "name") or f"Tool {index + 1}"
+    badge = VALUE_LEVEL_BADGES.get(_value_level(node), "Medium")
+    return build_proposal_expander_label(node, name, badge=badge)
+
+
 def _prepare_tool_nodes(
     artifact: dict[str, Any],
 ) -> list[dict[str, Any]]:
@@ -343,12 +356,18 @@ def _on_save_tool_proposal(
         for lk in TOOL_REVIEWABLE_LIST_KEYS
     }
     apply_tool_proposal_edits(node, scalar_values, list_raw)
+    types_node = node.get("types") or {}
+    extra_key = f"{key_prefix}_types_extra"
+    queue_widget_session_resync(
+        extra_key,
+        ", ".join(normalize_tag_list(types_node.get("reviewer_types_added") or [], cap=0)),
+    )
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     llm_item = node.get("llm_item") or {}
     sections = node.get("sections") or {}
     label = effective_tool_scalar(llm_item, sections, "name") or "proposal"
-    streamlit_runtime.session_state["_tools_save_msg"] = f"Saved **{label}**."
+    set_proposal_save_message(key_prefix, f"Saved **{label}**.")
 
 
 def _render_type_panel(
@@ -381,7 +400,7 @@ def _render_type_panel(
     else:
         st.caption("Tool type registry is empty.")
         chosen = []
-    types_node["approved_types"] = chosen
+    registry_chosen = normalize_tag_list(chosen, cap=0)
 
     llm_new_type = llm_item.get("proposed_new_type") or ""
     existing_proposed = types_node.get("proposed_new_type") or llm_new_type
@@ -401,12 +420,26 @@ def _render_type_panel(
         types_node["proposed_new_type"] = None
         types_node["approved_new_type"] = False
 
+    extra_key = f"{key_prefix}_types_extra"
+    stored_extra = ", ".join(
+        normalize_tag_list(types_node.get("reviewer_types_added") or [], cap=0)
+    )
+    init_widget_session_value(extra_key, stored_extra)
     extra = st.text_input(
         "Manually add types (comma-separated)",
-        value=", ".join(types_node.get("reviewer_types_added") or []),
-        key=f"{key_prefix}_types_extra",
+        key=extra_key,
+        help="Kebab-case slugs merged with registry selections; saved with “Save edit & approve”.",
     )
-    types_node["reviewer_types_added"] = [x.strip() for x in extra.split(",") if x.strip()]
+    manual_types = normalize_tag_list(
+        [x.strip() for x in extra.split(",") if x.strip()],
+        cap=0,
+    )
+    types_node["reviewer_types_added"] = manual_types
+    merged_types: list[str] = []
+    for t in registry_chosen + manual_types:
+        if t and t not in merged_types:
+            merged_types.append(t)
+    types_node["approved_types"] = merged_types
 
 
 def _render_tool_edit_box(
@@ -507,10 +540,7 @@ def render_tool_proposals(
     model: str = "",
     prompt_version: str = "",
 ) -> None:
-    """Two-column tool review: read-only catalog left, per-tool edit boxes right (like glossary).
-
-    All proposals are shown in the right column; there is no dropdown selector.
-    """
+    """Two-column tool review: read-only catalog left, per-tool edit boxes right."""
     types_list = tool_types or []
     st.subheader("Tools")
 
@@ -522,31 +552,39 @@ def render_tool_proposals(
     rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")
     st.caption(f"{len(sorted_nodes)} proposal(s) · {rejected} rejected")
 
-    save_msg = streamlit_runtime.session_state.pop("_tools_save_msg", None)
-    if save_msg:
-        st.success(str(save_msg))
     regen_msg = pop_proposal_regen_msg("tool")
     if regen_msg:
         st.success(regen_msg)
 
-    read_col, edit_col = st.columns(2)
-    with read_col:
-        st.markdown(build_readonly_tools_markdown(sorted_nodes, artifact=artifact))
-    with edit_col:
-        for i, node in enumerate(sorted_nodes):
-            pid = str(node.get("proposal_id") or f"idx{i}")
-            pfx = proposal_edit_key_prefix(
-                key_prefix, pid, "tool", regen_count=regen_count_from_node(node)
-            )
-            _render_tool_edit_box(
-                st,
-                node,
-                types_list,
-                artifact,
-                key_prefix=pfx,
-                source_id=source_id,
-                artifact_path=artifact_path,
-            )
+    def _readonly_md(node: dict[str, Any]) -> str:
+        if len(sorted_nodes) == 1:
+            return build_readonly_tools_markdown([node], artifact=artifact)
+        return format_tool_readonly_markdown(node, artifact=artifact)
+
+    def _render_edit(node: dict[str, Any], index: int) -> None:
+        pid = str(node.get("proposal_id") or f"idx{index}")
+        pfx = proposal_edit_key_prefix(
+            key_prefix, pid, "tool", regen_count=regen_count_from_node(node)
+        )
+        _render_tool_edit_box(
+            st,
+            node,
+            types_list,
+            artifact,
+            key_prefix=pfx,
+            source_id=source_id,
+            artifact_path=artifact_path,
+        )
+
+    render_two_column_proposal_review(
+        st,
+        sorted_nodes,
+        key_prefix=key_prefix,
+        empty_readonly_text="*(No tool proposals.)*",
+        label_for_node=_tool_expander_label,
+        readonly_markdown_for_node=_readonly_md,
+        render_edit_for_node=_render_edit,
+    )
 
 
 def collect_tool_new_tags(artifact: dict[str, Any]) -> list[str]:

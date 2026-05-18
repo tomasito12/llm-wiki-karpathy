@@ -795,11 +795,17 @@ SourceType = Literal[
     "standard_article",
     "ai_industry_roundup",
     "ai_tools_roundup",
+    "how_to_roundup",
     "interview_or_transcript",
     "technical_howto",
     "research_paper_or_report",
     "unknown",
 ]
+
+LIST_ROUNDUP_SOURCE_TYPES: tuple[SourceType, ...] = (
+    "ai_tools_roundup",
+    "how_to_roundup",
+)
 
 SignalStrength = Literal["low", "medium", "high"]
 TimeHorizon = Literal["transient", "short_term", "medium_term", "long_term"]

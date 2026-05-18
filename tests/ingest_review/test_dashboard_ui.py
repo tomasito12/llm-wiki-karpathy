@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from unittest.mock import MagicMock
+
 from src.ingest_review.artifact import ensure_sources_review_auto_approved
 from src.ingest_review.dashboard_ui import (
     apply_chapter_edit,
@@ -14,6 +16,7 @@ from src.ingest_review.dashboard_ui import (
     format_source_link_markdown,
     google_search_markdown,
     normalize_sources_list,
+    render_skip_extraction_screen,
 )
 
 
@@ -172,3 +175,55 @@ def test_google_search_markdown_builds_encoded_url() -> None:
 def test_google_search_markdown_empty_query() -> None:
     assert google_search_markdown("") == ""
     assert google_search_markdown("   ") == ""
+
+
+def test_render_skip_extraction_screen_never_gates_tools_roundup() -> None:
+    """List tool roundups bypass the skip gate even when skip_recommended is true."""
+    mock_st = MagicMock()
+    mock_st.session_state = {}
+    artifact = {
+        "llm_output": {
+            "source_type_detection": {"detected_source_type": "ai_tools_roundup"},
+            "extraction_meta": {"skip_recommended": True, "skip_reason": "test"},
+        }
+    }
+    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is False
+    mock_st.warning.assert_not_called()
+    mock_st.info.assert_called_once()
+
+
+def test_render_skip_extraction_screen_never_gates_how_to_roundup() -> None:
+    """List how-to roundups bypass the skip gate."""
+    mock_st = MagicMock()
+    mock_st.session_state = {}
+    artifact = {
+        "llm_output": {
+            "source_type_detection": {"detected_source_type": "how_to_roundup"},
+            "extraction_meta": {"skip_recommended": True},
+        }
+    }
+    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is False
+    mock_st.info.assert_called_once()
+
+
+def test_render_skip_extraction_screen_shows_warning_when_skip_and_not_roundup() -> None:
+    """Standard articles with skip_recommended still show the warning."""
+    col1, col2 = MagicMock(), MagicMock()
+    col1.button.return_value = False
+    col2.button.return_value = False
+    mock_st = MagicMock()
+    mock_st.session_state = {}
+    mock_st.columns.return_value = (col1, col2)
+    artifact = {
+        "llm_output": {
+            "source_type_detection": {"detected_source_type": "standard_article"},
+            "extraction_meta": {
+                "skip_recommended": True,
+                "skip_reason": "No durable knowledge",
+                "review_burden_estimate": "low",
+                "total_candidates_considered": 3,
+            },
+        }
+    }
+    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is False
+    mock_st.warning.assert_called_once()

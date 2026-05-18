@@ -758,6 +758,17 @@ def render_skip_extraction_screen(
     Returns True if the reviewer accepted the skip.
     """
     llm = artifact.get("llm_output", {})
+    detection = llm.get("source_type_detection") or {}
+    detected_type = str(detection.get("detected_source_type") or "")
+    from src.ingest_review.schema import LIST_ROUNDUP_SOURCE_TYPES
+
+    if detected_type in LIST_ROUNDUP_SOURCE_TYPES:
+        st.info(
+            "List roundup: extract every tool or practice and reject unwanted items in the "
+            "Tools or How-tos tab—skip is not applied for this source type."
+        )
+        return False
+
     emeta = llm.get("extraction_meta") or {}
     if not emeta.get("skip_recommended"):
         return False
@@ -870,13 +881,10 @@ def render_review_timer(
     key_prefix: str,
 ) -> None:
     """Show review timer and analytics."""
+    from src.ingest_review.artifact import ensure_review_started
+
+    ensure_review_started(artifact)
     analytics = artifact.setdefault("review_analytics", {})
-    started = analytics.get("review_started_at")
-
-    if not started:
-        from datetime import UTC, datetime
-
-        analytics["review_started_at"] = datetime.now(tz=UTC).isoformat()
 
     duration = analytics.get("review_duration_seconds")
     if duration is not None:

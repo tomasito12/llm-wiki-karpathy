@@ -1,0 +1,104 @@
+"""Registry of ingestion-review tag/type allowlist YAML files."""
+
+from __future__ import annotations
+
+from collections.abc import Callable
+from dataclasses import dataclass
+from pathlib import Path
+
+from src.ingest_review.tags import (
+    default_glossary_tags_path,
+    default_howto_tags_path,
+    default_impl_study_tags_path,
+    default_model_types_path,
+    default_tool_types_path,
+    default_topic_tags_path,
+    default_trend_tags_path,
+)
+
+_PathFn = Callable[[Path | None], Path]
+
+
+@dataclass(frozen=True, slots=True)
+class TagTaxonomySpec:
+    """One allowlist file: routing tags or tool/model types."""
+
+    id: str
+    label: str
+    path_fn: _PathFn
+    description: str
+    baseline_tags: tuple[str, ...]
+
+
+TAG_TAXONOMIES: tuple[TagTaxonomySpec, ...] = (
+    TagTaxonomySpec(
+        id="topics",
+        label="Topics & insights",
+        path_fn=default_topic_tags_path,
+        description="Topic proposal tags (ingestion review).",
+        baseline_tags=("ai-engineering", "knowledge-management"),
+    ),
+    TagTaxonomySpec(
+        id="glossary",
+        label="Glossary",
+        path_fn=default_glossary_tags_path,
+        description="Glossary proposal tags (ingestion review).",
+        baseline_tags=("ai-engineering", "knowledge-management"),
+    ),
+    TagTaxonomySpec(
+        id="howto",
+        label="How-tos",
+        path_fn=default_howto_tags_path,
+        description="How-to proposal tags (ingestion review).",
+        baseline_tags=("ai-engineering", "onboarding-workflow"),
+    ),
+    TagTaxonomySpec(
+        id="trends",
+        label="Trends & signals",
+        path_fn=default_trend_tags_path,
+        description="Industry trend proposal tags (ingestion review).",
+        baseline_tags=("ai-governance", "knowledge-management"),
+    ),
+    TagTaxonomySpec(
+        id="impl_study",
+        label="Implementation studies",
+        path_fn=default_impl_study_tags_path,
+        description=("Implementation-study tags (patterns/themes; industry is a separate field)."),
+        baseline_tags=("enterprise-ai-adoption", "production-failure"),
+    ),
+    TagTaxonomySpec(
+        id="tool_types",
+        label="Tool types",
+        path_fn=default_tool_types_path,
+        description=(
+            "Approved tool types (ingestion review). LLM may only propose types from this list."
+        ),
+        baseline_tags=("cloud-saas", "coding-agent", "workflow-automation"),
+    ),
+    TagTaxonomySpec(
+        id="model_types",
+        label="Model types",
+        path_fn=default_model_types_path,
+        description=(
+            "Approved model types (ingestion review). LLM may only propose types from this list."
+        ),
+        baseline_tags=("embedding-model", "frontier-model", "open-weight-model"),
+    ),
+)
+
+_TAXONOMY_BY_ID: dict[str, TagTaxonomySpec] = {spec.id: spec for spec in TAG_TAXONOMIES}
+
+
+def taxonomy_by_id(taxonomy_id: str) -> TagTaxonomySpec | None:
+    """Return the spec for *taxonomy_id*, or None if unknown."""
+    return _TAXONOMY_BY_ID.get(taxonomy_id)
+
+
+def taxonomy_path(spec: TagTaxonomySpec, root: Path | None = None) -> Path:
+    """Resolved filesystem path for one taxonomy allowlist."""
+    return spec.path_fn(root)
+
+
+def tag_taxonomy_paths(root: Path | None = None) -> list[Path]:
+    """All YAML allowlist paths in registry order."""
+    return [taxonomy_path(spec, root) for spec in TAG_TAXONOMIES]

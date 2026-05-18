@@ -202,8 +202,10 @@ def test_format_topic_readonly_related_topics_section_with_suggestions() -> None
         related_suggestions=suggestions,
     )
     assert "**Related topics**" in md
-    assert "*Suggested:*" in md
     assert "context-engineering" in md
+    assert "*Suggested:*" not in md
+    assert "this review" not in md
+    assert "other review" not in md
 
 
 def test_apply_topic_proposal_edits_persists_related_topics() -> None:
@@ -225,6 +227,20 @@ def test_apply_topic_proposal_edits_persists_related_topics() -> None:
         "context-engineering",
         "prompt-engineering",
     ]
+
+
+def test_format_topic_readonly_related_topics_prefers_stored_over_suggestions() -> None:
+    node = _sample_node()
+    node["llm_item"] = dict(node["llm_item"])
+    node["llm_item"]["related_topics"] = ["context-engineering", "prompt-engineering"]
+    suggestions = [
+        RelatedTopicCandidate("context-engineering", "Context Engineering", "wiki"),
+    ]
+    md = format_topic_proposal_readonly_markdown(node, [], related_suggestions=suggestions)
+    assert "- context-engineering" in md
+    assert "- prompt-engineering" in md
+    assert "*Suggested:*" not in md
+    assert "*Stored:*" not in md
 
 
 def test_build_readonly_topics_markdown_includes_related_when_wiki_passed() -> None:

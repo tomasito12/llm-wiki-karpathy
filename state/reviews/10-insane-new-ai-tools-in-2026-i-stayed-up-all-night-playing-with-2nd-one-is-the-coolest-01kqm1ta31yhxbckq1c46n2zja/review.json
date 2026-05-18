@@ -1,0 +1,1666 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-18T15:14:09+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dgtwdr1GqIrd6c2SGyjhqjbgTWnVL",
+    "token_usage": {
+      "completion_tokens": 6538,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 25552,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 25344
+      },
+      "total_tokens": 32090
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 10
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "The article claims Mercury 2 is \"11x faster\" with \"same quality,\" but it does not provide the benchmark setup or comparison conditions.",
+          "No independent benchmark results are included in the source."
+        ],
+        "comparative_observations": [
+          "The article contrasts Mercury 2 with mainstream token-by-token language models.",
+          "It is framed as architecturally distinct rather than as a simple incremental upgrade.",
+          "The model is positioned as especially relevant where speed is a dealbreaker for developers and operators."
+        ],
+        "confidence": 0.87,
+        "core_capabilities": [
+          "Diffusion-based generation that refines output in parallel rather than token by token.",
+          "Function calling support for tool-using workflows.",
+          "Structured output support for machine-readable responses.",
+          "Positioned for real-time, latency-sensitive AI applications."
+        ],
+        "evidence_type": "vendor_claim",
+        "match_candidates": [],
+        "maturity_signals": "The model is described as launched on February 24, 2026, which signals active product availability rather than an early research demo. Support for function calling and structured output suggests it is already being positioned for practical deployment. However, the only evidence in the source is launch commentary and vendor-style framing, so maturity looks plausible but not well validated by independent analysis.",
+        "model_name": "Mercury 2",
+        "operational_summary": "Mercury 2 is presented as a newly launched foundation model that uses a diffusion architecture instead of standard token-by-token decoding. The article frames it as a speed-focused model for real-time AI tools, with the headline claim that it is 11x faster while maintaining the same quality. It also supports function calling and structured output, which makes it more usable in agent and workflow systems than a plain chat model.",
+        "pricing_inference_implications": "No pricing is stated in the source, so there is no direct evidence for cost. The diffusion architecture could imply a different compute profile than standard token generation, but the article does not say whether that lowers or raises serving cost. Any pricing inference would be speculative from this source alone.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "proprietary",
+          "interactive-ai"
+        ],
+        "provider": "Inception",
+        "related_models": [
+          "GPT-5.5",
+          "Kimi 2.5"
+        ],
+        "service_automation_implications": "The article\u2019s emphasis on real-time AI tools suggests Mercury 2 could be useful as a backend model for automation products that need quick turnarounds and reliable schema-shaped outputs. If the performance claim holds, it may reduce wait time in chat-based operations, tool execution loops, and user-facing automation flows. Its value is likely highest where speed affects user experience or throughput.",
+        "strengths": "- The main differentiator is architectural: the article says Mercury 2 generates a rough output and refines multiple tokens in parallel, which is positioned as a way to reduce latency.\n- Function calling and structured output support make it more suitable for agent workflows, where the model needs to produce machine-readable outputs and interact with tools.\n- The model is explicitly framed for real-time use cases, so it appears optimized for responsiveness rather than only benchmark chasing.\n- The source presents it as a genuinely different category of model, which suggests strategic value for teams exploring alternatives to standard autoregressive LLMs.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"Mercury 2 launched February 24, 2026, and it is genuinely architecturally different from every other model out there. Most AI models generate text token by token, one word at a time. Mercury 2 uses a diffusion architecture, starting with a rough full output and refining it in parallel across multiple tokens simultaneously. Supports function calling and structured output for agent workflows.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article gives a strong promotional claim but very little methodological detail. It does not specify the benchmark, baseline model, task mix, or hardware conditions behind the \"11x faster\" statement, so the speed claim is not independently verifiable from the source. It also does not provide failure cases, reliability data, or evidence about whether the diffusion approach affects output stability, instruction following, or long-context behavior. Based on the source alone, this looks promising but still thinly evidenced.",
+        "workflow_implications": "Mercury 2 is best understood as a model for latency-sensitive workflows where the agent must answer, route, or generate structured outputs quickly. The function-calling and structured-output support imply easier integration into orchestration layers, tool use, and API-driven products. That makes it relevant for assistants, copilots, and operational systems where response time can be a product feature."
+      },
+      {
+        "benchmark_observations": [
+          "The article claims Kimi K2.5 scores above GPT-5.2 on HLE-Full reasoning benchmarks.",
+          "No benchmark methodology, test conditions, or reproducibility details are provided in the source.",
+          "The benchmark claim is presented as a headline performance signal rather than a deeply explained result."
+        ],
+        "comparative_observations": [
+          "The source frames Kimi K2.5 as frontier-level while implying lower compute than a fully dense trillion-parameter model.",
+          "It is contrasted with GPT-5.2 through the claimed HLE-Full result.",
+          "The model is also distinguished from ordinary multimodal systems by combining text, image, and video support with multi-agent orchestration and screenshot-to-code behavior."
+        ],
+        "confidence": 0.96,
+        "core_capabilities": [
+          "Mixture-of-experts architecture with only a fraction of total parameters active per query.",
+          "Native handling of text, images, and video in one model.",
+          "Screenshot-to-code generation for visual-to-implementation workflows.",
+          "Coordination of up to 100 AI sub-agents for parallel task execution.",
+          "Positioned as an open-source/open model for users who want more direct access than a proprietary API."
+        ],
+        "evidence_type": "mixed",
+        "match_candidates": [],
+        "maturity_signals": "The article says Kimi K2.5 was released on January 27, 2026, and treats it as already usable enough for the author to run an Agent Swarm in the background on a real project. That is a positive adoption signal, but the evidence remains mostly launch-announcement style rather than deployment-validated. The presence of specific capabilities like multimodal support, screenshot-to-code, and multi-agent coordination suggests a fairly ambitious product surface, though the source does not show long-term stability or enterprise readiness.",
+        "model_name": "Kimi K2.5",
+        "operational_summary": "Kimi K2.5 is presented as an open-source, frontier-class multimodal foundation model released on January 27, 2026. The article frames it as a mixture-of-experts system with one trillion total parameters but only 32 billion active per query, aiming to combine strong capability with lower per-request compute. It is described as natively handling text, images, and video, supporting screenshot-to-code workflows, and coordinating up to 100 sub-agents for parallel task execution.",
+        "pricing_inference_implications": "No explicit price is given. The article\u2019s emphasis on only 32 billion active parameters per query implies an efficiency story that could reduce serving cost relative to a dense model of similar total size. However, because the source gives no API pricing, hosting costs, or licensing details, any inference should stay limited to the possibility of lower inference cost per request rather than a concrete affordability claim.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "open-weight",
+          "agentic-coding"
+        ],
+        "provider": "Moonshot AI",
+        "related_models": [
+          "DeepSeek V4",
+          "Mercury 2",
+          "GPT-5.5"
+        ],
+        "service_automation_implications": "The combination of native multimodality, structured code generation from screenshots, and multi-agent orchestration points toward automation systems that can ingest diverse inputs and break them into parallelizable work. That makes it relevant for internal analyst assistants, content or product operations, and semi-autonomous research agents. Because the article frames it as open and frontier-capable, it may also be attractive for teams that want more control over model integration than a proprietary API usually offers.",
+        "strengths": "The strongest operational claim in the source is that Kimi K2.5 pairs broad capability with efficiency: only a subset of parameters activates per query, so the model is positioned as delivering high-end performance without requiring the full compute cost of a dense trillion-parameter model. The article also highlights practical multimodal usefulness, since it can work across text, images, and video in one system rather than forcing a separate toolchain for each modality. For workflow-heavy use cases, the ability to coordinate up to 100 sub-agents is notable because it suggests the model can support decomposition, parallel research, and multi-step automation. The screenshot-to-code behavior is especially relevant for product and engineering workflows, because it bridges visual input and implementation in a direct way.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"One trillion total parameters, but only thirty-two billion activate per query thanks to a mixture-of-experts architecture. That means frontier-level performance at much lower compute cost. Handles text, images, and video natively. Reads a screenshot and generates working code from it. Coordinates up to 100 AI sub-agents in parallel for complex tasks, completing them 4.5x faster. Scores above GPT-5.2 on HLE-Full reasoning benchmarks.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source is mostly promotional and gives limited technical depth beyond the headline claims. It does not explain the evaluation setup behind the reported HLE-Full result or the comparison against GPT-5.2, so the benchmark claim is hard to interpret operationally. It also does not discuss latency, throughput, or reliability under load, which matters for an agentic model that claims parallel sub-agent coordination. Although the article calls it open-source/open, it does not provide deployment details, so self-hosting effort, infra requirements, and real-world ease of use remain unclear.",
+        "workflow_implications": "This model appears suited to workflows that mix reasoning, multimodal intake, and agent orchestration. In practice, that means research pipelines, multimodal analysis, design-to-code handoff, and tasks that benefit from splitting work across many subtasks. The article\u2019s own example of using Kimi\u2019s Agent Swarm for data analysis suggests the model may be useful as a coordinator for longer-running project work rather than only short conversational exchanges."
+      },
+      {
+        "benchmark_observations": [
+          "The article claims 92% accuracy on math benchmarks.",
+          "The article claims 90% accuracy on coding benchmarks.",
+          "No benchmark methodology or evaluator details are provided in the source."
+        ],
+        "comparative_observations": [
+          "The article frames DeepSeek V4 as cheaper to operate than rival cloud-priced models if self-hosted.",
+          "It is positioned as a stronger multimodal and long-context option than the prior V3 release.",
+          "The source suggests it is part of a competitive push that has made major AI labs nervous."
+        ],
+        "confidence": 0.95,
+        "core_capabilities": [
+          "Native multimodal support for text, images, and video",
+          "Context window of over one million tokens",
+          "Open-weight deployment with local or self-hosted use",
+          "Cost-focused indexer claim for more efficient inference",
+          "Benchmarked math and coding performance claims"
+        ],
+        "evidence_type": "vendor_claim",
+        "match_candidates": [],
+        "maturity_signals": "The article describes DeepSeek V4 as having dropped in early March 2026, which signals it is being treated as a live product rather than a concept. The explicit open-weight and self-hosting language suggests practical availability for deployment. At the same time, the evidence in the source is still mostly announcement-style and benchmark-oriented, so real-world maturity should be confirmed through independent use and serving tests.",
+        "model_name": "DeepSeek V4",
+        "operational_summary": "DeepSeek V4 is presented as an open-weight foundation model with native multimodal support for text, images, and video, plus a very large context window of over one million tokens. In the article it is framed as a practical, self-hostable alternative to proprietary APIs, aimed at users who want frontier-style capability with lower direct cloud inference costs if they deploy it themselves.",
+        "pricing_inference_implications": "The source implies a lower-cost ownership model if teams self-host, because it says there is no per-token cloud pricing in that setup. It also claims a new indexer cuts computational costs by roughly fifty percent, which would matter most for high-throughput or long-context workloads. However, the article does not provide infrastructure pricing, so any total-cost comparison should include hardware, ops, and maintenance.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "open-weight",
+          "multi-modal"
+        ],
+        "provider": "DeepSeek",
+        "related_models": [
+          "DeepSeek V3",
+          "Kimi 2.5",
+          "Gemma 4",
+          "GPT-5.5"
+        ],
+        "service_automation_implications": "For service automation, the model is most relevant where long-context reasoning, image/video understanding, and self-hosted deployment matter together. That combination could support automated review pipelines, content analysis systems, or assistant-style services where keeping requests on private infrastructure is important. The article\u2019s claim of lower computational cost also suggests potential value for higher-throughput automation, though the operational savings would depend on actual deployment efficiency.",
+        "strengths": "- Native multimodal input across text, images, and video reduces the need to stitch together separate models or pipelines.\n- The >1M token context window is a meaningful fit for long-document analysis, extended sessions, and large retrieval-heavy workflows.\n- Open-weight availability gives teams deployment control and makes local or private hosting possible.\n- The article claims the model includes a new indexer that cuts computational costs by roughly 50%, which suggests stronger efficiency for high-volume use cases.\n- Reported benchmark performance is strong in the article\u2019s framing, with 92% on math and 90% on coding.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"DeepSeek V4 dropped in early March 2026 and continued a run that has made every major AI lab nervous. The big shift from V3: full native multimodal support for text, images, and video in one model. Plus a context window of over one million tokens and a new indexer that cuts computational costs by roughly fifty percent. 92% accuracy on math benchmarks, 90% on coding. Open-weight: run it locally or deploy it yourself. No per-token cloud pricing if you self-host.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article gives benchmark-style claims but no testing methodology, so the accuracy numbers cannot be validated from the source alone. It also does not explain latency, memory footprint, or the practical serving burden of running a very large multimodal open-weight model. Self-hosting may eliminate per-token cloud pricing, but the source does not cover infrastructure, ops, or maintenance costs. Because the evidence is vendor-linked and promotional in tone, independent verification would still be needed before treating the performance claims as settled.",
+        "workflow_implications": "DeepSeek V4 is best understood as a consolidation model for teams that want one system to handle mixed media and long-context tasks without splitting the workflow across multiple specialized models. The open-weight aspect makes it suitable for organizations that need tighter control over data placement or want to integrate the model into internal infrastructure. The long context and multimodal support point to workflows like document-heavy analysis, screenshot-informed coding, and mixed text/image/video review."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The author mixes first-person testing, vendor/product descriptions, and references to independent testers/reviewers.",
+        "Some entries rely on promotional claims from product pages or launch posts, while others lean on the author's hands-on experience.",
+        "A few performance claims are benchmark-like, but the piece does not provide a formal evaluation framework."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a list of ten AI tools that the writer tested and found worth keeping. The writer says many tools looked similar, so only the ones that felt genuinely different made the final cut. The tools cover things like building software from plain English, making videos, taking meeting notes, speaking instead of typing, automating work, and generating social media content from a website. Some of the tools are aimed at beginners, while others are better for people who want more technical control or privacy. A few of the claims are based on the writer\u2019s own testing, while others come from independent testers or the tool makers. The most important idea is that some 2026 tools are trying to remove whole steps from common workflows instead of just adding another button. For example, one tool turns a conversation into code, another turns a website into branded social posts, and another helps you dictate text across any app. The article is useful as a snapshot of what a practical AI tool stack looked like on April 25, 2026. The claims are worth checking against your own workflow because several are promotional and the article gives limited technical detail.",
+      "assessed_as_of": "2026-04-25",
+      "contradictions_and_skepticism": "The strongest claims are promotion-heavy and not always backed by detailed measurement. For example, phrases like \"11x faster\" and \"outscored GPT-5.2\" are presented without enough methodology to treat them as durable conclusions. Several tools are described as \"genuinely new categories,\" but the article does not deeply prove that claim beyond the author\u2019s testing impressions. The roundup also blends product maturity with novelty, so readers should separate \"interesting to try\" from \"ready to depend on.\"",
+      "key_insights": [
+        "Several tools are framed as category changes rather than incremental upgrades, especially in coding, video, and automation.",
+        "The most reusable operational pattern is reducing multi-step workflows into single inputs such as plain English, a URL, or a spoken draft.",
+        "Local execution and privacy are positioned as product features, not just technical preferences, in the autonomous-agent segment.",
+        "Speed is a product differentiator in both model and application layers, but the article provides limited third-party validation for the strongest speed claims.",
+        "The practical filter used by the author is whether a tool removes enough friction to be worth keeping in a permanent stack."
+      ],
+      "limitations_and_open_questions": "The article is a personal curation piece, so the evidence base is uneven across entries: some claims are from the author\u2019s direct testing, some from reviewers, and some from vendor or product pages. Several items are described with strong language but limited methodology, especially where speed, accuracy, or benchmark superiority are asserted. The roundup does not provide standardized evaluation criteria, so cross-tool comparisons are not fully reliable. For the autonomous-agent and local-deployment tools, it leaves open questions about reliability, safety, long-running maintenance, and real operational overhead. For the content-generation tools, it is unclear how well outputs hold up across edge cases, brand constraints, or regulated workflows.",
+      "sources": [
+        "https://medium.com/@KanikaBK/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-e11d6542f643",
+        "https://lovable.dev/",
+        "https://higgsfield.ai/",
+        "https://wisprflow.ai",
+        "https://www.granola.ai",
+        "https://open-claw.org",
+        "https://www.inceptionlabs.ai/blog/introducing-mercury-2",
+        "https://pomelli.me",
+        "https://www.kimi.com/",
+        "https://api-docs.deepseek.com/news/news26042",
+        "https://gumloop.com"
+      ],
+      "summary": "This roundup selects ten AI tools the author judged meaningfully different from one another after testing more than forty candidates. The article\u2019s core claim is that several 2026 releases are not just improved versions of old products but new categories, such as a browser that browses for the user, a model that emphasizes speed, and tools that turn plain English or a website URL into production-ready output. The writeup is intentionally practical: each item is framed by what it does, who it is for, and what workflow it improves. The strongest recurring themes are faster content generation, lower-friction automation, local or privacy-preserving execution, and simpler ways to create code, video, notes, and social assets. Evidence quality is mostly independent-analysis and user-report style commentary, with some vendor-linked claims and a few benchmark-like assertions that are not deeply audited in the text.",
+      "why_it_matters": "This roundup is useful because it separates tools that merely repackage existing ideas from tools that change the workflow shape. Lovable is presented as turning plain English into production-grade code with authentication, payments, and exports, which matters for rapid prototyping and internal app building. Higgsfield and Gumloop show two different automation directions: one compresses video creation into minutes, while the other treats model calls as first-class steps in visual workflows. Wispr Flow, Granola, and Pomelli each reduce common interface friction by turning speech, meetings, or a website into ready-to-use text or content. Mercury 2, Kimi K2.5, and DeepSeek V4 are included because the article emphasizes speed, multimodality, agent coordination, and self-hosting as operationally relevant traits, though some performance claims rely on promotional or lightly described evidence. The significance is therefore practical but uneven: the piece is strongest as a curated testing list, not as rigorous comparative analysis. Actionable as of 2026-04-25, but the most aggressive performance and benchmark claims should be treated as provisional until independently checked."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_tools_roundup",
+      "reasoning": [
+        "The piece is primarily a numbered list of named products and models with separate blurbs for each item.",
+        "The headline explicitly says \"10 insane new AI tools\" and the body enumerates ten entries.",
+        "The structure matches a curated tools roundup more than a general article or how-to guide."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It turns plain-English product ideas into working application code with UI and backend wiring.",
+          "It supports payments and authentication, which lowers the amount of manual setup needed for a first release.",
+          "It exports code in a GitHub-ready form so teams can continue development outside the tool."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article says it handles Stripe, Clerk, and OpenAI integrations natively.",
+          "It exports to GitHub-ready code, which implies handoff into normal software development workflows."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The product is presented as usable enough for rapid prototype creation and exportable code, which suggests a tool that is beyond a toy demo. The mention of GitHub-ready exports and native integrations points to a developer-facing orientation rather than a closed consumer experience. Evidence in the source is still mostly anecdotal, so maturity should be treated as promising but not fully established.",
+        "name": "Lovable",
+        "operational_relevance": "Useful for quickly producing working prototypes, internal tools, and client-facing web apps without starting from a blank editor. It appears to bridge the gap between ideation and shippable code, which matters for teams that want to validate a concept before investing in a full engineering cycle. The built-in integrations suggest it can reduce early setup work for authentication, payments, and AI features.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "cloud-saas",
+          "coding-agent"
+        ],
+        "related_tools": [
+          "Gumloop",
+          "OpenClaw"
+        ],
+        "short_description": "A prompt-to-app builder that turns plain English into production-grade web code. The article says it can generate responsive apps with payments and authentication already wired in.",
+        "strengths": "- Converts a plain-English request into a functional app, which reduces the time spent on scaffolding and repetitive setup.\n- Includes responsive design, Stripe payments, authentication, GitHub-ready exports, and native integrations, which makes the output closer to something a team can iterate on rather than a throwaway demo.\n- The reported under-ninety-minute prototype time suggests it is optimized for speed-to-first-working-version, which is valuable for validation and stakeholder review.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"You describe what you want to build in plain English. Lovable converts that into fully functional, production-grade code with responsive design, Stripe payments, and authentication already wired in. Independent testers had a working prototype live in under ninety minutes.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not describe failure modes, code quality edge cases, or how well the generated code holds up in larger codebases. \"Production-grade\" is asserted, but the piece does not show an audit of maintainability, testing, or security hardening. The workflow may still require a developer to review generated code before trusting it in a real deployment."
+      },
+      {
+        "confidence": 0.87,
+        "core_capabilities": [
+          "It generates video content with camera-control tooling for more directed output.",
+          "It supports lip sync for character animation, which matters when talking-head or avatar-style content needs believable mouth movement.",
+          "It upscales exports to 4K, which helps bridge the gap between draft generation and publishable media."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article says it integrates Sora, Veo, Seedance 2.0, and Hermes Agent.",
+          "Those integrations suggest it sits on top of multiple generation backends rather than acting as a single-model wrapper."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source presents it as a complete toolkit rather than a novelty feature, which suggests a product aimed at repeated use. The mention of setup time in seconds and first output in minutes implies a streamlined user experience. Evidence remains mostly experiential, so the maturity signal is useful but not conclusive.",
+        "name": "Higgsfield",
+        "operational_relevance": "Relevant for teams that need fast video production without a traditional editing stack. The combination of generation, camera control, lip sync, and upscaling suggests a workflow that can handle both creation and finishing in one place. That makes it useful for creators, marketers, and small teams that need turnaround speed more than deep post-production control.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "cloud-saas",
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "Lovable",
+          "Gumloop"
+        ],
+        "short_description": "A video creation tool that the article describes as combining multiple generation models and production features into one workflow. It is presented as useful for quickly making short-form ads and polished video outputs.",
+        "strengths": "- The tool bundles generation and finishing steps together, which matters because video work often breaks across multiple applications.\n- Cinema Studio, LipSync Studio, and 4K upscaling indicate that it is aimed at practical output quality, not only raw generation.\n- The article\u2019s reported two-minute ad creation and five-minute first-video workflow suggest a strong speed advantage for lightweight production tasks.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"You get Cinema Studio for granular camera controls, LipSync Studio for character animation, and a 4K upscaler on exports. Setup takes thirty seconds. First video in five minutes.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The writeup gives little detail about consistency, control limits, or how outputs behave on longer or more complex projects. It also does not explain whether the integrated models are interchangeable or how much quality varies by use case. The strongest claim in the source is speed, but that alone does not establish reliability for professional pipelines."
+      },
+      {
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It provides system-level dictation so users can speak into many different apps without switching tools.",
+          "It converts long spoken thoughts into coherent text, which reduces cleanup compared with basic speech-to-text.",
+          "It supports more than 100 languages, which broadens its use across multilingual teams and users."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article says it works inside Gmail, Notion, Claude, Twitter, and any other text field.",
+          "It is positioned as operating across operating systems rather than through a single app-specific plug-in."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The tool is presented as something the author uses daily, and the source cites multiple early-2026 reviewers calling it highly accurate. Support across major operating systems and common text fields suggests a mature distribution model. The evidence is still anecdotal, but the breadth of usage surfaces a product that appears beyond an experiment.",
+        "name": "Wispr Flow",
+        "operational_relevance": "Useful wherever a user spends a lot of time writing in many different apps and wants to replace typing with speech. Because it works at the operating-system level, it can fit into existing workflows without needing per-app integration. That makes it especially practical for drafting, note capture, and fast text entry across email, documents, and chat tools.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "cloud-saas",
+          "ai-infrastructure"
+        ],
+        "related_tools": [
+          "Granola",
+          "OpenClaw"
+        ],
+        "short_description": "A system-level voice dictation tool that lets users speak into any text field and get cleaned-up text back quickly. The article emphasizes low latency and support across many languages.",
+        "strengths": "- System-level operation means it works across many applications rather than being locked into one editor.\n- The article says it understands multi-sentence meaning and returns coherent paragraphs, which matters when users think in long spoken chunks rather than short commands.\n- Low latency and broad language support make it attractive for everyday dictation rather than just niche transcription tasks.\n- SOC 2 Type II certification is relevant for teams that need a stronger trust signal around handling text input.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"It lives at the system level. That means it works inside every text field you already use, Gmail, Notion, Claude, Twitter, anywhere. Latency is around 500 milliseconds. It understands multi-sentence meaning, so long thoughts arrive as coherent paragraphs.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not describe error rates, punctuation failures, or how it handles domain-specific jargon. Low-latency dictation is valuable, but the article does not show whether the output needs heavy editing in messy real-world settings. The security certification is useful, yet it does not by itself prove suitability for all regulated workflows."
+      },
+      {
+        "confidence": 0.92,
+        "core_capabilities": [
+          "It combines automatic transcript generation with user-written notes to produce a more structured meeting record.",
+          "It supports custom output templates, which helps adapt the same tool to different reporting formats.",
+          "It connects to major meeting platforms, making it easy to fit into standard remote-work setups."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article lists Google Meet, Zoom, and Teams as supported platforms.",
+          "It is framed as a meeting-notes app rather than a standalone recorder, so it fits into existing conferencing workflows."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The availability of a free basic plan suggests low-friction adoption. The product is described as distinct from other transcription tools by virtue of its workflow design rather than raw transcription alone. The source is mostly descriptive, so maturity signals should be treated as practical but not deeply validated.",
+        "name": "Granola",
+        "operational_relevance": "Relevant for people who leave meetings with partial memory and need decisions captured in a usable format. The combination of transcript plus manual notes makes it more useful than plain transcription when the goal is follow-up, action items, or client-ready minutes. Its integrations with common meeting platforms fit typical remote-work workflows.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "cloud-saas",
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "Wispr Flow",
+          "Gumloop"
+        ],
+        "short_description": "A meeting-notes app that combines automatic transcription with manual notes taken during the call. The article positions it as a structured summary tool rather than a raw transcript dump.",
+        "strengths": "- It merges transcript text with the user\u2019s own notes, which helps preserve both spoken content and what the participant considered important.\n- Custom output templates make it easier to standardize meeting notes for different clients, teams, or recurring call types.\n- Support for Google Meet, Zoom, and Teams makes it compatible with the most common meeting environments.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"So instead of a wall of text you need to edit, you get a structured summary that reflects both what was said and what you personally flagged as important. Works with Google Meet, Zoom, and Teams. Custom output templates so your notes always come out in the format you need.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not explain note accuracy, speaker attribution quality, or how it handles noisy meetings. It also does not show whether template customization is flexible enough for complex organizational workflows. The value is strong for note-taking, but the article provides limited evidence about broader collaboration or automation use."
+      },
+      {
+        "confidence": 0.91,
+        "core_capabilities": [
+          "It runs local-only, which keeps data on the user\u2019s device rather than in a hosted service.",
+          "It maintains persistent memory so the agent can build continuity across sessions.",
+          "It can run shell commands, manipulate files, and browse the web, which expands it beyond simple chat-based automation."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article lists WhatsApp, Telegram, and Slack as messaging interfaces.",
+          "It is described as working best on laptop or desktop, implying a desktop-centric execution environment."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The product is described with enough concrete capabilities to suggest a serious local-agent implementation rather than a toy demo. The ease-of-use rating of 3.8/5 and the note about more involved setup imply that it is useful but not frictionless. That places it in an early but operationally interesting stage as of 2026-04-25.",
+        "name": "OpenClaw",
+        "operational_relevance": "Important for teams that want autonomous-agent behavior without sending data to external servers. Because it is local and persistent, it points to a more privacy-conscious automation pattern than cloud-hosted agents. Its file, shell, and browser abilities suggest it can serve as a personal operator for technical workflows rather than only a chat assistant.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "coding-agent",
+          "ai-infrastructure"
+        ],
+        "related_tools": [
+          "Wispr Flow",
+          "Gumloop"
+        ],
+        "short_description": "A local autonomous agent that runs on the user\u2019s own machine. The article says it can use messaging platforms as an interface, keep persistent memory, run scripts, manage files, and browse the web.",
+        "strengths": "- Runs entirely locally, which is valuable when the workflow involves sensitive data or private projects.\n- Persistent memory and access to files, bash, and web browsing make it capable of multi-step tasks that go beyond chat.\n- Messaging-platform interfaces such as WhatsApp, Telegram, and Slack lower the barrier to using the agent where users already communicate.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"OpenClaw runs entirely locally. No data leaves your machine. It connects to 50+ messaging platforms including WhatsApp, Telegram, and Slack as its interface. It maintains persistent memory, runs bash scripts, handles file operations, and browses the web for you.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article says setup is more involved than consumer tools, so adoption may require more technical patience. It also works best on laptop or desktop, which narrows portability. The source does not provide evidence about reliability, safety controls, or how well it behaves over long unattended runs."
+      },
+      {
+        "confidence": 0.92,
+        "core_capabilities": [
+          "It turns a website into a brand profile, which reduces the setup work needed to keep social output on-brand.",
+          "It generates multiple post variations across major social networks, making it easier to repurpose one idea for several channels.",
+          "It supports natural-language edits, so users can adjust copy and styling without design software expertise."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article says it outputs for Instagram, LinkedIn, Facebook, and Twitter.",
+          "It uses a website URL as the starting point, which ties it to existing web presence rather than internal files."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "Being in beta and free suggests an early but accessible product stage. The source frames it as solving a common business problem rather than a niche experiment, which indicates a practical go-to-market shape. Evidence remains partial, so maturity is promising but not settled.",
+        "name": "Pomelli",
+        "operational_relevance": "Useful when a small team needs on-brand social output without a designer or a long creative workflow. The URL-to-brand-profile step makes it attractive for lightweight marketing operations because it turns existing web assets into reusable brand constraints. It seems most valuable where speed and consistency matter more than deep creative control.",
+        "proposed_new_type": "",
+        "proposed_types": [
+          "cloud-saas",
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "Gumloop",
+          "Lovable"
+        ],
+        "short_description": "A brand-aware social content generator from Google Labs. The article says it reads a website URL, builds a brand profile, and generates platform-specific social posts with natural-language edits.",
+        "strengths": "- It extracts brand colors, fonts, tone, and messaging from a website, which reduces manual brand setup.\n- It generates multiple platform-specific post variations quickly, which helps teams compare options instead of starting from scratch each time.\n- Natural-language editing lowers the barrier for non-designers to tweak visual and copy details.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"You paste your website URL. Pomelli scans it, extracts your brand\u2019s colour palette, fonts, tone, and messaging into a \u2018Business DNA\u2019 profile, then generates social content for Instagram, LinkedIn, Facebook, and Twitter, all formatted for each platform.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not discuss brand-safety edge cases, template rigidity, or whether the generated outputs remain distinctive across repeated use. The independent speed comparison is mentioned but not explained in detail, so it should not be treated as a full benchmark. Its value seems strongest for lightweight social production rather than complex campaign work."
+      }
+    ],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The article claims Mercury 2 is \"11x faster\" with \"same quality,\" but it does not provide the benchmark setup or comparison conditions.",
+            "No independent benchmark results are included in the source."
+          ],
+          "comparative_observations": [
+            "The article contrasts Mercury 2 with mainstream token-by-token language models.",
+            "It is framed as architecturally distinct rather than as a simple incremental upgrade.",
+            "The model is positioned as especially relevant where speed is a dealbreaker for developers and operators."
+          ],
+          "confidence": 0.87,
+          "core_capabilities": [
+            "Diffusion-based generation that refines output in parallel rather than token by token.",
+            "Function calling support for tool-using workflows.",
+            "Structured output support for machine-readable responses.",
+            "Positioned for real-time, latency-sensitive AI applications."
+          ],
+          "evidence_type": "vendor_claim",
+          "match_candidates": [],
+          "maturity_signals": "The model is described as launched on February 24, 2026, which signals active product availability rather than an early research demo. Support for function calling and structured output suggests it is already being positioned for practical deployment. However, the only evidence in the source is launch commentary and vendor-style framing, so maturity looks plausible but not well validated by independent analysis.",
+          "model_name": "Mercury 2",
+          "operational_summary": "Mercury 2 is presented as a newly launched foundation model that uses a diffusion architecture instead of standard token-by-token decoding. The article frames it as a speed-focused model for real-time AI tools, with the headline claim that it is 11x faster while maintaining the same quality. It also supports function calling and structured output, which makes it more usable in agent and workflow systems than a plain chat model.",
+          "pricing_inference_implications": "No pricing is stated in the source, so there is no direct evidence for cost. The diffusion architecture could imply a different compute profile than standard token generation, but the article does not say whether that lowers or raises serving cost. Any pricing inference would be speculative from this source alone.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "proprietary",
+            "interactive-ai"
+          ],
+          "provider": "Inception",
+          "related_models": [
+            "GPT-5.5",
+            "Kimi 2.5"
+          ],
+          "service_automation_implications": "The article\u2019s emphasis on real-time AI tools suggests Mercury 2 could be useful as a backend model for automation products that need quick turnarounds and reliable schema-shaped outputs. If the performance claim holds, it may reduce wait time in chat-based operations, tool execution loops, and user-facing automation flows. Its value is likely highest where speed affects user experience or throughput.",
+          "strengths": "- The main differentiator is architectural: the article says Mercury 2 generates a rough output and refines multiple tokens in parallel, which is positioned as a way to reduce latency.\n- Function calling and structured output support make it more suitable for agent workflows, where the model needs to produce machine-readable outputs and interact with tools.\n- The model is explicitly framed for real-time use cases, so it appears optimized for responsiveness rather than only benchmark chasing.\n- The source presents it as a genuinely different category of model, which suggests strategic value for teams exploring alternatives to standard autoregressive LLMs.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"Mercury 2 launched February 24, 2026, and it is genuinely architecturally different from every other model out there. Most AI models generate text token by token, one word at a time. Mercury 2 uses a diffusion architecture, starting with a rough full output and refining it in parallel across multiple tokens simultaneously. Supports function calling and structured output for agent workflows.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article gives a strong promotional claim but very little methodological detail. It does not specify the benchmark, baseline model, task mix, or hardware conditions behind the \"11x faster\" statement, so the speed claim is not independently verifiable from the source. It also does not provide failure cases, reliability data, or evidence about whether the diffusion approach affects output stability, instruction following, or long-context behavior. Based on the source alone, this looks promising but still thinly evidenced.",
+          "workflow_implications": "Mercury 2 is best understood as a model for latency-sensitive workflows where the agent must answer, route, or generate structured outputs quickly. The function-calling and structured-output support imply easier integration into orchestration layers, tool use, and API-driven products. That makes it relevant for assistants, copilots, and operational systems where response time can be a product feature."
+        },
+        "notes": null,
+        "proposal_id": "b76acfec-8893-46d8-af94-a2e8cca208c5",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-18T15:25:28+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "29",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article claims Mercury 2 is \"11x faster\" with \"same quality,\" but it does not provide the benchmark setup or comparison conditions.",
+              "No independent benchmark results are included in the source."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article contrasts Mercury 2 with mainstream token-by-token language models.",
+              "It is framed as architecturally distinct rather than as a simple incremental upgrade.",
+              "The model is positioned as especially relevant where speed is a dealbreaker for developers and operators."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "Diffusion-based generation that refines output in parallel rather than token by token.",
+              "Function calling support for tool-using workflows.",
+              "Structured output support for machine-readable responses.",
+              "Positioned for real-time, latency-sensitive AI applications."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "workflow_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The article claims Kimi K2.5 scores above GPT-5.2 on HLE-Full reasoning benchmarks.",
+            "No benchmark methodology, test conditions, or reproducibility details are provided in the source.",
+            "The benchmark claim is presented as a headline performance signal rather than a deeply explained result."
+          ],
+          "comparative_observations": [
+            "The source frames Kimi K2.5 as frontier-level while implying lower compute than a fully dense trillion-parameter model.",
+            "It is contrasted with GPT-5.2 through the claimed HLE-Full result.",
+            "The model is also distinguished from ordinary multimodal systems by combining text, image, and video support with multi-agent orchestration and screenshot-to-code behavior."
+          ],
+          "confidence": 0.96,
+          "core_capabilities": [
+            "Mixture-of-experts architecture with only a fraction of total parameters active per query.",
+            "Native handling of text, images, and video in one model.",
+            "Screenshot-to-code generation for visual-to-implementation workflows.",
+            "Coordination of up to 100 AI sub-agents for parallel task execution.",
+            "Positioned as an open-source/open model for users who want more direct access than a proprietary API."
+          ],
+          "evidence_type": "mixed",
+          "match_candidates": [],
+          "maturity_signals": "The article says Kimi K2.5 was released on January 27, 2026, and treats it as already usable enough for the author to run an Agent Swarm in the background on a real project. That is a positive adoption signal, but the evidence remains mostly launch-announcement style rather than deployment-validated. The presence of specific capabilities like multimodal support, screenshot-to-code, and multi-agent coordination suggests a fairly ambitious product surface, though the source does not show long-term stability or enterprise readiness.",
+          "model_name": "Kimi K2.5",
+          "operational_summary": "Kimi K2.5 is presented as an open-source, frontier-class multimodal foundation model released on January 27, 2026. The article frames it as a mixture-of-experts system with one trillion total parameters but only 32 billion active per query, aiming to combine strong capability with lower per-request compute. It is described as natively handling text, images, and video, supporting screenshot-to-code workflows, and coordinating up to 100 sub-agents for parallel task execution.",
+          "pricing_inference_implications": "No explicit price is given. The article\u2019s emphasis on only 32 billion active parameters per query implies an efficiency story that could reduce serving cost relative to a dense model of similar total size. However, because the source gives no API pricing, hosting costs, or licensing details, any inference should stay limited to the possibility of lower inference cost per request rather than a concrete affordability claim.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "open-weight",
+            "agentic-coding"
+          ],
+          "provider": "Moonshot AI",
+          "related_models": [
+            "DeepSeek V4",
+            "Mercury 2",
+            "GPT-5.5"
+          ],
+          "service_automation_implications": "The combination of native multimodality, structured code generation from screenshots, and multi-agent orchestration points toward automation systems that can ingest diverse inputs and break them into parallelizable work. That makes it relevant for internal analyst assistants, content or product operations, and semi-autonomous research agents. Because the article frames it as open and frontier-capable, it may also be attractive for teams that want more control over model integration than a proprietary API usually offers.",
+          "strengths": "The strongest operational claim in the source is that Kimi K2.5 pairs broad capability with efficiency: only a subset of parameters activates per query, so the model is positioned as delivering high-end performance without requiring the full compute cost of a dense trillion-parameter model. The article also highlights practical multimodal usefulness, since it can work across text, images, and video in one system rather than forcing a separate toolchain for each modality. For workflow-heavy use cases, the ability to coordinate up to 100 sub-agents is notable because it suggests the model can support decomposition, parallel research, and multi-step automation. The screenshot-to-code behavior is especially relevant for product and engineering workflows, because it bridges visual input and implementation in a direct way.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"One trillion total parameters, but only thirty-two billion activate per query thanks to a mixture-of-experts architecture. That means frontier-level performance at much lower compute cost. Handles text, images, and video natively. Reads a screenshot and generates working code from it. Coordinates up to 100 AI sub-agents in parallel for complex tasks, completing them 4.5x faster. Scores above GPT-5.2 on HLE-Full reasoning benchmarks.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source is mostly promotional and gives limited technical depth beyond the headline claims. It does not explain the evaluation setup behind the reported HLE-Full result or the comparison against GPT-5.2, so the benchmark claim is hard to interpret operationally. It also does not discuss latency, throughput, or reliability under load, which matters for an agentic model that claims parallel sub-agent coordination. Although the article calls it open-source/open, it does not provide deployment details, so self-hosting effort, infra requirements, and real-world ease of use remain unclear.",
+          "workflow_implications": "This model appears suited to workflows that mix reasoning, multimodal intake, and agent orchestration. In practice, that means research pipelines, multimodal analysis, design-to-code handoff, and tasks that benefit from splitting work across many subtasks. The article\u2019s own example of using Kimi\u2019s Agent Swarm for data analysis suggests the model may be useful as a coordinator for longer-running project work rather than only short conversational exchanges."
+        },
+        "notes": null,
+        "proposal_id": "a2f149ce-df1a-4377-9e2c-aa89bf5054d7",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-18T15:26:50+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "29",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article claims Kimi K2.5 scores above GPT-5.2 on HLE-Full reasoning benchmarks.",
+              "No benchmark methodology, test conditions, or reproducibility details are provided in the source.",
+              "The benchmark claim is presented as a headline performance signal rather than a deeply explained result."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The source frames Kimi K2.5 as frontier-level while implying lower compute than a fully dense trillion-parameter model.",
+              "It is contrasted with GPT-5.2 through the claimed HLE-Full result.",
+              "The model is also distinguished from ordinary multimodal systems by combining text, image, and video support with multi-agent orchestration and screenshot-to-code behavior."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "Mixture-of-experts architecture with only a fraction of total parameters active per query.",
+              "Native handling of text, images, and video in one model.",
+              "Screenshot-to-code generation for visual-to-implementation workflows.",
+              "Coordination of up to 100 AI sub-agents for parallel task execution.",
+              "Positioned as an open-source/open model for users who want more direct access than a proprietary API."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "workflow_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The article claims 92% accuracy on math benchmarks.",
+            "The article claims 90% accuracy on coding benchmarks.",
+            "No benchmark methodology or evaluator details are provided in the source."
+          ],
+          "comparative_observations": [
+            "The article frames DeepSeek V4 as cheaper to operate than rival cloud-priced models if self-hosted.",
+            "It is positioned as a stronger multimodal and long-context option than the prior V3 release.",
+            "The source suggests it is part of a competitive push that has made major AI labs nervous."
+          ],
+          "confidence": 0.95,
+          "core_capabilities": [
+            "Native multimodal support for text, images, and video",
+            "Context window of over one million tokens",
+            "Open-weight deployment with local or self-hosted use",
+            "Cost-focused indexer claim for more efficient inference",
+            "Benchmarked math and coding performance claims"
+          ],
+          "evidence_type": "vendor_claim",
+          "match_candidates": [],
+          "maturity_signals": "The article describes DeepSeek V4 as having dropped in early March 2026, which signals it is being treated as a live product rather than a concept. The explicit open-weight and self-hosting language suggests practical availability for deployment. At the same time, the evidence in the source is still mostly announcement-style and benchmark-oriented, so real-world maturity should be confirmed through independent use and serving tests.",
+          "model_name": "DeepSeek V4",
+          "operational_summary": "DeepSeek V4 is presented as an open-weight foundation model with native multimodal support for text, images, and video, plus a very large context window of over one million tokens. In the article it is framed as a practical, self-hostable alternative to proprietary APIs, aimed at users who want frontier-style capability with lower direct cloud inference costs if they deploy it themselves.",
+          "pricing_inference_implications": "The source implies a lower-cost ownership model if teams self-host, because it says there is no per-token cloud pricing in that setup. It also claims a new indexer cuts computational costs by roughly fifty percent, which would matter most for high-throughput or long-context workloads. However, the article does not provide infrastructure pricing, so any total-cost comparison should include hardware, ops, and maintenance.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "open-weight",
+            "multi-modal"
+          ],
+          "provider": "DeepSeek",
+          "related_models": [
+            "DeepSeek V3",
+            "Kimi 2.5",
+            "Gemma 4",
+            "GPT-5.5"
+          ],
+          "service_automation_implications": "For service automation, the model is most relevant where long-context reasoning, image/video understanding, and self-hosted deployment matter together. That combination could support automated review pipelines, content analysis systems, or assistant-style services where keeping requests on private infrastructure is important. The article\u2019s claim of lower computational cost also suggests potential value for higher-throughput automation, though the operational savings would depend on actual deployment efficiency.",
+          "strengths": "- Native multimodal input across text, images, and video reduces the need to stitch together separate models or pipelines.\n- The >1M token context window is a meaningful fit for long-document analysis, extended sessions, and large retrieval-heavy workflows.\n- Open-weight availability gives teams deployment control and makes local or private hosting possible.\n- The article claims the model includes a new indexer that cuts computational costs by roughly 50%, which suggests stronger efficiency for high-volume use cases.\n- Reported benchmark performance is strong in the article\u2019s framing, with 92% on math and 90% on coding.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"DeepSeek V4 dropped in early March 2026 and continued a run that has made every major AI lab nervous. The big shift from V3: full native multimodal support for text, images, and video in one model. Plus a context window of over one million tokens and a new indexer that cuts computational costs by roughly fifty percent. 92% accuracy on math benchmarks, 90% on coding. Open-weight: run it locally or deploy it yourself. No per-token cloud pricing if you self-host.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article gives benchmark-style claims but no testing methodology, so the accuracy numbers cannot be validated from the source alone. It also does not explain latency, memory footprint, or the practical serving burden of running a very large multimodal open-weight model. Self-hosting may eliminate per-token cloud pricing, but the source does not cover infrastructure, ops, or maintenance costs. Because the evidence is vendor-linked and promotional in tone, independent verification would still be needed before treating the performance claims as settled.",
+          "workflow_implications": "DeepSeek V4 is best understood as a consolidation model for teams that want one system to handle mixed media and long-context tasks without splitting the workflow across multiple specialized models. The open-weight aspect makes it suitable for organizations that need tighter control over data placement or want to integrate the model into internal infrastructure. The long context and multimodal support point to workflows like document-heavy analysis, screenshot-informed coding, and mixed text/image/video review."
+        },
+        "notes": null,
+        "proposal_id": "0fb88870-042b-4d9d-a4d2-909f5d10b4e2",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-18T15:23:21+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "29",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article claims 92% accuracy on math benchmarks.",
+              "The article claims 90% accuracy on coding benchmarks.",
+              "No benchmark methodology or evaluator details are provided in the source."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article frames DeepSeek V4 as cheaper to operate than rival cloud-priced models if self-hosted.",
+              "It is positioned as a stronger multimodal and long-context option than the prior V3 release.",
+              "The source suggests it is part of a competitive push that has made major AI labs nervous."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "Native multimodal support for text, images, and video",
+              "Context window of over one million tokens",
+              "Open-weight deployment with local or self-hosted use",
+              "Cost-focused indexer claim for more efficient inference",
+              "Benchmarked math and coding performance claims"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "workflow_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The author mixes first-person testing, vendor/product descriptions, and references to independent testers/reviewers.",
+          "Some entries rely on promotional claims from product pages or launch posts, while others lean on the author's hands-on experience.",
+          "A few performance claims are benchmark-like, but the piece does not provide a formal evaluation framework."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Several tools are framed as category changes rather than incremental upgrades, especially in coding, video, and automation.",
+          "The most reusable operational pattern is reducing multi-step workflows into single inputs such as plain English, a URL, or a spoken draft.",
+          "Local execution and privacy are positioned as product features, not just technical preferences, in the autonomous-agent segment.",
+          "Speed is a product differentiator in both model and application layers, but the article provides limited third-party validation for the strongest speed claims.",
+          "The practical filter used by the author is whether a tool removes enough friction to be worth keeping in a permanent stack."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@KanikaBK/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-e11d6542f643",
+          "https://lovable.dev/",
+          "https://higgsfield.ai/",
+          "https://wisprflow.ai",
+          "https://www.granola.ai",
+          "https://open-claw.org",
+          "https://www.inceptionlabs.ai/blog/introducing-mercury-2",
+          "https://pomelli.me",
+          "https://www.kimi.com/",
+          "https://api-docs.deepseek.com/news/news26042",
+          "https://gumloop.com"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_tools_roundup",
+        "reasoning": [
+          "The piece is primarily a numbered list of named products and models with separate blurbs for each item.",
+          "The headline explicitly says \"10 insane new AI tools\" and the body enumerates ten entries.",
+          "The structure matches a curated tools roundup more than a general article or how-to guide."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It turns plain-English product ideas into working application code with UI and backend wiring.",
+            "It supports payments and authentication, which lowers the amount of manual setup needed for a first release.",
+            "It exports code in a GitHub-ready form so teams can continue development outside the tool."
+          ],
+          "integration_ecosystem": [
+            "The article says it handles Stripe, Clerk, and OpenAI integrations natively.",
+            "It exports to GitHub-ready code, which implies handoff into normal software development workflows."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The product is presented as usable enough for rapid prototype creation and exportable code, which suggests a tool that is beyond a toy demo. The mention of GitHub-ready exports and native integrations points to a developer-facing orientation rather than a closed consumer experience. Evidence in the source is still mostly anecdotal, so maturity should be treated as promising but not fully established.",
+          "name": "Lovable",
+          "operational_relevance": "Useful for quickly producing working prototypes, internal tools, and client-facing web apps without starting from a blank editor. It appears to bridge the gap between ideation and shippable code, which matters for teams that want to validate a concept before investing in a full engineering cycle. The built-in integrations suggest it can reduce early setup work for authentication, payments, and AI features.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "cloud-saas",
+            "coding-agent"
+          ],
+          "related_tools": [
+            "Gumloop",
+            "OpenClaw"
+          ],
+          "short_description": "A prompt-to-app builder that turns plain English into production-grade web code. The article says it can generate responsive apps with payments and authentication already wired in.",
+          "strengths": "- Converts a plain-English request into a functional app, which reduces the time spent on scaffolding and repetitive setup.\n- Includes responsive design, Stripe payments, authentication, GitHub-ready exports, and native integrations, which makes the output closer to something a team can iterate on rather than a throwaway demo.\n- The reported under-ninety-minute prototype time suggests it is optimized for speed-to-first-working-version, which is valuable for validation and stakeholder review.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"You describe what you want to build in plain English. Lovable converts that into fully functional, production-grade code with responsive design, Stripe payments, and authentication already wired in. Independent testers had a working prototype live in under ninety minutes.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not describe failure modes, code quality edge cases, or how well the generated code holds up in larger codebases. \"Production-grade\" is asserted, but the piece does not show an audit of maintainability, testing, or security hardening. The workflow may still require a developer to review generated code before trusting it in a real deployment."
+        },
+        "notes": null,
+        "proposal_id": "bdb97455-0676-4da4-9ddb-08ff27ac71ab",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It turns plain-English product ideas into working application code with UI and backend wiring.",
+              "It supports payments and authentication, which lowers the amount of manual setup needed for a first release.",
+              "It exports code in a GitHub-ready form so teams can continue development outside the tool."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article says it handles Stripe, Clerk, and OpenAI integrations natively.",
+              "It exports to GitHub-ready code, which implies handoff into normal software development workflows."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Gumloop",
+              "OpenClaw"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.87,
+          "core_capabilities": [
+            "It generates video content with camera-control tooling for more directed output.",
+            "It supports lip sync for character animation, which matters when talking-head or avatar-style content needs believable mouth movement.",
+            "It upscales exports to 4K, which helps bridge the gap between draft generation and publishable media."
+          ],
+          "integration_ecosystem": [
+            "The article says it integrates Sora, Veo, Seedance 2.0, and Hermes Agent.",
+            "Those integrations suggest it sits on top of multiple generation backends rather than acting as a single-model wrapper."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source presents it as a complete toolkit rather than a novelty feature, which suggests a product aimed at repeated use. The mention of setup time in seconds and first output in minutes implies a streamlined user experience. Evidence remains mostly experiential, so the maturity signal is useful but not conclusive.",
+          "name": "Higgsfield",
+          "operational_relevance": "Relevant for teams that need fast video production without a traditional editing stack. The combination of generation, camera control, lip sync, and upscaling suggests a workflow that can handle both creation and finishing in one place. That makes it useful for creators, marketers, and small teams that need turnaround speed more than deep post-production control.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "cloud-saas",
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "Lovable",
+            "Gumloop"
+          ],
+          "short_description": "A video creation tool that the article describes as combining multiple generation models and production features into one workflow. It is presented as useful for quickly making short-form ads and polished video outputs.",
+          "strengths": "- The tool bundles generation and finishing steps together, which matters because video work often breaks across multiple applications.\n- Cinema Studio, LipSync Studio, and 4K upscaling indicate that it is aimed at practical output quality, not only raw generation.\n- The article\u2019s reported two-minute ad creation and five-minute first-video workflow suggest a strong speed advantage for lightweight production tasks.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"You get Cinema Studio for granular camera controls, LipSync Studio for character animation, and a 4K upscaler on exports. Setup takes thirty seconds. First video in five minutes.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The writeup gives little detail about consistency, control limits, or how outputs behave on longer or more complex projects. It also does not explain whether the integrated models are interchangeable or how much quality varies by use case. The strongest claim in the source is speed, but that alone does not establish reliability for professional pipelines."
+        },
+        "notes": null,
+        "proposal_id": "6d2b0cb2-8f4b-43f4-9595-7aebf68e1239",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It generates video content with camera-control tooling for more directed output.",
+              "It supports lip sync for character animation, which matters when talking-head or avatar-style content needs believable mouth movement.",
+              "It upscales exports to 4K, which helps bridge the gap between draft generation and publishable media."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article says it integrates Sora, Veo, Seedance 2.0, and Hermes Agent.",
+              "Those integrations suggest it sits on top of multiple generation backends rather than acting as a single-model wrapper."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Lovable",
+              "Gumloop"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application",
+            "video-creation"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "ai-application",
+            "video-creation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It provides system-level dictation so users can speak into many different apps without switching tools.",
+            "It converts long spoken thoughts into coherent text, which reduces cleanup compared with basic speech-to-text.",
+            "It supports more than 100 languages, which broadens its use across multilingual teams and users."
+          ],
+          "integration_ecosystem": [
+            "The article says it works inside Gmail, Notion, Claude, Twitter, and any other text field.",
+            "It is positioned as operating across operating systems rather than through a single app-specific plug-in."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The tool is presented as something the author uses daily, and the source cites multiple early-2026 reviewers calling it highly accurate. Support across major operating systems and common text fields suggests a mature distribution model. The evidence is still anecdotal, but the breadth of usage surfaces a product that appears beyond an experiment.",
+          "name": "Wispr Flow",
+          "operational_relevance": "Useful wherever a user spends a lot of time writing in many different apps and wants to replace typing with speech. Because it works at the operating-system level, it can fit into existing workflows without needing per-app integration. That makes it especially practical for drafting, note capture, and fast text entry across email, documents, and chat tools.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "cloud-saas",
+            "ai-infrastructure"
+          ],
+          "related_tools": [
+            "Granola",
+            "OpenClaw"
+          ],
+          "short_description": "A system-level voice dictation tool that lets users speak into any text field and get cleaned-up text back quickly. The article emphasizes low latency and support across many languages.",
+          "strengths": "- System-level operation means it works across many applications rather than being locked into one editor.\n- The article says it understands multi-sentence meaning and returns coherent paragraphs, which matters when users think in long spoken chunks rather than short commands.\n- Low latency and broad language support make it attractive for everyday dictation rather than just niche transcription tasks.\n- SOC 2 Type II certification is relevant for teams that need a stronger trust signal around handling text input.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"It lives at the system level. That means it works inside every text field you already use, Gmail, Notion, Claude, Twitter, anywhere. Latency is around 500 milliseconds. It understands multi-sentence meaning, so long thoughts arrive as coherent paragraphs.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not describe error rates, punctuation failures, or how it handles domain-specific jargon. Low-latency dictation is valuable, but the article does not show whether the output needs heavy editing in messy real-world settings. The security certification is useful, yet it does not by itself prove suitability for all regulated workflows."
+        },
+        "notes": null,
+        "proposal_id": "d60ec34f-982f-4caf-97c7-2cacb111ef5e",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It provides system-level dictation so users can speak into many different apps without switching tools.",
+              "It converts long spoken thoughts into coherent text, which reduces cleanup compared with basic speech-to-text.",
+              "It supports more than 100 languages, which broadens its use across multilingual teams and users."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article says it works inside Gmail, Notion, Claude, Twitter, and any other text field.",
+              "It is positioned as operating across operating systems rather than through a single app-specific plug-in."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Granola",
+              "OpenClaw"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application",
+            "dictation"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "ai-application",
+            "dictation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "core_capabilities": [
+            "It combines automatic transcript generation with user-written notes to produce a more structured meeting record.",
+            "It supports custom output templates, which helps adapt the same tool to different reporting formats.",
+            "It connects to major meeting platforms, making it easy to fit into standard remote-work setups."
+          ],
+          "integration_ecosystem": [
+            "The article lists Google Meet, Zoom, and Teams as supported platforms.",
+            "It is framed as a meeting-notes app rather than a standalone recorder, so it fits into existing conferencing workflows."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The availability of a free basic plan suggests low-friction adoption. The product is described as distinct from other transcription tools by virtue of its workflow design rather than raw transcription alone. The source is mostly descriptive, so maturity signals should be treated as practical but not deeply validated.",
+          "name": "Granola",
+          "operational_relevance": "Relevant for people who leave meetings with partial memory and need decisions captured in a usable format. The combination of transcript plus manual notes makes it more useful than plain transcription when the goal is follow-up, action items, or client-ready minutes. Its integrations with common meeting platforms fit typical remote-work workflows.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "cloud-saas",
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "Wispr Flow",
+            "Gumloop"
+          ],
+          "short_description": "A meeting-notes app that combines automatic transcription with manual notes taken during the call. The article positions it as a structured summary tool rather than a raw transcript dump.",
+          "strengths": "- It merges transcript text with the user\u2019s own notes, which helps preserve both spoken content and what the participant considered important.\n- Custom output templates make it easier to standardize meeting notes for different clients, teams, or recurring call types.\n- Support for Google Meet, Zoom, and Teams makes it compatible with the most common meeting environments.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"So instead of a wall of text you need to edit, you get a structured summary that reflects both what was said and what you personally flagged as important. Works with Google Meet, Zoom, and Teams. Custom output templates so your notes always come out in the format you need.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not explain note accuracy, speaker attribution quality, or how it handles noisy meetings. It also does not show whether template customization is flexible enough for complex organizational workflows. The value is strong for note-taking, but the article provides limited evidence about broader collaboration or automation use."
+        },
+        "notes": null,
+        "proposal_id": "f8cfde19-238f-4c63-877b-8800acdcde3f",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It combines automatic transcript generation with user-written notes to produce a more structured meeting record.",
+              "It supports custom output templates, which helps adapt the same tool to different reporting formats.",
+              "It connects to major meeting platforms, making it easy to fit into standard remote-work setups."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article lists Google Meet, Zoom, and Teams as supported platforms.",
+              "It is framed as a meeting-notes app rather than a standalone recorder, so it fits into existing conferencing workflows."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Wispr Flow",
+              "Gumloop"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application",
+            "meeting-notes"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "ai-application",
+            "meeting-notes"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "core_capabilities": [
+            "It runs local-only, which keeps data on the user\u2019s device rather than in a hosted service.",
+            "It maintains persistent memory so the agent can build continuity across sessions.",
+            "It can run shell commands, manipulate files, and browse the web, which expands it beyond simple chat-based automation."
+          ],
+          "integration_ecosystem": [
+            "The article lists WhatsApp, Telegram, and Slack as messaging interfaces.",
+            "It is described as working best on laptop or desktop, implying a desktop-centric execution environment."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The product is described with enough concrete capabilities to suggest a serious local-agent implementation rather than a toy demo. The ease-of-use rating of 3.8/5 and the note about more involved setup imply that it is useful but not frictionless. That places it in an early but operationally interesting stage as of 2026-04-25.",
+          "name": "OpenClaw",
+          "operational_relevance": "Important for teams that want autonomous-agent behavior without sending data to external servers. Because it is local and persistent, it points to a more privacy-conscious automation pattern than cloud-hosted agents. Its file, shell, and browser abilities suggest it can serve as a personal operator for technical workflows rather than only a chat assistant.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "coding-agent",
+            "ai-infrastructure"
+          ],
+          "related_tools": [
+            "Wispr Flow",
+            "Gumloop"
+          ],
+          "short_description": "A local autonomous agent that runs on the user\u2019s own machine. The article says it can use messaging platforms as an interface, keep persistent memory, run scripts, manage files, and browse the web.",
+          "strengths": "- Runs entirely locally, which is valuable when the workflow involves sensitive data or private projects.\n- Persistent memory and access to files, bash, and web browsing make it capable of multi-step tasks that go beyond chat.\n- Messaging-platform interfaces such as WhatsApp, Telegram, and Slack lower the barrier to using the agent where users already communicate.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"OpenClaw runs entirely locally. No data leaves your machine. It connects to 50+ messaging platforms including WhatsApp, Telegram, and Slack as its interface. It maintains persistent memory, runs bash scripts, handles file operations, and browses the web for you.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article says setup is more involved than consumer tools, so adoption may require more technical patience. It also works best on laptop or desktop, which narrows portability. The source does not provide evidence about reliability, safety controls, or how well it behaves over long unattended runs."
+        },
+        "notes": null,
+        "proposal_id": "a3256cae-7304-4742-9311-c02b02b9c846",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It runs local-only, which keeps data on the user\u2019s device rather than in a hosted service.",
+              "It maintains persistent memory so the agent can build continuity across sessions.",
+              "It can run shell commands, manipulate files, and browse the web, which expands it beyond simple chat-based automation."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article lists WhatsApp, Telegram, and Slack as messaging interfaces.",
+              "It is described as working best on laptop or desktop, implying a desktop-centric execution environment."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Wispr Flow",
+              "Gumloop"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "core_capabilities": [
+            "It turns a website into a brand profile, which reduces the setup work needed to keep social output on-brand.",
+            "It generates multiple post variations across major social networks, making it easier to repurpose one idea for several channels.",
+            "It supports natural-language edits, so users can adjust copy and styling without design software expertise."
+          ],
+          "integration_ecosystem": [
+            "The article says it outputs for Instagram, LinkedIn, Facebook, and Twitter.",
+            "It uses a website URL as the starting point, which ties it to existing web presence rather than internal files."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "Being in beta and free suggests an early but accessible product stage. The source frames it as solving a common business problem rather than a niche experiment, which indicates a practical go-to-market shape. Evidence remains partial, so maturity is promising but not settled.",
+          "name": "Pomelli",
+          "operational_relevance": "Useful when a small team needs on-brand social output without a designer or a long creative workflow. The URL-to-brand-profile step makes it attractive for lightweight marketing operations because it turns existing web assets into reusable brand constraints. It seems most valuable where speed and consistency matter more than deep creative control.",
+          "proposed_new_type": "",
+          "proposed_types": [
+            "cloud-saas",
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "Gumloop",
+            "Lovable"
+          ],
+          "short_description": "A brand-aware social content generator from Google Labs. The article says it reads a website URL, builds a brand profile, and generates platform-specific social posts with natural-language edits.",
+          "strengths": "- It extracts brand colors, fonts, tone, and messaging from a website, which reduces manual brand setup.\n- It generates multiple platform-specific post variations quickly, which helps teams compare options instead of starting from scratch each time.\n- Natural-language editing lowers the barrier for non-designers to tweak visual and copy details.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"You paste your website URL. Pomelli scans it, extracts your brand\u2019s colour palette, fonts, tone, and messaging into a \u2018Business DNA\u2019 profile, then generates social content for Instagram, LinkedIn, Facebook, and Twitter, all formatted for each platform.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not discuss brand-safety edge cases, template rigidity, or whether the generated outputs remain distinctive across repeated use. The independent speed comparison is mentioned but not explained in detail, so it should not be treated as a full benchmark. Its value seems strongest for lightweight social production rather than complex campaign work."
+        },
+        "notes": null,
+        "proposal_id": "4173ffb0-66c3-4b64-9ccd-db423ec0e1af",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It turns a website into a brand profile, which reduces the setup work needed to keep social output on-brand.",
+              "It generates multiple post variations across major social networks, making it easier to repurpose one idea for several channels.",
+              "It supports natural-language edits, so users can adjust copy and styling without design software expertise."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article says it outputs for Instagram, LinkedIn, Facebook, and Twitter.",
+              "It uses a website URL as the starting point, which ties it to existing web presence rather than internal files."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Gumloop",
+              "Lovable"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application",
+            "social-media"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "ai-application",
+            "social-media"
+          ]
+        }
+      }
+    ],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 7,
+      "vendor_claim": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 9,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 9,
+    "review_duration_seconds": 781.5,
+    "review_finished_at": "2026-05-18T15:27:10.524914+00:00",
+    "review_started_at": "2026-05-18T15:14:09+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-18T15:27:10+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Kanika B K",
+    "canonical_url": "https://medium.com/@KanikaBK/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-e11d6542f643",
+    "content_sha256": "e3ca58393aa0f8f33130480757950ef071209b96af18bb525928b2b737d47970",
+    "publication": "Medium",
+    "published_date": "2026-04-25",
+    "raw_html_rel_path": "raw/readwise/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja.html",
+    "raw_md_rel_path": "raw/readwise/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja.md",
+    "source_id": "10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja",
+    "title": "10 insane new AI tools in 2026 I stayed up all night playing with: 2nd one is the coolest"
+  }
+}

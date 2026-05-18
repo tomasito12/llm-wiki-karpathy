@@ -1,0 +1,934 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-17T19:12:49+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgbCUyNGA5DhXsnCg1dRya77g1409",
+    "token_usage": {
+      "completion_tokens": 3395,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 24982,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 28377
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "extended_explanation": "WCAG is the common reference point for accessibility work on websites and applications. For conversational interfaces, it matters because a chatbot is not just text on a page; it is an interactive component with focus behavior, announcements, and controls that must work with screen readers and keyboard navigation. Teams often use WCAG as the baseline for legal compliance and product quality. In practice, it becomes a checklist for making sure a chatbot can be operated without a mouse and can communicate its state to assistive tools.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "Web Content Accessibility Guidelines are a set of standards for making digital products usable by people with disabilities. They cover concerns such as keyboard access, readable text, focus order, and assistive technology support.",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_terms": [],
+        "relevance_note": "WCAG is a durable operational baseline for accessible product design across chatbots, voicebots, and service interfaces. It shapes testing, release criteria, and legal risk management for any AI product with a user-facing interaction layer.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"WCAG is not just about colors. For chatbots specifically, four categories of requirements matter far more than contrast ratios.\"",
+        "term": "WCAG",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "extended_explanation": "Live regions are essential when content changes after the page has loaded, such as chat replies, notifications, or status messages. In a chatbot, the live region is what lets a screen reader user hear the assistant\u2019s response as it appears. Choosing the right politeness setting matters because some updates should interrupt the user and others should wait until the user pauses. Without a live region, the interface can appear to work visually while remaining silent to assistive technology.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "An ARIA live region is a web accessibility pattern that tells assistive technology to announce updates in a page region as they happen. It lets dynamic content be conveyed to screen reader users without forcing focus changes.",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_terms": [
+          "WCAG"
+        ],
+        "relevance_note": "ARIA live regions are a core building block for accessible conversational interfaces and any dynamic UI that changes without page reloads. They are especially important for chatbots, streaming responses, and status-driven support flows.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The chat message container must be marked with role=\\\"log\\\" and aria-live=\\\"polite\\\". This tells assistive technology to announce new messages as they appear without stealing focus from the input field.\"",
+        "term": "ARIA live region",
+        "value_level": "high"
+      }
+    ],
+    "how_to": [
+      {
+        "answer_summary": "Start by treating the chatbot as a fully interactive component, not just a text box floating on the page. Make sure the chat launcher can be reached by keyboard, the widget moves focus into the message input when opened, and focus returns to the launcher when the widget closes. Mark the message container so screen readers announce new messages, and keep the announcements polite so they do not interrupt the user unnecessarily. Ensure every control inside the widget can be used with the keyboard, and test the result with real screen readers rather than relying only on automated scanners. Include speech-to-text and text-to-speech checks so dictation and audio output work cleanly. The goal is predictable interaction: users should always know where focus is and whether the assistant has responded.",
+        "caveats": "The checklist is necessary but not sufficient; the article says automated accessibility scanners catch only part of WCAG failures. It also does not provide measured results for which fixes most improve user experience, so teams still need real assistive-technology testing. Browser, framework, and widget-library differences may require additional implementation work beyond the snippet shown here.",
+        "confidence": 0.97,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Make the chat launcher focusable and reachable by Tab.",
+          "Move keyboard focus to the input when the widget opens.",
+          "Return focus to the launcher button when the widget closes.",
+          "Mark the conversation container with role=\"log\" and aria-live=\"polite\".",
+          "Label each message so screen readers know whether it came from the user or the bot.",
+          "Ensure send, attach, feedback, and close controls work by keyboard.",
+          "Prevent keyboard traps so Tab can exit the widget.",
+          "Test with at least two screen readers, not only automated scanners."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A chat widget or assistant interface already integrated into a website or application.",
+          "Basic familiarity with HTML accessibility attributes and keyboard event handling.",
+          "Access to screen readers such as NVDA, JAWS, VoiceOver, or TalkBack for manual testing."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "question_title": "Accessible Chatbot Widget",
+        "related_howtos": [],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"A practical checklist for making your AI chatbot WCAG compliant, drawn from the MITRE Chatbot Accessibility Playbook and current WCAG requirements.\"",
+        "value_level": "high",
+        "what_and_problem": "This is about making a chatbot usable for people who depend on keyboards, screen readers, speech input, or speech output. The problem is that a chat widget can look normal to sighted users while being silent, confusing, or impossible to navigate for people using assistive technology. A chatbot that traps focus or fails to announce messages can effectively shut users out of the service. The article frames this as a basic product requirement, not a nice-to-have polish item."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-26",
+        "confidence": 0.84,
+        "evidence_from_source": "The article says the March 2026 WCAG 3.0 working draft adds a requirement for documented human review when AI tools generate or alter content, and that AI-generated interfaces will be held to the same accessibility standards as human-authored ones.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance"
+        ],
+        "related_trends": [
+          "models-becoming-execution-layers"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "March 2026 WCAG 3.0 working draft",
+          "174 requirements",
+          "Final standard expected around 2028"
+        ],
+        "supporting_snippet": "\"WCAG 3.0: what changes for AI\\n\\nAI-generated content review.\\nIf AI tools generate or alter content, the content author must have a documented process for human review and attestation that the content is clear and conveys the intended meaning.\"",
+        "time_sensitivity": "Highly time-bound as of 2026-04-26 because the source refers to a March 2026 working draft and a final standard expected around 2028.",
+        "trend_description": "Accessibility standards increasingly treat AI-generated or AI-altered content as something that needs human review and attestation, not just automated generation. This raises the bar for teams shipping assistants that draft, rewrite, or transform user-facing text.",
+        "trend_slug": "wcag-3-ai-generated-content-review",
+        "trend_title": "WCAG 3.0 Expands AI Content Review Expectations",
+        "uncertainty_note": "The standard is still a working draft in the source, so the exact final wording and enforcement path may change before publication as a final standard.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece is an independent practitioner article offering guidance and interpretation, not a vendor announcement or research report.",
+        "Its claims are supported by references to standards, the MITRE playbook, and quoted implementation checklist examples rather than original measurements.",
+        "The argument is primarily normative and advisory: it explains what WCAG requires and why chatbot teams should care as of 2026-04-26."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "A chatbot can look fine on screen and still be unusable for people who rely on a screen reader or keyboard. The article explains that the biggest problems are not color contrast or page layout, but whether the chat box keeps focus in the right place, announces new messages out loud, and can be used without a mouse. It also says chatbots should work with speech-to-text and text-to-speech tools so people can dictate questions and hear answers clearly. A newer accessibility draft from March 2026 adds more attention to content created by artificial intelligence, including a process for human review. The European Accessibility Act is described as already enforceable from June 28, 2025, which means accessibility is a legal issue for products sold in the European Union. The article gives a practical checklist for building a better chat box, including keyboard support, clear message labels, and screen reader testing. It warns that automated accessibility tools only catch part of the problem. The main message is simple: if the chatbot is not accessible, some users are effectively shut out. As of 2026-04-26, the guidance is actionable and operational, not just theoretical.",
+      "assessed_as_of": "2026-04-26",
+      "contradictions_and_skepticism": "The piece is strongest on concrete accessibility mechanics, but some legal and standards assertions are presented without detailed sourcing in the article itself. The March 2026 WCAG 3.0 discussion is informative, yet the final standard is still future-facing in the source\u2019s framing, so implementation teams should treat it as directionally useful rather than final policy. The checklist is practical, but the article gives little evidence about which fixes most improve real user outcomes beyond general expert guidance.",
+      "key_insights": [
+        "The most common chatbot accessibility failures are focus loss, missing ARIA live regions, and keyboard traps, not visual styling.",
+        "Screen reader users need the message container to announce new replies without stealing focus from the input field.",
+        "Automated scanners are insufficient because they miss focus behavior, announcement quality, and real keyboard flow.",
+        "Speech-to-text and text-to-speech compatibility should be treated as part of chatbot accessibility, not an optional extra.",
+        "WCAG 3.0 working draft language in March 2026 extends accessibility concerns to AI-generated content review and non-mouse interaction modes."
+      ],
+      "limitations_and_open_questions": "The article is a standards-and-checklist piece, not an implementation study with measured before/after outcomes. It cites the MITRE Chatbot Accessibility Playbook and WCAG requirements, but it does not show tested production metrics, failure rates, or the cost of remediation. The claim that automated scanners catch 30\u201340% of WCAG failures is useful but not independently substantiated in the source. Open questions include how these recommendations vary across custom widget frameworks, how to validate multilingual screen reader behavior, and how to operationalize human review for AI-generated replies at scale.",
+      "sources": [
+        "https://medium.com/autocomplete-real-world-ai/wcag-compliance-for-ai-chatbots-074c2370d8a8",
+        "https://www.w3.org/TR/wcag-3.0/",
+        "https://www.mitre.org/publications/mitre-chatbot-accessibility-playbook"
+      ],
+      "summary": "The article argues that chatbot accessibility is a core product requirement, not a cosmetic compliance task. It focuses on the practical WCAG failure modes that matter for chat widgets: focus management, ARIA live regions, keyboard operation, and compatibility with speech-to-text and text-to-speech. It also notes that WCAG 3.0 working draft language in March 2026 expands attention to AI-generated content review, conformance levels, voice and gesture input, and cognitive accessibility. The European Accessibility Act is described as already enforceable on June 28, 2025, making chatbot accessibility legally relevant for products sold in the EU. The piece closes with a concrete implementation checklist and the warning that automated scanners catch only part of the problem.",
+      "why_it_matters": "For AI engineering teams, the useful takeaway is that chatbot accessibility lives in the interaction layer, not only in page-level compliance checklists. The article is specific about the failure modes that break real usage: focus jumping away from the chat, silent assistant replies for screen reader users, and keyboard traps that make the whole page unusable. It also gives a practical markup pattern\u2014role=\"log\", aria-live=\"polite\", labeled messages, and disciplined focus handling\u2014that is directly reusable in product work. The guidance is strongest where it is concrete and weakest where it leans on broad standards language, so the source is more operational checklist than deep analysis. The legal references matter because the European Accessibility Act is described as enforceable on June 28, 2025, and the article also points to March 2026 WCAG 3.0 draft language that expands the scope of review. For conversational products, the service automation angle is direct: inaccessible bots can block users from self-service entirely, and the article explicitly warns that screen reader users may not even know the bot responded. That makes accessibility a containment and trust issue for chatbots, voice interfaces, and support flows as of 2026-04-26."
+    },
+    "source_type_detection": {
+      "confidence": 0.94,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article with one main argument about chatbot accessibility, not a bundle of unrelated news items.",
+        "Includes explanatory sections, checklist guidance, and standards references rather than interview dialogue or step-by-step lab tutorial structure.",
+        "Not a tools roundup or research paper; it is an independent practitioner analysis."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.92,
+        "evidence_type": "mixed",
+        "examples": "",
+        "key_points": [
+          "Interactive AI includes the user interaction loop, not just generated responses.",
+          "Dynamic message updates need accessible announcement behavior so assistive technology can detect new content.",
+          "Keyboard-only navigation, focus restoration, and speech-device compatibility are essential parts of the interface.",
+          "Automated checks are insufficient on their own; real-user and screen-reader testing is needed."
+        ],
+        "knowledge_summary": "Interactive AI refers to AI systems that users actively converse with or control in real time, so the interaction loop is part of the product itself. For chatbots and similar assistants, the term includes not only model responses but also focus management, keyboard operation, assistive-technology announcements, and support for speech-to-text and text-to-speech. The core idea is that a usable interactive AI must present predictable, accessible behavior as messages stream or update dynamically.",
+        "match_candidates": [],
+        "operational_insight": "Treat interactive AI as an interface discipline, not just a model-output problem. Validate the conversation loop end to end: focus should move predictably, messages should be announced to assistive technology, every control should work by keyboard, and the experience should be tested with real screen readers and speech devices before launch.",
+        "primary_tag": "interactive-ai",
+        "proposed_tags": [
+          "interactive-ai",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "realtime-ai",
+          "prompt-engineering",
+          "realtime-multimodal-interaction"
+        ],
+        "relevance_note": "This matters because interactive systems are judged by how people can actually use them, not only by the quality of generated text. Accessibility, modality support, and predictable behavior determine whether the interaction is usable in practice.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The widget sits in the bottom-right corner. It pops up over the page content. It generates dynamic messages in real time. It has its own input field, its own scroll behavior, its own focus model.\"",
+        "topic_slug": "interactive-ai",
+        "topic_title": "Interactive AI",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Live updates should announce themselves without stealing focus.",
+          "Interruptive announcements are appropriate for errors, not routine chat replies.",
+          "Real-time interfaces need usability testing with assistive technologies, not only static scans."
+        ],
+        "knowledge_summary": "Realtime AI interfaces produce updates while a user is actively interacting with the system, which changes accessibility and evaluation requirements. Updates need to be announced without breaking the user\u2019s current task, and the interface must preserve predictable focus and input flow. The more the system streams or updates live, the more important it becomes to manage interruptions carefully.",
+        "match_candidates": [],
+        "operational_insight": "Treat live responses as state changes that must be announced and navigable, not as passive content that can simply appear on the page. Use polite announcements and stable focus rules to avoid confusing or interrupting users.",
+        "primary_tag": "realtime-ai",
+        "proposed_tags": [
+          "realtime-ai",
+          "interactive-ai"
+        ],
+        "related_topics": [
+          "realtime-multimodal-interaction",
+          "realtime-ai-evaluation",
+          "agentic-workflows"
+        ],
+        "relevance_note": "Realtime AI is operationally important wherever outputs arrive incrementally or in a live conversation. It affects chat, voice, monitoring, and any assistant that updates the interface while the user is working.",
+        "secondary_tag": "interactive-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"aria-live=\\\"polite\\\" announces new messages without interrupting.\"",
+        "topic_slug": "realtime-ai",
+        "topic_title": "Realtime AI",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "extended_explanation": "WCAG is the common reference point for accessibility work on websites and applications. For conversational interfaces, it matters because a chatbot is not just text on a page; it is an interactive component with focus behavior, announcements, and controls that must work with screen readers and keyboard navigation. Teams often use WCAG as the baseline for legal compliance and product quality. In practice, it becomes a checklist for making sure a chatbot can be operated without a mouse and can communicate its state to assistive tools.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "Web Content Accessibility Guidelines are a set of standards for making digital products usable by people with disabilities. They cover concerns such as keyboard access, readable text, focus order, and assistive technology support.",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_terms": [],
+          "relevance_note": "WCAG is a durable operational baseline for accessible product design across chatbots, voicebots, and service interfaces. It shapes testing, release criteria, and legal risk management for any AI product with a user-facing interaction layer.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "digital-accessibility",
+          "suggested_new_tags": [
+            "digital-accessibility",
+            "ui-design"
+          ],
+          "supporting_snippet": "\"WCAG is not just about colors. For chatbots specifically, four categories of requirements matter far more than contrast ratios.\"",
+          "term": "WCAG",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "594023ea-6adf-465e-b06b-3f2ae3416bb4",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": "Web Content Accessibility Guidelines (WCAG)",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ui-design"
+          ],
+          "final_tags": [
+            "ui-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "extended_explanation": "Live regions are essential when content changes after the page has loaded, such as chat replies, notifications, or status messages. In a chatbot, the live region is what lets a screen reader user hear the assistant\u2019s response as it appears. Choosing the right politeness setting matters because some updates should interrupt the user and others should wait until the user pauses. Without a live region, the interface can appear to work visually while remaining silent to assistive technology.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "An ARIA live region is a web accessibility pattern that tells assistive technology to announce updates in a page region as they happen. It lets dynamic content be conveyed to screen reader users without forcing focus changes.",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_terms": [
+            "WCAG"
+          ],
+          "relevance_note": "ARIA live regions are a core building block for accessible conversational interfaces and any dynamic UI that changes without page reloads. They are especially important for chatbots, streaming responses, and status-driven support flows.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "web-accessibility",
+          "suggested_new_tags": [
+            "web-accessibility",
+            "accessibility-patterns",
+            "accessibility",
+            "ui-design"
+          ],
+          "supporting_snippet": "\"The chat message container must be marked with role=\\\"log\\\" and aria-live=\\\"polite\\\". This tells assistive technology to announce new messages as they appear without stealing focus from the input field.\"",
+          "term": "ARIA live region",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "1e9adb8f-18a6-4b41-940b-3652cbe598d8",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "WCAG"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ui-design"
+          ],
+          "final_tags": [
+            "ui-design"
+          ]
+        }
+      }
+    ],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by treating the chatbot as a fully interactive component, not just a text box floating on the page. Make sure the chat launcher can be reached by keyboard, the widget moves focus into the message input when opened, and focus returns to the launcher when the widget closes. Mark the message container so screen readers announce new messages, and keep the announcements polite so they do not interrupt the user unnecessarily. Ensure every control inside the widget can be used with the keyboard, and test the result with real screen readers rather than relying only on automated scanners. Include speech-to-text and text-to-speech checks so dictation and audio output work cleanly. The goal is predictable interaction: users should always know where focus is and whether the assistant has responded.",
+          "caveats": "The checklist is necessary but not sufficient; the article says automated accessibility scanners catch only part of WCAG failures. It also does not provide measured results for which fixes most improve user experience, so teams still need real assistive-technology testing. Browser, framework, and widget-library differences may require additional implementation work beyond the snippet shown here.",
+          "confidence": 0.97,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Make the chat launcher focusable and reachable by Tab.",
+            "Move keyboard focus to the input when the widget opens.",
+            "Return focus to the launcher button when the widget closes.",
+            "Mark the conversation container with role=\"log\" and aria-live=\"polite\".",
+            "Label each message so screen readers know whether it came from the user or the bot.",
+            "Ensure send, attach, feedback, and close controls work by keyboard.",
+            "Prevent keyboard traps so Tab can exit the widget.",
+            "Test with at least two screen readers, not only automated scanners."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A chat widget or assistant interface already integrated into a website or application.",
+            "Basic familiarity with HTML accessibility attributes and keyboard event handling.",
+            "Access to screen readers such as NVDA, JAWS, VoiceOver, or TalkBack for manual testing."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "question_title": "Accessible Chatbot Widget",
+          "related_howtos": [],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "chatbot-accessibility",
+          "suggested_new_tags": [
+            "chatbot-accessibility",
+            "ui-design"
+          ],
+          "supporting_snippet": "\"A practical checklist for making your AI chatbot WCAG compliant, drawn from the MITRE Chatbot Accessibility Playbook and current WCAG requirements.\"",
+          "value_level": "high",
+          "what_and_problem": "This is about making a chatbot usable for people who depend on keyboards, screen readers, speech input, or speech output. The problem is that a chat widget can look normal to sighted users while being silent, confusing, or impossible to navigate for people using assistive technology. A chatbot that traps focus or fails to announce messages can effectively shut users out of the service. The article frames this as a basic product requirement, not a nice-to-have polish item."
+        },
+        "notes": null,
+        "proposal_id": "56cbad2b-eec7-413a-8bd6-df5869089e34",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Make the chat launcher focusable and reachable by Tab.",
+              "Move keyboard focus to the input when the widget opens.",
+              "Return focus to the launcher button when the widget closes.",
+              "Mark the conversation container with role=\"log\" and aria-live=\"polite\".",
+              "Label each message so screen readers know whether it came from the user or the bot.",
+              "Ensure send, attach, feedback, and close controls work by keyboard.",
+              "Prevent keyboard traps so Tab can exit the widget.",
+              "Test with at least two screen readers, not only automated scanners."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A chat widget or assistant interface already integrated into a website or application.",
+              "Basic familiarity with HTML accessibility attributes and keyboard event handling.",
+              "Access to screen readers such as NVDA, JAWS, VoiceOver, or TalkBack for manual testing."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ui-design"
+          ],
+          "final_tags": [
+            "ui-design"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-26",
+          "confidence": 0.84,
+          "evidence_from_source": "The article says the March 2026 WCAG 3.0 working draft adds a requirement for documented human review when AI tools generate or alter content, and that AI-generated interfaces will be held to the same accessibility standards as human-authored ones.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance"
+          ],
+          "related_trends": [
+            "models-becoming-execution-layers"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "March 2026 WCAG 3.0 working draft",
+            "174 requirements",
+            "Final standard expected around 2028"
+          ],
+          "supporting_snippet": "\"WCAG 3.0: what changes for AI\\n\\nAI-generated content review.\\nIf AI tools generate or alter content, the content author must have a documented process for human review and attestation that the content is clear and conveys the intended meaning.\"",
+          "time_sensitivity": "Highly time-bound as of 2026-04-26 because the source refers to a March 2026 working draft and a final standard expected around 2028.",
+          "trend_description": "Accessibility standards increasingly treat AI-generated or AI-altered content as something that needs human review and attestation, not just automated generation. This raises the bar for teams shipping assistants that draft, rewrite, or transform user-facing text.",
+          "trend_slug": "wcag-3-ai-generated-content-review",
+          "trend_title": "WCAG 3.0 Expands AI Content Review Expectations",
+          "uncertainty_note": "The standard is still a working draft in the source, so the exact final wording and enforcement path may change before publication as a final standard.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "857b87be-4e3a-4075-b5d6-4626c91fce65",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "models-becoming-execution-layers"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "March 2026 WCAG 3.0 working draft",
+              "174 requirements",
+              "Final standard expected around 2028"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece is an independent practitioner article offering guidance and interpretation, not a vendor announcement or research report.",
+          "Its claims are supported by references to standards, the MITRE playbook, and quoted implementation checklist examples rather than original measurements.",
+          "The argument is primarily normative and advisory: it explains what WCAG requires and why chatbot teams should care as of 2026-04-26."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The most common chatbot accessibility failures are focus loss, missing ARIA live regions, and keyboard traps, not visual styling.",
+          "Screen reader users need the message container to announce new replies without stealing focus from the input field.",
+          "Automated scanners are insufficient because they miss focus behavior, announcement quality, and real keyboard flow.",
+          "Speech-to-text and text-to-speech compatibility should be treated as part of chatbot accessibility, not an optional extra.",
+          "WCAG 3.0 working draft language in March 2026 extends accessibility concerns to AI-generated content review and non-mouse interaction modes."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/autocomplete-real-world-ai/wcag-compliance-for-ai-chatbots-074c2370d8a8",
+          "https://www.w3.org/TR/wcag-3.0/",
+          "https://www.mitre.org/publications/mitre-chatbot-accessibility-playbook"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.94,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article with one main argument about chatbot accessibility, not a bundle of unrelated news items.",
+          "Includes explanatory sections, checklist guidance, and standards references rather than interview dialogue or step-by-step lab tutorial structure.",
+          "Not a tools roundup or research paper; it is an independent practitioner analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": "mixed",
+          "examples": "",
+          "key_points": [
+            "Interactive AI includes the user interaction loop, not just generated responses.",
+            "Dynamic message updates need accessible announcement behavior so assistive technology can detect new content.",
+            "Keyboard-only navigation, focus restoration, and speech-device compatibility are essential parts of the interface.",
+            "Automated checks are insufficient on their own; real-user and screen-reader testing is needed."
+          ],
+          "knowledge_summary": "Interactive AI refers to AI systems that users actively converse with or control in real time, so the interaction loop is part of the product itself. For chatbots and similar assistants, the term includes not only model responses but also focus management, keyboard operation, assistive-technology announcements, and support for speech-to-text and text-to-speech. The core idea is that a usable interactive AI must present predictable, accessible behavior as messages stream or update dynamically.",
+          "match_candidates": [],
+          "operational_insight": "Treat interactive AI as an interface discipline, not just a model-output problem. Validate the conversation loop end to end: focus should move predictably, messages should be announced to assistive technology, every control should work by keyboard, and the experience should be tested with real screen readers and speech devices before launch.",
+          "primary_tag": "interactive-ai",
+          "proposed_tags": [
+            "interactive-ai",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "realtime-ai",
+            "prompt-engineering",
+            "realtime-multimodal-interaction"
+          ],
+          "relevance_note": "This matters because interactive systems are judged by how people can actually use them, not only by the quality of generated text. Accessibility, modality support, and predictable behavior determine whether the interaction is usable in practice.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The widget sits in the bottom-right corner. It pops up over the page content. It generates dynamic messages in real time. It has its own input field, its own scroll behavior, its own focus model.\"",
+          "topic_slug": "interactive-ai",
+          "topic_title": "Interactive AI",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6ebce99e-bff5-458e-93e1-35192324b2ca",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-17T19:25:57+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "29",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Interactive AI includes the user interaction loop, not just generated responses.",
+              "Dynamic message updates need accessible announcement behavior so assistive technology can detect new content.",
+              "Keyboard-only navigation, focus restoration, and speech-device compatibility are essential parts of the interface.",
+              "Automated checks are insufficient on their own; real-user and screen-reader testing is needed."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "realtime-ai",
+              "prompt-engineering",
+              "realtime-multimodal-interaction"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Live updates should announce themselves without stealing focus.",
+            "Interruptive announcements are appropriate for errors, not routine chat replies.",
+            "Real-time interfaces need usability testing with assistive technologies, not only static scans."
+          ],
+          "knowledge_summary": "Realtime AI interfaces produce updates while a user is actively interacting with the system, which changes accessibility and evaluation requirements. Updates need to be announced without breaking the user\u2019s current task, and the interface must preserve predictable focus and input flow. The more the system streams or updates live, the more important it becomes to manage interruptions carefully.",
+          "match_candidates": [],
+          "operational_insight": "Treat live responses as state changes that must be announced and navigable, not as passive content that can simply appear on the page. Use polite announcements and stable focus rules to avoid confusing or interrupting users.",
+          "primary_tag": "realtime-ai",
+          "proposed_tags": [
+            "realtime-ai",
+            "interactive-ai"
+          ],
+          "related_topics": [
+            "realtime-multimodal-interaction",
+            "realtime-ai-evaluation",
+            "agentic-workflows"
+          ],
+          "relevance_note": "Realtime AI is operationally important wherever outputs arrive incrementally or in a live conversation. It affects chat, voice, monitoring, and any assistant that updates the interface while the user is working.",
+          "secondary_tag": "interactive-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"aria-live=\\\"polite\\\" announces new messages without interrupting.\"",
+          "topic_slug": "realtime-ai",
+          "topic_title": "Realtime AI",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "fb413f4f-e10d-4c90-8682-2477007f4bd4",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Live updates should announce themselves without stealing focus.",
+              "Interruptive announcements are appropriate for errors, not routine chat replies.",
+              "Real-time interfaces need usability testing with assistive technologies, not only static scans."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "realtime-multimodal-interaction",
+              "realtime-ai-evaluation",
+              "agentic-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "realtime-ai",
+            "interactive-ai"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 5,
+      "mixed": 1
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 6,
+    "review_duration_seconds": 1268.8,
+    "review_finished_at": "2026-05-17T19:33:58.674724+00:00",
+    "review_started_at": "2026-05-17T19:12:49.854646+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-17T19:33:58+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Marco Kotrotsos",
+    "canonical_url": "https://medium.com/autocomplete-real-world-ai/wcag-compliance-for-ai-chatbots-074c2370d8a8",
+    "content_sha256": "38cf4f704cbfe99f1ea2ad1b12463e57d7043ce1f103425bb6a9543921e32167",
+    "publication": "Medium",
+    "published_date": "2026-04-26",
+    "raw_html_rel_path": "raw/readwise/wcag-compliance-for-ai-chatbots-01kr435rbmf29nsyxqtzppzs9k.html",
+    "raw_md_rel_path": "raw/readwise/wcag-compliance-for-ai-chatbots-01kr435rbmf29nsyxqtzppzs9k.md",
+    "source_id": "wcag-compliance-for-ai-chatbots-01kr435rbmf29nsyxqtzppzs9k",
+    "title": "WCAG compliance for AI chatbots"
+  }
+}

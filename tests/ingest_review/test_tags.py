@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from src.ingest_review.tags import (
+    add_tags_to_list,
     append_tags_to_yaml,
     build_tag_select_options,
     find_similar_tags,
@@ -16,6 +17,10 @@ from src.ingest_review.tags import (
     load_topic_tags,
     load_trend_tags,
     normalize_tag,
+    parse_comma_separated_tags,
+    remove_tags_from_list,
+    rename_tag_in_list,
+    save_tag_list,
 )
 
 
@@ -244,3 +249,74 @@ def test_append_tags_to_yaml_normalizes_new_tags(tmp_path: Path) -> None:
     p.write_text("tags:\n  - alpha\n", encoding="utf-8")
     append_tags_to_yaml(p, ["Foo Bar"])
     assert "foo-bar" in load_tag_list(p)
+
+
+def test_save_tag_list_replaces_and_sorts(tmp_path: Path) -> None:
+    p = tmp_path / "tags.yaml"
+    save_tag_list(p, ["zebra", "alpha", "alpha"], comment="test list")
+    assert load_tag_list(p) == ["alpha", "zebra"]
+    text = p.read_text(encoding="utf-8")
+    assert text.startswith("# test list")
+
+
+def test_add_tags_to_list_returns_added_slugs(tmp_path: Path) -> None:
+    p = tmp_path / "tags.yaml"
+    save_tag_list(p, ["alpha"])
+    added = add_tags_to_list(p, ["beta", "alpha", "Beta"])
+    assert added == ["beta"]
+    assert load_tag_list(p) == ["alpha", "beta"]
+
+
+def test_remove_tags_from_list(tmp_path: Path) -> None:
+    p = tmp_path / "tags.yaml"
+    save_tag_list(p, ["alpha", "beta", "gamma"])
+    removed = remove_tags_from_list(p, ["beta", "missing"])
+    assert removed == ["beta"]
+    assert load_tag_list(p) == ["alpha", "gamma"]
+
+
+def test_remove_tags_from_list_empty_remove_set_is_noop(tmp_path: Path) -> None:
+    p = tmp_path / "tags.yaml"
+    save_tag_list(p, ["alpha"])
+    assert remove_tags_from_list(p, ["", "   "]) == []
+    assert load_tag_list(p) == ["alpha"]
+
+
+def test_rename_tag_in_list(tmp_path: Path) -> None:
+    p = tmp_path / "tags.yaml"
+    save_tag_list(p, ["old-name", "other"])
+    rename_tag_in_list(p, "old-name", "new-name")
+    assert load_tag_list(p) == ["new-name", "other"]
+
+
+def test_rename_tag_in_list_same_slug_is_noop(tmp_path: Path) -> None:
+    p = tmp_path / "tags.yaml"
+    save_tag_list(p, ["alpha"])
+    rename_tag_in_list(p, "alpha", "alpha")
+    assert load_tag_list(p) == ["alpha"]
+
+
+def test_rename_tag_in_list_raises_when_missing(tmp_path: Path) -> None:
+    p = tmp_path / "tags.yaml"
+    save_tag_list(p, ["alpha"])
+    try:
+        rename_tag_in_list(p, "missing", "new")
+    except ValueError as exc:
+        assert "not in allowlist" in str(exc)
+    else:
+        raise AssertionError("expected ValueError")
+
+
+def test_rename_tag_in_list_raises_when_duplicate_target(tmp_path: Path) -> None:
+    p = tmp_path / "tags.yaml"
+    save_tag_list(p, ["alpha", "beta"])
+    try:
+        rename_tag_in_list(p, "alpha", "beta")
+    except ValueError as exc:
+        assert "already exists" in str(exc)
+    else:
+        raise AssertionError("expected ValueError")
+
+
+def test_parse_comma_separated_tags() -> None:
+    assert parse_comma_separated_tags("foo, Bar Baz") == ["foo", "bar-baz"]

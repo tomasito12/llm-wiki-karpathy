@@ -1,0 +1,1107 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-17T13:26:54+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgVnYjAhJgZP9QVMHoAkDYRCYoAa3",
+    "token_usage": {
+      "completion_tokens": 4890,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 24990,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 29880
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "The article cites a jump from 6.6 per cent to 86.4 per cent on the tau2-bench function-calling benchmark, which is the main reason the local test was worth running.",
+          "In the article's spot check, Gemma 4 on the GB10 produced functional code with five tests passing after three tool calls.",
+          "The Mac setup generated faster tokens but still needed ten tool calls and multiple failed test writes, showing that speed did not equal better task completion."
+        ],
+        "comparative_observations": [
+          "The article contrasts Gemma 4 with previous Gemma generations that scored 6.6 per cent on tool calling, framing the improvement as the key threshold.",
+          "The cloud baseline GPT-5.4 was faster and cleaner on the same coding task, so Gemma 4 was viable locally but not superior in this spot check.",
+          "The GB10's dense 31B variant was slower than the Mac's 26B MoE variant, yet it produced better end-to-end coding results in this task."
+        ],
+        "confidence": 0.93,
+        "core_capabilities": [
+          "It can emit tool calls reliably enough to work inside a local coding-agent loop in the described setup.",
+          "It can run in a sparse mixture-of-experts configuration that the author measures as materially faster on the Mac.",
+          "It can support local inference on both Apple Silicon and NVIDIA Blackwell when paired with the right serving stack."
+        ],
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The article treats Gemma 4 as a meaningful step forward from prior Gemma generations because the tool-calling benchmark moved from failure to practical usability. It appears mature enough to be tried in real workflows, but still version- and stack-dependent. The source also notes that benchmark and setup details matter enough to pin versions and control quantization carefully.",
+        "model_name": "Gemma 4",
+        "operational_summary": "Gemma 4 is presented as a local model family that became viable for tool-using coding workflows once its function calling improved enough to work inside Codex CLI. The article frames it as a practical local alternative for agentic coding, though not a universal replacement for cloud models.",
+        "pricing_inference_implications": "The local setup avoids per-token API charges, which matters for heavy Codex CLI use. The article does not quantify local hardware costs, so the economics are only directional: the model can reduce API spend, but it shifts cost into machine investment and setup time. For high-volume use, the practical question becomes whether the saved API spend outweighs the operational friction.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "open-weight-model",
+          "agentic-coding"
+        ],
+        "provider": "Google",
+        "related_models": [
+          "GPT-5.4"
+        ],
+        "service_automation_implications": "The source does not discuss customer support or voice automation directly. The durable implication is indirect: any service workflow that depends on reliable tool calling can benefit from a model that can execute structured actions locally, but this article only demonstrates that for coding tasks.",
+        "strengths": "- Its tool calling crossed a usability threshold: the article contrasts earlier Gemma generations with Gemma 4's much stronger function-calling benchmark result.\n- It can run locally on both a 24 GB MacBook Pro and a 128 GB NVIDIA Blackwell machine, which makes it relevant for self-hosted coding agents.\n- It supports local agent workflows that read files, write patches, and run tests, so it is not just a chat model in this use case.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"Gemma 4 31B scores 86.4 per cent on the same benchmark. That is what made this test worth running.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "- The article shows that local deployment can be fragile: Apple Silicon required specific serving choices, and some combinations failed because of streaming bugs or prompt-length freezes.\n- The Mac setup produced more retries, broken tool calls, and dead code than the GB10 setup, so local viability still depends on serving stack and quantization choices.\n- The source does not show broader task coverage beyond one coding prompt, so generalization remains open.",
+        "workflow_implications": "Gemma 4 makes local agentic coding more plausible because it can participate in a read-write-test loop instead of only generating text. That lowers the barrier to privacy-sensitive or cost-sensitive coding sessions, but it also raises the importance of provider compatibility, prompt size limits, and tool-call formatting. For teams building coding agents, the model choice is only one part of the stack; the serving layer can decide whether the workflow works at all."
+      }
+    ],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start by choosing a serving stack that matches the machine and the agent protocol you need. On Apple Silicon, the source found that llama.cpp with the Gemma 4 template flags worked better than Ollama for the tested workload. Use a direct model file path, set the context high enough for the agent prompt, and tune the key-value cache to fit memory. Disable unsupported tool types like web search if the server rejects them. On the NVIDIA machine, the source found that Ollama v0.20.5 worked reliably with Codex CLI over a local or tunneled port. After that, pin versions and test one change at a time so you can tell whether a failure comes from the model, the server, or the agent.",
+        "caveats": "This is a narrow setup guide for one model, one agent, and two hardware classes. It depends heavily on specific versions, and the author warns that benchmark behavior can change between builds. The prompt and memory numbers are tied to Codex CLI and the source's own system prompt, so they should not be treated as universal constants.",
+        "confidence": 0.94,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Choose the serving stack that matches your hardware and tool protocol.",
+          "On Apple Silicon, use llama.cpp with the Gemma 4 Jinja template flag.",
+          "Set Codex CLI's `web_search` to disabled if the server rejects unsupported tool types.",
+          "Use a direct GGUF model path rather than a Hugging Face download path.",
+          "Increase context to accommodate the agent system prompt and quantize the key-value cache to fit memory.",
+          "On the NVIDIA setup, use Ollama v0.20.5 and connect Codex CLI through the local or tunneled endpoint.",
+          "Pin versions and change one variable at a time when debugging failures."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A local machine with enough memory for the chosen model and context length.",
+          "A coding agent or CLI that can point to a custom model provider.",
+          "Basic familiarity with model serving flags, ports, and environment configuration."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "question_title": "Local Coding Model Setup",
+        "related_howtos": [],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"A few specifics from the setup that will save you time. On Apple Silicon, for the workload I tested, Ollama was not usable with Gemma 4. I would use llama.cpp with --jinja. Set web_search = \\\"disabled\\\" in your Codex CLI profile. Use -m with a direct GGUF path, not -hf. Set context to 32,768 (Codex CLI's system prompt needs at least 27,000 tokens) and quantise the KV cache with -ctk q8_0 -ctv q8_0. On my NVIDIA GB10, Ollama v0.20.5 was the first path that worked reliably.\"",
+        "value_level": "high",
+        "what_and_problem": "This is about getting a local language model to work inside a coding agent that can read files, write patches, and run tests. The problem is that a local model is only useful for this job if it can reliably call tools and fit within the machine's memory limits. Setup details matter because the wrong serving stack or model format can break tool calls or crash the server. The source shows that local inference for agentic coding is possible, but only when the configuration is carefully matched to the hardware and the agent protocol."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article combines a personal implementation case with direct benchmark observations.",
+        "It also includes vendor-reported benchmark figures for Gemma 4 tool calling and practical setup instructions.",
+        "No single evidence style dominates the whole piece."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece looks at whether a local AI model can do real coding work inside a command-line coding tool. The author tried Gemma 4 on two computers: a MacBook Pro and a Dell machine with more memory and a different chip. The test was not about theory; it was about whether the model could read files, write code, and run tests without constant help. The result was mixed but interesting. The faster computer did not produce the best outcome, because it made more mistakes and needed more retries. The slower local setup worked more reliably, but the cloud model was still the cleanest and quickest on this task. The article also shows that getting local models working can take a lot of setup, because the right software version and configuration flags matter. For beginners, the main lesson is that an AI model is only useful for coding if it can actually use tools reliably, not just talk quickly. As of 2026-04-13, the article suggests local coding is viable in some cases, but not yet a simple drop-in replacement for cloud models.",
+      "assessed_as_of": "2026-04-13",
+      "contradictions_and_skepticism": "The article pushes back against the intuition that faster token generation automatically means a better coding experience, but that conclusion comes from one task and two local machines. The GB10 and Mac comparisons are shaped by quantization, tool-call reliability, and serving bugs, so they do not isolate model quality cleanly. The author also relies on vendor benchmark numbers for the tool-calling claim, which are useful but not independently validated here. The strongest practical claim is not that Gemma 4 beats cloud models, but that it crossed a usability threshold from broken tool calling to functional local agentic coding.",
+      "key_insights": [
+        "For agentic coding, first-pass reliability mattered more than raw token speed in this test.",
+        "Gemma 4's tool-calling quality was the threshold that made local use practical, not the token throughput.",
+        "Local setups required precise configuration: model format, context length, cache quantization, and tool-template flags all mattered.",
+        "A faster local model can still lose in end-to-end task time if it produces more retries and broken tool calls.",
+        "The cloud baseline remained the cleanest result on this specific coding task, so a hybrid local/cloud workflow looked more realistic than full replacement."
+      ],
+      "limitations_and_open_questions": "This is explicitly a single practical spot check, not a statistically robust benchmark. The task was one Python function with tests, so it does not show how Gemma 4 behaves on harder coding problems, longer projects, or messy multi-step agent loops. The Mac result depended on a highest-memory-fit Q4_K_M setup, so the author notes that higher precision or more roomier Apple Silicon machines could behave differently. The article also exposes serving-stack fragility: Ollama, llama.cpp, vLLM, and Codex CLI did not all interoperate cleanly, and version changes could alter results. The cloud baseline used GPT-5.4 with high reasoning effort, but the source does not provide a cost-normalized comparison.",
+      "sources": [
+        "https://medium.com/google-cloud/i-ran-gemma-4-as-a-local-model-in-codex-cli-7fda754dc0d4"
+      ],
+      "summary": "The piece tests whether Gemma 4 can support local agentic coding in Codex CLI on two local setups: a 24 GB MacBook Pro using llama.cpp and a Dell Pro Max GB10 using Ollama. The core finding is that raw token speed did not determine the best coding experience; first-pass correctness and tool-calling reliability mattered more. The Mac generated tokens much faster, but it needed many more retries and produced messier code, while the GB10 was slower but completed the task with fewer tool calls. The cloud baseline, GPT-5.4, was fastest and cleanest on this specific task, which keeps local inference from looking like a universal replacement. The article is also a practical setup guide, listing the flags, configuration settings, and version quirks needed to get Gemma 4 working locally with Codex CLI. Its broader takeaway is narrow but durable: local agentic coding became plausible only once tool calling moved from broken to functional, and the quality gap between older Gemma generations and Gemma 4 is the meaningful threshold.",
+      "why_it_matters": "The piece matters because it turns local model discussion into an operational comparison inside a real agentic coding workflow rather than a theoretical debate. It shows that the useful question is not just how many tokens a model can generate per second, but whether it can reliably emit tool calls, write tests, and finish a task without repair passes. The article also highlights how much local deployment depends on glue details: model format, context size, cache quantization, template flags, and provider compatibility. That is useful for anyone evaluating whether a local model can sit inside a coding agent or other tool-using workflow, because failure can come from the serving stack as much as from the model itself. The comparison between the Mac and the GB10 suggests that hardware bandwidth alone does not explain end-to-end performance when a mixture-of-experts model activates only part of its parameters. For service automation adjacent workflows, the closing implication is that local assistants are more credible when they can reliably call tools, but the article does not provide support-center, voice, or back-office evidence beyond coding. Actionable as of 2026-04-13, but still a single-task spot check rather than broad proof of local deployment viability."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "The piece is a single coherent personal test and setup narrative, not a digest or transcript.",
+        "It mixes implementation notes, benchmark observations, and practical advice around one workflow.",
+        "There is no numbered tool roundup structure or interview Q&A format."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.91,
+        "core_capabilities": [
+          "It can host a local Gemma 4 model with direct control over server flags and memory usage.",
+          "It can expose a tool-calling interface compatible with a coding agent when the right template and protocol settings are used.",
+          "It can be configured to run through a direct GGUF path, which avoids unwanted downloads and memory surprises."
+        ],
+        "evidence_type": "implementation_case",
+        "integration_ecosystem": [
+          "The article says it can be configured as a custom model provider in Codex CLI through `config.toml`.",
+          "It works with GGUF model files and a local server process, which makes it compatible with offline or self-hosted workflows.",
+          "It was installed through Homebrew on macOS in the described setup."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The piece treats llama.cpp as a practical option rather than an experimental toy, because it became the working path after other servers failed. It also appears mature enough to be pinned, tuned, and integrated into Codex CLI profiles. At the same time, the article makes clear that it still demands hands-on debugging rather than one-click setup.",
+        "name": "llama.cpp",
+        "operational_relevance": "This is relevant wherever teams need local inference with tight control over memory use, quantization, and tool-calling templates. It fits agent workflows when the model must read files, write code, and call tools without sending prompts to a cloud API. The article shows it can be the workable path when other serving options fail on a given machine or tool protocol.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "coding-agent",
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "Ollama",
+          "Codex CLI"
+        ],
+        "short_description": "An open-source model serving and inference stack that can run local models through a lightweight server. In this piece it is used to host Gemma 4 on Apple Silicon and on a CUDA build for the GB10 machine.",
+        "strengths": "- It can serve local models with enough control over context length, quantization, and GPU offload to make a 24 GB machine usable for an agentic coding workload.\n- It supports the Gemma 4 tool-calling template through the `--jinja` flag, which matters because the agent is only useful if tool calls are emitted in the expected format.\n- The article shows it can run as a custom provider inside Codex CLI, so it can plug into an existing coding-agent workflow rather than requiring a separate interface.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"I switched to llama.cpp, installed via Homebrew. The working server command has six load-bearing flags:\"",
+        "value_level": "high",
+        "weaknesses_limitations": "- The setup was fragile on Apple Silicon: the article reports a streaming bug in Ollama and a Flash Attention freeze, which is why llama.cpp became the fallback.\n- The configuration was easy to break through hidden defaults, such as the `-hf` path downloading an unwanted vision projector and causing out-of-memory failure.\n- The source notes that version changes can alter benchmark behavior, so operational results depend heavily on pinning builds and flags."
+      },
+      {
+        "confidence": 0.77,
+        "core_capabilities": [
+          "It can pull and serve a local Gemma 4 model with a single command.",
+          "It can handle text generation and tool calling in the described GB10 setup.",
+          "It can be used as a local endpoint that Codex CLI reaches through an SSH tunnel or localhost forwarding."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article uses it with Codex CLI via the `--oss` mode and `-m gemma4:31b` model selection.",
+          "It can serve over port 11434, which is convenient for local forwarding and tunnel-based access.",
+          "It works with NVIDIA Blackwell hardware in the described setup, but the source does not claim broader hardware compatibility."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Ollama as a real operational tool with a simple installation path and a visible version number. It appears strong enough to serve a local coding workflow on the GB10, but the Apple Silicon failures show that maturity is uneven across platforms. The practical signal is that it is usable, yet still demands careful compatibility testing.",
+        "name": "Ollama",
+        "operational_relevance": "Ollama is relevant when teams want a low-friction local model server for coding agents or other tool-using applications. The article shows it can be the easiest path on one machine class, but reliability depends on model version, platform, and protocol compatibility. That makes it useful, but not a universal default, for local agent workflows.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "cloud-saas",
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "llama.cpp",
+          "Codex CLI"
+        ],
+        "short_description": "A local model runner and serving layer used here to host Gemma 4 on the Dell Pro Max GB10. In the article it works reliably on the NVIDIA Blackwell machine but had a streaming bug on Apple Silicon.",
+        "strengths": "- It was the simplest path the author tried, which matters because local AI systems often fail on setup before they fail on model quality.\n- On the GB10, it worked on the first attempt for both text generation and tool calling, which suggests operational usefulness when the platform and model version line up.\n- It supports a straightforward `ollama pull` plus CLI integration flow, which reduces the amount of manual serving work needed to stand up a local model.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"What worked was Ollama v0.20.5. On my GB10, the streaming bug that broke Apple Silicon did not reproduce on NVIDIA.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "- The article reports a Gemma 4 streaming bug in v0.20.3 on Apple Silicon, where tool-call responses were routed to the wrong field.\n- The same Apple Silicon setup also hit a Flash Attention freeze on prompts longer than about 500 tokens, which is a serious issue when the agent prompt is large.\n- Its behavior appears version-sensitive, so a setup that works on one release may fail on another."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Tool-call reliability can dominate raw speed in end-to-end agent performance.",
+          "Retries, dead code, and failed tool calls are real operational costs in agent workflows.",
+          "Serving-layer compatibility can decide whether an agentic workflow works at all."
+        ],
+        "knowledge_summary": "Agentic workflows depend on a model's ability to call tools, read state, and complete multi-step tasks rather than merely generate text. For operational use, the key measure is end-to-end task success, which includes tool-call reliability, retry rate, and whether the system leaves behind clean output that a human can trust. Raw generation speed can matter, but it is often secondary to whether the agent can recover from errors and finish the job. Local deployment adds another layer of dependency: the serving stack must preserve the tool protocol or the workflow fails before the model's reasoning is even tested.",
+        "match_candidates": [],
+        "operational_insight": "When evaluating an agentic system, measure task completion quality and repair cost, not just tokens per second. A slower model can outperform a faster one if it avoids retries and broken tool calls.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "harness-decay"
+        ],
+        "relevance_note": "This matters because coding agents, support agents, and workflow automators all depend on structured actions, not just fluent text. Teams need a way to compare agent systems on completed work, not only model output quality.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"For this workflow, first-pass reliability mattered more than raw generation speed.\"",
+        "topic_slug": "agentic-workflows",
+        "topic_title": "Agentic Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Large agent system prompts can consume most of the usable context window.",
+          "Quantizing the key-value cache can be the difference between fitting a model and crashing it.",
+          "Context failures often look like model failures even when the root cause is the serving configuration."
+        ],
+        "knowledge_summary": "Context engineering is the practice of shaping prompts, memory, and surrounding instructions so a model can complete the task without exceeding context limits or wasting attention on irrelevant text. In local agent setups, it includes practical decisions about context window size, prompt length, tool schema compatibility, and memory management. These choices are often as important as the model itself because they determine whether the agent can ingest the system prompt, preserve working state, and keep the tool loop stable. Good context engineering reduces failure modes like truncation, stalled requests, and malformed tool calls.",
+        "match_candidates": [],
+        "operational_insight": "Treat context budget as an engineering constraint, not a background setting. If the agent's own system prompt is large, the serving stack must be tuned to fit it before any model-quality comparison is meaningful.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management",
+          "prompt-engineering"
+        ],
+        "related_topics": [
+          "prompt-engineering",
+          "knowledge-management",
+          "agentic-workflows"
+        ],
+        "relevance_note": "This matters because many production AI systems fail from context mismanagement long before they fail from model weakness. Conversational agents and coding agents both need careful prompt sizing, memory limits, and schema alignment to stay reliable.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Set context to 32,768 (Codex CLI's system prompt needs at least 27,000 tokens) and quantise the KV cache with -ctk q8_0 -ctv q8_0.\"",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The article cites a jump from 6.6 per cent to 86.4 per cent on the tau2-bench function-calling benchmark, which is the main reason the local test was worth running.",
+            "In the article's spot check, Gemma 4 on the GB10 produced functional code with five tests passing after three tool calls.",
+            "The Mac setup generated faster tokens but still needed ten tool calls and multiple failed test writes, showing that speed did not equal better task completion."
+          ],
+          "comparative_observations": [
+            "The article contrasts Gemma 4 with previous Gemma generations that scored 6.6 per cent on tool calling, framing the improvement as the key threshold.",
+            "The cloud baseline GPT-5.4 was faster and cleaner on the same coding task, so Gemma 4 was viable locally but not superior in this spot check.",
+            "The GB10's dense 31B variant was slower than the Mac's 26B MoE variant, yet it produced better end-to-end coding results in this task."
+          ],
+          "confidence": 0.93,
+          "core_capabilities": [
+            "It can emit tool calls reliably enough to work inside a local coding-agent loop in the described setup.",
+            "It can run in a sparse mixture-of-experts configuration that the author measures as materially faster on the Mac.",
+            "It can support local inference on both Apple Silicon and NVIDIA Blackwell when paired with the right serving stack."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article treats Gemma 4 as a meaningful step forward from prior Gemma generations because the tool-calling benchmark moved from failure to practical usability. It appears mature enough to be tried in real workflows, but still version- and stack-dependent. The source also notes that benchmark and setup details matter enough to pin versions and control quantization carefully.",
+          "model_name": "Gemma 4",
+          "operational_summary": "Gemma 4 is presented as a local model family that became viable for tool-using coding workflows once its function calling improved enough to work inside Codex CLI. The article frames it as a practical local alternative for agentic coding, though not a universal replacement for cloud models.",
+          "pricing_inference_implications": "The local setup avoids per-token API charges, which matters for heavy Codex CLI use. The article does not quantify local hardware costs, so the economics are only directional: the model can reduce API spend, but it shifts cost into machine investment and setup time. For high-volume use, the practical question becomes whether the saved API spend outweighs the operational friction.",
+          "proposed_new_type": "multi-modal",
+          "proposed_types": [
+            "open-weight-model",
+            "agentic-coding"
+          ],
+          "provider": "Google",
+          "related_models": [
+            "GPT-5.4"
+          ],
+          "service_automation_implications": "The source does not discuss customer support or voice automation directly. The durable implication is indirect: any service workflow that depends on reliable tool calling can benefit from a model that can execute structured actions locally, but this article only demonstrates that for coding tasks.",
+          "strengths": "- Its tool calling crossed a usability threshold: the article contrasts earlier Gemma generations with Gemma 4's much stronger function-calling benchmark result.\n- It can run locally on both a 24 GB MacBook Pro and a 128 GB NVIDIA Blackwell machine, which makes it relevant for self-hosted coding agents.\n- It supports local agent workflows that read files, write patches, and run tests, so it is not just a chat model in this use case.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"Gemma 4 31B scores 86.4 per cent on the same benchmark. That is what made this test worth running.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "- The article shows that local deployment can be fragile: Apple Silicon required specific serving choices, and some combinations failed because of streaming bugs or prompt-length freezes.\n- The Mac setup produced more retries, broken tool calls, and dead code than the GB10 setup, so local viability still depends on serving stack and quantization choices.\n- The source does not show broader task coverage beyond one coding prompt, so generalization remains open.",
+          "workflow_implications": "Gemma 4 makes local agentic coding more plausible because it can participate in a read-write-test loop instead of only generating text. That lowers the barrier to privacy-sensitive or cost-sensitive coding sessions, but it also raises the importance of provider compatibility, prompt size limits, and tool-call formatting. For teams building coding agents, the model choice is only one part of the stack; the serving layer can decide whether the workflow works at all."
+        },
+        "notes": null,
+        "proposal_id": "c224afdf-34c1-4ad9-85a9-dee0a0a694b9",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article cites a jump from 6.6 per cent to 86.4 per cent on the tau2-bench function-calling benchmark, which is the main reason the local test was worth running.",
+              "In the article's spot check, Gemma 4 on the GB10 produced functional code with five tests passing after three tool calls.",
+              "The Mac setup generated faster tokens but still needed ten tool calls and multiple failed test writes, showing that speed did not equal better task completion."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article contrasts Gemma 4 with previous Gemma generations that scored 6.6 per cent on tool calling, framing the improvement as the key threshold.",
+              "The cloud baseline GPT-5.4 was faster and cleaner on the same coding task, so Gemma 4 was viable locally but not superior in this spot check.",
+              "The GB10's dense 31B variant was slower than the Mac's 26B MoE variant, yet it produced better end-to-end coding results in this task."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can emit tool calls reliably enough to work inside a local coding-agent loop in the described setup.",
+              "It can run in a sparse mixture-of-experts configuration that the author measures as materially faster on the Mac.",
+              "It can support local inference on both Apple Silicon and NVIDIA Blackwell when paired with the right serving stack."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-5.4"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "workflow_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [
+            "multi-modal",
+            "local-model-deployment"
+          ],
+          "approved_types": [
+            "open-weight",
+            "multi-modal",
+            "local-model-deployment"
+          ],
+          "reviewer_types_added": [
+            "multi-modal",
+            "local-model-deployment"
+          ]
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by choosing a serving stack that matches the machine and the agent protocol you need. On Apple Silicon, the source found that llama.cpp with the Gemma 4 template flags worked better than Ollama for the tested workload. Use a direct model file path, set the context high enough for the agent prompt, and tune the key-value cache to fit memory. Disable unsupported tool types like web search if the server rejects them. On the NVIDIA machine, the source found that Ollama v0.20.5 worked reliably with Codex CLI over a local or tunneled port. After that, pin versions and test one change at a time so you can tell whether a failure comes from the model, the server, or the agent.",
+          "caveats": "This is a narrow setup guide for one model, one agent, and two hardware classes. It depends heavily on specific versions, and the author warns that benchmark behavior can change between builds. The prompt and memory numbers are tied to Codex CLI and the source's own system prompt, so they should not be treated as universal constants.",
+          "confidence": 0.94,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Choose the serving stack that matches your hardware and tool protocol.",
+            "On Apple Silicon, use llama.cpp with the Gemma 4 Jinja template flag.",
+            "Set Codex CLI's `web_search` to disabled if the server rejects unsupported tool types.",
+            "Use a direct GGUF model path rather than a Hugging Face download path.",
+            "Increase context to accommodate the agent system prompt and quantize the key-value cache to fit memory.",
+            "On the NVIDIA setup, use Ollama v0.20.5 and connect Codex CLI through the local or tunneled endpoint.",
+            "Pin versions and change one variable at a time when debugging failures."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A local machine with enough memory for the chosen model and context length.",
+            "A coding agent or CLI that can point to a custom model provider.",
+            "Basic familiarity with model serving flags, ports, and environment configuration."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "question_title": "Local Coding Model Setup",
+          "related_howtos": [],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "local-model-deployment",
+          "suggested_new_tags": [
+            "local-model-deployment"
+          ],
+          "supporting_snippet": "\"A few specifics from the setup that will save you time. On Apple Silicon, for the workload I tested, Ollama was not usable with Gemma 4. I would use llama.cpp with --jinja. Set web_search = \\\"disabled\\\" in your Codex CLI profile. Use -m with a direct GGUF path, not -hf. Set context to 32,768 (Codex CLI's system prompt needs at least 27,000 tokens) and quantise the KV cache with -ctk q8_0 -ctv q8_0. On my NVIDIA GB10, Ollama v0.20.5 was the first path that worked reliably.\"",
+          "value_level": "high",
+          "what_and_problem": "This is about getting a local language model to work inside a coding agent that can read files, write patches, and run tests. The problem is that a local model is only useful for this job if it can reliably call tools and fit within the machine's memory limits. Setup details matter because the wrong serving stack or model format can break tool calls or crash the server. The source shows that local inference for agentic coding is possible, but only when the configuration is carefully matched to the hardware and the agent protocol."
+        },
+        "notes": null,
+        "proposal_id": "a1f26629-e0f1-4da7-9264-d7733f55bfc9",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Choose the serving stack that matches your hardware and tool protocol.",
+              "On Apple Silicon, use llama.cpp with the Gemma 4 Jinja template flag.",
+              "Set Codex CLI's `web_search` to disabled if the server rejects unsupported tool types.",
+              "Use a direct GGUF model path rather than a Hugging Face download path.",
+              "Increase context to accommodate the agent system prompt and quantize the key-value cache to fit memory.",
+              "On the NVIDIA setup, use Ollama v0.20.5 and connect Codex CLI through the local or tunneled endpoint.",
+              "Pin versions and change one variable at a time when debugging failures."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A local machine with enough memory for the chosen model and context length.",
+              "A coding agent or CLI that can point to a custom model provider.",
+              "Basic familiarity with model serving flags, ports, and environment configuration."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "local-model-deployment"
+          ],
+          "final_tags": [
+            "ai-engineering",
+            "local-model-deployment"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article combines a personal implementation case with direct benchmark observations.",
+          "It also includes vendor-reported benchmark figures for Gemma 4 tool calling and practical setup instructions.",
+          "No single evidence style dominates the whole piece."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "For agentic coding, first-pass reliability mattered more than raw token speed in this test.",
+          "Gemma 4's tool-calling quality was the threshold that made local use practical, not the token throughput.",
+          "Local setups required precise configuration: model format, context length, cache quantization, and tool-template flags all mattered.",
+          "A faster local model can still lose in end-to-end task time if it produces more retries and broken tool calls.",
+          "The cloud baseline remained the cleanest result on this specific coding task, so a hybrid local/cloud workflow looked more realistic than full replacement."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/google-cloud/i-ran-gemma-4-as-a-local-model-in-codex-cli-7fda754dc0d4"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "The piece is a single coherent personal test and setup narrative, not a digest or transcript.",
+          "It mixes implementation notes, benchmark observations, and practical advice around one workflow.",
+          "There is no numbered tool roundup structure or interview Q&A format."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "core_capabilities": [
+            "It can host a local Gemma 4 model with direct control over server flags and memory usage.",
+            "It can expose a tool-calling interface compatible with a coding agent when the right template and protocol settings are used.",
+            "It can be configured to run through a direct GGUF path, which avoids unwanted downloads and memory surprises."
+          ],
+          "evidence_type": "implementation_case",
+          "integration_ecosystem": [
+            "The article says it can be configured as a custom model provider in Codex CLI through `config.toml`.",
+            "It works with GGUF model files and a local server process, which makes it compatible with offline or self-hosted workflows.",
+            "It was installed through Homebrew on macOS in the described setup."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The piece treats llama.cpp as a practical option rather than an experimental toy, because it became the working path after other servers failed. It also appears mature enough to be pinned, tuned, and integrated into Codex CLI profiles. At the same time, the article makes clear that it still demands hands-on debugging rather than one-click setup.",
+          "name": "llama.cpp",
+          "operational_relevance": "This is relevant wherever teams need local inference with tight control over memory use, quantization, and tool-calling templates. It fits agent workflows when the model must read files, write code, and call tools without sending prompts to a cloud API. The article shows it can be the workable path when other serving options fail on a given machine or tool protocol.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "coding-agent",
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "Ollama",
+            "Codex CLI"
+          ],
+          "short_description": "An open-source model serving and inference stack that can run local models through a lightweight server. In this piece it is used to host Gemma 4 on Apple Silicon and on a CUDA build for the GB10 machine.",
+          "strengths": "- It can serve local models with enough control over context length, quantization, and GPU offload to make a 24 GB machine usable for an agentic coding workload.\n- It supports the Gemma 4 tool-calling template through the `--jinja` flag, which matters because the agent is only useful if tool calls are emitted in the expected format.\n- The article shows it can run as a custom provider inside Codex CLI, so it can plug into an existing coding-agent workflow rather than requiring a separate interface.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"I switched to llama.cpp, installed via Homebrew. The working server command has six load-bearing flags:\"",
+          "value_level": "high",
+          "weaknesses_limitations": "- The setup was fragile on Apple Silicon: the article reports a streaming bug in Ollama and a Flash Attention freeze, which is why llama.cpp became the fallback.\n- The configuration was easy to break through hidden defaults, such as the `-hf` path downloading an unwanted vision projector and causing out-of-memory failure.\n- The source notes that version changes can alter benchmark behavior, so operational results depend heavily on pinning builds and flags."
+        },
+        "notes": null,
+        "proposal_id": "31993e9b-6625-4dd3-931e-2c47094b692b",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can host a local Gemma 4 model with direct control over server flags and memory usage.",
+              "It can expose a tool-calling interface compatible with a coding agent when the right template and protocol settings are used.",
+              "It can be configured to run through a direct GGUF path, which avoids unwanted downloads and memory surprises."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article says it can be configured as a custom model provider in Codex CLI through `config.toml`.",
+              "It works with GGUF model files and a local server process, which makes it compatible with offline or self-hosted workflows.",
+              "It was installed through Homebrew on macOS in the described setup."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Ollama",
+              "Codex CLI"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-infrastructure",
+            "model-serving"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "ai-infrastructure",
+            "model-serving"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.77,
+          "core_capabilities": [
+            "It can pull and serve a local Gemma 4 model with a single command.",
+            "It can handle text generation and tool calling in the described GB10 setup.",
+            "It can be used as a local endpoint that Codex CLI reaches through an SSH tunnel or localhost forwarding."
+          ],
+          "integration_ecosystem": [
+            "The article uses it with Codex CLI via the `--oss` mode and `-m gemma4:31b` model selection.",
+            "It can serve over port 11434, which is convenient for local forwarding and tunnel-based access.",
+            "It works with NVIDIA Blackwell hardware in the described setup, but the source does not claim broader hardware compatibility."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Ollama as a real operational tool with a simple installation path and a visible version number. It appears strong enough to serve a local coding workflow on the GB10, but the Apple Silicon failures show that maturity is uneven across platforms. The practical signal is that it is usable, yet still demands careful compatibility testing.",
+          "name": "Ollama",
+          "operational_relevance": "Ollama is relevant when teams want a low-friction local model server for coding agents or other tool-using applications. The article shows it can be the easiest path on one machine class, but reliability depends on model version, platform, and protocol compatibility. That makes it useful, but not a universal default, for local agent workflows.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "cloud-saas",
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "llama.cpp",
+            "Codex CLI"
+          ],
+          "short_description": "A local model runner and serving layer used here to host Gemma 4 on the Dell Pro Max GB10. In the article it works reliably on the NVIDIA Blackwell machine but had a streaming bug on Apple Silicon.",
+          "strengths": "- It was the simplest path the author tried, which matters because local AI systems often fail on setup before they fail on model quality.\n- On the GB10, it worked on the first attempt for both text generation and tool calling, which suggests operational usefulness when the platform and model version line up.\n- It supports a straightforward `ollama pull` plus CLI integration flow, which reduces the amount of manual serving work needed to stand up a local model.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"What worked was Ollama v0.20.5. On my GB10, the streaming bug that broke Apple Silicon did not reproduce on NVIDIA.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "- The article reports a Gemma 4 streaming bug in v0.20.3 on Apple Silicon, where tool-call responses were routed to the wrong field.\n- The same Apple Silicon setup also hit a Flash Attention freeze on prompts longer than about 500 tokens, which is a serious issue when the agent prompt is large.\n- Its behavior appears version-sensitive, so a setup that works on one release may fail on another."
+        },
+        "notes": null,
+        "proposal_id": "6d1db39e-8369-4b60-b600-4d0bcaccebf9",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can pull and serve a local Gemma 4 model with a single command.",
+              "It can handle text generation and tool calling in the described GB10 setup.",
+              "It can be used as a local endpoint that Codex CLI reaches through an SSH tunnel or localhost forwarding."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article uses it with Codex CLI via the `--oss` mode and `-m gemma4:31b` model selection.",
+              "It can serve over port 11434, which is convenient for local forwarding and tunnel-based access.",
+              "It works with NVIDIA Blackwell hardware in the described setup, but the source does not claim broader hardware compatibility."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "llama.cpp",
+              "Codex CLI"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-infrastructure",
+            "model-serving"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "ai-infrastructure",
+            "model-serving"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Tool-call reliability can dominate raw speed in end-to-end agent performance.",
+            "Retries, dead code, and failed tool calls are real operational costs in agent workflows.",
+            "Serving-layer compatibility can decide whether an agentic workflow works at all."
+          ],
+          "knowledge_summary": "Agentic workflows depend on a model's ability to call tools, read state, and complete multi-step tasks rather than merely generate text. For operational use, the key measure is end-to-end task success, which includes tool-call reliability, retry rate, and whether the system leaves behind clean output that a human can trust. Raw generation speed can matter, but it is often secondary to whether the agent can recover from errors and finish the job. Local deployment adds another layer of dependency: the serving stack must preserve the tool protocol or the workflow fails before the model's reasoning is even tested.",
+          "match_candidates": [],
+          "operational_insight": "When evaluating an agentic system, measure task completion quality and repair cost, not just tokens per second. A slower model can outperform a faster one if it avoids retries and broken tool calls.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "harness-decay"
+          ],
+          "relevance_note": "This matters because coding agents, support agents, and workflow automators all depend on structured actions, not just fluent text. Teams need a way to compare agent systems on completed work, not only model output quality.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"For this workflow, first-pass reliability mattered more than raw generation speed.\"",
+          "topic_slug": "agentic-workflows",
+          "topic_title": "Agentic Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "d7b8c79e-a8bf-4a03-9d01-697b8dd27b03",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Tool-call reliability can dominate raw speed in end-to-end agent performance.",
+              "Retries, dead code, and failed tool calls are real operational costs in agent workflows.",
+              "Serving-layer compatibility can decide whether an agentic workflow works at all."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "harness-decay"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Large agent system prompts can consume most of the usable context window.",
+            "Quantizing the key-value cache can be the difference between fitting a model and crashing it.",
+            "Context failures often look like model failures even when the root cause is the serving configuration."
+          ],
+          "knowledge_summary": "Context engineering is the practice of shaping prompts, memory, and surrounding instructions so a model can complete the task without exceeding context limits or wasting attention on irrelevant text. In local agent setups, it includes practical decisions about context window size, prompt length, tool schema compatibility, and memory management. These choices are often as important as the model itself because they determine whether the agent can ingest the system prompt, preserve working state, and keep the tool loop stable. Good context engineering reduces failure modes like truncation, stalled requests, and malformed tool calls.",
+          "match_candidates": [],
+          "operational_insight": "Treat context budget as an engineering constraint, not a background setting. If the agent's own system prompt is large, the serving stack must be tuned to fit it before any model-quality comparison is meaningful.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management",
+            "prompt-engineering"
+          ],
+          "related_topics": [
+            "prompt-engineering",
+            "knowledge-management",
+            "agentic-workflows"
+          ],
+          "relevance_note": "This matters because many production AI systems fail from context mismanagement long before they fail from model weakness. Conversational agents and coding agents both need careful prompt sizing, memory limits, and schema alignment to stay reliable.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Set context to 32,768 (Codex CLI's system prompt needs at least 27,000 tokens) and quantise the KV cache with -ctk q8_0 -ctv q8_0.\"",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "b662a5c2-2aec-4153-a1da-d55e38c46181",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Large agent system prompts can consume most of the usable context window.",
+              "Quantizing the key-value cache can be the difference between fitting a model and crashing it.",
+              "Context failures often look like model failures even when the root cause is the serving configuration."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "prompt-engineering",
+              "knowledge-management",
+              "agentic-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "prompt-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 1,
+      "mixed": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 6,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 6,
+    "review_duration_seconds": 614.0,
+    "review_finished_at": "2026-05-17T13:37:08.445272+00:00",
+    "review_started_at": "2026-05-17T13:26:54.439146+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-17T13:37:08+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Daniel Vaughan",
+    "canonical_url": "https://medium.com/google-cloud/i-ran-gemma-4-as-a-local-model-in-codex-cli-7fda754dc0d4",
+    "content_sha256": "9b43e012a014ff6d708163182bfcb8e83ee07c55050d0f51db8aa2525ad7e6cf",
+    "publication": "Medium",
+    "published_date": "2026-04-13",
+    "raw_html_rel_path": "raw/readwise/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr.html",
+    "raw_md_rel_path": "raw/readwise/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr.md",
+    "source_id": "i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr",
+    "title": "I ran Gemma 4 as a local model in Codex CLI"
+  }
+}

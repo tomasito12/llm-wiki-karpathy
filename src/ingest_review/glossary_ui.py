@@ -24,9 +24,14 @@ from src.ingest_review.glossary_related_terms_align import (
     build_related_term_resolution_maps,
     related_term_matches_known_label,
 )
+from src.ingest_review.proposal_columns_ui import (
+    build_proposal_expander_label,
+    render_two_column_proposal_review,
+)
 from src.ingest_review.proposal_decision_ui import (
     proposal_status_label,
     render_proposal_decision_bar,
+    set_proposal_save_message,
 )
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
@@ -260,6 +265,34 @@ def build_readonly_glossary_markdown(
     return "\n\n---\n\n".join(parts)
 
 
+def _glossary_expander_label(node: dict[str, Any], index: int) -> str:
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    term = effective_glossary_scalar(llm_item, sections, "term") or f"Proposal {index + 1}"
+    badge = VALUE_LEVEL_BADGES.get(_value_level(node), "Medium")
+    return build_proposal_expander_label(node, term, badge=badge)
+
+
+def _glossary_related_maps(
+    sorted_nodes: list[dict[str, Any]],
+    wiki_glossary_terms: list[str] | None,
+) -> tuple[dict[str, str], dict[str, str]]:
+    wiki = list(wiki_glossary_terms or [])
+    batch_terms: list[str] = []
+    for n in sorted_nodes:
+        t = (
+            effective_glossary_scalar(
+                n.get("llm_item") or {},
+                n.get("sections") or {},
+                "term",
+            )
+            or ""
+        ).strip()
+        if t:
+            batch_terms.append(t)
+    return build_related_term_resolution_maps(batch_terms, wiki)
+
+
 def _find_glossary_node(artifact: dict[str, Any], proposal_id: str) -> dict[str, Any] | None:
     return find_review_node(artifact, proposal_id, "glossary")
 
@@ -301,6 +334,8 @@ def _persist_glossary_proposal_from_widgets(
     field_values: dict[str, str],
     tag_ui: dict[str, Any],
     allow: set[str],
+    *,
+    key_prefix: str,
 ) -> None:
     """Apply textarea + tag edits from this run and write the artifact."""
     from src.ingest_review.artifact import save_artifact, touch_review_session
@@ -314,7 +349,7 @@ def _persist_glossary_proposal_from_widgets(
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     term = field_values.get("term") or llm_item.get("term") or "proposal"
-    streamlit_runtime.session_state["_glossary_save_msg"] = f"Saved **{term}**."
+    set_proposal_save_message(key_prefix, f"Saved **{term}**.")
 
 
 def _render_glossary_edit_box(
@@ -410,6 +445,7 @@ def _render_glossary_edit_box(
                 field_values,
                 tag_ui,
                 tag_allow,
+                key_prefix=key_prefix,
             )
 
         render_proposal_decision_bar(
@@ -448,57 +484,51 @@ def render_glossary_proposals(
     rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")
     st.caption(f"{len(sorted_nodes)} proposal(s) · {rejected} rejected")
 
-    save_msg = streamlit_runtime.session_state.pop("_glossary_save_msg", None)
-    if save_msg:
-        st.success(str(save_msg))
     regen_msg = pop_proposal_regen_msg("glossary")
     if regen_msg:
         st.success(regen_msg)
 
-    read_col, edit_col = st.columns(2)
-    with read_col:
-        st.markdown(
-            build_readonly_glossary_markdown(
-                sorted_nodes, glossary_tags, wiki_glossary_terms, artifact=artifact
-            )
-        )
-    with edit_col:
-        edit_nodes = sorted_nodes
-        if len(sorted_nodes) > 6:
-            labels = [
-                effective_glossary_scalar(
-                    n.get("llm_item") or {},
-                    n.get("sections") or {},
-                    "term",
-                )
-                or f"Proposal {i + 1}"
-                for i, n in enumerate(sorted_nodes)
-            ]
-            pick = st.selectbox(
-                "Edit term",
-                options=labels,
-                key=f"{key_prefix}_glossary_jump",
-            )
-            idx = labels.index(pick) if pick in labels else 0
-            edit_nodes = [sorted_nodes[idx]]
-            st.caption("Showing one edit panel — use the selector to switch terms.")
+    norm_to, acr_to = _glossary_related_maps(sorted_nodes, wiki_glossary_terms)
 
-        for i, node in enumerate(edit_nodes):
-            pid = str(node.get("proposal_id") or f"idx{i}")
-            pfx = proposal_edit_key_prefix(
-                key_prefix, pid, "g", regen_count=regen_count_from_node(node)
+    def _readonly_md(node: dict[str, Any]) -> str:
+        if len(sorted_nodes) == 1:
+            return build_readonly_glossary_markdown(
+                [node], glossary_tags, wiki_glossary_terms, artifact=artifact
             )
-            _render_glossary_edit_box(
-                st,
-                node,
-                glossary_tags,
-                key_prefix=pfx,
-                source_id=source_id,
-                artifact_path=artifact_path,
-                model=model,
-                prompt_version=prompt_version,
-                tag_allow=tag_allow,
-            )
+        return format_glossary_term_readonly_markdown(
+            node,
+            glossary_tags,
+            artifact=artifact,
+            norm_to=norm_to,
+            acr_to=acr_to,
+        )
+
+    def _render_edit(node: dict[str, Any], index: int) -> None:
+        pid = str(node.get("proposal_id") or f"idx{index}")
+        pfx = proposal_edit_key_prefix(
+            key_prefix, pid, "g", regen_count=regen_count_from_node(node)
+        )
+        _render_glossary_edit_box(
+            st,
+            node,
+            glossary_tags,
+            key_prefix=pfx,
+            source_id=source_id,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            tag_allow=tag_allow,
+        )
+
+    render_two_column_proposal_review(
+        st,
+        sorted_nodes,
+        key_prefix=key_prefix,
+        empty_readonly_text="*(No glossary proposals.)*",
+        label_for_node=_glossary_expander_label,
+        readonly_markdown_for_node=_readonly_md,
+        render_edit_for_node=_render_edit,
+    )
 
 
 def collect_glossary_new_tags(artifact: dict[str, Any]) -> list[str]:

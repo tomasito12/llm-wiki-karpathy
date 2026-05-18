@@ -1,0 +1,1260 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-17T20:15:17+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgcAofFZ1OTL5d5frB9CTzvtiY5rj",
+    "token_usage": {
+      "completion_tokens": 4549,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 25553,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 30102
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The article groups it with GPT-4 class, DeepSeek, and Qwen models as a stronger choice for strict formatting than cheaper or older models."
+        ],
+        "confidence": 0.82,
+        "core_capabilities": [
+          "It produces structured markdown that preserves formatting and links across generated pages.",
+          "It supports document analysis plus final generation in a multi-step workflow.",
+          "It is treated as suitable for wiki-style synthesis tasks that require consistency rather than free-form chat."
+        ],
+        "evidence_type": "expert_opinion",
+        "match_candidates": [],
+        "maturity_signals": "The article groups Claude Sonnet with other frontier-class models that handle the task well, implying practical readiness for structured generation. The evidence is experiential rather than formal, so this is a working recommendation rather than a benchmarked conclusion.",
+        "model_name": "Claude Sonnet",
+        "operational_summary": "The article treats Claude Sonnet as a strong option for structured document ingestion tasks that require strict markdown, YAML frontmatter, and stable wikilinks. It is presented as one of the models that handles the wiki-building workflow well.",
+        "pricing_inference_implications": "The source does not provide pricing data, but it treats this as a frontier-model workflow that can become expensive at scale. That makes cost control and selective use important for high-volume ingests.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "proprietary",
+          "interactive-ai"
+        ],
+        "provider": "Anthropic",
+        "related_models": [
+          "GPT-4 class models",
+          "DeepSeek",
+          "Qwen"
+        ],
+        "service_automation_implications": "No direct service automation implications are identified in the source; the relevance is mainly to document synthesis and knowledge maintenance.",
+        "strengths": "- Handles strict markdown formatting better than cheaper or older models, which matters when output must be machine-ingestible.\n- Appears capable of maintaining consistent wikilinks and schema discipline during multi-document synthesis.\n- Is cited as a model that can support the two-step analysis-plus-generation workflow without immediately drifting off format.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "In my experience, Claude Sonnet, GPT-4 class models, and the larger DeepSeek and Qwen models handle it well.",
+        "value_level": "medium",
+        "weaknesses_limitations": "- The article does not provide benchmark data, only the author's experience, so the strength claim is anecdotal.\n- No cost or latency numbers are given, so the operational tradeoff versus other models remains unclear.\n- The writeup implies that model behavior must be verified before a large ingest run, which suggests that even this model is not fail-safe.",
+        "workflow_implications": "Useful for workflows that require structured extraction followed by clean generation of markdown pages and links. It can reduce prompt fragility when the deliverable has strict formatting constraints."
+      }
+    ],
+    "glossary": [
+      {
+        "confidence": 0.98,
+        "evidence_type": null,
+        "extended_explanation": "Retrieval-augmented generation is useful when the model should not rely only on what it memorized during training. A query first pulls back relevant snippets, and the model then uses those snippets to produce an answer. This can improve factual grounding, but it often behaves like search plus synthesis rather than long-term learning. In practice, teams use it for document Q&A, support knowledge search, and other settings where evidence needs to stay close to the answer.",
+        "match_candidates": [],
+        "primary_tag": "retrieval-augmented-generation",
+        "proposed_definition": "A pattern where a language model answers by retrieving relevant external information first, then using that retrieved context to generate a response. It is commonly used to ground answers in documents, databases, or other knowledge sources.",
+        "proposed_tags": [
+          "retrieval-augmented-generation",
+          "ai-architecture"
+        ],
+        "related_terms": [
+          "Knowledge Management"
+        ],
+        "relevance_note": "This term remains central in AI systems that need grounded answers from private documents, product knowledge, or operational data. It matters because many production assistants still depend on retrieval for freshness and auditability, even when users expect accumulation or memory.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "It doesn\u2019t exist in the most common version of RAG (retrieval-augmented generation). The standard pattern is a stateless lookup tool. It\u2019s brilliant at finding things. It\u2019s terrible at building understanding.",
+        "term": "Retrieval-Augmented Generation",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "extended_explanation": "Knowledge management goes beyond storing files. It is about making information easier to search, connect, verify, and reuse later. In AI workflows, that can mean source-of-truth documents, generated summaries, linked pages, and maintenance routines that remove stale or conflicting material. The goal is to help people and systems build on prior work instead of reconstructing it from scratch each time.",
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "proposed_definition": "The practice of organizing, maintaining, and updating information so it stays usable over time. In AI systems, it often includes structuring documents, linking related ideas, preserving sources, and keeping synthesized notes current.",
+        "proposed_tags": [
+          "knowledge-management",
+          "ai-architecture"
+        ],
+        "related_terms": [
+          "Retrieval-Augmented Generation"
+        ],
+        "relevance_note": "This is a durable concept for any AI workflow that needs memory across sessions, traceable sources, and ongoing curation. It is especially relevant when assistants must support research, internal documentation, or shared operational knowledge.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Instead of asking the AI to retrieve information, you ask it to maintain a knowledge base.",
+        "term": "Knowledge Management",
+        "value_level": "high"
+      }
+    ],
+    "how_to": [
+      {
+        "answer_summary": "First ask the model to analyze the document with the purpose file and existing index in view. Have it identify the important entities, contradictions, and changes that should happen in the wiki. Then use that analysis as the blueprint for a second prompt that writes the final markdown files. Keep the raw source files unchanged so you can check the generated pages against them later. Review the analysis before generation when the update is ambiguous.",
+        "caveats": "This pattern costs more tokens than a single-pass workflow, and the article warns that a 30-page PDF can take tens of thousands of tokens on a frontier model. It also depends on the model staying disciplined with format and links. Human review still matters because the model can generate wrong summaries or bad cross-references.",
+        "confidence": 0.93,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Load the source document together with the purpose file and existing index.",
+          "Ask the model to produce a structured analysis instead of final prose.",
+          "Check the analysis for missing entities, contradictions, and questionable updates.",
+          "Use the analysis as the blueprint for the final markdown generation step.",
+          "Store generated pages separately from immutable source files.",
+          "Run periodic linting to catch orphan pages, dead links, and stale claims."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A source document archive",
+          "A purpose file that defines scope",
+          "A schema or output format the model must follow",
+          "A review loop for ambiguous updates"
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "question_title": "Two-Pass Document Ingestion",
+        "related_howtos": [
+          "Local Model Deployment",
+          "Procedural Support Automation"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The first call is purely analytical. ... The second call takes that analysis as a blueprint and generates the actual markdown files.",
+        "value_level": "high",
+        "what_and_problem": "This is a way to process documents so the model first thinks through the material and only later writes the final output. It helps when one step has to do two different jobs: understand the source and produce clean, structured text. That matters when the output needs stable formatting, links, and citations, because combining those tasks in one prompt often causes mistakes. The procedure is useful for document-heavy workflows where accuracy matters more than speed."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "",
+        "confidence": 0.9,
+        "evidence_from_source": "The article argues that the default document-chat experience is search-and-forget and presents a wiki-maintenance approach as the alternative.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "proposed_tags": [
+          "knowledge-management",
+          "ai-engineering"
+        ],
+        "related_trends": [],
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "The article says most document-chat tools retrieve well but do not accumulate understanding.",
+          "The example system creates markdown pages with wikilinks and citations.",
+          "The article describes knowledge-gap detection and a deep-research module as extensions."
+        ],
+        "supporting_snippet": "The standard pattern is a stateless lookup tool. It\u2019s brilliant at finding things. It\u2019s terrible at building understanding.",
+        "time_sensitivity": "Actionable as of 2026-05-08; the source frames this as an emerging design pattern rather than a settled standard.",
+        "trend_description": "Document assistants are increasingly differentiated by whether they only retrieve passages or also maintain a persistent, interconnected knowledge base over time. The pattern favors systems that can add structure, detect contradictions, and accumulate prior documents into a reusable repository. This is especially relevant when users repeatedly research the same domain and want synthesis rather than fresh retrieval each session.",
+        "trend_slug": "document-chat-tools-moving-toward-persistent-knowledge-bases",
+        "trend_title": "Document Chat Tools Moving Toward Persistent Knowledge Bases",
+        "uncertainty_note": "The article presents one project and one architectural argument, not comparative adoption data, so it is unclear how broadly this pattern will outlast simpler retrieval-first workflows.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "The author is an independent Medium writer summarizing and evaluating an open-source project, not the vendor behind it.",
+        "Claims are supported mainly by descriptive walkthroughs, quoted project behavior, and the author's own assessment rather than formal benchmarks.",
+        "The piece includes some sourced references to Karpathy's gist and the repository, but the core argument is interpretive analysis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "The article is about a way to use artificial intelligence so it does more than answer one-off questions. Instead of treating the model like a search box, it treats it like a librarian that helps build and keep a knowledge base up to date. Each document you add is read, linked to related ideas, and filed into a wiki that grows over time. The idea is that the system should remember what it has already learned, rather than starting over every time you ask a new question. The article uses one open-source desktop app as the main example and explains how its folders, rules file, and two-step processing help make that work. It also explains that this is not magic: the system can make mistakes, cost a lot to run, and needs human checking. A useful part of the article is that it shows how people can imitate the same approach in a simpler note-taking setup even without the app. As of 2026-05-08, the idea looks practical for people who manage a lot of documents and want a more connected way to study them.",
+      "assessed_as_of": "2026-05-08",
+      "contradictions_and_skepticism": "The article is enthusiastic about the wiki paradigm, but it relies heavily on a single project and the author's judgment rather than comparative evidence. The idea that the system can detect and repair knowledge gaps is compelling, but the article does not show measured accuracy for gap detection or contradiction handling. The claim that the patterns are the real moat is plausible, but still a design opinion rather than demonstrated proof. The writeup also leans on examples like Obsidian and Karpathy's gist without proving that these manual workflows preserve quality at scale.",
+      "key_insights": [
+        "Separate analysis from final generation to reduce formatting errors and semantic drift in AI document pipelines.",
+        "Keep raw sources immutable and make synthesized wiki pages a reviewable layer, not the source of truth.",
+        "A purpose file can sharply reduce noise by telling the system what to ignore before ingestion starts.",
+        "Graph-style links and contradiction checks can turn a document archive into a maintained knowledge base instead of a static folder.",
+        "Periodic linting matters because even a structured AI-maintained wiki can rot into stale or conflicting notes."
+      ],
+      "limitations_and_open_questions": "The article notes several practical limits: hallucinated entity pages, fabricated connections, and confidently wrong summaries can all be produced if human review is weak. The two-step workflow is token-expensive, with the author warning that a 30-page PDF can consume tens of thousands of tokens on a frontier model. Model quality varies sharply on strict markdown, YAML frontmatter, and wikilink formatting, and the article explicitly recommends verifying behavior against the chosen model before large ingest runs. The piece also leaves open how well the approach scales beyond moderate corpus size, especially once the full index no longer fits in model context. Security, privacy, and governance are only lightly addressed beyond local Ollama and zero data leakage mentions.",
+      "sources": [
+        "https://medium.com/@creativeaininja/this-open-source-app-turns-your-documents-into-a-self-building-wiki-b3b5778903dd",
+        "github.com/nashsu/llm_wiki",
+        "gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+      ],
+      "summary": "The article argues that most document-chat systems retrieve information but do not accumulate understanding, and it presents nashsu/llm_wiki as a self-maintaining wiki pattern that addresses that gap. The core design is to let an AI read new documents, cross-reference them with existing pages, detect contradictions, and update a persistent markdown knowledge base with citations and wikilinks. The system separates immutable source files from synthesized wiki pages and uses a purpose file plus a schema file to keep extraction focused and consistent. It also splits ingestion into an analysis pass and a generation pass to reduce formatting errors and semantic drift. The author highlights graph-based relevance scoring, knowledge-gap detection, and a deep-research loop as notable extensions. The piece is practical but also candid about limits: hallucinations, cost, model fragility, and the need for periodic linting. As of 2026-05-08, the pattern looks actionable for structured research workflows, especially when users can keep a human review loop around the generated wiki.",
+      "why_it_matters": "The piece is useful because it reframes document chat from retrieval toward accumulation, which is a more durable way to manage research-heavy AI workflows. Its main contribution is architectural: the combination of immutable source files, a purpose file, a schema file, and a two-pass ingest flow is a reusable pattern for reducing drift in generated knowledge bases. The article also makes the evaluation problem concrete by showing why a stateless lookup tool can answer inconsistently when the same corpus is queried across sessions. The strongest practical point is that the AI should maintain a wiki-like synthesis layer while citations preserve auditability back to the originals. That makes the pattern easier to review than opaque memory systems, even though it still depends on human oversight. The limits are equally important: hallucinated pages, fabricated links, and expensive token usage mean the pattern works best when the generated wiki is treated as a working layer rather than authoritative truth. For service automation, the article does not discuss contact centers or voice workflows directly, so the relevance is indirect: the same two-pass ingest and linting pattern could support back-office knowledge curation, but that is an extrapolation from the described architecture. As of 2026-05-08, this is actionable for teams that can afford review and want better long-term knowledge accumulation, but it is not a low-friction turnkey solution."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article centered on one project and one architectural pattern, not a bundle of unrelated news items.",
+        "Not structured as Q&A, step-by-step tutorial, or research paper.",
+        "Contains analysis and recommendations from the author rather than a tool list or transcript."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It ingests documents into markdown pages that are linked together with wikilinks and organized into categories.",
+          "It uses a two-step ingestion flow so the model first analyzes a document and then generates the final pages.",
+          "It supports local execution with Ollama, which can reduce data leakage for sensitive material.",
+          "It includes a Chrome extension for clipping web pages into the ingestion pipeline.",
+          "It provides a built-in knowledge graph visualization and gap-detection workflow."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It can use OpenAI, Anthropic, or Google API keys for hosted model processing.",
+          "It can run locally with Ollama for users who want zero data leakage.",
+          "It accepts clips from a Chrome extension that sends web pages into the local ingestion pipeline."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The project is described as open source with pre-compiled binaries for Mac, Windows, and Linux, which suggests a usable cross-platform distribution model. The article says releases were landing regularly through April and May 2026, indicating active development. The broader ecosystem still looks niche rather than mature enterprise infrastructure, because the article frames it as an emerging pattern and recommends deliberate use and human review.",
+        "name": "nashsu/llm_wiki",
+        "operational_relevance": "This is relevant for teams that want a document workflow with accumulation instead of one-off Q&A. It fits research-heavy work, internal knowledge curation, and any process where repeated reading should produce a growing, auditable knowledge base rather than transient answers. The article emphasizes that the app can run with API models or locally with Ollama, which makes it more flexible for privacy-sensitive setups. It is more of a knowledge-assembly system than a chat interface.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "cloud-saas",
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "Obsidian",
+          "NotebookLM",
+          "ChatGPT",
+          "Ollama"
+        ],
+        "short_description": "An open-source desktop app that turns uploaded documents into a persistent, linked wiki. It reads sources, generates markdown pages, and keeps updating the knowledge base as new material arrives.",
+        "strengths": "- Separates raw source files from synthesized wiki pages so teams keep an audit trail and can review generated claims against the originals.\n- Uses a purpose file and schema file to constrain what the model extracts, which helps reduce noise and keep the output aligned with the task.\n- Splits ingestion into analysis and generation passes, which the article says reduces formatting errors and semantic drift.\n- Builds a knowledge graph with wikilinks and relevance scoring, which makes it easier to see related concepts, contradictions, and gaps.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "The project is called nashsu/llm_wiki, and it's one of the most interesting open-source AI patterns I've seen this year.",
+        "value_level": "high",
+        "weaknesses_limitations": "- The article is explicit that the AI can also maintain mistakes, so hallucinated pages and bad links remain a real risk unless human review is part of the workflow.\n- The two-step ingestion is token-expensive, and the writeup warns that large documents can consume tens of thousands of tokens per source on frontier models.\n- Strict markdown, YAML, and wikilink formatting can break on cheaper or older models, so the tool is sensitive to model choice and requires verification before large ingests.\n- The piece suggests the approach works best at moderate scale; beyond that, context limits and search requirements become more important."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Immutable sources plus synthesized pages create an auditable knowledge layer.",
+          "Cross-links and contradiction checks improve reuse over time.",
+          "Periodic maintenance is required because generated knowledge can decay.",
+          "Scope control via purpose files reduces noise and tangential extraction."
+        ],
+        "knowledge_summary": "AI systems become more useful when they maintain a structured, reviewable knowledge base instead of answering each query from scratch. The key design choice is to separate immutable source material from synthesized notes so that generated knowledge can be audited and corrected. Linking pages, tracking contradictions, and routinely cleaning stale material are central to keeping the knowledge base usable over time. In document-heavy environments, the goal is not just retrieval but accumulation and maintenance.",
+        "match_candidates": [],
+        "operational_insight": "Treat synthesized knowledge as a managed artifact with explicit review and cleanup steps; otherwise, model-generated notes will drift into contradiction and rot.",
+        "primary_tag": "knowledge-management",
+        "proposed_tags": [
+          "knowledge-management",
+          "ai-architecture"
+        ],
+        "related_topics": [
+          "retrieval-augmented-generation",
+          "context-engineering"
+        ],
+        "relevance_note": "Knowledge management is a durable layer in AI systems that need memory, traceability, and reuse across sessions. It matters for internal assistants, research workflows, and any system where repeated interactions should compound rather than reset.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The AI builds a wiki of your research, and that wiki gets smarter every time you feed it something new.",
+        "topic_slug": "knowledge-management",
+        "topic_title": "Knowledge Management",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A scope file can outperform vague prompting by defining what counts as relevant.",
+          "Filtering early reduces noise and contradictory over-extraction.",
+          "Context should include both the immediate document and the existing knowledge base when compounding matters."
+        ],
+        "knowledge_summary": "Context engineering is the practice of shaping what information a model sees so it can do a task reliably. Good context design includes scope statements, explicit source boundaries, and the right supporting material for the job. In document workflows, this often matters more than prompt wording because the model's output quality depends on what it is allowed to inspect. Clear context reduces wasted inference on irrelevant material and helps keep the output aligned with the user's actual goal.",
+        "match_candidates": [],
+        "operational_insight": "Use a purpose file or equivalent scope document to filter aggressively before generation so the model spends its capacity on the right evidence.",
+        "primary_tag": "prompt-engineering",
+        "proposed_tags": [
+          "prompt-engineering",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "retrieval-augmented-generation"
+        ],
+        "relevance_note": "Context engineering is a durable operational skill for assistants that work over private documents, tools, or workflows. It directly affects answer quality, cost, and how much irrelevant material the model carries into a session.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "With a purpose file that says 'I'm specifically interested in regulatory frameworks for frontier model deployment in the EU,' the AI filters aggressively. It knows what to ignore.",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The article groups it with GPT-4 class, DeepSeek, and Qwen models as a stronger choice for strict formatting than cheaper or older models."
+          ],
+          "confidence": 0.82,
+          "core_capabilities": [
+            "It produces structured markdown that preserves formatting and links across generated pages.",
+            "It supports document analysis plus final generation in a multi-step workflow.",
+            "It is treated as suitable for wiki-style synthesis tasks that require consistency rather than free-form chat."
+          ],
+          "evidence_type": "expert_opinion",
+          "match_candidates": [],
+          "maturity_signals": "The article groups Claude Sonnet with other frontier-class models that handle the task well, implying practical readiness for structured generation. The evidence is experiential rather than formal, so this is a working recommendation rather than a benchmarked conclusion.",
+          "model_name": "Claude Sonnet",
+          "operational_summary": "The article treats Claude Sonnet as a strong option for structured document ingestion tasks that require strict markdown, YAML frontmatter, and stable wikilinks. It is presented as one of the models that handles the wiki-building workflow well.",
+          "pricing_inference_implications": "The source does not provide pricing data, but it treats this as a frontier-model workflow that can become expensive at scale. That makes cost control and selective use important for high-volume ingests.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "proprietary",
+            "interactive-ai"
+          ],
+          "provider": "Anthropic",
+          "related_models": [
+            "GPT-4 class models",
+            "DeepSeek",
+            "Qwen"
+          ],
+          "service_automation_implications": "No direct service automation implications are identified in the source; the relevance is mainly to document synthesis and knowledge maintenance.",
+          "strengths": "- Handles strict markdown formatting better than cheaper or older models, which matters when output must be machine-ingestible.\n- Appears capable of maintaining consistent wikilinks and schema discipline during multi-document synthesis.\n- Is cited as a model that can support the two-step analysis-plus-generation workflow without immediately drifting off format.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "In my experience, Claude Sonnet, GPT-4 class models, and the larger DeepSeek and Qwen models handle it well.",
+          "value_level": "medium",
+          "weaknesses_limitations": "- The article does not provide benchmark data, only the author's experience, so the strength claim is anecdotal.\n- No cost or latency numbers are given, so the operational tradeoff versus other models remains unclear.\n- The writeup implies that model behavior must be verified before a large ingest run, which suggests that even this model is not fail-safe.",
+          "workflow_implications": "Useful for workflows that require structured extraction followed by clean generation of markdown pages and links. It can reduce prompt fragility when the deliverable has strict formatting constraints."
+        },
+        "notes": null,
+        "proposal_id": "42980d6d-1bed-4279-ac08-e6a850e121e4",
+        "proposal_status": "rejected",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article groups it with GPT-4 class, DeepSeek, and Qwen models as a stronger choice for strict formatting than cheaper or older models."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It produces structured markdown that preserves formatting and links across generated pages.",
+              "It supports document analysis plus final generation in a multi-step workflow.",
+              "It is treated as suitable for wiki-style synthesis tasks that require consistency rather than free-form chat."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-4 class models",
+              "DeepSeek",
+              "Qwen"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "workflow_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.98,
+          "evidence_type": null,
+          "extended_explanation": "Retrieval-augmented generation is useful when the model should not rely only on what it memorized during training. A query first pulls back relevant snippets, and the model then uses those snippets to produce an answer. This can improve factual grounding, but it often behaves like search plus synthesis rather than long-term learning. In practice, teams use it for document Q&A, support knowledge search, and other settings where evidence needs to stay close to the answer.",
+          "match_candidates": [],
+          "primary_tag": "retrieval-augmented-generation",
+          "proposed_definition": "A pattern where a language model answers by retrieving relevant external information first, then using that retrieved context to generate a response. It is commonly used to ground answers in documents, databases, or other knowledge sources.",
+          "proposed_tags": [
+            "retrieval-augmented-generation",
+            "ai-architecture"
+          ],
+          "related_terms": [
+            "Knowledge Management"
+          ],
+          "relevance_note": "This term remains central in AI systems that need grounded answers from private documents, product knowledge, or operational data. It matters because many production assistants still depend on retrieval for freshness and auditability, even when users expect accumulation or memory.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "It doesn\u2019t exist in the most common version of RAG (retrieval-augmented generation). The standard pattern is a stateless lookup tool. It\u2019s brilliant at finding things. It\u2019s terrible at building understanding.",
+          "term": "Retrieval-Augmented Generation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a24ebe14-b1ef-4933-9c58-8a13a84cc7fe",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Knowledge Management"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "extended_explanation": "Knowledge management goes beyond storing files. It is about making information easier to search, connect, verify, and reuse later. In AI workflows, that can mean source-of-truth documents, generated summaries, linked pages, and maintenance routines that remove stale or conflicting material. The goal is to help people and systems build on prior work instead of reconstructing it from scratch each time.",
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "proposed_definition": "The practice of organizing, maintaining, and updating information so it stays usable over time. In AI systems, it often includes structuring documents, linking related ideas, preserving sources, and keeping synthesized notes current.",
+          "proposed_tags": [
+            "knowledge-management",
+            "ai-architecture"
+          ],
+          "related_terms": [
+            "Retrieval-Augmented Generation"
+          ],
+          "relevance_note": "This is a durable concept for any AI workflow that needs memory across sessions, traceable sources, and ongoing curation. It is especially relevant when assistants must support research, internal documentation, or shared operational knowledge.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Instead of asking the AI to retrieve information, you ask it to maintain a knowledge base.",
+          "term": "Knowledge Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6e4e27f9-b932-4fdb-8c6f-df1886e02492",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Retrieval-Augmented Generation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-management"
+          ]
+        }
+      }
+    ],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "First ask the model to analyze the document with the purpose file and existing index in view. Have it identify the important entities, contradictions, and changes that should happen in the wiki. Then use that analysis as the blueprint for a second prompt that writes the final markdown files. Keep the raw source files unchanged so you can check the generated pages against them later. Review the analysis before generation when the update is ambiguous.",
+          "caveats": "This pattern costs more tokens than a single-pass workflow, and the article warns that a 30-page PDF can take tens of thousands of tokens on a frontier model. It also depends on the model staying disciplined with format and links. Human review still matters because the model can generate wrong summaries or bad cross-references.",
+          "confidence": 0.93,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Load the source document together with the purpose file and existing index.",
+            "Ask the model to produce a structured analysis instead of final prose.",
+            "Check the analysis for missing entities, contradictions, and questionable updates.",
+            "Use the analysis as the blueprint for the final markdown generation step.",
+            "Store generated pages separately from immutable source files.",
+            "Run periodic linting to catch orphan pages, dead links, and stale claims."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A source document archive",
+            "A purpose file that defines scope",
+            "A schema or output format the model must follow",
+            "A review loop for ambiguous updates"
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "question_title": "Two-Pass Document Ingestion",
+          "related_howtos": [
+            "Local Model Deployment",
+            "Procedural Support Automation"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "knowledge-management",
+          "suggested_new_tags": [
+            "knowledge-management",
+            "wiki"
+          ],
+          "supporting_snippet": "The first call is purely analytical. ... The second call takes that analysis as a blueprint and generates the actual markdown files.",
+          "value_level": "high",
+          "what_and_problem": "This is a way to process documents so the model first thinks through the material and only later writes the final output. It helps when one step has to do two different jobs: understand the source and produce clean, structured text. That matters when the output needs stable formatting, links, and citations, because combining those tasks in one prompt often causes mistakes. The procedure is useful for document-heavy workflows where accuracy matters more than speed."
+        },
+        "notes": null,
+        "proposal_id": "b5f20376-3fae-4e95-9d33-b63cb265ff78",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Load the source document together with the purpose file and existing index.",
+              "Ask the model to produce a structured analysis instead of final prose.",
+              "Check the analysis for missing entities, contradictions, and questionable updates.",
+              "Use the analysis as the blueprint for the final markdown generation step.",
+              "Store generated pages separately from immutable source files.",
+              "Run periodic linting to catch orphan pages, dead links, and stale claims."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A source document archive",
+              "A purpose file that defines scope",
+              "A schema or output format the model must follow",
+              "A review loop for ambiguous updates"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "Local Model Deployment",
+              "Procedural Support Automation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "knowledge-management",
+            "wiki"
+          ],
+          "final_tags": [
+            "knowledge-management",
+            "wiki"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "",
+          "confidence": 0.9,
+          "evidence_from_source": "The article argues that the default document-chat experience is search-and-forget and presents a wiki-maintenance approach as the alternative.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "proposed_tags": [
+            "knowledge-management",
+            "ai-engineering"
+          ],
+          "related_trends": [],
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "The article says most document-chat tools retrieve well but do not accumulate understanding.",
+            "The example system creates markdown pages with wikilinks and citations.",
+            "The article describes knowledge-gap detection and a deep-research module as extensions."
+          ],
+          "supporting_snippet": "The standard pattern is a stateless lookup tool. It\u2019s brilliant at finding things. It\u2019s terrible at building understanding.",
+          "time_sensitivity": "Actionable as of 2026-05-08; the source frames this as an emerging design pattern rather than a settled standard.",
+          "trend_description": "Document assistants are increasingly differentiated by whether they only retrieve passages or also maintain a persistent, interconnected knowledge base over time. The pattern favors systems that can add structure, detect contradictions, and accumulate prior documents into a reusable repository. This is especially relevant when users repeatedly research the same domain and want synthesis rather than fresh retrieval each session.",
+          "trend_slug": "document-chat-tools-moving-toward-persistent-knowledge-bases",
+          "trend_title": "Document Chat Tools Moving Toward Persistent Knowledge Bases",
+          "uncertainty_note": "The article presents one project and one architectural argument, not comparative adoption data, so it is unclear how broadly this pattern will outlast simpler retrieval-first workflows.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "c78af350-852b-4cc8-8cfe-6860837b5c90",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The article says most document-chat tools retrieve well but do not accumulate understanding.",
+              "The example system creates markdown pages with wikilinks and citations.",
+              "The article describes knowledge-gap detection and a deep-research module as extensions."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "The author is an independent Medium writer summarizing and evaluating an open-source project, not the vendor behind it.",
+          "Claims are supported mainly by descriptive walkthroughs, quoted project behavior, and the author's own assessment rather than formal benchmarks.",
+          "The piece includes some sourced references to Karpathy's gist and the repository, but the core argument is interpretive analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Separate analysis from final generation to reduce formatting errors and semantic drift in AI document pipelines.",
+          "Keep raw sources immutable and make synthesized wiki pages a reviewable layer, not the source of truth.",
+          "A purpose file can sharply reduce noise by telling the system what to ignore before ingestion starts.",
+          "Graph-style links and contradiction checks can turn a document archive into a maintained knowledge base instead of a static folder.",
+          "Periodic linting matters because even a structured AI-maintained wiki can rot into stale or conflicting notes."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@creativeaininja/this-open-source-app-turns-your-documents-into-a-self-building-wiki-b3b5778903dd",
+          "github.com/nashsu/llm_wiki",
+          "gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article centered on one project and one architectural pattern, not a bundle of unrelated news items.",
+          "Not structured as Q&A, step-by-step tutorial, or research paper.",
+          "Contains analysis and recommendations from the author rather than a tool list or transcript."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It ingests documents into markdown pages that are linked together with wikilinks and organized into categories.",
+            "It uses a two-step ingestion flow so the model first analyzes a document and then generates the final pages.",
+            "It supports local execution with Ollama, which can reduce data leakage for sensitive material.",
+            "It includes a Chrome extension for clipping web pages into the ingestion pipeline.",
+            "It provides a built-in knowledge graph visualization and gap-detection workflow."
+          ],
+          "integration_ecosystem": [
+            "It can use OpenAI, Anthropic, or Google API keys for hosted model processing.",
+            "It can run locally with Ollama for users who want zero data leakage.",
+            "It accepts clips from a Chrome extension that sends web pages into the local ingestion pipeline."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The project is described as open source with pre-compiled binaries for Mac, Windows, and Linux, which suggests a usable cross-platform distribution model. The article says releases were landing regularly through April and May 2026, indicating active development. The broader ecosystem still looks niche rather than mature enterprise infrastructure, because the article frames it as an emerging pattern and recommends deliberate use and human review.",
+          "name": "nashsu/llm_wiki",
+          "operational_relevance": "This is relevant for teams that want a document workflow with accumulation instead of one-off Q&A. It fits research-heavy work, internal knowledge curation, and any process where repeated reading should produce a growing, auditable knowledge base rather than transient answers. The article emphasizes that the app can run with API models or locally with Ollama, which makes it more flexible for privacy-sensitive setups. It is more of a knowledge-assembly system than a chat interface.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "cloud-saas",
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "Obsidian",
+            "NotebookLM",
+            "ChatGPT",
+            "Ollama"
+          ],
+          "short_description": "An open-source desktop app that turns uploaded documents into a persistent, linked wiki. It reads sources, generates markdown pages, and keeps updating the knowledge base as new material arrives.",
+          "strengths": "- Separates raw source files from synthesized wiki pages so teams keep an audit trail and can review generated claims against the originals.\n- Uses a purpose file and schema file to constrain what the model extracts, which helps reduce noise and keep the output aligned with the task.\n- Splits ingestion into analysis and generation passes, which the article says reduces formatting errors and semantic drift.\n- Builds a knowledge graph with wikilinks and relevance scoring, which makes it easier to see related concepts, contradictions, and gaps.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "The project is called nashsu/llm_wiki, and it's one of the most interesting open-source AI patterns I've seen this year.",
+          "value_level": "high",
+          "weaknesses_limitations": "- The article is explicit that the AI can also maintain mistakes, so hallucinated pages and bad links remain a real risk unless human review is part of the workflow.\n- The two-step ingestion is token-expensive, and the writeup warns that large documents can consume tens of thousands of tokens per source on frontier models.\n- Strict markdown, YAML, and wikilink formatting can break on cheaper or older models, so the tool is sensitive to model choice and requires verification before large ingests.\n- The piece suggests the approach works best at moderate scale; beyond that, context limits and search requirements become more important."
+        },
+        "notes": null,
+        "proposal_id": "4b54750f-84ef-4033-baab-f974760a98ca",
+        "proposal_status": "rejected",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It ingests documents into markdown pages that are linked together with wikilinks and organized into categories.",
+              "It uses a two-step ingestion flow so the model first analyzes a document and then generates the final pages.",
+              "It supports local execution with Ollama, which can reduce data leakage for sensitive material.",
+              "It includes a Chrome extension for clipping web pages into the ingestion pipeline.",
+              "It provides a built-in knowledge graph visualization and gap-detection workflow."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It can use OpenAI, Anthropic, or Google API keys for hosted model processing.",
+              "It can run locally with Ollama for users who want zero data leakage.",
+              "It accepts clips from a Chrome extension that sends web pages into the local ingestion pipeline."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "NotebookLM",
+              "ChatGPT",
+              "Ollama"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "cloud-saas",
+            "workflow-automation"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Immutable sources plus synthesized pages create an auditable knowledge layer.",
+            "Cross-links and contradiction checks improve reuse over time.",
+            "Periodic maintenance is required because generated knowledge can decay.",
+            "Scope control via purpose files reduces noise and tangential extraction."
+          ],
+          "knowledge_summary": "AI systems become more useful when they maintain a structured, reviewable knowledge base instead of answering each query from scratch. The key design choice is to separate immutable source material from synthesized notes so that generated knowledge can be audited and corrected. Linking pages, tracking contradictions, and routinely cleaning stale material are central to keeping the knowledge base usable over time. In document-heavy environments, the goal is not just retrieval but accumulation and maintenance.",
+          "match_candidates": [],
+          "operational_insight": "Treat synthesized knowledge as a managed artifact with explicit review and cleanup steps; otherwise, model-generated notes will drift into contradiction and rot.",
+          "primary_tag": "knowledge-management",
+          "proposed_tags": [
+            "knowledge-management",
+            "ai-architecture"
+          ],
+          "related_topics": [
+            "retrieval-augmented-generation",
+            "context-engineering"
+          ],
+          "relevance_note": "Knowledge management is a durable layer in AI systems that need memory, traceability, and reuse across sessions. It matters for internal assistants, research workflows, and any system where repeated interactions should compound rather than reset.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "The AI builds a wiki of your research, and that wiki gets smarter every time you feed it something new.",
+          "topic_slug": "knowledge-management",
+          "topic_title": "Knowledge Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "4134230b-f925-4251-a3b4-d00f0cc655d1",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Immutable sources plus synthesized pages create an auditable knowledge layer.",
+              "Cross-links and contradiction checks improve reuse over time.",
+              "Periodic maintenance is required because generated knowledge can decay.",
+              "Scope control via purpose files reduces noise and tangential extraction."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "retrieval-augmented-generation",
+              "context-engineering"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-management"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A scope file can outperform vague prompting by defining what counts as relevant.",
+            "Filtering early reduces noise and contradictory over-extraction.",
+            "Context should include both the immediate document and the existing knowledge base when compounding matters."
+          ],
+          "knowledge_summary": "Context engineering is the practice of shaping what information a model sees so it can do a task reliably. Good context design includes scope statements, explicit source boundaries, and the right supporting material for the job. In document workflows, this often matters more than prompt wording because the model's output quality depends on what it is allowed to inspect. Clear context reduces wasted inference on irrelevant material and helps keep the output aligned with the user's actual goal.",
+          "match_candidates": [],
+          "operational_insight": "Use a purpose file or equivalent scope document to filter aggressively before generation so the model spends its capacity on the right evidence.",
+          "primary_tag": "prompt-engineering",
+          "proposed_tags": [
+            "prompt-engineering",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "retrieval-augmented-generation"
+          ],
+          "relevance_note": "Context engineering is a durable operational skill for assistants that work over private documents, tools, or workflows. It directly affects answer quality, cost, and how much irrelevant material the model carries into a session.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "With a purpose file that says 'I'm specifically interested in regulatory frameworks for frontier model deployment in the EU,' the AI filters aggressively. It knows what to ignore.",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "912b7496-59ef-4365-aeba-f4d1747463e5",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A scope file can outperform vague prompting by defining what counts as relevant.",
+              "Filtering early reduces noise and contradictory over-extraction.",
+              "Context should include both the immediate document and the existing knowledge base when compounding matters."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "retrieval-augmented-generation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 1,
+      "independent_analysis": 7
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 3,
+    "proposals_total": 8,
+    "review_duration_seconds": 657.6,
+    "review_finished_at": "2026-05-17T20:26:15.822145+00:00",
+    "review_started_at": "2026-05-17T20:15:18.197162+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-17T20:26:15+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Kristopher Dunham",
+    "canonical_url": "https://medium.com/@creativeaininja/this-open-source-app-turns-your-documents-into-a-self-building-wiki-b3b5778903dd",
+    "content_sha256": "72014f4130e7df977067f6cd01b9a8ff406a5d6b78acf33631b59fd1659daf5a",
+    "publication": "Medium",
+    "published_date": "2026-05-08",
+    "raw_html_rel_path": "raw/readwise/this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g.html",
+    "raw_md_rel_path": "raw/readwise/this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g.md",
+    "source_id": "this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g",
+    "title": "This Open-Source App Turns Your Documents Into a Self-Building Wiki"
+  }
+}

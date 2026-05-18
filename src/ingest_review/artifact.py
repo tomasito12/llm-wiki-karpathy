@@ -1341,6 +1341,14 @@ def backup_artifact(path: Path) -> Path | None:
     return backup
 
 
+def ensure_review_started(artifact: dict[str, Any]) -> None:
+    """Set ``review_analytics.review_started_at`` if the review timer has not run yet."""
+    analytics = artifact.setdefault("review_analytics", {})
+    started = analytics.get("review_started_at")
+    if started is None or not str(started).strip():
+        analytics["review_started_at"] = _utc_now_iso()
+
+
 def touch_review_session(artifact: dict[str, Any]) -> None:
     """Set ``review_session.last_saved_at`` to now."""
     session = artifact.setdefault("review_session", {})

@@ -13,6 +13,7 @@ from src.ingest_review.domain_tag_ui import find_review_node
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.proposal_regen import REGEN_SPECS, apply_regenerated_proposal
 from src.ingest_review.proposal_regen_context import build_regen_context_sections
+from src.ingest_review.proposal_regen_ui import preserve_review_entity_tab_for_regen
 from src.ingest_review.proposal_transfer import (
     resolve_transfer_specs,
     transfer_proposal_to_entity,
@@ -204,6 +205,7 @@ def process_pending_proposal_regen(
             "entity": msg_entity,
             "text": msg,
         }
+        preserve_review_entity_tab_for_regen(msg_entity)
         st.rerun()
         return True
     except Exception as exc:  # noqa: BLE001

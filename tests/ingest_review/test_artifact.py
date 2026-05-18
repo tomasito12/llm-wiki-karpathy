@@ -11,6 +11,7 @@ from src.ingest_review.artifact import (
     build_new_artifact,
     default_analysis_meta,
     default_review_for_llm_output,
+    ensure_review_started,
     migrate_artifact_to_v2,
     migrate_artifact_to_v3,
     migrate_artifact_to_v4,
@@ -1439,3 +1440,19 @@ def test_migrate_v15_adds_source_evidence_profile_and_compacts() -> None:
     assert profile["primary_evidence_type"] == "vendor_claim"
     assert "evidence_type" not in art["llm_output"]["glossary"][0]
     assert "source_evidence_profile" in art["review"]
+
+
+def test_ensure_review_started_sets_timestamp_when_missing() -> None:
+    artifact: dict[str, Any] = {"review_analytics": {}}
+    ensure_review_started(artifact)
+    started = artifact["review_analytics"]["review_started_at"]
+    assert isinstance(started, str)
+    assert started.strip()
+
+
+def test_ensure_review_started_preserves_existing_timestamp() -> None:
+    artifact: dict[str, Any] = {
+        "review_analytics": {"review_started_at": "2026-01-01T00:00:00+00:00"},
+    }
+    ensure_review_started(artifact)
+    assert artifact["review_analytics"]["review_started_at"] == "2026-01-01T00:00:00+00:00"

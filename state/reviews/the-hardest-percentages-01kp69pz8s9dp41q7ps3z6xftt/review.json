@@ -1,0 +1,604 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-17T15:42:04+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgXuYrVu3TmDkhjafOjWku3jnWSgb",
+    "token_usage": {
+      "completion_tokens": 2304,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 23975,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 26279
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start by separating your support work into simple information requests, user-specific lookups, and action-led requests that require steps across systems. Build the workflow so the agent can gather context, branch through the right checks, and pause for a person when a policy or missing integration makes that necessary. Add testing before launch, then keep version history and rollback available so changes can be reversed safely. Monitor connector health and failure reports so broken integrations or logic do not quietly degrade the workflow. The basic idea is to automate the process, not just the answer.",
+        "caveats": "The source does not explain how much setup work is needed per workflow, how often humans still intervene, or what failure rates look like across different request types. Vendor-authored satisfaction and scale claims should be validated against your own queue mix.",
+        "confidence": 0.78,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Identify which requests are informational, personalized, or action-led.",
+          "Paste existing standard operating procedures into a natural-language editor.",
+          "Add branching logic and data connectors for the systems the workflow must touch.",
+          "Use AI-powered simulations to test behavior before deployment.",
+          "Enable failure reporting, version history, and rollback for maintenance.",
+          "Insert human checkpoints for sensitive decisions or missing integrations."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A clear map of support request types.",
+          "Existing standard operating procedures or workflow rules.",
+          "Data connectors or APIs for the systems involved.",
+          "A human review path for sensitive or high-risk steps."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "local-model-deployment"
+        ],
+        "question_title": "Procedural Support Automation",
+        "related_howtos": [
+          "Local Coding Model Setup"
+        ],
+        "secondary_tag": "local-model-deployment",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Procedures gives your team everything they need: a natural language editor \u2013 literally paste your existing SOPs \u2013 branching logic, data connectors, and AI-powered simulations for testing.",
+        "value_level": "high",
+        "what_and_problem": "This is about setting up support systems that can do multi-step work, not just answer questions. It solves the problem of hard customer requests that involve several systems, policy checks, or human approval, which are more time-consuming than simple information lookups. The goal is to let a team handle those cases with less manual effort while still keeping control over sensitive steps. It is useful when easy questions are already automated but the difficult ones still consume most of the time."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The source is an Intercom blog post describing Intercom's own product and results.",
+        "Key claims about scale, CSAT, and product capabilities are presented by the vendor without independent verification in the article.",
+        "The article frames its own product architecture and rollout as evidence."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about why the hardest customer support questions matter most. It says that easy questions, like looking up information, are already handled well by artificial intelligence tools. The real challenge is when a customer needs several steps taken across different systems, such as checking a policy, verifying data, and making a refund decision. The author argues that these difficult cases take up a lot of time, even if they are a small share of total requests. Intercom presents a product called Fin Procedures that is meant to handle those multi-step tasks. The product lets support teams set up workflows, connect data sources, and even pause for a human to review sensitive steps. The article also says the product is already being used at scale and that satisfaction was higher in a test when it was turned on. The main message is that automation is most valuable when it can do work, not just answer questions. As of 2026-04-14, this is a useful product claim to study, but it is still a vendor-written source.",
+      "assessed_as_of": "2026-04-14",
+      "contradictions_and_skepticism": "The article criticizes bespoke services-heavy setups, but it also acknowledges optional help from a forward-deployed team, so the boundary between product and services is not absolute. The stronger CSAT result is promising, but the source does not show whether the gain comes from broader workflow coverage, better UX, or selection effects in the tested cohort. The claim that procedural automation compounds across customers is plausible, but the article does not quantify that compounding beyond product-level assertions.",
+      "key_insights": [
+        "Complex support requests can dominate handling time even when they are a minority of the queue.",
+        "A support stack that only answers questions leaves the hardest, highest-stakes cases untouched.",
+        "Branching logic, data connectors, simulations, and rollback matter because procedural automation needs ongoing maintenance.",
+        "Human checkpoints are a practical control for gaps in integrations and sensitive decisions.",
+        "A vendor product is more reusable than a services engagement when many customers need the same workflow surface."
+      ],
+      "limitations_and_open_questions": "The evidence comes from a vendor blog, so the usage and satisfaction claims are not independently verified in the source. The randomized 5% holdout is mentioned, but the article does not describe the test design, baseline, confidence interval, or whether the result generalizes across customer segments. The scale claim of 1.5 million conversations and doubling volume is useful but still lacks details on mix, quality thresholds, and failure rates. It is also unclear how often human checkpoints are needed, how much setup effort is still required, and what happens when connectors are missing or policies change frequently. The article does not provide cost, latency, or deflection metrics for the complex workflows themselves.",
+      "sources": [
+        "https://www.intercom.com/blog/the-hardest-percentages/"
+      ],
+      "summary": "The piece argues that the hardest support cases are the ones that matter most for automation, because rare multi-step issues consume a disproportionate share of team time and are what customers remember. It separates support into informational, personalized, and action-led queries, and says AI agents are already good at the first category but far less capable on the last one. The main product claim is that Intercom\u2019s Fin Procedures closes this gap by letting teams configure branching, data connectors, simulations, and human checkpoints without depending on a forward-deployed engineer. The article also emphasizes that the product is already in managed availability at scale, with reported usage and a randomized holdout test showing higher customer satisfaction when Procedures ran. The practical takeaway is that automation rate improves most when systems can execute workflows, not just answer questions. As of 2026-04-14, the claims are actionable but vendor-authored, so they are useful for product design review rather than independent proof.",
+      "why_it_matters": "The piece is useful because it separates support automation into informational, personalized, and action-led work, which is a clean way to think about what agents can and cannot do. It grounds the argument in a concrete operational pattern: a small set of rare cases can absorb a large share of team time, so improving those flows can matter more than shaving effort off easy questions. It also adds a product-design point: procedural automation needs editing, testing, rollback, connector monitoring, and human checkpoints, not just a model wrapper. The strongest practical lesson is that a support agent becomes materially more useful when it can execute steps across systems and surface a reviewable trail, rather than stopping at retrieval. The evidence is still vendor-authored, so the claims are best treated as a product case study and design hypothesis, not independent validation. For support and service automation, the closing claim is that the hard cases are the main leverage point, and that claim is actionable as of 2026-04-14 but should be validated against your own queue mix and containment data."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor blog post with one main argument, not a bundle of unrelated news items.",
+        "Contains product positioning, usage claims, and a measured test result rather than a Q&A transcript or step-by-step tutorial.",
+        "Not structured as a roundup, tool list, or research paper."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Action-led requests need branching and tool use, not only retrieval.",
+          "Human checkpoints are a core control mechanism in higher-risk flows.",
+          "Versioning, rollback, and failure reporting are part of operating agentic workflows."
+        ],
+        "knowledge_summary": "Agentic workflows are task flows where an AI system does more than generate text: it decides steps, calls tools, gathers context, and continues until the task is complete or handed off. They are especially useful when a request spans multiple systems or needs conditional branching. The engineering challenge is not only model quality but also workflow design, guardrails, and recovery paths. Human checkpoints, versioning, and monitoring become part of the product, not optional extras.",
+        "match_candidates": [],
+        "operational_insight": "Treat the agent as a process executor that must be tested, observable, and interruptible, especially for sensitive actions.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "context-engineering",
+          "realtime-ai-evaluation"
+        ],
+        "relevance_note": "This matters because many real customer-facing systems need AI to coordinate steps, not just answer questions. The durable value is in orchestration, state handling, and safe handoff design across chat, voice, and internal workflows.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Fin handles the conversation, gathers context, and pauses, surfacing a structured summary for a human agent to verify or act, then resumes.",
+        "topic_slug": "agentic-workflows",
+        "topic_title": "Agentic Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.86,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Only request information when the workflow actually needs it.",
+          "Structured summaries make human review easier during checkpoints.",
+          "Context quality affects whether the agent can complete a workflow end to end."
+        ],
+        "knowledge_summary": "Context engineering is the practice of supplying an AI system with the right inputs, state, and constraints so it can act correctly. In workflow settings, that includes routing rules, data connectors, policy context, and structured summaries for handoff. The goal is to reduce ambiguity and make the model's next step easier to verify. Good context design often matters as much as the base model.",
+        "match_candidates": [],
+        "operational_insight": "Procedural systems fail less when context is structured, monitored, and only requested when needed.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "agentic-workflows"
+        ],
+        "relevance_note": "This is central to reliable conversational AI because support, chat, and voice flows depend on getting the right details at the right moment. Better context packaging lowers friction for users and reduces avoidable handoff loops.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Optional data connector parameters: Fin only asks customers for information when it\u2019s actually needed, instead of prompting for every field.",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by separating your support work into simple information requests, user-specific lookups, and action-led requests that require steps across systems. Build the workflow so the agent can gather context, branch through the right checks, and pause for a person when a policy or missing integration makes that necessary. Add testing before launch, then keep version history and rollback available so changes can be reversed safely. Monitor connector health and failure reports so broken integrations or logic do not quietly degrade the workflow. The basic idea is to automate the process, not just the answer.",
+          "caveats": "The source does not explain how much setup work is needed per workflow, how often humans still intervene, or what failure rates look like across different request types. Vendor-authored satisfaction and scale claims should be validated against your own queue mix.",
+          "confidence": 0.78,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Identify which requests are informational, personalized, or action-led.",
+            "Paste existing standard operating procedures into a natural-language editor.",
+            "Add branching logic and data connectors for the systems the workflow must touch.",
+            "Use AI-powered simulations to test behavior before deployment.",
+            "Enable failure reporting, version history, and rollback for maintenance.",
+            "Insert human checkpoints for sensitive decisions or missing integrations."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A clear map of support request types.",
+            "Existing standard operating procedures or workflow rules.",
+            "Data connectors or APIs for the systems involved.",
+            "A human review path for sensitive or high-risk steps."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "local-model-deployment"
+          ],
+          "question_title": "Procedural Support Automation",
+          "related_howtos": [
+            "Local Coding Model Setup"
+          ],
+          "secondary_tag": "local-model-deployment",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "support-automation",
+          "suggested_new_tags": [
+            "support-automation"
+          ],
+          "supporting_snippet": "Procedures gives your team everything they need: a natural language editor \u2013 literally paste your existing SOPs \u2013 branching logic, data connectors, and AI-powered simulations for testing.",
+          "value_level": "high",
+          "what_and_problem": "This is about setting up support systems that can do multi-step work, not just answer questions. It solves the problem of hard customer requests that involve several systems, policy checks, or human approval, which are more time-consuming than simple information lookups. The goal is to let a team handle those cases with less manual effort while still keeping control over sensitive steps. It is useful when easy questions are already automated but the difficult ones still consume most of the time."
+        },
+        "notes": null,
+        "proposal_id": "f3af2831-7a48-46f7-90b0-24c66f7b5c2d",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Identify which requests are informational, personalized, or action-led.",
+              "Paste existing standard operating procedures into a natural-language editor.",
+              "Add branching logic and data connectors for the systems the workflow must touch.",
+              "Use AI-powered simulations to test behavior before deployment.",
+              "Enable failure reporting, version history, and rollback for maintenance.",
+              "Insert human checkpoints for sensitive decisions or missing integrations."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A clear map of support request types.",
+              "Existing standard operating procedures or workflow rules.",
+              "Data connectors or APIs for the systems involved.",
+              "A human review path for sensitive or high-risk steps."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "Local Coding Model Setup"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "support-automation"
+          ],
+          "final_tags": []
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The source is an Intercom blog post describing Intercom's own product and results.",
+          "Key claims about scale, CSAT, and product capabilities are presented by the vendor without independent verification in the article.",
+          "The article frames its own product architecture and rollout as evidence."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Complex support requests can dominate handling time even when they are a minority of the queue.",
+          "A support stack that only answers questions leaves the hardest, highest-stakes cases untouched.",
+          "Branching logic, data connectors, simulations, and rollback matter because procedural automation needs ongoing maintenance.",
+          "Human checkpoints are a practical control for gaps in integrations and sensitive decisions.",
+          "A vendor product is more reusable than a services engagement when many customers need the same workflow surface."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.intercom.com/blog/the-hardest-percentages/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor blog post with one main argument, not a bundle of unrelated news items.",
+          "Contains product positioning, usage claims, and a measured test result rather than a Q&A transcript or step-by-step tutorial.",
+          "Not structured as a roundup, tool list, or research paper."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Action-led requests need branching and tool use, not only retrieval.",
+            "Human checkpoints are a core control mechanism in higher-risk flows.",
+            "Versioning, rollback, and failure reporting are part of operating agentic workflows."
+          ],
+          "knowledge_summary": "Agentic workflows are task flows where an AI system does more than generate text: it decides steps, calls tools, gathers context, and continues until the task is complete or handed off. They are especially useful when a request spans multiple systems or needs conditional branching. The engineering challenge is not only model quality but also workflow design, guardrails, and recovery paths. Human checkpoints, versioning, and monitoring become part of the product, not optional extras.",
+          "match_candidates": [],
+          "operational_insight": "Treat the agent as a process executor that must be tested, observable, and interruptible, especially for sensitive actions.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "context-engineering",
+            "realtime-ai-evaluation"
+          ],
+          "relevance_note": "This matters because many real customer-facing systems need AI to coordinate steps, not just answer questions. The durable value is in orchestration, state handling, and safe handoff design across chat, voice, and internal workflows.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Fin handles the conversation, gathers context, and pauses, surfacing a structured summary for a human agent to verify or act, then resumes.",
+          "topic_slug": "agentic-workflows",
+          "topic_title": "Agentic Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "445cdce9-9016-4589-aaa6-6649bdeb8fb3",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Action-led requests need branching and tool use, not only retrieval.",
+              "Human checkpoints are a core control mechanism in higher-risk flows.",
+              "Versioning, rollback, and failure reporting are part of operating agentic workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "context-engineering",
+              "realtime-ai-evaluation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.86,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Only request information when the workflow actually needs it.",
+            "Structured summaries make human review easier during checkpoints.",
+            "Context quality affects whether the agent can complete a workflow end to end."
+          ],
+          "knowledge_summary": "Context engineering is the practice of supplying an AI system with the right inputs, state, and constraints so it can act correctly. In workflow settings, that includes routing rules, data connectors, policy context, and structured summaries for handoff. The goal is to reduce ambiguity and make the model's next step easier to verify. Good context design often matters as much as the base model.",
+          "match_candidates": [],
+          "operational_insight": "Procedural systems fail less when context is structured, monitored, and only requested when needed.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "agentic-workflows"
+          ],
+          "relevance_note": "This is central to reliable conversational AI because support, chat, and voice flows depend on getting the right details at the right moment. Better context packaging lowers friction for users and reduces avoidable handoff loops.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Optional data connector parameters: Fin only asks customers for information when it\u2019s actually needed, instead of prompting for every field.",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6b8877e8-50ab-4122-a185-cf9cab7c9b30",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Only request information when the workflow actually needs it.",
+              "Structured summaries make human review easier during checkpoints.",
+              "Context quality affects whether the agent can complete a workflow end to end."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "prompt-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 352.2,
+    "review_finished_at": "2026-05-17T15:47:56.559997+00:00",
+    "review_started_at": "2026-05-17T15:42:04.395405+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-17T15:47:56+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Pratik Bothra",
+    "canonical_url": "https://www.intercom.com/blog/the-hardest-percentages/",
+    "content_sha256": "2b8825662751478bf1e9499facd90d34620adf2f5fdb999589417070e5ec19cb",
+    "publication": "Intercom",
+    "published_date": "2026-04-14",
+    "raw_html_rel_path": "raw/readwise/the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt.html",
+    "raw_md_rel_path": "raw/readwise/the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt.md",
+    "source_id": "the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt",
+    "title": "The hardest percentages"
+  }
+}

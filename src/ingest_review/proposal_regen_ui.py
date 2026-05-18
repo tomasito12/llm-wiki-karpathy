@@ -8,6 +8,30 @@ import streamlit as streamlit_runtime
 
 from src.ingest_review.proposal_transfer import TRANSFER_TARGET_OPTIONS, transfer_target_label
 
+ENTITY_REVIEW_TAB_BY_KEY: dict[str, str] = {
+    "glossary": "Glossary",
+    "topic": "Topics",
+    "how_to": "How-tos",
+    "trend": "Trends",
+    "tool": "Tools",
+    "model": "Models",
+    "impl_study": "Impl studies",
+    "signal": "Signals",
+    "insight": "Insights",
+}
+
+
+def entity_review_tab_for_key(entity_key: str) -> str | None:
+    """Map regeneration entity key to dashboard ``review_entity_tab`` radio label."""
+    return ENTITY_REVIEW_TAB_BY_KEY.get(entity_key)
+
+
+def preserve_review_entity_tab_for_regen(entity_key: str) -> None:
+    """Keep the dashboard on the matching entity tab across ``st.rerun()`` after regen."""
+    tab = entity_review_tab_for_key(entity_key)
+    if tab:
+        streamlit_runtime.session_state["review_entity_tab"] = tab
+
 
 def proposal_edit_key_prefix(
     source_key_prefix: str,

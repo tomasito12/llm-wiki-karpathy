@@ -66,13 +66,16 @@ industry_trends, roundup_signals, or interview_insights instead.
 Always fill extraction_meta with skip_recommended, skip_reason, total_candidates_considered, \
 and review_burden_estimate. If the article contains no durable, wiki-worthy knowledge, \
 set skip_recommended=true and skip_reason explaining why; return empty arrays for all \
-entity types. Do NOT force low-value extractions.
+entity types. Do NOT force low-value extractions—EXCEPT for ai_tools_roundup and \
+how_to_roundup: skip_recommended MUST be false; extract every primary list item for human \
+review (use value_level \"low\" for thin entries).
 
 Always fill source_evidence_profile and source_type_detection. \
 Set source_type_detection with the detected source type, confidence, and reasoning. \
 If the source is an ai_industry_roundup, also populate roundup_signals. \
 If the source is an ai_tools_roundup, extract ONLY tools and foundation_models per \
 AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC; leave roundup_signals empty []. \
+If the source is how_to_roundup, extract ONLY how_to per HOW_TO_ROUNDUP_EXTRACTION_RUBRIC. \
 If the source is an interview_or_transcript, also populate interview_insights. \
 For page titles and terms, follow TITLE_CANONICALIZATION_RUBRIC and the ``CANONICAL_*`` \
 lists in the prompt. Append/create wiki routing is **not** part of this step. \
@@ -131,7 +134,9 @@ top items within budget. Report total_candidates_considered in extraction_meta.
 
 If the article contains no durable, wiki-worthy knowledge, set \
 extraction_meta.skip_recommended = true and skip_reason explaining why. \
-Return empty arrays for all entity types. Do NOT force low-value extractions."""
+Return empty arrays for all entity types. Do NOT force low-value extractions—EXCEPT \
+ai_tools_roundup and how_to_roundup: skip_recommended MUST be false; completeness \
+over curation."""
 
 
 AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC = """\
@@ -152,10 +157,29 @@ entry is clearly a **model release**, use foundation_models.
 substantive coverage to—match the article count when it claims e.g. \"10 tools\" and each item \
 is a real entry.
 - foundation_models: one FoundationModelProposal per distinct PRIMARY enumerated **model** entry \
-(or clearly standalone reviewed model); omit passing name-drops.
+(or clearly standalone reviewed model); omit passing name-drops. Each entry MUST have a \
+non-empty model_name matching the article (e.g. Mercury 2, Kimi K2.5).
 - The numeric max lines under ## EXTRACTION BUDGETS do NOT cap tools or foundation_models for \
 this source type; completeness for listed tools beats those limits. Treat all other proposal \
-arrays as max zero (empty)."""
+arrays as max zero (empty).
+- extraction_meta.skip_recommended MUST be false. Include every primary enumerated app/tool even \
+if value_level is \"low\"—the reviewer will reject unwanted items."""
+
+
+HOW_TO_ROUNDUP_EXTRACTION_RUBRIC = """\
+## HOW_TO_ROUNDUP_EXTRACTION (ONLY when detected_source_type == "how_to_roundup")
+
+When the source is how_to_roundup:
+- glossary, topics, tools, foundation_models, industry_trends, roundup_signals, \
+implementation_studies, interview_insights MUST each be [] (no exceptions).
+- how_to: one HowToProposal per distinct PRIMARY enumerated practice, technique, workflow, or \
+tip the article gives substantive coverage to—match the article count when it claims e.g. \
+\"N ways\" or \"N practices\" and each item is a real entry.
+- Follow HOWTOS_RUBRIC for field quality (question_title as wiki page noun phrase, etc.).
+- The numeric max lines under ## EXTRACTION BUDGETS do NOT cap how_to for this source type; \
+completeness for listed practices beats those limits.
+- extraction_meta.skip_recommended MUST be false. Include every primary enumerated practice even \
+if value_level is \"low\"—the reviewer will reject unwanted items."""
 
 
 VALUE_RANKING_RUBRIC = """\
@@ -798,7 +822,9 @@ If a model is merely mentioned without operational depth, set confidence < 0.3 a
 value_level = "low".
 
 Each object MUST include:
-- model_name: the model's established name (e.g. GPT-5, Claude Sonnet, Gemini)
+- model_name: REQUIRED non-empty string — the model's established name exactly as the source \
+states it (e.g. Mercury 2, Kimi K2.5, DeepSeek V4, GPT-5). Never leave blank; the name must \
+appear in supporting_snippet or operational_summary.
 - provider: organization name (OpenAI, Anthropic, Google, Meta, DeepSeek, etc.)
 - operational_summary: 1-3 sentences on what the model is operationally good at \
 and what differentiates it. NOT a generic description like "X is a large language \
@@ -870,10 +896,15 @@ summaries whose primary purpose is aggregating many short items, links, or \
 news blurbs. The key signal is a BUNDLE of loosely related items, not a \
 single coherent argument
 - "ai_tools_roundup" — curated multi-item piece whose PRIMARY structure is \
-numbered or clearly separated reviews of named AI tools (and optionally \
-models), each with substantive description; "N tools" / "tool 1…N" patterns, \
-repeated per-tool blurbs. Prefer this over ai_industry_roundup when most \
-main items are tools with dedicated coverage—not a general news link digest
+numbered or clearly separated reviews of named tools, apps, SaaS products, or \
+free/paid alternatives (including non-AI productivity apps), and optionally \
+models; "N tools/apps/alternatives" patterns, repeated per-item blurbs. Examples: \
+\"10 AI tools\", \"free alternatives to apps I was paying for\". Prefer this over \
+ai_industry_roundup when most main items are named products with dedicated coverage
+- "how_to_roundup" — curated multi-item piece whose PRIMARY structure is numbered or \
+clearly separated practices, techniques, workflows, or tips (procedures—not named \
+products); "N ways to…", "N practices", step-by-step list guides. Prefer over \
+technical_howto when there are many distinct how-to items, not one unified tutorial
 - "interview_or_transcript" — long-form conversations with interviewer/ \
 interviewee structure, Q&A format, multiple speaker perspectives, or \
 transcript-like content
@@ -883,7 +914,8 @@ technical whitepaper with citations and methodology
 - "unknown" — use when genuinely uncertain
 
 Disambiguation: ai_industry_roundup for general multi-topic news digests; \
-ai_tools_roundup when the centerpiece is a curated tool list with reviews.
+ai_tools_roundup when items are named apps/tools/products; how_to_roundup when \
+items are practices/techniques/workflows; technical_howto for one primary tutorial.
 
 Fields:
 - detected_source_type: one of the types above
@@ -1079,7 +1111,14 @@ def _build_user_prompt(
     }
     for bk, label in budget_labels.items():
         mx = budgets.get(bk, 3)
-        budget_lines_parts.append(f"- {label}: max {mx} proposals")
+        note = ""
+        if bk == "tools":
+            note = " (uncapped when detected type is ai_tools_roundup)"
+        elif bk == "how_to":
+            note = " (uncapped when detected type is how_to_roundup)"
+        elif bk == "foundation_models":
+            note = " (uncapped when detected type is ai_tools_roundup)"
+        budget_lines_parts.append(f"- {label}: max {mx} proposals{note}")
     budget_block = EXTRACTION_BUDGET_RUBRIC.format(budget_lines="\n".join(budget_lines_parts))
     trend_slugs = wiki.trend_slugs[:100] if wiki.trend_slugs else []
     blocks = [
@@ -1087,6 +1126,7 @@ def _build_user_prompt(
         TEMPORAL_ANCHORING_RULE,
         budget_block,
         AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC,
+        HOW_TO_ROUNDUP_EXTRACTION_RUBRIC,
         VALUE_RANKING_RUBRIC,
         SOURCE_EVIDENCE_PROFILE_RUBRIC,
         TAG_ONTOLOGY_RUBRIC,
@@ -1130,6 +1170,7 @@ def _build_user_prompt(
             "Set source_type_detection.detected_source_type accordingly. If "
             "ai_industry_roundup, populate roundup_signals; if ai_tools_roundup, "
             "follow AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC only (no roundup_signals); "
+            "if how_to_roundup, follow HOW_TO_ROUNDUP_EXTRACTION_RUBRIC only; "
             "if interview_or_transcript, populate interview_insights."
         )
     blocks.extend(
@@ -1143,7 +1184,9 @@ def _build_user_prompt(
             "interview_insights. "
             "FIRST: fill extraction_meta (skip_recommended, skip_reason, "
             "total_candidates_considered, review_burden_estimate). "
-            "If skip_recommended is true, return empty arrays for all entity types. "
+            "If skip_recommended is true, return empty arrays for all entity types—NEVER when "
+            "detected type is ai_tools_roundup or how_to_roundup (skip_recommended must be "
+            "false for those). "
             "THEN: fill source_type_detection per SOURCE_TYPE_DETECTION_RUBRIC. "
             "THEN: fill source_evidence_profile per SOURCE_EVIDENCE_PROFILE_RUBRIC. "
             "THEN: fill source_summary per SOURCE_CHAPTERS_RUBRIC. "
@@ -1151,8 +1194,13 @@ def _build_user_prompt(
             "AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC "
             "exactly—leave glossary, topics, how_to, industry_trends, roundup_signals, "
             "implementation_studies, interview_insights as []; extract every primary enumerated "
-            "tool; the stated numeric caps under ## EXTRACTION BUDGETS do not limit tools or "
-            "foundation_models for this type only. "
+            "tool/app; skip_recommended must be false; numeric caps under ## EXTRACTION BUDGETS "
+            "do not limit tools or foundation_models for this type only. "
+            "IF detected_source_type is how_to_roundup: follow HOW_TO_ROUNDUP_EXTRACTION_RUBRIC "
+            "exactly—leave glossary, topics, tools, foundation_models, industry_trends, "
+            "roundup_signals, implementation_studies, interview_insights as []; extract every "
+            "primary enumerated practice; skip_recommended must be false; numeric caps do not "
+            "limit how_to for this type only. "
             "ELSE: fill glossary, tools, foundation_models, how_to, topics, "
             "implementation_studies, industry_trends per their rubrics and RESPECT extraction "
             "budgets. Every proposal MUST have a value_level field. "

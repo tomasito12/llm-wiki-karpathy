@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 from src.ingest_review.analyze import (
+    apply_howto_roundup_entity_strip,
     apply_tag_allowlists,
     apply_tools_roundup_entity_strip,
+    enforce_list_roundup_extraction_policy,
     sanitize_topics_related_topics,
     validate_llm_dict,
 )
@@ -268,6 +270,15 @@ def test_validate_llm_dict_accepts_ai_tools_roundup_source_type() -> None:
     assert again.source_type_detection.detected_source_type == "ai_tools_roundup"
 
 
+def test_validate_llm_dict_accepts_how_to_roundup_source_type() -> None:
+    """detected_source_type may be how_to_roundup per schema."""
+    data = LlmClassificationOutput(
+        source_type_detection=SourceTypeDetection(detected_source_type="how_to_roundup")
+    ).model_dump()
+    again = validate_llm_dict(data)
+    assert again.source_type_detection.detected_source_type == "how_to_roundup"
+
+
 def test_apply_tools_roundup_entity_strip_clears_forbidden_arrays() -> None:
     """ai_tools_roundup strips non-tool entities while preserving tools and foundation_models."""
     parsed = LlmClassificationOutput(
@@ -315,6 +326,70 @@ def test_apply_tools_roundup_entity_strip_noop_for_other_source_types() -> None:
     )
     out = apply_tools_roundup_entity_strip(parsed)
     assert out.topics == parsed.topics
+
+
+def test_apply_howto_roundup_entity_strip_keeps_only_how_to() -> None:
+    """how_to_roundup strips non-how-to entities while preserving how_to."""
+    parsed = LlmClassificationOutput(
+        source_type_detection=SourceTypeDetection(detected_source_type="how_to_roundup"),
+        glossary=[GlossaryProposal(term="RAG", primary_tag="a", secondary_tag="")],
+        tools=[ToolProposal(name="App", proposed_types=["mcp-server"])],
+        foundation_models=[
+            FoundationModelProposal(model_name="M", proposed_types=["frontier-model"]),
+        ],
+        how_to=[
+            HowToProposal(
+                question_title="Evaluation Workflow",
+                primary_tag="c",
+                secondary_tag="",
+            )
+        ],
+    )
+    out = apply_howto_roundup_entity_strip(parsed)
+    assert out.how_to == parsed.how_to
+    assert out.glossary == []
+    assert out.tools == []
+    assert out.foundation_models == []
+
+
+def test_enforce_list_roundup_extraction_policy_clears_skip_for_tools_roundup() -> None:
+    """ai_tools_roundup must not keep skip_recommended=true."""
+    from src.ingest_review.schema import ExtractionMeta
+
+    parsed = LlmClassificationOutput(
+        source_type_detection=SourceTypeDetection(detected_source_type="ai_tools_roundup"),
+        extraction_meta=ExtractionMeta(
+            skip_recommended=True,
+            skip_reason="Low durable value",
+        ),
+    )
+    out = enforce_list_roundup_extraction_policy(parsed)
+    assert out.extraction_meta.skip_recommended is False
+    assert "Cleared skip" in out.extraction_meta.skip_reason
+
+
+def test_enforce_list_roundup_extraction_policy_clears_skip_for_how_to_roundup() -> None:
+    """how_to_roundup must not keep skip_recommended=true."""
+    from src.ingest_review.schema import ExtractionMeta
+
+    parsed = LlmClassificationOutput(
+        source_type_detection=SourceTypeDetection(detected_source_type="how_to_roundup"),
+        extraction_meta=ExtractionMeta(skip_recommended=True, skip_reason=""),
+    )
+    out = enforce_list_roundup_extraction_policy(parsed)
+    assert out.extraction_meta.skip_recommended is False
+
+
+def test_enforce_list_roundup_extraction_policy_noop_for_standard_article() -> None:
+    """Standard articles keep skip_recommended when set."""
+    from src.ingest_review.schema import ExtractionMeta
+
+    parsed = LlmClassificationOutput(
+        source_type_detection=SourceTypeDetection(detected_source_type="standard_article"),
+        extraction_meta=ExtractionMeta(skip_recommended=True, skip_reason="noise"),
+    )
+    out = enforce_list_roundup_extraction_policy(parsed)
+    assert out.extraction_meta.skip_recommended is True
 
 
 def test_extraction_meta_defaults() -> None:

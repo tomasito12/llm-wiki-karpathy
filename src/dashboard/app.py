@@ -24,6 +24,7 @@ from src.ingest_review.artifact import (
     apply_regenerated_source_section,
     attach_error,
     backup_artifact,
+    ensure_review_started,
     load_artifact,
     review_artifact_path,
     save_artifact,
@@ -73,7 +74,6 @@ from src.ingest_review.models_ui import (
 )
 from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.proposal_regen_handler import process_pending_proposal_regen
-from src.ingest_review.proposal_regen_ui import consume_proposal_regen_banner
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.review_queue_status import (
     DEFAULT_SOURCE_REVIEW_FILTER,
@@ -122,6 +122,21 @@ from src.ingest_review.trends_ui import (
     render_trend_proposals,
 )
 from src.ingest_review.wiki_snapshot import parse_glossary_terms
+
+REVIEW_ENTITY_TABS: tuple[str, ...] = (
+    "Source chapters",
+    "Glossary",
+    "Topics",
+    "How-tos",
+    "Trends",
+    "Tools",
+    "Models",
+    "Impl studies",
+    "Signals",
+    "Insights",
+    "Source type",
+    "Debug",
+)
 
 
 def _finalize_review_analytics(artifact: dict) -> None:
@@ -217,8 +232,9 @@ def finish_review_session(
     artifact: dict[str, Any],
     artifact_path: Path,
     root: Path,
-) -> None:
+) -> str:
     """Finalize review: analytics, artifact save, feedback DB, tag/type YAML updates."""
+    ensure_review_started(artifact)
     touch_review_session(artifact)
     _finalize_review_analytics(artifact)
     save_artifact(artifact_path, artifact)
@@ -229,17 +245,35 @@ def finish_review_session(
     except OSError as exc:
         st_ref.warning(f"Feedback DB write skipped: {exc}")
     _collect_and_persist_tags(st_ref, artifact, root)
-    st_ref.success(f"Review finished — saved to {artifact_path}")
+    return f"Review finished — saved to {artifact_path}"
 
 
 def main() -> None:
     """Run the ingest review Streamlit app."""
     root = load_repo_dotenv()
     st.set_page_config(
-        page_title="LLM Wiki — ingest review",
+        page_title="LLM Wiki",
         layout="wide",
         initial_sidebar_state="expanded",
     )
+
+    app_view = st.radio(
+        "View",
+        ["Ingest review", "Tag registry"],
+        horizontal=True,
+        key="dashboard_app_view",
+    )
+
+    if app_view == "Tag registry":
+        from src.dashboard.tag_registry_ui import render_tag_registry
+
+        st.title("Tag registry")
+        with st.sidebar:
+            st.header("Settings")
+            st.caption(f"Repo root: `{root}`")
+        render_tag_registry(st, root=root)
+        return
+
     st.title("LLM Wiki — ingest review")
 
     with st.sidebar:
@@ -291,6 +325,9 @@ def main() -> None:
     source_ids = [p.stem for p in html_paths]
     status_map = build_source_status_map(reviews_root, source_ids)
     counts = count_by_status(status_map)
+    finish_flash = st.session_state.pop("_finish_review_flash", None)
+    if finish_flash:
+        st.success(finish_flash)
     st.caption(
         f"{counts['in_progress']} in progress · "
         f"{counts['not_started']} not started · "
@@ -299,11 +336,6 @@ def main() -> None:
     )
 
     filter_labels = [label for label, _ in SOURCE_REVIEW_FILTER_OPTIONS]
-    default_idx = (
-        filter_labels.index(DEFAULT_SOURCE_REVIEW_FILTER)
-        if DEFAULT_SOURCE_REVIEW_FILTER in filter_labels
-        else 0
-    )
     if "review_queue_filter_radio" not in st.session_state:
         st.session_state["review_queue_filter_radio"] = DEFAULT_SOURCE_REVIEW_FILTER
 
@@ -324,12 +356,12 @@ def main() -> None:
                 picked = random.choice(pool_paths)
                 st.session_state["review_queue_filter_radio"] = "Needs work"
                 st.session_state["review_source_pick_id"] = picked.stem
+                st.session_state["review_source_id"] = picked.stem
                 st.rerun()
 
     queue_filter = st.radio(
         "Show sources",
         filter_labels,
-        index=default_idx,
         horizontal=True,
         key="review_queue_filter_radio",
     )
@@ -343,21 +375,14 @@ def main() -> None:
         return
 
     pick_id = st.session_state.pop("review_source_pick_id", None)
-    if pick_id:
-        for i, path in enumerate(visible_paths):
-            if path.stem == pick_id:
-                st.session_state["review_source_idx"] = i
-                break
-    if "review_source_idx" not in st.session_state:
-        st.session_state["review_source_idx"] = 0
-    st.session_state["review_source_idx"] = min(
-        max(0, int(st.session_state["review_source_idx"])),
-        len(visible_paths) - 1,
-    )
+    if pick_id and pick_id in visible_ids:
+        st.session_state["review_source_id"] = pick_id
+    current_source_id = st.session_state.get("review_source_id")
+    if not isinstance(current_source_id, str) or current_source_id not in visible_ids:
+        st.session_state["review_source_id"] = visible_ids[0]
 
-    def _format_source_option(i: int) -> str:
-        path = visible_paths[i]
-        sid = path.stem
+    def _format_source_id(sid: str) -> str:
+        path = id_to_path[sid]
         prefix = status_label(status_map[sid])
         incom = " (incomplete)" if readwise_source_status(path) == "incomplete" else ""
         title = artifact_title_for_source(reviews_root, sid)
@@ -365,15 +390,13 @@ def main() -> None:
             return f"{prefix} — {title}{incom}"
         return f"{prefix} — {path.name}{incom}"
 
-    choice = st.selectbox(
+    source_id = st.selectbox(
         "Source",
-        range(len(visible_paths)),
-        index=st.session_state["review_source_idx"],
-        format_func=_format_source_option,
-        key="review_source_idx",
+        visible_ids,
+        format_func=_format_source_id,
+        key="review_source_id",
     )
-    selected = visible_paths[int(choice)]
-    source_id = selected.stem
+    selected = id_to_path[source_id]
     source_review_status = status_map[source_id]
 
     if readwise_source_status(selected) == "incomplete":
@@ -479,7 +502,10 @@ def main() -> None:
     artifact_early = st.session_state.get("artifact")
     with col_b:
         if artifact_early and st.button("Finish review", type="primary"):
-            finish_review_session(st, artifact_early, artifact_path, root)
+            msg = finish_review_session(st, artifact_early, artifact_path, root)
+            st.session_state["artifact"] = artifact_early
+            st.session_state["_finish_review_flash"] = msg
+            st.rerun()
 
     artifact = st.session_state.get("artifact")
     if not artifact:
@@ -583,6 +609,7 @@ def main() -> None:
         "standard_article",
         "ai_industry_roundup",
         "ai_tools_roundup",
+        "how_to_roundup",
         "interview_or_transcript",
         "technical_howto",
         "research_paper_or_report",
@@ -640,27 +667,20 @@ def main() -> None:
                             st.text(traceback.format_exc())
         st.markdown("---")
 
-    regen_banner = consume_proposal_regen_banner()
-    if regen_banner:
-        st.success(regen_banner)
+    if "review_entity_tab" not in st.session_state:
+        st.session_state["review_entity_tab"] = REVIEW_ENTITY_TABS[0]
+    elif st.session_state["review_entity_tab"] not in REVIEW_ENTITY_TABS:
+        st.session_state["review_entity_tab"] = REVIEW_ENTITY_TABS[0]
 
-    tabs = st.tabs(
-        [
-            "Source chapters",
-            "Glossary",
-            "Topics",
-            "How-tos",
-            "Trends",
-            "Tools",
-            "Models",
-            "Impl studies",
-            "Signals",
-            "Insights",
-            "Source type",
-            "Debug",
-        ]
+    entity_tab = st.radio(
+        "Review section",
+        REVIEW_ENTITY_TABS,
+        horizontal=True,
+        key="review_entity_tab",
+        label_visibility="collapsed",
     )
-    with tabs[0]:
+
+    if entity_tab == "Source chapters":
         render_source_summary_review(
             st,
             artifact,
@@ -668,7 +688,7 @@ def main() -> None:
             source_id=source_id,
             artifact_path=artifact_path,
         )
-    with tabs[1]:
+    elif entity_tab == "Glossary":
         render_glossary_proposals(
             st,
             artifact,
@@ -680,7 +700,7 @@ def main() -> None:
             model=model,
             prompt_version=prompt_version,
         )
-    with tabs[2]:
+    elif entity_tab == "Topics":
         render_topic_proposals(
             st,
             artifact,
@@ -693,7 +713,7 @@ def main() -> None:
             wiki_root=wiki_root,
             reviews_root=reviews_root,
         )
-    with tabs[3]:
+    elif entity_tab == "How-tos":
         render_howto_proposals(
             st,
             artifact,
@@ -704,7 +724,7 @@ def main() -> None:
             model=model,
             prompt_version=prompt_version,
         )
-    with tabs[4]:
+    elif entity_tab == "Trends":
         render_trend_proposals(
             st,
             artifact,
@@ -715,7 +735,7 @@ def main() -> None:
             model=model,
             prompt_version=prompt_version,
         )
-    with tabs[5]:
+    elif entity_tab == "Tools":
         render_tool_proposals(
             st,
             artifact,
@@ -726,7 +746,7 @@ def main() -> None:
             model=model,
             prompt_version=prompt_version,
         )
-    with tabs[6]:
+    elif entity_tab == "Models":
         render_model_proposals(
             st,
             artifact,
@@ -737,7 +757,7 @@ def main() -> None:
             model=model,
             prompt_version=prompt_version,
         )
-    with tabs[7]:
+    elif entity_tab == "Impl studies":
         render_implementation_studies(
             st,
             artifact,
@@ -748,7 +768,7 @@ def main() -> None:
             model=model,
             prompt_version=prompt_version,
         )
-    with tabs[8]:
+    elif entity_tab == "Signals":
         render_roundup_signals(
             st,
             artifact,
@@ -758,7 +778,7 @@ def main() -> None:
             model=model,
             prompt_version=prompt_version,
         )
-    with tabs[9]:
+    elif entity_tab == "Insights":
         render_interview_insights(
             st,
             artifact,
@@ -768,10 +788,10 @@ def main() -> None:
             model=model,
             prompt_version=prompt_version,
         )
-    with tabs[10]:
+    elif entity_tab == "Source type":
         render_source_evidence_profile(st, artifact, key_prefix=key_prefix)
         render_source_type_detection(st, artifact, key_prefix=key_prefix)
-    with tabs[11]:
+    elif entity_tab == "Debug":
         st.json(artifact.get("llm_output"))
 
     if st.button("Save draft"):

@@ -1,5 +1,11 @@
-# Approved tool types (ingestion review). LLM may only propose types from this list.
 tags:
+- ai-application
+- ai-infrastructure
 - cloud-saas
 - coding-agent
+- dictation
+- meeting-notes
+- model-serving
+- social-media
+- video-creation
 - workflow-automation

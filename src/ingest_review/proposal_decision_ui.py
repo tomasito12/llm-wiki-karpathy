@@ -13,6 +13,22 @@ from src.ingest_review.domain_tag_ui import find_review_node
 DEFAULT_PROPOSAL_STATUS = "approved"
 
 
+def proposal_save_message_key(key_prefix: str) -> str:
+    """Session-state key for a per-proposal save confirmation (shown under the save button)."""
+    return f"{key_prefix}_save_msg"
+
+
+def set_proposal_save_message(key_prefix: str, message: str) -> None:
+    """Queue a save confirmation for :func:`render_proposal_decision_bar`."""
+    streamlit_runtime.session_state[proposal_save_message_key(key_prefix)] = message
+
+
+def pop_proposal_save_message(key_prefix: str) -> str | None:
+    """Return and clear a queued save confirmation, if any."""
+    raw = streamlit_runtime.session_state.pop(proposal_save_message_key(key_prefix), None)
+    return str(raw) if raw else None
+
+
 def normalized_proposal_status(node: dict[str, Any]) -> str:
     """Return proposal_status, treating legacy ``pending`` as approved."""
     raw = str(node.get("proposal_status") or DEFAULT_PROPOSAL_STATUS)
@@ -100,3 +116,8 @@ def render_proposal_decision_bar(
             ):
                 node["proposal_status"] = DEFAULT_PROPOSAL_STATUS
                 on_save_callback()
+                streamlit_runtime.rerun()
+
+    save_msg = pop_proposal_save_message(key_prefix)
+    if save_msg:
+        st.success(save_msg)

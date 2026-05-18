@@ -249,18 +249,78 @@ def load_extraction_budgets(root: Path | None = None) -> dict[str, int]:
     return result
 
 
-def append_tags_to_yaml(path: Path, new_tags: list[str]) -> None:
-    """Append new tags to a YAML allowlist file, deduplicating."""
-    existing = {normalize_tag(t) for t in load_tag_list(path)}
-    to_add = [normalize_tag(t) for t in new_tags if t and normalize_tag(t) not in existing]
-    to_add = [t for t in to_add if t]
-    if not to_add:
-        return
+def save_tag_list(path: Path, tags: list[str], *, comment: str | None = None) -> None:
+    """Replace the full allowlist with a normalized, sorted, deduped tag list."""
     from src.pipeline.atomic import atomic_write_text
 
-    all_tags = sorted(existing | set(to_add))
+    normalized = sorted({normalize_tag(t) for t in tags if normalize_tag(t)})
+    lines: list[str] = []
+    if comment:
+        lines.append(f"# {comment}")
+    body = yaml.dump({"tags": normalized}, default_flow_style=False, sort_keys=False)
+    lines.append(body.rstrip())
+    lines.append("")
     path.parent.mkdir(parents=True, exist_ok=True)
-    atomic_write_text(
-        path,
-        yaml.dump({"tags": all_tags}, default_flow_style=False, sort_keys=False),
+    atomic_write_text(path, "\n".join(lines))
+
+
+def add_tags_to_list(path: Path, new_tags: list[str]) -> list[str]:
+    """Append normalized tags not already on the allowlist. Returns slugs added."""
+    existing = load_tag_list(path)
+    existing_set = set(existing)
+    to_add: list[str] = []
+    for raw in new_tags:
+        nt = normalize_tag(str(raw))
+        if nt and nt not in existing_set and nt not in to_add:
+            to_add.append(nt)
+            existing_set.add(nt)
+    if not to_add:
+        return []
+    save_tag_list(path, existing + to_add)
+    return to_add
+
+
+def remove_tags_from_list(path: Path, tags_to_remove: list[str]) -> list[str]:
+    """Remove tags from the allowlist. Returns slugs that were removed."""
+    remove_set = {normalize_tag(str(t)) for t in tags_to_remove if normalize_tag(str(t))}
+    if not remove_set:
+        return []
+    current = load_tag_list(path)
+    removed = [t for t in current if t in remove_set]
+    if not removed:
+        return []
+    remaining = [t for t in current if t not in remove_set]
+    save_tag_list(path, remaining)
+    return removed
+
+
+def rename_tag_in_list(path: Path, old_slug: str, new_slug: str) -> None:
+    """Rename one allowlist entry (YAML only; does not migrate review artifacts)."""
+    old = normalize_tag(old_slug)
+    new = normalize_tag(new_slug)
+    if not old:
+        raise ValueError("old slug is empty")
+    if not new:
+        raise ValueError("new slug is empty")
+    if old == new:
+        return
+    current = load_tag_list(path)
+    if old not in current:
+        raise ValueError(f"tag not in allowlist: {old}")
+    if new in current:
+        raise ValueError(f"tag already exists: {new}")
+    updated = [new if t == old else t for t in current]
+    save_tag_list(path, updated)
+
+
+def append_tags_to_yaml(path: Path, new_tags: list[str]) -> None:
+    """Append new tags to a YAML allowlist file, deduplicating."""
+    add_tags_to_list(path, new_tags)
+
+
+def parse_comma_separated_tags(raw: str) -> list[str]:
+    """Split comma-separated user input into normalized tag slugs."""
+    return normalize_tag_list(
+        [x.strip() for x in raw.split(",") if x.strip()],
+        cap=0,
     )

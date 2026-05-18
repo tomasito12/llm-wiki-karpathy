@@ -15,11 +15,18 @@ from src.ingest_review.dashboard_ui import (
 from src.ingest_review.domain_tag_ui import (
     DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
     apply_registry_types_ui_to_node,
+    effective_registry_types,
+    registry_types_ui_from_session,
     render_registry_types_section,
+)
+from src.ingest_review.proposal_columns_ui import (
+    build_proposal_expander_label,
+    render_two_column_proposal_review,
 )
 from src.ingest_review.proposal_decision_ui import (
     proposal_status_label,
     render_proposal_decision_bar,
+    set_proposal_save_message,
 )
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
@@ -241,9 +248,10 @@ def format_model_readonly_markdown(
         if items:
             label = MODEL_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
             lines.extend([f"**{label}**", ""] + [f"- {p}" for p in items] + [""])
-    proposed_types = llm_item.get("proposed_types") or []
-    if proposed_types:
-        lines.extend(["**Proposed types**", "", ", ".join(str(t) for t in proposed_types), ""])
+    types_node = node.get("types") or {}
+    display_types = effective_registry_types(llm_item, types_node)
+    if display_types:
+        lines.extend(["**Types**", "", ", ".join(f"`{t}`" for t in display_types), ""])
     snippet = str(llm_item.get("supporting_snippet") or "").strip()
     if snippet:
         excerpt = snippet[:2000] + ("…" if len(snippet) > 2000 else "")
@@ -270,6 +278,14 @@ def build_readonly_models_markdown(
             prev_tier = tier
         parts.append(format_model_readonly_markdown(node, artifact=artifact))
     return "\n\n---\n\n".join(parts)
+
+
+def _model_expander_label(node: dict[str, Any], index: int) -> str:
+    llm_item = node.get("llm_item") or {}
+    sections = node.get("sections") or {}
+    name = effective_model_scalar(llm_item, sections, "model_name") or f"Model {index + 1}"
+    badge = VALUE_LEVEL_BADGES.get(_value_level(node), "Medium")
+    return build_proposal_expander_label(node, name, badge=badge)
 
 
 def _prepare_model_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
@@ -313,7 +329,7 @@ def _on_save_model_proposal(
     llm_item = node.get("llm_item") or {}
     sections = node.get("sections") or {}
     label = effective_model_scalar(llm_item, sections, "model_name") or "model"
-    streamlit_runtime.session_state["_models_save_msg"] = f"Saved **{label}**."
+    set_proposal_save_message(key_prefix, f"Saved **{label}**.")
 
 
 def _render_model_edit_box(
@@ -397,7 +413,14 @@ def _render_model_edit_box(
         )
 
         def _save() -> None:
-            apply_registry_types_ui_to_node(node, llm_item, type_ui, tag_allow)
+            fresh_type_ui = registry_types_ui_from_session(key_prefix, type_ui)
+            apply_registry_types_ui_to_node(
+                node,
+                llm_item,
+                fresh_type_ui,
+                tag_allow,
+                key_prefix=key_prefix,
+            )
             _on_save_model_proposal(str(node.get("proposal_id") or ""), key_prefix, artifact_path)
 
         render_proposal_decision_bar(
@@ -433,53 +456,41 @@ def render_model_proposals(
     rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")
     st.caption(f"{len(sorted_nodes)} proposal(s) · {rejected} rejected")
 
-    save_msg = streamlit_runtime.session_state.pop("_models_save_msg", None)
-    if save_msg:
-        st.success(str(save_msg))
     regen_msg = pop_proposal_regen_msg("model")
     if regen_msg:
         st.success(regen_msg)
 
-    read_col, edit_col = st.columns(2)
-    with read_col:
-        st.markdown(build_readonly_models_markdown(sorted_nodes, artifact=artifact))
-    with edit_col:
-        edit_nodes = sorted_nodes
-        if len(sorted_nodes) > 6:
-            labels = [
-                effective_model_scalar(
-                    n.get("llm_item") or {},
-                    n.get("sections") or {},
-                    "model_name",
-                )
-                or f"Model {i + 1}"
-                for i, n in enumerate(sorted_nodes)
-            ]
-            pick = st.selectbox(
-                "Edit model",
-                options=labels,
-                key=f"{key_prefix}_model_jump",
-            )
-            idx = labels.index(pick) if pick in labels else 0
-            edit_nodes = [sorted_nodes[idx]]
-            st.caption("Showing one edit panel — use the selector to switch models.")
+    def _readonly_md(node: dict[str, Any]) -> str:
+        if len(sorted_nodes) == 1:
+            return build_readonly_models_markdown([node], artifact=artifact)
+        return format_model_readonly_markdown(node, artifact=artifact)
 
-        for i, node in enumerate(edit_nodes):
-            pid = str(node.get("proposal_id") or f"idx{i}")
-            pfx = proposal_edit_key_prefix(
-                key_prefix, pid, "mdl", regen_count=regen_count_from_node(node)
-            )
-            _render_model_edit_box(
-                st,
-                node,
-                types_list,
-                artifact,
-                key_prefix=pfx,
-                source_id=source_id,
-                artifact_path=artifact_path,
-                model=model,
-                prompt_version=prompt_version,
-            )
+    def _render_edit(node: dict[str, Any], index: int) -> None:
+        pid = str(node.get("proposal_id") or f"idx{index}")
+        pfx = proposal_edit_key_prefix(
+            key_prefix, pid, "mdl", regen_count=regen_count_from_node(node)
+        )
+        _render_model_edit_box(
+            st,
+            node,
+            types_list,
+            artifact,
+            key_prefix=pfx,
+            source_id=source_id,
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+        )
+
+    render_two_column_proposal_review(
+        st,
+        sorted_nodes,
+        key_prefix=key_prefix,
+        empty_readonly_text="*(No model proposals.)*",
+        label_for_node=_model_expander_label,
+        readonly_markdown_for_node=_readonly_md,
+        render_edit_for_node=_render_edit,
+    )
 
 
 def collect_model_new_tags(artifact: dict[str, Any]) -> list[str]:

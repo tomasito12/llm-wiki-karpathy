@@ -1,0 +1,759 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-17T13:19:24+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgVgVWzCEUVLvMHqUmylRNtgOHpb8",
+    "token_usage": {
+      "completion_tokens": 3048,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 29593,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 32641
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "extended_explanation": "In practice, a harness is the part of the system that turns a raw model into something that can safely do work. It is not the model itself; it is the surrounding structure that tells the model where it is, what has already been done, and how success will be judged. A good harness can include repository documentation, test suites, progress trackers, approval steps, and runtime guardrails. Teams building agentic coding systems often discover that improving the harness can matter more than changing the model. The concept is especially useful when an agent must act over long sessions, across many files, or under strict quality constraints.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "The harness is the environment, controls, documents, and feedback systems around an AI agent that make its work reliable. It includes the context the agent can read, the tools it can use, the checks that validate output, and the rules that constrain behavior.",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_terms": [
+          "Knowledge Management",
+          "Context Engineering"
+        ],
+        "relevance_note": "This matters because many production AI systems fail less from model incompetence than from missing context, weak validation, or unclear operating rules. In agentic coding, support automation, and other workflow-heavy systems, the harness is often the difference between a useful assistant and an expensive guesser.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cThe harness is everything that isn\u2019t the model itself. It\u2019s the constraints that keep the agent on track, the feedback loops that catch mistakes, the documentation that tells the agent where it is and what\u2019s already been done, and the tools it has permission to use.\u201d",
+        "term": "Harness",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.96,
+        "evidence_type": "mixed",
+        "extended_explanation": "Feedforward controls work by improving the agent\u2019s starting conditions rather than only checking outcomes afterward. In practice, they give the system clearer boundaries, better context, and more explicit expectations before it generates or changes anything. That makes them useful in agent workflows where the main failure mode is drift: inventing details, using the wrong structure, or working from incomplete assumptions. Feedforward controls are usually strongest when paired with feedback controls, since guidance alone cannot confirm correctness.",
+        "match_candidates": [],
+        "primary_tag": "ai-engineering",
+        "proposed_definition": "Feedforward controls are guidance mechanisms applied before an AI agent acts, shaping its behavior in advance and reducing avoidable errors before execution. Common forms include specifications, constraints, documentation, and structured instructions.",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_terms": [
+          "Context Engineering"
+        ],
+        "relevance_note": "This concept matters for AI engineering because reliable agent systems depend on shaping behavior before execution, not just auditing results after the fact. It is especially useful when building workflows that need fewer bad tool calls, less wasted iteration, and fewer handoff failures.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cThe first axis: feedforward (guides that anticipate agent behavior before execution) versus feedback (sensors that observe results and enable self-correction).\u201d",
+        "term": "Feedforward Controls",
+        "value_level": "medium"
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece is primarily the author\u2019s synthesis and interpretation of other vendors\u2019 published work.",
+        "It cites company blogs, papers, and frameworks, but does not present original experiments or independently verified benchmarks.",
+        "The core claims are argumentative and comparative rather than purely vendor-announcement driven."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about the hidden setup work that helps artificial intelligence coding agents produce useful software. The main idea is simple: the model may write the code, but people still need to design the rules, documents, and checks around it. The author compares three ways of doing this, from a codebase-first approach to a multi-agent review setup to a general framework for organizing controls. The article says good results come from giving the system real context, splitting planning from execution, and using feedback to catch mistakes. It also says that as models get better, some of the extra scaffolding becomes unnecessary and should be removed. That means the best harness is not the most complicated one, but the one that still works with the least overhead. The piece matters because many teams are trying to let agents do more work without losing quality. It is especially relevant for people building software with coding agents, and it is a reminder that the environment around the model can matter as much as the model itself. Actionable as of 2026-04-27, but the article\u2019s own examples suggest harness designs should be treated as removable, not permanent.",
+      "assessed_as_of": "2026-04-27",
+      "contradictions_and_skepticism": "The piece is persuasive, but it also bundles several different claims under one umbrella term, which can make the discipline sound more unified than it may be in practice. Some of the strongest numbers come from vendor-controlled environments, so the performance gains may partly reflect product-specific tuning rather than a general law of harness engineering. The narrative that each new model generation simplifies the harness is plausible and partially supported by the cited examples, but it should be treated as a trend within these systems rather than a guaranteed outcome for all agent stacks.",
+      "key_insights": [
+        "The strongest pattern across the three camps is that real codebase context beats abstract instructions.",
+        "Planning and execution work better as separate steps, whether the planner is human or another agent.",
+        "Feedback needs to be layered: cheap deterministic checks first, semantic evaluation second.",
+        "Harness components should be designed with a kill switch because model improvements can make them redundant.",
+        "The codebase itself becomes the agent\u2019s documentation and memory; if it is not in version control, the agent may not use it."
+      ],
+      "limitations_and_open_questions": "The evidence is a mix of vendor blogs, framework writeups, and selective performance numbers, so the comparisons are suggestive rather than independently audited. Several outcomes are presented with strong specificity, but the article does not provide enough methodological detail to judge whether the harness changes alone caused every gain. The cost figures are useful as directional data, yet they are tied to particular models, tasks, and internal setups that may not transfer cleanly. The \u201cbuild to delete\u201d advice is compelling, but the article leaves open how often teams should test for harness decay or how to measure when a control is truly redundant. ThoughtWorks\u2019 behavior-verification gap is also unresolved: the article acknowledges that current approaches are weak there, but does not provide a proven alternative.",
+      "sources": [
+        "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a"
+      ],
+      "summary": "The piece argues that harness engineering is the practical discipline that makes AI coding agents reliable: the model writes the code, but the harness supplies context, constraints, feedback loops, and verification. It compares three independently developed approaches: OpenAI\u2019s environment-first Codex setup, Anthropic\u2019s multi-agent planner/generator/evaluator architecture, and ThoughtWorks\u2019 taxonomy for classifying harness controls. Across the examples, the recurring lesson is that agents perform better when they are grounded in the real codebase, forced into small steps, and checked by feedback systems rather than relying on self-assessment. The article also emphasizes that harnesses decay as models improve, so teams should build modular controls that can be removed when they stop adding value. The practical decision framework is to match harness complexity to the problem: lightweight repo conventions for small teams, evaluator loops for visible quality failures, and a broader control taxonomy for organizations scaling agents across many teams.",
+      "why_it_matters": "The article is valuable because it turns a vague idea about \u201cprompting better\u201d into an operational framing: reliable agentic coding depends on the harness, not just the model. Its strongest contribution is the convergence across three independent approaches: OpenAI\u2019s repo-embedded documentation and structural constraints, Anthropic\u2019s planner/generator/evaluator split, and ThoughtWorks\u2019 feedforward-versus-feedback taxonomy. That convergence makes the core lessons durable enough to reuse: ground agents in the real codebase, separate planning from execution, and keep validation in the loop. The cost discussion is also useful because it shows that better output can require materially higher run costs, and that newer models can shrink the harness that was previously necessary. The article is less useful as a universal prescription because it is based on a handful of company examples rather than broad comparative data. The maintenance point is especially important: harnesses are not static infrastructure, and teams may need to delete components as models improve. For service automation, the closing implication is indirect but real: the same control-layer logic applies to agentic support workflows, where documentation, verification, and handoff checks matter more than raw model quality. Actionable as of 2026-04-27, but the article itself argues that harness designs should be revisited as models evolve."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "This is a single coherent essay, not a bundle of short news items or tool reviews.",
+        "It presents an argument with examples from several companies and frameworks, rather than a transcript or tutorial.",
+        "The structure is explanatory and analytical, which fits a standard article."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "AGENT.md/CLAUDE.md-style files make project context available at session start.",
+          "JSON feature lists can act as both specification and progress tracker.",
+          "Grounding in real file paths and state reduces hallucinated APIs and invented structure.",
+          "The repo can become the single source of truth for agent behavior."
+        ],
+        "knowledge_summary": "Reliable agent performance often depends more on the quality of the context supplied to the system than on the wording of a prompt. Context engineering includes repository structure, documentation, progress tracking, and task-scoped state that tell the agent what already exists and what it should do next. It reduces hallucinated paths, duplicate work, and inconsistent execution by grounding the agent in real artifacts rather than abstract instructions. The practice becomes more important as agents operate over long sessions or across large codebases.",
+        "match_candidates": [],
+        "operational_insight": "When an agent must modify software or operate a workflow, give it the current state of the world in machine-readable form: paths, progress, constraints, and verification criteria. That usually outperforms longer prompts.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "agentic-workflows"
+        ],
+        "relevance_note": "Context engineering is a durable operational pattern because agentic systems fail quickly when they lack grounding. It is central to coding agents, knowledge-grounded assistants, and any automation that needs to remember state across sessions or tasks.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cWhat does the agent need to know before it writes a single line of code?\u201d",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Small, sequential steps beat large all-at-once tasks.",
+          "Planning and execution should be separate stages.",
+          "Feedback loops can be automated tests, another model, or both.",
+          "The best workflow design depends on whether quality, cost, or speed is the primary constraint."
+        ],
+        "knowledge_summary": "Agentic workflows are systems where an AI model performs work through a structured sequence of planning, execution, verification, and iteration rather than a single prompt-response exchange. The workflow is usually constrained by checkpoints, task decomposition, and tool access so that the model can complete useful work over time. Effective agentic workflows often rely on separating planning from execution and on using feedback to prevent silent failure. They become much more reliable when each step is small and the next action is chosen from current state rather than from a fresh blank slate.",
+        "match_candidates": [],
+        "operational_insight": "Break autonomous work into small units with explicit checks between them, and avoid letting one pass do planning, execution, and self-grading at once.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "context-engineering"
+        ],
+        "relevance_note": "This is a core pattern for coding agents, support automation, and back-office systems because the same failure modes recur when a model is asked to do too much in one shot. The reusable lesson is to design the workflow, not just the model call.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cAgents that try to do too much at once run out of context, lose coherence, or silently drop requirements.\u201d",
+        "topic_slug": "agentic-workflows",
+        "topic_title": "Agentic Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": "mixed",
+        "examples": "",
+        "key_points": [
+          "Harness components can become dead weight as model capability improves.",
+          "Examples in the source include removing sprint decomposition, switching to single-pass evaluation, and pruning tools or wrappers.",
+          "The practical discipline is to build modular controls with kill switches and test whether they still matter.",
+          "Maintaining obsolete harness layers can add token cost, latency, and ongoing engineering burden."
+        ],
+        "knowledge_summary": "Harness decay is the pattern where AI-agent control scaffolding that was necessary for older model generations becomes unnecessary overhead as models improve. In practice, that can mean removing sprint decomposition, simplifying evaluation loops, or deleting tool wrappers when the model starts handling those responsibilities itself. The core topic is not just harness construction, but ongoing pruning: harness components should be designed to be removable as soon as they stop improving results.",
+        "operational_insight": "Treat harness components as provisional. Periodically disable or remove each control, measure whether output quality changes, and delete anything that no longer helps. This prevents extra tokens, latency, and maintenance burden from accumulating after model capability has advanced.",
+        "related_topics": [
+          "agentic-workflows",
+          "context-engineering"
+        ],
+        "relevance_note": "Useful for teams building agentic systems because the right amount of scaffolding changes over time. A harness that improves reliability today may become friction tomorrow, so control design should include explicit review and removal checks.",
+        "supporting_snippet": "\u201cA harness component that was load-bearing in March was dead weight by April.\u201d",
+        "topic_slug": "harness-decay",
+        "topic_title": "Harness Decay",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "extended_explanation": "In practice, a harness is the part of the system that turns a raw model into something that can safely do work. It is not the model itself; it is the surrounding structure that tells the model where it is, what has already been done, and how success will be judged. A good harness can include repository documentation, test suites, progress trackers, approval steps, and runtime guardrails. Teams building agentic coding systems often discover that improving the harness can matter more than changing the model. The concept is especially useful when an agent must act over long sessions, across many files, or under strict quality constraints.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "The harness is the environment, controls, documents, and feedback systems around an AI agent that make its work reliable. It includes the context the agent can read, the tools it can use, the checks that validate output, and the rules that constrain behavior.",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_terms": [
+            "Knowledge Management",
+            "Context Engineering"
+          ],
+          "relevance_note": "This matters because many production AI systems fail less from model incompetence than from missing context, weak validation, or unclear operating rules. In agentic coding, support automation, and other workflow-heavy systems, the harness is often the difference between a useful assistant and an expensive guesser.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cThe harness is everything that isn\u2019t the model itself. It\u2019s the constraints that keep the agent on track, the feedback loops that catch mistakes, the documentation that tells the agent where it is and what\u2019s already been done, and the tools it has permission to use.\u201d",
+          "term": "Harness",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "50d2268b-13a8-4529-ac87-da36daf654be",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Knowledge Management",
+              "Context Engineering"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "ai-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": "mixed",
+          "extended_explanation": "Feedforward controls work by improving the agent\u2019s starting conditions rather than only checking outcomes afterward. In practice, they give the system clearer boundaries, better context, and more explicit expectations before it generates or changes anything. That makes them useful in agent workflows where the main failure mode is drift: inventing details, using the wrong structure, or working from incomplete assumptions. Feedforward controls are usually strongest when paired with feedback controls, since guidance alone cannot confirm correctness.",
+          "match_candidates": [],
+          "primary_tag": "ai-engineering",
+          "proposed_definition": "Feedforward controls are guidance mechanisms applied before an AI agent acts, shaping its behavior in advance and reducing avoidable errors before execution. Common forms include specifications, constraints, documentation, and structured instructions.",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_terms": [
+            "Context Engineering"
+          ],
+          "relevance_note": "This concept matters for AI engineering because reliable agent systems depend on shaping behavior before execution, not just auditing results after the fact. It is especially useful when building workflows that need fewer bad tool calls, less wasted iteration, and fewer handoff failures.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cThe first axis: feedforward (guides that anticipate agent behavior before execution) versus feedback (sensors that observe results and enable self-correction).\u201d",
+          "term": "Feedforward Controls",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "07fd7100-aa0e-4661-a7f7-fcb928be8de3",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-17T13:21:56+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "29",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering"
+          ]
+        }
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece is primarily the author\u2019s synthesis and interpretation of other vendors\u2019 published work.",
+          "It cites company blogs, papers, and frameworks, but does not present original experiments or independently verified benchmarks.",
+          "The core claims are argumentative and comparative rather than purely vendor-announcement driven."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The strongest pattern across the three camps is that real codebase context beats abstract instructions.",
+          "Planning and execution work better as separate steps, whether the planner is human or another agent.",
+          "Feedback needs to be layered: cheap deterministic checks first, semantic evaluation second.",
+          "Harness components should be designed with a kill switch because model improvements can make them redundant.",
+          "The codebase itself becomes the agent\u2019s documentation and memory; if it is not in version control, the agent may not use it."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "This is a single coherent essay, not a bundle of short news items or tool reviews.",
+          "It presents an argument with examples from several companies and frameworks, rather than a transcript or tutorial.",
+          "The structure is explanatory and analytical, which fits a standard article."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "AGENT.md/CLAUDE.md-style files make project context available at session start.",
+            "JSON feature lists can act as both specification and progress tracker.",
+            "Grounding in real file paths and state reduces hallucinated APIs and invented structure.",
+            "The repo can become the single source of truth for agent behavior."
+          ],
+          "knowledge_summary": "Reliable agent performance often depends more on the quality of the context supplied to the system than on the wording of a prompt. Context engineering includes repository structure, documentation, progress tracking, and task-scoped state that tell the agent what already exists and what it should do next. It reduces hallucinated paths, duplicate work, and inconsistent execution by grounding the agent in real artifacts rather than abstract instructions. The practice becomes more important as agents operate over long sessions or across large codebases.",
+          "match_candidates": [],
+          "operational_insight": "When an agent must modify software or operate a workflow, give it the current state of the world in machine-readable form: paths, progress, constraints, and verification criteria. That usually outperforms longer prompts.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "agentic-workflows"
+          ],
+          "relevance_note": "Context engineering is a durable operational pattern because agentic systems fail quickly when they lack grounding. It is central to coding agents, knowledge-grounded assistants, and any automation that needs to remember state across sessions or tasks.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cWhat does the agent need to know before it writes a single line of code?\u201d",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "9b139713-525d-4671-a90b-dcc8f776f021",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "AGENT.md/CLAUDE.md-style files make project context available at session start.",
+              "JSON feature lists can act as both specification and progress tracker.",
+              "Grounding in real file paths and state reduces hallucinated APIs and invented structure.",
+              "The repo can become the single source of truth for agent behavior."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "prompt-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Small, sequential steps beat large all-at-once tasks.",
+            "Planning and execution should be separate stages.",
+            "Feedback loops can be automated tests, another model, or both.",
+            "The best workflow design depends on whether quality, cost, or speed is the primary constraint."
+          ],
+          "knowledge_summary": "Agentic workflows are systems where an AI model performs work through a structured sequence of planning, execution, verification, and iteration rather than a single prompt-response exchange. The workflow is usually constrained by checkpoints, task decomposition, and tool access so that the model can complete useful work over time. Effective agentic workflows often rely on separating planning from execution and on using feedback to prevent silent failure. They become much more reliable when each step is small and the next action is chosen from current state rather than from a fresh blank slate.",
+          "match_candidates": [],
+          "operational_insight": "Break autonomous work into small units with explicit checks between them, and avoid letting one pass do planning, execution, and self-grading at once.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "context-engineering"
+          ],
+          "relevance_note": "This is a core pattern for coding agents, support automation, and back-office systems because the same failure modes recur when a model is asked to do too much in one shot. The reusable lesson is to design the workflow, not just the model call.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cAgents that try to do too much at once run out of context, lose coherence, or silently drop requirements.\u201d",
+          "topic_slug": "agentic-workflows",
+          "topic_title": "Agentic Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f6651093-f277-4ecf-8de5-2238eb98a209",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Small, sequential steps beat large all-at-once tasks.",
+              "Planning and execution should be separate stages.",
+              "Feedback loops can be automated tests, another model, or both.",
+              "The best workflow design depends on whether quality, cost, or speed is the primary constraint."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "context-engineering"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": "mixed",
+          "examples": "",
+          "key_points": [
+            "Harness components can become dead weight as model capability improves.",
+            "Examples in the source include removing sprint decomposition, switching to single-pass evaluation, and pruning tools or wrappers.",
+            "The practical discipline is to build modular controls with kill switches and test whether they still matter.",
+            "Maintaining obsolete harness layers can add token cost, latency, and ongoing engineering burden."
+          ],
+          "knowledge_summary": "Harness decay is the pattern where AI-agent control scaffolding that was necessary for older model generations becomes unnecessary overhead as models improve. In practice, that can mean removing sprint decomposition, simplifying evaluation loops, or deleting tool wrappers when the model starts handling those responsibilities itself. The core topic is not just harness construction, but ongoing pruning: harness components should be designed to be removable as soon as they stop improving results.",
+          "operational_insight": "Treat harness components as provisional. Periodically disable or remove each control, measure whether output quality changes, and delete anything that no longer helps. This prevents extra tokens, latency, and maintenance burden from accumulating after model capability has advanced.",
+          "related_topics": [
+            "agentic-workflows",
+            "context-engineering"
+          ],
+          "relevance_note": "Useful for teams building agentic systems because the right amount of scaffolding changes over time. A harness that improves reliability today may become friction tomorrow, so control design should include explicit review and removal checks.",
+          "supporting_snippet": "\u201cA harness component that was load-bearing in March was dead weight by April.\u201d",
+          "topic_slug": "harness-decay",
+          "topic_title": "Harness Decay",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "7f3e392b-e647-48ec-904c-15356b7806c9",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-17T13:24:51+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "29",
+          "regen_count": 1,
+          "transferred_from": {
+            "at": "2026-05-17T13:24:51+00:00",
+            "entity": "trend",
+            "review_list_key": "industry_trends",
+            "title_field": "trend_title"
+          }
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Harness components can become dead weight as model capability improves.",
+              "Examples in the source include removing sprint decomposition, switching to single-pass evaluation, and pruning tools or wrappers.",
+              "The practical discipline is to build modular controls with kill switches and test whether they still matter.",
+              "Maintaining obsolete harness layers can add token cost, latency, and ongoing engineering burden."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-workflows",
+              "context-engineering"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "agentic-ai"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3,
+      "mixed": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 5,
+    "review_duration_seconds": 400.5,
+    "review_finished_at": "2026-05-17T13:26:04.904667+00:00",
+    "review_started_at": "2026-05-17T13:19:24.428865+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-17T13:26:04+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Yanli Liu",
+    "canonical_url": "https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a",
+    "content_sha256": "14b1d7a9da5ad369719cb9c4c9f325d01f66bfe79bd54379de9108b69951911f",
+    "publication": "Medium",
+    "published_date": "2026-04-27",
+    "raw_html_rel_path": "raw/readwise/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.html",
+    "raw_md_rel_path": "raw/readwise/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.md",
+    "source_id": "harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx",
+    "title": "Harness Engineering: What Every AI Engineer Needs to Know in 2026"
+  }
+}

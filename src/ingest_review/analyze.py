@@ -11,11 +11,13 @@ from src.ingest_review.canonical_titles import (
 )
 from src.ingest_review.evidence import apply_evidence_hierarchy
 from src.ingest_review.extract import SourceDocument
+from src.ingest_review.foundation_model_name_backfill import backfill_foundation_model_names
 from src.ingest_review.glossary_related_terms_align import align_glossary_related_terms
 from src.ingest_review.howto_title_normalize import normalize_howto_proposal
 from src.ingest_review.impl_study_gate import filter_impl_study_proposals
 from src.ingest_review.providers.base import IngestionProvider
 from src.ingest_review.schema import (
+    LIST_ROUNDUP_SOURCE_TYPES,
     PROMPT_VERSION,
     LlmClassificationOutput,
     TopicContribution,
@@ -233,6 +235,46 @@ def apply_tools_roundup_entity_strip(parsed: LlmClassificationOutput) -> LlmClas
     )
 
 
+def apply_howto_roundup_entity_strip(parsed: LlmClassificationOutput) -> LlmClassificationOutput:
+    """Force how-to-only extraction when source type is how_to_roundup."""
+    if parsed.source_type_detection.detected_source_type != "how_to_roundup":
+        return parsed
+    return parsed.model_copy(
+        update={
+            "glossary": [],
+            "topics": [],
+            "tools": [],
+            "foundation_models": [],
+            "industry_trends": [],
+            "roundup_signals": [],
+            "implementation_studies": [],
+            "interview_insights": [],
+        }
+    )
+
+
+def enforce_list_roundup_extraction_policy(
+    parsed: LlmClassificationOutput,
+) -> LlmClassificationOutput:
+    """Never recommend skip for list-style roundup sources (human curates in dashboard)."""
+    detected = parsed.source_type_detection.detected_source_type
+    if detected not in LIST_ROUNDUP_SOURCE_TYPES:
+        return parsed
+    emeta = parsed.extraction_meta
+    if not emeta.skip_recommended:
+        return parsed
+    prior = (emeta.skip_reason or "").strip()
+    cleared = "Cleared skip for list roundup review."
+    new_reason = f"{prior} ({cleared})" if prior else cleared
+    return parsed.model_copy(
+        update={
+            "extraction_meta": emeta.model_copy(
+                update={"skip_recommended": False, "skip_reason": new_reason}
+            )
+        }
+    )
+
+
 def _backfill_empty_topic_related_topics(
     parsed: LlmClassificationOutput,
     wiki: WikiSnapshot,
@@ -310,6 +352,7 @@ def run_classification(
         model=model,
         prompt_version=pv,
     )
+    parsed = enforce_list_roundup_extraction_policy(parsed)
     canonical_index = build_canonical_index(wiki, reviews_path)
     parsed = align_parsed_classification_titles(parsed, canonical_index)
     parsed = parsed.model_copy(
@@ -322,6 +365,7 @@ def run_classification(
         tool_types,
         list(model_types or []),
     )
+    parsed = backfill_foundation_model_names(parsed, wiki.foundation_model_names)
     parsed = apply_tag_allowlists(
         parsed,
         set(tool_types),
@@ -335,6 +379,7 @@ def run_classification(
     parsed = sanitize_topics_related_topics(parsed, set(topic_tags or []), wiki)
     parsed = _backfill_empty_topic_related_topics(parsed, wiki, reviews_path)
     parsed = apply_tools_roundup_entity_strip(parsed)
+    parsed = apply_howto_roundup_entity_strip(parsed)
     parsed = parsed.model_copy(
         update={
             "implementation_studies": filter_impl_study_proposals(parsed.implementation_studies),

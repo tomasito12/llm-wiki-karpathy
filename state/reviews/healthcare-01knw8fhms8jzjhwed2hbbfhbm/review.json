@@ -1,0 +1,450 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-17T12:13:23+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "29",
+    "provider": "openai",
+    "request_id": "chatcmpl-DgUejW4fW9UcI6hzG6gVQQQgwKaUU",
+    "token_usage": {
+      "completion_tokens": 1871,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 24193,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 26064
+    }
+  },
+  "artifact_schema_version": 15,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The page is published by OpenAI and describes OpenAI's own healthcare workspace and prompt templates.",
+        "Claims about secure workspace, HIPAA-compliant use, and cited answers are presented by the vendor without independent evaluation.",
+        "The content is example-based and promotional rather than a third-party analysis or benchmark report."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This page is a collection of example prompts for health care workers who want help with everyday clinical tasks. It says the tool is made for hospital providers and is intended to be safe for use with protected health information. The examples show how to ask for help with things like choosing tests, sorting out possible diagnoses, writing a clinical note, making discharge instructions, and planning a handoff to another care team. It also shows prompts for checking a guideline and for evaluating memory or thinking problems in an older adult. In plain terms, the page is teaching clinicians how to use an artificial intelligence assistant as a writing and thinking aid. It is not a research study and does not show measured patient outcomes. It is most useful as a set of starting points for prompt design as of 2026-04-10. Readers should still verify any medical answer against local policy and trusted clinical references.",
+      "assessed_as_of": "2026-04-10",
+      "contradictions_and_skepticism": "The page implies clinical usefulness through examples, but examples alone are weak evidence. A cited-answer interface can improve reviewability, yet it can also create false confidence if citations are incomplete or not well matched to the clinical question. The diagnostic prompts are sensible, but they are still prompts rather than validated workflows, so the practical value depends on local governance and clinician oversight.",
+      "key_insights": [
+        "The page frames healthcare use as a prompt-engineering problem: the quality comes from the template and context you provide.",
+        "Cited answers from trusted medical sources are positioned as a core feature, which matters for clinician trust and review.",
+        "The strongest operational use cases are documentation-heavy tasks such as assessments, plans, summaries, and after-visit instructions.",
+        "Several prompts are built around differential diagnosis and triage-style reasoning, suggesting the workflow is meant to assist, not replace, clinical judgment.",
+        "A separate prompt for cognitive concerns shows the same pattern can be reused for history, screening, labs, and imaging decisions."
+      ],
+      "limitations_and_open_questions": "The page is promotional and example-driven, so it does not establish real-world performance, safety, or adoption. It does not say how cited answers are generated, what trusted medical sources are used, how conflicts are resolved, or how hallucinations are handled. The HIPAA-compliant claim is not accompanied by implementation detail, certification scope, or boundary conditions. No information is given about latency, cost, auditability, or integration into clinical systems. It is also unclear whether the prompt templates generalize across specialties, care settings, or institutional policies.",
+      "sources": [
+        "https://openai.com/academy/healthcare"
+      ],
+      "summary": "This OpenAI Academy page collects prompt templates and usage examples for healthcare workflows. It presents ChatGPT for Healthcare as a secure workspace for hospital providers that is designed for HIPAA-compliant use and provides cited answers from trusted medical sources. The examples focus on clinical documentation, prior authorizations, patient summarization, diagnostic workups, differential diagnosis, assessment and plan writing, patient instructions, handoffs, guideline checking, and initial evaluation of cognitive concerns. The page is practical rather than analytical: it shows how clinicians can frame prompts for different tasks, but it does not report outcomes, failure cases, or independent evaluation. As of 2026-04-10, the page is most useful as a prompt library and workflow reference, not as evidence that the system improves care quality on its own.",
+      "why_it_matters": "The page matters because it turns healthcare usage of a model into a set of reusable clinical prompt patterns rather than a vague product pitch. The most concrete value is in tasks that consume clinician time but do not require novel medical reasoning, such as drafting documentation, summarizing patient information, and preparing prior authorizations. It also gives a template for using a cited-answer workflow, which is operationally important when clinicians need traceable references instead of free-form text. The examples around diagnostic workups, differential diagnosis, and guideline checking show how the assistant is positioned as a decision-support layer, but the page does not provide evidence that those prompts improve accuracy or outcomes. The limitations are important: this is a vendor-authored resource, and the page gives no evaluation data, error analysis, or implementation constraints beyond the HIPAA-compliant workspace claim. For service automation, the most relevant closing point is that the same pattern could reduce burden in clinical documentation, patient instructions, and care coordination, but only as of 2026-04-10 and only with local verification of compliance and clinical quality; it is useful guidance, not proof of durable benefit."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single vendor-authored Academy page with prompt examples, not a multi-item roundup or transcript.",
+        "No interview structure, no research methodology, and no step-by-step tutorial framing.",
+        "Primary purpose is to present usage examples for a product/workflow rather than analyze multiple external sources."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The prompt should name the clinician role, patient context, and desired clinical task.",
+          "Templates improve reuse because only the patient-specific slots change from case to case.",
+          "Output format cues matter because clinical workflows often need notes, plans, or instructions rather than free-form prose."
+        ],
+        "knowledge_summary": "Reusable prompt templates can structure healthcare tasks that depend on clear context, explicit role framing, and a defined output format. In clinical settings, these templates help separate the stable parts of the task from the patient-specific details, which makes prompts easier to reuse across documentation, triage support, and patient communication. Good templates also reduce ambiguity by specifying the care setting, clinician role, symptoms, and expected deliverable. This pattern is especially useful where the same workflow repeats with different patients but similar information needs.",
+        "match_candidates": [],
+        "operational_insight": "When building clinical assistants, design prompts as durable templates with named slots for role, patient facts, task, and output format so clinicians can reuse them safely.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "cited-answer-workflows"
+        ],
+        "relevance_note": "Clinical systems often fail when users provide too little structure. Template-based prompting creates repeatable inputs for documentation, decision support, and patient-facing writing, which makes review and governance easier.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"I am a [clinical role, e.g., hospitalist, emergency physician, ICU fellow, NP, PA] caring for a [age]-year-old [gender] patient with [key past medical conditions] who presents with [chief complaint(s)] and [key acute symptoms or signs] in a [care setting, e.g., emergency department, ICU].\"",
+        "topic_slug": "clinical-prompt-templates",
+        "topic_title": "Clinical Prompt Templates",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.85,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Citations improve inspectability, but they do not prove the answer is correct.",
+          "The value of citations depends on source quality and whether the cited material actually supports the claim.",
+          "Traceable answers are especially useful in regulated workflows where users must justify decisions."
+        ],
+        "knowledge_summary": "Cited-answer workflows require the model to ground its response in traceable sources rather than providing an uncited answer. In high-stakes domains, citations help the user inspect where the answer came from and decide whether it is safe to use. This does not guarantee correctness, but it supports review, auditability, and trust calibration. The pattern is most valuable when users need to verify facts before acting.",
+        "match_candidates": [],
+        "operational_insight": "For healthcare assistants, cited answers should be treated as reviewable evidence snippets, not as a substitute for clinical validation.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "clinical-prompt-templates"
+        ],
+        "relevance_note": "Citations are a practical control surface for any AI system used in regulated or high-stakes work. They make it easier to inspect evidence, spot unsupported claims, and route uncertain cases to a human reviewer.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"ChatGPT for Healthcare\u2060 is a secure workspace built for hospital providers and designed for HIPAA-compliant use, providing cited answers from trusted medical sources.\"",
+        "topic_slug": "cited-answer-workflows",
+        "topic_title": "Cited Answer Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The page is published by OpenAI and describes OpenAI's own healthcare workspace and prompt templates.",
+          "Claims about secure workspace, HIPAA-compliant use, and cited answers are presented by the vendor without independent evaluation.",
+          "The content is example-based and promotional rather than a third-party analysis or benchmark report."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The page frames healthcare use as a prompt-engineering problem: the quality comes from the template and context you provide.",
+          "Cited answers from trusted medical sources are positioned as a core feature, which matters for clinician trust and review.",
+          "The strongest operational use cases are documentation-heavy tasks such as assessments, plans, summaries, and after-visit instructions.",
+          "Several prompts are built around differential diagnosis and triage-style reasoning, suggesting the workflow is meant to assist, not replace, clinical judgment.",
+          "A separate prompt for cognitive concerns shows the same pattern can be reused for history, screening, labs, and imaging decisions."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/academy/healthcare"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single vendor-authored Academy page with prompt examples, not a multi-item roundup or transcript.",
+          "No interview structure, no research methodology, and no step-by-step tutorial framing.",
+          "Primary purpose is to present usage examples for a product/workflow rather than analyze multiple external sources."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The prompt should name the clinician role, patient context, and desired clinical task.",
+            "Templates improve reuse because only the patient-specific slots change from case to case.",
+            "Output format cues matter because clinical workflows often need notes, plans, or instructions rather than free-form prose."
+          ],
+          "knowledge_summary": "Reusable prompt templates can structure healthcare tasks that depend on clear context, explicit role framing, and a defined output format. In clinical settings, these templates help separate the stable parts of the task from the patient-specific details, which makes prompts easier to reuse across documentation, triage support, and patient communication. Good templates also reduce ambiguity by specifying the care setting, clinician role, symptoms, and expected deliverable. This pattern is especially useful where the same workflow repeats with different patients but similar information needs.",
+          "match_candidates": [],
+          "operational_insight": "When building clinical assistants, design prompts as durable templates with named slots for role, patient facts, task, and output format so clinicians can reuse them safely.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "cited-answer-workflows"
+          ],
+          "relevance_note": "Clinical systems often fail when users provide too little structure. Template-based prompting creates repeatable inputs for documentation, decision support, and patient-facing writing, which makes review and governance easier.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"I am a [clinical role, e.g., hospitalist, emergency physician, ICU fellow, NP, PA] caring for a [age]-year-old [gender] patient with [key past medical conditions] who presents with [chief complaint(s)] and [key acute symptoms or signs] in a [care setting, e.g., emergency department, ICU].\"",
+          "topic_slug": "clinical-prompt-templates",
+          "topic_title": "Clinical Prompt Templates",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6ac1952a-d7cf-4ad1-8600-2444ea34550b",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The prompt should name the clinician role, patient context, and desired clinical task.",
+              "Templates improve reuse because only the patient-specific slots change from case to case.",
+              "Output format cues matter because clinical workflows often need notes, plans, or instructions rather than free-form prose."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "cited-answer-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.85,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Citations improve inspectability, but they do not prove the answer is correct.",
+            "The value of citations depends on source quality and whether the cited material actually supports the claim.",
+            "Traceable answers are especially useful in regulated workflows where users must justify decisions."
+          ],
+          "knowledge_summary": "Cited-answer workflows require the model to ground its response in traceable sources rather than providing an uncited answer. In high-stakes domains, citations help the user inspect where the answer came from and decide whether it is safe to use. This does not guarantee correctness, but it supports review, auditability, and trust calibration. The pattern is most valuable when users need to verify facts before acting.",
+          "match_candidates": [],
+          "operational_insight": "For healthcare assistants, cited answers should be treated as reviewable evidence snippets, not as a substitute for clinical validation.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "clinical-prompt-templates"
+          ],
+          "relevance_note": "Citations are a practical control surface for any AI system used in regulated or high-stakes work. They make it easier to inspect evidence, spot unsupported claims, and route uncertain cases to a human reviewer.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"ChatGPT for Healthcare\u2060 is a secure workspace built for hospital providers and designed for HIPAA-compliant use, providing cited answers from trusted medical sources.\"",
+          "topic_slug": "cited-answer-workflows",
+          "topic_title": "Cited Answer Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "051d9189-96c6-4963-a9d5-8b787a1d8396",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Citations improve inspectability, but they do not prove the answer is correct.",
+              "The value of citations depends on source quality and whether the cited material actually supports the claim.",
+              "Traceable answers are especially useful in regulated workflows where users must justify decisions."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "clinical-prompt-templates"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 2,
+    "proposals_total": 2,
+    "review_duration_seconds": 216.5,
+    "review_finished_at": "2026-05-17T12:17:00.148066+00:00",
+    "review_started_at": "2026-05-17T12:13:23.650998+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-17T12:17:00+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/academy/healthcare",
+    "content_sha256": "c914cbd79af2f951be8f5b9d0e4b2037a3e78c8ff3a2ce836b57ffb329c69dd0",
+    "publication": "OpenAI",
+    "published_date": "2026-04-10",
+    "raw_html_rel_path": "raw/readwise/healthcare-01knw8fhms8jzjhwed2hbbfhbm.html",
+    "raw_md_rel_path": "raw/readwise/healthcare-01knw8fhms8jzjhwed2hbbfhbm.md",
+    "source_id": "healthcare-01knw8fhms8jzjhwed2hbbfhbm",
+    "title": "Healthcare"
+  }
+}
