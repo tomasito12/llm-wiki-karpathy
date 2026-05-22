@@ -34,6 +34,10 @@ from src.ingest_review.proposal_regen_ui import (
 )
 from src.ingest_review.schema import TOPIC_REVIEWABLE_LIST_KEYS, TOPIC_REVIEWABLE_SCALAR_KEYS
 from src.ingest_review.tags import normalize_tag
+from src.ingest_review.topic_related_topics import (
+    TOPIC_RELATED_TOPICS_MAX,
+    cap_related_topic_slugs,
+)
 from src.ingest_review.topic_related_topics_suggest import (
     RelatedTopicCandidate,
     build_topic_slug_catalog,
@@ -246,6 +250,29 @@ def _topic_related_suggestions(
     summary = effective_topic_scalar(llm_item, sections, "knowledge_summary")
     catalog = build_topic_slug_catalog(wiki, reviews_root, artifact, exclude_slug=slug)
     return suggest_related_topics(slug, title, summary, catalog)
+
+
+def _clamp_related_topics_multiselect_session(
+    session_state: Any,
+    widget_key: str,
+) -> None:
+    """Ensure a keyed multiselect never exceeds TOPIC_RELATED_TOPICS_MAX in session state."""
+    stored = session_state.get(widget_key)
+    if not isinstance(stored, list):
+        return
+    capped = cap_related_topic_slugs([str(s) for s in stored if str(s).strip()])
+    if capped != stored:
+        session_state[widget_key] = capped
+
+
+def _related_topics_multiselect_default(
+    current_related: list[str],
+    option_slugs: list[str],
+) -> list[str]:
+    """Initial multiselect value: stored links capped and limited to available options."""
+    capped = cap_related_topic_slugs(current_related)
+    option_set = set(option_slugs)
+    return [s for s in capped if s in option_set]
 
 
 def _format_related_topic_multiselect_label(
@@ -496,19 +523,32 @@ def _render_topic_edit_box(
             if normalize_tag(s)
         ]
         option_slugs = list(dict.fromkeys([c.slug for c in suggestions] + current_related))
+        related_widget_key = f"{key_prefix}_edit_related_topics"
         if option_slugs:
+            if len(current_related) > TOPIC_RELATED_TOPICS_MAX:
+                st.caption(
+                    f"This proposal lists more than {TOPIC_RELATED_TOPICS_MAX} related topics; "
+                    f"only the first {TOPIC_RELATED_TOPICS_MAX} are loaded for editing. "
+                    "Save to trim the stored list."
+                )
+            _clamp_related_topics_multiselect_session(
+                streamlit_runtime.session_state,
+                related_widget_key,
+            )
             selected = st.multiselect(
                 TOPIC_FIELD_LABELS["related_topics"],
                 options=option_slugs,
-                default=[s for s in current_related if s in option_slugs],
-                max_selections=3,
+                default=_related_topics_multiselect_default(current_related, option_slugs),
+                max_selections=TOPIC_RELATED_TOPICS_MAX,
                 format_func=lambda s, m=by_slug: _format_related_topic_multiselect_label(s, m),
-                key=f"{key_prefix}_edit_related_topics",
+                key=related_widget_key,
                 help="Up to 3 cross-links to other topic pages (kebab-case slugs).",
             )
             field_values["related_topics"] = "\n".join(selected)
         elif current_related:
-            field_values["related_topics"] = "\n".join(current_related)
+            field_values["related_topics"] = "\n".join(
+                cap_related_topic_slugs(current_related)
+            )
 
         snippet = str(llm_item.get("supporting_snippet") or "").strip()
         if snippet:

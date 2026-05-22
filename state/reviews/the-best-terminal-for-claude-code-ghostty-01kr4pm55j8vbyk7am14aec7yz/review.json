@@ -1,0 +1,606 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-21T14:46:46+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DhyxD5RJ2XBfbp3X0MefdZlfMkaMT",
+    "token_usage": {
+      "completion_tokens": 2591,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 30115,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 32706
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article is written in first person and centers on the author's own use of Ghostty.",
+        "Claims about lag, memory use, and token savings are experiential rather than benchmarked.",
+        "Comparisons to other tools are anecdotal and not presented as formal evaluation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about choosing a terminal program that feels fast and pleasant when working with Claude Code. The writer says that on an older Mac, some editing tools felt slow, so they looked for a terminal-based setup instead. They chose Ghostty, which is a terminal app that uses the computer\u2019s graphics hardware to draw text smoothly. The article also says Ghostty starts quickly, uses less memory than some other terminals, and is easy to configure with a plain text file. It supports themes, custom visual effects, and even background images, so the terminal can be easier to look at during long sessions. The author says these things matter because Claude Code can produce a lot of output and require frequent yes-or-no replies. The main recommendation is not that Ghostty is magic, but that it fits this style of work better than heavier terminal choices. The overall advice is practical: if terminal lag bothers your coding flow, Ghostty is worth trying.",
+      "assessed_as_of": "2026-04-17",
+      "contradictions_and_skepticism": "The article leans on subjective experience and a few asserted numbers, so the performance case is persuasive but thin. It also mixes practical workflow guidance with aesthetic preferences, which makes the boundary between utility and taste somewhat blurry. The claim that the TUI approach saves more tokens than IDE plugins or ACP is interesting but unsupported with examples or measurements. That makes the article useful as a workflow preference note, not as a rigorous comparative study.",
+      "key_insights": [
+        "Ghostty is positioned as a terminal-first way to reduce lag during Claude Code sessions with large output and frequent confirmations.",
+        "The article\u2019s main operational claim is that GPU rendering and low memory usage matter more than extra IDE features for this workflow.",
+        "Plain-text configuration is treated as a productivity feature because terminal settings can be adjusted without restarting.",
+        "Visual comfort features such as themes, shaders, and background images are framed as useful for long interactive coding sessions, not just decoration."
+      ],
+      "limitations_and_open_questions": "The evidence is mostly one person\u2019s experience on an old Intel Mac, so the performance claims are not independently measured. The article gives no reproducible benchmark for input latency, scrolling smoothness, or memory use beyond a stated range. It also does not compare Ghostty against other terminals under the same workload, aside from general references to iTerm2, Cursor, Zed, and Electron-based terminals. The recommendation is therefore context-specific: it may matter more on slower machines or for users who spend long sessions inside Claude Code. The shader and background-image features are visually appealing, but the article does not show that they improve actual task completion. The question of whether these features help or distract in production work remains open.",
+      "sources": [
+        "https://medium.com/@piedpay/the-best-terminal-for-claude-code-ghostty-95c35b2d90e6"
+      ],
+      "summary": "The piece argues that Ghostty is a strong terminal choice for Claude Code workflows because it combines GPU-accelerated rendering, low-latency input, simple configuration, and modest resource usage. The author frames the main problem as terminal lag and resource pressure on an older Intel Mac, especially when IDEs feel sluggish during agentic coding sessions. Ghostty is presented as a native terminal built in Zig, with AppKit on macOS rather than Electron, and with configurable themes, shaders, and background images. The practical case made here is mostly about interactive coding comfort and performance rather than a broad software architecture change. The evidence is experiential and promotional, so the stakes are limited, but the configuration details are concrete. Actionable as of 2026-04-17, with value mainly for people optimizing Claude Code terminal ergonomics on macOS.",
+      "why_it_matters": "The piece matters because it connects terminal choice to the ergonomics of agentic coding, especially when a tool like Claude Code emits long outputs and waits for repeated human confirmation. The author\u2019s core claim is not about model capability but about the surrounding execution environment: a terminal that scrolls smoothly, responds quickly to input, and stays light on memory can make interactive coding less frustrating. The article also gives a concrete example of how configuration simplicity can reduce friction when developers keep tuning font size, theme, and key bindings. The technical substance is narrow, but the operational lesson is durable: the terminal is part of the coding harness, and poor terminal performance can become a workflow bottleneck. The service automation implication is indirect but real: if Claude Code is used in support or back-office scripts, a responsive terminal reduces operator fatigue during long review and confirmation loops. As of 2026-04-17, the advice is practical for macOS users who want a lighter Claude Code terminal setup, but it is still a user report rather than comparative evaluation."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent blog post with one central argument, not a bundle of independent items.",
+        "No numbered list of distinct tools, practices, or roundup-style entries.",
+        "Contains personal experience and setup guidance rather than interview or formal report structure."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.88,
+        "core_capabilities": [
+          "It renders terminal output with GPU acceleration so large scrollback stays smooth during long command sessions.",
+          "It uses a simple key-value configuration file, which makes changes easy to edit and reason about.",
+          "It supports custom GLSL shaders, allowing visual effects such as animated gradients or other terminal overlays.",
+          "It includes many built-in themes, which reduces the need to hunt for separate theme files."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It can be installed on macOS with Homebrew using `brew install --cask ghostty`.",
+          "It reads configuration from `~/.config/ghostty/config`, which fits standard dotfile-based workflows.",
+          "It can launch a default shell such as `/bin/zsh -l`, so it integrates with existing shell startup habits.",
+          "It can load custom shader files from the local filesystem, which makes it compatible with user-maintained visual customization assets."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Ghostty as established enough to install via Homebrew on macOS and to configure through a documented text file. That suggests a practical, usable product rather than a prototype, but the article does not evidence enterprise adoption or ecosystem depth. The surrounding language is enthusiastic, yet the maturity signal is still modest because the support is anecdotal.",
+        "name": "Ghostty",
+        "operational_relevance": "Ghostty fits workflows where the terminal is part of the active coding harness, especially for agentic coding tools that produce large scrollback and require frequent human confirmations. The article positions it as a better fit than heavier terminals when performance, startup speed, and memory footprint matter. It is also relevant when developers want quick terminal tweaks without leaving the terminal workflow. For conversational AI and service automation work, that matters most when operators stay in a terminal for long review-and-approval loops rather than in a browser UI.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "app",
+          "ai-application"
+        ],
+        "related_tools": [
+          "iTerm2",
+          "Cursor",
+          "Zed"
+        ],
+        "short_description": "Ghostty is a GPU-accelerated terminal emulator built in Zig. On macOS it uses AppKit rather than Electron, and it is designed to be fast, configurable, and lightweight.",
+        "strengths": "- GPU rendering is presented as the main practical advantage because it keeps scrolling smooth even with large volumes of output, which matters when an agent prints long traces or generated code.\n- The native macOS build is framed as lower-memory and faster-starting than Electron-based terminals, which helps when the machine is already carrying heavy development tools.\n- Plain-text configuration reduces friction for repeated tuning of fonts, themes, and shell startup behavior because changes are easy to read and edit.\n- Built-in themes, shader support, and background images make it easier to tune the visual environment for long coding sessions without extra tooling.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"Ghostty is a GPU-accelerated terminal emulator built from scratch in Zig by Mitchell Hashimoto (founder of HashiCorp). It's not a terminal wrapped in bloated, performance-hungry Electron; it's a native performance, modern architecture product\u2014fast is right.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not provide independent benchmarks, and the performance claims are based on the author's own experience. It also does not show how Ghostty behaves under cross-platform parity, multi-pane workflows, or heavy plugin ecosystems, so the tradeoff surface is incomplete."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.82,
+        "evidence_type": null,
+        "examples": "Ghostty is described as handling \"Code Generation, File Reading, Search Results, Often Scrolling Thousands of Lines\" and avoiding the lag seen in iTerm2 on large outputs.",
+        "key_points": [
+          "Large agent outputs expose terminal rendering bottlenecks that are invisible in lighter workflows.",
+          "Input latency matters when the human has to approve many small actions in sequence.",
+          "Low-memory terminals can reduce contention on machines already running heavy coding tools."
+        ],
+        "knowledge_summary": "When an agentic coding workflow produces large outputs, the terminal becomes a performance-critical part of the system. Smooth rendering, low input latency, and low memory usage can materially affect how tolerable long confirmation-heavy sessions feel. Terminal choice can therefore matter even when the model and editor stay the same, because the operator still spends time reading traces, approving actions, and watching generated output. The practical question is not visual polish alone; it is whether the execution surface keeps up with the agent's pace.",
+        "match_candidates": [],
+        "operational_insight": "Treat the terminal as part of the agent harness and optimize it for scroll performance and input responsiveness before chasing cosmetic features.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "agent-first-ide-orchestration"
+        ],
+        "relevance_note": "This matters for any terminal-centric AI workflow where the operator reads long generated output and issues repeated approvals. In conversational AI and service automation operations, terminal responsiveness can affect how efficiently engineers review logs, scripts, and agent actions during long sessions.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Claude Code Output Volumes Are Large\u2014Code Generation, File Reading, Search Results, Often Scrolling Thousands of Lines. Ghostty's GPU rendering has a clear advantage in these scenarios, avoiding the lag that occurs in iTerm2 with large outputs.\"",
+        "topic_slug": "agentic-coding-terminal-performance",
+        "topic_title": "Agentic Coding Terminal Performance",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.74,
+        "evidence_type": null,
+        "examples": "The source describes built-in themes, a `key = value` config format, background images, and custom GLSL shaders such as an animated gradient shader.",
+        "key_points": [
+          "Simple configuration lowers the cost of experimentation with fonts, themes, and spacing.",
+          "Visual tweaks can be functional if they reduce fatigue over long sessions.",
+          "Shader and background support widen the customization surface beyond standard color themes."
+        ],
+        "knowledge_summary": "Terminal customization can improve sustained developer comfort during long interactive work sessions. Themes, padding, background textures, and shaders may reduce visual fatigue, while plain-text settings make iterative adjustment easier. The value is not aesthetic novelty by itself; it is lower friction during repeated, focused use. This becomes more relevant when the terminal remains open for extended periods and is used as the primary control surface.",
+        "match_candidates": [],
+        "operational_insight": "Prefer terminals whose customization is immediate and file-based, because long-running workflows benefit from fast visual tuning without modal settings dialogs.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is durable anywhere developers spend hours inside a terminal, especially in agent-assisted coding, debugging, or operations work. It matters less as a design trend than as a small but repeated ergonomics gain that can reduce fatigue.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ui-design",
+        "suggested_new_tags": [
+          "ui-design"
+        ],
+        "supporting_snippet": "\"Ghostty's configuration is a simple `key = value` format, with comments using `#`. No semicolons, no indentation levels\u2014just straightforward.\"",
+        "topic_slug": "terminal-customization-for-long-coding-sessions",
+        "topic_title": "Terminal Customization for Long Coding Sessions",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article is written in first person and centers on the author's own use of Ghostty.",
+          "Claims about lag, memory use, and token savings are experiential rather than benchmarked.",
+          "Comparisons to other tools are anecdotal and not presented as formal evaluation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Ghostty is positioned as a terminal-first way to reduce lag during Claude Code sessions with large output and frequent confirmations.",
+          "The article\u2019s main operational claim is that GPU rendering and low memory usage matter more than extra IDE features for this workflow.",
+          "Plain-text configuration is treated as a productivity feature because terminal settings can be adjusted without restarting.",
+          "Visual comfort features such as themes, shaders, and background images are framed as useful for long interactive coding sessions, not just decoration."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@piedpay/the-best-terminal-for-claude-code-ghostty-95c35b2d90e6"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent blog post with one central argument, not a bundle of independent items.",
+          "No numbered list of distinct tools, practices, or roundup-style entries.",
+          "Contains personal experience and setup guidance rather than interview or formal report structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "core_capabilities": [
+            "It renders terminal output with GPU acceleration so large scrollback stays smooth during long command sessions.",
+            "It uses a simple key-value configuration file, which makes changes easy to edit and reason about.",
+            "It supports custom GLSL shaders, allowing visual effects such as animated gradients or other terminal overlays.",
+            "It includes many built-in themes, which reduces the need to hunt for separate theme files."
+          ],
+          "integration_ecosystem": [
+            "It can be installed on macOS with Homebrew using `brew install --cask ghostty`.",
+            "It reads configuration from `~/.config/ghostty/config`, which fits standard dotfile-based workflows.",
+            "It can launch a default shell such as `/bin/zsh -l`, so it integrates with existing shell startup habits.",
+            "It can load custom shader files from the local filesystem, which makes it compatible with user-maintained visual customization assets."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Ghostty as established enough to install via Homebrew on macOS and to configure through a documented text file. That suggests a practical, usable product rather than a prototype, but the article does not evidence enterprise adoption or ecosystem depth. The surrounding language is enthusiastic, yet the maturity signal is still modest because the support is anecdotal.",
+          "name": "Ghostty",
+          "operational_relevance": "Ghostty fits workflows where the terminal is part of the active coding harness, especially for agentic coding tools that produce large scrollback and require frequent human confirmations. The article positions it as a better fit than heavier terminals when performance, startup speed, and memory footprint matter. It is also relevant when developers want quick terminal tweaks without leaving the terminal workflow. For conversational AI and service automation work, that matters most when operators stay in a terminal for long review-and-approval loops rather than in a browser UI.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "app",
+            "ai-application"
+          ],
+          "related_tools": [
+            "iTerm2",
+            "Cursor",
+            "Zed"
+          ],
+          "short_description": "Ghostty is a GPU-accelerated terminal emulator built in Zig. On macOS it uses AppKit rather than Electron, and it is designed to be fast, configurable, and lightweight.",
+          "strengths": "- GPU rendering is presented as the main practical advantage because it keeps scrolling smooth even with large volumes of output, which matters when an agent prints long traces or generated code.\n- The native macOS build is framed as lower-memory and faster-starting than Electron-based terminals, which helps when the machine is already carrying heavy development tools.\n- Plain-text configuration reduces friction for repeated tuning of fonts, themes, and shell startup behavior because changes are easy to read and edit.\n- Built-in themes, shader support, and background images make it easier to tune the visual environment for long coding sessions without extra tooling.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"Ghostty is a GPU-accelerated terminal emulator built from scratch in Zig by Mitchell Hashimoto (founder of HashiCorp). It's not a terminal wrapped in bloated, performance-hungry Electron; it's a native performance, modern architecture product\u2014fast is right.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not provide independent benchmarks, and the performance claims are based on the author's own experience. It also does not show how Ghostty behaves under cross-platform parity, multi-pane workflows, or heavy plugin ecosystems, so the tradeoff surface is incomplete."
+        },
+        "notes": null,
+        "proposal_id": "1122a9c6-1393-4493-afdf-4f22cac212fa",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It renders terminal output with GPU acceleration so large scrollback stays smooth during long command sessions.",
+              "It uses a simple key-value configuration file, which makes changes easy to edit and reason about.",
+              "It supports custom GLSL shaders, allowing visual effects such as animated gradients or other terminal overlays.",
+              "It includes many built-in themes, which reduces the need to hunt for separate theme files."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It can be installed on macOS with Homebrew using `brew install --cask ghostty`.",
+              "It reads configuration from `~/.config/ghostty/config`, which fits standard dotfile-based workflows.",
+              "It can launch a default shell such as `/bin/zsh -l`, so it integrates with existing shell startup habits.",
+              "It can load custom shader files from the local filesystem, which makes it compatible with user-maintained visual customization assets."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "iTerm2",
+              "Cursor",
+              "Zed"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "terminal"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "terminal"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.82,
+          "evidence_type": null,
+          "examples": "Ghostty is described as handling \"Code Generation, File Reading, Search Results, Often Scrolling Thousands of Lines\" and avoiding the lag seen in iTerm2 on large outputs.",
+          "key_points": [
+            "Large agent outputs expose terminal rendering bottlenecks that are invisible in lighter workflows.",
+            "Input latency matters when the human has to approve many small actions in sequence.",
+            "Low-memory terminals can reduce contention on machines already running heavy coding tools."
+          ],
+          "knowledge_summary": "When an agentic coding workflow produces large outputs, the terminal becomes a performance-critical part of the system. Smooth rendering, low input latency, and low memory usage can materially affect how tolerable long confirmation-heavy sessions feel. Terminal choice can therefore matter even when the model and editor stay the same, because the operator still spends time reading traces, approving actions, and watching generated output. The practical question is not visual polish alone; it is whether the execution surface keeps up with the agent's pace.",
+          "match_candidates": [],
+          "operational_insight": "Treat the terminal as part of the agent harness and optimize it for scroll performance and input responsiveness before chasing cosmetic features.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "agent-first-ide-orchestration"
+          ],
+          "relevance_note": "This matters for any terminal-centric AI workflow where the operator reads long generated output and issues repeated approvals. In conversational AI and service automation operations, terminal responsiveness can affect how efficiently engineers review logs, scripts, and agent actions during long sessions.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Claude Code Output Volumes Are Large\u2014Code Generation, File Reading, Search Results, Often Scrolling Thousands of Lines. Ghostty's GPU rendering has a clear advantage in these scenarios, avoiding the lag that occurs in iTerm2 with large outputs.\"",
+          "topic_slug": "agentic-coding-terminal-performance",
+          "topic_title": "Agentic Coding Terminal Performance",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "262a3111-08b9-48ab-8a74-8f12539a8f24",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Large agent outputs expose terminal rendering bottlenecks that are invisible in lighter workflows.",
+              "Input latency matters when the human has to approve many small actions in sequence.",
+              "Low-memory terminals can reduce contention on machines already running heavy coding tools."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-first-ide-orchestration"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.74,
+          "evidence_type": null,
+          "examples": "The source describes built-in themes, a `key = value` config format, background images, and custom GLSL shaders such as an animated gradient shader.",
+          "key_points": [
+            "Simple configuration lowers the cost of experimentation with fonts, themes, and spacing.",
+            "Visual tweaks can be functional if they reduce fatigue over long sessions.",
+            "Shader and background support widen the customization surface beyond standard color themes."
+          ],
+          "knowledge_summary": "Terminal customization can improve sustained developer comfort during long interactive work sessions. Themes, padding, background textures, and shaders may reduce visual fatigue, while plain-text settings make iterative adjustment easier. The value is not aesthetic novelty by itself; it is lower friction during repeated, focused use. This becomes more relevant when the terminal remains open for extended periods and is used as the primary control surface.",
+          "match_candidates": [],
+          "operational_insight": "Prefer terminals whose customization is immediate and file-based, because long-running workflows benefit from fast visual tuning without modal settings dialogs.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is durable anywhere developers spend hours inside a terminal, especially in agent-assisted coding, debugging, or operations work. It matters less as a design trend than as a small but repeated ergonomics gain that can reduce fatigue.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ui-design",
+          "suggested_new_tags": [
+            "ui-design"
+          ],
+          "supporting_snippet": "\"Ghostty's configuration is a simple `key = value` format, with comments using `#`. No semicolons, no indentation levels\u2014just straightforward.\"",
+          "topic_slug": "terminal-customization-for-long-coding-sessions",
+          "topic_title": "Terminal Customization for Long Coding Sessions",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "a5011a25-84e6-40c2-849d-00d34b87cb63",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Simple configuration lowers the cost of experimentation with fonts, themes, and spacing.",
+              "Visual tweaks can be functional if they reduce fatigue over long sessions.",
+              "Shader and background support widen the customization surface beyond standard color themes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 1,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 2,
+    "proposals_total": 3,
+    "review_duration_seconds": 159.3,
+    "review_finished_at": "2026-05-21T14:49:25.298962+00:00",
+    "review_started_at": "2026-05-21T14:46:46+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-21T14:49:25+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Chimin",
+    "canonical_url": "https://medium.com/@piedpay/the-best-terminal-for-claude-code-ghostty-95c35b2d90e6",
+    "content_sha256": "60e05d1e3c9abdf1e8ddcf034d14ebecac8369334169879fbef8304a2bdaabdb",
+    "publication": "Medium",
+    "published_date": "2026-04-17",
+    "raw_html_rel_path": "raw/readwise/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz.html",
+    "raw_md_rel_path": "raw/readwise/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz.md",
+    "source_id": "the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz",
+    "title": "The Best Terminal for Claude Code - Ghostty"
+  }
+}

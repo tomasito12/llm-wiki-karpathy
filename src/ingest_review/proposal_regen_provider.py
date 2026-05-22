@@ -198,6 +198,7 @@ def run_proposal_regeneration(
     from src.ingest_review.providers.openai_provider import (
         PAGE_MATCHING_RUBRIC,
         TITLE_CANONICALIZATION_RUBRIC,
+        TITLE_GENERATION_RUBRIC,
     )
 
     title = new_title.strip()
@@ -211,6 +212,7 @@ def run_proposal_regeneration(
         f"source_id: {document.source_id}",
         f"{cfg.new_title_key}: {title}",
         f"PROPOSAL_REGEN_RUBRIC:\n{cfg.rubric}",
+        f"TITLE_GENERATION_RUBRIC:\n{TITLE_GENERATION_RUBRIC}",
         f"TITLE_CANONICALIZATION_RUBRIC:\n{TITLE_CANONICALIZATION_RUBRIC}",
         f"PAGE_MATCHING_RUBRIC:\n{PAGE_MATCHING_RUBRIC}",
         "## REVIEWER_NOTE\n" + (reviewer_instruction.strip() if reviewer_instruction else "(none)"),

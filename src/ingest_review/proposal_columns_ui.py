@@ -66,7 +66,7 @@ def render_proposal_read_column(
         label = label_for_node(node, index)
         with st.expander(
             label,
-            expanded=index == 0,
+            expanded=False,
             key=f"{key_prefix}_read_exp_{index}",
         ):
             body = _readonly_body(markdown_for_node(node), in_expander=True)
@@ -92,7 +92,7 @@ def render_proposal_edit_column(
         label = label_for_node(node, index)
         with st.expander(
             label,
-            expanded=index == 0,
+            expanded=False,
             key=f"{key_prefix}_edit_exp_{index}",
         ):
             render_edit_for_node(node, index)

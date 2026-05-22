@@ -1,0 +1,589 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-19T16:41:56+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DhHnaW4GIUKB3HFgLRDmtfZoU9ebJ",
+    "token_usage": {
+      "completion_tokens": 2356,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 30353,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 32709
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-22",
+        "confidence": 0.9,
+        "evidence_from_source": "OpenAI reports that as inference speed rose, API overhead became more visible, and the Responses API was sped up by caching, fewer network hops, safety-stack changes, and WebSockets.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-engineering",
+          "llm-operations"
+        ],
+        "related_trends": [
+          "models-becoming-execution-layers"
+        ],
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "OpenAI says agent loops were sped up 40% end-to-end.",
+          "OpenAI says GPT-5.3-Codex-Spark targeted over 1,000 tokens per second.",
+          "OpenAI says the Responses API previously saw roughly 65 tokens per second on older flagship models."
+        ],
+        "supporting_snippet": "\"As inference gets faster, the cumulative API overhead from an agentic rollout is much more notable.\"",
+        "time_sensitivity": "Actionable as of 2026-04-22; relevance depends on whether agent workflows are already inference-fast enough for surrounding overhead to dominate.",
+        "trend_description": "When model inference gets faster, the latency of API transport, validation, state reconstruction, and tool orchestration can become a primary bottleneck in agent systems. Teams then need to optimize the full request path, not only the model backend, to realize user-visible speedups.",
+        "trend_slug": "transport-layer-optimization-becomes-critical-for-agent-latency",
+        "trend_title": "Transport-Layer Optimization Becomes Critical for Agent Latency",
+        "uncertainty_note": "This is a source-backed pattern, but the article is vendor-authored and does not prove that all agent systems have crossed the same bottleneck threshold.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "OpenAI is describing its own Responses API changes and launch results.",
+        "Performance improvements and partner outcomes are reported by the vendor rather than independently measured in the source.",
+        "No external benchmark, third-party analysis, or research method is provided."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This post is about making AI agents faster by changing how they talk to the server. When an agent fixes code, it often has to ask the model for a step, run a tool, send the result back, and repeat many times. That back-and-forth can create a lot of waiting, even if the model itself is fast. The team reduced that waiting by keeping a connection open with WebSockets instead of starting a fresh request every time. They also reused state from earlier steps so the system did not have to rebuild the whole conversation again and again. The result was that users could feel the speed of a much faster model instead of being slowed down by the surrounding API work. The post says some partners saw large latency improvements, and that the fastest model hit very high token rates in production traffic. The main lesson is that as model output gets faster, the plumbing around it has to get faster too. As of 2026-04-22, this is a practical engineering change worth adopting when agent workflows are bottlenecked by request overhead.",
+      "assessed_as_of": "2026-04-22",
+      "contradictions_and_skepticism": "The main claim is plausible, but the article leans on OpenAI-reported improvements and partner anecdotes rather than a fully transparent evaluation. The narrative implies that transport overhead became the bottleneck once inference got fast, but that will not be true for every workload. The post also frames WebSockets as developer-friendly, yet persistent connections can introduce more operational complexity than plain request/response APIs in real deployments.",
+      "key_insights": [
+        "Persistent connections can matter more than raw model speed once agent loops involve many tool calls.",
+        "Keeping reusable response state in memory lets follow-up turns skip repeated tokenization, validation, and routing work.",
+        "A transport change can preserve the existing request shape while still cutting latency.",
+        "The biggest latency win came from aligning the API protocol with the actual agent loop, not just from optimizing inference.",
+        "Partners reported sizable workflow speedups, but the evidence is vendor-reported and the article does not provide independent measurement detail."
+      ],
+      "limitations_and_open_questions": "The post is vendor-authored and gives limited measurement detail beyond headline speedups, so the exact causal contribution of each optimization is not independently verifiable from the text. It does not describe failure modes, rollback criteria, or how state caching behaves under disconnects, retries, or partial failures. Security and privacy tradeoffs of connection-scoped in-memory caching are not explored. The article also does not say how broadly the results generalize beyond Codex-style agent loops or whether every workload benefits equally from WebSockets versus synchronous requests.",
+      "sources": [
+        "https://openai.com/index/speeding-up-agentic-workflows-with-websockets-in-the-responses-api"
+      ],
+      "summary": "The post explains how OpenAI reduced end-to-end latency for agentic workflows in the Responses API by combining several optimizations: caching, fewer network hops, faster safety checks, and, most importantly, a persistent WebSocket connection. The central technical point is that agent loops were spending too much time on repeated API work, especially once model inference got much faster. Instead of treating every tool-using step as a fresh synchronous request, the new design keeps connection-scoped state in memory and reuses prior response artifacts across follow-up turns. The launch mattered because it let users actually feel the speedup from GPT-5.3-Codex-Spark, rather than paying for overhead around the model. The article also shows that a familiar API shape can be preserved while changing the transport layer underneath it. As of 2026-04-22, the practical takeaway is that transport and caching choices can become first-order bottlenecks once model inference speeds rise.",
+      "why_it_matters": "The article is useful because it isolates a problem that becomes easy to miss once model inference gets faster: the surrounding API choreography can dominate end-to-end latency. It shows a concrete way to reduce that overhead by keeping a connection open, caching prior response state, and only processing new input on follow-up turns. That is a durable architectural lesson for agent systems that do repeated tool calls, multi-step reasoning, or long-running workflows. The design also illustrates a useful product principle: you can change the transport and execution model without forcing developers to rewrite their integration around a totally new API shape. The strongest evidence here is operational rather than theoretical; OpenAI reports production traffic moving to WebSocket mode and partner latency gains, but the article does not expose full benchmark methodology. As of 2026-04-22, the claim is actionable for teams where request overhead is visibly eating into agent throughput, and it is less compelling if latency is still dominated by the model itself. For service automation workloads, the main implication is that chat or support flows with repeated tool use can benefit from lower round-trip overhead, but the post does not discuss contact centers or voice systems directly."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent engineering blog post with one central argument, not a bundle of unrelated items.",
+        "Narrative explains a specific API and latency change, with implementation detail and launch results.",
+        "Not structured as a roundup, interview, tutorial series, or research paper."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "End-to-end latency can be dominated by API services and client-side work once inference gets faster.",
+          "Connection-scoped caches let follow-up steps reuse response state instead of rebuilding context from scratch.",
+          "Preserving the existing request body while changing transport lowers migration friction for builders."
+        ],
+        "knowledge_summary": "Agentic systems often spend substantial time outside model inference, especially when each tool call, state rebuild, and validation step becomes a separate round trip. A useful design principle is to measure the full loop, not just token generation speed, because small per-request overheads compound across long workflows. Persistent connections, cached state, and reduced network hops can materially improve end-to-end responsiveness even when the model itself is already fast. The main engineering lesson is that the transport protocol and request lifecycle are part of the product architecture, not just plumbing.",
+        "match_candidates": [],
+        "operational_insight": "Treat repeated agent turns as a throughput problem, not only an inference problem. If the model is fast enough, optimize connection reuse, state reuse, and post-inference overlap before chasing marginal model gains.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-architecture"
+        ],
+        "related_topics": [
+          "agentic-workflows"
+        ],
+        "relevance_note": "This pattern matters wherever agents do multi-step work with tools, memory, or approvals. In production conversational systems, reducing protocol overhead can improve perceived responsiveness without changing the underlying model.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"the Codex agent loop spends most of its time in three main stages: working in the API services (to validate and process requests), model inference, and client-side time (running tools and building model context).\"",
+        "topic_slug": "agentic-workflow-latency-optimization",
+        "topic_title": "Agentic Workflow Latency Optimization",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Reuse can include previous response objects, prior input and output items, tool definitions, and rendered tokens.",
+          "The main benefit is avoiding repeated full-history processing on every follow-up request.",
+          "The main cost is that stateful connections are harder to manage than stateless request/response calls."
+        ],
+        "knowledge_summary": "A persistent connection can hold reusable conversation and execution state in memory so follow-up requests do not need to re-send or recompute everything. This pattern is especially useful when the workflow naturally alternates between model action and external tool execution. By keeping previous response objects, prior items, tool definitions, and rendered artifacts available on the connection, systems can reduce redundant validation, tokenization, and routing work. The core tradeoff is that lower latency comes with more connection-level state management complexity.",
+        "match_candidates": [],
+        "operational_insight": "Use connection-scoped state when the same conversation will generate many follow-up actions and when rebuilding context is a measurable bottleneck. Design the cache boundaries carefully so that the system stays predictable under retries, disconnects, and long sessions.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "realtime-ai",
+          "ai-architecture"
+        ],
+        "related_topics": [
+          "agentic-workflow-latency-optimization"
+        ],
+        "relevance_note": "This is a reusable architectural pattern for interactive AI systems that need continuity across many turns. It is relevant to agent orchestration, realtime assistants, and support flows where the system repeatedly returns to the same session state.",
+        "secondary_tag": "realtime-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"On a WebSocket connection, the server keeps a connection-scoped, in-memory cache of previous response state.\"",
+        "topic_slug": "persistent-connection-response-state-reuse",
+        "topic_title": "Persistent Connection Response State Reuse",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-22",
+          "confidence": 0.9,
+          "evidence_from_source": "OpenAI reports that as inference speed rose, API overhead became more visible, and the Responses API was sped up by caching, fewer network hops, safety-stack changes, and WebSockets.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-engineering",
+            "llm-operations"
+          ],
+          "related_trends": [
+            "models-becoming-execution-layers"
+          ],
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "OpenAI says agent loops were sped up 40% end-to-end.",
+            "OpenAI says GPT-5.3-Codex-Spark targeted over 1,000 tokens per second.",
+            "OpenAI says the Responses API previously saw roughly 65 tokens per second on older flagship models."
+          ],
+          "supporting_snippet": "\"As inference gets faster, the cumulative API overhead from an agentic rollout is much more notable.\"",
+          "time_sensitivity": "Actionable as of 2026-04-22; relevance depends on whether agent workflows are already inference-fast enough for surrounding overhead to dominate.",
+          "trend_description": "When model inference gets faster, the latency of API transport, validation, state reconstruction, and tool orchestration can become a primary bottleneck in agent systems. Teams then need to optimize the full request path, not only the model backend, to realize user-visible speedups.",
+          "trend_slug": "transport-layer-optimization-becomes-critical-for-agent-latency",
+          "trend_title": "Transport-Layer Optimization Becomes Critical for Agent Latency",
+          "uncertainty_note": "This is a source-backed pattern, but the article is vendor-authored and does not prove that all agent systems have crossed the same bottleneck threshold.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "979c12a1-0266-49a3-b129-825fc2c7dd8e",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "models-becoming-execution-layers"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI says agent loops were sped up 40% end-to-end.",
+              "OpenAI says GPT-5.3-Codex-Spark targeted over 1,000 tokens per second.",
+              "OpenAI says the Responses API previously saw roughly 65 tokens per second on older flagship models."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic-ai",
+            "ai-engineering"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "OpenAI is describing its own Responses API changes and launch results.",
+          "Performance improvements and partner outcomes are reported by the vendor rather than independently measured in the source.",
+          "No external benchmark, third-party analysis, or research method is provided."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Persistent connections can matter more than raw model speed once agent loops involve many tool calls.",
+          "Keeping reusable response state in memory lets follow-up turns skip repeated tokenization, validation, and routing work.",
+          "A transport change can preserve the existing request shape while still cutting latency.",
+          "The biggest latency win came from aligning the API protocol with the actual agent loop, not just from optimizing inference.",
+          "Partners reported sizable workflow speedups, but the evidence is vendor-reported and the article does not provide independent measurement detail."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/index/speeding-up-agentic-workflows-with-websockets-in-the-responses-api"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent engineering blog post with one central argument, not a bundle of unrelated items.",
+          "Narrative explains a specific API and latency change, with implementation detail and launch results.",
+          "Not structured as a roundup, interview, tutorial series, or research paper."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "End-to-end latency can be dominated by API services and client-side work once inference gets faster.",
+            "Connection-scoped caches let follow-up steps reuse response state instead of rebuilding context from scratch.",
+            "Preserving the existing request body while changing transport lowers migration friction for builders."
+          ],
+          "knowledge_summary": "Agentic systems often spend substantial time outside model inference, especially when each tool call, state rebuild, and validation step becomes a separate round trip. A useful design principle is to measure the full loop, not just token generation speed, because small per-request overheads compound across long workflows. Persistent connections, cached state, and reduced network hops can materially improve end-to-end responsiveness even when the model itself is already fast. The main engineering lesson is that the transport protocol and request lifecycle are part of the product architecture, not just plumbing.",
+          "match_candidates": [],
+          "operational_insight": "Treat repeated agent turns as a throughput problem, not only an inference problem. If the model is fast enough, optimize connection reuse, state reuse, and post-inference overlap before chasing marginal model gains.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-architecture"
+          ],
+          "related_topics": [
+            "agentic-workflows"
+          ],
+          "relevance_note": "This pattern matters wherever agents do multi-step work with tools, memory, or approvals. In production conversational systems, reducing protocol overhead can improve perceived responsiveness without changing the underlying model.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"the Codex agent loop spends most of its time in three main stages: working in the API services (to validate and process requests), model inference, and client-side time (running tools and building model context).\"",
+          "topic_slug": "agentic-workflow-latency-optimization",
+          "topic_title": "Agentic Workflow Latency Optimization",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "8095ac12-6dc8-4226-8eae-f68360ceee35",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "End-to-end latency can be dominated by API services and client-side work once inference gets faster.",
+              "Connection-scoped caches let follow-up steps reuse response state instead of rebuilding context from scratch.",
+              "Preserving the existing request body while changing transport lowers migration friction for builders."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Reuse can include previous response objects, prior input and output items, tool definitions, and rendered tokens.",
+            "The main benefit is avoiding repeated full-history processing on every follow-up request.",
+            "The main cost is that stateful connections are harder to manage than stateless request/response calls."
+          ],
+          "knowledge_summary": "A persistent connection can hold reusable conversation and execution state in memory so follow-up requests do not need to re-send or recompute everything. This pattern is especially useful when the workflow naturally alternates between model action and external tool execution. By keeping previous response objects, prior items, tool definitions, and rendered artifacts available on the connection, systems can reduce redundant validation, tokenization, and routing work. The core tradeoff is that lower latency comes with more connection-level state management complexity.",
+          "match_candidates": [],
+          "operational_insight": "Use connection-scoped state when the same conversation will generate many follow-up actions and when rebuilding context is a measurable bottleneck. Design the cache boundaries carefully so that the system stays predictable under retries, disconnects, and long sessions.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "realtime-ai",
+            "ai-architecture"
+          ],
+          "related_topics": [
+            "agentic-workflow-latency-optimization"
+          ],
+          "relevance_note": "This is a reusable architectural pattern for interactive AI systems that need continuity across many turns. It is relevant to agent orchestration, realtime assistants, and support flows where the system repeatedly returns to the same session state.",
+          "secondary_tag": "realtime-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"On a WebSocket connection, the server keeps a connection-scoped, in-memory cache of previous response state.\"",
+          "topic_slug": "persistent-connection-response-state-reuse",
+          "topic_title": "Persistent Connection Response State Reuse",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "cb4bef69-197c-47e4-a8ad-77cc04ba655e",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Reuse can include previous response objects, prior input and output items, tool definitions, and rendered tokens.",
+              "The main benefit is avoiding repeated full-history processing on every follow-up request.",
+              "The main cost is that stateful connections are harder to manage than stateless request/response calls."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-workflow-latency-optimization"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic-ai",
+            "ai-architecture",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 208.0,
+    "review_finished_at": "2026-05-19T16:45:24.997153+00:00",
+    "review_started_at": "2026-05-19T16:41:57+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-19T16:45:24+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/index/speeding-up-agentic-workflows-with-websockets",
+    "content_sha256": "22ff41f5494efcd56a88ce6aa193fc291f60d4f93b74bf150fa6f236caca1570",
+    "publication": "OpenAI",
+    "published_date": "2026-04-22",
+    "raw_html_rel_path": "raw/readwise/speeding-up-agentic-workflows-with-websockets-in-the-responses-api-01kpv0wxjnsv9gk1qw36wa3z1x.html",
+    "raw_md_rel_path": "raw/readwise/speeding-up-agentic-workflows-with-websockets-in-the-responses-api-01kpv0wxjnsv9gk1qw36wa3z1x.md",
+    "source_id": "speeding-up-agentic-workflows-with-websockets-in-the-responses-api-01kpv0wxjnsv9gk1qw36wa3z1x",
+    "title": "Speeding up agentic workflows with WebSockets in the Responses API"
+  }
+}

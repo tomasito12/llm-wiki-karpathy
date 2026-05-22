@@ -83,9 +83,10 @@ If the source is an ai_tools_roundup, extract ONLY tools and foundation_models p
 AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC; leave roundup_signals empty []. \
 If the source is how_to_roundup, extract ONLY how_to per HOW_TO_ROUNDUP_EXTRACTION_RUBRIC. \
 If the source is an interview_or_transcript, also populate interview_insights. \
-For page titles and terms, apply PAGE_MATCHING_RUBRIC before reusing any ``CANONICAL_*`` \
-entry; follow TITLE_CANONICALIZATION_RUBRIC. Append/create wiki routing is **not** part \
-of this step. \
+For ``topic_title`` and ``trend_title``, follow TITLE_GENERATION_RUBRIC (Topic vs Trend \
+distinction). For page titles and terms, apply PAGE_MATCHING_RUBRIC before reusing any \
+``CANONICAL_*`` entry; follow TITLE_CANONICALIZATION_RUBRIC. Append/create wiki routing is \
+**not** part of this step. \
 For how_to: question_title is a wiki page name (noun phrase), not an interview question—see \
 HOWTOS_RUBRIC.
 
@@ -259,7 +260,7 @@ Management → topics (operational architecture), not a narrow how_to
 
 After layer selection, apply the matching entity rubric, MINIMUM_NOVELTY_THRESHOLD_RUBRIC, \
 COMPRESSION_PRESSURE_RUBRIC, GLOSSARY-WORTHINESS GATE, IMPLEMENTATION_STUDY_WORTHINESS GATE, \
-TITLE_CANONICALIZATION_RUBRIC, and extraction budgets."""
+TITLE_GENERATION_RUBRIC, TITLE_CANONICALIZATION_RUBRIC, and extraction budgets."""
 
 
 COMPRESSION_PRESSURE_RUBRIC = """\
@@ -383,6 +384,103 @@ Tools and foundation models use proposed_types (not proposed_tags):
 field); prefer filling proposed_types from the allowlist when possible."""
 
 
+TITLE_GENERATION_RUBRIC = """\
+## TITLE GENERATION (topic_title, trend_title, and new canonical titles)
+
+Strong titles expose the core insight quickly, read naturally aloud, and remain useful if \
+tooling changes. Favor clarity over cleverness; durable abstractions over current \
+implementation details; directional insight (trends) over compressed noun stacks.
+
+### Core distinction: Topic vs Trend
+
+- **Topics** = stable **conceptual domains** (timeless operational knowledge objects)
+- **Trends** = **directional industry/system changes** occurring within a domain
+
+Do **not** mix topic-style noun phrases with trend-style directional descriptions in one title.
+
+**GOOD topics:** Agent Runtime Architecture; Visual Specifications for AI Systems; \
+Reward Signal Generalization; Behavioral Auditing
+
+**GOOD trends:** Runtime Infrastructure Becomes the Core Agent Differentiator; \
+AI Evaluation Shifts Toward Behavioral Auditing; Efficiency Improvements Unlock New AI \
+Behaviors; AI Shifts Software Scarcity from Production to Distribution
+
+### Problems to fix (weak patterns)
+
+Avoid titles that: overcompress ideas; hide causal insight; stack nouns without verbs; \
+sound academic not operational; require heavy unpacking; center transient tooling; \
+describe mechanisms without why they matter.
+
+**Weak examples:** Efficiency as Capability; Software Engineering to Distribution \
+Reallocation; Machine-Readable Intent for Resilience Testing; Image Generation for Code \
+Generation Workflows; Orchestration Surface Layering Dynamics
+
+### Desired characteristics
+
+A reader should grasp ~80% of the idea from the title alone. Strong titles: communicate \
+movement or causality (trends) or define a durable domain (topics); reveal why the pattern \
+matters; generalize beyond one vendor/product; survive ecosystem evolution 3–5 years.
+
+### Topic titles (``topic_title``)
+
+- Stable, future-proof **conceptual domain** labels — Title Case noun phrases (~3–8 words)
+- **No** directional language: no "shifts toward", "becomes", "unlocks", "moves from X to Y"
+- **No** transient vendor/tool names unless the domain truly is product-specific
+- Prefer underlying system abstraction over implementation detail
+
+**Weak → better:**
+- Image Generation for Code Generation Workflows → Visual Specifications for AI Systems
+- Harness and Runtime as Primary Agent Surface → Agent Runtime Architecture
+
+### Trend titles (``trend_title``)
+
+- Express **change over time**, emerging importance, shifting constraints, operational \
+consequences — not timeless domain labels
+- Prefer directional/causal structures with clear verbs:
+  - X becomes Y; X shifts toward Y; X unlocks Y; X requires Y
+  - X depends increasingly on Y; X expands into Y; X moves from Y to Z
+- Broad enough to accumulate evidence across sources; **no** headline/vendor campaign labels \
+in ``trend_slug``/``trend_title``
+
+**Good trend patterns:** Efficiency Gains Become Product Capabilities; AI Evaluation Shifts \
+Toward Behavioral Auditing; Runtime Architecture Determines Agent Reliability; Distribution \
+Becomes the Bottleneck
+
+### Abstraction over implementation
+
+Name the **systems transition**, not the temporary stack. If a title would sound wrong in \
+3–5 years because a tool changed, raise abstraction or route to topics instead of trends.
+
+### Anti-patterns (reject before output)
+
+- Overcompressed intellectual phrasing; metaphor-heavy wording; ambiguous noun stacks
+- Unexplained jargon; titles that only make sense after reading the summary
+- Vendor/tool-centered titles unless unavoidable
+- Academic-paper-subtitle tone; mixing topic nouns with trend verbs in one title
+
+### Evaluation checklist (each title)
+
+1. Immediately understandable in isolation?
+2. Exposes the underlying systems change (trend) or domain (topic)?
+3. Causal direction clear (trends)?
+4. Future-proof 3–5 years?
+5. Avoids unnecessary abstraction?
+6. Phrase a senior engineer/strategist would naturally say?
+
+### Title selection workflow (classification JSON)
+
+Before finalizing each ``topic_title`` or ``trend_title``:
+1. Classify the knowledge unit: Topic | Trend | (if mis-routed) Operational Pattern / \
+Conceptual Mechanism / Organizational Pattern / Economic Shift — route to the correct entity \
+per ABSTRACTION_SELECTION_RUBRIC
+2. Internally draft **3–5** candidate titles (include one most durable/future-proof option \
+and one concise option); compare tradeoffs
+3. Output **only the single best** title in JSON (plus matching slug). Do not emit \
+alternatives in the schema unless a reviewer regen step explicitly requests them.
+
+Favor clarity over cleverness."""
+
+
 TITLE_CANONICALIZATION_RUBRIC = """\
 ## Canonical titles (avoid fragmentation)
 
@@ -393,10 +491,11 @@ to evaluate**, not a menu to pick from.
 - Reuse an existing canonical **title verbatim** (and listed slug when provided) **only** \
 on a **strong page match** per PAGE_MATCHING_RUBRIC.
 - Adjacent domain, shared security theme, shared tag, or keyword overlap ≠ reuse.
-- When in doubt, invent a **new** broad stable title (or omit the proposal).
+- When in doubt, invent a **new** title per TITLE_GENERATION_RUBRIC and the entity rubric \
+(or omit the proposal).
 - Do **not** output near-synonyms or rewordings for the **same** knowledge unit (e.g. \
 "Harness decay" vs "Harness Decay" when both mean the same primitive).
-- If no canonical entry is a strong match, invent one broad, stable title per the entity rubric.
+- If no canonical entry is a strong match, invent one title meeting TITLE_GENERATION_RUBRIC.
 - Within one response, reuse the **same** title for the same concept across multiple \
 extractions — do not create two proposals that differ only in wording.
 
@@ -719,7 +818,10 @@ Each object MUST include:
 - topic_slug: kebab-case stable identifier — broad enough to accumulate many \
 future contributions (e.g. context-engineering, NOT openai-context-engineering-\
 announcement)
-- topic_title: human-readable form of the slug
+- topic_title: stable **conceptual-domain** page title per TITLE_GENERATION_RUBRIC \
+(Topic patterns). Durable Title Case noun phrase (~3–8 words); **no** directional/causal \
+trend language; prefer system abstraction over transient tooling. Human-readable counterpart \
+to ``topic_slug``. Run the evaluation checklist before output.
 - knowledge_summary: 3-8 sentences, source-agnostic, synthesized. No "this \
 article says..." or "the author argues..."
 - examples: OPTIONAL. Only when the source contains a **concrete, quotable \
@@ -763,7 +865,8 @@ knowledge unit — not the article title. Follow TAG_ONTOLOGY_RUBRIC.
 related_topics vs tags: ``related_topics`` = weak wiki topic slugs; ``proposed_tags`` = \
 allowlist routing tags only.
 
-Layer selection: see ABSTRACTION_SELECTION_RUBRIC. Page matching: see PAGE_MATCHING_RUBRIC."""
+Layer selection: see ABSTRACTION_SELECTION_RUBRIC. Titles: see TITLE_GENERATION_RUBRIC. \
+Page matching: see PAGE_MATCHING_RUBRIC."""
 
 
 HOWTOS_RUBRIC = """\
@@ -849,15 +952,18 @@ direct and implementation-focused. Write as reusable procedural guidance.
 Tag semantics (HOWTO_TAGS_ALLOWLIST): workflow/implementation area — overlap with \
 topic tags is OK. Follow TAG_ONTOLOGY_RUBRIC.
 
-Layer selection: see ABSTRACTION_SELECTION_RUBRIC. Page matching: see PAGE_MATCHING_RUBRIC."""
+Layer selection: see ABSTRACTION_SELECTION_RUBRIC. Titles: see TITLE_GENERATION_RUBRIC. \
+Page matching: see PAGE_MATCHING_RUBRIC."""
 
 
 TOPIC_REGEN_RUBRIC = """\
 Regenerate ONE topic contribution under a reviewer-supplied NEW_TOPIC_TITLE.
 
 Rules:
-- Reframe all fields for the broader title NEW_TOPIC_TITLE — it must be a stable wiki page \
-name (noun phrase), broad enough to accumulate knowledge across many future sources.
+- NEW_TOPIC_TITLE must follow TITLE_GENERATION_RUBRIC **Topic** patterns (stable conceptual \
+domain; no trend-style directional verbs).
+- Reframe all fields for the broader title NEW_TOPIC_TITLE — broad enough to accumulate \
+knowledge across many future sources.
 - If the prior draft was narrower than NEW_TOPIC_TITLE (e.g. "Local Multimodal Inference" → \
 "Local Inference"), move the narrower angle into knowledge_summary and examples — NOT into \
 the title (title is set by the reviewer; you do not output topic_title or topic_slug).
@@ -884,8 +990,10 @@ a strong page match (PAGE_MATCHING_RUBRIC).
 Each object MUST include:
 - trend_slug: stable kebab-case wiki page id (e.g. inference-cost-collapse, NOT \
 GPT-4o-price-cut or headline labels)
-- trend_title: human-readable page title for the same pattern (e.g. Inference \
-Cost Collapse) — broad enough to accumulate evidence across sources
+- trend_title: directional **industry-change** page title per TITLE_GENERATION_RUBRIC \
+(Trend patterns). Must express movement, causality, or shifting constraints with clear \
+verbs — **not** a topic-style noun stack. Broad enough to accumulate evidence across sources. \
+Run the evaluation checklist before output.
 - trend_description: standalone, source-agnostic description of the pattern
 - evidence_from_source: what this article specifically contributes as evidence
 - time_sensitivity: explicitly state how time-bound this observation is
@@ -908,7 +1016,7 @@ No hype, no certainty theater.
 Tag semantics (TREND_TAGS_ALLOWLIST): durable industry pattern domain — not \
 headline or vendor campaign labels. Follow TAG_ONTOLOGY_RUBRIC.
 
-Page matching: see PAGE_MATCHING_RUBRIC."""
+Titles: see TITLE_GENERATION_RUBRIC. Page matching: see PAGE_MATCHING_RUBRIC."""
 
 
 TOOLS_RUBRIC = """\
@@ -1335,6 +1443,7 @@ def _build_user_prompt(
         SOURCE_EVIDENCE_PROFILE_RUBRIC,
         TAG_ONTOLOGY_RUBRIC,
         REGISTRY_TYPES_SEMANTICS,
+        TITLE_GENERATION_RUBRIC,
         TITLE_CANONICALIZATION_RUBRIC,
         PAGE_MATCHING_RUBRIC,
         "## CANONICAL_GLOSSARY_TERMS\n" + canonical_blocks["CANONICAL_GLOSSARY_TERMS"],
@@ -1358,6 +1467,7 @@ def _build_user_prompt(
         "## SOURCE_TYPE_DETECTION_RUBRIC\n" + SOURCE_TYPE_DETECTION_RUBRIC,
         "## SOURCE_EVIDENCE_PROFILE_RUBRIC\n" + SOURCE_EVIDENCE_PROFILE_RUBRIC,
         "## SOURCE_CHAPTERS_RUBRIC\n" + SOURCE_CHAPTERS_RUBRIC,
+        "## TITLE_GENERATION_RUBRIC\n" + TITLE_GENERATION_RUBRIC,
         "## PAGE_MATCHING_RUBRIC\n" + PAGE_MATCHING_RUBRIC,
         "## ABSTRACTION_SELECTION_RUBRIC\n" + ABSTRACTION_SELECTION_RUBRIC,
         "## COMPRESSION_PRESSURE_RUBRIC\n" + COMPRESSION_PRESSURE_RUBRIC,
@@ -1411,6 +1521,7 @@ def _build_user_prompt(
             "primary enumerated practice; skip_recommended must be false; numeric caps do not "
             "limit how_to for this type only. "
             "ELSE: apply PAGE_MATCHING_RUBRIC before reusing any CANONICAL_* title or slug. "
+            "For topic_title and trend_title, follow TITLE_GENERATION_RUBRIC (Topic vs Trend). "
             "For each candidate knowledge unit, apply ABSTRACTION_SELECTION_RUBRIC "
             "first; then fill glossary, tools, foundation_models, how_to, topics, "
             "implementation_studies, industry_trends per their rubrics and RESPECT extraction "

@@ -1115,11 +1115,78 @@ def test_system_prompt_references_page_matching() -> None:
     assert "PAGE_MATCHING_RUBRIC" in SYSTEM_PROMPT
 
 
-def test_prompt_version_is_35() -> None:
-    """Prompt version bumped for page matching rubric."""
+def test_system_prompt_references_title_generation() -> None:
+    """SYSTEM_PROMPT distinguishes topic vs trend title rules."""
+    from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
+
+    assert "TITLE_GENERATION_RUBRIC" in SYSTEM_PROMPT
+    assert "Topic vs Trend" in SYSTEM_PROMPT
+
+
+def test_title_generation_rubric_distinguishes_topics_and_trends() -> None:
+    from src.ingest_review.providers.openai_provider import TITLE_GENERATION_RUBRIC
+
+    assert "Core distinction: Topic vs Trend" in TITLE_GENERATION_RUBRIC
+    assert "Agent Runtime Architecture" in TITLE_GENERATION_RUBRIC
+    assert "Shifts Toward Behavioral Auditing" in TITLE_GENERATION_RUBRIC
+    assert "Efficiency as Capability" in TITLE_GENERATION_RUBRIC
+    assert "3–5" in TITLE_GENERATION_RUBRIC
+    assert "evaluation checklist" in TITLE_GENERATION_RUBRIC.lower()
+
+
+def test_topics_and_trends_rubrics_reference_title_generation() -> None:
+    from src.ingest_review.providers.openai_provider import TOPICS_RUBRIC, TRENDS_RUBRIC
+
+    assert "TITLE_GENERATION_RUBRIC" in TOPICS_RUBRIC
+    assert "conceptual-domain" in TOPICS_RUBRIC
+    assert "no** directional" in TOPICS_RUBRIC.lower()
+    assert "TITLE_GENERATION_RUBRIC" in TRENDS_RUBRIC
+    assert "industry-change" in TRENDS_RUBRIC
+    assert "not** a topic-style noun stack" in TRENDS_RUBRIC
+
+
+def test_title_generation_rubric_in_user_prompt(tmp_path: Path) -> None:
+    """Built user prompt includes TITLE_GENERATION_RUBRIC before entity rubrics."""
+    from src.ingest_review.providers.openai_provider import (
+        TITLE_GENERATION_RUBRIC,
+        _build_user_prompt,
+    )
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    stem = "doc-title-gen"
+    (raw / f"{stem}.html").write_text("<p>body</p>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: T\n---\n", encoding="utf-8")
+    doc = load_readwise_pair(raw / f"{stem}.html")
+    wiki = WikiSnapshot(
+        glossary_terms=[],
+        tool_names=[],
+        foundation_model_names=[],
+        implementation_study_titles=[],
+        topic_titles=[],
+        howto_titles=[],
+        trend_titles=[],
+    )
+    prompt = _build_user_prompt(
+        doc,
+        wiki,
+        tool_types=[],
+        howto_tags=[],
+        prompt_version="36",
+    )
+    assert "## TITLE_GENERATION_RUBRIC" in prompt
+    assert TITLE_GENERATION_RUBRIC.split("\n")[0] in prompt
+    assert "TITLE_GENERATION_RUBRIC (Topic vs Trend)" in prompt
+    title_idx = prompt.index("## TITLE_GENERATION_RUBRIC")
+    topics_idx = prompt.index("## TOPICS_RUBRIC")
+    assert title_idx < topics_idx
+
+
+def test_prompt_version_is_36() -> None:
+    """Prompt version bumped for title generation rubric."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "35"
+    assert PROMPT_VERSION == "36"
 
 
 def test_title_canonicalization_rubric_replaces_suggested_action() -> None:

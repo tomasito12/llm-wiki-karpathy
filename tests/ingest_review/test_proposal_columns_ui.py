@@ -64,7 +64,7 @@ def test_render_proposal_read_column_multiple_uses_expanders() -> None:
     )
 
     assert st.expander.call_count == 2
-    st.expander.assert_any_call("Item 0", expanded=True, key="pfx_read_exp_0")
+    st.expander.assert_any_call("Item 0", expanded=False, key="pfx_read_exp_0")
     st.expander.assert_any_call("Item 1", expanded=False, key="pfx_read_exp_1")
     st.markdown.assert_any_call("content")
 

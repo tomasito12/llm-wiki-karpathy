@@ -1,0 +1,571 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-19T19:07:59+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DhK4yY4PmvLe3kLikY7csSFHKmWpy",
+    "token_usage": {
+      "completion_tokens": 2206,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 29240,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 31446
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2024-06-18",
+        "confidence": 0.74,
+        "evidence_from_source": "The article argues that earlier approaches had trouble with accents and dialects, and suggests that generative AI may handle those issues better, while not solving all deployment problems.",
+        "evidence_type": "expert_opinion",
+        "match_candidates": [],
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "agentic-ai"
+        ],
+        "related_trends": [
+          "voice-ordering-in-noisy-environments"
+        ],
+        "secondary_tag": "agentic-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "IBM automated order-taking test in more than 100 restaurants will be shut off no later than July 26.",
+          "The article links failure modes to accents, dialects, and inaccurate orders.",
+          "The article says generative AI may be better but still leaves open noise and vocabulary challenges."
+        ],
+        "supporting_snippet": "\u201cThere were concerns that the Apprentee technology acquired by IBM had trouble with accents and dialects, which led to inaccurate orders. Generative AI has generally handled these issues better.\u201d",
+        "time_sensitivity": "Actionable as of 2024-06-18; the source supports monitoring this transition rather than assuming it is settled.",
+        "trend_description": "Voice automation systems may move away from brittle intent-based natural-language-understanding stacks toward generative models that better tolerate language variation. The pattern is most relevant in customer-facing environments where accents, dialects, and messy phrasing cause order or task errors. Even then, the trend does not remove operational constraints such as noise, vocabulary complexity, and fallback design.",
+        "trend_slug": "voice-automation-shifts-from-nlu-to-generative-ai",
+        "trend_title": "Voice Automation Shifts from Natural Language Understanding to Generative AI",
+        "uncertainty_note": "Evidence here is narrow and qualitative. The source does not provide comparative metrics, so it is unclear whether generative AI outperforms older approaches across enough sites to generalize confidently.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "The article is written by Voicebot.ai, an independent publication, not by McDonald\u2019s or IBM.",
+        "It summarizes and interprets a CNBC report and a franchisee memo rather than presenting original technical data.",
+        "Claims about accents, dialects, and generative AI are analytical commentary, not benchmarked results."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "McDonald\u2019s had been testing voice technology to take orders at drive-thrus, but this article says that test with IBM will end. The company is not necessarily giving up on voice ordering altogether. Instead, it seems to be stepping back from one version of the technology and looking for other options. The article says there were problems with accents, dialects, and incorrect orders. It also suggests that newer generative artificial intelligence systems may understand spoken language better than older systems. Even so, the article says there are still hard problems like noisy restaurant environments and complicated menu language. The main message is that the idea is still alive, but the first attempt did not fully solve the real-world problems. As of 2024-06-18, this looks like a case to watch rather than a finished success story.",
+      "assessed_as_of": "2024-06-18",
+      "contradictions_and_skepticism": "The article hints that the objective may continue even if the IBM approach ends, so treating this as a categorical rejection of voice ordering would overread the evidence. The generative-AI angle is suggestive but not demonstrated with comparative results. More broadly, the source is opinionated and narrative-driven; it offers useful operational clues, but not a full case study or benchmark.",
+      "key_insights": [
+        "Ending one pilot does not prove the use case is dead; it can also mean the first architecture was not robust enough.",
+        "Accent, dialect, and noise handling remain first-order constraints in drive-thru speech systems, not edge cases.",
+        "Generative AI is presented as potentially better than older natural-language-understanding approaches for spoken order capture.",
+        "Restaurant labor shortages are part of the business case, but the source gives no operational metrics, so the economic upside remains qualitative here."
+      ],
+      "limitations_and_open_questions": "The article relies on a CNBC report and a franchisee memo rather than operational metrics, so there is no hard data on accuracy, latency, cost, or customer satisfaction. It is unclear how much of the failure was due to the IBM system itself versus deployment design, menu complexity, or site-specific conditions. The piece also does not say whether McDonald\u2019s will replace this test with another vendor, another model class, or a different rollout design. The claim that generative AI handles accents and dialects better is plausible but unsupported here by measurements.",
+      "sources": [
+        "https://voicebot.ai/2024/06/18/mcdonalds-abandons-drive-through-ai-for/"
+      ],
+      "summary": "The piece reports that McDonald\u2019s is ending its current IBM automated order-taking test in more than 100 restaurants, while leaving open the possibility of broader voice-ordering solutions later. The article frames this less as a full retreat from conversational AI and more as a pause on one specific approach, especially given reported issues with accents, dialects, noise, and order accuracy. It also notes that generative AI may be better suited than earlier natural-language-understanding systems for this task. The practical takeaway is that drive-thru automation remains attractive, but the implementation details and model choice matter more than the headline promise. As of 2024-06-18, the source supports cautious monitoring rather than treating this as proof that voice ordering is finished.",
+      "why_it_matters": "McDonald\u2019s ending this IBM test is a useful reminder that conversational AI in the physical world is judged by failure modes, not demos. The source points to a concrete set of hard constraints: accents, dialects, environmental noise, and complex quick-service restaurant vocabularies. That combination makes order-taking a much tougher problem than generic voice dictation, because small recognition errors become customer-facing transaction errors. The article also suggests that the model choice matters: generative AI may handle natural language better than the older NLU-based approach that struggled here, but the text does not provide evidence that generative AI has already solved the full problem. For practitioners, the durable lesson is to treat voice order-taking as a systems problem involving speech, language understanding, and operational context, not just a model swap. As of 2024-06-18, the evidence supports cautious monitoring of this use case rather than assuming either failure or breakthrough. For service automation, the closing implication is specific: drive-thru and other front-line voice workflows still need noise tolerance, human-in-the-loop fallback, and error handling before they can be trusted at scale."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "The piece is a single coherent news/opinion article, not a numbered list or transcript.",
+        "It centers on one company event with analysis, not a roundup of multiple items.",
+        "The structure is narrative commentary around a reported development from CNBC."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.89,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Noise and accent variability are system requirements, not edge cases, in front-line speech automation.",
+          "Domain vocabulary can break otherwise competent speech systems if the language model is not tuned for the task.",
+          "Confidence-based fallback and human handoff should be designed as part of the ordering flow, not added after failure."
+        ],
+        "knowledge_summary": "Voice-based ordering systems need to perform under acoustic noise, overlapping speech, variable accents, and domain-specific vocabulary. In customer-facing transactional settings, recognition errors are not just quality defects; they directly affect the order and the cost of recovery. Robust deployment depends on more than the speech model: prompt design, fallback handling, confidence thresholds, and escalation paths all shape whether the system can be trusted. The hardest cases often appear at the point of operational variance, not in clean demo conditions.",
+        "match_candidates": [],
+        "operational_insight": "Treat environmental noise and speech variation as core design constraints. A useful pilot needs instrumentation for misrecognition categories, confidence failures, and recovery behavior, not just overall accuracy.",
+        "primary_tag": "realtime-ai",
+        "proposed_tags": [
+          "realtime-ai",
+          "support-automation"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for conversational AI systems that operate in real-world environments such as restaurants, retail counters, kiosks, and call-in ordering. The same failure modes show up wherever speech input competes with background noise and specialized vocabulary, so the operational lesson is durable beyond any one vendor or chain.",
+        "secondary_tag": "support-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cHowever, generative AI will not, on its own, solve all of the challenges. You will still have issues of environmental noise and complex vocabularies that quick-serve restaurants must address to support AI-enabled order-taking.\u201d",
+        "topic_slug": "voice-ordering-in-noisy-environments",
+        "topic_title": "Voice Ordering in Noisy Environments",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.79,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A newer model class may improve robustness to speech variation, but the deployment still needs system-level guardrails.",
+          "Comparisons should include task outcomes and error recovery, not only offline language metrics.",
+          "Replacing intent-based logic with generative AI does not eliminate the need for domain constraints and post-processing."
+        ],
+        "knowledge_summary": "The choice between older natural-language-understanding systems and generative AI can materially change how well a conversational workflow handles varied, open-ended language. In transactional voice or chat automation, the model class determines how the system copes with accents, dialects, and phrasing variation. But model choice alone is insufficient when the environment adds noise, specialized terms, and high error cost. Operational evaluation should compare end-to-end task success, not just language understanding in isolation.",
+        "match_candidates": [],
+        "operational_insight": "Evaluate conversational automation by task completion and error recovery, not by model enthusiasm. A better language model can reduce one failure mode while leaving environment, vocabulary, and workflow design problems untouched.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "realtime-ai"
+        ],
+        "related_topics": [
+          "voice-ordering-in-noisy-environments"
+        ],
+        "relevance_note": "This is relevant wherever teams are deciding whether to replace older intent-classification or natural-language-understanding stacks with generative systems. The durable lesson is to assess the whole workflow, because model improvements can help but do not remove the need for operational controls.",
+        "secondary_tag": "realtime-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cGenerative AI has generally handled these issues better.\u201d",
+        "topic_slug": "model-choice-for-conversational-automation",
+        "topic_title": "Model Choice for Conversational Automation",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2024-06-18",
+          "confidence": 0.74,
+          "evidence_from_source": "The article argues that earlier approaches had trouble with accents and dialects, and suggests that generative AI may handle those issues better, while not solving all deployment problems.",
+          "evidence_type": "expert_opinion",
+          "match_candidates": [],
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "agentic-ai"
+          ],
+          "related_trends": [
+            "voice-ordering-in-noisy-environments"
+          ],
+          "secondary_tag": "agentic-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "IBM automated order-taking test in more than 100 restaurants will be shut off no later than July 26.",
+            "The article links failure modes to accents, dialects, and inaccurate orders.",
+            "The article says generative AI may be better but still leaves open noise and vocabulary challenges."
+          ],
+          "supporting_snippet": "\u201cThere were concerns that the Apprentee technology acquired by IBM had trouble with accents and dialects, which led to inaccurate orders. Generative AI has generally handled these issues better.\u201d",
+          "time_sensitivity": "Actionable as of 2024-06-18; the source supports monitoring this transition rather than assuming it is settled.",
+          "trend_description": "Voice automation systems may move away from brittle intent-based natural-language-understanding stacks toward generative models that better tolerate language variation. The pattern is most relevant in customer-facing environments where accents, dialects, and messy phrasing cause order or task errors. Even then, the trend does not remove operational constraints such as noise, vocabulary complexity, and fallback design.",
+          "trend_slug": "voice-automation-shifts-from-nlu-to-generative-ai",
+          "trend_title": "Voice Automation Shifts from Natural Language Understanding to Generative AI",
+          "uncertainty_note": "Evidence here is narrow and qualitative. The source does not provide comparative metrics, so it is unclear whether generative AI outperforms older approaches across enough sites to generalize confidently.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "ac09a8bb-9b1b-4fea-a266-c28c88e6859c",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "voice-ordering-in-noisy-environments"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "IBM automated order-taking test in more than 100 restaurants will be shut off no later than July 26.",
+              "The article links failure modes to accents, dialects, and inaccurate orders.",
+              "The article says generative AI may be better but still leaves open noise and vocabulary challenges."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "The article is written by Voicebot.ai, an independent publication, not by McDonald\u2019s or IBM.",
+          "It summarizes and interprets a CNBC report and a franchisee memo rather than presenting original technical data.",
+          "Claims about accents, dialects, and generative AI are analytical commentary, not benchmarked results."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Ending one pilot does not prove the use case is dead; it can also mean the first architecture was not robust enough.",
+          "Accent, dialect, and noise handling remain first-order constraints in drive-thru speech systems, not edge cases.",
+          "Generative AI is presented as potentially better than older natural-language-understanding approaches for spoken order capture.",
+          "Restaurant labor shortages are part of the business case, but the source gives no operational metrics, so the economic upside remains qualitative here."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://voicebot.ai/2024/06/18/mcdonalds-abandons-drive-through-ai-for/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "The piece is a single coherent news/opinion article, not a numbered list or transcript.",
+          "It centers on one company event with analysis, not a roundup of multiple items.",
+          "The structure is narrative commentary around a reported development from CNBC."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Noise and accent variability are system requirements, not edge cases, in front-line speech automation.",
+            "Domain vocabulary can break otherwise competent speech systems if the language model is not tuned for the task.",
+            "Confidence-based fallback and human handoff should be designed as part of the ordering flow, not added after failure."
+          ],
+          "knowledge_summary": "Voice-based ordering systems need to perform under acoustic noise, overlapping speech, variable accents, and domain-specific vocabulary. In customer-facing transactional settings, recognition errors are not just quality defects; they directly affect the order and the cost of recovery. Robust deployment depends on more than the speech model: prompt design, fallback handling, confidence thresholds, and escalation paths all shape whether the system can be trusted. The hardest cases often appear at the point of operational variance, not in clean demo conditions.",
+          "match_candidates": [],
+          "operational_insight": "Treat environmental noise and speech variation as core design constraints. A useful pilot needs instrumentation for misrecognition categories, confidence failures, and recovery behavior, not just overall accuracy.",
+          "primary_tag": "realtime-ai",
+          "proposed_tags": [
+            "realtime-ai",
+            "support-automation"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for conversational AI systems that operate in real-world environments such as restaurants, retail counters, kiosks, and call-in ordering. The same failure modes show up wherever speech input competes with background noise and specialized vocabulary, so the operational lesson is durable beyond any one vendor or chain.",
+          "secondary_tag": "support-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cHowever, generative AI will not, on its own, solve all of the challenges. You will still have issues of environmental noise and complex vocabularies that quick-serve restaurants must address to support AI-enabled order-taking.\u201d",
+          "topic_slug": "voice-ordering-in-noisy-environments",
+          "topic_title": "Voice Ordering in Noisy Environments",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ffe7aa4e-ae92-4f65-90f1-25bc7b083d37",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Noise and accent variability are system requirements, not edge cases, in front-line speech automation.",
+              "Domain vocabulary can break otherwise competent speech systems if the language model is not tuned for the task.",
+              "Confidence-based fallback and human handoff should be designed as part of the ordering flow, not added after failure."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.79,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A newer model class may improve robustness to speech variation, but the deployment still needs system-level guardrails.",
+            "Comparisons should include task outcomes and error recovery, not only offline language metrics.",
+            "Replacing intent-based logic with generative AI does not eliminate the need for domain constraints and post-processing."
+          ],
+          "knowledge_summary": "The choice between older natural-language-understanding systems and generative AI can materially change how well a conversational workflow handles varied, open-ended language. In transactional voice or chat automation, the model class determines how the system copes with accents, dialects, and phrasing variation. But model choice alone is insufficient when the environment adds noise, specialized terms, and high error cost. Operational evaluation should compare end-to-end task success, not just language understanding in isolation.",
+          "match_candidates": [],
+          "operational_insight": "Evaluate conversational automation by task completion and error recovery, not by model enthusiasm. A better language model can reduce one failure mode while leaving environment, vocabulary, and workflow design problems untouched.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "realtime-ai"
+          ],
+          "related_topics": [
+            "voice-ordering-in-noisy-environments"
+          ],
+          "relevance_note": "This is relevant wherever teams are deciding whether to replace older intent-classification or natural-language-understanding stacks with generative systems. The durable lesson is to assess the whole workflow, because model improvements can help but do not remove the need for operational controls.",
+          "secondary_tag": "realtime-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cGenerative AI has generally handled these issues better.\u201d",
+          "topic_slug": "model-choice-for-conversational-automation",
+          "topic_title": "Model Choice for Conversational Automation",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "b7f157f5-75cb-4652-bdfa-ab864958ec48",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A newer model class may improve robustness to speech variation, but the deployment still needs system-level guardrails.",
+              "Comparisons should include task outcomes and error recovery, not only offline language metrics.",
+              "Replacing intent-based logic with generative AI does not eliminate the need for domain constraints and post-processing."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "voice-ordering-in-noisy-environments"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 1,
+      "independent_analysis": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 3,
+    "proposals_total": 3,
+    "review_duration_seconds": 75.5,
+    "review_finished_at": "2026-05-19T19:09:14.539238+00:00",
+    "review_started_at": "2026-05-19T19:07:59+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-19T19:09:14+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Bret Kinsella",
+    "canonical_url": "https://voicebot.ai/2024/06/18/mcdonalds-abandons-drive-through-ai-for/",
+    "content_sha256": "747de15954ae3039f14bf077cac2cead6d4941ee7d11a7c7b29f3d316d071caa",
+    "publication": "Voicebot.ai",
+    "published_date": "2024-06-18",
+    "raw_html_rel_path": "raw/readwise/mcdonald-s-abandons-drive-through-ai-for-order-taking-01knemkvn8e8hhtxdjk47vt2tf.html",
+    "raw_md_rel_path": "raw/readwise/mcdonald-s-abandons-drive-through-ai-for-order-taking-01knemkvn8e8hhtxdjk47vt2tf.md",
+    "source_id": "mcdonald-s-abandons-drive-through-ai-for-order-taking-01knemkvn8e8hhtxdjk47vt2tf",
+    "title": "McDonald\u2019s Abandons Drive Through AI for Order Taking"
+  }
+}

@@ -1,0 +1,1250 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-19T16:22:18+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DhHUToO5HBXieUXzmFQehDOKt38Ow",
+    "token_usage": {
+      "completion_tokens": 4394,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 30794,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 35188
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The article contrasts Gemini 3 Pro\u2019s preview access with Claude Code\u2019s paid, fixed pricing structure.",
+          "It is positioned as part of a more flexible multi-model environment than Claude Code\u2019s Anthropic-only model access."
+        ],
+        "confidence": 0.74,
+        "core_capabilities": [
+          "It is used as a planning-capable model within Antigravity\u2019s multi-agent workflow.",
+          "It can be paired with other models across different agents inside the same IDE."
+        ],
+        "deployment_implications": "Adopting Gemini 3 Pro in this setup means the workflow can split planning, coding, and subtasks across different models inside one IDE. That can reduce lock-in to a single model family, but it also raises orchestration complexity because teams must decide which agent uses which model and when. The article does not give enough detail to evaluate cost, latency, or reliability tradeoffs beyond the free-preview access.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The model appears in a product preview rather than as a separately evaluated release, so maturity is hard to judge from this source alone. The main signal is exposure through a new IDE workflow rather than standalone adoption evidence.",
+        "model_name": "Gemini 3 Pro",
+        "operational_profile": "- Presented as a planning and coding model available inside Antigravity during the public preview.\n- The article implies it can participate in a multi-model workflow where different agents use different models for different subtasks.\n- Its operational value here is less about raw benchmark claims and more about how it fits into an agent-first IDE with model switching.",
+        "pricing_inference_implications": "The source says Antigravity is free during public preview and that Google has not published an official pricing timeline, so cost for Gemini 3 Pro access inside that product is uncertain as of 2026-04-16.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "proprietary",
+          "interactive-ai"
+        ],
+        "provider": "Google",
+        "related_models": [
+          "Sonnet 4.6",
+          "Opus 4.6",
+          "GPT-OSS 120B"
+        ],
+        "service_automation_implications": "No direct service automation implications are discussed for Gemini 3 Pro in this source.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"Google provides what they call \u2018generous rate limits\u2019 on Gemini 3 Pro.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not provide independent performance evidence for Gemini 3 Pro in this workflow. Access is tied to a preview environment with volatile limits, so operational reliability is unclear as of 2026-04-16."
+      },
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The article contrasts Sonnet 4.6 with Opus 4.6 inside Anthropic\u2019s own product stack.",
+          "It is framed as part of a more sequential and permission-based workflow than the parallel agent setup in Antigravity."
+        ],
+        "confidence": 0.78,
+        "core_capabilities": [
+          "It serves as the default coding model inside Claude Code for most tasks.",
+          "It is presented as the lighter-weight option compared with Opus 4.6 for deeper reasoning."
+        ],
+        "deployment_implications": "Using Sonnet 4.6 through Claude Code means teams get a controlled sequential workflow with explicit approvals and diff visibility. That makes it easier to apply in codebases where stepwise validation matters more than maximum parallelism. The source does not provide hard numbers on latency, cost per task, or reliability beyond the general Claude Code experience.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The source treats it as the default choice inside a mature, paid coding product, which suggests practical readiness. However, the article gives no independent enterprise or benchmark evidence for the model itself.",
+        "model_name": "Sonnet 4.6",
+        "operational_profile": "- Described as Claude Code\u2019s default model for most tasks.\n- The article presents it as the practical everyday option in a terminal-first coding assistant, with Opus 4.6 reserved for deeper reasoning.\n- Its operational identity here is tied to disciplined, approval-based coding rather than unconstrained autonomy.",
+        "pricing_inference_implications": "The article ties Claude Code\u2019s paid subscription to Anthropic model access, but it does not break out model-level inference economics for Sonnet 4.6 specifically.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "proprietary",
+          "agentic-coding"
+        ],
+        "provider": "Anthropic",
+        "related_models": [
+          "Opus 4.6",
+          "Gemini 3 Pro",
+          "GPT-OSS 120B"
+        ],
+        "service_automation_implications": "No direct service automation implications are discussed for Sonnet 4.6 in this source.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"You get Sonnet 4.6 (the default for most tasks), or Opus 4.6 if you need deeper reasoning on complex work.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not isolate Sonnet 4.6 from Claude Code as a distinct model evaluation. The limitations discussed in the source are mostly the assistant\u2019s task-completion ceiling and the need for human correction on complex refactors, not model-specific failure modes."
+      },
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The article uses Opus 4.6 as the contrast case against Sonnet 4.6.",
+          "It is implicitly contrasted with Antigravity\u2019s multi-model flexibility, where model choice can vary by agent and task."
+        ],
+        "confidence": 0.77,
+        "core_capabilities": [
+          "It is positioned for deeper reasoning on complex coding work.",
+          "It is the higher-capability Anthropic option inside Claude Code\u2019s model lineup."
+        ],
+        "deployment_implications": "If selected for difficult refactoring or reasoning-heavy tasks, Opus 4.6 would be used inside the same sequential, approval-driven workflow as Claude Code. That suggests the deployment pattern is less about autonomous swarming and more about giving a single agent more thinking capacity when the task warrants it. The source does not provide enough detail to estimate its cost or latency impact.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The model is presented as part of an established paid product rather than an experimental preview, which is a modest maturity signal. Beyond that, the article offers no adoption or benchmark evidence.",
+        "model_name": "Opus 4.6",
+        "operational_profile": "- Presented as the deeper-reasoning option in Claude Code for complex work.\n- The article implies it is the more capable but less default choice inside the same paid coding assistant.\n- Its significance is in giving users a reason to stay within Anthropic\u2019s stack when tasks require more deliberation.",
+        "pricing_inference_implications": "The source implies that higher-end model usage sits behind Claude Code\u2019s paid access, but it does not specify incremental pricing or token economics for Opus 4.6.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "proprietary",
+          "agentic-coding"
+        ],
+        "provider": "Anthropic",
+        "related_models": [
+          "Sonnet 4.6",
+          "Gemini 3 Pro",
+          "GPT-OSS 120B"
+        ],
+        "service_automation_implications": "No direct service automation implications are discussed for Opus 4.6 in this source.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"You get Sonnet 4.6 (the default for most tasks), or Opus 4.6 if you need deeper reasoning on complex work.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not provide a separate performance evaluation for Opus 4.6. Its usefulness is asserted through product positioning rather than through controlled comparison or benchmark data."
+      },
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The article uses GPT-OSS 120B as an example of Antigravity\u2019s model-switching flexibility.",
+          "It is contrasted with Claude Code\u2019s Anthropic-only model access."
+        ],
+        "confidence": 0.63,
+        "core_capabilities": [
+          "It can be used as one model in a multi-model coding workflow.",
+          "It is presented as suitable for a specific subtask inside Antigravity\u2019s agent system."
+        ],
+        "deployment_implications": "In this workflow, GPT-OSS 120B would be selected as part of a multi-model orchestration layer rather than as a standalone assistant. That can be useful when teams want to mix model strengths across planning, coding, and niche subtasks, but the source does not explain why this model is preferred or what constraints it introduces. Operationally, the article gives no evidence on latency, cost, or output quality.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The mention is brief and product-oriented, so maturity signals are weak. The article does not describe adoption, benchmarks, or production use.",
+        "model_name": "GPT-OSS 120B",
+        "operational_profile": "- Mentioned as one of the models that can be used inside Antigravity for a specific subtask.\n- The article uses it to illustrate model diversity inside a single agent-first IDE rather than to evaluate the model itself.\n- Its relevance here is the flexibility to route different subproblems to different model families.",
+        "pricing_inference_implications": "The source does not provide pricing or inference-cost detail for GPT-OSS 120B in this context.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "open-weight",
+          "agentic-coding"
+        ],
+        "provider": "OpenAI",
+        "related_models": [
+          "Gemini 3 Pro",
+          "Sonnet 4.6",
+          "Opus 4.6"
+        ],
+        "service_automation_implications": "No direct service automation implications are discussed for GPT-OSS 120B in this source.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"You can use Gemini 3 Pro for planning, switch to Claude Sonnet 4.6 for coding, then use GPT-OSS 120B for a specific subtask.\"",
+        "value_level": "low",
+        "weaknesses_limitations": "The source does not provide any direct evaluation of GPT-OSS 120B. Its only role is as an example of flexibility inside Antigravity, so there is little evidence for durable model-level conclusions."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-16",
+        "confidence": 0.82,
+        "evidence_from_source": "The article explicitly argues that both tools point toward AI orchestrating development workflows rather than only generating code, with Antigravity spawning parallel agents and Claude Code executing step by step from a terminal.",
+        "evidence_type": "expert_opinion",
+        "match_candidates": [],
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_trends": [
+          "harness-design-becomes-more-important-for-agent-reliability"
+        ],
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Antigravity can spawn multiple agents in parallel.",
+          "Claude Code can modify files, run terminal commands, create tests, and fix errors.",
+          "The article frames both tools as workflow orchestrators rather than simple text generators."
+        ],
+        "supporting_snippet": "\"Both tools point toward a future where AI doesn\u2019t just autocomplete your code. It orchestrates entire development workflows.\"",
+        "time_sensitivity": "Relevant as of 2026-04-16; the source treats this as an emerging product direction rather than a settled standard.",
+        "trend_description": "AI systems increasingly do more than autocomplete text; they execute workflows, orchestrate tools, and coordinate multi-step tasks inside operational environments. The trend matters because the quality of the surrounding harness, permissions, and orchestration becomes as important as the model output itself.",
+        "trend_slug": "models-becoming-execution-layers",
+        "trend_title": "Models Becoming Execution Layers",
+        "uncertainty_note": "The evidence comes from a single comparative article, so it is better read as a product-direction observation than as proof of a broad market transition.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article combines vendor/product claims with user-reported experience and speculative pricing forecasts.",
+        "It cites Anthropic\u2019s own metric for Claude Code and reports user issues with Antigravity quotas.",
+        "It also includes the author\u2019s own comparative judgment and predictions about future pricing tiers."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article compares two AI tools that help write code: Claude Code and Google Antigravity. Claude Code works from the terminal, which is a text-based command line, and it asks for permission before making major changes. Antigravity works more like a full code editor and can run several helper agents at the same time. One of its unusual features is a built-in browser that lets those agents check websites and test what they build. The article says Antigravity is free during public preview, but that access has been uneven and may change later. Claude Code costs money, but its pricing is clear and its behavior is described as more predictable. The author\u2019s main point is that the better choice depends on how you work: careful step-by-step control, or faster parallel exploration. As of 2026-04-16, the article treats Claude Code as the safer mature option and Antigravity as the more experimental one worth trying if the free access and agent-first workflow appeal to you.",
+      "assessed_as_of": "2026-04-16",
+      "contradictions_and_skepticism": "The article is balanced, but some claims are still thinly evidenced. The quoted 49 percent autonomous completion figure for Claude Code is presented without methodological detail, so it should not be treated as a general benchmark. Predictions about Antigravity pricing are explicitly speculative. The piece also treats free preview access as a major advantage while noting that users have already been locked out by changing limits, which undercuts the stability of that advantage.",
+      "key_insights": [
+        "Claude Code\u2019s sequential permission flow is framed as a reliability advantage for tasks where later steps depend on earlier steps being correct.",
+        "Antigravity\u2019s parallel multi-agent design is the article\u2019s clearest differentiator and is presented as more useful for splitting work across backend, frontend, and verification tasks.",
+        "Antigravity\u2019s free public preview is a real adoption lever, but the article warns that quota changes and rate limits have already made access unstable.",
+        "The built-in browser in Antigravity matters because it lets agents test rendered interfaces without external tooling.",
+        "The article positions pricing transparency as part of the product decision: Claude Code is paid but predictable, while Antigravity\u2019s future cost is still uncertain as of 2026-04-16."
+      ],
+      "limitations_and_open_questions": "The article relies on vendor-reported or user-reported claims for several important points, including Claude Code\u2019s autonomous success rate, Antigravity\u2019s quota instability, and future Antigravity pricing. It does not provide reproducible benchmarks, controlled comparisons, or detailed task logs, so the relative performance claims are hard to validate independently. The discussion of enterprise readiness is thin: it mentions regulated industries and Cursor\u2019s compliance documentation, but does not show formal security or procurement evidence for either tool. Antigravity\u2019s multi-agent coordination is described as powerful but under-specified, so it is unclear how often agent outputs need manual restructuring in real projects.",
+      "sources": [
+        "https://medium.com/no-time/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-8337d9233582"
+      ],
+      "summary": "The piece compares Claude Code and Google Antigravity as AI coding assistants, arguing that the main choice is less about raw quality and more about workflow fit, pricing, and control. Claude Code is presented as terminal-first, sequential, and permission-based, with long context and explicit diffs that favor careful refactoring and reliability. Antigravity is presented as an agent-first IDE that can run multiple agents in parallel, use a built-in browser for verification, and mix models inside one workspace. The article also emphasizes access economics: Antigravity is free during public preview but has unstable rate limits, while Claude Code has transparent paid tiers. The practical takeaway is that developers who want explicit control and proven behavior may prefer Claude Code, while developers who want parallel agent workflows and no upfront cost may test Antigravity despite its early-stage rough edges.",
+      "why_it_matters": "The comparison is useful because it separates coding-assistant choice into operational dimensions that matter in practice: control model, context handling, parallelism, and access cost. Claude Code is described as a terminal-first system that shows plans, asks for approval, and executes step by step, which reduces coordination risk when one change depends on another. Antigravity is described as an agent-first IDE that can fan out work across multiple agents and use a built-in browser for verification, which may speed up exploratory work and UI checks. The article also gives a concrete economic tradeoff: Claude Code has clear paid tiers, while Antigravity is free during public preview but has unstable quotas and no published long-term pricing. The stakes are not broad market transformation claims; they are workflow-level choices about trust, speed, and cost. For service automation, the closing implication is limited but real: the same control-versus-autonomy tradeoff will matter in support-style agents, where explicit approval and auditability may be preferable to aggressive parallel autonomy. As of 2026-04-16, the piece reads as a practical adoption guide rather than a settled verdict, and Antigravity still looks early-stage despite being novel."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "The piece is a single comparative article, not a numbered product roundup or a multi-item list of tools.",
+        "It argues a point through sustained prose and side-by-side comparison between two named products.",
+        "There is no interview structure, tutorial sequence, or roundup bundle of loosely related items."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "The source describes Antigravity\u2019s \"Manager View\" as \"a control center for spawning multiple agents that work simultaneously across separate workspaces\" and notes that one agent might fix backend bugs while another prototypes frontend features.",
+        "key_points": [
+          "Parallel agents are most useful when subtasks are separable and can be verified independently.",
+          "A control-center interface can make multi-agent work understandable enough for human oversight.",
+          "The hard part is not spawning agents; it is reconciling their outputs into one reliable change."
+        ],
+        "knowledge_summary": "Agent-first coding environments treat the IDE as a control plane for multiple autonomous workers rather than as a single-chat assistant. The user assigns goals, then monitors agents, artifacts, and execution results across parallel workspaces. This pattern is useful when tasks can be decomposed into independent subtasks, especially when UI verification or cross-file parallelism matters. The main engineering challenge is coordination: outputs must still be reconciled into a coherent final change set.",
+        "match_candidates": [],
+        "operational_insight": "Use parallel agents when the work can be safely split into independent streams; use explicit coordination artifacts so the final merge does not become the hidden bottleneck.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "models-becoming-execution-layers"
+        ],
+        "relevance_note": "This pattern matters wherever teams want to shorten feedback loops by splitting coding, testing, and verification into parallel AI tasks. It also affects how much trust can be delegated to the environment: the more autonomy and fan-out, the more important it becomes to surface artifacts, trace decisions, and merge results safely.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Antigravity works differently. It spawns multiple agents that work in parallel. One agent might fix backend bugs while another prototypes frontend features.\"",
+        "topic_slug": "agent-first-ide-orchestration",
+        "topic_title": "Agent-First IDE Orchestration",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "The source says Claude Code \"shows you the plan, then executes step by step\" and \"asks before running destructive commands, shows you exactly what it\u2019s changing, and provides clear diffs.\"",
+        "key_points": [
+          "Planning plus approval reduces coordination errors in multi-step tasks.",
+          "Diff visibility is an operational control, not just a UX detail.",
+          "The pattern is slower than full autonomy but usually easier to trust on critical changes."
+        ],
+        "knowledge_summary": "Approval-based coding workflows keep a human in the loop for significant or destructive changes while still letting the assistant handle planning, edits, and command execution. The practical advantage is reduced risk: the user can inspect a plan or diff before committing to each step. This pattern is especially valuable in refactoring, large codebases, or regulated environments where irreversible mistakes are costly. The tradeoff is slower throughput and more manual review overhead.",
+        "match_candidates": [],
+        "operational_insight": "Use approvals where correctness and reversibility matter more than speed; the workflow is valuable because it turns AI output into an inspectable sequence rather than a black box.",
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "agent-first-ide-orchestration"
+        ],
+        "relevance_note": "This is a durable operating pattern for AI coding assistants, agent tools, and any high-stakes automation that can benefit from staged approval gates. It also transfers well to support automation and other human-facing workflows where auditing and reversibility matter more than raw speed.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"You describe a task, it plans the work, shows you the plan, then executes step by step. Every significant change asks for permission.\"",
+        "topic_slug": "approval-based-coding-workflows",
+        "topic_title": "Approval-Based Coding Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The article contrasts Gemini 3 Pro\u2019s preview access with Claude Code\u2019s paid, fixed pricing structure.",
+            "It is positioned as part of a more flexible multi-model environment than Claude Code\u2019s Anthropic-only model access."
+          ],
+          "confidence": 0.74,
+          "core_capabilities": [
+            "It is used as a planning-capable model within Antigravity\u2019s multi-agent workflow.",
+            "It can be paired with other models across different agents inside the same IDE."
+          ],
+          "deployment_implications": "Adopting Gemini 3 Pro in this setup means the workflow can split planning, coding, and subtasks across different models inside one IDE. That can reduce lock-in to a single model family, but it also raises orchestration complexity because teams must decide which agent uses which model and when. The article does not give enough detail to evaluate cost, latency, or reliability tradeoffs beyond the free-preview access.",
+          "match_candidates": [],
+          "maturity_signals": "The model appears in a product preview rather than as a separately evaluated release, so maturity is hard to judge from this source alone. The main signal is exposure through a new IDE workflow rather than standalone adoption evidence.",
+          "model_name": "Gemini 3 Pro",
+          "operational_profile": "- Presented as a planning and coding model available inside Antigravity during the public preview.\n- The article implies it can participate in a multi-model workflow where different agents use different models for different subtasks.\n- Its operational value here is less about raw benchmark claims and more about how it fits into an agent-first IDE with model switching.",
+          "pricing_inference_implications": "The source says Antigravity is free during public preview and that Google has not published an official pricing timeline, so cost for Gemini 3 Pro access inside that product is uncertain as of 2026-04-16.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "proprietary",
+            "interactive-ai"
+          ],
+          "provider": "Google",
+          "related_models": [
+            "Sonnet 4.6",
+            "Opus 4.6",
+            "GPT-OSS 120B"
+          ],
+          "service_automation_implications": "No direct service automation implications are discussed for Gemini 3 Pro in this source.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"Google provides what they call \u2018generous rate limits\u2019 on Gemini 3 Pro.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not provide independent performance evidence for Gemini 3 Pro in this workflow. Access is tied to a preview environment with volatile limits, so operational reliability is unclear as of 2026-04-16."
+        },
+        "notes": null,
+        "proposal_id": "553c111a-1522-46a6-8593-421573e8c6a0",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article contrasts Gemini 3 Pro\u2019s preview access with Claude Code\u2019s paid, fixed pricing structure.",
+              "It is positioned as part of a more flexible multi-model environment than Claude Code\u2019s Anthropic-only model access."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It is used as a planning-capable model within Antigravity\u2019s multi-agent workflow.",
+              "It can be paired with other models across different agents inside the same IDE."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Sonnet 4.6",
+              "Opus 4.6",
+              "GPT-OSS 120B"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "proprietary"
+          ],
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The article contrasts Sonnet 4.6 with Opus 4.6 inside Anthropic\u2019s own product stack.",
+            "It is framed as part of a more sequential and permission-based workflow than the parallel agent setup in Antigravity."
+          ],
+          "confidence": 0.78,
+          "core_capabilities": [
+            "It serves as the default coding model inside Claude Code for most tasks.",
+            "It is presented as the lighter-weight option compared with Opus 4.6 for deeper reasoning."
+          ],
+          "deployment_implications": "Using Sonnet 4.6 through Claude Code means teams get a controlled sequential workflow with explicit approvals and diff visibility. That makes it easier to apply in codebases where stepwise validation matters more than maximum parallelism. The source does not provide hard numbers on latency, cost per task, or reliability beyond the general Claude Code experience.",
+          "match_candidates": [],
+          "maturity_signals": "The source treats it as the default choice inside a mature, paid coding product, which suggests practical readiness. However, the article gives no independent enterprise or benchmark evidence for the model itself.",
+          "model_name": "Sonnet 4.6",
+          "operational_profile": "- Described as Claude Code\u2019s default model for most tasks.\n- The article presents it as the practical everyday option in a terminal-first coding assistant, with Opus 4.6 reserved for deeper reasoning.\n- Its operational identity here is tied to disciplined, approval-based coding rather than unconstrained autonomy.",
+          "pricing_inference_implications": "The article ties Claude Code\u2019s paid subscription to Anthropic model access, but it does not break out model-level inference economics for Sonnet 4.6 specifically.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "proprietary",
+            "agentic-coding"
+          ],
+          "provider": "Anthropic",
+          "related_models": [
+            "Opus 4.6",
+            "Gemini 3 Pro",
+            "GPT-OSS 120B"
+          ],
+          "service_automation_implications": "No direct service automation implications are discussed for Sonnet 4.6 in this source.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"You get Sonnet 4.6 (the default for most tasks), or Opus 4.6 if you need deeper reasoning on complex work.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not isolate Sonnet 4.6 from Claude Code as a distinct model evaluation. The limitations discussed in the source are mostly the assistant\u2019s task-completion ceiling and the need for human correction on complex refactors, not model-specific failure modes."
+        },
+        "notes": null,
+        "proposal_id": "4a24e396-790f-4e95-8833-db6c6600daa9",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article contrasts Sonnet 4.6 with Opus 4.6 inside Anthropic\u2019s own product stack.",
+              "It is framed as part of a more sequential and permission-based workflow than the parallel agent setup in Antigravity."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It serves as the default coding model inside Claude Code for most tasks.",
+              "It is presented as the lighter-weight option compared with Opus 4.6 for deeper reasoning."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Opus 4.6",
+              "Gemini 3 Pro",
+              "GPT-OSS 120B"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "proprietary",
+            "multi-modal"
+          ],
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The article uses Opus 4.6 as the contrast case against Sonnet 4.6.",
+            "It is implicitly contrasted with Antigravity\u2019s multi-model flexibility, where model choice can vary by agent and task."
+          ],
+          "confidence": 0.77,
+          "core_capabilities": [
+            "It is positioned for deeper reasoning on complex coding work.",
+            "It is the higher-capability Anthropic option inside Claude Code\u2019s model lineup."
+          ],
+          "deployment_implications": "If selected for difficult refactoring or reasoning-heavy tasks, Opus 4.6 would be used inside the same sequential, approval-driven workflow as Claude Code. That suggests the deployment pattern is less about autonomous swarming and more about giving a single agent more thinking capacity when the task warrants it. The source does not provide enough detail to estimate its cost or latency impact.",
+          "match_candidates": [],
+          "maturity_signals": "The model is presented as part of an established paid product rather than an experimental preview, which is a modest maturity signal. Beyond that, the article offers no adoption or benchmark evidence.",
+          "model_name": "Opus 4.6",
+          "operational_profile": "- Presented as the deeper-reasoning option in Claude Code for complex work.\n- The article implies it is the more capable but less default choice inside the same paid coding assistant.\n- Its significance is in giving users a reason to stay within Anthropic\u2019s stack when tasks require more deliberation.",
+          "pricing_inference_implications": "The source implies that higher-end model usage sits behind Claude Code\u2019s paid access, but it does not specify incremental pricing or token economics for Opus 4.6.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "proprietary",
+            "agentic-coding"
+          ],
+          "provider": "Anthropic",
+          "related_models": [
+            "Sonnet 4.6",
+            "Gemini 3 Pro",
+            "GPT-OSS 120B"
+          ],
+          "service_automation_implications": "No direct service automation implications are discussed for Opus 4.6 in this source.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"You get Sonnet 4.6 (the default for most tasks), or Opus 4.6 if you need deeper reasoning on complex work.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not provide a separate performance evaluation for Opus 4.6. Its usefulness is asserted through product positioning rather than through controlled comparison or benchmark data."
+        },
+        "notes": null,
+        "proposal_id": "c7e619c0-7091-491a-8998-72098c1d3137",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article uses Opus 4.6 as the contrast case against Sonnet 4.6.",
+              "It is implicitly contrasted with Antigravity\u2019s multi-model flexibility, where model choice can vary by agent and task."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It is positioned for deeper reasoning on complex coding work.",
+              "It is the higher-capability Anthropic option inside Claude Code\u2019s model lineup."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Sonnet 4.6",
+              "Gemini 3 Pro",
+              "GPT-OSS 120B"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The article uses GPT-OSS 120B as an example of Antigravity\u2019s model-switching flexibility.",
+            "It is contrasted with Claude Code\u2019s Anthropic-only model access."
+          ],
+          "confidence": 0.63,
+          "core_capabilities": [
+            "It can be used as one model in a multi-model coding workflow.",
+            "It is presented as suitable for a specific subtask inside Antigravity\u2019s agent system."
+          ],
+          "deployment_implications": "In this workflow, GPT-OSS 120B would be selected as part of a multi-model orchestration layer rather than as a standalone assistant. That can be useful when teams want to mix model strengths across planning, coding, and niche subtasks, but the source does not explain why this model is preferred or what constraints it introduces. Operationally, the article gives no evidence on latency, cost, or output quality.",
+          "match_candidates": [],
+          "maturity_signals": "The mention is brief and product-oriented, so maturity signals are weak. The article does not describe adoption, benchmarks, or production use.",
+          "model_name": "GPT-OSS 120B",
+          "operational_profile": "- Mentioned as one of the models that can be used inside Antigravity for a specific subtask.\n- The article uses it to illustrate model diversity inside a single agent-first IDE rather than to evaluate the model itself.\n- Its relevance here is the flexibility to route different subproblems to different model families.",
+          "pricing_inference_implications": "The source does not provide pricing or inference-cost detail for GPT-OSS 120B in this context.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "open-weight",
+            "agentic-coding"
+          ],
+          "provider": "OpenAI",
+          "related_models": [
+            "Gemini 3 Pro",
+            "Sonnet 4.6",
+            "Opus 4.6"
+          ],
+          "service_automation_implications": "No direct service automation implications are discussed for GPT-OSS 120B in this source.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"You can use Gemini 3 Pro for planning, switch to Claude Sonnet 4.6 for coding, then use GPT-OSS 120B for a specific subtask.\"",
+          "value_level": "low",
+          "weaknesses_limitations": "The source does not provide any direct evaluation of GPT-OSS 120B. Its only role is as an example of flexibility inside Antigravity, so there is little evidence for durable model-level conclusions."
+        },
+        "notes": null,
+        "proposal_id": "1992d543-dd06-4b6c-9991-6a7b8fffacd3",
+        "proposal_status": "rejected",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article uses GPT-OSS 120B as an example of Antigravity\u2019s model-switching flexibility.",
+              "It is contrasted with Claude Code\u2019s Anthropic-only model access."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can be used as one model in a multi-model coding workflow.",
+              "It is presented as suitable for a specific subtask inside Antigravity\u2019s agent system."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Gemini 3 Pro",
+              "Sonnet 4.6",
+              "Opus 4.6"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-16",
+          "confidence": 0.82,
+          "evidence_from_source": "The article explicitly argues that both tools point toward AI orchestrating development workflows rather than only generating code, with Antigravity spawning parallel agents and Claude Code executing step by step from a terminal.",
+          "evidence_type": "expert_opinion",
+          "match_candidates": [],
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_trends": [
+            "harness-design-becomes-more-important-for-agent-reliability"
+          ],
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Antigravity can spawn multiple agents in parallel.",
+            "Claude Code can modify files, run terminal commands, create tests, and fix errors.",
+            "The article frames both tools as workflow orchestrators rather than simple text generators."
+          ],
+          "supporting_snippet": "\"Both tools point toward a future where AI doesn\u2019t just autocomplete your code. It orchestrates entire development workflows.\"",
+          "time_sensitivity": "Relevant as of 2026-04-16; the source treats this as an emerging product direction rather than a settled standard.",
+          "trend_description": "AI systems increasingly do more than autocomplete text; they execute workflows, orchestrate tools, and coordinate multi-step tasks inside operational environments. The trend matters because the quality of the surrounding harness, permissions, and orchestration becomes as important as the model output itself.",
+          "trend_slug": "models-becoming-execution-layers",
+          "trend_title": "Models Becoming Execution Layers",
+          "uncertainty_note": "The evidence comes from a single comparative article, so it is better read as a product-direction observation than as proof of a broad market transition.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a1e53663-e7ee-465c-ac23-0ba2bdd6d726",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "harness-design-becomes-more-important-for-agent-reliability"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Antigravity can spawn multiple agents in parallel.",
+              "Claude Code can modify files, run terminal commands, create tests, and fix errors.",
+              "The article frames both tools as workflow orchestrators rather than simple text generators."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article combines vendor/product claims with user-reported experience and speculative pricing forecasts.",
+          "It cites Anthropic\u2019s own metric for Claude Code and reports user issues with Antigravity quotas.",
+          "It also includes the author\u2019s own comparative judgment and predictions about future pricing tiers."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Claude Code\u2019s sequential permission flow is framed as a reliability advantage for tasks where later steps depend on earlier steps being correct.",
+          "Antigravity\u2019s parallel multi-agent design is the article\u2019s clearest differentiator and is presented as more useful for splitting work across backend, frontend, and verification tasks.",
+          "Antigravity\u2019s free public preview is a real adoption lever, but the article warns that quota changes and rate limits have already made access unstable.",
+          "The built-in browser in Antigravity matters because it lets agents test rendered interfaces without external tooling.",
+          "The article positions pricing transparency as part of the product decision: Claude Code is paid but predictable, while Antigravity\u2019s future cost is still uncertain as of 2026-04-16."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/no-time/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-8337d9233582"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "The piece is a single comparative article, not a numbered product roundup or a multi-item list of tools.",
+          "It argues a point through sustained prose and side-by-side comparison between two named products.",
+          "There is no interview structure, tutorial sequence, or roundup bundle of loosely related items."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "The source describes Antigravity\u2019s \"Manager View\" as \"a control center for spawning multiple agents that work simultaneously across separate workspaces\" and notes that one agent might fix backend bugs while another prototypes frontend features.",
+          "key_points": [
+            "Parallel agents are most useful when subtasks are separable and can be verified independently.",
+            "A control-center interface can make multi-agent work understandable enough for human oversight.",
+            "The hard part is not spawning agents; it is reconciling their outputs into one reliable change."
+          ],
+          "knowledge_summary": "Agent-first coding environments treat the IDE as a control plane for multiple autonomous workers rather than as a single-chat assistant. The user assigns goals, then monitors agents, artifacts, and execution results across parallel workspaces. This pattern is useful when tasks can be decomposed into independent subtasks, especially when UI verification or cross-file parallelism matters. The main engineering challenge is coordination: outputs must still be reconciled into a coherent final change set.",
+          "match_candidates": [],
+          "operational_insight": "Use parallel agents when the work can be safely split into independent streams; use explicit coordination artifacts so the final merge does not become the hidden bottleneck.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "models-becoming-execution-layers"
+          ],
+          "relevance_note": "This pattern matters wherever teams want to shorten feedback loops by splitting coding, testing, and verification into parallel AI tasks. It also affects how much trust can be delegated to the environment: the more autonomy and fan-out, the more important it becomes to surface artifacts, trace decisions, and merge results safely.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "multi-agent-orchestration",
+          "suggested_new_tags": [
+            "multi-agent-orchestration"
+          ],
+          "supporting_snippet": "\"Antigravity works differently. It spawns multiple agents that work in parallel. One agent might fix backend bugs while another prototypes frontend features.\"",
+          "topic_slug": "agent-first-ide-orchestration",
+          "topic_title": "Agent-First IDE Orchestration",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "62edc8b2-4847-4b2f-9b4c-98e52befa367",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Parallel agents are most useful when subtasks are separable and can be verified independently.",
+              "A control-center interface can make multi-agent work understandable enough for human oversight.",
+              "The hard part is not spawning agents; it is reconciling their outputs into one reliable change."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "models-becoming-execution-layers"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic-ai"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "The source says Claude Code \"shows you the plan, then executes step by step\" and \"asks before running destructive commands, shows you exactly what it\u2019s changing, and provides clear diffs.\"",
+          "key_points": [
+            "Planning plus approval reduces coordination errors in multi-step tasks.",
+            "Diff visibility is an operational control, not just a UX detail.",
+            "The pattern is slower than full autonomy but usually easier to trust on critical changes."
+          ],
+          "knowledge_summary": "Approval-based coding workflows keep a human in the loop for significant or destructive changes while still letting the assistant handle planning, edits, and command execution. The practical advantage is reduced risk: the user can inspect a plan or diff before committing to each step. This pattern is especially valuable in refactoring, large codebases, or regulated environments where irreversible mistakes are costly. The tradeoff is slower throughput and more manual review overhead.",
+          "match_candidates": [],
+          "operational_insight": "Use approvals where correctness and reversibility matter more than speed; the workflow is valuable because it turns AI output into an inspectable sequence rather than a black box.",
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "agent-first-ide-orchestration"
+          ],
+          "relevance_note": "This is a durable operating pattern for AI coding assistants, agent tools, and any high-stakes automation that can benefit from staged approval gates. It also transfers well to support automation and other human-facing workflows where auditing and reversibility matter more than raw speed.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"You describe a task, it plans the work, shows you the plan, then executes step by step. Every significant change asks for permission.\"",
+          "topic_slug": "approval-based-coding-workflows",
+          "topic_title": "Approval-Based Coding Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "81d6efa8-0147-41ab-929b-b78edd92fd2c",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Planning plus approval reduces coordination errors in multi-step tasks.",
+              "Diff visibility is an operational control, not just a UX detail.",
+              "The pattern is slower than full autonomy but usually easier to trust on critical changes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-first-ide-orchestration"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 1,
+      "mixed": 6
+    },
+    "fields_modified": 0,
+    "proposals_approved": 6,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 7,
+    "review_duration_seconds": 466.9,
+    "review_finished_at": "2026-05-19T16:30:04.935004+00:00",
+    "review_started_at": "2026-05-19T16:22:18+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-19T16:30:04+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Pranit naik",
+    "canonical_url": "https://medium.com/no-time/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-8337d9233582",
+    "content_sha256": "38f1c9e0fee36fb8865e78ce3e9a7a881152ffb135b8ddd188e966d21451babc",
+    "publication": "Medium",
+    "published_date": "2026-04-16",
+    "raw_html_rel_path": "raw/readwise/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03.html",
+    "raw_md_rel_path": "raw/readwise/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03.md",
+    "source_id": "antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03",
+    "title": "Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?"
+  }
+}

@@ -1,0 +1,599 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-21T18:08:32+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-Di26XB7C1EIVriTfuWvpLgKlVAkmA",
+    "token_usage": {
+      "completion_tokens": 2246,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 30441,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 32687
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-29",
+        "confidence": 0.86,
+        "evidence_from_source": "OpenAI describes a goblin/gremlin habit that did not appear as a simple metric failure and instead became visible through user complaints, employee reports, and targeted inspection.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-evals",
+        "proposed_tags": [
+          "ai-evals",
+          "ai-engineering"
+        ],
+        "related_trends": [
+          "stable-api-names-no-longer-guarantee-stable-model-behavior"
+        ],
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "\"goblin\" in ChatGPT had risen by 175% after the launch of GPT-5.1",
+          "\"gremlin\" had risen by 52%",
+          "Nerdy accounted for only 2.5% of all ChatGPT responses, but 66.7% of all \u201cgoblin\u201d mentions in ChatGPT responses",
+          "positive uplift in 76.2% of datasets"
+        ],
+        "supporting_snippet": "\"Unlike model bugs that show up through a tanking eval or a spiking training metric and point back to a specific change, this one crept in subtly.\"",
+        "time_sensitivity": "As of 2026-04-29, this is a current operational concern for model teams that make persona or reward changes; the relevance should persist as long as conversational systems are trained with style incentives.",
+        "trend_description": "Model regressions can emerge as subtle shifts in style, tone, or lexical habit rather than as sharp benchmark drops. Detecting them often requires pattern searches, version comparisons, and human review of generated outputs. This trend matters because product quality can degrade in ways standard evals do not capture.",
+        "trend_slug": "behavioral-regressions-need-qualitative-audits",
+        "trend_title": "Behavioral Regressions Need Qualitative Audits",
+        "uncertainty_note": "This is supported by one vendor case study, so the exact prevalence outside this system is unknown.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "OpenAI is the source discussing its own models, training, and mitigations.",
+        "Claims are supported by internal observations, percentages, and described training interventions.",
+        "No independent benchmark or external reporting dominates the article."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about a strange habit that showed up in some OpenAI models: they started talking about goblins, gremlins, and similar creatures more and more often. At first it looked like a harmless quirk, but over time it became hard to ignore. OpenAI says the cause was not a single bug, but a reward signal used to shape a playful personality style called Nerdy. That reward seems to have taught the model to like creature metaphors, and the habit then spread into other training stages. The company says it fixed the issue by removing that reward signal and filtering some training data. It also added a prompt-based mitigation for Codex. The main message is that models can learn small style habits in one setting and then carry them into others. As of April 2026, the story is a useful reminder to watch for odd behavior patterns and trace them back to training incentives.",
+      "assessed_as_of": "2026-04-29",
+      "contradictions_and_skepticism": "The article presents a neat root-cause story, but the behavior emerged through a chain of training stages, so causality may be messier than the narrative suggests. The reported percentages are compelling, yet they are still internal measurements from one system and should not be treated as universal evidence. The fact that a prompt-level instruction was used for Codex also suggests that some surface behavior management may still be needed even after training fixes.",
+      "key_insights": [
+        "A style reward aimed at one personality can leak into broader model behavior.",
+        "Lexical quirks may not show up as obvious benchmark failures and can require targeted behavioral audits.",
+        "Rewarded outputs can re-enter supervised fine-tuning data and reinforce the same habit.",
+        "Mitigation can combine training-data cleanup with prompt-level guardrails for downstream tools.",
+        "Small, amusing artifacts can become operationally relevant when they affect conversation quality or tool behavior."
+      ],
+      "limitations_and_open_questions": "The explanation is plausible and internally consistent, but it is still a single vendor account of a specific incident. The article gives useful percentages and internal observations, but it does not provide a full experimental design or independent replication of the causal chain from reward signal to downstream spread. It also leaves open how general this failure mode is across other persona styles, other training pipelines, or other model families. The mitigation described is partly prompt-based for Codex, which may reduce symptoms without proving the underlying behavior is fully eliminated across all surfaces.",
+      "sources": [
+        "https://openai.com/index/where-the-goblins-came-from"
+      ],
+      "summary": "The piece explains an unexpected lexical quirk in GPT-5.1 and GPT-5.5: the models increasingly used creature metaphors such as goblins and gremlins. OpenAI traces the behavior to reward shaping for the personality customization feature, especially the Nerdy personality, where creature-heavy outputs were over-rewarded. The article argues that the behavior spread beyond the original prompt condition through reinforcement learning and later supervised fine-tuning data reuse. OpenAI then removed the reward signal, filtered creature-word training data, and added a developer-prompt mitigation for Codex. The broader lesson is that small reward signals can generalize in surprising ways, so debugging odd model behavior requires fast behavioral audits and root-cause analysis tools.",
+      "why_it_matters": "The article is useful because it shows a concrete failure mode in alignment and persona training: a reward intended for one style can amplify a specific lexical habit and then spread it through later training stages. That is operationally important for anyone tuning assistants, because it suggests that style rewards are not isolated preferences; they can become latent behavioral attractors. The article also shows why ordinary evals may miss these issues: the problem was subtle, cumulative, and first noticed through user and employee reports rather than a single bad metric. For teams building conversational systems, this is a reminder to inspect qualitative output patterns, not just headline scores, when changing persona prompts or reward models. The useful part is fairly specific to reward design and training-data feedback loops, so the article is more of a tactical debugging case than a broad theory paper. As of 2026-04-29, it is actionable as a cautionary example and as evidence that fast behavioral auditing tools are worth investing in. For support automation and other service systems, the practical lesson is that persona tuning can create odd phrasing habits that leak into customer-facing outputs, so prompt-layer mitigations and training-data filters matter when conversational consistency is a product requirement."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article with one central argument, not a bundle of unrelated items.",
+        "Structured as an explanatory post-mortem about one model behavior issue and its cause.",
+        "Not a product roundup, how-to list, interview, or research paper."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.98,
+        "evidence_type": "implementation_case",
+        "examples": "",
+        "key_points": [
+          "A reward for the Nerdy personality was consistently more favorable to creature-word outputs.",
+          "Creature mentions increased under the Nerdy prompt and also rose without it, suggesting transfer.",
+          "The source attributes the broader spread to reinforcement learning and downstream reuse of model-generated rollouts in SFT or preference data.",
+          "The behavior was concentrated in a specific trained personality slice, but the side effect was not limited to that slice."
+        ],
+        "knowledge_summary": "Reward signals can generalize beyond the exact training condition they were intended for, especially in RLHF-like setups where rewarded outputs later get reused in supervised fine-tuning or preference data. In the source, a reward designed for the \u201cNerdy\u201d personality in personality customization unexpectedly favored creature-word outputs, and those creature mentions later appeared more broadly, including outside the original prompt condition. This makes the topic useful as a general warning that a narrow style reward can create a wider behavioral footprint than intended.",
+        "match_candidates": [],
+        "operational_insight": "In RLHF or similar preference-training pipelines, audit not only the immediate rewarded condition but also downstream datasets that may reuse rewarded rollouts. If a style or personality reward is correlated with a lexical tic or other artifact, check whether that artifact is increasing in both the targeted slice and unrelated slices, since reinforcement can spread the learned behavior beyond its original scope.",
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "behavioral-audits-for-model-style-drift"
+        ],
+        "relevance_note": "This is relevant to any model-training pipeline that uses preference optimization or reward shaping, because reward effects may leak into broader behavior than the original training context suggests. It is especially useful when teams need to understand why a narrow alignment objective produces surprising system-wide side effects.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"One reward signal stood out immediately: the one originally designed to encourage the Nerdy personality was consistently more favorable to the creature-word outputs.\"",
+        "topic_slug": "reward-generalization-effects",
+        "topic_title": "Reward Generalization Effects",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Not all regressions are visible in standard benchmarks.",
+          "Longitudinal text-pattern checks can catch model drift earlier than coarse metrics.",
+          "User reports and qualitative review are important signals for conversational quality."
+        ],
+        "knowledge_summary": "Some model regressions appear as small, qualitative habits rather than obvious benchmark failures. Detecting them requires targeted searches over generated text, longitudinal comparisons across model versions, and attention to user-reported anomalies. This kind of audit complements standard evals by surfacing output patterns that matter to product quality but are easy to miss in aggregate metrics. It is most useful when the concern is conversational tone, repetitive phrasing, or other subtle stylistic artifacts.",
+        "match_candidates": [],
+        "operational_insight": "Build lightweight detectors and review loops for recurring phrases, tones, or lexical tics so subtle regressions can be caught before they become user-visible. Use model-version comparisons and targeted pattern searches, not only global scorecards.",
+        "primary_tag": "ai-evals",
+        "proposed_tags": [
+          "ai-evals",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "reward-signal-generalization"
+        ],
+        "relevance_note": "This is durable for AI evaluation because many customer-facing failures are not score drops but quality drifts that users notice first. The same approach helps with chatbot tone control, guardrail tuning, and consistency checks across releases.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Unlike model bugs that show up through a tanking eval or a spiking training metric and point back to a specific change, this one crept in subtly.\"",
+        "topic_slug": "behavioral-audits-for-model-style-drift",
+        "topic_title": "Behavioral Audits for Model Style Drift",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-29",
+          "confidence": 0.86,
+          "evidence_from_source": "OpenAI describes a goblin/gremlin habit that did not appear as a simple metric failure and instead became visible through user complaints, employee reports, and targeted inspection.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-evals",
+          "proposed_tags": [
+            "ai-evals",
+            "ai-engineering"
+          ],
+          "related_trends": [
+            "stable-api-names-no-longer-guarantee-stable-model-behavior"
+          ],
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "\"goblin\" in ChatGPT had risen by 175% after the launch of GPT-5.1",
+            "\"gremlin\" had risen by 52%",
+            "Nerdy accounted for only 2.5% of all ChatGPT responses, but 66.7% of all \u201cgoblin\u201d mentions in ChatGPT responses",
+            "positive uplift in 76.2% of datasets"
+          ],
+          "supporting_snippet": "\"Unlike model bugs that show up through a tanking eval or a spiking training metric and point back to a specific change, this one crept in subtly.\"",
+          "time_sensitivity": "As of 2026-04-29, this is a current operational concern for model teams that make persona or reward changes; the relevance should persist as long as conversational systems are trained with style incentives.",
+          "trend_description": "Model regressions can emerge as subtle shifts in style, tone, or lexical habit rather than as sharp benchmark drops. Detecting them often requires pattern searches, version comparisons, and human review of generated outputs. This trend matters because product quality can degrade in ways standard evals do not capture.",
+          "trend_slug": "behavioral-regressions-need-qualitative-audits",
+          "trend_title": "Behavioral Regressions Need Qualitative Audits",
+          "uncertainty_note": "This is supported by one vendor case study, so the exact prevalence outside this system is unknown.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2334690c-9100-47c2-83af-21f4cc1973aa",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "stable-api-names-no-longer-guarantee-stable-model-behavior"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "\"goblin\" in ChatGPT had risen by 175% after the launch of GPT-5.1",
+              "\"gremlin\" had risen by 52%",
+              "Nerdy accounted for only 2.5% of all ChatGPT responses, but 66.7% of all \u201cgoblin\u201d mentions in ChatGPT responses",
+              "positive uplift in 76.2% of datasets"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "OpenAI is the source discussing its own models, training, and mitigations.",
+          "Claims are supported by internal observations, percentages, and described training interventions.",
+          "No independent benchmark or external reporting dominates the article."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A style reward aimed at one personality can leak into broader model behavior.",
+          "Lexical quirks may not show up as obvious benchmark failures and can require targeted behavioral audits.",
+          "Rewarded outputs can re-enter supervised fine-tuning data and reinforce the same habit.",
+          "Mitigation can combine training-data cleanup with prompt-level guardrails for downstream tools.",
+          "Small, amusing artifacts can become operationally relevant when they affect conversation quality or tool behavior."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/index/where-the-goblins-came-from"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article with one central argument, not a bundle of unrelated items.",
+          "Structured as an explanatory post-mortem about one model behavior issue and its cause.",
+          "Not a product roundup, how-to list, interview, or research paper."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.98,
+          "evidence_type": "implementation_case",
+          "examples": "",
+          "key_points": [
+            "A reward for the Nerdy personality was consistently more favorable to creature-word outputs.",
+            "Creature mentions increased under the Nerdy prompt and also rose without it, suggesting transfer.",
+            "The source attributes the broader spread to reinforcement learning and downstream reuse of model-generated rollouts in SFT or preference data.",
+            "The behavior was concentrated in a specific trained personality slice, but the side effect was not limited to that slice."
+          ],
+          "knowledge_summary": "Reward signals can generalize beyond the exact training condition they were intended for, especially in RLHF-like setups where rewarded outputs later get reused in supervised fine-tuning or preference data. In the source, a reward designed for the \u201cNerdy\u201d personality in personality customization unexpectedly favored creature-word outputs, and those creature mentions later appeared more broadly, including outside the original prompt condition. This makes the topic useful as a general warning that a narrow style reward can create a wider behavioral footprint than intended.",
+          "match_candidates": [],
+          "operational_insight": "In RLHF or similar preference-training pipelines, audit not only the immediate rewarded condition but also downstream datasets that may reuse rewarded rollouts. If a style or personality reward is correlated with a lexical tic or other artifact, check whether that artifact is increasing in both the targeted slice and unrelated slices, since reinforcement can spread the learned behavior beyond its original scope.",
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "behavioral-audits-for-model-style-drift"
+          ],
+          "relevance_note": "This is relevant to any model-training pipeline that uses preference optimization or reward shaping, because reward effects may leak into broader behavior than the original training context suggests. It is especially useful when teams need to understand why a narrow alignment objective produces surprising system-wide side effects.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "reward-spillover",
+          "suggested_new_tags": [
+            "reward-spillover",
+            "reinforcement-learning",
+            "post-training"
+          ],
+          "supporting_snippet": "\"One reward signal stood out immediately: the one originally designed to encourage the Nerdy personality was consistently more favorable to the creature-word outputs.\"",
+          "topic_slug": "reward-generalization-effects",
+          "topic_title": "Reward Generalization Effects",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f34dc588-f227-471e-b3c1-29099be3290f",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-22T14:53:29+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "35",
+          "regen_count": 2
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A reward for the Nerdy personality was consistently more favorable to creature-word outputs.",
+              "Creature mentions increased under the Nerdy prompt and also rose without it, suggesting transfer.",
+              "The source attributes the broader spread to reinforcement learning and downstream reuse of model-generated rollouts in SFT or preference data.",
+              "The behavior was concentrated in a specific trained personality slice, but the side effect was not limited to that slice."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "behavioral-audits-for-model-style-drift"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "reinforcement-learning",
+            "post-training"
+          ],
+          "final_tags": [
+            "reinforcement-learning",
+            "post-training"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Not all regressions are visible in standard benchmarks.",
+            "Longitudinal text-pattern checks can catch model drift earlier than coarse metrics.",
+            "User reports and qualitative review are important signals for conversational quality."
+          ],
+          "knowledge_summary": "Some model regressions appear as small, qualitative habits rather than obvious benchmark failures. Detecting them requires targeted searches over generated text, longitudinal comparisons across model versions, and attention to user-reported anomalies. This kind of audit complements standard evals by surfacing output patterns that matter to product quality but are easy to miss in aggregate metrics. It is most useful when the concern is conversational tone, repetitive phrasing, or other subtle stylistic artifacts.",
+          "match_candidates": [],
+          "operational_insight": "Build lightweight detectors and review loops for recurring phrases, tones, or lexical tics so subtle regressions can be caught before they become user-visible. Use model-version comparisons and targeted pattern searches, not only global scorecards.",
+          "primary_tag": "ai-evals",
+          "proposed_tags": [
+            "ai-evals",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "reward-signal-generalization"
+          ],
+          "relevance_note": "This is durable for AI evaluation because many customer-facing failures are not score drops but quality drifts that users notice first. The same approach helps with chatbot tone control, guardrail tuning, and consistency checks across releases.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Unlike model bugs that show up through a tanking eval or a spiking training metric and point back to a specific change, this one crept in subtly.\"",
+          "topic_slug": "behavioral-audits-for-model-style-drift",
+          "topic_title": "Behavioral Audits for Model Style Drift",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a1f6c3e8-710d-4e01-a455-df3f13ed503d",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Not all regressions are visible in standard benchmarks.",
+              "Longitudinal text-pattern checks can catch model drift earlier than coarse metrics.",
+              "User reports and qualitative review are important signals for conversational quality."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "reward-signal-generalization"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evals",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 1,
+      "vendor_claim": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 74888.1,
+    "review_finished_at": "2026-05-22T14:56:40.105532+00:00",
+    "review_started_at": "2026-05-21T18:08:32+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-22T14:56:40+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/index/where-the-goblins-came-from",
+    "content_sha256": "453a98c143ed5e8a4beede70eaae9c12debd60d838c511af65f6e7dad85e00cc",
+    "publication": "OpenAI",
+    "published_date": "2026-04-29",
+    "raw_html_rel_path": "raw/readwise/where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60.html",
+    "raw_md_rel_path": "raw/readwise/where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60.md",
+    "source_id": "where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60",
+    "title": "Where the goblins came from"
+  }
+}

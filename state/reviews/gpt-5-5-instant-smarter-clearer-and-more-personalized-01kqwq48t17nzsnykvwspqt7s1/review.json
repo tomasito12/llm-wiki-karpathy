@@ -1,0 +1,930 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-19T16:10:42+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DhHJFsEox4oBZQO66zNUwM8STnYHk",
+    "token_usage": {
+      "completion_tokens": 3757,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 31745,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 35502
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "OpenAI says GPT\u20115.5 Instant produced 52.5% fewer hallucinated claims than GPT\u20115.3 Instant on high-stakes prompts.",
+          "OpenAI says it reduced inaccurate claims by 37.3% on especially challenging conversations users had flagged for factual errors."
+        ],
+        "comparative_observations": [
+          "OpenAI explicitly positions it as stronger than GPT-5.3 Instant on factuality, concision, and personalization.",
+          "The model is described as producing tighter answers than GPT-5.3 Instant while also being warmer and more natural in tone."
+        ],
+        "confidence": 0.96,
+        "core_capabilities": [
+          "It produces answers that OpenAI says are more accurate and less cluttered for everyday chat.",
+          "It is described as better at deciding when to use web search to improve answer quality.",
+          "It handles photo and image uploads more effectively than the prior default model, according to OpenAI.",
+          "It can use prior chat context and connected sources to personalize responses when those features are enabled."
+        ],
+        "deployment_implications": "As the default model in ChatGPT and the API alias chat-latest, it changes baseline behavior for any workflow that relied on GPT-5.3 Instant. Teams using default routing should retest prompt behavior, answer length, and escalation thresholds after the May 5, 2026 rollout. The personalization support means deployments that connect past chats, files, or Gmail can produce more tailored outputs, but they also need controls for stale context and user correction. Because OpenAI says the model is more concise and less cluttered, it may reduce follow-up turns in interactive assistants, though that is not validated outside the vendor claims here.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The model is already being rolled out as the default in ChatGPT and as the API alias chat-latest, which is a strong deployment signal. OpenAI also says paid users can keep GPT-5.3 Instant for three months, implying a managed migration rather than an abrupt cutover. The post frames the model as ready for broad everyday use rather than as an experimental preview.",
+        "model_name": "GPT-5.5 Instant",
+        "operational_profile": "GPT-5.5 Instant is presented as a faster default ChatGPT model tuned for everyday interaction quality.\n- It is described as smarter and more accurate, with stronger performance on factuality-sensitive prompts.\n- It is also positioned as clearer and more concise, which suggests the model is optimized for lower verbal overhead in chat.\n- OpenAI says it is better at deciding when to use web search and at handling image uploads, so it appears to be a general-purpose interactive model rather than a narrow specialist.",
+        "pricing_inference_implications": "No pricing details are given. The most practical inference is that teams using chat-latest should expect the default economics and latency profile to track OpenAI's rollout choices rather than assume GPT-5.3 Instant behavior. Any cost-sensitive deployment would need independent measurement.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "proprietary",
+          "interactive-ai"
+        ],
+        "provider": "OpenAI",
+        "related_models": [
+          "GPT-5.3 Instant"
+        ],
+        "service_automation_implications": "Potentially useful for chat-based service automation because the model is described as more concise, more accurate, and better at using prior context. If those claims hold, it could improve first-turn resolution and reduce unnecessary clarification loops. The article does not provide customer-support metrics, so service-automation impact remains plausible but unproven as of 2026-05-05.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"We\u2019re updating ChatGPT\u2019s default model, available to everyone, to be smarter and more accurate, with clearer and more concise answers that feel better tailored to you.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not provide model architecture, cost, latency, or public benchmark methodology. All quality claims are vendor-reported and depend on internal evaluations, so the magnitude of improvement is not independently verified here. Personalization can also make failures more opaque if the model leans on stale or incomplete context."
+      }
+    ],
+    "glossary": [
+      {
+        "confidence": 0.95,
+        "evidence_type": "vendor_claim",
+        "extended_explanation": "This concept turns personalization into something users can review and manage instead of treating it as a hidden process. In practice, memory sources can show some of the context that shaped a response, but not necessarily every factor the system used. The value is in giving people a control surface for trust, cleanup, and correction when personalization is stale, inaccurate, or no longer relevant.",
+        "match_candidates": [],
+        "primary_tag": "knowledge-management",
+        "proposed_definition": "Memory sources are the visible records of context used to personalize a response, such as saved memories or past chats, so a user can inspect, delete, or correct what influenced the answer.",
+        "proposed_tags": [
+          "knowledge-management"
+        ],
+        "related_terms": [
+          "Knowledge Management"
+        ],
+        "relevance_note": "Useful for any AI product that personalizes replies from prior interaction history or stored user context. It matters when teams want users to understand, adjust, or remove the inputs shaping an answer without exposing the full underlying model logic.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"When a response is personalized, you can see what context was used, such as saved memories or past chats, and delete or correct it if something is outdated or no longer relevant.\"",
+        "term": "Memory sources",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.97,
+        "evidence_type": "vendor_claim",
+        "extended_explanation": "In AI engineering, hallucinations are a core reliability problem because an assistant can sound confident while stating false or unsupported information. They matter most when users rely on the answer for decisions in high-stakes settings such as medicine, law, or finance. Common mitigations include retrieval, verification, better refusal behavior, and tighter routing or prompting. In practice, the concept also covers cases where a model produces inaccurate details, not just completely fabricated facts.",
+        "match_candidates": [],
+        "primary_tag": "ai-evals",
+        "proposed_definition": "Hallucinations are model-generated claims that are not grounded in the provided context or other reliable evidence, and therefore may be fluent yet incorrect.",
+        "proposed_tags": [
+          "ai-evals",
+          "ai-engineering"
+        ],
+        "related_terms": [],
+        "relevance_note": "A central failure mode for language models and assistants, especially where correctness matters more than style. Useful for discussing answer reliability, safety, evaluation, and grounding methods.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"In internal evaluations, GPT\u20115.5 Instant produced 52.5% fewer hallucinated claims than GPT\u20115.3 Instant on high-stakes prompts covering areas like medicine, law, and finance.\"",
+        "term": "Hallucinations",
+        "value_level": "high"
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-05",
+        "confidence": 0.96,
+        "evidence_from_source": "OpenAI says GPT-5.5 Instant replaces GPT-5.3 Instant as the default model in ChatGPT and in the API as chat-latest, and that the new model changes factuality, tone, verbosity, personalization, and tool-use behavior. It also keeps GPT-5.3 Instant available for paid users for three months, indicating an explicit migration window.",
+        "evidence_type": "vendor_claim",
+        "match_candidates": [],
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_trends": [
+          "models-becoming-execution-layers",
+          "default-model-rollouts-need-migration-plans"
+        ],
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "GPT-5.5 Instant replaces GPT-5.3 Instant as the default model.",
+          "The API alias chat-latest also points to the new default model.",
+          "OpenAI reports fewer hallucinated claims and reduced inaccurate claims in internal evaluations.",
+          "OpenAI describes changes in tone, concision, personalization, and tool-use decisions.",
+          "GPT-5.3 Instant remains available for paid users for three months before retirement."
+        ],
+        "supporting_snippet": "\"GPT\u20115.5 Instant is rolling out starting today to all ChatGPT users, replacing GPT\u20115.3 Instant as the default model, and in the API as chat-latest.\"",
+        "time_sensitivity": "High during the rollout and the three-month retirement window, because downstream behavior may change immediately even though the public-facing default name and alias remain stable.",
+        "trend_description": "When a provider keeps the same default model name or API alias, teams can still see meaningful behavior shifts in factuality, tone, personalization, tool-use decisions, and formatting. The broader pattern is that stable names like a default chat model or a shortcut alias no longer imply stable outputs, so migrations, regressions tests, and fallback plans are needed even when the interface does not change.",
+        "trend_slug": "stable-api-names-no-longer-guarantee-stable-model-behavior",
+        "trend_title": "Stable API names no longer guarantee stable model behavior",
+        "uncertainty_note": "This is a vendor announcement, so the degree of behavioral drift for any specific application still needs independent testing; the source shows claimed improvements and changed behavior patterns, but not application-specific impact.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The source is an OpenAI blog post describing its own model update and rollout.",
+        "Claims about factuality, personalization, and comparisons are presented as internal evaluations from the vendor.",
+        "No independent benchmark or third-party analysis is the main evidentiary basis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "OpenAI says it is updating the default model in ChatGPT to GPT-5.5 Instant. The company says the new version gives answers that are more accurate, clearer, and less wordy. It also says the model is better at remembering useful context from earlier chats and from connected sources like files and email, if those are enabled. A big part of the update is personalization, so replies can feel more tailored to the person using the product. OpenAI also says people will be able to see what memory or chat context was used to shape a personalized answer. The company says GPT-5.3 Instant will stay available for paid users for three months before it is retired. As of May 5, 2026, this is mainly useful as a product rollout and default-model change, not as independent proof of model quality.",
+      "assessed_as_of": "2026-05-05",
+      "contradictions_and_skepticism": "The article highlights a clean narrative of better accuracy, tighter answers, and richer personalization, but all of that comes from the vendor itself. The internal examples are polished demonstrations rather than a reproducible benchmark. The memory-source transparency feature is promising, but the post explicitly says it may not show every factor that shaped an answer, so the audit trail is partial rather than complete. The service-automation value is plausible but not demonstrated with real deployment data in this source.",
+      "key_insights": [
+        "GPT-5.5 Instant is positioned as the new default model in ChatGPT and in the API as chat-latest, so teams using default routing need to expect behavior changes.",
+        "The article emphasizes fewer hallucinated and inaccurate claims on hard prompts, which is operationally relevant for trust-sensitive workflows if the vendor claims hold up.",
+        "Personalization is not just output style; the update ties responses to past chats, files, and Gmail when connected, with visibility into the memory sources used.",
+        "The model is framed as more concise and less cluttered, which matters for interactive assistants where verbosity and follow-up burden affect usability.",
+        "The rollout includes memory-source transparency and deletion controls, which is a notable governance feature for personalized assistants."
+      ],
+      "limitations_and_open_questions": "The evidence is vendor-authored and uses internal evaluations, so the reported reductions in hallucinations and inaccuracies are not independently validated here. The post does not disclose evaluation methodology, sample sizes, or the exact prompt sets behind the 52.5% and 37.3% figures. Personalization depends on connected data sources such as past chats, files, and Gmail, but the article does not quantify how often those sources improve answers versus introduce stale or irrelevant context. Memory sources may show only some of the context used, which leaves open how complete the transparency view really is. The rollout schedule is staggered across plans and surfaces, so operational behavior may vary by account and region.",
+      "sources": [
+        "https://openai.com/index/gpt-5-5-instant"
+      ],
+      "summary": "OpenAI announces GPT-5.5 Instant as the new default ChatGPT model, replacing GPT-5.3 Instant. The update emphasizes three practical improvements: more accurate and concise answers, better personalization from prior chats and connected sources, and a more natural conversational style. OpenAI says internal evaluations showed fewer hallucinated claims on high-stakes prompts and fewer inaccurate claims on difficult conversations users had flagged. The post also claims the model is better at deciding when to use web search, analyzing image uploads, and using past context to tailor responses. Rollout and availability details matter operationally because the model becomes the default in ChatGPT and is exposed in the API as chat-latest, while personalization features and memory-source visibility are expanding on staggered schedules. The piece is mostly a vendor product update, so the strongest takeaway is adoption planning rather than independent verification.",
+      "why_it_matters": "The main practical significance is that OpenAI is changing the default behavior surface of ChatGPT rather than shipping a narrow feature. GPT-5.5 Instant is described as more accurate, clearer, and more concise, with better use of past context when personalization is enabled, so prompt and routing assumptions built around GPT-5.3 Instant may no longer hold exactly after the May 5, 2026 rollout. The post also claims large reductions in hallucinated and inaccurate claims on difficult prompts, which matters for teams that rely on default-model quality for high-stakes or user-facing interactions, though those numbers are vendor-reported. The personalization story is more operationally interesting than the stylistic polish: the model can use prior chats, files, and connected Gmail, and ChatGPT exposes memory sources so users can inspect or correct what was used. That creates a more auditable personalization loop, but the article also admits memory sources may not show every factor that shaped an answer. For product teams, the real issue is whether default-model changes and personalization controls alter expected answer shape, escalation behavior, and user trust when the system is embedded in workflows. For service automation, the closing implication is that more tailored responses and fewer unnecessary follow-up questions could reduce friction in chat-based support flows, but the article does not provide direct customer-support metrics, so the stakes remain thin as of May 5, 2026."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent product announcement from OpenAI rather than a bundle of unrelated items.",
+        "Primary structure is a feature update plus example comparisons and rollout details, not a roundup or transcript.",
+        "The piece presents vendor-authored claims about GPT-5.5 Instant's behavior and availability."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Personalization can improve relevance when the system can safely reuse prior context.",
+          "Transparency over used context is important for trust and for correcting stale memories.",
+          "Connected sources such as files or email expand personalization, but they also expand the risk of irrelevant or outdated grounding."
+        ],
+        "knowledge_summary": "Personalized conversational AI systems adapt responses using user-specific context such as prior chats, stored memories, uploaded files, or connected accounts. The practical goal is to reduce repetitive setup, improve relevance, and make follow-up answers feel continuous across sessions. The hard part is not personalization itself, but deciding which context to use, how to show it to the user, and how to let the user correct stale or unwanted context. Good implementations treat personalization as a controlled subsystem rather than a hidden convenience feature.",
+        "match_candidates": [],
+        "operational_insight": "The operational win comes from context selection and transparency, not from simply attaching more user data. Systems need clear controls for what gets used, what is shown back, and how users can repair stale context.",
+        "primary_tag": "interactive-ai",
+        "proposed_tags": [
+          "interactive-ai",
+          "knowledge-management"
+        ],
+        "related_topics": [
+          "provenance-tracking",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This is a durable design pattern for assistants, copilots, and support bots that need continuity across sessions. It affects retrieval policy, user trust, and how operators debug recommendations or responses shaped by prior context.",
+        "secondary_tag": "knowledge-management",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"better use of the context you\u2019ve already shared when personalization can help\"",
+        "topic_slug": "personalized-conversational-ai",
+        "topic_title": "Personalized Conversational AI",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Concise answers can improve perceived quality when they keep the important content intact.",
+          "Overformatting and gratuitous detail create friction in daily chat use.",
+          "A model that is more concise may reduce follow-up questions if it still answers the user's real task."
+        ],
+        "knowledge_summary": "For interactive assistants, concision is not just a style preference; it is a product quality dimension that affects usability, reading time, and the number of turns needed to get to a useful answer. Shorter answers can be better when they preserve the needed substance and reduce clutter, follow-up friction, and accidental overexplaining. The tradeoff is that compression can hide uncertainty or omit useful caveats if it is not paired with strong answer discipline. Systems should optimize for concise usefulness, not brevity alone.",
+        "match_candidates": [],
+        "operational_insight": "Treat verbosity as a tunable UX property. In chat products, the right output length often depends on whether the assistant is helping a user decide, act, or learn.",
+        "primary_tag": "interactive-ai",
+        "proposed_tags": [
+          "interactive-ai"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters in conversational products where every extra sentence increases reading burden and can make the assistant feel less direct. It is especially relevant for chatbots and support flows that benefit from fast, high-signal responses.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ui-design",
+        "suggested_new_tags": [
+          "ui-design"
+        ],
+        "supporting_snippet": "\"clearer, more concise answers\"",
+        "topic_slug": "answer-concision-as-product-quality",
+        "topic_title": "Answer Concision as Product Quality",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "OpenAI says GPT\u20115.5 Instant produced 52.5% fewer hallucinated claims than GPT\u20115.3 Instant on high-stakes prompts.",
+            "OpenAI says it reduced inaccurate claims by 37.3% on especially challenging conversations users had flagged for factual errors."
+          ],
+          "comparative_observations": [
+            "OpenAI explicitly positions it as stronger than GPT-5.3 Instant on factuality, concision, and personalization.",
+            "The model is described as producing tighter answers than GPT-5.3 Instant while also being warmer and more natural in tone."
+          ],
+          "confidence": 0.96,
+          "core_capabilities": [
+            "It produces answers that OpenAI says are more accurate and less cluttered for everyday chat.",
+            "It is described as better at deciding when to use web search to improve answer quality.",
+            "It handles photo and image uploads more effectively than the prior default model, according to OpenAI.",
+            "It can use prior chat context and connected sources to personalize responses when those features are enabled."
+          ],
+          "deployment_implications": "As the default model in ChatGPT and the API alias chat-latest, it changes baseline behavior for any workflow that relied on GPT-5.3 Instant. Teams using default routing should retest prompt behavior, answer length, and escalation thresholds after the May 5, 2026 rollout. The personalization support means deployments that connect past chats, files, or Gmail can produce more tailored outputs, but they also need controls for stale context and user correction. Because OpenAI says the model is more concise and less cluttered, it may reduce follow-up turns in interactive assistants, though that is not validated outside the vendor claims here.",
+          "match_candidates": [],
+          "maturity_signals": "The model is already being rolled out as the default in ChatGPT and as the API alias chat-latest, which is a strong deployment signal. OpenAI also says paid users can keep GPT-5.3 Instant for three months, implying a managed migration rather than an abrupt cutover. The post frames the model as ready for broad everyday use rather than as an experimental preview.",
+          "model_name": "GPT-5.5 Instant",
+          "operational_profile": "GPT-5.5 Instant is presented as a faster default ChatGPT model tuned for everyday interaction quality.\n- It is described as smarter and more accurate, with stronger performance on factuality-sensitive prompts.\n- It is also positioned as clearer and more concise, which suggests the model is optimized for lower verbal overhead in chat.\n- OpenAI says it is better at deciding when to use web search and at handling image uploads, so it appears to be a general-purpose interactive model rather than a narrow specialist.",
+          "pricing_inference_implications": "No pricing details are given. The most practical inference is that teams using chat-latest should expect the default economics and latency profile to track OpenAI's rollout choices rather than assume GPT-5.3 Instant behavior. Any cost-sensitive deployment would need independent measurement.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "proprietary",
+            "interactive-ai"
+          ],
+          "provider": "OpenAI",
+          "related_models": [
+            "GPT-5.3 Instant"
+          ],
+          "service_automation_implications": "Potentially useful for chat-based service automation because the model is described as more concise, more accurate, and better at using prior context. If those claims hold, it could improve first-turn resolution and reduce unnecessary clarification loops. The article does not provide customer-support metrics, so service-automation impact remains plausible but unproven as of 2026-05-05.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"We\u2019re updating ChatGPT\u2019s default model, available to everyone, to be smarter and more accurate, with clearer and more concise answers that feel better tailored to you.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not provide model architecture, cost, latency, or public benchmark methodology. All quality claims are vendor-reported and depend on internal evaluations, so the magnitude of improvement is not independently verified here. Personalization can also make failures more opaque if the model leans on stale or incomplete context."
+        },
+        "notes": null,
+        "proposal_id": "726d4598-8097-4a9d-bbdb-d9c9ec813167",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI says GPT\u20115.5 Instant produced 52.5% fewer hallucinated claims than GPT\u20115.3 Instant on high-stakes prompts.",
+              "OpenAI says it reduced inaccurate claims by 37.3% on especially challenging conversations users had flagged for factual errors."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI explicitly positions it as stronger than GPT-5.3 Instant on factuality, concision, and personalization.",
+              "The model is described as producing tighter answers than GPT-5.3 Instant while also being warmer and more natural in tone."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It produces answers that OpenAI says are more accurate and less cluttered for everyday chat.",
+              "It is described as better at deciding when to use web search to improve answer quality.",
+              "It handles photo and image uploads more effectively than the prior default model, according to OpenAI.",
+              "It can use prior chat context and connected sources to personalize responses when those features are enabled."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-5.3 Instant"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "proprietary",
+            "multi-modal"
+          ],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": "vendor_claim",
+          "extended_explanation": "This concept turns personalization into something users can review and manage instead of treating it as a hidden process. In practice, memory sources can show some of the context that shaped a response, but not necessarily every factor the system used. The value is in giving people a control surface for trust, cleanup, and correction when personalization is stale, inaccurate, or no longer relevant.",
+          "match_candidates": [],
+          "primary_tag": "knowledge-management",
+          "proposed_definition": "Memory sources are the visible records of context used to personalize a response, such as saved memories or past chats, so a user can inspect, delete, or correct what influenced the answer.",
+          "proposed_tags": [
+            "knowledge-management"
+          ],
+          "related_terms": [
+            "Knowledge Management"
+          ],
+          "relevance_note": "Useful for any AI product that personalizes replies from prior interaction history or stored user context. It matters when teams want users to understand, adjust, or remove the inputs shaping an answer without exposing the full underlying model logic.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"When a response is personalized, you can see what context was used, such as saved memories or past chats, and delete or correct it if something is outdated or no longer relevant.\"",
+          "term": "Memory sources",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "64e1cdff-5cdd-409a-97aa-34cec896eb32",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-19T16:12:06+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "35",
+          "regen_count": 1
+        },
+        "proposal_status": "rejected",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": "vendor_claim",
+          "extended_explanation": "In AI engineering, hallucinations are a core reliability problem because an assistant can sound confident while stating false or unsupported information. They matter most when users rely on the answer for decisions in high-stakes settings such as medicine, law, or finance. Common mitigations include retrieval, verification, better refusal behavior, and tighter routing or prompting. In practice, the concept also covers cases where a model produces inaccurate details, not just completely fabricated facts.",
+          "match_candidates": [],
+          "primary_tag": "ai-evals",
+          "proposed_definition": "Hallucinations are model-generated claims that are not grounded in the provided context or other reliable evidence, and therefore may be fluent yet incorrect.",
+          "proposed_tags": [
+            "ai-evals",
+            "ai-engineering"
+          ],
+          "related_terms": [],
+          "relevance_note": "A central failure mode for language models and assistants, especially where correctness matters more than style. Useful for discussing answer reliability, safety, evaluation, and grounding methods.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"In internal evaluations, GPT\u20115.5 Instant produced 52.5% fewer hallucinated claims than GPT\u20115.3 Instant on high-stakes prompts covering areas like medicine, law, and finance.\"",
+          "term": "Hallucinations",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "074928d3-7442-4b7b-a214-bf2abfa88b41",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-19T16:12:40+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "35",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evals",
+            "ai-engineering"
+          ]
+        }
+      }
+    ],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-05",
+          "confidence": 0.96,
+          "evidence_from_source": "OpenAI says GPT-5.5 Instant replaces GPT-5.3 Instant as the default model in ChatGPT and in the API as chat-latest, and that the new model changes factuality, tone, verbosity, personalization, and tool-use behavior. It also keeps GPT-5.3 Instant available for paid users for three months, indicating an explicit migration window.",
+          "evidence_type": "vendor_claim",
+          "match_candidates": [],
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_trends": [
+            "models-becoming-execution-layers",
+            "default-model-rollouts-need-migration-plans"
+          ],
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "llm-operations",
+          "suggested_new_tags": [
+            "llm-operations"
+          ],
+          "supporting_data_points": [
+            "GPT-5.5 Instant replaces GPT-5.3 Instant as the default model.",
+            "The API alias chat-latest also points to the new default model.",
+            "OpenAI reports fewer hallucinated claims and reduced inaccurate claims in internal evaluations.",
+            "OpenAI describes changes in tone, concision, personalization, and tool-use decisions.",
+            "GPT-5.3 Instant remains available for paid users for three months before retirement."
+          ],
+          "supporting_snippet": "\"GPT\u20115.5 Instant is rolling out starting today to all ChatGPT users, replacing GPT\u20115.3 Instant as the default model, and in the API as chat-latest.\"",
+          "time_sensitivity": "High during the rollout and the three-month retirement window, because downstream behavior may change immediately even though the public-facing default name and alias remain stable.",
+          "trend_description": "When a provider keeps the same default model name or API alias, teams can still see meaningful behavior shifts in factuality, tone, personalization, tool-use decisions, and formatting. The broader pattern is that stable names like a default chat model or a shortcut alias no longer imply stable outputs, so migrations, regressions tests, and fallback plans are needed even when the interface does not change.",
+          "trend_slug": "stable-api-names-no-longer-guarantee-stable-model-behavior",
+          "trend_title": "Stable API names no longer guarantee stable model behavior",
+          "uncertainty_note": "This is a vendor announcement, so the degree of behavioral drift for any specific application still needs independent testing; the source shows claimed improvements and changed behavior patterns, but not application-specific impact.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5eb56e85-a649-4cf1-9093-267911068129",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-19T16:19:30+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "35",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-5.5 Instant replaces GPT-5.3 Instant as the default model.",
+              "The API alias chat-latest also points to the new default model.",
+              "OpenAI reports fewer hallucinated claims and reduced inaccurate claims in internal evaluations.",
+              "OpenAI describes changes in tone, concision, personalization, and tool-use decisions.",
+              "GPT-5.3 Instant remains available for paid users for three months before retirement."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "llm-operations"
+          ],
+          "final_tags": [
+            "llm-operations"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The source is an OpenAI blog post describing its own model update and rollout.",
+          "Claims about factuality, personalization, and comparisons are presented as internal evaluations from the vendor.",
+          "No independent benchmark or third-party analysis is the main evidentiary basis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "GPT-5.5 Instant is positioned as the new default model in ChatGPT and in the API as chat-latest, so teams using default routing need to expect behavior changes.",
+          "The article emphasizes fewer hallucinated and inaccurate claims on hard prompts, which is operationally relevant for trust-sensitive workflows if the vendor claims hold up.",
+          "Personalization is not just output style; the update ties responses to past chats, files, and Gmail when connected, with visibility into the memory sources used.",
+          "The model is framed as more concise and less cluttered, which matters for interactive assistants where verbosity and follow-up burden affect usability.",
+          "The rollout includes memory-source transparency and deletion controls, which is a notable governance feature for personalized assistants."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/index/gpt-5-5-instant"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent product announcement from OpenAI rather than a bundle of unrelated items.",
+          "Primary structure is a feature update plus example comparisons and rollout details, not a roundup or transcript.",
+          "The piece presents vendor-authored claims about GPT-5.5 Instant's behavior and availability."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Personalization can improve relevance when the system can safely reuse prior context.",
+            "Transparency over used context is important for trust and for correcting stale memories.",
+            "Connected sources such as files or email expand personalization, but they also expand the risk of irrelevant or outdated grounding."
+          ],
+          "knowledge_summary": "Personalized conversational AI systems adapt responses using user-specific context such as prior chats, stored memories, uploaded files, or connected accounts. The practical goal is to reduce repetitive setup, improve relevance, and make follow-up answers feel continuous across sessions. The hard part is not personalization itself, but deciding which context to use, how to show it to the user, and how to let the user correct stale or unwanted context. Good implementations treat personalization as a controlled subsystem rather than a hidden convenience feature.",
+          "match_candidates": [],
+          "operational_insight": "The operational win comes from context selection and transparency, not from simply attaching more user data. Systems need clear controls for what gets used, what is shown back, and how users can repair stale context.",
+          "primary_tag": "interactive-ai",
+          "proposed_tags": [
+            "interactive-ai",
+            "knowledge-management"
+          ],
+          "related_topics": [
+            "provenance-tracking",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This is a durable design pattern for assistants, copilots, and support bots that need continuity across sessions. It affects retrieval policy, user trust, and how operators debug recommendations or responses shaped by prior context.",
+          "secondary_tag": "knowledge-management",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"better use of the context you\u2019ve already shared when personalization can help\"",
+          "topic_slug": "personalized-conversational-ai",
+          "topic_title": "Personalized Conversational AI",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "cb2541d3-9e5a-465a-bf62-5c7df4d15b2b",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Personalization can improve relevance when the system can safely reuse prior context.",
+              "Transparency over used context is important for trust and for correcting stale memories.",
+              "Connected sources such as files or email expand personalization, but they also expand the risk of irrelevant or outdated grounding."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "provenance-tracking",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Concise answers can improve perceived quality when they keep the important content intact.",
+            "Overformatting and gratuitous detail create friction in daily chat use.",
+            "A model that is more concise may reduce follow-up questions if it still answers the user's real task."
+          ],
+          "knowledge_summary": "For interactive assistants, concision is not just a style preference; it is a product quality dimension that affects usability, reading time, and the number of turns needed to get to a useful answer. Shorter answers can be better when they preserve the needed substance and reduce clutter, follow-up friction, and accidental overexplaining. The tradeoff is that compression can hide uncertainty or omit useful caveats if it is not paired with strong answer discipline. Systems should optimize for concise usefulness, not brevity alone.",
+          "match_candidates": [],
+          "operational_insight": "Treat verbosity as a tunable UX property. In chat products, the right output length often depends on whether the assistant is helping a user decide, act, or learn.",
+          "primary_tag": "interactive-ai",
+          "proposed_tags": [
+            "interactive-ai"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters in conversational products where every extra sentence increases reading burden and can make the assistant feel less direct. It is especially relevant for chatbots and support flows that benefit from fast, high-signal responses.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ui-design",
+          "suggested_new_tags": [
+            "ui-design"
+          ],
+          "supporting_snippet": "\"clearer, more concise answers\"",
+          "topic_slug": "answer-concision-as-product-quality",
+          "topic_title": "Answer Concision as Product Quality",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "86203f80-1c3f-49fd-8557-1bc2b36fe522",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Concise answers can improve perceived quality when they keep the important content intact.",
+              "Overformatting and gratuitous detail create friction in daily chat use.",
+              "A model that is more concise may reduce follow-up questions if it still answers the user's real task."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evals",
+            "interactive-ai"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 6
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 6,
+    "review_duration_seconds": 655.4,
+    "review_finished_at": "2026-05-19T16:21:37.425795+00:00",
+    "review_started_at": "2026-05-19T16:10:42+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-19T16:21:37+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/index/gpt-5-5-instant",
+    "content_sha256": "c393d8b4183bff41925b0b06fb1d3a4179e26071a520c661b334b01e722de1d6",
+    "publication": "OpenAI",
+    "published_date": "2026-05-05",
+    "raw_html_rel_path": "raw/readwise/gpt-5-5-instant-smarter-clearer-and-more-personalized-01kqwq48t17nzsnykvwspqt7s1.html",
+    "raw_md_rel_path": "raw/readwise/gpt-5-5-instant-smarter-clearer-and-more-personalized-01kqwq48t17nzsnykvwspqt7s1.md",
+    "source_id": "gpt-5-5-instant-smarter-clearer-and-more-personalized-01kqwq48t17nzsnykvwspqt7s1",
+    "title": "GPT-5.5 Instant: smarter, clearer, and more personalized"
+  }
+}

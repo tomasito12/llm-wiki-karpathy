@@ -6,6 +6,19 @@ from src.ingest_review.schema import LlmClassificationOutput, TopicContribution
 from src.ingest_review.tags import normalize_tag
 from src.ingest_review.wiki_snapshot import WikiSnapshot
 
+TOPIC_RELATED_TOPICS_MAX = 3
+
+
+def cap_related_topic_slugs(
+    slugs: list[str],
+    *,
+    max_count: int = TOPIC_RELATED_TOPICS_MAX,
+) -> list[str]:
+    """Keep the first *max_count* slugs in order (after normalization upstream)."""
+    if max_count <= 0:
+        return []
+    return list(slugs)[:max_count]
+
 
 def known_topic_slug_set(wiki: WikiSnapshot, batch_topics: list[TopicContribution]) -> set[str]:
     """Union of wiki topic slugs and ``topic_slug`` values from the current extraction batch."""
@@ -46,7 +59,7 @@ def sanitize_topic_related_topics(
             continue
         seen.add(slug)
         out.append(slug)
-    return out
+    return cap_related_topic_slugs(out)
 
 
 def sanitize_topics_related_topics(

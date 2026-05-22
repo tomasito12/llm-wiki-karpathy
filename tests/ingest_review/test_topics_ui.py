@@ -6,6 +6,8 @@ from unittest.mock import MagicMock, patch
 
 from src.ingest_review.topic_related_topics_suggest import RelatedTopicCandidate
 from src.ingest_review.topics_ui import (
+    _clamp_related_topics_multiselect_session,
+    _related_topics_multiselect_default,
     apply_topic_list_edit,
     apply_topic_proposal_edits,
     apply_topic_scalar_edit,
@@ -277,3 +279,15 @@ def test_queue_topic_regen_sets_pending_payload() -> None:
         "new_title": "Local Inference",
         "note": "keep multimodal in summary",
     }
+
+
+def test_related_topics_multiselect_default_caps_and_filters_options() -> None:
+    current = ["a", "b", "c", "d"]
+    options = ["b", "c", "e"]
+    assert _related_topics_multiselect_default(current, options) == ["b", "c"]
+
+
+def test_clamp_related_topics_multiselect_session_trims_stored_selection() -> None:
+    state: dict = {"pfx_edit_related_topics": ["a", "b", "c", "d"]}
+    _clamp_related_topics_multiselect_session(state, "pfx_edit_related_topics")
+    assert state["pfx_edit_related_topics"] == ["a", "b", "c"]

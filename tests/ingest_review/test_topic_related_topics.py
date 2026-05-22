@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from src.ingest_review.schema import LlmClassificationOutput, TopicContribution
 from src.ingest_review.topic_related_topics import (
+    cap_related_topic_slugs,
     known_topic_slug_set,
     sanitize_topic_related_topics,
     sanitize_topics_related_topics,
@@ -28,6 +29,19 @@ def test_sanitize_topic_related_topics_strips_self_and_dedupes() -> None:
         tag_allowlist=set(),
     )
     assert out == ["context-engineering"]
+
+
+def test_sanitize_topic_related_topics_caps_at_three() -> None:
+    out = sanitize_topic_related_topics(
+        ["a", "b", "c", "d"],
+        topic_slug="topic",
+        tag_allowlist=set(),
+    )
+    assert out == ["a", "b", "c"]
+
+
+def test_cap_related_topic_slugs_zero_max_returns_empty() -> None:
+    assert cap_related_topic_slugs(["a", "b"], max_count=0) == []
 
 
 def test_sanitize_topic_related_topics_retains_unknown_slugs() -> None:
