@@ -52,6 +52,9 @@ readwise-rebuild-index = [
 readwise-sync = [
   "python -m src.readwise {args}",
 ]
+review-summary = [
+  "python -m src.ingest_review.finished_reviews_summary {args}",
+]
 wiki-lint = [
   "python -m src.wiki_lint {args}",
 ]

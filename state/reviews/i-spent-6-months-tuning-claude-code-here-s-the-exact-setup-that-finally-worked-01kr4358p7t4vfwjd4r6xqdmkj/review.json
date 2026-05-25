@@ -1,0 +1,756 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-25T15:59:34+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "37",
+    "provider": "openai",
+    "request_id": "chatcmpl-DjRziI3rWFgssu1ZVwR7ng5w4ORh1",
+    "token_usage": {
+      "completion_tokens": 3284,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 38398,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 41682
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-25",
+        "confidence": 0.93,
+        "evidence_from_source": "The article repeatedly argues that the 'stack' around Claude Code matters more than the prompt and shows concrete layers\u2014memory, rules, subagents, hooks, skills, MCP servers, worktrees, and headless mode\u2014used to speed a RAG-service task and automate review and PR flow.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-engineering"
+        ],
+        "related_trends": [
+          "harness-design-becomes-more-important-for-agent-reliability",
+          "artifact-first-ai-workflows"
+        ],
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "The article describes seven configuration layers before reaching the final replay.",
+          "The author claims the first setup takes an afternoon, but later tasks compound.",
+          "Headless mode, subagents, hooks, and worktrees are used together in the same workflow."
+        ],
+        "supporting_snippet": "\"The stack is the workflow. The workflow is the multiplier. The prompt is just the last five percent.\"",
+        "time_sensitivity": "Actionable as of 2026-04-25; strongest for teams already using agentic coding tools and likely to remain relevant as long as context limits and tool schemas remain binding constraints.",
+        "trend_description": "For agentic coding systems, the decisive variable is increasingly the surrounding workflow: memory structure, scoped instructions, task isolation, guardrails, and automation hooks. Prompt quality still matters, but it acts inside a larger operating system that determines how much context is loaded, when actions are allowed, and how safely edits are applied.",
+        "trend_slug": "agent-tooling-shifts-from-prompting-to-workflow-architecture",
+        "trend_title": "Agent Performance Shifts From Prompting to Workflow Architecture",
+        "uncertainty_note": "This is based on one practitioner setup, so it supports a workflow-architecture thesis more than a universal rule about all coding agents.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article is written as a personal experience report: 'I spent 6 months tuning Claude Code.'",
+        "Most claims are grounded in the author's own workflow, measured observations, and examples from their repository setup rather than independent benchmarking or research.",
+        "A few vendor/documentation references appear, but the dominant evidence is practitioner anecdote and implementation description."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about making an AI coding assistant much more helpful by setting up a careful workspace around it. Instead of giving the assistant one huge list of instructions, the author keeps a short memory file, small rule files for specific folders, and special helper agents for repeat jobs. The setup also uses hooks to catch risky actions, worktrees so several tasks can happen at once, and a small set of connected services so the assistant can reach the right tools without getting confused. The example project is a retrieval and answer system that uses citations, tests, and evaluation runs. The author says this setup can turn a task that might take an afternoon into one that can be finished in minutes once the structure is in place. The main idea is that the assistant performs better when the surrounding workflow is designed carefully. The article is practical rather than theoretical, and as of 2026-04-25 its advice is most useful for engineers already using Claude Code or similar coding assistants. The article also suggests that the prompt is only a small part of the overall system.",
+      "assessed_as_of": "2026-04-25",
+      "contradictions_and_skepticism": "The article is persuasive but occasionally overconfident in numerical claims that are not fully methodologically explained, such as token savings and cache-hit behavior. The 'exactly five servers' recommendation reads like a strong local rule rather than a general law, and the article itself admits that a sixth database server may be reasonable in some cases. Some of the gains may come from good repository hygiene and task scoping, not only from Claude Code features. The setup is practical, but it is not evidence that most teams need this much machinery; simpler workflows may be enough for smaller tasks.",
+      "key_insights": [
+        "A short project memory file is treated as a hot cache; the author warns that long root files waste tokens and reduce cache hit rates.",
+        "Path-scoped rules are the most token-efficient way to enforce folder-specific conventions because they only load when needed.",
+        "Read-only subagents and Plan Mode are used as safety layers before any code changes land, especially for risky or multi-file edits.",
+        "Hooks and deferred permissions make headless automation safer by pausing high-risk actions like pushes to main for human approval.",
+        "A small MCP server set is preferred over a large one because every server adds schema overhead on each turn."
+      ],
+      "limitations_and_open_questions": "The evidence comes from one practitioner setup and one repository example, so it does not establish that the same stack works equally well across other codebases or agent tasks. Some claims are presented as personal observations, including cache hit-rate effects around 500 tokens and a vexp token reduction benchmark, without enough detail to independently evaluate the methodology. The recommendation to keep exactly five MCP servers is presented as advice, but the article does not prove that five is universally optimal. The piece also assumes access to Claude Code features such as Plan Mode, hooks, deferred permissions, and skills, so teams without those features would need substitutes.",
+      "sources": [
+        "https://medium.com/data-science-collective/i-spent-6-months-tuning-claude-code-heres-the-exact-setup-that-finally-worked-b41c67628478"
+      ],
+      "summary": "The article argues that Claude Code becomes much more useful when it is surrounded by a disciplined configuration stack: a short root memory file, path-scoped rules, custom subagents, skills, hooks, a small MCP server set, worktrees, and headless automation. The author\u2019s central claim is that most engineers leave a large share of the product unused because they do not set up these layers. The piece uses a retrieval-plus-citation RAG example to show how each layer narrows context, enforces repository-specific rules, and speeds execution. It emphasizes token discipline, deterministic guardrails, and scoped automation over large prompts or broad ambient instructions. The article also shows how plan mode and read-only subagents reduce risk before edits land. Its strongest practical point is that the stack, not the prompt, is what multiplies throughput as of 2026-04-25.",
+      "why_it_matters": "The article is useful because it turns Claude Code usage from an ad hoc prompting habit into an engineered workflow with explicit control points. The practical value is in the layering: short ambient memory, path-scoped rules, subagents, skills, hooks, worktrees, and headless runs each solve a different failure mode. That makes the setup more reusable than a prompt-tip list, because the same structure can be adapted to other codebases with retrieval pipelines, eval harnesses, or review gates. The strongest engineering lesson is that token budget, tool schema load, and permission handling are first-class design concerns when the agent is expected to make repeatable edits. The article is grounded in one repository example, so its exact file names and server choices are specific, but the workflow pattern is durable as of 2026-04-25. For service automation and support workflows, the closing sections suggest the same layered approach can keep long-running agent sessions safer and more deterministic when they must act across tools, review gates, and queued approvals. The service-automation relevance is real but narrow here: the article is about coding and eval automation, not customer support, so the implications are indirect rather than a full support-ops blueprint."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent long-form article centered on one workflow setup for Claude Code, not a bundle of unrelated news items or a question-and-answer transcript.",
+        "The piece structures its argument as a stepwise configuration guide with examples, artifacts, and a worked replay rather than multiple independent tool reviews or a how-to roundup.",
+        "Named products and workflows are discussed in service of one thesis about Claude Code configuration, so the primary source type is a standard article."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.96,
+        "core_capabilities": [
+          "It can operate in a planning mode that produces an editable plan document before destructive actions take place.",
+          "It can use subagents with constrained tools and read-only permissions for review and exploration tasks.",
+          "It can run in headless mode inside continuous integration to execute evaluation jobs and draft pull requests.",
+          "It can be extended with hooks, skills, and MCP servers to enforce repository-specific behavior and external tool access."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is shown working with GitHub Actions for nightly evaluation and draft pull request automation.",
+          "It is shown using the Model Context Protocol to connect to GitHub, filesystem, web search, and documentation servers.",
+          "It is shown integrating with evaluation scripts, formatting hooks, and repository rules stored under a .claude directory.",
+          "It is shown alongside worktrees and a project-local memory layout to keep parallel sessions isolated."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article frames Claude Code as established enough to support Plan Mode, subagents, hooks, skills, worktrees, and headless CI use. It also shows an ecosystem of community and vendor-supported extensions such as skills and MCP servers. At the same time, the piece suggests that many engineers are still underusing it, which implies maturity at the product level but uneven operational adoption.",
+        "name": "Claude Code",
+        "operational_relevance": "The piece treats Claude Code as the orchestration surface for a full engineering workflow rather than a chat box. That makes it relevant for teams that want agentic code changes, repository-specific guardrails, and automated eval loops. It is especially relevant where one session must coordinate reading code, editing files, running checks, and opening pull requests with limited context.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "coding-agent",
+          "terminal"
+        ],
+        "related_tools": [
+          "GitHub MCP",
+          "E2B MCP",
+          "Ollama"
+        ],
+        "short_description": "An AI coding assistant for planning, editing, reviewing, and automating software changes inside a repository. In this article it is used with subagents, hooks, skills, worktrees, and headless runs to make longer tasks more controlled and repeatable.",
+        "strengths": "- Supports a layered workflow where memory, rules, subagents, hooks, and skills each handle a different part of the task, which reduces the need to cram everything into one prompt.\n- Works well with Plan Mode and read-only subagents for risky tasks, so teams can review a concrete plan before edits are applied.\n- Fits headless automation and worktree-based parallelism, which lets one run implement code, another run evals, and a third draft the PR without blocking on a single session.\n- The article presents it as highly configurable for repo-specific guardrails, including path-scoped rules and permission deferrals for sensitive operations.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\"For most engineers using Claude Code right now the answer is \u2018command not found\u2019 or a single file containing a vague instruction to write clean code. That is fine. It also leaves roughly 80% of the product on the floor.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The setup depends on disciplined configuration; the article explicitly says the empty-folder version leaves much of the product unused. It also implies that token overhead from large memory files and too many MCP servers can erode performance, so careless configuration can make the tool less effective. The article does not provide independent evidence that every team will benefit equally from the same stack."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Keep ambient instructions short so the main session stays cheap and focused.",
+          "Use path-scoped rules for conventions that only matter inside specific directories.",
+          "Separate planning, review, and execution into different agents or modes when risk is high.",
+          "Use worktrees and headless jobs to parallelize cleanly instead of interleaving unrelated edits."
+        ],
+        "knowledge_summary": "An effective coding-agent setup uses several narrow layers instead of one large prompt or one giant instruction file. A short root memory file handles global rules, path-scoped files handle folder-specific conventions, subagents handle repeated specialized tasks, and hooks enforce deterministic guardrails. Skills package repeatable workflows so they load only when needed, while worktrees and headless runs separate parallel or unattended execution from the main interactive session. The point is to reduce ambient context and make each layer cheaper, safer, and easier to reason about.",
+        "match_candidates": [],
+        "operational_insight": "When an agent is asked to do real repository work, optimize the surrounding workspace before optimizing the prompt. Keep global memory short, push file-local conventions into scoped rules, and move repeatable review or eval steps into subagents or skills. That gives you less token waste, clearer failure boundaries, and better reproducibility.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "agentic-ai"
+        ],
+        "related_topics": [
+          "agent-infrastructure",
+          "harness-engineering",
+          "agent-first-ide-orchestration"
+        ],
+        "relevance_note": "This pattern matters because many agent failures come from bloated context, unclear instruction scope, and too much unrelated tool surface. Teams building conversational agents, coding assistants, or automation pipelines can reuse the same layering idea to keep sessions narrower, safer, and more debuggable.",
+        "secondary_tag": "agentic-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The stack is the workflow. The workflow is the multiplier. The prompt is just the last five percent.\"",
+        "topic_slug": "agent-workspace-layering",
+        "topic_title": "Agent Workspace Layering",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Short root instructions are more reusable than long prose because they behave like a high-signal cache.",
+          "Scoped rules are cheaper than universal rules when the convention only matters in part of a repository.",
+          "Behavioral rules are better than vague advice because the agent can follow them deterministically.",
+          "Token overhead compounds across long sessions, so instruction size is an operational cost, not just a style choice."
+        ],
+        "knowledge_summary": "Agent instructions are most durable when they are short, imperative, and scoped to behavior that actually changes outcomes. Large root files waste context and degrade responsiveness because every session must load them, while short path-scoped files load only when relevant. The useful unit is not explanatory prose but a rule that narrows action, such as a function length limit, a citation contract, or a test restriction. This keeps the agent\u2019s ambient context stable and leaves more room for task-specific reasoning and tool output.",
+        "match_candidates": [],
+        "operational_insight": "Treat instructions as an operational cache, not a documentation dump. Put only behavior-changing rules in always-on memory, and move everything else into scoped files or triggered workflows. That makes long-running agent work less fragile and easier to keep consistent across sessions.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "agentic-ai"
+        ],
+        "related_topics": [
+          "agent-workspace-layering",
+          "harness-engineering"
+        ],
+        "relevance_note": "This is durable because prompt budgets and context limits remain a core constraint in agentic systems. The same principle applies to support bots, code agents, and internal assistants: the less irrelevant instruction text they carry, the more reliable their behavior tends to be.",
+        "secondary_tag": "agentic-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Keep the file under 200 lines. Keep it imperative. Do not write descriptive suggestions like \u2018write clean code\u2019. Write literal rules like \u2018all functions must have TypeScript type annotations\u2019. Every line must actually change behavior.\"",
+        "topic_slug": "token-efficient-agent-instructions",
+        "topic_title": "Token-Efficient Agent Instructions",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-25",
+          "confidence": 0.93,
+          "evidence_from_source": "The article repeatedly argues that the 'stack' around Claude Code matters more than the prompt and shows concrete layers\u2014memory, rules, subagents, hooks, skills, MCP servers, worktrees, and headless mode\u2014used to speed a RAG-service task and automate review and PR flow.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-engineering"
+          ],
+          "related_trends": [
+            "harness-design-becomes-more-important-for-agent-reliability",
+            "artifact-first-ai-workflows"
+          ],
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "The article describes seven configuration layers before reaching the final replay.",
+            "The author claims the first setup takes an afternoon, but later tasks compound.",
+            "Headless mode, subagents, hooks, and worktrees are used together in the same workflow."
+          ],
+          "supporting_snippet": "\"The stack is the workflow. The workflow is the multiplier. The prompt is just the last five percent.\"",
+          "time_sensitivity": "Actionable as of 2026-04-25; strongest for teams already using agentic coding tools and likely to remain relevant as long as context limits and tool schemas remain binding constraints.",
+          "trend_description": "For agentic coding systems, the decisive variable is increasingly the surrounding workflow: memory structure, scoped instructions, task isolation, guardrails, and automation hooks. Prompt quality still matters, but it acts inside a larger operating system that determines how much context is loaded, when actions are allowed, and how safely edits are applied.",
+          "trend_slug": "agent-tooling-shifts-from-prompting-to-workflow-architecture",
+          "trend_title": "Agent Performance Shifts From Prompting to Workflow Architecture",
+          "uncertainty_note": "This is based on one practitioner setup, so it supports a workflow-architecture thesis more than a universal rule about all coding agents.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "1c465681-2601-4dd4-af83-d0faaec4cc6f",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "harness-design-becomes-more-important-for-agent-reliability",
+              "artifact-first-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The article describes seven configuration layers before reaching the final replay.",
+              "The author claims the first setup takes an afternoon, but later tasks compound.",
+              "Headless mode, subagents, hooks, and worktrees are used together in the same workflow."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article is written as a personal experience report: 'I spent 6 months tuning Claude Code.'",
+          "Most claims are grounded in the author's own workflow, measured observations, and examples from their repository setup rather than independent benchmarking or research.",
+          "A few vendor/documentation references appear, but the dominant evidence is practitioner anecdote and implementation description."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A short project memory file is treated as a hot cache; the author warns that long root files waste tokens and reduce cache hit rates.",
+          "Path-scoped rules are the most token-efficient way to enforce folder-specific conventions because they only load when needed.",
+          "Read-only subagents and Plan Mode are used as safety layers before any code changes land, especially for risky or multi-file edits.",
+          "Hooks and deferred permissions make headless automation safer by pausing high-risk actions like pushes to main for human approval.",
+          "A small MCP server set is preferred over a large one because every server adds schema overhead on each turn."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/data-science-collective/i-spent-6-months-tuning-claude-code-heres-the-exact-setup-that-finally-worked-b41c67628478"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent long-form article centered on one workflow setup for Claude Code, not a bundle of unrelated news items or a question-and-answer transcript.",
+          "The piece structures its argument as a stepwise configuration guide with examples, artifacts, and a worked replay rather than multiple independent tool reviews or a how-to roundup.",
+          "Named products and workflows are discussed in service of one thesis about Claude Code configuration, so the primary source type is a standard article."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "core_capabilities": [
+            "It can operate in a planning mode that produces an editable plan document before destructive actions take place.",
+            "It can use subagents with constrained tools and read-only permissions for review and exploration tasks.",
+            "It can run in headless mode inside continuous integration to execute evaluation jobs and draft pull requests.",
+            "It can be extended with hooks, skills, and MCP servers to enforce repository-specific behavior and external tool access."
+          ],
+          "integration_ecosystem": [
+            "It is shown working with GitHub Actions for nightly evaluation and draft pull request automation.",
+            "It is shown using the Model Context Protocol to connect to GitHub, filesystem, web search, and documentation servers.",
+            "It is shown integrating with evaluation scripts, formatting hooks, and repository rules stored under a .claude directory.",
+            "It is shown alongside worktrees and a project-local memory layout to keep parallel sessions isolated."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article frames Claude Code as established enough to support Plan Mode, subagents, hooks, skills, worktrees, and headless CI use. It also shows an ecosystem of community and vendor-supported extensions such as skills and MCP servers. At the same time, the piece suggests that many engineers are still underusing it, which implies maturity at the product level but uneven operational adoption.",
+          "name": "Claude Code",
+          "operational_relevance": "The piece treats Claude Code as the orchestration surface for a full engineering workflow rather than a chat box. That makes it relevant for teams that want agentic code changes, repository-specific guardrails, and automated eval loops. It is especially relevant where one session must coordinate reading code, editing files, running checks, and opening pull requests with limited context.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "coding-agent",
+            "terminal"
+          ],
+          "related_tools": [
+            "GitHub MCP",
+            "E2B MCP",
+            "Ollama"
+          ],
+          "short_description": "An AI coding assistant for planning, editing, reviewing, and automating software changes inside a repository. In this article it is used with subagents, hooks, skills, worktrees, and headless runs to make longer tasks more controlled and repeatable.",
+          "strengths": "- Supports a layered workflow where memory, rules, subagents, hooks, and skills each handle a different part of the task, which reduces the need to cram everything into one prompt.\n- Works well with Plan Mode and read-only subagents for risky tasks, so teams can review a concrete plan before edits are applied.\n- Fits headless automation and worktree-based parallelism, which lets one run implement code, another run evals, and a third draft the PR without blocking on a single session.\n- The article presents it as highly configurable for repo-specific guardrails, including path-scoped rules and permission deferrals for sensitive operations.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\"For most engineers using Claude Code right now the answer is \u2018command not found\u2019 or a single file containing a vague instruction to write clean code. That is fine. It also leaves roughly 80% of the product on the floor.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The setup depends on disciplined configuration; the article explicitly says the empty-folder version leaves much of the product unused. It also implies that token overhead from large memory files and too many MCP servers can erode performance, so careless configuration can make the tool less effective. The article does not provide independent evidence that every team will benefit equally from the same stack."
+        },
+        "notes": null,
+        "proposal_id": "b7b57d28-29da-45ef-89ac-977e21e13af8",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can operate in a planning mode that produces an editable plan document before destructive actions take place.",
+              "It can use subagents with constrained tools and read-only permissions for review and exploration tasks.",
+              "It can run in headless mode inside continuous integration to execute evaluation jobs and draft pull requests.",
+              "It can be extended with hooks, skills, and MCP servers to enforce repository-specific behavior and external tool access."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is shown working with GitHub Actions for nightly evaluation and draft pull request automation.",
+              "It is shown using the Model Context Protocol to connect to GitHub, filesystem, web search, and documentation servers.",
+              "It is shown integrating with evaluation scripts, formatting hooks, and repository rules stored under a .claude directory.",
+              "It is shown alongside worktrees and a project-local memory layout to keep parallel sessions isolated."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "GitHub MCP",
+              "E2B MCP",
+              "Ollama"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent",
+            "terminal"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Keep ambient instructions short so the main session stays cheap and focused.",
+            "Use path-scoped rules for conventions that only matter inside specific directories.",
+            "Separate planning, review, and execution into different agents or modes when risk is high.",
+            "Use worktrees and headless jobs to parallelize cleanly instead of interleaving unrelated edits."
+          ],
+          "knowledge_summary": "An effective coding-agent setup uses several narrow layers instead of one large prompt or one giant instruction file. A short root memory file handles global rules, path-scoped files handle folder-specific conventions, subagents handle repeated specialized tasks, and hooks enforce deterministic guardrails. Skills package repeatable workflows so they load only when needed, while worktrees and headless runs separate parallel or unattended execution from the main interactive session. The point is to reduce ambient context and make each layer cheaper, safer, and easier to reason about.",
+          "match_candidates": [],
+          "operational_insight": "When an agent is asked to do real repository work, optimize the surrounding workspace before optimizing the prompt. Keep global memory short, push file-local conventions into scoped rules, and move repeatable review or eval steps into subagents or skills. That gives you less token waste, clearer failure boundaries, and better reproducibility.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "agentic-ai"
+          ],
+          "related_topics": [
+            "agent-infrastructure",
+            "harness-engineering",
+            "agent-first-ide-orchestration"
+          ],
+          "relevance_note": "This pattern matters because many agent failures come from bloated context, unclear instruction scope, and too much unrelated tool surface. Teams building conversational agents, coding assistants, or automation pipelines can reuse the same layering idea to keep sessions narrower, safer, and more debuggable.",
+          "secondary_tag": "agentic-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The stack is the workflow. The workflow is the multiplier. The prompt is just the last five percent.\"",
+          "topic_slug": "agent-workspace-layering",
+          "topic_title": "Agent Workspace Layering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "dc237356-28ab-4622-89d0-de5cc9622b51",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Keep ambient instructions short so the main session stays cheap and focused.",
+              "Use path-scoped rules for conventions that only matter inside specific directories.",
+              "Separate planning, review, and execution into different agents or modes when risk is high.",
+              "Use worktrees and headless jobs to parallelize cleanly instead of interleaving unrelated edits."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-infrastructure",
+              "harness-engineering",
+              "agent-first-ide-orchestration"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Short root instructions are more reusable than long prose because they behave like a high-signal cache.",
+            "Scoped rules are cheaper than universal rules when the convention only matters in part of a repository.",
+            "Behavioral rules are better than vague advice because the agent can follow them deterministically.",
+            "Token overhead compounds across long sessions, so instruction size is an operational cost, not just a style choice."
+          ],
+          "knowledge_summary": "Agent instructions are most durable when they are short, imperative, and scoped to behavior that actually changes outcomes. Large root files waste context and degrade responsiveness because every session must load them, while short path-scoped files load only when relevant. The useful unit is not explanatory prose but a rule that narrows action, such as a function length limit, a citation contract, or a test restriction. This keeps the agent\u2019s ambient context stable and leaves more room for task-specific reasoning and tool output.",
+          "match_candidates": [],
+          "operational_insight": "Treat instructions as an operational cache, not a documentation dump. Put only behavior-changing rules in always-on memory, and move everything else into scoped files or triggered workflows. That makes long-running agent work less fragile and easier to keep consistent across sessions.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "agentic-ai"
+          ],
+          "related_topics": [
+            "agent-workspace-layering",
+            "harness-engineering"
+          ],
+          "relevance_note": "This is durable because prompt budgets and context limits remain a core constraint in agentic systems. The same principle applies to support bots, code agents, and internal assistants: the less irrelevant instruction text they carry, the more reliable their behavior tends to be.",
+          "secondary_tag": "agentic-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Keep the file under 200 lines. Keep it imperative. Do not write descriptive suggestions like \u2018write clean code\u2019. Write literal rules like \u2018all functions must have TypeScript type annotations\u2019. Every line must actually change behavior.\"",
+          "topic_slug": "token-efficient-agent-instructions",
+          "topic_title": "Token-Efficient Agent Instructions",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "8c2f7b2f-c7a4-4d77-880f-f7525aa2a126",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Short root instructions are more reusable than long prose because they behave like a high-signal cache.",
+              "Scoped rules are cheaper than universal rules when the convention only matters in part of a repository.",
+              "Behavioral rules are better than vague advice because the agent can follow them deterministically.",
+              "Token overhead compounds across long sessions, so instruction size is an operational cost, not just a style choice."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-workspace-layering",
+              "harness-engineering"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 690.0,
+    "review_finished_at": "2026-05-25T16:11:03.968334+00:00",
+    "review_started_at": "2026-05-25T15:59:34+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-25T16:11:03+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Anubhav",
+    "canonical_url": "https://medium.com/data-science-collective/i-spent-6-months-tuning-claude-code-heres-the-exact-setup-that-finally-worked-b41c67628478",
+    "content_sha256": "e0aabc6398b173855b43e8782533aa2399a16e533e5b0dcba26ec44a1a1da959",
+    "publication": "Medium",
+    "published_date": "2026-04-25",
+    "raw_html_rel_path": "raw/readwise/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj.html",
+    "raw_md_rel_path": "raw/readwise/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj.md",
+    "source_id": "i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj",
+    "title": "I Spent 6 Months Tuning Claude Code. Here\u2019s the Exact Setup That Finally Worked."
+  }
+}

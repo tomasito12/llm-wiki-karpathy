@@ -840,6 +840,24 @@ def test_abstraction_selection_rubric_content() -> None:
     assert "one primary entity type" in ABSTRACTION_SELECTION_RUBRIC.lower()
     assert "Agent Harness Engineering" in ABSTRACTION_SELECTION_RUBRIC
     assert "GLOSSARY HARD EXCLUSIONS" in ABSTRACTION_SELECTION_RUBRIC
+    assert "Voicebox" in ABSTRACTION_SELECTION_RUBRIC
+    assert "tools: []" in ABSTRACTION_SELECTION_RUBRIC
+    assert "ai_tools_roundup" in ABSTRACTION_SELECTION_RUBRIC
+
+
+def test_abstraction_selection_requires_tools_on_deep_product_reviews() -> None:
+    from src.ingest_review.providers.openai_provider import (
+        ABSTRACTION_SELECTION_RUBRIC,
+        COMPRESSION_PRESSURE_RUBRIC,
+        SYSTEM_PROMPT,
+        TOOLS_RUBRIC,
+    )
+
+    assert "complementary ``tools``" in SYSTEM_PROMPT
+    assert "Single-product reviews" in TOOLS_RUBRIC
+    assert "MUST extract that product" in TOOLS_RUBRIC
+    assert "Exception (complementary layers)" in COMPRESSION_PRESSURE_RUBRIC
+    assert "Named product/model + cross-cutting pattern" in ABSTRACTION_SELECTION_RUBRIC
 
 
 def test_system_prompt_references_abstraction_rubric() -> None:
@@ -893,6 +911,7 @@ def test_entity_rubrics_reference_abstraction_rubric() -> None:
         GLOSSARY_RUBRIC,
         HOWTOS_RUBRIC,
         IMPL_STUDY_RUBRIC,
+        TOOLS_RUBRIC,
         TOPICS_RUBRIC,
     )
 
@@ -901,6 +920,7 @@ def test_entity_rubrics_reference_abstraction_rubric() -> None:
         ("TOPICS_RUBRIC", TOPICS_RUBRIC),
         ("HOWTOS_RUBRIC", HOWTOS_RUBRIC),
         ("IMPL_STUDY_RUBRIC", IMPL_STUDY_RUBRIC),
+        ("TOOLS_RUBRIC", TOOLS_RUBRIC),
     ]:
         assert "ABSTRACTION_SELECTION_RUBRIC" in rubric, f"{name} missing cross-reference"
 
@@ -1182,11 +1202,11 @@ def test_title_generation_rubric_in_user_prompt(tmp_path: Path) -> None:
     assert title_idx < topics_idx
 
 
-def test_prompt_version_is_36() -> None:
-    """Prompt version bumped for title generation rubric."""
+def test_prompt_version_is_37() -> None:
+    """Prompt version bumped for complementary tool extraction on product reviews."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "36"
+    assert PROMPT_VERSION == "37"
 
 
 def test_title_canonicalization_rubric_replaces_suggested_action() -> None:

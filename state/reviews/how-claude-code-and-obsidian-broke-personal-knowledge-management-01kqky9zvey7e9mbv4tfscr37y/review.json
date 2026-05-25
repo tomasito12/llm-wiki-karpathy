@@ -1,0 +1,618 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-22T16:45:39+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DiNHtZqAFhj136uOs8ic3BRMg9p7c",
+    "token_usage": {
+      "completion_tokens": 2285,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 30767,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 33052
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "First-person account dominates the piece, with the author describing their own vault and workflow.",
+        "Claims are supported by anecdotal observations such as the system indexing notes, flagging contradictions, and touching multiple files.",
+        "No formal benchmark, external case study, or technical evaluation is provided."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "The piece is about a way to keep personal notes from turning into a messy pile. Instead of expecting a person to keep linking and organizing everything by hand, it suggests letting an AI do the repetitive upkeep. The setup uses Obsidian as the place where you look at your notes, and Claude Code as the worker that reads new material and updates the knowledge base. New files are treated as raw input, while the AI builds summaries, indexes, and links in a separate wiki area. The system also includes a configuration file that tells the AI how to organize things. The author says this can also run on a schedule, so the AI can check for broken links, contradictions, and outdated notes. The main promise is that knowledge can accumulate instead of decaying as the notebook grows. As of April 2026, the idea is best read as a practical workflow pattern to test, not a proven universal solution.",
+      "assessed_as_of": "2026-04-11",
+      "contradictions_and_skepticism": "The article claims the maintenance burden becomes zero, but that is a strong statement without operational proof; any AI-maintained knowledge base still needs oversight. The comparison to a relational database is rhetorically useful but simplified, because note systems often fail for reasons beyond indexing alone. The Memex analogy is evocative, yet the piece does not show whether the proposed workflow really solves the deeper problem of curation quality rather than just automating file edits.",
+      "key_insights": [
+        "Treat personal knowledge bases as compiled output, not hand-maintained databases.",
+        "A schema file can act as the operating manual for an AI-maintained wiki.",
+        "Scheduled health checks matter because cross-links and concepts decay without review.",
+        "Separating raw sources from AI-owned derived pages reduces edit burden and preserves source truth.",
+        "The strongest value claim is automation of bookkeeping, not smarter retrieval by itself."
+      ],
+      "limitations_and_open_questions": "The evidence is anecdotal and comes from a single author\u2019s workflow, so there is no measurement of time saved, accuracy, or long-term retention. The article does not specify failure modes for the agent updates, conflict resolution rules, or what happens when the AI mis-links or overwrites important notes. It also leaves open how much manual review is still needed to keep the wiki trustworthy, especially for high-stakes or rapidly changing material. The setup depends on local tooling and disciplined file organization, which may limit portability.",
+      "sources": [
+        "https://medium.com/tech-and-ai-guild/how-claude-code-and-obsidian-broke-personal-knowledge-management-d00dc8ae88d3"
+      ],
+      "summary": "The article argues that personal knowledge management fails when it depends on manual upkeep, because the maintenance burden eventually exceeds what one person can sustain. It proposes a file-native workflow that pairs Obsidian as a local markdown interface with Claude Code as an autonomous terminal agent that continuously indexes, summarizes, links, and updates notes. The core idea is not retrieval at query time but ongoing compilation of a persistent wiki from raw sources. The author describes a three-layer setup: immutable raw inputs, an AI-owned wiki, and a schema file that defines how the system should organize knowledge. The article also suggests scheduled maintenance loops, such as health checks for contradictions, orphan pages, and outdated claims, plus daily briefings generated from recent file changes.",
+      "why_it_matters": "The piece is useful because it reframes note-taking as an ongoing compilation problem rather than a storage problem, and that framing changes how you design the system. Instead of asking a person to keep a relational web of notes coherent, it suggests using an agent to ingest raw sources, maintain links, and rewrite derived pages. That is a concrete architectural pattern for AI-assisted knowledge work: immutable inputs, machine-maintained derived artifacts, and a schema that governs structure. The article also gives an operational cadence: ingest, update, lint, and generate briefings from recent changes. The claims are personal and qualitative, so the evidence is thin, but the pattern itself is durable enough to test in other file-based workflows. Actionable as of April 2026, with the main value in small-scale experimentation rather than assuming the workflow is universally robust. For service automation, the same maintenance loop could apply to internal support knowledge bases, but the article itself only gestures at that indirectly; it does not provide deployment evidence for customer-facing automation."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent essay rather than a list roundup or transcript.",
+        "No question-answer structure or interview speakers.",
+        "The piece argues for a workflow pattern and illustrates it with personal usage examples."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.93,
+        "core_capabilities": [
+          "It can operate as a terminal-based agent that reads repository files and writes changes back to disk.",
+          "It can update multiple related markdown artifacts in a single operation, which is useful for keeping derived notes synchronized.",
+          "It can be scripted through command-line invocations, making scheduled maintenance loops possible."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article uses it with a local Obsidian vault as the file-backed knowledge base.",
+          "The workflow relies on command-line access with Bash, Read, and Write permissions.",
+          "It is framed as compatible with cron-style scheduled jobs on the operating system."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats it as a practical local tool rather than a prototype concept, but offers no adoption statistics or ecosystem evidence. Its use here suggests enough maturity for individual workflow automation, yet the article gives no indication of broader operational standardization.",
+        "name": "Claude Code",
+        "operational_relevance": "It fits as the execution layer for file-native AI workflows: ingesting new material, updating derived notes, and running periodic health checks from the terminal. For practitioners, the important point is that the agent is not just answering questions; it is editing and maintaining artifacts across many files. That makes it relevant to knowledge-base maintenance, coding workflows, and other automation loops where the model needs filesystem access.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "terminal",
+          "coding-agent"
+        ],
+        "related_tools": [
+          "Obsidian"
+        ],
+        "short_description": "Claude Code is an autonomous terminal agent that can read, write, and modify files through the command line. In this article, it is used as the worker that maintains a markdown-based knowledge system.",
+        "strengths": "- Can read and write multiple markdown files in one pass, which matters when the workflow depends on coordinated updates across summaries, indexes, and concept pages.\n- Supports scripted command-line operation, so the same maintenance loop can be triggered manually or on a schedule.\n- Can be given narrow allowed tools, which is useful when you want the agent to operate inside a constrained file-editing boundary rather than a broad desktop environment.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "By connecting Obsidian (as a local markdown interface) with Claude Code (as an autonomous terminal agent), you can completely eliminate the maintenance bottleneck.",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not provide evidence about reliability, conflict resolution, or how often the agent makes incorrect edits. The workflow still depends on disciplined prompts and human review, so the operational savings may be smaller than the rhetoric implies. No cost, latency, or enterprise-readiness data is given."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.93,
+        "evidence_type": "implementation_case",
+        "examples": "",
+        "key_points": [
+          "Human maintenance does not scale for long-lived personal knowledge systems.",
+          "Raw inputs should remain immutable source-of-truth files.",
+          "Derived wiki pages can be treated as machine-owned compilation output.",
+          "A schema/config file can define ingest rules, logging, and formatting for the agent.",
+          "Health checks can detect contradictions, orphan pages, missing concept pages, and outdated claims.",
+          "The human job becomes curation and review, not manual filing."
+        ],
+        "knowledge_summary": "Personal knowledge management can be redesigned as an agent-maintained, three-layer system: immutable raw sources, a machine-owned compiled wiki, and a schema/config file that defines how the agent ingests and updates content. In this model, the AI reads new inputs, writes summary pages, updates indexes, modifies related concept pages, flags contradictions, and runs periodic health checks so the knowledge base stays current without manual relinking. The human role shifts toward curating inputs, setting rules, and reviewing the derived knowledge layer rather than maintaining file structure by hand.",
+        "match_candidates": [],
+        "operational_insight": "Keep source material separate from derived pages, then let an agent repeatedly transform new inputs into summaries, index updates, and cross-links while also linting for contradictions, orphan pages, and outdated claims. This preserves provenance and makes ongoing maintenance scalable.",
+        "primary_tag": "knowledge-management",
+        "proposed_tags": [
+          "knowledge-management",
+          "ai-engineering",
+          "ai-architecture"
+        ],
+        "related_topics": [
+          "file-native-ai-workflows",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This is relevant to any workflow where a growing body of notes, documents, or research must remain interconnected over time without relying on manual upkeep. The underlying pattern is useful whenever the cost of cross-referencing and refresh exceeds what a person can sustain by hand.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "This is where you dump your raw inputs. PDFs, clipped web articles, podcast transcripts, and meeting notes. You never edit these files. They are your source of truth. ... Layer 2: The Wiki (The Compiled Output). This is a directory of markdown files like entity pages, concepts, and indexes that are entirely owned by Claude. ... Once a week, you need to run a health check to prevent the knowledge base from rotting.",
+        "topic_slug": "agentic-personal-knowledge-management",
+        "topic_title": "Agentic Personal Knowledge Management",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The filesystem can be the coordination layer for AI-maintained knowledge.",
+          "Immutable inputs plus regenerable outputs create a safer editing model.",
+          "CLI-based automation is easier to schedule and inspect than app-internal background tasks."
+        ],
+        "knowledge_summary": "A file-native workflow uses ordinary files and folders as the system boundary for AI automation. Instead of moving data into a separate app-specific database, the AI reads and writes the same filesystem artifacts that humans inspect. This makes automation easier to script, inspect, and schedule, because the agent operates on concrete files rather than hidden application state. The approach works well when the system needs traceable updates, repeatable transforms, and clear source-of-truth separation.",
+        "match_candidates": [],
+        "operational_insight": "Treat markdown, transcripts, and other raw documents as the operational substrate for AI agents, then layer generated indexes and summaries on top as disposable outputs that can be rebuilt.",
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "agentic-personal-knowledge-management"
+        ],
+        "relevance_note": "File-native design is durable for AI tooling because it lowers integration friction and makes automated review easier. It is relevant to agent workflows, knowledge bases, and support systems that need auditable artifacts instead of opaque internal state.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Layer 1: Raw Sources (The Immutable Data). This is where you dump your raw inputs. PDFs, clipped web articles, podcast transcripts, and meeting notes. You never edit these files.",
+        "topic_slug": "file-native-ai-workflows",
+        "topic_title": "File-Native AI Workflows",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "First-person account dominates the piece, with the author describing their own vault and workflow.",
+          "Claims are supported by anecdotal observations such as the system indexing notes, flagging contradictions, and touching multiple files.",
+          "No formal benchmark, external case study, or technical evaluation is provided."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Treat personal knowledge bases as compiled output, not hand-maintained databases.",
+          "A schema file can act as the operating manual for an AI-maintained wiki.",
+          "Scheduled health checks matter because cross-links and concepts decay without review.",
+          "Separating raw sources from AI-owned derived pages reduces edit burden and preserves source truth.",
+          "The strongest value claim is automation of bookkeeping, not smarter retrieval by itself."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/tech-and-ai-guild/how-claude-code-and-obsidian-broke-personal-knowledge-management-d00dc8ae88d3"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent essay rather than a list roundup or transcript.",
+          "No question-answer structure or interview speakers.",
+          "The piece argues for a workflow pattern and illustrates it with personal usage examples."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "core_capabilities": [
+            "It can operate as a terminal-based agent that reads repository files and writes changes back to disk.",
+            "It can update multiple related markdown artifacts in a single operation, which is useful for keeping derived notes synchronized.",
+            "It can be scripted through command-line invocations, making scheduled maintenance loops possible."
+          ],
+          "integration_ecosystem": [
+            "The article uses it with a local Obsidian vault as the file-backed knowledge base.",
+            "The workflow relies on command-line access with Bash, Read, and Write permissions.",
+            "It is framed as compatible with cron-style scheduled jobs on the operating system."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats it as a practical local tool rather than a prototype concept, but offers no adoption statistics or ecosystem evidence. Its use here suggests enough maturity for individual workflow automation, yet the article gives no indication of broader operational standardization.",
+          "name": "Claude Code",
+          "operational_relevance": "It fits as the execution layer for file-native AI workflows: ingesting new material, updating derived notes, and running periodic health checks from the terminal. For practitioners, the important point is that the agent is not just answering questions; it is editing and maintaining artifacts across many files. That makes it relevant to knowledge-base maintenance, coding workflows, and other automation loops where the model needs filesystem access.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "terminal",
+            "coding-agent"
+          ],
+          "related_tools": [
+            "Obsidian"
+          ],
+          "short_description": "Claude Code is an autonomous terminal agent that can read, write, and modify files through the command line. In this article, it is used as the worker that maintains a markdown-based knowledge system.",
+          "strengths": "- Can read and write multiple markdown files in one pass, which matters when the workflow depends on coordinated updates across summaries, indexes, and concept pages.\n- Supports scripted command-line operation, so the same maintenance loop can be triggered manually or on a schedule.\n- Can be given narrow allowed tools, which is useful when you want the agent to operate inside a constrained file-editing boundary rather than a broad desktop environment.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "By connecting Obsidian (as a local markdown interface) with Claude Code (as an autonomous terminal agent), you can completely eliminate the maintenance bottleneck.",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not provide evidence about reliability, conflict resolution, or how often the agent makes incorrect edits. The workflow still depends on disciplined prompts and human review, so the operational savings may be smaller than the rhetoric implies. No cost, latency, or enterprise-readiness data is given."
+        },
+        "notes": null,
+        "proposal_id": "608fcc9e-8e4c-4f3a-a4ac-d76da5f3df80",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can operate as a terminal-based agent that reads repository files and writes changes back to disk.",
+              "It can update multiple related markdown artifacts in a single operation, which is useful for keeping derived notes synchronized.",
+              "It can be scripted through command-line invocations, making scheduled maintenance loops possible."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article uses it with a local Obsidian vault as the file-backed knowledge base.",
+              "The workflow relies on command-line access with Bash, Read, and Write permissions.",
+              "It is framed as compatible with cron-style scheduled jobs on the operating system."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "terminal",
+            "coding-agent"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": "implementation_case",
+          "examples": "",
+          "key_points": [
+            "Human maintenance does not scale for long-lived personal knowledge systems.",
+            "Raw inputs should remain immutable source-of-truth files.",
+            "Derived wiki pages can be treated as machine-owned compilation output.",
+            "A schema/config file can define ingest rules, logging, and formatting for the agent.",
+            "Health checks can detect contradictions, orphan pages, missing concept pages, and outdated claims.",
+            "The human job becomes curation and review, not manual filing."
+          ],
+          "knowledge_summary": "Personal knowledge management can be redesigned as an agent-maintained, three-layer system: immutable raw sources, a machine-owned compiled wiki, and a schema/config file that defines how the agent ingests and updates content. In this model, the AI reads new inputs, writes summary pages, updates indexes, modifies related concept pages, flags contradictions, and runs periodic health checks so the knowledge base stays current without manual relinking. The human role shifts toward curating inputs, setting rules, and reviewing the derived knowledge layer rather than maintaining file structure by hand.",
+          "match_candidates": [],
+          "operational_insight": "Keep source material separate from derived pages, then let an agent repeatedly transform new inputs into summaries, index updates, and cross-links while also linting for contradictions, orphan pages, and outdated claims. This preserves provenance and makes ongoing maintenance scalable.",
+          "primary_tag": "knowledge-management",
+          "proposed_tags": [
+            "knowledge-management",
+            "ai-engineering",
+            "ai-architecture"
+          ],
+          "related_topics": [
+            "file-native-ai-workflows",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This is relevant to any workflow where a growing body of notes, documents, or research must remain interconnected over time without relying on manual upkeep. The underlying pattern is useful whenever the cost of cross-referencing and refresh exceeds what a person can sustain by hand.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "This is where you dump your raw inputs. PDFs, clipped web articles, podcast transcripts, and meeting notes. You never edit these files. They are your source of truth. ... Layer 2: The Wiki (The Compiled Output). This is a directory of markdown files like entity pages, concepts, and indexes that are entirely owned by Claude. ... Once a week, you need to run a health check to prevent the knowledge base from rotting.",
+          "topic_slug": "agentic-personal-knowledge-management",
+          "topic_title": "Agentic Personal Knowledge Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "194c4f76-85e5-4776-8495-2f096a3de5b8",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-22T16:46:33+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "35",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Human maintenance does not scale for long-lived personal knowledge systems.",
+              "Raw inputs should remain immutable source-of-truth files.",
+              "Derived wiki pages can be treated as machine-owned compilation output.",
+              "A schema/config file can define ingest rules, logging, and formatting for the agent.",
+              "Health checks can detect contradictions, orphan pages, missing concept pages, and outdated claims.",
+              "The human job becomes curation and review, not manual filing."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "file-native-ai-workflows",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The filesystem can be the coordination layer for AI-maintained knowledge.",
+            "Immutable inputs plus regenerable outputs create a safer editing model.",
+            "CLI-based automation is easier to schedule and inspect than app-internal background tasks."
+          ],
+          "knowledge_summary": "A file-native workflow uses ordinary files and folders as the system boundary for AI automation. Instead of moving data into a separate app-specific database, the AI reads and writes the same filesystem artifacts that humans inspect. This makes automation easier to script, inspect, and schedule, because the agent operates on concrete files rather than hidden application state. The approach works well when the system needs traceable updates, repeatable transforms, and clear source-of-truth separation.",
+          "match_candidates": [],
+          "operational_insight": "Treat markdown, transcripts, and other raw documents as the operational substrate for AI agents, then layer generated indexes and summaries on top as disposable outputs that can be rebuilt.",
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "agentic-personal-knowledge-management"
+          ],
+          "relevance_note": "File-native design is durable for AI tooling because it lowers integration friction and makes automated review easier. It is relevant to agent workflows, knowledge bases, and support systems that need auditable artifacts instead of opaque internal state.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Layer 1: Raw Sources (The Immutable Data). This is where you dump your raw inputs. PDFs, clipped web articles, podcast transcripts, and meeting notes. You never edit these files.",
+          "topic_slug": "file-native-ai-workflows",
+          "topic_title": "File-Native AI Workflows",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "57e12dc0-262d-458c-acdf-bac0a53e47f8",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The filesystem can be the coordination layer for AI-maintained knowledge.",
+              "Immutable inputs plus regenerable outputs create a safer editing model.",
+              "CLI-based automation is easier to schedule and inspect than app-internal background tasks."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-personal-knowledge-management"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-architecture",
+            "ai-engineering",
+            "knowledge-management"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 1,
+      "user_report": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 5660.3,
+    "review_finished_at": "2026-05-22T18:19:59.278527+00:00",
+    "review_started_at": "2026-05-22T16:45:39+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-22T18:19:59+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Shashwat",
+    "canonical_url": "https://medium.com/tech-and-ai-guild/how-claude-code-and-obsidian-broke-personal-knowledge-management-d00dc8ae88d3",
+    "content_sha256": "3fdd5f02bc7a26967d150e3b03605e3497baeb8ead6f17cd4669d498db3a3f95",
+    "publication": "Medium",
+    "published_date": "2026-04-11",
+    "raw_html_rel_path": "raw/readwise/how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y.html",
+    "raw_md_rel_path": "raw/readwise/how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y.md",
+    "source_id": "how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y",
+    "title": "How Claude Code and Obsidian Broke Personal Knowledge Management"
+  }
+}

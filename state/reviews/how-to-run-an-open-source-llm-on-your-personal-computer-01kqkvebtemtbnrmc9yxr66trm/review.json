@@ -1,0 +1,620 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-25T15:27:42+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "37",
+    "provider": "openai",
+    "request_id": "chatcmpl-DjRV1048fGxv4WC1MXUAC9TZVky4i",
+    "token_usage": {
+      "completion_tokens": 2798,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 34404,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "total_tokens": 37202
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start by choosing a local model runner such as Ollama, then install it with the desktop installer. After installation, open the app or the command line and pull a small model that fits your machine. Run the model, test a prompt, and confirm that it responds locally. If you want to use it in code, send requests to the local server on your own computer. If the model is too slow or memory is tight, switch to a smaller model before scaling up.",
+        "caveats": "The guide does not give benchmark numbers, so model selection is still a trial-and-error choice based on hardware. Larger models may not be comfortable on consumer laptops. The tutorial is Windows-specific and does not cover security hardening or production deployment.",
+        "confidence": 0.95,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Choose a local model runner such as Ollama, LM Studio, or GPT4All.",
+          "Download and install the Windows version of Ollama from the official site.",
+          "Open the app or Command Prompt / PowerShell and check the install with `ollama --version`.",
+          "Pull a model with `ollama pull gemma3:270m` or a similar model.",
+          "Start the model with `ollama run gemma3:270m`.",
+          "Use `/bye` to stop the interactive session when finished.",
+          "If needed, call the local API from a script at `http://localhost:11434/api/generate`.",
+          "Use `ollama list` and `ollama rm model_name` to manage installed models."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A Windows PC with enough RAM and disk space.",
+          "An installed local model runner such as Ollama.",
+          "A model choice sized appropriately for the available hardware."
+        ],
+        "primary_tag": "local-model-deployment",
+        "proposed_tags": [
+          "local-model-deployment",
+          "ai-engineering"
+        ],
+        "question_title": "Local Model Setup",
+        "related_howtos": [],
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cVisit the official Ollama website and download the Windows installer.\u201d",
+        "value_level": "high",
+        "what_and_problem": "This is about getting an open-source large language model running on your own computer instead of sending requests to a cloud service. It solves the problem of wanting private, offline access to a model while still keeping the setup simple enough for a normal Windows machine. The procedure is useful when you want to test ideas, build a small app, or try local AI without paying API fees. It also helps when network access is limited or when data should stay on the device. The main constraint is that local models need enough memory, disk space, and sometimes a stronger graphics card."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The piece is a practical setup guide describing installation and usage steps on a personal computer.",
+        "Most claims are grounded in concrete instructions, commands, and local workflow examples rather than analysis or benchmarks.",
+        "It includes hands-on troubleshooting and API usage details for running models locally."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a step-by-step guide for running an open-source large language model on your own Windows computer. It shows that you do not need to rely on a cloud service if you want to try a model like Llama, Mistral, or Gemma. The guide explains two main ways to use the model: a simple window with buttons for beginners, and a command-line way for people who want more control. It also shows how to download a model, start it, and stop it when you are done. One helpful part is that the model can keep working even without an internet connection after it has been downloaded. The article also explains how a local model can be used from a Python program through a local address on your own computer. It warns that models take up memory and disk space, so smaller ones are easier to run on ordinary machines. The main value is privacy, offline use, and easier experimentation without cloud fees. As of 2025-11-11, the guide is actionable for anyone with a compatible Windows PC, but the best model choice still depends on local hardware.",
+      "assessed_as_of": "2025-11-11",
+      "contradictions_and_skepticism": "The piece presents local model use as simple, but the practical threshold still depends on RAM, disk, and GPU capacity, which can make the experience uneven across consumer machines. The claim that local models are private and offline is directionally true, but it does not address the security of downloaded weights, local logs, or application-level data handling. The tutorial is helpful, but it is still a setup guide rather than evidence that local deployment is the best choice for any production workflow.",
+      "key_insights": [
+        "Local model use becomes practical through simple installers and a local server, not only through advanced setup.",
+        "The command line and the graphical interface serve different users: beginners can start fast, while developers can script against localhost.",
+        "Model size matters more than model name when running on consumer hardware; memory and disk space are the real constraints.",
+        "A downloaded local model can keep working offline, which makes it useful for private or disconnected environments.",
+        "Ollama turns a personal computer into a local API endpoint, so the same model can serve chat, scripts, and app integrations."
+      ],
+      "limitations_and_open_questions": "The article does not benchmark model quality, latency, or memory use, so the choice between small and larger models remains qualitative. It assumes a Windows environment and does not address macOS or Linux setup paths. The Python example is illustrative, but it does not cover authentication, batching, streaming edge cases, or robust error handling. Security and governance questions are only lightly touched through the privacy/offline framing; there is no discussion of model provenance, update management, or prompt/data retention policies. The guide also does not explain how to evaluate whether a local model is good enough for a given task before adopting it broadly.",
+      "sources": [
+        "https://medium.com/data-science-collective/how-to-run-an-open-source-llm-on-your-personal-computer-bc6cca454282"
+      ],
+      "summary": "This guide explains how to install and run open-source large language models locally on a Windows PC, using Ollama as the main example and mentioning LM Studio and GPT4All as alternatives. It covers both graphical and command-line workflows, including downloading models, running them, listing them, and removing them. The article emphasizes that local execution keeps data on the user's machine, works offline after download, and avoids cloud API costs and rate limits. It also shows how to connect to the local Ollama server from Python through localhost:11434, making the model usable in scripts and applications. The practical limit is hardware capacity: smaller models fit consumer laptops better, while larger models need more RAM, disk space, and often a stronger GPU.",
+      "why_it_matters": "The article is useful because it turns local model deployment from a vague idea into a concrete workflow: install a desktop tool, pull a model, run it, and optionally call it from code. That is a durable operational pattern for teams that want to prototype with open-weight models without depending on cloud APIs. The piece also makes the hardware tradeoff explicit: smaller models are easier to run on laptops, while larger ones demand more memory and stronger GPUs. Its API example matters because it shows that local models are not just for hobby chat; they can sit behind scripts and applications as a private inference endpoint. The discussion of model listing, removal, and troubleshooting gives a practical sense of lifecycle management that is often missing from generic tutorials. The article does not provide benchmarks, so it does not answer how these local models compare on quality or throughput beyond basic hardware guidance. For conversational AI and support automation, the main takeaway is that local inference can support offline prototypes or privacy-sensitive workflows, but the article does not show production contact-center use cases. As of 2025-11-11, it is actionable as a setup guide, but the durability of any specific model recommendation is limited by hardware and model churn."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The article is a step-by-step tutorial for installing and running local large language models on Windows.",
+        "It presents commands, UI steps, and troubleshooting guidance in a single coherent procedure.",
+        "It is not a roundup or interview; the structure is instructional rather than news-aggregating."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.96,
+        "core_capabilities": [
+          "It installs a local model runtime that can run in the background on Windows.",
+          "It provides a graphical interface for selecting models and chatting with them.",
+          "It provides a command-line interface for pulling, running, listing, and removing models.",
+          "It exposes a local API server on `http://localhost:11434` for application integration."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It integrates with local scripts through a simple HTTP endpoint on `http://localhost:11434`.",
+          "It can be used from Python by posting requests to the local generate endpoint.",
+          "It supports running models downloaded from the Ollama model list, including Gemma examples in the guide."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article describes Ollama as widely supported and easy to install, which suggests a mature developer-friendly workflow rather than an experimental one. It is presented as a practical default for local model use, with a desktop interface plus CLI and API access. The source does not provide adoption metrics, so maturity should be treated as qualitative rather than quantified.",
+        "name": "Ollama",
+        "operational_relevance": "Ollama fits as the local inference layer for developers who want to prototype or ship private AI features without calling a cloud API. The article shows it can be used both interactively and from scripts, which makes it useful for chat-style experiments and lightweight application integration. It is especially relevant when teams want a simple path from model download to a localhost API endpoint. For service automation, it can power private prototypes or offline assistants, but the source does not demonstrate production support use cases.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "app",
+          "model-serving"
+        ],
+        "related_tools": [
+          "LM Studio",
+          "GPT4All"
+        ],
+        "short_description": "Ollama is a local model runner that installs on a personal computer and provides both a graphical interface and a command-line interface for downloading and running open models. It also exposes a local server so other programs can send requests to the model.",
+        "strengths": "- Provides a one-click installer and background local service, which lowers the barrier to getting a model running on a personal computer.\n- Offers both a graphical interface and a command-line interface, so beginners and developers can use the same local stack in different ways.\n- Exposes a local server on `http://localhost:11434`, which makes it easy to connect scripts and applications without external APIs.\n- Handles model download and loading for the user, which reduces setup friction when trying multiple open-source models.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\u201cOllama provides a one-click installer that sets up everything you need to run local models.\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "- Performance depends heavily on local hardware; the article notes that larger models need more powerful GPUs or high-end CPUs.\n- Disk space and RAM become the main limiting factors as more models are installed, so local experimentation can be constrained on smaller machines.\n- The guide does not cover multi-user deployment, authentication, or production hardening, so the tool's operational story here is limited to personal or development use."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Smaller open-weight models can run on consumer laptops, while larger models require more capable hardware.",
+          "Local inference can expose a localhost API, which makes it usable beyond an interactive chat window.",
+          "Managing installed models is part of the workflow, not an afterthought, because disk and memory constraints shape what remains practical.",
+          "Offline operation changes the reliability profile: once downloaded, the model can keep working without internet access."
+        ],
+        "knowledge_summary": "Local model deployment is the practice of running AI models on a user-controlled machine or internal infrastructure instead of relying on an external hosted API. It usually trades cloud convenience for privacy, offline operation, and tighter control over data handling. The main engineering concern is matching model size and execution mode to available memory, disk, and accelerator capacity. Good local deployment workflows also include model lifecycle management: downloading, switching, removing, and calling the model from other applications. This pattern matters whenever teams need private experimentation, offline use, or a lightweight inference endpoint that can be embedded into scripts and desktop tools.",
+        "match_candidates": [],
+        "operational_insight": "Treat local deployment as a hardware-constrained operating model, not just a packaging choice. The practical questions are whether the model can fit, whether it can be called locally from code, and whether the developer experience is simple enough to encourage repeated use.",
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "Local model deployment is durable because privacy, offline execution, and lower dependency on hosted APIs are recurring requirements in AI systems. It shows up in developer tooling, private assistants, edge workflows, and internal prototypes where data locality matters.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cRunning a large language model (LLM) on your computer is now easier than ever.\u201d",
+        "topic_slug": "local-model-deployment",
+        "topic_title": "Local Model Deployment",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by choosing a local model runner such as Ollama, then install it with the desktop installer. After installation, open the app or the command line and pull a small model that fits your machine. Run the model, test a prompt, and confirm that it responds locally. If you want to use it in code, send requests to the local server on your own computer. If the model is too slow or memory is tight, switch to a smaller model before scaling up.",
+          "caveats": "The guide does not give benchmark numbers, so model selection is still a trial-and-error choice based on hardware. Larger models may not be comfortable on consumer laptops. The tutorial is Windows-specific and does not cover security hardening or production deployment.",
+          "confidence": 0.95,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Choose a local model runner such as Ollama, LM Studio, or GPT4All.",
+            "Download and install the Windows version of Ollama from the official site.",
+            "Open the app or Command Prompt / PowerShell and check the install with `ollama --version`.",
+            "Pull a model with `ollama pull gemma3:270m` or a similar model.",
+            "Start the model with `ollama run gemma3:270m`.",
+            "Use `/bye` to stop the interactive session when finished.",
+            "If needed, call the local API from a script at `http://localhost:11434/api/generate`.",
+            "Use `ollama list` and `ollama rm model_name` to manage installed models."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A Windows PC with enough RAM and disk space.",
+            "An installed local model runner such as Ollama.",
+            "A model choice sized appropriately for the available hardware."
+          ],
+          "primary_tag": "local-model-deployment",
+          "proposed_tags": [
+            "local-model-deployment",
+            "ai-engineering"
+          ],
+          "question_title": "Local Model Setup",
+          "related_howtos": [],
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cVisit the official Ollama website and download the Windows installer.\u201d",
+          "value_level": "high",
+          "what_and_problem": "This is about getting an open-source large language model running on your own computer instead of sending requests to a cloud service. It solves the problem of wanting private, offline access to a model while still keeping the setup simple enough for a normal Windows machine. The procedure is useful when you want to test ideas, build a small app, or try local AI without paying API fees. It also helps when network access is limited or when data should stay on the device. The main constraint is that local models need enough memory, disk space, and sometimes a stronger graphics card."
+        },
+        "notes": null,
+        "proposal_id": "6a23e156-c680-4c7a-aebe-828196541111",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Choose a local model runner such as Ollama, LM Studio, or GPT4All.",
+              "Download and install the Windows version of Ollama from the official site.",
+              "Open the app or Command Prompt / PowerShell and check the install with `ollama --version`.",
+              "Pull a model with `ollama pull gemma3:270m` or a similar model.",
+              "Start the model with `ollama run gemma3:270m`.",
+              "Use `/bye` to stop the interactive session when finished.",
+              "If needed, call the local API from a script at `http://localhost:11434/api/generate`.",
+              "Use `ollama list` and `ollama rm model_name` to manage installed models."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A Windows PC with enough RAM and disk space.",
+              "An installed local model runner such as Ollama.",
+              "A model choice sized appropriately for the available hardware."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The piece is a practical setup guide describing installation and usage steps on a personal computer.",
+          "Most claims are grounded in concrete instructions, commands, and local workflow examples rather than analysis or benchmarks.",
+          "It includes hands-on troubleshooting and API usage details for running models locally."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Local model use becomes practical through simple installers and a local server, not only through advanced setup.",
+          "The command line and the graphical interface serve different users: beginners can start fast, while developers can script against localhost.",
+          "Model size matters more than model name when running on consumer hardware; memory and disk space are the real constraints.",
+          "A downloaded local model can keep working offline, which makes it useful for private or disconnected environments.",
+          "Ollama turns a personal computer into a local API endpoint, so the same model can serve chat, scripts, and app integrations."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/data-science-collective/how-to-run-an-open-source-llm-on-your-personal-computer-bc6cca454282"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The article is a step-by-step tutorial for installing and running local large language models on Windows.",
+          "It presents commands, UI steps, and troubleshooting guidance in a single coherent procedure.",
+          "It is not a roundup or interview; the structure is instructional rather than news-aggregating."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "core_capabilities": [
+            "It installs a local model runtime that can run in the background on Windows.",
+            "It provides a graphical interface for selecting models and chatting with them.",
+            "It provides a command-line interface for pulling, running, listing, and removing models.",
+            "It exposes a local API server on `http://localhost:11434` for application integration."
+          ],
+          "integration_ecosystem": [
+            "It integrates with local scripts through a simple HTTP endpoint on `http://localhost:11434`.",
+            "It can be used from Python by posting requests to the local generate endpoint.",
+            "It supports running models downloaded from the Ollama model list, including Gemma examples in the guide."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article describes Ollama as widely supported and easy to install, which suggests a mature developer-friendly workflow rather than an experimental one. It is presented as a practical default for local model use, with a desktop interface plus CLI and API access. The source does not provide adoption metrics, so maturity should be treated as qualitative rather than quantified.",
+          "name": "Ollama",
+          "operational_relevance": "Ollama fits as the local inference layer for developers who want to prototype or ship private AI features without calling a cloud API. The article shows it can be used both interactively and from scripts, which makes it useful for chat-style experiments and lightweight application integration. It is especially relevant when teams want a simple path from model download to a localhost API endpoint. For service automation, it can power private prototypes or offline assistants, but the source does not demonstrate production support use cases.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "app",
+            "model-serving"
+          ],
+          "related_tools": [
+            "LM Studio",
+            "GPT4All"
+          ],
+          "short_description": "Ollama is a local model runner that installs on a personal computer and provides both a graphical interface and a command-line interface for downloading and running open models. It also exposes a local server so other programs can send requests to the model.",
+          "strengths": "- Provides a one-click installer and background local service, which lowers the barrier to getting a model running on a personal computer.\n- Offers both a graphical interface and a command-line interface, so beginners and developers can use the same local stack in different ways.\n- Exposes a local server on `http://localhost:11434`, which makes it easy to connect scripts and applications without external APIs.\n- Handles model download and loading for the user, which reduces setup friction when trying multiple open-source models.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\u201cOllama provides a one-click installer that sets up everything you need to run local models.\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "- Performance depends heavily on local hardware; the article notes that larger models need more powerful GPUs or high-end CPUs.\n- Disk space and RAM become the main limiting factors as more models are installed, so local experimentation can be constrained on smaller machines.\n- The guide does not cover multi-user deployment, authentication, or production hardening, so the tool's operational story here is limited to personal or development use."
+        },
+        "notes": null,
+        "proposal_id": "79f4980a-54be-4274-921e-681187bb0028",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It installs a local model runtime that can run in the background on Windows.",
+              "It provides a graphical interface for selecting models and chatting with them.",
+              "It provides a command-line interface for pulling, running, listing, and removing models.",
+              "It exposes a local API server on `http://localhost:11434` for application integration."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It integrates with local scripts through a simple HTTP endpoint on `http://localhost:11434`.",
+              "It can be used from Python by posting requests to the local generate endpoint.",
+              "It supports running models downloaded from the Ollama model list, including Gemma examples in the guide."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "LM Studio",
+              "GPT4All"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "model-serving",
+            "library"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "library"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Smaller open-weight models can run on consumer laptops, while larger models require more capable hardware.",
+            "Local inference can expose a localhost API, which makes it usable beyond an interactive chat window.",
+            "Managing installed models is part of the workflow, not an afterthought, because disk and memory constraints shape what remains practical.",
+            "Offline operation changes the reliability profile: once downloaded, the model can keep working without internet access."
+          ],
+          "knowledge_summary": "Local model deployment is the practice of running AI models on a user-controlled machine or internal infrastructure instead of relying on an external hosted API. It usually trades cloud convenience for privacy, offline operation, and tighter control over data handling. The main engineering concern is matching model size and execution mode to available memory, disk, and accelerator capacity. Good local deployment workflows also include model lifecycle management: downloading, switching, removing, and calling the model from other applications. This pattern matters whenever teams need private experimentation, offline use, or a lightweight inference endpoint that can be embedded into scripts and desktop tools.",
+          "match_candidates": [],
+          "operational_insight": "Treat local deployment as a hardware-constrained operating model, not just a packaging choice. The practical questions are whether the model can fit, whether it can be called locally from code, and whether the developer experience is simple enough to encourage repeated use.",
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "Local model deployment is durable because privacy, offline execution, and lower dependency on hosted APIs are recurring requirements in AI systems. It shows up in developer tooling, private assistants, edge workflows, and internal prototypes where data locality matters.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cRunning a large language model (LLM) on your computer is now easier than ever.\u201d",
+          "topic_slug": "local-model-deployment",
+          "topic_title": "Local Model Deployment",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "596a3014-c8c8-4058-bcc2-b6d04788a560",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Smaller open-weight models can run on consumer laptops, while larger models require more capable hardware.",
+              "Local inference can expose a localhost API, which makes it usable beyond an interactive chat window.",
+              "Managing installed models is part of the workflow, not an afterthought, because disk and memory constraints shape what remains practical.",
+              "Offline operation changes the reliability profile: once downloaded, the model can keep working without internet access."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 183.1,
+    "review_finished_at": "2026-05-25T15:30:45.137182+00:00",
+    "review_started_at": "2026-05-25T15:27:42+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-25T15:30:45+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Manish Shivanandhan",
+    "canonical_url": "https://medium.com/data-science-collective/how-to-run-an-open-source-llm-on-your-personal-computer-bc6cca454282",
+    "content_sha256": "9b01193b68109b679dba20b51e04bb059fad849fb66708a8e3a873919e714037",
+    "publication": "Medium",
+    "published_date": "2025-11-11",
+    "raw_html_rel_path": "raw/readwise/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm.html",
+    "raw_md_rel_path": "raw/readwise/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm.md",
+    "source_id": "how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm",
+    "title": "How To Run an Open-Source LLM on Your Personal Computer"
+  }
+}

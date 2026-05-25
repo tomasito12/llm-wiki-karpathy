@@ -1,0 +1,582 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-22T16:39:16+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DiNBghNo72358Uk6HpRBhM2oDaEj0",
+    "token_usage": {
+      "completion_tokens": 2477,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 30596,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 33073
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 12
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The list is framed as the author's curation and judgment rather than vendor messaging or formal testing.",
+        "Claims are mostly qualitative recommendations with subjective language and no benchmark data.",
+        "No independent measurements, deployment case, or research method is provided."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a list of twelve Mac apps that are meant to make using a Mac easier and more pleasant. Some of them help with typing, switching between windows, finding folders, or taking screenshots. Others change how the keyboard, mouse, or scrolling behaves so the computer feels more comfortable to use. A few are about making the screen look nicer or helping you focus on one task at a time. One of the apps is a dictation tool that works on the computer itself instead of sending everything to the cloud. Another turns quick notes into a built-in calculator. The general idea is that small, specialized apps can fix everyday annoyances better than bigger all-purpose software. The piece is mostly a recommendation list, so its value is in helping someone discover useful tools rather than explaining a big technical idea.",
+      "assessed_as_of": "2026-04-24",
+      "contradictions_and_skepticism": "The piece relies heavily on enthusiastic product descriptions, so the claims should be treated as a recommendation, not proof. Phrases like \u201cflawless,\u201d \u201cbest value-for-money,\u201d and \u201cgame changer\u201d are subjective and unsupported by comparative testing. The privacy and latency claims are plausible for on-device software, but the article gives no implementation detail or independent validation. The strongest skepticism point is that many benefits are framed as obvious wins without showing tradeoffs such as setup overhead, battery cost, or compatibility issues.",
+      "key_insights": [
+        "Local, on-device dictation is presented as a privacy and latency advantage, not just a convenience feature.",
+        "Several apps win by fixing one annoying default macOS behavior better than Apple does, such as window previews, Markdown preview, or mouse scrolling.",
+        "Context-aware typing assistance is framed as useful when it can read local screen context without sending data off the machine.",
+        "Power-user utilities still matter when they reduce tiny repeated actions across a workday, such as folder access, middle-click, or shortcut layering.",
+        "The list favors narrow tools with clear workflow wins over broad suites."
+      ],
+      "limitations_and_open_questions": "This is a promotional roundup, not an audited comparison, so performance claims, privacy claims, and usability claims are not independently verified. Pricing is only mentioned for some apps, and there are no formal benchmarks, compatibility notes, or long-term reliability data. The article does not explain how the context-aware typing app handles edge cases, what data is stored locally, or how its models are updated. Several utilities are framed as better-than-default replacements, but the source does not show whether they remain stable across macOS updates. The shortlist also leaves open whether these tools are best-in-class across all workflows or simply appealing to one reviewer.",
+      "sources": [
+        "https://medium.com/@ryanshrott/snazzy-labs-top-mac-apps-of-2026-the-upgrades-you-actually-need-c122e15efb80"
+      ],
+      "summary": "This is a curated list of 12 Mac utilities framed as the apps that make macOS feel better in 2026. The selections emphasize small, focused tools that improve typing, file access, window switching, dictation, keyboard shortcuts, note-taking, Markdown preview, visual focus, notch utilities, screenshots, mouse behavior, and scrolling. Several items are explicitly positioned as local, privacy-preserving, or on-device, while others are simple productivity fixes that replace annoying defaults. The piece is opinionated and promotional, but it still surfaces a useful pattern: modern Mac software quality can come from narrow utilities that solve one workflow pain point very well. As of 2026-04-24, the article is useful mainly as a tool shortlist rather than as evidence of deeper product or industry shifts.",
+      "why_it_matters": "The piece is mostly a consumer-style shortlist, but it does surface a durable product lesson: small macOS utilities can still create real value when they remove friction from a high-frequency task. That is especially visible in the apps for context-aware typing, file access, dictation, shortcut remapping, and screenshot cleanup, where the product promise is specific and immediately legible. The strongest items are not broad platforms; they are narrowly scoped tools that replace repetitive manual work with a faster interaction. The article also highlights a privacy-oriented design choice in at least one app: keeping transcription entirely on-device. That makes the list more useful than a generic \u201cbest apps\u201d roundup because it points to concrete interaction bottlenecks that are still worth solving in 2026. For service automation, the only direct takeaway is indirect: on-device dictation and context-aware input can support faster note capture and text entry, but the source does not discuss customer support, voicebots, or contact centers, so those implications remain thin. As of 2026-04-24, this is actionable as a tool-discovery list, not as evidence of a broader platform shift."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_tools_roundup",
+      "reasoning": [
+        "The source is structured as a numbered list of named apps with one dedicated section per item.",
+        "The primary content is product recommendations for tools, not a single tutorial or a news digest.",
+        "The headline and body both emphasize apps to install, matching a curated tools roundup pattern."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It suggests text based on what is visible on the screen, which can cut down on repeated manual typing.",
+          "It operates locally so the source claims your screen snapshots do not leave the Mac."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The app is presented as a polished utility rather than an experiment, but the source provides no adoption numbers or enterprise signals. Its niche is clear: keyboard-level productivity for Mac users who want context-aware typing without sending data off device. As of 2026-04-24, it reads as an appealing point solution rather than a proven platform.",
+        "name": "Cotypist",
+        "operational_relevance": "This is relevant wherever fast text entry benefits from local context, especially email, support replies, and repeated project-specific writing. Its main operational appeal is reducing retyping by using what is visible on screen to guide suggestions. The source frames it as privacy-preserving because snapshots stay on the Mac, which matters for teams sensitive to data leakage.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "ai-application",
+          "app"
+        ],
+        "related_tools": [],
+        "short_description": "A context-aware autocompleter for macOS that uses local screen snapshots to infer what you are working on.",
+        "strengths": "- Uses local screen context to make completions feel more relevant than generic autocomplete, which can reduce repetitive typing in real workflows.\n- Keeps snapshots on the device, which lowers privacy concern compared with cloud-based context capture.\n- Fits naturally into email and project communication workflows where names, clients, and jargon repeat often.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\u201cCotypist is one of those apps that sounds creepy until you use it for five minutes. It\u2019s a context-aware autocompleter. By taking quick, local snapshots of your screen (don\u2019t worry, nothing leaves your Mac), it learns what you\u2019re doing.\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not explain how accurate it is across different apps, how much screen content it stores, or how it behaves when context is ambiguous. There is no evidence here about battery impact, latency under load, or whether the local approach fails on complex tasks."
+      },
+      {
+        "confidence": 0.93,
+        "core_capabilities": [
+          "It converts speech to text on the Mac itself, which reduces cloud exposure.",
+          "It supports both long dictation and quick voice-triggered snippets, making it useful for multiple input styles."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The wording suggests a standout consumer utility with a strong user experience pitch, but the source does not show scale, ecosystem, or adoption depth. It appears more mature than an experimental prototype because it is presented as the replacement for standard macOS dictation. As of 2026-04-24, the claim is useful but still anecdotal.",
+        "name": "DictaFlow",
+        "operational_relevance": "This kind of tool matters where voice input can replace typing without sending private audio or text to a cloud service. The source positions it as a practical productivity upgrade for drafting long text and triggering short snippets. For teams evaluating voice capture or dictation workflows, the on-device claim is the key operational detail because it changes privacy and latency expectations.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "dictation",
+          "ai-application"
+        ],
+        "related_tools": [],
+        "short_description": "An on-device speech-to-text app for macOS that emphasizes fast, private dictation.",
+        "strengths": "- Runs transcription entirely on-device, which is operationally attractive for privacy-sensitive work.\n- The source describes it as very fast, which suggests low friction for short dictation bursts and longer drafting sessions.\n- It supports both long-form writing and short voice-triggered snippets, so it fits more than one usage pattern.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\u201cDictaFlow is the standout speech-to-text app of 2026. It\u2019s lightning-fast and handles transcription entirely on-device, meaning your private thoughts stay private.\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not provide accuracy numbers, accent coverage, language support, or failure cases. The privacy and latency advantages are asserted rather than measured, and there is no information about export formats or enterprise controls."
+      },
+      {
+        "confidence": 0.89,
+        "core_capabilities": [
+          "It can blur sensitive information in screenshots, which supports safer sharing.",
+          "It can capture full scrolling pages, which preserves context in documentation and debugging.",
+          "It can extract text from images, which turns screenshots into reusable source material."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "Shottr is described as a value-heavy utility rather than a niche experiment, and the price point is explicit. The source gives no adoption data, but the feature set suggests a mature power-user screenshot tool. As of 2026-04-24, the signal is mostly a practical recommendation.",
+        "name": "Shottr",
+        "operational_relevance": "This is relevant anywhere teams need to capture, redact, and share interface evidence quickly. Its value is in compressing multiple screenshot-related tasks into one utility, which reduces context switching during documentation, bug reporting, or design review. The OCR feature also makes image text reusable in downstream workflows.",
+        "proposed_new_type": null,
+        "proposed_types": [
+          "app"
+        ],
+        "related_tools": [],
+        "short_description": "A screenshot utility for macOS that adds blurring, scrolling capture, and optical character recognition.",
+        "strengths": "- Combines capture, redaction, scrolling screenshots, and text extraction, which makes it more efficient than using separate tools for each job.\n- The ability to blur sensitive details is especially useful when screenshots cross team boundaries.\n- Scrolling capture helps preserve full-page context instead of fragmenting evidence across many images.",
+        "suggested_action": "ignore",
+        "supporting_snippet": "\u201cShottr isn\u2019t just a screenshot tool; it\u2019s a productivity monster. For $12, you get a tool that can blur sensitive info, take scrolling screenshots of whole webpages, and even perform OCR (text extraction) from images.\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not describe OCR accuracy, file output options, or whether the redaction is reversible. There is also no comparison against built-in macOS tools beyond the author's opinion."
+      }
+    ],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The list is framed as the author's curation and judgment rather than vendor messaging or formal testing.",
+          "Claims are mostly qualitative recommendations with subjective language and no benchmark data.",
+          "No independent measurements, deployment case, or research method is provided."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Local, on-device dictation is presented as a privacy and latency advantage, not just a convenience feature.",
+          "Several apps win by fixing one annoying default macOS behavior better than Apple does, such as window previews, Markdown preview, or mouse scrolling.",
+          "Context-aware typing assistance is framed as useful when it can read local screen context without sending data off the machine.",
+          "Power-user utilities still matter when they reduce tiny repeated actions across a workday, such as folder access, middle-click, or shortcut layering.",
+          "The list favors narrow tools with clear workflow wins over broad suites."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@ryanshrott/snazzy-labs-top-mac-apps-of-2026-the-upgrades-you-actually-need-c122e15efb80"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_tools_roundup",
+        "reasoning": [
+          "The source is structured as a numbered list of named apps with one dedicated section per item.",
+          "The primary content is product recommendations for tools, not a single tutorial or a news digest.",
+          "The headline and body both emphasize apps to install, matching a curated tools roundup pattern."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It suggests text based on what is visible on the screen, which can cut down on repeated manual typing.",
+            "It operates locally so the source claims your screen snapshots do not leave the Mac."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The app is presented as a polished utility rather than an experiment, but the source provides no adoption numbers or enterprise signals. Its niche is clear: keyboard-level productivity for Mac users who want context-aware typing without sending data off device. As of 2026-04-24, it reads as an appealing point solution rather than a proven platform.",
+          "name": "Cotypist",
+          "operational_relevance": "This is relevant wherever fast text entry benefits from local context, especially email, support replies, and repeated project-specific writing. Its main operational appeal is reducing retyping by using what is visible on screen to guide suggestions. The source frames it as privacy-preserving because snapshots stay on the Mac, which matters for teams sensitive to data leakage.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "ai-application",
+            "app"
+          ],
+          "related_tools": [],
+          "short_description": "A context-aware autocompleter for macOS that uses local screen snapshots to infer what you are working on.",
+          "strengths": "- Uses local screen context to make completions feel more relevant than generic autocomplete, which can reduce repetitive typing in real workflows.\n- Keeps snapshots on the device, which lowers privacy concern compared with cloud-based context capture.\n- Fits naturally into email and project communication workflows where names, clients, and jargon repeat often.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\u201cCotypist is one of those apps that sounds creepy until you use it for five minutes. It\u2019s a context-aware autocompleter. By taking quick, local snapshots of your screen (don\u2019t worry, nothing leaves your Mac), it learns what you\u2019re doing.\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not explain how accurate it is across different apps, how much screen content it stores, or how it behaves when context is ambiguous. There is no evidence here about battery impact, latency under load, or whether the local approach fails on complex tasks."
+        },
+        "notes": null,
+        "proposal_id": "4c183e5b-59e4-4186-bb46-c65bf6765abf",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It suggests text based on what is visible on the screen, which can cut down on repeated manual typing.",
+              "It operates locally so the source claims your screen snapshots do not leave the Mac."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application",
+            "typing"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "typing"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "core_capabilities": [
+            "It converts speech to text on the Mac itself, which reduces cloud exposure.",
+            "It supports both long dictation and quick voice-triggered snippets, making it useful for multiple input styles."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The wording suggests a standout consumer utility with a strong user experience pitch, but the source does not show scale, ecosystem, or adoption depth. It appears more mature than an experimental prototype because it is presented as the replacement for standard macOS dictation. As of 2026-04-24, the claim is useful but still anecdotal.",
+          "name": "DictaFlow",
+          "operational_relevance": "This kind of tool matters where voice input can replace typing without sending private audio or text to a cloud service. The source positions it as a practical productivity upgrade for drafting long text and triggering short snippets. For teams evaluating voice capture or dictation workflows, the on-device claim is the key operational detail because it changes privacy and latency expectations.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "dictation",
+            "ai-application"
+          ],
+          "related_tools": [],
+          "short_description": "An on-device speech-to-text app for macOS that emphasizes fast, private dictation.",
+          "strengths": "- Runs transcription entirely on-device, which is operationally attractive for privacy-sensitive work.\n- The source describes it as very fast, which suggests low friction for short dictation bursts and longer drafting sessions.\n- It supports both long-form writing and short voice-triggered snippets, so it fits more than one usage pattern.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\u201cDictaFlow is the standout speech-to-text app of 2026. It\u2019s lightning-fast and handles transcription entirely on-device, meaning your private thoughts stay private.\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not provide accuracy numbers, accent coverage, language support, or failure cases. The privacy and latency advantages are asserted rather than measured, and there is no information about export formats or enterprise controls."
+        },
+        "notes": null,
+        "proposal_id": "4133312c-3d45-49ee-8b76-9230acdae0f7",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It converts speech to text on the Mac itself, which reduces cloud exposure.",
+              "It supports both long dictation and quick voice-triggered snippets, making it useful for multiple input styles."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "dictation",
+            "ai-application"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "core_capabilities": [
+            "It can blur sensitive information in screenshots, which supports safer sharing.",
+            "It can capture full scrolling pages, which preserves context in documentation and debugging.",
+            "It can extract text from images, which turns screenshots into reusable source material."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "Shottr is described as a value-heavy utility rather than a niche experiment, and the price point is explicit. The source gives no adoption data, but the feature set suggests a mature power-user screenshot tool. As of 2026-04-24, the signal is mostly a practical recommendation.",
+          "name": "Shottr",
+          "operational_relevance": "This is relevant anywhere teams need to capture, redact, and share interface evidence quickly. Its value is in compressing multiple screenshot-related tasks into one utility, which reduces context switching during documentation, bug reporting, or design review. The OCR feature also makes image text reusable in downstream workflows.",
+          "proposed_new_type": null,
+          "proposed_types": [
+            "app"
+          ],
+          "related_tools": [],
+          "short_description": "A screenshot utility for macOS that adds blurring, scrolling capture, and optical character recognition.",
+          "strengths": "- Combines capture, redaction, scrolling screenshots, and text extraction, which makes it more efficient than using separate tools for each job.\n- The ability to blur sensitive details is especially useful when screenshots cross team boundaries.\n- Scrolling capture helps preserve full-page context instead of fragmenting evidence across many images.",
+          "suggested_action": "ignore",
+          "supporting_snippet": "\u201cShottr isn\u2019t just a screenshot tool; it\u2019s a productivity monster. For $12, you get a tool that can blur sensitive info, take scrolling screenshots of whole webpages, and even perform OCR (text extraction) from images.\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not describe OCR accuracy, file output options, or whether the redaction is reversible. There is also no comparison against built-in macOS tools beyond the author's opinion."
+        },
+        "notes": null,
+        "proposal_id": "53c46a10-947c-425e-bef2-096a518a1f5e",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can blur sensitive information in screenshots, which supports safer sharing.",
+              "It can capture full scrolling pages, which preserves context in documentation and debugging.",
+              "It can extract text from images, which turns screenshots into reusable source material."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "screenshot"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "screenshot"
+          ]
+        }
+      }
+    ],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 167.2,
+    "review_finished_at": "2026-05-22T16:42:03.212240+00:00",
+    "review_started_at": "2026-05-22T16:39:16+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-22T16:42:03+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Ryan Shrott",
+    "canonical_url": "https://medium.com/@ryanshrott/snazzy-labs-top-mac-apps-of-2026-the-upgrades-you-actually-need-c122e15efb80",
+    "content_sha256": "7c0b134e437a09a2c8e7280c7aa838b84f47b874fe5ee1e6cb2d3fc8a22857e7",
+    "publication": "Medium",
+    "published_date": "2026-04-24",
+    "raw_html_rel_path": "raw/readwise/snazzy-labs-top-mac-apps-of-2026-the-upgrades-you-actually-need-01krn2p9jbc9ehsfsycwek16gd.html",
+    "raw_md_rel_path": "raw/readwise/snazzy-labs-top-mac-apps-of-2026-the-upgrades-you-actually-need-01krn2p9jbc9ehsfsycwek16gd.md",
+    "source_id": "snazzy-labs-top-mac-apps-of-2026-the-upgrades-you-actually-need-01krn2p9jbc9ehsfsycwek16gd",
+    "title": "Snazzy Labs\u2019 Top Mac Apps of 2026: The Upgrades You Actually Need"
+  }
+}

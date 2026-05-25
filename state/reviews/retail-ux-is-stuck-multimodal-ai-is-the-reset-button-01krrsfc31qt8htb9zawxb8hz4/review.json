@@ -1,0 +1,585 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-22T15:07:19+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DiLkmY9dXHKTe7GNILW7SPu4LKwKs",
+    "token_usage": {
+      "completion_tokens": 2347,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 29919,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 29440
+      },
+      "total_tokens": 32266
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-01-19",
+        "confidence": 0.83,
+        "evidence_from_source": "The article says \"the shift to Agentic commerce has already begun\" and describes shopping in two modes: indirect inside ecosystems like ChatGPT, Perplexity, and Gemini, and directly through a brand's own AI agent.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "agentic-ai",
+        "proposed_tags": [
+          "agentic-ai",
+          "ai-architecture"
+        ],
+        "related_trends": [
+          "realtime-multimodal-interaction"
+        ],
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Two shopping modes are named: indirect inside AI ecosystems and direct through a brand-owned agent.",
+          "The article says discovery is being replaced by intent-led interaction.",
+          "It claims agents evaluate structured data and deliver answers and actions."
+        ],
+        "supporting_snippet": "Today, consumers shop via websites and apps using the same tired UI. But soon, consumers will be shopping in two modes: Indirect, inside ecosystems like ChatGPT, Perplexity, and Gemini. Directly, through a brand\u2019s own AI agent.",
+        "time_sensitivity": "Actionable as of 2026-01-19; the source frames this as an emerging interface pattern, but provides no adoption data or outcome metrics.",
+        "trend_description": "Commerce interfaces are increasingly designed around AI agents that can discover, compare, and act on product information using structured data and conversational intent. The durable pattern is not a chatbot bolted onto a storefront, but a shopping surface that agents can query and users can steer in one flow. This requires machine-readable catalog data and an interface that can adapt in real time to both human and agent input.",
+        "trend_slug": "agentic-commerce-interfaces",
+        "trend_title": "Agentic Commerce Interfaces",
+        "uncertainty_note": "The evidence is vendor-authored and directional, so the extent of real-world adoption remains unclear; the source does not show that this interface pattern is already widespread.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The article is published on Cognigy\u2019s site and argues for its own product positioning.",
+        "Claims about future shopping modes and infrastructure are presented without external evidence.",
+        "The only concrete implementation statement is a vendor assertion: 'We're already powering dynamic commerce experiences.'"
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "The article says that online shopping interfaces have barely changed in many years, even though the way people search and buy things is changing. Instead of relying only on grids, filters, and static product pages, the future shopping experience is described as something that can listen, respond, and change as you go. In this view, a person can ask for something in plain language, see the page update, and keep refining the results. The piece also says that shopping may happen in two places: inside other AI apps such as ChatGPT, Perplexity, and Gemini, or through a brand's own AI assistant. It argues that product pages should expose structured information so AI systems can understand them more easily. The author presents this as a redesign of the shopping experience rather than a small visual update. The writing is partly promotional for NiCE Cognigy, but it does surface practical ideas about how shopping interfaces may need to work. As of 2026-01-19, the claims are directionally useful but should be treated as vendor-led guidance rather than proven market fact.",
+      "assessed_as_of": "2026-01-19",
+      "contradictions_and_skepticism": "The article presents agentic commerce as inevitable, but that is a strategic assertion rather than demonstrated evidence. It also uses broad comparisons to 2-day shipping and streaming, which are persuasive analogies but not proof that shopping interfaces will change at the same pace or in the same way. The 'we're already powering dynamic commerce experiences' line is a vendor claim without detail, so it should not be read as a general validation of the full thesis.",
+      "key_insights": [
+        "Static product detail pages are framed as inadequate for intent-driven shopping because they force users to translate intent into filters and categories.",
+        "A next-gen product page is described as a dynamic workspace that adapts layout, comparisons, and recommendations to human or agent intent.",
+        "The article distinguishes two purchase modes that brands may need to support: shopping inside external AI ecosystems and shopping through a brand-owned agent.",
+        "Structured product attributes are presented as a prerequisite for AI-friendly retrieval and agent interaction.",
+        "The piece is strongest as a design direction for multimodal commerce; it is weaker on evidence and implementation detail."
+      ],
+      "limitations_and_open_questions": "The source provides no measured outcomes, user studies, or deployment metrics, so claims about conversion, containment, or expectation shifts are unproven. It does not specify the data model, governance, latency, or failure modes needed to make a multimodal shopping interface reliable at scale. The article also does not explain how brands should handle conflicting inventory, pricing, personalization, or compliance across external AI ecosystems and their own agents. Because it is vendor-authored, the infrastructure claims should be treated cautiously until corroborated by independent deployment evidence.",
+      "sources": [
+        "https://www.cognigy.com/blog/retail-ux-is-stuck.-multimodal-ai-is-the-reset-button"
+      ],
+      "summary": "The piece argues that conventional e-commerce interfaces are stuck in a click-and-filter model that does not fit multimodal, intent-driven shopping. Its core claim is that product discovery and conversion are moving toward agentic commerce, where both consumers and AI agents interact with structured product data through conversation, visuals, and real-time adaptation. It frames the next product detail page as an intent-driven workspace rather than a static page, with dynamic comparisons, contextual recommendations, and machine-readable attributes. The article also claims that brands need to support two purchase modes: indirect shopping inside ecosystems like ChatGPT, Perplexity, and Gemini, and direct shopping through a brand's own AI agent. Most of the piece is directional and promotional, but it does identify concrete interface and infrastructure requirements for multimodal commerce.",
+      "why_it_matters": "The piece is useful because it turns a vague 'AI shopping' idea into a concrete interface requirement: product data must be structured enough for agents to retrieve, compare, and act on it. That matters for product teams because it implies the shopping surface is no longer just a static page but a runtime layer that can recompose itself around intent. The article's most durable contribution is the insistence that language, visuals, and structured attributes need to work together rather than separately. It also makes a practical distinction between discovery inside external ecosystems and direct interaction through a brand-owned agent, which is a useful planning lens even if the article does not prove adoption levels. The claims about 'word of model' and permanent expectation shifts are promotional rather than evidenced, so they should be treated as directional framing, not settled fact. For conversational commerce and support flows, the closing implication is that a single journey from discovery to support may reduce handoffs if the agent can use the same product data and conversation context end to end. As of 2026-01-19, the piece is actionable mainly as a UX and information-architecture prompt, not as proof that the pattern has fully won."
+    },
+    "source_type_detection": {
+      "confidence": 0.9,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single vendor blog post with one sustained argument rather than a bundle of items or a Q&A transcript.",
+        "No numbered tutorial structure or curated list of tools/practices.",
+        "Primary content is opinionated analysis and product positioning, not a formal report or benchmark."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.86,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The user can express intent in natural language while the interface updates visually in the same session.",
+          "Conversation and visual layout are treated as mutually reinforcing, not separate channels.",
+          "The system should preserve context as the user refines the request instead of resetting the flow."
+        ],
+        "knowledge_summary": "Multimodal interaction combines language, visuals, and other input modes into one continuous interface that can adapt in real time. In AI products, the useful pattern is not merely adding a chatbot, but allowing the system to reshape what it shows and offers as the user refines intent. This works best when the interface can update layouts, comparisons, and recommendations without forcing the user to restart the interaction. The design challenge is to keep the experience coherent while the system responds dynamically to mixed human and machine input.",
+        "match_candidates": [],
+        "operational_insight": "Treat the multimodal layer as an interaction engine, not a garnish. The durable design move is to let text, voice, and visual states share the same intent context so the interface can adapt without losing state.",
+        "primary_tag": "interactive-ai",
+        "proposed_tags": [
+          "interactive-ai",
+          "ai-architecture"
+        ],
+        "related_topics": [],
+        "relevance_note": "This pattern matters wherever users need to refine complex choices through language plus visuals, including shopping, onboarding, and guided support. It gives product teams a reusable way to think about adaptive interfaces that can serve both people and agents.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Show me hiking boots under $150.\" Layout updates in real time. Shopper clicks one. Agent adjusts the context.",
+        "topic_slug": "realtime-multimodal-interaction",
+        "topic_title": "Realtime Multimodal Interaction",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Static grids and filters are treated as insufficient for users who want to express intent directly.",
+          "The page should expose structured attributes that make retrieval and comparison machine-readable.",
+          "Dynamic recommendations, stock, bundles, and comparisons are part of the interface, not separate tools."
+        ],
+        "knowledge_summary": "Intent-driven commerce interfaces are shopping surfaces that organize product discovery around what the user wants to accomplish rather than around pre-baked categories and static filter trees. The interface becomes a runtime layer that can adapt comparisons, recommendations, and available actions as intent becomes clearer. This pattern requires structured product data so the system can retrieve relevant attributes and explain tradeoffs dynamically. It is especially useful when the same catalog must serve both direct shoppers and AI-mediated discovery flows.",
+        "match_candidates": [],
+        "operational_insight": "For commerce systems, the design target is no longer just page rendering; it is intent resolution over structured product data. Teams need to think about how the UI, catalog schema, and AI layer cooperate to produce comparable options and actions on demand.",
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "interactive-ai"
+        ],
+        "related_topics": [
+          "realtime-multimodal-interaction"
+        ],
+        "relevance_note": "This is a durable pattern for any product catalog exposed to conversational search or agentic browsing. It shapes how catalogs, recommendation systems, and user interfaces need to be designed when discovery is driven by natural language instead of rigid navigation.",
+        "secondary_tag": "interactive-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The next-gen PDP isn't a container; it's an interface that: Adapts layout dynamically based on human or agent intent. Blend visual elements with conversational context. Exposes structured attributes for NLP-friendly retrieval.",
+        "topic_slug": "intent-driven-commerce-interfaces",
+        "topic_title": "Intent-Driven Commerce Interfaces",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-01-19",
+          "confidence": 0.83,
+          "evidence_from_source": "The article says \"the shift to Agentic commerce has already begun\" and describes shopping in two modes: indirect inside ecosystems like ChatGPT, Perplexity, and Gemini, and directly through a brand's own AI agent.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "agentic-ai",
+          "proposed_tags": [
+            "agentic-ai",
+            "ai-architecture"
+          ],
+          "related_trends": [
+            "realtime-multimodal-interaction"
+          ],
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Two shopping modes are named: indirect inside AI ecosystems and direct through a brand-owned agent.",
+            "The article says discovery is being replaced by intent-led interaction.",
+            "It claims agents evaluate structured data and deliver answers and actions."
+          ],
+          "supporting_snippet": "Today, consumers shop via websites and apps using the same tired UI. But soon, consumers will be shopping in two modes: Indirect, inside ecosystems like ChatGPT, Perplexity, and Gemini. Directly, through a brand\u2019s own AI agent.",
+          "time_sensitivity": "Actionable as of 2026-01-19; the source frames this as an emerging interface pattern, but provides no adoption data or outcome metrics.",
+          "trend_description": "Commerce interfaces are increasingly designed around AI agents that can discover, compare, and act on product information using structured data and conversational intent. The durable pattern is not a chatbot bolted onto a storefront, but a shopping surface that agents can query and users can steer in one flow. This requires machine-readable catalog data and an interface that can adapt in real time to both human and agent input.",
+          "trend_slug": "agentic-commerce-interfaces",
+          "trend_title": "Agentic Commerce Interfaces",
+          "uncertainty_note": "The evidence is vendor-authored and directional, so the extent of real-world adoption remains unclear; the source does not show that this interface pattern is already widespread.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "00d10d4a-75c2-4f32-866f-a71f2dad5c59",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "realtime-multimodal-interaction"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Two shopping modes are named: indirect inside AI ecosystems and direct through a brand-owned agent.",
+              "The article says discovery is being replaced by intent-led interaction.",
+              "It claims agents evaluate structured data and deliver answers and actions."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic-ai",
+            "ai-economics"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The article is published on Cognigy\u2019s site and argues for its own product positioning.",
+          "Claims about future shopping modes and infrastructure are presented without external evidence.",
+          "The only concrete implementation statement is a vendor assertion: 'We're already powering dynamic commerce experiences.'"
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Static product detail pages are framed as inadequate for intent-driven shopping because they force users to translate intent into filters and categories.",
+          "A next-gen product page is described as a dynamic workspace that adapts layout, comparisons, and recommendations to human or agent intent.",
+          "The article distinguishes two purchase modes that brands may need to support: shopping inside external AI ecosystems and shopping through a brand-owned agent.",
+          "Structured product attributes are presented as a prerequisite for AI-friendly retrieval and agent interaction.",
+          "The piece is strongest as a design direction for multimodal commerce; it is weaker on evidence and implementation detail."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.cognigy.com/blog/retail-ux-is-stuck.-multimodal-ai-is-the-reset-button"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.9,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single vendor blog post with one sustained argument rather than a bundle of items or a Q&A transcript.",
+          "No numbered tutorial structure or curated list of tools/practices.",
+          "Primary content is opinionated analysis and product positioning, not a formal report or benchmark."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.86,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The user can express intent in natural language while the interface updates visually in the same session.",
+            "Conversation and visual layout are treated as mutually reinforcing, not separate channels.",
+            "The system should preserve context as the user refines the request instead of resetting the flow."
+          ],
+          "knowledge_summary": "Multimodal interaction combines language, visuals, and other input modes into one continuous interface that can adapt in real time. In AI products, the useful pattern is not merely adding a chatbot, but allowing the system to reshape what it shows and offers as the user refines intent. This works best when the interface can update layouts, comparisons, and recommendations without forcing the user to restart the interaction. The design challenge is to keep the experience coherent while the system responds dynamically to mixed human and machine input.",
+          "match_candidates": [],
+          "operational_insight": "Treat the multimodal layer as an interaction engine, not a garnish. The durable design move is to let text, voice, and visual states share the same intent context so the interface can adapt without losing state.",
+          "primary_tag": "interactive-ai",
+          "proposed_tags": [
+            "interactive-ai",
+            "ai-architecture"
+          ],
+          "related_topics": [],
+          "relevance_note": "This pattern matters wherever users need to refine complex choices through language plus visuals, including shopping, onboarding, and guided support. It gives product teams a reusable way to think about adaptive interfaces that can serve both people and agents.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Show me hiking boots under $150.\" Layout updates in real time. Shopper clicks one. Agent adjusts the context.",
+          "topic_slug": "realtime-multimodal-interaction",
+          "topic_title": "Realtime Multimodal Interaction",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "8fb95bc8-b8ce-451b-9a5f-677b14ba8379",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The user can express intent in natural language while the interface updates visually in the same session.",
+              "Conversation and visual layout are treated as mutually reinforcing, not separate channels.",
+              "The system should preserve context as the user refines the request instead of resetting the flow."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "interactive-ai",
+            "realtime-ai"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Static grids and filters are treated as insufficient for users who want to express intent directly.",
+            "The page should expose structured attributes that make retrieval and comparison machine-readable.",
+            "Dynamic recommendations, stock, bundles, and comparisons are part of the interface, not separate tools."
+          ],
+          "knowledge_summary": "Intent-driven commerce interfaces are shopping surfaces that organize product discovery around what the user wants to accomplish rather than around pre-baked categories and static filter trees. The interface becomes a runtime layer that can adapt comparisons, recommendations, and available actions as intent becomes clearer. This pattern requires structured product data so the system can retrieve relevant attributes and explain tradeoffs dynamically. It is especially useful when the same catalog must serve both direct shoppers and AI-mediated discovery flows.",
+          "match_candidates": [],
+          "operational_insight": "For commerce systems, the design target is no longer just page rendering; it is intent resolution over structured product data. Teams need to think about how the UI, catalog schema, and AI layer cooperate to produce comparable options and actions on demand.",
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "interactive-ai"
+          ],
+          "related_topics": [
+            "realtime-multimodal-interaction"
+          ],
+          "relevance_note": "This is a durable pattern for any product catalog exposed to conversational search or agentic browsing. It shapes how catalogs, recommendation systems, and user interfaces need to be designed when discovery is driven by natural language instead of rigid navigation.",
+          "secondary_tag": "interactive-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-applications",
+          "suggested_new_tags": [
+            "ai-applications"
+          ],
+          "supporting_snippet": "The next-gen PDP isn't a container; it's an interface that: Adapts layout dynamically based on human or agent intent. Blend visual elements with conversational context. Exposes structured attributes for NLP-friendly retrieval.",
+          "topic_slug": "intent-driven-commerce-interfaces",
+          "topic_title": "Intent-Driven Commerce Interfaces",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3b362bd9-3453-40b3-8862-45b0afe1de4b",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Static grids and filters are treated as insufficient for users who want to express intent directly.",
+              "The page should expose structured attributes that make retrieval and comparison machine-readable.",
+              "Dynamic recommendations, stock, bundles, and comparisons are part of the interface, not separate tools."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "realtime-multimodal-interaction"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ai-applications"
+          ],
+          "final_tags": [
+            "interactive-ai",
+            "ai-applications"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 227.3,
+    "review_finished_at": "2026-05-22T15:11:06.277814+00:00",
+    "review_started_at": "2026-05-22T15:07:19+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-22T15:11:06+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jarrod Davis",
+    "canonical_url": "https://www.cognigy.com/blog/retail-ux-is-stuck.-multimodal-ai-is-the-reset-button",
+    "content_sha256": "a8ac1462b813225db2e66ea0980d5769303ab58494424a6bf4fc9f6a822d1284",
+    "publication": "cognigy.com",
+    "published_date": "2026-01-19",
+    "raw_html_rel_path": "raw/readwise/retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4.html",
+    "raw_md_rel_path": "raw/readwise/retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4.md",
+    "source_id": "retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4",
+    "title": "Retail UX is Stuck. Multimodal AI is the Reset Button."
+  }
+}

@@ -1,0 +1,600 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-22T15:11:36+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DiLonxWQZytLVgGQIxw8s8G1ZcNFH",
+    "token_usage": {
+      "completion_tokens": 2482,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 30006,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 32488
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-28",
+        "confidence": 0.74,
+        "evidence_from_source": "The article says DeepSeek's earlier release triggered panic because it delivered near-top performance at a fraction of the cost, but v4 was greeted with a shrug despite still being strong and cheap for users.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_trends": [
+          "software-differentiation-shifts-from-engineering-to-distribution"
+        ],
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "DeepSeek's earlier models reportedly performed nearly as well as leading Western ones at a fraction of the cost.",
+          "v4 is described as cheap for customers, with an introductory offer at a thousandth of the price of the best American models for some uses.",
+          "The article says the training-cost figure that made the prior release famous is omitted from the new white paper."
+        ],
+        "supporting_snippet": "\"Why? ... Yet the release on April 24th of the lab\u2019s new model, called v4, has been greeted with a shrug.\"",
+        "time_sensitivity": "As of 2026-04-28, this is a live market-reading rather than a timeless rule; it should be monitored against later releases from the same labs and peers.",
+        "trend_description": "A one-time efficiency or capability breakthrough can be difficult to repeat once competitors improve and expectations rise. The same technical performance may still be impressive, but it may no longer generate outsized market reaction if the surrounding field has caught up. Repeatable disruption requires either a new step-change or a new source of evidence that makes the gain legible.",
+        "trend_slug": "model-breakthroughs-become-harder-to-sustain",
+        "trend_title": "Model Breakthroughs Become Harder to Sustain",
+        "uncertainty_note": "The article is one case from one market, so it cannot prove a universal pattern; the weaker reaction may reflect competition, missing cost disclosure, or changing investor expectations rather than an inherent limit on breakthroughs.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "The source is an Economist analysis of DeepSeek and the Chinese AI market, not a vendor announcement.",
+        "Claims are framed through reported market context, article commentary, and comparisons to other labs.",
+        "It includes a few quoted company-reported figures, but the overall piece is third-party analysis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "A Chinese artificial intelligence lab called DeepSeek made headlines a little over a year earlier because it released models that performed almost as well as top Western systems but were much cheaper to build. Its new model, v4, did not create the same excitement. The article says the new model is still strong and still cheap for users, but it may not have been nearly as cheap to train as the earlier one. It also says DeepSeek is facing tougher competition inside China from other model makers and from big internet companies that are building products on top of artificial intelligence. Those companies are focusing less on the raw model and more on apps that help people do things and move money or goods. The piece also points to more government control in China, including pressure to use local chips and a blocked acquisition. The overall message is that a clever model alone may no longer be enough to stand out. As of April 2026, the article treats DeepSeek\u2019s latest release as important but not decisive.",
+      "assessed_as_of": "2026-04-28",
+      "contradictions_and_skepticism": "There is a tension between the claim that v4 remains highly capable and cheap for customers and the article\u2019s suggestion that the release failed to impress; the gap seems to come from the loss of a dramatic cost story rather than a collapse in quality. The comparison with Anthropic\u2019s cautious release is suggestive but incomplete, because the article does not establish whether DeepSeek\u2019s safeguards are actually weaker or merely undocumented. The piece also hints at a competitive landscape where model leadership matters less, but it does not provide hard evidence that app-layer products are already monetizing better than models across the board.",
+      "key_insights": [
+        "DeepSeek v4 is presented as strong on user price/performance, but the article argues that the training-cost breakthrough that made its earlier release famous is no longer clearly demonstrated.",
+        "The Chinese AI market described here is crowded enough that model quality alone is no longer the only differentiator; app-layer distribution matters more in the article\u2019s framing.",
+        "The omission of a v4 training-cost figure is itself treated as a meaningful signal, because the earlier $6m claim was central to DeepSeek\u2019s reputation.",
+        "State intervention is not treated as background noise: the article says chip choices and merger controls are directly shaping AI company strategy in China.",
+        "The article\u2019s Anthropic comparison suggests that capability and safety governance are being discussed together, but it gives no technical evidence for DeepSeek\u2019s own safeguards."
+      ],
+      "limitations_and_open_questions": "The article relies heavily on company tests for performance claims, and it does not provide independent benchmarks for v4. It also gives no training-cost estimate for v4, which makes the central cost-efficiency comparison less auditable than the earlier DeepSeek release. The discussion of safeguards is thin: the article notes that DeepSeek\u2019s documents do not mention them, but it does not inspect the model or its deployment policies. It is also unclear how much of DeepSeek\u2019s reduced splash is due to technical limits versus market saturation and state constraints. The article mentions app-layer monetization, but it does not quantify whether those products are commercially succeeding.",
+      "sources": [
+        "https://www.economist.com/business/2026/04/28/why-deepseeks-sequel-failed-to-impress"
+      ],
+      "summary": "The piece argues that DeepSeek\u2019s April 24, 2026 release of v4 did not recreate the shock of its earlier breakthrough because the competitive and political context around it had changed. DeepSeek still appears to offer strong performance and very low pricing, but the article says the model was no longer obviously a cost miracle, and the company did not disclose the training cost for v4. It also places DeepSeek in a denser Chinese market where Alibaba\u2019s Qwen family, ByteDance\u2019s Doubao, and other labs have reduced the room for a single breakout story. The article adds that Chinese internet firms are shifting attention toward apps and \u201csuper apps\u201d built on top of models rather than models alone. Finally, it notes that state involvement is constraining the sector, including reported chip preferences and an attempted acquisition that Beijing blocked. The closing comparison with Anthropic\u2019s restrained release of a powerful model suggests that capability gains raise governance and safety questions, but the article does not provide technical detail on DeepSeek\u2019s safeguards.",
+      "why_it_matters": "This piece matters because it shows how quickly a breakthrough narrative can lose force when competitors catch up and the surrounding market changes. DeepSeek\u2019s v4 still appears competitive on performance and pricing, but the article suggests that those traits are no longer enough to recreate the earlier panic. For AI teams, the practical lesson is that headline efficiency gains matter most when they are both extreme and auditable; once the source stops disclosing training cost, the market story becomes harder to sustain. The article also highlights a product-strategy point: Chinese internet firms are putting more emphasis on app layers, digital workflows, and \u201csuper apps\u201d than on model releases alone. That makes distribution and integration part of the value proposition, not just model benchmarks. The state-intervention angle is material because chip availability and regulatory approval are shaping what gets built and shipped. For service automation, the article\u2019s most concrete signal is that Alibaba is already using Qwen in a merchant-facing \u201cdigital workforce,\u201d which suggests models are being pulled into operational apps rather than treated as standalone demos. As of 2026-04-28, the article reads as a useful but source-limited snapshot: actionable for strategy framing, not enough by itself to justify sweeping conclusions."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article with one main argument, not a bundle of short items or Q&A.",
+        "No tutorial structure, numbered practices, or product roundup format.",
+        "Uses reporting and analysis from The Economist rather than a transcript or research paper."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.86,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A model can remain competitive while still failing to create market excitement if the surrounding ecosystem has matured.",
+          "Distribution and workflow fit can matter more than a marginal model improvement once several players are close in capability.",
+          "Model launches should be evaluated with the product layer in mind, especially when the source says attention has moved to apps built on top of AI."
+        ],
+        "knowledge_summary": "When model quality becomes good enough across several providers, the competitive edge can move toward where the model is embedded, how it is packaged, and which workflows it enables. A model release that once would have stood out on benchmarks can feel routine if rivals have closed the gap. Product layers, merchant workflows, and app ecosystems can become more important than raw model announcements. The durable lesson is that model capability and distribution should be evaluated together, not separately.",
+        "match_candidates": [],
+        "operational_insight": "Treat benchmark parity as the start of product competition, not the finish. If a model is no longer obviously ahead on cost or capability, the next moat is usually integration, workflow attachment, and customer-facing utility.",
+        "primary_tag": "ai-architecture",
+        "proposed_tags": [
+          "ai-architecture",
+          "ai-engineering",
+          "ai-applications"
+        ],
+        "related_topics": [
+          "software-moat-compression",
+          "agentic-workflows"
+        ],
+        "relevance_note": "This pattern matters because many AI products are not sold as standalone models; they are sold as embedded capabilities inside workflows, copilots, and customer-facing applications. Teams that only track model scores can miss the business logic that determines adoption and retention.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"In China, much of the attention has shifted to the apps built on top of AI... Clever models alone are not seen as the way to make money from the technology.\"",
+        "topic_slug": "ai-model-differentiation-shifts-to-distribution",
+        "topic_title": "AI Model Differentiation Shifts to Distribution",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.75,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Compute strategy is exposed to policy decisions when governments push specific chip suppliers or restrict acquisitions.",
+          "Infrastructure choice can change training cost and schedule even when model architecture is unchanged.",
+          "Founders and ownership controls can become practical constraints on AI company autonomy."
+        ],
+        "knowledge_summary": "Government policy can shape AI development through compute access, chip procurement, merger approvals, and mobility restrictions on founders and key staff. Those constraints affect not just training cost but also timing, infrastructure choice, and organizational freedom. In some markets, the practical limits on AI progress come from procurement and regulation as much as from model science. Practitioners should treat infrastructure availability and policy exposure as first-order deployment variables.",
+        "match_candidates": [],
+        "operational_insight": "Plan model and infrastructure strategy around the possibility that chip supply, vendor access, or corporate actions can be constrained by policy. If a region depends on state-favored hardware or approvals, timing and cost assumptions can change outside the engineering team\u2019s control.",
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "ai-architecture",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "agent-infrastructure"
+        ],
+        "relevance_note": "This matters because AI systems depend on scarce compute, hardware supply chains, and regulatory permission as much as on algorithms. For teams building services on top of frontier models, policy risk can affect latency to launch, training budgets, and which infrastructure is even available.",
+        "secondary_tag": "ai-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"DeepSeek reportedly tried to train its new model on them, but eventually fell back on Nvidia\u2019s chips instead, adding cost and time.\"",
+        "topic_slug": "state-control-over-ai-supply-chains",
+        "topic_title": "State Control Over AI Supply Chains",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-28",
+          "confidence": 0.74,
+          "evidence_from_source": "The article says DeepSeek's earlier release triggered panic because it delivered near-top performance at a fraction of the cost, but v4 was greeted with a shrug despite still being strong and cheap for users.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_trends": [
+            "software-differentiation-shifts-from-engineering-to-distribution"
+          ],
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "DeepSeek's earlier models reportedly performed nearly as well as leading Western ones at a fraction of the cost.",
+            "v4 is described as cheap for customers, with an introductory offer at a thousandth of the price of the best American models for some uses.",
+            "The article says the training-cost figure that made the prior release famous is omitted from the new white paper."
+          ],
+          "supporting_snippet": "\"Why? ... Yet the release on April 24th of the lab\u2019s new model, called v4, has been greeted with a shrug.\"",
+          "time_sensitivity": "As of 2026-04-28, this is a live market-reading rather than a timeless rule; it should be monitored against later releases from the same labs and peers.",
+          "trend_description": "A one-time efficiency or capability breakthrough can be difficult to repeat once competitors improve and expectations rise. The same technical performance may still be impressive, but it may no longer generate outsized market reaction if the surrounding field has caught up. Repeatable disruption requires either a new step-change or a new source of evidence that makes the gain legible.",
+          "trend_slug": "model-breakthroughs-become-harder-to-sustain",
+          "trend_title": "Model Breakthroughs Become Harder to Sustain",
+          "uncertainty_note": "The article is one case from one market, so it cannot prove a universal pattern; the weaker reaction may reflect competition, missing cost disclosure, or changing investor expectations rather than an inherent limit on breakthroughs.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "2d1a6719-7a36-4d19-aeed-35386085e0a7",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "software-differentiation-shifts-from-engineering-to-distribution"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "DeepSeek's earlier models reportedly performed nearly as well as leading Western ones at a fraction of the cost.",
+              "v4 is described as cheap for customers, with an introductory offer at a thousandth of the price of the best American models for some uses.",
+              "The article says the training-cost figure that made the prior release famous is omitted from the new white paper."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "The source is an Economist analysis of DeepSeek and the Chinese AI market, not a vendor announcement.",
+          "Claims are framed through reported market context, article commentary, and comparisons to other labs.",
+          "It includes a few quoted company-reported figures, but the overall piece is third-party analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "DeepSeek v4 is presented as strong on user price/performance, but the article argues that the training-cost breakthrough that made its earlier release famous is no longer clearly demonstrated.",
+          "The Chinese AI market described here is crowded enough that model quality alone is no longer the only differentiator; app-layer distribution matters more in the article\u2019s framing.",
+          "The omission of a v4 training-cost figure is itself treated as a meaningful signal, because the earlier $6m claim was central to DeepSeek\u2019s reputation.",
+          "State intervention is not treated as background noise: the article says chip choices and merger controls are directly shaping AI company strategy in China.",
+          "The article\u2019s Anthropic comparison suggests that capability and safety governance are being discussed together, but it gives no technical evidence for DeepSeek\u2019s own safeguards."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/business/2026/04/28/why-deepseeks-sequel-failed-to-impress"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article with one main argument, not a bundle of short items or Q&A.",
+          "No tutorial structure, numbered practices, or product roundup format.",
+          "Uses reporting and analysis from The Economist rather than a transcript or research paper."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.86,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A model can remain competitive while still failing to create market excitement if the surrounding ecosystem has matured.",
+            "Distribution and workflow fit can matter more than a marginal model improvement once several players are close in capability.",
+            "Model launches should be evaluated with the product layer in mind, especially when the source says attention has moved to apps built on top of AI."
+          ],
+          "knowledge_summary": "When model quality becomes good enough across several providers, the competitive edge can move toward where the model is embedded, how it is packaged, and which workflows it enables. A model release that once would have stood out on benchmarks can feel routine if rivals have closed the gap. Product layers, merchant workflows, and app ecosystems can become more important than raw model announcements. The durable lesson is that model capability and distribution should be evaluated together, not separately.",
+          "match_candidates": [],
+          "operational_insight": "Treat benchmark parity as the start of product competition, not the finish. If a model is no longer obviously ahead on cost or capability, the next moat is usually integration, workflow attachment, and customer-facing utility.",
+          "primary_tag": "ai-architecture",
+          "proposed_tags": [
+            "ai-architecture",
+            "ai-engineering",
+            "ai-applications"
+          ],
+          "related_topics": [
+            "software-moat-compression",
+            "agentic-workflows"
+          ],
+          "relevance_note": "This pattern matters because many AI products are not sold as standalone models; they are sold as embedded capabilities inside workflows, copilots, and customer-facing applications. Teams that only track model scores can miss the business logic that determines adoption and retention.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"In China, much of the attention has shifted to the apps built on top of AI... Clever models alone are not seen as the way to make money from the technology.\"",
+          "topic_slug": "ai-model-differentiation-shifts-to-distribution",
+          "topic_title": "AI Model Differentiation Shifts to Distribution",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "13b6c1be-4da9-4870-9e1c-bc3b919d619c",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A model can remain competitive while still failing to create market excitement if the surrounding ecosystem has matured.",
+              "Distribution and workflow fit can matter more than a marginal model improvement once several players are close in capability.",
+              "Model launches should be evaluated with the product layer in mind, especially when the source says attention has moved to apps built on top of AI."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "software-moat-compression",
+              "agentic-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-architecture",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.75,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Compute strategy is exposed to policy decisions when governments push specific chip suppliers or restrict acquisitions.",
+            "Infrastructure choice can change training cost and schedule even when model architecture is unchanged.",
+            "Founders and ownership controls can become practical constraints on AI company autonomy."
+          ],
+          "knowledge_summary": "Government policy can shape AI development through compute access, chip procurement, merger approvals, and mobility restrictions on founders and key staff. Those constraints affect not just training cost but also timing, infrastructure choice, and organizational freedom. In some markets, the practical limits on AI progress come from procurement and regulation as much as from model science. Practitioners should treat infrastructure availability and policy exposure as first-order deployment variables.",
+          "match_candidates": [],
+          "operational_insight": "Plan model and infrastructure strategy around the possibility that chip supply, vendor access, or corporate actions can be constrained by policy. If a region depends on state-favored hardware or approvals, timing and cost assumptions can change outside the engineering team\u2019s control.",
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "ai-architecture",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "agent-infrastructure"
+          ],
+          "relevance_note": "This matters because AI systems depend on scarce compute, hardware supply chains, and regulatory permission as much as on algorithms. For teams building services on top of frontier models, policy risk can affect latency to launch, training budgets, and which infrastructure is even available.",
+          "secondary_tag": "ai-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-economics",
+          "suggested_new_tags": [
+            "ai-economics",
+            "ai-policy"
+          ],
+          "supporting_snippet": "\"DeepSeek reportedly tried to train its new model on them, but eventually fell back on Nvidia\u2019s chips instead, adding cost and time.\"",
+          "topic_slug": "state-control-over-ai-supply-chains",
+          "topic_title": "State Control Over AI Supply Chains",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "6b06fe52-f727-453f-9cfb-a0ec134c8774",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Compute strategy is exposed to policy decisions when governments push specific chip suppliers or restrict acquisitions.",
+              "Infrastructure choice can change training cost and schedule even when model architecture is unchanged.",
+              "Founders and ownership controls can become practical constraints on AI company autonomy."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-infrastructure"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ai-economics",
+            "ai-policy"
+          ],
+          "final_tags": [
+            "ai-governance",
+            "ai-economics",
+            "ai-policy"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "independent_analysis": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 201.4,
+    "review_finished_at": "2026-05-22T15:14:57.412124+00:00",
+    "review_started_at": "2026-05-22T15:11:36+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-22T15:14:57+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/business/2026/04/28/why-deepseeks-sequel-failed-to-impress",
+    "content_sha256": "0f84901d9e5bab0f0a0a8666ecb8d8f89a7f32cc72838a47a2cc235a53568c4a",
+    "publication": "Economist",
+    "published_date": "2026-04-28",
+    "raw_html_rel_path": "raw/readwise/why-deepseek-s-sequel-failed-to-impress-01krh9chzbaznrrnht7s6d540b.html",
+    "raw_md_rel_path": "raw/readwise/why-deepseek-s-sequel-failed-to-impress-01krh9chzbaznrrnht7s6d540b.md",
+    "source_id": "why-deepseek-s-sequel-failed-to-impress-01krh9chzbaznrrnht7s6d540b",
+    "title": "Why DeepSeek\u2019s sequel failed to impress"
+  }
+}

@@ -546,9 +546,7 @@ def _render_topic_edit_box(
             )
             field_values["related_topics"] = "\n".join(selected)
         elif current_related:
-            field_values["related_topics"] = "\n".join(
-                cap_related_topic_slugs(current_related)
-            )
+            field_values["related_topics"] = "\n".join(cap_related_topic_slugs(current_related))
 
         snippet = str(llm_item.get("supporting_snippet") or "").strip()
         if snippet:

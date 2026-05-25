@@ -445,7 +445,7 @@ def test_record_events_model_per_section(tmp_path: Path) -> None:
                         "model_name": "GPT-5",
                         "provider": "OpenAI",
                         "operational_profile": "Strong for coding.",
-                    "deployment_implications": "Agent harness fit.",
+                        "deployment_implications": "Agent harness fit.",
                         "core_capabilities": ["long-context"],
                     },
                     "sections": {

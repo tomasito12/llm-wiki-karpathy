@@ -1,0 +1,475 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-22T16:36:15+00:00",
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "35",
+    "provider": "openai",
+    "request_id": "chatcmpl-DiN8qM38SWjDAFISTbgte6pav9I1u",
+    "token_usage": {
+      "completion_tokens": 1948,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens": 31096,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 4864
+      },
+      "total_tokens": 33044
+    }
+  },
+  "artifact_schema_version": 16,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The piece is a first-person account of the author's own workflow and choices.",
+        "Claims are supported by personal experience with a Markdown wiki and a Codex skill, not external measurement.",
+        "The article describes what the author built and how it felt to use it, rather than presenting a formal case study or benchmark."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about building a personal knowledge system that an artificial intelligence assistant can help maintain. The author started with a simple folder of Markdown files and then found a much larger project that showed how the same idea could become a full desktop app. Instead of copying everything, the author focused on the parts that would make the small setup smarter and easier to keep clean. One important idea was adding a file that explains the purpose of the wiki, so the assistant knows what kind of knowledge matters. Another was splitting work into two steps: first analyze the source, then write the wiki entry. The author also liked the idea of putting some items into a human review queue when the assistant is unsure. Because the wiki already lived in Markdown, the author chose to build a skill for the coding assistant rather than a whole new app. The result was a lighter system that still gets better over time. The piece is most useful as of 2026-04-29 for people who want a practical way to organize notes and sources without overbuilding.",
+      "assessed_as_of": "2026-04-29",
+      "contradictions_and_skepticism": "The piece is honest that the full app is impressive, but it also makes a gentle tradeoff argument that may not hold for everyone: a skill is enough if you already live in Markdown, yet that is a workflow preference rather than a universal rule. The article sometimes treats richer structure as obviously better, but it does not show a case where the extra layers materially improved outcomes beyond perceived organization. The claims about better judgment, cleaner maintenance, and less forgetfulness are sensible, but they remain qualitative.",
+      "key_insights": [
+        "A purpose file can act as a stable policy layer for a personal wiki, steering what gets preserved and why.",
+        "Two-step ingest is safer than direct write-through because it separates source analysis from permanent knowledge updates.",
+        "A human review queue is useful when metric definitions, architecture choices, or source conflicts are still unsettled.",
+        "For a Markdown-native knowledge base, a project-level skill may deliver most of the value of a full app with less complexity.",
+        "The durable lesson is to improve maintenance behavior before adding more interface features."
+      ],
+      "limitations_and_open_questions": "The article is a personal account, so it does not provide measured outcomes, error rates, or comparative evaluations of the app versus the skill-based approach. The strongest claims are about usefulness and workflow fit rather than quantified performance. It is also unclear how well the described maintenance pattern scales when many users edit the same knowledge base or when ingestion volume is high. The piece does not explain the exact review heuristics, failure modes for provenance tracking, or how duplicate concept detection is implemented. The \u201cskill now, app later\u201d choice is plausible for a Markdown-native setup, but the article does not test whether that remains sufficient once the wiki becomes much larger or more collaborative.",
+      "sources": [
+        "https://medium.com/@markchen69/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-62c629b3c8d2"
+      ],
+      "summary": "The author describes moving from a simple personal Markdown wiki inspired by Karpathy\u2019s LLM Wiki pattern to a more structured maintenance workflow after reading about nashsu/llm_wiki. The central argument is that the useful lesson is not to copy the full desktop app, but to borrow the habits that make a knowledge base compound: clear purpose, two-step ingest, human review, provenance, and consistent index/log updates. The article contrasts a lightweight folder-based wiki with a richer product that includes document import, web clipping, graph views, vector search, review queues, and persistent ingest jobs. The author then explains why a project-level Codex skill was the right next step for a Markdown-native setup: it enforces repeatable maintenance behavior without requiring a new app. The practical takeaway is that a small knowledge system can be made much more useful by improving the agent\u2019s instructions and review loop rather than rebuilding the whole interface.",
+      "why_it_matters": "The article is useful because it reframes an LLM Wiki as an operating system for knowledge maintenance rather than just a document store. The most durable idea is the separation of raw sources, generated wiki pages, and agent instructions, because that boundary makes it easier to preserve provenance and prevent permanent overcommitment to a bad source. The described two-step ingest pattern is especially practical: analyze first, then generate, so the model can identify claims, contradictions, and review items before it starts rewriting the knowledge base. The purpose file adds another durable control point by telling the agent what the wiki is for, which is more useful than generic summarization when the source mix includes business documents, KPI notes, and changing architecture decisions. The review queue also matters because it keeps judgment with the human when definitions are draft or sources conflict. For service automation, the closing implication is narrow but real: the same maintenance pattern can help keep support or operations knowledge bases less stale, but the article is not about customer support systems specifically. Actionable as of 2026-04-29, especially for Markdown-based personal or team knowledge workflows; the broader value is in disciplined maintenance habits, not a flashy new interface."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent personal essay rather than a list, transcript, or roundup.",
+        "Focuses on one project pattern and the author's implementation choices.",
+        "No numbered practices, multiple tool reviews, or interview structure."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": "implementation_case",
+        "examples": "",
+        "key_points": [
+          "Raw sources stay separate from the organized wiki layer.",
+          "A purpose file gives the wiki direction and helps decide what knowledge to preserve.",
+          "Two-step ingest improves quality by analyzing first and generating second.",
+          "Review queues keep unresolved conflicts and draft assumptions out of automatic permanent guidance.",
+          "A skill or instruction layer can be enough when the knowledge base already lives in Markdown."
+        ],
+        "knowledge_summary": "An LLM wiki can be treated as a persistent Markdown knowledge base that an AI assistant helps maintain over time. The core pattern is to keep raw sources separate from synthesized wiki pages, use a small instruction file to guide upkeep, and let knowledge accumulate through repeated ingest and revision rather than one-off Q&A. More advanced implementations add document import, review queues, search, graph views, and compatibility with note-taking tools, but the durable lesson is that the system should fit the user\u2019s real work and remain easy to keep using.",
+        "match_candidates": [],
+        "operational_insight": "Design the wiki as a maintained system: separate sources from synthesized pages, define purpose and operating rules, and make ingest a two-step process with review points for uncertain items. For smaller setups, a project-level skill or similar instruction layer can provide the maintenance behavior without requiring a full app.",
+        "primary_tag": "knowledge-management",
+        "proposed_tags": [
+          "knowledge-management",
+          "agentic-ai",
+          "llm-wiki"
+        ],
+        "related_topics": [
+          "knowledge-base-becomes-runtime-infrastructure",
+          "provenance-tracking",
+          "two-step-document-ingest"
+        ],
+        "relevance_note": "This is useful anywhere people want AI-assisted note taking, living documentation, or internal knowledge bases that improve through ongoing maintenance. The main value is turning the assistant into a steward of the knowledge base while preserving provenance and human judgment.",
+        "secondary_tag": "agentic-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Raw sources stay separate. The wiki becomes the organized layer. A small instruction file tells the AI how to keep everything tidy.\"",
+        "topic_slug": "llm-wiki",
+        "topic_title": "LLM Wiki",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Separate source interpretation from page generation.",
+          "Identify contradictions and review items before writing durable pages.",
+          "Treat drafts and outdated assumptions as provisional, not canonical.",
+          "Use staged ingest to reduce false certainty in knowledge bases."
+        ],
+        "knowledge_summary": "A safer document-ingest workflow separates analysis from writing. First the system reads the source and extracts entities, claims, contradictions, and candidate destinations; only then does it generate or update durable knowledge. This reduces the risk that incomplete, outdated, or ambiguous source material gets converted into permanent guidance. The pattern is especially useful when sources mix drafts, changing assumptions, and operational decisions.",
+        "match_candidates": [],
+        "operational_insight": "Use a staging analysis pass to decide what is factual, what is provisional, and what needs human review before any wiki pages are updated. This creates a check against false certainty and makes ingestion easier to trust.",
+        "primary_tag": "knowledge-management",
+        "proposed_tags": [
+          "knowledge-management",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "agentic-personal-knowledge-management",
+          "provenance-tracking"
+        ],
+        "relevance_note": "This is a reusable pattern for knowledge ingestion, enterprise document processing, and AI-assisted documentation workflows. It improves reliability by preventing the generator from rewriting the knowledge base before the source has been interpreted.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The app's approach is more careful: Analyze first. Generate second.\"",
+        "topic_slug": "two-step-document-ingest",
+        "topic_title": "Two-Step Document Ingest",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The piece is a first-person account of the author's own workflow and choices.",
+          "Claims are supported by personal experience with a Markdown wiki and a Codex skill, not external measurement.",
+          "The article describes what the author built and how it felt to use it, rather than presenting a formal case study or benchmark."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A purpose file can act as a stable policy layer for a personal wiki, steering what gets preserved and why.",
+          "Two-step ingest is safer than direct write-through because it separates source analysis from permanent knowledge updates.",
+          "A human review queue is useful when metric definitions, architecture choices, or source conflicts are still unsettled.",
+          "For a Markdown-native knowledge base, a project-level skill may deliver most of the value of a full app with less complexity.",
+          "The durable lesson is to improve maintenance behavior before adding more interface features."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@markchen69/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-62c629b3c8d2"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent personal essay rather than a list, transcript, or roundup.",
+          "Focuses on one project pattern and the author's implementation choices.",
+          "No numbered practices, multiple tool reviews, or interview structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": "implementation_case",
+          "examples": "",
+          "key_points": [
+            "Raw sources stay separate from the organized wiki layer.",
+            "A purpose file gives the wiki direction and helps decide what knowledge to preserve.",
+            "Two-step ingest improves quality by analyzing first and generating second.",
+            "Review queues keep unresolved conflicts and draft assumptions out of automatic permanent guidance.",
+            "A skill or instruction layer can be enough when the knowledge base already lives in Markdown."
+          ],
+          "knowledge_summary": "An LLM wiki can be treated as a persistent Markdown knowledge base that an AI assistant helps maintain over time. The core pattern is to keep raw sources separate from synthesized wiki pages, use a small instruction file to guide upkeep, and let knowledge accumulate through repeated ingest and revision rather than one-off Q&A. More advanced implementations add document import, review queues, search, graph views, and compatibility with note-taking tools, but the durable lesson is that the system should fit the user\u2019s real work and remain easy to keep using.",
+          "match_candidates": [],
+          "operational_insight": "Design the wiki as a maintained system: separate sources from synthesized pages, define purpose and operating rules, and make ingest a two-step process with review points for uncertain items. For smaller setups, a project-level skill or similar instruction layer can provide the maintenance behavior without requiring a full app.",
+          "primary_tag": "knowledge-management",
+          "proposed_tags": [
+            "knowledge-management",
+            "agentic-ai",
+            "llm-wiki"
+          ],
+          "related_topics": [
+            "knowledge-base-becomes-runtime-infrastructure",
+            "provenance-tracking",
+            "two-step-document-ingest"
+          ],
+          "relevance_note": "This is useful anywhere people want AI-assisted note taking, living documentation, or internal knowledge bases that improve through ongoing maintenance. The main value is turning the assistant into a steward of the knowledge base while preserving provenance and human judgment.",
+          "secondary_tag": "agentic-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Raw sources stay separate. The wiki becomes the organized layer. A small instruction file tells the AI how to keep everything tidy.\"",
+          "topic_slug": "llm-wiki",
+          "topic_title": "LLM Wiki",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "65cc6c60-b92e-49a8-b467-05d5079107f7",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-05-22T16:37:52+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "35",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Raw sources stay separate from the organized wiki layer.",
+              "A purpose file gives the wiki direction and helps decide what knowledge to preserve.",
+              "Two-step ingest improves quality by analyzing first and generating second.",
+              "Review queues keep unresolved conflicts and draft assumptions out of automatic permanent guidance.",
+              "A skill or instruction layer can be enough when the knowledge base already lives in Markdown."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure",
+              "provenance-tracking",
+              "two-step-document-ingest"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Separate source interpretation from page generation.",
+            "Identify contradictions and review items before writing durable pages.",
+            "Treat drafts and outdated assumptions as provisional, not canonical.",
+            "Use staged ingest to reduce false certainty in knowledge bases."
+          ],
+          "knowledge_summary": "A safer document-ingest workflow separates analysis from writing. First the system reads the source and extracts entities, claims, contradictions, and candidate destinations; only then does it generate or update durable knowledge. This reduces the risk that incomplete, outdated, or ambiguous source material gets converted into permanent guidance. The pattern is especially useful when sources mix drafts, changing assumptions, and operational decisions.",
+          "match_candidates": [],
+          "operational_insight": "Use a staging analysis pass to decide what is factual, what is provisional, and what needs human review before any wiki pages are updated. This creates a check against false certainty and makes ingestion easier to trust.",
+          "primary_tag": "knowledge-management",
+          "proposed_tags": [
+            "knowledge-management",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "agentic-personal-knowledge-management",
+            "provenance-tracking"
+          ],
+          "relevance_note": "This is a reusable pattern for knowledge ingestion, enterprise document processing, and AI-assisted documentation workflows. It improves reliability by preventing the generator from rewriting the knowledge base before the source has been interpreted.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The app's approach is more careful: Analyze first. Generate second.\"",
+          "topic_slug": "two-step-document-ingest",
+          "topic_title": "Two-Step Document Ingest",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "1dac6470-3744-49ce-9e73-be50694aac09",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Separate source interpretation from page generation.",
+              "Identify contradictions and review items before writing durable pages.",
+              "Treat drafts and outdated assumptions as provisional, not canonical.",
+              "Use staged ingest to reduce false certainty in knowledge bases."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-personal-knowledge-management",
+              "provenance-tracking"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-management",
+            "llm-wiki"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 1,
+      "user_report": 1
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 2,
+    "review_duration_seconds": 149.8,
+    "review_finished_at": "2026-05-22T16:38:44.812110+00:00",
+    "review_started_at": "2026-05-22T16:36:15+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-22T16:38:44+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Mark Chen",
+    "canonical_url": "https://medium.com/@markchen69/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-62c629b3c8d2",
+    "content_sha256": "243ebbdfcd5bdcb9f33524fe4621338bd0a9496383f11641af48e05111cb5a6d",
+    "publication": "Medium",
+    "published_date": "2026-04-29",
+    "raw_html_rel_path": "raw/readwise/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-01kqz036fj7zddpk9fppjf11va.html",
+    "raw_md_rel_path": "raw/readwise/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-01kqz036fj7zddpk9fppjf11va.md",
+    "source_id": "i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-01kqz036fj7zddpk9fppjf11va",
+    "title": "I Found a Full LLM Wiki App. So I Built the Smaller Thing I Actually Needed."
+  }
+}

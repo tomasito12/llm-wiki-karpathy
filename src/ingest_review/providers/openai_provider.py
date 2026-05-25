@@ -60,8 +60,11 @@ For tools: proposed_types MUST be a subset of TOOL_TYPES_ALLOWLIST (at most 2 un
 genuinely multi-category); first type = primary category, second = optional adjacent role.
 For foundation_models: proposed_types MUST be a subset of MODEL_TYPES_ALLOWLIST (at most 2 \
 unless genuinely multi-category); first = deployment/openness class, second = capability focus.
-Before proposing glossary, topics, how_to, or implementation_studies, apply \
-ABSTRACTION_SELECTION_RUBRIC to choose the most durable representation per knowledge unit. \
+Before proposing glossary, topics, how_to, tools, foundation_models, or \
+implementation_studies, apply ABSTRACTION_SELECTION_RUBRIC to choose the most durable \
+representation per knowledge unit. For deep single-product reviews, also emit a \
+complementary ``tools`` (or ``foundation_models``) entry when TOOLS_RUBRIC / MODELS_RUBRIC \
+criteria are met — do not route the whole article into topics/trends only. \
 When filling entity arrays, apply COMPRESSION_PRESSURE_RUBRIC — prefer one strong proposal \
 over several partially redundant proposals. Apply MINIMUM_NOVELTY_THRESHOLD_RUBRIC — omit \
 familiar concepts unless the source adds genuinely new operational insight.
@@ -210,12 +213,15 @@ The system optimizes for: max durable knowledge gained per minute of human revie
 
 
 ABSTRACTION_SELECTION_RUBRIC = """\
-## ABSTRACTION SELECTION (applies before glossary, topics, how_to, implementation_studies)
+## ABSTRACTION SELECTION (applies before glossary, topics, how_to, tools, \
+foundation_models, implementation_studies)
 
 Before extracting, for each distinct knowledge unit in the source, ask: \
 "What is the MOST durable representation of this knowledge?"
 
-Prefer (highest to lowest reuse):
+### Pattern-level representations (prefer for cross-source reuse)
+
+Highest to lowest reuse for **timeless or cross-product patterns**:
 1. **topics** — operational patterns, workflow principles, architectural concepts, \
 AI-native design patterns that accumulate knowledge across many future sources
 2. **how_to** — reusable procedures with org-agnostic implementation substance
@@ -223,8 +229,19 @@ AI-native design patterns that accumulate knowledge across many future sources
 4. **implementation_studies** — only when IMPLEMENTATION_STUDY_WORTHINESS GATE passes
 5. **industry_trends** — macro industry shifts with evidence, not article-local narratives
 
-Deprioritize as primary extractions:
-- Article-local terminology, branded phrasing, product slogans
+### Product-level representations (tools / foundation_models)
+
+**tools** and **foundation_models** are first-class when the source is substantially about \
+a **named product or model** with operational substance (features, integrations, tradeoffs, \
+workflows) — not only when the source is ``ai_tools_roundup``.
+
+Do **not** replace a tool-worthy product review with only abstract topics/trends. Abstract \
+the **pattern** into topics/trends **and** capture the **product** in ``tools`` / \
+``foundation_models`` when both add distinct value.
+
+Deprioritize as **sole** extractions (still OK as complementary layers):
+- Using only a product name as a topic title when a ``tools`` entry is warranted
+- Article-local slogans with no operational substance
 - Generic dictionary or compliance vocabulary (e.g. Benchmark, Passkey, WCAG) unless \
 operationally distinctive for AI engineering in this wiki's scope
 - Implementation trivia, one-off stack choices, article narrative compression
@@ -236,25 +253,41 @@ Tie-breaker when glossary, topic, and how_to all seem plausible — choose the r
 3. Lowest duplication risk vs EXISTING_TOPIC_TITLES, EXISTING_HOWTO_TITLES, \
 EXISTING_GLOSSARY_TERMS, and CANONICAL_* lists
 
-Default cardinality: **one primary entity type per knowledge unit**. Do NOT emit the same \
-substance as glossary + topic + how_to. Prefer omitting over duplicating across layers.
+Default cardinality: **one primary entity type per knowledge unit** for the *same substance*. \
+Do NOT emit glossary + topic + how_to for the same idea. Prefer omitting over duplicating \
+across those layers.
 
-Allowed dual extraction (rare): only when layers are **complementary**, not redundant — e.g. \
-a glossary primitive ("Harness") plus a broader topics entry ("Agent Harness Engineering") \
-when both add distinct durable value and field overlap is minimal.
+Allowed dual extraction (use when complementary, not redundant):
+- Glossary primitive + broader topic (e.g. "Harness" + "Agent Harness Engineering")
+- **Named product/model + cross-cutting pattern** — e.g. ``tools``: Voicebox (capabilities, \
+MCP, REST API, limitations) **plus** ``topics``: Local Voice API or MCP-Enabled Agent Voice \
+Output **when** the source teaches a reusable pattern beyond the product name. The tool page \
+holds product-specific facts; the topic/trend holds durable abstractions.
+- Topic + industry_trend when the source supports both a stable domain and a directional shift
+
+Do **not** treat dual extraction as license to triple-count: one tool entry per primary \
+product reviewed; fold comparators (e.g. ElevenLabs, WisprFlow) into ``related_tools`` unless \
+the source substantially reviews them too.
 
 Decision shortcuts:
 - Reusable procedure, steps, org-agnostic → how_to
-- Durable pattern/architecture/workflow design, no named-org deployment → topics
+- Durable pattern/architecture/workflow design spanning products → topics
 - Established primitive definition only, no broader pattern → glossary \
 (after GLOSSARY-WORTHINESS GATE)
 - Named org + deployment evidence → implementation_studies (after worthiness gate)
 - Industry-wide shift, not one org → industry_trends
+- **Hands-on review of one named app/platform with TOOLS_RUBRIC depth** → ``tools`` for that \
+product; add topic/trend only for separable cross-product patterns
+- **Hands-on review centered on one foundation model** → ``foundation_models``; add topic only \
+if a separable architectural pattern remains
 - Weak roundup signal → roundup_signals; interview takeaway → interview_insights
 
-Worked negatives:
-- For glossary hard exclusions and named negatives (Benchmark, Knowledge Management, \
-Passkey, WCAG), apply GLOSSARY HARD EXCLUSIONS in GLOSSARY_RUBRIC.
+Worked examples:
+- Voicebox product review (local TTS, dictation, MCP, REST API, tradeoffs) → ``tools``: \
+Voicebox **and** optional ``topics``/``industry_trends`` for local-voice / substitution patterns \
+— **not** topics-only with ``tools: []``
+- For glossary hard exclusions (Benchmark, Knowledge Management, Passkey, WCAG), apply \
+GLOSSARY HARD EXCLUSIONS in GLOSSARY_RUBRIC.
 - How-to when durable knowledge is a workflow pattern: e.g. Agentic Personal Knowledge \
 Management → topics (operational architecture), not a narrow how_to
 
@@ -282,6 +315,10 @@ abstraction and lowest duplication risk vs EXISTING_* / CANONICAL_* lists
 extended_explanation of the survivor — do not emit a second proposal for the same substance
 - Merge near-duplicate titles per TITLE_CANONICALIZATION_RUBRIC rather than splitting \
 into micro-variants
+
+**Exception (complementary layers):** Do **not** collapse a substantively reviewed **named \
+product** into only a topic/trend. When ABSTRACTION_SELECTION_RUBRIC allows tool + topic/trend, \
+keep both — product facts in ``tools``/``foundation_models``, patterns in topics/trends.
 
 Prefer omitting marginal overlap over filling extraction budgets with redundant entries. \
 Semantic compression beats exhaustive extraction."""
@@ -1026,6 +1063,20 @@ Only extract tools where the source provides OPERATIONALLY USEFUL information �
 not passing mentions. A tool is a distinct product, platform, framework, or \
 application (not a tiny feature inside another tool).
 
+### Single-product reviews (``standard_article`` and similar)
+
+When the source is a **hands-on review or deep explainer of one primary named product** \
+(not only ``ai_tools_roundup``), you MUST extract that product in ``tools`` if tool-worthiness \
+criteria below are met — even when you also extract topics or industry_trends for cross-cutting \
+patterns. See ABSTRACTION_SELECTION_RUBRIC (complementary tool + topic/trend).
+
+- Put **product-specific** facts in the tool proposal: capabilities, integrations, APIs, \
+pricing/cost model, limitations, maturity, verbatim evidence.
+- Put **cross-product patterns** in ``topics`` / ``industry_trends`` (e.g. local voice API, \
+substitution economics) — not instead of the tool entry.
+- Comparators mentioned in passing → ``related_tools``; separate tool entries only when the \
+source substantially reviews them.
+
 Tool-worthiness criteria (ALL must apply):
 - Operationally relevant: affects real workflows, engineering, automation
 - Reusable: likely to recur across multiple future sources
@@ -1102,7 +1153,9 @@ Good: coding-assistant, desktop-app, voice-ai. Bad: productivity, useful, fast.
 Voice: clear, operational, skeptical. No hype, no marketing language.
 
 Type semantics (TOOL_TYPES_ALLOWLIST): what the tool IS — follow \
-REGISTRY_TYPES_SEMANTICS for proposed_types."""
+REGISTRY_TYPES_SEMANTICS for proposed_types.
+
+Layer selection: see ABSTRACTION_SELECTION_RUBRIC. Page matching: see PAGE_MATCHING_RUBRIC."""
 
 
 MODELS_RUBRIC = """\
@@ -1522,6 +1575,8 @@ def _build_user_prompt(
             "limit how_to for this type only. "
             "ELSE: apply PAGE_MATCHING_RUBRIC before reusing any CANONICAL_* title or slug. "
             "For topic_title and trend_title, follow TITLE_GENERATION_RUBRIC (Topic vs Trend). "
+            "For deep single-product reviews, apply ABSTRACTION_SELECTION_RUBRIC complementary "
+            "tool + topic/trend rules (do not return tools: [] when TOOLS_RUBRIC is satisfied). "
             "For each candidate knowledge unit, apply ABSTRACTION_SELECTION_RUBRIC "
             "first; then fill glossary, tools, foundation_models, how_to, topics, "
             "implementation_studies, industry_trends per their rubrics and RESPECT extraction "
