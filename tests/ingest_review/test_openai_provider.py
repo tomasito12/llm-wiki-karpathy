@@ -14,6 +14,12 @@ from src.ingest_review.schema import LlmClassificationOutput
 from src.ingest_review.wiki_snapshot import WikiSnapshot
 
 
+@pytest.fixture(autouse=True)
+def _monolithic_classification_pipeline(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Existing provider tests target the monolithic prompt path."""
+    monkeypatch.setenv("INGEST_CLASSIFICATION_PIPELINE", "monolithic")
+
+
 def test_openai_provider_parses_json_response(tmp_path: Path) -> None:
     """Provider validates model JSON against the Pydantic schema."""
     raw = tmp_path / "raw"
@@ -122,7 +128,7 @@ def test_openai_prompt_contains_source_type_rubrics(tmp_path: Path) -> None:
     assert "exact same spelling" in user_msg
     assert "ROUNDUP_SIGNALS_RUBRIC" in user_msg
     assert "INTERVIEW_INSIGHTS_RUBRIC" in user_msg
-    assert "AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC" in user_msg
+    assert "## AI_TOOLS_ROUNDUP_EXTRACTION" in user_msg
     assert "do NOT cap tools or foundation_models" in user_msg
     assert "source_type_detection" in user_msg
 
@@ -899,11 +905,10 @@ def test_abstraction_rubric_in_user_prompt(tmp_path: Path) -> None:
         howto_tags=[],
         prompt_version="30",
     )
-    assert "## ABSTRACTION_SELECTION_RUBRIC" in prompt
+    assert "## ABSTRACTION SELECTION" in prompt
     assert ABSTRACTION_SELECTION_RUBRIC.split("\n")[0] in prompt
-    assert "ABSTRACTION_SELECTION_RUBRIC first" in prompt
     gloss_idx = prompt.index("## GLOSSARY_RUBRIC")
-    abs_idx = prompt.index("## ABSTRACTION_SELECTION_RUBRIC")
+    abs_idx = prompt.index("## ABSTRACTION SELECTION")
     assert abs_idx < gloss_idx
 
 
@@ -973,10 +978,9 @@ def test_compression_pressure_rubric_in_user_prompt(tmp_path: Path) -> None:
         howto_tags=[],
         prompt_version="32",
     )
-    assert "## COMPRESSION_PRESSURE_RUBRIC" in prompt
+    assert "## COMPRESSION PRESSURE" in prompt
     assert COMPRESSION_PRESSURE_RUBRIC.split("\n")[0] in prompt
-    assert "COMPRESSION_PRESSURE_RUBRIC across all proposals" in prompt
-    comp_idx = prompt.index("## COMPRESSION_PRESSURE_RUBRIC")
+    comp_idx = prompt.index("## COMPRESSION PRESSURE")
     gloss_idx = prompt.index("## GLOSSARY_RUBRIC")
     assert comp_idx < gloss_idx
 
@@ -1037,10 +1041,9 @@ def test_minimum_novelty_threshold_rubric_in_user_prompt(tmp_path: Path) -> None
         howto_tags=[],
         prompt_version="33",
     )
-    assert "## MINIMUM_NOVELTY_THRESHOLD_RUBRIC" in prompt
+    assert "## MINIMUM NOVELTY" in prompt
     assert MINIMUM_NOVELTY_THRESHOLD_RUBRIC.split("\n")[0] in prompt
-    assert "MINIMUM_NOVELTY_THRESHOLD_RUBRIC" in prompt.split("## Instructions")[-1]
-    novelty_idx = prompt.index("## MINIMUM_NOVELTY_THRESHOLD_RUBRIC")
+    novelty_idx = prompt.index("## MINIMUM NOVELTY")
     gloss_idx = prompt.index("## GLOSSARY_RUBRIC")
     assert novelty_idx < gloss_idx
 
@@ -1124,7 +1127,7 @@ def test_page_matching_rubric_in_user_prompt(tmp_path: Path) -> None:
     )
     assert "## PAGE_MATCHING_RUBRIC" in prompt
     assert PAGE_MATCHING_RUBRIC.split("\n")[0] in prompt
-    assert "PAGE_MATCHING_RUBRIC before reusing" in prompt
+    assert "PAGE MATCHING" in prompt
     page_idx = prompt.index("## PAGE_MATCHING_RUBRIC")
     gloss_idx = prompt.index("## GLOSSARY_RUBRIC")
     assert page_idx < gloss_idx
@@ -1198,17 +1201,17 @@ def test_title_generation_rubric_in_user_prompt(tmp_path: Path) -> None:
     )
     assert "## TITLE_GENERATION_RUBRIC" in prompt
     assert TITLE_GENERATION_RUBRIC.split("\n")[0] in prompt
-    assert "TITLE_GENERATION_RUBRIC (Topic vs Trend)" in prompt
+    assert "Topic vs Trend" in prompt
     title_idx = prompt.index("## TITLE_GENERATION_RUBRIC")
     topics_idx = prompt.index("## TOPICS_RUBRIC")
     assert title_idx < topics_idx
 
 
-def test_prompt_version_is_37() -> None:
-    """Prompt version bumped for complementary tool extraction on product reviews."""
+def test_prompt_version_is_39() -> None:
+    """Prompt version bumped for staged classification pipeline."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "38"
+    assert PROMPT_VERSION == "39"
 
 
 def test_title_canonicalization_rubric_replaces_suggested_action() -> None:

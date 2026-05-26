@@ -425,6 +425,8 @@ def run_classification(
     )
     analysis_meta["request_id"] = meta.get("request_id")
     analysis_meta["token_usage"] = meta.get("token_usage")
+    if meta.get("classification_pipeline") is not None:
+        analysis_meta["classification_pipeline"] = meta["classification_pipeline"]
     artifact = build_new_artifact(document, parsed, analysis_meta=analysis_meta)
     return artifact, parsed
 

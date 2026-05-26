@@ -1,0 +1,1028 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-05-26T21:54:07+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "39-triage",
+          "request_id": "chatcmpl-Dju0OREllaFqo1cPagZIHDuNJj55d",
+          "token_usage": {
+            "completion_tokens": 213,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6926,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7139
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "39-summary",
+          "request_id": "chatcmpl-Dju0RBuLwHdaC2YUoAzxAl21D04AB",
+          "token_usage": {
+            "completion_tokens": 1193,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6367,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7560
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "39-entities-standard_article",
+          "request_id": "chatcmpl-Dju0bEhFfxMV0IIapjporhtVcniGr",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2709,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30776,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33485
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "39",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dju0bEhFfxMV0IIapjporhtVcniGr",
+    "token_usage": {
+      "completion_tokens": 4115,
+      "prompt_tokens": 44069,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 48184
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "The source does not provide formal benchmark numbers.",
+          "OpenAI states GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation, which suggests the comparison is about access behavior more than a clear capability win."
+        ],
+        "comparative_observations": [
+          "The article positions GPT-5.5 as the recommended starting point for most security workflows, ahead of the more permissive GPT-5.5-Cyber.",
+          "Compared with GPT-5.5-Cyber, GPT-5.5 is framed as the safer, broadly useful default rather than the most permissive option."
+        ],
+        "confidence": 0.89,
+        "core_capabilities": [
+          "It can support secure code review and vulnerability triage for verified defenders working in authorized environments.",
+          "It can help with malware analysis and binary reverse engineering when access controls allow defensive use.",
+          "It can assist detection engineering and patch validation as part of a defensive security workflow."
+        ],
+        "deployment_implications": "Adopting GPT-5.5 in a cyber setting means access policy becomes part of the model stack: defenders need verified identity, approved-use scoping, and in some cases phishing-resistant account protection. The article implies it can serve as the main model for defensive workflows, while more permissive use is reserved for edge cases that still trigger refusals. For production teams, the practical implication is that model selection is tied to authorization and governance rather than capability alone.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "As of 2026-05-07, OpenAI positions GPT-5.5 as the main broadly usable cyber model and says it is already delivering capabilities through Trusted Access for Cyber. The article describes partner-facing rollout and governance controls rather than a finished, universally open product. That makes it feel operationally mature for gated defender workflows, but still vendor-managed and policy-dependent.",
+        "model_name": "GPT-5.5",
+        "operational_profile": "GPT-5.5 is presented as OpenAI\u2019s broadly useful cyber-capable model for verified defensive work. The source frames it as the default starting point for most legitimate security workflows, including secure code review, vulnerability triage, malware analysis, detection engineering, and patch validation. The model\u2019s value in this article is less about a new capability jump and more about being paired with access controls that let it do more useful defensive work with fewer refusals.",
+        "pricing_inference_implications": "The article gives no pricing detail. The main inference is operational rather than economic: if the model is used at scale in security workflows, the real cost question is likely governed access, verification overhead, and review burden rather than only token pricing.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "enterprise-oriented",
+          "proprietary-model",
+          "frontier-model",
+          "tool-use-capable"
+        ],
+        "proposed_types": [
+          "proprietary-model",
+          "frontier-model"
+        ],
+        "provider": "OpenAI",
+        "related_models": [
+          "GPT-5.5-Cyber",
+          "GPT-5.4-Cyber"
+        ],
+        "service_automation_implications": "Relevant for security support workflows, but the source does not connect GPT-5.5 to customer support automation directly. Its clearest service-automation value is in analyst-facing security operations where it can help summarize alerts, draft detections, and triage vulnerabilities faster.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cFor most teams, GPT\u20115.5 with TAC is our strongest broadly useful model for legitimate defensive work, with strong safeguards against misuse.\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "OpenAI says GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation because the cyber-permissive preview is mainly about more permissive behavior, not a broad capability leap. The source does not quantify false refusals, security gains, or failure modes, so its comparative advantage is directional rather than measured."
+      },
+      {
+        "benchmark_observations": [
+          "The source states the preview is not expected to outperform GPT-5.5 across every cyber evaluation.",
+          "No numerical evaluation results are provided."
+        ],
+        "comparative_observations": [
+          "Compared with GPT-5.5, GPT-5.5-Cyber is more permissive but not clearly more capable overall.",
+          "The model is positioned as a specialist escalation path rather than the default starting point for most defenders."
+        ],
+        "confidence": 0.86,
+        "core_capabilities": [
+          "It is designed to be more permissive on security-related requests that are still authorized and defensive.",
+          "It can support advanced workflows such as authorized red teaming and penetration testing under controlled validation.",
+          "It is meant to work with stronger verification and account-level controls than the default model path."
+        ],
+        "deployment_implications": "Deploying GPT-5.5-Cyber implies tighter organizational controls around who can use it and for what. The article says access is paired with stronger verification, account-level controls, misuse monitoring, and approved-use scoping, which makes it suitable only for governed security programs rather than general access. In practice, it looks like a specialist escalation path when GPT-5.5 with Trusted Access for Cyber still refuses authorized work.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "As of 2026-05-07, GPT-5.5-Cyber is in limited preview and is explicitly framed as a smaller-scope offering for specialized partners and defenders. The article says it has already been used during alpha testing for automated red-teaming and validation of high-severity vulnerabilities, but that evidence is vendor-controlled and not independently audited in the text.",
+        "model_name": "GPT-5.5-Cyber",
+        "operational_profile": "GPT-5.5-Cyber is described as a more permissive preview variant for specialized authorized cyber workflows. The source places it in the narrow slice of tasks where defenders may still face refusals under the safer default model, including authorized red teaming, penetration testing, and controlled validation. Its main distinction is not broad superiority, but access behavior tuned for higher-risk defensive work under stronger verification and monitoring.",
+        "pricing_inference_implications": "No pricing is provided. The implied cost structure is governance-heavy: the operational burden seems to be verification, monitoring, and partner feedback loops rather than raw model access alone.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "enterprise-oriented",
+          "proprietary-model",
+          "frontier-model",
+          "tool-use-capable"
+        ],
+        "proposed_types": [
+          "proprietary-model",
+          "frontier-model"
+        ],
+        "provider": "OpenAI",
+        "related_models": [
+          "GPT-5.5",
+          "GPT-5.4-Cyber"
+        ],
+        "service_automation_implications": "Its service-automation relevance is limited to high-trust security operations, not customer-facing automation. The main implication is that some analyst workflows that require exploit validation or red-team-style testing can be supported under a controlled governance model, but only with strict authorization.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cToday, we are rolling out GPT\u20115.5\u2011Cyber in limited preview to defenders responsible for securing critical infrastructure to support specialized cybersecurity workflows that help protect the broader ecosystem.\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "OpenAI explicitly says this first preview is not intended to significantly increase cyber capability beyond GPT-5.5 and is primarily trained to be more permissive. The source also says it is not expected to outperform GPT-5.5 across every cyber evaluation, so the value depends on policy fit, not a universal capability gain."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-07",
+        "confidence": 0.94,
+        "evidence_from_source": "OpenAI says GPT-5.5 with Trusted Access for Cyber is the recommended starting point for most security workflows, while GPT-5.5-Cyber is a limited preview for more specialized authorized workflows.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "",
+        "proposed_tags": [],
+        "related_trends": [
+          "tiered-access-for-sensitive-model-capabilities"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-governance",
+        "suggested_new_tags": [
+          "ai-governance",
+          "ai-safety",
+          "enterprise-ai"
+        ],
+        "supporting_data_points": [
+          "GPT-5.5 with TAC is described as the starting point for most security workflows.",
+          "GPT-5.5-Cyber is limited preview for specialized authorized workflows.",
+          "Access requires stronger verification and, for individuals, Advanced Account Security beginning June 1, 2026."
+        ],
+        "supporting_snippet": "\u201cToday, we are rolling out GPT\u20115.5\u2011Cyber in limited preview to defenders responsible for securing critical infrastructure to support specialized cybersecurity workflows that help protect the broader ecosystem.\u201d",
+        "time_sensitivity": "Actionable as of 2026-05-07; likely relevant through the period in which AI vendors continue shipping tiered access for sensitive capabilities.",
+        "trend_description": "Models that can support dual-use or sensitive workflows are increasingly deployed behind verification, scoping, and account-level controls instead of broad public access. The goal is to let trusted users access more capable or more permissive behavior while reducing misuse risk for everyone else. This often creates a layered product strategy: a default safe model, a trusted-access variant, and a more permissive specialist preview.",
+        "trend_slug": "high-risk-models-move-to-gated-access",
+        "trend_title": "High-Risk Models Move to Gated Access",
+        "uncertainty_note": "The article is a vendor announcement, so it shows the direction of product packaging more clearly than it proves broad market adoption. It is plausible and operationally important, but the scope of the trend beyond OpenAI is not established by this source alone.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "OpenAI is the publisher and the named source of nearly all substantive claims about model behavior, access controls, and intended use cases.",
+        "The article presents product descriptions, rollout details, and partner testimonials rather than independent evaluation or formal benchmarks.",
+        "Any performance or safety claims are framed as OpenAI's own assessment or preview experience, not external validation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "OpenAI says it is making some of its most capable models more useful for people who defend computer systems. The company has a program called Trusted Access for Cyber, which is meant for verified security teams and researchers. People approved for that program can get fewer false refusals when they are doing legitimate defensive work, such as checking code for weaknesses, studying malware, or testing fixes. OpenAI also introduced a more permissive preview model called GPT-5.5-Cyber for specialized work like authorized red teaming and penetration testing. At the same time, the system is supposed to keep blocking harmful requests, such as stealing passwords or attacking systems they do not own. The article says this access depends on stronger identity checks and, for some users, phishing-resistant account protection. It also describes partnerships with security vendors so the model can help across different parts of the defense process, from finding bugs to detecting attacks and reducing risk in software supply chains. OpenAI presents Codex Security as another tool for finding and fixing problems in code, including help with threat modeling and patch suggestions. The practical message is that the company wants to give trusted defenders more room to work while keeping tighter controls around dual-use security tasks. As of May 7, 2026, this is positioned as an early access and preview rollout rather than a finished, universally available security product.",
+      "assessed_as_of": "2026-05-07",
+      "contradictions_and_skepticism": "The main tension is that the article markets a more permissive cyber model while also stressing stronger safeguards, so the practical benefit depends on how well those safeguards hold under pressure. OpenAI says the initial preview is mainly more permissive rather than more capable, which tempers any expectation of a step-change in performance. The article also relies on partner testimonials and internally selected examples, so the strongest claims are not independently verified in the text. The security framing is plausible, but the evidence is still product-announcement level rather than field-tested proof.",
+      "key_insights": [
+        "GPT-5.5 with Trusted Access for Cyber is positioned as the default entry point for most legitimate defensive workflows, not GPT-5.5-Cyber.",
+        "OpenAI ties more permissive cyber access to stronger identity verification and phishing-resistant account security, making account controls part of the product design.",
+        "The article draws a clear boundary between defensive tasks it wants to enable and harmful actions it says remain blocked, such as credential theft and exploitation of third-party systems.",
+        "GPT-5.5-Cyber is described as a preview tool for a smaller set of authorized, higher-risk workflows where GPT-5.5 may still refuse.",
+        "The vendor\u2019s main evidence is descriptive and partner-based, so the operational value is in access policy and workflow design more than in independently proven performance gains."
+      ],
+      "limitations_and_open_questions": "The article gives little independent benchmark detail beyond OpenAI\u2019s own framing that GPT-5.5-Cyber is not expected to outperform GPT-5.5 across every cyber evaluation. It does not quantify false-refusal reduction, misuse rates, or how often the extra permissiveness materially helps defenders. The partner quotes are supportive but not evidence of measured security outcomes. The post also leaves open how well the verification and monitoring controls will work at scale, especially across enterprises with mixed identity infrastructure. For Codex Security, the article does not show comparative patch-quality, analyst-time savings, or failure modes in real production settings.",
+      "sources": [
+        "https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber"
+      ],
+      "summary": "OpenAI describes Trusted Access for Cyber as an identity- and trust-based framework that reduces refusals for verified defenders while still blocking clearly malicious requests. The article distinguishes between GPT-5.5 as the default, broadly useful model for most defensive work, GPT-5.5 with Trusted Access for Cyber as the recommended starting point for most security workflows, and GPT-5.5-Cyber as a more permissive preview for specialized authorized work such as red teaming and penetration testing. The central claim is that stronger access controls, phishing-resistant authentication, and approved-use scoping can let defenders use more capable model behavior without opening the door to obvious abuse. OpenAI frames the product as part of a broader \u201csecurity flywheel\u201d spanning vulnerability research, patching, detection, network mitigation, and software supply chain security, with partner feedback used to tighten safeguards. The post also says Codex Security and a Codex Security plugin are being used to help teams model threats, validate vulnerabilities, and propose patches in isolated environments.",
+      "why_it_matters": "The piece is useful because it shows how one vendor is packaging model access, account security, and use-case scoping as a single control surface for cyber work. That is operationally relevant for teams deciding whether a general model, a trusted-access variant, or a more permissive preview best fits defensive analysis, patch validation, or authorized testing. The article is also explicit that the more permissive preview is not meant to dominate every cyber evaluation; it is mainly for workflows that still encounter refusals under the safer default model. That makes the access hierarchy itself the durable takeaway: model choice depends on authorization, task risk, and the strength of the surrounding controls. The partner examples suggest where the models may fit into real security operations, but they are vendor testimonials rather than independent validation. The Codex Security discussion adds a second practical thread: using model-assisted threat modeling, reproduction, and patch suggestion inside isolated or reviewable workflows. The source is strongest as a design sketch for governed cyber access, not as evidence that the newer preview is broadly better at cyber tasks. As of 2026-05-07, it is actionable for organizations already thinking about approved-use security tooling and access governance, but still preview-stage and worth validating against internal policy and false-refusal tolerance before adoption."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor announcement about GPT-5.5, GPT-5.5-Cyber, and Trusted Access for Cyber.",
+        "Not a roundup, interview, or step-by-step tutorial; the post advances one product/security access framework narrative.",
+        "Contains illustrative examples and partner quotes, but the structure remains a product/blog article."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Use access tiers when a single policy would be too blunt for both safe and specialized work.",
+          "Pair permissive behavior with identity, account, and use-case controls rather than relying on prompt filters alone.",
+          "Treat refusal reduction as a governance decision, not just a UX tweak."
+        ],
+        "knowledge_summary": "A tiered access model separates a base model from higher-trust or more permissive variants, then gates the advanced behavior with identity checks, organizational verification, and approved-use rules. This lets organizations unlock more capable or less restrictive model behavior for specific tasks without opening that behavior to unrestricted use. The operational design challenge is not only model quality, but also who can invoke which behavior and under what controls. Tiering is especially useful when some tasks are legitimate but still dual-use, so a single universal policy either blocks too much or allows too much.",
+        "match_candidates": [],
+        "operational_insight": "For sensitive workflows, treat model access as an authorization problem as much as a model-selection problem. The useful design question is which users, tasks, and account controls are required before the model should be allowed to relax refusals.",
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "ai-safety",
+          "enterprise-ai",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "model-risk-assessment-for-cyber-capability"
+        ],
+        "relevance_note": "This pattern matters wherever model capability creates safety or compliance risk, including cyber, finance, and enterprise workflow automation. It gives teams a way to expose more useful behavior only to verified users and specific tasks, which is a durable design pattern for governed AI systems.",
+        "secondary_tag": "ai-safety",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cTrusted Access for Cyber is an identity and trust-based framework designed to help ensure enhanced cyber capabilities are being placed in the right hands.\u201d",
+        "topic_slug": "tiered-access-for-sensitive-model-capabilities",
+        "topic_title": "Tiered Access for Sensitive Model Capabilities",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Authorization must be explicit enough to distinguish defensive analysis from harmful action.",
+          "Misuse monitoring and approved-use scoping are part of the product design, not just post hoc review.",
+          "The model can support defensive workflows while still refusing clearly malicious requests."
+        ],
+        "knowledge_summary": "Governed cyber model access is the practice of allowing AI systems to support defensive security work while constraining their use through verification, approved scopes, and misuse monitoring. The model is allowed to help with tasks like vulnerability triage or patch validation, but requests that would enable real-world harm remain blocked. The operational value is in combining capability with policy enforcement so defenders can move faster without turning the system into a general-purpose offensive aid. This pattern sits at the intersection of security operations, model behavior, and account governance.",
+        "match_candidates": [],
+        "operational_insight": "The durable lesson is that useful cyber assistance depends on task scoping and control surfaces, not just model intelligence. A strong implementation defines what counts as authorized work, which accounts may perform it, and what kinds of harmful requests must still be refused.",
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "ai-safety",
+          "enterprise-ai",
+          "model-behavior"
+        ],
+        "related_topics": [
+          "tiered-access-for-sensitive-model-capabilities"
+        ],
+        "relevance_note": "This is a reusable pattern for any organization trying to use AI in security operations without collapsing into unsafe or non-compliant behavior. It is particularly relevant for defender tools, incident response assistants, and any service workflow that touches dual-use technical tasks.",
+        "secondary_tag": "ai-safety",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cSafeguards continue to block malicious activity such as credential theft, stealth, persistence, malware deployment, or exploitation of third-party systems.\u201d",
+        "topic_slug": "governed-cyber-model-access",
+        "topic_title": "Governed Cyber Model Access",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The source does not provide formal benchmark numbers.",
+            "OpenAI states GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation, which suggests the comparison is about access behavior more than a clear capability win."
+          ],
+          "comparative_observations": [
+            "The article positions GPT-5.5 as the recommended starting point for most security workflows, ahead of the more permissive GPT-5.5-Cyber.",
+            "Compared with GPT-5.5-Cyber, GPT-5.5 is framed as the safer, broadly useful default rather than the most permissive option."
+          ],
+          "confidence": 0.89,
+          "core_capabilities": [
+            "It can support secure code review and vulnerability triage for verified defenders working in authorized environments.",
+            "It can help with malware analysis and binary reverse engineering when access controls allow defensive use.",
+            "It can assist detection engineering and patch validation as part of a defensive security workflow."
+          ],
+          "deployment_implications": "Adopting GPT-5.5 in a cyber setting means access policy becomes part of the model stack: defenders need verified identity, approved-use scoping, and in some cases phishing-resistant account protection. The article implies it can serve as the main model for defensive workflows, while more permissive use is reserved for edge cases that still trigger refusals. For production teams, the practical implication is that model selection is tied to authorization and governance rather than capability alone.",
+          "match_candidates": [],
+          "maturity_signals": "As of 2026-05-07, OpenAI positions GPT-5.5 as the main broadly usable cyber model and says it is already delivering capabilities through Trusted Access for Cyber. The article describes partner-facing rollout and governance controls rather than a finished, universally open product. That makes it feel operationally mature for gated defender workflows, but still vendor-managed and policy-dependent.",
+          "model_name": "GPT-5.5",
+          "operational_profile": "GPT-5.5 is presented as OpenAI\u2019s broadly useful cyber-capable model for verified defensive work. The source frames it as the default starting point for most legitimate security workflows, including secure code review, vulnerability triage, malware analysis, detection engineering, and patch validation. The model\u2019s value in this article is less about a new capability jump and more about being paired with access controls that let it do more useful defensive work with fewer refusals.",
+          "pricing_inference_implications": "The article gives no pricing detail. The main inference is operational rather than economic: if the model is used at scale in security workflows, the real cost question is likely governed access, verification overhead, and review burden rather than only token pricing.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "enterprise-oriented",
+            "proprietary-model",
+            "frontier-model",
+            "tool-use-capable"
+          ],
+          "proposed_types": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "provider": "OpenAI",
+          "related_models": [
+            "GPT-5.5-Cyber",
+            "GPT-5.4-Cyber"
+          ],
+          "service_automation_implications": "Relevant for security support workflows, but the source does not connect GPT-5.5 to customer support automation directly. Its clearest service-automation value is in analyst-facing security operations where it can help summarize alerts, draft detections, and triage vulnerabilities faster.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cFor most teams, GPT\u20115.5 with TAC is our strongest broadly useful model for legitimate defensive work, with strong safeguards against misuse.\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "OpenAI says GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation because the cyber-permissive preview is mainly about more permissive behavior, not a broad capability leap. The source does not quantify false refusals, security gains, or failure modes, so its comparative advantage is directional rather than measured."
+        },
+        "notes": null,
+        "proposal_id": "0ccd34d9-99fd-48aa-9c29-e969eb305ade",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The source does not provide formal benchmark numbers.",
+              "OpenAI states GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation, which suggests the comparison is about access behavior more than a clear capability win."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article positions GPT-5.5 as the recommended starting point for most security workflows, ahead of the more permissive GPT-5.5-Cyber.",
+              "Compared with GPT-5.5-Cyber, GPT-5.5 is framed as the safer, broadly useful default rather than the most permissive option."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can support secure code review and vulnerability triage for verified defenders working in authorized environments.",
+              "It can help with malware analysis and binary reverse engineering when access controls allow defensive use.",
+              "It can assist detection engineering and patch validation as part of a defensive security workflow."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-5.5-Cyber",
+              "GPT-5.4-Cyber"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The source states the preview is not expected to outperform GPT-5.5 across every cyber evaluation.",
+            "No numerical evaluation results are provided."
+          ],
+          "comparative_observations": [
+            "Compared with GPT-5.5, GPT-5.5-Cyber is more permissive but not clearly more capable overall.",
+            "The model is positioned as a specialist escalation path rather than the default starting point for most defenders."
+          ],
+          "confidence": 0.86,
+          "core_capabilities": [
+            "It is designed to be more permissive on security-related requests that are still authorized and defensive.",
+            "It can support advanced workflows such as authorized red teaming and penetration testing under controlled validation.",
+            "It is meant to work with stronger verification and account-level controls than the default model path."
+          ],
+          "deployment_implications": "Deploying GPT-5.5-Cyber implies tighter organizational controls around who can use it and for what. The article says access is paired with stronger verification, account-level controls, misuse monitoring, and approved-use scoping, which makes it suitable only for governed security programs rather than general access. In practice, it looks like a specialist escalation path when GPT-5.5 with Trusted Access for Cyber still refuses authorized work.",
+          "match_candidates": [],
+          "maturity_signals": "As of 2026-05-07, GPT-5.5-Cyber is in limited preview and is explicitly framed as a smaller-scope offering for specialized partners and defenders. The article says it has already been used during alpha testing for automated red-teaming and validation of high-severity vulnerabilities, but that evidence is vendor-controlled and not independently audited in the text.",
+          "model_name": "GPT-5.5-Cyber",
+          "operational_profile": "GPT-5.5-Cyber is described as a more permissive preview variant for specialized authorized cyber workflows. The source places it in the narrow slice of tasks where defenders may still face refusals under the safer default model, including authorized red teaming, penetration testing, and controlled validation. Its main distinction is not broad superiority, but access behavior tuned for higher-risk defensive work under stronger verification and monitoring.",
+          "pricing_inference_implications": "No pricing is provided. The implied cost structure is governance-heavy: the operational burden seems to be verification, monitoring, and partner feedback loops rather than raw model access alone.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "enterprise-oriented",
+            "proprietary-model",
+            "frontier-model",
+            "tool-use-capable"
+          ],
+          "proposed_types": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "provider": "OpenAI",
+          "related_models": [
+            "GPT-5.5",
+            "GPT-5.4-Cyber"
+          ],
+          "service_automation_implications": "Its service-automation relevance is limited to high-trust security operations, not customer-facing automation. The main implication is that some analyst workflows that require exploit validation or red-team-style testing can be supported under a controlled governance model, but only with strict authorization.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cToday, we are rolling out GPT\u20115.5\u2011Cyber in limited preview to defenders responsible for securing critical infrastructure to support specialized cybersecurity workflows that help protect the broader ecosystem.\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "OpenAI explicitly says this first preview is not intended to significantly increase cyber capability beyond GPT-5.5 and is primarily trained to be more permissive. The source also says it is not expected to outperform GPT-5.5 across every cyber evaluation, so the value depends on policy fit, not a universal capability gain."
+        },
+        "notes": null,
+        "proposal_id": "d730cf42-6511-4eca-b7cc-242d08c8a8c3",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The source states the preview is not expected to outperform GPT-5.5 across every cyber evaluation.",
+              "No numerical evaluation results are provided."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "Compared with GPT-5.5, GPT-5.5-Cyber is more permissive but not clearly more capable overall.",
+              "The model is positioned as a specialist escalation path rather than the default starting point for most defenders."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It is designed to be more permissive on security-related requests that are still authorized and defensive.",
+              "It can support advanced workflows such as authorized red teaming and penetration testing under controlled validation.",
+              "It is meant to work with stronger verification and account-level controls than the default model path."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-5.5",
+              "GPT-5.4-Cyber"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-07",
+          "confidence": 0.94,
+          "evidence_from_source": "OpenAI says GPT-5.5 with Trusted Access for Cyber is the recommended starting point for most security workflows, while GPT-5.5-Cyber is a limited preview for more specialized authorized workflows.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "",
+          "proposed_tags": [],
+          "related_trends": [
+            "tiered-access-for-sensitive-model-capabilities"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-governance",
+          "suggested_new_tags": [
+            "ai-governance",
+            "ai-safety",
+            "enterprise-ai"
+          ],
+          "supporting_data_points": [
+            "GPT-5.5 with TAC is described as the starting point for most security workflows.",
+            "GPT-5.5-Cyber is limited preview for specialized authorized workflows.",
+            "Access requires stronger verification and, for individuals, Advanced Account Security beginning June 1, 2026."
+          ],
+          "supporting_snippet": "\u201cToday, we are rolling out GPT\u20115.5\u2011Cyber in limited preview to defenders responsible for securing critical infrastructure to support specialized cybersecurity workflows that help protect the broader ecosystem.\u201d",
+          "time_sensitivity": "Actionable as of 2026-05-07; likely relevant through the period in which AI vendors continue shipping tiered access for sensitive capabilities.",
+          "trend_description": "Models that can support dual-use or sensitive workflows are increasingly deployed behind verification, scoping, and account-level controls instead of broad public access. The goal is to let trusted users access more capable or more permissive behavior while reducing misuse risk for everyone else. This often creates a layered product strategy: a default safe model, a trusted-access variant, and a more permissive specialist preview.",
+          "trend_slug": "high-risk-models-move-to-gated-access",
+          "trend_title": "High-Risk Models Move to Gated Access",
+          "uncertainty_note": "The article is a vendor announcement, so it shows the direction of product packaging more clearly than it proves broad market adoption. It is plausible and operationally important, but the scope of the trend beyond OpenAI is not established by this source alone.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "0c2a75f9-1df8-4210-8ef8-7d6bfe801150",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "tiered-access-for-sensitive-model-capabilities"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-5.5 with TAC is described as the starting point for most security workflows.",
+              "GPT-5.5-Cyber is limited preview for specialized authorized workflows.",
+              "Access requires stronger verification and, for individuals, Advanced Account Security beginning June 1, 2026."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ai-governance",
+            "ai-safety",
+            "enterprise-ai"
+          ],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "OpenAI is the publisher and the named source of nearly all substantive claims about model behavior, access controls, and intended use cases.",
+          "The article presents product descriptions, rollout details, and partner testimonials rather than independent evaluation or formal benchmarks.",
+          "Any performance or safety claims are framed as OpenAI's own assessment or preview experience, not external validation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "GPT-5.5 with Trusted Access for Cyber is positioned as the default entry point for most legitimate defensive workflows, not GPT-5.5-Cyber.",
+          "OpenAI ties more permissive cyber access to stronger identity verification and phishing-resistant account security, making account controls part of the product design.",
+          "The article draws a clear boundary between defensive tasks it wants to enable and harmful actions it says remain blocked, such as credential theft and exploitation of third-party systems.",
+          "GPT-5.5-Cyber is described as a preview tool for a smaller set of authorized, higher-risk workflows where GPT-5.5 may still refuse.",
+          "The vendor\u2019s main evidence is descriptive and partner-based, so the operational value is in access policy and workflow design more than in independently proven performance gains."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor announcement about GPT-5.5, GPT-5.5-Cyber, and Trusted Access for Cyber.",
+          "Not a roundup, interview, or step-by-step tutorial; the post advances one product/security access framework narrative.",
+          "Contains illustrative examples and partner quotes, but the structure remains a product/blog article."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Use access tiers when a single policy would be too blunt for both safe and specialized work.",
+            "Pair permissive behavior with identity, account, and use-case controls rather than relying on prompt filters alone.",
+            "Treat refusal reduction as a governance decision, not just a UX tweak."
+          ],
+          "knowledge_summary": "A tiered access model separates a base model from higher-trust or more permissive variants, then gates the advanced behavior with identity checks, organizational verification, and approved-use rules. This lets organizations unlock more capable or less restrictive model behavior for specific tasks without opening that behavior to unrestricted use. The operational design challenge is not only model quality, but also who can invoke which behavior and under what controls. Tiering is especially useful when some tasks are legitimate but still dual-use, so a single universal policy either blocks too much or allows too much.",
+          "match_candidates": [],
+          "operational_insight": "For sensitive workflows, treat model access as an authorization problem as much as a model-selection problem. The useful design question is which users, tasks, and account controls are required before the model should be allowed to relax refusals.",
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "ai-safety",
+            "enterprise-ai",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "model-risk-assessment-for-cyber-capability"
+          ],
+          "relevance_note": "This pattern matters wherever model capability creates safety or compliance risk, including cyber, finance, and enterprise workflow automation. It gives teams a way to expose more useful behavior only to verified users and specific tasks, which is a durable design pattern for governed AI systems.",
+          "secondary_tag": "ai-safety",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cTrusted Access for Cyber is an identity and trust-based framework designed to help ensure enhanced cyber capabilities are being placed in the right hands.\u201d",
+          "topic_slug": "tiered-access-for-sensitive-model-capabilities",
+          "topic_title": "Tiered Access for Sensitive Model Capabilities",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ee62f0df-e05d-435d-87a8-8ff5a137de74",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Use access tiers when a single policy would be too blunt for both safe and specialized work.",
+              "Pair permissive behavior with identity, account, and use-case controls rather than relying on prompt filters alone.",
+              "Treat refusal reduction as a governance decision, not just a UX tweak."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "model-risk-assessment-for-cyber-capability"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Authorization must be explicit enough to distinguish defensive analysis from harmful action.",
+            "Misuse monitoring and approved-use scoping are part of the product design, not just post hoc review.",
+            "The model can support defensive workflows while still refusing clearly malicious requests."
+          ],
+          "knowledge_summary": "Governed cyber model access is the practice of allowing AI systems to support defensive security work while constraining their use through verification, approved scopes, and misuse monitoring. The model is allowed to help with tasks like vulnerability triage or patch validation, but requests that would enable real-world harm remain blocked. The operational value is in combining capability with policy enforcement so defenders can move faster without turning the system into a general-purpose offensive aid. This pattern sits at the intersection of security operations, model behavior, and account governance.",
+          "match_candidates": [],
+          "operational_insight": "The durable lesson is that useful cyber assistance depends on task scoping and control surfaces, not just model intelligence. A strong implementation defines what counts as authorized work, which accounts may perform it, and what kinds of harmful requests must still be refused.",
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "ai-safety",
+            "enterprise-ai",
+            "model-behavior"
+          ],
+          "related_topics": [
+            "tiered-access-for-sensitive-model-capabilities"
+          ],
+          "relevance_note": "This is a reusable pattern for any organization trying to use AI in security operations without collapsing into unsafe or non-compliant behavior. It is particularly relevant for defender tools, incident response assistants, and any service workflow that touches dual-use technical tasks.",
+          "secondary_tag": "ai-safety",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cSafeguards continue to block malicious activity such as credential theft, stealth, persistence, malware deployment, or exploitation of third-party systems.\u201d",
+          "topic_slug": "governed-cyber-model-access",
+          "topic_title": "Governed Cyber Model Access",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "b64b8910-fce0-48f8-b952-27a81648200c",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Authorization must be explicit enough to distinguish defensive analysis from harmful action.",
+              "Misuse monitoring and approved-use scoping are part of the product design, not just post hoc review.",
+              "The model can support defensive workflows while still refusing clearly malicious requests."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "tiered-access-for-sensitive-model-capabilities"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": "2026-05-26T21:54:07+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-05-26T21:56:34+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber",
+    "content_sha256": "ed764e5d325daf49ced08b979986cb30424b938fd469b1f47b66d9a11ba786ed",
+    "publication": "OpenAI",
+    "published_date": "2026-05-07",
+    "raw_html_rel_path": "raw/readwise/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf.html",
+    "raw_md_rel_path": "raw/readwise/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf.md",
+    "source_id": "scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf",
+    "title": "Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber"
+  }
+}

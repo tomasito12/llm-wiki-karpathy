@@ -10,7 +10,7 @@ from src.ingest_review.tags import MAX_PROPOSED_TAGS as _MAX_PROPOSED_TAGS
 from src.ingest_review.tags import normalize_tag, normalize_tag_list
 
 ARTIFACT_SCHEMA_VERSION = 17
-PROMPT_VERSION = "38"
+PROMPT_VERSION = "39"
 MAX_PROPOSED_TAGS = 5
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
@@ -1085,3 +1085,135 @@ def llm_output_json_schema_for_classification() -> dict:
     schema = copy.deepcopy(LlmClassificationOutput.model_json_schema())
     _strip_properties_from_json_schema(schema, _CLASSIFICATION_SCHEMA_OMIT)
     return schema
+
+
+class TriageStageOutput(BaseModel):
+    """Stage 1: routing, skip gate, and source-level evidence profile."""
+
+    extraction_meta: ExtractionMeta = Field(default_factory=ExtractionMeta)
+    source_type_detection: SourceTypeDetection = Field(default_factory=SourceTypeDetection)
+    source_evidence_profile: SourceEvidenceProfile = Field(default_factory=SourceEvidenceProfile)
+
+
+class SummaryStageOutput(BaseModel):
+    """Stage 2: reviewer-facing source chapters only."""
+
+    source_summary: SourceSummaryBlock = Field(default_factory=SourceSummaryBlock)
+
+
+class EntitiesStageOutput(BaseModel):
+    """Stage 3: entity proposal arrays (route-scoped at prompt/schema level)."""
+
+    glossary: list[GlossaryProposal] = Field(default_factory=list)
+    tools: list[ToolProposal] = Field(default_factory=list)
+    foundation_models: list[FoundationModelProposal] = Field(default_factory=list)
+    how_to: list[HowToProposal] = Field(default_factory=list)
+    topics: list[TopicContribution] = Field(default_factory=list)
+    implementation_studies: list[ImplementationStudyProposal] = Field(default_factory=list)
+    industry_trends: list[IndustryTrendProposal] = Field(default_factory=list)
+    roundup_signals: list[RoundupSignal] = Field(default_factory=list)
+    interview_insights: list[InterviewInsight] = Field(default_factory=list)
+
+
+ENTITY_FIELD_NAMES: tuple[str, ...] = (
+    "glossary",
+    "tools",
+    "foundation_models",
+    "how_to",
+    "topics",
+    "implementation_studies",
+    "industry_trends",
+    "roundup_signals",
+    "interview_insights",
+)
+
+_STANDARD_ENTITY_FIELDS: tuple[str, ...] = (
+    "glossary",
+    "tools",
+    "foundation_models",
+    "how_to",
+    "topics",
+    "implementation_studies",
+    "industry_trends",
+)
+
+ENTITY_FIELDS_BY_SOURCE_TYPE: dict[SourceType, tuple[str, ...]] = {
+    "ai_tools_roundup": ("tools", "foundation_models"),
+    "how_to_roundup": ("how_to",),
+    "ai_industry_roundup": ("roundup_signals", "industry_trends"),
+    "interview_or_transcript": ("interview_insights",),
+    "standard_article": _STANDARD_ENTITY_FIELDS,
+    "technical_howto": _STANDARD_ENTITY_FIELDS,
+    "research_paper_or_report": _STANDARD_ENTITY_FIELDS,
+    "unknown": _STANDARD_ENTITY_FIELDS,
+}
+
+
+def _schema_only_properties(model: type[BaseModel], keep: frozenset[str]) -> dict[str, Any]:
+    """Build a JSON-schema dict containing only *keep* top-level properties."""
+    import copy
+
+    full = copy.deepcopy(model.model_json_schema())
+    props = full.get("properties")
+    if not isinstance(props, dict):
+        return full
+    for key in list(props.keys()):
+        if key not in keep:
+            props.pop(key, None)
+    required = full.get("required")
+    if isinstance(required, list):
+        full["required"] = [r for r in required if r in keep]
+    _strip_properties_from_json_schema(full, _CLASSIFICATION_SCHEMA_OMIT)
+    return full
+
+
+def llm_output_json_schema_for_triage() -> dict[str, Any]:
+    """JSON schema for stage 1 triage output."""
+    return _schema_only_properties(
+        TriageStageOutput,
+        frozenset({"extraction_meta", "source_type_detection", "source_evidence_profile"}),
+    )
+
+
+def llm_output_json_schema_for_summary() -> dict[str, Any]:
+    """JSON schema for stage 2 source summary output."""
+    return _schema_only_properties(SummaryStageOutput, frozenset({"source_summary"}))
+
+
+def llm_output_json_schema_for_entities(route: SourceType) -> dict[str, Any]:
+    """JSON schema for stage 3 — only entity keys allowed for *route*."""
+    allowed = frozenset(ENTITY_FIELDS_BY_SOURCE_TYPE.get(route, ENTITY_FIELD_NAMES))
+    return _schema_only_properties(EntitiesStageOutput, allowed)
+
+
+def merge_stage_outputs(
+    triage: TriageStageOutput,
+    summary: SummaryStageOutput,
+    entities: EntitiesStageOutput,
+) -> LlmClassificationOutput:
+    """Combine staged outputs into the full classification model."""
+    return LlmClassificationOutput(
+        extraction_meta=triage.extraction_meta,
+        source_type_detection=triage.source_type_detection,
+        source_evidence_profile=triage.source_evidence_profile,
+        source_summary=summary.source_summary,
+        glossary=entities.glossary,
+        tools=entities.tools,
+        foundation_models=entities.foundation_models,
+        how_to=entities.how_to,
+        topics=entities.topics,
+        implementation_studies=entities.implementation_studies,
+        industry_trends=entities.industry_trends,
+        roundup_signals=entities.roundup_signals,
+        interview_insights=entities.interview_insights,
+    )
+
+
+def empty_entities_stage_output() -> EntitiesStageOutput:
+    """Empty entity arrays for skip short-circuit."""
+    return EntitiesStageOutput()
+
+
+def empty_summary_stage_output() -> SummaryStageOutput:
+    """Empty source summary for skip short-circuit."""
+    return SummaryStageOutput()

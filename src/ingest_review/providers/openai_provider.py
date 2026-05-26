@@ -2,31 +2,54 @@
 
 from __future__ import annotations
 
+import inspect
 import json
 import logging
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, TypeVar
 
 from openai import APIError, APITimeoutError, OpenAI, RateLimitError
-from pydantic import ValidationError
+from pydantic import BaseModel, ValidationError
 
-from src.ingest_review.canonical_titles import build_canonical_title_prompt_blocks
+from src.ingest_review.classification_pipeline import (
+    classification_pipeline_mode,
+    run_staged_classification,
+)
+from src.ingest_review.classification_prompts import (
+    ClassificationAllowlists,
+    build_cached_classification_prefix,
+    build_entities_prompt_suffix,
+    build_monolithic_prompt_suffix,
+    build_prompt_cache_key,
+    build_summary_prompt_suffix,
+    build_triage_prompt_suffix,
+    classification_allowlists_from_kwargs,
+)
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.proposal_regen_provider import run_proposal_regeneration
 from src.ingest_review.providers.base import IngestionProvider
 from src.ingest_review.schema import (
     PROMPT_VERSION,
     REGENERATABLE_SOURCE_SECTION_KEYS,
+    EntitiesStageOutput,
     GlossaryTagSuggestOutput,
     LlmClassificationOutput,
     SectionRegenerateOutput,
+    SourceType,
+    SummaryStageOutput,
+    TriageStageOutput,
     llm_output_json_schema_for_classification,
+    llm_output_json_schema_for_entities,
+    llm_output_json_schema_for_summary,
+    llm_output_json_schema_for_triage,
 )
 from src.ingest_review.tags import normalize_tag, normalize_tag_list
 from src.ingest_review.wiki_snapshot import WikiSnapshot
 
 logger = logging.getLogger(__name__)
+
+_TModel = TypeVar("_TModel", bound=BaseModel)
 
 SYSTEM_PROMPT = """You are an analyst helping curate a personal AI-engineering Markdown wiki.
 Return only valid JSON matching the provided schema. Ground every substantive claim in the \
@@ -1466,169 +1489,38 @@ def _build_user_prompt(
     *,
     prompt_version: str,
 ) -> str:
-    """Assemble the user message with metadata, lists, and article body."""
-    meta_lines = [
-        f"prompt_version: {prompt_version}",
-        f"source_id: {doc.source_id}",
-        f"title: {doc.title or ''}",
-        f"author: {doc.author or ''}",
-        f"publication: {doc.publication or ''}",
-        f"published_date: {doc.published_date or ''}",
-        f"canonical_url: {doc.canonical_url or ''}",
-    ]
-    schema_hint = json.dumps(llm_output_json_schema_for_classification(), indent=2)[:24_000]
-    canonical_blocks = build_canonical_title_prompt_blocks(wiki, reviews_root)
-    impl_tags = impl_study_tags or []
-    gloss_tags = glossary_tags or []
-    t_tags = topic_tags or []
-    tr_tags = trend_tags or []
-    m_types = model_types or []
-    t_retrieval_tags = tool_tags or []
-    m_retrieval_tags = model_tags or []
-    budgets = extraction_budgets or {}
-    budget_lines_parts: list[str] = []
-    budget_labels = {
-        "glossary": "glossary",
-        "topics": "topics",
-        "how_to": "how_to",
-        "industry_trends": "industry_trends",
-        "tools": "tools (only if substantially discussed)",
-        "foundation_models": "foundation_models (only if substantially discussed)",
-        "implementation_studies": (
-            "implementation_studies (only if worthiness gate passes; else [])"
-        ),
-        "roundup_signals": "roundup_signals",
-        "interview_insights": "interview_insights",
-    }
-    for bk, label in budget_labels.items():
-        mx = budgets.get(bk, 3)
-        note = ""
-        if bk == "tools":
-            note = " (uncapped when detected type is ai_tools_roundup)"
-        elif bk == "how_to":
-            note = " (uncapped when detected type is how_to_roundup)"
-        elif bk == "foundation_models":
-            note = " (uncapped when detected type is ai_tools_roundup)"
-        budget_lines_parts.append(f"- {label}: max {mx} proposals{note}")
-    budget_block = EXTRACTION_BUDGET_RUBRIC.format(budget_lines="\n".join(budget_lines_parts))
-    trend_slugs = wiki.trend_slugs[:100] if wiki.trend_slugs else []
-    blocks = [
-        "## Metadata\n" + "\n".join(meta_lines),
-        TEMPORAL_ANCHORING_RULE,
-        budget_block,
-        AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC,
-        HOW_TO_ROUNDUP_EXTRACTION_RUBRIC,
-        VALUE_RANKING_RUBRIC,
-        ABSTRACTION_SELECTION_RUBRIC,
-        COMPRESSION_PRESSURE_RUBRIC,
-        MINIMUM_NOVELTY_THRESHOLD_RUBRIC,
-        SOURCE_EVIDENCE_PROFILE_RUBRIC,
-        TAG_ONTOLOGY_RUBRIC,
-        GLOBAL_NAMESPACES_RUBRIC,
-        REGISTRY_TYPES_SEMANTICS,
-        TITLE_GENERATION_RUBRIC,
-        TITLE_CANONICALIZATION_RUBRIC,
-        PAGE_MATCHING_RUBRIC,
-        "## CANONICAL_GLOSSARY_TERMS\n" + canonical_blocks["CANONICAL_GLOSSARY_TERMS"],
-        "## CANONICAL_TOOL_NAMES\n" + canonical_blocks["CANONICAL_TOOL_NAMES"],
-        "## CANONICAL_FOUNDATION_MODEL_NAMES\n"
-        + canonical_blocks["CANONICAL_FOUNDATION_MODEL_NAMES"],
-        "## CANONICAL_IMPL_STUDY_TITLES\n" + canonical_blocks["CANONICAL_IMPL_STUDY_TITLES"],
-        "## CANONICAL_TOPIC_TITLES\n" + canonical_blocks["CANONICAL_TOPIC_TITLES"],
-        "## CANONICAL_HOWTO_TITLES\n" + canonical_blocks["CANONICAL_HOWTO_TITLES"],
-        "## CANONICAL_TREND_TITLES\n" + canonical_blocks["CANONICAL_TREND_TITLES"],
-        "## EXISTING_TOPIC_SLUGS\n" + "\n".join(f"- {s}" for s in wiki.topic_slugs[:100])
-        or "(none)",
-        "## EXISTING_TREND_SLUGS\n" + "\n".join(f"- {s}" for s in trend_slugs) or "(none)",
-        "## TOOL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_types),
-        "## TOOL_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in t_retrieval_tags),
-        "## MODEL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in m_types),
-        "## MODEL_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in m_retrieval_tags),
-        "## HOWTO_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in howto_tags),
-        "## IMPL_STUDY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in impl_tags),
-        "## GLOSSARY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in gloss_tags),
-        "## TOPIC_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in t_tags),
-        "## TREND_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tr_tags),
-        "## SOURCE_TYPE_DETECTION_RUBRIC\n" + SOURCE_TYPE_DETECTION_RUBRIC,
-        "## SOURCE_EVIDENCE_PROFILE_RUBRIC\n" + SOURCE_EVIDENCE_PROFILE_RUBRIC,
-        "## SOURCE_CHAPTERS_RUBRIC\n" + SOURCE_CHAPTERS_RUBRIC,
-        "## TITLE_GENERATION_RUBRIC\n" + TITLE_GENERATION_RUBRIC,
-        "## PAGE_MATCHING_RUBRIC\n" + PAGE_MATCHING_RUBRIC,
-        "## ABSTRACTION_SELECTION_RUBRIC\n" + ABSTRACTION_SELECTION_RUBRIC,
-        "## COMPRESSION_PRESSURE_RUBRIC\n" + COMPRESSION_PRESSURE_RUBRIC,
-        "## MINIMUM_NOVELTY_THRESHOLD_RUBRIC\n" + MINIMUM_NOVELTY_THRESHOLD_RUBRIC,
-        "## GLOSSARY_RUBRIC\n" + GLOSSARY_RUBRIC,
-        "## IMPL_STUDY_RUBRIC\n" + IMPL_STUDY_RUBRIC,
-        "## TOPICS_RUBRIC\n" + TOPICS_RUBRIC,
-        "## HOWTOS_RUBRIC\n" + HOWTOS_RUBRIC,
-        "## TRENDS_RUBRIC\n" + TRENDS_RUBRIC,
-        "## TOOLS_RUBRIC\n" + TOOLS_RUBRIC,
-        "## MODELS_RUBRIC\n" + MODELS_RUBRIC,
-        "## ROUNDUP_SIGNALS_RUBRIC\n" + ROUNDUP_SIGNALS_RUBRIC,
-        "## INTERVIEW_INSIGHTS_RUBRIC\n" + INTERVIEW_INSIGHTS_RUBRIC,
-        "## JSON_SCHEMA_HINT\n" + schema_hint,
-    ]
-    if source_type_override:
-        blocks.append(
-            f"## SOURCE_TYPE_OVERRIDE\nTreat this source as: {source_type_override}. "
-            "Set source_type_detection.detected_source_type accordingly. If "
-            "ai_industry_roundup, populate roundup_signals; if ai_tools_roundup, "
-            "follow AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC only (no roundup_signals); "
-            "if how_to_roundup, follow HOW_TO_ROUNDUP_EXTRACTION_RUBRIC only; "
-            "if interview_or_transcript, populate interview_insights."
-        )
-    blocks.extend(
-        [
-            "## ARTICLE_PLAIN_TEXT\n" + doc.plain_text,
-            "## Instructions\n"
-            "Output one JSON object matching the schema keys: extraction_meta, "
-            "source_evidence_profile, source_type_detection, source_summary, glossary, "
-            "tools, foundation_models, "
-            "how_to, topics, implementation_studies, industry_trends, roundup_signals, "
-            "interview_insights. "
-            "FIRST: fill extraction_meta (skip_recommended, skip_reason, "
-            "total_candidates_considered, review_burden_estimate). "
-            "If skip_recommended is true, return empty arrays for all entity types—NEVER when "
-            "detected type is ai_tools_roundup or how_to_roundup (skip_recommended must be "
-            "false for those). "
-            "THEN: fill source_type_detection per SOURCE_TYPE_DETECTION_RUBRIC. "
-            "THEN: fill source_evidence_profile per SOURCE_EVIDENCE_PROFILE_RUBRIC. "
-            "THEN: fill source_summary per SOURCE_CHAPTERS_RUBRIC. "
-            "IF detected_source_type is ai_tools_roundup: follow "
-            "AI_TOOLS_ROUNDUP_EXTRACTION_RUBRIC "
-            "exactly—leave glossary, topics, how_to, industry_trends, roundup_signals, "
-            "implementation_studies, interview_insights as []; extract every primary enumerated "
-            "tool/app; skip_recommended must be false; numeric caps under ## EXTRACTION BUDGETS "
-            "do not limit tools or foundation_models for this type only. "
-            "IF detected_source_type is how_to_roundup: follow HOW_TO_ROUNDUP_EXTRACTION_RUBRIC "
-            "exactly—leave glossary, topics, tools, foundation_models, industry_trends, "
-            "roundup_signals, implementation_studies, interview_insights as []; extract every "
-            "primary enumerated practice; skip_recommended must be false; numeric caps do not "
-            "limit how_to for this type only. "
-            "ELSE: apply PAGE_MATCHING_RUBRIC before reusing any CANONICAL_* title or slug. "
-            "For topic_title and trend_title, follow TITLE_GENERATION_RUBRIC (Topic vs Trend). "
-            "For deep single-product reviews, apply ABSTRACTION_SELECTION_RUBRIC complementary "
-            "tool + topic/trend rules (do not return tools: [] when TOOLS_RUBRIC is satisfied). "
-            "For each candidate knowledge unit, apply ABSTRACTION_SELECTION_RUBRIC "
-            "first; then fill glossary, tools, foundation_models, how_to, topics, "
-            "implementation_studies, industry_trends per their rubrics and RESPECT extraction "
-            "budgets. Apply MINIMUM_NOVELTY_THRESHOLD_RUBRIC and COMPRESSION_PRESSURE_RUBRIC "
-            "across all proposals before finalizing arrays — omit familiar concepts without "
-            "source-specific additive insight; prefer one stronger proposal over partially "
-            "redundant overlap. "
-            "Do not place the same substance in multiple entity types unless the rubric allows "
-            "complementary dual extraction. Every proposal MUST have a value_level field. "
-            "For glossary, each related_terms entry MUST match a sibling ``term`` or "
-            "EXISTING_GLOSSARY_TERMS exactly (see GLOSSARY_RUBRIC; avoid abbreviations when the "
-            "full form is canonical). "
-            "IF detected_source_type is ai_industry_roundup, ALSO fill roundup_signals per "
-            "ROUNDUP_SIGNALS_RUBRIC. "
-            "IF detected_source_type is interview_or_transcript, ALSO fill interview_insights per "
-            "INTERVIEW_INSIGHTS_RUBRIC. "
-            "Use empty arrays when a category does not apply.",
-        ]
+    """Monolithic user message: cacheable prefix (metadata + article) + full rubric suffix."""
+    allowlists = classification_allowlists_from_kwargs(
+        tool_types_allowlist=tool_types,
+        howto_tags_allowlist=howto_tags,
+        impl_study_tags_allowlist=impl_study_tags,
+        glossary_tags_allowlist=glossary_tags,
+        topic_tags_allowlist=topic_tags,
+        trend_tags_allowlist=trend_tags,
+        model_types_allowlist=model_types,
+        tool_tags_allowlist=tool_tags,
+        model_tags_allowlist=model_tags,
     )
-    return "\n\n".join(blocks)
+    prefix = build_cached_classification_prefix(doc, prompt_version=prompt_version)
+    suffix = build_monolithic_prompt_suffix(
+        doc,
+        wiki,
+        allowlists,
+        source_type_override=source_type_override,
+        extraction_budgets=extraction_budgets,
+        reviews_root=reviews_root,
+        prompt_version=prompt_version,
+    )
+    return f"{prefix}\n\n{suffix}"
+
+
+def _supports_prompt_cache_key(client: OpenAI) -> bool:
+    """True when the installed SDK accepts ``prompt_cache_key`` on chat completions."""
+    try:
+        sig = inspect.signature(client.chat.completions.create)
+    except (TypeError, ValueError):
+        return False
+    return "prompt_cache_key" in sig.parameters
 
 
 def _parse_json_content(raw: str) -> dict[str, Any]:
@@ -1648,62 +1540,34 @@ class OpenAIIngestionProvider(IngestionProvider):
     def __init__(self, client: OpenAI | None = None) -> None:
         """Initialize with optional shared client (for tests)."""
         self._client = client or OpenAI()
+        self._prompt_cache_key_supported = _supports_prompt_cache_key(self._client)
 
     @property
     def provider_name(self) -> str:
         """Return ``openai``."""
         return "openai"
 
-    def analyze_classification(
+    def _run_json_completion(
         self,
         *,
-        document: SourceDocument,
-        wiki: WikiSnapshot,
-        tool_types_allowlist: list[str],
-        howto_tags_allowlist: list[str],
-        impl_study_tags_allowlist: list[str] | None = None,
-        glossary_tags_allowlist: list[str] | None = None,
-        topic_tags_allowlist: list[str] | None = None,
-        trend_tags_allowlist: list[str] | None = None,
-        model_types_allowlist: list[str] | None = None,
-        tool_tags_allowlist: list[str] | None = None,
-        model_tags_allowlist: list[str] | None = None,
-        source_type_override: str | None = None,
-        extraction_budgets: dict[str, int] | None = None,
-        reviews_root: Path | None = None,
+        user_prompt: str,
+        schema: dict[str, Any],
+        schema_name: str,
         model: str,
-        prompt_version: str,
-        max_retries: int = 3,
-    ) -> tuple[LlmClassificationOutput, dict[str, Any]]:
-        """Call OpenAI and validate against :class:`LlmClassificationOutput`."""
-        user_prompt = _build_user_prompt(
-            document,
-            wiki,
-            tool_types_allowlist,
-            howto_tags_allowlist,
-            impl_study_tags_allowlist,
-            glossary_tags_allowlist,
-            topic_tags_allowlist,
-            trend_tags_allowlist,
-            model_types=model_types_allowlist,
-            tool_tags=tool_tags_allowlist,
-            model_tags=model_tags_allowlist,
-            source_type_override=source_type_override,
-            extraction_budgets=extraction_budgets,
-            reviews_root=reviews_root,
-            prompt_version=prompt_version or PROMPT_VERSION,
-        )
+        prompt_cache_key: str | None,
+        validate_model: type[_TModel],
+        max_retries: int,
+    ) -> tuple[_TModel, dict[str, Any]]:
+        """Shared completion loop with schema validation and optional prompt caching."""
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT + " Respond with one JSON object only."},
             {"role": "user", "content": user_prompt},
         ]
-        # Prefer json_schema when the API accepts it; fall back to json_object.
-        schema = llm_output_json_schema_for_classification()
         response_formats: list[dict[str, Any] | None] = [
             {
                 "type": "json_schema",
                 "json_schema": {
-                    "name": "ingest_classification",
+                    "name": schema_name,
                     "schema": schema,
                     "strict": False,
                 },
@@ -1711,7 +1575,6 @@ class OpenAIIngestionProvider(IngestionProvider):
             {"type": "json_object"},
             None,
         ]
-
         last_error: str | None = None
         max_attempts = max(3, max_retries) * 2
         fmt_index = 0
@@ -1725,11 +1588,13 @@ class OpenAIIngestionProvider(IngestionProvider):
                 }
                 if response_format is not None:
                     kwargs["response_format"] = response_format
+                if prompt_cache_key and self._prompt_cache_key_supported:
+                    kwargs["prompt_cache_key"] = prompt_cache_key
                 completion = self._client.chat.completions.create(**kwargs)
                 choice = completion.choices[0]
                 raw = choice.message.content or ""
                 data = _parse_json_content(raw)
-                parsed = LlmClassificationOutput.model_validate(data)
+                parsed = validate_model.model_validate(data)
                 meta: dict[str, Any] = {
                     "request_id": completion.id,
                     "token_usage": completion.usage.model_dump() if completion.usage else None,
@@ -1763,7 +1628,225 @@ class OpenAIIngestionProvider(IngestionProvider):
                     time.sleep(2.0 * (attempt + 1))
                 else:
                     fmt_index += 1
-        raise RuntimeError(f"OpenAI classification failed: {last_error}")
+        raise RuntimeError(f"OpenAI completion failed ({schema_name}): {last_error}")
+
+    def _cache_key(self, *, prompt_version: str, source_id: str) -> str:
+        return build_prompt_cache_key(prompt_version=prompt_version, source_id=source_id)
+
+    def analyze_triage(
+        self,
+        *,
+        document: SourceDocument,
+        wiki: WikiSnapshot,
+        allowlists: ClassificationAllowlists,
+        source_type_override: str | None = None,
+        extraction_budgets: dict[str, int] | None = None,
+        reviews_root: Path | None = None,
+        model: str,
+        prompt_version: str,
+        max_retries: int = 3,
+    ) -> tuple[TriageStageOutput, dict[str, Any]]:
+        """Stage 1: triage JSON only."""
+        _ = wiki, reviews_root, allowlists
+        pv = prompt_version or PROMPT_VERSION
+        prefix = build_cached_classification_prefix(document, prompt_version=pv)
+        suffix = build_triage_prompt_suffix(
+            extraction_budgets=extraction_budgets,
+            source_type_override=source_type_override,
+            prompt_version=pv,
+        )
+        user_prompt = f"{prefix}\n\n{suffix}"
+        return self._run_json_completion(
+            user_prompt=user_prompt,
+            schema=llm_output_json_schema_for_triage(),
+            schema_name="ingest_triage",
+            model=model,
+            prompt_cache_key=self._cache_key(prompt_version=pv, source_id=document.source_id),
+            validate_model=TriageStageOutput,
+            max_retries=max_retries,
+        )
+
+    def analyze_source_summary(
+        self,
+        *,
+        document: SourceDocument,
+        triage: TriageStageOutput,
+        model: str,
+        prompt_version: str,
+        max_retries: int = 3,
+    ) -> tuple[SummaryStageOutput, dict[str, Any]]:
+        """Stage 2: source_summary chapters only."""
+        pv = prompt_version or PROMPT_VERSION
+        prefix = build_cached_classification_prefix(document, prompt_version=pv)
+        suffix = build_summary_prompt_suffix(triage, prompt_version=pv)
+        user_prompt = f"{prefix}\n\n{suffix}"
+        return self._run_json_completion(
+            user_prompt=user_prompt,
+            schema=llm_output_json_schema_for_summary(),
+            schema_name="ingest_summary",
+            model=model,
+            prompt_cache_key=self._cache_key(prompt_version=pv, source_id=document.source_id),
+            validate_model=SummaryStageOutput,
+            max_retries=max_retries,
+        )
+
+    def analyze_entities(
+        self,
+        *,
+        document: SourceDocument,
+        wiki: WikiSnapshot,
+        triage: TriageStageOutput,
+        summary: SummaryStageOutput,
+        route: SourceType,
+        allowlists: ClassificationAllowlists,
+        extraction_budgets: dict[str, int] | None = None,
+        reviews_root: Path | None = None,
+        model: str,
+        prompt_version: str,
+        max_retries: int = 3,
+    ) -> tuple[EntitiesStageOutput, dict[str, Any]]:
+        """Stage 3: route-scoped entity arrays."""
+        pv = prompt_version or PROMPT_VERSION
+        prefix = build_cached_classification_prefix(document, prompt_version=pv)
+        summary_json = json.dumps(summary.model_dump(mode="json"), indent=2)
+        suffix = build_entities_prompt_suffix(
+            route,
+            triage,
+            summary_json,
+            wiki=wiki,
+            allowlists=allowlists,
+            extraction_budgets=extraction_budgets,
+            reviews_root=reviews_root,
+            prompt_version=pv,
+        )
+        user_prompt = f"{prefix}\n\n{suffix}"
+        return self._run_json_completion(
+            user_prompt=user_prompt,
+            schema=llm_output_json_schema_for_entities(route),
+            schema_name=f"ingest_entities_{route}",
+            model=model,
+            prompt_cache_key=self._cache_key(prompt_version=pv, source_id=document.source_id),
+            validate_model=EntitiesStageOutput,
+            max_retries=max_retries,
+        )
+
+    def analyze_classification(
+        self,
+        *,
+        document: SourceDocument,
+        wiki: WikiSnapshot,
+        tool_types_allowlist: list[str],
+        howto_tags_allowlist: list[str],
+        impl_study_tags_allowlist: list[str] | None = None,
+        glossary_tags_allowlist: list[str] | None = None,
+        topic_tags_allowlist: list[str] | None = None,
+        trend_tags_allowlist: list[str] | None = None,
+        model_types_allowlist: list[str] | None = None,
+        tool_tags_allowlist: list[str] | None = None,
+        model_tags_allowlist: list[str] | None = None,
+        source_type_override: str | None = None,
+        extraction_budgets: dict[str, int] | None = None,
+        reviews_root: Path | None = None,
+        model: str,
+        prompt_version: str,
+        max_retries: int = 3,
+    ) -> tuple[LlmClassificationOutput, dict[str, Any]]:
+        """Run staged or monolithic classification per ``INGEST_CLASSIFICATION_PIPELINE``."""
+        pv = prompt_version or PROMPT_VERSION
+        if classification_pipeline_mode() == "staged":
+            return run_staged_classification(
+                self,
+                document=document,
+                wiki=wiki,
+                tool_types_allowlist=tool_types_allowlist,
+                howto_tags_allowlist=howto_tags_allowlist,
+                impl_study_tags_allowlist=impl_study_tags_allowlist,
+                glossary_tags_allowlist=glossary_tags_allowlist,
+                topic_tags_allowlist=topic_tags_allowlist,
+                trend_tags_allowlist=trend_tags_allowlist,
+                model_types_allowlist=model_types_allowlist,
+                tool_tags_allowlist=tool_tags_allowlist,
+                model_tags_allowlist=model_tags_allowlist,
+                source_type_override=source_type_override,
+                extraction_budgets=extraction_budgets,
+                reviews_root=reviews_root,
+                model=model,
+                prompt_version=pv,
+                max_retries=max_retries,
+            )
+        return self._analyze_classification_monolithic(
+            document=document,
+            wiki=wiki,
+            tool_types_allowlist=tool_types_allowlist,
+            howto_tags_allowlist=howto_tags_allowlist,
+            impl_study_tags_allowlist=impl_study_tags_allowlist,
+            glossary_tags_allowlist=glossary_tags_allowlist,
+            topic_tags_allowlist=topic_tags_allowlist,
+            trend_tags_allowlist=trend_tags_allowlist,
+            model_types_allowlist=model_types_allowlist,
+            tool_tags_allowlist=tool_tags_allowlist,
+            model_tags_allowlist=model_tags_allowlist,
+            source_type_override=source_type_override,
+            extraction_budgets=extraction_budgets,
+            reviews_root=reviews_root,
+            model=model,
+            prompt_version=pv,
+            max_retries=max_retries,
+        )
+
+    def _analyze_classification_monolithic(
+        self,
+        *,
+        document: SourceDocument,
+        wiki: WikiSnapshot,
+        tool_types_allowlist: list[str],
+        howto_tags_allowlist: list[str],
+        impl_study_tags_allowlist: list[str] | None = None,
+        glossary_tags_allowlist: list[str] | None = None,
+        topic_tags_allowlist: list[str] | None = None,
+        trend_tags_allowlist: list[str] | None = None,
+        model_types_allowlist: list[str] | None = None,
+        tool_tags_allowlist: list[str] | None = None,
+        model_tags_allowlist: list[str] | None = None,
+        source_type_override: str | None = None,
+        extraction_budgets: dict[str, int] | None = None,
+        reviews_root: Path | None = None,
+        model: str,
+        prompt_version: str,
+        max_retries: int = 3,
+    ) -> tuple[LlmClassificationOutput, dict[str, Any]]:
+        """Single-call classification (fallback when pipeline mode is monolithic)."""
+        user_prompt = _build_user_prompt(
+            document,
+            wiki,
+            tool_types_allowlist,
+            howto_tags_allowlist,
+            impl_study_tags_allowlist,
+            glossary_tags_allowlist,
+            topic_tags_allowlist,
+            trend_tags_allowlist,
+            model_types=model_types_allowlist,
+            tool_tags=tool_tags_allowlist,
+            model_tags=model_tags_allowlist,
+            source_type_override=source_type_override,
+            extraction_budgets=extraction_budgets,
+            reviews_root=reviews_root,
+            prompt_version=prompt_version,
+        )
+        parsed, meta = self._run_json_completion(
+            user_prompt=user_prompt,
+            schema=llm_output_json_schema_for_classification(),
+            schema_name="ingest_classification",
+            model=model,
+            prompt_cache_key=self._cache_key(
+                prompt_version=prompt_version,
+                source_id=document.source_id,
+            ),
+            validate_model=LlmClassificationOutput,
+            max_retries=max_retries,
+        )
+        meta["classification_pipeline"] = {"mode": "monolithic", "stages": []}
+        return parsed, meta
 
     def regenerate_source_section(
         self,

@@ -7,8 +7,15 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
+    from src.ingest_review.classification_prompts import ClassificationAllowlists
     from src.ingest_review.extract import SourceDocument
-    from src.ingest_review.schema import LlmClassificationOutput
+    from src.ingest_review.schema import (
+        EntitiesStageOutput,
+        LlmClassificationOutput,
+        SourceType,
+        SummaryStageOutput,
+        TriageStageOutput,
+    )
     from src.ingest_review.wiki_snapshot import WikiSnapshot
 
 
@@ -48,6 +55,52 @@ class IngestionProvider(ABC):
             ``(parsed_output, meta)`` where ``meta`` may include ``request_id``,
             ``token_usage``, ``raw_message`` (for debugging).
         """
+
+    def analyze_triage(
+        self,
+        *,
+        document: SourceDocument,
+        wiki: WikiSnapshot,
+        allowlists: ClassificationAllowlists,
+        source_type_override: str | None = None,
+        extraction_budgets: dict[str, int] | None = None,
+        reviews_root: Path | None = None,
+        model: str,
+        prompt_version: str,
+        max_retries: int = 3,
+    ) -> tuple[TriageStageOutput, dict[str, Any]]:
+        """Stage 1: source type, skip gate, evidence profile."""
+        raise NotImplementedError
+
+    def analyze_source_summary(
+        self,
+        *,
+        document: SourceDocument,
+        triage: TriageStageOutput,
+        model: str,
+        prompt_version: str,
+        max_retries: int = 3,
+    ) -> tuple[SummaryStageOutput, dict[str, Any]]:
+        """Stage 2: source_summary chapters only."""
+        raise NotImplementedError
+
+    def analyze_entities(
+        self,
+        *,
+        document: SourceDocument,
+        wiki: WikiSnapshot,
+        triage: TriageStageOutput,
+        summary: SummaryStageOutput,
+        route: SourceType,
+        allowlists: ClassificationAllowlists,
+        extraction_budgets: dict[str, int] | None = None,
+        reviews_root: Path | None = None,
+        model: str,
+        prompt_version: str,
+        max_retries: int = 3,
+    ) -> tuple[EntitiesStageOutput, dict[str, Any]]:
+        """Stage 3: route-scoped entity extraction."""
+        raise NotImplementedError
 
     def regenerate_topic_proposal(
         self,
