@@ -21,7 +21,7 @@
       "total_tokens": 35001
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -90,6 +90,7 @@
         "name": "Firecrawl MCP",
         "operational_relevance": "Useful when an assistant needs to pull documentation, scrape competitor pages, or research a topic from the open web. The practical value is in letting the AI access live page content through the same protocol as other tools, which simplifies client integration. It fits workflows where source reading is part of a larger agent loop rather than a standalone scraping task.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "ai-infrastructure",
           "workflow-automation"
@@ -102,6 +103,7 @@
         "short_description": "An MCP server that turns web pages into structured data that AI clients can use. It is positioned as a way for AI to read websites directly instead of relying on manual copy-paste.",
         "strengths": "- Converts URLs into structured data, which matters because AI systems usually work better with cleaned inputs than with raw page HTML.\n- Reduces manual copying of docs or error messages into chat, which makes research and debugging loops faster.\n- Fits repetitive web-reading workflows where an agent needs to move from a page to an answer without human mediation.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Firecrawl MCP turns any URL into clean, structured data your AI can actually use. Forget manually copying docs or pasting error messages into chat. Your AI scrapes it directly and applies the answer in real time.\"",
         "value_level": "medium",
         "weaknesses_limitations": "The article gives no details on extraction quality, failure modes, rate limits, or website compatibility. The claim that it is one of the most trusted web scraping tools is based on GitHub stars, which are not a substitute for operational validation. The source does not explain how it handles anti-bot measures, dynamic pages, or legal constraints around scraping."
@@ -123,6 +125,7 @@
         "name": "GitHub MCP",
         "operational_relevance": "Useful for coding workflows where an agent needs repository context, issue triage, or file-level inspection. The practical gain is that the same AI client can query source control data and act on it through MCP rather than a custom GitHub integration. For teams building agentic coding or support tooling, this is a clean way to expose repo operations to the model.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "coding-agent",
           "ai-infrastructure"
@@ -135,6 +138,7 @@
         "short_description": "An MCP server that lets an AI interact with GitHub repositories, issues, pull requests, and commits through natural language. It is framed as a way to work inside a codebase without switching to the terminal or manually searching.",
         "strengths": "- Lets the AI work with issues, pull requests, commits, and code references in one interface, which reduces context switching.\n- Supports natural-language queries like finding changed files or code references, which is useful for repository analysis and triage.\n- Works with several clients named in the article, so it can fit into existing agent and IDE workflows.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"The GitHub MCP server lets your AI interact with repos, issues, pull requests, and commits using natural language. No terminal switching. No manual searching.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not describe permission scoping, write safeguards, or how it handles large repositories. The mention of Microsoft backing is a maturity signal, but it is not the same as proof of reliability in production. The source also does not show whether the server is limited to read workflows or supports safe write actions in practice."
@@ -156,6 +160,7 @@
         "name": "Publora MCP",
         "operational_relevance": "Relevant for workflows where content generation and publishing are tightly coupled, such as social media operations for builders or small teams. The main value is that the assistant can execute posting actions across multiple platforms through one connector. That makes it more of a workflow automation layer than a content tool by itself.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "social-media",
           "workflow-automation"
@@ -166,6 +171,7 @@
         "short_description": "An MCP server that connects an AI to multiple social platforms through one endpoint. It is described as a way to schedule and publish social content without opening separate dashboards.",
         "strengths": "- Connects to 11+ social platforms through a single endpoint, which reduces the number of separate publishing integrations a team needs.\n- Supports scheduling and multi-platform posting from one instruction, which can remove repetitive dashboard work.\n- Fits creator and indie-builder workflows where the same content needs to be distributed across several channels.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Publora is an MCP server that connects your AI to 11+ social platforms \u2014 Instagram, LinkedIn, X (Twitter), Threads, TikTok, YouTube, Facebook, and more \u2014 through a single endpoint.\"",
         "value_level": "medium",
         "weaknesses_limitations": "The article offers no detail on approval flows, content review, account safety, or failure recovery if a post is scheduled incorrectly. The ease-of-use claim is unverified beyond the author's walkthrough. The product may be useful for simple publishing, but the source does not show whether it supports more complex governance or brand controls."
@@ -187,6 +193,7 @@
         "name": "Supabase MCP",
         "operational_relevance": "Useful when an AI assistant needs read access to operational data without hand-written queries. The real workflow gain is faster ad hoc analysis, support lookup, and schema-aware exploration through the same protocol used for other tools. The source also points to a safety pattern: keep production access read-only.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "ai-infrastructure",
           "workflow-automation"
@@ -199,6 +206,7 @@
         "short_description": "An MCP server that lets an AI query databases with plain English and run SQL against Supabase, Neon, or self-hosted PostgreSQL. It is presented as a natural-language database access layer for AI clients.",
         "strengths": "- Lets an AI generate and run SQL from plain English, which can lower the barrier for analysts and operators who do not want to write every query by hand.\n- Auto-discovers schema, which matters because the agent gets immediate table structure context after connecting.\n- Works with self-hosted PostgreSQL as well as hosted options, which makes it easier to fit into varied data stacks.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"The Supabase MCP server lets your AI write and run SQL directly against your database. No need to write the query yourself. Just ask.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article warns to keep production read-only, which highlights the risk of giving an agent write access to live data. It does not explain row-level permissions, audit logging, or transaction safeguards. The source also gives no evidence of performance, query accuracy, or safe handling of schema ambiguity."
@@ -220,6 +228,7 @@
         "name": "E2B MCP",
         "operational_relevance": "Useful for agent workflows that need to test code, run shell commands, or produce output artifacts such as charts. The practical advantage is that execution happens in an isolated environment rather than on a developer laptop or production machine. That makes it a stronger fit for autonomous loops than code-writing alone.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "model-serving",
           "workflow-automation"
@@ -232,6 +241,7 @@
         "short_description": "An MCP server that lets an AI run code inside a secure cloud sandbox. It is framed as the step beyond code generation: execution, checking, and iteration.",
         "strengths": "- Runs code in a secure cloud sandbox, which reduces risk compared with executing untrusted code on a local machine.\n- Supports iterative agent loops because the AI can run code, inspect the result, and retry without human copy-paste.\n- Works for tasks like data analysis and migration testing, which makes it more than a toy code runner.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"E2B lets them run it too \u2014 inside a secure cloud sandbox, isolated from your machine and your production systems.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not describe sandbox escape protections, resource limits, startup latency, or cost. It also does not say how state persists between runs or how reproducible the environment is. The practical ceiling will depend on how much control the sandbox gives over dependencies and file I/O, but the source does not specify that."
@@ -253,6 +263,7 @@
         "name": "Taskade MCP",
         "operational_relevance": "Relevant when a team wants a single workspace layer for planning, task execution, and automation. The article positions it as a production-oriented option for managing work end to end, which makes it a broader orchestration tool than a narrow point integration. Its value is in consolidating workspace memory and automations in one place, though the source does not validate those claims independently.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "workflow-automation",
           "ai-application"
@@ -265,6 +276,7 @@
         "short_description": "An MCP server that bundles projects, tasks, agents, automations, and integrations behind one login. It is positioned as an all-in-one workspace for AI to manage work rather than just answer questions.",
         "strengths": "- Combines projects, tasks, agents, automations, and integrations, which can reduce the need to stitch together multiple work-management systems.\n- Presents workspace memory as part of the product, which is useful if the assistant must remember ongoing work across sessions.\n- The article describes it as an all-in-one production option, which suggests it is aimed at sustained operational use rather than a one-off demo.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Taskade MCP gives your AI a full workspace with projects, tasks, agents, automations, and integrations behind a single login.\"",
         "value_level": "medium",
         "weaknesses_limitations": "The source gives no implementation details for the memory model, agent behavior, or automation reliability. The claim that it is the strongest all-in-one production option is the author's judgment, not an independently verified result. The article also does not explain the tradeoff between breadth and control in a system that tries to do many things at once."
@@ -589,12 +601,12 @@
           "approved_new_type": false,
           "approved_types": [
             "mcp-server",
-            "coding"
+            "coding-agent"
           ],
           "proposed_new_type": null,
           "reviewer_types_added": [
             "mcp-server",
-            "coding"
+            "coding-agent"
           ]
         }
       },
@@ -941,12 +953,12 @@
           "approved_new_type": false,
           "approved_types": [
             "mcp-server",
-            "agentic-coding"
+            "coding-agent"
           ],
           "proposed_new_type": null,
           "reviewer_types_added": [
             "mcp-server",
-            "agentic-coding"
+            "coding-agent"
           ]
         }
       },

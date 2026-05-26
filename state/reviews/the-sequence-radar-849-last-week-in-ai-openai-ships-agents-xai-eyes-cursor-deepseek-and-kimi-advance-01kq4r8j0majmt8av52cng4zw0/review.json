@@ -21,7 +21,7 @@
       "total_tokens": 30461
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -43,13 +43,15 @@
           "It is described as supporting tool use, which means it can participate in workflows that require external actions instead of only text generation.",
           "It is described as handling long-context work, which is important for tasks that need persistent memory across long sessions or large documents."
         ],
+        "deployment_implications": "It encourages teams to design around model-plus-harness workflows: memory, permissions, tools, and long-running execution loops become first-class concerns. It also suggests more of the engineering effort shifts from prompt crafting to orchestration and governance.",
         "evidence_type": "vendor_claim",
         "match_candidates": [],
         "maturity_signals": "The model is described as central to OpenAI's current product direction, which signals strong platform importance. The source does not provide independent adoption data, so enterprise readiness should be treated as plausible but not proven from this piece alone.",
         "model_name": "GPT-5.5",
-        "operational_summary": "A frontier model positioned as a runtime component inside coding, research, enterprise assistant, and autonomous workflows. The source frames it as useful for reasoning, coding, tool use, long-context work, and professional tasks rather than as a standalone chatbot.",
+        "operational_profile": "A frontier model positioned as a runtime component inside coding, research, enterprise assistant, and autonomous workflows. The source frames it as useful for reasoning, coding, tool use, long-context work, and professional tasks rather than as a standalone chatbot.\n\n- The source links GPT-5.5 to reasoning, coding, tool use, long-context work, and professional tasks, which suggests it is meant for broad workflow coverage rather than one narrow task.\n- It is described as a runtime inside systems, which matters because teams can treat the model as an execution layer for agents and assistants rather than only a text generator.\n- The model is presented as part of OpenAI's push to make ChatGPT a multimodal work environment, implying better fit for integrated workflows that mix text, code, images, and tools.",
         "pricing_inference_implications": "No pricing details are given. The practical inference is that if GPT-5.5 is being used for long-context and tool-heavy workflows, inference and orchestration costs may matter more than raw token price, but the source does not quantify that.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "frontier-model"
         ],
@@ -59,12 +61,11 @@
           "Kimi 2.6"
         ],
         "service_automation_implications": "The source does not directly analyze customer support or contact center use cases, but a model framed as a runtime with memory, tools, and permissions could support agent-assisted service workflows if integrated carefully. As of 2026-04-26, that implication is indirect rather than demonstrated here.",
-        "strengths": "- The source links GPT-5.5 to reasoning, coding, tool use, long-context work, and professional tasks, which suggests it is meant for broad workflow coverage rather than one narrow task.\n- It is described as a runtime inside systems, which matters because teams can treat the model as an execution layer for agents and assistants rather than only a text generator.\n- The model is presented as part of OpenAI's push to make ChatGPT a multimodal work environment, implying better fit for integrated workflows that mix text, code, images, and tools.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "OpenAI\u2019s GPT-5.5 release is the obvious center of gravity. It represents the continued expansion of frontier-model capability across reasoning, coding, tool use, long-context work, and professional tasks.",
         "value_level": "high",
-        "weaknesses_limitations": "The source gives no hard benchmarks, failure cases, or cost details, so operational tradeoffs are unclear. The article also admits that benchmark narrative is becoming secondary, which means the claim is more strategic than evaluative.",
-        "workflow_implications": "It encourages teams to design around model-plus-harness workflows: memory, permissions, tools, and long-running execution loops become first-class concerns. It also suggests more of the engineering effort shifts from prompt crafting to orchestration and governance."
+        "weaknesses_limitations": "The source gives no hard benchmarks, failure cases, or cost details, so operational tradeoffs are unclear. The article also admits that benchmark narrative is becoming secondary, which means the claim is more strategic than evaluative."
       },
       {
         "benchmark_observations": [],
@@ -77,13 +78,15 @@
           "It is described as having a 1M context length, which is operationally relevant for long documents, large codebases, and extended agent traces.",
           "It is described as having agentic capabilities, which indicates it is intended for multi-step workflows that require action rather than only response generation."
         ],
+        "deployment_implications": "Long context can simplify orchestration for code, document, or multi-step agent tasks by reducing the need for aggressive summarization and retrieval. Teams may still need careful evaluation of reliability, latency, and tool-use behavior before relying on it in production.",
         "evidence_type": "vendor_claim",
         "match_candidates": [],
         "maturity_signals": "The model is presented as a serious competitive entrant in the open and semi-open ecosystem. The source does not provide adoption metrics, so maturity is inferred from its placement in a major AI roundup rather than from hard evidence.",
         "model_name": "DeepSeek v4",
-        "operational_summary": "An open or semi-open frontier model framed as part of the pressure from below on the coding and agentic stack. The source highlights its 1M context length and agentic capabilities as operationally important.",
+        "operational_profile": "An open or semi-open frontier model framed as part of the pressure from below on the coding and agentic stack. The source highlights its 1M context length and agentic capabilities as operationally important.\n\n- The 1M context length is notable because very long context can reduce retrieval and chunking overhead in workflows that depend on large codebases or long documents.\n- The source says it has 'impressive agentic capabilities,' which suggests it is being considered for execution-oriented rather than purely conversational use.\n- It is positioned inside a competitive set where cost, latency, and tool use matter, so it is relevant for teams comparing deployment options below the frontier.",
         "pricing_inference_implications": "The article does not give price or latency numbers. The main inference is that long-context agentic use cases can change cost structure, so token efficiency and serving economics will matter, but this source does not quantify them.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "open-weight-model"
         ],
@@ -93,12 +96,11 @@
           "Kimi 2.6"
         ],
         "service_automation_implications": "The source does not directly connect this model to service automation, but long context and agentic capabilities could matter for ticket handling or case summarization if validated elsewhere. As of 2026-04-26, that remains an indirect possibility rather than a demonstrated use case.",
-        "strengths": "- The 1M context length is notable because very long context can reduce retrieval and chunking overhead in workflows that depend on large codebases or long documents.\n- The source says it has 'impressive agentic capabilities,' which suggests it is being considered for execution-oriented rather than purely conversational use.\n- It is positioned inside a competitive set where cost, latency, and tool use matter, so it is relevant for teams comparing deployment options below the frontier.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "DeepSeek v4\nThe\nnew version of DeepSeek is here\nwith 1M context length and impressive agentic capabilities.",
         "value_level": "medium",
-        "weaknesses_limitations": "The source does not provide benchmarking detail or operational failure modes, so the strength claim is largely promotional in this roundup. 'Impressive agentic capabilities' is underspecified and does not tell a practitioner where the model breaks.",
-        "workflow_implications": "Long context can simplify orchestration for code, document, or multi-step agent tasks by reducing the need for aggressive summarization and retrieval. Teams may still need careful evaluation of reliability, latency, and tool-use behavior before relying on it in production."
+        "weaknesses_limitations": "The source does not provide benchmarking detail or operational failure modes, so the strength claim is largely promotional in this roundup. 'Impressive agentic capabilities' is underspecified and does not tell a practitioner where the model breaks."
       },
       {
         "benchmark_observations": [],
@@ -110,13 +112,15 @@
         "core_capabilities": [
           "It is described as having agentic coding capability, which is relevant to code-editing and multi-step development workflows."
         ],
+        "deployment_implications": "It may be useful for teams exploring coding-agent workflows, especially when comparing models on autonomy and code-editing behavior. The source does not show how it performs under tool use, verification, or long-horizon tasks.",
         "evidence_type": "vendor_claim",
         "match_candidates": [],
         "maturity_signals": "The model is treated as a notable release in a mainstream AI roundup, but the source offers no adoption evidence. That makes its maturity plausible but not established from this piece alone.",
         "model_name": "Kimi 2.6",
-        "operational_summary": "A model launch framed around agentic coding performance. The source does not provide much detail beyond positioning it as a notable new entrant in the coding-agent race.",
+        "operational_profile": "A model launch framed around agentic coding performance. The source does not provide much detail beyond positioning it as a notable new entrant in the coding-agent race.\n\n- Its marquee capability is agentic coding, which makes it relevant for iterative code generation, editing, and debugging loops.\n- The source places it in the same competitive cluster as DeepSeek v4 and GPT-5.5, suggesting it is part of the practical comparison set for coding-centric workloads.",
         "pricing_inference_implications": "No pricing or serving data is provided. Any inference about affordability or high-volume viability would be speculative from this source.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "open-weight-model"
         ],
@@ -126,12 +130,11 @@
           "DeepSeek v4"
         ],
         "service_automation_implications": "No direct service automation implications are identified in the source.",
-        "strengths": "- Its marquee capability is agentic coding, which makes it relevant for iterative code generation, editing, and debugging loops.\n- The source places it in the same competitive cluster as DeepSeek v4 and GPT-5.5, suggesting it is part of the practical comparison set for coding-centric workloads.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "Kimi 2.6 launched\nwith marquee capabilities in agentic coding.",
         "value_level": "medium",
-        "weaknesses_limitations": "The article gives no benchmarks, latency notes, or cost detail. Without those, its operational value remains a claim rather than an evaluated result.",
-        "workflow_implications": "It may be useful for teams exploring coding-agent workflows, especially when comparing models on autonomy and code-editing behavior. The source does not show how it performs under tool use, verification, or long-horizon tasks."
+        "weaknesses_limitations": "The article gives no benchmarks, latency notes, or cost detail. Without those, its operational value remains a claim rather than an evaluated result."
       }
     ],
     "glossary": [],
@@ -144,13 +147,13 @@
         "evidence_from_source": "The editorial argues that AI is becoming 'operational' and that 'the product is the model plus the harness, the tools, the memory, the permissions, the environment, and the feedback loop.'",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-governance",
+        "primary_tag": "verification-over-principles",
         "proposed_tags": [
-          "ai-governance",
-          "knowledge-management"
+          "verification-over-principles",
+          "workflow-restructuring"
         ],
         "related_trends": [],
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "workflow-restructuring",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -183,9 +186,9 @@
           "Workspace Agents"
         ],
         "operational_relevance": "Engineers should expect more agent orchestration work across multiple tools and longer-lived sessions. The source suggests that shared state, permissions, and tool access are now central design points for enterprise assistants.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "knowledge-management"
+          "workflow-restructuring"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "Potentially relevant to support automation and back-office workflows, but the source does not directly discuss those deployments. As of 2026-04-26, treat this as an architectural signal rather than a validated service automation pattern.",
@@ -230,7 +233,7 @@
         ],
         "suggested_new_tag": "ai-engineering",
         "suggested_new_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "summary": "Cursor is presented as an especially strong example of AI-native software development becoming infrastructure. The reason given is that code is explicit, testable, composable, and economically valuable, so agents can propose, edit, run, debug, and verify in a measurable loop. This makes coding the most legible proving ground for agent systems.",
         "time_horizon": "long_term",
@@ -251,9 +254,9 @@
           "GPT-5.5"
         ],
         "operational_relevance": "Practitioners should test long-context handling, tool calling, and failure recovery in realistic workflows. The source implies that orchestration and latency budgeting are as important as raw capability.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "knowledge-management"
+          "workflow-restructuring"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "Relevant to conversational systems that must remember long histories and complete multi-step tasks, but the source does not provide direct service automation evidence. As of 2026-04-26, this is an evaluation signal rather than a deployment case.",
@@ -299,7 +302,7 @@
         ],
         "suggested_new_tag": "ai-engineering",
         "suggested_new_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "summary": "The SWE-chat summary reports over 6,000 real coding-agent interactions and says 'vibe coding' is increasingly popular, but costly and security-sensitive. The users frequently interrupt or correct the agent, which implies that autonomous code work still needs human oversight. This is a concrete reminder that agent quality and operational safety remain unfinished problems.",
         "time_horizon": "long_term",
@@ -333,7 +336,7 @@
         ],
         "suggested_new_tag": "ai-engineering",
         "suggested_new_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "summary": "The source treats DeepSeek v4 and Kimi 2.6 as evidence that the lower-cost ecosystem is narrowing the gap on operationally important capabilities. The focus is not just chat quality but long context, coding, tool use, latency, cost, and agent reliability. That makes the competitive frame more about execution utility than prestige model rankings.",
         "time_horizon": "medium_term",
@@ -427,13 +430,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "agentic-workflows"
         ],
         "relevance_note": "Context engineering matters because AI systems increasingly operate across multi-step workflows, not just one-off prompts. It is a central lever for reliability in chatbots, coding agents, enterprise assistants, and any service workflow that must remember state without overwhelming the model.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -459,11 +462,12 @@
             "It is described as supporting tool use, which means it can participate in workflows that require external actions instead of only text generation.",
             "It is described as handling long-context work, which is important for tasks that need persistent memory across long sessions or large documents."
           ],
+          "deployment_implications": "It encourages teams to design around model-plus-harness workflows: memory, permissions, tools, and long-running execution loops become first-class concerns. It also suggests more of the engineering effort shifts from prompt crafting to orchestration and governance.",
           "evidence_type": "vendor_claim",
           "match_candidates": [],
           "maturity_signals": "The model is described as central to OpenAI's current product direction, which signals strong platform importance. The source does not provide independent adoption data, so enterprise readiness should be treated as plausible but not proven from this piece alone.",
           "model_name": "GPT-5.5",
-          "operational_summary": "A frontier model positioned as a runtime component inside coding, research, enterprise assistant, and autonomous workflows. The source frames it as useful for reasoning, coding, tool use, long-context work, and professional tasks rather than as a standalone chatbot.",
+          "operational_profile": "A frontier model positioned as a runtime component inside coding, research, enterprise assistant, and autonomous workflows. The source frames it as useful for reasoning, coding, tool use, long-context work, and professional tasks rather than as a standalone chatbot.\n\n- The source links GPT-5.5 to reasoning, coding, tool use, long-context work, and professional tasks, which suggests it is meant for broad workflow coverage rather than one narrow task.\n- It is described as a runtime inside systems, which matters because teams can treat the model as an execution layer for agents and assistants rather than only a text generator.\n- The model is presented as part of OpenAI's push to make ChatGPT a multimodal work environment, implying better fit for integrated workflows that mix text, code, images, and tools.",
           "pricing_inference_implications": "No pricing details are given. The practical inference is that if GPT-5.5 is being used for long-context and tool-heavy workflows, inference and orchestration costs may matter more than raw token price, but the source does not quantify that.",
           "proposed_new_type": "runtime-model",
           "proposed_types": [
@@ -475,7 +479,6 @@
             "Kimi 2.6"
           ],
           "service_automation_implications": "The source does not directly analyze customer support or contact center use cases, but a model framed as a runtime with memory, tools, and permissions could support agent-assisted service workflows if integrated carefully. As of 2026-04-26, that implication is indirect rather than demonstrated here.",
-          "strengths": "- The source links GPT-5.5 to reasoning, coding, tool use, long-context work, and professional tasks, which suggests it is meant for broad workflow coverage rather than one narrow task.\n- It is described as a runtime inside systems, which matters because teams can treat the model as an execution layer for agents and assistants rather than only a text generator.\n- The model is presented as part of OpenAI's push to make ChatGPT a multimodal work environment, implying better fit for integrated workflows that mix text, code, images, and tools.",
           "suggested_action": "ignore",
           "suggested_new_tag": "runtime-model",
           "suggested_new_tags": [
@@ -483,8 +486,7 @@
           ],
           "supporting_snippet": "OpenAI\u2019s GPT-5.5 release is the obvious center of gravity. It represents the continued expansion of frontier-model capability across reasoning, coding, tool use, long-context work, and professional tasks.",
           "value_level": "high",
-          "weaknesses_limitations": "The source gives no hard benchmarks, failure cases, or cost details, so operational tradeoffs are unclear. The article also admits that benchmark narrative is becoming secondary, which means the claim is more strategic than evaluative.",
-          "workflow_implications": "It encourages teams to design around model-plus-harness workflows: memory, permissions, tools, and long-running execution loops become first-class concerns. It also suggests more of the engineering effort shifts from prompt crafting to orchestration and governance."
+          "weaknesses_limitations": "The source gives no hard benchmarks, failure cases, or cost details, so operational tradeoffs are unclear. The article also admits that benchmark narrative is becoming secondary, which means the claim is more strategic than evaluative."
         },
         "notes": null,
         "proposal_id": "23b360a1-48dd-491b-8ff9-d1ab312e1c54",
@@ -515,6 +517,12 @@
             "notes": null,
             "status": "approved"
           },
+          "deployment_implications": {
+            "final_text": "It encourages teams to design around model-plus-harness workflows: memory, permissions, tools, and long-running execution loops become first-class concerns. It also suggests more of the engineering effort shifts from prompt crafting to orchestration and governance.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -525,10 +533,11 @@
             "notes": null,
             "status": "approved"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "A frontier model positioned as a runtime component inside coding, research, enterprise assistant, and autonomous workflows. The source frames it as useful for reasoning, coding, tool use, long-context work, and professional tasks rather than as a standalone chatbot.\n\n- The source links GPT-5.5 to reasoning, coding, tool use, long-context work, and professional tasks, which suggests it is meant for broad workflow coverage rather than one narrow task.\n- It is described as a runtime inside systems, which matters because teams can treat the model as an execution layer for agents and assistants rather than only a text generator.\n- The model is presented as part of OpenAI's push to make ChatGPT a multimodal work environment, implying better fit for integrated workflows that mix text, code, images, and tools.",
             "notes": null,
-            "status": "approved"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -554,22 +563,12 @@
             "notes": null,
             "status": "approved"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "approved"
@@ -582,8 +581,8 @@
         "types": {
           "approved_new_types": [],
           "approved_types": [
-            "proprietary",
-            "multi-modal"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "proposed_new_type": "runtime-model",
           "reviewer_types_added": []
@@ -601,11 +600,12 @@
             "It is described as having a 1M context length, which is operationally relevant for long documents, large codebases, and extended agent traces.",
             "It is described as having agentic capabilities, which indicates it is intended for multi-step workflows that require action rather than only response generation."
           ],
+          "deployment_implications": "Long context can simplify orchestration for code, document, or multi-step agent tasks by reducing the need for aggressive summarization and retrieval. Teams may still need careful evaluation of reliability, latency, and tool-use behavior before relying on it in production.",
           "evidence_type": "vendor_claim",
           "match_candidates": [],
           "maturity_signals": "The model is presented as a serious competitive entrant in the open and semi-open ecosystem. The source does not provide adoption metrics, so maturity is inferred from its placement in a major AI roundup rather than from hard evidence.",
           "model_name": "DeepSeek v4",
-          "operational_summary": "An open or semi-open frontier model framed as part of the pressure from below on the coding and agentic stack. The source highlights its 1M context length and agentic capabilities as operationally important.",
+          "operational_profile": "An open or semi-open frontier model framed as part of the pressure from below on the coding and agentic stack. The source highlights its 1M context length and agentic capabilities as operationally important.\n\n- The 1M context length is notable because very long context can reduce retrieval and chunking overhead in workflows that depend on large codebases or long documents.\n- The source says it has 'impressive agentic capabilities,' which suggests it is being considered for execution-oriented rather than purely conversational use.\n- It is positioned inside a competitive set where cost, latency, and tool use matter, so it is relevant for teams comparing deployment options below the frontier.",
           "pricing_inference_implications": "The article does not give price or latency numbers. The main inference is that long-context agentic use cases can change cost structure, so token efficiency and serving economics will matter, but this source does not quantify them.",
           "proposed_new_type": null,
           "proposed_types": [
@@ -617,12 +617,10 @@
             "Kimi 2.6"
           ],
           "service_automation_implications": "The source does not directly connect this model to service automation, but long context and agentic capabilities could matter for ticket handling or case summarization if validated elsewhere. As of 2026-04-26, that remains an indirect possibility rather than a demonstrated use case.",
-          "strengths": "- The 1M context length is notable because very long context can reduce retrieval and chunking overhead in workflows that depend on large codebases or long documents.\n- The source says it has 'impressive agentic capabilities,' which suggests it is being considered for execution-oriented rather than purely conversational use.\n- It is positioned inside a competitive set where cost, latency, and tool use matter, so it is relevant for teams comparing deployment options below the frontier.",
           "suggested_action": "ignore",
           "supporting_snippet": "DeepSeek v4\nThe\nnew version of DeepSeek is here\nwith 1M context length and impressive agentic capabilities.",
           "value_level": "medium",
-          "weaknesses_limitations": "The source does not provide benchmarking detail or operational failure modes, so the strength claim is largely promotional in this roundup. 'Impressive agentic capabilities' is underspecified and does not tell a practitioner where the model breaks.",
-          "workflow_implications": "Long context can simplify orchestration for code, document, or multi-step agent tasks by reducing the need for aggressive summarization and retrieval. Teams may still need careful evaluation of reliability, latency, and tool-use behavior before relying on it in production."
+          "weaknesses_limitations": "The source does not provide benchmarking detail or operational failure modes, so the strength claim is largely promotional in this roundup. 'Impressive agentic capabilities' is underspecified and does not tell a practitioner where the model breaks."
         },
         "notes": null,
         "proposal_id": "842d4202-699e-41fe-a455-2d9932748c62",
@@ -652,6 +650,12 @@
             "notes": null,
             "status": "approved"
           },
+          "deployment_implications": {
+            "final_text": "Long context can simplify orchestration for code, document, or multi-step agent tasks by reducing the need for aggressive summarization and retrieval. Teams may still need careful evaluation of reliability, latency, and tool-use behavior before relying on it in production.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -662,10 +666,11 @@
             "notes": null,
             "status": "approved"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "An open or semi-open frontier model framed as part of the pressure from below on the coding and agentic stack. The source highlights its 1M context length and agentic capabilities as operationally important.\n\n- The 1M context length is notable because very long context can reduce retrieval and chunking overhead in workflows that depend on large codebases or long documents.\n- The source says it has 'impressive agentic capabilities,' which suggests it is being considered for execution-oriented rather than purely conversational use.\n- It is positioned inside a competitive set where cost, latency, and tool use matter, so it is relevant for teams comparing deployment options below the frontier.",
             "notes": null,
-            "status": "approved"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -691,22 +696,12 @@
             "notes": null,
             "status": "approved"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "approved"
@@ -719,7 +714,7 @@
         "types": {
           "approved_new_types": [],
           "approved_types": [
-            "open-weight"
+            "open-weight-model"
           ],
           "reviewer_types_added": []
         }
@@ -735,13 +730,14 @@
           "core_capabilities": [
             "It is described as having agentic coding capability, which is relevant to code-editing and multi-step development workflows."
           ],
+          "deployment_implications": "It may be useful for teams exploring coding-agent workflows, especially when comparing models on autonomy and code-editing behavior. The source does not show how it performs under tool use, verification, or long-horizon tasks.",
           "evidence_type": "vendor_claim",
           "match_candidates": [],
           "maturity_signals": "The model is treated as a notable release in a mainstream AI roundup, but the source offers no adoption evidence. That makes its maturity plausible but not established from this piece alone.",
           "model_name": "Kimi 2.6",
-          "operational_summary": "A model launch framed around agentic coding performance. The source does not provide much detail beyond positioning it as a notable new entrant in the coding-agent race.",
+          "operational_profile": "A model launch framed around agentic coding performance. The source does not provide much detail beyond positioning it as a notable new entrant in the coding-agent race.\n\n- Its marquee capability is agentic coding, which makes it relevant for iterative code generation, editing, and debugging loops.\n- The source places it in the same competitive cluster as DeepSeek v4 and GPT-5.5, suggesting it is part of the practical comparison set for coding-centric workloads.",
           "pricing_inference_implications": "No pricing or serving data is provided. Any inference about affordability or high-volume viability would be speculative from this source.",
-          "proposed_new_type": "open-weight",
+          "proposed_new_type": "open-weight-model",
           "proposed_types": [
             "open-weight-model"
           ],
@@ -751,12 +747,10 @@
             "DeepSeek v4"
           ],
           "service_automation_implications": "No direct service automation implications are identified in the source.",
-          "strengths": "- Its marquee capability is agentic coding, which makes it relevant for iterative code generation, editing, and debugging loops.\n- The source places it in the same competitive cluster as DeepSeek v4 and GPT-5.5, suggesting it is part of the practical comparison set for coding-centric workloads.",
           "suggested_action": "ignore",
           "supporting_snippet": "Kimi 2.6 launched\nwith marquee capabilities in agentic coding.",
           "value_level": "medium",
-          "weaknesses_limitations": "The article gives no benchmarks, latency notes, or cost detail. Without those, its operational value remains a claim rather than an evaluated result.",
-          "workflow_implications": "It may be useful for teams exploring coding-agent workflows, especially when comparing models on autonomy and code-editing behavior. The source does not show how it performs under tool use, verification, or long-horizon tasks."
+          "weaknesses_limitations": "The article gives no benchmarks, latency notes, or cost detail. Without those, its operational value remains a claim rather than an evaluated result."
         },
         "notes": null,
         "proposal_id": "e3f3eb8e-fbcb-44c8-80bc-abd56bb4e82c",
@@ -785,6 +779,12 @@
             "notes": null,
             "status": "approved"
           },
+          "deployment_implications": {
+            "final_text": "It may be useful for teams exploring coding-agent workflows, especially when comparing models on autonomy and code-editing behavior. The source does not show how it performs under tool use, verification, or long-horizon tasks.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -795,10 +795,11 @@
             "notes": null,
             "status": "approved"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "A model launch framed around agentic coding performance. The source does not provide much detail beyond positioning it as a notable new entrant in the coding-agent race.\n\n- Its marquee capability is agentic coding, which makes it relevant for iterative code generation, editing, and debugging loops.\n- The source places it in the same competitive cluster as DeepSeek v4 and GPT-5.5, suggesting it is part of the practical comparison set for coding-centric workloads.",
             "notes": null,
-            "status": "approved"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -824,22 +825,12 @@
             "notes": null,
             "status": "approved"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "approved"
@@ -855,12 +846,12 @@
             "agentic-coding"
           ],
           "approved_types": [
-            "open-weight",
-            "agentic-coding"
+            "open-weight-model",
+            "coding-model"
           ],
           "reviewer_types_added": [
-            "open-weight",
-            "agentic-coding"
+            "open-weight-model",
+            "coding-model"
           ]
         }
       }
@@ -876,19 +867,19 @@
           "evidence_from_source": "The editorial argues that AI is becoming 'operational' and that 'the product is the model plus the harness, the tools, the memory, the permissions, the environment, and the feedback loop.'",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-governance",
+          "primary_tag": "verification-over-principles",
           "proposed_tags": [
-            "ai-governance",
-            "knowledge-management"
+            "verification-over-principles",
+            "workflow-restructuring"
           ],
           "related_trends": [],
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "workflow-restructuring",
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-workflow-execution",
           "suggested_new_tags": [
             "ai-workflow-execution",
-            "ai-engineering",
-            "agentic-ai"
+            "ai-operationalization",
+            "execution-oriented-agents"
           ],
           "supporting_data_points": [
             "OpenAI's Workspace Agents are described as running in the cloud, following permissions, remembering context, and executing long-running workflows.",
@@ -961,12 +952,12 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-engineering",
-            "agentic-ai"
+            "ai-operationalization",
+            "execution-oriented-agents"
           ],
           "final_tags": [
-            "ai-engineering",
-            "agentic-ai"
+            "ai-operationalization",
+            "execution-oriented-agents"
           ]
         }
       }
@@ -987,9 +978,9 @@
             "Workspace Agents"
           ],
           "operational_relevance": "Engineers should expect more agent orchestration work across multiple tools and longer-lived sessions. The source suggests that shared state, permissions, and tool access are now central design points for enterprise assistants.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "knowledge-management"
+            "workflow-restructuring"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "Potentially relevant to support automation and back-office workflows, but the source does not directly discuss those deployments. As of 2026-04-26, treat this as an architectural signal rather than a validated service automation pattern.",
@@ -1118,7 +1109,7 @@
           ],
           "suggested_new_tag": "ai-engineering",
           "suggested_new_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "summary": "Cursor is presented as an especially strong example of AI-native software development becoming infrastructure. The reason given is that code is explicit, testable, composable, and economically valuable, so agents can propose, edit, run, debug, and verify in a measurable loop. This makes coding the most legible proving ground for agent systems.",
           "time_horizon": "long_term",
@@ -1223,9 +1214,9 @@
             "GPT-5.5"
           ],
           "operational_relevance": "Practitioners should test long-context handling, tool calling, and failure recovery in realistic workflows. The source implies that orchestration and latency budgeting are as important as raw capability.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "knowledge-management"
+            "workflow-restructuring"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "Relevant to conversational systems that must remember long histories and complete multi-step tasks, but the source does not provide direct service automation evidence. As of 2026-04-26, this is an evaluation signal rather than a deployment case.",
@@ -1356,7 +1347,7 @@
           ],
           "suggested_new_tag": "ai-engineering",
           "suggested_new_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "summary": "The SWE-chat summary reports over 6,000 real coding-agent interactions and says 'vibe coding' is increasingly popular, but costly and security-sensitive. The users frequently interrupt or correct the agent, which implies that autonomous code work still needs human oversight. This is a concrete reminder that agent quality and operational safety remain unfinished problems.",
           "time_horizon": "long_term",
@@ -1474,7 +1465,7 @@
           ],
           "suggested_new_tag": "ai-engineering",
           "suggested_new_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "summary": "The source treats DeepSeek v4 and Kimi 2.6 as evidence that the lower-cost ecosystem is narrowing the gap on operationally important capabilities. The focus is not just chat quality but long context, coding, tool use, latency, cost, and agent reliability. That makes the competitive frame more about execution utility than prestige model rankings.",
           "time_horizon": "medium_term",
@@ -1748,7 +1739,7 @@
           "approved_new_tags": [],
           "final_tags": [
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ]
         }
       },
@@ -1768,13 +1759,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "agentic-workflows"
           ],
           "relevance_note": "Context engineering matters because AI systems increasingly operate across multi-step workflows, not just one-off prompts. It is a central lever for reliability in chatbots, coding agents, enterprise assistants, and any service workflow that must remember state without overwhelming the model.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

@@ -160,6 +160,40 @@ def test_load_trend_tags_missing_returns_empty(tmp_path: Path) -> None:
     assert tags == []
 
 
+def test_load_howto_tags_delegates_to_topics(tmp_path: Path) -> None:
+    """How-to tags use the topic vocabulary."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_tags_topics.yaml").write_text(
+        "tags:\n  - agent-systems\n  - orchestration\n", encoding="utf-8"
+    )
+    from src.ingest_review.tags import load_howto_tags
+
+    assert load_howto_tags(tmp_path) == ["agent-systems", "orchestration"]
+
+
+def test_load_tool_tags_from_config(tmp_path: Path) -> None:
+    """load_tool_tags reads from config/review_tags_tools.yaml."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_tags_tools.yaml").write_text(
+        "tags:\n  - cli-tool\n  - coding\n", encoding="utf-8"
+    )
+    from src.ingest_review.tags import load_tool_tags
+
+    assert load_tool_tags(tmp_path) == ["cli-tool", "coding"]
+
+
+def test_load_model_tags_from_config(tmp_path: Path) -> None:
+    """load_model_tags reads from config/review_tags_models.yaml."""
+    cfg = tmp_path / "config"
+    cfg.mkdir()
+    (cfg / "review_tags_models.yaml").write_text("tags:\n  - reasoning-model\n", encoding="utf-8")
+    from src.ingest_review.tags import load_model_tags
+
+    assert load_model_tags(tmp_path) == ["reasoning-model"]
+
+
 def test_load_tool_types_from_config(tmp_path: Path) -> None:
     """load_tool_types reads from config/review_tool_types.yaml."""
     cfg = tmp_path / "config"

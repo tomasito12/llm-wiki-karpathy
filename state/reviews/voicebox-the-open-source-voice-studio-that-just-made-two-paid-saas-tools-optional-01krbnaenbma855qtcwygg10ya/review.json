@@ -21,7 +21,7 @@
       "total_tokens": 33503
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,16 +41,16 @@
         "evidence_from_source": "The article frames Voicebox as a local replacement for ElevenLabs and WisprFlow, with no per-call cost, offline operation, and a desktop-local deployment model.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-economics",
+        "primary_tag": "software-commoditization",
         "proposed_tags": [
-          "ai-economics",
-          "ai-engineering",
-          "support-automation"
+          "software-commoditization",
+          "ai-operationalization",
+          "workflow-restructuring"
         ],
         "related_trends": [
           "models-becoming-execution-layers"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -122,9 +122,9 @@
         "knowledge_summary": "A local voice API exposes speech synthesis or dictation capabilities through endpoints that run on a user\u2019s machine rather than a vendor cloud. This pattern reduces dependence on per-call billing, API keys, and network availability for workflows that only need local or personal use. It also makes voice easier to embed into scripts, agents, and desktop automation because the voice system can be called like any other local service. The main tradeoff is that quality, hardware support, and model management move onto the user\u2019s machine.",
         "match_candidates": [],
         "operational_insight": "Treat voice generation like a local infrastructure primitive when the use case is personal, developer-facing, or script-driven; do not assume cloud-grade fleet management or support.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
@@ -152,17 +152,17 @@
         "knowledge_summary": "MCP-enabled voice output lets an agent call a speech tool through the Model Context Protocol so it can speak back inside an existing client. This is operationally useful because it adds an auditory channel to agent workflows without custom integrations for each app. It can also support per-client voice bindings, which helps distinguish outputs from different agents or tasks. The key limitation is that the value depends on the quality and reliability of both the MCP bridge and the underlying voice engine.",
         "match_candidates": [],
         "operational_insight": "Use MCP when you want agent output to become audible inside existing tools without building a separate voice integration for each client.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture",
-          "interactive-ai"
+          "agent-systems",
+          "runtime-architecture",
+          "multimodal-ai"
         ],
         "related_topics": [
           "local-voice-api"
         ],
         "relevance_note": "This is useful for developer tools and interactive agent systems because it expands agent feedback beyond text while staying inside the same orchestration layer. The same pattern could support voice feedback in conversational interfaces or assistive workflows, but only where local speech output is sufficient.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -186,16 +186,16 @@
           "evidence_from_source": "The article frames Voicebox as a local replacement for ElevenLabs and WisprFlow, with no per-call cost, offline operation, and a desktop-local deployment model.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-economics",
+          "primary_tag": "software-commoditization",
           "proposed_tags": [
-            "ai-economics",
-            "ai-engineering",
-            "support-automation"
+            "software-commoditization",
+            "ai-operationalization",
+            "workflow-restructuring"
           ],
           "related_trends": [
             "models-becoming-execution-layers"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -273,7 +273,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-economics",
+            "software-commoditization",
             "ai-applications"
           ]
         }
@@ -380,9 +380,9 @@
           "knowledge_summary": "A local voice API exposes speech synthesis or dictation capabilities through endpoints that run on a user\u2019s machine rather than a vendor cloud. This pattern reduces dependence on per-call billing, API keys, and network availability for workflows that only need local or personal use. It also makes voice easier to embed into scripts, agents, and desktop automation because the voice system can be called like any other local service. The main tradeoff is that quality, hardware support, and model management move onto the user\u2019s machine.",
           "match_candidates": [],
           "operational_insight": "Treat voice generation like a local infrastructure primitive when the use case is personal, developer-facing, or script-driven; do not assume cloud-grade fleet management or support.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
@@ -459,8 +459,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-architecture",
-            "ai-applications"
+            "runtime-architecture",
+            "enterprise-ai"
           ]
         }
       },
@@ -477,17 +477,17 @@
           "knowledge_summary": "MCP-enabled voice output lets an agent call a speech tool through the Model Context Protocol so it can speak back inside an existing client. This is operationally useful because it adds an auditory channel to agent workflows without custom integrations for each app. It can also support per-client voice bindings, which helps distinguish outputs from different agents or tasks. The key limitation is that the value depends on the quality and reliability of both the MCP bridge and the underlying voice engine.",
           "match_candidates": [],
           "operational_insight": "Use MCP when you want agent output to become audible inside existing tools without building a separate voice integration for each client.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture",
-            "interactive-ai"
+            "agent-systems",
+            "runtime-architecture",
+            "multimodal-ai"
           ],
           "related_topics": [
             "local-voice-api"
           ],
           "relevance_note": "This is useful for developer tools and interactive agent systems because it expands agent feedback beyond text while staying inside the same orchestration layer. The same pattern could support voice feedback in conversational interfaces or assistive workflows, but only where local speech output is sufficient.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -557,7 +557,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-applications"
+            "enterprise-ai"
           ]
         }
       }

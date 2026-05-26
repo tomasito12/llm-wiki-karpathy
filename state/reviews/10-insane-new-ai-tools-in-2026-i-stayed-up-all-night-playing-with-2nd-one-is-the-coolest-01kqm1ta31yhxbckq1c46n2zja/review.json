@@ -21,7 +21,7 @@
       "total_tokens": 32090
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -48,16 +48,18 @@
           "Structured output support for machine-readable responses.",
           "Positioned for real-time, latency-sensitive AI applications."
         ],
+        "deployment_implications": "Mercury 2 is best understood as a model for latency-sensitive workflows where the agent must answer, route, or generate structured outputs quickly. The function-calling and structured-output support imply easier integration into orchestration layers, tool use, and API-driven products. That makes it relevant for assistants, copilots, and operational systems where response time can be a product feature.",
         "evidence_type": "vendor_claim",
         "match_candidates": [],
         "maturity_signals": "The model is described as launched on February 24, 2026, which signals active product availability rather than an early research demo. Support for function calling and structured output suggests it is already being positioned for practical deployment. However, the only evidence in the source is launch commentary and vendor-style framing, so maturity looks plausible but not well validated by independent analysis.",
         "model_name": "Mercury 2",
-        "operational_summary": "Mercury 2 is presented as a newly launched foundation model that uses a diffusion architecture instead of standard token-by-token decoding. The article frames it as a speed-focused model for real-time AI tools, with the headline claim that it is 11x faster while maintaining the same quality. It also supports function calling and structured output, which makes it more usable in agent and workflow systems than a plain chat model.",
+        "operational_profile": "Mercury 2 is presented as a newly launched foundation model that uses a diffusion architecture instead of standard token-by-token decoding. The article frames it as a speed-focused model for real-time AI tools, with the headline claim that it is 11x faster while maintaining the same quality. It also supports function calling and structured output, which makes it more usable in agent and workflow systems than a plain chat model.\n\n- The main differentiator is architectural: the article says Mercury 2 generates a rough output and refines multiple tokens in parallel, which is positioned as a way to reduce latency.\n- Function calling and structured output support make it more suitable for agent workflows, where the model needs to produce machine-readable outputs and interact with tools.\n- The model is explicitly framed for real-time use cases, so it appears optimized for responsiveness rather than only benchmark chasing.\n- The source presents it as a genuinely different category of model, which suggests strategic value for teams exploring alternatives to standard autoregressive LLMs.",
         "pricing_inference_implications": "No pricing is stated in the source, so there is no direct evidence for cost. The diffusion architecture could imply a different compute profile than standard token generation, but the article does not say whether that lowers or raises serving cost. Any pricing inference would be speculative from this source alone.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
-          "proprietary",
-          "interactive-ai"
+          "proprietary-model",
+          "multimodal-model"
         ],
         "provider": "Inception",
         "related_models": [
@@ -65,12 +67,11 @@
           "Kimi 2.5"
         ],
         "service_automation_implications": "The article\u2019s emphasis on real-time AI tools suggests Mercury 2 could be useful as a backend model for automation products that need quick turnarounds and reliable schema-shaped outputs. If the performance claim holds, it may reduce wait time in chat-based operations, tool execution loops, and user-facing automation flows. Its value is likely highest where speed affects user experience or throughput.",
-        "strengths": "- The main differentiator is architectural: the article says Mercury 2 generates a rough output and refines multiple tokens in parallel, which is positioned as a way to reduce latency.\n- Function calling and structured output support make it more suitable for agent workflows, where the model needs to produce machine-readable outputs and interact with tools.\n- The model is explicitly framed for real-time use cases, so it appears optimized for responsiveness rather than only benchmark chasing.\n- The source presents it as a genuinely different category of model, which suggests strategic value for teams exploring alternatives to standard autoregressive LLMs.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Mercury 2 launched February 24, 2026, and it is genuinely architecturally different from every other model out there. Most AI models generate text token by token, one word at a time. Mercury 2 uses a diffusion architecture, starting with a rough full output and refining it in parallel across multiple tokens simultaneously. Supports function calling and structured output for agent workflows.\"",
         "value_level": "high",
-        "weaknesses_limitations": "The article gives a strong promotional claim but very little methodological detail. It does not specify the benchmark, baseline model, task mix, or hardware conditions behind the \"11x faster\" statement, so the speed claim is not independently verifiable from the source. It also does not provide failure cases, reliability data, or evidence about whether the diffusion approach affects output stability, instruction following, or long-context behavior. Based on the source alone, this looks promising but still thinly evidenced.",
-        "workflow_implications": "Mercury 2 is best understood as a model for latency-sensitive workflows where the agent must answer, route, or generate structured outputs quickly. The function-calling and structured-output support imply easier integration into orchestration layers, tool use, and API-driven products. That makes it relevant for assistants, copilots, and operational systems where response time can be a product feature."
+        "weaknesses_limitations": "The article gives a strong promotional claim but very little methodological detail. It does not specify the benchmark, baseline model, task mix, or hardware conditions behind the \"11x faster\" statement, so the speed claim is not independently verifiable from the source. It also does not provide failure cases, reliability data, or evidence about whether the diffusion approach affects output stability, instruction following, or long-context behavior. Based on the source alone, this looks promising but still thinly evidenced."
       },
       {
         "benchmark_observations": [
@@ -91,16 +92,18 @@
           "Coordination of up to 100 AI sub-agents for parallel task execution.",
           "Positioned as an open-source/open model for users who want more direct access than a proprietary API."
         ],
+        "deployment_implications": "This model appears suited to workflows that mix reasoning, multimodal intake, and agent orchestration. In practice, that means research pipelines, multimodal analysis, design-to-code handoff, and tasks that benefit from splitting work across many subtasks. The article\u2019s own example of using Kimi\u2019s Agent Swarm for data analysis suggests the model may be useful as a coordinator for longer-running project work rather than only short conversational exchanges.",
         "evidence_type": "mixed",
         "match_candidates": [],
         "maturity_signals": "The article says Kimi K2.5 was released on January 27, 2026, and treats it as already usable enough for the author to run an Agent Swarm in the background on a real project. That is a positive adoption signal, but the evidence remains mostly launch-announcement style rather than deployment-validated. The presence of specific capabilities like multimodal support, screenshot-to-code, and multi-agent coordination suggests a fairly ambitious product surface, though the source does not show long-term stability or enterprise readiness.",
         "model_name": "Kimi K2.5",
-        "operational_summary": "Kimi K2.5 is presented as an open-source, frontier-class multimodal foundation model released on January 27, 2026. The article frames it as a mixture-of-experts system with one trillion total parameters but only 32 billion active per query, aiming to combine strong capability with lower per-request compute. It is described as natively handling text, images, and video, supporting screenshot-to-code workflows, and coordinating up to 100 sub-agents for parallel task execution.",
+        "operational_profile": "Kimi K2.5 is presented as an open-source, frontier-class multimodal foundation model released on January 27, 2026. The article frames it as a mixture-of-experts system with one trillion total parameters but only 32 billion active per query, aiming to combine strong capability with lower per-request compute. It is described as natively handling text, images, and video, supporting screenshot-to-code workflows, and coordinating up to 100 sub-agents for parallel task execution.\n\nThe strongest operational claim in the source is that Kimi K2.5 pairs broad capability with efficiency: only a subset of parameters activates per query, so the model is positioned as delivering high-end performance without requiring the full compute cost of a dense trillion-parameter model. The article also highlights practical multimodal usefulness, since it can work across text, images, and video in one system rather than forcing a separate toolchain for each modality. For workflow-heavy use cases, the ability to coordinate up to 100 sub-agents is notable because it suggests the model can support decomposition, parallel research, and multi-step automation. The screenshot-to-code behavior is especially relevant for product and engineering workflows, because it bridges visual input and implementation in a direct way.",
         "pricing_inference_implications": "No explicit price is given. The article\u2019s emphasis on only 32 billion active parameters per query implies an efficiency story that could reduce serving cost relative to a dense model of similar total size. However, because the source gives no API pricing, hosting costs, or licensing details, any inference should stay limited to the possibility of lower inference cost per request rather than a concrete affordability claim.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
-          "open-weight",
-          "agentic-coding"
+          "open-weight-model",
+          "coding-model"
         ],
         "provider": "Moonshot AI",
         "related_models": [
@@ -109,12 +112,11 @@
           "GPT-5.5"
         ],
         "service_automation_implications": "The combination of native multimodality, structured code generation from screenshots, and multi-agent orchestration points toward automation systems that can ingest diverse inputs and break them into parallelizable work. That makes it relevant for internal analyst assistants, content or product operations, and semi-autonomous research agents. Because the article frames it as open and frontier-capable, it may also be attractive for teams that want more control over model integration than a proprietary API usually offers.",
-        "strengths": "The strongest operational claim in the source is that Kimi K2.5 pairs broad capability with efficiency: only a subset of parameters activates per query, so the model is positioned as delivering high-end performance without requiring the full compute cost of a dense trillion-parameter model. The article also highlights practical multimodal usefulness, since it can work across text, images, and video in one system rather than forcing a separate toolchain for each modality. For workflow-heavy use cases, the ability to coordinate up to 100 sub-agents is notable because it suggests the model can support decomposition, parallel research, and multi-step automation. The screenshot-to-code behavior is especially relevant for product and engineering workflows, because it bridges visual input and implementation in a direct way.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"One trillion total parameters, but only thirty-two billion activate per query thanks to a mixture-of-experts architecture. That means frontier-level performance at much lower compute cost. Handles text, images, and video natively. Reads a screenshot and generates working code from it. Coordinates up to 100 AI sub-agents in parallel for complex tasks, completing them 4.5x faster. Scores above GPT-5.2 on HLE-Full reasoning benchmarks.\"",
         "value_level": "high",
-        "weaknesses_limitations": "The source is mostly promotional and gives limited technical depth beyond the headline claims. It does not explain the evaluation setup behind the reported HLE-Full result or the comparison against GPT-5.2, so the benchmark claim is hard to interpret operationally. It also does not discuss latency, throughput, or reliability under load, which matters for an agentic model that claims parallel sub-agent coordination. Although the article calls it open-source/open, it does not provide deployment details, so self-hosting effort, infra requirements, and real-world ease of use remain unclear.",
-        "workflow_implications": "This model appears suited to workflows that mix reasoning, multimodal intake, and agent orchestration. In practice, that means research pipelines, multimodal analysis, design-to-code handoff, and tasks that benefit from splitting work across many subtasks. The article\u2019s own example of using Kimi\u2019s Agent Swarm for data analysis suggests the model may be useful as a coordinator for longer-running project work rather than only short conversational exchanges."
+        "weaknesses_limitations": "The source is mostly promotional and gives limited technical depth beyond the headline claims. It does not explain the evaluation setup behind the reported HLE-Full result or the comparison against GPT-5.2, so the benchmark claim is hard to interpret operationally. It also does not discuss latency, throughput, or reliability under load, which matters for an agentic model that claims parallel sub-agent coordination. Although the article calls it open-source/open, it does not provide deployment details, so self-hosting effort, infra requirements, and real-world ease of use remain unclear."
       },
       {
         "benchmark_observations": [
@@ -135,16 +137,18 @@
           "Cost-focused indexer claim for more efficient inference",
           "Benchmarked math and coding performance claims"
         ],
+        "deployment_implications": "DeepSeek V4 is best understood as a consolidation model for teams that want one system to handle mixed media and long-context tasks without splitting the workflow across multiple specialized models. The open-weight aspect makes it suitable for organizations that need tighter control over data placement or want to integrate the model into internal infrastructure. The long context and multimodal support point to workflows like document-heavy analysis, screenshot-informed coding, and mixed text/image/video review.",
         "evidence_type": "vendor_claim",
         "match_candidates": [],
         "maturity_signals": "The article describes DeepSeek V4 as having dropped in early March 2026, which signals it is being treated as a live product rather than a concept. The explicit open-weight and self-hosting language suggests practical availability for deployment. At the same time, the evidence in the source is still mostly announcement-style and benchmark-oriented, so real-world maturity should be confirmed through independent use and serving tests.",
         "model_name": "DeepSeek V4",
-        "operational_summary": "DeepSeek V4 is presented as an open-weight foundation model with native multimodal support for text, images, and video, plus a very large context window of over one million tokens. In the article it is framed as a practical, self-hostable alternative to proprietary APIs, aimed at users who want frontier-style capability with lower direct cloud inference costs if they deploy it themselves.",
+        "operational_profile": "DeepSeek V4 is presented as an open-weight foundation model with native multimodal support for text, images, and video, plus a very large context window of over one million tokens. In the article it is framed as a practical, self-hostable alternative to proprietary APIs, aimed at users who want frontier-style capability with lower direct cloud inference costs if they deploy it themselves.\n\n- Native multimodal input across text, images, and video reduces the need to stitch together separate models or pipelines.\n- The >1M token context window is a meaningful fit for long-document analysis, extended sessions, and large retrieval-heavy workflows.\n- Open-weight availability gives teams deployment control and makes local or private hosting possible.\n- The article claims the model includes a new indexer that cuts computational costs by roughly 50%, which suggests stronger efficiency for high-volume use cases.\n- Reported benchmark performance is strong in the article\u2019s framing, with 92% on math and 90% on coding.",
         "pricing_inference_implications": "The source implies a lower-cost ownership model if teams self-host, because it says there is no per-token cloud pricing in that setup. It also claims a new indexer cuts computational costs by roughly fifty percent, which would matter most for high-throughput or long-context workloads. However, the article does not provide infrastructure pricing, so any total-cost comparison should include hardware, ops, and maintenance.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
-          "open-weight",
-          "multi-modal"
+          "open-weight-model",
+          "multimodal-model"
         ],
         "provider": "DeepSeek",
         "related_models": [
@@ -154,12 +158,11 @@
           "GPT-5.5"
         ],
         "service_automation_implications": "For service automation, the model is most relevant where long-context reasoning, image/video understanding, and self-hosted deployment matter together. That combination could support automated review pipelines, content analysis systems, or assistant-style services where keeping requests on private infrastructure is important. The article\u2019s claim of lower computational cost also suggests potential value for higher-throughput automation, though the operational savings would depend on actual deployment efficiency.",
-        "strengths": "- Native multimodal input across text, images, and video reduces the need to stitch together separate models or pipelines.\n- The >1M token context window is a meaningful fit for long-document analysis, extended sessions, and large retrieval-heavy workflows.\n- Open-weight availability gives teams deployment control and makes local or private hosting possible.\n- The article claims the model includes a new indexer that cuts computational costs by roughly 50%, which suggests stronger efficiency for high-volume use cases.\n- Reported benchmark performance is strong in the article\u2019s framing, with 92% on math and 90% on coding.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"DeepSeek V4 dropped in early March 2026 and continued a run that has made every major AI lab nervous. The big shift from V3: full native multimodal support for text, images, and video in one model. Plus a context window of over one million tokens and a new indexer that cuts computational costs by roughly fifty percent. 92% accuracy on math benchmarks, 90% on coding. Open-weight: run it locally or deploy it yourself. No per-token cloud pricing if you self-host.\"",
         "value_level": "high",
-        "weaknesses_limitations": "The article gives benchmark-style claims but no testing methodology, so the accuracy numbers cannot be validated from the source alone. It also does not explain latency, memory footprint, or the practical serving burden of running a very large multimodal open-weight model. Self-hosting may eliminate per-token cloud pricing, but the source does not cover infrastructure, ops, or maintenance costs. Because the evidence is vendor-linked and promotional in tone, independent verification would still be needed before treating the performance claims as settled.",
-        "workflow_implications": "DeepSeek V4 is best understood as a consolidation model for teams that want one system to handle mixed media and long-context tasks without splitting the workflow across multiple specialized models. The open-weight aspect makes it suitable for organizations that need tighter control over data placement or want to integrate the model into internal infrastructure. The long context and multimodal support point to workflows like document-heavy analysis, screenshot-informed coding, and mixed text/image/video review."
+        "weaknesses_limitations": "The article gives benchmark-style claims but no testing methodology, so the accuracy numbers cannot be validated from the source alone. It also does not explain latency, memory footprint, or the practical serving burden of running a very large multimodal open-weight model. Self-hosting may eliminate per-token cloud pricing, but the source does not cover infrastructure, ops, or maintenance costs. Because the evidence is vendor-linked and promotional in tone, independent verification would still be needed before treating the performance claims as settled."
       }
     ],
     "glossary": [],
@@ -231,6 +234,7 @@
         "name": "Lovable",
         "operational_relevance": "Useful for quickly producing working prototypes, internal tools, and client-facing web apps without starting from a blank editor. It appears to bridge the gap between ideation and shippable code, which matters for teams that want to validate a concept before investing in a full engineering cycle. The built-in integrations suggest it can reduce early setup work for authentication, payments, and AI features.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
           "cloud-saas",
           "coding-agent"
@@ -242,6 +246,7 @@
         "short_description": "A prompt-to-app builder that turns plain English into production-grade web code. The article says it can generate responsive apps with payments and authentication already wired in.",
         "strengths": "- Converts a plain-English request into a functional app, which reduces the time spent on scaffolding and repetitive setup.\n- Includes responsive design, Stripe payments, authentication, GitHub-ready exports, and native integrations, which makes the output closer to something a team can iterate on rather than a throwaway demo.\n- The reported under-ninety-minute prototype time suggests it is optimized for speed-to-first-working-version, which is valuable for validation and stakeholder review.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"You describe what you want to build in plain English. Lovable converts that into fully functional, production-grade code with responsive design, Stripe payments, and authentication already wired in. Independent testers had a working prototype live in under ninety minutes.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not describe failure modes, code quality edge cases, or how well the generated code holds up in larger codebases. \"Production-grade\" is asserted, but the piece does not show an audit of maintainability, testing, or security hardening. The workflow may still require a developer to review generated code before trusting it in a real deployment."
@@ -263,6 +268,7 @@
         "name": "Higgsfield",
         "operational_relevance": "Relevant for teams that need fast video production without a traditional editing stack. The combination of generation, camera control, lip sync, and upscaling suggests a workflow that can handle both creation and finishing in one place. That makes it useful for creators, marketers, and small teams that need turnaround speed more than deep post-production control.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
           "cloud-saas",
           "workflow-automation"
@@ -274,6 +280,7 @@
         "short_description": "A video creation tool that the article describes as combining multiple generation models and production features into one workflow. It is presented as useful for quickly making short-form ads and polished video outputs.",
         "strengths": "- The tool bundles generation and finishing steps together, which matters because video work often breaks across multiple applications.\n- Cinema Studio, LipSync Studio, and 4K upscaling indicate that it is aimed at practical output quality, not only raw generation.\n- The article\u2019s reported two-minute ad creation and five-minute first-video workflow suggest a strong speed advantage for lightweight production tasks.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"You get Cinema Studio for granular camera controls, LipSync Studio for character animation, and a 4K upscaler on exports. Setup takes thirty seconds. First video in five minutes.\"",
         "value_level": "medium",
         "weaknesses_limitations": "The writeup gives little detail about consistency, control limits, or how outputs behave on longer or more complex projects. It also does not explain whether the integrated models are interchangeable or how much quality varies by use case. The strongest claim in the source is speed, but that alone does not establish reliability for professional pipelines."
@@ -295,6 +302,7 @@
         "name": "Wispr Flow",
         "operational_relevance": "Useful wherever a user spends a lot of time writing in many different apps and wants to replace typing with speech. Because it works at the operating-system level, it can fit into existing workflows without needing per-app integration. That makes it especially practical for drafting, note capture, and fast text entry across email, documents, and chat tools.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
           "cloud-saas",
           "ai-infrastructure"
@@ -306,6 +314,7 @@
         "short_description": "A system-level voice dictation tool that lets users speak into any text field and get cleaned-up text back quickly. The article emphasizes low latency and support across many languages.",
         "strengths": "- System-level operation means it works across many applications rather than being locked into one editor.\n- The article says it understands multi-sentence meaning and returns coherent paragraphs, which matters when users think in long spoken chunks rather than short commands.\n- Low latency and broad language support make it attractive for everyday dictation rather than just niche transcription tasks.\n- SOC 2 Type II certification is relevant for teams that need a stronger trust signal around handling text input.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"It lives at the system level. That means it works inside every text field you already use, Gmail, Notion, Claude, Twitter, anywhere. Latency is around 500 milliseconds. It understands multi-sentence meaning, so long thoughts arrive as coherent paragraphs.\"",
         "value_level": "high",
         "weaknesses_limitations": "The source does not describe error rates, punctuation failures, or how it handles domain-specific jargon. Low-latency dictation is valuable, but the article does not show whether the output needs heavy editing in messy real-world settings. The security certification is useful, yet it does not by itself prove suitability for all regulated workflows."
@@ -327,6 +336,7 @@
         "name": "Granola",
         "operational_relevance": "Relevant for people who leave meetings with partial memory and need decisions captured in a usable format. The combination of transcript plus manual notes makes it more useful than plain transcription when the goal is follow-up, action items, or client-ready minutes. Its integrations with common meeting platforms fit typical remote-work workflows.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
           "cloud-saas",
           "workflow-automation"
@@ -338,6 +348,7 @@
         "short_description": "A meeting-notes app that combines automatic transcription with manual notes taken during the call. The article positions it as a structured summary tool rather than a raw transcript dump.",
         "strengths": "- It merges transcript text with the user\u2019s own notes, which helps preserve both spoken content and what the participant considered important.\n- Custom output templates make it easier to standardize meeting notes for different clients, teams, or recurring call types.\n- Support for Google Meet, Zoom, and Teams makes it compatible with the most common meeting environments.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"So instead of a wall of text you need to edit, you get a structured summary that reflects both what was said and what you personally flagged as important. Works with Google Meet, Zoom, and Teams. Custom output templates so your notes always come out in the format you need.\"",
         "value_level": "high",
         "weaknesses_limitations": "The source does not explain note accuracy, speaker attribution quality, or how it handles noisy meetings. It also does not show whether template customization is flexible enough for complex organizational workflows. The value is strong for note-taking, but the article provides limited evidence about broader collaboration or automation use."
@@ -359,6 +370,7 @@
         "name": "OpenClaw",
         "operational_relevance": "Important for teams that want autonomous-agent behavior without sending data to external servers. Because it is local and persistent, it points to a more privacy-conscious automation pattern than cloud-hosted agents. Its file, shell, and browser abilities suggest it can serve as a personal operator for technical workflows rather than only a chat assistant.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
           "coding-agent",
           "ai-infrastructure"
@@ -370,6 +382,7 @@
         "short_description": "A local autonomous agent that runs on the user\u2019s own machine. The article says it can use messaging platforms as an interface, keep persistent memory, run scripts, manage files, and browse the web.",
         "strengths": "- Runs entirely locally, which is valuable when the workflow involves sensitive data or private projects.\n- Persistent memory and access to files, bash, and web browsing make it capable of multi-step tasks that go beyond chat.\n- Messaging-platform interfaces such as WhatsApp, Telegram, and Slack lower the barrier to using the agent where users already communicate.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"OpenClaw runs entirely locally. No data leaves your machine. It connects to 50+ messaging platforms including WhatsApp, Telegram, and Slack as its interface. It maintains persistent memory, runs bash scripts, handles file operations, and browses the web for you.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article says setup is more involved than consumer tools, so adoption may require more technical patience. It also works best on laptop or desktop, which narrows portability. The source does not provide evidence about reliability, safety controls, or how well it behaves over long unattended runs."
@@ -391,6 +404,7 @@
         "name": "Pomelli",
         "operational_relevance": "Useful when a small team needs on-brand social output without a designer or a long creative workflow. The URL-to-brand-profile step makes it attractive for lightweight marketing operations because it turns existing web assets into reusable brand constraints. It seems most valuable where speed and consistency matter more than deep creative control.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
           "cloud-saas",
           "workflow-automation"
@@ -402,6 +416,7 @@
         "short_description": "A brand-aware social content generator from Google Labs. The article says it reads a website URL, builds a brand profile, and generates platform-specific social posts with natural-language edits.",
         "strengths": "- It extracts brand colors, fonts, tone, and messaging from a website, which reduces manual brand setup.\n- It generates multiple platform-specific post variations quickly, which helps teams compare options instead of starting from scratch each time.\n- Natural-language editing lowers the barrier for non-designers to tweak visual and copy details.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"You paste your website URL. Pomelli scans it, extracts your brand\u2019s colour palette, fonts, tone, and messaging into a \u2018Business DNA\u2019 profile, then generates social content for Instagram, LinkedIn, Facebook, and Twitter, all formatted for each platform.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not discuss brand-safety edge cases, template rigidity, or whether the generated outputs remain distinctive across repeated use. The independent speed comparison is mentioned but not explained in detail, so it should not be treated as a full benchmark. Its value seems strongest for lightweight social production rather than complex campaign work."
@@ -429,16 +444,17 @@
             "Structured output support for machine-readable responses.",
             "Positioned for real-time, latency-sensitive AI applications."
           ],
+          "deployment_implications": "Mercury 2 is best understood as a model for latency-sensitive workflows where the agent must answer, route, or generate structured outputs quickly. The function-calling and structured-output support imply easier integration into orchestration layers, tool use, and API-driven products. That makes it relevant for assistants, copilots, and operational systems where response time can be a product feature.",
           "evidence_type": "vendor_claim",
           "match_candidates": [],
           "maturity_signals": "The model is described as launched on February 24, 2026, which signals active product availability rather than an early research demo. Support for function calling and structured output suggests it is already being positioned for practical deployment. However, the only evidence in the source is launch commentary and vendor-style framing, so maturity looks plausible but not well validated by independent analysis.",
           "model_name": "Mercury 2",
-          "operational_summary": "Mercury 2 is presented as a newly launched foundation model that uses a diffusion architecture instead of standard token-by-token decoding. The article frames it as a speed-focused model for real-time AI tools, with the headline claim that it is 11x faster while maintaining the same quality. It also supports function calling and structured output, which makes it more usable in agent and workflow systems than a plain chat model.",
+          "operational_profile": "Mercury 2 is presented as a newly launched foundation model that uses a diffusion architecture instead of standard token-by-token decoding. The article frames it as a speed-focused model for real-time AI tools, with the headline claim that it is 11x faster while maintaining the same quality. It also supports function calling and structured output, which makes it more usable in agent and workflow systems than a plain chat model.\n\n- The main differentiator is architectural: the article says Mercury 2 generates a rough output and refines multiple tokens in parallel, which is positioned as a way to reduce latency.\n- Function calling and structured output support make it more suitable for agent workflows, where the model needs to produce machine-readable outputs and interact with tools.\n- The model is explicitly framed for real-time use cases, so it appears optimized for responsiveness rather than only benchmark chasing.\n- The source presents it as a genuinely different category of model, which suggests strategic value for teams exploring alternatives to standard autoregressive LLMs.",
           "pricing_inference_implications": "No pricing is stated in the source, so there is no direct evidence for cost. The diffusion architecture could imply a different compute profile than standard token generation, but the article does not say whether that lowers or raises serving cost. Any pricing inference would be speculative from this source alone.",
           "proposed_new_type": "",
           "proposed_types": [
-            "proprietary",
-            "interactive-ai"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "provider": "Inception",
           "related_models": [
@@ -446,12 +462,10 @@
             "Kimi 2.5"
           ],
           "service_automation_implications": "The article\u2019s emphasis on real-time AI tools suggests Mercury 2 could be useful as a backend model for automation products that need quick turnarounds and reliable schema-shaped outputs. If the performance claim holds, it may reduce wait time in chat-based operations, tool execution loops, and user-facing automation flows. Its value is likely highest where speed affects user experience or throughput.",
-          "strengths": "- The main differentiator is architectural: the article says Mercury 2 generates a rough output and refines multiple tokens in parallel, which is positioned as a way to reduce latency.\n- Function calling and structured output support make it more suitable for agent workflows, where the model needs to produce machine-readable outputs and interact with tools.\n- The model is explicitly framed for real-time use cases, so it appears optimized for responsiveness rather than only benchmark chasing.\n- The source presents it as a genuinely different category of model, which suggests strategic value for teams exploring alternatives to standard autoregressive LLMs.",
           "suggested_action": "ignore",
           "supporting_snippet": "\"Mercury 2 launched February 24, 2026, and it is genuinely architecturally different from every other model out there. Most AI models generate text token by token, one word at a time. Mercury 2 uses a diffusion architecture, starting with a rough full output and refining it in parallel across multiple tokens simultaneously. Supports function calling and structured output for agent workflows.\"",
           "value_level": "high",
-          "weaknesses_limitations": "The article gives a strong promotional claim but very little methodological detail. It does not specify the benchmark, baseline model, task mix, or hardware conditions behind the \"11x faster\" statement, so the speed claim is not independently verifiable from the source. It also does not provide failure cases, reliability data, or evidence about whether the diffusion approach affects output stability, instruction following, or long-context behavior. Based on the source alone, this looks promising but still thinly evidenced.",
-          "workflow_implications": "Mercury 2 is best understood as a model for latency-sensitive workflows where the agent must answer, route, or generate structured outputs quickly. The function-calling and structured-output support imply easier integration into orchestration layers, tool use, and API-driven products. That makes it relevant for assistants, copilots, and operational systems where response time can be a product feature."
+          "weaknesses_limitations": "The article gives a strong promotional claim but very little methodological detail. It does not specify the benchmark, baseline model, task mix, or hardware conditions behind the \"11x faster\" statement, so the speed claim is not independently verifiable from the source. It also does not provide failure cases, reliability data, or evidence about whether the diffusion approach affects output stability, instruction following, or long-context behavior. Based on the source alone, this looks promising but still thinly evidenced."
         },
         "notes": null,
         "proposal_id": "b76acfec-8893-46d8-af94-a2e8cca208c5",
@@ -493,6 +507,12 @@
             "notes": null,
             "status": "pending"
           },
+          "deployment_implications": {
+            "final_text": "Mercury 2 is best understood as a model for latency-sensitive workflows where the agent must answer, route, or generate structured outputs quickly. The function-calling and structured-output support imply easier integration into orchestration layers, tool use, and API-driven products. That makes it relevant for assistants, copilots, and operational systems where response time can be a product feature.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -503,10 +523,11 @@
             "notes": null,
             "status": "pending"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "Mercury 2 is presented as a newly launched foundation model that uses a diffusion architecture instead of standard token-by-token decoding. The article frames it as a speed-focused model for real-time AI tools, with the headline claim that it is 11x faster while maintaining the same quality. It also supports function calling and structured output, which makes it more usable in agent and workflow systems than a plain chat model.\n\n- The main differentiator is architectural: the article says Mercury 2 generates a rough output and refines multiple tokens in parallel, which is positioned as a way to reduce latency.\n- Function calling and structured output support make it more suitable for agent workflows, where the model needs to produce machine-readable outputs and interact with tools.\n- The model is explicitly framed for real-time use cases, so it appears optimized for responsiveness rather than only benchmark chasing.\n- The source presents it as a genuinely different category of model, which suggests strategic value for teams exploring alternatives to standard autoregressive LLMs.",
             "notes": null,
-            "status": "pending"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -523,17 +544,13 @@
             "notes": null,
             "status": "pending"
           },
-          "strengths": {
+          "supporting_snippet": {
             "final_text": null,
             "notes": null,
+            "section_regeneration_meta": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "pending"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "pending"
@@ -569,16 +586,17 @@
             "Coordination of up to 100 AI sub-agents for parallel task execution.",
             "Positioned as an open-source/open model for users who want more direct access than a proprietary API."
           ],
+          "deployment_implications": "This model appears suited to workflows that mix reasoning, multimodal intake, and agent orchestration. In practice, that means research pipelines, multimodal analysis, design-to-code handoff, and tasks that benefit from splitting work across many subtasks. The article\u2019s own example of using Kimi\u2019s Agent Swarm for data analysis suggests the model may be useful as a coordinator for longer-running project work rather than only short conversational exchanges.",
           "evidence_type": "mixed",
           "match_candidates": [],
           "maturity_signals": "The article says Kimi K2.5 was released on January 27, 2026, and treats it as already usable enough for the author to run an Agent Swarm in the background on a real project. That is a positive adoption signal, but the evidence remains mostly launch-announcement style rather than deployment-validated. The presence of specific capabilities like multimodal support, screenshot-to-code, and multi-agent coordination suggests a fairly ambitious product surface, though the source does not show long-term stability or enterprise readiness.",
           "model_name": "Kimi K2.5",
-          "operational_summary": "Kimi K2.5 is presented as an open-source, frontier-class multimodal foundation model released on January 27, 2026. The article frames it as a mixture-of-experts system with one trillion total parameters but only 32 billion active per query, aiming to combine strong capability with lower per-request compute. It is described as natively handling text, images, and video, supporting screenshot-to-code workflows, and coordinating up to 100 sub-agents for parallel task execution.",
+          "operational_profile": "Kimi K2.5 is presented as an open-source, frontier-class multimodal foundation model released on January 27, 2026. The article frames it as a mixture-of-experts system with one trillion total parameters but only 32 billion active per query, aiming to combine strong capability with lower per-request compute. It is described as natively handling text, images, and video, supporting screenshot-to-code workflows, and coordinating up to 100 sub-agents for parallel task execution.\n\nThe strongest operational claim in the source is that Kimi K2.5 pairs broad capability with efficiency: only a subset of parameters activates per query, so the model is positioned as delivering high-end performance without requiring the full compute cost of a dense trillion-parameter model. The article also highlights practical multimodal usefulness, since it can work across text, images, and video in one system rather than forcing a separate toolchain for each modality. For workflow-heavy use cases, the ability to coordinate up to 100 sub-agents is notable because it suggests the model can support decomposition, parallel research, and multi-step automation. The screenshot-to-code behavior is especially relevant for product and engineering workflows, because it bridges visual input and implementation in a direct way.",
           "pricing_inference_implications": "No explicit price is given. The article\u2019s emphasis on only 32 billion active parameters per query implies an efficiency story that could reduce serving cost relative to a dense model of similar total size. However, because the source gives no API pricing, hosting costs, or licensing details, any inference should stay limited to the possibility of lower inference cost per request rather than a concrete affordability claim.",
           "proposed_new_type": "",
           "proposed_types": [
-            "open-weight",
-            "agentic-coding"
+            "open-weight-model",
+            "coding-model"
           ],
           "provider": "Moonshot AI",
           "related_models": [
@@ -587,12 +605,10 @@
             "GPT-5.5"
           ],
           "service_automation_implications": "The combination of native multimodality, structured code generation from screenshots, and multi-agent orchestration points toward automation systems that can ingest diverse inputs and break them into parallelizable work. That makes it relevant for internal analyst assistants, content or product operations, and semi-autonomous research agents. Because the article frames it as open and frontier-capable, it may also be attractive for teams that want more control over model integration than a proprietary API usually offers.",
-          "strengths": "The strongest operational claim in the source is that Kimi K2.5 pairs broad capability with efficiency: only a subset of parameters activates per query, so the model is positioned as delivering high-end performance without requiring the full compute cost of a dense trillion-parameter model. The article also highlights practical multimodal usefulness, since it can work across text, images, and video in one system rather than forcing a separate toolchain for each modality. For workflow-heavy use cases, the ability to coordinate up to 100 sub-agents is notable because it suggests the model can support decomposition, parallel research, and multi-step automation. The screenshot-to-code behavior is especially relevant for product and engineering workflows, because it bridges visual input and implementation in a direct way.",
           "suggested_action": "ignore",
           "supporting_snippet": "\"One trillion total parameters, but only thirty-two billion activate per query thanks to a mixture-of-experts architecture. That means frontier-level performance at much lower compute cost. Handles text, images, and video natively. Reads a screenshot and generates working code from it. Coordinates up to 100 AI sub-agents in parallel for complex tasks, completing them 4.5x faster. Scores above GPT-5.2 on HLE-Full reasoning benchmarks.\"",
           "value_level": "high",
-          "weaknesses_limitations": "The source is mostly promotional and gives limited technical depth beyond the headline claims. It does not explain the evaluation setup behind the reported HLE-Full result or the comparison against GPT-5.2, so the benchmark claim is hard to interpret operationally. It also does not discuss latency, throughput, or reliability under load, which matters for an agentic model that claims parallel sub-agent coordination. Although the article calls it open-source/open, it does not provide deployment details, so self-hosting effort, infra requirements, and real-world ease of use remain unclear.",
-          "workflow_implications": "This model appears suited to workflows that mix reasoning, multimodal intake, and agent orchestration. In practice, that means research pipelines, multimodal analysis, design-to-code handoff, and tasks that benefit from splitting work across many subtasks. The article\u2019s own example of using Kimi\u2019s Agent Swarm for data analysis suggests the model may be useful as a coordinator for longer-running project work rather than only short conversational exchanges."
+          "weaknesses_limitations": "The source is mostly promotional and gives limited technical depth beyond the headline claims. It does not explain the evaluation setup behind the reported HLE-Full result or the comparison against GPT-5.2, so the benchmark claim is hard to interpret operationally. It also does not discuss latency, throughput, or reliability under load, which matters for an agentic model that claims parallel sub-agent coordination. Although the article calls it open-source/open, it does not provide deployment details, so self-hosting effort, infra requirements, and real-world ease of use remain unclear."
         },
         "notes": null,
         "proposal_id": "a2f149ce-df1a-4377-9e2c-aa89bf5054d7",
@@ -636,6 +652,12 @@
             "notes": null,
             "status": "pending"
           },
+          "deployment_implications": {
+            "final_text": "This model appears suited to workflows that mix reasoning, multimodal intake, and agent orchestration. In practice, that means research pipelines, multimodal analysis, design-to-code handoff, and tasks that benefit from splitting work across many subtasks. The article\u2019s own example of using Kimi\u2019s Agent Swarm for data analysis suggests the model may be useful as a coordinator for longer-running project work rather than only short conversational exchanges.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -646,10 +668,11 @@
             "notes": null,
             "status": "pending"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "Kimi K2.5 is presented as an open-source, frontier-class multimodal foundation model released on January 27, 2026. The article frames it as a mixture-of-experts system with one trillion total parameters but only 32 billion active per query, aiming to combine strong capability with lower per-request compute. It is described as natively handling text, images, and video, supporting screenshot-to-code workflows, and coordinating up to 100 sub-agents for parallel task execution.\n\nThe strongest operational claim in the source is that Kimi K2.5 pairs broad capability with efficiency: only a subset of parameters activates per query, so the model is positioned as delivering high-end performance without requiring the full compute cost of a dense trillion-parameter model. The article also highlights practical multimodal usefulness, since it can work across text, images, and video in one system rather than forcing a separate toolchain for each modality. For workflow-heavy use cases, the ability to coordinate up to 100 sub-agents is notable because it suggests the model can support decomposition, parallel research, and multi-step automation. The screenshot-to-code behavior is especially relevant for product and engineering workflows, because it bridges visual input and implementation in a direct way.",
             "notes": null,
-            "status": "pending"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -666,17 +689,13 @@
             "notes": null,
             "status": "pending"
           },
-          "strengths": {
+          "supporting_snippet": {
             "final_text": null,
             "notes": null,
+            "section_regeneration_meta": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "pending"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "pending"
@@ -712,16 +731,17 @@
             "Cost-focused indexer claim for more efficient inference",
             "Benchmarked math and coding performance claims"
           ],
+          "deployment_implications": "DeepSeek V4 is best understood as a consolidation model for teams that want one system to handle mixed media and long-context tasks without splitting the workflow across multiple specialized models. The open-weight aspect makes it suitable for organizations that need tighter control over data placement or want to integrate the model into internal infrastructure. The long context and multimodal support point to workflows like document-heavy analysis, screenshot-informed coding, and mixed text/image/video review.",
           "evidence_type": "vendor_claim",
           "match_candidates": [],
           "maturity_signals": "The article describes DeepSeek V4 as having dropped in early March 2026, which signals it is being treated as a live product rather than a concept. The explicit open-weight and self-hosting language suggests practical availability for deployment. At the same time, the evidence in the source is still mostly announcement-style and benchmark-oriented, so real-world maturity should be confirmed through independent use and serving tests.",
           "model_name": "DeepSeek V4",
-          "operational_summary": "DeepSeek V4 is presented as an open-weight foundation model with native multimodal support for text, images, and video, plus a very large context window of over one million tokens. In the article it is framed as a practical, self-hostable alternative to proprietary APIs, aimed at users who want frontier-style capability with lower direct cloud inference costs if they deploy it themselves.",
+          "operational_profile": "DeepSeek V4 is presented as an open-weight foundation model with native multimodal support for text, images, and video, plus a very large context window of over one million tokens. In the article it is framed as a practical, self-hostable alternative to proprietary APIs, aimed at users who want frontier-style capability with lower direct cloud inference costs if they deploy it themselves.\n\n- Native multimodal input across text, images, and video reduces the need to stitch together separate models or pipelines.\n- The >1M token context window is a meaningful fit for long-document analysis, extended sessions, and large retrieval-heavy workflows.\n- Open-weight availability gives teams deployment control and makes local or private hosting possible.\n- The article claims the model includes a new indexer that cuts computational costs by roughly 50%, which suggests stronger efficiency for high-volume use cases.\n- Reported benchmark performance is strong in the article\u2019s framing, with 92% on math and 90% on coding.",
           "pricing_inference_implications": "The source implies a lower-cost ownership model if teams self-host, because it says there is no per-token cloud pricing in that setup. It also claims a new indexer cuts computational costs by roughly fifty percent, which would matter most for high-throughput or long-context workloads. However, the article does not provide infrastructure pricing, so any total-cost comparison should include hardware, ops, and maintenance.",
           "proposed_new_type": "",
           "proposed_types": [
-            "open-weight",
-            "multi-modal"
+            "open-weight-model",
+            "multimodal-model"
           ],
           "provider": "DeepSeek",
           "related_models": [
@@ -731,12 +751,10 @@
             "GPT-5.5"
           ],
           "service_automation_implications": "For service automation, the model is most relevant where long-context reasoning, image/video understanding, and self-hosted deployment matter together. That combination could support automated review pipelines, content analysis systems, or assistant-style services where keeping requests on private infrastructure is important. The article\u2019s claim of lower computational cost also suggests potential value for higher-throughput automation, though the operational savings would depend on actual deployment efficiency.",
-          "strengths": "- Native multimodal input across text, images, and video reduces the need to stitch together separate models or pipelines.\n- The >1M token context window is a meaningful fit for long-document analysis, extended sessions, and large retrieval-heavy workflows.\n- Open-weight availability gives teams deployment control and makes local or private hosting possible.\n- The article claims the model includes a new indexer that cuts computational costs by roughly 50%, which suggests stronger efficiency for high-volume use cases.\n- Reported benchmark performance is strong in the article\u2019s framing, with 92% on math and 90% on coding.",
           "suggested_action": "ignore",
           "supporting_snippet": "\"DeepSeek V4 dropped in early March 2026 and continued a run that has made every major AI lab nervous. The big shift from V3: full native multimodal support for text, images, and video in one model. Plus a context window of over one million tokens and a new indexer that cuts computational costs by roughly fifty percent. 92% accuracy on math benchmarks, 90% on coding. Open-weight: run it locally or deploy it yourself. No per-token cloud pricing if you self-host.\"",
           "value_level": "high",
-          "weaknesses_limitations": "The article gives benchmark-style claims but no testing methodology, so the accuracy numbers cannot be validated from the source alone. It also does not explain latency, memory footprint, or the practical serving burden of running a very large multimodal open-weight model. Self-hosting may eliminate per-token cloud pricing, but the source does not cover infrastructure, ops, or maintenance costs. Because the evidence is vendor-linked and promotional in tone, independent verification would still be needed before treating the performance claims as settled.",
-          "workflow_implications": "DeepSeek V4 is best understood as a consolidation model for teams that want one system to handle mixed media and long-context tasks without splitting the workflow across multiple specialized models. The open-weight aspect makes it suitable for organizations that need tighter control over data placement or want to integrate the model into internal infrastructure. The long context and multimodal support point to workflows like document-heavy analysis, screenshot-informed coding, and mixed text/image/video review."
+          "weaknesses_limitations": "The article gives benchmark-style claims but no testing methodology, so the accuracy numbers cannot be validated from the source alone. It also does not explain latency, memory footprint, or the practical serving burden of running a very large multimodal open-weight model. Self-hosting may eliminate per-token cloud pricing, but the source does not cover infrastructure, ops, or maintenance costs. Because the evidence is vendor-linked and promotional in tone, independent verification would still be needed before treating the performance claims as settled."
         },
         "notes": null,
         "proposal_id": "0fb88870-042b-4d9d-a4d2-909f5d10b4e2",
@@ -780,6 +798,12 @@
             "notes": null,
             "status": "pending"
           },
+          "deployment_implications": {
+            "final_text": "DeepSeek V4 is best understood as a consolidation model for teams that want one system to handle mixed media and long-context tasks without splitting the workflow across multiple specialized models. The open-weight aspect makes it suitable for organizations that need tighter control over data placement or want to integrate the model into internal infrastructure. The long context and multimodal support point to workflows like document-heavy analysis, screenshot-informed coding, and mixed text/image/video review.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -790,10 +814,11 @@
             "notes": null,
             "status": "pending"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "DeepSeek V4 is presented as an open-weight foundation model with native multimodal support for text, images, and video, plus a very large context window of over one million tokens. In the article it is framed as a practical, self-hostable alternative to proprietary APIs, aimed at users who want frontier-style capability with lower direct cloud inference costs if they deploy it themselves.\n\n- Native multimodal input across text, images, and video reduces the need to stitch together separate models or pipelines.\n- The >1M token context window is a meaningful fit for long-document analysis, extended sessions, and large retrieval-heavy workflows.\n- Open-weight availability gives teams deployment control and makes local or private hosting possible.\n- The article claims the model includes a new indexer that cuts computational costs by roughly 50%, which suggests stronger efficiency for high-volume use cases.\n- Reported benchmark performance is strong in the article\u2019s framing, with 92% on math and 90% on coding.",
             "notes": null,
-            "status": "pending"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -810,17 +835,13 @@
             "notes": null,
             "status": "pending"
           },
-          "strengths": {
+          "supporting_snippet": {
             "final_text": null,
             "notes": null,
+            "section_regeneration_meta": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "pending"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "pending"

@@ -21,7 +21,7 @@
       "total_tokens": 29383
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -52,14 +52,13 @@
           "Claude Code or a similar agent tool that can access local files.",
           "A willingness to maintain a consistent folder structure and instruction file."
         ],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
-          "wiki"
+          "knowledge-systems"
         ],
         "question_title": "Agentic Personal Knowledge Management",
         "related_howtos": [],
-        "secondary_tag": "wiki",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -126,6 +125,7 @@
         "name": "Claude Code",
         "operational_relevance": "Claude Code is positioned as the execution layer that turns a note vault into something an agent can work with. For practitioners, the useful part is not just chat but tool access: it can list files, read notes, and create or edit markdown in a controlled folder. That makes it relevant for personal knowledge workflows, agent-assisted drafting, and lightweight automation over local content. The article uses it for recurring review and content extraction tasks rather than for code generation.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "coding-agent",
           "ai-application"
@@ -136,6 +136,7 @@
         "short_description": "A desktop coding agent that can run tools and access local files when connected through allowed integrations. In this setup, it is used to read notes, create markdown files, and act on an Obsidian vault.",
         "strengths": "- It can act on local files when connected to a filesystem or Obsidian MCP bridge, which matters because the agent can work directly in the user's knowledge base instead of copying content into chat.\n- It can follow a persistent instruction file such as CLAUDE.md, which helps keep behavior aligned with the user's structure and style.\n- It supports repeatable workflows like weekly reviews and content mining, which are the kinds of tasks that benefit most from agentic file access.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Then I installed Claude Code on desktop. The important bits: It runs as a local app and can talk to tools like filesystem or Obsidian MCP.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not show error handling, audit trails, or safeguards beyond a simple instruction not to delete notes without asking. It also does not establish reliability across longer sessions or larger vaults. The setup appears useful for personal workflows, but the source gives no evidence that it is robust enough for shared or high-stakes environments."
@@ -158,6 +159,7 @@
         "name": "Obsidian",
         "operational_relevance": "Obsidian is useful here because its notes are ordinary files, which makes them accessible to tools that can operate on the filesystem. That design supports agent-assisted retrieval, note creation, and folder-based organization without needing a separate database. For practitioners, the important operational pattern is that a well-structured vault can become a reusable context store for planning, drafting, and review tasks. The article frames this as more than storage: it becomes the system the agent works inside.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "ai-application"
         ],
@@ -167,6 +169,7 @@
         "short_description": "A local-first note-taking app that stores notes as markdown files in a folder called a vault. In this workflow, it serves as the user's structured knowledge base that Claude Code can read and write.",
         "strengths": "- Notes are stored as markdown files in a folder, which makes the vault portable and easier for tools to inspect and edit.\n- Backlinks, tags, and folders support connected knowledge rather than isolated notes, which helps an agent trace ideas across time.\n- A simple folder structure makes it easier to automate reviews and content extraction because the agent can find where different note types live.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Obsidian is just markdown files in a folder.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not address synchronization, collaboration, or governance concerns. It also assumes that the user maintains a disciplined vault structure; without that discipline, the agent has little to work with. The tool is presented as powerful for personal organization, but the source offers no evidence about team-scale reliability."
@@ -185,9 +188,9 @@
         "knowledge_summary": "A note repository becomes more valuable when software can operate on it directly, not just store information inside it. The knowledge base then acts like a runtime layer that supports retrieval, summarization, drafting, and task generation. This pattern depends on structured storage, stable folder conventions, and explicit rules so the agent can act predictably. It is especially relevant when repeated work is grounded in the same body of notes over time.",
         "match_candidates": [],
         "operational_insight": "Treat the vault as an operational substrate, not a passive archive. If an agent can read and write it safely, the knowledge base can generate reviews, drafts, and reminders with far less manual searching.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
+          "knowledge-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -216,9 +219,9 @@
         "knowledge_summary": "Personal knowledge management becomes agentic when a model can not only retrieve notes but also create, organize, and summarize them according to local rules. The practical shift is from manual search to delegated review and drafting. This approach works best when the user has one main repository of notes, predictable structure, and tasks that recur over time. It is a strong fit for weekly planning, content generation, and resurfacing overlooked ideas.",
         "match_candidates": [],
         "operational_insight": "Use the agent for recurring thinking work, not just as a chat companion. The highest value comes from repeatable review tasks that can be expressed as prompts and saved as workflows.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
+          "knowledge-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -261,18 +264,17 @@
             "Claude Code or a similar agent tool that can access local files.",
             "A willingness to maintain a consistent folder structure and instruction file."
           ],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
-            "wiki"
+            "knowledge-systems"
           ],
           "question_title": "Agentic Personal Knowledge Management",
           "related_howtos": [],
-          "secondary_tag": "wiki",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "agentic-ai",
           "suggested_new_tags": [
-            "agentic-ai"
+            "agent-systems"
           ],
           "supporting_snippet": "\"If it matters, it enters the vault.\"",
           "value_level": "high",
@@ -339,12 +341,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "agentic-ai"
+            "agent-systems"
           ],
           "final_tags": [
-            "knowledge-management",
-            "wiki",
-            "agentic-ai"
+            "knowledge-systems",
+            "agent-systems"
           ]
         }
       }
@@ -679,9 +680,9 @@
           "knowledge_summary": "A note repository becomes more valuable when software can operate on it directly, not just store information inside it. The knowledge base then acts like a runtime layer that supports retrieval, summarization, drafting, and task generation. This pattern depends on structured storage, stable folder conventions, and explicit rules so the agent can act predictably. It is especially relevant when repeated work is grounded in the same body of notes over time.",
           "match_candidates": [],
           "operational_insight": "Treat the vault as an operational substrate, not a passive archive. If an agent can read and write it safely, the knowledge base can generate reviews, drafts, and reminders with far less manual searching.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -775,9 +776,9 @@
           "knowledge_summary": "Personal knowledge management becomes agentic when a model can not only retrieve notes but also create, organize, and summarize them according to local rules. The practical shift is from manual search to delegated review and drafting. This approach works best when the user has one main repository of notes, predictable structure, and tasks that recur over time. It is a strong fit for weekly planning, content generation, and resurfacing overlooked ideas.",
           "match_candidates": [],
           "operational_insight": "Use the agent for recurring thinking work, not just as a chat companion. The highest value comes from repeatable review tasks that can be expressed as prompts and saved as workflows.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering"
           ],
           "related_topics": [

@@ -129,7 +129,7 @@ def test_build_new_artifact_has_expected_keys(tmp_path: Path) -> None:
     parsed = LlmClassificationOutput()
     meta = default_analysis_meta(provider="openai", model="gpt-test", prompt_version="1")
     art = build_new_artifact(doc, parsed, analysis_meta=meta, root=tmp_path)
-    assert art["artifact_schema_version"] == 16
+    assert art["artifact_schema_version"] == 17
     assert art["source"]["source_id"] == stem
     assert art["llm_output"]["source_type_detection"]["detected_source_type"] == "unknown"
     assert "source_evidence_profile" in art["review"]
@@ -1062,7 +1062,7 @@ def test_proposal_status_on_new_review_nodes(tmp_path: Path) -> None:
         root=tmp_path,
     )
     assert art["review"]["glossary"][0]["proposal_status"] == "approved"
-    assert art["artifact_schema_version"] == 16
+    assert art["artifact_schema_version"] == 17
 
 
 def test_migrate_v14_merges_primary_secondary_into_tag_lists() -> None:

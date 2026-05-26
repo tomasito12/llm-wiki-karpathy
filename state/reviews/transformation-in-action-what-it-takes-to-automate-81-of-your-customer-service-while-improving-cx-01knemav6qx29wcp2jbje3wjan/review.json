@@ -21,7 +21,7 @@
       "total_tokens": 33777
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -103,17 +103,16 @@
         "evidence_from_source": "Intercom describes a support organization that created new roles, changed knowledge workflows, adjusted routing, and budgeted time for improving Fin, alongside the reported automation gains.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-governance",
+        "primary_tag": "verification-over-principles",
         "proposed_tags": [
-          "ai-governance",
-          "ai-engineering",
-          "llm-operations"
+          "verification-over-principles",
+          "ai-operationalization"
         ],
         "related_trends": [
           "knowledge-base-becomes-runtime-infrastructure",
           "harness-design-becomes-more-important-for-agent-reliability"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -185,11 +184,11 @@
         "knowledge_summary": "Support automation works best when the support function is redesigned around the automation layer, not merely augmented with a chatbot. In the source example, that redesign included a dedicated AI Support team, a Knowledge Manager role, a Conversation Designer role, and expanded Support Operations coverage for optimization work such as enablement, workforce management, QA, process management, and data insights. The organization also restructured human support into new job families as AI took over more routine volume, while resetting expectations so time is explicitly split between customer support and improving AI.",
         "match_candidates": [],
         "operational_insight": "Treat support automation as an operating-model change: define explicit ownership for AI optimization, knowledge quality, conversation flow, and support analytics, and budget protected time for continuous improvement as the automated system expands.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering",
-          "agentic-ai"
+          "agent-systems"
         ],
         "related_topics": [
           "knowledge-base-becomes-runtime-infrastructure",
@@ -218,17 +217,17 @@
         "knowledge_summary": "When an AI system handles a large share of service conversations, the handoff to a human becomes a core product experience rather than a fallback. Good handoff design routes the user to the right person, preserves context, and minimizes friction during escalation. That means conversation design must consider the entire journey, not only the AI's standalone answer quality. Routing, skill assignment, and escalation logic are part of the service design layer.",
         "match_candidates": [],
         "operational_insight": "Do not treat escalation as an afterthought; build routing and conversation design as part of the automation stack so users move cleanly from AI to the right human.",
-        "primary_tag": "interactive-ai",
+        "primary_tag": "multimodal-ai",
         "proposed_tags": [
-          "interactive-ai",
-          "ai-architecture",
+          "multimodal-ai",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
           "support-automation-organization-design"
         ],
         "relevance_note": "This is a durable pattern for chatbots, voicebots, and other service agents because the quality of the human fallback often determines whether automation feels safe and usable. Teams that ignore handoff design tend to create frustrating dead ends even when the AI itself is competent.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -425,21 +424,20 @@
           "evidence_from_source": "Intercom describes a support organization that created new roles, changed knowledge workflows, adjusted routing, and budgeted time for improving Fin, alongside the reported automation gains.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-governance",
+          "primary_tag": "verification-over-principles",
           "proposed_tags": [
-            "ai-governance",
-            "ai-engineering",
-            "llm-operations"
+            "verification-over-principles",
+            "ai-operationalization"
           ],
           "related_trends": [
             "knowledge-base-becomes-runtime-infrastructure",
             "harness-design-becomes-more-important-for-agent-reliability"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "support-automation",
           "suggested_new_tags": [
-            "support-automation"
+            "workflow-restructuring"
           ],
           "supporting_data_points": [
             "Fin reportedly resolves over 81% of support volume.",
@@ -515,11 +513,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "support-automation"
+            "workflow-restructuring"
           ],
           "final_tags": [
-            "ai-governance",
-            "support-automation"
+            "verification-over-principles",
+            "workflow-restructuring"
           ]
         }
       }
@@ -625,11 +623,11 @@
           "knowledge_summary": "Support automation works best when the support function is redesigned around the automation layer, not merely augmented with a chatbot. In the source example, that redesign included a dedicated AI Support team, a Knowledge Manager role, a Conversation Designer role, and expanded Support Operations coverage for optimization work such as enablement, workforce management, QA, process management, and data insights. The organization also restructured human support into new job families as AI took over more routine volume, while resetting expectations so time is explicitly split between customer support and improving AI.",
           "match_candidates": [],
           "operational_insight": "Treat support automation as an operating-model change: define explicit ownership for AI optimization, knowledge quality, conversation flow, and support analytics, and budget protected time for continuous improvement as the automated system expands.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ],
           "related_topics": [
             "knowledge-base-becomes-runtime-infrastructure",
@@ -737,17 +735,17 @@
           "knowledge_summary": "When an AI system handles a large share of service conversations, the handoff to a human becomes a core product experience rather than a fallback. Good handoff design routes the user to the right person, preserves context, and minimizes friction during escalation. That means conversation design must consider the entire journey, not only the AI's standalone answer quality. Routing, skill assignment, and escalation logic are part of the service design layer.",
           "match_candidates": [],
           "operational_insight": "Do not treat escalation as an afterthought; build routing and conversation design as part of the automation stack so users move cleanly from AI to the right human.",
-          "primary_tag": "interactive-ai",
+          "primary_tag": "multimodal-ai",
           "proposed_tags": [
-            "interactive-ai",
-            "ai-architecture",
+            "multimodal-ai",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
             "support-automation-organization-design"
           ],
           "relevance_note": "This is a durable pattern for chatbots, voicebots, and other service agents because the quality of the human fallback often determines whether automation feels safe and usable. Teams that ignore handoff design tend to create frustrating dead ends even when the AI itself is competent.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "customer-support",
           "suggested_new_tags": [
@@ -822,7 +820,7 @@
             "support-automation"
           ],
           "final_tags": [
-            "interactive-ai",
+            "multimodal-ai",
             "support-automation"
           ]
         }

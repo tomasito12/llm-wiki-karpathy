@@ -21,7 +21,7 @@
       "total_tokens": 26279
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -56,13 +56,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "local-model-deployment"
+          "inference-systems"
         ],
         "question_title": "Procedural Support Automation",
         "related_howtos": [
           "Local Coding Model Setup"
         ],
-        "secondary_tag": "local-model-deployment",
+        "secondary_tag": "inference-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -124,9 +124,9 @@
         "knowledge_summary": "Agentic workflows are task flows where an AI system does more than generate text: it decides steps, calls tools, gathers context, and continues until the task is complete or handed off. They are especially useful when a request spans multiple systems or needs conditional branching. The engineering challenge is not only model quality but also workflow design, guardrails, and recovery paths. Human checkpoints, versioning, and monitoring become part of the product, not optional extras.",
         "match_candidates": [],
         "operational_insight": "Treat the agent as a process executor that must be tested, observable, and interruptible, especially for sensitive actions.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
+          "agent-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -158,13 +158,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "agentic-workflows"
         ],
         "relevance_note": "This is central to reliable conversational AI because support, chat, and voice flows depend on getting the right details at the right moment. Better context packaging lowers friction for users and reduces avoidable handoff loops.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -203,13 +203,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "local-model-deployment"
+            "inference-systems"
           ],
           "question_title": "Procedural Support Automation",
           "related_howtos": [
             "Local Coding Model Setup"
           ],
-          "secondary_tag": "local-model-deployment",
+          "secondary_tag": "inference-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "support-automation",
           "suggested_new_tags": [
@@ -389,9 +389,9 @@
           "knowledge_summary": "Agentic workflows are task flows where an AI system does more than generate text: it decides steps, calls tools, gathers context, and continues until the task is complete or handed off. They are especially useful when a request spans multiple systems or needs conditional branching. The engineering challenge is not only model quality but also workflow design, guardrails, and recovery paths. Human checkpoints, versioning, and monitoring become part of the product, not optional extras.",
           "match_candidates": [],
           "operational_insight": "Treat the agent as a process executor that must be tested, observable, and interruptible, especially for sensitive actions.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
+            "agent-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -488,13 +488,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "agentic-workflows"
           ],
           "relevance_note": "This is central to reliable conversational AI because support, chat, and voice flows depend on getting the right details at the right moment. Better context packaging lowers friction for users and reduces avoidable handoff loops.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

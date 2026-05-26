@@ -21,7 +21,7 @@
       "total_tokens": 25584
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,10 +37,10 @@
         "evidence_type": null,
         "extended_explanation": "Model Context Protocol is a way to present tools to an AI system in a consistent format so the system can inspect what exists, understand how to call it, and respect access rules. Instead of treating each tool as an ad hoc special case, the protocol aims to make tool use more standardized. That can help when agents need to work across many systems, because the tool descriptions, inputs, and permissions travel with the interface. In practice, this matters when teams want model-driven workflows to be safer and easier to wire up than direct one-off integrations.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A protocol for connecting AI agents to external tools and resources through a structured, typed interface. It is designed to make available tools discoverable, permissioned, and easier to integrate across clients and servers.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [
@@ -60,10 +60,10 @@
         "evidence_type": null,
         "extended_explanation": "A command-line interface lets a user or program run commands directly against the operating system. For agentic systems, the appeal is that many useful actions are already available as Unix-style commands, so the model can act through a simple text-in, text-out boundary. That makes the interface easy to compose and often easy to automate. The tradeoff is that it is less self-describing than richer tool protocols, so agents may need more surrounding code to understand what is available and how to use it safely.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A text-based interface for interacting with an operating system by entering commands and receiving text output, usually with exit codes for success or failure. In agent systems, it can serve as a minimal tool boundary for composing existing programs and scripts.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [
@@ -134,10 +134,10 @@
         "knowledge_summary": "Agentic workflows are systems in which a model can take actions through external tools, not just generate text. The practical design question is which interface the model uses to reach files, APIs, code execution, and other systems. Tool boundaries matter because they determine how composable, discoverable, and governable the agent\u2019s actions are. Different interfaces trade off simplicity, structure, and permission control.",
         "match_candidates": [],
         "operational_insight": "When designing an agent, start with the action boundary before optimizing the model. A simple boundary like the command line may be enough for highly composable automation, while structured protocols may be better when tool discovery and permissions need to be explicit.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture",
+          "agent-systems",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
@@ -146,7 +146,7 @@
           "realtime-ai-evaluation"
         ],
         "relevance_note": "This topic is durable because most real agent systems fail or succeed based on what actions they can safely execute, not on chat quality alone. It is central to orchestration, governance, and service automation where tool access and handoff logic define system behavior.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -166,10 +166,10 @@
           "evidence_type": null,
           "extended_explanation": "Model Context Protocol is a way to present tools to an AI system in a consistent format so the system can inspect what exists, understand how to call it, and respect access rules. Instead of treating each tool as an ad hoc special case, the protocol aims to make tool use more standardized. That can help when agents need to work across many systems, because the tool descriptions, inputs, and permissions travel with the interface. In practice, this matters when teams want model-driven workflows to be safer and easier to wire up than direct one-off integrations.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A protocol for connecting AI agents to external tools and resources through a structured, typed interface. It is designed to make available tools discoverable, permissioned, and easier to integrate across clients and servers.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [
@@ -233,10 +233,10 @@
           "evidence_type": null,
           "extended_explanation": "A command-line interface lets a user or program run commands directly against the operating system. For agentic systems, the appeal is that many useful actions are already available as Unix-style commands, so the model can act through a simple text-in, text-out boundary. That makes the interface easy to compose and often easy to automate. The tradeoff is that it is less self-describing than richer tool protocols, so agents may need more surrounding code to understand what is available and how to use it safely.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A text-based interface for interacting with an operating system by entering commands and receiving text output, usually with exit codes for success or failure. In agent systems, it can serve as a minimal tool boundary for composing existing programs and scripts.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [
@@ -397,10 +397,10 @@
           "knowledge_summary": "Agentic workflows are systems in which a model can take actions through external tools, not just generate text. The practical design question is which interface the model uses to reach files, APIs, code execution, and other systems. Tool boundaries matter because they determine how composable, discoverable, and governable the agent\u2019s actions are. Different interfaces trade off simplicity, structure, and permission control.",
           "match_candidates": [],
           "operational_insight": "When designing an agent, start with the action boundary before optimizing the model. A simple boundary like the command line may be enough for highly composable automation, while structured protocols may be better when tool discovery and permissions need to be explicit.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture",
+            "agent-systems",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
@@ -409,7 +409,7 @@
             "realtime-ai-evaluation"
           ],
           "relevance_note": "This topic is durable because most real agent systems fail or succeed based on what actions they can safely execute, not on chat quality alone. It is central to orchestration, governance, and service automation where tool access and handoff logic define system behavior.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

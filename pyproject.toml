@@ -55,6 +55,9 @@ readwise-sync = [
 review-summary = [
   "python -m src.ingest_review.finished_reviews_summary {args}",
 ]
+tag-migrate = [
+  "python -m src.ingest_review.tag_migration {args}",
+]
 wiki-lint = [
   "python -m src.wiki_lint {args}",
 ]

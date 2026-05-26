@@ -21,7 +21,7 @@
       "total_tokens": 33044
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -88,11 +88,10 @@
         "knowledge_summary": "An LLM wiki can be treated as a persistent Markdown knowledge base that an AI assistant helps maintain over time. The core pattern is to keep raw sources separate from synthesized wiki pages, use a small instruction file to guide upkeep, and let knowledge accumulate through repeated ingest and revision rather than one-off Q&A. More advanced implementations add document import, review queues, search, graph views, and compatibility with note-taking tools, but the durable lesson is that the system should fit the user\u2019s real work and remain easy to keep using.",
         "match_candidates": [],
         "operational_insight": "Design the wiki as a maintained system: separate sources from synthesized pages, define purpose and operating rules, and make ingest a two-step process with review points for uncertain items. For smaller setups, a project-level skill or similar instruction layer can provide the maintenance behavior without requiring a full app.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
-          "agentic-ai",
-          "llm-wiki"
+          "knowledge-systems",
+          "agent-systems"
         ],
         "related_topics": [
           "knowledge-base-becomes-runtime-infrastructure",
@@ -100,7 +99,7 @@
           "two-step-document-ingest"
         ],
         "relevance_note": "This is useful anywhere people want AI-assisted note taking, living documentation, or internal knowledge bases that improve through ongoing maintenance. The main value is turning the assistant into a steward of the knowledge base while preserving provenance and human judgment.",
-        "secondary_tag": "agentic-ai",
+        "secondary_tag": "agent-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -122,9 +121,9 @@
         "knowledge_summary": "A safer document-ingest workflow separates analysis from writing. First the system reads the source and extracts entities, claims, contradictions, and candidate destinations; only then does it generate or update durable knowledge. This reduces the risk that incomplete, outdated, or ambiguous source material gets converted into permanent guidance. The pattern is especially useful when sources mix drafts, changing assumptions, and operational decisions.",
         "match_candidates": [],
         "operational_insight": "Use a staging analysis pass to decide what is factual, what is provisional, and what needs human review before any wiki pages are updated. This creates a check against false certainty and makes ingestion easier to trust.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
+          "knowledge-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -249,11 +248,10 @@
           "knowledge_summary": "An LLM wiki can be treated as a persistent Markdown knowledge base that an AI assistant helps maintain over time. The core pattern is to keep raw sources separate from synthesized wiki pages, use a small instruction file to guide upkeep, and let knowledge accumulate through repeated ingest and revision rather than one-off Q&A. More advanced implementations add document import, review queues, search, graph views, and compatibility with note-taking tools, but the durable lesson is that the system should fit the user\u2019s real work and remain easy to keep using.",
           "match_candidates": [],
           "operational_insight": "Design the wiki as a maintained system: separate sources from synthesized pages, define purpose and operating rules, and make ingest a two-step process with review points for uncertain items. For smaller setups, a project-level skill or similar instruction layer can provide the maintenance behavior without requiring a full app.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
-            "agentic-ai",
-            "llm-wiki"
+            "knowledge-systems",
+            "agent-systems"
           ],
           "related_topics": [
             "knowledge-base-becomes-runtime-infrastructure",
@@ -261,7 +259,7 @@
             "two-step-document-ingest"
           ],
           "relevance_note": "This is useful anywhere people want AI-assisted note taking, living documentation, or internal knowledge bases that improve through ongoing maintenance. The main value is turning the assistant into a steward of the knowledge base while preserving provenance and human judgment.",
-          "secondary_tag": "agentic-ai",
+          "secondary_tag": "agent-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -352,9 +350,9 @@
           "knowledge_summary": "A safer document-ingest workflow separates analysis from writing. First the system reads the source and extracts entities, claims, contradictions, and candidate destinations; only then does it generate or update durable knowledge. This reduces the risk that incomplete, outdated, or ambiguous source material gets converted into permanent guidance. The pattern is especially useful when sources mix drafts, changing assumptions, and operational decisions.",
           "match_candidates": [],
           "operational_insight": "Use a staging analysis pass to decide what is factual, what is provisional, and what needs human review before any wiki pages are updated. This creates a check against false certainty and makes ingestion easier to trust.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -434,8 +432,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management",
-            "llm-wiki"
+            "knowledge-systems"
           ]
         }
       }

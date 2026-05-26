@@ -21,7 +21,7 @@
       "total_tokens": 36826
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,10 +37,10 @@
         "evidence_type": null,
         "extended_explanation": "In AI and distributed systems, a harness is the surrounding control layer that makes an experiment repeatable and measurable. It may set inputs, trigger actions, capture outputs, and enforce stop conditions. A good harness reduces ambiguity about what was tested and what changed. In resilience and agent testing, the harness often matters as much as the component under test because it determines whether results are interpretable.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A harness is a controlled framework used to run, observe, and evaluate system behavior under test conditions.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [
@@ -60,10 +60,10 @@
         "evidence_type": null,
         "extended_explanation": "In operational systems, feedforward controls are the checks that decide whether a task should proceed at all. They are different from feedback controls, which respond after an issue appears. For AI systems, this can include pre-execution gating, policy checks, or safety thresholds that constrain an action before it runs. They are useful when the cost of a bad action is high and the system can evaluate risk in advance.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "Feedforward controls are preventive controls that shape an action before it causes harm, rather than reacting after the fact.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [
@@ -88,16 +88,16 @@
         "evidence_from_source": "The article argues that current chaos tools already handle safety constraints, but lack an intent layer. It proposes a standard intent specification schema with fields like target_behavior, hypothesis, acceptance_criteria, budget_fraction, and exclusion_zones; structured outcome records; and a hypothesis-quality score to make experiments machine-readable and improve learning over time.",
         "evidence_type": "mixed",
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering",
-          "ai-evals",
-          "ai-architecture"
+          "ai-operationalization",
+          "behavioral-evaluation",
+          "runtime-centralization"
         ],
         "related_trends": [
           "harness-design-becomes-more-important-for-agent-reliability"
         ],
-        "secondary_tag": "ai-evals",
+        "secondary_tag": "behavioral-evaluation",
         "suggested_action": "ignore",
         "suggested_new_tag": "intent-based-testing",
         "suggested_new_tags": [
@@ -173,11 +173,11 @@
         "knowledge_summary": "Chaos engineering is the practice of deliberately injecting failures into a system to test resilience under controlled conditions. Intent-driven chaos engineering extends that practice by specifying what an experiment is meant to teach: a falsifiable hypothesis about system behavior, behavioral acceptance criteria, exclusion zones, and a required steady-state window before injection. The article argues that current chaos tooling is strong on safety, but weak on intent: it can answer whether it is safe to run an experiment, but not whether the experiment was designed to validate a specific belief about failure propagation. The proposed model uses machine-readable intent to derive experiments, evaluate live resilience budgets, and record outcomes so the system\u2019s dependency model improves over time.",
         "match_candidates": [],
         "operational_insight": "Treat chaos runs as hypothesis tests, not just fault injections: encode target behavior, success criteria, and exclusions up front, then feed observed blast-radius and outcome data back into the model so future experiments become more informative.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering",
-          "ai-evals"
+          "ai-evaluation"
         ],
         "related_topics": [
           "harness-decay",
@@ -210,11 +210,11 @@
         "knowledge_summary": "Blast radius is the amount and scope of damage an injected fault is expected to cause. In behavioral blast radius evaluation, that damage is measured against the user behavior being exercised, not just against infrastructure health. The same fault can be critical in one flow and negligible in another because user impact depends on context. A useful evaluation therefore needs to know which behavior is active, what success looks like for that behavior, and when degradation crosses a user-visible threshold. This makes behavioral blast radius a way to judge whether a production experiment is both safe and informative: safe in how much it breaks, and informative in whether it changes what the team knows about failure propagation.",
         "match_candidates": [],
         "operational_insight": "Evaluate blast radius in terms of the active behavior and its acceptance criteria, then stop or reroute experiments when that behavior degrades beyond the defined threshold rather than waiting for generic infrastructure metrics to fail.",
-        "primary_tag": "ai-evals",
+        "primary_tag": "ai-evaluation",
         "proposed_tags": [
-          "ai-evals",
+          "ai-evaluation",
           "ai-engineering",
-          "ai-architecture"
+          "runtime-architecture"
         ],
         "related_topics": [
           "intent-driven-chaos-engineering",
@@ -243,10 +243,10 @@
           "evidence_type": null,
           "extended_explanation": "In AI and distributed systems, a harness is the surrounding control layer that makes an experiment repeatable and measurable. It may set inputs, trigger actions, capture outputs, and enforce stop conditions. A good harness reduces ambiguity about what was tested and what changed. In resilience and agent testing, the harness often matters as much as the component under test because it determines whether results are interpretable.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A harness is a controlled framework used to run, observe, and evaluate system behavior under test conditions.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [
@@ -302,7 +302,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "it-security"
+            "governance"
           ]
         }
       },
@@ -312,10 +312,10 @@
           "evidence_type": null,
           "extended_explanation": "In operational systems, feedforward controls are the checks that decide whether a task should proceed at all. They are different from feedback controls, which respond after an issue appears. For AI systems, this can include pre-execution gating, policy checks, or safety thresholds that constrain an action before it runs. They are useful when the cost of a bad action is high and the system can evaluate risk in advance.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "Feedforward controls are preventive controls that shape an action before it causes harm, rather than reacting after the fact.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [
@@ -384,16 +384,16 @@
           "evidence_from_source": "The article argues that current chaos tools already handle safety constraints, but lack an intent layer. It proposes a standard intent specification schema with fields like target_behavior, hypothesis, acceptance_criteria, budget_fraction, and exclusion_zones; structured outcome records; and a hypothesis-quality score to make experiments machine-readable and improve learning over time.",
           "evidence_type": "mixed",
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering",
-            "ai-evals",
-            "ai-architecture"
+            "ai-operationalization",
+            "behavioral-evaluation",
+            "runtime-centralization"
           ],
           "related_trends": [
             "harness-design-becomes-more-important-for-agent-reliability"
           ],
-          "secondary_tag": "ai-evals",
+          "secondary_tag": "behavioral-evaluation",
           "suggested_action": "ignore",
           "suggested_new_tag": "intent-based-testing",
           "suggested_new_tags": [
@@ -574,11 +574,11 @@
           "knowledge_summary": "Chaos engineering is the practice of deliberately injecting failures into a system to test resilience under controlled conditions. Intent-driven chaos engineering extends that practice by specifying what an experiment is meant to teach: a falsifiable hypothesis about system behavior, behavioral acceptance criteria, exclusion zones, and a required steady-state window before injection. The article argues that current chaos tooling is strong on safety, but weak on intent: it can answer whether it is safe to run an experiment, but not whether the experiment was designed to validate a specific belief about failure propagation. The proposed model uses machine-readable intent to derive experiments, evaluate live resilience budgets, and record outcomes so the system\u2019s dependency model improves over time.",
           "match_candidates": [],
           "operational_insight": "Treat chaos runs as hypothesis tests, not just fault injections: encode target behavior, success criteria, and exclusions up front, then feed observed blast-radius and outcome data back into the model so future experiments become more informative.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "ai-evals"
+            "ai-evaluation"
           ],
           "related_topics": [
             "harness-decay",
@@ -681,11 +681,11 @@
           "knowledge_summary": "Blast radius is the amount and scope of damage an injected fault is expected to cause. In behavioral blast radius evaluation, that damage is measured against the user behavior being exercised, not just against infrastructure health. The same fault can be critical in one flow and negligible in another because user impact depends on context. A useful evaluation therefore needs to know which behavior is active, what success looks like for that behavior, and when degradation crosses a user-visible threshold. This makes behavioral blast radius a way to judge whether a production experiment is both safe and informative: safe in how much it breaks, and informative in whether it changes what the team knows about failure propagation.",
           "match_candidates": [],
           "operational_insight": "Evaluate blast radius in terms of the active behavior and its acceptance criteria, then stop or reroute experiments when that behavior degrades beyond the defined threshold rather than waiting for generic infrastructure metrics to fail.",
-          "primary_tag": "ai-evals",
+          "primary_tag": "ai-evaluation",
           "proposed_tags": [
-            "ai-evals",
+            "ai-evaluation",
             "ai-engineering",
-            "ai-architecture"
+            "runtime-architecture"
           ],
           "related_topics": [
             "intent-driven-chaos-engineering",

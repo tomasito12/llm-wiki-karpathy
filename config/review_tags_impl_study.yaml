@@ -1,4 +1,14 @@
-# Implementation-study tags (patterns/themes; industry is a separate field).
+# Implementation-study tags: operational patterns and case domains (industry is a separate field).
 tags:
+- agent-systems
+- ai-operationalization
+- coding-agents
+- enterprise-ai
 - enterprise-ai-adoption
+- human-ai-workflows
+- knowledge-systems
 - production-failure
+- support-automation
+- workflow-automation
+- customer-support
+- software-engineering

@@ -21,7 +21,7 @@
       "total_tokens": 26418
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,10 +37,10 @@
         "evidence_type": null,
         "extended_explanation": "In AI work, a world model is like a simulator inside the system. If a robot moves an object, the model tries to predict what happens next based on motion, contact, gravity, and other dependencies. That makes it different from a language model, which is optimized to produce text. World models are useful when an agent needs to plan, test actions safely, or reason about a physical or structured environment before acting in the real one.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A world model is an internal representation of how a system changes over time. It predicts future states, effects of actions, and relationships between objects or events, rather than only generating language.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [],
@@ -58,10 +58,10 @@
         "evidence_type": null,
         "extended_explanation": "This pattern is common in robotics and other embodied systems because real-world mistakes can be expensive or dangerous. A simulation can generate many training episodes quickly, including failures that would be hard to collect in the field. The challenge is making the simulated environment realistic enough that behavior transfers well to the real system. Good Sim-to-Real workflows therefore depend on both a believable simulator and careful validation once the system leaves simulation.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "Sim-to-Real is the process of training, testing, or refining an AI system in simulation before deploying it in the physical world. The goal is to reduce risk and improve performance by letting the system practice in a controlled environment first.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [
@@ -86,13 +86,13 @@
         "evidence_from_source": "The article argues that world models shift AI from \u201ca brilliant narrator to a competent operator\u201d and that \u201cthe AI operating layer of the future won\u2019t just chat with us\u2014it will live in the world alongside us.\u201d",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-engineering"
+          "execution-oriented-agents",
+          "ai-operationalization"
         ],
         "related_trends": [],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -161,9 +161,9 @@
         "knowledge_summary": "Systems that interact with changing environments often need to predict the next state of the world, not just the next token in a response. That requires models that can represent time, motion, and feedback from actions. This is especially important when the output must drive decisions in a loop rather than produce a one-off answer. World-model thinking shifts attention toward state, dynamics, and intervention effects.",
         "match_candidates": [],
         "operational_insight": "When an AI system must act repeatedly in a dynamic environment, add a simulation or state-prediction layer instead of relying on text generation alone.",
-        "primary_tag": "realtime-ai",
+        "primary_tag": "inference-systems",
         "proposed_tags": [
-          "realtime-ai",
+          "inference-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -191,9 +191,9 @@
         "knowledge_summary": "Agentic systems become more useful when they can rehearse actions, evaluate consequences, and recover from failure in a simulated setting. A world model gives an agent a structured environment for trial, error, and adaptation. That reduces dependence on brittle heuristics and can make planning more grounded. The pattern is most valuable when the agent's decisions affect the external world.",
         "match_candidates": [],
         "operational_insight": "For agents that act in loops, simulation can be a core planning substrate rather than a side experiment.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
+          "agent-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -222,10 +222,10 @@
           "evidence_type": null,
           "extended_explanation": "In AI work, a world model is like a simulator inside the system. If a robot moves an object, the model tries to predict what happens next based on motion, contact, gravity, and other dependencies. That makes it different from a language model, which is optimized to produce text. World models are useful when an agent needs to plan, test actions safely, or reason about a physical or structured environment before acting in the real one.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A world model is an internal representation of how a system changes over time. It predicts future states, effects of actions, and relationships between objects or events, rather than only generating language.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [],
@@ -288,10 +288,10 @@
           "evidence_type": null,
           "extended_explanation": "This pattern is common in robotics and other embodied systems because real-world mistakes can be expensive or dangerous. A simulation can generate many training episodes quickly, including failures that would be hard to collect in the field. The challenge is making the simulated environment realistic enough that behavior transfers well to the real system. Good Sim-to-Real workflows therefore depend on both a believable simulator and careful validation once the system leaves simulation.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "Sim-to-Real is the process of training, testing, or refining an AI system in simulation before deploying it in the physical world. The goal is to reduce risk and improve performance by letting the system practice in a controlled environment first.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [
@@ -304,8 +304,8 @@
           "suggested_new_tags": [
             "sim-to-real-transfer",
             "simulated-environment-testing",
-            "robotics",
-            "reinforcement-learning"
+            "agent-systems",
+            "alignment"
           ],
           "supporting_snippet": "Agents can now practice, fail, and adapt millions of times in a continuous \u201cSim-to-Real\u201d loop before a physical motor ever turns.",
           "term": "Sim-to-Real",
@@ -351,12 +351,12 @@
         },
         "tags": {
           "approved_new_tags": [
-            "robotics",
-            "reinforcement-learning"
+            "agent-systems",
+            "alignment"
           ],
           "final_tags": [
-            "robotics",
-            "reinforcement-learning"
+            "agent-systems",
+            "alignment"
           ]
         }
       }
@@ -371,13 +371,13 @@
           "evidence_from_source": "The article argues that world models shift AI from \u201ca brilliant narrator to a competent operator\u201d and that \u201cthe AI operating layer of the future won\u2019t just chat with us\u2014it will live in the world alongside us.\u201d",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-engineering"
+            "execution-oriented-agents",
+            "ai-operationalization"
           ],
           "related_trends": [],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -554,9 +554,9 @@
           "knowledge_summary": "Systems that interact with changing environments often need to predict the next state of the world, not just the next token in a response. That requires models that can represent time, motion, and feedback from actions. This is especially important when the output must drive decisions in a loop rather than produce a one-off answer. World-model thinking shifts attention toward state, dynamics, and intervention effects.",
           "match_candidates": [],
           "operational_insight": "When an AI system must act repeatedly in a dynamic environment, add a simulation or state-prediction layer instead of relying on text generation alone.",
-          "primary_tag": "realtime-ai",
+          "primary_tag": "inference-systems",
           "proposed_tags": [
-            "realtime-ai",
+            "inference-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -567,7 +567,7 @@
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-architecture",
           "suggested_new_tags": [
-            "ai-architecture"
+            "runtime-architecture"
           ],
           "supporting_snippet": "Instead of predicting what the next sentence should look like, it predicts the next state of a dynamic system.",
           "topic_slug": "realtime-ai",
@@ -634,11 +634,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-architecture"
+            "runtime-architecture"
           ],
           "final_tags": [
-            "realtime-ai",
-            "ai-architecture"
+            "inference-systems",
+            "runtime-architecture"
           ]
         }
       },
@@ -655,9 +655,9 @@
           "knowledge_summary": "Agentic systems become more useful when they can rehearse actions, evaluate consequences, and recover from failure in a simulated setting. A world model gives an agent a structured environment for trial, error, and adaptation. That reduces dependence on brittle heuristics and can make planning more grounded. The pattern is most valuable when the agent's decisions affect the external world.",
           "match_candidates": [],
           "operational_insight": "For agents that act in loops, simulation can be a core planning substrate rather than a side experiment.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
+            "agent-systems",
             "ai-engineering"
           ],
           "related_topics": [

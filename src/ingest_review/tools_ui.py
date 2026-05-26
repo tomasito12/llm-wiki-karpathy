@@ -14,9 +14,12 @@ from src.ingest_review.dashboard_ui import (
     render_similar_tags_warning,
 )
 from src.ingest_review.domain_tag_ui import (
+    apply_tag_ui_to_node,
+    collect_approved_new_tags_from_review,
     effective_registry_types,
     init_widget_session_value,
     queue_widget_session_resync,
+    render_domain_tag_section,
 )
 from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
@@ -35,7 +38,7 @@ from src.ingest_review.proposal_regen_ui import (
     render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import TOOL_REVIEWABLE_LIST_KEYS, TOOL_REVIEWABLE_SCALAR_KEYS
-from src.ingest_review.tags import normalize_tag_list
+from src.ingest_review.tags import normalize_tag, normalize_tag_list
 
 VALUE_LEVEL_ORDER = {"high": 0, "medium": 1, "low": 2}
 
@@ -337,6 +340,9 @@ def _on_save_tool_proposal(
     proposal_id: str,
     key_prefix: str,
     artifact_path: Path,
+    *,
+    tag_ui: dict[str, Any] | None = None,
+    tag_allow: set[str] | None = None,
 ) -> None:
     """Streamlit on_click: apply field edits and persist artifact immediately."""
     from src.ingest_review.artifact import save_artifact, touch_review_session
@@ -356,6 +362,9 @@ def _on_save_tool_proposal(
         for lk in TOOL_REVIEWABLE_LIST_KEYS
     }
     apply_tool_proposal_edits(node, scalar_values, list_raw)
+    if tag_ui is not None and tag_allow is not None:
+        llm_item = node.setdefault("llm_item", {})
+        apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow)
     types_node = node.get("types") or {}
     extra_key = f"{key_prefix}_types_extra"
     queue_widget_session_resync(
@@ -446,11 +455,14 @@ def _render_tool_edit_box(
     st: Any,
     node: dict[str, Any],
     tool_types: list[str],
+    tool_tags: list[str],
     artifact: dict[str, Any],
     *,
     key_prefix: str,
     source_id: str,
     artifact_path: Path,
+    model: str = "",
+    prompt_version: str = "",
 ) -> None:
     """One bordered edit box per tool proposal (glossary-style)."""
     llm_item = node.get("llm_item") or {}
@@ -497,8 +509,25 @@ def _render_tool_edit_box(
         if related:
             st.caption(f"Related tools: {', '.join(str(r) for r in related)}")
 
-        st.markdown("#### Tool types")
+        st.markdown("#### Tool types (product archetype)")
         _render_type_panel(st, node, llm_item, tool_types, key_prefix=key_prefix)
+
+        tag_allow = {normalize_tag(str(t)) for t in tool_tags if str(t).strip()}
+        tag_ui = render_domain_tag_section(
+            st,
+            node,
+            tool_tags,
+            key_prefix=f"{key_prefix}_retrieval",
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            review_list_key="tools",
+            label_widget_key=f"{key_prefix}_edit_name",
+            summary_widget_key=f"{key_prefix}_edit_operational_relevance",
+            llm_fallback_label_key="name",
+            llm_fallback_summary_key="operational_relevance",
+            section_title="Retrieval tags",
+        )
 
         render_proposal_evidence_type_editor(st, llm_item, artifact, key_prefix=key_prefix)
 
@@ -517,7 +546,13 @@ def _render_tool_edit_box(
         )
 
         def _save() -> None:
-            _on_save_tool_proposal(str(node.get("proposal_id") or ""), key_prefix, artifact_path)
+            _on_save_tool_proposal(
+                str(node.get("proposal_id") or ""),
+                key_prefix,
+                artifact_path,
+                tag_ui=tag_ui,
+                tag_allow=tag_allow,
+            )
 
         render_proposal_decision_bar(
             st,
@@ -537,11 +572,13 @@ def render_tool_proposals(
     source_id: str = "",
     artifact_path: Path,
     tool_types: list[str] | None = None,
+    tool_tags: list[str] | None = None,
     model: str = "",
     prompt_version: str = "",
 ) -> None:
     """Two-column tool review: read-only catalog left, per-tool edit boxes right."""
     types_list = tool_types or []
+    tags_list = tool_tags or []
     st.subheader("Tools")
 
     sorted_nodes = _prepare_tool_nodes(artifact)
@@ -570,10 +607,13 @@ def render_tool_proposals(
             st,
             node,
             types_list,
+            tags_list,
             artifact,
             key_prefix=pfx,
             source_id=source_id,
             artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
         )
 
     render_two_column_proposal_review(
@@ -588,15 +628,8 @@ def render_tool_proposals(
 
 
 def collect_tool_new_tags(artifact: dict[str, Any]) -> list[str]:
-    """Return empty list — tools use the types system, not tags.
-
-    Args:
-        artifact: The full review artifact dict.
-
-    Returns:
-        Always an empty list.
-    """
-    return []
+    """Return approved new retrieval tags across tool proposals."""
+    return collect_approved_new_tags_from_review(artifact, "tools")
 
 
 def collect_tool_new_types(artifact: dict[str, Any]) -> list[str]:

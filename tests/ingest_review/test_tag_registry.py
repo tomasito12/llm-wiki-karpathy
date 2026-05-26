@@ -12,8 +12,8 @@ from src.ingest_review.tag_registry import (
 from src.ingest_review.tags import default_topic_tags_path
 
 
-def test_tag_taxonomies_has_seven_entries() -> None:
-    assert len(TAG_TAXONOMIES) == 7
+def test_tag_taxonomies_has_nine_entries() -> None:
+    assert len(TAG_TAXONOMIES) == 9
     ids = {spec.id for spec in TAG_TAXONOMIES}
     assert ids == {
         "topics",
@@ -21,6 +21,8 @@ def test_tag_taxonomies_has_seven_entries() -> None:
         "howto",
         "trends",
         "impl_study",
+        "tool_tags",
+        "model_tags",
         "tool_types",
         "model_types",
     }

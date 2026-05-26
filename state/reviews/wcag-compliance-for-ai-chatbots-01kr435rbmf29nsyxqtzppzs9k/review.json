@@ -21,7 +21,7 @@
       "total_tokens": 28377
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -120,9 +120,9 @@
         "evidence_from_source": "The article says the March 2026 WCAG 3.0 working draft adds a requirement for documented human review when AI tools generate or alter content, and that AI-generated interfaces will be held to the same accessibility standards as human-authored ones.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-governance",
+        "primary_tag": "verification-over-principles",
         "proposed_tags": [
-          "ai-governance"
+          "verification-over-principles"
         ],
         "related_trends": [
           "models-becoming-execution-layers"
@@ -199,9 +199,9 @@
         "knowledge_summary": "Interactive AI refers to AI systems that users actively converse with or control in real time, so the interaction loop is part of the product itself. For chatbots and similar assistants, the term includes not only model responses but also focus management, keyboard operation, assistive-technology announcements, and support for speech-to-text and text-to-speech. The core idea is that a usable interactive AI must present predictable, accessible behavior as messages stream or update dynamically.",
         "match_candidates": [],
         "operational_insight": "Treat interactive AI as an interface discipline, not just a model-output problem. Validate the conversation loop end to end: focus should move predictably, messages should be announced to assistive technology, every control should work by keyboard, and the experience should be tested with real screen readers and speech devices before launch.",
-        "primary_tag": "interactive-ai",
+        "primary_tag": "multimodal-ai",
         "proposed_tags": [
-          "interactive-ai",
+          "multimodal-ai",
           "ai-engineering"
         ],
         "related_topics": [
@@ -231,10 +231,10 @@
         "knowledge_summary": "Realtime AI interfaces produce updates while a user is actively interacting with the system, which changes accessibility and evaluation requirements. Updates need to be announced without breaking the user\u2019s current task, and the interface must preserve predictable focus and input flow. The more the system streams or updates live, the more important it becomes to manage interruptions carefully.",
         "match_candidates": [],
         "operational_insight": "Treat live responses as state changes that must be announced and navigable, not as passive content that can simply appear on the page. Use polite announcements and stable focus rules to avoid confusing or interrupting users.",
-        "primary_tag": "realtime-ai",
+        "primary_tag": "inference-systems",
         "proposed_tags": [
-          "realtime-ai",
-          "interactive-ai"
+          "inference-systems",
+          "multimodal-ai"
         ],
         "related_topics": [
           "realtime-multimodal-interaction",
@@ -242,7 +242,7 @@
           "agentic-workflows"
         ],
         "relevance_note": "Realtime AI is operationally important wherever outputs arrive incrementally or in a live conversation. It affects chat, voice, monitoring, and any assistant that updates the interface while the user is working.",
-        "secondary_tag": "interactive-ai",
+        "secondary_tag": "multimodal-ai",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -274,7 +274,7 @@
           "suggested_new_tag": "digital-accessibility",
           "suggested_new_tags": [
             "digital-accessibility",
-            "ui-design"
+            "multimodal"
           ],
           "supporting_snippet": "\"WCAG is not just about colors. For chatbots specifically, four categories of requirements matter far more than contrast ratios.\"",
           "term": "WCAG",
@@ -318,10 +318,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ui-design"
+            "multimodal"
           ],
           "final_tags": [
-            "ui-design"
+            "multimodal"
           ]
         }
       },
@@ -347,7 +347,7 @@
             "web-accessibility",
             "accessibility-patterns",
             "accessibility",
-            "ui-design"
+            "multimodal"
           ],
           "supporting_snippet": "\"The chat message container must be marked with role=\\\"log\\\" and aria-live=\\\"polite\\\". This tells assistive technology to announce new messages as they appear without stealing focus from the input field.\"",
           "term": "ARIA live region",
@@ -393,10 +393,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ui-design"
+            "multimodal"
           ],
           "final_tags": [
-            "ui-design"
+            "multimodal"
           ]
         }
       }
@@ -435,7 +435,7 @@
           "suggested_new_tag": "chatbot-accessibility",
           "suggested_new_tags": [
             "chatbot-accessibility",
-            "ui-design"
+            "ui-generation"
           ],
           "supporting_snippet": "\"A practical checklist for making your AI chatbot WCAG compliant, drawn from the MITRE Chatbot Accessibility Playbook and current WCAG requirements.\"",
           "value_level": "high",
@@ -504,10 +504,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ui-design"
+            "ui-generation"
           ],
           "final_tags": [
-            "ui-design"
+            "ui-generation"
           ]
         }
       }
@@ -521,9 +521,9 @@
           "evidence_from_source": "The article says the March 2026 WCAG 3.0 working draft adds a requirement for documented human review when AI tools generate or alter content, and that AI-generated interfaces will be held to the same accessibility standards as human-authored ones.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-governance",
+          "primary_tag": "verification-over-principles",
           "proposed_tags": [
-            "ai-governance"
+            "verification-over-principles"
           ],
           "related_trends": [
             "models-becoming-execution-layers"
@@ -710,9 +710,9 @@
           "knowledge_summary": "Interactive AI refers to AI systems that users actively converse with or control in real time, so the interaction loop is part of the product itself. For chatbots and similar assistants, the term includes not only model responses but also focus management, keyboard operation, assistive-technology announcements, and support for speech-to-text and text-to-speech. The core idea is that a usable interactive AI must present predictable, accessible behavior as messages stream or update dynamically.",
           "match_candidates": [],
           "operational_insight": "Treat interactive AI as an interface discipline, not just a model-output problem. Validate the conversation loop end to end: focus should move predictably, messages should be announced to assistive technology, every control should work by keyboard, and the experience should be tested with real screen readers and speech devices before launch.",
-          "primary_tag": "interactive-ai",
+          "primary_tag": "multimodal-ai",
           "proposed_tags": [
-            "interactive-ai",
+            "multimodal-ai",
             "ai-engineering"
           ],
           "related_topics": [
@@ -810,10 +810,10 @@
           "knowledge_summary": "Realtime AI interfaces produce updates while a user is actively interacting with the system, which changes accessibility and evaluation requirements. Updates need to be announced without breaking the user\u2019s current task, and the interface must preserve predictable focus and input flow. The more the system streams or updates live, the more important it becomes to manage interruptions carefully.",
           "match_candidates": [],
           "operational_insight": "Treat live responses as state changes that must be announced and navigable, not as passive content that can simply appear on the page. Use polite announcements and stable focus rules to avoid confusing or interrupting users.",
-          "primary_tag": "realtime-ai",
+          "primary_tag": "inference-systems",
           "proposed_tags": [
-            "realtime-ai",
-            "interactive-ai"
+            "inference-systems",
+            "multimodal-ai"
           ],
           "related_topics": [
             "realtime-multimodal-interaction",
@@ -821,7 +821,7 @@
             "agentic-workflows"
           ],
           "relevance_note": "Realtime AI is operationally important wherever outputs arrive incrementally or in a live conversation. It affects chat, voice, monitoring, and any assistant that updates the interface while the user is working.",
-          "secondary_tag": "interactive-ai",
+          "secondary_tag": "multimodal-ai",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -893,8 +893,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "realtime-ai",
-            "interactive-ai"
+            "inference-systems",
+            "multimodal-ai"
           ]
         }
       }

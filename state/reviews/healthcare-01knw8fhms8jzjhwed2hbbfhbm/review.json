@@ -21,7 +21,7 @@
       "total_tokens": 26064
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -89,13 +89,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "cited-answer-workflows"
         ],
         "relevance_note": "Clinical systems often fail when users provide too little structure. Template-based prompting creates repeatable inputs for documentation, decision support, and patient-facing writing, which makes review and governance easier.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -119,13 +119,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "clinical-prompt-templates"
         ],
         "relevance_note": "Citations are a practical control surface for any AI system used in regulated or high-stakes work. They make it easier to inspect evidence, spot unsupported claims, and route uncertain cases to a human reviewer.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -243,13 +243,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "cited-answer-workflows"
           ],
           "relevance_note": "Clinical systems often fail when users provide too little structure. Template-based prompting creates repeatable inputs for documentation, decision support, and patient-facing writing, which makes review and governance easier.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -337,13 +337,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "clinical-prompt-templates"
           ],
           "relevance_note": "Citations are a practical control surface for any AI system used in regulated or high-stakes work. They make it easier to inspect evidence, spot unsupported claims, and route uncertain cases to a human reviewer.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

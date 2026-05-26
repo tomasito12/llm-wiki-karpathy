@@ -1323,6 +1323,46 @@ def migrate_artifact_to_v16(artifact: dict[str, Any]) -> dict[str, Any]:
     return artifact
 
 
+def _ensure_proposal_tags_node(node: dict[str, Any]) -> None:
+    """Ensure review node has a ``tags`` subtree for retrieval-tag UI."""
+    tags = node.get("tags")
+    if not isinstance(tags, dict):
+        node["tags"] = {"final_tags": [], "approved_new_tags": []}
+        return
+    tags.setdefault("final_tags", [])
+    tags.setdefault("approved_new_tags", [])
+
+
+def migrate_artifact_to_v17(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade artifact to v17: tool/model retrieval tags on proposals."""
+    ver = int(artifact.get("artifact_schema_version") or 1)
+    if ver >= 17:
+        return artifact
+
+    review = artifact.setdefault("review", {})
+    for key in ("tools", "foundation_models"):
+        nodes = review.get(key)
+        if not isinstance(nodes, list):
+            continue
+        for node in nodes:
+            if isinstance(node, dict):
+                _ensure_proposal_tags_node(node)
+
+    llm = artifact.setdefault("llm_output", {})
+    for key in ("tools", "foundation_models"):
+        items = llm.get(key)
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            item.setdefault("proposed_tags", [])
+            item.setdefault("suggested_new_tags", [])
+
+    artifact["artifact_schema_version"] = 17
+    return artifact
+
+
 def migrate_artifact_to_v15(artifact: dict[str, Any]) -> dict[str, Any]:
     """Upgrade artifact to v15: source_evidence_profile; compact per-proposal evidence_type."""
     ver = int(artifact.get("artifact_schema_version") or 1)
@@ -1422,6 +1462,7 @@ def load_artifact(path: Path) -> dict[str, Any] | None:
     data = migrate_artifact_to_v14(data)
     data = migrate_artifact_to_v15(data)
     data = migrate_artifact_to_v16(data)
+    data = migrate_artifact_to_v17(data)
     data = migrate_review_source_summary_unified_why(data)
     ensure_sources_review_auto_approved(data)
     return data

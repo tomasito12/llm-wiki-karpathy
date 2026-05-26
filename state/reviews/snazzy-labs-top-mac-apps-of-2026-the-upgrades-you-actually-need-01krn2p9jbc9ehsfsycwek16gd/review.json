@@ -21,7 +21,7 @@
       "total_tokens": 33073
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -86,6 +86,7 @@
         "name": "Cotypist",
         "operational_relevance": "This is relevant wherever fast text entry benefits from local context, especially email, support replies, and repeated project-specific writing. Its main operational appeal is reducing retyping by using what is visible on screen to guide suggestions. The source frames it as privacy-preserving because snapshots stay on the Mac, which matters for teams sensitive to data leakage.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "ai-application",
           "app"
@@ -94,6 +95,7 @@
         "short_description": "A context-aware autocompleter for macOS that uses local screen snapshots to infer what you are working on.",
         "strengths": "- Uses local screen context to make completions feel more relevant than generic autocomplete, which can reduce repetitive typing in real workflows.\n- Keeps snapshots on the device, which lowers privacy concern compared with cloud-based context capture.\n- Fits naturally into email and project communication workflows where names, clients, and jargon repeat often.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\u201cCotypist is one of those apps that sounds creepy until you use it for five minutes. It\u2019s a context-aware autocompleter. By taking quick, local snapshots of your screen (don\u2019t worry, nothing leaves your Mac), it learns what you\u2019re doing.\u201d",
         "value_level": "high",
         "weaknesses_limitations": "The source does not explain how accurate it is across different apps, how much screen content it stores, or how it behaves when context is ambiguous. There is no evidence here about battery impact, latency under load, or whether the local approach fails on complex tasks."
@@ -111,6 +113,7 @@
         "name": "DictaFlow",
         "operational_relevance": "This kind of tool matters where voice input can replace typing without sending private audio or text to a cloud service. The source positions it as a practical productivity upgrade for drafting long text and triggering short snippets. For teams evaluating voice capture or dictation workflows, the on-device claim is the key operational detail because it changes privacy and latency expectations.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "dictation",
           "ai-application"
@@ -119,6 +122,7 @@
         "short_description": "An on-device speech-to-text app for macOS that emphasizes fast, private dictation.",
         "strengths": "- Runs transcription entirely on-device, which is operationally attractive for privacy-sensitive work.\n- The source describes it as very fast, which suggests low friction for short dictation bursts and longer drafting sessions.\n- It supports both long-form writing and short voice-triggered snippets, so it fits more than one usage pattern.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\u201cDictaFlow is the standout speech-to-text app of 2026. It\u2019s lightning-fast and handles transcription entirely on-device, meaning your private thoughts stay private.\u201d",
         "value_level": "high",
         "weaknesses_limitations": "The article does not provide accuracy numbers, accent coverage, language support, or failure cases. The privacy and latency advantages are asserted rather than measured, and there is no information about export formats or enterprise controls."
@@ -137,6 +141,7 @@
         "name": "Shottr",
         "operational_relevance": "This is relevant anywhere teams need to capture, redact, and share interface evidence quickly. Its value is in compressing multiple screenshot-related tasks into one utility, which reduces context switching during documentation, bug reporting, or design review. The OCR feature also makes image text reusable in downstream workflows.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "app"
         ],
@@ -144,6 +149,7 @@
         "short_description": "A screenshot utility for macOS that adds blurring, scrolling capture, and optical character recognition.",
         "strengths": "- Combines capture, redaction, scrolling screenshots, and text extraction, which makes it more efficient than using separate tools for each job.\n- The ability to blur sensitive details is especially useful when screenshots cross team boundaries.\n- Scrolling capture helps preserve full-page context instead of fragmenting evidence across many images.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\u201cShottr isn\u2019t just a screenshot tool; it\u2019s a productivity monster. For $12, you get a tool that can blur sensitive info, take scrolling screenshots of whole webpages, and even perform OCR (text extraction) from images.\u201d",
         "value_level": "high",
         "weaknesses_limitations": "The source does not describe OCR accuracy, file output options, or whether the redaction is reversible. There is also no comparison against built-in macOS tools beyond the author's opinion."

@@ -9,8 +9,8 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 from src.ingest_review.tags import MAX_PROPOSED_TAGS as _MAX_PROPOSED_TAGS
 from src.ingest_review.tags import normalize_tag, normalize_tag_list
 
-ARTIFACT_SCHEMA_VERSION = 16
-PROMPT_VERSION = "37"
+ARTIFACT_SCHEMA_VERSION = 17
+PROMPT_VERSION = "38"
 MAX_PROPOSED_TAGS = 5
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
@@ -492,11 +492,18 @@ class ToolProposal(BaseModel):
     related_tools: list[str] = Field(default_factory=list)
     proposed_types: list[str] = Field(default_factory=list)
     proposed_new_type: str | None = None
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
 
 TOOL_SCALAR_KEYS: tuple[str, ...] = (
@@ -548,11 +555,18 @@ class FoundationModelProposal(BaseModel):
     related_models: list[str] = Field(default_factory=list)
     proposed_types: list[str] = Field(default_factory=list)
     proposed_new_type: str | None = None
+    proposed_tags: list[str] = Field(default_factory=list)
+    suggested_new_tags: list[str] = Field(default_factory=list)
     match_candidates: list[MatchCandidate] = Field(default_factory=list)
     confidence: float = Field(0.0, ge=0.0, le=1.0)
     suggested_action: SuggestedAction = "ignore"
     value_level: ValueLevel = "medium"
     evidence_type: EvidenceType | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_tags(cls, data: Any) -> Any:
+        return _coerce_multitag_proposal_data(data)
 
 
 MODEL_SCALAR_KEYS: tuple[str, ...] = (

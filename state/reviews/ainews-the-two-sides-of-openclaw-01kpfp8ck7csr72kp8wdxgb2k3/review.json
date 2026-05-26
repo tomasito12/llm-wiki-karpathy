@@ -21,7 +21,7 @@
       "total_tokens": 29488
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,9 +41,9 @@
         "evidence_from_source": "The article explicitly says the field is converging on \u201csimple harness, strong evals, model-agnostic scaffolding\u201d and that reliability gains now come more from harnesses than from chasing the very largest models. It cites a three-stage financial analyst pipeline with router/lane/analyst stages, strict context boundaries, and gold sets; a leaked Claude Code harness summary where simple planning constraints plus a cleaner representation layer outperformed \u201cfancy AI scaffolds\u201d; and a LongCoT-Mini example where dspy.RLM took Qwen3-8B from 0/507 vanilla to 33/507, with the scaffold described as doing \u201c100% of the lifting.\u201d",
         "evidence_type": "mixed",
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "related_trends": [
           "models-becoming-execution-layers"
@@ -52,7 +52,7 @@
         "suggested_action": "ignore",
         "suggested_new_tag": "ai-evals",
         "suggested_new_tags": [
-          "ai-evals"
+          "behavioral-evaluation"
         ],
         "supporting_data_points": [
           "A three-stage financial analyst pipeline used a router / lane / analyst structure with strict context boundaries and gold sets for each stage.",
@@ -83,12 +83,12 @@
           "Codex"
         ],
         "operational_relevance": "Teams building agents may need to invest more in desktop-state handling, guardrails, and task decomposition than in raw prompting. The article\u2019s comments imply that simple wrappers around desktop apps can become a serious integration path.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-engineering"
+          "execution-oriented-agents",
+          "ai-operationalization"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "service_automation_relevance": "Potentially relevant for support and back-office workflows that still depend on legacy desktop or browser tools, but the source does not provide deployment evidence for those use cases.",
         "signal_strength": "medium",
         "signal_title": "Computer-use agents becoming a practical product surface",
@@ -119,9 +119,9 @@
           "GPT-5.4"
         ],
         "operational_relevance": "Evaluation pipelines need to include live task checks, regression monitoring, and time-based re-testing after launches. A one-day launch spike can be misleading if the model or product is still changing underneath.",
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "Important for support bots and voice agents because a model that looks best on launch-day rankings may still fail on continuity, context retention, or handoff behavior.",
@@ -134,7 +134,7 @@
         ],
         "suggested_new_tag": "ai-evals",
         "suggested_new_tags": [
-          "ai-evals"
+          "behavioral-evaluation"
         ],
         "summary": "The roundup repeatedly shows that public leaderboard wins do not map cleanly to stable user experience. Opus 4.7 is described as strong on several benchmarks, yet early users also reported regressions and context failures, and some bugs were fixed within a day.",
         "time_horizon": "short_term",
@@ -156,9 +156,9 @@
           "Claude Code"
         ],
         "operational_relevance": "Teams should expect more AI products to bundle editing, export, and implementation handoff into one workflow. That raises integration questions around file formats, version control, and downstream implementation continuity.",
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "No direct service automation implications identified.",
@@ -193,9 +193,9 @@
           "iPhone"
         ],
         "operational_relevance": "Teams building assistants or edge workflows may be able to keep more inference on-device or on-prem when memory and latency are the main constraints. Quantization quality and runtime support remain key deployment variables.",
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "Relevant for offline or privacy-sensitive assistant use cases, but the source does not show production support deployments.",
@@ -226,12 +226,12 @@
           "Cloudflare"
         ],
         "operational_relevance": "Practitioners should watch connectors, caching, compression dictionaries, and memory offload techniques alongside model selection. These systems can affect concurrency, latency, and cost in production agents.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-centralization",
         "proposed_tags": [
-          "ai-architecture",
-          "ai-engineering"
+          "runtime-centralization",
+          "ai-operationalization"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "service_automation_relevance": "Indirectly relevant for high-volume chat and support systems, where payload size and goodput can affect cost and responsiveness.",
         "signal_strength": "medium",
         "signal_title": "Inference infrastructure is being optimized for goodput and payload size",
@@ -300,9 +300,9 @@
           "evidence_from_source": "The article explicitly says the field is converging on \u201csimple harness, strong evals, model-agnostic scaffolding\u201d and that reliability gains now come more from harnesses than from chasing the very largest models. It cites a three-stage financial analyst pipeline with router/lane/analyst stages, strict context boundaries, and gold sets; a leaked Claude Code harness summary where simple planning constraints plus a cleaner representation layer outperformed \u201cfancy AI scaffolds\u201d; and a LongCoT-Mini example where dspy.RLM took Qwen3-8B from 0/507 vanilla to 33/507, with the scaffold described as doing \u201c100% of the lifting.\u201d",
           "evidence_type": "mixed",
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "related_trends": [
             "models-becoming-execution-layers"
@@ -311,7 +311,7 @@
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-evals",
           "suggested_new_tags": [
-            "ai-evals",
+            "behavioral-evaluation",
             "agent-evaluation"
           ],
           "supporting_data_points": [
@@ -382,12 +382,12 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-evals"
+            "behavioral-evaluation"
           ],
           "final_tags": [
-            "ai-engineering",
-            "ai-architecture",
-            "ai-evals"
+            "ai-operationalization",
+            "runtime-centralization",
+            "behavioral-evaluation"
           ]
         }
       }
@@ -407,12 +407,12 @@
             "Codex"
           ],
           "operational_relevance": "Teams building agents may need to invest more in desktop-state handling, guardrails, and task decomposition than in raw prompting. The article\u2019s comments imply that simple wrappers around desktop apps can become a serious integration path.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-engineering"
+            "execution-oriented-agents",
+            "ai-operationalization"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "service_automation_relevance": "Potentially relevant for support and back-office workflows that still depend on legacy desktop or browser tools, but the source does not provide deployment evidence for those use cases.",
           "signal_strength": "medium",
           "signal_title": "Computer-use agents becoming a practical product surface",
@@ -526,9 +526,9 @@
             "GPT-5.4"
           ],
           "operational_relevance": "Evaluation pipelines need to include live task checks, regression monitoring, and time-based re-testing after launches. A one-day launch spike can be misleading if the model or product is still changing underneath.",
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "Important for support bots and voice agents because a model that looks best on launch-day rankings may still fail on continuity, context retention, or handoff behavior.",
@@ -541,7 +541,7 @@
           ],
           "suggested_new_tag": "ai-evals",
           "suggested_new_tags": [
-            "ai-evals"
+            "behavioral-evaluation"
           ],
           "summary": "The roundup repeatedly shows that public leaderboard wins do not map cleanly to stable user experience. Opus 4.7 is described as strong on several benchmarks, yet early users also reported regressions and context failures, and some bugs were fixed within a day.",
           "time_horizon": "short_term",
@@ -648,9 +648,9 @@
             "Claude Code"
           ],
           "operational_relevance": "Teams should expect more AI products to bundle editing, export, and implementation handoff into one workflow. That raises integration questions around file formats, version control, and downstream implementation continuity.",
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "No direct service automation implications identified.",
@@ -770,9 +770,9 @@
             "iPhone"
           ],
           "operational_relevance": "Teams building assistants or edge workflows may be able to keep more inference on-device or on-prem when memory and latency are the main constraints. Quantization quality and runtime support remain key deployment variables.",
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "Relevant for offline or privacy-sensitive assistant use cases, but the source does not show production support deployments.",
@@ -888,12 +888,12 @@
             "Cloudflare"
           ],
           "operational_relevance": "Practitioners should watch connectors, caching, compression dictionaries, and memory offload techniques alongside model selection. These systems can affect concurrency, latency, and cost in production agents.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-centralization",
           "proposed_tags": [
-            "ai-architecture",
-            "ai-engineering"
+            "runtime-centralization",
+            "ai-operationalization"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "service_automation_relevance": "Indirectly relevant for high-volume chat and support systems, where payload size and goodput can affect cost and responsiveness.",
           "signal_strength": "medium",
           "signal_title": "Inference infrastructure is being optimized for goodput and payload size",

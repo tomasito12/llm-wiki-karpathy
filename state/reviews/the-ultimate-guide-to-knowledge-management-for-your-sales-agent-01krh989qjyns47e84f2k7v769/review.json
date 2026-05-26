@@ -21,7 +21,7 @@
       "total_tokens": 31145
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,10 +37,10 @@
         "evidence_type": null,
         "extended_explanation": "In practice, knowledge management is less about storing files and more about making sure the right information can be found, understood, and updated when it matters. For AI systems, that means the content must be structured in a way that models and agents can retrieve and use without guessing. It also has a maintenance side: if pricing changes, product features shift, or qualification rules evolve, the knowledge base has to change with them. Teams that treat knowledge as a living system generally get more reliable agent behavior than teams that treat it as a static library.",
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "memory-systems",
         "proposed_definition": "Knowledge management is the process of creating, organizing, sharing, and maintaining information so people and systems can use it effectively. In operational settings, it often includes documents, FAQs, policies, decision rules, and update processes that keep answers accurate over time.",
         "proposed_tags": [
-          "knowledge-management",
+          "memory-systems",
           "ai-engineering"
         ],
         "related_terms": [
@@ -60,17 +60,17 @@
         "evidence_type": null,
         "extended_explanation": "This pattern is useful when the model needs current, organization-specific, or policy-specific information that should not be memorized in the model itself. A retrieval layer can pull from product docs, FAQs, or internal policies before the model generates a response. That makes it easier to refresh answers when facts change, and it can reduce unsupported guesses if the retrieval set is well maintained. The tradeoff is that retrieval quality and content quality become part of system quality; stale or poorly structured sources can still produce bad outputs.",
         "match_candidates": [],
-        "primary_tag": "retrieval-augmented-generation",
+        "primary_tag": "rag",
         "proposed_definition": "Retrieval-Augmented Generation is a pattern in which a model answers questions using retrieved external information rather than relying only on its internal parameters. The retrieved material is typically drawn from a curated knowledge source, making the system more grounded and easier to update.",
         "proposed_tags": [
-          "retrieval-augmented-generation",
-          "ai-architecture"
+          "rag",
+          "runtime-architecture"
         ],
         "related_terms": [
           "Knowledge Management"
         ],
         "relevance_note": "This is a core pattern for AI systems that need organization-specific answers, especially chatbots and agent workflows that must stay aligned with changing facts. It is also central to service automation when systems need to explain policies, plans, or procedures with grounded source material.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -88,13 +88,13 @@
         "evidence_from_source": "The guide says the knowledge base powers the Sales Agent and that missing, poorly structured, or outdated knowledge prevents clear answers and good routing.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-engineering"
+          "workflow-restructuring",
+          "ai-operationalization"
         ],
         "related_trends": [],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -164,9 +164,9 @@
         "knowledge_summary": "Knowledge management in AI systems is the discipline of turning scattered business knowledge into a maintained operational asset. The useful unit is not a document repository but a structured body of facts, rules, examples, and update workflows that an agent or human can rely on. For agentic systems, knowledge quality affects answer accuracy, routing decisions, objection handling, and the ability to recommend the right next step. Ongoing maintenance matters as much as initial content creation because product facts, pricing, and qualification rules change over time.",
         "match_candidates": [],
         "operational_insight": "Treat the knowledge base as part of the runtime system, not as a one-time content project.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
+          "knowledge-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -195,9 +195,9 @@
         "knowledge_summary": "Agentic workflows use an AI system to take multi-step action toward a goal rather than only answering a single question. In production settings, they often combine classification, retrieval, reasoning, routing, and handoff logic. Their quality depends on the surrounding operating system: the available knowledge, the rules for using it, and the feedback loop for fixing failure cases. Strong workflows are designed around observable outcomes such as qualification, completion, or successful routing.",
         "match_candidates": [],
         "operational_insight": "Design the workflow around the decision points the agent must make, not around a generic chat experience.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
+          "agent-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -226,10 +226,10 @@
           "evidence_type": null,
           "extended_explanation": "In practice, knowledge management is less about storing files and more about making sure the right information can be found, understood, and updated when it matters. For AI systems, that means the content must be structured in a way that models and agents can retrieve and use without guessing. It also has a maintenance side: if pricing changes, product features shift, or qualification rules evolve, the knowledge base has to change with them. Teams that treat knowledge as a living system generally get more reliable agent behavior than teams that treat it as a static library.",
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "memory-systems",
           "proposed_definition": "Knowledge management is the process of creating, organizing, sharing, and maintaining information so people and systems can use it effectively. In operational settings, it often includes documents, FAQs, policies, decision rules, and update processes that keep answers accurate over time.",
           "proposed_tags": [
-            "knowledge-management",
+            "memory-systems",
             "ai-engineering"
           ],
           "related_terms": [
@@ -285,7 +285,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "memory-systems"
           ]
         }
       },
@@ -295,17 +295,17 @@
           "evidence_type": null,
           "extended_explanation": "This pattern is useful when the model needs current, organization-specific, or policy-specific information that should not be memorized in the model itself. A retrieval layer can pull from product docs, FAQs, or internal policies before the model generates a response. That makes it easier to refresh answers when facts change, and it can reduce unsupported guesses if the retrieval set is well maintained. The tradeoff is that retrieval quality and content quality become part of system quality; stale or poorly structured sources can still produce bad outputs.",
           "match_candidates": [],
-          "primary_tag": "retrieval-augmented-generation",
+          "primary_tag": "rag",
           "proposed_definition": "Retrieval-Augmented Generation is a pattern in which a model answers questions using retrieved external information rather than relying only on its internal parameters. The retrieved material is typically drawn from a curated knowledge source, making the system more grounded and easier to update.",
           "proposed_tags": [
-            "retrieval-augmented-generation",
-            "ai-architecture"
+            "rag",
+            "runtime-architecture"
           ],
           "related_terms": [
             "Knowledge Management"
           ],
           "relevance_note": "This is a core pattern for AI systems that need organization-specific answers, especially chatbots and agent workflows that must stay aligned with changing facts. It is also central to service automation when systems need to explain policies, plans, or procedures with grounded source material.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -367,13 +367,13 @@
           "evidence_from_source": "The guide says the knowledge base powers the Sales Agent and that missing, poorly structured, or outdated knowledge prevents clear answers and good routing.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-engineering"
+            "workflow-restructuring",
+            "ai-operationalization"
           ],
           "related_trends": [],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -449,8 +449,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management",
-            "ai-engineering"
+            "workflow-restructuring",
+            "ai-operationalization"
           ]
         }
       }
@@ -554,9 +554,9 @@
           "knowledge_summary": "Knowledge management in AI systems is the discipline of turning scattered business knowledge into a maintained operational asset. The useful unit is not a document repository but a structured body of facts, rules, examples, and update workflows that an agent or human can rely on. For agentic systems, knowledge quality affects answer accuracy, routing decisions, objection handling, and the ability to recommend the right next step. Ongoing maintenance matters as much as initial content creation because product facts, pricing, and qualification rules change over time.",
           "match_candidates": [],
           "operational_insight": "Treat the knowledge base as part of the runtime system, not as a one-time content project.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -634,7 +634,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       },
@@ -652,9 +652,9 @@
           "knowledge_summary": "Agentic workflows use an AI system to take multi-step action toward a goal rather than only answering a single question. In production settings, they often combine classification, retrieval, reasoning, routing, and handoff logic. Their quality depends on the surrounding operating system: the available knowledge, the rules for using it, and the feedback loop for fixing failure cases. Strong workflows are designed around observable outcomes such as qualification, completion, or successful routing.",
           "match_candidates": [],
           "operational_insight": "Design the workflow around the decision points the agent must make, not around a generic chat experience.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
+            "agent-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -736,7 +736,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "agentic-ai",
+            "agent-systems",
             "ai-engineering"
           ]
         }

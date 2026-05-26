@@ -21,7 +21,7 @@
       "total_tokens": 33052
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -91,6 +91,7 @@
         "name": "Claude Code",
         "operational_relevance": "It fits as the execution layer for file-native AI workflows: ingesting new material, updating derived notes, and running periodic health checks from the terminal. For practitioners, the important point is that the agent is not just answering questions; it is editing and maintaining artifacts across many files. That makes it relevant to knowledge-base maintenance, coding workflows, and other automation loops where the model needs filesystem access.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "terminal",
           "coding-agent"
@@ -101,6 +102,7 @@
         "short_description": "Claude Code is an autonomous terminal agent that can read, write, and modify files through the command line. In this article, it is used as the worker that maintains a markdown-based knowledge system.",
         "strengths": "- Can read and write multiple markdown files in one pass, which matters when the workflow depends on coordinated updates across summaries, indexes, and concept pages.\n- Supports scripted command-line operation, so the same maintenance loop can be triggered manually or on a schedule.\n- Can be given narrow allowed tools, which is useful when you want the agent to operate inside a constrained file-editing boundary rather than a broad desktop environment.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "By connecting Obsidian (as a local markdown interface) with Claude Code (as an autonomous terminal agent), you can completely eliminate the maintenance bottleneck.",
         "value_level": "high",
         "weaknesses_limitations": "The article does not provide evidence about reliability, conflict resolution, or how often the agent makes incorrect edits. The workflow still depends on disciplined prompts and human review, so the operational savings may be smaller than the rhetoric implies. No cost, latency, or enterprise-readiness data is given."
@@ -122,11 +124,11 @@
         "knowledge_summary": "Personal knowledge management can be redesigned as an agent-maintained, three-layer system: immutable raw sources, a machine-owned compiled wiki, and a schema/config file that defines how the agent ingests and updates content. In this model, the AI reads new inputs, writes summary pages, updates indexes, modifies related concept pages, flags contradictions, and runs periodic health checks so the knowledge base stays current without manual relinking. The human role shifts toward curating inputs, setting rules, and reviewing the derived knowledge layer rather than maintaining file structure by hand.",
         "match_candidates": [],
         "operational_insight": "Keep source material separate from derived pages, then let an agent repeatedly transform new inputs into summaries, index updates, and cross-links while also linting for contradictions, orphan pages, and outdated claims. This preserves provenance and makes ongoing maintenance scalable.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
+          "knowledge-systems",
           "ai-engineering",
-          "ai-architecture"
+          "runtime-architecture"
         ],
         "related_topics": [
           "file-native-ai-workflows",
@@ -154,9 +156,9 @@
         "knowledge_summary": "A file-native workflow uses ordinary files and folders as the system boundary for AI automation. Instead of moving data into a separate app-specific database, the AI reads and writes the same filesystem artifacts that humans inspect. This makes automation easier to script, inspect, and schedule, because the agent operates on concrete files rather than hidden application state. The approach works well when the system needs traceable updates, repeatable transforms, and clear source-of-truth separation.",
         "match_candidates": [],
         "operational_insight": "Treat markdown, transcripts, and other raw documents as the operational substrate for AI agents, then layer generated indexes and summaries on top as disposable outputs that can be rebuilt.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
@@ -396,11 +398,11 @@
           "knowledge_summary": "Personal knowledge management can be redesigned as an agent-maintained, three-layer system: immutable raw sources, a machine-owned compiled wiki, and a schema/config file that defines how the agent ingests and updates content. In this model, the AI reads new inputs, writes summary pages, updates indexes, modifies related concept pages, flags contradictions, and runs periodic health checks so the knowledge base stays current without manual relinking. The human role shifts toward curating inputs, setting rules, and reviewing the derived knowledge layer rather than maintaining file structure by hand.",
           "match_candidates": [],
           "operational_insight": "Keep source material separate from derived pages, then let an agent repeatedly transform new inputs into summaries, index updates, and cross-links while also linting for contradictions, orphan pages, and outdated claims. This preserves provenance and makes ongoing maintenance scalable.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering",
-            "ai-architecture"
+            "runtime-architecture"
           ],
           "related_topics": [
             "file-native-ai-workflows",
@@ -497,9 +499,9 @@
           "knowledge_summary": "A file-native workflow uses ordinary files and folders as the system boundary for AI automation. Instead of moving data into a separate app-specific database, the AI reads and writes the same filesystem artifacts that humans inspect. This makes automation easier to script, inspect, and schedule, because the agent operates on concrete files rather than hidden application state. The approach works well when the system needs traceable updates, repeatable transforms, and clear source-of-truth separation.",
           "match_candidates": [],
           "operational_insight": "Treat markdown, transcripts, and other raw documents as the operational substrate for AI agents, then layer generated indexes and summaries on top as disposable outputs that can be rebuilt.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
@@ -576,9 +578,9 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       }

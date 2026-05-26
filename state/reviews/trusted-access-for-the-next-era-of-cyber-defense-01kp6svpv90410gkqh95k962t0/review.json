@@ -21,7 +21,7 @@
       "total_tokens": 29535
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -43,16 +43,18 @@
           "It supports binary reverse engineering for compiled software analysis.",
           "It is tuned for defensive workflows such as malware analysis and vulnerability review."
         ],
+        "deployment_implications": "This suggests a split between general models and specialized cyber-permissive deployments, with stronger gating around the latter. Security teams may be able to offload more reverse-engineering and vulnerability-analysis work to the model, but only if their identity verification and access controls are mature.",
         "evidence_type": null,
         "match_candidates": [],
         "maturity_signals": "The model is being introduced in a limited, iterative deployment to vetted security vendors, organizations, and researchers. That indicates early-stage rollout rather than broad availability. The source treats it as part of a managed access program, which is a sign of operational caution rather than a fully open release.",
         "model_name": "GPT-5.4-Cyber",
-        "operational_summary": "A cyber-permissive variant of GPT-5.4 tuned for defensive cybersecurity work. The model is presented as useful for advanced security workflows, including binary reverse engineering, while reducing refusal boundaries for legitimate defenders.",
+        "operational_profile": "A cyber-permissive variant of GPT-5.4 tuned for defensive cybersecurity work. The model is presented as useful for advanced security workflows, including binary reverse engineering, while reducing refusal boundaries for legitimate defenders.\n\n- The model is explicitly tuned for defensive cybersecurity use cases, which matters when general-purpose refusals would slow legitimate analysis.\n- OpenAI says it can support binary reverse engineering, which makes it more useful for compiled-software review where source code is unavailable.\n- The post frames it as enabling security professionals to analyze malware potential, vulnerabilities, and robustness in workflows that need more permissive behavior than a general model would allow.",
         "pricing_inference_implications": "The post does not discuss pricing. The tighter access and limited rollout suggest that usage may be constrained more by authorization than by raw inference cost in the near term.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
-          "proprietary",
-          "interactive-ai"
+          "proprietary-model",
+          "multimodal-model"
         ],
         "provider": "OpenAI",
         "related_models": [
@@ -61,12 +63,11 @@
           "GPT-5.2"
         ],
         "service_automation_implications": "No direct service automation implications are identified beyond the need for stricter controls on sensitive security-related requests.",
-        "strengths": "- The model is explicitly tuned for defensive cybersecurity use cases, which matters when general-purpose refusals would slow legitimate analysis.\n- OpenAI says it can support binary reverse engineering, which makes it more useful for compiled-software review where source code is unavailable.\n- The post frames it as enabling security professionals to analyze malware potential, vulnerabilities, and robustness in workflows that need more permissive behavior than a general model would allow.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Customers in the highest tiers will get access to GPT\u20115.4\u2011Cyber, a model purposely fine-tuned for additional cyber capabilities and with fewer capability restrictions.\"",
         "value_level": "high",
-        "weaknesses_limitations": "The model is described as more permissive, which raises obvious dual-use risk and makes deployment constraints more important. The source says access is limited to vetted users and that some no-visibility environments may be restricted, but it does not explain the exact guardrails. No independent benchmark or third-party evaluation is provided here, so the practical quality of the cyber tuning remains vendor-reported.",
-        "workflow_implications": "This suggests a split between general models and specialized cyber-permissive deployments, with stronger gating around the latter. Security teams may be able to offload more reverse-engineering and vulnerability-analysis work to the model, but only if their identity verification and access controls are mature."
+        "weaknesses_limitations": "The model is described as more permissive, which raises obvious dual-use risk and makes deployment constraints more important. The source says access is limited to vetted users and that some no-visibility environments may be restricted, but it does not explain the exact guardrails. No independent benchmark or third-party evaluation is provided here, so the practical quality of the cyber tuning remains vendor-reported."
       }
     ],
     "glossary": [
@@ -75,10 +76,10 @@
         "evidence_type": null,
         "extended_explanation": "Passkeys replace memorized passwords with cryptographic authentication tied to a device or account. That makes them harder to steal with phishing, password reuse, or database leaks. In practice, they are useful where account takeover risk is high and where teams want simpler login flows with stronger security. They often work alongside other identity checks rather than replacing every form of access control.",
         "match_candidates": [],
-        "primary_tag": "it-security",
+        "primary_tag": "governance",
         "proposed_definition": "A passkey is a phishing-resistant login credential that lets a user authenticate without typing a password. It typically relies on device-bound cryptographic keys and user verification such as biometrics or a device PIN.",
         "proposed_tags": [
-          "it-security"
+          "governance"
         ],
         "related_terms": [
           "FIDO-compliant security key"
@@ -97,10 +98,10 @@
         "evidence_type": null,
         "extended_explanation": "This pattern separates broad access to general capabilities from narrower access to more sensitive ones. It is useful when a model can support legitimate defensive work but also be misused, because one policy does not fit every user or workflow. Teams can combine identity checks, trust signals, and deployment restrictions to limit exposure while still enabling approved users. The pattern is especially relevant where the same system can be helpful and harmful depending on context.",
         "match_candidates": [],
-        "primary_tag": "it-security",
+        "primary_tag": "governance",
         "proposed_definition": "Tiered access for sensitive model capabilities is an access-control approach where users receive different levels of model capability based on verification, trust, and intended use. Higher-risk functions are restricted to more trusted users or deployments.",
         "proposed_tags": [
-          "it-security"
+          "governance"
         ],
         "related_terms": [
           "Passkey"
@@ -126,9 +127,9 @@
         "evidence_from_source": "OpenAI says it is scaling Trusted Access for Cyber, adding access tiers, and limiting GPT-5.4-Cyber to vetted defenders. The post explicitly says access should be based on who is using the system and how it is being used.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-governance",
+        "primary_tag": "verification-over-principles",
         "proposed_tags": [
-          "ai-governance"
+          "verification-over-principles"
         ],
         "related_trends": [
           "knowledge-base-becomes-runtime-infrastructure"
@@ -137,7 +138,7 @@
         "suggested_action": "ignore",
         "suggested_new_tag": "ai-security",
         "suggested_new_tags": [
-          "ai-security"
+          "inspectability"
         ],
         "supporting_data_points": [
           "Trusted Access for Cyber is being scaled to thousands of verified individual defenders and hundreds of teams.",
@@ -208,6 +209,7 @@
         "name": "Codex Security",
         "operational_relevance": "This is relevant for teams that need continuous code security feedback rather than periodic scans. In practice, it fits into developer and security workflows where findings must be validated quickly and fixes suggested in context. It may be useful for security review pipelines, vulnerability triage, and automated remediation support, especially when codebases are large. The article also positions it as part of a broader defensive-access strategy rather than a standalone scanner.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "ai-application",
           "workflow-automation"
@@ -219,6 +221,7 @@
         "short_description": "A security-focused product that monitors codebases, validates issues, and proposes fixes. The post describes it as an automated system for finding vulnerabilities at scale.",
         "strengths": "- Automates monitoring and issue validation, which can reduce manual review load for security teams.\n- Proposes fixes rather than only flagging findings, which can shorten the path from detection to remediation.\n- Is framed as improving precision and usefulness over time, suggesting a workflow that gets better as capabilities and safeguards are refined.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Codex Security, which launched in private beta six months ago, and as a research preview earlier this year, automatically monitors codebases, validates issues, and proposes fixes.\"",
         "value_level": "high",
         "weaknesses_limitations": "The source does not provide independent evidence of accuracy, false-positive rate, or remediation quality. It also does not describe the underlying detection methods, so it is unclear how it handles complex codebases, custom stacks, or adversarial code patterns. The limited rollout described in the post suggests the product is still being carefully introduced rather than broadly proven."
@@ -240,13 +243,13 @@
         "primary_tag": "ai-governance",
         "proposed_tags": [
           "ai-governance",
-          "ai-compliance"
+          "compliance-systems"
         ],
         "related_topics": [
           "privacy-controls-for-ai-products"
         ],
         "relevance_note": "This is a durable pattern for AI products that expose dual-use or regulated capabilities. It matters in enterprise AI, security tooling, and agent platforms where identity, intent, and role-based access can change what the system is allowed to do.",
-        "secondary_tag": "ai-compliance",
+        "secondary_tag": "compliance-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -267,9 +270,9 @@
         "knowledge_summary": "When models are embedded directly into operational workflows, they stop being only generators of text and become execution layers that help perform work. In security settings, that can mean scanning code, validating findings, reasoning across codebases, and proposing fixes. The value comes from coupling model capability with workflow hooks, permissions, and human review. This pattern raises the importance of access control, auditability, and safe escalation paths.",
         "match_candidates": [],
         "operational_insight": "Design model deployment around the job to be done, not just around raw model quality. When the model is allowed to act inside a workflow, the control plane matters as much as the model itself.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
+          "agent-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -303,15 +306,16 @@
             "It supports binary reverse engineering for compiled software analysis.",
             "It is tuned for defensive workflows such as malware analysis and vulnerability review."
           ],
+          "deployment_implications": "This suggests a split between general models and specialized cyber-permissive deployments, with stronger gating around the latter. Security teams may be able to offload more reverse-engineering and vulnerability-analysis work to the model, but only if their identity verification and access controls are mature.",
           "match_candidates": [],
           "maturity_signals": "The model is being introduced in a limited, iterative deployment to vetted security vendors, organizations, and researchers. That indicates early-stage rollout rather than broad availability. The source treats it as part of a managed access program, which is a sign of operational caution rather than a fully open release.",
           "model_name": "GPT-5.4-Cyber",
-          "operational_summary": "A cyber-permissive variant of GPT-5.4 tuned for defensive cybersecurity work. The model is presented as useful for advanced security workflows, including binary reverse engineering, while reducing refusal boundaries for legitimate defenders.",
+          "operational_profile": "A cyber-permissive variant of GPT-5.4 tuned for defensive cybersecurity work. The model is presented as useful for advanced security workflows, including binary reverse engineering, while reducing refusal boundaries for legitimate defenders.\n\n- The model is explicitly tuned for defensive cybersecurity use cases, which matters when general-purpose refusals would slow legitimate analysis.\n- OpenAI says it can support binary reverse engineering, which makes it more useful for compiled-software review where source code is unavailable.\n- The post frames it as enabling security professionals to analyze malware potential, vulnerabilities, and robustness in workflows that need more permissive behavior than a general model would allow.",
           "pricing_inference_implications": "The post does not discuss pricing. The tighter access and limited rollout suggest that usage may be constrained more by authorization than by raw inference cost in the near term.",
           "proposed_new_type": "it-security",
           "proposed_types": [
-            "proprietary",
-            "interactive-ai"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "provider": "OpenAI",
           "related_models": [
@@ -320,12 +324,10 @@
             "GPT-5.2"
           ],
           "service_automation_implications": "No direct service automation implications are identified beyond the need for stricter controls on sensitive security-related requests.",
-          "strengths": "- The model is explicitly tuned for defensive cybersecurity use cases, which matters when general-purpose refusals would slow legitimate analysis.\n- OpenAI says it can support binary reverse engineering, which makes it more useful for compiled-software review where source code is unavailable.\n- The post frames it as enabling security professionals to analyze malware potential, vulnerabilities, and robustness in workflows that need more permissive behavior than a general model would allow.",
           "suggested_action": "ignore",
           "supporting_snippet": "\"Customers in the highest tiers will get access to GPT\u20115.4\u2011Cyber, a model purposely fine-tuned for additional cyber capabilities and with fewer capability restrictions.\"",
           "value_level": "high",
-          "weaknesses_limitations": "The model is described as more permissive, which raises obvious dual-use risk and makes deployment constraints more important. The source says access is limited to vetted users and that some no-visibility environments may be restricted, but it does not explain the exact guardrails. No independent benchmark or third-party evaluation is provided here, so the practical quality of the cyber tuning remains vendor-reported.",
-          "workflow_implications": "This suggests a split between general models and specialized cyber-permissive deployments, with stronger gating around the latter. Security teams may be able to offload more reverse-engineering and vulnerability-analysis work to the model, but only if their identity verification and access controls are mature."
+          "weaknesses_limitations": "The model is described as more permissive, which raises obvious dual-use risk and makes deployment constraints more important. The source says access is limited to vetted users and that some no-visibility environments may be restricted, but it does not explain the exact guardrails. No independent benchmark or third-party evaluation is provided here, so the practical quality of the cyber tuning remains vendor-reported."
         },
         "notes": null,
         "proposal_id": "6ca831dc-45d7-40c6-9cfe-99a248391c71",
@@ -356,6 +358,12 @@
             "notes": null,
             "status": "approved"
           },
+          "deployment_implications": {
+            "final_text": "This suggests a split between general models and specialized cyber-permissive deployments, with stronger gating around the latter. Security teams may be able to offload more reverse-engineering and vulnerability-analysis work to the model, but only if their identity verification and access controls are mature.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -366,10 +374,11 @@
             "notes": null,
             "status": "approved"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "A cyber-permissive variant of GPT-5.4 tuned for defensive cybersecurity work. The model is presented as useful for advanced security workflows, including binary reverse engineering, while reducing refusal boundaries for legitimate defenders.\n\n- The model is explicitly tuned for defensive cybersecurity use cases, which matters when general-purpose refusals would slow legitimate analysis.\n- OpenAI says it can support binary reverse engineering, which makes it more useful for compiled-software review where source code is unavailable.\n- The post frames it as enabling security professionals to analyze malware potential, vulnerabilities, and robustness in workflows that need more permissive behavior than a general model would allow.",
             "notes": null,
-            "status": "approved"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -396,22 +405,12 @@
             "notes": null,
             "status": "approved"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "approved"
@@ -426,7 +425,7 @@
             "it-security"
           ],
           "approved_types": [
-            "proprietary",
+            "proprietary-model",
             "it-security"
           ],
           "reviewer_types_added": [
@@ -442,10 +441,10 @@
           "evidence_type": null,
           "extended_explanation": "Passkeys replace memorized passwords with cryptographic authentication tied to a device or account. That makes them harder to steal with phishing, password reuse, or database leaks. In practice, they are useful where account takeover risk is high and where teams want simpler login flows with stronger security. They often work alongside other identity checks rather than replacing every form of access control.",
           "match_candidates": [],
-          "primary_tag": "it-security",
+          "primary_tag": "governance",
           "proposed_definition": "A passkey is a phishing-resistant login credential that lets a user authenticate without typing a password. It typically relies on device-bound cryptographic keys and user verification such as biometrics or a device PIN.",
           "proposed_tags": [
-            "it-security"
+            "governance"
           ],
           "related_terms": [
             "FIDO-compliant security key"
@@ -508,10 +507,10 @@
           "evidence_type": null,
           "extended_explanation": "This pattern separates broad access to general capabilities from narrower access to more sensitive ones. It is useful when a model can support legitimate defensive work but also be misused, because one policy does not fit every user or workflow. Teams can combine identity checks, trust signals, and deployment restrictions to limit exposure while still enabling approved users. The pattern is especially relevant where the same system can be helpful and harmful depending on context.",
           "match_candidates": [],
-          "primary_tag": "it-security",
+          "primary_tag": "governance",
           "proposed_definition": "Tiered access for sensitive model capabilities is an access-control approach where users receive different levels of model capability based on verification, trust, and intended use. Higher-risk functions are restricted to more trusted users or deployments.",
           "proposed_tags": [
-            "it-security"
+            "governance"
           ],
           "related_terms": [
             "Passkey"
@@ -581,9 +580,9 @@
           "evidence_from_source": "OpenAI says it is scaling Trusted Access for Cyber, adding access tiers, and limiting GPT-5.4-Cyber to vetted defenders. The post explicitly says access should be based on who is using the system and how it is being used.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-governance",
+          "primary_tag": "verification-over-principles",
           "proposed_tags": [
-            "ai-governance"
+            "verification-over-principles"
           ],
           "related_trends": [
             "knowledge-base-becomes-runtime-infrastructure"
@@ -592,8 +591,7 @@
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-security",
           "suggested_new_tags": [
-            "ai-security",
-            "it-security"
+            "inspectability"
           ],
           "supporting_data_points": [
             "Trusted Access for Cyber is being scaled to thousands of verified individual defenders and hundreds of teams.",
@@ -668,12 +666,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-security",
-            "it-security"
+            "inspectability"
           ],
           "final_tags": [
-            "ai-security",
-            "it-security"
+            "inspectability"
           ]
         }
       }
@@ -897,18 +893,17 @@
           "primary_tag": "ai-governance",
           "proposed_tags": [
             "ai-governance",
-            "ai-compliance"
+            "compliance-systems"
           ],
           "related_topics": [
             "privacy-controls-for-ai-products"
           ],
           "relevance_note": "This is a durable pattern for AI products that expose dual-use or regulated capabilities. It matters in enterprise AI, security tooling, and agent platforms where identity, intent, and role-based access can change what the system is allowed to do.",
-          "secondary_tag": "ai-compliance",
+          "secondary_tag": "compliance-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-security",
           "suggested_new_tags": [
-            "ai-security",
-            "cyber-security"
+            "verification-systems"
           ],
           "supporting_snippet": "\"Expand access based on who is using these systems and how they\u2019re being used.\"",
           "topic_slug": "tiered-access-for-sensitive-model-capabilities",
@@ -975,12 +970,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-security",
-            "cyber-security"
+            "verification-systems"
           ],
           "final_tags": [
-            "ai-security",
-            "cyber-security"
+            "verification-systems"
           ]
         }
       },
@@ -997,9 +990,9 @@
           "knowledge_summary": "When models are embedded directly into operational workflows, they stop being only generators of text and become execution layers that help perform work. In security settings, that can mean scanning code, validating findings, reasoning across codebases, and proposing fixes. The value comes from coupling model capability with workflow hooks, permissions, and human review. This pattern raises the importance of access control, auditability, and safe escalation paths.",
           "match_candidates": [],
           "operational_insight": "Design model deployment around the job to be done, not just around raw model quality. When the model is allowed to act inside a workflow, the control plane matters as much as the model itself.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
+            "agent-systems",
             "ai-engineering"
           ],
           "related_topics": [

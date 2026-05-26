@@ -21,7 +21,7 @@
       "total_tokens": 29413
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -43,16 +43,18 @@
           "It can be adapted as an open-weight base model for downstream product or workflow tuning.",
           "It is available through the Ollama cloud free tier, which makes it practical for experimentation."
         ],
+        "deployment_implications": "It shows that open-weight models can be wrapped into coding products and shipped as practical substitutes for some proprietary workflows. That reduces the assumption that frontier coding UX must depend on a closed model API.",
         "evidence_type": null,
         "match_candidates": [],
         "maturity_signals": "It is described as powering Cursor\u2019s Composer 2 and as being available in Ollama\u2019s cloud free tier, both of which are practical adoption signals. The source also frames it as part of a real product stack rather than a lab-only model.",
         "model_name": "Kimi 2.5",
-        "operational_summary": "An open-weight model presented here as strong enough to power a real coding product and to be used through local or hosted workflows. The article treats it as evidence that open-weight models can be fine-tuned into frontier-style product behavior.",
+        "operational_profile": "An open-weight model presented here as strong enough to power a real coding product and to be used through local or hosted workflows. The article treats it as evidence that open-weight models can be fine-tuned into frontier-style product behavior.\n\n- The article uses it as the model behind Cursor\u2019s Composer 2, which suggests it can support real coding-product workloads.\n- It is positioned as open-weight, which makes it easier to adapt, host, or fine-tune than a closed proprietary model.\n- Its presence in Ollama\u2019s cloud free tier suggests it is being operationalized for developer workflows rather than remaining purely experimental.",
         "pricing_inference_implications": "Because it appears in a free tier and in an open-weight deployment story, the article implies it may be usable in lower-cost workflows than premium proprietary APIs. The source does not give enough pricing data to quantify the economics beyond that.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
-          "open-weight",
-          "agentic-coding"
+          "open-weight-model",
+          "coding-model"
         ],
         "provider": "Moonshot AI",
         "related_models": [
@@ -61,12 +63,11 @@
           "GLM-5 Reasoning"
         ],
         "service_automation_implications": "The article does not establish direct service automation implications beyond the general possibility of local or hosted deployment for internal agents.",
-        "strengths": "- The article uses it as the model behind Cursor\u2019s Composer 2, which suggests it can support real coding-product workloads.\n- It is positioned as open-weight, which makes it easier to adapt, host, or fine-tune than a closed proprietary model.\n- Its presence in Ollama\u2019s cloud free tier suggests it is being operationalized for developer workflows rather than remaining purely experimental.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\u201cCursor launches Composer 2... and a developer intercepts API traffic and finds the model ID: kimi-k2p5-rl-0317-s515-fast. ... Composer 2 was Kimi K2.5 \u2192 an open-weight Chinese model( Moonshot AI) which is fine-tuned with RL!\u201d",
         "value_level": "high",
-        "weaknesses_limitations": "The article does not provide a direct benchmark for Kimi K2.5 itself, so the performance claims are indirect. Its usefulness here is framed through product behavior and product interception, not through a controlled evaluation of code quality or reliability.",
-        "workflow_implications": "It shows that open-weight models can be wrapped into coding products and shipped as practical substitutes for some proprietary workflows. That reduces the assumption that frontier coding UX must depend on a closed model API."
+        "weaknesses_limitations": "The article does not provide a direct benchmark for Kimi K2.5 itself, so the performance claims are indirect. Its usefulness here is framed through product behavior and product interception, not through a controlled evaluation of code quality or reliability."
       }
     ],
     "glossary": [
@@ -75,10 +76,10 @@
         "evidence_type": null,
         "extended_explanation": "Mixture-of-experts models split a system into specialized parts and activate only the parts needed for a given input. In practice, that can make a model cheaper or faster to run than a dense model of similar total size. The tradeoff is that routing and specialization can introduce uneven behavior, especially if the activated portion is too small for complex tasks. Teams care about this because MoE models often sit at the intersection of performance, cost, and deployment complexity.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A model architecture that routes each input through only a subset of its parameters rather than activating the full model every time. This can reduce inference cost while keeping a large total parameter count.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [],
@@ -135,11 +136,11 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "local-model-deployment"
+          "inference-systems"
         ],
         "question_title": "Local Model Deployment",
         "related_howtos": [],
-        "secondary_tag": "local-model-deployment",
+        "secondary_tag": "inference-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -156,9 +157,9 @@
         "evidence_from_source": "The article says Cursor\u2019s Composer 2 was identified as an open-weight Kimi K2.5 variant and that Ollama added support for pointing Claude Code-style workflows at a local server. That is evidence that productized coding experiences can sit on open-weight or self-hosted backends.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "related_trends": [],
         "secondary_tag": "",
@@ -234,6 +235,7 @@
         "name": "Ollama",
         "operational_relevance": "The article presents Ollama as the main bridge between cloud-style coding workflows and local inference. That makes it relevant for teams that want to test self-hosted assistants without rewriting their tools, because the same CLI and workflow can point at a local server. It is most useful when data sensitivity, cost control, or offline operation matter more than absolute model quality.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "model-serving",
           "ai-infrastructure"
@@ -245,6 +247,7 @@
         "short_description": "A local model-serving tool that can run models on your own hardware and expose them through a familiar API surface.",
         "strengths": "- Supports local deployment, which lets teams keep inference on their own hardware instead of sending prompts to a cloud provider.\n- The Anthropic API compatibility claim matters because it lowers migration friction for existing Claude-based workflows.\n- The cited command path suggests a practical way to swap a coding assistant\u2019s backend without changing the surrounding workflow.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\u201cOllama shipped native Anthropic API compatibility in v0.14. Then v0.15 added a single command ollama launch claude --model <whatever> and which points Claude Code at your Ollama server instead of Anthropic's.\u201d",
         "value_level": "high",
         "weaknesses_limitations": "The article also implies that local deployment shifts maintenance onto the user: hardware, compatibility, monitoring, and upgrades all become your responsibility. It does not show that Ollama itself solves model-quality gaps or makes local setups trivial at production scale."
@@ -266,7 +269,7 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "ai-architecture"
+          "runtime-architecture"
         ],
         "related_topics": [
           "self-hosted-ai-economics",
@@ -274,7 +277,7 @@
           "context-engineering"
         ],
         "relevance_note": "Local deployment matters wherever teams need control over data flow, reliability, or per-request cost. It is especially relevant for conversational systems and internal copilots that handle sensitive content or high-volume repetitive tasks.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -329,15 +332,16 @@
             "It can be adapted as an open-weight base model for downstream product or workflow tuning.",
             "It is available through the Ollama cloud free tier, which makes it practical for experimentation."
           ],
+          "deployment_implications": "It shows that open-weight models can be wrapped into coding products and shipped as practical substitutes for some proprietary workflows. That reduces the assumption that frontier coding UX must depend on a closed model API.",
           "match_candidates": [],
           "maturity_signals": "It is described as powering Cursor\u2019s Composer 2 and as being available in Ollama\u2019s cloud free tier, both of which are practical adoption signals. The source also frames it as part of a real product stack rather than a lab-only model.",
           "model_name": "Kimi 2.5",
-          "operational_summary": "An open-weight model presented here as strong enough to power a real coding product and to be used through local or hosted workflows. The article treats it as evidence that open-weight models can be fine-tuned into frontier-style product behavior.",
+          "operational_profile": "An open-weight model presented here as strong enough to power a real coding product and to be used through local or hosted workflows. The article treats it as evidence that open-weight models can be fine-tuned into frontier-style product behavior.\n\n- The article uses it as the model behind Cursor\u2019s Composer 2, which suggests it can support real coding-product workloads.\n- It is positioned as open-weight, which makes it easier to adapt, host, or fine-tune than a closed proprietary model.\n- Its presence in Ollama\u2019s cloud free tier suggests it is being operationalized for developer workflows rather than remaining purely experimental.",
           "pricing_inference_implications": "Because it appears in a free tier and in an open-weight deployment story, the article implies it may be usable in lower-cost workflows than premium proprietary APIs. The source does not give enough pricing data to quantify the economics beyond that.",
           "proposed_new_type": null,
           "proposed_types": [
-            "open-weight",
-            "agentic-coding"
+            "open-weight-model",
+            "coding-model"
           ],
           "provider": "Moonshot AI",
           "related_models": [
@@ -346,12 +350,10 @@
             "GLM-5 Reasoning"
           ],
           "service_automation_implications": "The article does not establish direct service automation implications beyond the general possibility of local or hosted deployment for internal agents.",
-          "strengths": "- The article uses it as the model behind Cursor\u2019s Composer 2, which suggests it can support real coding-product workloads.\n- It is positioned as open-weight, which makes it easier to adapt, host, or fine-tune than a closed proprietary model.\n- Its presence in Ollama\u2019s cloud free tier suggests it is being operationalized for developer workflows rather than remaining purely experimental.",
           "suggested_action": "ignore",
           "supporting_snippet": "\u201cCursor launches Composer 2... and a developer intercepts API traffic and finds the model ID: kimi-k2p5-rl-0317-s515-fast. ... Composer 2 was Kimi K2.5 \u2192 an open-weight Chinese model( Moonshot AI) which is fine-tuned with RL!\u201d",
           "value_level": "high",
-          "weaknesses_limitations": "The article does not provide a direct benchmark for Kimi K2.5 itself, so the performance claims are indirect. Its usefulness here is framed through product behavior and product interception, not through a controlled evaluation of code quality or reliability.",
-          "workflow_implications": "It shows that open-weight models can be wrapped into coding products and shipped as practical substitutes for some proprietary workflows. That reduces the assumption that frontier coding UX must depend on a closed model API."
+          "weaknesses_limitations": "The article does not provide a direct benchmark for Kimi K2.5 itself, so the performance claims are indirect. Its usefulness here is framed through product behavior and product interception, not through a controlled evaluation of code quality or reliability."
         },
         "notes": null,
         "proposal_id": "04ace016-cf3f-4c11-a9fe-e6c13b422cfd",
@@ -382,6 +384,12 @@
             "notes": null,
             "status": "pending"
           },
+          "deployment_implications": {
+            "final_text": "It shows that open-weight models can be wrapped into coding products and shipped as practical substitutes for some proprietary workflows. That reduces the assumption that frontier coding UX must depend on a closed model API.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -392,10 +400,11 @@
             "notes": null,
             "status": "pending"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "An open-weight model presented here as strong enough to power a real coding product and to be used through local or hosted workflows. The article treats it as evidence that open-weight models can be fine-tuned into frontier-style product behavior.\n\n- The article uses it as the model behind Cursor\u2019s Composer 2, which suggests it can support real coding-product workloads.\n- It is positioned as open-weight, which makes it easier to adapt, host, or fine-tune than a closed proprietary model.\n- Its presence in Ollama\u2019s cloud free tier suggests it is being operationalized for developer workflows rather than remaining purely experimental.",
             "notes": null,
-            "status": "pending"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -422,22 +431,12 @@
             "notes": null,
             "status": "pending"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "pending"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "pending"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "pending"
@@ -461,10 +460,10 @@
           "evidence_type": null,
           "extended_explanation": "Mixture-of-experts models split a system into specialized parts and activate only the parts needed for a given input. In practice, that can make a model cheaper or faster to run than a dense model of similar total size. The tradeoff is that routing and specialization can introduce uneven behavior, especially if the activated portion is too small for complex tasks. Teams care about this because MoE models often sit at the intersection of performance, cost, and deployment complexity.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A model architecture that routes each input through only a subset of its parameters rather than activating the full model every time. This can reduce inference cost while keeping a large total parameter count.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [],
@@ -516,7 +515,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-architecture"
+            "runtime-architecture"
           ]
         }
       },
@@ -607,11 +606,11 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "local-model-deployment"
+            "inference-systems"
           ],
           "question_title": "Local Model Deployment",
           "related_howtos": [],
-          "secondary_tag": "local-model-deployment",
+          "secondary_tag": "inference-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -688,9 +687,9 @@
           "evidence_from_source": "The article says Cursor\u2019s Composer 2 was identified as an open-weight Kimi K2.5 variant and that Ollama added support for pointing Claude Code-style workflows at a local server. That is evidence that productized coding experiences can sit on open-weight or self-hosted backends.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "related_trends": [],
           "secondary_tag": "",
@@ -988,7 +987,7 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "ai-architecture"
+            "runtime-architecture"
           ],
           "related_topics": [
             "self-hosted-ai-economics",
@@ -996,7 +995,7 @@
             "context-engineering"
           ],
           "relevance_note": "Local deployment matters wherever teams need control over data flow, reliability, or per-request cost. It is especially relevant for conversational systems and internal copilots that handle sensitive content or high-volume repetitive tasks.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

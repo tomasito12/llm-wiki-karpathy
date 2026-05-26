@@ -21,7 +21,7 @@
       "total_tokens": 32488
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,16 +41,16 @@
         "evidence_from_source": "The article says DeepSeek's earlier release triggered panic because it delivered near-top performance at a fraction of the cost, but v4 was greeted with a shrug despite still being strong and cheap for users.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-economics",
+        "primary_tag": "software-commoditization",
         "proposed_tags": [
-          "ai-economics",
-          "ai-architecture",
-          "ai-engineering"
+          "software-commoditization",
+          "runtime-centralization",
+          "ai-operationalization"
         ],
         "related_trends": [
           "software-differentiation-shifts-from-engineering-to-distribution"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -119,11 +119,11 @@
         "knowledge_summary": "When model quality becomes good enough across several providers, the competitive edge can move toward where the model is embedded, how it is packaged, and which workflows it enables. A model release that once would have stood out on benchmarks can feel routine if rivals have closed the gap. Product layers, merchant workflows, and app ecosystems can become more important than raw model announcements. The durable lesson is that model capability and distribution should be evaluated together, not separately.",
         "match_candidates": [],
         "operational_insight": "Treat benchmark parity as the start of product competition, not the finish. If a model is no longer obviously ahead on cost or capability, the next moat is usually integration, workflow attachment, and customer-facing utility.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering",
-          "ai-applications"
+          "enterprise-ai"
         ],
         "related_topics": [
           "software-moat-compression",
@@ -154,14 +154,14 @@
         "primary_tag": "ai-governance",
         "proposed_tags": [
           "ai-governance",
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
           "agent-infrastructure"
         ],
         "relevance_note": "This matters because AI systems depend on scarce compute, hardware supply chains, and regulatory permission as much as on algorithms. For teams building services on top of frontier models, policy risk can affect latency to launch, training budgets, and which infrastructure is even available.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -185,16 +185,16 @@
           "evidence_from_source": "The article says DeepSeek's earlier release triggered panic because it delivered near-top performance at a fraction of the cost, but v4 was greeted with a shrug despite still being strong and cheap for users.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-economics",
+          "primary_tag": "software-commoditization",
           "proposed_tags": [
-            "ai-economics",
-            "ai-architecture",
-            "ai-engineering"
+            "software-commoditization",
+            "runtime-centralization",
+            "ai-operationalization"
           ],
           "related_trends": [
             "software-differentiation-shifts-from-engineering-to-distribution"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -373,11 +373,11 @@
           "knowledge_summary": "When model quality becomes good enough across several providers, the competitive edge can move toward where the model is embedded, how it is packaged, and which workflows it enables. A model release that once would have stood out on benchmarks can feel routine if rivals have closed the gap. Product layers, merchant workflows, and app ecosystems can become more important than raw model announcements. The durable lesson is that model capability and distribution should be evaluated together, not separately.",
           "match_candidates": [],
           "operational_insight": "Treat benchmark parity as the start of product competition, not the finish. If a model is no longer obviously ahead on cost or capability, the next moat is usually integration, workflow attachment, and customer-facing utility.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "ai-applications"
+            "enterprise-ai"
           ],
           "related_topics": [
             "software-moat-compression",
@@ -455,7 +455,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ]
         }
@@ -476,14 +476,14 @@
           "primary_tag": "ai-governance",
           "proposed_tags": [
             "ai-governance",
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
             "agent-infrastructure"
           ],
           "relevance_note": "This matters because AI systems depend on scarce compute, hardware supply chains, and regulatory permission as much as on algorithms. For teams building services on top of frontier models, policy risk can affect latency to launch, training budgets, and which infrastructure is even available.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-economics",
           "suggested_new_tags": [

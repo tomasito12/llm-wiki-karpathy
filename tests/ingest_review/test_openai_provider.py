@@ -689,8 +689,10 @@ def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
     )
     assert TAG_ONTOLOGY_RUBRIC.split("\n")[0] in prompt
     assert REGISTRY_TYPES_SEMANTICS.split("\n")[0] in prompt
-    assert "prefer reusing existing allowlist tags" in prompt.lower()
-    assert "gpt-5-4-launch" in prompt
+    assert "minimize drift" in prompt.lower()
+    assert "retrieval anchors" in prompt.lower()
+    assert "execution-layer-transformation" in prompt
+    assert "TOOL_TAGS_ALLOWLIST" in prompt
     assert "proposed_tags" in TAG_ONTOLOGY_RUBRIC
     assert "TOPIC_TAGS_ALLOWLIST" in TOPICS_RUBRIC
     assert "proposed_types" in TOOLS_RUBRIC
@@ -1206,7 +1208,7 @@ def test_prompt_version_is_37() -> None:
     """Prompt version bumped for complementary tool extraction on product reviews."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "37"
+    assert PROMPT_VERSION == "38"
 
 
 def test_title_canonicalization_rubric_replaces_suggested_action() -> None:

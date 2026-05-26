@@ -21,7 +21,7 @@
       "total_tokens": 30398
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,17 +37,17 @@
         "evidence_type": null,
         "extended_explanation": "Instead of expecting the model to remember everything, the system looks up supporting material from a document store, vector database, or search index before answering. This is useful when the underlying knowledge changes often or when the source material is too large to fit in context. The tradeoff is that the system redoes the search-and-stitch process for each question, so it may not build persistent structure across related questions. In practice, it is often used for document question answering, internal knowledge search, and support bots.",
         "match_candidates": [],
-        "primary_tag": "retrieval-augmented-generation",
+        "primary_tag": "rag",
         "proposed_definition": "A method that improves language model answers by retrieving relevant external documents or chunks and feeding them into the model at query time.",
         "proposed_tags": [
-          "retrieval-augmented-generation",
-          "ai-architecture"
+          "rag",
+          "runtime-architecture"
         ],
         "related_terms": [
           "Knowledge Management"
         ],
         "relevance_note": "This is a core pattern in document-grounded AI systems, especially for chatbots, enterprise search, and service workflows that need answers from private material. Understanding its strengths and limits helps practitioners decide when retrieval is enough and when they need higher-level structure or curation.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -60,10 +60,10 @@
         "evidence_type": null,
         "extended_explanation": "In AI systems, knowledge management covers more than file storage: it includes structure, taxonomy, backlinks, summaries, and maintenance routines that keep information usable over time. A well-managed knowledge base can reduce repeated searching, improve answer consistency, and make human review easier. It becomes especially important when AI outputs need to accumulate rather than disappear after a single chat session. In practice, it is a key layer for research workflows, internal docs, and agent systems that need persistent memory.",
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "memory-systems",
         "proposed_definition": "The practice of organizing, storing, linking, and maintaining information so it can be found and reused effectively.",
         "proposed_tags": [
-          "knowledge-management",
+          "memory-systems",
           "ai-engineering"
         ],
         "related_terms": [
@@ -88,9 +88,9 @@
         "evidence_from_source": "The article describes an LLM that reads raw material, writes wiki pages, creates backlinks, updates existing pages, runs lint passes, and generates outputs that are filed back into the wiki.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "related_trends": [
           "harness-design-becomes-more-important-for-agent-reliability"
@@ -170,14 +170,14 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "knowledge-management",
           "local-file-based-ai-workflows"
         ],
         "relevance_note": "This pattern is broadly useful anywhere teams accumulate documents that need to become reusable knowledge, especially when structure, traceability, and incremental updates matter more than one-off answers. It fits workflows that need memory across sources without sacrificing the ability to inspect the underlying files.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -202,13 +202,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "knowledge-compilation-workflows"
         ],
         "relevance_note": "Local-file workflows are valuable in AI engineering because they preserve transparency, portability, and low-friction automation. They are a strong fit for knowledge bases, agent traces, and team documentation that need to survive tool changes.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -228,17 +228,17 @@
           "evidence_type": null,
           "extended_explanation": "Instead of expecting the model to remember everything, the system looks up supporting material from a document store, vector database, or search index before answering. This is useful when the underlying knowledge changes often or when the source material is too large to fit in context. The tradeoff is that the system redoes the search-and-stitch process for each question, so it may not build persistent structure across related questions. In practice, it is often used for document question answering, internal knowledge search, and support bots.",
           "match_candidates": [],
-          "primary_tag": "retrieval-augmented-generation",
+          "primary_tag": "rag",
           "proposed_definition": "A method that improves language model answers by retrieving relevant external documents or chunks and feeding them into the model at query time.",
           "proposed_tags": [
-            "retrieval-augmented-generation",
-            "ai-architecture"
+            "rag",
+            "runtime-architecture"
           ],
           "related_terms": [
             "Knowledge Management"
           ],
           "relevance_note": "This is a core pattern in document-grounded AI systems, especially for chatbots, enterprise search, and service workflows that need answers from private material. Understanding its strengths and limits helps practitioners decide when retrieval is enough and when they need higher-level structure or curation.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -287,8 +287,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "retrieval-augmented-generation",
-            "ai-architecture"
+            "rag",
+            "runtime-architecture"
           ]
         }
       },
@@ -298,10 +298,10 @@
           "evidence_type": null,
           "extended_explanation": "In AI systems, knowledge management covers more than file storage: it includes structure, taxonomy, backlinks, summaries, and maintenance routines that keep information usable over time. A well-managed knowledge base can reduce repeated searching, improve answer consistency, and make human review easier. It becomes especially important when AI outputs need to accumulate rather than disappear after a single chat session. In practice, it is a key layer for research workflows, internal docs, and agent systems that need persistent memory.",
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "memory-systems",
           "proposed_definition": "The practice of organizing, storing, linking, and maintaining information so it can be found and reused effectively.",
           "proposed_tags": [
-            "knowledge-management",
+            "memory-systems",
             "ai-engineering"
           ],
           "related_terms": [
@@ -357,7 +357,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "memory-systems"
           ]
         }
       }
@@ -372,9 +372,9 @@
           "evidence_from_source": "The article describes an LLM that reads raw material, writes wiki pages, creates backlinks, updates existing pages, runs lint passes, and generates outputs that are filed back into the wiki.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "related_trends": [
             "harness-design-becomes-more-important-for-agent-reliability"
@@ -564,18 +564,18 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "knowledge-management",
             "local-file-based-ai-workflows"
           ],
           "relevance_note": "This pattern is broadly useful anywhere teams accumulate documents that need to become reusable knowledge, especially when structure, traceability, and incremental updates matter more than one-off answers. It fits workflows that need memory across sources without sacrificing the ability to inspect the underlying files.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "llm-wiki",
           "suggested_new_tags": [
-            "llm-wiki"
+            "knowledge-systems"
           ],
           "supporting_snippet": "Instead of searching through raw documents on every query, the LLM reads the raw material once and compiles it into a structured, organized wiki. Summaries, concept articles, backlinks, comparisons, an index the whole thing.",
           "topic_slug": "ai-assisted-knowledge-compilation",
@@ -646,11 +646,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "llm-wiki"
+            "knowledge-systems"
           ],
           "final_tags": [
-            "knowledge-management",
-            "llm-wiki"
+            "knowledge-systems"
           ]
         }
       },
@@ -671,13 +670,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "knowledge-compilation-workflows"
           ],
           "relevance_note": "Local-file workflows are valuable in AI engineering because they preserve transparency, portability, and low-friction automation. They are a strong fit for knowledge bases, agent traces, and team documentation that need to survive tool changes.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

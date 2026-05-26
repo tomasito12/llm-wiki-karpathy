@@ -21,7 +21,7 @@
       "total_tokens": 28348
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,9 +41,9 @@
         "evidence_from_source": "The source argues that users will talk to an agent and that the agent will generate the interface on the fly, which is presented as a threat to app-centric software and Apple\u2019s experience layer.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "related_trends": [],
         "secondary_tag": "",
@@ -119,7 +119,7 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "interactive-ai"
+          "multimodal-ai"
         ],
         "related_topics": [
           "realtime-multimodal-interaction",
@@ -127,7 +127,7 @@
           "context-engineering"
         ],
         "relevance_note": "Agentic workflows matter because they change how conversational products and back-office systems are designed: the model may become the coordinator that creates, routes, and updates work rather than only answering questions. That affects orchestration, permissions, error handling, and evaluation across many AI systems.",
-        "secondary_tag": "interactive-ai",
+        "secondary_tag": "multimodal-ai",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -181,16 +181,16 @@
           "evidence_from_source": "The source argues that users will talk to an agent and that the agent will generate the interface on the fly, which is presented as a threat to app-centric software and Apple\u2019s experience layer.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "related_trends": [],
           "secondary_tag": "",
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-architecture",
           "suggested_new_tags": [
-            "ai-architecture"
+            "runtime-centralization"
           ],
           "supporting_data_points": [
             "The article ties the claim to a 24-month horizon.",
@@ -263,10 +263,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-architecture"
+            "runtime-centralization"
           ],
           "final_tags": [
-            "ai-architecture"
+            "runtime-centralization"
           ]
         }
       }
@@ -373,7 +373,7 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "interactive-ai"
+            "multimodal-ai"
           ],
           "related_topics": [
             "realtime-multimodal-interaction",
@@ -381,7 +381,7 @@
             "context-engineering"
           ],
           "relevance_note": "Agentic workflows matter because they change how conversational products and back-office systems are designed: the model may become the coordinator that creates, routes, and updates work rather than only answering questions. That affects orchestration, permissions, error handling, and evaluation across many AI systems.",
-          "secondary_tag": "interactive-ai",
+          "secondary_tag": "multimodal-ai",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

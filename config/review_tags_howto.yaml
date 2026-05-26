@@ -1,9 +1,2 @@
-tags:
-- agentic-ai
-- ai-engineering
-- ai-privacy
-- knowledge-management
-- local-model-deployment
-- support-automation
-- ui-design
-- wiki
+# How-to proposals use the topic tag vocabulary (see load_howto_tags in tags.py).
+tags: []

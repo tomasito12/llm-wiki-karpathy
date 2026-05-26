@@ -21,7 +21,7 @@
       "total_tokens": 32641
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -136,13 +136,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "agentic-workflows"
         ],
         "relevance_note": "Context engineering is a durable operational pattern because agentic systems fail quickly when they lack grounding. It is central to coding agents, knowledge-grounded assistants, and any automation that needs to remember state across sessions or tasks.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -164,9 +164,9 @@
         "knowledge_summary": "Agentic workflows are systems where an AI model performs work through a structured sequence of planning, execution, verification, and iteration rather than a single prompt-response exchange. The workflow is usually constrained by checkpoints, task decomposition, and tool access so that the model can complete useful work over time. Effective agentic workflows often rely on separating planning from execution and on using feedback to prevent silent failure. They become much more reliable when each step is small and the next action is chosen from current state rather than from a fresh blank slate.",
         "match_candidates": [],
         "operational_insight": "Break autonomous work into small units with explicit checks between them, and avoid letting one pass do planning, execution, and self-grading at once.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
+          "agent-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -276,7 +276,7 @@
           "approved_new_tags": [],
           "final_tags": [
             "ai-engineering",
-            "ai-architecture"
+            "runtime-architecture"
           ]
         }
       },
@@ -447,13 +447,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "agentic-workflows"
           ],
           "relevance_note": "Context engineering is a durable operational pattern because agentic systems fail quickly when they lack grounding. It is central to coding agents, knowledge-grounded assistants, and any automation that needs to remember state across sessions or tasks.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -543,9 +543,9 @@
           "knowledge_summary": "Agentic workflows are systems where an AI model performs work through a structured sequence of planning, execution, verification, and iteration rather than a single prompt-response exchange. The workflow is usually constrained by checkpoints, task decomposition, and tool access so that the model can complete useful work over time. Effective agentic workflows often rely on separating planning from execution and on using feedback to prevent silent failure. They become much more reliable when each step is small and the next action is chosen from current state rather than from a fresh blank slate.",
           "match_candidates": [],
           "operational_insight": "Break autonomous work into small units with explicit checks between them, and avoid letting one pass do planning, execution, and self-grading at once.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
+            "agent-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -719,7 +719,7 @@
           "approved_new_tags": [],
           "final_tags": [
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ]
         }
       }

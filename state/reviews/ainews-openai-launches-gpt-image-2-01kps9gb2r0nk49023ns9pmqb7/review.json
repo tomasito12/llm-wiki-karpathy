@@ -21,7 +21,7 @@
       "total_tokens": 40470
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -55,9 +55,10 @@
         "operational_profile": "- Stronger text rendering and layout fidelity make the model useful for images that need to carry structured information, not only aesthetics.\n- The model supports editing, multilingual output, and image generation with a thinking variant, which broadens it beyond basic text-to-image use.\n- It is described as able to generate artifacts like slides, infographics, diagrams, UI mockups, and QR codes, which makes it relevant for artifact-oriented workflows.\n- The roundup\u2019s emphasis is that it is more usable for practical design loops than for pure image novelty.",
         "pricing_inference_implications": "No price data is provided. The article gives no basis for inference-cost estimates, so cost-effectiveness for large-scale use remains unknown.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
-          "proprietary",
-          "multi-modal"
+          "proprietary-model",
+          "multimodal-model"
         ],
         "provider": "OpenAI",
         "related_models": [
@@ -65,6 +66,7 @@
         ],
         "service_automation_implications": "Direct service automation value is limited in the source, but the model could help generate structured visuals for support flows, diagrams, and templates that teams use in operational workflows. The piece does not show customer-facing automation use cases or handoff effects.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\u201cOpenAI rolled out ChatGPT Images 2.0 and the underlying gpt-image-2 model across ChatGPT, Codex, and API, emphasizing stronger text rendering, layout fidelity, editing, multilingual support, and \u2018thinking\u2019 for images.\u201d",
         "value_level": "high",
         "weaknesses_limitations": "The source does not provide production latency, price, throughput, or failure-mode data, so readiness for high-volume use is unclear. The claims are largely launch-driven and benchmark-backed, so real-world reliability across messy inputs remains uncertain. The article also does not explain where the thinking variant helps or fails in detail."
@@ -80,16 +82,16 @@
         "evidence_from_source": "The roundup highlights GPT-Image-2 generating slides, infographics, diagrams, UI mockups, and QR codes, and it explicitly connects image generation to coding-agent workflows.",
         "evidence_type": "mixed",
         "match_candidates": [],
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "execution-oriented-agents",
+          "runtime-centralization"
         ],
         "related_trends": [
           "models-becoming-execution-layers",
           "realtime-ai"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -121,12 +123,12 @@
           "Codex"
         ],
         "operational_relevance": "This encourages workflows where a model first creates a layout or mockup, then a code agent or human engineer implements against the visual reference. It favors systems that can keep visual constraints stable across iterations.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "execution-oriented-agents",
+          "runtime-centralization"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "service_automation_relevance": "Indirect service automation value: teams could generate diagrams, forms, and workflow visuals that support staff or agents use to execute cases, but the source does not show a direct customer-support deployment.",
         "signal_strength": "medium",
         "signal_title": "Image generation becoming a front-end for coding agents",
@@ -157,12 +159,12 @@
           "Claude Code"
         ],
         "operational_relevance": "Practical agent systems need memory, tool routing, permissions, evaluation hooks, and failure recovery. The roundup suggests those layers are increasingly where engineering effort pays off.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "execution-oriented-agents",
+          "runtime-centralization"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "service_automation_relevance": "This is highly relevant for support automation because containment, escalation, and safe task completion depend on runtime controls as much as on model quality.",
         "signal_strength": "high",
         "signal_title": "Harness quality matters more as models converge",
@@ -191,12 +193,12 @@
           "MCP"
         ],
         "operational_relevance": "Teams building analyst assistants should expect the agent to need multimodal inputs, code execution, and access to internal corpora, not just web search. That creates stronger requirements for planning, logging, and error recovery.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "execution-oriented-agents",
+          "runtime-centralization"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "service_automation_relevance": "Indirect but real: the same planning-and-execution pattern can support back-office case handling and knowledge work, though the article does not show direct support-contact deployments.",
         "signal_strength": "medium",
         "signal_title": "Open research agents moving toward full-stack planning and execution",
@@ -226,12 +228,12 @@
           "vLLM"
         ],
         "operational_relevance": "Builders should expect that quantization, attention kernels, and serving engines can meaningfully change throughput and practical cost. The source explicitly pairs model launch claims with infra releases and benchmarked speedups.",
-        "primary_tag": "ai-economics",
+        "primary_tag": "software-commoditization",
         "proposed_tags": [
-          "ai-economics",
-          "ai-architecture"
+          "software-commoditization",
+          "runtime-centralization"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "service_automation_relevance": "Higher-throughput open-weight models can make always-on agent workflows more affordable, which matters for support and back-office automation, but the source does not present a direct deployment case.",
         "signal_strength": "medium",
         "signal_title": "Open-weight models becoming deployment-economics stories",
@@ -261,12 +263,12 @@
           "MCP"
         ],
         "operational_relevance": "Implementers will need to handle connector permissions, artifact generation, and progress feedback in addition to basic retrieval. The API shape suggests research agents should be treated as orchestration systems, not just language-model wrappers.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "execution-oriented-agents",
+          "runtime-centralization"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "service_automation_relevance": "No direct service automation implications identified.",
         "signal_strength": "medium",
         "signal_title": "Research-agent APIs are becoming multimodal and connector-aware",
@@ -333,17 +335,17 @@
         "knowledge_summary": "Image generation can serve as a visual specification layer for downstream AI systems, especially code agents. In this workflow, the image is not the end product; it carries layout, structure, and design intent that another agent can implement against. The source frames this as particularly useful for UI mockups, slides, infographics, diagrams, documentation visuals, and other reference-driven design tasks where fidelity and alignment matter. The broader engineering pattern is to treat generated visuals as inspectable constraints that reduce ambiguity before implementation.",
         "match_candidates": [],
         "operational_insight": "A practical workflow is to generate a visual artifact first, then hand that artifact to a code agent or other implementation system as the reference target. This can help teams align on layout-heavy work, make specs easier to inspect and refine, and shift ambiguity out of prose-only prompting into a visual form.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
-          "agentic-ai"
+          "runtime-architecture",
+          "agent-systems"
         ],
         "related_topics": [
           "agentic-workflows",
           "interactive-ai"
         ],
         "relevance_note": "Visual specifications are useful whenever an AI system needs to communicate structure, layout, or implementation intent before execution. They matter most in workflows where a downstream model or agent can use the visual artifact as a concrete target rather than as decorative output.",
-        "secondary_tag": "agentic-ai",
+        "secondary_tag": "agent-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -365,10 +367,10 @@
         "knowledge_summary": "Agent systems are increasingly shaped by the runtime layer around the model: orchestration, memory, permissions, tracing, tool execution, and deployment wrappers determine whether a system can be trusted for long tasks. The source frames this as a shift from a single chat loop toward multi-process orchestrated systems with reusable skills and subagents. It also highlights hierarchical decomposition as a concrete capability, noting Hermes subagents with greater spawn width and recursive spawn depth.",
         "match_candidates": [],
         "operational_insight": "Design the agent runtime as a first-class product surface. Reliability and autonomy come less from the base model alone than from the controls, observability, and coordination logic wrapped around it.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "agent-systems",
+          "runtime-architecture"
         ],
         "related_topics": [
           "agentic-workflows",
@@ -377,7 +379,7 @@
           "context-engineering"
         ],
         "relevance_note": "This is a durable engineering pattern for AI systems because production usefulness often depends on the surrounding execution environment, not just model quality. It applies across agentic products, automation stacks, and any workflow where safety, state, and task decomposition matter.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -414,10 +416,10 @@
           "model_name": "GPT-Image-2",
           "operational_profile": "- Stronger text rendering and layout fidelity make the model useful for images that need to carry structured information, not only aesthetics.\n- The model supports editing, multilingual output, and image generation with a thinking variant, which broadens it beyond basic text-to-image use.\n- It is described as able to generate artifacts like slides, infographics, diagrams, UI mockups, and QR codes, which makes it relevant for artifact-oriented workflows.\n- The roundup\u2019s emphasis is that it is more usable for practical design loops than for pure image novelty.",
           "pricing_inference_implications": "No price data is provided. The article gives no basis for inference-cost estimates, so cost-effectiveness for large-scale use remains unknown.",
-          "proposed_new_type": "images",
+          "proposed_new_type": "multimodal-model",
           "proposed_types": [
-            "proprietary",
-            "multi-modal"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "provider": "OpenAI",
           "related_models": [
@@ -525,11 +527,11 @@
             "images"
           ],
           "approved_types": [
-            "proprietary",
-            "images"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "reviewer_types_added": [
-            "images"
+            "multimodal-model"
           ]
         }
       }
@@ -545,20 +547,20 @@
           "evidence_from_source": "The roundup highlights GPT-Image-2 generating slides, infographics, diagrams, UI mockups, and QR codes, and it explicitly connects image generation to coding-agent workflows.",
           "evidence_type": "mixed",
           "match_candidates": [],
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "execution-oriented-agents",
+            "runtime-centralization"
           ],
           "related_trends": [
             "models-becoming-execution-layers",
             "realtime-ai"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "suggested_action": "ignore",
           "suggested_new_tag": "agentic-coding",
           "suggested_new_tags": [
-            "agentic-coding"
+            "execution-oriented-agents"
           ],
           "supporting_data_points": [
             "GPT-Image-2 is described as generating slides, infographics, diagrams, UI mockups, and QR codes.",
@@ -634,11 +636,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "agentic-coding"
+            "execution-oriented-agents"
           ],
           "final_tags": [
-            "agentic-ai",
-            "agentic-coding"
+            "execution-oriented-agents"
           ]
         }
       }
@@ -658,12 +659,12 @@
             "Codex"
           ],
           "operational_relevance": "This encourages workflows where a model first creates a layout or mockup, then a code agent or human engineer implements against the visual reference. It favors systems that can keep visual constraints stable across iterations.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "execution-oriented-agents",
+            "runtime-centralization"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "service_automation_relevance": "Indirect service automation value: teams could generate diagrams, forms, and workflow visuals that support staff or agents use to execute cases, but the source does not show a direct customer-support deployment.",
           "signal_strength": "medium",
           "signal_title": "Image generation becoming a front-end for coding agents",
@@ -777,12 +778,12 @@
             "Claude Code"
           ],
           "operational_relevance": "Practical agent systems need memory, tool routing, permissions, evaluation hooks, and failure recovery. The roundup suggests those layers are increasingly where engineering effort pays off.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "execution-oriented-agents",
+            "runtime-centralization"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "service_automation_relevance": "This is highly relevant for support automation because containment, escalation, and safe task completion depend on runtime controls as much as on model quality.",
           "signal_strength": "high",
           "signal_title": "Harness quality matters more as models converge",
@@ -896,12 +897,12 @@
             "MCP"
           ],
           "operational_relevance": "Teams building analyst assistants should expect the agent to need multimodal inputs, code execution, and access to internal corpora, not just web search. That creates stronger requirements for planning, logging, and error recovery.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "execution-oriented-agents",
+            "runtime-centralization"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "service_automation_relevance": "Indirect but real: the same planning-and-execution pattern can support back-office case handling and knowledge work, though the article does not show direct support-contact deployments.",
           "signal_strength": "medium",
           "signal_title": "Open research agents moving toward full-stack planning and execution",
@@ -1014,12 +1015,12 @@
             "vLLM"
           ],
           "operational_relevance": "Builders should expect that quantization, attention kernels, and serving engines can meaningfully change throughput and practical cost. The source explicitly pairs model launch claims with infra releases and benchmarked speedups.",
-          "primary_tag": "ai-economics",
+          "primary_tag": "software-commoditization",
           "proposed_tags": [
-            "ai-economics",
-            "ai-architecture"
+            "software-commoditization",
+            "runtime-centralization"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "service_automation_relevance": "Higher-throughput open-weight models can make always-on agent workflows more affordable, which matters for support and back-office automation, but the source does not present a direct deployment case.",
           "signal_strength": "medium",
           "signal_title": "Open-weight models becoming deployment-economics stories",
@@ -1133,12 +1134,12 @@
             "MCP"
           ],
           "operational_relevance": "Implementers will need to handle connector permissions, artifact generation, and progress feedback in addition to basic retrieval. The API shape suggests research agents should be treated as orchestration systems, not just language-model wrappers.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "execution-oriented-agents",
+            "runtime-centralization"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "service_automation_relevance": "No direct service automation implications identified.",
           "signal_strength": "medium",
           "signal_title": "Research-agent APIs are becoming multimodal and connector-aware",
@@ -1335,17 +1336,17 @@
           "knowledge_summary": "Image generation can serve as a visual specification layer for downstream AI systems, especially code agents. In this workflow, the image is not the end product; it carries layout, structure, and design intent that another agent can implement against. The source frames this as particularly useful for UI mockups, slides, infographics, diagrams, documentation visuals, and other reference-driven design tasks where fidelity and alignment matter. The broader engineering pattern is to treat generated visuals as inspectable constraints that reduce ambiguity before implementation.",
           "match_candidates": [],
           "operational_insight": "A practical workflow is to generate a visual artifact first, then hand that artifact to a code agent or other implementation system as the reference target. This can help teams align on layout-heavy work, make specs easier to inspect and refine, and shift ambiguity out of prose-only prompting into a visual form.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
-            "agentic-ai"
+            "runtime-architecture",
+            "agent-systems"
           ],
           "related_topics": [
             "agentic-workflows",
             "interactive-ai"
           ],
           "relevance_note": "Visual specifications are useful whenever an AI system needs to communicate structure, layout, or implementation intent before execution. They matter most in workflows where a downstream model or agent can use the visual artifact as a concrete target rather than as decorative output.",
-          "secondary_tag": "agentic-ai",
+          "secondary_tag": "agent-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -1433,10 +1434,10 @@
           "knowledge_summary": "Agent systems are increasingly shaped by the runtime layer around the model: orchestration, memory, permissions, tracing, tool execution, and deployment wrappers determine whether a system can be trusted for long tasks. The source frames this as a shift from a single chat loop toward multi-process orchestrated systems with reusable skills and subagents. It also highlights hierarchical decomposition as a concrete capability, noting Hermes subagents with greater spawn width and recursive spawn depth.",
           "match_candidates": [],
           "operational_insight": "Design the agent runtime as a first-class product surface. Reliability and autonomy come less from the base model alone than from the controls, observability, and coordination logic wrapped around it.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "agent-systems",
+            "runtime-architecture"
           ],
           "related_topics": [
             "agentic-workflows",
@@ -1445,7 +1446,7 @@
             "context-engineering"
           ],
           "relevance_note": "This is a durable engineering pattern for AI systems because production usefulness often depends on the surrounding execution environment, not just model quality. It applies across agentic products, automation stacks, and any workflow where safety, state, and task decomposition matter.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

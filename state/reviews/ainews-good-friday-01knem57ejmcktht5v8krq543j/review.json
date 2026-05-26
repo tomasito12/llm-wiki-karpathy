@@ -21,7 +21,7 @@
       "total_tokens": 35844
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -53,12 +53,12 @@
           "Hugging Face Inference Endpoints"
         ],
         "operational_relevance": "Teams evaluating open weights should check runtime compatibility, quantization support, and hardware coverage on day zero. Without those, a strong model can remain operationally inaccessible.",
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering",
-          "ai-architecture"
+          "ai-operationalization",
+          "runtime-centralization"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "service_automation_relevance": "Better day-zero support helps support bots and voice systems adopt local or fallback models faster, which can improve resiliency when hosted APIs are constrained.",
         "signal_strength": "high",
         "signal_title": "Open-model usability depends on day-zero ecosystem support",
@@ -89,12 +89,12 @@
           "Nous"
         ],
         "operational_relevance": "Agent builders should treat harness design, memory layout, and feedback loops as core architecture, not glue code. This affects evaluation, reliability, and iterative improvement.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-engineering"
+          "execution-oriented-agents",
+          "ai-operationalization"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "service_automation_relevance": "For chatbots and support agents, better harnesses can improve persistence across turns, reduce dropped context, and make long workflows more reliable.",
         "signal_strength": "high",
         "signal_title": "Harness quality is becoming a primary determinant of agent performance",
@@ -123,12 +123,12 @@
           "Codex"
         ],
         "operational_relevance": "Teams should design for bounded parallelism, good traceability, and context export rather than assuming humans can supervise many independent agent loops. This is especially important for verification-heavy coding workflows.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-engineering"
+          "execution-oriented-agents",
+          "ai-operationalization"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "service_automation_relevance": "The same coordination limits apply to support operations if humans must supervise many automated cases at once; systems should minimize attention switching and make handoff state explicit.",
         "signal_strength": "medium",
         "signal_title": "Parallel coding agents create a human attention bottleneck",
@@ -159,9 +159,9 @@
           "OpenClaw"
         ],
         "operational_relevance": "Teams should evaluate whether an open model can serve as a fallback in the same agent stack, including on-device or small-server deployment. This matters for resilience, cost control, and offline work.",
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "Local fallback is especially relevant for customer-facing assistants that need continuity during API limits or outages. It can preserve partial functionality even if the primary hosted model is unavailable.",
@@ -196,12 +196,12 @@
           "Apple"
         ],
         "operational_relevance": "Evaluation teams should separate headline time-horizon numbers from actual deployment readiness. Better context management and post-training methods may matter more than raw capability claims for production agents.",
-        "primary_tag": "ai-evals",
+        "primary_tag": "behavioral-evaluation",
         "proposed_tags": [
-          "ai-evals",
-          "agentic-ai"
+          "behavioral-evaluation",
+          "execution-oriented-agents"
         ],
-        "secondary_tag": "agentic-ai",
+        "secondary_tag": "execution-oriented-agents",
         "service_automation_relevance": "Longer-horizon progress could improve multi-step support cases, but only if the system also preserves state and avoids drift across turns.",
         "signal_strength": "medium",
         "signal_title": "Long-horizon capability is improving, but evidence remains uneven",
@@ -282,12 +282,12 @@
             "Hugging Face Inference Endpoints"
           ],
           "operational_relevance": "Teams evaluating open weights should check runtime compatibility, quantization support, and hardware coverage on day zero. Without those, a strong model can remain operationally inaccessible.",
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering",
-            "ai-architecture"
+            "ai-operationalization",
+            "runtime-centralization"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "service_automation_relevance": "Better day-zero support helps support bots and voice systems adopt local or fallback models faster, which can improve resiliency when hosted APIs are constrained.",
           "signal_strength": "high",
           "signal_title": "Open-model usability depends on day-zero ecosystem support",
@@ -405,12 +405,12 @@
             "Nous"
           ],
           "operational_relevance": "Agent builders should treat harness design, memory layout, and feedback loops as core architecture, not glue code. This affects evaluation, reliability, and iterative improvement.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-engineering"
+            "execution-oriented-agents",
+            "ai-operationalization"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "service_automation_relevance": "For chatbots and support agents, better harnesses can improve persistence across turns, reduce dropped context, and make long workflows more reliable.",
           "signal_strength": "high",
           "signal_title": "Harness quality is becoming a primary determinant of agent performance",
@@ -524,12 +524,12 @@
             "Codex"
           ],
           "operational_relevance": "Teams should design for bounded parallelism, good traceability, and context export rather than assuming humans can supervise many independent agent loops. This is especially important for verification-heavy coding workflows.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-engineering"
+            "execution-oriented-agents",
+            "ai-operationalization"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "service_automation_relevance": "The same coordination limits apply to support operations if humans must supervise many automated cases at once; systems should minimize attention switching and make handoff state explicit.",
           "signal_strength": "medium",
           "signal_title": "Parallel coding agents create a human attention bottleneck",
@@ -642,9 +642,9 @@
             "OpenClaw"
           ],
           "operational_relevance": "Teams should evaluate whether an open model can serve as a fallback in the same agent stack, including on-device or small-server deployment. This matters for resilience, cost control, and offline work.",
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "Local fallback is especially relevant for customer-facing assistants that need continuity during API limits or outages. It can preserve partial functionality even if the primary hosted model is unavailable.",
@@ -764,12 +764,12 @@
             "Apple"
           ],
           "operational_relevance": "Evaluation teams should separate headline time-horizon numbers from actual deployment readiness. Better context management and post-training methods may matter more than raw capability claims for production agents.",
-          "primary_tag": "ai-evals",
+          "primary_tag": "behavioral-evaluation",
           "proposed_tags": [
-            "ai-evals",
-            "agentic-ai"
+            "behavioral-evaluation",
+            "execution-oriented-agents"
           ],
-          "secondary_tag": "agentic-ai",
+          "secondary_tag": "execution-oriented-agents",
           "service_automation_relevance": "Longer-horizon progress could improve multi-step support cases, but only if the system also preserves state and avoids drift across turns.",
           "signal_strength": "medium",
           "signal_title": "Long-horizon capability is improving, but evidence remains uneven",

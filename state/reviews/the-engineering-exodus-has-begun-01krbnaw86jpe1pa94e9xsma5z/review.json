@@ -21,7 +21,7 @@
       "total_tokens": 31824
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,15 +41,15 @@
         "evidence_from_source": "The article quotes Snap CEO Evan Spiegel predicting that companies will \u201creallocate more resources away from things like software engineering, for example, to distribution in order to grow faster,\u201d and frames this as a response to AI making software creation easier, cheaper, and faster.",
         "evidence_type": "mixed",
         "match_candidates": [],
-        "primary_tag": "ai-economics",
+        "primary_tag": "software-commoditization",
         "proposed_tags": [
-          "ai-economics",
-          "ai-engineering"
+          "software-commoditization",
+          "ai-operationalization"
         ],
         "related_trends": [
           "models-becoming-execution-layers"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -121,15 +121,15 @@
           "evidence_from_source": "The article quotes Snap CEO Evan Spiegel predicting that companies will \u201creallocate more resources away from things like software engineering, for example, to distribution in order to grow faster,\u201d and frames this as a response to AI making software creation easier, cheaper, and faster.",
           "evidence_type": "mixed",
           "match_candidates": [],
-          "primary_tag": "ai-economics",
+          "primary_tag": "software-commoditization",
           "proposed_tags": [
-            "ai-economics",
-            "ai-engineering"
+            "software-commoditization",
+            "ai-operationalization"
           ],
           "related_trends": [
             "models-becoming-execution-layers"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

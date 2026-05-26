@@ -21,7 +21,7 @@
       "total_tokens": 34943
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,10 +37,10 @@
         "evidence_type": null,
         "extended_explanation": "Model Context Protocol is useful when you want different AI clients to plug into the same tool or data source without custom integrations for each one. In practice, it acts like a common adapter layer between models and the rest of a software stack. That makes it easier to build reusable agent workflows, especially when the same tool needs to work across multiple products or runtimes. It is especially relevant when teams want composable systems rather than a single vendor app that owns everything.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A standard for connecting AI systems to external tools and data sources through a shared interface. It lets applications expose capabilities in a way that models or agents can discover and use.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [],
@@ -58,10 +58,10 @@
         "evidence_type": null,
         "extended_explanation": "JSON Canvas is a good example of a visual artifact that still stays portable because it is just data in a documented schema. For AI systems, that matters because structured output is easier to validate than free-form text. If a model writes the wrong field names or nests objects incorrectly, the file may fail to open or render correctly, so schema adherence becomes the main operational concern. The format is useful wherever generated diagrams or visual knowledge maps need to survive round-tripping through local tools.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A JSON-based file format for describing canvases made of nodes, connections, and groups. It is designed so a canvas can be stored and edited as structured text.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [],
@@ -93,15 +93,14 @@
           "A Claude Code-compatible AI client or CLI.",
           "Access to the Obsidian Skills repository."
         ],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
-          "local-model-deployment",
-          "wiki"
+          "knowledge-systems",
+          "inference-systems"
         ],
         "question_title": "Obsidian Skills Setup",
         "related_howtos": [],
-        "secondary_tag": "local-model-deployment",
+        "secondary_tag": "inference-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -118,15 +117,15 @@
         "evidence_from_source": "The article describes Obsidian Skills as a repo that teaches AI how to use Obsidian properly, with support for Markdown, Bases, and JSON Canvas, and emphasizes that the files stay local and open.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-architecture"
+          "workflow-restructuring",
+          "runtime-centralization"
         ],
         "related_trends": [
           "knowledge-base-becomes-runtime-infrastructure"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -200,6 +199,7 @@
         "name": "Obsidian",
         "operational_relevance": "Obsidian matters here because its file formats are the boundary AI must respect. The article treats the app as a local knowledge workspace where generated output should remain readable, portable, and editable outside the AI system. That makes it relevant for practitioners who want AI assistance without surrendering file ownership or moving notes into a proprietary database. It is most interesting as a host environment for AI workflows, not as an AI product itself.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "note-taking",
           "app"
@@ -212,6 +212,7 @@
         "short_description": "Obsidian is a local note-taking application built around Markdown files and other open formats. In this context it is the target environment that AI is being taught to work with correctly.",
         "strengths": "- Uses local Markdown and other open formats, which keeps the note system portable and easier to integrate with external tools.\n- Supports file-based workflows such as Bases and Canvas, giving AI a concrete schema to target instead of an opaque database.\n- Fits a toolchain approach where AI is an assistant to the existing workflow rather than the center of the product.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Obsidian has always walked this talk: starting with local Markdown and open formats so it could slot cleanly into a toolchain rather than own every step.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not discuss performance, collaboration limits, or how well the app handles large-scale AI-assisted edits. Its value here also depends on whether the surrounding AI client can reliably follow the file conventions; Obsidian alone does not solve that. The source does not provide evidence that this approach is easier for non-technical users."
@@ -230,9 +231,9 @@
         "knowledge_summary": "A useful way to make AI outputs reliable is to encode the rules of a file format as a skill or instruction pack. The model can then check those rules before acting, which reduces malformed output and keeps generated content compatible with the target application. This is especially helpful when the target is a structured local format rather than free text. The pattern generalizes to any workflow where a model must write valid artifacts, not just answer questions.",
         "match_candidates": [],
         "operational_insight": "Treat file grammar as first-class operational knowledge, not as an afterthought. A skill file can act like a lightweight validator and style guide for generation workflows, which is often cheaper than post-processing bad output.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
@@ -260,16 +261,16 @@
         "knowledge_summary": "Open file formats make it easier to add AI assistance without surrendering control of the underlying data. The application remains the system of record, while the AI becomes a tool that reads and writes in a documented format. That reduces lock-in and makes migrations or alternative clients more plausible. The design works best when the formats are human-readable and stable enough for repeated editing.",
         "match_candidates": [],
         "operational_insight": "Design AI features around durable file boundaries rather than proprietary app state when portability matters. This makes it easier to swap clients, audit outputs, and keep a human-editable source of truth.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
-          "knowledge-management"
+          "runtime-architecture",
+          "knowledge-systems"
         ],
         "related_topics": [
           "file-grammar-skills-for-ai"
         ],
         "relevance_note": "This is durable for AI engineering because many knowledge and content workflows fail when the AI vendor owns the data model. Open formats let organizations build assistant-like systems while keeping exit options and toolchain flexibility.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -289,10 +290,10 @@
           "evidence_type": null,
           "extended_explanation": "Model Context Protocol is useful when you want different AI clients to plug into the same tool or data source without custom integrations for each one. In practice, it acts like a common adapter layer between models and the rest of a software stack. That makes it easier to build reusable agent workflows, especially when the same tool needs to work across multiple products or runtimes. It is especially relevant when teams want composable systems rather than a single vendor app that owns everything.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A standard for connecting AI systems to external tools and data sources through a shared interface. It lets applications expose capabilities in a way that models or agents can discover and use.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [],
@@ -344,7 +345,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ]
         }
@@ -355,10 +356,10 @@
           "evidence_type": null,
           "extended_explanation": "JSON Canvas is a good example of a visual artifact that still stays portable because it is just data in a documented schema. For AI systems, that matters because structured output is easier to validate than free-form text. If a model writes the wrong field names or nests objects incorrectly, the file may fail to open or render correctly, so schema adherence becomes the main operational concern. The format is useful wherever generated diagrams or visual knowledge maps need to survive round-tripping through local tools.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A JSON-based file format for describing canvases made of nodes, connections, and groups. It is designed so a canvas can be stored and edited as structured text.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [],
@@ -434,15 +435,14 @@
             "A Claude Code-compatible AI client or CLI.",
             "Access to the Obsidian Skills repository."
           ],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
-            "local-model-deployment",
-            "wiki"
+            "knowledge-systems",
+            "inference-systems"
           ],
           "question_title": "Obsidian Skills Setup",
           "related_howtos": [],
-          "secondary_tag": "local-model-deployment",
+          "secondary_tag": "inference-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -510,7 +510,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       }
@@ -524,15 +524,15 @@
           "evidence_from_source": "The article describes Obsidian Skills as a repo that teaches AI how to use Obsidian properly, with support for Markdown, Bases, and JSON Canvas, and emphasizes that the files stay local and open.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-architecture"
+            "workflow-restructuring",
+            "runtime-centralization"
           ],
           "related_trends": [
             "knowledge-base-becomes-runtime-infrastructure"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -610,8 +610,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-engineering",
-            "ai-architecture"
+            "ai-operationalization",
+            "runtime-centralization"
           ]
         }
       }
@@ -836,9 +836,9 @@
           "knowledge_summary": "A useful way to make AI outputs reliable is to encode the rules of a file format as a skill or instruction pack. The model can then check those rules before acting, which reduces malformed output and keeps generated content compatible with the target application. This is especially helpful when the target is a structured local format rather than free text. The pattern generalizes to any workflow where a model must write valid artifacts, not just answer questions.",
           "match_candidates": [],
           "operational_insight": "Treat file grammar as first-class operational knowledge, not as an afterthought. A skill file can act like a lightweight validator and style guide for generation workflows, which is often cheaper than post-processing bad output.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
@@ -930,16 +930,16 @@
           "knowledge_summary": "Open file formats make it easier to add AI assistance without surrendering control of the underlying data. The application remains the system of record, while the AI becomes a tool that reads and writes in a documented format. That reduces lock-in and makes migrations or alternative clients more plausible. The design works best when the formats are human-readable and stable enough for repeated editing.",
           "match_candidates": [],
           "operational_insight": "Design AI features around durable file boundaries rather than proprietary app state when portability matters. This makes it easier to swap clients, audit outputs, and keep a human-editable source of truth.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
-            "knowledge-management"
+            "runtime-architecture",
+            "knowledge-systems"
           ],
           "related_topics": [
             "file-grammar-skills-for-ai"
           ],
           "relevance_note": "This is durable for AI engineering because many knowledge and content workflows fail when the AI vendor owns the data model. Open formats let organizations build assistant-like systems while keeping exit options and toolchain flexibility.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

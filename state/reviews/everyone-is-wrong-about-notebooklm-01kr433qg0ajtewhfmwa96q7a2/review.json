@@ -21,7 +21,7 @@
       "total_tokens": 27105
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,15 +37,15 @@
         "evidence_type": null,
         "extended_explanation": "This is a useful way to think about assistants that are meant to stay inside a document set, case file, or internal knowledge base. The important property is not just retrieval, but a contract that the system should not wander beyond the allowed sources. In practice, this supports auditability, privacy, and narrower error surfaces. It is especially relevant when users care more about traceable synthesis than creative generation.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A source-bounded information environment in which a model is allowed to reason only over a defined set of user-provided materials. The system\u2019s answers are constrained to that corpus rather than open-ended general knowledge.",
         "proposed_tags": [
-          "ai-architecture",
-          "knowledge-management"
+          "runtime-architecture",
+          "memory-systems"
         ],
         "related_terms": [],
         "relevance_note": "This concept matters wherever teams need AI to stay inside approved documents, such as policy assistants, legal research tools, internal knowledge bots, and governed service workflows. It shapes how systems are evaluated: the key question becomes whether the model stays faithful to the corpus and surfaces citations, not whether it can answer everything.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "memory-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -58,15 +58,15 @@
         "evidence_type": null,
         "extended_explanation": "Retrieval-augmented generation is common in enterprise assistants because it lets a model use a curated knowledge base instead of relying only on parametric memory. The quality of the retrieval step often matters as much as the model itself: bad source selection leads to bad answers. In operational settings, it is often combined with citations, document segmentation, and access controls. It is especially useful when the source material changes frequently or must remain auditable.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A pattern where a model answers by retrieving relevant external documents or passages and then generating a response grounded in that retrieved context. It is used to improve factuality, freshness, and domain specificity.",
         "proposed_tags": [
-          "ai-architecture",
-          "knowledge-management"
+          "runtime-architecture",
+          "memory-systems"
         ],
         "related_terms": [],
         "relevance_note": "This is a core pattern for document assistants, support search, internal copilots, and knowledge-grounded chat systems. It affects chunking, retrieval quality, citation design, and whether an assistant can be trusted in regulated or high-stakes workflows.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "memory-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -84,13 +84,13 @@
         "evidence_from_source": "The article presents NotebookLM as a \u201cprivate micro-universe\u201d and argues that it is built for \u201cSource-grounded cognition\u201d rather than open-ended chatting.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering",
-          "knowledge-management"
+          "ai-operationalization",
+          "workflow-restructuring"
         ],
         "related_trends": [],
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "workflow-restructuring",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -193,9 +193,9 @@
         "knowledge_summary": "Source-grounded AI tools can act as structured knowledge interfaces for organizations when they are fed curated internal documents. Their value comes from turning scattered files into a searchable, citeable knowledge layer. That makes document hygiene, versioning, and corpus updates operationally important. The result is less about chatting and more about preserving organizational memory.",
         "match_candidates": [],
         "operational_insight": "Use grounded AI as an index and synthesis layer over internal documentation, but keep ownership of document freshness and source hygiene explicit.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
+          "knowledge-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -222,19 +222,19 @@
           "evidence_type": null,
           "extended_explanation": "This is a useful way to think about assistants that are meant to stay inside a document set, case file, or internal knowledge base. The important property is not just retrieval, but a contract that the system should not wander beyond the allowed sources. In practice, this supports auditability, privacy, and narrower error surfaces. It is especially relevant when users care more about traceable synthesis than creative generation.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A source-bounded information environment in which a model is allowed to reason only over a defined set of user-provided materials. The system\u2019s answers are constrained to that corpus rather than open-ended general knowledge.",
           "proposed_tags": [
-            "ai-architecture",
-            "knowledge-management"
+            "runtime-architecture",
+            "memory-systems"
           ],
           "related_terms": [],
           "relevance_note": "This concept matters wherever teams need AI to stay inside approved documents, such as policy assistants, legal research tools, internal knowledge bots, and governed service workflows. It shapes how systems are evaluated: the key question becomes whether the model stays faithful to the corpus and surfaces citations, not whether it can answer everything.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "memory-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "retrieval-augmented-generation",
           "suggested_new_tags": [
-            "retrieval-augmented-generation"
+            "rag"
           ],
           "supporting_snippet": "It is engineered around a radically different mandate:\nSource-grounded cognition.\nEpistemic certainty. No improvisation allowed.\nNotebookLM will not answer questions that fall outside your uploaded sources. Its job is to build a private micro-universe \u2014 a \u201cClosed-Resource Information Trust\u201d \u2014 and reason only within it.",
           "term": "Closed-Resource Information Trust",
@@ -279,7 +279,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "memory-systems"
           ]
         }
       },
@@ -289,19 +289,19 @@
           "evidence_type": null,
           "extended_explanation": "Retrieval-augmented generation is common in enterprise assistants because it lets a model use a curated knowledge base instead of relying only on parametric memory. The quality of the retrieval step often matters as much as the model itself: bad source selection leads to bad answers. In operational settings, it is often combined with citations, document segmentation, and access controls. It is especially useful when the source material changes frequently or must remain auditable.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A pattern where a model answers by retrieving relevant external documents or passages and then generating a response grounded in that retrieved context. It is used to improve factuality, freshness, and domain specificity.",
           "proposed_tags": [
-            "ai-architecture",
-            "knowledge-management"
+            "runtime-architecture",
+            "memory-systems"
           ],
           "related_terms": [],
           "relevance_note": "This is a core pattern for document assistants, support search, internal copilots, and knowledge-grounded chat systems. It affects chunking, retrieval quality, citation design, and whether an assistant can be trusted in regulated or high-stakes workflows.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "memory-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "retrieval-augmented-generation",
           "suggested_new_tags": [
-            "retrieval-augmented-generation"
+            "rag"
           ],
           "supporting_snippet": "A real API \u2192 NLM becomes a RAG microservice for EVERYTHING",
           "term": "Retrieval-Augmented Generation",
@@ -345,10 +345,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "retrieval-augmented-generation"
+            "rag"
           ],
           "final_tags": [
-            "knowledge-management"
+            "memory-systems"
           ]
         }
       }
@@ -363,13 +363,13 @@
           "evidence_from_source": "The article presents NotebookLM as a \u201cprivate micro-universe\u201d and argues that it is built for \u201cSource-grounded cognition\u201d rather than open-ended chatting.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering",
-            "knowledge-management"
+            "ai-operationalization",
+            "workflow-restructuring"
           ],
           "related_trends": [],
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "workflow-restructuring",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -445,7 +445,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ]
         }
       }
@@ -649,9 +649,9 @@
           "knowledge_summary": "Source-grounded AI tools can act as structured knowledge interfaces for organizations when they are fed curated internal documents. Their value comes from turning scattered files into a searchable, citeable knowledge layer. That makes document hygiene, versioning, and corpus updates operationally important. The result is less about chatting and more about preserving organizational memory.",
           "match_candidates": [],
           "operational_insight": "Use grounded AI as an index and synthesis layer over internal documentation, but keep ownership of document freshness and source hygiene explicit.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -729,7 +729,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       }

@@ -1,13 +1,9 @@
 tags:
-- agentic-coding
-- classification
-- customer-service
+- coding-model
 - embedding-model
-- images
-- interactive-ai
-- it-security
-- local-model-deployment
-- multi-modal
-- open-weight
-- proprietary
+- frontier-model
+- multimodal-model
+- open-weight-model
+- proprietary-model
 - realtime-voice-model
+- reasoning-model

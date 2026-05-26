@@ -21,7 +21,7 @@
       "total_tokens": 30476
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -47,16 +47,18 @@
           "It improves frontend code generation for full-stack work.",
           "It adds specialized routing for complex debugging across files and modules."
         ],
+        "deployment_implications": "It may reduce the need for single-agent prompting on complex codebases by keeping more tasks in parallel and routing sub-tasks more carefully. For teams that run terminal-based coding automation, it could lower orchestration burden when the work is multi-file and debugging-heavy.",
         "evidence_type": "vendor_claim",
         "match_candidates": [],
         "maturity_signals": "Moonshot rolled it out as a code preview after a one-week closed beta, which signals active iteration rather than a fully frozen release. The source says public evaluations were still pending, so operational maturity should be treated as provisional as of April 20, 2026. It is also positioned as maintaining the same API and pricing structure as K2.5, which suggests continuity for adopters even while the model improves.",
         "model_name": "Kimi 2.6",
-        "operational_summary": "An open-weight coding-oriented model preview that is described as improving over K2.5 on reasoning depth, agent planning, frontend code quality, and complex debugging. The article treats it as a better fit for multi-step coding workflows than for polished interactive editor use.",
+        "operational_profile": "An open-weight coding-oriented model preview that is described as improving over K2.5 on reasoning depth, agent planning, frontend code quality, and complex debugging. The article treats it as a better fit for multi-step coding workflows than for polished interactive editor use.\n\n- Extends reasoning chains before committing, which should help on multi-step debugging and cross-module refactors.\n- Improves routing decisions in the swarm, which matters when parallelism is only useful on some tasks and should be avoided on others.\n- Adds explicit frontend-pattern training, which makes it more practical for full-stack code generation.\n- Adds dedicated debugging sub-agent routing, which is useful when a bug spans multiple files or modules.",
         "pricing_inference_implications": "The article does not give separate K2.6 pricing, but it implies the same low-cost Kimi API path remains available. If pricing stays aligned with K2.5, the model could preserve the cost advantage that makes repeated agentic runs viable.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "open-weight-model",
-          "agentic-coding"
+          "coding-model"
         ],
         "provider": "Moonshot AI",
         "related_models": [
@@ -65,12 +67,11 @@
           "Claude Opus 4.5"
         ],
         "service_automation_implications": "No direct service automation implications are substantiated in the source; any transfer to support automation would be indirect through better autonomous task routing.",
-        "strengths": "- Extends reasoning chains before committing, which should help on multi-step debugging and cross-module refactors.\n- Improves routing decisions in the swarm, which matters when parallelism is only useful on some tasks and should be avoided on others.\n- Adds explicit frontend-pattern training, which makes it more practical for full-stack code generation.\n- Adds dedicated debugging sub-agent routing, which is useful when a bug spans multiple files or modules.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "K2.6 Code Preview makes it better on the dimensions that matter most for complex codebases \u2014 reasoning depth, agent planning, full-stack generation, and multi-file debugging \u2014 while keeping the same API and pricing.",
         "value_level": "high",
-        "weaknesses_limitations": "The model is still in preview, and the source explicitly says final public benchmarks were not yet published as of April 20, 2026. The article also frames it as weaker than established tools on IDE integration, community resources, and production hardening. That means operational confidence should remain lower than for a generally released model with broader ecosystem support.",
-        "workflow_implications": "It may reduce the need for single-agent prompting on complex codebases by keeping more tasks in parallel and routing sub-tasks more carefully. For teams that run terminal-based coding automation, it could lower orchestration burden when the work is multi-file and debugging-heavy."
+        "weaknesses_limitations": "The model is still in preview, and the source explicitly says final public benchmarks were not yet published as of April 20, 2026. The article also frames it as weaker than established tools on IDE integration, community resources, and production hardening. That means operational confidence should remain lower than for a generally released model with broader ecosystem support."
       },
       {
         "benchmark_observations": [
@@ -89,16 +90,18 @@
           "It supports tool-using benchmark performance that the article ties to practical coding workflows.",
           "It combines open weights with low inference cost, which makes it easier to evaluate for large-scale automation."
         ],
+        "deployment_implications": "It favors workflows that decompose work into subtasks, run them in parallel, and aggregate results. That makes it attractive for automated refactoring, code review, and large-codebase question answering where input-heavy loops dominate cost.",
         "evidence_type": null,
         "match_candidates": [],
         "maturity_signals": "The article says K2.5 was launched in July 2025 and had already accumulated benchmark visibility and community reaction by April 2026. It is available on Hugging Face and GitHub, which are practical distribution signals for an open-weight model. The source also notes that Western attention has been limited compared with Llama and Qwen, so visibility is lower than capability might suggest.",
         "model_name": "Kimi 2.5",
-        "operational_summary": "A large open-weight mixture-of-experts model tuned for agentic coding and multi-step task execution. The article presents it as unusually strong on hard benchmarks, especially when tools and swarm orchestration are available.",
+        "operational_profile": "A large open-weight mixture-of-experts model tuned for agentic coding and multi-step task execution. The article presents it as unusually strong on hard benchmarks, especially when tools and swarm orchestration are available.\n\n- Performs strongly on hard, tool-using benchmarks, which suggests it can handle multi-step reasoning rather than only short prompts.\n- Supports parallel agent orchestration, which can improve throughput on large engineering tasks.\n- Uses an open-weight release pattern that makes it easier to inspect and potentially deploy in more flexible environments than closed models.\n- Has very low token pricing relative to the article\u2019s cited premium competitors, which matters for repeated agent runs.",
         "pricing_inference_implications": "The article cites $0.50 per million input tokens and $2.80 per million output tokens via OpenRouter, with a direct API cache price of $0.10 per million cached input tokens. That pricing makes long-context and repeat-query coding agents materially cheaper to run than the premium alternatives named in the source.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "open-weight-model",
-          "agentic-coding"
+          "coding-model"
         ],
         "provider": "Moonshot AI",
         "related_models": [
@@ -108,12 +111,11 @@
           "GPT-5.4 Standard"
         ],
         "service_automation_implications": "No direct service automation implications are substantiated in the source; the relevance would be indirect for back-office automation that benefits from parallel task routing.",
-        "strengths": "- Performs strongly on hard, tool-using benchmarks, which suggests it can handle multi-step reasoning rather than only short prompts.\n- Supports parallel agent orchestration, which can improve throughput on large engineering tasks.\n- Uses an open-weight release pattern that makes it easier to inspect and potentially deploy in more flexible environments than closed models.\n- Has very low token pricing relative to the article\u2019s cited premium competitors, which matters for repeated agent runs.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "Kimi K2.5 scores\n76.8% on SWE-bench Verified\n\u2014 within striking distance of Claude Sonnet 4.6.",
         "value_level": "high",
-        "weaknesses_limitations": "The article itself notes that its advantages are most pronounced on agentic benchmarks and narrower on simple single-turn tasks. The source also frames Claude and GPT as still strong for interactive use, so K2.5 is not a universal replacement. Independent verification of the benchmark and cost claims is not provided here.",
-        "workflow_implications": "It favors workflows that decompose work into subtasks, run them in parallel, and aggregate results. That makes it attractive for automated refactoring, code review, and large-codebase question answering where input-heavy loops dominate cost."
+        "weaknesses_limitations": "The article itself notes that its advantages are most pronounced on agentic benchmarks and narrower on simple single-turn tasks. The source also frames Claude and GPT as still strong for interactive use, so K2.5 is not a universal replacement. Independent verification of the benchmark and cost claims is not provided here."
       }
     ],
     "glossary": [
@@ -167,9 +169,9 @@
         "evidence_from_source": "Moonshot AI released Kimi K2.5 as fully open-weight and paired it with Kimi Code CLI, while the article claims strong performance on coding and agentic benchmarks.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "related_trends": [
           "models-becoming-execution-layers"
@@ -248,6 +250,7 @@
         "name": "Kimi Code CLI",
         "operational_relevance": "This tool fits teams that already automate work from the terminal and want an agent that can break coding tasks into parallel subtasks. The article positions it as a drop-in path for automated pipelines, code review, refactoring, and large-codebase querying. It is less about interactive IDE assistance and more about running autonomous coding loops from scripts or terminals.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "coding-agent",
           "workflow-automation"
@@ -260,6 +263,7 @@
         "short_description": "A terminal-based coding agent that connects to Moonshot\u2019s Kimi API. It provides swarm orchestration for coding tasks through a command-line workflow.",
         "strengths": "- Integrates with a terminal workflow, which makes it easier to slot into existing automation and developer tooling.\n- Uses swarm orchestration behind the scenes, so it can split large tasks into specialized subtasks rather than forcing one linear agent to do everything.\n- Works with the Kimi API and an OpenAI-compatible interface, which reduces migration friction for teams that already use standard client libraries.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "Moonshot provides\nKimi Code CLI\n, a terminal-based coding agent that connects to the K2.5/K2.6 API and handles the swarm orchestration automatically.",
         "value_level": "high",
         "weaknesses_limitations": "The article suggests that IDE integration is weaker than Cursor\u2019s, so the CLI is not the best fit for live, editor-centric workflows. It is also in a preview ecosystem, which means production hardening, ecosystem depth, and reliability are still less established than more mature competitors. The source does not provide failure rates, latency numbers, or operational limits for the swarm orchestration."
@@ -310,13 +314,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "agentic-workflows"
         ],
         "relevance_note": "Context engineering is central to conversational AI and service automation because the wrong context can make assistants forget important state or repeat expensive retrieval. It is also a major cost lever in any system that reuses large documents, tickets, or codebases across multiple turns.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -346,16 +350,17 @@
             "It improves frontend code generation for full-stack work.",
             "It adds specialized routing for complex debugging across files and modules."
           ],
+          "deployment_implications": "It may reduce the need for single-agent prompting on complex codebases by keeping more tasks in parallel and routing sub-tasks more carefully. For teams that run terminal-based coding automation, it could lower orchestration burden when the work is multi-file and debugging-heavy.",
           "evidence_type": "vendor_claim",
           "match_candidates": [],
           "maturity_signals": "Moonshot rolled it out as a code preview after a one-week closed beta, which signals active iteration rather than a fully frozen release. The source says public evaluations were still pending, so operational maturity should be treated as provisional as of April 20, 2026. It is also positioned as maintaining the same API and pricing structure as K2.5, which suggests continuity for adopters even while the model improves.",
           "model_name": "Kimi 2.6",
-          "operational_summary": "An open-weight coding-oriented model preview that is described as improving over K2.5 on reasoning depth, agent planning, frontend code quality, and complex debugging. The article treats it as a better fit for multi-step coding workflows than for polished interactive editor use.",
+          "operational_profile": "An open-weight coding-oriented model preview that is described as improving over K2.5 on reasoning depth, agent planning, frontend code quality, and complex debugging. The article treats it as a better fit for multi-step coding workflows than for polished interactive editor use.\n\n- Extends reasoning chains before committing, which should help on multi-step debugging and cross-module refactors.\n- Improves routing decisions in the swarm, which matters when parallelism is only useful on some tasks and should be avoided on others.\n- Adds explicit frontend-pattern training, which makes it more practical for full-stack code generation.\n- Adds dedicated debugging sub-agent routing, which is useful when a bug spans multiple files or modules.",
           "pricing_inference_implications": "The article does not give separate K2.6 pricing, but it implies the same low-cost Kimi API path remains available. If pricing stays aligned with K2.5, the model could preserve the cost advantage that makes repeated agentic runs viable.",
           "proposed_new_type": null,
           "proposed_types": [
             "open-weight-model",
-            "agentic-coding"
+            "coding-model"
           ],
           "provider": "Moonshot AI",
           "related_models": [
@@ -364,12 +369,10 @@
             "Claude Opus 4.5"
           ],
           "service_automation_implications": "No direct service automation implications are substantiated in the source; any transfer to support automation would be indirect through better autonomous task routing.",
-          "strengths": "- Extends reasoning chains before committing, which should help on multi-step debugging and cross-module refactors.\n- Improves routing decisions in the swarm, which matters when parallelism is only useful on some tasks and should be avoided on others.\n- Adds explicit frontend-pattern training, which makes it more practical for full-stack code generation.\n- Adds dedicated debugging sub-agent routing, which is useful when a bug spans multiple files or modules.",
           "suggested_action": "ignore",
           "supporting_snippet": "K2.6 Code Preview makes it better on the dimensions that matter most for complex codebases \u2014 reasoning depth, agent planning, full-stack generation, and multi-file debugging \u2014 while keeping the same API and pricing.",
           "value_level": "high",
-          "weaknesses_limitations": "The model is still in preview, and the source explicitly says final public benchmarks were not yet published as of April 20, 2026. The article also frames it as weaker than established tools on IDE integration, community resources, and production hardening. That means operational confidence should remain lower than for a generally released model with broader ecosystem support.",
-          "workflow_implications": "It may reduce the need for single-agent prompting on complex codebases by keeping more tasks in parallel and routing sub-tasks more carefully. For teams that run terminal-based coding automation, it could lower orchestration burden when the work is multi-file and debugging-heavy."
+          "weaknesses_limitations": "The model is still in preview, and the source explicitly says final public benchmarks were not yet published as of April 20, 2026. The article also frames it as weaker than established tools on IDE integration, community resources, and production hardening. That means operational confidence should remain lower than for a generally released model with broader ecosystem support."
         },
         "notes": null,
         "proposal_id": "a163ab0f-57e8-4424-a444-dc76e3b0b85a",
@@ -404,6 +407,12 @@
             "notes": null,
             "status": "approved"
           },
+          "deployment_implications": {
+            "final_text": "It may reduce the need for single-agent prompting on complex codebases by keeping more tasks in parallel and routing sub-tasks more carefully. For teams that run terminal-based coding automation, it could lower orchestration burden when the work is multi-file and debugging-heavy.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -414,10 +423,11 @@
             "notes": null,
             "status": "approved"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "An open-weight coding-oriented model preview that is described as improving over K2.5 on reasoning depth, agent planning, frontend code quality, and complex debugging. The article treats it as a better fit for multi-step coding workflows than for polished interactive editor use.\n\n- Extends reasoning chains before committing, which should help on multi-step debugging and cross-module refactors.\n- Improves routing decisions in the swarm, which matters when parallelism is only useful on some tasks and should be avoided on others.\n- Adds explicit frontend-pattern training, which makes it more practical for full-stack code generation.\n- Adds dedicated debugging sub-agent routing, which is useful when a bug spans multiple files or modules.",
             "notes": null,
-            "status": "approved"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -444,22 +454,12 @@
             "notes": null,
             "status": "approved"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "approved"
@@ -472,8 +472,8 @@
         "types": {
           "approved_new_types": [],
           "approved_types": [
-            "agentic-coding",
-            "open-weight"
+            "coding-model",
+            "open-weight-model"
           ],
           "reviewer_types_added": []
         }
@@ -496,15 +496,16 @@
             "It supports tool-using benchmark performance that the article ties to practical coding workflows.",
             "It combines open weights with low inference cost, which makes it easier to evaluate for large-scale automation."
           ],
+          "deployment_implications": "It favors workflows that decompose work into subtasks, run them in parallel, and aggregate results. That makes it attractive for automated refactoring, code review, and large-codebase question answering where input-heavy loops dominate cost.",
           "match_candidates": [],
           "maturity_signals": "The article says K2.5 was launched in July 2025 and had already accumulated benchmark visibility and community reaction by April 2026. It is available on Hugging Face and GitHub, which are practical distribution signals for an open-weight model. The source also notes that Western attention has been limited compared with Llama and Qwen, so visibility is lower than capability might suggest.",
           "model_name": "Kimi 2.5",
-          "operational_summary": "A large open-weight mixture-of-experts model tuned for agentic coding and multi-step task execution. The article presents it as unusually strong on hard benchmarks, especially when tools and swarm orchestration are available.",
+          "operational_profile": "A large open-weight mixture-of-experts model tuned for agentic coding and multi-step task execution. The article presents it as unusually strong on hard benchmarks, especially when tools and swarm orchestration are available.\n\n- Performs strongly on hard, tool-using benchmarks, which suggests it can handle multi-step reasoning rather than only short prompts.\n- Supports parallel agent orchestration, which can improve throughput on large engineering tasks.\n- Uses an open-weight release pattern that makes it easier to inspect and potentially deploy in more flexible environments than closed models.\n- Has very low token pricing relative to the article\u2019s cited premium competitors, which matters for repeated agent runs.",
           "pricing_inference_implications": "The article cites $0.50 per million input tokens and $2.80 per million output tokens via OpenRouter, with a direct API cache price of $0.10 per million cached input tokens. That pricing makes long-context and repeat-query coding agents materially cheaper to run than the premium alternatives named in the source.",
           "proposed_new_type": null,
           "proposed_types": [
             "open-weight-model",
-            "agentic-coding"
+            "coding-model"
           ],
           "provider": "Moonshot AI",
           "related_models": [
@@ -514,12 +515,10 @@
             "GPT-5.4 Standard"
           ],
           "service_automation_implications": "No direct service automation implications are substantiated in the source; the relevance would be indirect for back-office automation that benefits from parallel task routing.",
-          "strengths": "- Performs strongly on hard, tool-using benchmarks, which suggests it can handle multi-step reasoning rather than only short prompts.\n- Supports parallel agent orchestration, which can improve throughput on large engineering tasks.\n- Uses an open-weight release pattern that makes it easier to inspect and potentially deploy in more flexible environments than closed models.\n- Has very low token pricing relative to the article\u2019s cited premium competitors, which matters for repeated agent runs.",
           "suggested_action": "ignore",
           "supporting_snippet": "Kimi K2.5 scores\n76.8% on SWE-bench Verified\n\u2014 within striking distance of Claude Sonnet 4.6.",
           "value_level": "high",
-          "weaknesses_limitations": "The article itself notes that its advantages are most pronounced on agentic benchmarks and narrower on simple single-turn tasks. The source also frames Claude and GPT as still strong for interactive use, so K2.5 is not a universal replacement. Independent verification of the benchmark and cost claims is not provided here.",
-          "workflow_implications": "It favors workflows that decompose work into subtasks, run them in parallel, and aggregate results. That makes it attractive for automated refactoring, code review, and large-codebase question answering where input-heavy loops dominate cost."
+          "weaknesses_limitations": "The article itself notes that its advantages are most pronounced on agentic benchmarks and narrower on simple single-turn tasks. The source also frames Claude and GPT as still strong for interactive use, so K2.5 is not a universal replacement. Independent verification of the benchmark and cost claims is not provided here."
         },
         "notes": null,
         "proposal_id": "0108592c-e287-44b1-abfd-4ca58ca883de",
@@ -555,6 +554,12 @@
             "notes": null,
             "status": "approved"
           },
+          "deployment_implications": {
+            "final_text": "It favors workflows that decompose work into subtasks, run them in parallel, and aggregate results. That makes it attractive for automated refactoring, code review, and large-codebase question answering where input-heavy loops dominate cost.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -565,10 +570,11 @@
             "notes": null,
             "status": "approved"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "A large open-weight mixture-of-experts model tuned for agentic coding and multi-step task execution. The article presents it as unusually strong on hard benchmarks, especially when tools and swarm orchestration are available.\n\n- Performs strongly on hard, tool-using benchmarks, which suggests it can handle multi-step reasoning rather than only short prompts.\n- Supports parallel agent orchestration, which can improve throughput on large engineering tasks.\n- Uses an open-weight release pattern that makes it easier to inspect and potentially deploy in more flexible environments than closed models.\n- Has very low token pricing relative to the article\u2019s cited premium competitors, which matters for repeated agent runs.",
             "notes": null,
-            "status": "approved"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -596,22 +602,12 @@
             "notes": null,
             "status": "approved"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "approved"
@@ -624,8 +620,8 @@
         "types": {
           "approved_new_types": [],
           "approved_types": [
-            "agentic-coding",
-            "open-weight"
+            "coding-model",
+            "open-weight-model"
           ],
           "reviewer_types_added": []
         }
@@ -649,7 +645,7 @@
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-architecture",
           "suggested_new_tags": [
-            "ai-architecture"
+            "runtime-architecture"
           ],
           "supporting_snippet": "Kimi K2.5 is a\nMixture-of-Experts model with 1.04 trillion total parameters\n, activating only\n32 billion per token\nat inference time.",
           "term": "Mixture-of-Experts",
@@ -693,11 +689,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-architecture"
+            "runtime-architecture"
           ],
           "final_tags": [
             "ai-engineering",
-            "ai-architecture"
+            "runtime-architecture"
           ]
         }
       },
@@ -778,9 +774,9 @@
           "evidence_from_source": "Moonshot AI released Kimi K2.5 as fully open-weight and paired it with Kimi Code CLI, while the article claims strong performance on coding and agentic benchmarks.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "related_trends": [
             "models-becoming-execution-layers"
@@ -1095,7 +1091,7 @@
           "suggested_action": "ignore",
           "suggested_new_tag": "agentic-ai",
           "suggested_new_tags": [
-            "agentic-ai"
+            "agent-systems"
           ],
           "supporting_snippet": "Kimi K2.5 was trained with PARL specifically to orchestrate\nup to 100 specialized sub-agents\nin parallel, executing across\nup to 1,500 coordinated steps",
           "topic_slug": "agentic-workflows",
@@ -1162,11 +1158,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "agentic-ai"
+            "agent-systems"
           ],
           "final_tags": [
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ]
         }
       },
@@ -1186,13 +1182,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "agentic-workflows"
           ],
           "relevance_note": "Context engineering is central to conversational AI and service automation because the wrong context can make assistants forget important state or repeat expensive retrieval. It is also a major cost lever in any system that reuses large documents, tickets, or codebases across multiple turns.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

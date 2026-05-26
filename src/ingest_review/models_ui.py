@@ -15,8 +15,11 @@ from src.ingest_review.dashboard_ui import (
 from src.ingest_review.domain_tag_ui import (
     DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY,
     apply_registry_types_ui_to_node,
+    apply_tag_ui_to_node,
+    collect_approved_new_tags_from_review,
     effective_registry_types,
     registry_types_ui_from_session,
+    render_domain_tag_section,
     render_registry_types_section,
 )
 from src.ingest_review.proposal_columns_ui import (
@@ -334,6 +337,7 @@ def _render_model_edit_box(
     st: Any,
     node: dict[str, Any],
     model_types: list[str],
+    model_tags: list[str],
     artifact: dict[str, Any],
     *,
     key_prefix: str,
@@ -381,7 +385,7 @@ def _render_model_edit_box(
         if related:
             st.caption(f"Related models: {', '.join(str(r) for r in related)}")
 
-        tag_allow = {normalize_tag(str(t)) for t in model_types if str(t).strip()}
+        type_allow = {normalize_tag(str(t)) for t in model_types if str(t).strip()}
         type_ui = render_registry_types_section(
             st,
             node,
@@ -395,7 +399,23 @@ def _render_model_edit_box(
             summary_widget_key=f"{key_prefix}_edit_operational_profile",
             llm_fallback_label_key="model_name",
             llm_fallback_summary_key="operational_profile",
-            section_title="Model types",
+            section_title="Model types (archetype)",
+        )
+        tag_allow = {normalize_tag(str(t)) for t in model_tags if str(t).strip()}
+        tag_ui = render_domain_tag_section(
+            st,
+            node,
+            model_tags,
+            key_prefix=f"{key_prefix}_retrieval",
+            artifact_path=artifact_path,
+            model=model,
+            prompt_version=prompt_version,
+            review_list_key="foundation_models",
+            label_widget_key=f"{key_prefix}_edit_model_name",
+            summary_widget_key=f"{key_prefix}_edit_operational_profile",
+            llm_fallback_label_key="model_name",
+            llm_fallback_summary_key="operational_profile",
+            section_title="Retrieval tags",
         )
         render_proposal_evidence_type_editor(st, llm_item, artifact, key_prefix=key_prefix)
 
@@ -416,9 +436,10 @@ def _render_model_edit_box(
                 node,
                 llm_item,
                 fresh_type_ui,
-                tag_allow,
+                type_allow,
                 key_prefix=key_prefix,
             )
+            apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow)
             _on_save_model_proposal(str(node.get("proposal_id") or ""), key_prefix, artifact_path)
 
         render_proposal_decision_bar(
@@ -439,12 +460,14 @@ def render_model_proposals(
     source_id: str = "",
     artifact_path: Path,
     model_types: list[str] | None = None,
+    model_tags: list[str] | None = None,
     model: str = "",
     prompt_version: str = "",
 ) -> None:
     """Two-column model review: read-only catalog left, edit panel right."""
     types_list = model_types or []
-    streamlit_runtime.session_state[DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY] = list(types_list)
+    tags_list = model_tags or []
+    streamlit_runtime.session_state[DOMAIN_TAG_SUGGEST_ALLOWLIST_KEY] = list(tags_list)
     st.subheader("Foundation models")
     sorted_nodes = _prepare_model_nodes(artifact)
     if not sorted_nodes:
@@ -472,6 +495,7 @@ def render_model_proposals(
             st,
             node,
             types_list,
+            tags_list,
             artifact,
             key_prefix=pfx,
             source_id=source_id,
@@ -492,8 +516,8 @@ def render_model_proposals(
 
 
 def collect_model_new_tags(artifact: dict[str, Any]) -> list[str]:
-    """Models use the types system, not tags."""
-    return []
+    """Return approved new retrieval tags across model proposals."""
+    return collect_approved_new_tags_from_review(artifact, "foundation_models")
 
 
 def collect_model_new_types(artifact: dict[str, Any]) -> list[str]:
@@ -513,11 +537,6 @@ def collect_model_new_types(artifact: dict[str, Any]) -> list[str]:
         if types_node.get("approved_new_type") and types_node.get("proposed_new_type"):
             t = normalize_tag(str(types_node["proposed_new_type"]))
             if t and t not in types:
-                types.append(t)
-        llm_item = node.get("llm_item") or {}
-        for raw in llm_item.get("suggested_new_tags") or []:
-            t = normalize_tag(str(raw))
-            if t and t not in types and types_node.get("approved_new_type"):
                 types.append(t)
     return types
 

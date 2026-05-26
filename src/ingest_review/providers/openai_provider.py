@@ -384,41 +384,64 @@ Do NOT repeat the source default on every proposal."""
 
 
 TAG_ONTOLOGY_RUBRIC = """\
-## TAG ONTOLOGY (proposal-level routing — NOT source tags)
+## TAG ONTOLOGY (retrieval anchors — NOT source tags, NOT article summaries)
 
-Tags classify each PROPOSAL for wiki routing and aggregation. They are NOT article labels, \
-marketing phrases, or title echoes.
+Tags help humans and LLMs find related knowledge later. Optimize for semantic recall, \
+clustering, and durable conceptual grouping — NOT cleverness, theory, or title echoes.
 
-Mandatory procedure for every tagged proposal:
-1. Read the entity's TAGS or TYPES allowlist section in this prompt.
-2. Set proposed_tags to zero or more EXACT allowlist strings (copy verbatim). Quality over \
-quantity: each tag must be clearly warranted — no synonyms, no title echoes, no weak fits.
-3. Default to 1–2 proposed_tags when routing is clear; use 3+ only when each tag is \
-distinct and necessary. Hard maximum: 5 allowlist tags per proposal.
-4. NEVER put invented slugs, abbreviations, or off-list labels in proposed_tags.
-5. Set suggested_new_tags only when the allowlist lacks a reasonable match after checking \
-near-synonyms (e.g. agent-workflow vs agentic-workflows). Each entry must pass the new-tag \
-gate below. Leave suggested_new_tags [] when allowlist tags suffice.
+Core rules:
+1. **Keep tags boring** — obvious, stable, reusable, semantically narrow, easy to predict.
+2. **Retrieval anchors** — durable neighborhoods a future query would use; never summarize \
+this article with tags.
+3. **Stable abstractions** — prefer `visual-specifications` over `image-generation-for-ui-code`.
+4. **Minimize drift** — reuse allowlist tags; suggested_new_tags only when no close match exists \
+and multiple future articles will need the same shelf.
+5. **Overlap OK** — up to 5 allowlist tags when each improves retrieval.
 
-New-tag gate — each suggested_new_tags entry must be: distinct, recurring, broad enough for \
-many future sources, and entity-appropriate. Verify no close allowlist match exists first.
+Procedure:
+1. Read the entity's TAGS (and for tools/models, TYPES + TAGS) allowlist sections.
+2. Set proposed_tags to EXACT allowlist strings only (copy verbatim). Default 1–2; use 3–5 \
+only when each tag is distinct and necessary.
+3. For topics/trends: include 1–3 **global namespace** tags when genuinely applicable (see \
+GLOBAL_NAMESPACES_RUBRIC).
+4. NEVER put off-list slugs in proposed_tags.
+5. suggested_new_tags only after checking near-synonyms; kebab-case; must pass new-tag gate.
 
-Anti-patterns (never use as tags): article-specific slugs, launch/event names, vendor \
-marketing ("enterprise-ready"), quality adjectives ("useful", "important"), title fragments \
-("gpt-5-4-launch", "openai-flywheel"). Use kebab-case for suggested_new_tags entries.
+Anti-patterns: execution-layer-transformation, article-specific slugs, vendor marketing, \
+quality adjectives, title fragments, poetic abstractions.
 
-Prefer reusing existing allowlist tags whenever reasonably possible. Leave proposed_tags [] \
-when nothing fits and you are not confident in a new tag."""
+Entity vocabularies are separate — never use trend tags on topics or tool tags on trends."""
+
+
+GLOBAL_NAMESPACES_RUBRIC = """\
+## GLOBAL NAMESPACES (coarse routing — topics and trends only)
+
+When tagging **topics** or **trends**, include **1–3** of these when they genuinely apply \
+(must be on the topic/trend allowlist):
+
+ai-engineering, ai-governance, ai-economics, ai-safety, enterprise-ai, multimodal-ai, \
+agent-systems, developer-tools, model-behavior, software-engineering, infrastructure, \
+enterprise-workflows, coding-agents, ai-policy, ai-evaluation, orchestration, \
+runtime-systems, organizational-design, ai-research
+
+These are coarse shelves — not substitutes for specific tags like `runtime-architecture` or \
+`behavioral-evaluation`."""
 
 
 REGISTRY_TYPES_SEMANTICS = """\
-## REGISTRY TYPES (tools and foundation models only)
+## DUAL LAYER: types vs tags (tools and foundation models)
 
-Tools and foundation models use proposed_types (not proposed_tags):
-- proposed_types: zero or more EXACT strings from TOOL_TYPES_ALLOWLIST or MODEL_TYPES_ALLOWLIST.
-- Same quality rules as proposed_tags: each type must fit well; max 5; no ordering hierarchy.
-- suggested_new_type: single kebab-case candidate when the type registry lacks a fit (legacy \
-field); prefer filling proposed_types from the allowlist when possible."""
+**proposed_types** (TOOL_TYPES_ALLOWLIST / MODEL_TYPES_ALLOWLIST): product **archetype** — \
+what the thing IS (coding-agent, mcp-server, frontier-model, open-weight-model). Max 2 unless \
+genuinely multi-category. Answer "What kind of product is this?"
+
+**proposed_tags** (TOOL_TAGS_ALLOWLIST / MODEL_TAGS_ALLOWLIST): **retrieval dimensions** — \
+capability, interaction style, deployment, workflow fit (cli-tool, browser-use, local-first, \
+coding-model, tool-use-capable). Same quality rules as topic tags; max 5.
+
+- proposed_types: EXACT strings from the types allowlist only.
+- proposed_tags: EXACT strings from the tags allowlist only.
+- suggested_new_type / suggested_new_tags: only when allowlist lacks a durable match."""
 
 
 TITLE_GENERATION_RUBRIC = """\
@@ -1116,10 +1139,12 @@ why it is notable — NOT a bare noun phrase or comma-joined feature name.
 strings). Same rule: one explanatory sentence per integration, not keyword dumps.
 - related_tools: comparable or complementary tools (list of strings)
 - proposed_types: from TOOL_TYPES_ALLOWLIST ONLY; at most 2 unless genuinely \
-multi-category. First = primary category, second = optional adjacent role. \
-Answer "What kind of thing is this?" — NOT quality/popularity. Use [] if none fit
+multi-category. Product archetype — NOT quality/popularity. Use [] if none fit
+- proposed_tags: from TOOL_TAGS_ALLOWLIST ONLY; retrieval dimensions (capability, \
+deployment, workflow fit). Follow TAG ONTOLOGY. Use [] if none fit
+- suggested_new_tags: only when TOOL_TAGS_ALLOWLIST lacks a durable match
 - proposed_new_type: if no existing type fits after checking near-synonyms in \
-the allowlist, propose ONE new type in kebab-case; null otherwise
+the types allowlist, propose ONE new type in kebab-case; null otherwise
 - confidence: 0.0-1.0
 - value_level: "high", "medium", or "low"
 - evidence_type: (optional) only if this proposal differs from source_evidence_profile
@@ -1152,8 +1177,7 @@ Good: coding-assistant, desktop-app, voice-ai. Bad: productivity, useful, fast.
 
 Voice: clear, operational, skeptical. No hype, no marketing language.
 
-Type semantics (TOOL_TYPES_ALLOWLIST): what the tool IS — follow \
-REGISTRY_TYPES_SEMANTICS for proposed_types.
+Type semantics: follow REGISTRY_TYPES_SEMANTICS (types = archetype, tags = retrieval).
 
 Layer selection: see ABSTRACTION_SELECTION_RUBRIC. Page matching: see PAGE_MATCHING_RUBRIC."""
 
@@ -1216,11 +1240,13 @@ Do NOT create benchmark dumps (list of strings)
 - comparative_observations: comparisons against other models — "stronger coding \
 than X", "cheaper than Y", "faster than Z". Extremely valuable (list of strings)
 - related_models: comparable or complementary models (list of strings)
-- proposed_types: from MODEL_TYPES_ALLOWLIST ONLY; at most 2 unless genuinely \
-multi-category. First = deployment/openness profile, second = capability focus. \
-Use [] if no approved type fits
+- proposed_types: from MODEL_TYPES_ALLOWLIST ONLY; at most 2; model archetype \
+(deployment/capability class). Use [] if none fit
+- proposed_tags: from MODEL_TAGS_ALLOWLIST ONLY; retrieval profile (reasoning-model, \
+open-weight-model, tool-use-capable, etc.). Follow TAG ONTOLOGY
+- suggested_new_tags: only when MODEL_TAGS_ALLOWLIST lacks a durable match
 - proposed_new_type: if no existing type fits after checking near-synonyms in \
-the allowlist, propose ONE new type in kebab-case; null otherwise
+the types allowlist, propose ONE new type in kebab-case; null otherwise
 - confidence: 0.0-1.0
 - value_level: "high", "medium", or "low"
 - evidence_type: (optional) only if this proposal differs from source_evidence_profile
@@ -1239,8 +1265,7 @@ operational_summary / strengths / workflow_implications split).
 
 Voice: clear, operational, skeptical. No hype, no certainty theater.
 
-Type semantics (MODEL_TYPES_ALLOWLIST): operational profile — follow \
-REGISTRY_TYPES_SEMANTICS for proposed_types."""
+Type semantics: follow REGISTRY_TYPES_SEMANTICS (types = archetype, tags = retrieval)."""
 
 
 SOURCE_TYPE_DETECTION_RUBRIC = """\
@@ -1433,6 +1458,8 @@ def _build_user_prompt(
     topic_tags: list[str] | None = None,
     trend_tags: list[str] | None = None,
     model_types: list[str] | None = None,
+    tool_tags: list[str] | None = None,
+    model_tags: list[str] | None = None,
     source_type_override: str | None = None,
     extraction_budgets: dict[str, int] | None = None,
     reviews_root: Path | None = None,
@@ -1456,6 +1483,8 @@ def _build_user_prompt(
     t_tags = topic_tags or []
     tr_tags = trend_tags or []
     m_types = model_types or []
+    t_retrieval_tags = tool_tags or []
+    m_retrieval_tags = model_tags or []
     budgets = extraction_budgets or {}
     budget_lines_parts: list[str] = []
     budget_labels = {
@@ -1495,6 +1524,7 @@ def _build_user_prompt(
         MINIMUM_NOVELTY_THRESHOLD_RUBRIC,
         SOURCE_EVIDENCE_PROFILE_RUBRIC,
         TAG_ONTOLOGY_RUBRIC,
+        GLOBAL_NAMESPACES_RUBRIC,
         REGISTRY_TYPES_SEMANTICS,
         TITLE_GENERATION_RUBRIC,
         TITLE_CANONICALIZATION_RUBRIC,
@@ -1511,7 +1541,9 @@ def _build_user_prompt(
         or "(none)",
         "## EXISTING_TREND_SLUGS\n" + "\n".join(f"- {s}" for s in trend_slugs) or "(none)",
         "## TOOL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in tool_types),
+        "## TOOL_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in t_retrieval_tags),
         "## MODEL_TYPES_ALLOWLIST\n" + "\n".join(f"- {t}" for t in m_types),
+        "## MODEL_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in m_retrieval_tags),
         "## HOWTO_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in howto_tags),
         "## IMPL_STUDY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in impl_tags),
         "## GLOSSARY_TAGS_ALLOWLIST\n" + "\n".join(f"- {t}" for t in gloss_tags),
@@ -1634,6 +1666,8 @@ class OpenAIIngestionProvider(IngestionProvider):
         topic_tags_allowlist: list[str] | None = None,
         trend_tags_allowlist: list[str] | None = None,
         model_types_allowlist: list[str] | None = None,
+        tool_tags_allowlist: list[str] | None = None,
+        model_tags_allowlist: list[str] | None = None,
         source_type_override: str | None = None,
         extraction_budgets: dict[str, int] | None = None,
         reviews_root: Path | None = None,
@@ -1652,6 +1686,8 @@ class OpenAIIngestionProvider(IngestionProvider):
             topic_tags_allowlist,
             trend_tags_allowlist,
             model_types=model_types_allowlist,
+            tool_tags=tool_tags_allowlist,
+            model_tags=model_tags_allowlist,
             source_type_override=source_type_override,
             extraction_budgets=extraction_budgets,
             reviews_root=reviews_root,

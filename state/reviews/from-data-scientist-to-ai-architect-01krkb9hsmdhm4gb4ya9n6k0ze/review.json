@@ -21,7 +21,7 @@
       "total_tokens": 33279
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,15 +41,15 @@
         "evidence_from_source": "The article says \u201cstate-of-the-art is just an API call away\u201d and argues that \u201cthe value isn\u2019t just in the model anymore. It\u2019s in how all the parts connect, communicate, and adapt.\u201d",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-economics",
+        "primary_tag": "software-commoditization",
         "proposed_tags": [
-          "ai-economics",
-          "ai-architecture"
+          "software-commoditization",
+          "runtime-centralization"
         ],
         "related_trends": [
           "ai-assisted-file-native-workflows"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -118,9 +118,9 @@
         "knowledge_summary": "The AI architect role centers on designing the full system around AI models rather than only tuning the model itself. The work includes data flow, routing, context assembly, monitoring, retries, deployment, and interaction design. It blends model awareness with backend and infrastructure thinking. This role becomes more important when models are accessed through APIs and product value comes from orchestration.",
         "match_candidates": [],
         "operational_insight": "For production AI teams, treat model selection as one input to system design instead of the main job. The durable skill is deciding how requests, context, memory, tools, and feedback loops fit together under latency and reliability constraints.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
@@ -148,11 +148,11 @@
         "knowledge_summary": "In many modern AI applications, the core engineering problem shifts from fitting a model to orchestrating components around a model. That orchestration can include ingestion, retrieval, prompt construction, memory, routing, logging, monitoring, and retries. The practical unit of value becomes the whole pipeline rather than the model call alone. This changes how teams allocate time, evaluate quality, and structure their codebase.",
         "match_candidates": [],
         "operational_insight": "When building AI products, optimize the orchestration layer as a first-class system. Measure how inputs are assembled, how outputs are validated, and how failures are retried rather than assuming the model call is the main bottleneck.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering",
-          "agentic-ai"
+          "agent-systems"
         ],
         "related_topics": [
           "ai-architect-role",
@@ -183,15 +183,15 @@
           "evidence_from_source": "The article says \u201cstate-of-the-art is just an API call away\u201d and argues that \u201cthe value isn\u2019t just in the model anymore. It\u2019s in how all the parts connect, communicate, and adapt.\u201d",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-economics",
+          "primary_tag": "software-commoditization",
           "proposed_tags": [
-            "ai-economics",
-            "ai-architecture"
+            "software-commoditization",
+            "runtime-centralization"
           ],
           "related_trends": [
             "ai-assisted-file-native-workflows"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -269,8 +269,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-economics",
-            "ai-architecture"
+            "software-commoditization",
+            "runtime-centralization"
           ]
         }
       }
@@ -373,9 +373,9 @@
           "knowledge_summary": "The AI architect role centers on designing the full system around AI models rather than only tuning the model itself. The work includes data flow, routing, context assembly, monitoring, retries, deployment, and interaction design. It blends model awareness with backend and infrastructure thinking. This role becomes more important when models are accessed through APIs and product value comes from orchestration.",
           "match_candidates": [],
           "operational_insight": "For production AI teams, treat model selection as one input to system design instead of the main job. The durable skill is deciding how requests, context, memory, tools, and feedback loops fit together under latency and reliability constraints.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
@@ -452,7 +452,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-architecture"
+            "runtime-architecture"
           ]
         }
       },
@@ -469,11 +469,11 @@
           "knowledge_summary": "In many modern AI applications, the core engineering problem shifts from fitting a model to orchestrating components around a model. That orchestration can include ingestion, retrieval, prompt construction, memory, routing, logging, monitoring, and retries. The practical unit of value becomes the whole pipeline rather than the model call alone. This changes how teams allocate time, evaluate quality, and structure their codebase.",
           "match_candidates": [],
           "operational_insight": "When building AI products, optimize the orchestration layer as a first-class system. Measure how inputs are assembled, how outputs are validated, and how failures are retried rather than assuming the model call is the main bottleneck.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ],
           "related_topics": [
             "ai-architect-role",
@@ -551,9 +551,9 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ]
         }
       }

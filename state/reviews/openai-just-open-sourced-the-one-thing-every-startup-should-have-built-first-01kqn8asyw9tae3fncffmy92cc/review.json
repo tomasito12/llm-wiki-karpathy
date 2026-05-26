@@ -21,7 +21,7 @@
       "total_tokens": 35736
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -57,14 +57,16 @@
         "operational_profile": "- A local token-classification model for masking personally identifiable information in unstructured text.\n- Designed to run on a laptop or in a browser, which keeps unredacted text on the user\u2019s machine instead of sending it to a cloud API.\n- Uses a bidirectional labeling approach with BIOES spans and constrained decoding so it can mark entity boundaries cleanly rather than relying on brittle regex rules.\n- Exposes operating points that let teams trade recall for precision depending on whether the use case is ingestion, review, or user-facing redaction.\n- Can be fine-tuned on small domain-specific datasets when the default categories are not enough for a specialized workflow.",
         "pricing_inference_implications": "Local execution suggests low marginal inference cost compared with sending every document to a hosted model for redaction, but the article gives no actual latency or hardware cost numbers. Because it is small and runs on a laptop, it likely fits batch preprocessing or edge-style workflows better than heavy server-side inference, but that remains an inference from the deployment description, not a measured claim.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
-          "open-weight",
+          "open-weight-model",
           "it-security"
         ],
         "provider": "OpenAI",
         "related_models": [],
         "service_automation_implications": "Strong fit as a pre-send filter for support automation pipelines that ingest customer messages, tickets, and transcripts. It can reduce the chance that private data is forwarded into hosted summarization, routing, or response-generation systems, but it does not replace legal review, retention controls, or human oversight.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\u201cOpenAI released Privacy Filter. Open weights. Apache 2.0. On Hugging Face and GitHub. It\u2019s a small model: 1.5B total parameters, only 50M active because it\u2019s a sparse Mixture-of-Experts. It runs on a laptop. It runs in a browser. The whole point is that it runs locally, so the unfiltered text never has to leave your machine.\u201d",
         "value_level": "high",
         "weaknesses_limitations": "The model is not a compliance solution by itself, and the article explicitly says it only reduces risk. It may miss categories that are not explicitly represented in its label set, and short or context-poor texts are harder to classify reliably. The reported benchmark numbers are vendor-reported, so real-world quality in your language and domain still needs validation."
@@ -76,10 +78,10 @@
         "evidence_type": "vendor_claim",
         "extended_explanation": "Sparse mixture-of-experts models are useful when a system needs more capacity than a single dense model can afford to run at full strength. By activating only selected experts for each token or input, they can keep inference cheaper than a dense model with the same total parameter count. They are especially relevant when the task can be solved with specialized submodels rather than one general-purpose network. In practice, they are often used when you want larger total capacity without paying the full latency cost on every pass.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A model architecture that routes each input through only a small subset of experts instead of activating the full parameter set. This reduces active compute while retaining a larger total model capacity.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [],
@@ -137,12 +139,12 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management",
+          "knowledge-systems",
           "support-automation"
         ],
         "question_title": "PII Redaction Pipeline",
         "related_howtos": [],
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -159,15 +161,15 @@
         "evidence_from_source": "The article presents Privacy Filter as a local model that masks personally identifiable information before any hosted model call, and argues that this is the right shape for the problem.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-centralization",
         "proposed_tags": [
-          "ai-architecture",
-          "ai-engineering"
+          "runtime-centralization",
+          "ai-operationalization"
         ],
         "related_trends": [
           "knowledge-base-becomes-runtime-infrastructure"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -238,11 +240,11 @@
         "knowledge_summary": "A local redaction layer can remove personally identifiable information before text reaches a hosted model or external service. This pattern is useful when the upstream system contains names, addresses, account numbers, secrets, or other sensitive spans that should not be forwarded in raw form. The key design idea is to treat redaction as a preprocessing step in the pipeline, not a manual cleanup step after the fact. Long-context classification models can simplify the workflow because they can inspect larger documents without fragile chunking. The operational goal is risk reduction before data egress, not perfect anonymization.",
         "match_candidates": [],
         "operational_insight": "Put redaction at the boundary where sensitive text leaves your controlled environment, and measure it on your own domain before trusting benchmark scores. If the text is long, a context-aware classifier is easier to operate than regex chains or chunk-based heuristics.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering",
-          "ai-security"
+          "verification-systems"
         ],
         "related_topics": [
           "agentic-workflows"
@@ -269,9 +271,9 @@
         "knowledge_summary": "Token classification turns redaction into a labeling problem: each token gets a category that indicates whether it belongs to a sensitive span. This is a good fit for privacy filtering because the output can be decoded directly into masking spans. Compared with free-form generation, it is more controllable and easier to constrain. The approach becomes especially useful when the model needs clean span boundaries for downstream audit or redaction logic. It is a general pattern for entity detection, not just for privacy masking.",
         "match_candidates": [],
         "operational_insight": "Use token-level classifiers when you need deterministic spans rather than prose, especially for masking, tagging, and extraction pipelines. Constrained decoding can be an important guardrail when post-processing must be structurally clean.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [],
@@ -315,9 +317,9 @@
           "model_name": "Privacy Filter",
           "operational_profile": "- A local token-classification model for masking personally identifiable information in unstructured text.\n- Designed to run on a laptop or in a browser, which keeps unredacted text on the user\u2019s machine instead of sending it to a cloud API.\n- Uses a bidirectional labeling approach with BIOES spans and constrained decoding so it can mark entity boundaries cleanly rather than relying on brittle regex rules.\n- Exposes operating points that let teams trade recall for precision depending on whether the use case is ingestion, review, or user-facing redaction.\n- Can be fine-tuned on small domain-specific datasets when the default categories are not enough for a specialized workflow.",
           "pricing_inference_implications": "Local execution suggests low marginal inference cost compared with sending every document to a hosted model for redaction, but the article gives no actual latency or hardware cost numbers. Because it is small and runs on a laptop, it likely fits batch preprocessing or edge-style workflows better than heavy server-side inference, but that remains an inference from the deployment description, not a measured claim.",
-          "proposed_new_type": "classification",
+          "proposed_new_type": "reasoning-model",
           "proposed_types": [
-            "open-weight",
+            "open-weight-model",
             "it-security"
           ],
           "provider": "OpenAI",
@@ -424,11 +426,11 @@
             "classification"
           ],
           "approved_types": [
-            "open-weight",
-            "classification"
+            "open-weight-model",
+            "reasoning-model"
           ],
           "reviewer_types_added": [
-            "classification"
+            "reasoning-model"
           ]
         }
       }
@@ -440,10 +442,10 @@
           "evidence_type": "vendor_claim",
           "extended_explanation": "Sparse mixture-of-experts models are useful when a system needs more capacity than a single dense model can afford to run at full strength. By activating only selected experts for each token or input, they can keep inference cheaper than a dense model with the same total parameter count. They are especially relevant when the task can be solved with specialized submodels rather than one general-purpose network. In practice, they are often used when you want larger total capacity without paying the full latency cost on every pass.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A model architecture that routes each input through only a small subset of experts instead of activating the full parameter set. This reduces active compute while retaining a larger total model capacity.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [],
@@ -585,16 +587,16 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management",
+            "knowledge-systems",
             "support-automation"
           ],
           "question_title": "PII Redaction Pipeline",
           "related_howtos": [],
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-privacy",
           "suggested_new_tags": [
-            "ai-privacy"
+            "compliance-systems"
           ],
           "supporting_snippet": "\u201cIf you run a startup that processes user data with hosted LLMs, here is the concrete checklist. Pull the model from Hugging Face, Apache 2.0, around 3GB to download. Run it locally on a small batch of your real data, look at the output, note the false positives and false negatives. Decide your operating point: high recall for training data sanitisation, balanced for review pipelines, high precision for user-visible redaction. If your domain is specialised (medical, legal, financial, internal vocabulary), fine-tune on a few hundred labelled examples. Insert it in front of any pipeline that sends data to a hosted LLM: logs, support routing, embedding generation, RAG indexing, training data curation.\u201d",
           "value_level": "high",
@@ -662,11 +664,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-privacy"
+            "compliance-systems"
           ],
           "final_tags": [
             "ai-engineering",
-            "ai-privacy"
+            "compliance-systems"
           ]
         }
       }
@@ -680,15 +682,15 @@
           "evidence_from_source": "The article presents Privacy Filter as a local model that masks personally identifiable information before any hosted model call, and argues that this is the right shape for the problem.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-centralization",
           "proposed_tags": [
-            "ai-architecture",
-            "ai-engineering"
+            "runtime-centralization",
+            "ai-operationalization"
           ],
           "related_trends": [
             "knowledge-base-becomes-runtime-infrastructure"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -871,11 +873,11 @@
           "knowledge_summary": "A local redaction layer can remove personally identifiable information before text reaches a hosted model or external service. This pattern is useful when the upstream system contains names, addresses, account numbers, secrets, or other sensitive spans that should not be forwarded in raw form. The key design idea is to treat redaction as a preprocessing step in the pipeline, not a manual cleanup step after the fact. Long-context classification models can simplify the workflow because they can inspect larger documents without fragile chunking. The operational goal is risk reduction before data egress, not perfect anonymization.",
           "match_candidates": [],
           "operational_insight": "Put redaction at the boundary where sensitive text leaves your controlled environment, and measure it on your own domain before trusting benchmark scores. If the text is long, a context-aware classifier is easier to operate than regex chains or chunk-based heuristics.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "ai-security"
+            "verification-systems"
           ],
           "related_topics": [
             "agentic-workflows"
@@ -951,7 +953,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-compliance"
+            "compliance-systems"
           ]
         }
       },
@@ -968,9 +970,9 @@
           "knowledge_summary": "Token classification turns redaction into a labeling problem: each token gets a category that indicates whether it belongs to a sensitive span. This is a good fit for privacy filtering because the output can be decoded directly into masking spans. Compared with free-form generation, it is more controllable and easier to constrain. The approach becomes especially useful when the model needs clean span boundaries for downstream audit or redaction logic. It is a general pattern for entity detection, not just for privacy masking.",
           "match_candidates": [],
           "operational_insight": "Use token-level classifiers when you need deterministic spans rather than prose, especially for masking, tagging, and extraction pipelines. Constrained decoding can be an important guardrail when post-processing must be structurally clean.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [],
@@ -1044,7 +1046,7 @@
           "approved_new_tags": [],
           "final_tags": [
             "ai-engineering",
-            "ai-compliance"
+            "compliance-systems"
           ]
         }
       }

@@ -21,7 +21,7 @@
       "total_tokens": 29694
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,17 +37,17 @@
         "evidence_type": null,
         "extended_explanation": "An ontology defines the important entities in a domain, the kinds of relationships they can have, and sometimes the rules that govern those relationships. In practice, it is used when systems need to share a common vocabulary and reason over that vocabulary consistently. Ontologies often show up in enterprise knowledge systems, semantic search, and rule-based automation. They are more about meaning and constraints than about simple data storage.",
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "memory-systems",
         "proposed_definition": "A formal representation of concepts in a domain and the relationships between them, often used to make meaning machine-readable and support reasoning.",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-architecture"
+          "memory-systems",
+          "runtime-architecture"
         ],
         "related_terms": [
           "Knowledge Management"
         ],
         "relevance_note": "Ontologies matter because they give AI systems a structured way to represent domain concepts, constraints, and relationships. They are useful when a chatbot, agent, or knowledge system needs consistent interpretation rather than loose text matching.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -60,18 +60,18 @@
         "evidence_type": null,
         "extended_explanation": "Datalog is often used when teams want logic-based reasoning without the complexity of full first-order logic systems. It works well for facts, predicates, and rule evaluation, which makes it attractive for enterprise knowledge bases and policy logic. Compared with richer ontology languages, it is usually easier to implement and reason about operationally. It is especially useful when inference needs to be predictable and embedded into application workflows.",
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "memory-systems",
         "proposed_definition": "A declarative logic programming language and query paradigm used for expressing facts and rules with guaranteed, efficient inference in many practical settings.",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-architecture"
+          "memory-systems",
+          "runtime-architecture"
         ],
         "related_terms": [
           "Ontology",
           "Knowledge Management"
         ],
         "relevance_note": "Datalog matters because it can expose business rules and structured knowledge to AI systems without requiring a full graph database stack. That makes it relevant for agent orchestration, policy checks, and grounded retrieval where predictable inference is more important than flexible graph traversal.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -89,15 +89,15 @@
         "evidence_from_source": "The source argues that exposing rules and institutional knowledge to LLMs through MCP servers or logic systems can be simpler and more practical than building a graph database-backed ontology layer.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-engineering"
+          "workflow-restructuring",
+          "ai-operationalization"
         ],
         "related_trends": [
           "harness-design-becomes-more-important-for-agent-reliability"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -166,17 +166,17 @@
         "knowledge_summary": "Machine-readable institutional knowledge can be implemented with different architectures depending on the real task: storage, traversal, rules, or inference. A graph database is only one option, and often not the simplest one. For many enterprise use cases, the better design is to expose existing rules or knowledge bases to AI systems rather than forcing every knowledge problem into a graph model.",
         "match_candidates": [],
         "operational_insight": "Before adopting a graph stack, separate the requirements for knowledge storage, rule execution, inference, and validation. That usually exposes simpler architectures that are cheaper to build and easier to maintain.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-architecture"
+          "knowledge-systems",
+          "runtime-architecture"
         ],
         "related_topics": [
           "ontology-driven-extraction",
           "provenance-tracking"
         ],
         "relevance_note": "Knowledge management is central to AI systems that need grounded answers, policy compliance, or reusable institutional memory. The operational lesson is to choose the lightest structure that still supports the required reasoning and governance.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -197,10 +197,10 @@
         "knowledge_summary": "Ontology-driven extraction uses a domain ontology to structure information extraction and constrain how entities and relations are interpreted. It can improve consistency and downstream reasoning, but it also adds modeling work and often depends on external reasoning systems. Inference, validation, and schema management are separate concerns from storing graph-shaped data.",
         "match_candidates": [],
         "operational_insight": "Do not treat ontology modeling as equivalent to graph storage. If the workflow needs classification, validation, or inference, plan for the reasoning layer explicitly rather than assuming the database will handle it.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-architecture"
+          "knowledge-systems",
+          "runtime-architecture"
         ],
         "related_topics": [
           "privacy-controls-for-ai-products",
@@ -208,7 +208,7 @@
           "local-model-deployment"
         ],
         "relevance_note": "Ontology-driven extraction matters in enterprise AI because it can turn unstructured text into structured knowledge that agents can use. The main operational challenge is that the ontology is only useful if reasoning and validation are supported cleanly in the pipeline.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -228,17 +228,17 @@
           "evidence_type": null,
           "extended_explanation": "An ontology defines the important entities in a domain, the kinds of relationships they can have, and sometimes the rules that govern those relationships. In practice, it is used when systems need to share a common vocabulary and reason over that vocabulary consistently. Ontologies often show up in enterprise knowledge systems, semantic search, and rule-based automation. They are more about meaning and constraints than about simple data storage.",
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "memory-systems",
           "proposed_definition": "A formal representation of concepts in a domain and the relationships between them, often used to make meaning machine-readable and support reasoning.",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-architecture"
+            "memory-systems",
+            "runtime-architecture"
           ],
           "related_terms": [
             "Knowledge Management"
           ],
           "relevance_note": "Ontologies matter because they give AI systems a structured way to represent domain concepts, constraints, and relationships. They are useful when a chatbot, agent, or knowledge system needs consistent interpretation rather than loose text matching.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -287,7 +287,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "memory-systems"
           ]
         }
       },
@@ -297,18 +297,18 @@
           "evidence_type": null,
           "extended_explanation": "Datalog is often used when teams want logic-based reasoning without the complexity of full first-order logic systems. It works well for facts, predicates, and rule evaluation, which makes it attractive for enterprise knowledge bases and policy logic. Compared with richer ontology languages, it is usually easier to implement and reason about operationally. It is especially useful when inference needs to be predictable and embedded into application workflows.",
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "memory-systems",
           "proposed_definition": "A declarative logic programming language and query paradigm used for expressing facts and rules with guaranteed, efficient inference in many practical settings.",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-architecture"
+            "memory-systems",
+            "runtime-architecture"
           ],
           "related_terms": [
             "Ontology",
             "Knowledge Management"
           ],
           "relevance_note": "Datalog matters because it can expose business rules and structured knowledge to AI systems without requiring a full graph database stack. That makes it relevant for agent orchestration, policy checks, and grounded retrieval where predictable inference is more important than flexible graph traversal.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -371,15 +371,15 @@
           "evidence_from_source": "The source argues that exposing rules and institutional knowledge to LLMs through MCP servers or logic systems can be simpler and more practical than building a graph database-backed ontology layer.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-engineering"
+            "workflow-restructuring",
+            "ai-operationalization"
           ],
           "related_trends": [
             "harness-design-becomes-more-important-for-agent-reliability"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -558,17 +558,17 @@
           "knowledge_summary": "Machine-readable institutional knowledge can be implemented with different architectures depending on the real task: storage, traversal, rules, or inference. A graph database is only one option, and often not the simplest one. For many enterprise use cases, the better design is to expose existing rules or knowledge bases to AI systems rather than forcing every knowledge problem into a graph model.",
           "match_candidates": [],
           "operational_insight": "Before adopting a graph stack, separate the requirements for knowledge storage, rule execution, inference, and validation. That usually exposes simpler architectures that are cheaper to build and easier to maintain.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-architecture"
+            "knowledge-systems",
+            "runtime-architecture"
           ],
           "related_topics": [
             "ontology-driven-extraction",
             "provenance-tracking"
           ],
           "relevance_note": "Knowledge management is central to AI systems that need grounded answers, policy compliance, or reusable institutional memory. The operational lesson is to choose the lightest structure that still supports the required reasoning and governance.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -639,7 +639,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       },
@@ -656,10 +656,10 @@
           "knowledge_summary": "Ontology-driven extraction uses a domain ontology to structure information extraction and constrain how entities and relations are interpreted. It can improve consistency and downstream reasoning, but it also adds modeling work and often depends on external reasoning systems. Inference, validation, and schema management are separate concerns from storing graph-shaped data.",
           "match_candidates": [],
           "operational_insight": "Do not treat ontology modeling as equivalent to graph storage. If the workflow needs classification, validation, or inference, plan for the reasoning layer explicitly rather than assuming the database will handle it.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-architecture"
+            "knowledge-systems",
+            "runtime-architecture"
           ],
           "related_topics": [
             "privacy-controls-for-ai-products",
@@ -667,7 +667,7 @@
             "local-model-deployment"
           ],
           "relevance_note": "Ontology-driven extraction matters in enterprise AI because it can turn unstructured text into structured knowledge that agents can use. The main operational challenge is that the ontology is only useful if reasoning and validation are supported cleanly in the pipeline.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -739,7 +739,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       }

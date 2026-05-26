@@ -21,7 +21,7 @@
       "total_tokens": 32266
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,15 +41,15 @@
         "evidence_from_source": "The article says \"the shift to Agentic commerce has already begun\" and describes shopping in two modes: indirect inside ecosystems like ChatGPT, Perplexity, and Gemini, and directly through a brand's own AI agent.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "execution-oriented-agents",
+          "runtime-centralization"
         ],
         "related_trends": [
           "realtime-multimodal-interaction"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -118,14 +118,14 @@
         "knowledge_summary": "Multimodal interaction combines language, visuals, and other input modes into one continuous interface that can adapt in real time. In AI products, the useful pattern is not merely adding a chatbot, but allowing the system to reshape what it shows and offers as the user refines intent. This works best when the interface can update layouts, comparisons, and recommendations without forcing the user to restart the interaction. The design challenge is to keep the experience coherent while the system responds dynamically to mixed human and machine input.",
         "match_candidates": [],
         "operational_insight": "Treat the multimodal layer as an interaction engine, not a garnish. The durable design move is to let text, voice, and visual states share the same intent context so the interface can adapt without losing state.",
-        "primary_tag": "interactive-ai",
+        "primary_tag": "multimodal-ai",
         "proposed_tags": [
-          "interactive-ai",
-          "ai-architecture"
+          "multimodal-ai",
+          "runtime-architecture"
         ],
         "related_topics": [],
         "relevance_note": "This pattern matters wherever users need to refine complex choices through language plus visuals, including shopping, onboarding, and guided support. It gives product teams a reusable way to think about adaptive interfaces that can serve both people and agents.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -146,16 +146,16 @@
         "knowledge_summary": "Intent-driven commerce interfaces are shopping surfaces that organize product discovery around what the user wants to accomplish rather than around pre-baked categories and static filter trees. The interface becomes a runtime layer that can adapt comparisons, recommendations, and available actions as intent becomes clearer. This pattern requires structured product data so the system can retrieve relevant attributes and explain tradeoffs dynamically. It is especially useful when the same catalog must serve both direct shoppers and AI-mediated discovery flows.",
         "match_candidates": [],
         "operational_insight": "For commerce systems, the design target is no longer just page rendering; it is intent resolution over structured product data. Teams need to think about how the UI, catalog schema, and AI layer cooperate to produce comparable options and actions on demand.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
-          "interactive-ai"
+          "runtime-architecture",
+          "multimodal-ai"
         ],
         "related_topics": [
           "realtime-multimodal-interaction"
         ],
         "relevance_note": "This is a durable pattern for any product catalog exposed to conversational search or agentic browsing. It shapes how catalogs, recommendation systems, and user interfaces need to be designed when discovery is driven by natural language instead of rigid navigation.",
-        "secondary_tag": "interactive-ai",
+        "secondary_tag": "multimodal-ai",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -179,15 +179,15 @@
           "evidence_from_source": "The article says \"the shift to Agentic commerce has already begun\" and describes shopping in two modes: indirect inside ecosystems like ChatGPT, Perplexity, and Gemini, and directly through a brand's own AI agent.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "execution-oriented-agents",
+            "runtime-centralization"
           ],
           "related_trends": [
             "realtime-multimodal-interaction"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -265,8 +265,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "agentic-ai",
-            "ai-economics"
+            "execution-oriented-agents",
+            "software-commoditization"
           ]
         }
       }
@@ -369,14 +369,14 @@
           "knowledge_summary": "Multimodal interaction combines language, visuals, and other input modes into one continuous interface that can adapt in real time. In AI products, the useful pattern is not merely adding a chatbot, but allowing the system to reshape what it shows and offers as the user refines intent. This works best when the interface can update layouts, comparisons, and recommendations without forcing the user to restart the interaction. The design challenge is to keep the experience coherent while the system responds dynamically to mixed human and machine input.",
           "match_candidates": [],
           "operational_insight": "Treat the multimodal layer as an interaction engine, not a garnish. The durable design move is to let text, voice, and visual states share the same intent context so the interface can adapt without losing state.",
-          "primary_tag": "interactive-ai",
+          "primary_tag": "multimodal-ai",
           "proposed_tags": [
-            "interactive-ai",
-            "ai-architecture"
+            "multimodal-ai",
+            "runtime-architecture"
           ],
           "related_topics": [],
           "relevance_note": "This pattern matters wherever users need to refine complex choices through language plus visuals, including shopping, onboarding, and guided support. It gives product teams a reusable way to think about adaptive interfaces that can serve both people and agents.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -444,8 +444,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "interactive-ai",
-            "realtime-ai"
+            "multimodal-ai",
+            "inference-systems"
           ]
         }
       },
@@ -462,20 +462,20 @@
           "knowledge_summary": "Intent-driven commerce interfaces are shopping surfaces that organize product discovery around what the user wants to accomplish rather than around pre-baked categories and static filter trees. The interface becomes a runtime layer that can adapt comparisons, recommendations, and available actions as intent becomes clearer. This pattern requires structured product data so the system can retrieve relevant attributes and explain tradeoffs dynamically. It is especially useful when the same catalog must serve both direct shoppers and AI-mediated discovery flows.",
           "match_candidates": [],
           "operational_insight": "For commerce systems, the design target is no longer just page rendering; it is intent resolution over structured product data. Teams need to think about how the UI, catalog schema, and AI layer cooperate to produce comparable options and actions on demand.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
-            "interactive-ai"
+            "runtime-architecture",
+            "multimodal-ai"
           ],
           "related_topics": [
             "realtime-multimodal-interaction"
           ],
           "relevance_note": "This is a durable pattern for any product catalog exposed to conversational search or agentic browsing. It shapes how catalogs, recommendation systems, and user interfaces need to be designed when discovery is driven by natural language instead of rigid navigation.",
-          "secondary_tag": "interactive-ai",
+          "secondary_tag": "multimodal-ai",
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-applications",
           "suggested_new_tags": [
-            "ai-applications"
+            "enterprise-ai"
           ],
           "supporting_snippet": "The next-gen PDP isn't a container; it's an interface that: Adapts layout dynamically based on human or agent intent. Blend visual elements with conversational context. Exposes structured attributes for NLP-friendly retrieval.",
           "topic_slug": "intent-driven-commerce-interfaces",
@@ -542,11 +542,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-applications"
+            "enterprise-ai"
           ],
           "final_tags": [
-            "interactive-ai",
-            "ai-applications"
+            "multimodal-ai",
+            "enterprise-ai"
           ]
         }
       }

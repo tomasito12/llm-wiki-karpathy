@@ -21,7 +21,7 @@
       "total_tokens": 41682
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,16 +41,16 @@
         "evidence_from_source": "The article repeatedly argues that the 'stack' around Claude Code matters more than the prompt and shows concrete layers\u2014memory, rules, subagents, hooks, skills, MCP servers, worktrees, and headless mode\u2014used to speed a RAG-service task and automate review and PR flow.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-engineering"
+          "execution-oriented-agents",
+          "ai-operationalization"
         ],
         "related_trends": [
           "harness-design-becomes-more-important-for-agent-reliability",
           "artifact-first-ai-workflows"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -126,6 +126,7 @@
         "name": "Claude Code",
         "operational_relevance": "The piece treats Claude Code as the orchestration surface for a full engineering workflow rather than a chat box. That makes it relevant for teams that want agentic code changes, repository-specific guardrails, and automated eval loops. It is especially relevant where one session must coordinate reading code, editing files, running checks, and opening pull requests with limited context.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "coding-agent",
           "terminal"
@@ -138,6 +139,7 @@
         "short_description": "An AI coding assistant for planning, editing, reviewing, and automating software changes inside a repository. In this article it is used with subagents, hooks, skills, worktrees, and headless runs to make longer tasks more controlled and repeatable.",
         "strengths": "- Supports a layered workflow where memory, rules, subagents, hooks, and skills each handle a different part of the task, which reduces the need to cram everything into one prompt.\n- Works well with Plan Mode and read-only subagents for risky tasks, so teams can review a concrete plan before edits are applied.\n- Fits headless automation and worktree-based parallelism, which lets one run implement code, another run evals, and a third draft the PR without blocking on a single session.\n- The article presents it as highly configurable for repo-specific guardrails, including path-scoped rules and permission deferrals for sensitive operations.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"For most engineers using Claude Code right now the answer is \u2018command not found\u2019 or a single file containing a vague instruction to write clean code. That is fine. It also leaves roughly 80% of the product on the floor.\"",
         "value_level": "high",
         "weaknesses_limitations": "The setup depends on disciplined configuration; the article explicitly says the empty-folder version leaves much of the product unused. It also implies that token overhead from large memory files and too many MCP servers can erode performance, so careless configuration can make the tool less effective. The article does not provide independent evidence that every team will benefit equally from the same stack."
@@ -160,7 +162,7 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "agentic-ai"
+          "agent-systems"
         ],
         "related_topics": [
           "agent-infrastructure",
@@ -168,7 +170,7 @@
           "agent-first-ide-orchestration"
         ],
         "relevance_note": "This pattern matters because many agent failures come from bloated context, unclear instruction scope, and too much unrelated tool surface. Teams building conversational agents, coding assistants, or automation pipelines can reuse the same layering idea to keep sessions narrower, safer, and more debuggable.",
-        "secondary_tag": "agentic-ai",
+        "secondary_tag": "agent-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -193,14 +195,14 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "agentic-ai"
+          "agent-systems"
         ],
         "related_topics": [
           "agent-workspace-layering",
           "harness-engineering"
         ],
         "relevance_note": "This is durable because prompt budgets and context limits remain a core constraint in agentic systems. The same principle applies to support bots, code agents, and internal assistants: the less irrelevant instruction text they carry, the more reliable their behavior tends to be.",
-        "secondary_tag": "agentic-ai",
+        "secondary_tag": "agent-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -224,16 +226,16 @@
           "evidence_from_source": "The article repeatedly argues that the 'stack' around Claude Code matters more than the prompt and shows concrete layers\u2014memory, rules, subagents, hooks, skills, MCP servers, worktrees, and headless mode\u2014used to speed a RAG-service task and automate review and PR flow.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-engineering"
+            "execution-oriented-agents",
+            "ai-operationalization"
           ],
           "related_trends": [
             "harness-design-becomes-more-important-for-agent-reliability",
             "artifact-first-ai-workflows"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -540,7 +542,7 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ],
           "related_topics": [
             "agent-infrastructure",
@@ -548,7 +550,7 @@
             "agent-first-ide-orchestration"
           ],
           "relevance_note": "This pattern matters because many agent failures come from bloated context, unclear instruction scope, and too much unrelated tool surface. Teams building conversational agents, coding assistants, or automation pipelines can reuse the same layering idea to keep sessions narrower, safer, and more debuggable.",
-          "secondary_tag": "agentic-ai",
+          "secondary_tag": "agent-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -640,14 +642,14 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ],
           "related_topics": [
             "agent-workspace-layering",
             "harness-engineering"
           ],
           "relevance_note": "This is durable because prompt budgets and context limits remain a core constraint in agentic systems. The same principle applies to support bots, code agents, and internal assistants: the less irrelevant instruction text they carry, the more reliable their behavior tends to be.",
-          "secondary_tag": "agentic-ai",
+          "secondary_tag": "agent-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

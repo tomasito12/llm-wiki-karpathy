@@ -21,7 +21,7 @@
       "total_tokens": 32687
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,15 +41,15 @@
         "evidence_from_source": "OpenAI describes a goblin/gremlin habit that did not appear as a simple metric failure and instead became visible through user complaints, employee reports, and targeted inspection.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-evals",
+        "primary_tag": "behavioral-evaluation",
         "proposed_tags": [
-          "ai-evals",
-          "ai-engineering"
+          "behavioral-evaluation",
+          "ai-operationalization"
         ],
         "related_trends": [
           "stable-api-names-no-longer-guarantee-stable-model-behavior"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -120,9 +120,9 @@
         "knowledge_summary": "Reward signals can generalize beyond the exact training condition they were intended for, especially in RLHF-like setups where rewarded outputs later get reused in supervised fine-tuning or preference data. In the source, a reward designed for the \u201cNerdy\u201d personality in personality customization unexpectedly favored creature-word outputs, and those creature mentions later appeared more broadly, including outside the original prompt condition. This makes the topic useful as a general warning that a narrow style reward can create a wider behavioral footprint than intended.",
         "match_candidates": [],
         "operational_insight": "In RLHF or similar preference-training pipelines, audit not only the immediate rewarded condition but also downstream datasets that may reuse rewarded rollouts. If a style or personality reward is correlated with a lexical tic or other artifact, check whether that artifact is increasing in both the targeted slice and unrelated slices, since reinforcement can spread the learned behavior beyond its original scope.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
@@ -150,9 +150,9 @@
         "knowledge_summary": "Some model regressions appear as small, qualitative habits rather than obvious benchmark failures. Detecting them requires targeted searches over generated text, longitudinal comparisons across model versions, and attention to user-reported anomalies. This kind of audit complements standard evals by surfacing output patterns that matter to product quality but are easy to miss in aggregate metrics. It is most useful when the concern is conversational tone, repetitive phrasing, or other subtle stylistic artifacts.",
         "match_candidates": [],
         "operational_insight": "Build lightweight detectors and review loops for recurring phrases, tones, or lexical tics so subtle regressions can be caught before they become user-visible. Use model-version comparisons and targeted pattern searches, not only global scorecards.",
-        "primary_tag": "ai-evals",
+        "primary_tag": "ai-evaluation",
         "proposed_tags": [
-          "ai-evals",
+          "ai-evaluation",
           "ai-engineering"
         ],
         "related_topics": [
@@ -183,15 +183,15 @@
           "evidence_from_source": "OpenAI describes a goblin/gremlin habit that did not appear as a simple metric failure and instead became visible through user complaints, employee reports, and targeted inspection.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-evals",
+          "primary_tag": "behavioral-evaluation",
           "proposed_tags": [
-            "ai-evals",
-            "ai-engineering"
+            "behavioral-evaluation",
+            "ai-operationalization"
           ],
           "related_trends": [
             "stable-api-names-no-longer-guarantee-stable-model-behavior"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -373,9 +373,9 @@
           "knowledge_summary": "Reward signals can generalize beyond the exact training condition they were intended for, especially in RLHF-like setups where rewarded outputs later get reused in supervised fine-tuning or preference data. In the source, a reward designed for the \u201cNerdy\u201d personality in personality customization unexpectedly favored creature-word outputs, and those creature mentions later appeared more broadly, including outside the original prompt condition. This makes the topic useful as a general warning that a narrow style reward can create a wider behavioral footprint than intended.",
           "match_candidates": [],
           "operational_insight": "In RLHF or similar preference-training pipelines, audit not only the immediate rewarded condition but also downstream datasets that may reuse rewarded rollouts. If a style or personality reward is correlated with a lexical tic or other artifact, check whether that artifact is increasing in both the targeted slice and unrelated slices, since reinforcement can spread the learned behavior beyond its original scope.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
@@ -387,8 +387,7 @@
           "suggested_new_tag": "reward-spillover",
           "suggested_new_tags": [
             "reward-spillover",
-            "reinforcement-learning",
-            "post-training"
+            "reward-modeling"
           ],
           "supporting_snippet": "\"One reward signal stood out immediately: the one originally designed to encourage the Nerdy personality was consistently more favorable to the creature-word outputs.\"",
           "topic_slug": "reward-generalization-effects",
@@ -457,12 +456,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "reinforcement-learning",
-            "post-training"
+            "reward-modeling"
           ],
           "final_tags": [
-            "reinforcement-learning",
-            "post-training"
+            "reward-modeling"
           ]
         }
       },
@@ -479,9 +476,9 @@
           "knowledge_summary": "Some model regressions appear as small, qualitative habits rather than obvious benchmark failures. Detecting them requires targeted searches over generated text, longitudinal comparisons across model versions, and attention to user-reported anomalies. This kind of audit complements standard evals by surfacing output patterns that matter to product quality but are easy to miss in aggregate metrics. It is most useful when the concern is conversational tone, repetitive phrasing, or other subtle stylistic artifacts.",
           "match_candidates": [],
           "operational_insight": "Build lightweight detectors and review loops for recurring phrases, tones, or lexical tics so subtle regressions can be caught before they become user-visible. Use model-version comparisons and targeted pattern searches, not only global scorecards.",
-          "primary_tag": "ai-evals",
+          "primary_tag": "ai-evaluation",
           "proposed_tags": [
-            "ai-evals",
+            "ai-evaluation",
             "ai-engineering"
           ],
           "related_topics": [
@@ -558,7 +555,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-evals",
+            "ai-evaluation",
             "ai-engineering"
           ]
         }

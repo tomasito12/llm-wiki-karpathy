@@ -21,7 +21,7 @@
       "total_tokens": 35502
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -55,9 +55,10 @@
         "operational_profile": "GPT-5.5 Instant is presented as a faster default ChatGPT model tuned for everyday interaction quality.\n- It is described as smarter and more accurate, with stronger performance on factuality-sensitive prompts.\n- It is also positioned as clearer and more concise, which suggests the model is optimized for lower verbal overhead in chat.\n- OpenAI says it is better at deciding when to use web search and at handling image uploads, so it appears to be a general-purpose interactive model rather than a narrow specialist.",
         "pricing_inference_implications": "No pricing details are given. The most practical inference is that teams using chat-latest should expect the default economics and latency profile to track OpenAI's rollout choices rather than assume GPT-5.3 Instant behavior. Any cost-sensitive deployment would need independent measurement.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
-          "proprietary",
-          "interactive-ai"
+          "proprietary-model",
+          "multimodal-model"
         ],
         "provider": "OpenAI",
         "related_models": [
@@ -65,6 +66,7 @@
         ],
         "service_automation_implications": "Potentially useful for chat-based service automation because the model is described as more concise, more accurate, and better at using prior context. If those claims hold, it could improve first-turn resolution and reduce unnecessary clarification loops. The article does not provide customer-support metrics, so service-automation impact remains plausible but unproven as of 2026-05-05.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"We\u2019re updating ChatGPT\u2019s default model, available to everyone, to be smarter and more accurate, with clearer and more concise answers that feel better tailored to you.\"",
         "value_level": "high",
         "weaknesses_limitations": "The source does not provide model architecture, cost, latency, or public benchmark methodology. All quality claims are vendor-reported and depend on internal evaluations, so the magnitude of improvement is not independently verified here. Personalization can also make failures more opaque if the model leans on stale or incomplete context."
@@ -76,10 +78,10 @@
         "evidence_type": "vendor_claim",
         "extended_explanation": "This concept turns personalization into something users can review and manage instead of treating it as a hidden process. In practice, memory sources can show some of the context that shaped a response, but not necessarily every factor the system used. The value is in giving people a control surface for trust, cleanup, and correction when personalization is stale, inaccurate, or no longer relevant.",
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "memory-systems",
         "proposed_definition": "Memory sources are the visible records of context used to personalize a response, such as saved memories or past chats, so a user can inspect, delete, or correct what influenced the answer.",
         "proposed_tags": [
-          "knowledge-management"
+          "memory-systems"
         ],
         "related_terms": [
           "Knowledge Management"
@@ -98,10 +100,10 @@
         "evidence_type": "vendor_claim",
         "extended_explanation": "In AI engineering, hallucinations are a core reliability problem because an assistant can sound confident while stating false or unsupported information. They matter most when users rely on the answer for decisions in high-stakes settings such as medicine, law, or finance. Common mitigations include retrieval, verification, better refusal behavior, and tighter routing or prompting. In practice, the concept also covers cases where a model produces inaccurate details, not just completely fabricated facts.",
         "match_candidates": [],
-        "primary_tag": "ai-evals",
+        "primary_tag": "evals",
         "proposed_definition": "Hallucinations are model-generated claims that are not grounded in the provided context or other reliable evidence, and therefore may be fluent yet incorrect.",
         "proposed_tags": [
-          "ai-evals",
+          "evals",
           "ai-engineering"
         ],
         "related_terms": [],
@@ -124,16 +126,16 @@
         "evidence_from_source": "OpenAI says GPT-5.5 Instant replaces GPT-5.3 Instant as the default model in ChatGPT and in the API as chat-latest, and that the new model changes factuality, tone, verbosity, personalization, and tool-use behavior. It also keeps GPT-5.3 Instant available for paid users for three months, indicating an explicit migration window.",
         "evidence_type": "vendor_claim",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-centralization",
         "proposed_tags": [
-          "ai-architecture",
-          "ai-engineering"
+          "runtime-centralization",
+          "ai-operationalization"
         ],
         "related_trends": [
           "models-becoming-execution-layers",
           "default-model-rollouts-need-migration-plans"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -204,17 +206,17 @@
         "knowledge_summary": "Personalized conversational AI systems adapt responses using user-specific context such as prior chats, stored memories, uploaded files, or connected accounts. The practical goal is to reduce repetitive setup, improve relevance, and make follow-up answers feel continuous across sessions. The hard part is not personalization itself, but deciding which context to use, how to show it to the user, and how to let the user correct stale or unwanted context. Good implementations treat personalization as a controlled subsystem rather than a hidden convenience feature.",
         "match_candidates": [],
         "operational_insight": "The operational win comes from context selection and transparency, not from simply attaching more user data. Systems need clear controls for what gets used, what is shown back, and how users can repair stale context.",
-        "primary_tag": "interactive-ai",
+        "primary_tag": "multimodal-ai",
         "proposed_tags": [
-          "interactive-ai",
-          "knowledge-management"
+          "multimodal-ai",
+          "knowledge-systems"
         ],
         "related_topics": [
           "provenance-tracking",
           "knowledge-base-becomes-runtime-infrastructure"
         ],
         "relevance_note": "This is a durable design pattern for assistants, copilots, and support bots that need continuity across sessions. It affects retrieval policy, user trust, and how operators debug recommendations or responses shaped by prior context.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -235,9 +237,9 @@
         "knowledge_summary": "For interactive assistants, concision is not just a style preference; it is a product quality dimension that affects usability, reading time, and the number of turns needed to get to a useful answer. Shorter answers can be better when they preserve the needed substance and reduce clutter, follow-up friction, and accidental overexplaining. The tradeoff is that compression can hide uncertainty or omit useful caveats if it is not paired with strong answer discipline. Systems should optimize for concise usefulness, not brevity alone.",
         "match_candidates": [],
         "operational_insight": "Treat verbosity as a tunable UX property. In chat products, the right output length often depends on whether the assistant is helping a user decide, act, or learn.",
-        "primary_tag": "interactive-ai",
+        "primary_tag": "multimodal-ai",
         "proposed_tags": [
-          "interactive-ai"
+          "multimodal-ai"
         ],
         "related_topics": [],
         "relevance_note": "This matters in conversational products where every extra sentence increases reading burden and can make the assistant feel less direct. It is especially relevant for chatbots and support flows that benefit from fast, high-signal responses.",
@@ -281,8 +283,8 @@
           "pricing_inference_implications": "No pricing details are given. The most practical inference is that teams using chat-latest should expect the default economics and latency profile to track OpenAI's rollout choices rather than assume GPT-5.3 Instant behavior. Any cost-sensitive deployment would need independent measurement.",
           "proposed_new_type": null,
           "proposed_types": [
-            "proprietary",
-            "interactive-ai"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "provider": "OpenAI",
           "related_models": [
@@ -388,8 +390,8 @@
         "types": {
           "approved_new_types": [],
           "approved_types": [
-            "proprietary",
-            "multi-modal"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "reviewer_types_added": []
         }
@@ -402,10 +404,10 @@
           "evidence_type": "vendor_claim",
           "extended_explanation": "This concept turns personalization into something users can review and manage instead of treating it as a hidden process. In practice, memory sources can show some of the context that shaped a response, but not necessarily every factor the system used. The value is in giving people a control surface for trust, cleanup, and correction when personalization is stale, inaccurate, or no longer relevant.",
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "memory-systems",
           "proposed_definition": "Memory sources are the visible records of context used to personalize a response, such as saved memories or past chats, so a user can inspect, delete, or correct what influenced the answer.",
           "proposed_tags": [
-            "knowledge-management"
+            "memory-systems"
           ],
           "related_terms": [
             "Knowledge Management"
@@ -461,10 +463,10 @@
           "evidence_type": "vendor_claim",
           "extended_explanation": "In AI engineering, hallucinations are a core reliability problem because an assistant can sound confident while stating false or unsupported information. They matter most when users rely on the answer for decisions in high-stakes settings such as medicine, law, or finance. Common mitigations include retrieval, verification, better refusal behavior, and tighter routing or prompting. In practice, the concept also covers cases where a model produces inaccurate details, not just completely fabricated facts.",
           "match_candidates": [],
-          "primary_tag": "ai-evals",
+          "primary_tag": "evals",
           "proposed_definition": "Hallucinations are model-generated claims that are not grounded in the provided context or other reliable evidence, and therefore may be fluent yet incorrect.",
           "proposed_tags": [
-            "ai-evals",
+            "evals",
             "ai-engineering"
           ],
           "related_terms": [],
@@ -511,7 +513,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-evals",
+            "evals",
             "ai-engineering"
           ]
         }
@@ -527,20 +529,20 @@
           "evidence_from_source": "OpenAI says GPT-5.5 Instant replaces GPT-5.3 Instant as the default model in ChatGPT and in the API as chat-latest, and that the new model changes factuality, tone, verbosity, personalization, and tool-use behavior. It also keeps GPT-5.3 Instant available for paid users for three months, indicating an explicit migration window.",
           "evidence_type": "vendor_claim",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-centralization",
           "proposed_tags": [
-            "ai-architecture",
-            "ai-engineering"
+            "runtime-centralization",
+            "ai-operationalization"
           ],
           "related_trends": [
             "models-becoming-execution-layers",
             "default-model-rollouts-need-migration-plans"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "llm-operations",
           "suggested_new_tags": [
-            "llm-operations"
+            "ai-operationalization"
           ],
           "supporting_data_points": [
             "GPT-5.5 Instant replaces GPT-5.3 Instant as the default model.",
@@ -612,10 +614,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "llm-operations"
+            "ai-operationalization"
           ],
           "final_tags": [
-            "llm-operations"
+            "ai-operationalization"
           ]
         }
       }
@@ -718,17 +720,17 @@
           "knowledge_summary": "Personalized conversational AI systems adapt responses using user-specific context such as prior chats, stored memories, uploaded files, or connected accounts. The practical goal is to reduce repetitive setup, improve relevance, and make follow-up answers feel continuous across sessions. The hard part is not personalization itself, but deciding which context to use, how to show it to the user, and how to let the user correct stale or unwanted context. Good implementations treat personalization as a controlled subsystem rather than a hidden convenience feature.",
           "match_candidates": [],
           "operational_insight": "The operational win comes from context selection and transparency, not from simply attaching more user data. Systems need clear controls for what gets used, what is shown back, and how users can repair stale context.",
-          "primary_tag": "interactive-ai",
+          "primary_tag": "multimodal-ai",
           "proposed_tags": [
-            "interactive-ai",
-            "knowledge-management"
+            "multimodal-ai",
+            "knowledge-systems"
           ],
           "related_topics": [
             "provenance-tracking",
             "knowledge-base-becomes-runtime-infrastructure"
           ],
           "relevance_note": "This is a durable design pattern for assistants, copilots, and support bots that need continuity across sessions. It affects retrieval policy, user trust, and how operators debug recommendations or responses shaped by prior context.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -814,9 +816,9 @@
           "knowledge_summary": "For interactive assistants, concision is not just a style preference; it is a product quality dimension that affects usability, reading time, and the number of turns needed to get to a useful answer. Shorter answers can be better when they preserve the needed substance and reduce clutter, follow-up friction, and accidental overexplaining. The tradeoff is that compression can hide uncertainty or omit useful caveats if it is not paired with strong answer discipline. Systems should optimize for concise usefulness, not brevity alone.",
           "match_candidates": [],
           "operational_insight": "Treat verbosity as a tunable UX property. In chat products, the right output length often depends on whether the assistant is helping a user decide, act, or learn.",
-          "primary_tag": "interactive-ai",
+          "primary_tag": "multimodal-ai",
           "proposed_tags": [
-            "interactive-ai"
+            "multimodal-ai"
           ],
           "related_topics": [],
           "relevance_note": "This matters in conversational products where every extra sentence increases reading burden and can make the assistant feel less direct. It is especially relevant for chatbots and support flows that benefit from fast, high-signal responses.",
@@ -890,8 +892,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-evals",
-            "interactive-ai"
+            "ai-evaluation",
+            "multimodal-ai"
           ]
         }
       }

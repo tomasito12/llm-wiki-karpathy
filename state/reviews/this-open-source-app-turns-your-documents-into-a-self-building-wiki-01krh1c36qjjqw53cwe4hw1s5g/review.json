@@ -21,7 +21,7 @@
       "total_tokens": 30102
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -42,16 +42,18 @@
           "It supports document analysis plus final generation in a multi-step workflow.",
           "It is treated as suitable for wiki-style synthesis tasks that require consistency rather than free-form chat."
         ],
+        "deployment_implications": "Useful for workflows that require structured extraction followed by clean generation of markdown pages and links. It can reduce prompt fragility when the deliverable has strict formatting constraints.",
         "evidence_type": "expert_opinion",
         "match_candidates": [],
         "maturity_signals": "The article groups Claude Sonnet with other frontier-class models that handle the task well, implying practical readiness for structured generation. The evidence is experiential rather than formal, so this is a working recommendation rather than a benchmarked conclusion.",
         "model_name": "Claude Sonnet",
-        "operational_summary": "The article treats Claude Sonnet as a strong option for structured document ingestion tasks that require strict markdown, YAML frontmatter, and stable wikilinks. It is presented as one of the models that handles the wiki-building workflow well.",
+        "operational_profile": "The article treats Claude Sonnet as a strong option for structured document ingestion tasks that require strict markdown, YAML frontmatter, and stable wikilinks. It is presented as one of the models that handles the wiki-building workflow well.\n\n- Handles strict markdown formatting better than cheaper or older models, which matters when output must be machine-ingestible.\n- Appears capable of maintaining consistent wikilinks and schema discipline during multi-document synthesis.\n- Is cited as a model that can support the two-step analysis-plus-generation workflow without immediately drifting off format.",
         "pricing_inference_implications": "The source does not provide pricing data, but it treats this as a frontier-model workflow that can become expensive at scale. That makes cost control and selective use important for high-volume ingests.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
-          "proprietary",
-          "interactive-ai"
+          "proprietary-model",
+          "multimodal-model"
         ],
         "provider": "Anthropic",
         "related_models": [
@@ -60,12 +62,11 @@
           "Qwen"
         ],
         "service_automation_implications": "No direct service automation implications are identified in the source; the relevance is mainly to document synthesis and knowledge maintenance.",
-        "strengths": "- Handles strict markdown formatting better than cheaper or older models, which matters when output must be machine-ingestible.\n- Appears capable of maintaining consistent wikilinks and schema discipline during multi-document synthesis.\n- Is cited as a model that can support the two-step analysis-plus-generation workflow without immediately drifting off format.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "In my experience, Claude Sonnet, GPT-4 class models, and the larger DeepSeek and Qwen models handle it well.",
         "value_level": "medium",
-        "weaknesses_limitations": "- The article does not provide benchmark data, only the author's experience, so the strength claim is anecdotal.\n- No cost or latency numbers are given, so the operational tradeoff versus other models remains unclear.\n- The writeup implies that model behavior must be verified before a large ingest run, which suggests that even this model is not fail-safe.",
-        "workflow_implications": "Useful for workflows that require structured extraction followed by clean generation of markdown pages and links. It can reduce prompt fragility when the deliverable has strict formatting constraints."
+        "weaknesses_limitations": "- The article does not provide benchmark data, only the author's experience, so the strength claim is anecdotal.\n- No cost or latency numbers are given, so the operational tradeoff versus other models remains unclear.\n- The writeup implies that model behavior must be verified before a large ingest run, which suggests that even this model is not fail-safe."
       }
     ],
     "glossary": [
@@ -74,17 +75,17 @@
         "evidence_type": null,
         "extended_explanation": "Retrieval-augmented generation is useful when the model should not rely only on what it memorized during training. A query first pulls back relevant snippets, and the model then uses those snippets to produce an answer. This can improve factual grounding, but it often behaves like search plus synthesis rather than long-term learning. In practice, teams use it for document Q&A, support knowledge search, and other settings where evidence needs to stay close to the answer.",
         "match_candidates": [],
-        "primary_tag": "retrieval-augmented-generation",
+        "primary_tag": "rag",
         "proposed_definition": "A pattern where a language model answers by retrieving relevant external information first, then using that retrieved context to generate a response. It is commonly used to ground answers in documents, databases, or other knowledge sources.",
         "proposed_tags": [
-          "retrieval-augmented-generation",
-          "ai-architecture"
+          "rag",
+          "runtime-architecture"
         ],
         "related_terms": [
           "Knowledge Management"
         ],
         "relevance_note": "This term remains central in AI systems that need grounded answers from private documents, product knowledge, or operational data. It matters because many production assistants still depend on retrieval for freshness and auditability, even when users expect accumulation or memory.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -97,17 +98,17 @@
         "evidence_type": null,
         "extended_explanation": "Knowledge management goes beyond storing files. It is about making information easier to search, connect, verify, and reuse later. In AI workflows, that can mean source-of-truth documents, generated summaries, linked pages, and maintenance routines that remove stale or conflicting material. The goal is to help people and systems build on prior work instead of reconstructing it from scratch each time.",
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "memory-systems",
         "proposed_definition": "The practice of organizing, maintaining, and updating information so it stays usable over time. In AI systems, it often includes structuring documents, linking related ideas, preserving sources, and keeping synthesized notes current.",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-architecture"
+          "memory-systems",
+          "runtime-architecture"
         ],
         "related_terms": [
           "Retrieval-Augmented Generation"
         ],
         "relevance_note": "This is a durable concept for any AI workflow that needs memory across sessions, traceable sources, and ongoing curation. It is especially relevant when assistants must support research, internal documentation, or shared operational knowledge.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -163,13 +164,13 @@
         "evidence_from_source": "The article argues that the default document-chat experience is search-and-forget and presents a wiki-maintenance approach as the alternative.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-engineering"
+          "workflow-restructuring",
+          "ai-operationalization"
         ],
         "related_trends": [],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -247,6 +248,7 @@
         "name": "nashsu/llm_wiki",
         "operational_relevance": "This is relevant for teams that want a document workflow with accumulation instead of one-off Q&A. It fits research-heavy work, internal knowledge curation, and any process where repeated reading should produce a growing, auditable knowledge base rather than transient answers. The article emphasizes that the app can run with API models or locally with Ollama, which makes it more flexible for privacy-sensitive setups. It is more of a knowledge-assembly system than a chat interface.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "cloud-saas",
           "workflow-automation"
@@ -260,6 +262,7 @@
         "short_description": "An open-source desktop app that turns uploaded documents into a persistent, linked wiki. It reads sources, generates markdown pages, and keeps updating the knowledge base as new material arrives.",
         "strengths": "- Separates raw source files from synthesized wiki pages so teams keep an audit trail and can review generated claims against the originals.\n- Uses a purpose file and schema file to constrain what the model extracts, which helps reduce noise and keep the output aligned with the task.\n- Splits ingestion into analysis and generation passes, which the article says reduces formatting errors and semantic drift.\n- Builds a knowledge graph with wikilinks and relevance scoring, which makes it easier to see related concepts, contradictions, and gaps.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "The project is called nashsu/llm_wiki, and it's one of the most interesting open-source AI patterns I've seen this year.",
         "value_level": "high",
         "weaknesses_limitations": "- The article is explicit that the AI can also maintain mistakes, so hallucinated pages and bad links remain a real risk unless human review is part of the workflow.\n- The two-step ingestion is token-expensive, and the writeup warns that large documents can consume tens of thousands of tokens per source on frontier models.\n- Strict markdown, YAML, and wikilink formatting can break on cheaper or older models, so the tool is sensitive to model choice and requires verification before large ingests.\n- The piece suggests the approach works best at moderate scale; beyond that, context limits and search requirements become more important."
@@ -279,17 +282,17 @@
         "knowledge_summary": "AI systems become more useful when they maintain a structured, reviewable knowledge base instead of answering each query from scratch. The key design choice is to separate immutable source material from synthesized notes so that generated knowledge can be audited and corrected. Linking pages, tracking contradictions, and routinely cleaning stale material are central to keeping the knowledge base usable over time. In document-heavy environments, the goal is not just retrieval but accumulation and maintenance.",
         "match_candidates": [],
         "operational_insight": "Treat synthesized knowledge as a managed artifact with explicit review and cleanup steps; otherwise, model-generated notes will drift into contradiction and rot.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-architecture"
+          "knowledge-systems",
+          "runtime-architecture"
         ],
         "related_topics": [
           "retrieval-augmented-generation",
           "context-engineering"
         ],
         "relevance_note": "Knowledge management is a durable layer in AI systems that need memory, traceability, and reuse across sessions. It matters for internal assistants, research workflows, and any system where repeated interactions should compound rather than reset.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -344,16 +347,17 @@
             "It supports document analysis plus final generation in a multi-step workflow.",
             "It is treated as suitable for wiki-style synthesis tasks that require consistency rather than free-form chat."
           ],
+          "deployment_implications": "Useful for workflows that require structured extraction followed by clean generation of markdown pages and links. It can reduce prompt fragility when the deliverable has strict formatting constraints.",
           "evidence_type": "expert_opinion",
           "match_candidates": [],
           "maturity_signals": "The article groups Claude Sonnet with other frontier-class models that handle the task well, implying practical readiness for structured generation. The evidence is experiential rather than formal, so this is a working recommendation rather than a benchmarked conclusion.",
           "model_name": "Claude Sonnet",
-          "operational_summary": "The article treats Claude Sonnet as a strong option for structured document ingestion tasks that require strict markdown, YAML frontmatter, and stable wikilinks. It is presented as one of the models that handles the wiki-building workflow well.",
+          "operational_profile": "The article treats Claude Sonnet as a strong option for structured document ingestion tasks that require strict markdown, YAML frontmatter, and stable wikilinks. It is presented as one of the models that handles the wiki-building workflow well.\n\n- Handles strict markdown formatting better than cheaper or older models, which matters when output must be machine-ingestible.\n- Appears capable of maintaining consistent wikilinks and schema discipline during multi-document synthesis.\n- Is cited as a model that can support the two-step analysis-plus-generation workflow without immediately drifting off format.",
           "pricing_inference_implications": "The source does not provide pricing data, but it treats this as a frontier-model workflow that can become expensive at scale. That makes cost control and selective use important for high-volume ingests.",
           "proposed_new_type": null,
           "proposed_types": [
-            "proprietary",
-            "interactive-ai"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "provider": "Anthropic",
           "related_models": [
@@ -362,12 +366,10 @@
             "Qwen"
           ],
           "service_automation_implications": "No direct service automation implications are identified in the source; the relevance is mainly to document synthesis and knowledge maintenance.",
-          "strengths": "- Handles strict markdown formatting better than cheaper or older models, which matters when output must be machine-ingestible.\n- Appears capable of maintaining consistent wikilinks and schema discipline during multi-document synthesis.\n- Is cited as a model that can support the two-step analysis-plus-generation workflow without immediately drifting off format.",
           "suggested_action": "ignore",
           "supporting_snippet": "In my experience, Claude Sonnet, GPT-4 class models, and the larger DeepSeek and Qwen models handle it well.",
           "value_level": "medium",
-          "weaknesses_limitations": "- The article does not provide benchmark data, only the author's experience, so the strength claim is anecdotal.\n- No cost or latency numbers are given, so the operational tradeoff versus other models remains unclear.\n- The writeup implies that model behavior must be verified before a large ingest run, which suggests that even this model is not fail-safe.",
-          "workflow_implications": "Useful for workflows that require structured extraction followed by clean generation of markdown pages and links. It can reduce prompt fragility when the deliverable has strict formatting constraints."
+          "weaknesses_limitations": "- The article does not provide benchmark data, only the author's experience, so the strength claim is anecdotal.\n- No cost or latency numbers are given, so the operational tradeoff versus other models remains unclear.\n- The writeup implies that model behavior must be verified before a large ingest run, which suggests that even this model is not fail-safe."
         },
         "notes": null,
         "proposal_id": "42980d6d-1bed-4279-ac08-e6a850e121e4",
@@ -397,6 +399,12 @@
             "notes": null,
             "status": "pending"
           },
+          "deployment_implications": {
+            "final_text": "Useful for workflows that require structured extraction followed by clean generation of markdown pages and links. It can reduce prompt fragility when the deliverable has strict formatting constraints.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -407,10 +415,11 @@
             "notes": null,
             "status": "pending"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "The article treats Claude Sonnet as a strong option for structured document ingestion tasks that require strict markdown, YAML frontmatter, and stable wikilinks. It is presented as one of the models that handles the wiki-building workflow well.\n\n- Handles strict markdown formatting better than cheaper or older models, which matters when output must be machine-ingestible.\n- Appears capable of maintaining consistent wikilinks and schema discipline during multi-document synthesis.\n- Is cited as a model that can support the two-step analysis-plus-generation workflow without immediately drifting off format.",
             "notes": null,
-            "status": "pending"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -437,22 +446,12 @@
             "notes": null,
             "status": "pending"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "pending"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "pending"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "pending"
@@ -476,17 +475,17 @@
           "evidence_type": null,
           "extended_explanation": "Retrieval-augmented generation is useful when the model should not rely only on what it memorized during training. A query first pulls back relevant snippets, and the model then uses those snippets to produce an answer. This can improve factual grounding, but it often behaves like search plus synthesis rather than long-term learning. In practice, teams use it for document Q&A, support knowledge search, and other settings where evidence needs to stay close to the answer.",
           "match_candidates": [],
-          "primary_tag": "retrieval-augmented-generation",
+          "primary_tag": "rag",
           "proposed_definition": "A pattern where a language model answers by retrieving relevant external information first, then using that retrieved context to generate a response. It is commonly used to ground answers in documents, databases, or other knowledge sources.",
           "proposed_tags": [
-            "retrieval-augmented-generation",
-            "ai-architecture"
+            "rag",
+            "runtime-architecture"
           ],
           "related_terms": [
             "Knowledge Management"
           ],
           "relevance_note": "This term remains central in AI systems that need grounded answers from private documents, product knowledge, or operational data. It matters because many production assistants still depend on retrieval for freshness and auditability, even when users expect accumulation or memory.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -543,17 +542,17 @@
           "evidence_type": null,
           "extended_explanation": "Knowledge management goes beyond storing files. It is about making information easier to search, connect, verify, and reuse later. In AI workflows, that can mean source-of-truth documents, generated summaries, linked pages, and maintenance routines that remove stale or conflicting material. The goal is to help people and systems build on prior work instead of reconstructing it from scratch each time.",
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "memory-systems",
           "proposed_definition": "The practice of organizing, maintaining, and updating information so it stays usable over time. In AI systems, it often includes structuring documents, linking related ideas, preserving sources, and keeping synthesized notes current.",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-architecture"
+            "memory-systems",
+            "runtime-architecture"
           ],
           "related_terms": [
             "Retrieval-Augmented Generation"
           ],
           "relevance_note": "This is a durable concept for any AI workflow that needs memory across sessions, traceable sources, and ongoing curation. It is especially relevant when assistants must support research, internal documentation, or shared operational knowledge.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -602,7 +601,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "memory-systems"
           ]
         }
       }
@@ -642,8 +641,7 @@
           "suggested_action": "ignore",
           "suggested_new_tag": "knowledge-management",
           "suggested_new_tags": [
-            "knowledge-management",
-            "wiki"
+            "knowledge-systems"
           ],
           "supporting_snippet": "The first call is purely analytical. ... The second call takes that analysis as a blueprint and generates the actual markdown files.",
           "value_level": "high",
@@ -714,12 +712,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "knowledge-management",
-            "wiki"
+            "knowledge-systems"
           ],
           "final_tags": [
-            "knowledge-management",
-            "wiki"
+            "knowledge-systems"
           ]
         }
       }
@@ -733,13 +729,13 @@
           "evidence_from_source": "The article argues that the default document-chat experience is search-and-forget and presents a wiki-maintenance approach as the alternative.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-engineering"
+            "workflow-restructuring",
+            "ai-operationalization"
           ],
           "related_trends": [],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -1044,17 +1040,17 @@
           "knowledge_summary": "AI systems become more useful when they maintain a structured, reviewable knowledge base instead of answering each query from scratch. The key design choice is to separate immutable source material from synthesized notes so that generated knowledge can be audited and corrected. Linking pages, tracking contradictions, and routinely cleaning stale material are central to keeping the knowledge base usable over time. In document-heavy environments, the goal is not just retrieval but accumulation and maintenance.",
           "match_candidates": [],
           "operational_insight": "Treat synthesized knowledge as a managed artifact with explicit review and cleanup steps; otherwise, model-generated notes will drift into contradiction and rot.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-architecture"
+            "knowledge-systems",
+            "runtime-architecture"
           ],
           "related_topics": [
             "retrieval-augmented-generation",
             "context-engineering"
           ],
           "relevance_note": "Knowledge management is a durable layer in AI systems that need memory, traceability, and reuse across sessions. It matters for internal assistants, research workflows, and any system where repeated interactions should compound rather than reset.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -1126,7 +1122,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       },

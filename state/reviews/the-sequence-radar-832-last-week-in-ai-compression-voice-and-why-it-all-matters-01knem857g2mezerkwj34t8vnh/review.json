@@ -21,7 +21,7 @@
       "total_tokens": 36518
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -54,9 +54,10 @@
         "operational_profile": "- A native audio and voice model that processes raw PCM bidirectionally rather than chaining separate speech components.\n- Supports barge-in mid-sentence, which matters for conversational systems that need interruption handling instead of one-way playback.\n- The model is framed as suitable for real-time multilingual voice interaction across more than 90 languages.\n- Search Live is already running on this model in 200+ countries, which gives it deployment relevance beyond a lab demo.",
         "pricing_inference_implications": "The source gives no explicit pricing, but the architectural shift suggests a possible reduction in system-level latency overhead by collapsing multiple speech stages. Any inference-cost benefit would depend on how expensive the native audio model is relative to the old pipeline at production traffic levels.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
-          "realtime-voice-model",
-          "proprietary"
+          "multimodal-model",
+          "proprietary-model"
         ],
         "provider": "Google",
         "related_models": [
@@ -64,6 +65,7 @@
         ],
         "service_automation_implications": "Most relevant for conversational systems, voicebots, and contact-center style interactions because barge-in and low-latency bidirectional audio are core requirements. The model may reduce the awkwardness of interruptible conversations if it performs as described. The source does not give enough detail to judge containment, handoff quality, or compliance behavior.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Google shipped Gemini 3.1 Flash Live the same week, and it\u2019s the clearest signal yet that the old voice stack \u2014 VAD \u2192 STT \u2192 LLM \u2192 TTS, four sequential hops with four latency budgets \u2014 is getting replaced. 3.1 Flash Live collapses this into a single native audio model that processes raw PCM bidirectionally, supports barge-in mid-sentence, and reaches over 90 languages in real time.\"",
         "value_level": "high",
         "weaknesses_limitations": "The source does not provide full evaluation details beyond one benchmark score and a deployment note, so robustness across domains is unclear. A single native model can simplify the stack, but it also concentrates failure modes into one component. The article does not address noisy environments, accent coverage, or cost at scale."
@@ -91,9 +93,10 @@
         "operational_profile": "- An expressive multilingual text-to-speech model with a hybrid architecture that combines auto-regressive semantic-token generation and flow-matching acoustic-token generation.\n- It clones voices from just 3 seconds of reference audio, which lowers the amount of enrollment audio needed for personalization.\n- The source emphasizes low-latency streaming inference and deployment on smartphone hardware.\n- Open weights and Creative Commons licensing make it operationally distinct from closed voice APIs.",
         "pricing_inference_implications": "No explicit pricing is given. The smartphone and open-weight positioning imply a cost profile that may be attractive for self-hosted or edge deployments, but actual inference economics would depend on hardware and licensing choices.",
         "proposed_new_type": "",
+        "proposed_tags": [],
         "proposed_types": [
-          "realtime-voice-model",
-          "open-weight"
+          "multimodal-model",
+          "open-weight-model"
         ],
         "provider": "MistralAI",
         "related_models": [
@@ -101,6 +104,7 @@
         ],
         "service_automation_implications": "Potentially useful for voicebots and support systems where data residency and control matter more than generic cloud convenience. Its on-prem or on-device framing may suit regulated deployments that cannot send audio to third-party services. The source does not show real contact-center metrics or handoff behavior.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Voxtral TTS is 4B parameters, built on Ministral 3B, runs on a smartphone, voice-clones from under five seconds of audio, and ships with open weights under Creative Commons.\"",
         "value_level": "high",
         "weaknesses_limitations": "The source does not show broad production adoption or failure analysis, so the operational ceiling is uncertain. Voice cloning from a few seconds of audio can create governance and consent concerns that are not addressed here. The quality comparison is limited to human preference evaluation against one named baseline."
@@ -116,17 +120,17 @@
         "evidence_from_source": "The article explicitly says these releases are 'efficiency jumps' and argues that 'in a world where inference cost is the binding constraint on where AI can go, efficiency is capability.' It also ties TurboQuant to 3-bit KV-cache compression, 6x memory reduction, and up to 8x speedup, while the voice releases are described as replacing multi-hop pipelines with lower-latency native audio or on-device TTS.",
         "evidence_type": "mixed",
         "match_candidates": [],
-        "primary_tag": "ai-economics",
+        "primary_tag": "software-commoditization",
         "proposed_tags": [
-          "ai-economics",
-          "ai-architecture"
+          "software-commoditization",
+          "runtime-centralization"
         ],
         "related_trends": [
           "transport-layer-optimization-becomes-critical-for-agent-latency",
           "models-becoming-execution-layers",
           "stable-api-names-no-longer-guarantee-stable-model-behavior"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -160,12 +164,12 @@
           "H100"
         ],
         "operational_relevance": "Teams building long-context assistants, retrieval-heavy chat systems, and agent loops should pay attention to cache footprint as a serving constraint. The source suggests that future gains may come from better compression and eviction policies rather than only larger models.",
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering",
-          "ai-economics"
+          "ai-operationalization",
+          "software-commoditization"
         ],
-        "secondary_tag": "ai-economics",
+        "secondary_tag": "software-commoditization",
         "service_automation_relevance": "Lower cache pressure can make long support conversations cheaper to serve and easier to keep alive across many turns. That is especially relevant for chatbots that must preserve context over long customer interactions.",
         "signal_strength": "high",
         "signal_title": "Long-context gains are becoming a memory-compression problem",
@@ -195,9 +199,9 @@
           "Scale AI"
         ],
         "operational_relevance": "Architecture reviews for voice assistants should compare native audio models against the entire legacy pipeline, not just transcription quality. Benchmarking should emphasize coherence under interruption and end-to-end latency.",
-        "primary_tag": "support-automation",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "support-automation"
+          "workflow-restructuring"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "This is directly relevant to voicebots and contact-center automation because barge-in and multilingual support are core service requirements. A simpler speech stack can reduce failure points in live customer conversations.",
@@ -231,12 +235,12 @@
           "ElevenLabs Flash v2.5"
         ],
         "operational_relevance": "Teams that handle sensitive audio should evaluate whether open weights meaningfully improve compliance posture, latency, and control. The model also suggests that edge deployment can be a deliberate product constraint, not just a technical stunt.",
-        "primary_tag": "support-automation",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "support-automation",
-          "ai-security"
+          "workflow-restructuring",
+          "inspectability"
         ],
-        "secondary_tag": "ai-security",
+        "secondary_tag": "inspectability",
         "service_automation_relevance": "This matters for support automation where recorded speech may contain regulated or sensitive information. The source explicitly frames the enterprise pitch around keeping voice on customer hardware or in the datacenter.",
         "signal_strength": "medium",
         "signal_title": "Open-weight voice is being sold as sovereignty infrastructure",
@@ -265,12 +269,12 @@
           "Alibaba Cloud Computing"
         ],
         "operational_relevance": "This points to the need for multi-step tool-use evals that stress sequencing, state handling, and failure recovery. It is especially relevant for finance-style workflows where tool errors compound across steps.",
-        "primary_tag": "ai-evals",
+        "primary_tag": "behavioral-evaluation",
         "proposed_tags": [
-          "ai-evals",
-          "agentic-ai"
+          "behavioral-evaluation",
+          "execution-oriented-agents"
         ],
-        "secondary_tag": "agentic-ai",
+        "secondary_tag": "execution-oriented-agents",
         "service_automation_relevance": "For support automation, the implication is that multi-tool back-office flows can fail even when single actions look robust. That argues for careful human fallback and better orchestration tests before deployment.",
         "signal_strength": "medium",
         "signal_title": "MCP agent benchmarks still expose multi-tool dependency fragility",
@@ -299,9 +303,9 @@
           "Universit\u00e9 de Montr\u00e9al"
         ],
         "operational_relevance": "For AI engineering, the main implication is that predictive latent models may become a more practical alternative to heavyweight foundation-model pipelines in some control settings. Evaluation should focus on planning speed, stability, and task transfer.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-centralization",
         "proposed_tags": [
-          "ai-architecture"
+          "runtime-centralization"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "No direct service automation implications identified.",
@@ -370,9 +374,9 @@
         "knowledge_summary": "Compressing the key-value cache is a direct lever on long-context inference efficiency because the cache grows linearly with sequence length and often becomes the dominant memory consumer. Practical cache compression techniques aim to preserve attention quality while shrinking memory footprints enough to raise throughput or reduce serving cost. The most durable engineering question is not whether compression is possible, but how much quality can be traded away before downstream behavior degrades. In production, this is a memory-scaling problem as much as a model-quality problem.",
         "match_candidates": [],
         "operational_insight": "Treat KV cache compression as an infrastructure optimization that can change serving economics without retraining the model, but validate it across the exact workloads and hardware that matter.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [],
@@ -398,14 +402,14 @@
         "knowledge_summary": "Native audio models collapse the old multi-stage speech pipeline into a single model that can ingest and emit audio directly. This reduces orchestration complexity, makes interruption handling more natural, and can lower end-to-end latency by removing stage boundaries. The architectural tradeoff is concentration: one model now owns more of the conversation loop, so failures and evaluation have to be managed more holistically. This pattern is especially relevant for real-time conversational products that need fast turn-taking and multilingual support.",
         "match_candidates": [],
         "operational_insight": "When voice latency and barge-in behavior matter, evaluate native audio models against the entire pipeline they replace rather than comparing them only on speech quality.",
-        "primary_tag": "realtime-ai",
+        "primary_tag": "inference-systems",
         "proposed_tags": [
-          "realtime-ai",
-          "interactive-ai"
+          "inference-systems",
+          "multimodal-ai"
         ],
         "related_topics": [],
         "relevance_note": "This is durable for voicebots, spoken interfaces, and real-time assistants because the unit of design becomes the conversation loop rather than separate speech components. It also matters for teams that need simpler production architecture and tighter latency control.",
-        "secondary_tag": "interactive-ai",
+        "secondary_tag": "multimodal-ai",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -442,8 +446,8 @@
           "pricing_inference_implications": "The source gives no explicit pricing, but the architectural shift suggests a possible reduction in system-level latency overhead by collapsing multiple speech stages. Any inference-cost benefit would depend on how expensive the native audio model is relative to the old pipeline at production traffic levels.",
           "proposed_new_type": "",
           "proposed_types": [
-            "realtime-voice-model",
-            "proprietary"
+            "multimodal-model",
+            "proprietary-model"
           ],
           "provider": "Google",
           "related_models": [
@@ -575,8 +579,8 @@
           "pricing_inference_implications": "No explicit pricing is given. The smartphone and open-weight positioning imply a cost profile that may be attractive for self-hosted or edge deployments, but actual inference economics would depend on hardware and licensing choices.",
           "proposed_new_type": "",
           "proposed_types": [
-            "realtime-voice-model",
-            "open-weight"
+            "multimodal-model",
+            "open-weight-model"
           ],
           "provider": "MistralAI",
           "related_models": [
@@ -696,17 +700,17 @@
           "evidence_from_source": "The article explicitly says these releases are 'efficiency jumps' and argues that 'in a world where inference cost is the binding constraint on where AI can go, efficiency is capability.' It also ties TurboQuant to 3-bit KV-cache compression, 6x memory reduction, and up to 8x speedup, while the voice releases are described as replacing multi-hop pipelines with lower-latency native audio or on-device TTS.",
           "evidence_type": "mixed",
           "match_candidates": [],
-          "primary_tag": "ai-economics",
+          "primary_tag": "software-commoditization",
           "proposed_tags": [
-            "ai-economics",
-            "ai-architecture"
+            "software-commoditization",
+            "runtime-centralization"
           ],
           "related_trends": [
             "transport-layer-optimization-becomes-critical-for-agent-latency",
             "models-becoming-execution-layers",
             "stable-api-names-no-longer-guarantee-stable-model-behavior"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -798,12 +802,12 @@
             "H100"
           ],
           "operational_relevance": "Teams building long-context assistants, retrieval-heavy chat systems, and agent loops should pay attention to cache footprint as a serving constraint. The source suggests that future gains may come from better compression and eviction policies rather than only larger models.",
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering",
-            "ai-economics"
+            "ai-operationalization",
+            "software-commoditization"
           ],
-          "secondary_tag": "ai-economics",
+          "secondary_tag": "software-commoditization",
           "service_automation_relevance": "Lower cache pressure can make long support conversations cheaper to serve and easier to keep alive across many turns. That is especially relevant for chatbots that must preserve context over long customer interactions.",
           "signal_strength": "high",
           "signal_title": "Long-context gains are becoming a memory-compression problem",
@@ -917,9 +921,9 @@
             "Scale AI"
           ],
           "operational_relevance": "Architecture reviews for voice assistants should compare native audio models against the entire legacy pipeline, not just transcription quality. Benchmarking should emphasize coherence under interruption and end-to-end latency.",
-          "primary_tag": "support-automation",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "support-automation"
+            "workflow-restructuring"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "This is directly relevant to voicebots and contact-center automation because barge-in and multilingual support are core service requirements. A simpler speech stack can reduce failure points in live customer conversations.",
@@ -1037,12 +1041,12 @@
             "ElevenLabs Flash v2.5"
           ],
           "operational_relevance": "Teams that handle sensitive audio should evaluate whether open weights meaningfully improve compliance posture, latency, and control. The model also suggests that edge deployment can be a deliberate product constraint, not just a technical stunt.",
-          "primary_tag": "support-automation",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "support-automation",
-            "ai-security"
+            "workflow-restructuring",
+            "inspectability"
           ],
-          "secondary_tag": "ai-security",
+          "secondary_tag": "inspectability",
           "service_automation_relevance": "This matters for support automation where recorded speech may contain regulated or sensitive information. The source explicitly frames the enterprise pitch around keeping voice on customer hardware or in the datacenter.",
           "signal_strength": "medium",
           "signal_title": "Open-weight voice is being sold as sovereignty infrastructure",
@@ -1155,12 +1159,12 @@
             "Alibaba Cloud Computing"
           ],
           "operational_relevance": "This points to the need for multi-step tool-use evals that stress sequencing, state handling, and failure recovery. It is especially relevant for finance-style workflows where tool errors compound across steps.",
-          "primary_tag": "ai-evals",
+          "primary_tag": "behavioral-evaluation",
           "proposed_tags": [
-            "ai-evals",
-            "agentic-ai"
+            "behavioral-evaluation",
+            "execution-oriented-agents"
           ],
-          "secondary_tag": "agentic-ai",
+          "secondary_tag": "execution-oriented-agents",
           "service_automation_relevance": "For support automation, the implication is that multi-tool back-office flows can fail even when single actions look robust. That argues for careful human fallback and better orchestration tests before deployment.",
           "signal_strength": "medium",
           "signal_title": "MCP agent benchmarks still expose multi-tool dependency fragility",
@@ -1272,9 +1276,9 @@
             "Universit\u00e9 de Montr\u00e9al"
           ],
           "operational_relevance": "For AI engineering, the main implication is that predictive latent models may become a more practical alternative to heavyweight foundation-model pipelines in some control settings. Evaluation should focus on planning speed, stability, and task transfer.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-centralization",
           "proposed_tags": [
-            "ai-architecture"
+            "runtime-centralization"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "No direct service automation implications identified.",
@@ -1471,9 +1475,9 @@
           "knowledge_summary": "Compressing the key-value cache is a direct lever on long-context inference efficiency because the cache grows linearly with sequence length and often becomes the dominant memory consumer. Practical cache compression techniques aim to preserve attention quality while shrinking memory footprints enough to raise throughput or reduce serving cost. The most durable engineering question is not whether compression is possible, but how much quality can be traded away before downstream behavior degrades. In production, this is a memory-scaling problem as much as a model-quality problem.",
           "match_candidates": [],
           "operational_insight": "Treat KV cache compression as an infrastructure optimization that can change serving economics without retraining the model, but validate it across the exact workloads and hardware that matter.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [],
@@ -1561,14 +1565,14 @@
           "knowledge_summary": "Native audio models collapse the old multi-stage speech pipeline into a single model that can ingest and emit audio directly. This reduces orchestration complexity, makes interruption handling more natural, and can lower end-to-end latency by removing stage boundaries. The architectural tradeoff is concentration: one model now owns more of the conversation loop, so failures and evaluation have to be managed more holistically. This pattern is especially relevant for real-time conversational products that need fast turn-taking and multilingual support.",
           "match_candidates": [],
           "operational_insight": "When voice latency and barge-in behavior matter, evaluate native audio models against the entire pipeline they replace rather than comparing them only on speech quality.",
-          "primary_tag": "realtime-ai",
+          "primary_tag": "inference-systems",
           "proposed_tags": [
-            "realtime-ai",
-            "interactive-ai"
+            "inference-systems",
+            "multimodal-ai"
           ],
           "related_topics": [],
           "relevance_note": "This is durable for voicebots, spoken interfaces, and real-time assistants because the unit of design becomes the conversation loop rather than separate speech components. It also matters for teams that need simpler production architecture and tighter latency control.",
-          "secondary_tag": "interactive-ai",
+          "secondary_tag": "multimodal-ai",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

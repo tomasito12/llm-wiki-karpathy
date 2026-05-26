@@ -21,7 +21,7 @@
       "total_tokens": 32709
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,16 +41,15 @@
         "evidence_from_source": "OpenAI reports that as inference speed rose, API overhead became more visible, and the Responses API was sped up by caching, fewer network hops, safety-stack changes, and WebSockets.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-engineering",
-          "llm-operations"
+          "execution-oriented-agents",
+          "ai-operationalization"
         ],
         "related_trends": [
           "models-becoming-execution-layers"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -119,16 +118,16 @@
         "knowledge_summary": "Agentic systems often spend substantial time outside model inference, especially when each tool call, state rebuild, and validation step becomes a separate round trip. A useful design principle is to measure the full loop, not just token generation speed, because small per-request overheads compound across long workflows. Persistent connections, cached state, and reduced network hops can materially improve end-to-end responsiveness even when the model itself is already fast. The main engineering lesson is that the transport protocol and request lifecycle are part of the product architecture, not just plumbing.",
         "match_candidates": [],
         "operational_insight": "Treat repeated agent turns as a throughput problem, not only an inference problem. If the model is fast enough, optimize connection reuse, state reuse, and post-inference overlap before chasing marginal model gains.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "agent-systems",
+          "runtime-architecture"
         ],
         "related_topics": [
           "agentic-workflows"
         ],
         "relevance_note": "This pattern matters wherever agents do multi-step work with tools, memory, or approvals. In production conversational systems, reducing protocol overhead can improve perceived responsiveness without changing the underlying model.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -149,17 +148,17 @@
         "knowledge_summary": "A persistent connection can hold reusable conversation and execution state in memory so follow-up requests do not need to re-send or recompute everything. This pattern is especially useful when the workflow naturally alternates between model action and external tool execution. By keeping previous response objects, prior items, tool definitions, and rendered artifacts available on the connection, systems can reduce redundant validation, tokenization, and routing work. The core tradeoff is that lower latency comes with more connection-level state management complexity.",
         "match_candidates": [],
         "operational_insight": "Use connection-scoped state when the same conversation will generate many follow-up actions and when rebuilding context is a measurable bottleneck. Design the cache boundaries carefully so that the system stays predictable under retries, disconnects, and long sessions.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
-          "realtime-ai",
-          "ai-architecture"
+          "agent-systems",
+          "inference-systems",
+          "runtime-architecture"
         ],
         "related_topics": [
           "agentic-workflow-latency-optimization"
         ],
         "relevance_note": "This is a reusable architectural pattern for interactive AI systems that need continuity across many turns. It is relevant to agent orchestration, realtime assistants, and support flows where the system repeatedly returns to the same session state.",
-        "secondary_tag": "realtime-ai",
+        "secondary_tag": "inference-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -183,16 +182,15 @@
           "evidence_from_source": "OpenAI reports that as inference speed rose, API overhead became more visible, and the Responses API was sped up by caching, fewer network hops, safety-stack changes, and WebSockets.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-engineering",
-            "llm-operations"
+            "execution-oriented-agents",
+            "ai-operationalization"
           ],
           "related_trends": [
             "models-becoming-execution-layers"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -270,8 +268,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "agentic-ai",
-            "ai-engineering"
+            "execution-oriented-agents",
+            "ai-operationalization"
           ]
         }
       }
@@ -374,16 +372,16 @@
           "knowledge_summary": "Agentic systems often spend substantial time outside model inference, especially when each tool call, state rebuild, and validation step becomes a separate round trip. A useful design principle is to measure the full loop, not just token generation speed, because small per-request overheads compound across long workflows. Persistent connections, cached state, and reduced network hops can materially improve end-to-end responsiveness even when the model itself is already fast. The main engineering lesson is that the transport protocol and request lifecycle are part of the product architecture, not just plumbing.",
           "match_candidates": [],
           "operational_insight": "Treat repeated agent turns as a throughput problem, not only an inference problem. If the model is fast enough, optimize connection reuse, state reuse, and post-inference overlap before chasing marginal model gains.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "agent-systems",
+            "runtime-architecture"
           ],
           "related_topics": [
             "agentic-workflows"
           ],
           "relevance_note": "This pattern matters wherever agents do multi-step work with tools, memory, or approvals. In production conversational systems, reducing protocol overhead can improve perceived responsiveness without changing the underlying model.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -468,17 +466,17 @@
           "knowledge_summary": "A persistent connection can hold reusable conversation and execution state in memory so follow-up requests do not need to re-send or recompute everything. This pattern is especially useful when the workflow naturally alternates between model action and external tool execution. By keeping previous response objects, prior items, tool definitions, and rendered artifacts available on the connection, systems can reduce redundant validation, tokenization, and routing work. The core tradeoff is that lower latency comes with more connection-level state management complexity.",
           "match_candidates": [],
           "operational_insight": "Use connection-scoped state when the same conversation will generate many follow-up actions and when rebuilding context is a measurable bottleneck. Design the cache boundaries carefully so that the system stays predictable under retries, disconnects, and long sessions.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
-            "realtime-ai",
-            "ai-architecture"
+            "agent-systems",
+            "inference-systems",
+            "runtime-architecture"
           ],
           "related_topics": [
             "agentic-workflow-latency-optimization"
           ],
           "relevance_note": "This is a reusable architectural pattern for interactive AI systems that need continuity across many turns. It is relevant to agent orchestration, realtime assistants, and support flows where the system repeatedly returns to the same session state.",
-          "secondary_tag": "realtime-ai",
+          "secondary_tag": "inference-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -548,8 +546,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "agentic-ai",
-            "ai-architecture",
+            "agent-systems",
+            "runtime-architecture",
             "ai-engineering"
           ]
         }

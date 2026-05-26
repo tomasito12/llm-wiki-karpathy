@@ -21,7 +21,7 @@
       "total_tokens": 36043
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -55,13 +55,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "wiki"
+          "knowledge-systems"
         ],
         "question_title": "Commit-Driven Documentation Sync",
         "related_howtos": [
           "Local Model Deployment"
         ],
-        "secondary_tag": "wiki",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -78,15 +78,14 @@
         "evidence_from_source": "The source describes a repo template where every commit triggers an agent that reads the diff and updates wiki pages in place.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering",
-          "llm-operations"
+          "ai-operationalization"
         ],
         "related_trends": [
           "harness-design-becomes-more-important-for-agent-reliability"
         ],
-        "secondary_tag": "llm-operations",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -159,14 +158,14 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "harness-engineering",
           "ai-assisted-knowledge-compilation"
         ],
         "relevance_note": "This pattern matters for AI engineering because it turns documentation upkeep into an automated side effect of code review and deployment hygiene. It is especially useful where generated reference material can be kept close to source changes and then refined by humans.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "commit-driven-docs",
         "suggested_new_tags": [
@@ -192,14 +191,14 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "commit-driven-documentation-generation",
           "provenance-tracking"
         ],
         "relevance_note": "This matters in any AI system that explains code, policies, or internal operations from source material. The same discipline can support reviewable internal docs, runbooks, and support references when teams need traceable claims.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "citation-locked-generation",
         "suggested_new_tags": [
@@ -239,13 +238,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "wiki"
+            "knowledge-systems"
           ],
           "question_title": "Commit-Driven Documentation Sync",
           "related_howtos": [
             "Local Model Deployment"
           ],
-          "secondary_tag": "wiki",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -317,8 +316,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "wiki",
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       }
@@ -332,15 +330,14 @@
           "evidence_from_source": "The source describes a repo template where every commit triggers an agent that reads the diff and updates wiki pages in place.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering",
-            "llm-operations"
+            "ai-operationalization"
           ],
           "related_trends": [
             "harness-design-becomes-more-important-for-agent-reliability"
           ],
-          "secondary_tag": "llm-operations",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -418,8 +415,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "agentic-ai",
-            "knowledge-management"
+            "execution-oriented-agents",
+            "workflow-restructuring"
           ]
         }
       }
@@ -526,14 +523,14 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "harness-engineering",
             "ai-assisted-knowledge-compilation"
           ],
           "relevance_note": "This pattern matters for AI engineering because it turns documentation upkeep into an automated side effect of code review and deployment hygiene. It is especially useful where generated reference material can be kept close to source changes and then refined by humans.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "commit-driven-docs",
           "suggested_new_tags": [
@@ -606,8 +603,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management",
-            "llm-wiki"
+            "knowledge-systems"
           ]
         }
       },
@@ -627,14 +623,14 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "commit-driven-documentation-generation",
             "provenance-tracking"
           ],
           "relevance_note": "This matters in any AI system that explains code, policies, or internal operations from source material. The same discipline can support reviewable internal docs, runbooks, and support references when teams need traceable claims.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "citation-locked-generation",
           "suggested_new_tags": [
@@ -707,8 +703,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management",
-            "llm-wiki"
+            "knowledge-systems"
           ]
         }
       }

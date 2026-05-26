@@ -21,7 +21,7 @@
       "total_tokens": 32285
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,11 +41,11 @@
         "proposed_definition": "A benchmark is a standardized test used to measure the performance of a system, model, or tool against a defined task or set of tasks. In AI, benchmarks help compare capabilities across models and versions, though they do not always predict real-world usefulness.",
         "proposed_tags": [
           "ai-engineering",
-          "ai-architecture"
+          "runtime-architecture"
         ],
         "related_terms": [],
         "relevance_note": "Benchmarks shape model selection, vendor comparisons, and internal release gates. They are especially important when the benchmark maps to operational tasks like support, retrieval, coding, or multi-step workflow completion.",
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-architecture",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -71,7 +71,7 @@
         "suggested_action": "ignore",
         "suggested_new_tag": "ai-evals",
         "suggested_new_tags": [
-          "ai-evals"
+          "evals"
         ],
         "supporting_snippet": "Increasingly, these evaluations emphasize real-world economic utility, which means that developers are aiming directly at replacing human capabilities.",
         "term": "Economic-value benchmark",
@@ -87,16 +87,16 @@
         "evidence_from_source": "The source cites benchmarks that test models on roles such as investment banking associate, management consultant, Big Law associate, primary care physician, and 44 occupations in total.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering"
+          "ai-operationalization"
         ],
         "related_trends": [],
         "secondary_tag": "",
         "suggested_action": "ignore",
         "suggested_new_tag": "ai-evals",
         "suggested_new_tags": [
-          "ai-evals"
+          "behavioral-evaluation"
         ],
         "supporting_data_points": [
           "A.I. Productivity Index measures four jobs.",
@@ -164,7 +164,7 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "ai-evals"
+          "ai-evaluation"
         ],
         "related_topics": [
           "local-model-deployment",
@@ -172,7 +172,7 @@
           "agentic-workflows"
         ],
         "relevance_note": "Real-world evaluation matters because many AI systems are judged by whether they can handle operational tasks, not just laboratory tasks. It is a durable concern for model selection, deployment gating, and safety review in conversational AI and automation systems.",
-        "secondary_tag": "ai-evals",
+        "secondary_tag": "ai-evaluation",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -227,15 +227,15 @@
           "proposed_definition": "A benchmark is a standardized test used to measure the performance of a system, model, or tool against a defined task or set of tasks. In AI, benchmarks help compare capabilities across models and versions, though they do not always predict real-world usefulness.",
           "proposed_tags": [
             "ai-engineering",
-            "ai-architecture"
+            "runtime-architecture"
           ],
           "related_terms": [],
           "relevance_note": "Benchmarks shape model selection, vendor comparisons, and internal release gates. They are especially important when the benchmark maps to operational tasks like support, retrieval, coding, or multi-step workflow completion.",
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-architecture",
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-evals",
           "suggested_new_tags": [
-            "ai-evals"
+            "evals"
           ],
           "supporting_snippet": "New A.I. models are assessed based on how well they do on a set of benchmarks \u2014 essentially standardized tests for the model.",
           "term": "Benchmark",
@@ -279,10 +279,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-evals"
+            "evals"
           ],
           "final_tags": [
-            "ai-evals"
+            "evals"
           ]
         }
       },
@@ -305,7 +305,7 @@
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-evals",
           "suggested_new_tags": [
-            "ai-evals",
+            "evals",
             "economic-evaluation",
             "ai-economics"
           ],
@@ -346,11 +346,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-evals",
+            "evals",
             "ai-economics"
           ],
           "final_tags": [
-            "ai-evals",
+            "evals",
             "ai-economics"
           ]
         }
@@ -366,16 +366,16 @@
           "evidence_from_source": "The source cites benchmarks that test models on roles such as investment banking associate, management consultant, Big Law associate, primary care physician, and 44 occupations in total.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering"
+            "ai-operationalization"
           ],
           "related_trends": [],
           "secondary_tag": "",
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-evals",
           "suggested_new_tags": [
-            "ai-evals"
+            "behavioral-evaluation"
           ],
           "supporting_data_points": [
             "A.I. Productivity Index measures four jobs.",
@@ -551,7 +551,7 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "ai-evals"
+            "ai-evaluation"
           ],
           "related_topics": [
             "local-model-deployment",
@@ -559,7 +559,7 @@
             "agentic-workflows"
           ],
           "relevance_note": "Real-world evaluation matters because many AI systems are judged by whether they can handle operational tasks, not just laboratory tasks. It is a durable concern for model selection, deployment gating, and safety review in conversational AI and automation systems.",
-          "secondary_tag": "ai-evals",
+          "secondary_tag": "ai-evaluation",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

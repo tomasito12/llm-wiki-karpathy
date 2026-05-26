@@ -21,7 +21,7 @@
       "total_tokens": 28873
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -120,11 +120,11 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [],
         "relevance_note": "This matters because prompt structure is one of the most reusable control surfaces in AI-assisted writing, support drafting, summarization, and analysis. Teams that standardize prompt patterns can reduce trial-and-error and make output quality more predictable across tasks.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -335,11 +335,11 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [],
           "relevance_note": "This matters because prompt structure is one of the most reusable control surfaces in AI-assisted writing, support drafting, summarization, and analysis. Teams that standardize prompt patterns can reduce trial-and-error and make output quality more predictable across tasks.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "prompt-engineering",
           "suggested_new_tags": [

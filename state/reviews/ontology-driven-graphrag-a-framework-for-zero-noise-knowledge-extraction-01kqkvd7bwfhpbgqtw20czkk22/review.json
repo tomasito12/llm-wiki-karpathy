@@ -21,7 +21,7 @@
       "total_tokens": 35520
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,17 +37,17 @@
         "evidence_type": null,
         "extended_explanation": "In practice, an ontology acts like a shared contract between documents, extraction logic, validation rules, and downstream queries. It helps systems know what kinds of entities exist, what properties they should have, and how those entities can relate to each other. In knowledge-graph systems, the ontology is often the difference between a pile of extracted records and a graph that can support reliable search, reasoning, and auditing.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A formal representation of concepts, types, properties, and relationships in a domain. It defines the rules a system uses to interpret and structure data consistently.",
         "proposed_tags": [
-          "ai-architecture",
-          "knowledge-management"
+          "runtime-architecture",
+          "memory-systems"
         ],
         "related_terms": [
           "Knowledge Management"
         ],
         "relevance_note": "Ontology is a core primitive for production knowledge systems because it keeps extraction, storage, and reasoning aligned as domains grow. It matters for AI workflows that need stable schema control, traceable facts, and consistent downstream automation.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "memory-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -60,15 +60,15 @@
         "evidence_type": null,
         "extended_explanation": "Simple triples work for basic facts, but many real-world facts need context such as time, dosage, role, source, or frequency. N-ary modeling preserves that context instead of forcing it into a single edge label or dropping it entirely. This is especially useful when a fact must stay auditable and queryable with all its qualifiers intact.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A relationship model that represents a fact with more than two participants or with additional qualifiers attached to the fact itself. It is often implemented by turning the relationship into its own node or statement object.",
         "proposed_tags": [
-          "ai-architecture",
-          "knowledge-management"
+          "runtime-architecture",
+          "memory-systems"
         ],
         "related_terms": [],
         "relevance_note": "This is important in knowledge graphs, compliance systems, and any AI pipeline that must preserve qualifiers instead of flattening them away. It helps answer more precise questions and reduces information loss during extraction.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "memory-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -147,13 +147,13 @@
         "evidence_from_source": "The article describes an ontology operating system that controls extraction, validation, deduplication, provenance, reasoning, and schema evolution in one pipeline.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "knowledge-management",
-          "ai-engineering"
+          "workflow-restructuring",
+          "ai-operationalization"
         ],
         "related_trends": [],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -228,7 +228,7 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "privacy-controls-for-ai-products",
@@ -236,7 +236,7 @@
           "provenance-tracking"
         ],
         "relevance_note": "This pattern matters whenever teams need reliable structured extraction from unstructured text at scale. It is especially relevant for medical, legal, and support-document workflows where schema fidelity matters as much as recall.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -257,10 +257,10 @@
         "knowledge_summary": "Provenance tracking records where each fact came from, how it was extracted, which model produced it, and how confident the system is. It turns extracted data into auditable data by preserving the source trail behind every node or relationship. This is critical when humans need to verify, correct, or challenge system output later. Provenance also makes debugging extraction errors much easier because you can trace a bad fact back to its origin.",
         "match_candidates": [],
         "operational_insight": "Treat provenance as a first-class part of the graph, not as external logging. If a fact cannot be traced back to source and method, it should be considered operationally weak in high-stakes workflows.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
-          "knowledge-management"
+          "runtime-architecture",
+          "knowledge-systems"
         ],
         "related_topics": [
           "privacy-controls-for-ai-products",
@@ -268,7 +268,7 @@
           "realtime-multimodal-interaction"
         ],
         "relevance_note": "Provenance tracking is durable infrastructure for AI systems that produce structured facts from documents. It is especially important in regulated or review-heavy environments where trust, auditability, and correction workflows matter.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -288,17 +288,17 @@
           "evidence_type": null,
           "extended_explanation": "In practice, an ontology acts like a shared contract between documents, extraction logic, validation rules, and downstream queries. It helps systems know what kinds of entities exist, what properties they should have, and how those entities can relate to each other. In knowledge-graph systems, the ontology is often the difference between a pile of extracted records and a graph that can support reliable search, reasoning, and auditing.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A formal representation of concepts, types, properties, and relationships in a domain. It defines the rules a system uses to interpret and structure data consistently.",
           "proposed_tags": [
-            "ai-architecture",
-            "knowledge-management"
+            "runtime-architecture",
+            "memory-systems"
           ],
           "related_terms": [
             "Knowledge Management"
           ],
           "relevance_note": "Ontology is a core primitive for production knowledge systems because it keeps extraction, storage, and reasoning aligned as domains grow. It matters for AI workflows that need stable schema control, traceable facts, and consistent downstream automation.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "memory-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -347,7 +347,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "memory-systems"
           ]
         }
       },
@@ -357,15 +357,15 @@
           "evidence_type": null,
           "extended_explanation": "Simple triples work for basic facts, but many real-world facts need context such as time, dosage, role, source, or frequency. N-ary modeling preserves that context instead of forcing it into a single edge label or dropping it entirely. This is especially useful when a fact must stay auditable and queryable with all its qualifiers intact.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A relationship model that represents a fact with more than two participants or with additional qualifiers attached to the fact itself. It is often implemented by turning the relationship into its own node or statement object.",
           "proposed_tags": [
-            "ai-architecture",
-            "knowledge-management"
+            "runtime-architecture",
+            "memory-systems"
           ],
           "related_terms": [],
           "relevance_note": "This is important in knowledge graphs, compliance systems, and any AI pipeline that must preserve qualifiers instead of flattening them away. It helps answer more precise questions and reduces information loss during extraction.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "memory-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -597,13 +597,13 @@
           "evidence_from_source": "The article describes an ontology operating system that controls extraction, validation, deduplication, provenance, reasoning, and schema evolution in one pipeline.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "knowledge-management",
-            "ai-engineering"
+            "workflow-restructuring",
+            "ai-operationalization"
           ],
           "related_trends": [],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -789,7 +789,7 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "privacy-controls-for-ai-products",
@@ -797,7 +797,7 @@
             "provenance-tracking"
           ],
           "relevance_note": "This pattern matters whenever teams need reliable structured extraction from unstructured text at scale. It is especially relevant for medical, legal, and support-document workflows where schema fidelity matters as much as recall.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -869,7 +869,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       },
@@ -886,10 +886,10 @@
           "knowledge_summary": "Provenance tracking records where each fact came from, how it was extracted, which model produced it, and how confident the system is. It turns extracted data into auditable data by preserving the source trail behind every node or relationship. This is critical when humans need to verify, correct, or challenge system output later. Provenance also makes debugging extraction errors much easier because you can trace a bad fact back to its origin.",
           "match_candidates": [],
           "operational_insight": "Treat provenance as a first-class part of the graph, not as external logging. If a fact cannot be traced back to source and method, it should be considered operationally weak in high-stakes workflows.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
-            "knowledge-management"
+            "runtime-architecture",
+            "knowledge-systems"
           ],
           "related_topics": [
             "privacy-controls-for-ai-products",
@@ -897,7 +897,7 @@
             "realtime-multimodal-interaction"
           ],
           "relevance_note": "Provenance tracking is durable infrastructure for AI systems that produce structured facts from documents. It is especially important in regulated or review-heavy environments where trust, auditability, and correction workflows matter.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -972,8 +972,8 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management",
-            "ai-compliance",
+            "knowledge-systems",
+            "compliance-systems",
             "ai-governance"
           ]
         }

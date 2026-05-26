@@ -21,7 +21,7 @@
       "total_tokens": 33916
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -50,12 +50,12 @@
           "Gemini"
         ],
         "operational_relevance": "Teams building browser assistants, research tools, or task automation products should think about saved actions, page context, and repeatability rather than only prompt quality.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-engineering"
+          "execution-oriented-agents",
+          "ai-operationalization"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "service_automation_relevance": "This could reduce friction in browser-based support operations, internal lookup tasks, and repetitive admin work where the same actions recur across pages.",
         "signal_strength": "medium",
         "signal_title": "Browser prompts becoming reusable workflows",
@@ -85,12 +85,12 @@
           "LangChain"
         ],
         "operational_relevance": "Architecture decisions now have to cover persistence, async execution, per-user isolation, and integration surfaces like messaging and enterprise systems.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-architecture"
+          "execution-oriented-agents",
+          "runtime-centralization"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "service_automation_relevance": "Support and back-office automations depend on persistent state, safe handoff, and predictable execution, so these platform concerns map directly to production service workflows.",
         "signal_strength": "high",
         "signal_title": "Agent infrastructure shifting toward production concerns",
@@ -120,12 +120,12 @@
           "ClementDelangue"
         ],
         "operational_relevance": "Evaluation, prompt routing, memory policy, and tool-output shaping are likely to dominate real performance gains in production agent systems.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-evals"
+          "execution-oriented-agents",
+          "behavioral-evaluation"
         ],
-        "secondary_tag": "ai-evals",
+        "secondary_tag": "behavioral-evaluation",
         "service_automation_relevance": "For support automation, better harnesses can improve consistency, reduce hallucinated actions, and make human handoff easier to control.",
         "signal_strength": "high",
         "signal_title": "Harness quality overtaking model chasing",
@@ -156,12 +156,12 @@
           "GPT-5.4"
         ],
         "operational_relevance": "Teams should expect more bespoke evaluation suites for coding, agents, and knowledge work rather than relying on one public leaderboard.",
-        "primary_tag": "ai-evals",
+        "primary_tag": "behavioral-evaluation",
         "proposed_tags": [
-          "ai-evals",
-          "agentic-ai"
+          "behavioral-evaluation",
+          "execution-oriented-agents"
         ],
-        "secondary_tag": "agentic-ai",
+        "secondary_tag": "execution-oriented-agents",
         "service_automation_relevance": "Service automation systems need evals that reflect real task completion, not just generic benchmark performance, so this trend supports custom harnesses for support workflows.",
         "signal_strength": "medium",
         "signal_title": "Frontier evaluation moving beyond saturated coding benchmarks",
@@ -192,12 +192,12 @@
           "AI Studio"
         ],
         "operational_relevance": "Developers building robotics-adjacent systems may need to handle spatial reasoning, physical constraints, and visual interpretation as model capabilities rather than hand-coded logic.",
-        "primary_tag": "ai-engineering",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "ai-engineering",
-          "ai-architecture"
+          "ai-operationalization",
+          "runtime-centralization"
         ],
-        "secondary_tag": "ai-architecture",
+        "secondary_tag": "runtime-centralization",
         "service_automation_relevance": "No direct service automation implications identified.",
         "signal_strength": "medium",
         "signal_title": "Robotics exposed as a developer-facing reasoning API",
@@ -229,9 +229,9 @@
           "AniGen"
         ],
         "operational_relevance": "Teams working on multimodal generation or virtual environments should optimize for asset structure, not only image quality or demo appeal.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-centralization",
         "proposed_tags": [
-          "ai-architecture"
+          "runtime-centralization"
         ],
         "secondary_tag": "",
         "service_automation_relevance": "No direct service automation implications identified.",
@@ -310,12 +310,12 @@
             "Gemini"
           ],
           "operational_relevance": "Teams building browser assistants, research tools, or task automation products should think about saved actions, page context, and repeatability rather than only prompt quality.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-engineering"
+            "execution-oriented-agents",
+            "ai-operationalization"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "service_automation_relevance": "This could reduce friction in browser-based support operations, internal lookup tasks, and repetitive admin work where the same actions recur across pages.",
           "signal_strength": "medium",
           "signal_title": "Browser prompts becoming reusable workflows",
@@ -429,12 +429,12 @@
             "LangChain"
           ],
           "operational_relevance": "Architecture decisions now have to cover persistence, async execution, per-user isolation, and integration surfaces like messaging and enterprise systems.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-architecture"
+            "execution-oriented-agents",
+            "runtime-centralization"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "service_automation_relevance": "Support and back-office automations depend on persistent state, safe handoff, and predictable execution, so these platform concerns map directly to production service workflows.",
           "signal_strength": "high",
           "signal_title": "Agent infrastructure shifting toward production concerns",
@@ -548,12 +548,12 @@
             "ClementDelangue"
           ],
           "operational_relevance": "Evaluation, prompt routing, memory policy, and tool-output shaping are likely to dominate real performance gains in production agent systems.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-evals"
+            "execution-oriented-agents",
+            "behavioral-evaluation"
           ],
-          "secondary_tag": "ai-evals",
+          "secondary_tag": "behavioral-evaluation",
           "service_automation_relevance": "For support automation, better harnesses can improve consistency, reduce hallucinated actions, and make human handoff easier to control.",
           "signal_strength": "high",
           "signal_title": "Harness quality overtaking model chasing",
@@ -667,12 +667,12 @@
             "GPT-5.4"
           ],
           "operational_relevance": "Teams should expect more bespoke evaluation suites for coding, agents, and knowledge work rather than relying on one public leaderboard.",
-          "primary_tag": "ai-evals",
+          "primary_tag": "behavioral-evaluation",
           "proposed_tags": [
-            "ai-evals",
-            "agentic-ai"
+            "behavioral-evaluation",
+            "execution-oriented-agents"
           ],
-          "secondary_tag": "agentic-ai",
+          "secondary_tag": "execution-oriented-agents",
           "service_automation_relevance": "Service automation systems need evals that reflect real task completion, not just generic benchmark performance, so this trend supports custom harnesses for support workflows.",
           "signal_strength": "medium",
           "signal_title": "Frontier evaluation moving beyond saturated coding benchmarks",
@@ -789,12 +789,12 @@
             "AI Studio"
           ],
           "operational_relevance": "Developers building robotics-adjacent systems may need to handle spatial reasoning, physical constraints, and visual interpretation as model capabilities rather than hand-coded logic.",
-          "primary_tag": "ai-engineering",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "ai-engineering",
-            "ai-architecture"
+            "ai-operationalization",
+            "runtime-centralization"
           ],
-          "secondary_tag": "ai-architecture",
+          "secondary_tag": "runtime-centralization",
           "service_automation_relevance": "No direct service automation implications identified.",
           "signal_strength": "medium",
           "signal_title": "Robotics exposed as a developer-facing reasoning API",
@@ -911,9 +911,9 @@
             "AniGen"
           ],
           "operational_relevance": "Teams working on multimodal generation or virtual environments should optimize for asset structure, not only image quality or demo appeal.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-centralization",
           "proposed_tags": [
-            "ai-architecture"
+            "runtime-centralization"
           ],
           "secondary_tag": "",
           "service_automation_relevance": "No direct service automation implications identified.",

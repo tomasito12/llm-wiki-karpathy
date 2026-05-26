@@ -88,10 +88,27 @@ def apply_tag_allowlists(
     trend_tags: set[str] | None = None,
     model_types: set[str] | None = None,
     impl_study_tags: set[str] | None = None,
+    tool_tags: set[str] | None = None,
+    model_tags: set[str] | None = None,
 ) -> LlmClassificationOutput:
     """Validate proposal tags against allowlists; demote unknown tags to suggested_new_tags."""
+    ttg = tool_tags or set()
     new_tools = [
-        tp.model_copy(update={"proposed_types": [x for x in tp.proposed_types if x in tool_types]})
+        tp.model_copy(
+            update={
+                "proposed_types": [
+                    normalize_tag(x) for x in tp.proposed_types if normalize_tag(x) in tool_types
+                ][:MAX_PROPOSED_TAGS],
+                **_validate_proposal_tags(
+                    tp.proposed_tags,
+                    tp.suggested_new_tags,
+                    primary="",
+                    secondary="",
+                    suggested_new="",
+                    allowlist=ttg,
+                ),
+            }
+        )
         for tp in parsed.tools
     ]
     gt = glossary_tags or set()
@@ -153,12 +170,21 @@ def apply_tag_allowlists(
         for tr in parsed.industry_trends
     ]
     mt = model_types or set()
+    mtg = model_tags or set()
     new_models = [
         mp.model_copy(
             update={
                 "proposed_types": [
                     normalize_tag(x) for x in mp.proposed_types if normalize_tag(x) in mt
-                ][:MAX_PROPOSED_TAGS]
+                ][:MAX_PROPOSED_TAGS],
+                **_validate_proposal_tags(
+                    mp.proposed_tags,
+                    mp.suggested_new_tags,
+                    primary="",
+                    secondary="",
+                    suggested_new="",
+                    allowlist=mtg,
+                ),
             }
         )
         for mp in parsed.foundation_models
@@ -324,6 +350,8 @@ def run_classification(
     topic_tags: list[str] | None = None,
     trend_tags: list[str] | None = None,
     model_types: list[str] | None = None,
+    tool_tags: list[str] | None = None,
+    model_tags: list[str] | None = None,
     source_type_override: str | None = None,
     extraction_budgets: dict[str, int] | None = None,
     model: str,
@@ -346,6 +374,8 @@ def run_classification(
         topic_tags_allowlist=topic_tags,
         trend_tags_allowlist=trend_tags,
         model_types_allowlist=model_types,
+        tool_tags_allowlist=tool_tags,
+        model_tags_allowlist=model_tags,
         source_type_override=source_type_override,
         extraction_budgets=extraction_budgets,
         reviews_root=reviews_path,
@@ -375,6 +405,8 @@ def run_classification(
         set(trend_tags or []),
         set(model_types or []),
         set(impl_study_tags or []),
+        set(tool_tags or []),
+        set(model_tags or []),
     )
     parsed = sanitize_topics_related_topics(parsed, set(topic_tags or []), wiki)
     parsed = _backfill_empty_topic_related_topics(parsed, wiki, reviews_path)

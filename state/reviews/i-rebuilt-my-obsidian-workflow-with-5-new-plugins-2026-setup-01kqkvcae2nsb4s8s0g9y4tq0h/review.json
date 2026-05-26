@@ -21,7 +21,7 @@
       "total_tokens": 38456
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -90,6 +90,7 @@
         "name": "Obsidian",
         "operational_relevance": "Obsidian matters as the container for the workflow, but the article is mostly about how plugins change that container into a more usable operating system for notes. For practitioners, the useful point is that the app can support structure, capture, retrieval, and daily logging when extended with the right plugins. It is relevant to knowledge-heavy work where reusable notes matter more than simple storage.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "note-taking",
           "knowledge-management"
@@ -104,6 +105,7 @@
         "short_description": "A local markdown-based note-taking app used here as the base workspace for building a personal knowledge system.",
         "strengths": "- Local markdown storage makes notes durable and easy to reuse across workflows that depend on plain files.\n- The plugin ecosystem lets users reshape the app around capture, search, cleanup, and daily review instead of treating it as a static editor.\n- It can support a workspace-style knowledge system rather than just a folder of files when paired with organizing plugins.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"my old Obsidian vault looked like a crime scene. Notes everywhere, tags that made sense only at 2am, and a search function that somehow always found everything except what I needed\"",
         "value_level": "high",
         "weaknesses_limitations": "The article implicitly shows that the base app can feel fragmented without additional structure, search help, and capture automation. A practical downside of this model is plugin dependency: the workflow can become harder to maintain if too many add-ons are required to keep it coherent."
@@ -125,6 +127,7 @@
         "name": "Make.md",
         "operational_relevance": "Make.md is useful when a markdown vault has grown beyond simple folders and tags. It helps users group notes by activity or project so retrieval becomes spatial rather than dependent on remembering filenames or paths. In practice, that can reduce friction for research, writing, and other note-heavy work.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "knowledge-management",
           "app"
@@ -138,6 +141,7 @@
         "short_description": "An Obsidian plugin that organizes notes into spaces and cards, replacing a pure folder-first view with a more visual workspace.",
         "strengths": "- Spaces create topic-based environments, which gives a user a clearer mental model than a flat folder tree.\n- Cards make note units feel modular, which is helpful when notes are reused, moved, or combined across projects.\n- Visual navigation can lower the cognitive burden of remembering where a note lives inside a large vault.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Make.md introduces concepts like: Spaces (topic-based environments) Cards (modular note units) Visual navigation instead of pure folders\"",
         "value_level": "medium",
         "weaknesses_limitations": "The article presents Make.md as a helpful reorganization layer, but it does not show whether the new structure adds maintenance overhead or whether it remains effective as the vault keeps growing. It is also not clear how much of the benefit comes from the plugin itself versus the author\u2019s new discipline around workflow design."
@@ -159,6 +163,7 @@
         "name": "Omnisearch",
         "operational_relevance": "Omnisearch is relevant whenever a note vault has outgrown basic filename or keyword search. It helps users find the right note, paragraph, or mention without remembering exact wording, which is critical for research notes and long-lived knowledge bases. For operational workflows, better retrieval directly reduces time spent hunting through old content.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "knowledge-management",
           "app"
@@ -171,6 +176,7 @@
         "short_description": "An Obsidian search plugin that improves retrieval with ranked results, fuzzy matching, and context previews.",
         "strengths": "- Ranked results help surface the most relevant note instead of returning a flat list of keyword matches.\n- Fast fuzzy search makes it possible to search by approximate memory rather than exact terms.\n- Context previews help users confirm the right result before opening it, which matters in large vaults.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Omnisearch gives you: Ranked results (not just keyword matches) Fast fuzzy search Context previews\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not discuss indexing limits, search accuracy edge cases, or how performance holds up at larger vault sizes. It also does not compare Omnisearch against other retrieval approaches, so the benefit is only demonstrated subjectively."
@@ -192,6 +198,7 @@
         "name": "Linter",
         "operational_relevance": "Linter matters when notes are reused over long periods and need to stay readable, consistent, and easy to repurpose. It reduces the cost of messy headings, broken lists, and uneven metadata, which is especially useful in research and writing workflows. In operational terms, it turns formatting hygiene into an automatic background task.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "knowledge-management",
           "app"
@@ -204,6 +211,7 @@
         "short_description": "An Obsidian plugin that automatically cleans note formatting, metadata, and structure when saving.",
         "strengths": "- Automatic cleanup on save keeps notes consistent without requiring manual formatting passes.\n- Standardized headings, lists, and metadata make long-lived notes easier to revisit and reuse later.\n- It supports a more dependable knowledge base because structure stops drifting as notes accumulate.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"After Linter: Everything is automatically cleaned when I save a note.\"",
         "value_level": "medium",
         "weaknesses_limitations": "The article does not describe configuration effort, false positives, or whether automatic cleanup ever disrupts handwritten structure. Its value is clear for tidy workflows, but the tradeoff is that a rigid linter could be annoying if a user prefers looser note styles."
@@ -225,6 +233,7 @@
         "name": "QuickAdd",
         "operational_relevance": "QuickAdd is valuable when repeated note creation is a bottleneck. It lets users capture a paper, meeting, or idea with a shortcut, template, and metadata in one flow, which reduces hesitation and makes capture more consistent. That is useful in any high-volume knowledge workflow where speed at intake affects whether information gets recorded at all.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "workflow-automation",
           "knowledge-management"
@@ -238,6 +247,7 @@
         "short_description": "An Obsidian plugin that turns note creation into shortcut-driven, template-based capture flows.",
         "strengths": "- Shortcut-driven capture removes the need to manually start each new note from scratch.\n- Template application and metadata insertion help new notes arrive in a consistent shape.\n- Automatic placement in the right location reduces the friction of deciding where a note belongs.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"This plugin is basically a workflow engine.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article does not explain how complex these shortcuts become to maintain or whether the setup is brittle when note types change. It also does not compare QuickAdd with other capture tools, so the reported benefit is based on personal preference rather than measured efficiency."
@@ -259,6 +269,7 @@
         "name": "Calendar",
         "operational_relevance": "Calendar matters when daily notes are part of the workflow but easy to neglect. It makes time visible, which helps users review progress, keep a daily record, and turn scattered notes into a timeline. For knowledge work, that can support reflection, planning, and continuity across long projects.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "note-taking",
           "knowledge-management"
@@ -271,6 +282,7 @@
         "short_description": "An Obsidian plugin that organizes daily notes around a visible calendar view and makes time-based note habits easier to sustain.",
         "strengths": "- Calendar view makes daily notes harder to ignore because time is visible in the interface.\n- It supports a simple daily structure for tasks, notes, ideas, and progress.\n- It turns the note archive into a timeline that can help users see their work as a continuing log.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"With Calendar: I see my notes in a time structure I track progress visually I actually use daily notes\"",
         "value_level": "medium",
         "weaknesses_limitations": "The article does not explain whether the calendar view adds clutter or whether daily note habits are sustainable without strong discipline. It also does not show whether the plugin helps at scale for teams or only for individual journaling and research workflows."
@@ -290,9 +302,9 @@
         "knowledge_summary": "Personal knowledge systems work best when capture, organization, retrieval, and reuse are treated as one workflow rather than separate chores. The durable pattern is to minimize friction at the moment of intake, impose structure so notes stay findable, and make reuse easier than starting over. Visual organization, search quality, templates, and automated cleanup each solve a different part of the lifecycle. The goal is not more notes, but notes that remain usable months later.",
         "match_candidates": [],
         "operational_insight": "Design the note system around future action: where a note belongs, how it will be found, and how it will be reused should all be decided up front. Automation is most valuable when it removes repetitive setup and formatting, not when it adds another layer of maintenance.",
-        "primary_tag": "knowledge-management",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "knowledge-management",
+          "knowledge-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -1133,9 +1145,9 @@
           "knowledge_summary": "Personal knowledge systems work best when capture, organization, retrieval, and reuse are treated as one workflow rather than separate chores. The durable pattern is to minimize friction at the moment of intake, impose structure so notes stay findable, and make reuse easier than starting over. Visual organization, search quality, templates, and automated cleanup each solve a different part of the lifecycle. The goal is not more notes, but notes that remain usable months later.",
           "match_candidates": [],
           "operational_insight": "Design the note system around future action: where a note belongs, how it will be found, and how it will be reused should all be decided up front. Automation is most valuable when it removes repetitive setup and formatting, not when it adds another layer of maintenance.",
-          "primary_tag": "knowledge-management",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -1215,7 +1227,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "knowledge-management"
+            "knowledge-systems"
           ]
         }
       }

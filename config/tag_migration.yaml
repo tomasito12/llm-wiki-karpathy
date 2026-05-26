@@ -1,0 +1,71 @@
+# Old slug -> new slug per taxonomy. Unlisted slugs are dropped during migration (logged).
+topics:
+  agentic-ai: agent-systems
+  ai-applications: enterprise-ai
+  ai-architecture: runtime-architecture
+  ai-compliance: compliance-systems
+  ai-evals: ai-evaluation
+  ai-security: verification-systems
+  cyber-security: verification-systems
+  interactive-ai: multimodal-ai
+  knowledge-management: knowledge-systems
+  llm-wiki: knowledge-systems
+  post-training: reward-modeling
+  realtime-ai: inference-systems
+  reinforcement-learning: reward-modeling
+  support-automation: support-automation
+trends:
+  agentic-ai: execution-oriented-agents
+  agentic-coding: execution-oriented-agents
+  ai-architecture: runtime-centralization
+  ai-economics: software-commoditization
+  ai-engineering: ai-operationalization
+  ai-evals: behavioral-evaluation
+  ai-governance: verification-over-principles
+  ai-policy: policy-operationalization
+  ai-security: inspectability
+  it-security: inspectability
+  knowledge-management: workflow-restructuring
+  llm-operations: ai-operationalization
+  llm-wiki: workflow-restructuring
+  support-automation: workflow-restructuring
+glossary:
+  ai-architecture: runtime-architecture
+  ai-economics: ai-economics
+  ai-engineering: ai-engineering
+  ai-evals: evals
+  it-security: governance
+  knowledge-management: memory-systems
+  reinforcement-learning: alignment
+  retrieval-augmented-generation: rag
+  robotics: agent-systems
+  ui-design: multimodal
+howto:
+  agentic-ai: agent-systems
+  ai-engineering: ai-engineering
+  ai-privacy: compliance-systems
+  knowledge-management: knowledge-systems
+  local-model-deployment: inference-systems
+  onboarding-workflow: workflow-design
+  support-automation: support-automation
+  ui-design: ui-generation
+  wiki: knowledge-systems
+impl_study:
+  enterprise-ai-adoption: enterprise-ai-adoption
+  production-failure: production-failure
+tool_tags: {}
+model_tags: {}
+tool_types:
+  agentic-coding: coding-agent
+  coding: coding-agent
+model_types:
+  agentic-coding: coding-model
+  classification: reasoning-model
+  customer-service: enterprise-oriented
+  images: multimodal-model
+  interactive-ai: multimodal-model
+  local-model-deployment: open-weight-model
+  multi-modal: multimodal-model
+  open-weight: open-weight-model
+  proprietary: proprietary-model
+  realtime-voice-model: multimodal-model

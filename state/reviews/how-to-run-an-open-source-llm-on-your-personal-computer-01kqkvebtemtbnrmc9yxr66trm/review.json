@@ -21,7 +21,7 @@
       "total_tokens": 37202
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -54,9 +54,9 @@
           "An installed local model runner such as Ollama.",
           "A model choice sized appropriately for the available hardware."
         ],
-        "primary_tag": "local-model-deployment",
+        "primary_tag": "inference-systems",
         "proposed_tags": [
-          "local-model-deployment",
+          "inference-systems",
           "ai-engineering"
         ],
         "question_title": "Local Model Setup",
@@ -129,6 +129,7 @@
         "name": "Ollama",
         "operational_relevance": "Ollama fits as the local inference layer for developers who want to prototype or ship private AI features without calling a cloud API. The article shows it can be used both interactively and from scripts, which makes it useful for chat-style experiments and lightweight application integration. It is especially relevant when teams want a simple path from model download to a localhost API endpoint. For service automation, it can power private prototypes or offline assistants, but the source does not demonstrate production support use cases.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "app",
           "model-serving"
@@ -140,6 +141,7 @@
         "short_description": "Ollama is a local model runner that installs on a personal computer and provides both a graphical interface and a command-line interface for downloading and running open models. It also exposes a local server so other programs can send requests to the model.",
         "strengths": "- Provides a one-click installer and background local service, which lowers the barrier to getting a model running on a personal computer.\n- Offers both a graphical interface and a command-line interface, so beginners and developers can use the same local stack in different ways.\n- Exposes a local server on `http://localhost:11434`, which makes it easy to connect scripts and applications without external APIs.\n- Handles model download and loading for the user, which reduces setup friction when trying multiple open-source models.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\u201cOllama provides a one-click installer that sets up everything you need to run local models.\u201d",
         "value_level": "high",
         "weaknesses_limitations": "- Performance depends heavily on local hardware; the article notes that larger models need more powerful GPUs or high-end CPUs.\n- Disk space and RAM become the main limiting factors as more models are installed, so local experimentation can be constrained on smaller machines.\n- The guide does not cover multi-user deployment, authentication, or production hardening, so the tool's operational story here is limited to personal or development use."
@@ -159,9 +161,9 @@
         "knowledge_summary": "Local model deployment is the practice of running AI models on a user-controlled machine or internal infrastructure instead of relying on an external hosted API. It usually trades cloud convenience for privacy, offline operation, and tighter control over data handling. The main engineering concern is matching model size and execution mode to available memory, disk, and accelerator capacity. Good local deployment workflows also include model lifecycle management: downloading, switching, removing, and calling the model from other applications. This pattern matters whenever teams need private experimentation, offline use, or a lightweight inference endpoint that can be embedded into scripts and desktop tools.",
         "match_candidates": [],
         "operational_insight": "Treat local deployment as a hardware-constrained operating model, not just a packaging choice. The practical questions are whether the model can fit, whether it can be called locally from code, and whether the developer experience is simple enough to encourage repeated use.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [],
@@ -203,9 +205,9 @@
             "An installed local model runner such as Ollama.",
             "A model choice sized appropriately for the available hardware."
           ],
-          "primary_tag": "local-model-deployment",
+          "primary_tag": "inference-systems",
           "proposed_tags": [
-            "local-model-deployment",
+            "inference-systems",
             "ai-engineering"
           ],
           "question_title": "Local Model Setup",
@@ -507,9 +509,9 @@
           "knowledge_summary": "Local model deployment is the practice of running AI models on a user-controlled machine or internal infrastructure instead of relying on an external hosted API. It usually trades cloud convenience for privacy, offline operation, and tighter control over data handling. The main engineering concern is matching model size and execution mode to available memory, disk, and accelerator capacity. Good local deployment workflows also include model lifecycle management: downloading, switching, removing, and calling the model from other applications. This pattern matters whenever teams need private experimentation, offline use, or a lightweight inference endpoint that can be embedded into scripts and desktop tools.",
           "match_candidates": [],
           "operational_insight": "Treat local deployment as a hardware-constrained operating model, not just a packaging choice. The practical questions are whether the model can fit, whether it can be called locally from code, and whether the developer experience is simple enough to encourage repeated use.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [],

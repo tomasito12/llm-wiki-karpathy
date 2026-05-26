@@ -21,7 +21,7 @@
       "total_tokens": 36767
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,15 +41,15 @@
         "evidence_from_source": "Anthropic says Claude Mythos Preview is being limited to 40 partners under Project Glasswing rather than released generally, and the piece frames it as 'too dangerous to release GA.'",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-governance",
+        "primary_tag": "verification-over-principles",
         "proposed_tags": [
-          "ai-governance",
-          "ai-security"
+          "verification-over-principles",
+          "inspectability"
         ],
         "related_trends": [
           "tiered-access-for-sensitive-model-capabilities"
         ],
-        "secondary_tag": "ai-security",
+        "secondary_tag": "inspectability",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -82,12 +82,12 @@
           "Project Glasswing"
         ],
         "operational_relevance": "Teams building on frontier models may need approval workflows, partner-tier access, and auditable controls for the most capable systems. It also suggests that benchmarking alone may not tell you whether a capability is deployable in production.",
-        "primary_tag": "ai-governance",
+        "primary_tag": "verification-over-principles",
         "proposed_tags": [
-          "ai-governance",
-          "ai-security"
+          "verification-over-principles",
+          "inspectability"
         ],
-        "secondary_tag": "ai-security",
+        "secondary_tag": "inspectability",
         "service_automation_relevance": "No direct service automation implications identified.",
         "signal_strength": "high",
         "signal_title": "Restricted frontier access for cyber-capable models",
@@ -116,12 +116,12 @@
           "Claude Mythos Preview"
         ],
         "operational_relevance": "AI teams may need to add misuse-oriented evals, access gating, and logging before considering deployment of models that touch code, security tools, or networked systems.",
-        "primary_tag": "ai-security",
+        "primary_tag": "inspectability",
         "proposed_tags": [
-          "ai-security",
-          "ai-evals"
+          "inspectability",
+          "behavioral-evaluation"
         ],
-        "secondary_tag": "ai-evals",
+        "secondary_tag": "behavioral-evaluation",
         "service_automation_relevance": "A stronger model can improve automation, but if it can also generate harmful security guidance, service teams will need tighter controls before exposing it to operators or customers.",
         "signal_strength": "medium",
         "signal_title": "Cyber capability becomes a deployment risk boundary",
@@ -190,13 +190,13 @@
         "primary_tag": "ai-governance",
         "proposed_tags": [
           "ai-governance",
-          "ai-security"
+          "verification-systems"
         ],
         "related_topics": [
           "models-becoming-execution-layers"
         ],
         "relevance_note": "This matters because frontier systems increasingly need differentiated access policies rather than a single public release path. For AI products that can influence security, legal, or high-impact workflows, tiering access is a durable operational control that can reduce blast radius while preserving strategic usefulness.",
-        "secondary_tag": "ai-security",
+        "secondary_tag": "verification-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -217,16 +217,16 @@
         "knowledge_summary": "Models that can discover vulnerabilities, assist with exploitation, or otherwise improve offensive security require a risk-assessment process that is closer to security review than ordinary product evaluation. Useful assessment includes where the model succeeds, how it behaves under adversarial prompts, whether it can bypass intended restrictions, and what classes of harm it enables in practice. The key question is not just capability, but whether the capability materially changes attack economics or defender workload. Evaluation needs to include misuse pathways, not only benign benchmarks.",
         "match_candidates": [],
         "operational_insight": "If a model is unusually good at vulnerability discovery, treat it as a security-sensitive system and evaluate it with misuse scenarios, constrained access, and clear red-team controls.",
-        "primary_tag": "ai-security",
+        "primary_tag": "verification-systems",
         "proposed_tags": [
-          "ai-security",
-          "ai-evals"
+          "verification-systems",
+          "ai-evaluation"
         ],
         "related_topics": [
           "tiered-model-access-for-high-risk-capabilities"
         ],
         "relevance_note": "This is relevant to AI engineering because strong cyber capability changes both product risk and evaluation design. For conversational systems and assistants that can reach tools or codebases, the same capability that helps defenders can also increase misuse risk, so teams need more than generic benchmark checks.",
-        "secondary_tag": "ai-evals",
+        "secondary_tag": "ai-evaluation",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -250,15 +250,15 @@
           "evidence_from_source": "Anthropic says Claude Mythos Preview is being limited to 40 partners under Project Glasswing rather than released generally, and the piece frames it as 'too dangerous to release GA.'",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-governance",
+          "primary_tag": "verification-over-principles",
           "proposed_tags": [
-            "ai-governance",
-            "ai-security"
+            "verification-over-principles",
+            "inspectability"
           ],
           "related_trends": [
             "tiered-access-for-sensitive-model-capabilities"
           ],
-          "secondary_tag": "ai-security",
+          "secondary_tag": "inspectability",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -355,12 +355,12 @@
             "Project Glasswing"
           ],
           "operational_relevance": "Teams building on frontier models may need approval workflows, partner-tier access, and auditable controls for the most capable systems. It also suggests that benchmarking alone may not tell you whether a capability is deployable in production.",
-          "primary_tag": "ai-governance",
+          "primary_tag": "verification-over-principles",
           "proposed_tags": [
-            "ai-governance",
-            "ai-security"
+            "verification-over-principles",
+            "inspectability"
           ],
-          "secondary_tag": "ai-security",
+          "secondary_tag": "inspectability",
           "service_automation_relevance": "No direct service automation implications identified.",
           "signal_strength": "high",
           "signal_title": "Restricted frontier access for cyber-capable models",
@@ -473,12 +473,12 @@
             "Claude Mythos Preview"
           ],
           "operational_relevance": "AI teams may need to add misuse-oriented evals, access gating, and logging before considering deployment of models that touch code, security tools, or networked systems.",
-          "primary_tag": "ai-security",
+          "primary_tag": "inspectability",
           "proposed_tags": [
-            "ai-security",
-            "ai-evals"
+            "inspectability",
+            "behavioral-evaluation"
           ],
-          "secondary_tag": "ai-evals",
+          "secondary_tag": "behavioral-evaluation",
           "service_automation_relevance": "A stronger model can improve automation, but if it can also generate harmful security guidance, service teams will need tighter controls before exposing it to operators or customers.",
           "signal_strength": "medium",
           "signal_title": "Cyber capability becomes a deployment risk boundary",
@@ -675,13 +675,13 @@
           "primary_tag": "ai-governance",
           "proposed_tags": [
             "ai-governance",
-            "ai-security"
+            "verification-systems"
           ],
           "related_topics": [
             "models-becoming-execution-layers"
           ],
           "relevance_note": "This matters because frontier systems increasingly need differentiated access policies rather than a single public release path. For AI products that can influence security, legal, or high-impact workflows, tiering access is a durable operational control that can reduce blast radius while preserving strategic usefulness.",
-          "secondary_tag": "ai-security",
+          "secondary_tag": "verification-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -766,16 +766,16 @@
           "knowledge_summary": "Models that can discover vulnerabilities, assist with exploitation, or otherwise improve offensive security require a risk-assessment process that is closer to security review than ordinary product evaluation. Useful assessment includes where the model succeeds, how it behaves under adversarial prompts, whether it can bypass intended restrictions, and what classes of harm it enables in practice. The key question is not just capability, but whether the capability materially changes attack economics or defender workload. Evaluation needs to include misuse pathways, not only benign benchmarks.",
           "match_candidates": [],
           "operational_insight": "If a model is unusually good at vulnerability discovery, treat it as a security-sensitive system and evaluate it with misuse scenarios, constrained access, and clear red-team controls.",
-          "primary_tag": "ai-security",
+          "primary_tag": "verification-systems",
           "proposed_tags": [
-            "ai-security",
-            "ai-evals"
+            "verification-systems",
+            "ai-evaluation"
           ],
           "related_topics": [
             "tiered-model-access-for-high-risk-capabilities"
           ],
           "relevance_note": "This is relevant to AI engineering because strong cyber capability changes both product risk and evaluation design. For conversational systems and assistants that can reach tools or codebases, the same capability that helps defenders can also increase misuse risk, so teams need more than generic benchmark checks.",
-          "secondary_tag": "ai-evals",
+          "secondary_tag": "ai-evaluation",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

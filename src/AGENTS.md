@@ -63,7 +63,7 @@ Run these after substantive code changes:
 - **Outputs:**
   - Review artifacts: `state/reviews/<source_id>/review.json` (JSON: `llm_output`, `review` decisions, `analysis_meta`, `source` + `content_sha256`). Safe to commit or keep local-only.
   - Feedback events (for a future learning loop): `state/review_feedback.sqlite` — **gitignored**; append-only rows when you click **Save review artifact**.
-- **Tag allowlists** for the LLM / UI: [`config/review_tags_tools.yaml`](config/review_tags_tools.yaml), [`config/review_tags_howto.yaml`](config/review_tags_howto.yaml).
+- **Tag allowlists** (see [`docs/tagging-ontology.md`](../docs/tagging-ontology.md)): `config/review_tags_{topics,trends,glossary,impl_study,tools,models}.yaml`; how-tos reuse topics. **Product types** (separate from retrieval tags): `config/review_tool_types.yaml`, `config/review_model_types.yaml`. Migrate legacy slugs: `hatch run tag-migrate`.
 - This stage **does not** write `wiki/sources/*.md`; it only prepares human-reviewed classification. Downstream wiki ingest still re-reads HTML and may use separate LLM prompts.
 
 ## Readwise Reader export

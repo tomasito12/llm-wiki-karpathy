@@ -69,6 +69,7 @@ from src.ingest_review.insights_ui import (
     render_interview_insights,
 )
 from src.ingest_review.models_ui import (
+    collect_model_new_tags,
     collect_model_new_types,
     render_model_proposals,
 )
@@ -96,7 +97,9 @@ from src.ingest_review.tags import (
     default_glossary_tags_path,
     default_howto_tags_path,
     default_impl_study_tags_path,
+    default_model_tags_path,
     default_model_types_path,
+    default_tool_tags_path,
     default_tool_types_path,
     default_topic_tags_path,
     default_trend_tags_path,
@@ -104,12 +107,15 @@ from src.ingest_review.tags import (
     load_glossary_tags,
     load_howto_tags,
     load_impl_study_tags,
+    load_model_tags,
     load_model_types,
+    load_tool_tags,
     load_tool_types,
     load_topic_tags,
     load_trend_tags,
 )
 from src.ingest_review.tools_ui import (
+    collect_tool_new_tags,
     collect_tool_new_types,
     render_tool_proposals,
 )
@@ -213,6 +219,19 @@ def _collect_and_persist_tags(st_ref: Any, artifact: dict, root: Path) -> None:
             except OSError as exc:
                 st_ref.warning(f"{label.title()} tag allowlist update skipped: {exc}")  # type: ignore[union-attr]
 
+    retrieval_tag_actions = [
+        (collect_tool_new_tags, default_tool_tags_path, "tool retrieval tag"),
+        (collect_model_new_tags, default_model_tags_path, "model retrieval tag"),
+    ]
+    for collector, path_fn, label in retrieval_tag_actions:
+        new_tags = collector(artifact)
+        if new_tags:
+            try:
+                append_tags_to_yaml(path_fn(root), new_tags)
+                st_ref.caption(f"Appended {len(new_tags)} {label}(s) to allowlist.")  # type: ignore[union-attr]
+            except OSError as exc:
+                st_ref.warning(f"{label.title()} allowlist update skipped: {exc}")  # type: ignore[union-attr]
+
     type_actions = [
         (collect_tool_new_types, default_tool_types_path, "tool type"),
         (collect_model_new_types, default_model_types_path, "model type"),
@@ -301,7 +320,9 @@ def main() -> None:
         )
 
     tool_types = load_tool_types(root)
+    tool_tags = load_tool_tags(root)
     model_types = load_model_types(root)
+    model_tags = load_model_tags(root)
     howto_tags = load_howto_tags(root)
     impl_study_tags = load_impl_study_tags(root)
     glossary_tags = load_glossary_tags(root)
@@ -485,6 +506,8 @@ def main() -> None:
                         topic_tags=topic_tags,
                         trend_tags=trend_tags,
                         model_types=model_types,
+                        tool_tags=tool_tags,
+                        model_tags=model_tags,
                         extraction_budgets=extraction_budgets,
                         model=model,
                         prompt_version=prompt_version,
@@ -651,6 +674,8 @@ def main() -> None:
                             topic_tags=topic_tags,
                             trend_tags=trend_tags,
                             model_types=model_types,
+                            tool_tags=tool_tags,
+                            model_tags=model_tags,
                             extraction_budgets=extraction_budgets,
                             source_type_override=str(override_val),
                             model=model,
@@ -743,6 +768,7 @@ def main() -> None:
             source_id=source_id,
             artifact_path=artifact_path,
             tool_types=tool_types,
+            tool_tags=tool_tags,
             model=model,
             prompt_version=prompt_version,
         )
@@ -754,6 +780,7 @@ def main() -> None:
             source_id=source_id,
             artifact_path=artifact_path,
             model_types=model_types,
+            model_tags=model_tags,
             model=model,
             prompt_version=prompt_version,
         )

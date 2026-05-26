@@ -21,7 +21,7 @@
       "total_tokens": 31446
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,15 +41,15 @@
         "evidence_from_source": "The article argues that earlier approaches had trouble with accents and dialects, and suggests that generative AI may handle those issues better, while not solving all deployment problems.",
         "evidence_type": "expert_opinion",
         "match_candidates": [],
-        "primary_tag": "support-automation",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "support-automation",
-          "agentic-ai"
+          "workflow-restructuring",
+          "execution-oriented-agents"
         ],
         "related_trends": [
           "voice-ordering-in-noisy-environments"
         ],
-        "secondary_tag": "agentic-ai",
+        "secondary_tag": "execution-oriented-agents",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -117,9 +117,9 @@
         "knowledge_summary": "Voice-based ordering systems need to perform under acoustic noise, overlapping speech, variable accents, and domain-specific vocabulary. In customer-facing transactional settings, recognition errors are not just quality defects; they directly affect the order and the cost of recovery. Robust deployment depends on more than the speech model: prompt design, fallback handling, confidence thresholds, and escalation paths all shape whether the system can be trusted. The hardest cases often appear at the point of operational variance, not in clean demo conditions.",
         "match_candidates": [],
         "operational_insight": "Treat environmental noise and speech variation as core design constraints. A useful pilot needs instrumentation for misrecognition categories, confidence failures, and recovery behavior, not just overall accuracy.",
-        "primary_tag": "realtime-ai",
+        "primary_tag": "inference-systems",
         "proposed_tags": [
-          "realtime-ai",
+          "inference-systems",
           "support-automation"
         ],
         "related_topics": [],
@@ -145,16 +145,16 @@
         "knowledge_summary": "The choice between older natural-language-understanding systems and generative AI can materially change how well a conversational workflow handles varied, open-ended language. In transactional voice or chat automation, the model class determines how the system copes with accents, dialects, and phrasing variation. But model choice alone is insufficient when the environment adds noise, specialized terms, and high error cost. Operational evaluation should compare end-to-end task success, not just language understanding in isolation.",
         "match_candidates": [],
         "operational_insight": "Evaluate conversational automation by task completion and error recovery, not by model enthusiasm. A better language model can reduce one failure mode while leaving environment, vocabulary, and workflow design problems untouched.",
-        "primary_tag": "agentic-ai",
+        "primary_tag": "agent-systems",
         "proposed_tags": [
-          "agentic-ai",
-          "realtime-ai"
+          "agent-systems",
+          "inference-systems"
         ],
         "related_topics": [
           "voice-ordering-in-noisy-environments"
         ],
         "relevance_note": "This is relevant wherever teams are deciding whether to replace older intent-classification or natural-language-understanding stacks with generative systems. The durable lesson is to assess the whole workflow, because model improvements can help but do not remove the need for operational controls.",
-        "secondary_tag": "realtime-ai",
+        "secondary_tag": "inference-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -178,15 +178,15 @@
           "evidence_from_source": "The article argues that earlier approaches had trouble with accents and dialects, and suggests that generative AI may handle those issues better, while not solving all deployment problems.",
           "evidence_type": "expert_opinion",
           "match_candidates": [],
-          "primary_tag": "support-automation",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "support-automation",
-            "agentic-ai"
+            "workflow-restructuring",
+            "execution-oriented-agents"
           ],
           "related_trends": [
             "voice-ordering-in-noisy-environments"
           ],
-          "secondary_tag": "agentic-ai",
+          "secondary_tag": "execution-oriented-agents",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -364,9 +364,9 @@
           "knowledge_summary": "Voice-based ordering systems need to perform under acoustic noise, overlapping speech, variable accents, and domain-specific vocabulary. In customer-facing transactional settings, recognition errors are not just quality defects; they directly affect the order and the cost of recovery. Robust deployment depends on more than the speech model: prompt design, fallback handling, confidence thresholds, and escalation paths all shape whether the system can be trusted. The hardest cases often appear at the point of operational variance, not in clean demo conditions.",
           "match_candidates": [],
           "operational_insight": "Treat environmental noise and speech variation as core design constraints. A useful pilot needs instrumentation for misrecognition categories, confidence failures, and recovery behavior, not just overall accuracy.",
-          "primary_tag": "realtime-ai",
+          "primary_tag": "inference-systems",
           "proposed_tags": [
-            "realtime-ai",
+            "inference-systems",
             "support-automation"
           ],
           "related_topics": [],
@@ -454,16 +454,16 @@
           "knowledge_summary": "The choice between older natural-language-understanding systems and generative AI can materially change how well a conversational workflow handles varied, open-ended language. In transactional voice or chat automation, the model class determines how the system copes with accents, dialects, and phrasing variation. But model choice alone is insufficient when the environment adds noise, specialized terms, and high error cost. Operational evaluation should compare end-to-end task success, not just language understanding in isolation.",
           "match_candidates": [],
           "operational_insight": "Evaluate conversational automation by task completion and error recovery, not by model enthusiasm. A better language model can reduce one failure mode while leaving environment, vocabulary, and workflow design problems untouched.",
-          "primary_tag": "agentic-ai",
+          "primary_tag": "agent-systems",
           "proposed_tags": [
-            "agentic-ai",
-            "realtime-ai"
+            "agent-systems",
+            "inference-systems"
           ],
           "related_topics": [
             "voice-ordering-in-noisy-environments"
           ],
           "relevance_note": "This is relevant wherever teams are deciding whether to replace older intent-classification or natural-language-understanding stacks with generative systems. The durable lesson is to assess the whole workflow, because model improvements can help but do not remove the need for operational controls.",
-          "secondary_tag": "realtime-ai",
+          "secondary_tag": "inference-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

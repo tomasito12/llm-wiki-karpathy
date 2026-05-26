@@ -21,7 +21,7 @@
       "total_tokens": 37344
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,9 +41,9 @@
         "evidence_from_source": "The article lays out three cooperation modes for America and China: dialogue, common safety tests without sharing findings, and formal agreements that include inspections or monitoring of data-center activity. It explicitly frames the hardest step as \u201ctrust but verify.\u201d",
         "evidence_type": "mixed",
         "match_candidates": [],
-        "primary_tag": "ai-governance",
+        "primary_tag": "verification-over-principles",
         "proposed_tags": [
-          "ai-governance"
+          "verification-over-principles"
         ],
         "related_trends": [
           "machine-readable-testing-intent",
@@ -54,7 +54,7 @@
         "suggested_action": "ignore",
         "suggested_new_tag": "ai-policy",
         "suggested_new_tags": [
-          "ai-policy"
+          "policy-operationalization"
         ],
         "supporting_data_points": [
           "Three cooperation modes are outlined: dialogue, shared testing, and formal verification.",
@@ -126,7 +126,7 @@
         "primary_tag": "ai-governance",
         "proposed_tags": [
           "ai-governance",
-          "ai-evals"
+          "ai-evaluation"
         ],
         "related_topics": [
           "provenance-tracking",
@@ -134,7 +134,7 @@
           "proprietary-evals"
         ],
         "relevance_note": "This is relevant anywhere AI systems need to be governed through evidence rather than promises. It applies to safety regimes, compliance checks, and cross-organization coordination where the central question is how to verify behavior without forcing full disclosure of sensitive technical details.",
-        "secondary_tag": "ai-evals",
+        "secondary_tag": "ai-evaluation",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -161,7 +161,7 @@
         "proposed_tags": [
           "ai-policy",
           "ai-governance",
-          "ai-security"
+          "verification-systems"
         ],
         "related_topics": [
           "state-control-over-ai-supply-chains",
@@ -226,9 +226,9 @@
           "evidence_from_source": "The article lays out three cooperation modes for America and China: dialogue, common safety tests without sharing findings, and formal agreements that include inspections or monitoring of data-center activity. It explicitly frames the hardest step as \u201ctrust but verify.\u201d",
           "evidence_type": "mixed",
           "match_candidates": [],
-          "primary_tag": "ai-governance",
+          "primary_tag": "verification-over-principles",
           "proposed_tags": [
-            "ai-governance"
+            "verification-over-principles"
           ],
           "related_trends": [
             "machine-readable-testing-intent",
@@ -239,7 +239,7 @@
           "suggested_action": "ignore",
           "suggested_new_tag": "ai-policy",
           "suggested_new_tags": [
-            "ai-policy"
+            "policy-operationalization"
           ],
           "supporting_data_points": [
             "Three cooperation modes are outlined: dialogue, shared testing, and formal verification.",
@@ -309,11 +309,11 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-policy"
+            "policy-operationalization"
           ],
           "final_tags": [
-            "ai-governance",
-            "ai-policy"
+            "verification-over-principles",
+            "policy-operationalization"
           ]
         }
       }
@@ -420,7 +420,7 @@
           "primary_tag": "ai-governance",
           "proposed_tags": [
             "ai-governance",
-            "ai-evals"
+            "ai-evaluation"
           ],
           "related_topics": [
             "provenance-tracking",
@@ -428,7 +428,7 @@
             "proprietary-evals"
           ],
           "relevance_note": "This is relevant anywhere AI systems need to be governed through evidence rather than promises. It applies to safety regimes, compliance checks, and cross-organization coordination where the central question is how to verify behavior without forcing full disclosure of sensitive technical details.",
-          "secondary_tag": "ai-evals",
+          "secondary_tag": "ai-evaluation",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -523,7 +523,7 @@
           "proposed_tags": [
             "ai-policy",
             "ai-governance",
-            "ai-security"
+            "verification-systems"
           ],
           "related_topics": [
             "state-control-over-ai-supply-chains",
@@ -709,7 +709,7 @@
           "final_tags": [
             "ai-policy",
             "ai-governance",
-            "ai-security"
+            "verification-systems"
           ]
         }
       }

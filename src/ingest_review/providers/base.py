@@ -33,6 +33,8 @@ class IngestionProvider(ABC):
         topic_tags_allowlist: list[str] | None = None,
         trend_tags_allowlist: list[str] | None = None,
         model_types_allowlist: list[str] | None = None,
+        tool_tags_allowlist: list[str] | None = None,
+        model_tags_allowlist: list[str] | None = None,
         source_type_override: str | None = None,
         extraction_budgets: dict[str, int] | None = None,
         reviews_root: Path | None = None,

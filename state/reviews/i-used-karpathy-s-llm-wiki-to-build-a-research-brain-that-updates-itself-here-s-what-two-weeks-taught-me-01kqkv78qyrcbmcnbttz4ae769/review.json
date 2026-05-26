@@ -21,7 +21,7 @@
       "total_tokens": 36230
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -41,16 +41,15 @@
         "evidence_from_source": "The article presents a working personal setup where Claude Code compiles sources into a wiki, updates related pages, and files useful answers back into the corpus.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "workflow-restructuring",
         "proposed_tags": [
-          "knowledge-management",
-          "llm-operations",
-          "ai-engineering"
+          "workflow-restructuring",
+          "ai-operationalization"
         ],
         "related_trends": [
           "knowledge-base-becomes-runtime-infrastructure"
         ],
-        "secondary_tag": "llm-operations",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -124,6 +123,7 @@
         "name": "Claude Code",
         "operational_relevance": "The tool is being used less like a chat assistant and more like a filesystem-aware maintenance agent. That makes it relevant for teams that want an LLM to repeatedly transform incoming documents into structured artifacts, especially when the workflow depends on editing many files, not just answering one query. It also shows why agent behavior needs schema constraints and human diff review when the model is acting as a writer and curator rather than a pure generator.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "coding-agent"
         ],
@@ -133,6 +133,7 @@
         "short_description": "An AI coding agent that can read a folder, process sources, and update files as part of an automated workflow. In this article it is used as the agent that ingests sources into a maintained wiki.",
         "strengths": "- It can process a source, create summary pages, update indices, and revise related pages in one ingest cycle, which is useful when knowledge needs to be maintained across many files.\n- It supports a conversational review loop during ingest, so the human can steer editorial choices instead of accepting a fully automatic batch job.\n- It can generate a wiki-like structure from raw documents, which makes it more useful for knowledge workflows than a single-turn question-answer interface.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Then I opened Claude Code, pointed it at the directory, and gave it the gist.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article reports that the workflow depends on schema discipline and git diff review, so the agent is not a set-and-forget system. It also concentrates most cost in ingest, and the author notes that the approach begins to strain around 100-200 sources, at which point a more robust retrieval or governance layer may be needed."
@@ -155,6 +156,7 @@
         "name": "Obsidian",
         "operational_relevance": "Obsidian is positioned as the viewing layer, not the intelligence layer. That matters because it shows a practical division of labor: the model writes and maintains the corpus, while the human inspects links, graphs, and search results in a file-based app. For knowledge-heavy teams, that makes Obsidian useful as a transparent front end for AI-maintained documentation and research notes.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
           "note-taking"
         ],
@@ -164,6 +166,7 @@
         "short_description": "A note-taking app that renders markdown files, backlinks, graphs, and searches over a local folder of notes. Here it serves as the interface for reading and navigating the generated wiki.",
         "strengths": "- It renders backlinks and graph connections, which helps users inspect how ideas cluster and bridge across a growing corpus.\n- It updates in real time as markdown files change on disk, so the human can browse AI-generated pages without leaving the local file workflow.\n- It supports search across all pages, which makes a compiled wiki easier to navigate than a pile of raw documents.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"Obsidian is the window.\"",
         "value_level": "high",
         "weaknesses_limitations": "The article makes clear that Obsidian is only the window, not the brain, so it does not solve knowledge maintenance by itself. The value depends on the underlying agent and schema quality; without those, it would just be a note viewer with a graph."
@@ -183,10 +186,9 @@
         "knowledge_summary": "A useful pattern is to treat source materials as raw inputs and ask an LLM to compile them into a structured, cross-referenced knowledge base. The compiled layer should not replace the originals; it should synthesize them into durable pages that can be updated as new sources arrive. This shifts the model's role from answering isolated questions to maintaining accumulated understanding over time. The workflow is most valuable when the knowledge domain benefits from repeated synthesis across many documents rather than one-off retrieval.",
         "match_candidates": [],
         "operational_insight": "Use the model to produce a maintained artifact, not just answers. That means investing in page structure, link conventions, and review loops so the output can be reused across future questions.",
-        "primary_tag": "llm-wiki",
+        "primary_tag": "knowledge-systems",
         "proposed_tags": [
-          "llm-wiki",
-          "knowledge-management",
+          "knowledge-systems",
           "ai-engineering"
         ],
         "related_topics": [
@@ -194,7 +196,7 @@
           "provenance-tracking"
         ],
         "relevance_note": "This pattern matters because many AI workflows fail when they stop at retrieval and never create a durable synthesized layer. Compiled knowledge bases can make research, internal documentation, and agent memory more reusable because each new source can strengthen the whole corpus rather than sit in isolation.",
-        "secondary_tag": "knowledge-management",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -219,14 +221,13 @@
         "primary_tag": "ai-engineering",
         "proposed_tags": [
           "ai-engineering",
-          "llm-wiki",
-          "knowledge-management"
+          "knowledge-systems"
         ],
         "related_topics": [
           "llm-assisted-knowledge-compilation"
         ],
         "relevance_note": "This matters because file-writing agents need constraints if they are expected to maintain long-lived knowledge assets. Schema governance is useful anywhere an LLM edits markdown, documentation, or internal knowledge bases and the organization wants consistency over time rather than ad hoc outputs.",
-        "secondary_tag": "llm-wiki",
+        "secondary_tag": "knowledge-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -250,20 +251,19 @@
           "evidence_from_source": "The article presents a working personal setup where Claude Code compiles sources into a wiki, updates related pages, and files useful answers back into the corpus.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "workflow-restructuring",
           "proposed_tags": [
-            "knowledge-management",
-            "llm-operations",
-            "ai-engineering"
+            "workflow-restructuring",
+            "ai-operationalization"
           ],
           "related_trends": [
             "knowledge-base-becomes-runtime-infrastructure"
           ],
-          "secondary_tag": "llm-operations",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "llm-wiki",
           "suggested_new_tags": [
-            "llm-wiki"
+            "workflow-restructuring"
           ],
           "supporting_data_points": [
             "34 sources ingested in two weeks",
@@ -338,11 +338,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "llm-wiki"
+            "workflow-restructuring"
           ],
           "final_tags": [
-            "knowledge-management",
-            "llm-wiki"
+            "workflow-restructuring"
           ]
         }
       }
@@ -673,10 +672,9 @@
           "knowledge_summary": "A useful pattern is to treat source materials as raw inputs and ask an LLM to compile them into a structured, cross-referenced knowledge base. The compiled layer should not replace the originals; it should synthesize them into durable pages that can be updated as new sources arrive. This shifts the model's role from answering isolated questions to maintaining accumulated understanding over time. The workflow is most valuable when the knowledge domain benefits from repeated synthesis across many documents rather than one-off retrieval.",
           "match_candidates": [],
           "operational_insight": "Use the model to produce a maintained artifact, not just answers. That means investing in page structure, link conventions, and review loops so the output can be reused across future questions.",
-          "primary_tag": "llm-wiki",
+          "primary_tag": "knowledge-systems",
           "proposed_tags": [
-            "llm-wiki",
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering"
           ],
           "related_topics": [
@@ -684,7 +682,7 @@
             "provenance-tracking"
           ],
           "relevance_note": "This pattern matters because many AI workflows fail when they stop at retrieval and never create a durable synthesized layer. Compiled knowledge bases can make research, internal documentation, and agent memory more reusable because each new source can strengthen the whole corpus rather than sit in isolation.",
-          "secondary_tag": "knowledge-management",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -756,8 +754,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "llm-wiki",
-            "knowledge-management",
+            "knowledge-systems",
             "ai-engineering"
           ]
         }
@@ -779,14 +776,13 @@
           "primary_tag": "ai-engineering",
           "proposed_tags": [
             "ai-engineering",
-            "llm-wiki",
-            "knowledge-management"
+            "knowledge-systems"
           ],
           "related_topics": [
             "llm-assisted-knowledge-compilation"
           ],
           "relevance_note": "This matters because file-writing agents need constraints if they are expected to maintain long-lived knowledge assets. Schema governance is useful anywhere an LLM edits markdown, documentation, or internal knowledge bases and the organization wants consistency over time rather than ad hoc outputs.",
-          "secondary_tag": "llm-wiki",
+          "secondary_tag": "knowledge-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],

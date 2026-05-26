@@ -21,7 +21,7 @@
       "total_tokens": 29848
     }
   },
-  "artifact_schema_version": 15,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -47,16 +47,18 @@
           "The model is positioned to reduce hallucinations in customer-facing conversations, which matters for policy accuracy and trust.",
           "The model is designed to be fast enough for real-time customer service use, where response latency affects user experience."
         ],
+        "deployment_implications": "This suggests that teams operating support agents may need their own model training and evaluation pipeline rather than relying entirely on off-the-shelf frontier models. It also implies that model selection may become tied to task-specific feedback loops and domain metrics like resolution rate, handoff rate, and hallucination rate.",
         "evidence_type": null,
         "match_candidates": [],
         "maturity_signals": "Intercom says the model is already running on nearly all English chat and email customer conversations, which is a strong production signal. The source also says Fin handles almost 2M customer issues per week, indicating high-scale operational use, but the evidence remains self-reported by the vendor.",
         "model_name": "Apex 1.0",
-        "operational_summary": "Apex 1.0 is a custom model for customer service workloads inside Fin. The source positions it as a specialized model that outperforms general-purpose frontier models on resolution rate, speed, hallucination rate, and cost for support conversations.",
+        "operational_profile": "Apex 1.0 is a custom model for customer service workloads inside Fin. The source positions it as a specialized model that outperforms general-purpose frontier models on resolution rate, speed, hallucination rate, and cost for support conversations.\n\n- The model is described as materially better at resolving customer issues, which matters because resolution rate is the primary business metric in support automation.\n- The post claims it is faster and cheaper than available alternatives, which is important for high-volume service workloads where latency and per-interaction cost determine viability.\n- It is said to have fewer hallucinations, which is valuable in customer service because incorrect policy or troubleshooting answers can create escalations and rework.",
         "pricing_inference_implications": "The post claims the model is cheaper than other available models, but gives no numbers. The practical inference is that specialized models may become economically attractive in high-volume support where small per-call savings compound materially, but this needs independent validation.",
         "proposed_new_type": null,
+        "proposed_tags": [],
         "proposed_types": [
-          "proprietary",
-          "interactive-ai"
+          "proprietary-model",
+          "multimodal-model"
         ],
         "provider": "Intercom",
         "related_models": [
@@ -65,12 +67,11 @@
           "Sonnet 4.0"
         ],
         "service_automation_implications": "The model is explicitly framed for customer service, so the relevance to chatbots and support automation is direct. If the vendor\u2019s claims hold, a specialized model can improve containment and reduce unresolved conversations while also lowering per-ticket inference cost.",
-        "strengths": "- The model is described as materially better at resolving customer issues, which matters because resolution rate is the primary business metric in support automation.\n- The post claims it is faster and cheaper than available alternatives, which is important for high-volume service workloads where latency and per-interaction cost determine viability.\n- It is said to have fewer hallucinations, which is valuable in customer service because incorrect policy or troubleshooting answers can create escalations and rework.",
         "suggested_action": "ignore",
+        "suggested_new_tags": [],
         "supporting_snippet": "\"As of last week, ~100% of all (English language, chat and email) customer conversations are now running on Apex.\"",
         "value_level": "high",
-        "weaknesses_limitations": "The source provides no independent benchmark, no latency numbers, and no cost figures, so the strength claims remain vendor-led. It is also unclear how much of the gain comes from the model versus the surrounding Fin system, routing, or proprietary eval process.",
-        "workflow_implications": "This suggests that teams operating support agents may need their own model training and evaluation pipeline rather than relying entirely on off-the-shelf frontier models. It also implies that model selection may become tied to task-specific feedback loops and domain metrics like resolution rate, handoff rate, and hallucination rate."
+        "weaknesses_limitations": "The source provides no independent benchmark, no latency numbers, and no cost figures, so the strength claims remain vendor-led. It is also unclear how much of the gain comes from the model versus the surrounding Fin system, routing, or proprietary eval process."
       }
     ],
     "glossary": [
@@ -79,10 +80,10 @@
         "evidence_type": null,
         "extended_explanation": "Knowledge management in AI usually means turning messy information into something a model or workflow can actually use: searchable documents, structured entries, approved answers, or retrieval indexes. It matters because many production assistants fail not from lack of intelligence, but from poor access to the right information at the right time. Good knowledge management reduces repetition, improves consistency, and can make responses more grounded and easier to audit.",
         "match_candidates": [],
-        "primary_tag": "knowledge-management",
+        "primary_tag": "memory-systems",
         "proposed_definition": "The practice of capturing, organizing, and retrieving information so people or systems can use it reliably later. In AI systems, it often includes structuring documents, policies, and historical interactions so models can answer with fewer errors and less repeated work.",
         "proposed_tags": [
-          "knowledge-management"
+          "memory-systems"
         ],
         "related_terms": [
           "Retrieval-Augmented Generation"
@@ -185,15 +186,15 @@
         "evidence_from_source": "Intercom presents Apex as a custom customer-service model that outperforms frontier generalists on support tasks and argues that customer-service vendors will need their own models to stay differentiated.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-centralization",
         "proposed_tags": [
-          "ai-architecture",
-          "ai-engineering"
+          "runtime-centralization",
+          "ai-operationalization"
         ],
         "related_trends": [
           "models-becoming-execution-layers"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -262,9 +263,9 @@
         "knowledge_summary": "Vertical models are domain-specialized models trained or adapted for a specific business function rather than broad general use. They tend to win when the task has clear success metrics, repeated workflows, and enough proprietary data to support task-specific training and evaluation. Their value comes from matching the job more tightly than a general model can, especially when speed, cost, and policy compliance all matter together. They are most compelling where generic intelligence is not the bottleneck but task-fit is.",
         "match_candidates": [],
         "operational_insight": "If a workflow has stable metrics and enough proprietary interactions, a specialized model can be a better optimization target than a general-purpose frontier model. The engineering work then shifts toward collecting task data, building domain evals, and training for the exact failure modes that matter.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_topics": [
@@ -293,9 +294,9 @@
         "knowledge_summary": "Proprietary evals are task-specific evaluation suites built from a company\u2019s own data and operational criteria. They are used to measure what actually matters in production instead of relying only on public benchmarks or generic model scores. In high-stakes workflows, they can become both a training signal and a governance tool because they encode the organization\u2019s definition of success. They are especially important when the value of a model depends on domain nuance, policy adherence, and real user outcomes.",
         "match_candidates": [],
         "operational_insight": "If your model is differentiated by private data and private success criteria, you need private evals to match. Without them, you may optimize for the wrong metric and miss the exact failures your users feel.",
-        "primary_tag": "ai-evals",
+        "primary_tag": "ai-evaluation",
         "proposed_tags": [
-          "ai-evals",
+          "ai-evaluation",
           "ai-engineering"
         ],
         "related_topics": [
@@ -333,15 +334,16 @@
             "The model is positioned to reduce hallucinations in customer-facing conversations, which matters for policy accuracy and trust.",
             "The model is designed to be fast enough for real-time customer service use, where response latency affects user experience."
           ],
+          "deployment_implications": "This suggests that teams operating support agents may need their own model training and evaluation pipeline rather than relying entirely on off-the-shelf frontier models. It also implies that model selection may become tied to task-specific feedback loops and domain metrics like resolution rate, handoff rate, and hallucination rate.",
           "match_candidates": [],
           "maturity_signals": "Intercom says the model is already running on nearly all English chat and email customer conversations, which is a strong production signal. The source also says Fin handles almost 2M customer issues per week, indicating high-scale operational use, but the evidence remains self-reported by the vendor.",
           "model_name": "Apex 1.0",
-          "operational_summary": "Apex 1.0 is a custom model for customer service workloads inside Fin. The source positions it as a specialized model that outperforms general-purpose frontier models on resolution rate, speed, hallucination rate, and cost for support conversations.",
+          "operational_profile": "Apex 1.0 is a custom model for customer service workloads inside Fin. The source positions it as a specialized model that outperforms general-purpose frontier models on resolution rate, speed, hallucination rate, and cost for support conversations.\n\n- The model is described as materially better at resolving customer issues, which matters because resolution rate is the primary business metric in support automation.\n- The post claims it is faster and cheaper than available alternatives, which is important for high-volume service workloads where latency and per-interaction cost determine viability.\n- It is said to have fewer hallucinations, which is valuable in customer service because incorrect policy or troubleshooting answers can create escalations and rework.",
           "pricing_inference_implications": "The post claims the model is cheaper than other available models, but gives no numbers. The practical inference is that specialized models may become economically attractive in high-volume support where small per-call savings compound materially, but this needs independent validation.",
-          "proposed_new_type": "customer-service",
+          "proposed_new_type": "enterprise-oriented",
           "proposed_types": [
-            "proprietary",
-            "interactive-ai"
+            "proprietary-model",
+            "multimodal-model"
           ],
           "provider": "Intercom",
           "related_models": [
@@ -350,12 +352,10 @@
             "Sonnet 4.0"
           ],
           "service_automation_implications": "The model is explicitly framed for customer service, so the relevance to chatbots and support automation is direct. If the vendor\u2019s claims hold, a specialized model can improve containment and reduce unresolved conversations while also lowering per-ticket inference cost.",
-          "strengths": "- The model is described as materially better at resolving customer issues, which matters because resolution rate is the primary business metric in support automation.\n- The post claims it is faster and cheaper than available alternatives, which is important for high-volume service workloads where latency and per-interaction cost determine viability.\n- It is said to have fewer hallucinations, which is valuable in customer service because incorrect policy or troubleshooting answers can create escalations and rework.",
           "suggested_action": "ignore",
           "supporting_snippet": "\"As of last week, ~100% of all (English language, chat and email) customer conversations are now running on Apex.\"",
           "value_level": "high",
-          "weaknesses_limitations": "The source provides no independent benchmark, no latency numbers, and no cost figures, so the strength claims remain vendor-led. It is also unclear how much of the gain comes from the model versus the surrounding Fin system, routing, or proprietary eval process.",
-          "workflow_implications": "This suggests that teams operating support agents may need their own model training and evaluation pipeline rather than relying entirely on off-the-shelf frontier models. It also implies that model selection may become tied to task-specific feedback loops and domain metrics like resolution rate, handoff rate, and hallucination rate."
+          "weaknesses_limitations": "The source provides no independent benchmark, no latency numbers, and no cost figures, so the strength claims remain vendor-led. It is also unclear how much of the gain comes from the model versus the surrounding Fin system, routing, or proprietary eval process."
         },
         "notes": null,
         "proposal_id": "9d9bf18b-ed2c-464e-8992-0ddd1fffb5ce",
@@ -390,6 +390,12 @@
             "notes": null,
             "status": "approved"
           },
+          "deployment_implications": {
+            "final_text": "This suggests that teams operating support agents may need their own model training and evaluation pipeline rather than relying entirely on off-the-shelf frontier models. It also implies that model selection may become tied to task-specific feedback loops and domain metrics like resolution rate, handoff rate, and hallucination rate.",
+            "notes": null,
+            "section_regeneration_meta": null,
+            "status": "modified"
+          },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
@@ -400,10 +406,11 @@
             "notes": null,
             "status": "approved"
           },
-          "operational_summary": {
-            "final_text": null,
+          "operational_profile": {
+            "final_text": "Apex 1.0 is a custom model for customer service workloads inside Fin. The source positions it as a specialized model that outperforms general-purpose frontier models on resolution rate, speed, hallucination rate, and cost for support conversations.\n\n- The model is described as materially better at resolving customer issues, which matters because resolution rate is the primary business metric in support automation.\n- The post claims it is faster and cheaper than available alternatives, which is important for high-volume service workloads where latency and per-interaction cost determine viability.\n- It is said to have fewer hallucinations, which is valuable in customer service because incorrect policy or troubleshooting answers can create escalations and rework.",
             "notes": null,
-            "status": "approved"
+            "section_regeneration_meta": null,
+            "status": "modified"
           },
           "pricing_inference_implications": {
             "final_text": null,
@@ -430,22 +437,12 @@
             "notes": null,
             "status": "approved"
           },
-          "strengths": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
           "supporting_snippet": {
             "final_text": null,
             "notes": null,
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
-            "notes": null,
-            "status": "approved"
-          },
-          "workflow_implications": {
             "final_text": null,
             "notes": null,
             "status": "approved"
@@ -460,11 +457,11 @@
             "customer-service"
           ],
           "approved_types": [
-            "proprietary",
-            "customer-service"
+            "proprietary-model",
+            "enterprise-oriented"
           ],
           "reviewer_types_added": [
-            "customer-service"
+            "enterprise-oriented"
           ]
         }
       }
@@ -476,10 +473,10 @@
           "evidence_type": null,
           "extended_explanation": "Knowledge management in AI usually means turning messy information into something a model or workflow can actually use: searchable documents, structured entries, approved answers, or retrieval indexes. It matters because many production assistants fail not from lack of intelligence, but from poor access to the right information at the right time. Good knowledge management reduces repetition, improves consistency, and can make responses more grounded and easier to audit.",
           "match_candidates": [],
-          "primary_tag": "knowledge-management",
+          "primary_tag": "memory-systems",
           "proposed_definition": "The practice of capturing, organizing, and retrieving information so people or systems can use it reliably later. In AI systems, it often includes structuring documents, policies, and historical interactions so models can answer with fewer errors and less repeated work.",
           "proposed_tags": [
-            "knowledge-management"
+            "memory-systems"
           ],
           "related_terms": [
             "Retrieval-Augmented Generation"
@@ -777,21 +774,21 @@
           "evidence_from_source": "Intercom presents Apex as a custom customer-service model that outperforms frontier generalists on support tasks and argues that customer-service vendors will need their own models to stay differentiated.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-centralization",
           "proposed_tags": [
-            "ai-architecture",
-            "ai-engineering"
+            "runtime-centralization",
+            "ai-operationalization"
           ],
           "related_trends": [
             "models-becoming-execution-layers"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "vertical-ai-models",
           "suggested_new_tags": [
             "vertical-ai-models",
             "vertical-models",
-            "ai-economics"
+            "software-commoditization"
           ],
           "supporting_data_points": [
             "Apex is said to be the highest performing, fastest, and cheapest model for customer service.",
@@ -866,10 +863,10 @@
         },
         "tags": {
           "approved_new_tags": [
-            "ai-economics"
+            "software-commoditization"
           ],
           "final_tags": [
-            "ai-economics"
+            "software-commoditization"
           ]
         }
       }
@@ -972,9 +969,9 @@
           "knowledge_summary": "Vertical models are domain-specialized models trained or adapted for a specific business function rather than broad general use. They tend to win when the task has clear success metrics, repeated workflows, and enough proprietary data to support task-specific training and evaluation. Their value comes from matching the job more tightly than a general model can, especially when speed, cost, and policy compliance all matter together. They are most compelling where generic intelligence is not the bottleneck but task-fit is.",
           "match_candidates": [],
           "operational_insight": "If a workflow has stable metrics and enough proprietary interactions, a specialized model can be a better optimization target than a general-purpose frontier model. The engineering work then shifts toward collecting task data, building domain evals, and training for the exact failure modes that matter.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_topics": [
@@ -1070,9 +1067,9 @@
           "knowledge_summary": "Proprietary evals are task-specific evaluation suites built from a company\u2019s own data and operational criteria. They are used to measure what actually matters in production instead of relying only on public benchmarks or generic model scores. In high-stakes workflows, they can become both a training signal and a governance tool because they encode the organization\u2019s definition of success. They are especially important when the value of a model depends on domain nuance, policy adherence, and real user outcomes.",
           "match_candidates": [],
           "operational_insight": "If your model is differentiated by private data and private success criteria, you need private evals to match. Without them, you may optimize for the wrong metric and miss the exact failures your users feel.",
-          "primary_tag": "ai-evals",
+          "primary_tag": "ai-evaluation",
           "proposed_tags": [
-            "ai-evals",
+            "ai-evaluation",
             "ai-engineering"
           ],
           "related_topics": [
@@ -1151,7 +1148,7 @@
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-evals"
+            "ai-evaluation"
           ]
         }
       }

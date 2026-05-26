@@ -170,8 +170,28 @@ def load_tool_types(root: Path | None = None) -> list[str]:
 
 
 def load_howto_tags(root: Path | None = None) -> list[str]:
-    """Return how-to proposal tag allowlist."""
-    return load_tag_list(default_howto_tags_path(root))
+    """Return how-to proposal tag allowlist (same vocabulary as topics)."""
+    return load_topic_tags(root)
+
+
+def default_tool_tags_path(root: Path | None = None) -> Path:
+    """Path to ``config/review_tags_tools.yaml``."""
+    return (root or repo_root()) / "config" / "review_tags_tools.yaml"
+
+
+def load_tool_tags(root: Path | None = None) -> list[str]:
+    """Return tool retrieval-tag allowlist (distinct from product types)."""
+    return load_tag_list(default_tool_tags_path(root))
+
+
+def default_model_tags_path(root: Path | None = None) -> Path:
+    """Path to ``config/review_tags_models.yaml``."""
+    return (root or repo_root()) / "config" / "review_tags_models.yaml"
+
+
+def load_model_tags(root: Path | None = None) -> list[str]:
+    """Return foundation-model retrieval-tag allowlist (distinct from model types)."""
+    return load_tag_list(default_model_tags_path(root))
 
 
 def default_glossary_tags_path(root: Path | None = None) -> Path:

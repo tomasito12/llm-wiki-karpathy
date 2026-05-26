@@ -21,7 +21,7 @@
       "total_tokens": 32383
     }
   },
-  "artifact_schema_version": 16,
+  "artifact_schema_version": 17,
   "errors": [],
   "llm_output": {
     "extraction_meta": {
@@ -37,10 +37,10 @@
         "evidence_type": null,
         "extended_explanation": "In practice, a harness is the environment around a model rather than the model itself. If the model is the engine, the harness is the rest of the vehicle: steering, brakes, dashboard, and guardrails. Teams use a harness to reduce random behavior, surface failures early, and make recovery possible when the model takes a bad action. The concept matters most when the model is allowed to act over multiple steps or interact with external systems. In those settings, the quality of the harness often matters more than small prompt tweaks.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "A harness is the surrounding system that shapes how an AI model acts in a real workflow. It includes the tools, rules, checks, memory, and feedback mechanisms that make model behavior usable and reliable.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [
@@ -60,10 +60,10 @@
         "evidence_type": null,
         "extended_explanation": "A feedforward control is a design choice that tries to stop bad behavior before it reaches the user or an external system. In agentic workflows, that can mean validations, permissions, constraints, planning checks, or required confirmations before the model executes a step. This differs from pure after-the-fact monitoring because it changes the action path itself. The term is useful when designing systems that can call tools, modify data, or take other consequential actions. It helps engineers think about how to make the safe path the easy path.",
         "match_candidates": [],
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_definition": "Feedforward controls are guardrails and checks applied before an AI system takes an action, so problems are prevented or caught earlier than they would be by post-hoc review alone.",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering"
         ],
         "related_terms": [
@@ -88,16 +88,16 @@
         "evidence_from_source": "The source argues that once agents do meaningful work over long horizons, the bottleneck is 'structure... visibility... memory... validation' and that 'the real product is not the prompt. It is the harness.'",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "agentic-ai",
+        "primary_tag": "execution-oriented-agents",
         "proposed_tags": [
-          "agentic-ai",
-          "ai-engineering",
-          "ai-architecture"
+          "execution-oriented-agents",
+          "ai-operationalization",
+          "runtime-centralization"
         ],
         "related_trends": [
           "models-becoming-execution-layers"
         ],
-        "secondary_tag": "ai-engineering",
+        "secondary_tag": "ai-operationalization",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
@@ -166,11 +166,11 @@
         "knowledge_summary": "Harness engineering is the practice of designing the surrounding system that makes an AI model useful, safe, and reliable in production. The focus is on the environment around the model: tools, constraints, plans, observability, documentation, memory, validation, and feedback loops. It treats the model as an imperfect operator rather than a magical oracle. The core idea is that reliability emerges from system design, not from prompt wording alone. This becomes most important when models work over long horizons or interact with external software.",
         "match_candidates": [],
         "operational_insight": "When reliability matters, invest first in the control layer around the model: what it can do, what it can see, how its actions are checked, and how failures are recovered. Prompt quality still matters, but it should be treated as one part of a larger operating environment.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering",
-          "agentic-ai"
+          "agent-systems"
         ],
         "related_topics": [
           "agentic-workflows",
@@ -199,11 +199,11 @@
         "knowledge_summary": "Harness decay is the tendency for an AI agent system to become less reliable when the surrounding controls, checks, and visibility are too weak for the task complexity it is expected to handle. As tasks become longer and more consequential, missing structure shows up as brittle behavior, hidden failures, and poor recovery. The concept is useful for thinking about why prototypes can work while production systems fail. It pushes teams to treat the environment as a living part of the system that must be maintained. Good harness design slows or prevents this decay by making failure visible and recoverable.",
         "match_candidates": [],
         "operational_insight": "As agent scope grows, monitor whether the harness still exposes state, validates action, and supports rollback. If not, reliability degrades even when the underlying model does not change.",
-        "primary_tag": "ai-architecture",
+        "primary_tag": "runtime-architecture",
         "proposed_tags": [
-          "ai-architecture",
+          "runtime-architecture",
           "ai-engineering",
-          "agentic-ai"
+          "agent-systems"
         ],
         "related_topics": [
           "harness-engineering",
@@ -230,10 +230,10 @@
           "evidence_type": null,
           "extended_explanation": "In practice, a harness is the environment around a model rather than the model itself. If the model is the engine, the harness is the rest of the vehicle: steering, brakes, dashboard, and guardrails. Teams use a harness to reduce random behavior, surface failures early, and make recovery possible when the model takes a bad action. The concept matters most when the model is allowed to act over multiple steps or interact with external systems. In those settings, the quality of the harness often matters more than small prompt tweaks.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "A harness is the surrounding system that shapes how an AI model acts in a real workflow. It includes the tools, rules, checks, memory, and feedback mechanisms that make model behavior usable and reliable.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [
@@ -297,10 +297,10 @@
           "evidence_type": null,
           "extended_explanation": "A feedforward control is a design choice that tries to stop bad behavior before it reaches the user or an external system. In agentic workflows, that can mean validations, permissions, constraints, planning checks, or required confirmations before the model executes a step. This differs from pure after-the-fact monitoring because it changes the action path itself. The term is useful when designing systems that can call tools, modify data, or take other consequential actions. It helps engineers think about how to make the safe path the easy path.",
           "match_candidates": [],
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_definition": "Feedforward controls are guardrails and checks applied before an AI system takes an action, so problems are prevented or caught earlier than they would be by post-hoc review alone.",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering"
           ],
           "related_terms": [
@@ -369,16 +369,16 @@
           "evidence_from_source": "The source argues that once agents do meaningful work over long horizons, the bottleneck is 'structure... visibility... memory... validation' and that 'the real product is not the prompt. It is the harness.'",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "agentic-ai",
+          "primary_tag": "execution-oriented-agents",
           "proposed_tags": [
-            "agentic-ai",
-            "ai-engineering",
-            "ai-architecture"
+            "execution-oriented-agents",
+            "ai-operationalization",
+            "runtime-centralization"
           ],
           "related_trends": [
             "models-becoming-execution-layers"
           ],
-          "secondary_tag": "ai-engineering",
+          "secondary_tag": "ai-operationalization",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
@@ -557,11 +557,11 @@
           "knowledge_summary": "Harness engineering is the practice of designing the surrounding system that makes an AI model useful, safe, and reliable in production. The focus is on the environment around the model: tools, constraints, plans, observability, documentation, memory, validation, and feedback loops. It treats the model as an imperfect operator rather than a magical oracle. The core idea is that reliability emerges from system design, not from prompt wording alone. This becomes most important when models work over long horizons or interact with external software.",
           "match_candidates": [],
           "operational_insight": "When reliability matters, invest first in the control layer around the model: what it can do, what it can see, how its actions are checked, and how failures are recovered. Prompt quality still matters, but it should be treated as one part of a larger operating environment.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ],
           "related_topics": [
             "agentic-workflows",
@@ -656,11 +656,11 @@
           "knowledge_summary": "Harness decay is the tendency for an AI agent system to become less reliable when the surrounding controls, checks, and visibility are too weak for the task complexity it is expected to handle. As tasks become longer and more consequential, missing structure shows up as brittle behavior, hidden failures, and poor recovery. The concept is useful for thinking about why prototypes can work while production systems fail. It pushes teams to treat the environment as a living part of the system that must be maintained. Good harness design slows or prevents this decay by making failure visible and recoverable.",
           "match_candidates": [],
           "operational_insight": "As agent scope grows, monitor whether the harness still exposes state, validates action, and supports rollback. If not, reliability degrades even when the underlying model does not change.",
-          "primary_tag": "ai-architecture",
+          "primary_tag": "runtime-architecture",
           "proposed_tags": [
-            "ai-architecture",
+            "runtime-architecture",
             "ai-engineering",
-            "agentic-ai"
+            "agent-systems"
           ],
           "related_topics": [
             "harness-engineering",

@@ -1,15 +1,10 @@
 tags:
-- agentic-coding
 - ai-application
 - ai-infrastructure
 - app
 - cloud-saas
-- coding
 - coding-agent
 - database
-- dictation
-- it-security
-- knowledge-management
 - library
 - linting
 - mcp-server
@@ -21,6 +16,5 @@ tags:
 - search
 - social-media
 - terminal
-- typing
 - video-creation
 - workflow-automation
