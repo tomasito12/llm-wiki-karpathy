@@ -102,6 +102,15 @@ bullets — NOT keyword dumps; do not split the same substance across both field
 - related_models: names from EXISTING_FOUNDATION_MODEL_NAMES when applicable.
 - Follow REVIEWER_NOTE. Do not output model_name."""
 
+FORCED_EXTRACT_PREAMBLE = """\
+## FORCED EXTRACTION (reviewer-initiated)
+
+The automatic classifier skipped or missed this item. CURRENT_PROPOSAL_JSON is empty.
+Extract a NEW proposal for the reviewer-supplied title from ARTICLE_PLAIN_TEXT only.
+Ground every claim in the source; do not refuse because the piece is introductory or generic.
+If the source only partially supports the title, extract the best defensible contribution and \
+note limits in relevance_note / uncertainty_note / caveats as appropriate."""
+
 IMPL_STUDY_REGEN_RUBRIC = """\
 Regenerate ONE implementation study under reviewer-supplied NEW_STUDY_TITLE.
 
@@ -207,17 +216,25 @@ def run_proposal_regeneration(
 
     body = _truncate_plain_text(document.plain_text, max_plain_text_chars)
     current_json = json.dumps(current_item, ensure_ascii=False)
+    forced = not current_item
     user_blocks = [
         f"prompt_version: {prompt_version or PROMPT_VERSION}",
         f"source_id: {document.source_id}",
         f"{cfg.new_title_key}: {title}",
-        f"PROPOSAL_REGEN_RUBRIC:\n{cfg.rubric}",
-        f"TITLE_GENERATION_RUBRIC:\n{TITLE_GENERATION_RUBRIC}",
-        f"TITLE_CANONICALIZATION_RUBRIC:\n{TITLE_CANONICALIZATION_RUBRIC}",
-        f"PAGE_MATCHING_RUBRIC:\n{PAGE_MATCHING_RUBRIC}",
-        "## REVIEWER_NOTE\n" + (reviewer_instruction.strip() if reviewer_instruction else "(none)"),
-        "## CURRENT_PROPOSAL_JSON\n" + current_json,
     ]
+    if forced:
+        user_blocks.append(FORCED_EXTRACT_PREAMBLE)
+    user_blocks.extend(
+        [
+            f"PROPOSAL_REGEN_RUBRIC:\n{cfg.rubric}",
+            f"TITLE_GENERATION_RUBRIC:\n{TITLE_GENERATION_RUBRIC}",
+            f"TITLE_CANONICALIZATION_RUBRIC:\n{TITLE_CANONICALIZATION_RUBRIC}",
+            f"PAGE_MATCHING_RUBRIC:\n{PAGE_MATCHING_RUBRIC}",
+            "## REVIEWER_NOTE\n"
+            + (reviewer_instruction.strip() if reviewer_instruction else "(none)"),
+            "## CURRENT_PROPOSAL_JSON\n" + current_json,
+        ]
+    )
     for heading, content in context_sections.items():
         user_blocks.append(f"## {heading}\n{content}")
     if source_entity_key and source_entity_key != entity_key:

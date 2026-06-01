@@ -752,10 +752,14 @@ def render_skip_extraction_screen(
     artifact: dict[str, Any],
     *,
     key_prefix: str,
-) -> bool:
-    """Show a lightweight skip-extraction confirmation when recommended.
+    source_title: str = "",
+) -> str | None:
+    """Show skip-gate choices when entity extraction was skipped or declined.
 
-    Returns True if the reviewer accepted the skip.
+    Returns:
+    - ``None``: not in skip state, or reviewer has not chosen yet
+    - ``\"source_only\"``: keep source chapters; optional forced single-item extracts
+    - ``\"full\"``: run / show full entity extraction workflow
     """
     llm = artifact.get("llm_output", {})
     detection = llm.get("source_type_detection") or {}
@@ -767,11 +771,17 @@ def render_skip_extraction_screen(
             "List roundup: extract every tool or practice and reject unwanted items in the "
             "Tools or How-tos tab—skip is not applied for this source type."
         )
-        return False
+        return None
 
     emeta = llm.get("extraction_meta") or {}
     if not emeta.get("skip_recommended"):
-        return False
+        return None
+
+    mode_key = f"{key_prefix}_review_mode"
+    # Legacy session key from older dashboard builds
+    if f"{key_prefix}_skip_accepted" in st.session_state and mode_key not in st.session_state:
+        legacy = st.session_state.pop(f"{key_prefix}_skip_accepted")
+        st.session_state[mode_key] = "source_only" if legacy else "full"
 
     st.warning("The LLM recommends skipping durable extraction for this article.")
     st.markdown(f"**Reason:** {emeta.get('skip_reason', '(none)')}")
@@ -779,16 +789,45 @@ def render_skip_extraction_screen(
         f"Review burden: {emeta.get('review_burden_estimate', 'N/A')} · "
         f"Candidates considered: {emeta.get('total_candidates_considered', 0)}"
     )
-    c1, c2 = st.columns(2)
-    accept = c1.button("Accept skip", key=f"{key_prefix}_accept_skip")
-    review_anyway = c2.button("Review anyway", key=f"{key_prefix}_review_anyway")
 
-    if accept:
-        st.session_state[f"{key_prefix}_skip_accepted"] = True
-    if review_anyway:
-        st.session_state[f"{key_prefix}_skip_accepted"] = False
+    chosen = st.session_state.get(mode_key)
+    if chosen in ("source_only", "full"):
+        if chosen == "source_only":
+            st.info(
+                "**Source-only mode** — review source chapters below. Use **Force extract** "
+                "to add individual topics, trends, or tools without re-running full extraction."
+            )
+        return str(chosen)
 
-    return bool(st.session_state.get(f"{key_prefix}_skip_accepted", False))
+    st.markdown(
+        "You can still keep this article in your knowledge base (source summary only), "
+        "force individual extractions, or run full entity extraction."
+    )
+    c1, c2, c3 = st.columns(3)
+    if c1.button("Keep source only", key=f"{key_prefix}_mode_source_only", type="primary"):
+        st.session_state[mode_key] = "source_only"
+        st.rerun()
+    if c2.button("Extract all entities", key=f"{key_prefix}_mode_full"):
+        st.session_state[mode_key] = "full"
+        st.rerun()
+    if c3.button("Decide later", key=f"{key_prefix}_mode_later"):
+        st.session_state[mode_key] = "source_only"
+        st.rerun()
+
+    from src.ingest_review.force_extract_ui import render_force_extract_panel
+
+    default_title = source_title
+    if ":" in default_title:
+        default_title = default_title.split(":", 1)[-1].strip()
+    render_force_extract_panel(
+        st,
+        source_id=str((artifact.get("source") or {}).get("source_id") or key_prefix),
+        key_prefix=f"{key_prefix}_skip_gate",
+        default_entity_key="topic",
+        default_title=default_title,
+        compact=True,
+    )
+    return None
 
 
 def render_review_summary_panel(

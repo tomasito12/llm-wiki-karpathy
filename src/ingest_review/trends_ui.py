@@ -315,7 +315,7 @@ def _persist_trend_proposal_from_widgets(
         return
     apply_trend_proposal_edits(node, field_values)
     llm_item = node.setdefault("llm_item", {})
-    apply_tag_ui_to_node(node, llm_item, tag_ui, allow)
+    apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     title = (
@@ -471,6 +471,15 @@ def render_trend_proposals(
 
     if not sorted_nodes and not llm_trends:
         st.caption("No trend proposals.")
+        from src.ingest_review.force_extract_ui import render_force_extract_panel
+
+        render_force_extract_panel(
+            st,
+            source_id=source_id,
+            key_prefix=f"{key_prefix}_trends_empty",
+            default_entity_key="trend",
+            compact=True,
+        )
         return
 
     rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")

@@ -345,7 +345,7 @@ def _persist_glossary_proposal_from_widgets(
         return
     apply_glossary_proposal_edits(node, field_values)
     llm_item = node.setdefault("llm_item", {})
-    apply_tag_ui_to_node(node, llm_item, tag_ui, allow)
+    apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     term = field_values.get("term") or llm_item.get("term") or "proposal"

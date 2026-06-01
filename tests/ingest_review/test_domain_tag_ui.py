@@ -10,8 +10,11 @@ from src.ingest_review.domain_tag_ui import (
     collect_approved_new_tags_from_review,
     effective_readonly_tags,
     effective_registry_types,
+    init_tags_multiselect_session_value,
     init_widget_session_value,
     queue_widget_session_resync,
+    seed_review_tags_on_artifact,
+    tags_multiselect_key,
     widget_resync_key,
 )
 from src.ingest_review.proposal_regen_ui import proposal_edit_key_prefix
@@ -105,6 +108,83 @@ def test_queue_widget_session_resync_does_not_touch_widget_key() -> None:
         queue_widget_session_resync(widget_key, "after-save")
     assert mock_st.session_state[widget_key] == "user-typed"
     assert mock_st.session_state[widget_resync_key(widget_key)] == "after-save"
+
+
+def test_init_tags_multiselect_session_value_seeds_new_widget_key() -> None:
+    mock_st = MagicMock()
+    mock_st.session_state = {}
+    with patch("src.ingest_review.domain_tag_ui.streamlit_runtime", mock_st):
+        init_tags_multiselect_session_value(
+            "pfx",
+            ["orchestration", "off-list"],
+            ["orchestration", "evaluation"],
+        )
+    assert mock_st.session_state[tags_multiselect_key("pfx")] == ["orchestration"]
+
+
+def test_init_tags_multiselect_session_value_applies_pending_resync() -> None:
+    mock_st = MagicMock()
+    widget_key = tags_multiselect_key("pfx")
+    mock_st.session_state = {
+        widget_resync_key(widget_key): ["evaluation", "missing"],
+        widget_key: [],
+    }
+    with patch("src.ingest_review.domain_tag_ui.streamlit_runtime", mock_st):
+        init_tags_multiselect_session_value("pfx", [], ["evaluation"])
+    assert mock_st.session_state[widget_key] == ["evaluation"]
+
+
+def test_seed_review_tags_on_artifact_copies_allowlisted_llm_tags() -> None:
+    artifact = {
+        "review": {
+            "industry_trends": [
+                {
+                    "llm_item": {"proposed_tags": ["orchestration", "off-list"]},
+                    "tags": {"final_tags": [], "approved_new_tags": []},
+                }
+            ],
+        },
+    }
+    seed_review_tags_on_artifact(
+        artifact,
+        allowlists_by_review_key={"industry_trends": {"orchestration"}},
+    )
+    assert artifact["review"]["industry_trends"][0]["tags"]["final_tags"] == ["orchestration"]
+
+
+def test_seed_review_tags_on_artifact_skips_when_final_tags_exist() -> None:
+    artifact = {
+        "review": {
+            "industry_trends": [
+                {
+                    "llm_item": {"proposed_tags": ["orchestration"]},
+                    "tags": {"final_tags": ["custom"], "approved_new_tags": []},
+                }
+            ],
+        },
+    }
+    seed_review_tags_on_artifact(
+        artifact,
+        allowlists_by_review_key={"industry_trends": {"orchestration"}},
+    )
+    assert artifact["review"]["industry_trends"][0]["tags"]["final_tags"] == ["custom"]
+
+
+def test_apply_tag_ui_to_node_queues_multiselect_resync_when_key_prefix_set() -> None:
+    mock_st = MagicMock()
+    mock_st.session_state = {}
+    node: dict = {"tags": {}, "llm_item": {}}
+    with patch("src.ingest_review.domain_tag_ui.streamlit_runtime", mock_st):
+        apply_tag_ui_to_node(
+            node,
+            node["llm_item"],
+            {"selected_allowlist": ["orchestration"], "manual_csv": "", "approve_new_map": {}},
+            {"orchestration"},
+            key_prefix="pfx",
+        )
+    assert mock_st.session_state[widget_resync_key(tags_multiselect_key("pfx"))] == [
+        "orchestration"
+    ]
 
 
 def test_apply_registry_types_ui_to_node_persists_manual_and_offlist_export() -> None:

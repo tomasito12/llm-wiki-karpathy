@@ -250,7 +250,9 @@ def test_staged_classification_three_calls(tmp_path: Path, monkeypatch: pytest.M
 
 
 def test_staged_skip_short_circuit(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    """Skip gate skips summary and entities stages."""
+    """Skip gate still runs source_summary; only entity extraction is skipped."""
+    from src.ingest_review.schema import SummaryStageOutput
+
     monkeypatch.setenv("INGEST_CLASSIFICATION_PIPELINE", "staged")
     raw = tmp_path / "raw"
     raw.mkdir()
@@ -262,24 +264,33 @@ def test_staged_skip_short_circuit(tmp_path: Path, monkeypatch: pytest.MonkeyPat
         extraction_meta=ExtractionMeta(skip_recommended=True),
         source_type_detection=SourceTypeDetection(detected_source_type="standard_article"),
     )
+    summary = SummaryStageOutput.model_validate(
+        {"source_summary": {"summary": "Kept for knowledge base."}}
+    )
 
     class _Msg:
-        content = json.dumps(triage.model_dump())
+        def __init__(self, payload: dict) -> None:
+            self.content = json.dumps(payload)
 
     class _Choice:
-        message = _Msg()
+        def __init__(self, payload: dict) -> None:
+            self.message = _Msg(payload)
 
     class _Usage:
         def model_dump(self) -> dict:
             return {"prompt_tokens": 1, "completion_tokens": 1, "total_tokens": 2}
 
     class _Completion:
-        id = "cmpl-skip"
-        choices = [_Choice()]
-        usage = _Usage()
+        def __init__(self, payload: dict) -> None:
+            self.id = "cmpl-skip"
+            self.choices = [_Choice(payload)]
+            self.usage = _Usage()
 
     fake_client = MagicMock()
-    fake_client.chat.completions.create.return_value = _Completion()
+    fake_client.chat.completions.create.side_effect = [
+        _Completion(triage.model_dump()),
+        _Completion(summary.model_dump()),
+    ]
     prov = OpenAIIngestionProvider(client=fake_client)
     out, meta = run_staged_classification(
         prov,
@@ -291,6 +302,7 @@ def test_staged_skip_short_circuit(tmp_path: Path, monkeypatch: pytest.MonkeyPat
         prompt_version="39",
         max_retries=1,
     )
-    assert fake_client.chat.completions.create.call_count == 1
-    assert meta["classification_pipeline"]["skipped_stages"] == ["summary", "entities"]
+    assert fake_client.chat.completions.create.call_count == 2
+    assert meta["classification_pipeline"]["skipped_stages"] == ["entities"]
+    assert out.source_summary.summary == "Kept for knowledge base."
     assert out.glossary == []

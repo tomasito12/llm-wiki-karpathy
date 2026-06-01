@@ -433,7 +433,7 @@ def _persist_topic_proposal_from_widgets(
         return
     apply_topic_proposal_edits(node, field_values)
     llm_item = node.setdefault("llm_item", {})
-    apply_tag_ui_to_node(node, llm_item, tag_ui, allow)
+    apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     title = field_values.get("topic_title") or llm_item.get("topic_slug") or "topic"
@@ -616,6 +616,15 @@ def render_topic_proposals(
 
     if not sorted_nodes and not llm_topics:
         st.caption("No topic proposals.")
+        from src.ingest_review.force_extract_ui import render_force_extract_panel
+
+        render_force_extract_panel(
+            st,
+            source_id=source_id,
+            key_prefix=f"{key_prefix}_topics_empty",
+            default_entity_key="topic",
+            compact=True,
+        )
         return
 
     rejected = sum(1 for n in sorted_nodes if str(n.get("proposal_status") or "") == "rejected")

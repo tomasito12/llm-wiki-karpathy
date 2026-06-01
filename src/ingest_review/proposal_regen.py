@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import uuid
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -247,6 +248,71 @@ _IMPL_MERGE_KEYS: tuple[str, ...] = tuple(
     "value_level",
     "evidence_type",
 )
+
+
+def append_forced_proposal(
+    artifact: dict[str, Any],
+    spec: ProposalRegenSpec,
+    *,
+    new_title: str,
+    regenerated: dict[str, Any],
+    model: str,
+    prompt_version: str,
+) -> str:
+    """Append one reviewer-forced proposal to review + llm_output. Returns ``proposal_id``."""
+    title = new_title.strip()
+    if not title:
+        raise ValueError("new_title must be non-empty")
+    if spec.normalize_title:
+        title = spec.normalize_title(title)
+
+    llm_item: dict[str, Any] = {spec.title_field: title}
+    if spec.slug_field:
+        llm_item[spec.slug_field] = slugify(title)
+    for key in spec.content_merge_keys:
+        if key in regenerated:
+            llm_item[key] = regenerated[key]
+    for sk in spec.scalar_keys:
+        if sk not in llm_item:
+            llm_item[sk] = ""
+    for lk in spec.list_keys:
+        if lk not in llm_item:
+            llm_item[lk] = []
+    proposal_id = uuid.uuid4().hex
+    new_node: dict[str, Any] = {
+        "proposal_id": proposal_id,
+        "proposal_status": "approved",
+        "notes": None,
+        "llm_item": llm_item,
+        "sections": _fresh_sections(
+            llm_item,
+            spec.reviewable_scalar_keys,
+            spec.reviewable_list_keys,
+        ),
+        "tags": {"final_tags": [], "approved_new_tags": []},
+        "proposal_regeneration_meta": {
+            "regen_count": 0,
+            "last_regen_at": _utc_now_iso(),
+            "model": model,
+            "prompt_version": prompt_version,
+            "forced_extract": True,
+        },
+    }
+
+    review = artifact.setdefault("review", {})
+    target_list = review.setdefault(spec.review_list_key, [])
+    if not isinstance(target_list, list):
+        target_list = []
+        review[spec.review_list_key] = target_list
+    target_list.append(new_node)
+
+    llm_out = artifact.setdefault("llm_output", {})
+    target_llm = llm_out.setdefault(spec.llm_output_key, [])
+    if not isinstance(target_llm, list):
+        target_llm = []
+        llm_out[spec.llm_output_key] = target_llm
+    target_llm.append(copy.deepcopy(llm_item))
+    return proposal_id
 
 
 REGEN_SPECS: dict[str, ProposalRegenSpec] = {

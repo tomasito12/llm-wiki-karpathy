@@ -419,8 +419,7 @@ def build_monolithic_prompt_suffix(
         "## CANONICAL_TREND_TITLES\n" + canonical["CANONICAL_TREND_TITLES"],
         "## EXISTING_TOPIC_SLUGS\n"
         + ("\n".join(f"- {s}" for s in wiki.topic_slugs[:100]) or "(none)"),
-        "## EXISTING_TREND_SLUGS\n"
-        + ("\n".join(f"- {s}" for s in trend_slugs) or "(none)"),
+        "## EXISTING_TREND_SLUGS\n" + ("\n".join(f"- {s}" for s in trend_slugs) or "(none)"),
         *_allowlist_blocks(
             allowlists,
             include_tool_types=True,

@@ -364,7 +364,7 @@ def _on_save_tool_proposal(
     apply_tool_proposal_edits(node, scalar_values, list_raw)
     if tag_ui is not None and tag_allow is not None:
         llm_item = node.setdefault("llm_item", {})
-        apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow)
+        apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow, key_prefix=key_prefix)
     types_node = node.get("types") or {}
     extra_key = f"{key_prefix}_types_extra"
     queue_widget_session_resync(

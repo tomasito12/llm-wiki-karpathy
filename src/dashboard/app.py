@@ -18,7 +18,11 @@ from typing import Any
 import streamlit as st
 
 from src.ingest_queue.queue import list_ingest_items
-from src.ingest_review.analyze import run_classification
+from src.ingest_review.analyze import (
+    run_classification,
+    run_entity_extraction_for_artifact,
+    run_source_summary_refresh,
+)
 from src.ingest_review.artifact import (
     aggregate_review_status,
     apply_regenerated_source_section,
@@ -52,6 +56,7 @@ from src.ingest_review.feedback_store import (
     record_events_from_artifact,
     record_review_session,
 )
+from src.ingest_review.force_extract_ui import render_force_extract_panel, source_summary_is_empty
 from src.ingest_review.glossary_ui import (
     collect_glossary_new_tags,
     render_glossary_proposals,
@@ -74,6 +79,7 @@ from src.ingest_review.models_ui import (
     render_model_proposals,
 )
 from src.ingest_review.paths import load_repo_dotenv
+from src.ingest_review.proposal_force_extract_handler import process_pending_forced_extract
 from src.ingest_review.proposal_regen_handler import process_pending_proposal_regen
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.review_queue_status import (
@@ -515,6 +521,7 @@ def main() -> None:
                     )
                     st.session_state["artifact"] = artifact
                     st.session_state["artifact_source_id"] = source_id
+                    st.session_state.pop(f"{source_id[:40]}_review_mode", None)
                     st.success("Analysis complete.")
                     st.rerun()
                 except Exception as exc:  # noqa: BLE001
@@ -581,6 +588,32 @@ def main() -> None:
                 st.session_state["artifact"] = artifact
                 st.error(f"Regeneration failed: {exc}")
 
+    pending_forced_extract = st.session_state.pop("_pending_forced_extract", None)
+    if pending_forced_extract:
+        st.session_state["artifact"] = artifact
+        process_pending_forced_extract(
+            st,
+            pending_raw=pending_forced_extract,
+            source_id=source_id,
+            artifact=artifact,
+            artifact_path=artifact_path,
+            document=doc,
+            wiki_root=wiki_root,
+            model=model,
+            prompt_version=prompt_version,
+            max_plain_text_chars=int(max_chars),
+            topic_tags=topic_tags,
+            trend_tags=trend_tags,
+            howto_tags=howto_tags,
+            glossary_tags=glossary_tags,
+            model_types=model_types,
+            tool_types=tool_types,
+            impl_study_tags=impl_study_tags,
+            tool_tags=tool_tags,
+            model_tags=model_tags,
+            reviews_root=reviews_root,
+        )
+
     pending_proposal_regen = st.session_state.pop("_pending_proposal_regen", None)
     legacy_topic_regen = st.session_state.pop("_pending_topic_regen", None)
     if pending_proposal_regen or legacy_topic_regen:
@@ -613,13 +646,108 @@ def main() -> None:
         f"Review mix: **{aggregate_review_status(artifact)}**"
     )
 
-    skipped = render_skip_extraction_screen(st, artifact, key_prefix=key_prefix)
-    if skipped:
-        if st.button("Save (skip accepted)"):
-            touch_review_session(artifact)
-            save_artifact(artifact_path, artifact)
-            st.success("Saved (extraction skipped).")
+    review_mode = render_skip_extraction_screen(
+        st,
+        artifact,
+        key_prefix=key_prefix,
+        source_title=doc.title or "",
+    )
+    if review_mode is None and (
+        (artifact.get("llm_output") or {}).get("extraction_meta") or {}
+    ).get("skip_recommended"):
+        st.info("Choose how to handle this article above to continue.")
         return
+
+    if review_mode == "full":
+        emeta = (artifact.get("llm_output") or {}).setdefault("extraction_meta", {})
+        if isinstance(emeta, dict):
+            emeta["skip_recommended"] = False
+        has_entities = any(
+            (artifact.get("review") or {}).get(k)
+            for k in (
+                "topics",
+                "glossary",
+                "how_to",
+                "industry_trends",
+                "tools",
+                "foundation_models",
+            )
+        )
+        if not has_entities:
+            if not os.environ.get("OPENAI_API_KEY"):
+                st.error("OPENAI_API_KEY is not set.")
+            elif st.button(
+                "Run full entity extraction",
+                key=f"{key_prefix}_run_entity_extract",
+                type="primary",
+            ):
+                try:
+                    provider = OpenAIIngestionProvider()
+                    with st.spinner("Extracting entities…"):
+                        run_entity_extraction_for_artifact(
+                            provider,
+                            doc,
+                            artifact,
+                            wiki_root=wiki_root,
+                            tool_types=tool_types,
+                            howto_tags=howto_tags,
+                            impl_study_tags=impl_study_tags,
+                            glossary_tags=glossary_tags,
+                            topic_tags=topic_tags,
+                            trend_tags=trend_tags,
+                            model_types=model_types,
+                            tool_tags=tool_tags,
+                            model_tags=model_tags,
+                            extraction_budgets=extraction_budgets,
+                            model=model,
+                            prompt_version=prompt_version,
+                            reviews_root=reviews_root,
+                        )
+                    st.session_state["artifact"] = artifact
+                    touch_review_session(artifact)
+                    save_artifact(artifact_path, artifact)
+                    st.success("Entity extraction complete.")
+                    st.rerun()
+                except Exception as exc:  # noqa: BLE001
+                    st.error(f"Entity extraction failed: {exc}")
+
+    if review_mode == "source_only" and source_summary_is_empty(artifact):
+        if not os.environ.get("OPENAI_API_KEY"):
+            st.warning("Source summary is empty. Set OPENAI_API_KEY to generate it.")
+        elif st.button(
+            "Generate source summary",
+            key=f"{key_prefix}_gen_source_summary",
+            type="primary",
+        ):
+            try:
+                provider = OpenAIIngestionProvider()
+                with st.spinner("Generating source chapters…"):
+                    run_source_summary_refresh(
+                        provider,
+                        doc,
+                        artifact,
+                        model=model,
+                        prompt_version=prompt_version,
+                    )
+                st.session_state["artifact"] = artifact
+                touch_review_session(artifact)
+                save_artifact(artifact_path, artifact)
+                st.success("Source summary generated.")
+                st.rerun()
+            except Exception as exc:  # noqa: BLE001
+                st.error(f"Source summary failed: {exc}")
+
+    default_force_title = doc.title or ""
+    if ":" in default_force_title:
+        default_force_title = default_force_title.split(":", 1)[-1].strip()
+    render_force_extract_panel(
+        st,
+        source_id=source_id,
+        key_prefix=key_prefix,
+        default_entity_key="topic",
+        default_title=default_force_title,
+        compact=review_mode != "source_only",
+    )
 
     render_review_summary_panel(st, artifact)
     render_review_timer(st, artifact, key_prefix=key_prefix)

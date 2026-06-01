@@ -1,0 +1,959 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-01T15:11:43+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "39-triage",
+          "request_id": "chatcmpl-DlyaQytMSmeh6AyZGVdyxkGsXzkcy",
+          "token_usage": {
+            "completion_tokens": 212,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4806,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5018
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "39-summary",
+          "request_id": "chatcmpl-DlyaS5fgAvErOX7oTpZRddBjvhO2J",
+          "token_usage": {
+            "completion_tokens": 84,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4248,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4332
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "39-entities-how_to_roundup",
+          "request_id": "chatcmpl-DlyaV16wNW9c9cZV989tIebXjEHuf",
+          "route": "how_to_roundup",
+          "token_usage": {
+            "completion_tokens": 2355,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 14680,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 17035
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "39",
+    "provider": "openai",
+    "request_id": "chatcmpl-DlyaV16wNW9c9cZV989tIebXjEHuf",
+    "token_usage": {
+      "completion_tokens": 2651,
+      "prompt_tokens": 23734,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 26385
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "The piece is a single Medium-style advice article about effective NotebookLM usage, with no durable, source-grounded claims beyond generic tips and promotional guidance; it does not justify a wiki extraction pass beyond routing. (Cleared skip for list roundup review.)",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Upload the relevant documents and ask questions that force comparison and critique, not just summary. Start with prompts like key arguments, weaknesses, missing pieces, and patterns across the documents. If you are looking at technical material, ask the model to compare assumptions and describe where methods may fail in real-world settings. Use it as a thinking aid that pushes you from passive reading into active analysis.",
+        "caveats": "The article\u2019s guidance is opinionated and does not show evidence that NotebookLM\u2019s reasoning is more reliable than other document tools. Results depend on the quality and coverage of the uploaded sources. This works best when the documents are already relevant and reasonably complete.",
+        "confidence": 0.88,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Upload the documents, notes, or papers you want to analyze.",
+          "Ask for key arguments, weaknesses, and missing pieces instead of only a summary.",
+          "Request comparisons across documents to surface shared patterns or disagreements.",
+          "For technical material, ask where the approach may fail in real-world use.",
+          "Use the answers to refine your own analysis and next questions."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A set of source documents or notes",
+          "A clear research question or analysis goal",
+          "Willingness to ask follow-up questions"
+        ],
+        "primary_tag": "context-engineering",
+        "proposed_tags": [
+          "context-engineering",
+          "knowledge-systems",
+          "retrieval-systems"
+        ],
+        "question_title": "Document-Based Research",
+        "related_howtos": [
+          "context-compaction",
+          "two-pass-document-ingestion"
+        ],
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Most people upload documents and ask:\n\u201cSummarize this.\u201d\nWhich is fine, but you\u2019re barely scratching the surface. Instead, try to reason out, for instance:\nWhat are the key arguments and their weaknesses?\nWhat patterns do you see across these documents?\nWhat am I missing here?",
+        "value_level": "high",
+        "what_and_problem": "This is about using NotebookLM to work through notes, PDFs, research papers, and personal ideas without treating them like plain text to skim. The problem is that a simple summary often misses the reasoning work people actually need, like finding weak assumptions, contradictions, or gaps across several sources. A document-centered approach helps when the real task is to understand, compare, and critique information instead of only searching for facts. It is especially useful when a person has many source files and needs the model to stay grounded in them."
+      },
+      {
+        "answer_summary": "Ask the model to explain the topic in plain language first, then ask for an analogy, and then ask for a quiz. If parts are confusing, request a simpler re-explanation and keep narrowing the explanation level until the idea becomes clear. Use the model to generate short checks for understanding rather than relying on one long answer. This creates a feedback loop that supports learning over several passes.",
+        "caveats": "This is helpful for learning, but the article does not show that the tutor-style answers are consistently accurate or pedagogically strong. Quizzes and simplified explanations can still be wrong or incomplete, so users should verify important material against the original sources. The advice is useful, but it is still general guidance rather than a tested method.",
+        "confidence": 0.84,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Ask for a beginner-level explanation of the topic.",
+          "Request an analogy to make the idea easier to picture.",
+          "Ask for a quiz or short check of understanding.",
+          "If needed, ask the model to simplify confusing parts again.",
+          "Repeat the loop until the concept is clear."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "Source material to teach from",
+          "A topic worth studying step by step",
+          "Willingness to verify answers against the originals"
+        ],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "human-ai-workflows",
+          "prompt-engineering"
+        ],
+        "question_title": "Personal Tutoring Loop",
+        "related_howtos": [
+          "interactive-learning-design"
+        ],
+        "secondary_tag": "human-ai-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "interactive-learning-design",
+        "suggested_new_tags": [
+          "interactive-learning-design"
+        ],
+        "supporting_snippet": "Instead of sending, \u201cExplain transformers.\u201d\nTry:\nExplain transformers like I\u2019m new to ML\nNow give me an analogy\nNow quiz me on it\nIt works because it adapts to your level and builds understanding step-by-step.\nPro tip: Ask it to\nCreate quizzes\nSimplify concepts\nRe-explain confusing parts",
+        "value_level": "medium",
+        "what_and_problem": "This is about using NotebookLM like a tutor that can explain ideas at different levels, give examples, and test understanding. The problem is that many learners need more than a single explanation; they need a step-by-step way to build understanding and notice where they are confused. A tutoring loop helps when someone wants repeated explanation, practice, and feedback from the same source material. It is useful for turning a pile of study notes into a guided learning session."
+      },
+      {
+        "answer_summary": "Collect the project\u2019s documents, meeting notes, ideas, and research links in one place. Then ask for the decisions made so far, the open questions, and the current status. Use the system to revisit earlier ideas, compare options, and track architecture or process choices over time. Treat it as a memory aid that preserves context across the life of the project.",
+        "caveats": "The article does not explain limits around scale, permissions, or how well the memory holds up as projects grow. It also assumes the uploaded material is organized enough to answer project questions well. This is practical guidance, but it remains a lightweight proposal rather than a fully specified workflow.",
+        "confidence": 0.9,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Upload project docs, meeting notes, ideas, and research links.",
+          "Ask what decisions have already been made.",
+          "Ask what open questions remain.",
+          "Request a current-status summary.",
+          "Revisit earlier ideas and compare different approaches as the project changes."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A project with several documents or notes",
+          "A place to gather source material",
+          "Questions about decisions, status, or open issues"
+        ],
+        "primary_tag": "agent-memory",
+        "proposed_tags": [
+          "agent-memory",
+          "knowledge-systems",
+          "workflow-design"
+        ],
+        "question_title": "Project Memory System",
+        "related_howtos": [
+          "agentic-personal-knowledge-management",
+          "context-compaction"
+        ],
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "One of the most underrated uses of NotebookLM is as a\nproject memory system\n.\nUpload: Docs, Meeting notes, Ideas, and Research links\nThen ask:\nWhat decisions have we made so far?\nWhat are the open questions?\nSummarize the current status of this project.\nThis works because it keeps the context intact, which most tools lose over time.",
+        "value_level": "high",
+        "what_and_problem": "This is about using NotebookLM as a long-term memory layer for a project, not just a one-off question box. The problem is that project decisions, open questions, and early ideas tend to get lost across notes, meetings, and links. A project memory system helps keep context together so the team can revisit choices later. It is useful when a project has many moving parts and the history matters."
+      },
+      {
+        "answer_summary": "Upload the research material, past content, and notes that should shape the draft. Ask for an outline, a conversational script, or a list of angles for the topic. Use the system to keep the draft grounded in your own source set and to reduce generic filler. Review the output for style and factual fit before publishing or expanding it.",
+        "caveats": "The article claims this helps keep outputs factually grounded, but it does not prove that the drafts are accurate or publication-ready without review. It also assumes the user already has useful source material to upload. The workflow is practical, but the promotional framing is stronger than the evidence.",
+        "confidence": 0.81,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Upload research material, past content, and notes.",
+          "Ask for a blog outline or script draft.",
+          "Request multiple angles for the same topic.",
+          "Edit for voice, accuracy, and completeness.",
+          "Use the source set to keep the draft grounded in your own material."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "Research notes or prior content to upload",
+          "A content goal such as an outline or script",
+          "A review step for accuracy and style"
+        ],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "workflow-design"
+        ],
+        "question_title": "Source-Grounded Content Drafting",
+        "related_howtos": [
+          "source-grounded-generation"
+        ],
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "source-grounded-generation",
+        "suggested_new_tags": [
+          "source-grounded-generation",
+          "content-creation"
+        ],
+        "supporting_snippet": "Upload: Research material, Past content, Notes\nThen ask:\nTurn this into a blog outline\nWrite a YouTube script in a conversational tone\nWhat are 5 unique angles for this topic?\nIt works because, unlike generic AI tools, it uses your own knowledge base.",
+        "value_level": "medium",
+        "what_and_problem": "This is about using NotebookLM to turn existing research and notes into drafts for blogs, scripts, and idea generation. The problem is that content work often starts from scattered notes and ends with generic output that is not tied to the author\u2019s own material. A source-grounded drafting workflow helps keep the draft fact-based and closer to an existing voice or knowledge base. It is useful for people creating educational content, articles, or video scripts from their own research."
+      },
+      {
+        "answer_summary": "Start with a question that asks about assumptions, critiques, or comparisons. Instead of asking for a plain explanation, ask what the document assumes, what a critic would say, or how it compares with another source. Push the model to move beyond explanation into evaluation and application. The goal is to make the model behave more like a research partner than a search box.",
+        "caveats": "This is broadly useful, but it is not unique to NotebookLM and does not depend on special model behavior. The value comes from the prompt, not from a guaranteed capability upgrade. It is a durable habit, but the article\u2019s evidence is only practitioner advice.",
+        "confidence": 0.92,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Replace broad prompts with questions about assumptions.",
+          "Ask for a critic\u2019s view of the document.",
+          "Request comparisons to another source or approach.",
+          "Follow up with application-focused questions.",
+          "Keep refining prompts toward critique and reasoning."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A document or topic to question",
+          "A comparison target or evaluative angle",
+          "Basic comfort with iterative prompting"
+        ],
+        "primary_tag": "prompt-engineering",
+        "proposed_tags": [
+          "prompt-engineering",
+          "ai-evaluation",
+          "knowledge-systems"
+        ],
+        "question_title": "Question Framing for Deeper Analysis",
+        "related_howtos": [
+          "prompt-engineering",
+          "ai-evaluation"
+        ],
+        "secondary_tag": "ai-evaluation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Bad question looks like \u201cExplain this document.\u201d\nBetter questions:\nWhat assumptions does this document make?\nWhat would a critic say about this?\nHow does this compare to X?\nIt works because it forces deeper reasoning and gives more meaningful answers.",
+        "value_level": "high",
+        "what_and_problem": "This is about asking better questions so the model gives more useful answers. The problem is that vague prompts often produce shallow explanations, while sharper prompts can uncover assumptions, criticism, and comparison. Better question framing helps when the goal is to reason about a document rather than merely restate it. It is a reusable skill for working with any document-based assistant."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The author is giving subjective guidance and recommendations about how to use NotebookLM.",
+        "Claims are not supported by benchmarks, formal experiments, or citations.",
+        "The article reads as practitioner advice and opinionated usage tips."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "",
+      "assessed_as_of": "2026-05-04",
+      "contradictions_and_skepticism": "",
+      "key_insights": [],
+      "limitations_and_open_questions": "",
+      "sources": [
+        "https://medium.com/mlworks/top-5-ways-to-effectively-use-notebooklm-d179f09c1f33"
+      ],
+      "summary": "",
+      "why_it_matters": ""
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "how_to_roundup",
+      "reasoning": [
+        "Primary structure is a numbered list of 5 ways/practices, not a single tutorial.",
+        "Each section describes a workflow or usage technique rather than a named product comparison.",
+        "The article's purpose is procedural guidance for using NotebookLM effectively."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Upload the relevant documents and ask questions that force comparison and critique, not just summary. Start with prompts like key arguments, weaknesses, missing pieces, and patterns across the documents. If you are looking at technical material, ask the model to compare assumptions and describe where methods may fail in real-world settings. Use it as a thinking aid that pushes you from passive reading into active analysis.",
+          "caveats": "The article\u2019s guidance is opinionated and does not show evidence that NotebookLM\u2019s reasoning is more reliable than other document tools. Results depend on the quality and coverage of the uploaded sources. This works best when the documents are already relevant and reasonably complete.",
+          "confidence": 0.88,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Upload the documents, notes, or papers you want to analyze.",
+            "Ask for key arguments, weaknesses, and missing pieces instead of only a summary.",
+            "Request comparisons across documents to surface shared patterns or disagreements.",
+            "For technical material, ask where the approach may fail in real-world use.",
+            "Use the answers to refine your own analysis and next questions."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A set of source documents or notes",
+            "A clear research question or analysis goal",
+            "Willingness to ask follow-up questions"
+          ],
+          "primary_tag": "context-engineering",
+          "proposed_tags": [
+            "context-engineering",
+            "knowledge-systems",
+            "retrieval-systems"
+          ],
+          "question_title": "Document-Based Research",
+          "related_howtos": [
+            "context-compaction",
+            "two-pass-document-ingestion"
+          ],
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Most people upload documents and ask:\n\u201cSummarize this.\u201d\nWhich is fine, but you\u2019re barely scratching the surface. Instead, try to reason out, for instance:\nWhat are the key arguments and their weaknesses?\nWhat patterns do you see across these documents?\nWhat am I missing here?",
+          "value_level": "high",
+          "what_and_problem": "This is about using NotebookLM to work through notes, PDFs, research papers, and personal ideas without treating them like plain text to skim. The problem is that a simple summary often misses the reasoning work people actually need, like finding weak assumptions, contradictions, or gaps across several sources. A document-centered approach helps when the real task is to understand, compare, and critique information instead of only searching for facts. It is especially useful when a person has many source files and needs the model to stay grounded in them."
+        },
+        "notes": null,
+        "proposal_id": "231fac7e-bfb2-43aa-a456-bca3459760ef",
+        "proposal_status": "rejected",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Upload the documents, notes, or papers you want to analyze.",
+              "Ask for key arguments, weaknesses, and missing pieces instead of only a summary.",
+              "Request comparisons across documents to surface shared patterns or disagreements.",
+              "For technical material, ask where the approach may fail in real-world use.",
+              "Use the answers to refine your own analysis and next questions."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A set of source documents or notes",
+              "A clear research question or analysis goal",
+              "Willingness to ask follow-up questions"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "context-compaction",
+              "two-pass-document-ingestion"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Ask the model to explain the topic in plain language first, then ask for an analogy, and then ask for a quiz. If parts are confusing, request a simpler re-explanation and keep narrowing the explanation level until the idea becomes clear. Use the model to generate short checks for understanding rather than relying on one long answer. This creates a feedback loop that supports learning over several passes.",
+          "caveats": "This is helpful for learning, but the article does not show that the tutor-style answers are consistently accurate or pedagogically strong. Quizzes and simplified explanations can still be wrong or incomplete, so users should verify important material against the original sources. The advice is useful, but it is still general guidance rather than a tested method.",
+          "confidence": 0.84,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Ask for a beginner-level explanation of the topic.",
+            "Request an analogy to make the idea easier to picture.",
+            "Ask for a quiz or short check of understanding.",
+            "If needed, ask the model to simplify confusing parts again.",
+            "Repeat the loop until the concept is clear."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "Source material to teach from",
+            "A topic worth studying step by step",
+            "Willingness to verify answers against the originals"
+          ],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "human-ai-workflows",
+            "prompt-engineering"
+          ],
+          "question_title": "Personal Tutoring Loop",
+          "related_howtos": [
+            "interactive-learning-design"
+          ],
+          "secondary_tag": "human-ai-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "interactive-learning-design",
+          "suggested_new_tags": [
+            "interactive-learning-design"
+          ],
+          "supporting_snippet": "Instead of sending, \u201cExplain transformers.\u201d\nTry:\nExplain transformers like I\u2019m new to ML\nNow give me an analogy\nNow quiz me on it\nIt works because it adapts to your level and builds understanding step-by-step.\nPro tip: Ask it to\nCreate quizzes\nSimplify concepts\nRe-explain confusing parts",
+          "value_level": "medium",
+          "what_and_problem": "This is about using NotebookLM like a tutor that can explain ideas at different levels, give examples, and test understanding. The problem is that many learners need more than a single explanation; they need a step-by-step way to build understanding and notice where they are confused. A tutoring loop helps when someone wants repeated explanation, practice, and feedback from the same source material. It is useful for turning a pile of study notes into a guided learning session."
+        },
+        "notes": null,
+        "proposal_id": "eaa7e760-e578-4265-9171-b3eedfcefee8",
+        "proposal_status": "rejected",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Ask for a beginner-level explanation of the topic.",
+              "Request an analogy to make the idea easier to picture.",
+              "Ask for a quiz or short check of understanding.",
+              "If needed, ask the model to simplify confusing parts again.",
+              "Repeat the loop until the concept is clear."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "Source material to teach from",
+              "A topic worth studying step by step",
+              "Willingness to verify answers against the originals"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "interactive-learning-design"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Collect the project\u2019s documents, meeting notes, ideas, and research links in one place. Then ask for the decisions made so far, the open questions, and the current status. Use the system to revisit earlier ideas, compare options, and track architecture or process choices over time. Treat it as a memory aid that preserves context across the life of the project.",
+          "caveats": "The article does not explain limits around scale, permissions, or how well the memory holds up as projects grow. It also assumes the uploaded material is organized enough to answer project questions well. This is practical guidance, but it remains a lightweight proposal rather than a fully specified workflow.",
+          "confidence": 0.9,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Upload project docs, meeting notes, ideas, and research links.",
+            "Ask what decisions have already been made.",
+            "Ask what open questions remain.",
+            "Request a current-status summary.",
+            "Revisit earlier ideas and compare different approaches as the project changes."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A project with several documents or notes",
+            "A place to gather source material",
+            "Questions about decisions, status, or open issues"
+          ],
+          "primary_tag": "agent-memory",
+          "proposed_tags": [
+            "agent-memory",
+            "knowledge-systems",
+            "workflow-design"
+          ],
+          "question_title": "Project Memory System",
+          "related_howtos": [
+            "agentic-personal-knowledge-management",
+            "context-compaction"
+          ],
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "One of the most underrated uses of NotebookLM is as a\nproject memory system\n.\nUpload: Docs, Meeting notes, Ideas, and Research links\nThen ask:\nWhat decisions have we made so far?\nWhat are the open questions?\nSummarize the current status of this project.\nThis works because it keeps the context intact, which most tools lose over time.",
+          "value_level": "high",
+          "what_and_problem": "This is about using NotebookLM as a long-term memory layer for a project, not just a one-off question box. The problem is that project decisions, open questions, and early ideas tend to get lost across notes, meetings, and links. A project memory system helps keep context together so the team can revisit choices later. It is useful when a project has many moving parts and the history matters."
+        },
+        "notes": null,
+        "proposal_id": "5348e830-ba27-4161-a72f-7c38d836c6d6",
+        "proposal_status": "rejected",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Upload project docs, meeting notes, ideas, and research links.",
+              "Ask what decisions have already been made.",
+              "Ask what open questions remain.",
+              "Request a current-status summary.",
+              "Revisit earlier ideas and compare different approaches as the project changes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A project with several documents or notes",
+              "A place to gather source material",
+              "Questions about decisions, status, or open issues"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-personal-knowledge-management",
+              "context-compaction"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Upload the research material, past content, and notes that should shape the draft. Ask for an outline, a conversational script, or a list of angles for the topic. Use the system to keep the draft grounded in your own source set and to reduce generic filler. Review the output for style and factual fit before publishing or expanding it.",
+          "caveats": "The article claims this helps keep outputs factually grounded, but it does not prove that the drafts are accurate or publication-ready without review. It also assumes the user already has useful source material to upload. The workflow is practical, but the promotional framing is stronger than the evidence.",
+          "confidence": 0.81,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Upload research material, past content, and notes.",
+            "Ask for a blog outline or script draft.",
+            "Request multiple angles for the same topic.",
+            "Edit for voice, accuracy, and completeness.",
+            "Use the source set to keep the draft grounded in your own material."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "Research notes or prior content to upload",
+            "A content goal such as an outline or script",
+            "A review step for accuracy and style"
+          ],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "workflow-design"
+          ],
+          "question_title": "Source-Grounded Content Drafting",
+          "related_howtos": [
+            "source-grounded-generation"
+          ],
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "source-grounded-generation",
+          "suggested_new_tags": [
+            "source-grounded-generation",
+            "content-creation"
+          ],
+          "supporting_snippet": "Upload: Research material, Past content, Notes\nThen ask:\nTurn this into a blog outline\nWrite a YouTube script in a conversational tone\nWhat are 5 unique angles for this topic?\nIt works because, unlike generic AI tools, it uses your own knowledge base.",
+          "value_level": "medium",
+          "what_and_problem": "This is about using NotebookLM to turn existing research and notes into drafts for blogs, scripts, and idea generation. The problem is that content work often starts from scattered notes and ends with generic output that is not tied to the author\u2019s own material. A source-grounded drafting workflow helps keep the draft fact-based and closer to an existing voice or knowledge base. It is useful for people creating educational content, articles, or video scripts from their own research."
+        },
+        "notes": null,
+        "proposal_id": "95d3d286-6e25-449d-a76d-a2b257bcbafc",
+        "proposal_status": "rejected",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Upload research material, past content, and notes.",
+              "Ask for a blog outline or script draft.",
+              "Request multiple angles for the same topic.",
+              "Edit for voice, accuracy, and completeness.",
+              "Use the source set to keep the draft grounded in your own material."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "Research notes or prior content to upload",
+              "A content goal such as an outline or script",
+              "A review step for accuracy and style"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "source-grounded-generation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Start with a question that asks about assumptions, critiques, or comparisons. Instead of asking for a plain explanation, ask what the document assumes, what a critic would say, or how it compares with another source. Push the model to move beyond explanation into evaluation and application. The goal is to make the model behave more like a research partner than a search box.",
+          "caveats": "This is broadly useful, but it is not unique to NotebookLM and does not depend on special model behavior. The value comes from the prompt, not from a guaranteed capability upgrade. It is a durable habit, but the article\u2019s evidence is only practitioner advice.",
+          "confidence": 0.92,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Replace broad prompts with questions about assumptions.",
+            "Ask for a critic\u2019s view of the document.",
+            "Request comparisons to another source or approach.",
+            "Follow up with application-focused questions.",
+            "Keep refining prompts toward critique and reasoning."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A document or topic to question",
+            "A comparison target or evaluative angle",
+            "Basic comfort with iterative prompting"
+          ],
+          "primary_tag": "prompt-engineering",
+          "proposed_tags": [
+            "prompt-engineering",
+            "ai-evaluation",
+            "knowledge-systems"
+          ],
+          "question_title": "Question Framing for Deeper Analysis",
+          "related_howtos": [
+            "prompt-engineering",
+            "ai-evaluation"
+          ],
+          "secondary_tag": "ai-evaluation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Bad question looks like \u201cExplain this document.\u201d\nBetter questions:\nWhat assumptions does this document make?\nWhat would a critic say about this?\nHow does this compare to X?\nIt works because it forces deeper reasoning and gives more meaningful answers.",
+          "value_level": "high",
+          "what_and_problem": "This is about asking better questions so the model gives more useful answers. The problem is that vague prompts often produce shallow explanations, while sharper prompts can uncover assumptions, criticism, and comparison. Better question framing helps when the goal is to reason about a document rather than merely restate it. It is a reusable skill for working with any document-based assistant."
+        },
+        "notes": null,
+        "proposal_id": "309624a5-7dba-4140-8ea6-c2f290993211",
+        "proposal_status": "rejected",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Replace broad prompts with questions about assumptions.",
+              "Ask for a critic\u2019s view of the document.",
+              "Request comparisons to another source or approach.",
+              "Follow up with application-focused questions.",
+              "Keep refining prompts toward critique and reasoning."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A document or topic to question",
+              "A comparison target or evaluative angle",
+              "Basic comfort with iterative prompting"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "prompt-engineering",
+              "ai-evaluation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The author is giving subjective guidance and recommendations about how to use NotebookLM.",
+          "Claims are not supported by benchmarks, formal experiments, or citations.",
+          "The article reads as practitioner advice and opinionated usage tips."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/mlworks/top-5-ways-to-effectively-use-notebooklm-d179f09c1f33"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "how_to_roundup",
+        "reasoning": [
+          "Primary structure is a numbered list of 5 ways/practices, not a single tutorial.",
+          "Each section describes a workflow or usage technique rather than a named product comparison.",
+          "The article's purpose is procedural guidance for using NotebookLM effectively."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 5,
+    "proposals_total": 5,
+    "review_duration_seconds": 417.5,
+    "review_finished_at": "2026-06-01T15:18:40.494137+00:00",
+    "review_started_at": "2026-06-01T15:11:43+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-01T15:18:40+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Mayur Jain",
+    "canonical_url": "https://medium.com/mlworks/top-5-ways-to-effectively-use-notebooklm-d179f09c1f33",
+    "content_sha256": "c181bc2764377e67627abc918957e06eb13df22ddb0c5a0dc19b4494ddede075",
+    "publication": "Medium",
+    "published_date": "2026-05-04",
+    "raw_html_rel_path": "raw/readwise/top-5-ways-to-effectively-use-notebooklm-01kr43jze72s6hyk8gbjfvvx2j.html",
+    "raw_md_rel_path": "raw/readwise/top-5-ways-to-effectively-use-notebooklm-01kr43jze72s6hyk8gbjfvvx2j.md",
+    "source_id": "top-5-ways-to-effectively-use-notebooklm-01kr43jze72s6hyk8gbjfvvx2j",
+    "title": "\ud83d\ude80 Top 5 Ways to Effectively Use NotebookLM"
+  }
+}

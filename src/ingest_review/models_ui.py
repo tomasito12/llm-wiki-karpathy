@@ -439,7 +439,7 @@ def _render_model_edit_box(
                 type_allow,
                 key_prefix=key_prefix,
             )
-            apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow)
+            apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow, key_prefix=key_prefix)
             _on_save_model_proposal(str(node.get("proposal_id") or ""), key_prefix, artifact_path)
 
         render_proposal_decision_bar(

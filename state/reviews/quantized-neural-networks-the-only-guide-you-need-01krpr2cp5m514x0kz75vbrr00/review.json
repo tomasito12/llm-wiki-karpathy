@@ -1,0 +1,655 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-01T16:02:06+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "39-triage",
+          "request_id": "chatcmpl-DlzN86aMZdHjMyYG3gG2EIHwX7lux",
+          "token_usage": {
+            "completion_tokens": 200,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8232,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8432
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "39-summary",
+          "request_id": "chatcmpl-DlzNBRhqnSZG95DO0YEiamPkK9OU2",
+          "token_usage": {
+            "completion_tokens": 1410,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7660,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 9070
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "39-entities-standard_article",
+          "request_id": "chatcmpl-DlzNMPaPpTwuL7sMWARU3urPztCLf",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1348,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 32447,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33795
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "39",
+    "provider": "openai",
+    "request_id": "chatcmpl-DlzNMPaPpTwuL7sMWARU3urPztCLf",
+    "token_usage": {
+      "completion_tokens": 2958,
+      "prompt_tokens": 48339,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 51297
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "",
+        "confidence": 0.88,
+        "evidence_from_source": "The source says FP8 is established on H100 and MI300, FP4 is arriving with Blackwell, MX standardizes block-shared exponent formats, and W4A8 is becoming the next datacenter default. It also links low precision to both faster arithmetic and lower memory bandwidth use.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "inference-efficiency",
+        "proposed_tags": [
+          "inference-efficiency",
+          "enterprise-ai",
+          "runtime-centralization"
+        ],
+        "related_trends": [
+          "kv-cache-compression-as-a-serving-bottleneck"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "INT8 multiply cost cited as 0.2 pJ versus 3.7 pJ for FP32 in Horowitz (2014).",
+          "The article states that an 8-bit model is 4x smaller than FP32.",
+          "FP8 is described as established on H100 and MI300, with FP4 arriving on Blackwell.",
+          "W4A8 is described as the next datacenter default."
+        ],
+        "supporting_snippet": "\"The trajectory is clear. FP8 is the established standard on H100 and MI300. FP4 is arriving with Blackwell.\" ... \"W4A8 is becoming the next datacenter default, pushed by both the hardware support and the maturation of activation quantization methods.\"",
+        "time_sensitivity": "Actionable as of 2026-04-17; likely to remain relevant through the next several hardware generations, but specific vendor support may change.",
+        "trend_description": "Inference systems increasingly rely on lower-precision arithmetic, block-wise scaling, and hardware-native low-bit support to cut memory traffic and arithmetic cost. This shift matters most where inference is memory-bound or where long-context serving makes activation memory expensive. The trend is not uniform across all deployments because quality, calibration effort, and hardware support still vary widely.",
+        "trend_slug": "inference-efficiency-moves-toward-low-precision-hardware",
+        "trend_title": "Inference Efficiency Moves Toward Low-Precision Hardware",
+        "uncertainty_note": "The source argues that the trajectory is clear, but it does not provide cross-vendor deployment data or prove that these formats will dominate every serving stack. Adoption depends on ecosystem maturity and on whether quality holds up across models and workloads.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The author presents synthesis and guidance based on personal research and deployment experience rather than a formal new study in this article.",
+        "Claims are supported by cited prior papers, hardware facts, and practitioner examples, but the piece's main function is interpretive explanation.",
+        "The tone is advisory and comparative, aimed at clarifying concepts and trade-offs for readers."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "Quantization is a word that people use in different ways, and the article starts by warning that those meanings are easy to mix up. One person may mean moving from very high-precision numbers to lower-precision ones, while another may mean running a model with only integers on small hardware. The main point is that lower precision can make AI models smaller and faster, especially when they are used for inference rather than training. The article explains that the biggest gains often come from compressing the model\u2019s weights, while the hard part is keeping activations and sensitive layers accurate. It also shows that not all low-precision formats are the same: some use even spacing between values, while others use formats that give more detail near zero. A lot depends on whether the model was adjusted after training or trained with quantization in mind from the start. The piece also explains that some layers, such as normalization and output layers, may need to stay in higher precision because they are fragile. It makes a special point about the memory used by the key-value cache in long text generation, which can become a major bottleneck. As of 2026-04-17, the article\u2019s advice is practical for anyone reading model cards or comparing quantized models: check exactly what was compressed, how it was calibrated, and what trade-offs were made.",
+      "assessed_as_of": "2026-04-17",
+      "contradictions_and_skepticism": "The article is strongest when it explains trade-offs, but some of its hardware-forward claims are aspirational and depend on future ecosystem support. Statements like \u201cthe trajectory is clear\u201d about FP8, FP4, MX, and block-wise scaling go beyond what the article itself can prove. The piece also risks oversimplification by treating \u201c4-bit model\u201d as a useful label even though effective precision can vary with scaling granularity, excluded layers, and whether activations are quantized. Another tension is that integer-only inference is presented as a clean endpoint, but many deployed systems still rely on dequantization to higher precision before matrix multiply. Overall, the skepticism is modest: the article is technically grounded, but readers should verify the exact quantization recipe rather than trusting bit-width headlines.",
+      "key_insights": [
+        "Always ask what is quantized: weights, activations, the key-value cache, or some combination, because the trade-offs differ sharply.",
+        "A 4-bit model can be misleading unless you check block size and effective bits; scale overhead can push a claimed 4-bit setup toward 4.5 or 5 effective bits.",
+        "Weight-only quantization is much easier than activation quantization; activation outliers are a major reason low-bit methods fail.",
+        "Mixed precision is often the practical answer: keep fragile layers such as normalization and output layers at higher precision while compressing the large middle blocks.",
+        "For low bit widths, quantization-aware training and stochastic rounding matter much more than post-training rounding, especially below 4 bits."
+      ],
+      "limitations_and_open_questions": "The article is a broad practitioner guide, not a new benchmark paper, so many claims are explained rather than independently validated in this source. Several references are named, but the post does not provide a full experimental table comparing methods across the same models, datasets, and hardware. Claims such as \u201c4-bit weights typically cause minimal quality loss for large language models\u201d are directionally useful but not universally true without model-specific validation. The discussion of hardware roadmaps, including FP4, MX formats, and ARM lookup-table support, depends on vendor adoption and implementation details that are not shown here. The article also does not quantify the cost of calibration, training instability, or engineering complexity across deployment settings. KV-cache quantization is presented as promising, but long-context behavior, quality degradation, and integration costs remain context dependent. Security, privacy, and robustness implications are not deeply explored beyond brief references to certifiably robust quantized networks.",
+      "sources": [
+        "https://mlechner.substack.com/p/quantized-neural-networks-the-only?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true"
+      ],
+      "summary": "The article argues that quantization is not one technique but a family of methods that differ along several axes: what is quantized, which numeric grid is used, what scale granularity is applied, whether sensitive layers are excluded, and whether the method is post-training or quantization-aware training. It emphasizes that weight-only quantization is much easier than quantizing activations, and that the common LLM inference pattern as of 2026-04-17 is W4A16: 4-bit weights with 16-bit activations, often with selective layer exclusion. The piece explains why quantization matters for inference efficiency: lower precision can reduce both arithmetic cost and memory bandwidth, with different benefits for compute-bound prefill versus memory-bound decode. It also distinguishes uniform fixed-point quantization from logarithmic or floating-point-style grids, and explains why block-wise scaling, per-channel scaling, and mixed precision are critical for preserving quality at low bit widths. The article\u2019s practical checklist is to ask what is quantized, what grid is used, what effective bit width results, which calibration or training method was used, and which layers were excluded before comparing claims. It closes by noting that FP8 and FP4 hardware support, block-wise scaling primitives, and very low-bit research schemes such as BitNet are making more forms of quantization practical, while KV-cache compression is becoming important for long-context inference.",
+      "why_it_matters": "The article is useful because it compresses a messy topic into a small set of operational questions that matter when evaluating or deploying quantized models. It makes a clear distinction between inference efficiency from smaller weights and the separate benefits of cheaper arithmetic, which helps explain why some methods speed up memory-bound decode while others help compute-bound prefill. It also highlights that reported bit widths can hide real overhead from block-wise scaling, so model cards can overstate compression unless effective bits are checked. The discussion of weight-only versus activation quantization is especially important because many optimistic results depend on leaving activations in higher precision and excluding fragile layers. The post-training quantization ladder is a useful mental model: naive rounding is fine at some settings, calibration-based methods are better, and second-order methods such as GPTQ are more aggressive when bit budgets shrink. The article also grounds its advice in practitioner experience, but it is still a guide rather than a controlled comparison study, so the strongest value is in reading claims critically rather than treating the piece as benchmark evidence. As of 2026-04-17, the guidance is actionable for model selection, deployment debugging, and reading quantization claims, but it should be treated as a practical framework rather than a universal performance guarantee. For conversational AI and related automation systems, the KV-cache discussion is particularly relevant because long-context inference cost can dominate memory use even when the base model is compact."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent explainer article centered on one technical subject: quantized neural networks.",
+        "Structure is explanatory and sectioned, not a bundle of unrelated news items or product blurbs.",
+        "No interview/Q&A format or step-by-step tutorial sequencing dominates the piece."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Weight-only quantization is much easier than activation quantization because activations vary with each input and can contain outliers.",
+          "A reported \"4-bit\" model may effectively be closer to 4.5 or 5 bits once block-scale metadata is included.",
+          "Mixed-precision deployment is often the practical compromise: compress the large middle layers while leaving fragile layers in higher precision.",
+          "W4A16 and W4A8 are different operating points with different speed and quality trade-offs."
+        ],
+        "knowledge_summary": "Quantization for neural networks should be analyzed along multiple axes rather than as a single technique. The most important distinctions are what is being quantized, which numeric grid is used, how scales are shared across channels or blocks, whether fragile layers are excluded, and whether the method is post-training or learned during training. These choices change both accuracy and deployment cost, so a bit-width label alone is not enough to compare methods. Effective precision can differ materially from the headline bit width once scaling overhead and mixed precision are included.",
+        "match_candidates": [],
+        "operational_insight": "When evaluating a quantized model, require the full recipe: weights vs activations vs KV cache, grid type, scale granularity, excluded layers, and PTQ versus QAT. Without those details, bit-width comparisons are not operationally meaningful.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "inference-systems"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI engineering because model selection, latency tuning, and cost control depend on the exact quantization recipe, not on the headline bit width. In conversational AI and service automation, the same label can hide very different behavior under load, especially when long-context inference or fragile layers are involved.",
+        "secondary_tag": "inference-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"When you see a quantized model, ask: are all layers quantized, or only some?\" ... \"Rule of thumb: always ask \u201cW?A?\u201d before comparing two methods.\"",
+        "topic_slug": "quantization-axes-for-neural-networks",
+        "topic_title": "Quantization Axes for Neural Networks",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "KV cache grows linearly with sequence length, so longer conversations materially change serving memory needs.",
+          "Because the cache is produced at runtime, it cannot be calibrated in the same way as static model weights.",
+          "Per-channel and low-bit quantization methods can reduce cache pressure, but quality and implementation complexity remain context dependent."
+        ],
+        "knowledge_summary": "The key-value cache in autoregressive models is a runtime memory store for attention states that grows with sequence length. Because it is made of activations rather than fixed weights, it inherits the same challenges as activation quantization: dynamic ranges, outliers, and no easy offline calibration. Long-context inference can make the cache large enough to dominate memory use even when the base model is relatively compact. Compression of this cache can therefore be a major lever for scaling context length and reducing serving memory pressure.",
+        "match_candidates": [],
+        "operational_insight": "Treat KV-cache size as a first-class serving constraint when planning long-context systems. If the cache is not compressed or managed carefully, it can become the dominant memory bottleneck even when the model weights fit comfortably.",
+        "primary_tag": "inference-systems",
+        "proposed_tags": [
+          "inference-systems",
+          "runtime-systems",
+          "context-engineering"
+        ],
+        "related_topics": [
+          "quantization-axes-for-neural-networks"
+        ],
+        "relevance_note": "This is durable for AI infrastructure because long-context assistants and service bots can hit memory limits from attention state alone. Teams building conversational systems need to account for KV-cache growth separately from model size when estimating throughput and deployment cost.",
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The KV cache is a special case of activation quantization that has become its own topic because of LLMs.\" ... \"A 7B model with 128k context can easily need 16+ GB just for the KV cache.\"",
+        "topic_slug": "kv-cache-compression",
+        "topic_title": "KV Cache Compression",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "",
+          "confidence": 0.88,
+          "evidence_from_source": "The source says FP8 is established on H100 and MI300, FP4 is arriving with Blackwell, MX standardizes block-shared exponent formats, and W4A8 is becoming the next datacenter default. It also links low precision to both faster arithmetic and lower memory bandwidth use.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "inference-efficiency",
+          "proposed_tags": [
+            "inference-efficiency",
+            "enterprise-ai",
+            "runtime-centralization"
+          ],
+          "related_trends": [
+            "kv-cache-compression-as-a-serving-bottleneck"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "INT8 multiply cost cited as 0.2 pJ versus 3.7 pJ for FP32 in Horowitz (2014).",
+            "The article states that an 8-bit model is 4x smaller than FP32.",
+            "FP8 is described as established on H100 and MI300, with FP4 arriving on Blackwell.",
+            "W4A8 is described as the next datacenter default."
+          ],
+          "supporting_snippet": "\"The trajectory is clear. FP8 is the established standard on H100 and MI300. FP4 is arriving with Blackwell.\" ... \"W4A8 is becoming the next datacenter default, pushed by both the hardware support and the maturation of activation quantization methods.\"",
+          "time_sensitivity": "Actionable as of 2026-04-17; likely to remain relevant through the next several hardware generations, but specific vendor support may change.",
+          "trend_description": "Inference systems increasingly rely on lower-precision arithmetic, block-wise scaling, and hardware-native low-bit support to cut memory traffic and arithmetic cost. This shift matters most where inference is memory-bound or where long-context serving makes activation memory expensive. The trend is not uniform across all deployments because quality, calibration effort, and hardware support still vary widely.",
+          "trend_slug": "inference-efficiency-moves-toward-low-precision-hardware",
+          "trend_title": "Inference Efficiency Moves Toward Low-Precision Hardware",
+          "uncertainty_note": "The source argues that the trajectory is clear, but it does not provide cross-vendor deployment data or prove that these formats will dominate every serving stack. Adoption depends on ecosystem maturity and on whether quality holds up across models and workloads.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "64860577-fc19-4a78-9cfb-efcb35e3d7c1",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "kv-cache-compression-as-a-serving-bottleneck"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "INT8 multiply cost cited as 0.2 pJ versus 3.7 pJ for FP32 in Horowitz (2014).",
+              "The article states that an 8-bit model is 4x smaller than FP32.",
+              "FP8 is described as established on H100 and MI300, with FP4 arriving on Blackwell.",
+              "W4A8 is described as the next datacenter default."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "inference-efficiency",
+            "enterprise-ai",
+            "runtime-centralization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The author presents synthesis and guidance based on personal research and deployment experience rather than a formal new study in this article.",
+          "Claims are supported by cited prior papers, hardware facts, and practitioner examples, but the piece's main function is interpretive explanation.",
+          "The tone is advisory and comparative, aimed at clarifying concepts and trade-offs for readers."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Always ask what is quantized: weights, activations, the key-value cache, or some combination, because the trade-offs differ sharply.",
+          "A 4-bit model can be misleading unless you check block size and effective bits; scale overhead can push a claimed 4-bit setup toward 4.5 or 5 effective bits.",
+          "Weight-only quantization is much easier than activation quantization; activation outliers are a major reason low-bit methods fail.",
+          "Mixed precision is often the practical answer: keep fragile layers such as normalization and output layers at higher precision while compressing the large middle blocks.",
+          "For low bit widths, quantization-aware training and stochastic rounding matter much more than post-training rounding, especially below 4 bits."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://mlechner.substack.com/p/quantized-neural-networks-the-only?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent explainer article centered on one technical subject: quantized neural networks.",
+          "Structure is explanatory and sectioned, not a bundle of unrelated news items or product blurbs.",
+          "No interview/Q&A format or step-by-step tutorial sequencing dominates the piece."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Weight-only quantization is much easier than activation quantization because activations vary with each input and can contain outliers.",
+            "A reported \"4-bit\" model may effectively be closer to 4.5 or 5 bits once block-scale metadata is included.",
+            "Mixed-precision deployment is often the practical compromise: compress the large middle layers while leaving fragile layers in higher precision.",
+            "W4A16 and W4A8 are different operating points with different speed and quality trade-offs."
+          ],
+          "knowledge_summary": "Quantization for neural networks should be analyzed along multiple axes rather than as a single technique. The most important distinctions are what is being quantized, which numeric grid is used, how scales are shared across channels or blocks, whether fragile layers are excluded, and whether the method is post-training or learned during training. These choices change both accuracy and deployment cost, so a bit-width label alone is not enough to compare methods. Effective precision can differ materially from the headline bit width once scaling overhead and mixed precision are included.",
+          "match_candidates": [],
+          "operational_insight": "When evaluating a quantized model, require the full recipe: weights vs activations vs KV cache, grid type, scale granularity, excluded layers, and PTQ versus QAT. Without those details, bit-width comparisons are not operationally meaningful.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "inference-systems"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI engineering because model selection, latency tuning, and cost control depend on the exact quantization recipe, not on the headline bit width. In conversational AI and service automation, the same label can hide very different behavior under load, especially when long-context inference or fragile layers are involved.",
+          "secondary_tag": "inference-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"When you see a quantized model, ask: are all layers quantized, or only some?\" ... \"Rule of thumb: always ask \u201cW?A?\u201d before comparing two methods.\"",
+          "topic_slug": "quantization-axes-for-neural-networks",
+          "topic_title": "Quantization Axes for Neural Networks",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a19750f3-187f-4c07-99f8-3137285ee9e0",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Weight-only quantization is much easier than activation quantization because activations vary with each input and can contain outliers.",
+              "A reported \"4-bit\" model may effectively be closer to 4.5 or 5 bits once block-scale metadata is included.",
+              "Mixed-precision deployment is often the practical compromise: compress the large middle layers while leaving fragile layers in higher precision.",
+              "W4A16 and W4A8 are different operating points with different speed and quality trade-offs."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "inference-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "KV cache grows linearly with sequence length, so longer conversations materially change serving memory needs.",
+            "Because the cache is produced at runtime, it cannot be calibrated in the same way as static model weights.",
+            "Per-channel and low-bit quantization methods can reduce cache pressure, but quality and implementation complexity remain context dependent."
+          ],
+          "knowledge_summary": "The key-value cache in autoregressive models is a runtime memory store for attention states that grows with sequence length. Because it is made of activations rather than fixed weights, it inherits the same challenges as activation quantization: dynamic ranges, outliers, and no easy offline calibration. Long-context inference can make the cache large enough to dominate memory use even when the base model is relatively compact. Compression of this cache can therefore be a major lever for scaling context length and reducing serving memory pressure.",
+          "match_candidates": [],
+          "operational_insight": "Treat KV-cache size as a first-class serving constraint when planning long-context systems. If the cache is not compressed or managed carefully, it can become the dominant memory bottleneck even when the model weights fit comfortably.",
+          "primary_tag": "inference-systems",
+          "proposed_tags": [
+            "inference-systems",
+            "runtime-systems",
+            "context-engineering"
+          ],
+          "related_topics": [
+            "quantization-axes-for-neural-networks"
+          ],
+          "relevance_note": "This is durable for AI infrastructure because long-context assistants and service bots can hit memory limits from attention state alone. Teams building conversational systems need to account for KV-cache growth separately from model size when estimating throughput and deployment cost.",
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The KV cache is a special case of activation quantization that has become its own topic because of LLMs.\" ... \"A 7B model with 128k context can easily need 16+ GB just for the KV cache.\"",
+          "topic_slug": "kv-cache-compression",
+          "topic_title": "KV Cache Compression",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "18ded3e8-0bd1-4b7e-a3e5-838dbfb6d662",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "KV cache grows linearly with sequence length, so longer conversations materially change serving memory needs.",
+              "Because the cache is produced at runtime, it cannot be calibrated in the same way as static model weights.",
+              "Per-channel and low-bit quantization methods can reduce cache pressure, but quality and implementation complexity remain context dependent."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "quantization-axes-for-neural-networks"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "inference-systems",
+            "runtime-systems",
+            "context-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 3,
+    "review_duration_seconds": 230.0,
+    "review_finished_at": "2026-06-01T16:05:55.952710+00:00",
+    "review_started_at": "2026-06-01T16:02:06+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-01T16:05:55+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Mathias Lechner",
+    "canonical_url": "https://mlechner.substack.com/p/quantized-neural-networks-the-only?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true",
+    "content_sha256": "90ab19d1e894d49a8192841850faffd2ba1302bedff6324824332308fa7d1a5c",
+    "publication": "Substack",
+    "published_date": "2026-04-17",
+    "raw_html_rel_path": "raw/readwise/quantized-neural-networks-the-only-guide-you-need-01krpr2cp5m514x0kz75vbrr00.html",
+    "raw_md_rel_path": "raw/readwise/quantized-neural-networks-the-only-guide-you-need-01krpr2cp5m514x0kz75vbrr00.md",
+    "source_id": "quantized-neural-networks-the-only-guide-you-need-01krpr2cp5m514x0kz75vbrr00",
+    "title": "Quantized Neural Networks: The Only Guide You Need"
+  }
+}

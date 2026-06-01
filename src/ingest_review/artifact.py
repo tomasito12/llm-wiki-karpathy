@@ -285,6 +285,45 @@ def rel_from_repo(path: Path, root: Path) -> str:
         return path.resolve().as_posix()
 
 
+ENTITY_REVIEW_LIST_KEYS: tuple[str, ...] = (
+    "glossary",
+    "topics",
+    "how_to",
+    "industry_trends",
+    "tools",
+    "foundation_models",
+    "implementation_studies",
+    "roundup_signals",
+    "interview_insights",
+)
+
+
+def merge_source_summary_into_artifact(
+    artifact: dict[str, Any],
+    source_summary: dict[str, Any],
+) -> None:
+    """Replace ``llm_output.source_summary`` and rebuild the review subtree for it."""
+    llm = artifact.setdefault("llm_output", {})
+    llm["source_summary"] = copy.deepcopy(source_summary)
+    fresh_review = default_review_for_llm_output(llm)
+    artifact.setdefault("review", {})["source_summary"] = fresh_review["source_summary"]
+
+
+def merge_entity_proposals_into_artifact(
+    artifact: dict[str, Any],
+    llm_output: dict[str, Any],
+) -> None:
+    """Replace entity proposal arrays in ``llm_output`` and matching ``review`` lists."""
+    llm = artifact.setdefault("llm_output", {})
+    for key in ENTITY_REVIEW_LIST_KEYS:
+        if key in llm_output:
+            llm[key] = copy.deepcopy(llm_output[key])
+    fresh_review = default_review_for_llm_output(llm)
+    review = artifact.setdefault("review", {})
+    for key in ENTITY_REVIEW_LIST_KEYS:
+        review[key] = fresh_review[key]
+
+
 def build_new_artifact(
     doc: SourceDocument,
     llm_output: LlmClassificationOutput,

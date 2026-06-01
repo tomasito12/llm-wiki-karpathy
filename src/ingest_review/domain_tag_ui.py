@@ -130,6 +130,61 @@ def widget_resync_key(widget_key: str) -> str:
     return f"{widget_key}__resync"
 
 
+def tags_multiselect_key(key_prefix: str) -> str:
+    """Session/widget key for the routing-tags multiselect."""
+    return f"{key_prefix}_tags_multiselect"
+
+
+def init_tags_multiselect_session_value(
+    key_prefix: str,
+    default_sel: list[str],
+    options: list[str],
+) -> None:
+    """Seed routing-tags multiselect from storage/LLM when the widget key is new or resynced."""
+    widget_key = tags_multiselect_key(key_prefix)
+    resync_key = widget_resync_key(widget_key)
+    option_set = set(options)
+    pending = streamlit_runtime.session_state.pop(resync_key, None)
+    if pending is not None:
+        if isinstance(pending, list):
+            streamlit_runtime.session_state[widget_key] = [t for t in pending if t in option_set]
+        return
+    if widget_key not in streamlit_runtime.session_state:
+        streamlit_runtime.session_state[widget_key] = [t for t in default_sel if t in option_set]
+
+
+def queue_tags_multiselect_resync(key_prefix: str, tags: list[str]) -> None:
+    """Queue multiselect value for next run (cannot set widget keys after they are drawn)."""
+    resync_key = widget_resync_key(tags_multiselect_key(key_prefix))
+    streamlit_runtime.session_state[resync_key] = list(tags)
+
+
+def seed_review_tags_on_artifact(
+    artifact: dict[str, Any],
+    *,
+    allowlists_by_review_key: dict[str, set[str]],
+) -> None:
+    """Copy allowlisted LLM proposed_tags into final_tags when the reviewer has not tagged yet."""
+    review = artifact.get("review")
+    if not isinstance(review, dict):
+        return
+    for review_key, allow in allowlists_by_review_key.items():
+        if not allow:
+            continue
+        for node in review.get(review_key) or []:
+            if not isinstance(node, dict):
+                continue
+            tag_node = node.setdefault("tags", default_tags_node())
+            if _stored_final_tags(tag_node):
+                continue
+            llm_item = node.get("llm_item")
+            if not isinstance(llm_item, dict):
+                continue
+            seeded = [t for t in _llm_proposed_tags(llm_item) if t in allow]
+            if seeded:
+                tag_node["final_tags"] = seeded
+
+
 def init_widget_session_value(widget_key: str, stored_value: str) -> None:
     """Seed a keyed widget from storage; apply any pending post-save resync first."""
     resync_key = widget_resync_key(widget_key)
@@ -195,6 +250,8 @@ def apply_tag_ui_to_node(
     llm_item: dict[str, Any],
     tag_ui: dict[str, Any],
     allow: set[str],
+    *,
+    key_prefix: str = "",
 ) -> None:
     """Persist tag widget values (from this script run) onto the proposal."""
     tag_node = node.setdefault("tags", default_tags_node())
@@ -227,6 +284,8 @@ def apply_tag_ui_to_node(
                 existing.append(t)
         llm_item["suggested_new_tags"] = existing
         llm_item["suggested_new_tag"] = existing[0]
+    if key_prefix:
+        queue_tags_multiselect_resync(key_prefix, final)
 
 
 def find_review_node(
@@ -356,11 +415,11 @@ def render_domain_tag_section(
 
     selected = []
     if options:
+        init_tags_multiselect_session_value(key_prefix, default_sel, options)
         selected = st.multiselect(
             "Routing tags (from registry)",
             options=options,
-            default=[t for t in default_sel if t in options],
-            key=f"{key_prefix}_tags_multiselect",
+            key=tags_multiselect_key(key_prefix),
             help="Select all allowlist tags that fit; no primary/secondary ordering.",
         )
     else:

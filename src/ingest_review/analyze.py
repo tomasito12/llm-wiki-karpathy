@@ -3,8 +3,14 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
-from src.ingest_review.artifact import build_new_artifact, default_analysis_meta
+from src.ingest_review.artifact import (
+    build_new_artifact,
+    default_analysis_meta,
+    merge_entity_proposals_into_artifact,
+    merge_source_summary_into_artifact,
+)
 from src.ingest_review.canonical_titles import (
     align_parsed_classification_titles,
     build_canonical_index,
@@ -19,8 +25,15 @@ from src.ingest_review.providers.base import IngestionProvider
 from src.ingest_review.schema import (
     LIST_ROUNDUP_SOURCE_TYPES,
     PROMPT_VERSION,
+    ExtractionMeta,
     LlmClassificationOutput,
+    SourceEvidenceProfile,
+    SourceSummaryBlock,
+    SourceTypeDetection,
+    SummaryStageOutput,
     TopicContribution,
+    TriageStageOutput,
+    merge_stage_outputs,
     normalize_source_summary,
 )
 from src.ingest_review.tags import MAX_PROPOSED_TAGS, normalize_tag, normalize_tag_list
@@ -338,50 +351,48 @@ def _backfill_empty_topic_related_topics(
     return parsed.model_copy(update={"topics": new_topics})
 
 
-def run_classification(
-    provider: IngestionProvider,
-    document: SourceDocument,
+def _reviews_path_for(wiki_root: Path, reviews_root: Path | None) -> Path:
+    if reviews_root is not None:
+        return reviews_root
+    return wiki_root.parent / "state" / "reviews"
+
+
+def _stage_inputs_from_artifact(
+    artifact: dict[str, Any],
+) -> tuple[TriageStageOutput, SummaryStageOutput]:
+    """Rebuild stage-1/2 models from an existing artifact ``llm_output``."""
+    raw_llm = artifact.get("llm_output")
+    llm: dict[str, Any] = raw_llm if isinstance(raw_llm, dict) else {}
+    triage = TriageStageOutput(
+        extraction_meta=ExtractionMeta.model_validate(llm.get("extraction_meta") or {}),
+        source_type_detection=SourceTypeDetection.model_validate(
+            llm.get("source_type_detection") or {}
+        ),
+        source_evidence_profile=SourceEvidenceProfile.model_validate(
+            llm.get("source_evidence_profile") or {}
+        ),
+    )
+    summary = SummaryStageOutput(
+        source_summary=SourceSummaryBlock.model_validate(llm.get("source_summary") or {})
+    )
+    return triage, summary
+
+
+def _postprocess_parsed(
+    parsed: LlmClassificationOutput,
     *,
-    wiki_root: Path,
+    wiki: WikiSnapshot,
+    reviews_path: Path,
     tool_types: list[str],
     howto_tags: list[str],
-    impl_study_tags: list[str] | None = None,
-    glossary_tags: list[str] | None = None,
-    topic_tags: list[str] | None = None,
-    trend_tags: list[str] | None = None,
-    model_types: list[str] | None = None,
-    tool_tags: list[str] | None = None,
-    model_tags: list[str] | None = None,
-    source_type_override: str | None = None,
-    extraction_budgets: dict[str, int] | None = None,
-    model: str,
-    prompt_version: str | None = None,
-    reviews_root: Path | None = None,
-) -> tuple[dict[str, object], LlmClassificationOutput]:
-    """Run provider analysis and return ``(artifact_dict, parsed_output)``."""
-    pv = prompt_version or PROMPT_VERSION
-    wiki = build_wiki_snapshot(wiki_root)
-    reviews_path = reviews_root
-    if reviews_path is None:
-        reviews_path = wiki_root.parent / "state" / "reviews"
-    parsed, meta = provider.analyze_classification(
-        document=document,
-        wiki=wiki,
-        tool_types_allowlist=tool_types,
-        howto_tags_allowlist=howto_tags,
-        impl_study_tags_allowlist=impl_study_tags,
-        glossary_tags_allowlist=glossary_tags,
-        topic_tags_allowlist=topic_tags,
-        trend_tags_allowlist=trend_tags,
-        model_types_allowlist=model_types,
-        tool_tags_allowlist=tool_tags,
-        model_tags_allowlist=model_tags,
-        source_type_override=source_type_override,
-        extraction_budgets=extraction_budgets,
-        reviews_root=reviews_path,
-        model=model,
-        prompt_version=pv,
-    )
+    glossary_tags: list[str] | None,
+    topic_tags: list[str] | None,
+    trend_tags: list[str] | None,
+    model_types: list[str] | None,
+    tool_tags: list[str] | None,
+    model_tags: list[str] | None,
+    impl_study_tags: list[str] | None,
+) -> LlmClassificationOutput:
     parsed = enforce_list_roundup_extraction_policy(parsed)
     canonical_index = build_canonical_index(wiki, reviews_path)
     parsed = align_parsed_classification_titles(parsed, canonical_index)
@@ -417,7 +428,201 @@ def run_classification(
             "implementation_studies": filter_impl_study_proposals(parsed.implementation_studies),
         }
     )
-    parsed = apply_evidence_hierarchy(parsed)
+    return apply_evidence_hierarchy(parsed)
+
+
+def _seed_artifact_review_tags(
+    artifact: dict[str, Any],
+    *,
+    glossary_tags: list[str] | None,
+    topic_tags: list[str] | None,
+    howto_tags: list[str],
+    trend_tags: list[str] | None,
+    tool_tags: list[str] | None,
+    model_tags: list[str] | None,
+    impl_study_tags: list[str] | None,
+) -> None:
+    from src.ingest_review.domain_tag_ui import seed_review_tags_on_artifact
+
+    seed_review_tags_on_artifact(
+        artifact,
+        allowlists_by_review_key={
+            "glossary": set(glossary_tags or []),
+            "topics": set(topic_tags or []),
+            "how_to": set(howto_tags),
+            "industry_trends": set(trend_tags or []),
+            "roundup_signals": set(trend_tags or []),
+            "tools": set(tool_tags or []),
+            "foundation_models": set(model_tags or []),
+            "implementation_studies": set(impl_study_tags or []),
+            "interview_insights": set(topic_tags or []),
+        },
+    )
+
+
+def run_source_summary_refresh(
+    provider: IngestionProvider,
+    document: SourceDocument,
+    artifact: dict[str, Any],
+    *,
+    model: str,
+    prompt_version: str | None = None,
+) -> dict[str, object]:
+    """Re-run stage-2 source_summary and merge into *artifact*."""
+    pv = prompt_version or PROMPT_VERSION
+    triage, _ = _stage_inputs_from_artifact(artifact)
+    summary, meta = provider.analyze_source_summary(
+        document=document,
+        triage=triage,
+        model=model,
+        prompt_version=pv,
+    )
+    merge_source_summary_into_artifact(
+        artifact,
+        summary.source_summary.model_dump(mode="json"),
+    )
+    return meta
+
+
+def run_entity_extraction_for_artifact(
+    provider: IngestionProvider,
+    document: SourceDocument,
+    artifact: dict[str, Any],
+    *,
+    wiki_root: Path,
+    tool_types: list[str],
+    howto_tags: list[str],
+    impl_study_tags: list[str] | None = None,
+    glossary_tags: list[str] | None = None,
+    topic_tags: list[str] | None = None,
+    trend_tags: list[str] | None = None,
+    model_types: list[str] | None = None,
+    tool_tags: list[str] | None = None,
+    model_tags: list[str] | None = None,
+    extraction_budgets: dict[str, int] | None = None,
+    model: str,
+    prompt_version: str | None = None,
+    reviews_root: Path | None = None,
+) -> dict[str, object]:
+    """Run stage-3 entity extraction and merge proposals into *artifact*."""
+    pv = prompt_version or PROMPT_VERSION
+    wiki = build_wiki_snapshot(wiki_root)
+    reviews_path = _reviews_path_for(wiki_root, reviews_root)
+    triage, summary = _stage_inputs_from_artifact(artifact)
+    route = triage.source_type_detection.detected_source_type
+    from src.ingest_review.classification_prompts import classification_allowlists_from_kwargs
+
+    allowlists = classification_allowlists_from_kwargs(
+        tool_types_allowlist=tool_types,
+        howto_tags_allowlist=howto_tags,
+        impl_study_tags_allowlist=impl_study_tags,
+        glossary_tags_allowlist=glossary_tags,
+        topic_tags_allowlist=topic_tags,
+        trend_tags_allowlist=trend_tags,
+        model_types_allowlist=model_types,
+        tool_tags_allowlist=tool_tags,
+        model_tags_allowlist=model_tags,
+    )
+    entities, meta = provider.analyze_entities(
+        document=document,
+        wiki=wiki,
+        triage=triage,
+        summary=summary,
+        route=route,
+        allowlists=allowlists,
+        extraction_budgets=extraction_budgets,
+        reviews_root=reviews_path,
+        model=model,
+        prompt_version=pv,
+    )
+    parsed = merge_stage_outputs(triage, summary, entities)
+    parsed = _postprocess_parsed(
+        parsed,
+        wiki=wiki,
+        reviews_path=reviews_path,
+        tool_types=tool_types,
+        howto_tags=howto_tags,
+        glossary_tags=glossary_tags,
+        topic_tags=topic_tags,
+        trend_tags=trend_tags,
+        model_types=model_types,
+        tool_tags=tool_tags,
+        model_tags=model_tags,
+        impl_study_tags=impl_study_tags,
+    )
+    merge_entity_proposals_into_artifact(artifact, parsed.model_dump(mode="json"))
+    _seed_artifact_review_tags(
+        artifact,
+        glossary_tags=glossary_tags,
+        topic_tags=topic_tags,
+        howto_tags=howto_tags,
+        trend_tags=trend_tags,
+        tool_tags=tool_tags,
+        model_tags=model_tags,
+        impl_study_tags=impl_study_tags,
+    )
+    emeta = artifact.setdefault("llm_output", {}).setdefault("extraction_meta", {})
+    if isinstance(emeta, dict):
+        emeta["skip_recommended"] = False
+    return meta
+
+
+def run_classification(
+    provider: IngestionProvider,
+    document: SourceDocument,
+    *,
+    wiki_root: Path,
+    tool_types: list[str],
+    howto_tags: list[str],
+    impl_study_tags: list[str] | None = None,
+    glossary_tags: list[str] | None = None,
+    topic_tags: list[str] | None = None,
+    trend_tags: list[str] | None = None,
+    model_types: list[str] | None = None,
+    tool_tags: list[str] | None = None,
+    model_tags: list[str] | None = None,
+    source_type_override: str | None = None,
+    extraction_budgets: dict[str, int] | None = None,
+    model: str,
+    prompt_version: str | None = None,
+    reviews_root: Path | None = None,
+) -> tuple[dict[str, object], LlmClassificationOutput]:
+    """Run provider analysis and return ``(artifact_dict, parsed_output)``."""
+    pv = prompt_version or PROMPT_VERSION
+    wiki = build_wiki_snapshot(wiki_root)
+    reviews_path = _reviews_path_for(wiki_root, reviews_root)
+    parsed, meta = provider.analyze_classification(
+        document=document,
+        wiki=wiki,
+        tool_types_allowlist=tool_types,
+        howto_tags_allowlist=howto_tags,
+        impl_study_tags_allowlist=impl_study_tags,
+        glossary_tags_allowlist=glossary_tags,
+        topic_tags_allowlist=topic_tags,
+        trend_tags_allowlist=trend_tags,
+        model_types_allowlist=model_types,
+        tool_tags_allowlist=tool_tags,
+        model_tags_allowlist=model_tags,
+        source_type_override=source_type_override,
+        extraction_budgets=extraction_budgets,
+        reviews_root=reviews_path,
+        model=model,
+        prompt_version=pv,
+    )
+    parsed = _postprocess_parsed(
+        parsed,
+        wiki=wiki,
+        reviews_path=reviews_path,
+        tool_types=tool_types,
+        howto_tags=howto_tags,
+        glossary_tags=glossary_tags,
+        topic_tags=topic_tags,
+        trend_tags=trend_tags,
+        model_types=model_types,
+        tool_tags=tool_tags,
+        model_tags=model_tags,
+        impl_study_tags=impl_study_tags,
+    )
     analysis_meta = default_analysis_meta(
         provider=provider.provider_name,
         model=model,
@@ -428,6 +633,16 @@ def run_classification(
     if meta.get("classification_pipeline") is not None:
         analysis_meta["classification_pipeline"] = meta["classification_pipeline"]
     artifact = build_new_artifact(document, parsed, analysis_meta=analysis_meta)
+    _seed_artifact_review_tags(
+        artifact,
+        glossary_tags=glossary_tags,
+        topic_tags=topic_tags,
+        howto_tags=howto_tags,
+        trend_tags=trend_tags,
+        tool_tags=tool_tags,
+        model_tags=model_tags,
+        impl_study_tags=impl_study_tags,
+    )
     return artifact, parsed
 
 

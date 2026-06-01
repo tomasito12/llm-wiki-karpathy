@@ -15,7 +15,6 @@ from src.ingest_review.schema import (
     SourceTypeDetection,
     TriageStageOutput,
     empty_entities_stage_output,
-    empty_summary_stage_output,
     merge_stage_outputs,
 )
 
@@ -36,7 +35,11 @@ def classification_pipeline_mode() -> PipelineMode:
 
 
 def should_skip_later_stages(triage: TriageStageOutput) -> bool:
-    """True when stages 2–3 can be skipped (skip gate, non-list-roundup)."""
+    """True when entity extraction (stage 3) should be skipped (skip gate, non-list-roundup).
+
+    Stage 2 (source_summary) still runs so the article can be kept in the knowledge base
+    without durable entity proposals.
+    """
     if not triage.extraction_meta.skip_recommended:
         return False
     detected = triage.source_type_detection.detected_source_type
@@ -145,15 +148,35 @@ def run_staged_classification(
     )
 
     if should_skip_later_stages(triage):
-        summary = empty_summary_stage_output()
+        summary, summary_meta = provider.analyze_source_summary(
+            document=document,
+            triage=triage,
+            model=model,
+            prompt_version=prompt_version,
+            max_retries=max_retries,
+        )
+        _log_cache_miss("summary", summary_meta.get("token_usage"))
+        stage_meta.append(
+            {
+                "name": "summary",
+                "prompt_version": f"{prompt_version}-summary",
+                "token_usage": summary_meta.get("token_usage"),
+                "cache_hit_rate": _stage_cache_hit_rate(summary_meta.get("token_usage")),
+                "request_id": summary_meta.get("request_id"),
+            }
+        )
         entities = empty_entities_stage_output()
         parsed = merge_stage_outputs(triage, summary, entities)
+        combined_usage = _combine_token_usage(
+            triage_meta.get("token_usage"),
+            summary_meta.get("token_usage"),
+        )
         return parsed, {
-            "request_id": triage_meta.get("request_id"),
-            "token_usage": triage_meta.get("token_usage"),
+            "request_id": summary_meta.get("request_id") or triage_meta.get("request_id"),
+            "token_usage": combined_usage,
             "classification_pipeline": {
                 "mode": "staged",
-                "skipped_stages": ["summary", "entities"],
+                "skipped_stages": ["entities"],
                 "stages": stage_meta,
             },
         }

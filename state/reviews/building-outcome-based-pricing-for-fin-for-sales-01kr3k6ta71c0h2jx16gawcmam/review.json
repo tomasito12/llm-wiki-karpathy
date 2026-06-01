@@ -1,0 +1,796 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-01T16:06:30+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "39-triage",
+          "request_id": "chatcmpl-DlzRMrziTLnDLlY4TzwPLpW0jaZrL",
+          "token_usage": {
+            "completion_tokens": 192,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5207,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5399
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "39-summary",
+          "request_id": "chatcmpl-DlzRP8PfocxKA4orDgewKppvGTZ4N",
+          "token_usage": {
+            "completion_tokens": 1164,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4627,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5791
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "39-entities-standard_article",
+          "request_id": "chatcmpl-DlzRam4zSYjZb0HC0xTs1Kga9jH8G",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1162,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 29192,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 30354
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "39",
+    "provider": "openai",
+    "request_id": "chatcmpl-DlzRam4zSYjZb0HC0xTs1Kga9jH8G",
+    "token_usage": {
+      "completion_tokens": 2518,
+      "prompt_tokens": 39026,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 41544
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-08",
+        "confidence": 0.87,
+        "evidence_from_source": "Intercom says it tested per-conversation, per-token, per-seat, revenue share, and per-qualified-lead models, and concluded that qualified leads best balance value alignment, measurability, and practical implementation.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-operationalization"
+        ],
+        "related_trends": [],
+        "secondary_tag": "ai-operationalization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-economics",
+        "suggested_new_tags": [
+          "ai-economics"
+        ],
+        "supporting_data_points": [
+          "Intercom tested per-conversation, per-token, per-seat, revenue share, and per-qualified-lead.",
+          "The selected unit for Fin for Sales is $10 per qualified lead.",
+          "Intercom says the model came from qualitative interviews and quantitative studies."
+        ],
+        "supporting_snippet": "\"The research consistently pointed to outcome-aligned pricing as the preferred model, with the qualified lead emerging as the metric that best balances value alignment, measurability, and practical implementation.\"",
+        "time_sensitivity": "Actionable as of 2026-05-08; the pattern may remain relevant while vendors are still defining credible AI pricing units, but specific price points and chosen metrics will vary by product and workflow.",
+        "trend_description": "Pricing for AI products increasingly shifts from activity-based units such as seats, tokens, or conversations toward measurable business outcomes that are closer to customer value. The operational challenge is not just choosing a better unit, but finding one that can be measured and billed without creating excessive attribution or integration overhead. Intermediate outcomes often become the practical compromise between pure value alignment and deployability.",
+        "trend_slug": "ai-pricing-moves-toward-measurable-outcomes",
+        "trend_title": "AI Pricing Moves Toward Measurable Outcomes",
+        "uncertainty_note": "The evidence is vendor-authored and based on Intercom's own research, so it supports the existence of the pricing experiment more than it proves broad market adoption.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The article is published by Intercom and argues for its own pricing model for Fin for Sales.",
+        "Supporting evidence comes from the company's described customer research and product design choices, not an external evaluator.",
+        "Quoted customer feedback appears inside a vendor-authored case narrative rather than as independent reporting."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article explains how Intercom wants to charge for its AI sales agent, Fin for Sales. Instead of billing people for every chat, every token, or every sales seat, Intercom says customers should pay when the system finds a lead that matches the customer\u2019s definition of a good prospect. In that model, a qualified lead costs $10. The company says this is better because it links payment to a result that Fin can actually influence. It also says charging based on final sales revenue would be unfair, because many other things can affect whether a deal closes. For example, a human sales rep, product problems, or a customer\u2019s budget can all change the outcome after Fin has already done its part. Intercom also explains that if Fin handles a support question during a sales deployment, that part is priced like a service interaction instead. The article presents this as a transparent pricing experiment based on customer research rather than a general rule for all AI products. As of 2026-05-08, the idea is practical to evaluate, but the supporting evidence comes from the vendor\u2019s own research and examples.",
+      "assessed_as_of": "2026-05-08",
+      "contradictions_and_skepticism": "The article presents qualified-lead pricing as the most honest proxy for sales value, but that claim still depends on how consistently qualification can be measured across customers. Saying this is the first outcome-based pricing model for a sales agent is a vendor claim that is hard to verify from the article alone. The quoted ROI and customer enthusiasm are directionally supportive, but they are not enough to rule out selection bias or short-term novelty effects. The model also shifts some complexity into customer-defined criteria, which may be elegant in theory but can be messy in real procurement and billing workflows.",
+      "key_insights": [
+        "Intercom\u2019s proposed pricing boundary is the point at which Fin has qualified a lead, not the later close event that depends on human sales work.",
+        "The customer, not the vendor, defines what counts as a qualified lead, which lets pricing map to different sales motions and lead-quality thresholds.",
+        "Intercom explicitly rejects closed-revenue pricing because attribution noise and CRM integration burden would make the model hard to operationalize.",
+        "The article treats the qualified lead as the best proxy for pipeline creation, which is the value unit Intercom says Fin actually contributes in sales.",
+        "A sales deployment can still generate $1 service-resolution charges for support questions, so one agent can span multiple billing units depending on the task."
+      ],
+      "limitations_and_open_questions": "The article offers no independent customer data, cohort comparisons, or retention numbers to show that qualified-lead pricing produces better business outcomes than other models. It does not define how disputes over qualification are resolved, how audits work, or how edge cases are handled when the buyer and vendor disagree on whether a lead was qualified. The pricing assumes the buyer can specify reliable qualification criteria and that those criteria remain stable enough for billing. It also does not explain how multi-touch journeys, duplicate leads, or partial engagements are counted. The closed-revenue rejection is plausible, but the article does not quantify how often attribution problems would actually distort billing in practice. The support-resolution pricing note is brief and leaves open how mixed conversations are classified when a single interaction includes both sales qualification and product questions.",
+      "sources": [
+        "https://www.intercom.com/blog/building-outcome-based-pricing-for-fin-for-sales/"
+      ],
+      "summary": "Intercom argues that Fin for Sales should use outcome-based pricing tied to qualified leads rather than conversations, tokens, seats, or closed revenue. The core design choice is to charge $10 for each lead that the customer defines as qualified, because that is the point where Fin has created measurable pipeline value and the rep takes over. Intercom says it rejected revenue-share pricing because attribution from qualification to close is too noisy and the integration burden would slow implementation. The article positions this as a practical proxy for value that aligns vendor risk with product performance while remaining easier to measure than closed revenue. It also notes that Fin can still handle support queries in a sales deployment, with those interactions priced at $1 per resolution and disqualifications also priced at $1. The piece frames the model as the result of customer research and says early customers reported strong ROI, though the evidence presented is entirely vendor-owned.",
+      "why_it_matters": "The article is useful because it shows one concrete way to price an AI agent on a result that is closer to the product\u2019s actual contribution than raw activity metrics. For AI builders, the important design move is the explicit choice of a measurable intermediate outcome: qualified lead generation, not final revenue. That makes the pricing model easier to explain, easier to meter, and less exposed to downstream factors that the product does not control. The piece also surfaces an implementation tradeoff that often gets ignored in value-based pricing discussions: the more \u201cpure\u201d outcome may create too much attribution and integration overhead to be practical. Intercom\u2019s framing suggests that pricing systems for AI products may need to balance economic purity against operational simplicity. The fact that the customer defines qualification criteria is also a notable product decision, because it shifts some control over value measurement to the buyer and lets the same system fit different sales thresholds. The evidence is still vendor-authored and promotional, so the main value is as a pricing pattern and product-design example rather than as independent proof that the model outperforms alternatives. For sales-agent builders, the service-resolution side note matters only insofar as the same agent can switch between sales and support-like tasks with different billing units; that is an implementation detail, not a broader automation thesis. Actionable as of 2026-05-08, but best treated as a pricing pattern to study rather than a validated market standard."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor-authored product/pricing argument rather than a bundle of unrelated items.",
+        "Structured as a blog post explaining one pricing model for Fin for Sales, with no roundup/list format.",
+        "Claims are tied to Intercom's own product and pricing decisions, which fits a standard article."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.92,
+        "core_capabilities": [
+          "Qualifies leads against customer-defined criteria",
+          "Engages prospects on-site",
+          "Routes high-intent buyers to sales teams",
+          "Distinguishes qualified leads from disqualifications",
+          "Supports mixed-role behavior by also handling support queries",
+          "Uses outcome-based pricing tied to pipeline creation"
+        ],
+        "evidence_type": "vendor_claim",
+        "integration_ecosystem": [
+          "sales team workflows",
+          "CRM systems",
+          "prospect qualification flows",
+          "customer-defined lead criteria"
+        ],
+        "maturity_signals": "The pricing model is described as the result of earlier research on value-based pricing and later evolution from per-resolution to broader outcome-based pricing. The article says the company tested multiple concepts\u2014per-conversation, per-token, per-seat, revenue share, and per-qualified-lead\u2014and found customer preference for outcome-aligned pricing. It also cites early customer research and reported ROI, suggesting an emerging but not yet independently validated model.",
+        "name": "Fin for Sales",
+        "operational_relevance": "This source is mainly about a pricing and operating model for an AI sales agent, not a generic sales tool overview. Operationally, Fin for Sales is positioned as a lead qualification and routing layer that engages prospects, filters them against customer-defined criteria, and hands high-intent buyers to sales teams. The key knowledge object is the shift from activity-based pricing to outcome-based pricing tied to pipeline creation.",
+        "related_tools": [
+          "Granola",
+          "Claude Code"
+        ],
+        "short_description": "Fin for Sales is an AI sales agent priced by outcome: $10 per qualified lead, with customers defining what counts as qualified.",
+        "strengths": "The model is tightly aligned to the value Fin claims to create in sales: qualifying leads rather than merely chatting or counting tokens. It gives customers control over qualification criteria, which makes the metric adaptable across different sales motions. The article also frames the economics clearly, contrasting qualified-lead pricing with rep time, SDR cost, and the burden of deep CRM-based revenue attribution.",
+        "supporting_snippet": "\u201cFin for Sales qualifies leads, engages prospects, and routes high-intent buyers to your sales team. The value it creates isn\u2019t a resolved query, but a pipeline of qualified opportunities. So we price accordingly: $10 per qualified lead. And you, the customer, define what \u2018qualified\u2019 means, not Fin.\u201d",
+        "value_level": "medium",
+        "weaknesses_limitations": "The source is a vendor-authored explanation and makes strong claims about being the first outcome-based pricing model for a sales AI agent. The model depends on customer-defined qualification criteria, so pricing consistency may vary across deployments. It also explicitly rejects revenue-based pricing because attribution and measurement are difficult, which means the chosen outcome is a proxy rather than final business impact."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "An outcome-based model works best when the priced unit is close to the system's actual contribution.",
+          "The more final the outcome, the harder attribution becomes across human and external variables.",
+          "Customer-defined success criteria can make a pricing model fit multiple business contexts without changing the underlying system.",
+          "Intermediate outcomes are often easier to meter than end-state business results."
+        ],
+        "knowledge_summary": "Outcome-based pricing ties payment to a measurable result the system is expected to produce, rather than to activity, seats, or raw usage. For AI agents, the key design challenge is choosing an outcome that is close enough to the product's actual contribution to be fair, but simple enough to measure and bill reliably. The outcome also needs to be understandable to customers so they can judge whether the pricing aligns with the value they receive. In practice, the best proxy is often an intermediate business result rather than the final business outcome, because downstream factors can distort attribution.",
+        "match_candidates": [],
+        "operational_insight": "Pick the closest measurable output the system truly controls, then make the billing boundary explicit. That reduces attribution disputes and avoids pricing on signals that reward vendor volume instead of customer value.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "enterprise-workflows",
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI product and service-automation design because many agent systems create value at an intermediate step rather than at final business closure. As of 2026-05-08, teams pricing AI workflows can reuse this pattern when they need a measurable, defensible unit that tracks value without overloading billing with downstream attribution complexity.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Our outcome-based pricing model hinges on one principle: you pay when Fin delivers value.\"",
+        "topic_slug": "outcome-based-pricing-for-ai-agents",
+        "topic_title": "Outcome-Based Pricing for AI Agents",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.89,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Customer-controlled thresholds can make a single AI system usable across different business models.",
+          "The approach works best when the qualification rule is explicit and reviewable.",
+          "Flexibility improves fit, but it also creates room for billing disputes if the criteria are not governed well."
+        ],
+        "knowledge_summary": "Customer-defined qualification criteria let the buyer specify what counts as a valid business event for billing, evaluation, or workflow routing. This shifts part of the measurement burden from the vendor to the customer, which can make a system more flexible across different operating contexts. It is especially useful when the same product serves multiple teams or sales motions that define success differently. The tradeoff is that disputes and operational ambiguity can rise if the criteria are vague or unstable.",
+        "match_candidates": [],
+        "operational_insight": "Use customer-defined criteria when value is context-dependent, but require clear definitions up front so billing and handoff logic remain auditable.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "enterprise-workflows",
+          "organizational-design"
+        ],
+        "related_topics": [
+          "outcome-based-pricing-for-ai-agents"
+        ],
+        "relevance_note": "This pattern is durable wherever AI systems are used in workflows with subjective or business-specific thresholds, especially sales qualification, support triage, and routing. As of 2026-05-08, it is a practical way to adapt one system to different organizations without hard-coding a single vendor-defined notion of success.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"And you, the customer, define what 'qualified' means, not Fin.\"",
+        "topic_slug": "customer-defined-qualification-criteria",
+        "topic_title": "Customer-Defined Qualification Criteria",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-08",
+          "confidence": 0.87,
+          "evidence_from_source": "Intercom says it tested per-conversation, per-token, per-seat, revenue share, and per-qualified-lead models, and concluded that qualified leads best balance value alignment, measurability, and practical implementation.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-operationalization"
+          ],
+          "related_trends": [],
+          "secondary_tag": "ai-operationalization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-economics",
+          "suggested_new_tags": [
+            "ai-economics"
+          ],
+          "supporting_data_points": [
+            "Intercom tested per-conversation, per-token, per-seat, revenue share, and per-qualified-lead.",
+            "The selected unit for Fin for Sales is $10 per qualified lead.",
+            "Intercom says the model came from qualitative interviews and quantitative studies."
+          ],
+          "supporting_snippet": "\"The research consistently pointed to outcome-aligned pricing as the preferred model, with the qualified lead emerging as the metric that best balances value alignment, measurability, and practical implementation.\"",
+          "time_sensitivity": "Actionable as of 2026-05-08; the pattern may remain relevant while vendors are still defining credible AI pricing units, but specific price points and chosen metrics will vary by product and workflow.",
+          "trend_description": "Pricing for AI products increasingly shifts from activity-based units such as seats, tokens, or conversations toward measurable business outcomes that are closer to customer value. The operational challenge is not just choosing a better unit, but finding one that can be measured and billed without creating excessive attribution or integration overhead. Intermediate outcomes often become the practical compromise between pure value alignment and deployability.",
+          "trend_slug": "ai-pricing-moves-toward-measurable-outcomes",
+          "trend_title": "AI Pricing Moves Toward Measurable Outcomes",
+          "uncertainty_note": "The evidence is vendor-authored and based on Intercom's own research, so it supports the existence of the pricing experiment more than it proves broad market adoption.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "46e3cdd5-7432-4dee-8883-a39ccf20b403",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Intercom tested per-conversation, per-token, per-seat, revenue share, and per-qualified-lead.",
+              "The selected unit for Fin for Sales is $10 per qualified lead.",
+              "Intercom says the model came from qualitative interviews and quantitative studies."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The article is published by Intercom and argues for its own pricing model for Fin for Sales.",
+          "Supporting evidence comes from the company's described customer research and product design choices, not an external evaluator.",
+          "Quoted customer feedback appears inside a vendor-authored case narrative rather than as independent reporting."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Intercom\u2019s proposed pricing boundary is the point at which Fin has qualified a lead, not the later close event that depends on human sales work.",
+          "The customer, not the vendor, defines what counts as a qualified lead, which lets pricing map to different sales motions and lead-quality thresholds.",
+          "Intercom explicitly rejects closed-revenue pricing because attribution noise and CRM integration burden would make the model hard to operationalize.",
+          "The article treats the qualified lead as the best proxy for pipeline creation, which is the value unit Intercom says Fin actually contributes in sales.",
+          "A sales deployment can still generate $1 service-resolution charges for support questions, so one agent can span multiple billing units depending on the task."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.intercom.com/blog/building-outcome-based-pricing-for-fin-for-sales/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor-authored product/pricing argument rather than a bundle of unrelated items.",
+          "Structured as a blog post explaining one pricing model for Fin for Sales, with no roundup/list format.",
+          "Claims are tied to Intercom's own product and pricing decisions, which fits a standard article."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "core_capabilities": [
+            "Qualifies leads against customer-defined criteria",
+            "Engages prospects on-site",
+            "Routes high-intent buyers to sales teams",
+            "Distinguishes qualified leads from disqualifications",
+            "Supports mixed-role behavior by also handling support queries",
+            "Uses outcome-based pricing tied to pipeline creation"
+          ],
+          "evidence_type": "vendor_claim",
+          "integration_ecosystem": [
+            "sales team workflows",
+            "CRM systems",
+            "prospect qualification flows",
+            "customer-defined lead criteria"
+          ],
+          "maturity_signals": "The pricing model is described as the result of earlier research on value-based pricing and later evolution from per-resolution to broader outcome-based pricing. The article says the company tested multiple concepts\u2014per-conversation, per-token, per-seat, revenue share, and per-qualified-lead\u2014and found customer preference for outcome-aligned pricing. It also cites early customer research and reported ROI, suggesting an emerging but not yet independently validated model.",
+          "name": "Fin for Sales",
+          "operational_relevance": "This source is mainly about a pricing and operating model for an AI sales agent, not a generic sales tool overview. Operationally, Fin for Sales is positioned as a lead qualification and routing layer that engages prospects, filters them against customer-defined criteria, and hands high-intent buyers to sales teams. The key knowledge object is the shift from activity-based pricing to outcome-based pricing tied to pipeline creation.",
+          "related_tools": [
+            "Granola",
+            "Claude Code"
+          ],
+          "short_description": "Fin for Sales is an AI sales agent priced by outcome: $10 per qualified lead, with customers defining what counts as qualified.",
+          "strengths": "The model is tightly aligned to the value Fin claims to create in sales: qualifying leads rather than merely chatting or counting tokens. It gives customers control over qualification criteria, which makes the metric adaptable across different sales motions. The article also frames the economics clearly, contrasting qualified-lead pricing with rep time, SDR cost, and the burden of deep CRM-based revenue attribution.",
+          "supporting_snippet": "\u201cFin for Sales qualifies leads, engages prospects, and routes high-intent buyers to your sales team. The value it creates isn\u2019t a resolved query, but a pipeline of qualified opportunities. So we price accordingly: $10 per qualified lead. And you, the customer, define what \u2018qualified\u2019 means, not Fin.\u201d",
+          "value_level": "medium",
+          "weaknesses_limitations": "The source is a vendor-authored explanation and makes strong claims about being the first outcome-based pricing model for a sales AI agent. The model depends on customer-defined qualification criteria, so pricing consistency may vary across deployments. It also explicitly rejects revenue-based pricing because attribution and measurement are difficult, which means the chosen outcome is a proxy rather than final business impact."
+        },
+        "notes": null,
+        "proposal_id": "978d0349818b4d8bbba9421cc4105a54",
+        "proposal_regeneration_meta": {
+          "forced_extract": true,
+          "last_regen_at": "2026-06-01T16:09:48+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "39",
+          "regen_count": 0
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "Qualifies leads against customer-defined criteria",
+              "Engages prospects on-site",
+              "Routes high-intent buyers to sales teams",
+              "Distinguishes qualified leads from disqualifications",
+              "Supports mixed-role behavior by also handling support queries",
+              "Uses outcome-based pricing tied to pipeline creation"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "sales team workflows",
+              "CRM systems",
+              "prospect qualification flows",
+              "customer-defined lead criteria"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "sales-automation",
+            "enterprise-ai"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "sales-automation",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "An outcome-based model works best when the priced unit is close to the system's actual contribution.",
+            "The more final the outcome, the harder attribution becomes across human and external variables.",
+            "Customer-defined success criteria can make a pricing model fit multiple business contexts without changing the underlying system.",
+            "Intermediate outcomes are often easier to meter than end-state business results."
+          ],
+          "knowledge_summary": "Outcome-based pricing ties payment to a measurable result the system is expected to produce, rather than to activity, seats, or raw usage. For AI agents, the key design challenge is choosing an outcome that is close enough to the product's actual contribution to be fair, but simple enough to measure and bill reliably. The outcome also needs to be understandable to customers so they can judge whether the pricing aligns with the value they receive. In practice, the best proxy is often an intermediate business result rather than the final business outcome, because downstream factors can distort attribution.",
+          "match_candidates": [],
+          "operational_insight": "Pick the closest measurable output the system truly controls, then make the billing boundary explicit. That reduces attribution disputes and avoids pricing on signals that reward vendor volume instead of customer value.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "enterprise-workflows",
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI product and service-automation design because many agent systems create value at an intermediate step rather than at final business closure. As of 2026-05-08, teams pricing AI workflows can reuse this pattern when they need a measurable, defensible unit that tracks value without overloading billing with downstream attribution complexity.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Our outcome-based pricing model hinges on one principle: you pay when Fin delivers value.\"",
+          "topic_slug": "outcome-based-pricing-for-ai-agents",
+          "topic_title": "Outcome-Based Pricing for AI Agents",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ed245034-fd23-40c4-8897-2e5c959925f4",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "An outcome-based model works best when the priced unit is close to the system's actual contribution.",
+              "The more final the outcome, the harder attribution becomes across human and external variables.",
+              "Customer-defined success criteria can make a pricing model fit multiple business contexts without changing the underlying system.",
+              "Intermediate outcomes are often easier to meter than end-state business results."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "enterprise-workflows",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Customer-controlled thresholds can make a single AI system usable across different business models.",
+            "The approach works best when the qualification rule is explicit and reviewable.",
+            "Flexibility improves fit, but it also creates room for billing disputes if the criteria are not governed well."
+          ],
+          "knowledge_summary": "Customer-defined qualification criteria let the buyer specify what counts as a valid business event for billing, evaluation, or workflow routing. This shifts part of the measurement burden from the vendor to the customer, which can make a system more flexible across different operating contexts. It is especially useful when the same product serves multiple teams or sales motions that define success differently. The tradeoff is that disputes and operational ambiguity can rise if the criteria are vague or unstable.",
+          "match_candidates": [],
+          "operational_insight": "Use customer-defined criteria when value is context-dependent, but require clear definitions up front so billing and handoff logic remain auditable.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "enterprise-workflows",
+            "organizational-design"
+          ],
+          "related_topics": [
+            "outcome-based-pricing-for-ai-agents"
+          ],
+          "relevance_note": "This pattern is durable wherever AI systems are used in workflows with subjective or business-specific thresholds, especially sales qualification, support triage, and routing. As of 2026-05-08, it is a practical way to adapt one system to different organizations without hard-coding a single vendor-defined notion of success.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"And you, the customer, define what 'qualified' means, not Fin.\"",
+          "topic_slug": "customer-defined-qualification-criteria",
+          "topic_title": "Customer-Defined Qualification Criteria",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "66ad8b12-cce2-4c53-869f-9df7d8b56eef",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Customer-controlled thresholds can make a single AI system usable across different business models.",
+              "The approach works best when the qualification rule is explicit and reviewable.",
+              "Flexibility improves fit, but it also creates room for billing disputes if the criteria are not governed well."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "outcome-based-pricing-for-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "enterprise-workflows",
+            "organizational-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 2,
+    "proposals_total": 4,
+    "review_duration_seconds": 279.3,
+    "review_finished_at": "2026-06-01T16:11:09.308498+00:00",
+    "review_started_at": "2026-06-01T16:06:30+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-01T16:11:09+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Aisling O'Reilly",
+    "canonical_url": "https://www.intercom.com/blog/building-outcome-based-pricing-for-fin-for-sales/",
+    "content_sha256": "bfd871a02c5140cb6ef5ea84ee115fe8a84b961450d075b7e86f6570f66fa838",
+    "publication": "Intercom",
+    "published_date": "2026-05-08",
+    "raw_html_rel_path": "raw/readwise/building-outcome-based-pricing-for-fin-for-sales-01kr3k6ta71c0h2jx16gawcmam.html",
+    "raw_md_rel_path": "raw/readwise/building-outcome-based-pricing-for-fin-for-sales-01kr3k6ta71c0h2jx16gawcmam.md",
+    "source_id": "building-outcome-based-pricing-for-fin-for-sales-01kr3k6ta71c0h2jx16gawcmam",
+    "title": "Building outcome-based pricing for Fin for Sales"
+  }
+}

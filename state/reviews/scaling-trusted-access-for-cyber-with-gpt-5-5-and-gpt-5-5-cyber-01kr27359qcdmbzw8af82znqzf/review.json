@@ -999,19 +999,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "vendor_claim": 5
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 5,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
+    "proposals_total": 5,
+    "review_duration_seconds": 232.8,
+    "review_finished_at": "2026-05-26T21:57:59.751597+00:00",
     "review_started_at": "2026-05-26T21:54:07+00:00"
   },
   "review_session": {
-    "last_saved_at": "2026-05-26T21:56:34+00:00",
+    "last_saved_at": "2026-05-26T21:57:59+00:00",
     "saved_by": null
   },
   "source": {

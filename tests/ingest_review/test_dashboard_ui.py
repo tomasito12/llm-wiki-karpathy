@@ -187,7 +187,7 @@ def test_render_skip_extraction_screen_never_gates_tools_roundup() -> None:
             "extraction_meta": {"skip_recommended": True, "skip_reason": "test"},
         }
     }
-    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is False
+    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is None
     mock_st.warning.assert_not_called()
     mock_st.info.assert_called_once()
 
@@ -202,19 +202,32 @@ def test_render_skip_extraction_screen_never_gates_how_to_roundup() -> None:
             "extraction_meta": {"skip_recommended": True},
         }
     }
-    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is False
+    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is None
     mock_st.info.assert_called_once()
 
 
 def test_render_skip_extraction_screen_shows_warning_when_skip_and_not_roundup() -> None:
-    """Standard articles with skip_recommended still show the warning."""
-    col1, col2 = MagicMock(), MagicMock()
+    """Standard articles with skip_recommended still show the warning until a mode is chosen."""
+    col1, col2, col3 = MagicMock(), MagicMock(), MagicMock()
+    fe_col1, fe_col2 = MagicMock(), MagicMock()
     col1.button.return_value = False
     col2.button.return_value = False
+    col3.button.return_value = False
     mock_st = MagicMock()
     mock_st.session_state = {}
-    mock_st.columns.return_value = (col1, col2)
+    mock_st.selectbox.return_value = "Topic"
+    mock_st.button.return_value = False
+    mock_st.expander.return_value.__enter__ = MagicMock(return_value=None)
+    mock_st.expander.return_value.__exit__ = MagicMock(return_value=None)
+
+    def _columns(spec: list[int]) -> tuple[MagicMock, ...]:
+        if spec == [2, 1]:
+            return (fe_col1, fe_col2)
+        return (col1, col2, col3)
+
+    mock_st.columns.side_effect = _columns
     artifact = {
+        "source": {"source_id": "src-1"},
         "llm_output": {
             "source_type_detection": {"detected_source_type": "standard_article"},
             "extraction_meta": {
@@ -223,7 +236,19 @@ def test_render_skip_extraction_screen_shows_warning_when_skip_and_not_roundup()
                 "review_burden_estimate": "low",
                 "total_candidates_considered": 3,
             },
+        },
+    }
+    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is None
+    mock_st.warning.assert_called_once()
+
+
+def test_render_skip_extraction_screen_returns_source_only_mode() -> None:
+    mock_st = MagicMock()
+    mock_st.session_state = {"pfx_review_mode": "source_only"}
+    artifact = {
+        "llm_output": {
+            "source_type_detection": {"detected_source_type": "standard_article"},
+            "extraction_meta": {"skip_recommended": True, "skip_reason": "test"},
         }
     }
-    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is False
-    mock_st.warning.assert_called_once()
+    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") == "source_only"

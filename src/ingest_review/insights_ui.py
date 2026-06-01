@@ -302,7 +302,7 @@ def _persist_insight_proposal_from_widgets(
         return
     apply_insight_proposal_edits(node, field_values)
     llm_item = node.setdefault("llm_item", {})
-    apply_tag_ui_to_node(node, llm_item, tag_ui, allow)
+    apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     title = field_values.get("insight_title") or llm_item.get("insight_title") or "insight"
