@@ -40,6 +40,9 @@ format = [
 dashboard = [
   "streamlit run src/dashboard/app.py {args}",
 ]
+llm-ingest = [
+  "streamlit run src/dashboard/app.py {args}",
+]
 ingest-manifest = [
   "python -m src.pipeline.ingest_manifest {args}",
 ]

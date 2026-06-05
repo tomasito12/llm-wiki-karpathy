@@ -1,4 +1,4 @@
-"""Shared two-column read/edit layout for multi-proposal entity sections."""
+"""Shared proposal review layout for multi-proposal entity sections."""
 
 from __future__ import annotations
 
@@ -108,25 +108,15 @@ def render_two_column_proposal_review(
     readonly_markdown_for_node: MarkdownForNode,
     render_edit_for_node: RenderEditForNode,
 ) -> None:
-    """Read-only catalog (left) and edit panels (right); expanders when len(nodes) > 1."""
-    use_expanders = len(nodes) > 1
-    read_col, edit_col = st.columns(2)
-    with read_col:
-        render_proposal_read_column(
-            st,
-            nodes,
-            empty_text=empty_readonly_text,
-            markdown_for_node=readonly_markdown_for_node,
-            label_for_node=label_for_node,
-            use_expanders=use_expanders,
-            key_prefix=key_prefix,
-        )
-    with edit_col:
-        render_proposal_edit_column(
-            st,
-            nodes,
-            label_for_node=label_for_node,
-            render_edit_for_node=render_edit_for_node,
-            use_expanders=use_expanders,
-            key_prefix=key_prefix,
-        )
+    """Fast single-column review with navigator (legacy name retained for callers)."""
+    from src.ingest_review.fast_review_ui import render_fast_proposal_review
+
+    _ = readonly_markdown_for_node
+    render_fast_proposal_review(
+        st,
+        nodes,
+        key_prefix=key_prefix,
+        empty_readonly_text=empty_readonly_text,
+        label_for_node=label_for_node,
+        render_edit_for_node=render_edit_for_node,
+    )

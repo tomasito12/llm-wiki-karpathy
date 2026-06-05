@@ -15,22 +15,29 @@ from src.ingest_review.domain_tag_ui import (
     effective_readonly_domain_tags,
     render_domain_tag_section,
 )
+from src.ingest_review.fast_review_ui import (
+    CollapsedFieldSpec,
+    read_fast_card_field_values,
+    register_card_autosave,
+    render_collapsed_fields,
+    render_context_expander,
+    render_fast_card_header,
+    render_fast_card_reclassify,
+    render_fast_card_save_row,
+    render_inline_regenerate_title_controls,
+    render_readonly_context_hint,
+    render_source_evidence_expander,
+)
 from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_two_column_proposal_review,
 )
-from src.ingest_review.proposal_decision_ui import (
-    proposal_status_label,
-    render_proposal_decision_bar,
-    set_proposal_save_message,
-)
+from src.ingest_review.proposal_decision_ui import set_proposal_save_message
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
-    render_reclassify_to_section_controls,
-    render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import HOWTO_REVIEWABLE_LIST_KEYS, HOWTO_REVIEWABLE_SCALAR_KEYS
 from src.ingest_review.tags import normalize_tag
@@ -64,6 +71,22 @@ HOWTO_SCALAR_BEFORE_TAGS: tuple[str, ...] = (
     "answer_summary",
 )
 HOWTO_SCALAR_AFTER_TAGS: tuple[str, ...] = ("caveats",)
+
+HOWTO_MORE_FIELD_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec("caveats", "Caveats"),
+    CollapsedFieldSpec(
+        "implementation_steps",
+        "Implementation steps",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+    CollapsedFieldSpec(
+        "prerequisites",
+        "Prerequisites",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+)
 HOWTO_TALL_SCALAR_KEYS: frozenset[str] = frozenset({"what_and_problem", "answer_summary"})
 
 
@@ -306,12 +329,21 @@ def _persist_howto_proposal_from_widgets(
     artifact = streamlit_runtime.session_state.get("artifact")
     if not isinstance(artifact, dict):
         return
-    apply_howto_proposal_edits(node, field_values)
+    merged = read_fast_card_field_values(
+        key_prefix,
+        title_keys=("question_title",),
+        context_keys=("answer_summary",),
+        context_companion_fields=(("what_and_problem", "answer_summary"),),
+        more_scalar_keys=tuple(s.key for s in HOWTO_MORE_FIELD_SPECS if not s.is_list),
+        more_list_keys=HOWTO_REVIEWABLE_LIST_KEYS,
+        field_values=field_values,
+    )
+    apply_howto_proposal_edits(node, merged)
     llm_item = node.setdefault("llm_item", {})
     apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
-    title = field_values.get("question_title") or llm_item.get("question_title") or "how-to"
+    title = merged.get("question_title") or llm_item.get("question_title") or "how-to"
     set_proposal_save_message(key_prefix, f"Saved **{title}**.")
 
 
@@ -326,28 +358,49 @@ def _render_howto_edit_box(
     model: str,
     prompt_version: str,
     tag_allow: set[str],
+    autosave_registry_key: str,
 ) -> None:
-    """One bordered edit box per how-to proposal."""
+    """Fast-review card for one how-to proposal."""
     llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
     title = effective_howto_scalar(llm_item, sections, "question_title") or "Untitled"
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    status_lbl = proposal_status_label(node)
+    proposal_id = str(node.get("proposal_id") or "")
 
     with st.container(border=True):
-        st.markdown(f"**{title}** · {badge} · **{status_lbl}**")
+        render_fast_card_header(
+            st,
+            node,
+            badge=badge,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="how_to",
+        )
         render_proposal_regen_meta_caption(st, node, "How-to")
 
         field_values: dict[str, str] = {}
-        for sk in HOWTO_SCALAR_BEFORE_TAGS:
-            label = HOWTO_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=howto_field_edit_value(llm_item, sections, sk),
-                height=120 if sk in HOWTO_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
+        field_values["question_title"] = st.text_area(
+            "Question title",
+            value=howto_field_edit_value(llm_item, sections, "question_title"),
+            height=72,
+            key=f"{key_prefix}_edit_question_title",
+        )
+        render_readonly_context_hint(
+            st,
+            label="Answer summary",
+            value=howto_field_edit_value(llm_item, sections, "answer_summary"),
+        )
+
+        render_inline_regenerate_title_controls(
+            st,
+            entity_key="how_to",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=title,
+            title_label="New how-to title",
+        )
 
         tag_ui = render_domain_tag_section(
             st,
@@ -364,53 +417,6 @@ def _render_howto_edit_box(
             llm_fallback_summary_key="answer_summary",
         )
 
-        for sk in HOWTO_SCALAR_AFTER_TAGS:
-            label = HOWTO_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=howto_field_edit_value(llm_item, sections, sk),
-                height=72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
-
-        for lk in HOWTO_REVIEWABLE_LIST_KEYS:
-            label = HOWTO_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
-            field_values[lk] = st.text_area(
-                label,
-                value=howto_list_edit_value(llm_item, sections, lk),
-                height=100,
-                key=f"{key_prefix}_edit_{lk}",
-                help="One bullet per line.",
-            )
-
-        snippet = str(llm_item.get("supporting_snippet") or "").strip()
-        if snippet:
-            with st.expander("Source evidence (read-only)", expanded=False):
-                st.text(snippet[:4000] + ("…" if len(snippet) > 4000 else ""))
-
-        related = llm_item.get("related_howtos") or []
-        if related:
-            st.caption(f"Related how-tos (LLM): {', '.join(str(r) for r in related)}")
-
-        proposal_id = str(node.get("proposal_id") or "")
-        render_regenerate_with_new_title_controls(
-            st,
-            entity_key="how_to",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=title,
-            title_label="New how-to title",
-        )
-        render_reclassify_to_section_controls(
-            st,
-            source_entity_key="how_to",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=title,
-        )
-
         def _save() -> None:
             _persist_howto_proposal_from_widgets(
                 node,
@@ -421,7 +427,7 @@ def _render_howto_edit_box(
                 key_prefix=key_prefix,
             )
 
-        render_proposal_decision_bar(
+        render_fast_card_save_row(
             st,
             node,
             key_prefix=key_prefix,
@@ -429,6 +435,54 @@ def _render_howto_edit_box(
             review_list_key="how_to",
             on_save_callback=_save,
         )
+
+        render_context_expander(
+            st,
+            label="Answer / context",
+            field_key="answer_summary",
+            field_label="Answer summary",
+            value=howto_field_edit_value(llm_item, sections, "answer_summary"),
+            widget_key=f"{key_prefix}_ctx_answer_summary",
+            field_values=field_values,
+            extra_fields=[
+                (
+                    "what_and_problem",
+                    "What and problem",
+                    howto_field_edit_value(llm_item, sections, "what_and_problem"),
+                    True,
+                ),
+            ],
+        )
+
+        def _related_caption() -> None:
+            related = llm_item.get("related_howtos") or []
+            if related:
+                st.caption(f"Related how-tos (LLM): {', '.join(str(r) for r in related)}")
+
+        render_collapsed_fields(
+            st,
+            specs=list(HOWTO_MORE_FIELD_SPECS),
+            get_value=lambda li, sec, k: (
+                howto_list_edit_value(li, sec, k)
+                if k in HOWTO_REVIEWABLE_LIST_KEYS
+                else howto_field_edit_value(li, sec, k)
+            ),
+            llm_item=llm_item,
+            sections=sections,
+            key_prefix=key_prefix,
+            field_values=field_values,
+            extra_content=_related_caption,
+        )
+        render_source_evidence_expander(st, llm_item)
+        render_fast_card_reclassify(
+            st,
+            node,
+            reclassify_entity_key="how_to",
+            source_id=source_id,
+            current_title=title,
+            key_prefix=key_prefix,
+        )
+        register_card_autosave(autosave_registry_key, node, _save)
 
 
 def render_howto_proposals(
@@ -482,6 +536,7 @@ def render_howto_proposals(
             model=model,
             prompt_version=prompt_version,
             tag_allow=tag_allow,
+            autosave_registry_key=key_prefix,
         )
 
     render_two_column_proposal_review(

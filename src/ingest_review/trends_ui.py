@@ -1,4 +1,4 @@
-"""Streamlit rendering for industry trend proposals (two-column read/edit + domain tags)."""
+"""Streamlit rendering for industry trend proposals (fast review + domain tags)."""
 
 from __future__ import annotations
 
@@ -15,22 +15,29 @@ from src.ingest_review.domain_tag_ui import (
     effective_readonly_domain_tags,
     render_domain_tag_section,
 )
+from src.ingest_review.fast_review_ui import (
+    CollapsedFieldSpec,
+    read_fast_card_field_values,
+    register_card_autosave,
+    render_collapsed_fields,
+    render_context_expander,
+    render_fast_card_header,
+    render_fast_card_reclassify,
+    render_fast_card_save_row,
+    render_inline_regenerate_title_controls,
+    render_readonly_context_hint,
+    render_source_evidence_expander,
+)
 from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_two_column_proposal_review,
 )
-from src.ingest_review.proposal_decision_ui import (
-    proposal_status_label,
-    render_proposal_decision_bar,
-    set_proposal_save_message,
-)
+from src.ingest_review.proposal_decision_ui import set_proposal_save_message
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
-    render_reclassify_to_section_controls,
-    render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import TREND_REVIEWABLE_LIST_KEYS, TREND_REVIEWABLE_SCALAR_KEYS
 from src.ingest_review.tags import normalize_tag
@@ -66,6 +73,19 @@ TREND_SCALAR_AFTER_TAGS: tuple[str, ...] = (
     "uncertainty_note",
 )
 TREND_TALL_SCALAR_KEYS: frozenset[str] = frozenset({"trend_description", "evidence_from_source"})
+
+TREND_MORE_FIELD_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec("trend_slug", "Page slug"),
+    CollapsedFieldSpec("evidence_from_source", "Evidence from source", tall=True),
+    CollapsedFieldSpec("time_sensitivity", "Time sensitivity"),
+    CollapsedFieldSpec("uncertainty_note", "Uncertainty note", tall=True),
+    CollapsedFieldSpec(
+        "supporting_data_points",
+        "Supporting data points",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+)
 
 
 def _sort_key(node: dict[str, Any]) -> tuple[int, float]:
@@ -313,15 +333,23 @@ def _persist_trend_proposal_from_widgets(
     artifact = streamlit_runtime.session_state.get("artifact")
     if not isinstance(artifact, dict):
         return
-    apply_trend_proposal_edits(node, field_values)
+    merged = read_fast_card_field_values(
+        key_prefix,
+        title_keys=("trend_title",),
+        context_keys=("trend_description",),
+        more_scalar_keys=tuple(s.key for s in TREND_MORE_FIELD_SPECS if not s.is_list),
+        more_list_keys=TREND_REVIEWABLE_LIST_KEYS,
+        field_values=field_values,
+    )
+    apply_trend_proposal_edits(node, merged)
     llm_item = node.setdefault("llm_item", {})
     apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
     title = (
-        field_values.get("trend_title")
+        merged.get("trend_title")
         or llm_item.get("trend_title")
-        or field_values.get("trend_slug")
+        or merged.get("trend_slug")
         or llm_item.get("trend_slug")
         or "trend"
     )
@@ -339,8 +367,9 @@ def _render_trend_edit_box(
     model: str,
     prompt_version: str,
     tag_allow: set[str],
+    autosave_registry_key: str,
 ) -> None:
-    """One bordered edit box per trend proposal."""
+    """Fast-review card for one trend proposal."""
     llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
     title = (
@@ -350,21 +379,41 @@ def _render_trend_edit_box(
     )
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    status_lbl = proposal_status_label(node)
+    proposal_id = str(node.get("proposal_id") or "")
 
     with st.container(border=True):
-        st.markdown(f"**{title}** · {badge} · **{status_lbl}**")
+        render_fast_card_header(
+            st,
+            node,
+            badge=badge,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="industry_trends",
+        )
         render_proposal_regen_meta_caption(st, node, "Trend")
 
         field_values: dict[str, str] = {}
-        for sk in TREND_SCALAR_BEFORE_TAGS:
-            label = TREND_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=trend_field_edit_value(llm_item, sections, sk),
-                height=120 if sk in TREND_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
+        field_values["trend_title"] = st.text_area(
+            "Page title",
+            value=trend_field_edit_value(llm_item, sections, "trend_title"),
+            height=72,
+            key=f"{key_prefix}_edit_trend_title",
+        )
+        render_readonly_context_hint(
+            st,
+            label="Trend description",
+            value=trend_field_edit_value(llm_item, sections, "trend_description"),
+        )
+
+        render_inline_regenerate_title_controls(
+            st,
+            entity_key="trend",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=title,
+            title_label="New trend title",
+        )
 
         tag_ui = render_domain_tag_section(
             st,
@@ -381,54 +430,6 @@ def _render_trend_edit_box(
             llm_fallback_summary_key="trend_description",
         )
 
-        for sk in TREND_SCALAR_AFTER_TAGS:
-            label = TREND_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=trend_field_edit_value(llm_item, sections, sk),
-                height=120 if sk in TREND_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
-
-        for lk in TREND_REVIEWABLE_LIST_KEYS:
-            label = TREND_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
-            field_values[lk] = st.text_area(
-                label,
-                value=trend_list_edit_value(llm_item, sections, lk),
-                height=100,
-                key=f"{key_prefix}_edit_{lk}",
-                help="One bullet per line.",
-            )
-
-        snippet = str(llm_item.get("supporting_snippet") or "").strip()
-        if snippet:
-            with st.expander("Source evidence (read-only)", expanded=False):
-                st.text(snippet[:4000] + ("…" if len(snippet) > 4000 else ""))
-
-        related = llm_item.get("related_trends") or []
-        if related:
-            st.caption(f"Related trends (LLM): {', '.join(str(r) for r in related)}")
-
-        proposal_id = str(node.get("proposal_id") or "")
-        render_regenerate_with_new_title_controls(
-            st,
-            entity_key="trend",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=title,
-            title_label="New trend title",
-        )
-        render_reclassify_to_section_controls(
-            st,
-            source_entity_key="trend",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=title,
-            title_label="Title in target section",
-        )
-
         def _save() -> None:
             _persist_trend_proposal_from_widgets(
                 node,
@@ -439,7 +440,7 @@ def _render_trend_edit_box(
                 key_prefix=key_prefix,
             )
 
-        render_proposal_decision_bar(
+        render_fast_card_save_row(
             st,
             node,
             key_prefix=key_prefix,
@@ -447,6 +448,46 @@ def _render_trend_edit_box(
             review_list_key="industry_trends",
             on_save_callback=_save,
         )
+
+        render_context_expander(
+            st,
+            label="Description / context",
+            field_key="trend_description",
+            field_label="Trend description",
+            value=trend_field_edit_value(llm_item, sections, "trend_description"),
+            widget_key=f"{key_prefix}_ctx_trend_description",
+            field_values=field_values,
+        )
+
+        def _related_caption() -> None:
+            related = llm_item.get("related_trends") or []
+            if related:
+                st.caption(f"Related trends (LLM): {', '.join(str(r) for r in related)}")
+
+        render_collapsed_fields(
+            st,
+            specs=list(TREND_MORE_FIELD_SPECS),
+            get_value=lambda li, sec, k: (
+                trend_list_edit_value(li, sec, k)
+                if k in TREND_REVIEWABLE_LIST_KEYS
+                else trend_field_edit_value(li, sec, k)
+            ),
+            llm_item=llm_item,
+            sections=sections,
+            key_prefix=key_prefix,
+            field_values=field_values,
+            extra_content=_related_caption,
+        )
+        render_source_evidence_expander(st, llm_item)
+        render_fast_card_reclassify(
+            st,
+            node,
+            reclassify_entity_key="trend",
+            source_id=source_id,
+            current_title=title,
+            key_prefix=key_prefix,
+        )
+        register_card_autosave(autosave_registry_key, node, _save)
 
 
 def render_trend_proposals(
@@ -509,6 +550,7 @@ def render_trend_proposals(
             model=model,
             prompt_version=prompt_version,
             tag_allow=tag_allow,
+            autosave_registry_key=key_prefix,
         )
 
     render_two_column_proposal_review(

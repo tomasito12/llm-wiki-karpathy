@@ -1,0 +1,969 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T15:38:52+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnQujevypImLFYI7hvbjD0p5874Xb",
+          "token_usage": {
+            "completion_tokens": 192,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5310,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5502
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnQumcXKrH7XlxKOrPwWEJ2WCUti7",
+          "token_usage": {
+            "completion_tokens": 1066,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4916,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5982
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnQuvxLRqX06YY0lsDZzbj4myOrYm",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2576,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30351,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 32927
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnQuvxLRqX06YY0lsDZzbj4myOrYm",
+    "token_usage": {
+      "completion_tokens": 3834,
+      "prompt_tokens": 40577,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 44411
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 2
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-02",
+        "confidence": 0.86,
+        "evidence_from_source": "The article explicitly contrasts Graphify, which builds a knowledge graph so the assistant can navigate a codebase, with Caveman, which compresses the assistant\u2019s output. It says they solve different problems, and the combined example shows them used together: one for input-side context acquisition and one for output-side brevity.",
+        "evidence_type": "mixed",
+        "match_candidates": [],
+        "primary_tag": "workflow-restructuring",
+        "proposed_tags": [
+          "workflow-restructuring",
+          "tool-centric-agents"
+        ],
+        "related_trends": [
+          "artifact-first-ai-workflows"
+        ],
+        "secondary_tag": "tool-centric-agents",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "coding-agents",
+        "suggested_new_tags": [
+          "coding-agents"
+        ],
+        "supporting_data_points": [
+          "Graphify claims a 71.5\u00d7 token reduction on a 52-file corpus.",
+          "Caveman claims an average 65% output-token reduction on real prompts.",
+          "The article presents a combined onboarding example using both tools."
+        ],
+        "supporting_snippet": "\"Graphify handled the input side \u2014 the AI navigated via the graph instead of reading 40 raw files. Caveman handled the output side \u2014 the answer came back in four sentences instead of four paragraphs.\"",
+        "time_sensitivity": "As of 2026-05-02, this is a practical workflow pattern emerging in coding assistants rather than a settled standard. The evidence is product-level and illustrative, so the pattern may persist, but the article does not establish broad industry adoption.",
+        "trend_description": "AI coding assistants are increasingly split into two independently tunable layers: one layer acquires, structures, or navigates context from large codebases, while another layer controls how concise or verbose the final response should be. This broader pattern goes beyond the specific tools in the article and points to a workflow design where input handling and output style are optimized separately to reduce token waste, improve readability, and make assistant behavior easier to manage in long-context coding work.",
+        "trend_slug": "ai-coding-assistants-separate-context-acquisition-from-response-style",
+        "trend_title": "AI Coding Assistants Separate Context Acquisition from Response Style",
+        "uncertainty_note": "The source is a comparison article centered on two open-source tools, so it supports the pattern but does not prove that the separation is universal or best-in-class. Future assistants may absorb these capabilities natively, which could reduce how visible this split remains even if the underlying need persists.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article combines product descriptions with direct quantitative claims about token reduction and benchmark accuracy.",
+        "It includes vendor/product-style claims about Graphify and Caveman features, alongside quoted or referenced performance numbers.",
+        "No formal methodology is provided, so the evidence base is a mix of product claims and lightweight benchmark-style assertions."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about two tools that make AI coding assistants more useful, but in very different ways. Graphify helps the assistant understand a whole codebase by turning files into a connected map it can query. Caveman does the opposite kind of work: it makes the assistant answer in a much shorter, denser style. The article says each tool can save tokens, and they can be used together. One helps the model find the right context; the other helps it avoid wasting words. The main takeaway is simple: better input understanding and tighter output can both improve the coding workflow.",
+      "assessed_as_of": "2026-05-02",
+      "contradictions_and_skepticism": "The article\u2019s strongest claims are largely promotional and supported by limited evidence. Graphify is presented as a fix for the \u2018raw folder problem,\u2019 but the example mostly shows better organization, not proof that it reliably improves reasoning on difficult tasks. Caveman\u2019s claim that shorter answers can improve accuracy is plausible, but the article does not show enough detail to separate wording effects from task difficulty or benchmark design. The \u2018both have tens of thousands of GitHub stars\u2019 framing is a popularity signal, not evidence of durable technical value. Still, the comparison is coherent and the skepticism is moderate rather than dismissive.",
+      "key_insights": [
+        "Graphify\u2019s core value is structural context: it converts a folder into a knowledge graph so the assistant can reason over relationships instead of scanning files one by one.",
+        "Caveman attacks response bloat, not model reasoning; it compresses answers while keeping technical content intact.",
+        "The article claims Graphify reduces tokens per query by 71.5\u00d7 on a 52-file corpus, but that figure is tied to a specific example and lacks methodology detail.",
+        "Caveman is presented with four compression levels and subcommands for commits, PR comments, and CLAUDE.md compression, making it more than a one-off prompt trick.",
+        "The two tools are complementary because one reduces input cost and the other reduces output cost."
+      ],
+      "limitations_and_open_questions": "The article gives no formal evaluation methodology for the token-reduction numbers, so the 71.5\u00d7 and 65% claims are hard to generalize. It is unclear how Graphify performs on very large codebases, noisy repositories, or projects with many generated files. The multimodal claims are broad, but the article does not explain extraction quality, error rates, or how confidence scores are calibrated for inferred relationships. Caveman\u2019s compression may help readability and token use, but the article does not address whether terser answers can hide uncertainty or make debugging harder in edge cases. Security, privacy, and indexing costs are not discussed, especially for tools that ingest entire folders and non-code assets.",
+      "sources": [
+        "https://medium.com/@shahsoumil519/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-c6cd91378c59"
+      ],
+      "summary": "The article compares two open-source tools that help AI coding assistants in different ways. Graphify builds a knowledge graph from a project folder so the assistant can navigate a codebase through a compact structural map instead of re-reading raw files. It claims support for many inputs, including code, documents, images, and video, and it outputs artifacts such as an interactive graph, a plain-English report, and a queryable JSON graph. Caveman tackles the opposite problem: AI assistants often say too much, so it compresses responses into terse, high-density output while preserving technical meaning. The article argues that Graphify is for making the model smarter about the code, while Caveman is for making the model less verbose, and that they can be combined. Its evidence is mostly product-style description plus a few quantitative claims, including token reduction figures and a referenced early-2026 finding about short answers improving accuracy on some benchmarks. The verdict is practical but modest: neither tool solves bad code or bad answers by itself, but each may be worth the small setup cost for people spending a lot of time inside AI coding assistants.",
+      "why_it_matters": "The piece is useful because it isolates two different failure modes of AI coding assistants: weak codebase understanding and overly verbose output. Graphify is interesting as a way to front-load structure into large or mixed-media project folders, with explicit outputs like a graph, report, and cached incremental reruns. Caveman is interesting because it treats token waste as a product problem and offers a simple session-level control for compression. The article also claims Caveman preserves technical detail while cutting output tokens by 65% on average, and cites an early-2026 benchmark result where shorter responses improved accuracy on some tasks; that makes the idea plausible, but the evidence shown here is still lightweight. The combination angle is the most durable takeaway: one tool helps the assistant locate the right context, the other helps it answer more efficiently once context is found. For advanced practitioners, the practical lesson is to separate context acquisition from response generation instead of treating verbosity and comprehension as one problem. As of 2026-05-02, this is actionable as a lightweight workflow idea, but the claims are still best treated as promising product evidence rather than a settled benchmark result."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent comparison article about two named tools, not a multi-item roundup or transcript.",
+        "Structure is explanatory and evaluative rather than step-by-step tutorial or research report.",
+        "The piece centers on independent commentary plus a few benchmark-like claims, but remains a standard article format."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.91,
+        "core_capabilities": [
+          "It reads a folder and builds a connected knowledge graph that can help an assistant navigate relationships across the project.",
+          "It outputs an interactive HTML graph for human inspection and a JSON graph for later programmatic querying.",
+          "It caches unchanged files so repeated runs can focus on the parts of the repository that changed.",
+          "It is described as handling code, docs, PDFs, images, and video, which broadens it beyond ordinary code indexing."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source shows a CLI-based flow with `pip install graphifyy && graphify install` followed by `/graphify .`, which makes it easy to slot into a coding-assistant session.",
+          "The generated `graph.json` is queryable weeks later, which matters for workflows that want persisted structure instead of ephemeral context windows."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The piece frames Graphify as a popular open-source project, and it claims tens of thousands of GitHub stars, which is a useful adoption signal but not proof of durable product quality. The presence of a CLI install flow, cached reruns, and multiple output formats suggests a tool that has moved beyond a toy demo. As of 2026-05-02, it looks like a practical developer tool with enough packaging to try in real workflows, but the article does not provide enterprise evidence.",
+        "name": "Graphify",
+        "operational_relevance": "Useful when an assistant needs broad context over a large repository, especially if the project includes code plus supporting docs or other files. The workflow described here makes it a context-preparation tool rather than a model itself: run it once, then let the assistant query a compact graph instead of scanning everything repeatedly. For teams that spend a lot of time debugging or onboarding into unfamiliar codebases, that can reduce context waste and make file relationships easier to inspect.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "open-source",
+          "cli-tool",
+          "coding",
+          "document-analysis",
+          "multimodal"
+        ],
+        "proposed_types": [
+          "coding-agent",
+          "ai-infrastructure"
+        ],
+        "related_tools": [
+          "Claude Code"
+        ],
+        "short_description": "Graphify is an open-source tool that turns a project folder into a connected knowledge graph and generated reports for an AI coding assistant. It is aimed at helping the assistant navigate a codebase through structure instead of rereading raw files.",
+        "strengths": "- Builds a connected knowledge graph from a folder, which matters because code navigation improves when relationships are explicit rather than implicit.\n- Emits multiple artifacts, including an interactive graph, a plain-English report, and a queryable JSON graph, so it supports both human review and machine use.\n- Caches unchanged files, which is useful for repeated work on a repository where only part of the tree changes between runs.\n- Supports multimodal inputs in the article\u2019s description, so it is positioned for mixed project folders rather than code-only repositories.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"/graphify .\" ... \"It reads every file (code, docs, PDFs, images, even videos), builds a connected knowledge graph of concepts and relationships, and gives your AI a compact map to navigate from.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article\u2019s evidence is mostly product-style description plus one quantified example, so the reported token savings are not independently validated here. It may help navigation, but it does not claim to solve genuinely messy code or guarantee better answers. The source does not discuss failure modes on very large repositories, generated files, security, or the cost of indexing non-code assets."
+      },
+      {
+        "confidence": 0.89,
+        "core_capabilities": [
+          "It compresses assistant output by removing filler, pleasantries, and hedging while keeping technical detail intact.",
+          "It supports multiple intensity levels, including Lite, Full, Ultra, and a Classical Chinese mode for maximum compression.",
+          "It exposes subcommands for terse commit messages, one-line PR comments, and compressed session instructions."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is described as working inside Claude Code through the `/caveman` command, so it is designed as a session-level assistant modifier.",
+          "The article also mentions `/caveman-commit`, `/caveman-review`, and `/caveman:compress`, which suggests tight fit with developer documentation and code-review workflows."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article frames Caveman as widely used enough to compare against a standard verbose assistant style, and it cites multiple modes plus subskills rather than a one-off prompt. That suggests a small but productized tool rather than an experiment. As of 2026-05-02, it appears mature enough to adopt casually inside a Claude Code workflow, though the evidence in the source is still lightweight.",
+        "name": "Caveman",
+        "operational_relevance": "This fits workflows where the model\u2019s answer quality is acceptable but its wording is too long for practical use. It is especially relevant for coding assistants, review comments, and session instructions, where brevity can reduce token spend and make outputs easier to scan. The article also positions it as a session-level behavior control, not just a prompt trick, which makes it useful for practitioners who want consistent output style across tasks.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cli-tool",
+          "coding",
+          "workflow-automation",
+          "writing",
+          "open-source"
+        ],
+        "proposed_types": [
+          "coding-agent",
+          "ai-application"
+        ],
+        "related_tools": [
+          "Claude Code"
+        ],
+        "short_description": "Caveman is a Claude Code session command that compresses assistant responses into much shorter, denser output while trying to preserve technical meaning. The article presents it as a way to reduce token waste from overly verbose AI answers.",
+        "strengths": "- Compresses answers without changing the technical point, which matters when the main problem is verbosity rather than reasoning.\n- Offers multiple intensity levels, so teams can choose between lighter cleanup and very terse output depending on the task.\n- Includes specialized subcommands for commits, PR comments, and CLAUDE.md compression, which makes it more operational than a single style prompt.\n- The article claims large token savings on real prompts, which suggests direct cost and readability benefits when used in coding workflows.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Caveman makes your AI talk like a prehistoric human.\" ... \"Across benchmarks on real prompts, Caveman cuts output tokens by an average of 65%, with some tasks saving over 85%.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not show a formal benchmark methodology, so the token-savings claims should be treated as indicative rather than definitive. It can make answers shorter, but that does not fix wrong answers or hidden uncertainty. If overused, the compression style could make debugging explanations harder to follow, especially for complex issues that need nuance."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Persisted artifacts can outlive the chat session and reduce repeated context loading.",
+          "Mixed media folders need workflows that can ingest more than plain text.",
+          "Human-readable outputs and machine-readable graphs solve different parts of the navigation problem."
+        ],
+        "knowledge_summary": "Some AI workflows work better when the system reads and writes real project files instead of treating context as an abstract chat buffer. A file-native approach can include indexes, generated reports, graphs, caches, and other artifacts that persist beyond a single conversation. This makes it easier to revisit context, inspect structure, and reuse prior extraction work. It is especially useful when the input set includes mixed artifacts such as code, docs, and media.",
+        "match_candidates": [],
+        "operational_insight": "Treat the file tree as part of the agent interface, not just the storage layer. Durable artifacts like graphs and summaries can reduce repeated context reconstruction and make assistant behavior easier to audit.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "software-engineering",
+          "knowledge-systems",
+          "runtime-architecture"
+        ],
+        "related_topics": [
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This pattern matters because many engineering workflows depend on persistent project artifacts, not just one-shot prompts. It shows up in codebases, support knowledge bases, and mixed-media project folders where the assistant benefits from structure that survives across sessions. For conversational systems and service automation, the same idea can reduce re-reading and make context retrieval more reliable as of 2026-05-02.",
+        "secondary_tag": "software-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"It reads every file (code, docs, PDFs, images, even videos), builds a connected knowledge graph of concepts and relationships, and gives your AI a compact map to navigate from.\"",
+        "topic_slug": "file-native-ai-workflows",
+        "topic_title": "File-Native AI Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Brevity can be a controllable property of assistant output, not an accident.",
+          "Token savings matter when the same workflow runs many times per day.",
+          "Concise output is most valuable when paired with reliable technical fidelity."
+        ],
+        "knowledge_summary": "Concise output can be a product feature rather than just a writing preference. In AI assistants, shorter answers can reduce token usage, improve scanability, and make it easier for users to extract the actionable point. The useful version is not vagueness, but compression that preserves technical meaning while removing filler. This becomes especially important in coding, review, and support workflows where verbosity slows execution.",
+        "match_candidates": [],
+        "operational_insight": "Answer style should be treated as an output constraint that can be tuned per workflow. Compression is valuable when it reduces latency, token cost, and reading burden without erasing needed detail.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "developer-tools",
+          "workflow-design",
+          "prompt-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is durable because many production assistant flows are judged on readability, turnaround time, and token efficiency, not just raw correctness. Concision can improve human review speed in code review, triage, and support automation, as of 2026-05-02. The open question is how to compress aggressively without hiding uncertainty or important caveats.",
+        "secondary_tag": "developer-tools",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Caveman makes your AI talk like a prehistoric human.\" ... \"dropping articles, filler words, pleasantries, and hedging, while keeping every technical detail intact.\"",
+        "topic_slug": "answer-concision-as-product-quality",
+        "topic_title": "Answer Concision as Product Quality",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-02",
+          "confidence": 0.86,
+          "evidence_from_source": "The article explicitly contrasts Graphify, which builds a knowledge graph so the assistant can navigate a codebase, with Caveman, which compresses the assistant\u2019s output. It says they solve different problems, and the combined example shows them used together: one for input-side context acquisition and one for output-side brevity.",
+          "evidence_type": "mixed",
+          "match_candidates": [],
+          "primary_tag": "workflow-restructuring",
+          "proposed_tags": [
+            "workflow-restructuring",
+            "tool-centric-agents"
+          ],
+          "related_trends": [
+            "artifact-first-ai-workflows"
+          ],
+          "secondary_tag": "tool-centric-agents",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "coding-agents",
+          "suggested_new_tags": [
+            "coding-agents"
+          ],
+          "supporting_data_points": [
+            "Graphify claims a 71.5\u00d7 token reduction on a 52-file corpus.",
+            "Caveman claims an average 65% output-token reduction on real prompts.",
+            "The article presents a combined onboarding example using both tools."
+          ],
+          "supporting_snippet": "\"Graphify handled the input side \u2014 the AI navigated via the graph instead of reading 40 raw files. Caveman handled the output side \u2014 the answer came back in four sentences instead of four paragraphs.\"",
+          "time_sensitivity": "As of 2026-05-02, this is a practical workflow pattern emerging in coding assistants rather than a settled standard. The evidence is product-level and illustrative, so the pattern may persist, but the article does not establish broad industry adoption.",
+          "trend_description": "AI coding assistants are increasingly split into two independently tunable layers: one layer acquires, structures, or navigates context from large codebases, while another layer controls how concise or verbose the final response should be. This broader pattern goes beyond the specific tools in the article and points to a workflow design where input handling and output style are optimized separately to reduce token waste, improve readability, and make assistant behavior easier to manage in long-context coding work.",
+          "trend_slug": "ai-coding-assistants-separate-context-acquisition-from-response-style",
+          "trend_title": "AI Coding Assistants Separate Context Acquisition from Response Style",
+          "uncertainty_note": "The source is a comparison article centered on two open-source tools, so it supports the pattern but does not prove that the separation is universal or best-in-class. Future assistants may absorb these capabilities natively, which could reduce how visible this split remains even if the underlying need persists.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "be1d7e6c-ec71-47b8-92fe-515b172165cf",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-06-05T15:41:06+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "41",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Graphify claims a 71.5\u00d7 token reduction on a 52-file corpus.",
+              "Caveman claims an average 65% output-token reduction on real prompts.",
+              "The article presents a combined onboarding example using both tools."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-restructuring",
+            "tool-centric-agents"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article combines product descriptions with direct quantitative claims about token reduction and benchmark accuracy.",
+          "It includes vendor/product-style claims about Graphify and Caveman features, alongside quoted or referenced performance numbers.",
+          "No formal methodology is provided, so the evidence base is a mix of product claims and lightweight benchmark-style assertions."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Graphify\u2019s core value is structural context: it converts a folder into a knowledge graph so the assistant can reason over relationships instead of scanning files one by one.",
+          "Caveman attacks response bloat, not model reasoning; it compresses answers while keeping technical content intact.",
+          "The article claims Graphify reduces tokens per query by 71.5\u00d7 on a 52-file corpus, but that figure is tied to a specific example and lacks methodology detail.",
+          "Caveman is presented with four compression levels and subcommands for commits, PR comments, and CLAUDE.md compression, making it more than a one-off prompt trick.",
+          "The two tools are complementary because one reduces input cost and the other reduces output cost."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@shahsoumil519/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-c6cd91378c59"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent comparison article about two named tools, not a multi-item roundup or transcript.",
+          "Structure is explanatory and evaluative rather than step-by-step tutorial or research report.",
+          "The piece centers on independent commentary plus a few benchmark-like claims, but remains a standard article format."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "core_capabilities": [
+            "It reads a folder and builds a connected knowledge graph that can help an assistant navigate relationships across the project.",
+            "It outputs an interactive HTML graph for human inspection and a JSON graph for later programmatic querying.",
+            "It caches unchanged files so repeated runs can focus on the parts of the repository that changed.",
+            "It is described as handling code, docs, PDFs, images, and video, which broadens it beyond ordinary code indexing."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The source shows a CLI-based flow with `pip install graphifyy && graphify install` followed by `/graphify .`, which makes it easy to slot into a coding-assistant session.",
+            "The generated `graph.json` is queryable weeks later, which matters for workflows that want persisted structure instead of ephemeral context windows."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The piece frames Graphify as a popular open-source project, and it claims tens of thousands of GitHub stars, which is a useful adoption signal but not proof of durable product quality. The presence of a CLI install flow, cached reruns, and multiple output formats suggests a tool that has moved beyond a toy demo. As of 2026-05-02, it looks like a practical developer tool with enough packaging to try in real workflows, but the article does not provide enterprise evidence.",
+          "name": "Graphify",
+          "operational_relevance": "Useful when an assistant needs broad context over a large repository, especially if the project includes code plus supporting docs or other files. The workflow described here makes it a context-preparation tool rather than a model itself: run it once, then let the assistant query a compact graph instead of scanning everything repeatedly. For teams that spend a lot of time debugging or onboarding into unfamiliar codebases, that can reduce context waste and make file relationships easier to inspect.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "open-source",
+            "cli-tool",
+            "coding",
+            "document-analysis",
+            "multimodal"
+          ],
+          "proposed_types": [
+            "coding-agent",
+            "ai-infrastructure"
+          ],
+          "related_tools": [
+            "Claude Code"
+          ],
+          "short_description": "Graphify is an open-source tool that turns a project folder into a connected knowledge graph and generated reports for an AI coding assistant. It is aimed at helping the assistant navigate a codebase through structure instead of rereading raw files.",
+          "strengths": "- Builds a connected knowledge graph from a folder, which matters because code navigation improves when relationships are explicit rather than implicit.\n- Emits multiple artifacts, including an interactive graph, a plain-English report, and a queryable JSON graph, so it supports both human review and machine use.\n- Caches unchanged files, which is useful for repeated work on a repository where only part of the tree changes between runs.\n- Supports multimodal inputs in the article\u2019s description, so it is positioned for mixed project folders rather than code-only repositories.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"/graphify .\" ... \"It reads every file (code, docs, PDFs, images, even videos), builds a connected knowledge graph of concepts and relationships, and gives your AI a compact map to navigate from.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article\u2019s evidence is mostly product-style description plus one quantified example, so the reported token savings are not independently validated here. It may help navigation, but it does not claim to solve genuinely messy code or guarantee better answers. The source does not discuss failure modes on very large repositories, generated files, security, or the cost of indexing non-code assets."
+        },
+        "notes": null,
+        "proposal_id": "4907f092-1b91-47c7-afd0-79d313cc31e4",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It reads a folder and builds a connected knowledge graph that can help an assistant navigate relationships across the project.",
+              "It outputs an interactive HTML graph for human inspection and a JSON graph for later programmatic querying.",
+              "It caches unchanged files so repeated runs can focus on the parts of the repository that changed.",
+              "It is described as handling code, docs, PDFs, images, and video, which broadens it beyond ordinary code indexing."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source shows a CLI-based flow with `pip install graphifyy && graphify install` followed by `/graphify .`, which makes it easy to slot into a coding-assistant session.",
+              "The generated `graph.json` is queryable weeks later, which matters for workflows that want persisted structure instead of ephemeral context windows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-source",
+            "cli-tool",
+            "coding",
+            "document-analysis",
+            "multimodal"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "core_capabilities": [
+            "It compresses assistant output by removing filler, pleasantries, and hedging while keeping technical detail intact.",
+            "It supports multiple intensity levels, including Lite, Full, Ultra, and a Classical Chinese mode for maximum compression.",
+            "It exposes subcommands for terse commit messages, one-line PR comments, and compressed session instructions."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It is described as working inside Claude Code through the `/caveman` command, so it is designed as a session-level assistant modifier.",
+            "The article also mentions `/caveman-commit`, `/caveman-review`, and `/caveman:compress`, which suggests tight fit with developer documentation and code-review workflows."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article frames Caveman as widely used enough to compare against a standard verbose assistant style, and it cites multiple modes plus subskills rather than a one-off prompt. That suggests a small but productized tool rather than an experiment. As of 2026-05-02, it appears mature enough to adopt casually inside a Claude Code workflow, though the evidence in the source is still lightweight.",
+          "name": "Caveman",
+          "operational_relevance": "This fits workflows where the model\u2019s answer quality is acceptable but its wording is too long for practical use. It is especially relevant for coding assistants, review comments, and session instructions, where brevity can reduce token spend and make outputs easier to scan. The article also positions it as a session-level behavior control, not just a prompt trick, which makes it useful for practitioners who want consistent output style across tasks.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cli-tool",
+            "coding",
+            "workflow-automation",
+            "writing",
+            "open-source"
+          ],
+          "proposed_types": [
+            "coding-agent",
+            "ai-application"
+          ],
+          "related_tools": [
+            "Claude Code"
+          ],
+          "short_description": "Caveman is a Claude Code session command that compresses assistant responses into much shorter, denser output while trying to preserve technical meaning. The article presents it as a way to reduce token waste from overly verbose AI answers.",
+          "strengths": "- Compresses answers without changing the technical point, which matters when the main problem is verbosity rather than reasoning.\n- Offers multiple intensity levels, so teams can choose between lighter cleanup and very terse output depending on the task.\n- Includes specialized subcommands for commits, PR comments, and CLAUDE.md compression, which makes it more operational than a single style prompt.\n- The article claims large token savings on real prompts, which suggests direct cost and readability benefits when used in coding workflows.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Caveman makes your AI talk like a prehistoric human.\" ... \"Across benchmarks on real prompts, Caveman cuts output tokens by an average of 65%, with some tasks saving over 85%.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not show a formal benchmark methodology, so the token-savings claims should be treated as indicative rather than definitive. It can make answers shorter, but that does not fix wrong answers or hidden uncertainty. If overused, the compression style could make debugging explanations harder to follow, especially for complex issues that need nuance."
+        },
+        "notes": null,
+        "proposal_id": "d8a3bd9c-37f0-4682-b1c8-4cdfb2961ed2",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It compresses assistant output by removing filler, pleasantries, and hedging while keeping technical detail intact.",
+              "It supports multiple intensity levels, including Lite, Full, Ultra, and a Classical Chinese mode for maximum compression.",
+              "It exposes subcommands for terse commit messages, one-line PR comments, and compressed session instructions."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is described as working inside Claude Code through the `/caveman` command, so it is designed as a session-level assistant modifier.",
+              "The article also mentions `/caveman-commit`, `/caveman-review`, and `/caveman:compress`, which suggests tight fit with developer documentation and code-review workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cli-tool",
+            "coding",
+            "workflow-automation",
+            "writing",
+            "open-source"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Persisted artifacts can outlive the chat session and reduce repeated context loading.",
+            "Mixed media folders need workflows that can ingest more than plain text.",
+            "Human-readable outputs and machine-readable graphs solve different parts of the navigation problem."
+          ],
+          "knowledge_summary": "Some AI workflows work better when the system reads and writes real project files instead of treating context as an abstract chat buffer. A file-native approach can include indexes, generated reports, graphs, caches, and other artifacts that persist beyond a single conversation. This makes it easier to revisit context, inspect structure, and reuse prior extraction work. It is especially useful when the input set includes mixed artifacts such as code, docs, and media.",
+          "match_candidates": [],
+          "operational_insight": "Treat the file tree as part of the agent interface, not just the storage layer. Durable artifacts like graphs and summaries can reduce repeated context reconstruction and make assistant behavior easier to audit.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "software-engineering",
+            "knowledge-systems",
+            "runtime-architecture"
+          ],
+          "related_topics": [
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This pattern matters because many engineering workflows depend on persistent project artifacts, not just one-shot prompts. It shows up in codebases, support knowledge bases, and mixed-media project folders where the assistant benefits from structure that survives across sessions. For conversational systems and service automation, the same idea can reduce re-reading and make context retrieval more reliable as of 2026-05-02.",
+          "secondary_tag": "software-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"It reads every file (code, docs, PDFs, images, even videos), builds a connected knowledge graph of concepts and relationships, and gives your AI a compact map to navigate from.\"",
+          "topic_slug": "file-native-ai-workflows",
+          "topic_title": "File-Native AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "387164aa-dfd1-48ca-ad64-a82e58698936",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Persisted artifacts can outlive the chat session and reduce repeated context loading.",
+              "Mixed media folders need workflows that can ingest more than plain text.",
+              "Human-readable outputs and machine-readable graphs solve different parts of the navigation problem."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "software-engineering",
+            "knowledge-systems",
+            "runtime-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Brevity can be a controllable property of assistant output, not an accident.",
+            "Token savings matter when the same workflow runs many times per day.",
+            "Concise output is most valuable when paired with reliable technical fidelity."
+          ],
+          "knowledge_summary": "Concise output can be a product feature rather than just a writing preference. In AI assistants, shorter answers can reduce token usage, improve scanability, and make it easier for users to extract the actionable point. The useful version is not vagueness, but compression that preserves technical meaning while removing filler. This becomes especially important in coding, review, and support workflows where verbosity slows execution.",
+          "match_candidates": [],
+          "operational_insight": "Answer style should be treated as an output constraint that can be tuned per workflow. Compression is valuable when it reduces latency, token cost, and reading burden without erasing needed detail.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "developer-tools",
+            "workflow-design",
+            "prompt-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is durable because many production assistant flows are judged on readability, turnaround time, and token efficiency, not just raw correctness. Concision can improve human review speed in code review, triage, and support automation, as of 2026-05-02. The open question is how to compress aggressively without hiding uncertainty or important caveats.",
+          "secondary_tag": "developer-tools",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Caveman makes your AI talk like a prehistoric human.\" ... \"dropping articles, filler words, pleasantries, and hedging, while keeping every technical detail intact.\"",
+          "topic_slug": "answer-concision-as-product-quality",
+          "topic_title": "Answer Concision as Product Quality",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "7e0f1cbd-9b56-4218-b9a5-2ecfed381ebc",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Brevity can be a controllable property of assistant output, not an accident.",
+              "Token savings matter when the same workflow runs many times per day.",
+              "Concise output is most valuable when paired with reliable technical fidelity."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "developer-tools",
+            "workflow-design",
+            "prompt-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": "2026-06-05T15:38:52+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T15:41:06+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Soumil Shah",
+    "canonical_url": "https://medium.com/@shahsoumil519/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-c6cd91378c59",
+    "content_sha256": "8715b197db1faf67f7511fd06de8b146d966d25efc754d99abf4478c3d0db8b1",
+    "publication": "Medium",
+    "published_date": "2026-05-02",
+    "raw_html_rel_path": "raw/readwise/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s.html",
+    "raw_md_rel_path": "raw/readwise/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s.md",
+    "source_id": "graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s",
+    "title": "Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter"
+  }
+}

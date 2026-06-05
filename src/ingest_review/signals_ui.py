@@ -15,15 +15,21 @@ from src.ingest_review.domain_tag_ui import (
     effective_readonly_domain_tags,
     render_domain_tag_section,
 )
+from src.ingest_review.fast_review_ui import (
+    CollapsedFieldSpec,
+    read_fast_card_field_values,
+    register_card_autosave,
+    render_collapsed_fields,
+    render_context_expander,
+    render_fast_card_header,
+    render_fast_card_save_row,
+    render_readonly_context_hint,
+)
 from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_two_column_proposal_review,
 )
-from src.ingest_review.proposal_decision_ui import (
-    proposal_status_label,
-    render_proposal_decision_bar,
-    set_proposal_save_message,
-)
+from src.ingest_review.proposal_decision_ui import set_proposal_save_message
 from src.ingest_review.schema import SIGNAL_REVIEWABLE_LIST_KEYS, SIGNAL_REVIEWABLE_SCALAR_KEYS
 from src.ingest_review.tags import normalize_tag
 
@@ -70,6 +76,41 @@ SIGNAL_SCALAR_AFTER_TAGS: tuple[str, ...] = (
 )
 SIGNAL_TALL_SCALAR_KEYS: frozenset[str] = frozenset(
     {"summary", "why_it_matters", "operational_relevance", "service_automation_relevance"}
+)
+
+SIGNAL_MORE_SCALAR_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec("signal_type", "Signal type"),
+    CollapsedFieldSpec("why_it_matters", "Why it matters", tall=True),
+    CollapsedFieldSpec("operational_relevance", "Operational relevance", tall=True),
+    CollapsedFieldSpec(
+        "service_automation_relevance",
+        "Service automation relevance",
+        tall=True,
+    ),
+    CollapsedFieldSpec("signal_strength", "Signal strength"),
+    CollapsedFieldSpec("time_horizon", "Time horizon"),
+    CollapsedFieldSpec("wiki_worthiness", "Wiki-worthiness"),
+)
+
+SIGNAL_MORE_LIST_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec(
+        "suggested_destinations",
+        "Suggested destinations",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+    CollapsedFieldSpec(
+        "mentioned_entities",
+        "Mentioned entities",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+    CollapsedFieldSpec(
+        "evidence_snippets",
+        "Evidence snippets",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
 )
 
 
@@ -302,12 +343,20 @@ def _persist_signal_proposal_from_widgets(
     artifact = streamlit_runtime.session_state.get("artifact")
     if not isinstance(artifact, dict):
         return
-    apply_signal_proposal_edits(node, field_values)
+    merged = read_fast_card_field_values(
+        key_prefix,
+        title_keys=("signal_title",),
+        context_keys=("summary",),
+        more_scalar_keys=tuple(s.key for s in SIGNAL_MORE_SCALAR_SPECS if not s.is_list),
+        more_list_keys=SIGNAL_REVIEWABLE_LIST_KEYS,
+        field_values=field_values,
+    )
+    apply_signal_proposal_edits(node, merged)
     llm_item = node.setdefault("llm_item", {})
     apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
-    title = field_values.get("signal_title") or llm_item.get("signal_title") or "signal"
+    title = merged.get("signal_title") or llm_item.get("signal_title") or "signal"
     set_proposal_save_message(key_prefix, f"Saved **{title}**.")
 
 
@@ -321,27 +370,36 @@ def _render_signal_edit_box(
     model: str,
     prompt_version: str,
     tag_allow: set[str],
+    autosave_registry_key: str,
 ) -> None:
-    """One bordered edit box per signal proposal."""
+    """Fast-review card for one signal proposal."""
     llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
-    title = effective_signal_scalar(llm_item, sections, "signal_title") or "Untitled"
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    status_lbl = proposal_status_label(node)
+    field_values: dict[str, str] = {}
 
     with st.container(border=True):
-        st.markdown(f"**{title}** · {badge} · **{status_lbl}**")
+        render_fast_card_header(
+            st,
+            node,
+            badge=badge,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="roundup_signals",
+        )
 
-        field_values: dict[str, str] = {}
-        for sk in SIGNAL_SCALAR_BEFORE_TAGS:
-            label = SIGNAL_SECTION_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=signal_field_edit_value(llm_item, sections, sk),
-                height=120 if sk in SIGNAL_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
+        field_values["signal_title"] = st.text_area(
+            "Signal title",
+            value=signal_field_edit_value(llm_item, sections, "signal_title"),
+            height=72,
+            key=f"{key_prefix}_edit_signal_title",
+        )
+        render_readonly_context_hint(
+            st,
+            label="Summary",
+            value=signal_field_edit_value(llm_item, sections, "summary"),
+        )
 
         tag_ui = render_domain_tag_section(
             st,
@@ -353,29 +411,10 @@ def _render_signal_edit_box(
             prompt_version=prompt_version,
             review_list_key="roundup_signals",
             label_widget_key=f"{key_prefix}_edit_signal_title",
-            summary_widget_key=f"{key_prefix}_edit_summary",
+            summary_widget_key=f"{key_prefix}_ctx_summary",
             llm_fallback_label_key="signal_title",
             llm_fallback_summary_key="summary",
         )
-
-        for sk in SIGNAL_SCALAR_MID + SIGNAL_SCALAR_AFTER_TAGS:
-            label = SIGNAL_SECTION_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=signal_field_edit_value(llm_item, sections, sk),
-                height=120 if sk in SIGNAL_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
-
-        for lk in SIGNAL_REVIEWABLE_LIST_KEYS:
-            label = SIGNAL_SECTION_LABELS.get(lk, lk.replace("_", " ").title())
-            field_values[lk] = st.text_area(
-                label,
-                value=signal_list_edit_value(llm_item, sections, lk),
-                height=100,
-                key=f"{key_prefix}_edit_{lk}",
-                help="One bullet per line.",
-            )
 
         def _save() -> None:
             _persist_signal_proposal_from_widgets(
@@ -387,7 +426,7 @@ def _render_signal_edit_box(
                 key_prefix=key_prefix,
             )
 
-        render_proposal_decision_bar(
+        render_fast_card_save_row(
             st,
             node,
             key_prefix=key_prefix,
@@ -395,6 +434,31 @@ def _render_signal_edit_box(
             review_list_key="roundup_signals",
             on_save_callback=_save,
         )
+
+        render_context_expander(
+            st,
+            label="Summary / context",
+            field_key="summary",
+            field_label="Summary",
+            value=signal_field_edit_value(llm_item, sections, "summary"),
+            widget_key=f"{key_prefix}_ctx_summary",
+            field_values=field_values,
+        )
+
+        render_collapsed_fields(
+            st,
+            specs=[*SIGNAL_MORE_SCALAR_SPECS, *SIGNAL_MORE_LIST_SPECS],
+            get_value=lambda li, sec, k: (
+                signal_list_edit_value(li, sec, k)
+                if k in SIGNAL_REVIEWABLE_LIST_KEYS
+                else signal_field_edit_value(li, sec, k)
+            ),
+            llm_item=llm_item,
+            sections=sections,
+            key_prefix=key_prefix,
+            field_values=field_values,
+        )
+        register_card_autosave(autosave_registry_key, node, _save)
 
 
 def render_roundup_signals(
@@ -438,6 +502,7 @@ def render_roundup_signals(
             model=model,
             prompt_version=prompt_version,
             tag_allow=tag_allow,
+            autosave_registry_key=key_prefix,
         )
 
     render_two_column_proposal_review(

@@ -8,15 +8,17 @@ from pathlib import Path
 from typing import Literal
 
 from src.ingest_review.artifact import load_artifact, review_artifact_path
+from src.ingest_review.skipped_sources import load_skipped_source_ids
 
-SourceReviewStatus = Literal["not_started", "in_progress", "finished"]
+SourceReviewStatus = Literal["not_started", "in_progress", "finished", "skipped"]
 
 SOURCE_REVIEW_FILTER_OPTIONS: tuple[tuple[str, frozenset[SourceReviewStatus]], ...] = (
     ("In progress", frozenset({"in_progress"})),
     ("Needs work", frozenset({"not_started", "in_progress"})),
     ("Not started", frozenset({"not_started"})),
     ("Finished", frozenset({"finished"})),
-    ("All", frozenset({"not_started", "in_progress", "finished"})),
+    ("Skipped", frozenset({"skipped"})),
+    ("All", frozenset({"not_started", "in_progress", "finished", "skipped"})),
 )
 
 DEFAULT_SOURCE_REVIEW_FILTER = "In progress"
@@ -26,13 +28,15 @@ UNFINISHED_STATUSES: frozenset[SourceReviewStatus] = frozenset({"not_started", "
 STATUS_DISPLAY_ORDER: dict[SourceReviewStatus, int] = {
     "in_progress": 0,
     "not_started": 1,
-    "finished": 2,
+    "skipped": 2,
+    "finished": 3,
 }
 
 _STATUS_LABELS: dict[SourceReviewStatus, str] = {
     "not_started": "○ Not started",
     "in_progress": "◐ In progress",
     "finished": "✓ Finished",
+    "skipped": "⊘ Skipped",
 }
 
 
@@ -54,8 +58,17 @@ def status_from_artifact(artifact: dict | None) -> SourceReviewStatus:
     return "in_progress"
 
 
-def status_for_source(reviews_root: Path, source_id: str) -> SourceReviewStatus:
-    """Classify one source by its on-disk ``review.json``."""
+def status_for_source(
+    reviews_root: Path,
+    source_id: str,
+    *,
+    skipped_ids: set[str] | None = None,
+) -> SourceReviewStatus:
+    """Classify one source by skip registry and on-disk ``review.json``."""
+    if skipped_ids is None:
+        skipped_ids = load_skipped_source_ids(reviews_root)
+    if source_id in skipped_ids:
+        return "skipped"
     path = review_artifact_path(source_id, state_reviews=reviews_root)
     if not path.is_file():
         return "not_started"
@@ -73,7 +86,10 @@ def build_source_status_map(
     source_ids: list[str],
 ) -> dict[str, SourceReviewStatus]:
     """Map each *source_id* to its review workflow status."""
-    return {sid: status_for_source(reviews_root, sid) for sid in source_ids}
+    skipped_ids = load_skipped_source_ids(reviews_root)
+    return {
+        sid: status_for_source(reviews_root, sid, skipped_ids=skipped_ids) for sid in source_ids
+    }
 
 
 def filter_statuses_for_label(filter_label: str) -> frozenset[SourceReviewStatus]:
@@ -90,6 +106,7 @@ def count_by_status(status_map: dict[str, SourceReviewStatus]) -> dict[SourceRev
         "not_started": 0,
         "in_progress": 0,
         "finished": 0,
+        "skipped": 0,
     }
     for status in status_map.values():
         counts[status] += 1

@@ -1,0 +1,1118 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T15:23:33+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnQfsSU8GtBDqgkk1pyB0LX9zp4Ai",
+          "token_usage": {
+            "completion_tokens": 198,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34580,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 34778
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnQfvT2QlCZCRLIJDjmVISIUetnWk",
+          "token_usage": {
+            "completion_tokens": 1235,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34195,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 35430
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-interview_or_transcript",
+          "request_id": "chatcmpl-DnQg8VkvBie29DEKWr78UIIP4NKoi",
+          "route": "interview_or_transcript",
+          "token_usage": {
+            "completion_tokens": 2248,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 46009,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 48257
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnQg8VkvBie29DEKWr78UIIP4NKoi",
+    "token_usage": {
+      "completion_tokens": 3681,
+      "prompt_tokens": 114784,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 118465
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"we created this whole XML format that can losslessly mapped in notion blocks... and then we\u2019re like, okay, well it has to be marked down. the model\u2019s no markdown\"",
+          "\"we had to make our harness implement progressive disclosure in, in a nice way.\"",
+          "\"really try so hard not to expose it to any complexity about your system that, that\u2019s unnecessary.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Design agent products around model constraints, not product complexity",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "Notion",
+          "OpenAI",
+          "Anthropic",
+          "Fireworks"
+        ],
+        "operational_relevance": "Use simple, model-native abstractions; avoid forcing the model through lossy or overly rich internal formats; and introduce tools gradually with routing or disclosure layers. This also suggests that each new tool can degrade the overall harness if added without careful gating and eval coverage.",
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "context-engineering",
+          "agent-systems",
+          "workflow-design"
+        ],
+        "secondary_tag": "context-engineering",
+        "service_automation_relevance": "Strong. Support and workflow automation systems benefit from narrow, legible tool sets and staged disclosure, especially when agents need to operate safely in shared enterprise environments.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Notion\u2019s team describes a repeated pattern: early agent attempts failed because they exposed too much of Notion\u2019s internal complexity to models, used representations the model did not handle well, or depended on capabilities that were not mature enough. Their fix was to simplify the tool surface, use representations the model already understands, and add progressive disclosure so the model only sees what it needs. The underlying lesson is that agent quality depends as much on harness design as on model capability.",
+        "value_level": "high",
+        "why_it_matters": "Actionable as of 2026-04-15: agent builders should treat tool design, prompt size, and disclosure strategy as first-class product decisions, not implementation details. This is a durable pattern for shipping reliable enterprise agents because it reduces brittleness without waiting for frontier-model gains.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "The team\u2019s \"frontier\" evals are intentionally designed to pass only about 30% of the time, which is an internal headroom strategy rather than a general benchmark rule."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"we have the equivalent of unit test. Regression test... Then we have... launch quality... And then what we have what we call frontier or headroom evals, where we actively wanna be at 30% pass rate.\"",
+          "\"our evals were saturated and we weren\u2019t able to really give insightful feedback other than it wasn\u2019t worse.\"",
+          "\"if a new model release comes out and we... maintain their own evals\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Evals should be treated as an agent harness, not just testing",
+        "insight_type": "research_eval",
+        "mentioned_entities": [
+          "Notion",
+          "OpenAI"
+        ],
+        "operational_relevance": "Build separate eval classes for regression, launch readiness, and frontier probing. Integrate eval writing and failure triage into the same outer loop as development so that model changes, tool changes, and prompt changes can all be validated against the right target.",
+        "primary_tag": "agent-evals",
+        "proposed_tags": [
+          "agent-evals",
+          "ai-evaluation",
+          "test-and-verification",
+          "verification-systems"
+        ],
+        "secondary_tag": "ai-evaluation",
+        "service_automation_relevance": "High. Reliable chatbots and service agents need launch-quality checks for customer-facing journeys plus harder evals for future capability planning, especially when routing, permissions, and escalation behavior can fail silently.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Notion separates regression tests, launch-quality evals, and deliberately hard headroom evals that are expected to pass only about 30% of the time. They also describe an internal workflow where agents can help write evals, debug failures, and iterate on fixes. This makes evals part of the production system rather than a side activity.",
+        "value_level": "high",
+        "why_it_matters": "Actionable as of 2026-04-15: teams shipping agentic systems need evaluation layers that can distinguish product readiness from frontier capability exploration. The distinction between launch-quality and headroom evals is especially reusable because it lets teams measure both safety and future model headroom without collapsing them into one metric.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"memory is, is just pages and databases.\"",
+          "\"one agent, be writing to the database and there\u2019s another agent that\u2019s walked in the database\"",
+          "\"we call it flippy... the main view... is the chat\""
+        ],
+        "evidence_type": null,
+        "insight_title": "The best agent products expose primitives, not hidden magic",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "Notion"
+        ],
+        "operational_relevance": "Design agent systems so agents can write to shared data structures, react to those data structures, and invoke each other through explicit interfaces. This reduces coupling and makes it easier to add manager agents, routing layers, and human inspection points.",
+        "primary_tag": "agent-memory",
+        "proposed_tags": [
+          "agent-memory",
+          "agent-orchestration",
+          "knowledge-systems",
+          "workflow-automation"
+        ],
+        "secondary_tag": "agent-orchestration",
+        "service_automation_relevance": "Strong. Service workflows often need shared state, handoffs, and auditability; using the same system-of-record objects for human and agent work makes escalation and review simpler.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Notion repeatedly frames its product as a set of primitives: pages, databases, triggers, permissions, and tools. Agents coordinate through those primitives, and memory is implemented as editable pages or databases rather than a bespoke memory subsystem. The broader design goal is to keep the system inspectable and composable for power users and operators.",
+        "value_level": "high",
+        "why_it_matters": "This is a durable architectural pattern for enterprise AI: keep state in visible business objects instead of hiding it in opaque agent memory. That makes debugging, governance, and cross-agent coordination easier, and it fits products that already have strong data models.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"the credits and payment structures associated with the token usage\"",
+          "\"if we were to host sandboxes, those are priced differently\"",
+          "\"if every single autofill action was an agent running on Opus on every single database sell, it would be billions of dollars\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Usage-based pricing is required when model, search, and sandbox costs vary by task",
+        "insight_type": "topic",
+        "mentioned_entities": [
+          "Notion",
+          "Anthropic",
+          "OpenAI"
+        ],
+        "operational_relevance": "Separate low-cost deterministic tasks from expensive agentic tasks where possible, and surface cost-to-capability tradeoffs in the UI. Use pricing abstractions that can handle model choice, search, and execution environments without making the cheapest path the default for everything.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "infrastructure-economics",
+          "enterprise-ai"
+        ],
+        "secondary_tag": "infrastructure-economics",
+        "service_automation_relevance": "Medium. Support automation products will usually need to expose when a route is expensive or slow, because the best model for a task is not always the cheapest or fastest one.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "outcome-based-pricing-for-ai-agents",
+        "suggested_new_tags": [
+          "outcome-based-pricing-for-ai-agents"
+        ],
+        "summary": "Notion explains that credits are an abstraction above raw tokens because the real cost varies by model, serving tier, web search, and future sandboxing. They also argue that some tasks should use deterministic code paths instead of repeated language-model calls, both for cost control and for better predictability. Pricing therefore becomes a product design problem tied to capability choice.",
+        "value_level": "high",
+        "why_it_matters": "Actionable as of 2026-04-15: agent products with heterogeneous runtime costs cannot safely price every action as if it were a uniform token stream. This insight is especially useful for enterprise AI products that mix search, tool execution, and asynchronous agents under one SKU.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-15",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"the search load and the search traffic. Majority of it\u2019s coming from agents, not humans.\"",
+          "\"top K retrieval mode matters more\"",
+          "\"we don\u2019t spend a lot of time trying to optimize what vector embedding we use anymore\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Retrieval for agents optimizes differently than retrieval for humans",
+        "insight_type": "topic",
+        "mentioned_entities": [
+          "Notion",
+          "ElasticSearch"
+        ],
+        "operational_relevance": "Rebuild retrieval pipelines around agent query generation, parallel exhaustive search, top-K relevance, and snippet quality. Treat ranking and query diversity as one system and optimize against task completion rather than human browsing behavior.",
+        "primary_tag": "retrieval-systems",
+        "proposed_tags": [
+          "retrieval-systems",
+          "knowledge-systems",
+          "enterprise-workflows"
+        ],
+        "secondary_tag": "knowledge-systems",
+        "service_automation_relevance": "Strong. Conversational service agents often need structured search over internal knowledge, and their success depends on the relevance of the retrieved context more than on traditional search UX metrics.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "hybrid-retrieval",
+        "suggested_new_tags": [
+          "hybrid-retrieval"
+        ],
+        "summary": "Notion says agent search traffic is structurally different from human search traffic, so ranking, top-K retrieval, snippet selection, and query generation all need to be rethought. They emphasize that vector-embedding choices are less important than the broader retrieval and ranking loop for agentic queries. The implication is that agent workloads change the retrieval objective, not just the query volume.",
+        "value_level": "high",
+        "why_it_matters": "Actionable as of 2026-04-15: products that let agents search company knowledge should not assume human search metrics will carry over. For agent-driven systems, retrieval quality must be judged by downstream task success, not just click-through or position bias.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "Claims come mainly from Notion staff describing how they built and operate Custom Agents, which is implementation detail.",
+        "The conversation also includes strategic opinions and product judgments about MCP vs CLI, pricing, evals, and roadmap direction.",
+        "Some statements are grounded in concrete demos and internal workflows, while others are forward-looking or interpretive."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This conversation is about how Notion turned its productivity app into an agent platform. The interesting part is that they did not just wrap a model around existing features; they kept rebuilding the system until the tools, prompts, permissions, and evaluations fit how models actually behave. They also use Notion\u2019s own data structures, like pages and databases, as the memory and coordination layer for agents. That makes the product feel less like a chatbot and more like a workspace where agents can act safely. The episode is especially useful if you care about building reliable agent products for real work, not just demos.",
+      "assessed_as_of": "2026-04-15",
+      "contradictions_and_skepticism": "Some claims are ambitious and should be treated cautiously. For example, calling coding agents the kernel of AGI and implying a software factory of cooperating agents may be directionally interesting, but the transcript does not provide evidence that this abstraction is robust outside Notion\u2019s environment. The idea that public system prompts are not secret sauce may be true for this product, but it could understate how much product quality still depends on hidden operational tuning. Their preference for custom, native integrations over MCP is plausible, yet the argument leans heavily on quality control and cost alignment rather than measured comparisons. The strongest skeptical note is that several conclusions are drawn from internal workflows and one live demo, so the piece is rich on implementation taste but light on external validation.",
+      "key_insights": [
+        "Notion\u2019s main lesson is to design around model constraints: use simpler tool representations, progressive disclosure, and a shorter system prompt instead of forcing the model to cope with the product\u2019s internal complexity.",
+        "They treat evals as a first-class platform layer, with regression tests, launch-quality evals, and deliberately hard headroom evals that should pass only about 30% of the time.",
+        "The company separates model behavior work into its own career path, because failure analysis, rubric design, and judge building are not just ordinary software engineering tasks.",
+        "Notion prefers primitives over bespoke agent features: pages, databases, triggers, and permissions are the substrate for memory, coordination, and agent-to-agent communication.",
+        "Pricing is intentionally usage-based because the cost of model choice, search, sandboxing, and tiering varies too much to map cleanly to raw token throughput."
+      ],
+      "limitations_and_open_questions": "Much of the discussion is self-reported product strategy and internal practice, so it is hard to verify which choices are broadly generalizable versus specific to Notion\u2019s stack and culture. Several claims about reliability, model quality differences across providers, and the benefits of self-healing agents are anecdotal rather than benchmarked in the transcript. The interview gives very little hard detail on failure rates, user adoption breakdowns, cost curves, or how often each tool path is actually chosen in production. The \u201csoftware factory\u201d vision is compelling but still mostly aspirational here; the transcript does not show end-to-end metrics proving that human intervention can be minimized safely at scale. The retrieval and ranking section is concrete in direction but thin on implementation detail, especially around how they evaluate ranking quality for agentic search beyond general remarks about top-K and snippets. The meeting-notes section is convincing as a product narrative, but the transcript does not quantify retention lift or isolate causality beyond the speakers\u2019 assertions.",
+      "sources": [
+        "https://www.latent.space/p/notion"
+      ],
+      "summary": "This interview is a detailed look at how Notion built Custom Agents and the product, engineering, and organizational machinery behind them. The central theme is that Notion treated agent features as a system-design problem, not a wrapper problem: they rebuilt the harness several times, simplified representations to match model behavior, and added progressive disclosure so the product could scale to over a hundred tools without overwhelming the model. A recurring idea is that the best agent product is one that exposes useful primitives\u2014databases, pages, tools, triggers, permissions\u2014while keeping the outer system rigorous enough for reliability and enterprise use. The speakers argue that the company\u2019s advantage is not in training a frontier model, but in understanding collaboration workflows, shipping strong internal primitives, and using evals as an operating system for fast iteration. They also describe a distinct internal function for model behavior and eval work, where non-traditional technical backgrounds matter as much as software engineering. The interview goes deep on MCP versus CLI, explaining when each is useful and why determinism, permissioning, and cost matter as much as raw capability. It also covers pricing credits, model selection, retrieval and ranking for agent queries, and why Meeting Notes became a strong data-capture and growth loop because it feeds the rest of the system.",
+      "why_it_matters": "This piece is valuable because it gives a concrete, operator-level view of what it takes to ship agentic software inside an established product with real users and enterprise constraints. Notion\u2019s team describes multiple rebuilds, and the important detail is not just that models improved; it is that they learned to stop fighting the model and instead reshape the harness, tool surface, and prompt architecture around what the model can use well. The interview also shows a durable pattern for agent products: keep the outer system simple and inspectable, make tools individually owned, and use evals to decide when to expose new capability. Their stance on MCP versus CLI is especially practical: CLI can be powerful because the agent can self-debug in the same environment, while MCP can be better for narrow, tightly permissioned tool access. The pricing discussion is also useful because it ties product economics to capability choice rather than pretending every action is equivalent. For builders, the most reusable idea is that \u201cteaching the top of the class\u201d means giving expert users enough visibility and control that the agent remains legible and debuggable. The closing, more domain-specific point is that meeting notes are treated as data capture, not just transcription, which is why they become a strong source of context for search and follow-up workflows; that is actionable as of 2026-04-15 and likely durable if your product also turns conversations into structured work."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "The source is structured as a long-form Q&A with multiple speakers (interviewer and Notion staff).",
+        "It includes transcript timestamps and conversational back-and-forth rather than a single narrative essay.",
+        "The page explicitly labels a full transcript and episode discussion."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"we created this whole XML format that can losslessly mapped in notion blocks... and then we\u2019re like, okay, well it has to be marked down. the model\u2019s no markdown\"",
+            "\"we had to make our harness implement progressive disclosure in, in a nice way.\"",
+            "\"really try so hard not to expose it to any complexity about your system that, that\u2019s unnecessary.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Design agent products around model constraints, not product complexity",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "Notion",
+            "OpenAI",
+            "Anthropic",
+            "Fireworks"
+          ],
+          "operational_relevance": "Use simple, model-native abstractions; avoid forcing the model through lossy or overly rich internal formats; and introduce tools gradually with routing or disclosure layers. This also suggests that each new tool can degrade the overall harness if added without careful gating and eval coverage.",
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "context-engineering",
+            "agent-systems",
+            "workflow-design"
+          ],
+          "secondary_tag": "context-engineering",
+          "service_automation_relevance": "Strong. Support and workflow automation systems benefit from narrow, legible tool sets and staged disclosure, especially when agents need to operate safely in shared enterprise environments.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Notion\u2019s team describes a repeated pattern: early agent attempts failed because they exposed too much of Notion\u2019s internal complexity to models, used representations the model did not handle well, or depended on capabilities that were not mature enough. Their fix was to simplify the tool surface, use representations the model already understands, and add progressive disclosure so the model only sees what it needs. The underlying lesson is that agent quality depends as much on harness design as on model capability.",
+          "value_level": "high",
+          "why_it_matters": "Actionable as of 2026-04-15: agent builders should treat tool design, prompt size, and disclosure strategy as first-class product decisions, not implementation details. This is a durable pattern for shipping reliable enterprise agents because it reduces brittleness without waiting for frontier-model gains.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "cc33f35c-4631-4277-8a4c-d112a67f8e77",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"we created this whole XML format that can losslessly mapped in notion blocks... and then we\u2019re like, okay, well it has to be marked down. the model\u2019s no markdown\"",
+              "\"we had to make our harness implement progressive disclosure in, in a nice way.\"",
+              "\"really try so hard not to expose it to any complexity about your system that, that\u2019s unnecessary.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion",
+              "OpenAI",
+              "Anthropic",
+              "Fireworks"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "context-engineering",
+            "agent-systems",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "The team\u2019s \"frontier\" evals are intentionally designed to pass only about 30% of the time, which is an internal headroom strategy rather than a general benchmark rule."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"we have the equivalent of unit test. Regression test... Then we have... launch quality... And then what we have what we call frontier or headroom evals, where we actively wanna be at 30% pass rate.\"",
+            "\"our evals were saturated and we weren\u2019t able to really give insightful feedback other than it wasn\u2019t worse.\"",
+            "\"if a new model release comes out and we... maintain their own evals\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Evals should be treated as an agent harness, not just testing",
+          "insight_type": "research_eval",
+          "mentioned_entities": [
+            "Notion",
+            "OpenAI"
+          ],
+          "operational_relevance": "Build separate eval classes for regression, launch readiness, and frontier probing. Integrate eval writing and failure triage into the same outer loop as development so that model changes, tool changes, and prompt changes can all be validated against the right target.",
+          "primary_tag": "agent-evals",
+          "proposed_tags": [
+            "agent-evals",
+            "ai-evaluation",
+            "test-and-verification",
+            "verification-systems"
+          ],
+          "secondary_tag": "ai-evaluation",
+          "service_automation_relevance": "High. Reliable chatbots and service agents need launch-quality checks for customer-facing journeys plus harder evals for future capability planning, especially when routing, permissions, and escalation behavior can fail silently.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Notion separates regression tests, launch-quality evals, and deliberately hard headroom evals that are expected to pass only about 30% of the time. They also describe an internal workflow where agents can help write evals, debug failures, and iterate on fixes. This makes evals part of the production system rather than a side activity.",
+          "value_level": "high",
+          "why_it_matters": "Actionable as of 2026-04-15: teams shipping agentic systems need evaluation layers that can distinguish product readiness from frontier capability exploration. The distinction between launch-quality and headroom evals is especially reusable because it lets teams measure both safety and future model headroom without collapsing them into one metric.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "bf109da9-9633-45d8-9fa9-8dab0cd3eacf",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "The team\u2019s \"frontier\" evals are intentionally designed to pass only about 30% of the time, which is an internal headroom strategy rather than a general benchmark rule."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"we have the equivalent of unit test. Regression test... Then we have... launch quality... And then what we have what we call frontier or headroom evals, where we actively wanna be at 30% pass rate.\"",
+              "\"our evals were saturated and we weren\u2019t able to really give insightful feedback other than it wasn\u2019t worse.\"",
+              "\"if a new model release comes out and we... maintain their own evals\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion",
+              "OpenAI"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-evals",
+            "ai-evaluation",
+            "test-and-verification",
+            "verification-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"memory is, is just pages and databases.\"",
+            "\"one agent, be writing to the database and there\u2019s another agent that\u2019s walked in the database\"",
+            "\"we call it flippy... the main view... is the chat\""
+          ],
+          "evidence_type": null,
+          "insight_title": "The best agent products expose primitives, not hidden magic",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "Notion"
+          ],
+          "operational_relevance": "Design agent systems so agents can write to shared data structures, react to those data structures, and invoke each other through explicit interfaces. This reduces coupling and makes it easier to add manager agents, routing layers, and human inspection points.",
+          "primary_tag": "agent-memory",
+          "proposed_tags": [
+            "agent-memory",
+            "agent-orchestration",
+            "knowledge-systems",
+            "workflow-automation"
+          ],
+          "secondary_tag": "agent-orchestration",
+          "service_automation_relevance": "Strong. Service workflows often need shared state, handoffs, and auditability; using the same system-of-record objects for human and agent work makes escalation and review simpler.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Notion repeatedly frames its product as a set of primitives: pages, databases, triggers, permissions, and tools. Agents coordinate through those primitives, and memory is implemented as editable pages or databases rather than a bespoke memory subsystem. The broader design goal is to keep the system inspectable and composable for power users and operators.",
+          "value_level": "high",
+          "why_it_matters": "This is a durable architectural pattern for enterprise AI: keep state in visible business objects instead of hiding it in opaque agent memory. That makes debugging, governance, and cross-agent coordination easier, and it fits products that already have strong data models.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "adcdbeab-3409-49a9-9663-a28a3120bdb5",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"memory is, is just pages and databases.\"",
+              "\"one agent, be writing to the database and there\u2019s another agent that\u2019s walked in the database\"",
+              "\"we call it flippy... the main view... is the chat\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-memory",
+            "agent-orchestration",
+            "knowledge-systems",
+            "workflow-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"the credits and payment structures associated with the token usage\"",
+            "\"if we were to host sandboxes, those are priced differently\"",
+            "\"if every single autofill action was an agent running on Opus on every single database sell, it would be billions of dollars\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Usage-based pricing is required when model, search, and sandbox costs vary by task",
+          "insight_type": "topic",
+          "mentioned_entities": [
+            "Notion",
+            "Anthropic",
+            "OpenAI"
+          ],
+          "operational_relevance": "Separate low-cost deterministic tasks from expensive agentic tasks where possible, and surface cost-to-capability tradeoffs in the UI. Use pricing abstractions that can handle model choice, search, and execution environments without making the cheapest path the default for everything.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "infrastructure-economics",
+            "enterprise-ai"
+          ],
+          "secondary_tag": "infrastructure-economics",
+          "service_automation_relevance": "Medium. Support automation products will usually need to expose when a route is expensive or slow, because the best model for a task is not always the cheapest or fastest one.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "outcome-based-pricing-for-ai-agents",
+          "suggested_new_tags": [
+            "outcome-based-pricing-for-ai-agents"
+          ],
+          "summary": "Notion explains that credits are an abstraction above raw tokens because the real cost varies by model, serving tier, web search, and future sandboxing. They also argue that some tasks should use deterministic code paths instead of repeated language-model calls, both for cost control and for better predictability. Pricing therefore becomes a product design problem tied to capability choice.",
+          "value_level": "high",
+          "why_it_matters": "Actionable as of 2026-04-15: agent products with heterogeneous runtime costs cannot safely price every action as if it were a uniform token stream. This insight is especially useful for enterprise AI products that mix search, tool execution, and asynchronous agents under one SKU.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "90905476-8e16-4047-9dd2-48f7cfb0772a",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"the credits and payment structures associated with the token usage\"",
+              "\"if we were to host sandboxes, those are priced differently\"",
+              "\"if every single autofill action was an agent running on Opus on every single database sell, it would be billions of dollars\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion",
+              "Anthropic",
+              "OpenAI"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "infrastructure-economics",
+            "enterprise-ai"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-15",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"the search load and the search traffic. Majority of it\u2019s coming from agents, not humans.\"",
+            "\"top K retrieval mode matters more\"",
+            "\"we don\u2019t spend a lot of time trying to optimize what vector embedding we use anymore\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Retrieval for agents optimizes differently than retrieval for humans",
+          "insight_type": "topic",
+          "mentioned_entities": [
+            "Notion",
+            "ElasticSearch"
+          ],
+          "operational_relevance": "Rebuild retrieval pipelines around agent query generation, parallel exhaustive search, top-K relevance, and snippet quality. Treat ranking and query diversity as one system and optimize against task completion rather than human browsing behavior.",
+          "primary_tag": "retrieval-systems",
+          "proposed_tags": [
+            "retrieval-systems",
+            "knowledge-systems",
+            "enterprise-workflows"
+          ],
+          "secondary_tag": "knowledge-systems",
+          "service_automation_relevance": "Strong. Conversational service agents often need structured search over internal knowledge, and their success depends on the relevance of the retrieved context more than on traditional search UX metrics.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "hybrid-retrieval",
+          "suggested_new_tags": [
+            "hybrid-retrieval"
+          ],
+          "summary": "Notion says agent search traffic is structurally different from human search traffic, so ranking, top-K retrieval, snippet selection, and query generation all need to be rethought. They emphasize that vector-embedding choices are less important than the broader retrieval and ranking loop for agentic queries. The implication is that agent workloads change the retrieval objective, not just the query volume.",
+          "value_level": "high",
+          "why_it_matters": "Actionable as of 2026-04-15: products that let agents search company knowledge should not assume human search metrics will carry over. For agent-driven systems, retrieval quality must be judged by downstream task success, not just click-through or position bias.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "8cf076c0-cece-42a4-a6e4-3881c1d65446",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"the search load and the search traffic. Majority of it\u2019s coming from agents, not humans.\"",
+              "\"top K retrieval mode matters more\"",
+              "\"we don\u2019t spend a lot of time trying to optimize what vector embedding we use anymore\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Notion",
+              "ElasticSearch"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "retrieval-systems",
+            "knowledge-systems",
+            "enterprise-workflows"
+          ]
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "Claims come mainly from Notion staff describing how they built and operate Custom Agents, which is implementation detail.",
+          "The conversation also includes strategic opinions and product judgments about MCP vs CLI, pricing, evals, and roadmap direction.",
+          "Some statements are grounded in concrete demos and internal workflows, while others are forward-looking or interpretive."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Notion\u2019s main lesson is to design around model constraints: use simpler tool representations, progressive disclosure, and a shorter system prompt instead of forcing the model to cope with the product\u2019s internal complexity.",
+          "They treat evals as a first-class platform layer, with regression tests, launch-quality evals, and deliberately hard headroom evals that should pass only about 30% of the time.",
+          "The company separates model behavior work into its own career path, because failure analysis, rubric design, and judge building are not just ordinary software engineering tasks.",
+          "Notion prefers primitives over bespoke agent features: pages, databases, triggers, and permissions are the substrate for memory, coordination, and agent-to-agent communication.",
+          "Pricing is intentionally usage-based because the cost of model choice, search, sandboxing, and tiering varies too much to map cleanly to raw token throughput."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/notion"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "The source is structured as a long-form Q&A with multiple speakers (interviewer and Notion staff).",
+          "It includes transcript timestamps and conversational back-and-forth rather than a single narrative essay.",
+          "The page explicitly labels a full transcript and episode discussion."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 5,
+    "review_duration_seconds": 299.7,
+    "review_finished_at": "2026-06-05T15:28:32.680537+00:00",
+    "review_started_at": "2026-06-05T15:23:33+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T15:28:32+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/notion",
+    "content_sha256": "30cc50e4340c346681021eae57eb692c635318ec1733897fde5cb2f98eddd023",
+    "publication": "Latent",
+    "published_date": "2026-04-15",
+    "raw_html_rel_path": "raw/readwise/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f.html",
+    "raw_md_rel_path": "raw/readwise/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f.md",
+    "source_id": "notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f",
+    "title": "Notion\u2019s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software Factory Future \u2014 Simon Last & Sarah Sachs of Notion"
+  }
+}

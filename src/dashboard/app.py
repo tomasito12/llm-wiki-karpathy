@@ -35,12 +35,15 @@ from src.ingest_review.artifact import (
     touch_review_session,
 )
 from src.ingest_review.dashboard_ui import (
-    render_review_summary_panel,
-    render_review_timer,
+    ENTITY_TABS_WITH_PROPOSAL_AUTOSAVE,
+    build_review_entity_tab_options,
+    normalize_review_entity_tab,
+    render_compact_review_stats,
     render_skip_extraction_screen,
     render_source_evidence_profile,
     render_source_summary_review,
     render_source_type_detection,
+    render_source_type_override_panel,
 )
 from src.ingest_review.evidence import (
     effective_proposal_evidence_type,
@@ -51,6 +54,7 @@ from src.ingest_review.extract import (
     load_readwise_pair,
     readwise_source_status,
 )
+from src.ingest_review.fast_review_ui import run_proposal_autosave
 from src.ingest_review.feedback_store import (
     default_feedback_db_path,
     record_events_from_artifact,
@@ -73,6 +77,7 @@ from src.ingest_review.insights_ui import (
     collect_insight_new_tags,
     render_interview_insights,
 )
+from src.ingest_review.layout_ui import reading_width_column
 from src.ingest_review.models_ui import (
     collect_model_new_tags,
     collect_model_new_types,
@@ -97,6 +102,12 @@ from src.ingest_review.schema import PROMPT_VERSION
 from src.ingest_review.signals_ui import (
     collect_signal_new_tags,
     render_roundup_signals,
+)
+from src.ingest_review.skipped_sources import (
+    is_source_skipped,
+    skip_entry_for_source,
+    skip_source_for_extraction,
+    unskip_source,
 )
 from src.ingest_review.tags import (
     append_tags_to_yaml,
@@ -355,10 +366,14 @@ def main() -> None:
     finish_flash = st.session_state.pop("_finish_review_flash", None)
     if finish_flash:
         st.success(finish_flash)
+    skip_flash = st.session_state.pop("_skip_extraction_flash", None)
+    if skip_flash:
+        st.success(f"Skipped **{skip_flash}** — no review artifact saved.")
     st.caption(
         f"{counts['in_progress']} in progress · "
         f"{counts['not_started']} not started · "
-        f"{counts['finished']} finished "
+        f"{counts['finished']} finished · "
+        f"{counts['skipped']} skipped "
         f"(of {len(html_paths)} total)"
     )
 
@@ -443,6 +458,14 @@ def main() -> None:
 
     st.subheader("Source metadata")
     st.caption(f"Review queue: **{status_label(source_review_status)}**")
+    if is_source_skipped(reviews_root, source_id):
+        skip_meta = skip_entry_for_source(reviews_root, source_id) or {}
+        skipped_at = str(skip_meta.get("skipped_at") or "").strip() or "unknown time"
+        st.info(
+            "This source is **skipped for extraction** (marked "
+            f"{skipped_at}). Use **Analyze source** to run extraction anyway, "
+            "or pick another article from the queue."
+        )
     c1, c2, c3 = st.columns(3)
     c1.metric("Wiki source page exists", "yes" if wiki_ingested else "no")
     c2.text(f"SHA256\n{doc.content_sha256[:16]}…")
@@ -482,7 +505,7 @@ def main() -> None:
         st.session_state["artifact"] = existing
         st.session_state["artifact_source_id"] = source_id
 
-    col_a, col_b = st.columns(2)
+    col_a, col_b, col_c = st.columns(3)
     with col_a:
         if st.button("Analyze source", type="primary"):
             if not os.environ.get("OPENAI_API_KEY"):
@@ -499,6 +522,7 @@ def main() -> None:
             else:
                 if existing and overwrite:
                     backup_artifact(artifact_path)
+                unskip_source(reviews_root, source_id)
                 try:
                     provider = OpenAIIngestionProvider()
                     artifact, _parsed = run_classification(
@@ -529,8 +553,29 @@ def main() -> None:
                     with st.expander("Traceback"):
                         st.text(traceback.format_exc())
 
-    artifact_early = st.session_state.get("artifact")
     with col_b:
+        if st.button(
+            "Skip extraction",
+            help="Skip this article: no LLM extraction and no review.json is written.",
+        ):
+            skip_source_for_extraction(
+                reviews_root,
+                source_id,
+                title=doc.title or "",
+                content_sha256=doc.content_sha256,
+            )
+            st.session_state["artifact"] = None
+            st.session_state["artifact_source_id"] = None
+            st.session_state.pop(f"{source_id[:40]}_review_mode", None)
+            refreshed_status = build_source_status_map(reviews_root, source_ids)
+            next_pool = unfinished_source_ids(source_ids, refreshed_status)
+            if next_pool:
+                st.session_state["review_source_pick_id"] = next_pool[0]
+            st.session_state["_skip_extraction_flash"] = doc.title or source_id
+            st.rerun()
+
+    artifact_early = st.session_state.get("artifact")
+    with col_c:
         if artifact_early and st.button("Finish review", type="primary"):
             msg = finish_review_session(st, artifact_early, artifact_path, root)
             st.session_state["artifact"] = artifact_early
@@ -539,7 +584,10 @@ def main() -> None:
 
     artifact = st.session_state.get("artifact")
     if not artifact:
-        st.info("Run **Analyze source** to continue.")
+        if is_source_skipped(reviews_root, source_id):
+            st.caption("Skipped — nothing to review until you run **Analyze source**.")
+        else:
+            st.info("Run **Analyze source** to continue.")
         return
 
     pending_regen = st.session_state.pop("_pending_section_regen", None)
@@ -771,212 +819,178 @@ def main() -> None:
         compact=review_mode != "source_only",
     )
 
-    render_review_summary_panel(st, artifact)
-    render_review_timer(st, artifact, key_prefix=key_prefix)
+    render_compact_review_stats(st, artifact, key_prefix=key_prefix)
 
-    llm_detection = (artifact.get("llm_output") or {}).get("source_type_detection") or {}
-    detected_type = llm_detection.get("detected_source_type") or "unknown"
-    detection_conf = llm_detection.get("confidence") or 0
-    detection_reasons = llm_detection.get("reasoning") or []
-    source_type_options: list[str] = [
-        "standard_article",
-        "ai_industry_roundup",
-        "ai_tools_roundup",
-        "how_to_roundup",
-        "interview_or_transcript",
-        "technical_howto",
-        "research_paper_or_report",
-        "unknown",
-    ]
-    with st.container():
-        st.markdown("---")
-        c_det, c_over = st.columns([2, 1])
-        with c_det:
-            st.markdown(
-                f"**Detected source type:** `{detected_type}` (confidence: {detection_conf:.0%})"
-            )
-            if detection_reasons:
-                for r in detection_reasons:
-                    st.caption(f"- {r}")
-        with c_over:
-            override_val = st.selectbox(
-                "Override source type",
-                options=["(keep detected)"] + source_type_options,
-                index=0,
-                key=f"{key_prefix}_srctype_override",
-            )
-            if override_val != "(keep detected)" and st.button(
-                "Re-analyze with override", key=f"{key_prefix}_reanalyze_override"
-            ):
-                if not os.environ.get("OPENAI_API_KEY"):
-                    st.error("OPENAI_API_KEY is not set.")
-                else:
-                    try:
-                        provider = OpenAIIngestionProvider()
-                        artifact, _parsed = run_classification(
-                            provider,
-                            doc,
-                            wiki_root=wiki_root,
-                            tool_types=tool_types,
-                            howto_tags=howto_tags,
-                            impl_study_tags=impl_study_tags,
-                            glossary_tags=glossary_tags,
-                            topic_tags=topic_tags,
-                            trend_tags=trend_tags,
-                            model_types=model_types,
-                            tool_tags=tool_tags,
-                            model_tags=model_tags,
-                            extraction_budgets=extraction_budgets,
-                            source_type_override=str(override_val),
-                            model=model,
-                            prompt_version=prompt_version,
-                            reviews_root=reviews_root,
-                        )
-                        st.session_state["artifact"] = artifact
-                        st.session_state["artifact_source_id"] = source_id
-                        st.success(f"Re-analysis complete (override: {override_val}).")
-                        st.rerun()
-                    except Exception as exc:  # noqa: BLE001
-                        st.error(f"Re-analysis failed: {exc}")
-                        with st.expander("Traceback"):
-                            st.text(traceback.format_exc())
-        st.markdown("---")
+    tab_options = build_review_entity_tab_options(artifact, REVIEW_ENTITY_TABS)
+    stored_tab = st.session_state.get("review_entity_tab", REVIEW_ENTITY_TABS[0])
+    normalized_tab = normalize_review_entity_tab(str(stored_tab))
+    if normalized_tab not in REVIEW_ENTITY_TABS:
+        normalized_tab = REVIEW_ENTITY_TABS[0]
+    st.session_state["review_entity_tab"] = tab_options[REVIEW_ENTITY_TABS.index(normalized_tab)]
 
-    if "review_entity_tab" not in st.session_state:
-        st.session_state["review_entity_tab"] = REVIEW_ENTITY_TABS[0]
-    elif st.session_state["review_entity_tab"] not in REVIEW_ENTITY_TABS:
-        st.session_state["review_entity_tab"] = REVIEW_ENTITY_TABS[0]
+    prev_entity_tab_key = f"{key_prefix}_review_entity_tab_prev"
+    prev_entity_tab = st.session_state.get(prev_entity_tab_key)
 
-    entity_tab = st.radio(
+    entity_tab_display = st.radio(
         "Review section",
-        REVIEW_ENTITY_TABS,
+        tab_options,
         horizontal=True,
         key="review_entity_tab",
         label_visibility="collapsed",
     )
+    entity_tab = normalize_review_entity_tab(str(entity_tab_display))
 
-    if entity_tab == "Source chapters":
-        render_source_summary_review(
-            st,
-            artifact,
-            key_prefix=key_prefix,
-            source_id=source_id,
-            artifact_path=artifact_path,
-        )
-    elif entity_tab == "Glossary":
-        render_glossary_proposals(
-            st,
-            artifact,
-            key_prefix=key_prefix,
-            source_id=source_id,
-            glossary_tags=glossary_tags,
-            artifact_path=artifact_path,
-            wiki_glossary_terms=wiki_glossary_seed,
-            model=model,
-            prompt_version=prompt_version,
-        )
-    elif entity_tab == "Topics":
-        render_topic_proposals(
-            st,
-            artifact,
-            key_prefix=key_prefix,
-            source_id=source_id,
-            artifact_path=artifact_path,
-            topic_tags=topic_tags,
-            model=model,
-            prompt_version=prompt_version,
-            wiki_root=wiki_root,
-            reviews_root=reviews_root,
-        )
-    elif entity_tab == "How-tos":
-        render_howto_proposals(
-            st,
-            artifact,
-            key_prefix=key_prefix,
-            source_id=source_id,
-            artifact_path=artifact_path,
-            howto_tags=howto_tags,
-            model=model,
-            prompt_version=prompt_version,
-        )
-    elif entity_tab == "Trends":
-        render_trend_proposals(
-            st,
-            artifact,
-            key_prefix=key_prefix,
-            source_id=source_id,
-            artifact_path=artifact_path,
-            trend_tags=trend_tags,
-            model=model,
-            prompt_version=prompt_version,
-        )
-    elif entity_tab == "Tools":
-        render_tool_proposals(
-            st,
-            artifact,
-            key_prefix=key_prefix,
-            source_id=source_id,
-            artifact_path=artifact_path,
-            tool_types=tool_types,
-            tool_tags=tool_tags,
-            model=model,
-            prompt_version=prompt_version,
-        )
-    elif entity_tab == "Models":
-        render_model_proposals(
-            st,
-            artifact,
-            key_prefix=key_prefix,
-            source_id=source_id,
-            artifact_path=artifact_path,
-            model_types=model_types,
-            model_tags=model_tags,
-            model=model,
-            prompt_version=prompt_version,
-        )
-    elif entity_tab == "Impl studies":
-        render_implementation_studies(
-            st,
-            artifact,
-            key_prefix=key_prefix,
-            source_id=source_id,
-            artifact_path=artifact_path,
-            impl_study_tags=impl_study_tags,
-            model=model,
-            prompt_version=prompt_version,
-        )
-    elif entity_tab == "Signals":
-        render_roundup_signals(
-            st,
-            artifact,
-            trend_tags=trend_tags,
-            key_prefix=key_prefix,
-            artifact_path=artifact_path,
-            model=model,
-            prompt_version=prompt_version,
-        )
-    elif entity_tab == "Insights":
-        render_interview_insights(
-            st,
-            artifact,
-            topic_tags=topic_tags,
-            key_prefix=key_prefix,
-            artifact_path=artifact_path,
-            model=model,
-            prompt_version=prompt_version,
-        )
-    elif entity_tab == "Source type":
-        render_source_evidence_profile(st, artifact, key_prefix=key_prefix)
-        render_source_type_detection(st, artifact, key_prefix=key_prefix)
-    elif entity_tab == "Debug":
-        st.json(artifact.get("llm_output"))
+    if (
+        isinstance(prev_entity_tab, str)
+        and prev_entity_tab != entity_tab
+        and prev_entity_tab in ENTITY_TABS_WITH_PROPOSAL_AUTOSAVE
+    ):
+        run_proposal_autosave(key_prefix)
+    st.session_state[prev_entity_tab_key] = entity_tab
 
-    if st.button("Save draft"):
-        touch_review_session(artifact)
-        save_artifact(artifact_path, artifact)
-        st.success(f"Draft saved to {artifact_path}")
+    with reading_width_column(st):
+        if entity_tab == "Source chapters":
+            render_source_summary_review(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                artifact_path=artifact_path,
+            )
+        elif entity_tab == "Glossary":
+            render_glossary_proposals(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                glossary_tags=glossary_tags,
+                artifact_path=artifact_path,
+                wiki_glossary_terms=wiki_glossary_seed,
+                model=model,
+                prompt_version=prompt_version,
+            )
+        elif entity_tab == "Topics":
+            render_topic_proposals(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                artifact_path=artifact_path,
+                topic_tags=topic_tags,
+                model=model,
+                prompt_version=prompt_version,
+                wiki_root=wiki_root,
+                reviews_root=reviews_root,
+            )
+        elif entity_tab == "How-tos":
+            render_howto_proposals(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                artifact_path=artifact_path,
+                howto_tags=howto_tags,
+                model=model,
+                prompt_version=prompt_version,
+            )
+        elif entity_tab == "Trends":
+            render_trend_proposals(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                artifact_path=artifact_path,
+                trend_tags=trend_tags,
+                model=model,
+                prompt_version=prompt_version,
+            )
+        elif entity_tab == "Tools":
+            render_tool_proposals(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                artifact_path=artifact_path,
+                tool_types=tool_types,
+                tool_tags=tool_tags,
+                model=model,
+                prompt_version=prompt_version,
+            )
+        elif entity_tab == "Models":
+            render_model_proposals(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                artifact_path=artifact_path,
+                model_types=model_types,
+                model_tags=model_tags,
+                model=model,
+                prompt_version=prompt_version,
+            )
+        elif entity_tab == "Impl studies":
+            render_implementation_studies(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                source_id=source_id,
+                artifact_path=artifact_path,
+                impl_study_tags=impl_study_tags,
+                model=model,
+                prompt_version=prompt_version,
+            )
+        elif entity_tab == "Signals":
+            render_roundup_signals(
+                st,
+                artifact,
+                trend_tags=trend_tags,
+                key_prefix=key_prefix,
+                artifact_path=artifact_path,
+                model=model,
+                prompt_version=prompt_version,
+            )
+        elif entity_tab == "Insights":
+            render_interview_insights(
+                st,
+                artifact,
+                topic_tags=topic_tags,
+                key_prefix=key_prefix,
+                artifact_path=artifact_path,
+                model=model,
+                prompt_version=prompt_version,
+            )
+        elif entity_tab == "Source type":
+            render_source_type_override_panel(
+                st,
+                artifact,
+                key_prefix=key_prefix,
+                doc=doc,
+                wiki_root=wiki_root,
+                reviews_root=reviews_root,
+                tool_types=tool_types,
+                howto_tags=howto_tags,
+                impl_study_tags=impl_study_tags,
+                glossary_tags=glossary_tags,
+                topic_tags=topic_tags,
+                trend_tags=trend_tags,
+                model_types=model_types,
+                tool_tags=tool_tags,
+                model_tags=model_tags,
+                extraction_budgets=extraction_budgets,
+                model=model,
+                prompt_version=prompt_version,
+            )
+            render_source_evidence_profile(st, artifact, key_prefix=key_prefix)
+            render_source_type_detection(st, artifact, key_prefix=key_prefix)
+        elif entity_tab == "Debug":
+            st.json(artifact.get("llm_output"))
 
-    st.caption(f"Artifact path: {artifact_path}")
+        if st.button("Save draft"):
+            touch_review_session(artifact)
+            save_artifact(artifact_path, artifact)
+            st.success(f"Draft saved to {artifact_path}")
+
+        st.caption(f"Artifact path: {artifact_path}")
 
 
 if __name__ == "__main__":

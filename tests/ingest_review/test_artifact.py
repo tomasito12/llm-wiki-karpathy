@@ -11,6 +11,7 @@ from src.ingest_review.artifact import (
     build_new_artifact,
     default_analysis_meta,
     default_review_for_llm_output,
+    delete_review_artifact,
     ensure_review_started,
     migrate_artifact_to_v2,
     migrate_artifact_to_v3,
@@ -165,6 +166,16 @@ def test_save_artifact_roundtrip(tmp_path: Path) -> None:
     save_artifact(path, art)
     data = json.loads(path.read_text(encoding="utf-8"))
     assert data["source"]["source_id"] == doc.source_id
+
+
+def test_delete_review_artifact_removes_file(tmp_path: Path) -> None:
+    reviews_root = tmp_path / "state" / "reviews"
+    path = review_artifact_path("gone-source", state_reviews=reviews_root)
+    path.parent.mkdir(parents=True)
+    path.write_text("{}", encoding="utf-8")
+    assert delete_review_artifact("gone-source", state_reviews=reviews_root) is True
+    assert not path.is_file()
+    assert delete_review_artifact("gone-source", state_reviews=reviews_root) is False
 
 
 def test_default_review_builds_impl_study_per_section_nodes() -> None:

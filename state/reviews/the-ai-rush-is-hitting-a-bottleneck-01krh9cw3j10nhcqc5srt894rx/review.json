@@ -1,0 +1,684 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T14:48:16+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnQ7uyUV5Dw2G43isw14A2jslPgOW",
+          "token_usage": {
+            "completion_tokens": 210,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5877,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6087
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnQ7xW0RtsUKCs4GxAlN5UFLZ6tki",
+          "token_usage": {
+            "completion_tokens": 1000,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5501,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6501
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnQ87bqMPbXiF0a6au051Wmp8SPRw",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1440,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30738,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 32178
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnQ87bqMPbXiF0a6au051Wmp8SPRw",
+    "token_usage": {
+      "completion_tokens": 2650,
+      "prompt_tokens": 42116,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 44766
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-27",
+        "confidence": 0.95,
+        "evidence_from_source": "The source reports throttling, outages, and access limits at major AI providers, plus shortages across chips, memory, CPUs, and data-center hardware. It also says hardware suppliers are investing less than hyperscalers and that TSMC's advanced fabs are already running flat out.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics"
+        ],
+        "related_trends": [],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "infrastructure",
+        "suggested_new_tags": [
+          "infrastructure",
+          "infrastructure-economics"
+        ],
+        "supporting_data_points": [
+          "OpenRouter weekly tokens processed quadrupled between January and March.",
+          "Anthropic began throttling access at busy times and had around 30 minutes a day of outages in April.",
+          "H100 rental prices have risen by around 30% since November.",
+          "All three big HBM producers say most of their 2026 supply is sold out.",
+          "TSMC plans to spend about $55bn in 2026, up 34% from 2025, while the five hyperscalers have tripled combined capital spending to more than $750bn."
+        ],
+        "supporting_snippet": "\"The squeeze also extends to memory chips\" ... \"The shortages are now spreading to central-processing units (CPUs).\"",
+        "time_sensitivity": "Actionable as of 2026-04-27; the source argues the squeeze is already present and could persist while new capacity takes years to build.",
+        "trend_description": "AI scaling pressure can move through the physical stack rather than staying confined to one component. As demand rises, shortages can appear in GPUs, memory, CPUs, networking gear, cooling equipment, data-center construction, and fabrication capacity, forcing operators to manage access and product scope around supply constraints. The operational implication is that bottlenecks in AI systems are increasingly system-wide and cross-vendor, not isolated to model inference hardware.",
+        "trend_slug": "ai-infrastructure-scarcity-spreads-beyond-gpus",
+        "trend_title": "AI Infrastructure Scarcity Spreads Beyond GPUs",
+        "uncertainty_note": "The article is a reported snapshot, not a full audited capacity model, so the exact duration and severity of each shortage remain uncertain. Some relief is already visible in the text through workload shifts, older-generation chips, and memory-saving software, so the bottleneck may ease unevenly.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "Written by The Economist as an external journalist/analyst, not a vendor announcing its own products.",
+        "Claims are supported by cited third parties and market observations, including Anthropic, OpenAI, OpenRouter, SemiAnalysis, Morgan Stanley, and company disclosures.",
+        "The article's core contribution is synthesis and interpretation of reported capacity constraints rather than original research or a single vendor claim."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "AI demand is growing faster than the physical infrastructure that supports it. The article says model providers are already rationing access because they cannot get enough compute. That shortage is spreading beyond GPUs into memory chips, CPUs, and other data-center hardware. Building more data centers is also slowed by local opposition and power concerns. The basic message is simple: AI software can scale fast, but the chips, factories, and buildings behind it cannot.",
+      "assessed_as_of": "2026-04-27",
+      "contradictions_and_skepticism": "The article leans on a broad scarcity narrative, but some relief mechanisms are already visible in the text: buyers can switch to older GPUs, software can reduce memory needs, and companies are rapidly signing capacity deals. TSMC\u2019s caution may be rational rather than simply underinvestment, since it faces multi-year build times and the risk of idle capacity if demand cools. The claim that shortages will worsen is plausible, but it is still an inference from reported bottlenecks rather than a measured forecast. The article does not show whether current demand is structural or partly driven by short-lived hype and competitive token consumption.",
+      "key_insights": [
+        "Usage pressure is visible in product throttling, outages, and access limits, not just in abstract demand forecasts.",
+        "The bottleneck spans the whole stack: GPUs, high-bandwidth memory, CPUs, networking gear, cooling, and chip fabs.",
+        "Agentic systems may shift hardware mix toward CPUs, which can create a different kind of constraint than chatbot workloads.",
+        "Hyperscalers can raise capital spending quickly, but suppliers such as TSMC are limited by multi-year fab build times.",
+        "Political and permitting resistance can delay data centers even when capital and demand are available."
+      ],
+      "limitations_and_open_questions": "The article relies on reported shortages, pricing moves, and company statements, but it does not provide a full audited supply-demand model. Some figures are directional or sourced to market participants, so the exact duration and severity of each bottleneck remain uncertain. It is unclear how much demand will be offset by efficiency improvements such as memory-saving algorithms or workload changes. The piece also does not quantify how much new fab, data-center, or power capacity will come online relative to demand by specific dates beyond the examples cited. Because the article is a snapshot as of 2026-04-27, the persistence of shortages should be treated as provisional rather than guaranteed.",
+      "sources": [
+        "https://www.economist.com/business/2026/04/27/the-ai-rush-is-hitting-a-bottleneck",
+        "Economist, Business, \"The AI rush is hitting a bottleneck\" (Apr 27, 2026)"
+      ],
+      "summary": "The article argues that AI demand is running into a supply bottleneck across the infrastructure stack. On the demand side, usage of model tokens is surging, major labs are throttling products, and some services have had outages or been shut off to conserve compute. On the supply side, hyperscalers are pouring money into data centers, but hardware suppliers are expanding far more slowly, which leaves chips, memory, CPUs, networking gear, cooling, and advanced fabrication constrained. The piece highlights that the shortage is not just about GPUs: high-bandwidth memory is sold out, CPUs are tighter because agentic systems use more of them, and even next-generation chips are reserved well in advance. It also notes that political resistance to new data centers is delaying capacity in several regions, adding a non-technical constraint. The core conclusion is that software can improve quickly, but expanding the physical supply chain takes years, so the bottleneck may persist as of 2026-04-27.",
+      "why_it_matters": "The article is useful because it ties AI product constraints to the physical supply chain rather than to model capability alone. It shows that access management, reserved capacity, and service throttling are already operational realities for major labs as of 2026-04-27. For AI builders, that means planning around compute scarcity is a product and infra concern, not a hypothetical one. The piece is also a reminder that the binding constraint can move outside GPUs into memory, CPUs, and fabrication capacity, so a single-supplier or single-chip strategy is fragile. Its discussion of TSMC, HBM makers, and hyperscaler capex gives a concrete view of where lead times are long and where overbuilding risk still matters. The article does not provide a full quantitative forecast model, so it is better read as a reported warning than a precise capacity prediction. The practical takeaway is to treat compute procurement, supplier diversity, and workload efficiency as near-term operating constraints as of 2026-04-27. For service automation, the article only indirectly matters: if model access is rationed, products built on top of these systems may need stricter fallback behavior and capacity-aware routing, but the piece does not discuss those designs in detail."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent Business article with one central argument about AI infrastructure bottlenecks, not a list or transcript.",
+        "Uses reporting and cited examples from multiple companies and analysts, but the structure is narrative rather than roundup-like.",
+        "No procedural tutorial or product-review format signals are present."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.98,
+        "evidence_type": "mixed",
+        "examples": "",
+        "key_points": [
+          "Demand can rise faster than capacity, forcing throttling, outages, subscription changes, and product shutdowns.",
+          "The bottleneck spans multiple layers: GPUs, HBM memory, CPUs, networking gear, cooling equipment, and fab capacity.",
+          "Agentic systems can require a different hardware mix than chatbot-style systems, increasing CPU pressure.",
+          "Expanding supply takes years, while software demand can change in months."
+        ],
+        "knowledge_summary": "AI demand can exceed the physical ability to add compute across the stack, making supply the limiting factor for product growth and reliability. The source ties the bottleneck to constrained GPUs, memory chips, CPUs, networking gear, cooling equipment, and advanced fabs, with demand sometimes forcing throttling, outages, subscription changes, or feature shutdowns. It also notes that some workloads are shifting the mix of required hardware, so the binding constraint can move from one component to another as systems evolve.",
+        "match_candidates": [],
+        "operational_insight": "Treat compute availability as a supply-chain problem, not just a cloud-billing problem. AI teams should plan for long procurement lead times, reserve capacity early, expect component-specific shortages, and design fallback modes such as throttling, queueing, or reduced service scope when hardware supply tightens.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "infrastructure",
+          "infrastructure-economics",
+          "serving-infrastructure"
+        ],
+        "related_topics": [
+          "agentic-workload-hardware-mix",
+          "agent-infrastructure",
+          "serving-infrastructure",
+          "infrastructure-economics"
+        ],
+        "relevance_note": "This is a durable AI-engineering concern because production systems depend on physical capacity as much as on model quality. As workloads scale, reliability, rollout pace, and feature availability can all be limited by the slowest part of the compute supply chain.",
+        "secondary_tag": "infrastructure",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Demand is rising faster than they can add capacity\" ... \"The squeeze also extends to central-processing units (CPUs).\" ... \"Improving software takes months, whereas expanding supply chains takes years.\"",
+        "topic_slug": "compute-supply-becomes-the-ai-bottleneck",
+        "topic_title": "Compute Supply Becomes the AI Bottleneck",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Agentic systems can shift demand toward CPUs relative to simpler chatbot workloads.",
+          "Infrastructure planning should account for coordination overhead, not only model inference cost.",
+          "Changing from chat to agent behavior can change the bottleneck even if model size stays the same."
+        ],
+        "knowledge_summary": "Different AI workload styles can change the hardware mix required to serve them efficiently. Systems that plan, coordinate, and execute tasks may consume relatively more CPU capacity than simpler chatbot-style systems, which shifts procurement pressure beyond accelerators alone. This makes workload characterization important for capacity planning, because architectural changes in the product can create new bottlenecks in the serving stack. Planning assumptions built around one workload type can break when the system evolves toward more agentic behavior.",
+        "match_candidates": [],
+        "operational_insight": "When moving from chatbot-style interactions to agentic systems, teams should reassess CPU, GPU, and orchestration capacity together rather than scaling only accelerator supply. Serving architecture should be sized to the actual task mix, not the historical model form factor.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "infrastructure",
+          "runtime-systems",
+          "orchestration"
+        ],
+        "related_topics": [
+          "ai-compute-supply-bottleneck"
+        ],
+        "relevance_note": "This is durable for AI systems design because task decomposition, tool use, and coordination overhead can materially change infrastructure demand. Conversational agents that add planning or multi-step execution may need more CPU headroom for orchestration, state handling, and tool calls. As of 2026-04-27, the source suggests that workload mix is itself an infrastructure planning variable.",
+        "secondary_tag": "infrastructure",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"'Agentic' AI tools, which plan, reason and carry out tasks, rely more heavily on these types of chips to co-ordinate their work. Morgan Stanley, an investment bank, estimates that agentic systems require one CPU for every GPU, compared with a ratio of one to 12 for chatbot-style systems.\"",
+        "topic_slug": "agentic-workload-hardware-mix",
+        "topic_title": "Agentic Workload Hardware Mix",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-27",
+          "confidence": 0.95,
+          "evidence_from_source": "The source reports throttling, outages, and access limits at major AI providers, plus shortages across chips, memory, CPUs, and data-center hardware. It also says hardware suppliers are investing less than hyperscalers and that TSMC's advanced fabs are already running flat out.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics"
+          ],
+          "related_trends": [],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "infrastructure",
+          "suggested_new_tags": [
+            "infrastructure",
+            "infrastructure-economics"
+          ],
+          "supporting_data_points": [
+            "OpenRouter weekly tokens processed quadrupled between January and March.",
+            "Anthropic began throttling access at busy times and had around 30 minutes a day of outages in April.",
+            "H100 rental prices have risen by around 30% since November.",
+            "All three big HBM producers say most of their 2026 supply is sold out.",
+            "TSMC plans to spend about $55bn in 2026, up 34% from 2025, while the five hyperscalers have tripled combined capital spending to more than $750bn."
+          ],
+          "supporting_snippet": "\"The squeeze also extends to memory chips\" ... \"The shortages are now spreading to central-processing units (CPUs).\"",
+          "time_sensitivity": "Actionable as of 2026-04-27; the source argues the squeeze is already present and could persist while new capacity takes years to build.",
+          "trend_description": "AI scaling pressure can move through the physical stack rather than staying confined to one component. As demand rises, shortages can appear in GPUs, memory, CPUs, networking gear, cooling equipment, data-center construction, and fabrication capacity, forcing operators to manage access and product scope around supply constraints. The operational implication is that bottlenecks in AI systems are increasingly system-wide and cross-vendor, not isolated to model inference hardware.",
+          "trend_slug": "ai-infrastructure-scarcity-spreads-beyond-gpus",
+          "trend_title": "AI Infrastructure Scarcity Spreads Beyond GPUs",
+          "uncertainty_note": "The article is a reported snapshot, not a full audited capacity model, so the exact duration and severity of each shortage remain uncertain. Some relief is already visible in the text through workload shifts, older-generation chips, and memory-saving software, so the bottleneck may ease unevenly.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "44941b17-7579-49ff-a99f-c896785ab4e0",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "OpenRouter weekly tokens processed quadrupled between January and March.",
+              "Anthropic began throttling access at busy times and had around 30 minutes a day of outages in April.",
+              "H100 rental prices have risen by around 30% since November.",
+              "All three big HBM producers say most of their 2026 supply is sold out.",
+              "TSMC plans to spend about $55bn in 2026, up 34% from 2025, while the five hyperscalers have tripled combined capital spending to more than $750bn."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "Written by The Economist as an external journalist/analyst, not a vendor announcing its own products.",
+          "Claims are supported by cited third parties and market observations, including Anthropic, OpenAI, OpenRouter, SemiAnalysis, Morgan Stanley, and company disclosures.",
+          "The article's core contribution is synthesis and interpretation of reported capacity constraints rather than original research or a single vendor claim."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Usage pressure is visible in product throttling, outages, and access limits, not just in abstract demand forecasts.",
+          "The bottleneck spans the whole stack: GPUs, high-bandwidth memory, CPUs, networking gear, cooling, and chip fabs.",
+          "Agentic systems may shift hardware mix toward CPUs, which can create a different kind of constraint than chatbot workloads.",
+          "Hyperscalers can raise capital spending quickly, but suppliers such as TSMC are limited by multi-year fab build times.",
+          "Political and permitting resistance can delay data centers even when capital and demand are available."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/business/2026/04/27/the-ai-rush-is-hitting-a-bottleneck",
+          "Economist, Business, \"The AI rush is hitting a bottleneck\" (Apr 27, 2026)"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent Business article with one central argument about AI infrastructure bottlenecks, not a list or transcript.",
+          "Uses reporting and cited examples from multiple companies and analysts, but the structure is narrative rather than roundup-like.",
+          "No procedural tutorial or product-review format signals are present."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.98,
+          "evidence_type": "mixed",
+          "examples": "",
+          "key_points": [
+            "Demand can rise faster than capacity, forcing throttling, outages, subscription changes, and product shutdowns.",
+            "The bottleneck spans multiple layers: GPUs, HBM memory, CPUs, networking gear, cooling equipment, and fab capacity.",
+            "Agentic systems can require a different hardware mix than chatbot-style systems, increasing CPU pressure.",
+            "Expanding supply takes years, while software demand can change in months."
+          ],
+          "knowledge_summary": "AI demand can exceed the physical ability to add compute across the stack, making supply the limiting factor for product growth and reliability. The source ties the bottleneck to constrained GPUs, memory chips, CPUs, networking gear, cooling equipment, and advanced fabs, with demand sometimes forcing throttling, outages, subscription changes, or feature shutdowns. It also notes that some workloads are shifting the mix of required hardware, so the binding constraint can move from one component to another as systems evolve.",
+          "match_candidates": [],
+          "operational_insight": "Treat compute availability as a supply-chain problem, not just a cloud-billing problem. AI teams should plan for long procurement lead times, reserve capacity early, expect component-specific shortages, and design fallback modes such as throttling, queueing, or reduced service scope when hardware supply tightens.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "infrastructure",
+            "infrastructure-economics",
+            "serving-infrastructure"
+          ],
+          "related_topics": [
+            "agentic-workload-hardware-mix",
+            "agent-infrastructure",
+            "serving-infrastructure",
+            "infrastructure-economics"
+          ],
+          "relevance_note": "This is a durable AI-engineering concern because production systems depend on physical capacity as much as on model quality. As workloads scale, reliability, rollout pace, and feature availability can all be limited by the slowest part of the compute supply chain.",
+          "secondary_tag": "infrastructure",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Demand is rising faster than they can add capacity\" ... \"The squeeze also extends to central-processing units (CPUs).\" ... \"Improving software takes months, whereas expanding supply chains takes years.\"",
+          "topic_slug": "compute-supply-becomes-the-ai-bottleneck",
+          "topic_title": "Compute Supply Becomes the AI Bottleneck",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a8242d54-71f6-425b-b95b-732a4771555f",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-06-05T14:52:27+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "41",
+          "regen_count": 2
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Demand can rise faster than capacity, forcing throttling, outages, subscription changes, and product shutdowns.",
+              "The bottleneck spans multiple layers: GPUs, HBM memory, CPUs, networking gear, cooling equipment, and fab capacity.",
+              "Agentic systems can require a different hardware mix than chatbot-style systems, increasing CPU pressure.",
+              "Expanding supply takes years, while software demand can change in months."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": [
+              "agentic-workload-hardware-mix",
+              "agent-infrastructure",
+              "serving-infrastructure"
+            ],
+            "llm_list": [
+              "agentic-workload-hardware-mix",
+              "agent-infrastructure",
+              "serving-infrastructure",
+              "infrastructure-economics"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "infrastructure",
+            "infrastructure-economics",
+            "serving-infrastructure"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Agentic systems can shift demand toward CPUs relative to simpler chatbot workloads.",
+            "Infrastructure planning should account for coordination overhead, not only model inference cost.",
+            "Changing from chat to agent behavior can change the bottleneck even if model size stays the same."
+          ],
+          "knowledge_summary": "Different AI workload styles can change the hardware mix required to serve them efficiently. Systems that plan, coordinate, and execute tasks may consume relatively more CPU capacity than simpler chatbot-style systems, which shifts procurement pressure beyond accelerators alone. This makes workload characterization important for capacity planning, because architectural changes in the product can create new bottlenecks in the serving stack. Planning assumptions built around one workload type can break when the system evolves toward more agentic behavior.",
+          "match_candidates": [],
+          "operational_insight": "When moving from chatbot-style interactions to agentic systems, teams should reassess CPU, GPU, and orchestration capacity together rather than scaling only accelerator supply. Serving architecture should be sized to the actual task mix, not the historical model form factor.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "infrastructure",
+            "runtime-systems",
+            "orchestration"
+          ],
+          "related_topics": [
+            "ai-compute-supply-bottleneck"
+          ],
+          "relevance_note": "This is durable for AI systems design because task decomposition, tool use, and coordination overhead can materially change infrastructure demand. Conversational agents that add planning or multi-step execution may need more CPU headroom for orchestration, state handling, and tool calls. As of 2026-04-27, the source suggests that workload mix is itself an infrastructure planning variable.",
+          "secondary_tag": "infrastructure",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"'Agentic' AI tools, which plan, reason and carry out tasks, rely more heavily on these types of chips to co-ordinate their work. Morgan Stanley, an investment bank, estimates that agentic systems require one CPU for every GPU, compared with a ratio of one to 12 for chatbot-style systems.\"",
+          "topic_slug": "agentic-workload-hardware-mix",
+          "topic_title": "Agentic Workload Hardware Mix",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "37ca2406-848b-453c-95ba-20c4180ff687",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Agentic systems can shift demand toward CPUs relative to simpler chatbot workloads.",
+              "Infrastructure planning should account for coordination overhead, not only model inference cost.",
+              "Changing from chat to agent behavior can change the bottleneck even if model size stays the same."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "ai-compute-supply-bottleneck"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "infrastructure",
+            "runtime-systems",
+            "orchestration"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "independent_analysis": 2,
+      "mixed": 1
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 3,
+    "review_duration_seconds": 439.0,
+    "review_finished_at": "2026-06-05T14:55:34.984915+00:00",
+    "review_started_at": "2026-06-05T14:48:16+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T14:55:34+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/business/2026/04/27/the-ai-rush-is-hitting-a-bottleneck",
+    "content_sha256": "dae422ec67854a86cbba09713af580b020e0b257df34f05d940d6b5f04f96150",
+    "publication": "Economist",
+    "published_date": "2026-04-27",
+    "raw_html_rel_path": "raw/readwise/the-ai-rush-is-hitting-a-bottleneck-01krh9cw3j10nhcqc5srt894rx.html",
+    "raw_md_rel_path": "raw/readwise/the-ai-rush-is-hitting-a-bottleneck-01krh9cw3j10nhcqc5srt894rx.md",
+    "source_id": "the-ai-rush-is-hitting-a-bottleneck-01krh9cw3j10nhcqc5srt894rx",
+    "title": "The AI rush is hitting a bottleneck"
+  }
+}

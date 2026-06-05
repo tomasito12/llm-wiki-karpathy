@@ -68,6 +68,57 @@ def set_proposal_status_on_click(
     save_artifact(artifact_path, artifact)
 
 
+def render_proposal_status_toggle(
+    st: Any,
+    node: dict[str, Any],
+    *,
+    key_prefix: str,
+    artifact_path: Path,
+    review_list_key: str,
+) -> None:
+    """Reject or Approve toggle (persisted immediately on click)."""
+    proposal_id = str(node.get("proposal_id") or "")
+    current = normalized_proposal_status(node)
+    if current == "rejected":
+        st.button(
+            "Approve",
+            key=f"{key_prefix}_approve",
+            on_click=set_proposal_status_on_click,
+            args=(proposal_id, DEFAULT_PROPOSAL_STATUS, artifact_path, review_list_key),
+            use_container_width=True,
+        )
+    else:
+        st.button(
+            "Reject",
+            key=f"{key_prefix}_reject",
+            on_click=set_proposal_status_on_click,
+            args=(proposal_id, "rejected", artifact_path, review_list_key),
+            use_container_width=True,
+        )
+
+
+def render_proposal_save_button(
+    st: Any,
+    node: dict[str, Any],
+    *,
+    key_prefix: str,
+    artifact_path: Path,
+    review_list_key: str,
+    on_save_callback: Callable[[], None],
+    save_button_label: str = "Save tags & approve",
+) -> None:
+    """Primary save action: persist edits and mark proposal approved."""
+    if st.button(
+        save_button_label,
+        key=f"{key_prefix}_save",
+        type="primary",
+        use_container_width=True,
+    ):
+        node["proposal_status"] = DEFAULT_PROPOSAL_STATUS
+        on_save_callback()
+        streamlit_runtime.rerun()
+
+
 def render_proposal_decision_bar(
     st: Any,
     node: dict[str, Any],
@@ -79,44 +130,34 @@ def render_proposal_decision_bar(
     save_button_label: str = "Save edit & approve",
 ) -> None:
     """Bottom action row: Reject or Approve toggle plus optional save-and-approve."""
-    proposal_id = str(node.get("proposal_id") or "")
-    current = normalized_proposal_status(node)
-
     if on_save_callback is None:
-        (action_col,) = st.columns(1)
-        save_col = None
+        render_proposal_status_toggle(
+            st,
+            node,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key=review_list_key,
+        )
     else:
         action_col, save_col = st.columns(2)
-
-    with action_col:
-        if current == "rejected":
-            st.button(
-                "Approve",
-                key=f"{key_prefix}_approve",
-                on_click=set_proposal_status_on_click,
-                args=(proposal_id, DEFAULT_PROPOSAL_STATUS, artifact_path, review_list_key),
-                use_container_width=True,
+        with action_col:
+            render_proposal_status_toggle(
+                st,
+                node,
+                key_prefix=f"{key_prefix}_bar",
+                artifact_path=artifact_path,
+                review_list_key=review_list_key,
             )
-        else:
-            st.button(
-                "Reject",
-                key=f"{key_prefix}_reject",
-                on_click=set_proposal_status_on_click,
-                args=(proposal_id, "rejected", artifact_path, review_list_key),
-                use_container_width=True,
-            )
-
-    if save_col is not None and on_save_callback is not None:
         with save_col:
-            if st.button(
-                save_button_label,
-                key=f"{key_prefix}_save",
-                type="primary",
-                use_container_width=True,
-            ):
-                node["proposal_status"] = DEFAULT_PROPOSAL_STATUS
-                on_save_callback()
-                streamlit_runtime.rerun()
+            render_proposal_save_button(
+                st,
+                node,
+                key_prefix=key_prefix,
+                artifact_path=artifact_path,
+                review_list_key=review_list_key,
+                on_save_callback=on_save_callback,
+                save_button_label=save_button_label,
+            )
 
     save_msg = pop_proposal_save_message(key_prefix)
     if save_msg:

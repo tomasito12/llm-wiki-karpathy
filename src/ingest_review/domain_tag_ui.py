@@ -397,10 +397,6 @@ def render_domain_tag_section(
     default_sel = stored_final if stored_final else llm_proposed
 
     st.markdown(f"#### {section_title}")
-    st.caption(
-        "Add every routing tag that fits this proposal; skip weak or redundant tags. "
-        "Off-list slugs can be added manually and approved for YAML export."
-    )
 
     err = streamlit_runtime.session_state.pop(f"{key_prefix}_suggest_err", None)
     if err:
@@ -409,10 +405,6 @@ def render_domain_tag_section(
     if msg:
         st.success(str(msg))
 
-    llm_draft = _llm_proposed_tags(llm_item)
-    if llm_draft:
-        st.caption("LLM proposed: " + ", ".join(f"`{t}`" for t in llm_draft))
-
     selected = []
     if options:
         init_tags_multiselect_session_value(key_prefix, default_sel, options)
@@ -420,7 +412,6 @@ def render_domain_tag_section(
             "Routing tags (from registry)",
             options=options,
             key=tags_multiselect_key(key_prefix),
-            help="Select all allowlist tags that fit; no primary/secondary ordering.",
         )
     else:
         st.caption("Tag registry is empty.")
@@ -431,7 +422,6 @@ def render_domain_tag_section(
     manual_csv = st.text_input(
         "Additional tags (comma-separated, kebab-case)",
         key=tags_manual_key,
-        help="Merged with multiselect; off-list values can be exported if approved below.",
     )
 
     suggested_new = _llm_suggested_new_tags(llm_item)
@@ -464,7 +454,6 @@ def render_domain_tag_section(
     st.button(
         "Suggest new registry tag (LLM)",
         key=f"{key_prefix}_suggest_tag",
-        help="Appends one kebab-case tag not on the allowlist to suggested_new_tags.",
         disabled=not has_key,
         on_click=on_suggest_domain_review_tag,
         args=(
@@ -481,8 +470,6 @@ def render_domain_tag_section(
         ),
         use_container_width=True,
     )
-    if not has_key:
-        st.caption("Set OPENAI_API_KEY to enable LLM tag suggestion.")
 
     return {
         "selected_allowlist": selected,
@@ -582,10 +569,6 @@ def render_registry_types_section(
     default_sel = stored if stored else [t for t in proposed if t in allow_full]
 
     st.markdown(f"#### {section_title}")
-    st.caption(
-        "Select every registry type that fits; skip weak matches. "
-        "Approve new types for YAML export when the registry lacks a label."
-    )
 
     if proposed:
         st.caption("LLM proposed: " + ", ".join(f"`{t}`" for t in proposed))
@@ -606,7 +589,6 @@ def render_registry_types_section(
     manual_csv = st.text_input(
         "Additional types (comma-separated)",
         key=_registry_types_manual_key(key_prefix),
-        help="Kebab-case slugs merged with the multiselect; saved with “Save edit & approve”.",
     )
 
     llm_new = normalize_tag(str(llm_item.get("proposed_new_type") or ""))

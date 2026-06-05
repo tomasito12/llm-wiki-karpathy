@@ -85,11 +85,13 @@ def test_count_by_status() -> None:
         "x": "in_progress",
         "y": "in_progress",
         "z": "finished",
+        "s": "skipped",
     }
     assert count_by_status(status_map) == {
         "not_started": 0,
         "in_progress": 2,
         "finished": 1,
+        "skipped": 1,
     }
 
 
@@ -116,3 +118,26 @@ def test_pick_random_unfinished_source_id() -> None:
     status_map2: dict[str, SourceReviewStatus] = {"x": "in_progress", "y": "finished"}
     rng = __import__("random").Random(0)
     assert pick_random_unfinished_source_id(["x", "y"], status_map2, rng=rng) == "x"
+
+
+def test_status_for_source_skipped_overrides_artifact(tmp_path: Path) -> None:
+    from src.ingest_review.skipped_sources import mark_source_skipped
+
+    reviews_root = tmp_path / "reviews"
+    sid = "skipped-with-artifact"
+    artifact_dir = reviews_root / sid
+    artifact_dir.mkdir(parents=True)
+    (artifact_dir / "review.json").write_text(
+        json.dumps({"review_analytics": {"review_finished_at": None}}),
+        encoding="utf-8",
+    )
+    mark_source_skipped(reviews_root, sid)
+    assert status_for_source(reviews_root, sid) == "skipped"
+
+
+def test_unfinished_source_ids_excludes_skipped() -> None:
+    status_map: dict[str, SourceReviewStatus] = {
+        "a": "not_started",
+        "b": "skipped",
+    }
+    assert unfinished_source_ids(list(status_map), status_map) == ["a"]

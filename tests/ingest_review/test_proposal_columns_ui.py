@@ -1,13 +1,14 @@
-"""Tests for shared two-column proposal expander layout."""
+"""Tests for shared proposal column helpers (read column legacy + fast-review router)."""
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_proposal_edit_column,
     render_proposal_read_column,
+    render_two_column_proposal_review,
     strip_leading_markdown_heading,
 )
 
@@ -84,3 +85,22 @@ def test_render_proposal_edit_column_single_skips_expander() -> None:
 
     st.expander.assert_not_called()
     assert rendered == ["ok"]
+
+
+def test_render_two_column_proposal_review_delegates_to_fast_review() -> None:
+    """Legacy entry point routes through single-column fast review."""
+    st = MagicMock()
+    nodes = [{"proposal_id": "a"}]
+
+    with patch("src.ingest_review.fast_review_ui.render_fast_proposal_review") as fast_review:
+        render_two_column_proposal_review(
+            st,
+            nodes,
+            key_prefix="pfx",
+            empty_readonly_text="empty",
+            label_for_node=lambda _n, _i: "x",
+            readonly_markdown_for_node=lambda _n: "md",
+            render_edit_for_node=lambda _n, _i: None,
+        )
+        fast_review.assert_called_once()
+        assert fast_review.call_args.kwargs["key_prefix"] == "pfx"

@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T15:37:18+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnQtVXHAeGtU230XwOvXSakh6SMZC",
+          "token_usage": {
+            "completion_tokens": 233,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5037,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5270
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnQtZqo7M9ieQtbEYMw0ujfwggLl8",
+          "token_usage": {
+            "completion_tokens": 956,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4690,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5646
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnQtZqo7M9ieQtbEYMw0ujfwggLl8",
+    "token_usage": {
+      "completion_tokens": 1189,
+      "prompt_tokens": 9727,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 10916
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "Single practitioner blog post about personal note-taking workflow. It offers a narrow opinionated reflection on one Obsidian vault and contains limited durable, wiki-worthy generalization beyond a few concrete observations about properties, templates, and Bases.",
+      "skip_recommended": true,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article is based on the author's own demonstration and experience with Obsidian vaults and AI implementation.",
+        "Claims are framed as personal observations about Steph Ango\u2019s vault and the author\u2019s own system choices.",
+        "No external data, benchmark, or formal research is presented."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece looks at how Obsidian\u2019s CEO organizes his personal vault. The interesting part is that he relies much more on properties, templates, and Bases than on folders. That means notes are grouped by metadata and links, not by a rigid folder tree. The author says this can be powerful, but it only really works if you already think in that style. So the practical lesson is not to copy the system blindly. Start simple, then add structure only when your own workflow needs it.",
+      "assessed_as_of": "2026-04-16",
+      "contradictions_and_skepticism": "The article implicitly assumes that a first-principles, metadata-heavy system will scale well, but that may be too much structure for many users. It also treats wikilinks as less logically organized than properties, which is directionally plausible but oversimplified because links can be very effective when the user has a stable mental model. The AI-related benefit is more of a forecast than a demonstrated result in this piece, so it should be read cautiously. Overall, the recommendation not to copy the vault exactly is the most defensible part of the article.",
+      "key_insights": [
+        "Properties and YAML metadata can function as the main organizing layer, reducing reliance on folders.",
+        "Bases make template-based note collections easier to browse, embed, and reuse across notes.",
+        "A vault can be highly navigable without many folders if links, properties, and Bases are used consistently.",
+        "A complex system built for one person\u2019s workflow may be a bad default for someone else.",
+        "A safer adoption pattern is to start simple and add templates, linking, and Bases only when a clear need appears."
+      ],
+      "limitations_and_open_questions": "The article does not provide comparative evidence that this property-and-Base-heavy setup is better than folder-based or hybrid systems. It also does not explain the maintenance cost of managing more than 50 templates, the risk of metadata drift, or how difficult the vault is to use for new collaborators or future self-review. The AI angle is suggestive rather than demonstrated: it mentions easier processing by AI, but gives no benchmark or implementation detail for that claim. It is unclear which kinds of users would actually benefit most from this structure, beyond people who are already comfortable with deeply structured personal knowledge management.",
+      "sources": [
+        "https://medium.com/obsidian-observer/lessons-from-breaking-down-obsidians-ceo-s-personal-vault-template-cf90d90ff40f"
+      ],
+      "summary": "The article is a reflective take on Steph Ango\u2019s Obsidian personal vault and what the author learned from analyzing it. The central takeaway is that the vault is heavily structured around Properties, YAML metadata, templates, and Bases, with relatively little dependence on conventional folders. The author notes that Steph uses more than 50 templates across many note categories, and that Bases let notes be collected and embedded in other notes for navigation and reference. This makes the system feel highly dynamic and link-driven, but also dependent on a strong first-principles understanding of note organization. The author\u2019s main recommendation is not to copy the vault exactly, but to start with a simpler system and add templating, linking, and Bases only as needed. The piece also frames the author\u2019s own direction as moving toward more templating and Base-heavy workflows as Obsidian\u2019s web clipper and reader improve and as AI makes captured resources easier to process. The concluding judgment is that Steph\u2019s vault is useful as inspiration, but it is probably too opinionated and advanced to adopt wholesale for most people as of 2026-04-16.",
+      "why_it_matters": "The piece is useful mainly as a concrete example of a metadata-first note architecture in Obsidian, not as a universal best practice. It shows how a power user can use more than 50 templates, YAML properties, and Bases to turn a vault into a dynamically queryable system instead of a folder hierarchy. That is a durable pattern worth noticing because it connects note capture, retrieval, and cross-note navigation in a way that is practical for people who already maintain structured knowledge bases. The author also makes an important adoption point: strong organization systems are often personal and first-principles-driven, so copying them wholesale can be counterproductive. For AI-assisted knowledge workflows, the article is relevant because the author explicitly ties heavier templating and Base use to better web clipping, reading, and AI processing of captured resources. The stakes are limited, though, because the article is mostly one practitioner\u2019s reflection rather than evidence that this approach outperforms alternatives. Actionable as of 2026-04-16, but best treated as a pattern to test rather than a standard to adopt."
+    },
+    "source_type_detection": {
+      "confidence": 0.93,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "A single coherent article with one central argument, not a bundle of distinct items or a step-by-step guide.",
+        "No interview structure, numbered tool list, or roundup pattern is present.",
+        "The piece is a personal analysis/opinion about a note system and whether to copy it."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article is based on the author's own demonstration and experience with Obsidian vaults and AI implementation.",
+          "Claims are framed as personal observations about Steph Ango\u2019s vault and the author\u2019s own system choices.",
+          "No external data, benchmark, or formal research is presented."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Properties and YAML metadata can function as the main organizing layer, reducing reliance on folders.",
+          "Bases make template-based note collections easier to browse, embed, and reuse across notes.",
+          "A vault can be highly navigable without many folders if links, properties, and Bases are used consistently.",
+          "A complex system built for one person\u2019s workflow may be a bad default for someone else.",
+          "A safer adoption pattern is to start simple and add templates, linking, and Bases only when a clear need appears."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/obsidian-observer/lessons-from-breaking-down-obsidians-ceo-s-personal-vault-template-cf90d90ff40f"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.93,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "A single coherent article with one central argument, not a bundle of distinct items or a step-by-step guide.",
+          "No interview structure, numbered tool list, or roundup pattern is present.",
+          "The piece is a personal analysis/opinion about a note system and whether to copy it."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 34.3,
+    "review_finished_at": "2026-06-05T15:38:14.278465+00:00",
+    "review_started_at": "2026-06-05T15:37:40+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T15:38:14+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Theo Stowell",
+    "canonical_url": "https://medium.com/obsidian-observer/lessons-from-breaking-down-obsidians-ceo-s-personal-vault-template-cf90d90ff40f",
+    "content_sha256": "b8730a7aa8a65a1ef3e11aa0fde65e46305dbef31db87336fdb4227e4bddf439",
+    "publication": "Medium",
+    "published_date": "2026-04-16",
+    "raw_html_rel_path": "raw/readwise/lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj.html",
+    "raw_md_rel_path": "raw/readwise/lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj.md",
+    "source_id": "lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj",
+    "title": "Lessons From Breaking Down Obsidian\u2019s CEO\u2019s Personal Vault Template"
+  }
+}

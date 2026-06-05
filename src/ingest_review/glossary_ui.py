@@ -20,6 +20,19 @@ from src.ingest_review.domain_tag_ui import (
     find_review_node,
     render_domain_tag_section,
 )
+from src.ingest_review.fast_review_ui import (
+    CollapsedFieldSpec,
+    read_fast_card_field_values,
+    register_card_autosave,
+    render_collapsed_fields,
+    render_context_expander,
+    render_fast_card_header,
+    render_fast_card_reclassify,
+    render_fast_card_save_row,
+    render_inline_regenerate_title_controls,
+    render_readonly_context_hint,
+    render_source_evidence_expander,
+)
 from src.ingest_review.glossary_related_terms_align import (
     build_related_term_resolution_maps,
     related_term_matches_known_label,
@@ -28,18 +41,12 @@ from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_two_column_proposal_review,
 )
-from src.ingest_review.proposal_decision_ui import (
-    proposal_status_label,
-    render_proposal_decision_bar,
-    set_proposal_save_message,
-)
+from src.ingest_review.proposal_decision_ui import set_proposal_save_message
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
-    render_reclassify_to_section_controls,
-    render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import (
     GLOSSARY_REVIEWABLE_SCALAR_KEYS,
@@ -343,13 +350,26 @@ def _persist_glossary_proposal_from_widgets(
     artifact = streamlit_runtime.session_state.get("artifact")
     if not isinstance(artifact, dict):
         return
-    apply_glossary_proposal_edits(node, field_values)
+    merged = read_fast_card_field_values(
+        key_prefix,
+        title_keys=("term",),
+        context_keys=("proposed_definition",),
+        more_scalar_keys=tuple(s.key for s in GLOSSARY_MORE_FIELD_SPECS if not s.is_list),
+        field_values=field_values,
+    )
+    apply_glossary_proposal_edits(node, merged)
     llm_item = node.setdefault("llm_item", {})
     apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
-    term = field_values.get("term") or llm_item.get("term") or "proposal"
+    term = merged.get("term") or llm_item.get("term") or "proposal"
     set_proposal_save_message(key_prefix, f"Saved **{term}**.")
+
+
+GLOSSARY_MORE_FIELD_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec("extended_explanation", "Extended explanation", tall=True),
+    CollapsedFieldSpec("relevance_note", "Relevance note"),
+)
 
 
 def _render_glossary_edit_box(
@@ -363,29 +383,49 @@ def _render_glossary_edit_box(
     model: str,
     prompt_version: str,
     tag_allow: set[str],
+    autosave_registry_key: str,
 ) -> None:
-    """One bordered edit box per glossary proposal."""
+    """Fast-review card for one glossary proposal."""
     llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
     term = effective_glossary_scalar(llm_item, sections, "term") or "Untitled"
     value_level = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(value_level, "Medium")
-    proposal_status = proposal_status_label(node)
+    proposal_id = str(node.get("proposal_id") or "")
 
     with st.container(border=True):
-        st.markdown(f"**{term}** · {badge} · **{proposal_status}**")
+        render_fast_card_header(
+            st,
+            node,
+            badge=badge,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="glossary",
+        )
         render_proposal_regen_meta_caption(st, node, "Glossary term")
 
         field_values: dict[str, str] = {}
-        for sk in ("term", "proposed_definition"):
-            label = SECTION_LABELS.get(sk, sk.replace("_", " ").title())
-            tall = sk == "proposed_definition"
-            field_values[sk] = st.text_area(
-                label,
-                value=glossary_field_edit_value(llm_item, sections, sk),
-                height=120 if tall else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
+        field_values["term"] = st.text_area(
+            "Term",
+            value=glossary_field_edit_value(llm_item, sections, "term"),
+            height=72,
+            key=f"{key_prefix}_edit_term",
+        )
+        render_readonly_context_hint(
+            st,
+            label="Proposed definition",
+            value=glossary_field_edit_value(llm_item, sections, "proposed_definition"),
+        )
+
+        render_inline_regenerate_title_controls(
+            st,
+            entity_key="glossary",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=term,
+            title_label="New term",
+        )
 
         tag_ui = render_domain_tag_section(
             st,
@@ -402,42 +442,6 @@ def _render_glossary_edit_box(
             llm_fallback_summary_key="proposed_definition",
         )
 
-        for sk in ("extended_explanation", "relevance_note"):
-            label = SECTION_LABELS.get(sk, sk.replace("_", " ").title())
-            tall = sk == "extended_explanation"
-            field_values[sk] = st.text_area(
-                label,
-                value=glossary_field_edit_value(llm_item, sections, sk),
-                height=120 if tall else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
-
-        snippet = str(llm_item.get("supporting_snippet") or "").strip()
-        if snippet:
-            with st.expander("Source evidence (read-only)", expanded=False):
-                st.text(snippet[:4000] + ("…" if len(snippet) > 4000 else ""))
-
-        proposal_id = str(node.get("proposal_id") or "")
-        render_regenerate_with_new_title_controls(
-            st,
-            entity_key="glossary",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=term,
-            title_label="New term",
-            title_help="Reframe this glossary entry under a broader wiki term label.",
-        )
-        render_reclassify_to_section_controls(
-            st,
-            source_entity_key="glossary",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=term,
-            title_label="Title in target section",
-        )
-
         def _save() -> None:
             _persist_glossary_proposal_from_widgets(
                 node,
@@ -448,7 +452,7 @@ def _render_glossary_edit_box(
                 key_prefix=key_prefix,
             )
 
-        render_proposal_decision_bar(
+        render_fast_card_save_row(
             st,
             node,
             key_prefix=key_prefix,
@@ -456,6 +460,35 @@ def _render_glossary_edit_box(
             review_list_key="glossary",
             on_save_callback=_save,
         )
+
+        render_context_expander(
+            st,
+            label="Definition / context",
+            field_key="proposed_definition",
+            field_label="Proposed definition",
+            value=glossary_field_edit_value(llm_item, sections, "proposed_definition"),
+            widget_key=f"{key_prefix}_ctx_proposed_definition",
+            field_values=field_values,
+        )
+        render_collapsed_fields(
+            st,
+            specs=list(GLOSSARY_MORE_FIELD_SPECS),
+            get_value=glossary_field_edit_value,
+            llm_item=llm_item,
+            sections=sections,
+            key_prefix=key_prefix,
+            field_values=field_values,
+        )
+        render_source_evidence_expander(st, llm_item)
+        render_fast_card_reclassify(
+            st,
+            node,
+            reclassify_entity_key="glossary",
+            source_id=source_id,
+            current_title=term,
+            key_prefix=key_prefix,
+        )
+        register_card_autosave(autosave_registry_key, node, _save)
 
 
 def render_glossary_proposals(
@@ -518,6 +551,7 @@ def render_glossary_proposals(
             model=model,
             prompt_version=prompt_version,
             tag_allow=tag_allow,
+            autosave_registry_key=key_prefix,
         )
 
     render_two_column_proposal_review(

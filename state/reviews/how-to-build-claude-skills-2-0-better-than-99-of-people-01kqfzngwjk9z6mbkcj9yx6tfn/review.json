@@ -1,0 +1,832 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T14:05:27+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnPSDK0d0fF9jsRbfl4txuhHhqecB",
+          "token_usage": {
+            "completion_tokens": 190,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7134,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7324
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnPSKYczP8MUvrdlH42LSj5RmHDlr",
+          "token_usage": {
+            "completion_tokens": 1009,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6739,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7748
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-technical_howto",
+          "request_id": "chatcmpl-DnPSUU4f2UGI1YSc3tfUMsTtSkjGx",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 1850,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 31986,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33836
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnPSUU4f2UGI1YSc3tfUMsTtSkjGx",
+    "token_usage": {
+      "completion_tokens": 3049,
+      "prompt_tokens": 45859,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 48908
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Create a skill as a folder under .claude/skills with a SKILL.md file at the center. Put only the context Claude would not already know into the skill, such as company-specific rules, templates, or repeated workflow steps. Keep the main SKILL.md concise and split deeper reference material into separate files when needed. Use clear metadata in YAML so Claude can recognize when the skill should load. Add examples and step-by-step instructions that make the task easy to execute consistently.",
+        "caveats": "The source stresses that metadata accuracy matters a lot, so weak or vague descriptions can reduce matching accuracy. It also recommends keeping SKILL.md under 500 lines, which means large workflows need deliberate file splitting. The article is explanatory rather than tested, so production reliability, governance, and security are not demonstrated here.",
+        "confidence": 0.94,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Create a .claude/skills folder for the skill.",
+          "Add a SKILL.md file with YAML front matter at the top.",
+          "Write a brief name and description that let Claude recognize when the skill applies.",
+          "Put step-by-step instructions in the body of SKILL.md.",
+          "Add examples that show concrete use of the skill.",
+          "Keep the main instructions under 500 lines and move detailed reference material into separate files if needed."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "Access to Claude Code or a similar environment that loads skills.",
+          "A recurring workflow or task that benefits from reusable instructions.",
+          "Templates, rules, or domain-specific details that should be encoded into the skill."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "workflow-automation",
+          "context-engineering"
+        ],
+        "question_title": "Claude Skills Setup",
+        "related_howtos": [
+          "local-model-setup"
+        ],
+        "secondary_tag": "workflow-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Basically, you can create a skill by simply creating .claude/skills a folder and file for the skill under SKILL.md\"",
+        "value_level": "high",
+        "what_and_problem": "This is about setting up reusable instructions so Claude can handle recurring tasks without being re-told the same rules every time. It solves the common problem of inconsistent prompting, repetitive explanations, and teams using the same AI in slightly different ways. A Skill packages the task logic, examples, and optional resources into a folder that Claude can load when the request matches. That makes it useful for work that repeats, like document formatting, design generation, or launch planning. The goal is to turn repeated manual prompting into a reusable workflow."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The piece relies heavily on the author's personal experience using Claude Skills and Skill Creator.",
+        "It includes practitioner anecdotes about workflows, installation, and how the feature helped in the author's use case.",
+        "The article contains promotional and explanatory claims, but they are framed through first-hand usage rather than formal evaluation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about turning repetitive prompts into reusable Claude Skills. A Skill is like a small folder of instructions that Claude can load when a request matches the Skill\u2019s description. The main idea is simple: instead of repeating the same rules every time, you put the rules, examples, and templates into one place. The author says this works best for recurring workflows, like document formatting or launch-style planning. It also explains how Skills differ from tools like Model Context Protocol: one gives access to capabilities, the other teaches the model how to use them.",
+      "assessed_as_of": "2026-03-25",
+      "contradictions_and_skepticism": "The article presents Skills as a major upgrade, but the evidence is mostly first-hand experience and workflow logic rather than controlled evaluation. The claim that Skills are more like a knowledge base than macros or templates is suggestive, but the distinction is not rigorously demonstrated in the text. The marketplace and plugin installation path may lower adoption friction, yet it also introduces dependency and trust concerns that the article only briefly acknowledges. The comparison with MCP is useful, but the kitchen-versus-recipe analogy simplifies a relationship that may be messier in real deployments.",
+      "key_insights": [
+        "The durable unit is not a prompt snippet but a foldered Skill with metadata, instructions, examples, and optional resources.",
+        "Skill metadata matters operationally because Claude uses it to decide when to load the full instructions.",
+        "The article\u2019s main efficiency claim is progressive disclosure: load only brief metadata at startup, then expand details on demand.",
+        "Skill-creator is presented as a closed-loop system for drafting, testing, evaluating, and improving Skills.",
+        "The author\u2019s practical rule is to encode only context Claude would not already know, such as company-specific rules, templates, and repeated workflows."
+      ],
+      "limitations_and_open_questions": "The article is largely explanatory and promotional; it does not provide benchmarks, error rates, or comparisons showing that Skills outperform prompts, custom instructions, or other orchestration approaches. The claims about token efficiency and improved user experience are plausible but not validated with measurements. It is also unclear how well Skills behave under conflicting instructions, version drift, or large skill libraries. Security and governance questions are only lightly touched, especially for community skills and imported plugins. The setup guidance is practical but incomplete for evaluating reliability in production environments.",
+      "sources": [
+        "https://medium.com/data-science-collective/how-to-build-claude-skills-2-0-better-than-99-of-people-af4927dd5335"
+      ],
+      "summary": "The article explains Claude Skills as a way to package reusable instructions, workflows, and reference material so Claude can handle recurring tasks consistently without re-explaining preferences each time. It describes Skills as folder-based units centered on a SKILL.md file with YAML metadata, step-by-step instructions, and optional scripts or resources, and argues that this structure improves task consistency for repeated work such as document generation, front-end design from specs, and team-style formatting. A key claim is that metadata is loaded at startup while detailed content is loaded only when a request matches the Skill, which the author presents as a token-efficient form of progressive disclosure. The article also introduces a Skill-creator meta skill that drafts, tests, evaluates, and iterates on skills, and frames Skills as complementary to Model Context Protocol: MCP provides tools, Skills provide workflows. It includes practical setup guidance through Claude Code and a marketplace/plugin flow, and it recommends keeping SKILL.md concise, under 500 lines, with deeper material split into referenced files. The piece repeatedly emphasizes that good Skills should encode only context Claude would not already know, especially company-specific rules, reusable templates, and domain workflows.",
+      "why_it_matters": "The article is useful because it gives a concrete packaging pattern for recurring AI work: move repeated instructions, templates, and decision rules out of chat and into a reusable Skill. That is a durable abstraction for teams that need consistent outputs across many similar tasks, especially when prompts, formats, or business rules are easy to forget or vary by user. The folder-and-metadata structure is more operationally interesting than the promotional framing because it suggests a maintainable way to scale task-specific behavior without bloating every conversation. The progressive-disclosure idea is also practical: keep the top-level instructions short and defer detail until a request matches, which is a sensible way to manage context budget as of 2026-03-25. The MCP comparison is helpful because it separates access to capabilities from guidance about workflow, which is often the missing layer in agent setups. The piece is most valuable as a design pattern for repeatable internal workflows rather than as a claim that Skills solve everything. For service automation and back-office work, the article implies Skills can standardize recurring document-heavy or procedure-heavy tasks, but it does not provide evidence beyond examples and author experience, so that implication should be treated as plausible but unproven as of 2026-03-25."
+    },
+    "source_type_detection": {
+      "confidence": 0.93,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The article is primarily a step-by-step guide about building and installing Claude Skills.",
+        "It includes concrete setup instructions, file structure, plugin installation commands, and usage guidance.",
+        "The structure is instructional rather than a roundup, interview, or research report."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.87,
+        "core_capabilities": [
+          "It loads the appropriate Skill when a user request matches the Skill metadata, which is useful for repeatable workflows.",
+          "It can manage skills through plugins and a marketplace, which makes distribution and installation more structured.",
+          "It supports a file-based Skill format centered on SKILL.md, which keeps reusable instructions outside the chat transcript."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is integrated with the anthropics/skills marketplace for installing official and example skill sets.",
+          "It works with the /plugin command flow for adding, listing, updating, and deleting plugins.",
+          "It is described as the execution environment for Claude Skills rather than a standalone document editor."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article presents Claude Code as the working environment for official skills, local skills, and plugin-based installation. That suggests a fairly mature product surface for skill discovery and execution, but the source is still a practitioner guide rather than independent evaluation. The piece does not provide adoption metrics or stability evidence.",
+        "name": "Claude Code",
+        "operational_relevance": "This matters for teams that want reusable, file-based workflow instructions rather than repeating prompts in chat. The article frames Claude Code as the place where skills are discovered at startup, matched by metadata, and then loaded only when needed, which is operationally useful for repeatable internal workflows and agent setup. It is also the interface used for plugin installation and skill management, so it sits at the center of the workflow rather than being a passive feature.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cli-tool",
+          "workflow-automation",
+          "agentic"
+        ],
+        "proposed_types": [
+          "ai-application"
+        ],
+        "related_tools": [
+          "Claude Skills",
+          "Skill-creator"
+        ],
+        "short_description": "Claude Code is the environment the article uses to load and run Claude Skills from the file system and marketplace. It is presented as the execution layer that discovers matching skills and applies their instructions to user requests.",
+        "strengths": "- It can automatically discover installed skills by scanning their metadata at session start, which reduces the need for manual triggering and makes reusable workflows easier to apply consistently.\n- It supports a marketplace/plugin flow, so skills can be installed and managed through a structured mechanism instead of ad hoc file copying.\n- It uses on-demand loading, which keeps the always-present context small and only loads the full instructions when a request matches the skill.\n- It is paired with the Skill-creator meta skill, which the article describes as a loop for drafting, testing, evaluating, and improving skills.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Claude Code loads the appropriate Skill in response to a user request and executes the task according to the instructions.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not provide evidence about robustness, failure modes, or production-scale reliability. The workflow depends heavily on accurate metadata and on users installing the right plugins, so misclassification or trust issues could reduce usefulness, but the source only hints at that indirectly."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The durable unit is a folder, not just a prompt snippet.",
+          "Metadata is used for matching before the full instructions are loaded.",
+          "Progressive disclosure helps control context size and keeps instructions maintainable.",
+          "The pattern is strongest when workflows are repetitive and rules are stable."
+        ],
+        "knowledge_summary": "A file grammar approach packages instructions, metadata, and optional resources into a predictable file structure that an AI system can discover and load when needed. This pattern is useful when repeated tasks need stable behavior without re-explaining rules in every conversation. The key design choice is to separate compact discovery metadata from fuller runtime instructions. That lets teams keep the reusable logic in versioned files instead of scattering it across prompts. The approach works best when the file format is simple enough for automated loading and selective expansion.",
+        "match_candidates": [],
+        "operational_insight": "For durable workflow automation, treat the instruction file as a contract: metadata decides matching, while the body holds the task procedure. Keep the top layer short and let the system load detail only after a match, which reduces context bloat and keeps repeated workflows manageable.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "workflow-automation",
+          "context-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is operationally useful wherever teams need repeatable AI behavior across many similar tasks, especially in support automation, content generation, and internal workflow tooling. It gives a maintainable way to encode rules and templates so the same process can be reused without manual re-prompting.",
+        "secondary_tag": "workflow-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"A Skill is a set of instructions packaged in a simple folder that you can set up once and benefit from every time.\"",
+        "topic_slug": "file-grammar-skills-for-ai",
+        "topic_title": "File Grammar Skills for AI",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Load only brief metadata at startup and expand instructions on demand.",
+          "Keep the main instructions concise and move deep references into separate files.",
+          "This pattern scales better than embedding every rule into every conversation."
+        ],
+        "knowledge_summary": "Token-efficient agent instructions keep the always-loaded instruction set small and defer detail until the system knows it is relevant. This is a practical design pattern for agents that must support many workflows without wasting context on unused material. The pattern typically uses compact metadata or routing cues up front, then expands into deeper instructions only on demand. It is especially valuable when instruction sets accumulate over time and need to stay readable. The result is a more scalable way to encode behavior than repeatedly pasting long prompts into chat.",
+        "match_candidates": [],
+        "operational_insight": "Use short discovery metadata and load the detailed procedure only after a request matches. That preserves context for the conversation itself and makes larger skill libraries more workable.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "context-engineering",
+          "runtime-systems"
+        ],
+        "related_topics": [
+          "file-grammar-skills-for-ai"
+        ],
+        "relevance_note": "This matters for AI systems that must juggle many reusable workflows, because context budget is a real operational constraint. The pattern helps teams keep instructions modular and reduces the chance that unused detail crowds out task-specific reasoning.",
+        "secondary_tag": "context-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The detailed instructions for a Skill are only displayed in the context window when it is triggered.\"",
+        "topic_slug": "token-efficient-agent-instructions",
+        "topic_title": "Token-Efficient Agent Instructions",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Create a skill as a folder under .claude/skills with a SKILL.md file at the center. Put only the context Claude would not already know into the skill, such as company-specific rules, templates, or repeated workflow steps. Keep the main SKILL.md concise and split deeper reference material into separate files when needed. Use clear metadata in YAML so Claude can recognize when the skill should load. Add examples and step-by-step instructions that make the task easy to execute consistently.",
+          "caveats": "The source stresses that metadata accuracy matters a lot, so weak or vague descriptions can reduce matching accuracy. It also recommends keeping SKILL.md under 500 lines, which means large workflows need deliberate file splitting. The article is explanatory rather than tested, so production reliability, governance, and security are not demonstrated here.",
+          "confidence": 0.94,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Create a .claude/skills folder for the skill.",
+            "Add a SKILL.md file with YAML front matter at the top.",
+            "Write a brief name and description that let Claude recognize when the skill applies.",
+            "Put step-by-step instructions in the body of SKILL.md.",
+            "Add examples that show concrete use of the skill.",
+            "Keep the main instructions under 500 lines and move detailed reference material into separate files if needed."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "Access to Claude Code or a similar environment that loads skills.",
+            "A recurring workflow or task that benefits from reusable instructions.",
+            "Templates, rules, or domain-specific details that should be encoded into the skill."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "workflow-automation",
+            "context-engineering"
+          ],
+          "question_title": "Claude Skills Setup",
+          "related_howtos": [
+            "local-model-setup"
+          ],
+          "secondary_tag": "workflow-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Basically, you can create a skill by simply creating .claude/skills a folder and file for the skill under SKILL.md\"",
+          "value_level": "high",
+          "what_and_problem": "This is about setting up reusable instructions so Claude can handle recurring tasks without being re-told the same rules every time. It solves the common problem of inconsistent prompting, repetitive explanations, and teams using the same AI in slightly different ways. A Skill packages the task logic, examples, and optional resources into a folder that Claude can load when the request matches. That makes it useful for work that repeats, like document formatting, design generation, or launch planning. The goal is to turn repeated manual prompting into a reusable workflow."
+        },
+        "notes": null,
+        "proposal_id": "019305ed-9d3b-4f91-8b36-b62ab3ce1254",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Create a .claude/skills folder for the skill.",
+              "Add a SKILL.md file with YAML front matter at the top.",
+              "Write a brief name and description that let Claude recognize when the skill applies.",
+              "Put step-by-step instructions in the body of SKILL.md.",
+              "Add examples that show concrete use of the skill.",
+              "Keep the main instructions under 500 lines and move detailed reference material into separate files if needed."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "Access to Claude Code or a similar environment that loads skills.",
+              "A recurring workflow or task that benefits from reusable instructions.",
+              "Templates, rules, or domain-specific details that should be encoded into the skill."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "local-model-setup"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "workflow-automation",
+            "context-engineering"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The piece relies heavily on the author's personal experience using Claude Skills and Skill Creator.",
+          "It includes practitioner anecdotes about workflows, installation, and how the feature helped in the author's use case.",
+          "The article contains promotional and explanatory claims, but they are framed through first-hand usage rather than formal evaluation."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The durable unit is not a prompt snippet but a foldered Skill with metadata, instructions, examples, and optional resources.",
+          "Skill metadata matters operationally because Claude uses it to decide when to load the full instructions.",
+          "The article\u2019s main efficiency claim is progressive disclosure: load only brief metadata at startup, then expand details on demand.",
+          "Skill-creator is presented as a closed-loop system for drafting, testing, evaluating, and improving Skills.",
+          "The author\u2019s practical rule is to encode only context Claude would not already know, such as company-specific rules, templates, and repeated workflows."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/data-science-collective/how-to-build-claude-skills-2-0-better-than-99-of-people-af4927dd5335"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.93,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The article is primarily a step-by-step guide about building and installing Claude Skills.",
+          "It includes concrete setup instructions, file structure, plugin installation commands, and usage guidance.",
+          "The structure is instructional rather than a roundup, interview, or research report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.87,
+          "core_capabilities": [
+            "It loads the appropriate Skill when a user request matches the Skill metadata, which is useful for repeatable workflows.",
+            "It can manage skills through plugins and a marketplace, which makes distribution and installation more structured.",
+            "It supports a file-based Skill format centered on SKILL.md, which keeps reusable instructions outside the chat transcript."
+          ],
+          "integration_ecosystem": [
+            "It is integrated with the anthropics/skills marketplace for installing official and example skill sets.",
+            "It works with the /plugin command flow for adding, listing, updating, and deleting plugins.",
+            "It is described as the execution environment for Claude Skills rather than a standalone document editor."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article presents Claude Code as the working environment for official skills, local skills, and plugin-based installation. That suggests a fairly mature product surface for skill discovery and execution, but the source is still a practitioner guide rather than independent evaluation. The piece does not provide adoption metrics or stability evidence.",
+          "name": "Claude Code",
+          "operational_relevance": "This matters for teams that want reusable, file-based workflow instructions rather than repeating prompts in chat. The article frames Claude Code as the place where skills are discovered at startup, matched by metadata, and then loaded only when needed, which is operationally useful for repeatable internal workflows and agent setup. It is also the interface used for plugin installation and skill management, so it sits at the center of the workflow rather than being a passive feature.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cli-tool",
+            "workflow-automation",
+            "agentic"
+          ],
+          "proposed_types": [
+            "ai-application"
+          ],
+          "related_tools": [
+            "Claude Skills",
+            "Skill-creator"
+          ],
+          "short_description": "Claude Code is the environment the article uses to load and run Claude Skills from the file system and marketplace. It is presented as the execution layer that discovers matching skills and applies their instructions to user requests.",
+          "strengths": "- It can automatically discover installed skills by scanning their metadata at session start, which reduces the need for manual triggering and makes reusable workflows easier to apply consistently.\n- It supports a marketplace/plugin flow, so skills can be installed and managed through a structured mechanism instead of ad hoc file copying.\n- It uses on-demand loading, which keeps the always-present context small and only loads the full instructions when a request matches the skill.\n- It is paired with the Skill-creator meta skill, which the article describes as a loop for drafting, testing, evaluating, and improving skills.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Claude Code loads the appropriate Skill in response to a user request and executes the task according to the instructions.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not provide evidence about robustness, failure modes, or production-scale reliability. The workflow depends heavily on accurate metadata and on users installing the right plugins, so misclassification or trust issues could reduce usefulness, but the source only hints at that indirectly."
+        },
+        "notes": null,
+        "proposal_id": "a4b6403d-51f3-4cad-9c05-cd51787ca281",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It loads the appropriate Skill when a user request matches the Skill metadata, which is useful for repeatable workflows.",
+              "It can manage skills through plugins and a marketplace, which makes distribution and installation more structured.",
+              "It supports a file-based Skill format centered on SKILL.md, which keeps reusable instructions outside the chat transcript."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is integrated with the anthropics/skills marketplace for installing official and example skill sets.",
+              "It works with the /plugin command flow for adding, listing, updating, and deleting plugins.",
+              "It is described as the execution environment for Claude Skills rather than a standalone document editor."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Skills",
+              "Skill-creator"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cli-tool",
+            "workflow-automation",
+            "agentic"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The durable unit is a folder, not just a prompt snippet.",
+            "Metadata is used for matching before the full instructions are loaded.",
+            "Progressive disclosure helps control context size and keeps instructions maintainable.",
+            "The pattern is strongest when workflows are repetitive and rules are stable."
+          ],
+          "knowledge_summary": "A file grammar approach packages instructions, metadata, and optional resources into a predictable file structure that an AI system can discover and load when needed. This pattern is useful when repeated tasks need stable behavior without re-explaining rules in every conversation. The key design choice is to separate compact discovery metadata from fuller runtime instructions. That lets teams keep the reusable logic in versioned files instead of scattering it across prompts. The approach works best when the file format is simple enough for automated loading and selective expansion.",
+          "match_candidates": [],
+          "operational_insight": "For durable workflow automation, treat the instruction file as a contract: metadata decides matching, while the body holds the task procedure. Keep the top layer short and let the system load detail only after a match, which reduces context bloat and keeps repeated workflows manageable.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "workflow-automation",
+            "context-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is operationally useful wherever teams need repeatable AI behavior across many similar tasks, especially in support automation, content generation, and internal workflow tooling. It gives a maintainable way to encode rules and templates so the same process can be reused without manual re-prompting.",
+          "secondary_tag": "workflow-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"A Skill is a set of instructions packaged in a simple folder that you can set up once and benefit from every time.\"",
+          "topic_slug": "file-grammar-skills-for-ai",
+          "topic_title": "File Grammar Skills for AI",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "42a44904-a8f9-42d2-91a5-a87abefd1f82",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The durable unit is a folder, not just a prompt snippet.",
+              "Metadata is used for matching before the full instructions are loaded.",
+              "Progressive disclosure helps control context size and keeps instructions maintainable.",
+              "The pattern is strongest when workflows are repetitive and rules are stable."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "workflow-automation",
+            "context-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Load only brief metadata at startup and expand instructions on demand.",
+            "Keep the main instructions concise and move deep references into separate files.",
+            "This pattern scales better than embedding every rule into every conversation."
+          ],
+          "knowledge_summary": "Token-efficient agent instructions keep the always-loaded instruction set small and defer detail until the system knows it is relevant. This is a practical design pattern for agents that must support many workflows without wasting context on unused material. The pattern typically uses compact metadata or routing cues up front, then expands into deeper instructions only on demand. It is especially valuable when instruction sets accumulate over time and need to stay readable. The result is a more scalable way to encode behavior than repeatedly pasting long prompts into chat.",
+          "match_candidates": [],
+          "operational_insight": "Use short discovery metadata and load the detailed procedure only after a request matches. That preserves context for the conversation itself and makes larger skill libraries more workable.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "context-engineering",
+            "runtime-systems"
+          ],
+          "related_topics": [
+            "file-grammar-skills-for-ai"
+          ],
+          "relevance_note": "This matters for AI systems that must juggle many reusable workflows, because context budget is a real operational constraint. The pattern helps teams keep instructions modular and reduces the chance that unused detail crowds out task-specific reasoning.",
+          "secondary_tag": "context-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The detailed instructions for a Skill are only displayed in the context window when it is triggered.\"",
+          "topic_slug": "token-efficient-agent-instructions",
+          "topic_title": "Token-Efficient Agent Instructions",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "eac911e3-c38d-403b-8aec-98db1c7d17b0",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Load only brief metadata at startup and expand instructions on demand.",
+              "Keep the main instructions concise and move deep references into separate files.",
+              "This pattern scales better than embedding every rule into every conversation."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "file-grammar-skills-for-ai"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "context-engineering",
+            "runtime-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 2131.2,
+    "review_finished_at": "2026-06-05T14:40:58.205031+00:00",
+    "review_started_at": "2026-06-05T14:05:27+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T14:40:58+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Gao Dalie",
+    "canonical_url": "https://medium.com/data-science-collective/how-to-build-claude-skills-2-0-better-than-99-of-people-af4927dd5335",
+    "content_sha256": "5b84df04b1199a31d3b22aa978a936ec9931686f1476f7b9ce65d0ecf05c5f26",
+    "publication": "Medium",
+    "published_date": "2026-03-25",
+    "raw_html_rel_path": "raw/readwise/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn.html",
+    "raw_md_rel_path": "raw/readwise/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn.md",
+    "source_id": "how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn",
+    "title": "How to build Claude Skills 2.0 Better than 99% of People"
+  }
+}

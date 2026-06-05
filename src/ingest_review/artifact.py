@@ -375,6 +375,15 @@ def review_artifact_path(source_id: str, *, state_reviews: Path | None = None) -
     return base / source_id / "review.json"
 
 
+def delete_review_artifact(source_id: str, *, state_reviews: Path | None = None) -> bool:
+    """Remove on-disk ``review.json`` for *source_id* when present."""
+    path = review_artifact_path(source_id, state_reviews=state_reviews)
+    if not path.is_file():
+        return False
+    path.unlink()
+    return True
+
+
 def _concat_why_it_matters_parts(*parts: str) -> str:
     """Join non-empty prose blocks with blank lines."""
     return "\n\n".join(p.strip() for p in parts if p and p.strip())

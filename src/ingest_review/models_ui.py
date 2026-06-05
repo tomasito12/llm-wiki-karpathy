@@ -22,21 +22,28 @@ from src.ingest_review.domain_tag_ui import (
     render_domain_tag_section,
     render_registry_types_section,
 )
+from src.ingest_review.fast_review_ui import (
+    CollapsedFieldSpec,
+    read_fast_card_field_values,
+    register_card_autosave,
+    render_collapsed_fields,
+    render_context_expander,
+    render_fast_card_header,
+    render_fast_card_save_row,
+    render_inline_regenerate_title_controls,
+    render_readonly_context_hint,
+    render_source_evidence_expander,
+)
 from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_two_column_proposal_review,
 )
-from src.ingest_review.proposal_decision_ui import (
-    proposal_status_label,
-    render_proposal_decision_bar,
-    set_proposal_save_message,
-)
+from src.ingest_review.proposal_decision_ui import set_proposal_save_message
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
-    render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import MODEL_REVIEWABLE_LIST_KEYS, MODEL_REVIEWABLE_SCALAR_KEYS
 from src.ingest_review.tags import normalize_tag
@@ -76,6 +83,40 @@ MODEL_TALL_SCALAR_KEYS: frozenset[str] = frozenset(
         "weaknesses_limitations",
         "service_automation_implications",
     }
+)
+
+MODEL_MORE_SCALAR_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec("provider", "Provider"),
+    CollapsedFieldSpec("deployment_implications", "Deployment implications", tall=True),
+    CollapsedFieldSpec("weaknesses_limitations", "Weaknesses / limitations", tall=True),
+    CollapsedFieldSpec(
+        "service_automation_implications",
+        "Service automation implications",
+        tall=True,
+    ),
+    CollapsedFieldSpec("maturity_signals", "Maturity / adoption signals"),
+    CollapsedFieldSpec("pricing_inference_implications", "Pricing / inference implications"),
+)
+
+MODEL_MORE_LIST_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec(
+        "core_capabilities",
+        "Core capabilities",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+    CollapsedFieldSpec(
+        "benchmark_observations",
+        "Benchmark observations",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+    CollapsedFieldSpec(
+        "comparative_observations",
+        "Comparative observations",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
 )
 
 
@@ -301,35 +342,52 @@ def _prepare_model_nodes(artifact: dict[str, Any]) -> list[dict[str, Any]]:
     return sorted(model_nodes, key=_sort_key)
 
 
-def _on_save_model_proposal(
-    proposal_id: str,
-    key_prefix: str,
+def _persist_model_proposal_from_widgets(
+    node: dict[str, Any],
     artifact_path: Path,
+    field_values: dict[str, str],
+    *,
+    type_ui: dict[str, Any],
+    type_allow: set[str],
+    tag_ui: dict[str, Any],
+    tag_allow: set[str],
+    key_prefix: str,
 ) -> None:
-    """Read widget state and persist model proposal edits."""
+    """Apply widget edits, types, tags, and persist the artifact."""
     from src.ingest_review.artifact import save_artifact, touch_review_session
-    from src.ingest_review.domain_tag_ui import find_review_node
 
     artifact = streamlit_runtime.session_state.get("artifact")
     if not isinstance(artifact, dict):
         return
-    node = find_review_node(artifact, proposal_id, "foundation_models")
-    if not node:
-        return
-    scalar_values = {
-        sk: str(streamlit_runtime.session_state.get(f"{key_prefix}_edit_{sk}", ""))
-        for sk in MODEL_REVIEWABLE_SCALAR_KEYS
-    }
-    list_raw = {
-        lk: str(streamlit_runtime.session_state.get(f"{key_prefix}_edit_{lk}", ""))
-        for lk in MODEL_REVIEWABLE_LIST_KEYS
-    }
+    merged = read_fast_card_field_values(
+        key_prefix,
+        title_keys=("model_name",),
+        context_keys=("operational_profile",),
+        more_scalar_keys=tuple(s.key for s in MODEL_MORE_SCALAR_SPECS if not s.is_list),
+        more_list_keys=MODEL_REVIEWABLE_LIST_KEYS,
+        field_values=field_values,
+    )
+    scalar_values = {sk: merged[sk] for sk in MODEL_REVIEWABLE_SCALAR_KEYS if sk in merged}
+    list_raw = {lk: merged[lk] for lk in MODEL_REVIEWABLE_LIST_KEYS if lk in merged}
     apply_model_proposal_edits(node, scalar_values, list_raw)
+    llm_item = node.setdefault("llm_item", {})
+    fresh_type_ui = registry_types_ui_from_session(key_prefix, type_ui)
+    apply_registry_types_ui_to_node(
+        node,
+        llm_item,
+        fresh_type_ui,
+        type_allow,
+        key_prefix=key_prefix,
+    )
+    apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
-    llm_item = node.get("llm_item") or {}
     sections = node.get("sections") or {}
-    label = effective_model_scalar(llm_item, sections, "model_name") or "model"
+    label = (
+        merged.get("model_name")
+        or effective_model_scalar(llm_item, sections, "model_name")
+        or "model"
+    )
     set_proposal_save_message(key_prefix, f"Saved **{label}**.")
 
 
@@ -345,45 +403,49 @@ def _render_model_edit_box(
     artifact_path: Path,
     model: str = "",
     prompt_version: str = "",
+    autosave_registry_key: str = "",
 ) -> None:
-    """One bordered edit box per model proposal."""
+    """Fast-review card for one model proposal."""
     llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
     name = effective_model_scalar(llm_item, sections, "model_name") or "Untitled model"
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    status_lbl = proposal_status_label(node)
+    proposal_id = str(node.get("proposal_id") or "")
+    field_values: dict[str, str] = {}
 
     with st.container(border=True):
-        st.markdown(f"**{name}** · {badge} · **{status_lbl}**")
+        render_fast_card_header(
+            st,
+            node,
+            badge=badge,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="foundation_models",
+        )
         render_proposal_regen_meta_caption(st, node, "Model")
 
-        for sk in MODEL_REVIEWABLE_SCALAR_KEYS:
-            label = MODEL_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-            st.text_area(
-                label,
-                value=effective_model_scalar(llm_item, sections, sk),
-                height=120 if sk in MODEL_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
+        field_values["model_name"] = st.text_area(
+            "Model name",
+            value=effective_model_scalar(llm_item, sections, "model_name"),
+            height=72,
+            key=f"{key_prefix}_edit_model_name",
+        )
+        render_readonly_context_hint(
+            st,
+            label="Operational profile",
+            value=effective_model_scalar(llm_item, sections, "operational_profile"),
+        )
 
-        for lk in MODEL_REVIEWABLE_LIST_KEYS:
-            label = MODEL_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
-            st.text_area(
-                f"{label} (one per line)",
-                value=model_list_field_value(llm_item, sections, lk),
-                height=100,
-                key=f"{key_prefix}_edit_{lk}",
-            )
-
-        snippet = str(llm_item.get("supporting_snippet") or "").strip()
-        if snippet:
-            with st.expander("Source evidence (read-only)", expanded=False):
-                st.text(snippet[:4000] + ("…" if len(snippet) > 4000 else ""))
-
-        related = llm_item.get("related_models") or []
-        if related:
-            st.caption(f"Related models: {', '.join(str(r) for r in related)}")
+        render_inline_regenerate_title_controls(
+            st,
+            entity_key="model",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=name,
+            title_label="New model name",
+        )
 
         type_allow = {normalize_tag(str(t)) for t in model_types if str(t).strip()}
         type_ui = render_registry_types_section(
@@ -396,7 +458,7 @@ def _render_model_edit_box(
             prompt_version=prompt_version,
             review_list_key="foundation_models",
             label_widget_key=f"{key_prefix}_edit_model_name",
-            summary_widget_key=f"{key_prefix}_edit_operational_profile",
+            summary_widget_key=f"{key_prefix}_ctx_operational_profile",
             llm_fallback_label_key="model_name",
             llm_fallback_summary_key="operational_profile",
             section_title="Model types (archetype)",
@@ -412,37 +474,25 @@ def _render_model_edit_box(
             prompt_version=prompt_version,
             review_list_key="foundation_models",
             label_widget_key=f"{key_prefix}_edit_model_name",
-            summary_widget_key=f"{key_prefix}_edit_operational_profile",
+            summary_widget_key=f"{key_prefix}_ctx_operational_profile",
             llm_fallback_label_key="model_name",
             llm_fallback_summary_key="operational_profile",
             section_title="Retrieval tags",
         )
-        render_proposal_evidence_type_editor(st, llm_item, artifact, key_prefix=key_prefix)
-
-        proposal_id = str(node.get("proposal_id") or "")
-        render_regenerate_with_new_title_controls(
-            st,
-            entity_key="model",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=name,
-            title_label="New model name",
-        )
 
         def _save() -> None:
-            fresh_type_ui = registry_types_ui_from_session(key_prefix, type_ui)
-            apply_registry_types_ui_to_node(
+            _persist_model_proposal_from_widgets(
                 node,
-                llm_item,
-                fresh_type_ui,
-                type_allow,
+                artifact_path,
+                field_values,
+                type_ui=type_ui,
+                type_allow=type_allow,
+                tag_ui=tag_ui,
+                tag_allow=tag_allow,
                 key_prefix=key_prefix,
             )
-            apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow, key_prefix=key_prefix)
-            _on_save_model_proposal(str(node.get("proposal_id") or ""), key_prefix, artifact_path)
 
-        render_proposal_decision_bar(
+        render_fast_card_save_row(
             st,
             node,
             key_prefix=key_prefix,
@@ -450,6 +500,39 @@ def _render_model_edit_box(
             review_list_key="foundation_models",
             on_save_callback=_save,
         )
+
+        render_context_expander(
+            st,
+            label="Operational profile / context",
+            field_key="operational_profile",
+            field_label="Operational profile",
+            value=effective_model_scalar(llm_item, sections, "operational_profile"),
+            widget_key=f"{key_prefix}_ctx_operational_profile",
+            field_values=field_values,
+        )
+
+        def _more_model_fields() -> None:
+            render_proposal_evidence_type_editor(st, llm_item, artifact, key_prefix=key_prefix)
+            related = llm_item.get("related_models") or []
+            if related:
+                st.caption(f"Related models: {', '.join(str(r) for r in related)}")
+
+        render_collapsed_fields(
+            st,
+            specs=[*MODEL_MORE_SCALAR_SPECS, *MODEL_MORE_LIST_SPECS],
+            get_value=lambda li, sec, k: (
+                model_list_field_value(li, sec, k)
+                if k in MODEL_REVIEWABLE_LIST_KEYS
+                else effective_model_scalar(li, sec, k)
+            ),
+            llm_item=llm_item,
+            sections=sections,
+            key_prefix=key_prefix,
+            field_values=field_values,
+            extra_content=_more_model_fields,
+        )
+        render_source_evidence_expander(st, llm_item)
+        register_card_autosave(autosave_registry_key, node, _save)
 
 
 def render_model_proposals(
@@ -502,6 +585,7 @@ def render_model_proposals(
             artifact_path=artifact_path,
             model=model,
             prompt_version=prompt_version,
+            autosave_registry_key=key_prefix,
         )
 
     render_two_column_proposal_review(

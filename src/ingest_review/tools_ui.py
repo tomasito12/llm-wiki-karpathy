@@ -21,21 +21,28 @@ from src.ingest_review.domain_tag_ui import (
     queue_widget_session_resync,
     render_domain_tag_section,
 )
+from src.ingest_review.fast_review_ui import (
+    CollapsedFieldSpec,
+    read_fast_card_field_values,
+    register_card_autosave,
+    render_collapsed_fields,
+    render_context_expander,
+    render_fast_card_header,
+    render_fast_card_save_row,
+    render_inline_regenerate_title_controls,
+    render_readonly_context_hint,
+    render_source_evidence_expander,
+)
 from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_two_column_proposal_review,
 )
-from src.ingest_review.proposal_decision_ui import (
-    proposal_status_label,
-    render_proposal_decision_bar,
-    set_proposal_save_message,
-)
+from src.ingest_review.proposal_decision_ui import set_proposal_save_message
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
-    render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import TOOL_REVIEWABLE_LIST_KEYS, TOOL_REVIEWABLE_SCALAR_KEYS
 from src.ingest_review.tags import normalize_tag, normalize_tag_list
@@ -53,6 +60,28 @@ VALUE_LEVEL_TIER_HEADERS: dict[str, str] = {
     "medium": "### Medium value",
     "low": "### Low value",
 }
+
+TOOL_MORE_SCALAR_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec("operational_relevance", "Operational relevance", tall=True),
+    CollapsedFieldSpec("strengths", "Strengths", tall=True),
+    CollapsedFieldSpec("weaknesses_limitations", "Weaknesses / limitations", tall=True),
+    CollapsedFieldSpec("maturity_signals", "Maturity / adoption signals"),
+)
+
+TOOL_MORE_LIST_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec(
+        "core_capabilities",
+        "Core capabilities",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+    CollapsedFieldSpec(
+        "integration_ecosystem",
+        "Integration ecosystem",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
+)
 
 TOOL_FIELD_LABELS: dict[str, str] = {
     "name": "Tool name",
@@ -336,35 +365,34 @@ def _find_tool_node(artifact: dict[str, Any], proposal_id: str) -> dict[str, Any
     return None
 
 
-def _on_save_tool_proposal(
-    proposal_id: str,
-    key_prefix: str,
+def _persist_tool_proposal_from_widgets(
+    node: dict[str, Any],
     artifact_path: Path,
+    field_values: dict[str, str],
     *,
-    tag_ui: dict[str, Any] | None = None,
-    tag_allow: set[str] | None = None,
+    tag_ui: dict[str, Any],
+    tag_allow: set[str],
+    key_prefix: str,
 ) -> None:
-    """Streamlit on_click: apply field edits and persist artifact immediately."""
+    """Apply textarea + tag edits from widgets and write the artifact."""
     from src.ingest_review.artifact import save_artifact, touch_review_session
 
     artifact = streamlit_runtime.session_state.get("artifact")
     if not isinstance(artifact, dict):
         return
-    node = _find_tool_node(artifact, proposal_id)
-    if not node:
-        return
-    scalar_values = {
-        sk: str(streamlit_runtime.session_state.get(f"{key_prefix}_edit_{sk}", ""))
-        for sk in TOOL_REVIEWABLE_SCALAR_KEYS
-    }
-    list_raw = {
-        lk: str(streamlit_runtime.session_state.get(f"{key_prefix}_edit_{lk}", ""))
-        for lk in TOOL_REVIEWABLE_LIST_KEYS
-    }
+    merged = read_fast_card_field_values(
+        key_prefix,
+        title_keys=("name",),
+        context_keys=("short_description",),
+        more_scalar_keys=tuple(s.key for s in TOOL_MORE_SCALAR_SPECS if not s.is_list),
+        more_list_keys=TOOL_REVIEWABLE_LIST_KEYS,
+        field_values=field_values,
+    )
+    scalar_values = {sk: merged[sk] for sk in TOOL_REVIEWABLE_SCALAR_KEYS if sk in merged}
+    list_raw = {lk: merged[lk] for lk in TOOL_REVIEWABLE_LIST_KEYS if lk in merged}
     apply_tool_proposal_edits(node, scalar_values, list_raw)
-    if tag_ui is not None and tag_allow is not None:
-        llm_item = node.setdefault("llm_item", {})
-        apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow, key_prefix=key_prefix)
+    llm_item = node.setdefault("llm_item", {})
+    apply_tag_ui_to_node(node, llm_item, tag_ui, tag_allow, key_prefix=key_prefix)
     types_node = node.get("types") or {}
     extra_key = f"{key_prefix}_types_extra"
     queue_widget_session_resync(
@@ -373,9 +401,8 @@ def _on_save_tool_proposal(
     )
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
-    llm_item = node.get("llm_item") or {}
     sections = node.get("sections") or {}
-    label = effective_tool_scalar(llm_item, sections, "name") or "proposal"
+    label = merged.get("name") or effective_tool_scalar(llm_item, sections, "name") or "proposal"
     set_proposal_save_message(key_prefix, f"Saved **{label}**.")
 
 
@@ -463,79 +490,41 @@ def _render_tool_edit_box(
     artifact_path: Path,
     model: str = "",
     prompt_version: str = "",
+    autosave_registry_key: str = "",
 ) -> None:
-    """One bordered edit box per tool proposal (glossary-style)."""
+    """Fast-review card for one tool proposal."""
     llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
     name = tool_scalar_field_value(llm_item, sections, "name") or "Untitled tool"
     value_level = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(value_level, "Medium")
-    proposal_status = proposal_status_label(node)
+    proposal_id = str(node.get("proposal_id") or "")
+    field_values: dict[str, str] = {}
 
     with st.container(border=True):
-        st.markdown(f"**{name}** · {badge} · **{proposal_status}**")
-        render_proposal_regen_meta_caption(st, node, "Tool")
-
-        for sk in TOOL_REVIEWABLE_SCALAR_KEYS:
-            label = TOOL_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-            tall = sk in (
-                "short_description",
-                "operational_relevance",
-                "strengths",
-                "weaknesses_limitations",
-            )
-            st.text_area(
-                label,
-                value=tool_scalar_field_value(llm_item, sections, sk),
-                height=120 if tall else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
-
-        for lk in TOOL_REVIEWABLE_LIST_KEYS:
-            label = TOOL_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
-            st.text_area(
-                f"{label} (one per line)",
-                value=tool_list_field_value(llm_item, sections, lk),
-                height=100,
-                key=f"{key_prefix}_edit_{lk}",
-            )
-
-        snippet = str(llm_item.get("supporting_snippet") or "").strip()
-        if snippet:
-            with st.expander("Source evidence (read-only)", expanded=False):
-                st.text(snippet[:4000] + ("\u2026" if len(snippet) > 4000 else ""))
-
-        related = llm_item.get("related_tools") or []
-        if related:
-            st.caption(f"Related tools: {', '.join(str(r) for r in related)}")
-
-        st.markdown("#### Tool types (product archetype)")
-        _render_type_panel(st, node, llm_item, tool_types, key_prefix=key_prefix)
-
-        tag_allow = {normalize_tag(str(t)) for t in tool_tags if str(t).strip()}
-        tag_ui = render_domain_tag_section(
+        render_fast_card_header(
             st,
             node,
-            tool_tags,
-            key_prefix=f"{key_prefix}_retrieval",
+            badge=badge,
+            key_prefix=key_prefix,
             artifact_path=artifact_path,
-            model=model,
-            prompt_version=prompt_version,
             review_list_key="tools",
-            label_widget_key=f"{key_prefix}_edit_name",
-            summary_widget_key=f"{key_prefix}_edit_operational_relevance",
-            llm_fallback_label_key="name",
-            llm_fallback_summary_key="operational_relevance",
-            section_title="Retrieval tags",
+        )
+        render_proposal_regen_meta_caption(st, node, "Tool")
+
+        field_values["name"] = st.text_area(
+            "Tool name",
+            value=tool_scalar_field_value(llm_item, sections, "name"),
+            height=72,
+            key=f"{key_prefix}_edit_name",
+        )
+        render_readonly_context_hint(
+            st,
+            label="Short description",
+            value=tool_scalar_field_value(llm_item, sections, "short_description"),
         )
 
-        render_proposal_evidence_type_editor(st, llm_item, artifact, key_prefix=key_prefix)
-
-        with st.expander("Raw JSON (debug)", expanded=False):
-            st.json(llm_item)
-
-        proposal_id = str(node.get("proposal_id") or "")
-        render_regenerate_with_new_title_controls(
+        render_inline_regenerate_title_controls(
             st,
             entity_key="tool",
             source_id=source_id,
@@ -545,16 +534,32 @@ def _render_tool_edit_box(
             title_label="New tool name",
         )
 
+        tag_allow = {normalize_tag(str(t)) for t in tool_tags if str(t).strip()}
+        tag_ui: dict[str, Any] = {}
+
+        st.markdown("#### Tool types")
+        proposed_types = llm_item.get("proposed_types") or []
+        if isinstance(proposed_types, list) and proposed_types:
+            st.caption("LLM proposed: " + ", ".join(f"`{t}`" for t in proposed_types))
+        _render_type_panel(st, node, llm_item, tool_types, key_prefix=key_prefix)
+
         def _save() -> None:
-            _on_save_tool_proposal(
-                str(node.get("proposal_id") or ""),
-                key_prefix,
+            _persist_tool_proposal_from_widgets(
+                node,
                 artifact_path,
-                tag_ui=tag_ui,
+                field_values,
+                tag_ui=tag_ui
+                or {
+                    "selected_allowlist": [],
+                    "manual_csv": "",
+                    "approve_new_map": {},
+                    "approve_offlist": False,
+                },
                 tag_allow=tag_allow,
+                key_prefix=key_prefix,
             )
 
-        render_proposal_decision_bar(
+        render_fast_card_save_row(
             st,
             node,
             key_prefix=key_prefix,
@@ -562,6 +567,59 @@ def _render_tool_edit_box(
             review_list_key="tools",
             on_save_callback=_save,
         )
+
+        render_context_expander(
+            st,
+            label="Short description / context",
+            field_key="short_description",
+            field_label="Short description",
+            value=tool_scalar_field_value(llm_item, sections, "short_description"),
+            widget_key=f"{key_prefix}_ctx_short_description",
+            field_values=field_values,
+        )
+
+        def _more_tool_fields() -> None:
+            tag_ui.update(
+                render_domain_tag_section(
+                    st,
+                    node,
+                    tool_tags,
+                    key_prefix=f"{key_prefix}_retrieval",
+                    artifact_path=artifact_path,
+                    model=model,
+                    prompt_version=prompt_version,
+                    review_list_key="tools",
+                    label_widget_key=f"{key_prefix}_edit_name",
+                    summary_widget_key=f"{key_prefix}_more_operational_relevance",
+                    llm_fallback_label_key="name",
+                    llm_fallback_summary_key="operational_relevance",
+                    section_title="Retrieval tags",
+                )
+            )
+            render_proposal_evidence_type_editor(st, llm_item, artifact, key_prefix=key_prefix)
+            related = llm_item.get("related_tools") or []
+            if related:
+                st.caption(f"Related tools: {', '.join(str(r) for r in related)}")
+            with st.expander("Raw JSON (debug)", expanded=False):
+                st.json(llm_item)
+
+        def _tool_field_value(li: dict[str, Any], sec: dict[str, Any], key: str) -> str:
+            if key in TOOL_REVIEWABLE_LIST_KEYS:
+                return tool_list_field_value(li, sec, key)
+            return tool_scalar_field_value(li, sec, key)
+
+        render_collapsed_fields(
+            st,
+            specs=[*TOOL_MORE_SCALAR_SPECS, *TOOL_MORE_LIST_SPECS],
+            get_value=_tool_field_value,
+            llm_item=llm_item,
+            sections=sections,
+            key_prefix=key_prefix,
+            field_values=field_values,
+            extra_content=_more_tool_fields,
+        )
+        render_source_evidence_expander(st, llm_item)
+        register_card_autosave(autosave_registry_key, node, _save)
 
 
 def render_tool_proposals(
@@ -614,6 +672,7 @@ def render_tool_proposals(
             artifact_path=artifact_path,
             model=model,
             prompt_version=prompt_version,
+            autosave_registry_key=key_prefix,
         )
 
     render_two_column_proposal_review(

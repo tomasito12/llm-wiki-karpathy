@@ -15,22 +15,29 @@ from src.ingest_review.domain_tag_ui import (
     effective_readonly_domain_tags,
     render_domain_tag_section,
 )
+from src.ingest_review.fast_review_ui import (
+    CollapsedFieldSpec,
+    read_fast_card_field_values,
+    register_card_autosave,
+    render_collapsed_fields,
+    render_context_expander,
+    render_fast_card_header,
+    render_fast_card_reclassify,
+    render_fast_card_save_row,
+    render_inline_regenerate_title_controls,
+    render_readonly_context_hint,
+    render_source_evidence_expander,
+)
 from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_two_column_proposal_review,
 )
-from src.ingest_review.proposal_decision_ui import (
-    proposal_status_label,
-    render_proposal_decision_bar,
-    set_proposal_save_message,
-)
+from src.ingest_review.proposal_decision_ui import set_proposal_save_message
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
-    render_reclassify_to_section_controls,
-    render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import TOPIC_REVIEWABLE_LIST_KEYS, TOPIC_REVIEWABLE_SCALAR_KEYS
 from src.ingest_review.tags import normalize_tag
@@ -73,6 +80,14 @@ TOPIC_FIELD_LABELS: dict[str, str] = {
 
 TOPIC_TEXTAREA_LIST_KEYS: tuple[str, ...] = tuple(
     lk for lk in TOPIC_REVIEWABLE_LIST_KEYS if lk != "related_topics"
+)
+
+TOPIC_MORE_FIELD_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec("topic_slug", "Topic slug"),
+    CollapsedFieldSpec("examples", "Examples", tall=True),
+    CollapsedFieldSpec("operational_insight", "Operational insight"),
+    CollapsedFieldSpec("relevance_note", "Relevance note"),
+    CollapsedFieldSpec("key_points", "Key points", is_list=True, help_text="One bullet per line."),
 )
 
 TOPIC_SCALAR_BEFORE_TAGS: tuple[str, ...] = (
@@ -431,13 +446,78 @@ def _persist_topic_proposal_from_widgets(
     artifact = streamlit_runtime.session_state.get("artifact")
     if not isinstance(artifact, dict):
         return
-    apply_topic_proposal_edits(node, field_values)
+    merged = read_fast_card_field_values(
+        key_prefix,
+        title_keys=("topic_title",),
+        context_keys=("knowledge_summary",),
+        more_scalar_keys=tuple(s.key for s in TOPIC_MORE_FIELD_SPECS if not s.is_list),
+        more_list_keys=TOPIC_TEXTAREA_LIST_KEYS,
+        field_values=field_values,
+    )
+    related_raw = streamlit_runtime.session_state.get(f"{key_prefix}_edit_related_topics", [])
+    if isinstance(related_raw, list):
+        merged["related_topics"] = "\n".join(str(x) for x in related_raw if str(x).strip())
+    elif field_values.get("related_topics"):
+        merged["related_topics"] = field_values["related_topics"]
+    apply_topic_proposal_edits(node, merged)
     llm_item = node.setdefault("llm_item", {})
     apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
-    title = field_values.get("topic_title") or llm_item.get("topic_slug") or "topic"
+    title = merged.get("topic_title") or llm_item.get("topic_slug") or "topic"
     set_proposal_save_message(key_prefix, f"Saved **{title}**.")
+
+
+def _render_topic_related_topics_editor(
+    st: Any,
+    *,
+    node: dict[str, Any],
+    llm_item: dict[str, Any],
+    sections: dict[str, Any],
+    field_values: dict[str, str],
+    key_prefix: str,
+    artifact: dict[str, Any],
+    wiki: WikiSnapshot,
+    reviews_root: Path | None,
+) -> None:
+    """Related topics multiselect inside More fields."""
+    suggestions = _topic_related_suggestions(
+        node,
+        wiki=wiki,
+        reviews_root=reviews_root,
+        artifact=artifact,
+    )
+    by_slug = catalog_by_slug(suggestions)
+    current_related = [
+        normalize_tag(s)
+        for s in effective_topic_list(llm_item, sections, "related_topics")
+        if normalize_tag(s)
+    ]
+    option_slugs = list(dict.fromkeys([c.slug for c in suggestions] + current_related))
+    related_widget_key = f"{key_prefix}_edit_related_topics"
+    if option_slugs:
+        if len(current_related) > TOPIC_RELATED_TOPICS_MAX:
+            st.caption(
+                f"This proposal lists more than {TOPIC_RELATED_TOPICS_MAX} related topics; "
+                f"only the first {TOPIC_RELATED_TOPICS_MAX} are loaded for editing. "
+                "Save to trim the stored list."
+            )
+        _clamp_related_topics_multiselect_session(
+            streamlit_runtime.session_state,
+            related_widget_key,
+        )
+        selected = st.multiselect(
+            TOPIC_FIELD_LABELS["related_topics"],
+            options=option_slugs,
+            default=_related_topics_multiselect_default(current_related, option_slugs),
+            max_selections=TOPIC_RELATED_TOPICS_MAX,
+            format_func=lambda s, m=by_slug: _format_related_topic_multiselect_label(s, m),
+            key=related_widget_key,
+            help="Up to 3 cross-links to other topic pages (kebab-case slugs).",
+        )
+        field_values["related_topics"] = "\n".join(selected)
+    elif current_related:
+        field_values["related_topics"] = "\n".join(cap_related_topic_slugs(current_related))
 
 
 def _render_topic_edit_box(
@@ -454,27 +534,49 @@ def _render_topic_edit_box(
     artifact: dict[str, Any],
     wiki: WikiSnapshot,
     reviews_root: Path | None,
+    autosave_registry_key: str,
 ) -> None:
+    """Fast-review card for one topic proposal."""
     llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
     title = effective_topic_scalar(llm_item, sections, "topic_title") or "Untitled"
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    proposal_status = proposal_status_label(node)
+    proposal_id = str(node.get("proposal_id") or "")
 
     with st.container(border=True):
-        st.markdown(f"**{title}** · {badge} · **{proposal_status}**")
+        render_fast_card_header(
+            st,
+            node,
+            badge=badge,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="topics",
+        )
         render_proposal_regen_meta_caption(st, node, "Topic")
 
         field_values: dict[str, str] = {}
-        for sk in TOPIC_SCALAR_BEFORE_TAGS:
-            label = TOPIC_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=topic_field_edit_value(llm_item, sections, sk),
-                height=120 if sk in TOPIC_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
+        field_values["topic_title"] = st.text_area(
+            "Topic title",
+            value=topic_field_edit_value(llm_item, sections, "topic_title"),
+            height=72,
+            key=f"{key_prefix}_edit_topic_title",
+        )
+        render_readonly_context_hint(
+            st,
+            label="Knowledge summary",
+            value=topic_field_edit_value(llm_item, sections, "knowledge_summary"),
+        )
+
+        render_inline_regenerate_title_controls(
+            st,
+            entity_key="topic",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=title,
+            title_label="New topic title",
+        )
 
         tag_ui = render_domain_tag_section(
             st,
@@ -486,90 +588,9 @@ def _render_topic_edit_box(
             prompt_version=prompt_version,
             review_list_key="topics",
             label_widget_key=f"{key_prefix}_edit_topic_title",
-            summary_widget_key=f"{key_prefix}_edit_knowledge_summary",
+            summary_widget_key=f"{key_prefix}_ctx_knowledge_summary",
             llm_fallback_label_key="topic_title",
             llm_fallback_summary_key="knowledge_summary",
-        )
-
-        for sk in TOPIC_SCALAR_AFTER_TAGS:
-            label = TOPIC_FIELD_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=topic_field_edit_value(llm_item, sections, sk),
-                height=72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
-
-        for lk in TOPIC_TEXTAREA_LIST_KEYS:
-            label = TOPIC_FIELD_LABELS.get(lk, lk.replace("_", " ").title())
-            field_values[lk] = st.text_area(
-                label,
-                value=topic_list_edit_value(llm_item, sections, lk),
-                height=100,
-                key=f"{key_prefix}_edit_{lk}",
-                help="One bullet per line.",
-            )
-
-        suggestions = _topic_related_suggestions(
-            node,
-            wiki=wiki,
-            reviews_root=reviews_root,
-            artifact=artifact,
-        )
-        by_slug = catalog_by_slug(suggestions)
-        current_related = [
-            normalize_tag(s)
-            for s in effective_topic_list(llm_item, sections, "related_topics")
-            if normalize_tag(s)
-        ]
-        option_slugs = list(dict.fromkeys([c.slug for c in suggestions] + current_related))
-        related_widget_key = f"{key_prefix}_edit_related_topics"
-        if option_slugs:
-            if len(current_related) > TOPIC_RELATED_TOPICS_MAX:
-                st.caption(
-                    f"This proposal lists more than {TOPIC_RELATED_TOPICS_MAX} related topics; "
-                    f"only the first {TOPIC_RELATED_TOPICS_MAX} are loaded for editing. "
-                    "Save to trim the stored list."
-                )
-            _clamp_related_topics_multiselect_session(
-                streamlit_runtime.session_state,
-                related_widget_key,
-            )
-            selected = st.multiselect(
-                TOPIC_FIELD_LABELS["related_topics"],
-                options=option_slugs,
-                default=_related_topics_multiselect_default(current_related, option_slugs),
-                max_selections=TOPIC_RELATED_TOPICS_MAX,
-                format_func=lambda s, m=by_slug: _format_related_topic_multiselect_label(s, m),
-                key=related_widget_key,
-                help="Up to 3 cross-links to other topic pages (kebab-case slugs).",
-            )
-            field_values["related_topics"] = "\n".join(selected)
-        elif current_related:
-            field_values["related_topics"] = "\n".join(cap_related_topic_slugs(current_related))
-
-        snippet = str(llm_item.get("supporting_snippet") or "").strip()
-        if snippet:
-            with st.expander("Source evidence (read-only)", expanded=False):
-                st.text(snippet[:4000] + ("…" if len(snippet) > 4000 else ""))
-
-        proposal_id = str(node.get("proposal_id") or "")
-        render_regenerate_with_new_title_controls(
-            st,
-            entity_key="topic",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=title,
-            title_label="New topic title",
-        )
-        render_reclassify_to_section_controls(
-            st,
-            source_entity_key="topic",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=title,
         )
 
         def _save() -> None:
@@ -582,7 +603,7 @@ def _render_topic_edit_box(
                 key_prefix=key_prefix,
             )
 
-        render_proposal_decision_bar(
+        render_fast_card_save_row(
             st,
             node,
             key_prefix=key_prefix,
@@ -590,6 +611,54 @@ def _render_topic_edit_box(
             review_list_key="topics",
             on_save_callback=_save,
         )
+
+        render_context_expander(
+            st,
+            label="Knowledge summary / context",
+            field_key="knowledge_summary",
+            field_label="Knowledge summary",
+            value=topic_field_edit_value(llm_item, sections, "knowledge_summary"),
+            widget_key=f"{key_prefix}_ctx_knowledge_summary",
+            field_values=field_values,
+        )
+
+        def _related_topics_panel() -> None:
+            _render_topic_related_topics_editor(
+                st,
+                node=node,
+                llm_item=llm_item,
+                sections=sections,
+                field_values=field_values,
+                key_prefix=key_prefix,
+                artifact=artifact,
+                wiki=wiki,
+                reviews_root=reviews_root,
+            )
+
+        render_collapsed_fields(
+            st,
+            specs=list(TOPIC_MORE_FIELD_SPECS),
+            get_value=lambda li, sec, k: (
+                topic_list_edit_value(li, sec, k)
+                if k in TOPIC_TEXTAREA_LIST_KEYS
+                else topic_field_edit_value(li, sec, k)
+            ),
+            llm_item=llm_item,
+            sections=sections,
+            key_prefix=key_prefix,
+            field_values=field_values,
+            extra_content=_related_topics_panel,
+        )
+        render_source_evidence_expander(st, llm_item)
+        render_fast_card_reclassify(
+            st,
+            node,
+            reclassify_entity_key="topic",
+            source_id=source_id,
+            current_title=title,
+            key_prefix=key_prefix,
+        )
+        register_card_autosave(autosave_registry_key, node, _save)
 
 
 def render_topic_proposals(
@@ -682,6 +751,7 @@ def render_topic_proposals(
             artifact=artifact,
             wiki=wiki,
             reviews_root=reviews_root,
+            autosave_registry_key=key_prefix,
         )
 
     render_two_column_proposal_review(

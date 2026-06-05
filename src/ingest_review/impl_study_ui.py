@@ -15,6 +15,18 @@ from src.ingest_review.domain_tag_ui import (
     effective_readonly_domain_tags,
     render_domain_tag_section,
 )
+from src.ingest_review.fast_review_ui import (
+    CollapsedFieldSpec,
+    read_fast_card_field_values,
+    register_card_autosave,
+    render_collapsed_fields,
+    render_context_expander,
+    render_fast_card_header,
+    render_fast_card_reclassify,
+    render_fast_card_save_row,
+    render_inline_regenerate_title_controls,
+    render_readonly_context_hint,
+)
 from src.ingest_review.impl_study_gate import (
     format_impl_study_evidence_caption,
     impl_study_likely_misclassified,
@@ -23,18 +35,12 @@ from src.ingest_review.proposal_columns_ui import (
     build_proposal_expander_label,
     render_two_column_proposal_review,
 )
-from src.ingest_review.proposal_decision_ui import (
-    proposal_status_label,
-    render_proposal_decision_bar,
-    set_proposal_save_message,
-)
+from src.ingest_review.proposal_decision_ui import set_proposal_save_message
 from src.ingest_review.proposal_regen_ui import (
     pop_proposal_regen_msg,
     proposal_edit_key_prefix,
     regen_count_from_node,
     render_proposal_regen_meta_caption,
-    render_reclassify_to_section_controls,
-    render_regenerate_with_new_title_controls,
 )
 from src.ingest_review.schema import (
     IMPL_STUDY_REVIEWABLE_LIST_KEYS,
@@ -97,6 +103,37 @@ IMPL_TALL_SCALAR_KEYS: frozenset[str] = frozenset(
         "technical_approach",
         "implications_for_service_automation",
     }
+)
+
+IMPL_MORE_SCALAR_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec("company", "Company / organization"),
+    CollapsedFieldSpec("industry", "Industry / domain"),
+    CollapsedFieldSpec("what_was_implemented", "What was implemented?", tall=True),
+    CollapsedFieldSpec("business_objective", "Business objective"),
+    CollapsedFieldSpec("technical_approach", "Technical approach", tall=True),
+    CollapsedFieldSpec("deployment_context", "Deployment context"),
+    CollapsedFieldSpec("outcome_status", "Outcome / current status"),
+    CollapsedFieldSpec("success_or_failure_factors", "Why it succeeded or struggled"),
+    CollapsedFieldSpec("operational_constraints", "Operational constraints"),
+    CollapsedFieldSpec("ai_model_observations", "AI / model observations"),
+    CollapsedFieldSpec(
+        "implications_for_service_automation",
+        "Implications for service automation",
+        tall=True,
+    ),
+    CollapsedFieldSpec("strategic_signals", "Strategic signals"),
+)
+
+IMPL_MORE_LIST_SPECS: tuple[CollapsedFieldSpec, ...] = (
+    CollapsedFieldSpec(
+        "key_lessons", "Key lessons", is_list=True, help_text="One bullet per line."
+    ),
+    CollapsedFieldSpec(
+        "open_questions",
+        "Open questions",
+        is_list=True,
+        help_text="One bullet per line.",
+    ),
 )
 
 
@@ -329,12 +366,20 @@ def _persist_impl_proposal_from_widgets(
     artifact = streamlit_runtime.session_state.get("artifact")
     if not isinstance(artifact, dict):
         return
-    apply_impl_proposal_edits(node, field_values)
+    merged = read_fast_card_field_values(
+        key_prefix,
+        title_keys=("title",),
+        context_keys=("overview",),
+        more_scalar_keys=tuple(s.key for s in IMPL_MORE_SCALAR_SPECS if not s.is_list),
+        more_list_keys=IMPL_STUDY_REVIEWABLE_LIST_KEYS,
+        field_values=field_values,
+    )
+    apply_impl_proposal_edits(node, merged)
     llm_item = node.setdefault("llm_item", {})
     apply_tag_ui_to_node(node, llm_item, tag_ui, allow, key_prefix=key_prefix)
     touch_review_session(artifact)
     save_artifact(artifact_path, artifact)
-    title = field_values.get("title") or llm_item.get("title") or "study"
+    title = merged.get("title") or llm_item.get("title") or "study"
     set_proposal_save_message(key_prefix, f"Saved **{title}**.")
 
 
@@ -349,17 +394,26 @@ def _render_impl_edit_box(
     model: str,
     prompt_version: str,
     tag_allow: set[str],
+    autosave_registry_key: str,
 ) -> None:
-    """One bordered edit box per implementation-study proposal."""
+    """Fast-review card for one implementation-study proposal."""
     llm_item = node.get("llm_item") or {}
     sections = node.setdefault("sections", {})
     title = effective_impl_scalar(llm_item, sections, "title") or "Untitled"
     tier = _value_level(node)
     badge = VALUE_LEVEL_BADGES.get(tier, "Medium")
-    status_lbl = proposal_status_label(node)
+    proposal_id = str(node.get("proposal_id") or "")
+    field_values: dict[str, str] = {}
 
     with st.container(border=True):
-        st.markdown(f"**{title}** · {badge} · **{status_lbl}**")
+        render_fast_card_header(
+            st,
+            node,
+            badge=badge,
+            key_prefix=key_prefix,
+            artifact_path=artifact_path,
+            review_list_key="implementation_studies",
+        )
         render_proposal_regen_meta_caption(st, node, "Implementation study")
         if impl_study_likely_misclassified(llm_item):
             st.warning(
@@ -367,15 +421,27 @@ def _render_impl_edit_box(
                 "Consider rejecting or routing to topics/how-to."
             )
 
-        field_values: dict[str, str] = {}
-        for sk in IMPL_SCALAR_BEFORE_TAGS:
-            label = IMPL_STUDY_SECTION_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=impl_field_edit_value(llm_item, sections, sk),
-                height=120 if sk in IMPL_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
+        field_values["title"] = st.text_area(
+            "Study title",
+            value=impl_field_edit_value(llm_item, sections, "title"),
+            height=72,
+            key=f"{key_prefix}_edit_title",
+        )
+        render_readonly_context_hint(
+            st,
+            label="Overview",
+            value=impl_field_edit_value(llm_item, sections, "overview"),
+        )
+
+        render_inline_regenerate_title_controls(
+            st,
+            entity_key="impl_study",
+            source_id=source_id,
+            proposal_id=proposal_id,
+            widget_prefix=key_prefix,
+            current_title=title,
+            title_label="New study title",
+        )
 
         tag_ui = render_domain_tag_section(
             st,
@@ -387,55 +453,9 @@ def _render_impl_edit_box(
             prompt_version=prompt_version,
             review_list_key="implementation_studies",
             label_widget_key=f"{key_prefix}_edit_title",
-            summary_widget_key=f"{key_prefix}_edit_overview",
+            summary_widget_key=f"{key_prefix}_ctx_overview",
             llm_fallback_label_key="title",
             llm_fallback_summary_key="overview",
-        )
-
-        for sk in IMPL_SCALAR_MID + IMPL_SCALAR_AFTER_TAGS:
-            label = IMPL_STUDY_SECTION_LABELS.get(sk, sk.replace("_", " ").title())
-            field_values[sk] = st.text_area(
-                label,
-                value=impl_field_edit_value(llm_item, sections, sk),
-                height=120 if sk in IMPL_TALL_SCALAR_KEYS else 72,
-                key=f"{key_prefix}_edit_{sk}",
-            )
-
-        for lk in IMPL_STUDY_REVIEWABLE_LIST_KEYS:
-            label = IMPL_STUDY_SECTION_LABELS.get(lk, lk.replace("_", " ").title())
-            field_values[lk] = st.text_area(
-                label,
-                value=impl_list_edit_value(llm_item, sections, lk),
-                height=100,
-                key=f"{key_prefix}_edit_{lk}",
-                help="One bullet per line.",
-            )
-
-        snippets = llm_item.get("evidence_snippets") or []
-        if snippets:
-            with st.expander(f"Evidence snippets ({len(snippets)})", expanded=False):
-                for ev in snippets:
-                    if isinstance(ev, dict):
-                        st.markdown(f"**{ev.get('claim', '')}**")
-                        st.caption(str(ev.get("snippet") or ""))
-
-        proposal_id = str(node.get("proposal_id") or "")
-        render_regenerate_with_new_title_controls(
-            st,
-            entity_key="impl_study",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=title,
-            title_label="New study title",
-        )
-        render_reclassify_to_section_controls(
-            st,
-            source_entity_key="impl_study",
-            source_id=source_id,
-            proposal_id=proposal_id,
-            widget_prefix=key_prefix,
-            current_title=title,
         )
 
         def _save() -> None:
@@ -448,7 +468,7 @@ def _render_impl_edit_box(
                 key_prefix=key_prefix,
             )
 
-        render_proposal_decision_bar(
+        render_fast_card_save_row(
             st,
             node,
             key_prefix=key_prefix,
@@ -456,6 +476,49 @@ def _render_impl_edit_box(
             review_list_key="implementation_studies",
             on_save_callback=_save,
         )
+
+        render_context_expander(
+            st,
+            label="Overview / context",
+            field_key="overview",
+            field_label="Overview",
+            value=impl_field_edit_value(llm_item, sections, "overview"),
+            widget_key=f"{key_prefix}_ctx_overview",
+            field_values=field_values,
+        )
+
+        def _evidence_snippets() -> None:
+            snippets = llm_item.get("evidence_snippets") or []
+            if snippets:
+                with st.expander(f"Evidence snippets ({len(snippets)})", expanded=False):
+                    for ev in snippets:
+                        if isinstance(ev, dict):
+                            st.markdown(f"**{ev.get('claim', '')}**")
+                            st.caption(str(ev.get("snippet") or ""))
+
+        render_collapsed_fields(
+            st,
+            specs=[*IMPL_MORE_SCALAR_SPECS, *IMPL_MORE_LIST_SPECS],
+            get_value=lambda li, sec, k: (
+                impl_list_edit_value(li, sec, k)
+                if k in IMPL_STUDY_REVIEWABLE_LIST_KEYS
+                else impl_field_edit_value(li, sec, k)
+            ),
+            llm_item=llm_item,
+            sections=sections,
+            key_prefix=key_prefix,
+            field_values=field_values,
+            extra_content=_evidence_snippets,
+        )
+        render_fast_card_reclassify(
+            st,
+            node,
+            reclassify_entity_key="impl_study",
+            source_id=source_id,
+            current_title=title,
+            key_prefix=key_prefix,
+        )
+        register_card_autosave(autosave_registry_key, node, _save)
 
 
 def render_implementation_studies(
@@ -507,6 +570,7 @@ def render_implementation_studies(
             model=model,
             prompt_version=prompt_version,
             tag_allow=tag_allow,
+            autosave_registry_key=key_prefix,
         )
 
     render_two_column_proposal_review(

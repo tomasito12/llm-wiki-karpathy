@@ -602,6 +602,11 @@ def _render_chapter_edit_box(
             )
 
 
+SOURCE_CHAPTER_OTHER_KEYS: tuple[str, ...] = tuple(
+    sk for sk in SOURCE_CHAPTER_DISPLAY_ORDER if sk not in ("accessible_overview", "sources")
+)
+
+
 def render_source_summary_review(
     st: Any,
     artifact: dict[str, Any],
@@ -610,7 +615,7 @@ def render_source_summary_review(
     source_id: str,
     artifact_path: Path,
 ) -> None:
-    """Two-column source chapters: read-only prose left, per-chapter edit boxes right."""
+    """Fast source-chapter review: Easy read primary; other chapters collapsed."""
     st.subheader("Source chapters")
     _render_analysis_meta_banner(st, artifact)
     _sync_sources_review_node(artifact)
@@ -619,13 +624,18 @@ def render_source_summary_review(
     if save_msg:
         st.success(str(save_msg))
 
-    read_col, edit_col = st.columns(2)
-    with read_col:
-        st.markdown(build_readonly_chapters_markdown(artifact))
-    with edit_col:
-        for sk in SOURCE_CHAPTER_DISPLAY_ORDER:
-            if sk == "sources":
-                continue
+    st.markdown(f"## {CHAPTER_LABELS['accessible_overview']}")
+    _render_chapter_edit_box(
+        st,
+        artifact,
+        section_key="accessible_overview",
+        key_prefix=key_prefix,
+        source_id=source_id,
+        artifact_path=artifact_path,
+    )
+
+    with st.expander("Other chapters", expanded=False):
+        for sk in SOURCE_CHAPTER_OTHER_KEYS:
             _render_chapter_edit_box(
                 st,
                 artifact,
@@ -944,3 +954,208 @@ def render_review_timer(
         st.caption(f"Review time: {mins}m {secs}s")
     else:
         st.caption("Review in progress...")
+
+
+def review_timer_caption(artifact: dict[str, Any]) -> str:
+    """One-line review timer for compact chrome."""
+    from src.ingest_review.artifact import ensure_review_started
+
+    ensure_review_started(artifact)
+    analytics = artifact.setdefault("review_analytics", {})
+    duration = analytics.get("review_duration_seconds")
+    if duration is not None:
+        mins = int(duration) // 60
+        secs = int(duration) % 60
+        return f"Review time: {mins}m {secs}s"
+    return "Review in progress…"
+
+
+def review_overview_caption(artifact: dict[str, Any]) -> str:
+    """One-line proposal count summary for compact chrome."""
+    llm = artifact.get("llm_output") or {}
+    entity_keys = [
+        "glossary",
+        "topics",
+        "how_to",
+        "industry_trends",
+        "tools",
+        "foundation_models",
+        "implementation_studies",
+        "roundup_signals",
+        "interview_insights",
+    ]
+    total = sum(len(llm.get(key) or []) for key in entity_keys)
+    high = sum(
+        1
+        for key in entity_keys
+        for item in (llm.get(key) or [])
+        if isinstance(item, dict) and item.get("value_level") == "high"
+    )
+    rejected = sum(
+        1
+        for key in entity_keys
+        for node in ((artifact.get("review") or {}).get(key) or [])
+        if isinstance(node, dict) and node.get("proposal_status") == "rejected"
+    )
+    parts = [f"{total} proposals", f"{high} high value"]
+    if rejected:
+        parts.append(f"{rejected} rejected")
+    return " · ".join(parts)
+
+
+def render_compact_review_stats(
+    st: Any,
+    artifact: dict[str, Any],
+    *,
+    key_prefix: str,
+) -> None:
+    """Collapsed review timer + overview metrics (replaces full-width panels)."""
+    with st.expander("Review stats", expanded=False):
+        st.caption(review_overview_caption(artifact))
+        render_review_timer(st, artifact, key_prefix=key_prefix)
+
+
+ENTITY_TABS_WITH_PROPOSAL_AUTOSAVE: frozenset[str] = frozenset(
+    {
+        "Glossary",
+        "Topics",
+        "How-tos",
+        "Trends",
+        "Tools",
+        "Models",
+        "Impl studies",
+        "Signals",
+        "Insights",
+    }
+)
+
+
+REVIEW_TAB_COUNTS: dict[str, str | None] = {
+    "Source chapters": None,
+    "Glossary": "glossary",
+    "Topics": "topics",
+    "How-tos": "how_to",
+    "Trends": "industry_trends",
+    "Tools": "tools",
+    "Models": "foundation_models",
+    "Impl studies": "implementation_studies",
+    "Signals": "roundup_signals",
+    "Insights": "interview_insights",
+    "Source type": None,
+    "Debug": None,
+}
+
+
+def format_review_entity_tab_label(tab: str, artifact: dict[str, Any]) -> str:
+    """Tab label with pending proposal count when cheap to compute."""
+    review_key = REVIEW_TAB_COUNTS.get(tab)
+    if not review_key:
+        return tab
+    count = len((artifact.get("review") or {}).get(review_key) or [])
+    if count <= 0:
+        return tab
+    return f"{tab} ({count})"
+
+
+def normalize_review_entity_tab(label: str) -> str:
+    """Strip `` (N)`` suffix from radio option labels."""
+    if " (" in label and label.endswith(")"):
+        return label.rsplit(" (", 1)[0]
+    return label
+
+
+def build_review_entity_tab_options(artifact: dict[str, Any], tabs: tuple[str, ...]) -> list[str]:
+    """Build radio options with optional proposal counts."""
+    return [format_review_entity_tab_label(tab, artifact) for tab in tabs]
+
+
+def render_source_type_override_panel(
+    st: Any,
+    artifact: dict[str, Any],
+    *,
+    key_prefix: str,
+    doc: Any,
+    wiki_root: Path,
+    reviews_root: Path,
+    tool_types: list[str],
+    howto_tags: list[str],
+    impl_study_tags: list[str],
+    glossary_tags: list[str],
+    topic_tags: list[str],
+    trend_tags: list[str],
+    model_types: list[str],
+    tool_tags: list[str],
+    model_tags: list[str],
+    extraction_budgets: dict[str, Any],
+    model: str,
+    prompt_version: str,
+) -> None:
+    """Source-type override and re-analyze (shown on Source type tab only)."""
+    import os
+    import traceback
+
+    from src.ingest_review.analyze import run_classification
+    from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
+
+    llm_detection = (artifact.get("llm_output") or {}).get("source_type_detection") or {}
+    detected_type = llm_detection.get("detected_source_type") or "unknown"
+    detection_conf = llm_detection.get("confidence") or 0
+    detection_reasons = llm_detection.get("reasoning") or []
+    source_type_options: list[str] = [
+        "standard_article",
+        "ai_industry_roundup",
+        "ai_tools_roundup",
+        "how_to_roundup",
+        "interview_or_transcript",
+        "technical_howto",
+        "research_paper_or_report",
+        "unknown",
+    ]
+    st.markdown(f"**Detected source type:** `{detected_type}` (confidence: {detection_conf:.0%})")
+    if detection_reasons:
+        for r in detection_reasons:
+            st.caption(f"- {r}")
+    override_val = st.selectbox(
+        "Override source type",
+        options=["(keep detected)"] + source_type_options,
+        index=0,
+        key=f"{key_prefix}_srctype_override",
+    )
+    if override_val != "(keep detected)" and st.button(
+        "Re-analyze with override",
+        key=f"{key_prefix}_reanalyze_override",
+    ):
+        if not os.environ.get("OPENAI_API_KEY"):
+            st.error("OPENAI_API_KEY is not set.")
+        else:
+            try:
+                provider = OpenAIIngestionProvider()
+                artifact_new, _parsed = run_classification(
+                    provider,
+                    doc,
+                    wiki_root=wiki_root,
+                    tool_types=tool_types,
+                    howto_tags=howto_tags,
+                    impl_study_tags=impl_study_tags,
+                    glossary_tags=glossary_tags,
+                    topic_tags=topic_tags,
+                    trend_tags=trend_tags,
+                    model_types=model_types,
+                    tool_tags=tool_tags,
+                    model_tags=model_tags,
+                    extraction_budgets=extraction_budgets,
+                    source_type_override=str(override_val),
+                    model=model,
+                    prompt_version=prompt_version,
+                    reviews_root=reviews_root,
+                )
+                streamlit_runtime.session_state["artifact"] = artifact_new
+                source_id = str((artifact.get("source") or {}).get("source_id") or "")
+                if source_id:
+                    streamlit_runtime.session_state["artifact_source_id"] = source_id
+                st.success(f"Re-analysis complete (override: {override_val}).")
+                st.rerun()
+            except Exception as exc:  # noqa: BLE001
+                st.error(f"Re-analysis failed: {exc}")
+                with st.expander("Traceback"):
+                    st.text(traceback.format_exc())
