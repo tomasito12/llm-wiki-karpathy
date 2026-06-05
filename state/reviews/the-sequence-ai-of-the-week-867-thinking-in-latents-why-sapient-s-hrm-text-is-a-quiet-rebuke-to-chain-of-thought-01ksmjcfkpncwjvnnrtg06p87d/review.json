@@ -1,0 +1,652 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T19:32:48+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnUZGE3RFTJt7rZFpJQFBmn6sYLOM",
+          "token_usage": {
+            "completion_tokens": 216,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4349,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4565
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnUZJYU6O3vPcsXXQTK83eqqmAk2D",
+          "token_usage": {
+            "completion_tokens": 998,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3979,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4977
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnUZTCkDDOiy2Yn4TBTb2hDoVSsZp",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1273,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 29920,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 31193
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnUZTCkDDOiy2Yn4TBTb2hDoVSsZp",
+    "token_usage": {
+      "completion_tokens": 2487,
+      "prompt_tokens": 38248,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 40735
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 2
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-27",
+        "confidence": 0.86,
+        "evidence_from_source": "The source explicitly contrasts chain-of-thought with latent reasoning, describing CoT as the model \u201crenting depth from its own output tokens\u201d and presenting HRM-Text as a bet on \u201cvariable, internal, depth\u201d with \u201creasoning that happens in the latent space, not in the token stream.\u201d",
+        "evidence_type": "expert_opinion",
+        "match_candidates": [],
+        "primary_tag": "",
+        "proposed_tags": [],
+        "related_trends": [
+          "models-becoming-execution-layers",
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-research",
+        "suggested_new_tags": [
+          "ai-research",
+          "runtime-systems",
+          "model-behavior"
+        ],
+        "supporting_data_points": [
+          "Chain-of-thought is described as a workaround for fixed-depth transformers.",
+          "CoT is characterized as the model 'renting depth from its own output tokens'.",
+          "Sapient\u2019s approach is described as adding variable internal depth instead of relying on more scale or more CoT traces."
+        ],
+        "supporting_snippet": "Reasoning that happens in the latent space, not in the token stream.",
+        "time_sensitivity": "As of 2026-05-27, this appears to be an early architectural direction rather than a settled production practice. The source frames it as an active research argument, but does not show widespread deployment or benchmark-backed adoption.",
+        "trend_description": "AI model design is moving toward reasoning that stays inside latent state instead of being externalized as step-by-step text. The article argues that chain-of-thought is a workaround for fixed-depth transformers, while Sapient\u2019s HRM-Text extends this idea by adding variable internal depth so the model can do sequential computation without emitting every intermediate step. The broader pattern is a shift away from treating written reasoning traces as the primary way to extend model depth, and toward architectures that support hidden internal computation directly.",
+        "trend_slug": "latent-reasoning-replaces-token-chain-of-thought",
+        "trend_title": "Latent Reasoning Replaces Token-Chain-Of-Thought",
+        "uncertainty_note": "The article is persuasive but not empirical: it provides no benchmark results, cost comparisons, or production evidence. It is therefore unclear whether latent reasoning will outperform token-based scratchpads in practice, or whether it will be harder to train, debug, or audit.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece is an analyst's interpretation of Sapient's HRM-Text and chain-of-thought reasoning, framed as the author's judgment.",
+        "It references the original Hierarchical Reasoning Model paper and HRM-Text release, but does not present experimental results or benchmarks in this excerpt.",
+        "The core claims are argumentative and conceptual rather than a vendor announcement or formal research report."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about a simple but important question: should language models \u201cthink out loud\u201d step by step, or should they do more of the reasoning inside their hidden activations? The author says chain-of-thought is a clumsy workaround because the model has to turn intermediate reasoning into words and then read those words back in. Sapient\u2019s HRM-Text is presented as a model that tries a different path: internal, variable-depth computation in latent space. That makes the article interesting because it challenges a common habit in LLM design. But the excerpt is more of an argument than a proof. As of 2026-05-27, it is best read as a promising architectural critique worth monitoring, not a settled answer.",
+      "assessed_as_of": "2026-05-27",
+      "contradictions_and_skepticism": "The argument strongly contrasts internal reasoning with chain-of-thought, but the excerpt itself does not show that token-based reasoning is ineffective in the tasks that matter. The \u201crenting depth\u201d framing is rhetorically sharp, but it risks overstating how much of current reasoning performance depends on explicit verbal traces. It is also possible that latent computation is harder to inspect or verify, which would trade one limitation for another. Without concrete results, the claim reads as a plausible architectural critique rather than evidence that CoT should be abandoned.",
+      "key_insights": [
+        "Chain-of-thought is described as externalized depth, not true internal reasoning.",
+        "The article\u2019s core proposal is variable internal depth in latent space, not larger scale or more CoT data.",
+        "The critique is architectural: sequential computation should happen inside the model, not through tokenized self-talk.",
+        "HRM-Text is framed as extending an earlier Hierarchical Reasoning Model into language.",
+        "The excerpt does not establish the claim with benchmarks, so the idea is conceptually interesting but evidentially thin."
+      ],
+      "limitations_and_open_questions": "The excerpt gives no benchmark numbers, task suite, or failure analysis for HRM-Text, so it is unclear how much latent reasoning helps in practice. It also does not explain the compute cost, training complexity, or latency impact of variable internal depth. The article does not show whether latent reasoning generalizes beyond the specific model family discussed or whether it is easier to train than chain-of-thought supervision. It is also open whether the approach improves reliability, interpretability, or only changes where the computation is represented. Security, controllability, and debugging implications are not addressed.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-867-thinking",
+        "The Sequence AI of the Week #867: Thinking in Latents: Why Sapient's HRM-Text Is a Quiet Rebuke to Chain-of-Thought"
+      ],
+      "summary": "The article argues that standard chain-of-thought reasoning is a workaround, not a clean solution: a transformer with fixed depth cannot perform genuinely sequential internal computation in one pass, so it externalizes reasoning into tokens. The author frames this as the model \u201crenting depth\u201d from its own output stream, which is mechanically awkward because each intermediate step must be serialized into human-readable text and then re-embedded. Sapient Intelligence\u2019s HRM-Text is presented as a response to that limitation, extending its earlier Hierarchical Reasoning Model idea into language by adding variable internal depth inside latent space. The central claim is architectural rather than scale-based: instead of making models larger or teaching them more chain-of-thought traces, give them an internal computation path that can iterate without leaving latent representations. The excerpt is mostly interpretive and does not provide benchmark detail, so it argues more for a conceptual rethink than for a fully validated replacement. The author\u2019s stance is that this is an important idea to examine carefully, but not yet proof that latent reasoning has solved the problem.",
+      "why_it_matters": "The piece matters because it targets a common assumption in LLM engineering: that better reasoning is mainly a matter of prompting models to narrate more steps. The author argues that chain-of-thought is a workaround for a deeper architectural limitation, since intermediate steps must be emitted as tokens and then re-ingested, which is a fragile way to do internal computation. That makes HRM-Text interesting as a design direction: it tries to move reasoning back into latent space and give the model variable internal depth. If that mechanism works, it would be a more structural answer than simply collecting more reasoning traces or scaling the model. But the excerpt is careful enough to say this is not yet proven; it is a claim and a direction, not a demonstrated replacement. For practitioners, the useful takeaway is to separate \u201cbetter verbalized reasoning\u201d from \u201cbetter internal reasoning\u201d when evaluating model architectures. As of 2026-05-27, the idea is worth monitoring for architectural lessons, but the evidence in this excerpt is too thin to treat it as settled."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinionated article centered on one claim about latent reasoning versus chain-of-thought, not a bundle of independent items.",
+        "No numbered list, no tool roundup structure, and no interview Q&A structure.",
+        "Primary purpose is interpretive analysis of a specific model release and the author's argument about its implications."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.87,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Chain-of-thought can be treated as an externalized scratchpad rather than proof of internal reasoning.",
+          "Variable internal depth is a distinct architectural lever from scaling parameters or adding more reasoning traces.",
+          "Latent-space computation may reduce dependence on tokenized intermediate steps, but it can also reduce inspectability."
+        ],
+        "knowledge_summary": "Latent reasoning architectures perform intermediate computation inside hidden representations rather than externalizing every step into generated text. This changes the unit of reasoning from token-by-token self-talk to internal iterative computation. The pattern matters when a model needs sequential processing, but the design tradeoff is that the reasoning path can become harder to inspect than explicit chain-of-thought. In practice, this is an architectural alternative to relying on prompt-based scratchpads for every difficult task.",
+        "match_candidates": [],
+        "operational_insight": "When evaluating reasoning systems, separate visible explanation quality from the actual location of computation. A model can sound more reasoned without being more capable, so the more durable question is whether the architecture supports internal multi-step processing without token spillover.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "inference-systems",
+          "runtime-architecture",
+          "model-behavior"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI systems that need reliable multi-step inference without depending on verbose self-explanation. It is especially relevant for service automation and agent workflows, where visible reasoning traces are not the same thing as robust internal computation and may be a poor proxy for quality.",
+        "secondary_tag": "inference-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Sapient Intelligence\u2019s bet, made first with the original Hierarchical Reasoning Model paper last summer and now extended into the language domain with HRM-Text, is that this is fixable. Not by making the model bigger, not by training on more CoT traces, but by giving the architecture the one thing it doesn\u2019t have: variable, internal, depth. Reasoning that happens in the latent space, not in the token stream.",
+        "topic_slug": "latent-reasoning-architectures",
+        "topic_title": "Latent Reasoning Architectures",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Externalized reasoning increases visibility but may distort the actual computation path.",
+          "Token-based scratchpads are useful when human-readable intermediate state matters.",
+          "Verbose reasoning output should not be assumed to equal stronger latent reasoning."
+        ],
+        "knowledge_summary": "Chain-of-thought can function as a workaround that gives a model extra effective depth by making it generate intermediate tokens. Each intermediate step is serialized into language and then fed back into the model for the next step. This makes the reasoning process easier to read, but it also turns internal computation into a token round-trip. The concept is useful for understanding why verbal reasoning is not the same as architectural reasoning.",
+        "match_candidates": [],
+        "operational_insight": "Treat chain-of-thought as a control surface, not as evidence that the model has solved the underlying computation problem. In production, the usefulness of the trace depends on whether you need transparency, better planning behavior, or simply better answers.",
+        "primary_tag": "model-behavior",
+        "proposed_tags": [
+          "model-behavior"
+        ],
+        "related_topics": [
+          "latent-reasoning-architectures"
+        ],
+        "relevance_note": "This is a durable lens for debugging chatbots and agents: a verbose answer can improve usability, but it does not guarantee stronger internal planning or correctness. Teams building conversational systems can use the distinction to avoid overvaluing explanation length as a proxy for capability.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "prompting",
+        "suggested_new_tags": [
+          "prompting",
+          "inference"
+        ],
+        "supporting_snippet": "CoT is not reasoning. CoT is the model renting depth from its own output tokens. Every reasoning step has to leave the residual stream, become a discrete token in a vocabulary built for human communication, and come back in through the embedding layer for the next step.",
+        "topic_slug": "chain-of-thought-as-externalized-depth",
+        "topic_title": "Chain-of-Thought as Externalized Depth",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-27",
+          "confidence": 0.86,
+          "evidence_from_source": "The source explicitly contrasts chain-of-thought with latent reasoning, describing CoT as the model \u201crenting depth from its own output tokens\u201d and presenting HRM-Text as a bet on \u201cvariable, internal, depth\u201d with \u201creasoning that happens in the latent space, not in the token stream.\u201d",
+          "evidence_type": "expert_opinion",
+          "match_candidates": [],
+          "primary_tag": "",
+          "proposed_tags": [],
+          "related_trends": [
+            "models-becoming-execution-layers",
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-research",
+          "suggested_new_tags": [
+            "ai-research",
+            "runtime-systems",
+            "model-behavior"
+          ],
+          "supporting_data_points": [
+            "Chain-of-thought is described as a workaround for fixed-depth transformers.",
+            "CoT is characterized as the model 'renting depth from its own output tokens'.",
+            "Sapient\u2019s approach is described as adding variable internal depth instead of relying on more scale or more CoT traces."
+          ],
+          "supporting_snippet": "Reasoning that happens in the latent space, not in the token stream.",
+          "time_sensitivity": "As of 2026-05-27, this appears to be an early architectural direction rather than a settled production practice. The source frames it as an active research argument, but does not show widespread deployment or benchmark-backed adoption.",
+          "trend_description": "AI model design is moving toward reasoning that stays inside latent state instead of being externalized as step-by-step text. The article argues that chain-of-thought is a workaround for fixed-depth transformers, while Sapient\u2019s HRM-Text extends this idea by adding variable internal depth so the model can do sequential computation without emitting every intermediate step. The broader pattern is a shift away from treating written reasoning traces as the primary way to extend model depth, and toward architectures that support hidden internal computation directly.",
+          "trend_slug": "latent-reasoning-replaces-token-chain-of-thought",
+          "trend_title": "Latent Reasoning Replaces Token-Chain-Of-Thought",
+          "uncertainty_note": "The article is persuasive but not empirical: it provides no benchmark results, cost comparisons, or production evidence. It is therefore unclear whether latent reasoning will outperform token-based scratchpads in practice, or whether it will be harder to train, debug, or audit.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "8ba3bc54-2981-490e-9040-94c5e0c26a4d",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-06-05T19:35:28+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "41",
+          "regen_count": 2
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Chain-of-thought is described as a workaround for fixed-depth transformers.",
+              "CoT is characterized as the model 'renting depth from its own output tokens'.",
+              "Sapient\u2019s approach is described as adding variable internal depth instead of relying on more scale or more CoT traces."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ai-research",
+            "runtime-systems",
+            "model-behavior"
+          ],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece is an analyst's interpretation of Sapient's HRM-Text and chain-of-thought reasoning, framed as the author's judgment.",
+          "It references the original Hierarchical Reasoning Model paper and HRM-Text release, but does not present experimental results or benchmarks in this excerpt.",
+          "The core claims are argumentative and conceptual rather than a vendor announcement or formal research report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Chain-of-thought is described as externalized depth, not true internal reasoning.",
+          "The article\u2019s core proposal is variable internal depth in latent space, not larger scale or more CoT data.",
+          "The critique is architectural: sequential computation should happen inside the model, not through tokenized self-talk.",
+          "HRM-Text is framed as extending an earlier Hierarchical Reasoning Model into language.",
+          "The excerpt does not establish the claim with benchmarks, so the idea is conceptually interesting but evidentially thin."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-867-thinking",
+          "The Sequence AI of the Week #867: Thinking in Latents: Why Sapient's HRM-Text Is a Quiet Rebuke to Chain-of-Thought"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinionated article centered on one claim about latent reasoning versus chain-of-thought, not a bundle of independent items.",
+          "No numbered list, no tool roundup structure, and no interview Q&A structure.",
+          "Primary purpose is interpretive analysis of a specific model release and the author's argument about its implications."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.87,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Chain-of-thought can be treated as an externalized scratchpad rather than proof of internal reasoning.",
+            "Variable internal depth is a distinct architectural lever from scaling parameters or adding more reasoning traces.",
+            "Latent-space computation may reduce dependence on tokenized intermediate steps, but it can also reduce inspectability."
+          ],
+          "knowledge_summary": "Latent reasoning architectures perform intermediate computation inside hidden representations rather than externalizing every step into generated text. This changes the unit of reasoning from token-by-token self-talk to internal iterative computation. The pattern matters when a model needs sequential processing, but the design tradeoff is that the reasoning path can become harder to inspect than explicit chain-of-thought. In practice, this is an architectural alternative to relying on prompt-based scratchpads for every difficult task.",
+          "match_candidates": [],
+          "operational_insight": "When evaluating reasoning systems, separate visible explanation quality from the actual location of computation. A model can sound more reasoned without being more capable, so the more durable question is whether the architecture supports internal multi-step processing without token spillover.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "inference-systems",
+            "runtime-architecture",
+            "model-behavior"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI systems that need reliable multi-step inference without depending on verbose self-explanation. It is especially relevant for service automation and agent workflows, where visible reasoning traces are not the same thing as robust internal computation and may be a poor proxy for quality.",
+          "secondary_tag": "inference-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Sapient Intelligence\u2019s bet, made first with the original Hierarchical Reasoning Model paper last summer and now extended into the language domain with HRM-Text, is that this is fixable. Not by making the model bigger, not by training on more CoT traces, but by giving the architecture the one thing it doesn\u2019t have: variable, internal, depth. Reasoning that happens in the latent space, not in the token stream.",
+          "topic_slug": "latent-reasoning-architectures",
+          "topic_title": "Latent Reasoning Architectures",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "89aae797-7a1d-438d-9bfa-c18bef864d8a",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Chain-of-thought can be treated as an externalized scratchpad rather than proof of internal reasoning.",
+              "Variable internal depth is a distinct architectural lever from scaling parameters or adding more reasoning traces.",
+              "Latent-space computation may reduce dependence on tokenized intermediate steps, but it can also reduce inspectability."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "inference-systems",
+            "runtime-architecture",
+            "model-behavior"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Externalized reasoning increases visibility but may distort the actual computation path.",
+            "Token-based scratchpads are useful when human-readable intermediate state matters.",
+            "Verbose reasoning output should not be assumed to equal stronger latent reasoning."
+          ],
+          "knowledge_summary": "Chain-of-thought can function as a workaround that gives a model extra effective depth by making it generate intermediate tokens. Each intermediate step is serialized into language and then fed back into the model for the next step. This makes the reasoning process easier to read, but it also turns internal computation into a token round-trip. The concept is useful for understanding why verbal reasoning is not the same as architectural reasoning.",
+          "match_candidates": [],
+          "operational_insight": "Treat chain-of-thought as a control surface, not as evidence that the model has solved the underlying computation problem. In production, the usefulness of the trace depends on whether you need transparency, better planning behavior, or simply better answers.",
+          "primary_tag": "model-behavior",
+          "proposed_tags": [
+            "model-behavior"
+          ],
+          "related_topics": [
+            "latent-reasoning-architectures"
+          ],
+          "relevance_note": "This is a durable lens for debugging chatbots and agents: a verbose answer can improve usability, but it does not guarantee stronger internal planning or correctness. Teams building conversational systems can use the distinction to avoid overvaluing explanation length as a proxy for capability.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "prompting",
+          "suggested_new_tags": [
+            "prompting",
+            "inference"
+          ],
+          "supporting_snippet": "CoT is not reasoning. CoT is the model renting depth from its own output tokens. Every reasoning step has to leave the residual stream, become a discrete token in a vocabulary built for human communication, and come back in through the embedding layer for the next step.",
+          "topic_slug": "chain-of-thought-as-externalized-depth",
+          "topic_title": "Chain-of-Thought as Externalized Depth",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e2494095-2891-492d-bf67-16ede24b62ee",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Externalized reasoning increases visibility but may distort the actual computation path.",
+              "Token-based scratchpads are useful when human-readable intermediate state matters.",
+              "Verbose reasoning output should not be assumed to equal stronger latent reasoning."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "latent-reasoning-architectures"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "model-behavior"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 199.1,
+    "review_finished_at": "2026-06-05T19:36:07.115124+00:00",
+    "review_started_at": "2026-06-05T19:32:48+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T19:36:07+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-867-thinking",
+    "content_sha256": "b0e6fed2589ee75913eaf52480e49888333dde90a53853a7542c81267b441fa8",
+    "publication": "substack.com",
+    "published_date": "2026-05-27",
+    "raw_html_rel_path": "raw/readwise/the-sequence-ai-of-the-week-867-thinking-in-latents-why-sapient-s-hrm-text-is-a-quiet-rebuke-to-chain-of-thought-01ksmjcfkpncwjvnnrtg06p87d.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-ai-of-the-week-867-thinking-in-latents-why-sapient-s-hrm-text-is-a-quiet-rebuke-to-chain-of-thought-01ksmjcfkpncwjvnnrtg06p87d.md",
+    "source_id": "the-sequence-ai-of-the-week-867-thinking-in-latents-why-sapient-s-hrm-text-is-a-quiet-rebuke-to-chain-of-thought-01ksmjcfkpncwjvnnrtg06p87d",
+    "title": "The Sequence AI of the Week #867: Thinking in Latents: Why Sapient's HRM-Text Is a Quiet Rebuke to Chain-of-Thought"
+  }
+}

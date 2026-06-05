@@ -1,0 +1,662 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T19:13:00+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnUG7NtoAKPOnWdxCa5K3o6F9FjD8",
+          "token_usage": {
+            "completion_tokens": 202,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4819,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5021
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnUGAXPxz4mAyHaCZp13n9Wc7ZOUA",
+          "token_usage": {
+            "completion_tokens": 1008,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4435,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5443
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnUGICDRsnsZViRdAOnaDpcdPrUk1",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1388,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30299,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 31687
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnUGICDRsnsZViRdAOnaDpcdPrUk1",
+    "token_usage": {
+      "completion_tokens": 2598,
+      "prompt_tokens": 39553,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 42151
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-09",
+        "confidence": 0.89,
+        "evidence_from_source": "The source argues that enterprise AI needs a knowledge layer that gives AI agents \"a single place to query for context and relationships\" and that keeps existing warehouses, lakes, and transactional systems in place while adding a semantic layer on top.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-operationalization"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems",
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "ai-operationalization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "knowledge-systems",
+        "suggested_new_tags": [
+          "knowledge-systems"
+        ],
+        "supporting_data_points": [
+          "Claims a 3x improvement in LLM Q&A accuracy when queries are posed over knowledge graphs rather than SQL alone.",
+          "Cites examples of fraud detection improved by 1000x, ad costs reduced by 33%, and compliance monitoring reduced from 6 months to 6 weeks.",
+          "States that existing warehouses, lakes, and transactional systems do not need to be replaced."
+        ],
+        "supporting_snippet": "The companies seeing real results from AI aren\u2019t the ones with the most data. They\u2019re the ones that have implemented a knowledge layer, so AI agents can reason accurately over their data, not just retrieve it.",
+        "time_sensitivity": "Actionable as of 2026-04-09; the source frames this as an architectural recommendation for enterprise AI deployments at that date, but it does not establish how broadly it will hold across different data estates or governance regimes.",
+        "trend_description": "Enterprise AI systems increasingly depend on a semantic layer that serves context, relationships, and policy-aware evidence at runtime rather than treating knowledge as a static repository. The architectural shift is toward making knowledge directly queryable by agents and copilots so they can reason, explain, and trace decisions. This pattern matters most in workflows where answers must be auditable and grounded in linked business context.",
+        "trend_slug": "knowledge-base-becomes-runtime-infrastructure",
+        "trend_title": "Knowledge Base Becomes Runtime Infrastructure",
+        "uncertainty_note": "The evidence is directional rather than definitive: the article provides architectural framing, a cited study claim, and vendor-style examples, but it does not include implementation details, benchmark methodology, or independent verification of the case outcomes.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "Main argument is interpretive and explanatory, but it leans on cited analyst commentary and Gartner framing.",
+        "Uses a research result claim (arXiv study with 3x Q&A accuracy) alongside implementation examples and vendor-adjacent case outcomes.",
+        "Includes concrete business examples and quoted expert statements, but no single evidence mode dominates."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says enterprise AI often fails because the data is stored for reporting, not for reasoning. The fix, in the article\u2019s view, is a knowledge layer that connects facts, relationships, and decision history so an AI system can answer with context. A knowledge graph is the main example it uses to show how that layer works. Instead of only checking a single field like credit score, the AI can trace past decisions, policies, and causes. The article\u2019s main promise is better accuracy, explainability, and trust without ripping out existing databases.",
+      "assessed_as_of": "2026-04-09",
+      "contradictions_and_skepticism": "The article presents the knowledge layer as the key difference between useful and unreliable enterprise AI, which may oversimplify a broader stack that also depends on model quality, retrieval design, permissions, and evaluation. The cited business outcomes are impressive but are not independently substantiated in the text, so they should be treated as illustrative rather than general proof. The Gartner and arXiv references support the direction of the argument, but they do not by themselves prove that every enterprise needs the same architecture. The piece is persuasive on concept and framing, but thin on implementation evidence.",
+      "key_insights": [
+        "A knowledge layer is framed as the missing semantic and reasoning layer between existing enterprise systems and AI agents.",
+        "The article\u2019s strongest operational claim is traceability: every retrieved fact and inference should be linked back to source data and governing policy.",
+        "Decision traces are presented as a durable design pattern for regulated workflows, not just a loan example.",
+        "The cited arXiv result is used to support graph-based grounding over SQL-only retrieval for LLM question answering.",
+        "The article argues for layering knowledge on top of warehouses, lakes, and transaction systems rather than replacing them."
+      ],
+      "limitations_and_open_questions": "The article does not explain how the knowledge layer is built, governed, versioned, or kept in sync with source systems. It does not specify how entity resolution, schema evolution, access control, or conflicting facts are handled. The cited 3x accuracy claim is not accompanied by benchmark details, task definitions, or comparative baselines beyond the broad statement that queries were posed over knowledge graphs rather than SQL alone. The case examples provide striking outcomes, but the article does not separate what was caused by the knowledge layer from other implementation factors. Cost, maintenance overhead, and failure modes are not discussed. Security and privacy implications of centralizing decision traces and policies are also left open.",
+      "sources": [
+        "https://neo4j.com/blog/agentic-ai/knowledge-layer/"
+      ],
+      "summary": "The article argues that enterprise AI systems need a knowledge layer because traditional row-and-column data architectures were built for analytics, not for AI reasoning over relationships and context. It claims that without a layer that maps, resolves, and serves contextual knowledge, AI agents struggle to produce reliable answers and explain their decisions. The proposed knowledge layer acts as a single place to query context across underlying systems, and the article uses a loan-officer example to show how decision traces, policies, account history, and causal relationships can be modeled in a knowledge graph. It also cites a Cornell/arXiv study claiming threefold better LLM Q&A accuracy when queries run over knowledge graphs rather than SQL alone. The article further uses vendor-cited case examples for fraud detection, ad targeting, and compliance monitoring to argue that grounding AI in a knowledge layer can improve business outcomes without replacing existing warehouses, lakes, or transactional systems. The central thesis is practical rather than architectural purity: keep current data infrastructure, add a semantic layer that makes AI outputs traceable and explainable.",
+      "why_it_matters": "The article matters because it makes a concrete architectural argument for making enterprise AI more reliable: retrieval alone is not enough if the system cannot preserve relationships, policy context, and decision history. That framing is useful for teams building assistants or decision support tools over messy enterprise data, because it points to a specific failure mode: answers can be fluent but ungrounded. The article\u2019s most durable contribution is the emphasis on traceability and explainability, which are operational requirements in regulated settings, not just nice-to-have features. Its loan-officer example is a clear illustration of how a knowledge graph can encode accounts, transactions, employees, policies, past decisions, and causal links into decision traces. The cited 3x Q&A accuracy claim suggests the architecture may improve answer quality, but the article does not provide the underlying benchmark design, dataset details, or error analysis. The business case examples are persuasive at a high level, but they read as vendor-facing proof points rather than independently audited evidence. For AI product teams, the practical takeaway is to think in terms of a knowledge layer that unifies context across systems instead of pushing all reasoning into prompts or raw retrieval. As of 2026-04-09, the recommendation is actionable as an architectural pattern, but the evidence in this article is still directional rather than definitive."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent explanatory article arguing for an AI knowledge layer, not a bundle of unrelated items.",
+        "Structured as a vendor-style thought leadership post with sections and examples, rather than a roundup or tutorial.",
+        "No interview/Q&A format, step-by-step implementation guide, or named product list primary structure."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "The source gives a loan-officer scenario: an AI assistant denying a $25,000 credit line increase should be able to show how past loan decisions, policies, account history, employees, and causal relationships influenced the recommendation.",
+        "key_points": [
+          "Traditional row-and-column storage is optimized for analytics, not AI reasoning over relationships.",
+          "A knowledge layer can unify context across warehouses, lakes, and transactional systems without replacing them.",
+          "Decision traces are a useful pattern when recommendations must be explainable and auditable.",
+          "Traceability back to source facts and policies is a core operational requirement in high-stakes settings."
+        ],
+        "knowledge_summary": "A knowledge layer is a semantic layer that sits above operational and analytical systems and gives AI a structured place to retrieve facts, relationships, policies, and decision history. It is useful when answers depend on context that cannot be recovered reliably from flat tables or isolated documents. The key idea is not to replace existing systems, but to connect them so AI can reason over a shared representation of enterprise knowledge. In regulated or high-stakes workflows, traceability matters as much as retrieval quality because users need to understand why a recommendation was made. A knowledge layer is therefore as much about governance and explainability as it is about access.",
+        "match_candidates": [],
+        "operational_insight": "Use a knowledge layer when the system must answer with context, not just fetch facts. The durable design choice is to centralize relationships and decision traces so downstream AI can explain itself and be audited.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "knowledge-systems",
+          "ai-governance"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI systems that must be reliable under review, such as customer support assistants, internal decision copilots, and regulated workflows. It helps teams design for traceability, policy awareness, and causal explanation instead of hoping retrieval alone will preserve the needed context.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The knowledge layer maps and resolves data so AI can accurately answer questions, make better decisions, and be explainable. It gives AI agents a single place to query for context and relationships, regardless of where the underlying data lives.",
+        "topic_slug": "knowledge-layer-architecture",
+        "topic_title": "Knowledge Layer Architecture",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "The source says a knowledge graph can model \"accounts, transactions, past decisions, the employees who made those decisions, and the policies applied\" and can capture \"decision traces\u2014the full context, reasoning, and causal relationships behind every significant AI decision.\"",
+        "key_points": [
+          "Graph grounding is a structural alternative to SQL-only retrieval when relationships matter.",
+          "It can support both answer quality and explanation quality by preserving linked evidence.",
+          "Decision traces are a concrete use case for graphs in regulated workflows.",
+          "Graphs are useful when the system needs to cite how earlier events influenced a recommendation."
+        ],
+        "knowledge_summary": "Graph grounding is the practice of using a graph structure to connect entities, relationships, and supporting evidence so an AI system can answer questions with more context than keyword retrieval or table lookup alone. It is especially relevant when the system must follow causal links, decision history, or policy dependencies. The value is not just better recall; it is a more inspectable reasoning substrate that can be traced back to source data. Graph grounding often becomes useful in enterprise settings where one answer depends on many linked records rather than one isolated document. It is a practical architecture choice for systems that need both accuracy and explanation.",
+        "match_candidates": [],
+        "operational_insight": "Prefer graph grounding when relationships are part of the task, not an incidental detail. If the AI must reason across linked events, policies, and actors, a graph can provide a better retrieval and explanation substrate than SQL alone.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "knowledge-systems",
+          "retrieval-systems"
+        ],
+        "related_topics": [
+          "knowledge-layer-architecture"
+        ],
+        "relevance_note": "This pattern matters wherever enterprise assistants need to connect records, policies, and prior actions into one answer. It is useful for support automation, fraud review, compliance copilots, and any workflow where a flat retrieval layer loses the causal structure behind a decision.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "AI systems that incorporate graph-based grounding achieve higher accuracy in question-answering and decision-making tasks.",
+        "topic_slug": "graph-grounding-for-ai",
+        "topic_title": "Graph Grounding for AI Systems",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-09",
+          "confidence": 0.89,
+          "evidence_from_source": "The source argues that enterprise AI needs a knowledge layer that gives AI agents \"a single place to query for context and relationships\" and that keeps existing warehouses, lakes, and transactional systems in place while adding a semantic layer on top.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-operationalization"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems",
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "ai-operationalization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "knowledge-systems",
+          "suggested_new_tags": [
+            "knowledge-systems"
+          ],
+          "supporting_data_points": [
+            "Claims a 3x improvement in LLM Q&A accuracy when queries are posed over knowledge graphs rather than SQL alone.",
+            "Cites examples of fraud detection improved by 1000x, ad costs reduced by 33%, and compliance monitoring reduced from 6 months to 6 weeks.",
+            "States that existing warehouses, lakes, and transactional systems do not need to be replaced."
+          ],
+          "supporting_snippet": "The companies seeing real results from AI aren\u2019t the ones with the most data. They\u2019re the ones that have implemented a knowledge layer, so AI agents can reason accurately over their data, not just retrieve it.",
+          "time_sensitivity": "Actionable as of 2026-04-09; the source frames this as an architectural recommendation for enterprise AI deployments at that date, but it does not establish how broadly it will hold across different data estates or governance regimes.",
+          "trend_description": "Enterprise AI systems increasingly depend on a semantic layer that serves context, relationships, and policy-aware evidence at runtime rather than treating knowledge as a static repository. The architectural shift is toward making knowledge directly queryable by agents and copilots so they can reason, explain, and trace decisions. This pattern matters most in workflows where answers must be auditable and grounded in linked business context.",
+          "trend_slug": "knowledge-base-becomes-runtime-infrastructure",
+          "trend_title": "Knowledge Base Becomes Runtime Infrastructure",
+          "uncertainty_note": "The evidence is directional rather than definitive: the article provides architectural framing, a cited study claim, and vendor-style examples, but it does not include implementation details, benchmark methodology, or independent verification of the case outcomes.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5ff399b7-12ce-4336-a25e-cae80311d852",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems",
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Claims a 3x improvement in LLM Q&A accuracy when queries are posed over knowledge graphs rather than SQL alone.",
+              "Cites examples of fraud detection improved by 1000x, ad costs reduced by 33%, and compliance monitoring reduced from 6 months to 6 weeks.",
+              "States that existing warehouses, lakes, and transactional systems do not need to be replaced."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "Main argument is interpretive and explanatory, but it leans on cited analyst commentary and Gartner framing.",
+          "Uses a research result claim (arXiv study with 3x Q&A accuracy) alongside implementation examples and vendor-adjacent case outcomes.",
+          "Includes concrete business examples and quoted expert statements, but no single evidence mode dominates."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A knowledge layer is framed as the missing semantic and reasoning layer between existing enterprise systems and AI agents.",
+          "The article\u2019s strongest operational claim is traceability: every retrieved fact and inference should be linked back to source data and governing policy.",
+          "Decision traces are presented as a durable design pattern for regulated workflows, not just a loan example.",
+          "The cited arXiv result is used to support graph-based grounding over SQL-only retrieval for LLM question answering.",
+          "The article argues for layering knowledge on top of warehouses, lakes, and transaction systems rather than replacing them."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://neo4j.com/blog/agentic-ai/knowledge-layer/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent explanatory article arguing for an AI knowledge layer, not a bundle of unrelated items.",
+          "Structured as a vendor-style thought leadership post with sections and examples, rather than a roundup or tutorial.",
+          "No interview/Q&A format, step-by-step implementation guide, or named product list primary structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "The source gives a loan-officer scenario: an AI assistant denying a $25,000 credit line increase should be able to show how past loan decisions, policies, account history, employees, and causal relationships influenced the recommendation.",
+          "key_points": [
+            "Traditional row-and-column storage is optimized for analytics, not AI reasoning over relationships.",
+            "A knowledge layer can unify context across warehouses, lakes, and transactional systems without replacing them.",
+            "Decision traces are a useful pattern when recommendations must be explainable and auditable.",
+            "Traceability back to source facts and policies is a core operational requirement in high-stakes settings."
+          ],
+          "knowledge_summary": "A knowledge layer is a semantic layer that sits above operational and analytical systems and gives AI a structured place to retrieve facts, relationships, policies, and decision history. It is useful when answers depend on context that cannot be recovered reliably from flat tables or isolated documents. The key idea is not to replace existing systems, but to connect them so AI can reason over a shared representation of enterprise knowledge. In regulated or high-stakes workflows, traceability matters as much as retrieval quality because users need to understand why a recommendation was made. A knowledge layer is therefore as much about governance and explainability as it is about access.",
+          "match_candidates": [],
+          "operational_insight": "Use a knowledge layer when the system must answer with context, not just fetch facts. The durable design choice is to centralize relationships and decision traces so downstream AI can explain itself and be audited.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "knowledge-systems",
+            "ai-governance"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI systems that must be reliable under review, such as customer support assistants, internal decision copilots, and regulated workflows. It helps teams design for traceability, policy awareness, and causal explanation instead of hoping retrieval alone will preserve the needed context.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "The knowledge layer maps and resolves data so AI can accurately answer questions, make better decisions, and be explainable. It gives AI agents a single place to query for context and relationships, regardless of where the underlying data lives.",
+          "topic_slug": "knowledge-layer-architecture",
+          "topic_title": "Knowledge Layer Architecture",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "b417a272-081a-4b2e-81cc-c1cf421d32e1",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Traditional row-and-column storage is optimized for analytics, not AI reasoning over relationships.",
+              "A knowledge layer can unify context across warehouses, lakes, and transactional systems without replacing them.",
+              "Decision traces are a useful pattern when recommendations must be explainable and auditable.",
+              "Traceability back to source facts and policies is a core operational requirement in high-stakes settings."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "knowledge-systems",
+            "ai-governance"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "The source says a knowledge graph can model \"accounts, transactions, past decisions, the employees who made those decisions, and the policies applied\" and can capture \"decision traces\u2014the full context, reasoning, and causal relationships behind every significant AI decision.\"",
+          "key_points": [
+            "Graph grounding is a structural alternative to SQL-only retrieval when relationships matter.",
+            "It can support both answer quality and explanation quality by preserving linked evidence.",
+            "Decision traces are a concrete use case for graphs in regulated workflows.",
+            "Graphs are useful when the system needs to cite how earlier events influenced a recommendation."
+          ],
+          "knowledge_summary": "Graph grounding is the practice of using a graph structure to connect entities, relationships, and supporting evidence so an AI system can answer questions with more context than keyword retrieval or table lookup alone. It is especially relevant when the system must follow causal links, decision history, or policy dependencies. The value is not just better recall; it is a more inspectable reasoning substrate that can be traced back to source data. Graph grounding often becomes useful in enterprise settings where one answer depends on many linked records rather than one isolated document. It is a practical architecture choice for systems that need both accuracy and explanation.",
+          "match_candidates": [],
+          "operational_insight": "Prefer graph grounding when relationships are part of the task, not an incidental detail. If the AI must reason across linked events, policies, and actors, a graph can provide a better retrieval and explanation substrate than SQL alone.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "knowledge-systems",
+            "retrieval-systems"
+          ],
+          "related_topics": [
+            "knowledge-layer-architecture"
+          ],
+          "relevance_note": "This pattern matters wherever enterprise assistants need to connect records, policies, and prior actions into one answer. It is useful for support automation, fraud review, compliance copilots, and any workflow where a flat retrieval layer loses the causal structure behind a decision.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "AI systems that incorporate graph-based grounding achieve higher accuracy in question-answering and decision-making tasks.",
+          "topic_slug": "graph-grounding-for-ai",
+          "topic_title": "Graph Grounding for AI Systems",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "16421093-5168-4648-8f6f-914ed38d08bb",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Graph grounding is a structural alternative to SQL-only retrieval when relationships matter.",
+              "It can support both answer quality and explanation quality by preserving linked evidence.",
+              "Decision traces are a concrete use case for graphs in regulated workflows.",
+              "Graphs are useful when the system needs to cite how earlier events influenced a recommendation."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-layer-architecture"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "knowledge-systems",
+            "retrieval-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 373.0,
+    "review_finished_at": "2026-06-05T19:19:12.970613+00:00",
+    "review_started_at": "2026-06-05T19:13:00+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T19:19:12+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Alyssa Di Pasqualucci",
+    "canonical_url": "https://neo4j.com/blog/agentic-ai/knowledge-layer/",
+    "content_sha256": "4f8574befa34560683df51160ecf2dd1d6526706ee3f71d33a20276046223fed",
+    "publication": "Neo4J",
+    "published_date": "2026-04-09",
+    "raw_html_rel_path": "raw/readwise/from-data-to-intelligence-why-every-enterprise-needs-an-ai-knowledge-layer-01kqgzxa66k90amgsd20rggc19.html",
+    "raw_md_rel_path": "raw/readwise/from-data-to-intelligence-why-every-enterprise-needs-an-ai-knowledge-layer-01kqgzxa66k90amgsd20rggc19.md",
+    "source_id": "from-data-to-intelligence-why-every-enterprise-needs-an-ai-knowledge-layer-01kqgzxa66k90amgsd20rggc19",
+    "title": "From Data to Intelligence: Why Every Enterprise Needs an AI Knowledge Layer"
+  }
+}

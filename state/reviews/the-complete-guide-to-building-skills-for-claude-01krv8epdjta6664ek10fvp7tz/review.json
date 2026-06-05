@@ -1,0 +1,816 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T19:24:13+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnUQrG6ubdXnyr4bJFVemV1ZRscQx",
+          "token_usage": {
+            "completion_tokens": 198,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 11252,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 11450
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnUQvSC1EJIHCRajPsxqvD4yptFMO",
+          "token_usage": {
+            "completion_tokens": 1186,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 10866,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 12052
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-technical_howto",
+          "request_id": "chatcmpl-DnUR5USGvDopZyVgPwvgDUcowZ68m",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 1972,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36951,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 38923
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnUR5USGvDopZyVgPwvgDUcowZ68m",
+    "token_usage": {
+      "completion_tokens": 3356,
+      "prompt_tokens": 59069,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 62425
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start by choosing 2 to 3 concrete use cases that the skill should handle. Write a folder with a required SKILL.md file, keep the YAML frontmatter short and specific, and make sure the description says both what the skill does and when to use it. Put the detailed instructions in the body, and move longer references or assets into linked files so the prompt stays small. Then test whether the skill loads on obvious and paraphrased requests, check that it does not trigger on unrelated prompts, and iterate on the description and steps if it undertriggers, overtriggers, or fails during execution.",
+        "caveats": "The guide treats the suggested success thresholds as rough benchmarks, not hard standards. Some measurement advice is explicitly described as aspirational, so the procedure is operationally useful but not a rigorous evaluation framework. Skills can also fail for simple packaging mistakes like a misnamed SKILL.md or invalid frontmatter.",
+        "confidence": 0.96,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Identify 2 to 3 concrete use cases the skill should enable.",
+          "Create a kebab-case skill folder with a required SKILL.md file.",
+          "Write YAML frontmatter with a name and a description that includes both what the skill does and when to use it.",
+          "Keep the SKILL.md body focused on core instructions and move detailed documentation into references/ files.",
+          "Add optional scripts/ and assets/ only when the workflow needs executable code or output templates.",
+          "Test triggering on obvious requests, paraphrased requests, and unrelated topics.",
+          "Iterate on the description and instructions if the skill undertriggers, overtriggers, or fails execution tests."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A clear target workflow or use case.",
+          "Access to Claude.ai, Claude Code, or the API environment where the skill will run.",
+          "If the skill uses MCP, a working MCP server and correct tool names.",
+          "Basic familiarity with Markdown and YAML frontmatter."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "workflow-automation",
+          "context-engineering"
+        ],
+        "question_title": "Claude Skills Setup",
+        "related_howtos": [
+          "context-compaction",
+          "self-verification-for-agent-workflows"
+        ],
+        "secondary_tag": "workflow-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "A skill is a set of instructions - packaged as a simple folder - that teaches Claude how to handle specific tasks or workflows. Skills are one of the most powerful ways to customize Claude for your specific needs. Instead of re-explaining your preferences, processes, and domain expertise in every conversation, skills let you teach Claude once and benefit every time.",
+        "value_level": "high",
+        "what_and_problem": "This is a setup procedure for packaging repeatable work so Claude can recognize when to use it and follow it consistently. It addresses the common problem of having to restate the same preferences, process steps, or team rules in every conversation. It also helps when a workflow depends on built-in Claude capabilities or on an MCP server, because the skill can sit on top of those tools and guide how they are used. The result is a reusable folder that makes a specific task easier to trigger and more reliable to execute."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-01-26",
+        "confidence": 0.78,
+        "evidence_from_source": "The source frames skills as reusable folders that teach Claude specific workflows, describes distribution through Claude.ai, Claude Code, the API, and workspace deployment, and positions skills as a layer that improves tool access and consistency.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-restructuring",
+        "proposed_tags": [
+          "workflow-restructuring",
+          "enterprise-ai",
+          "ai-operationalization"
+        ],
+        "related_trends": [
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Skills are packaged as folders with SKILL.md, optional scripts, references, and assets.",
+          "The guide covers distribution through Claude.ai, Claude Code, the API, and organization deployment.",
+          "It recommends starting from 2 to 3 concrete use cases and then testing trigger accuracy."
+        ],
+        "supporting_snippet": "Skills are one of the most powerful ways to customize Claude for your specific needs. Instead of re-explaining your preferences, processes, and domain expertise in every conversation, skills let you teach Claude once and benefit every time.",
+        "time_sensitivity": "As of 2026-01-26, this is an actionable product-design pattern for Claude skills and similar agent platforms; the exact distribution mechanisms may change, but the workflow-packaging direction is likely relevant through at least the medium term.",
+        "trend_description": "AI products increasingly compete on whether they can package repeatable workflows, not just expose model access. The durable advantage comes from turning common tasks into reusable instruction sets, validation steps, and sharing surfaces that reduce manual setup. This matters because it changes the product unit from a chat interface to an operational workflow artifact.",
+        "trend_slug": "skills-move-ai-products-toward-workflow-packaging",
+        "trend_title": "AI Products Shift Toward Workflow Packaging",
+        "uncertainty_note": "The source is first-party guidance, so the pattern is well-supported as product direction but not independently validated as an industry-wide shift. It should be treated as a strong product strategy signal rather than proof that every AI platform will converge the same way.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The source is published on anthropic.com and written in Claude/Anthropic voice.",
+        "Most claims describe Anthropic's own product design, recommended workflows, and distribution model for skills.",
+        "Examples and capabilities are presented as first-party guidance rather than independent evaluation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a practical guide for making Claude follow a reusable workflow from a folder of instructions. The main idea is simple: tell Claude what the skill is for, when to use it, and keep the detailed steps in a structured file. The guide shows how to design the trigger text, test whether the skill loads at the right times, and fix problems when it loads too often or not enough. It is especially useful if you already have an MCP server and want Claude to use your tools in a more reliable way. The article also explains how to share skills through Claude.ai, Claude Code, or the API. As of 2026-01-26, it is a hands-on setup guide rather than a theory piece.",
+      "assessed_as_of": "2026-01-26",
+      "contradictions_and_skepticism": "The article is internally consistent, but some claims are more promotional than proven, especially around skills being one of the most powerful ways to customize Claude and around expected reliability gains. The success criteria include numeric targets such as 90% trigger accuracy and zero failed API calls, yet the text admits these are rough benchmarks rather than precise thresholds. The recommendation to use skills for MCP workflows is plausible, but the evidence is mostly first-party examples rather than independent comparison data. The open-standard framing is interesting, but the article does not show interoperability tests with non-Claude platforms.",
+      "key_insights": [
+        "The most important design choice is the frontmatter description, because Claude uses it to decide whether the skill should load at all.",
+        "Skills are presented as a knowledge layer on top of MCP: the connector gives access, but the skill supplies the workflow and judgment.",
+        "Progressive disclosure is the central efficiency mechanism: frontmatter, then SKILL.md, then linked files only when needed.",
+        "The guide treats success criteria as a mix of trigger accuracy, workflow completion, API reliability, and cross-session consistency.",
+        "The recommended development loop is to solve one hard task first, then extract the pattern into a reusable skill and expand coverage afterward."
+      ],
+      "limitations_and_open_questions": "The guide gives strong procedural advice but limited empirical evidence for the proposed metrics, and it explicitly says some thresholds are aspirational or \u201cvibes-based.\u201d It does not provide a rigorous evaluation framework, versioning strategy, or governance model for teams managing many skills. Security guidance is present for frontmatter injection and file naming, but there is little detail on permission boundaries, secrets handling, or how skills interact with risky tool access. The distribution section mentions API and workspace deployment, but implementation specifics are deferred to other docs. It is also unclear how well the recommended patterns generalize outside Claude\u2019s environment or across very heterogeneous tool stacks.",
+      "sources": [
+        "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/the-complete-guide-to-building/1277.pdf",
+        "https://anthropic.com"
+      ],
+      "summary": "This guide explains how to build \u201cskills\u201d for Claude: packaged folders of instructions and optional code, references, and assets that teach Claude to handle repeatable workflows consistently. The core design idea is progressive disclosure: a small YAML frontmatter description is always loaded, the full SKILL.md loads when relevant, and linked files are consulted only as needed. The guide emphasizes three practical properties for good skills: composability with other skills, portability across Claude surfaces, and clear trigger conditions so the skill loads for the right tasks. It then walks through planning around 2\u20133 concrete use cases, defining success criteria, choosing between manual, scripted, or programmatic testing, and iterating based on undertriggering, overtriggering, or execution failures. For MCP builders, the article frames skills as the knowledge layer on top of tool access, letting Claude use services like Notion, Linear, Figma, or Sentry more reliably by embedding workflows, sequencing, validation, and domain-specific rules. It also covers distribution via Claude.ai, Claude Code, the API, and workspace deployment, plus troubleshooting for common upload, frontmatter, trigger, and MCP connection issues. The article\u2019s practical center of gravity is operational: write a precise description, keep instructions concise, test against real trigger phrases, and use the skill-creator skill to bootstrap and refine a first version. As of 2026-01-26, the guidance is directly actionable for anyone building Claude skills, though some measurement advice is still presented as rough benchmarks rather than hard evaluation standards.",
+      "why_it_matters": "The article is useful because it turns Claude skills into a concrete engineering artifact rather than a vague customization idea. It gives a small but durable mental model: a skill is just a folder, but the folder matters because its metadata controls loading and its structure controls how much context Claude consumes. The progressive disclosure model is especially relevant for anyone trying to keep long instructions from bloating the prompt while still preserving specialized behavior. The planning section is practical because it forces skill authors to start from real use cases, define success criteria, and decide whether the skill is meant for standalone workflows or MCP-enhanced ones. The testing section is also valuable because it names the failure modes that matter in practice: overtriggering, undertriggering, incomplete execution, and inconsistent outputs. The distribution section matters operationally because it covers Claude.ai, Claude Code, the API, and organization-wide deployment, so the same artifact can serve both individual and team use. For MCP builders, the article\u2019s main contribution is the explicit framing that skills make tool access usable by teaching Claude how to use the tools well, not just exposing them. The service automation implications are real but narrow here: the guide is mostly about reusable workflow packaging, not end-user support or voice systems. As of 2026-01-26, this is actionable guidance with solid implementation value, though some evaluation benchmarks are still rough and should be treated as starting points rather than mature standards."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The article is structured as a build guide with chapters on fundamentals, planning and design, testing, distribution, and troubleshooting.",
+        "It gives concrete instructions for creating a skill folder, SKILL.md frontmatter, testing, and deployment.",
+        "The primary purpose is procedural guidance rather than news, opinion, or a roundup of separate items."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The trigger metadata is part of the runtime design, not a separate admin detail.",
+          "Loaded-on-demand references keep specialized knowledge available without forcing it into every prompt.",
+          "Multiple skills can coexist if each one is scoped cleanly.",
+          "Token efficiency is a first-order design goal, not an afterthought."
+        ],
+        "knowledge_summary": "Progressive disclosure is a three-layer instruction pattern for keeping agent behavior efficient while still allowing specialized guidance. A minimal top layer decides when a capability should load, a fuller middle layer carries the main instructions, and deeper linked files hold details that are only fetched when needed. This structure reduces context cost and helps large instruction sets remain usable. It is especially valuable when the agent must juggle multiple skills or when the workflow has reference material that would be too expensive to load all at once.",
+        "match_candidates": [],
+        "operational_insight": "Treat the load trigger as part of the design, not just metadata. The skill should encode enough at the top level for routing, but defer everything else until the model has decided the task is relevant.",
+        "primary_tag": "context-engineering",
+        "proposed_tags": [
+          "context-engineering",
+          "agent-systems",
+          "runtime-architecture"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is durable for AI systems that need to balance capability depth against context limits. It shows up in agent runtimes, tool routers, and workflow packs where routing accuracy and token efficiency both matter. The pattern is broadly useful for conversational agents that must carry specialized behaviors without bloating every request.",
+        "secondary_tag": "agent-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Skills use a three-level system: First level (YAML frontmatter): Always loaded in Claude's system prompt. Provides just enough information for Claude to know when each skill should be used without loading all of it into context. Second level (SKILL.md body): Loaded when Claude thinks the skill is relevant to the current task. Third level (Linked files): Additional files bundled within the skill directory that Claude can choose to navigate and discover only as needed.",
+        "topic_slug": "progressive-disclosure-skill-design",
+        "topic_title": "Progressive Disclosure in Skill Design",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Tool access and workflow knowledge are separable layers.",
+          "A knowledge layer can reduce support burden by making the right sequence automatic.",
+          "Domain rules and validation are better expressed once than re-prompted repeatedly.",
+          "The pattern is especially useful when multiple tools need to be coordinated."
+        ],
+        "knowledge_summary": "A knowledge layer sits on top of raw tool access and tells the agent how to use the tools well. In practice, the connector or API provides data and actions, while the skill supplies sequence, judgment, validation, and domain rules. This is useful when the same tools can produce inconsistent results unless the workflow is explicitly encoded. The pattern also helps when the user experience needs to feel guided rather than assembled from scratch in each conversation.",
+        "match_candidates": [],
+        "operational_insight": "Do not assume tool access is enough. If the workflow has ordering constraints, validation gates, or domain-specific best practices, encode them in a separate knowledge layer so the agent can execute more reliably.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "orchestration",
+          "knowledge-systems"
+        ],
+        "related_topics": [
+          "progressive-disclosure-skill-design"
+        ],
+        "relevance_note": "This is a durable architecture pattern for tool-using agents. It matters in service automation, internal operations, and support workflows where raw connectors are available but reliability depends on standardized procedure. The pattern scales across many business tools because the knowledge layer can encode best practice once and reuse it across sessions.",
+        "secondary_tag": "orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "MCP provides the professional kitchen: access to tools, ingredients, and equipment. Skills provide the recipes: step-by-step instructions on how to create something valuable. Together, they enable users to accomplish complex tasks without needing to figure out every step themselves.",
+        "topic_slug": "knowledge-layer-architecture",
+        "topic_title": "Knowledge Layer Architecture",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by choosing 2 to 3 concrete use cases that the skill should handle. Write a folder with a required SKILL.md file, keep the YAML frontmatter short and specific, and make sure the description says both what the skill does and when to use it. Put the detailed instructions in the body, and move longer references or assets into linked files so the prompt stays small. Then test whether the skill loads on obvious and paraphrased requests, check that it does not trigger on unrelated prompts, and iterate on the description and steps if it undertriggers, overtriggers, or fails during execution.",
+          "caveats": "The guide treats the suggested success thresholds as rough benchmarks, not hard standards. Some measurement advice is explicitly described as aspirational, so the procedure is operationally useful but not a rigorous evaluation framework. Skills can also fail for simple packaging mistakes like a misnamed SKILL.md or invalid frontmatter.",
+          "confidence": 0.96,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Identify 2 to 3 concrete use cases the skill should enable.",
+            "Create a kebab-case skill folder with a required SKILL.md file.",
+            "Write YAML frontmatter with a name and a description that includes both what the skill does and when to use it.",
+            "Keep the SKILL.md body focused on core instructions and move detailed documentation into references/ files.",
+            "Add optional scripts/ and assets/ only when the workflow needs executable code or output templates.",
+            "Test triggering on obvious requests, paraphrased requests, and unrelated topics.",
+            "Iterate on the description and instructions if the skill undertriggers, overtriggers, or fails execution tests."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A clear target workflow or use case.",
+            "Access to Claude.ai, Claude Code, or the API environment where the skill will run.",
+            "If the skill uses MCP, a working MCP server and correct tool names.",
+            "Basic familiarity with Markdown and YAML frontmatter."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "workflow-automation",
+            "context-engineering"
+          ],
+          "question_title": "Claude Skills Setup",
+          "related_howtos": [
+            "context-compaction",
+            "self-verification-for-agent-workflows"
+          ],
+          "secondary_tag": "workflow-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "A skill is a set of instructions - packaged as a simple folder - that teaches Claude how to handle specific tasks or workflows. Skills are one of the most powerful ways to customize Claude for your specific needs. Instead of re-explaining your preferences, processes, and domain expertise in every conversation, skills let you teach Claude once and benefit every time.",
+          "value_level": "high",
+          "what_and_problem": "This is a setup procedure for packaging repeatable work so Claude can recognize when to use it and follow it consistently. It addresses the common problem of having to restate the same preferences, process steps, or team rules in every conversation. It also helps when a workflow depends on built-in Claude capabilities or on an MCP server, because the skill can sit on top of those tools and guide how they are used. The result is a reusable folder that makes a specific task easier to trigger and more reliable to execute."
+        },
+        "notes": null,
+        "proposal_id": "b8e12bdd-bd25-4806-866a-d45f45f8670c",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Identify 2 to 3 concrete use cases the skill should enable.",
+              "Create a kebab-case skill folder with a required SKILL.md file.",
+              "Write YAML frontmatter with a name and a description that includes both what the skill does and when to use it.",
+              "Keep the SKILL.md body focused on core instructions and move detailed documentation into references/ files.",
+              "Add optional scripts/ and assets/ only when the workflow needs executable code or output templates.",
+              "Test triggering on obvious requests, paraphrased requests, and unrelated topics.",
+              "Iterate on the description and instructions if the skill undertriggers, overtriggers, or fails execution tests."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A clear target workflow or use case.",
+              "Access to Claude.ai, Claude Code, or the API environment where the skill will run.",
+              "If the skill uses MCP, a working MCP server and correct tool names.",
+              "Basic familiarity with Markdown and YAML frontmatter."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "context-compaction",
+              "self-verification-for-agent-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "workflow-automation",
+            "context-engineering"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-01-26",
+          "confidence": 0.78,
+          "evidence_from_source": "The source frames skills as reusable folders that teach Claude specific workflows, describes distribution through Claude.ai, Claude Code, the API, and workspace deployment, and positions skills as a layer that improves tool access and consistency.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-restructuring",
+          "proposed_tags": [
+            "workflow-restructuring",
+            "enterprise-ai",
+            "ai-operationalization"
+          ],
+          "related_trends": [
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Skills are packaged as folders with SKILL.md, optional scripts, references, and assets.",
+            "The guide covers distribution through Claude.ai, Claude Code, the API, and organization deployment.",
+            "It recommends starting from 2 to 3 concrete use cases and then testing trigger accuracy."
+          ],
+          "supporting_snippet": "Skills are one of the most powerful ways to customize Claude for your specific needs. Instead of re-explaining your preferences, processes, and domain expertise in every conversation, skills let you teach Claude once and benefit every time.",
+          "time_sensitivity": "As of 2026-01-26, this is an actionable product-design pattern for Claude skills and similar agent platforms; the exact distribution mechanisms may change, but the workflow-packaging direction is likely relevant through at least the medium term.",
+          "trend_description": "AI products increasingly compete on whether they can package repeatable workflows, not just expose model access. The durable advantage comes from turning common tasks into reusable instruction sets, validation steps, and sharing surfaces that reduce manual setup. This matters because it changes the product unit from a chat interface to an operational workflow artifact.",
+          "trend_slug": "skills-move-ai-products-toward-workflow-packaging",
+          "trend_title": "AI Products Shift Toward Workflow Packaging",
+          "uncertainty_note": "The source is first-party guidance, so the pattern is well-supported as product direction but not independently validated as an industry-wide shift. It should be treated as a strong product strategy signal rather than proof that every AI platform will converge the same way.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "b84d1804-2bcb-4865-94ad-59911db3c4e2",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Skills are packaged as folders with SKILL.md, optional scripts, references, and assets.",
+              "The guide covers distribution through Claude.ai, Claude Code, the API, and organization deployment.",
+              "It recommends starting from 2 to 3 concrete use cases and then testing trigger accuracy."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-restructuring",
+            "enterprise-ai",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The source is published on anthropic.com and written in Claude/Anthropic voice.",
+          "Most claims describe Anthropic's own product design, recommended workflows, and distribution model for skills.",
+          "Examples and capabilities are presented as first-party guidance rather than independent evaluation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The most important design choice is the frontmatter description, because Claude uses it to decide whether the skill should load at all.",
+          "Skills are presented as a knowledge layer on top of MCP: the connector gives access, but the skill supplies the workflow and judgment.",
+          "Progressive disclosure is the central efficiency mechanism: frontmatter, then SKILL.md, then linked files only when needed.",
+          "The guide treats success criteria as a mix of trigger accuracy, workflow completion, API reliability, and cross-session consistency.",
+          "The recommended development loop is to solve one hard task first, then extract the pattern into a reusable skill and expand coverage afterward."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/the-complete-guide-to-building/1277.pdf",
+          "https://anthropic.com"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The article is structured as a build guide with chapters on fundamentals, planning and design, testing, distribution, and troubleshooting.",
+          "It gives concrete instructions for creating a skill folder, SKILL.md frontmatter, testing, and deployment.",
+          "The primary purpose is procedural guidance rather than news, opinion, or a roundup of separate items."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The trigger metadata is part of the runtime design, not a separate admin detail.",
+            "Loaded-on-demand references keep specialized knowledge available without forcing it into every prompt.",
+            "Multiple skills can coexist if each one is scoped cleanly.",
+            "Token efficiency is a first-order design goal, not an afterthought."
+          ],
+          "knowledge_summary": "Progressive disclosure is a three-layer instruction pattern for keeping agent behavior efficient while still allowing specialized guidance. A minimal top layer decides when a capability should load, a fuller middle layer carries the main instructions, and deeper linked files hold details that are only fetched when needed. This structure reduces context cost and helps large instruction sets remain usable. It is especially valuable when the agent must juggle multiple skills or when the workflow has reference material that would be too expensive to load all at once.",
+          "match_candidates": [],
+          "operational_insight": "Treat the load trigger as part of the design, not just metadata. The skill should encode enough at the top level for routing, but defer everything else until the model has decided the task is relevant.",
+          "primary_tag": "context-engineering",
+          "proposed_tags": [
+            "context-engineering",
+            "agent-systems",
+            "runtime-architecture"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is durable for AI systems that need to balance capability depth against context limits. It shows up in agent runtimes, tool routers, and workflow packs where routing accuracy and token efficiency both matter. The pattern is broadly useful for conversational agents that must carry specialized behaviors without bloating every request.",
+          "secondary_tag": "agent-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Skills use a three-level system: First level (YAML frontmatter): Always loaded in Claude's system prompt. Provides just enough information for Claude to know when each skill should be used without loading all of it into context. Second level (SKILL.md body): Loaded when Claude thinks the skill is relevant to the current task. Third level (Linked files): Additional files bundled within the skill directory that Claude can choose to navigate and discover only as needed.",
+          "topic_slug": "progressive-disclosure-skill-design",
+          "topic_title": "Progressive Disclosure in Skill Design",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3402f544-df66-4f8a-ba7c-2a3ff214e9d8",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The trigger metadata is part of the runtime design, not a separate admin detail.",
+              "Loaded-on-demand references keep specialized knowledge available without forcing it into every prompt.",
+              "Multiple skills can coexist if each one is scoped cleanly.",
+              "Token efficiency is a first-order design goal, not an afterthought."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "context-engineering",
+            "agent-systems",
+            "runtime-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Tool access and workflow knowledge are separable layers.",
+            "A knowledge layer can reduce support burden by making the right sequence automatic.",
+            "Domain rules and validation are better expressed once than re-prompted repeatedly.",
+            "The pattern is especially useful when multiple tools need to be coordinated."
+          ],
+          "knowledge_summary": "A knowledge layer sits on top of raw tool access and tells the agent how to use the tools well. In practice, the connector or API provides data and actions, while the skill supplies sequence, judgment, validation, and domain rules. This is useful when the same tools can produce inconsistent results unless the workflow is explicitly encoded. The pattern also helps when the user experience needs to feel guided rather than assembled from scratch in each conversation.",
+          "match_candidates": [],
+          "operational_insight": "Do not assume tool access is enough. If the workflow has ordering constraints, validation gates, or domain-specific best practices, encode them in a separate knowledge layer so the agent can execute more reliably.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "orchestration",
+            "knowledge-systems"
+          ],
+          "related_topics": [
+            "progressive-disclosure-skill-design"
+          ],
+          "relevance_note": "This is a durable architecture pattern for tool-using agents. It matters in service automation, internal operations, and support workflows where raw connectors are available but reliability depends on standardized procedure. The pattern scales across many business tools because the knowledge layer can encode best practice once and reuse it across sessions.",
+          "secondary_tag": "orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "MCP provides the professional kitchen: access to tools, ingredients, and equipment. Skills provide the recipes: step-by-step instructions on how to create something valuable. Together, they enable users to accomplish complex tasks without needing to figure out every step themselves.",
+          "topic_slug": "knowledge-layer-architecture",
+          "topic_title": "Knowledge Layer Architecture",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6b3f0ff1-9eb8-4b0f-9d75-1d9acdbcd424",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Tool access and workflow knowledge are separable layers.",
+              "A knowledge layer can reduce support burden by making the right sequence automatic.",
+              "Domain rules and validation are better expressed once than re-prompted repeatedly.",
+              "The pattern is especially useful when multiple tools need to be coordinated."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "progressive-disclosure-skill-design"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "orchestration",
+            "knowledge-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 52.0,
+    "review_finished_at": "2026-06-05T19:25:04.961807+00:00",
+    "review_started_at": "2026-06-05T19:24:13+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T19:25:04+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Claude",
+    "canonical_url": "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/the-complete-guide-to-building/1277.pdf",
+    "content_sha256": "f20941b7275f952865d1c553f9e0d7c6835993dd6a1c3a156c293bd6a42b2216",
+    "publication": "anthropic.com",
+    "published_date": "2026-01-26",
+    "raw_html_rel_path": "raw/readwise/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz.html",
+    "raw_md_rel_path": "raw/readwise/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz.md",
+    "source_id": "the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz",
+    "title": "The Complete Guide To Building Skills For Claude"
+  }
+}

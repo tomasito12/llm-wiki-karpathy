@@ -3,6 +3,7 @@ tags:
 - ai-economics
 - ai-governance
 - ai-operationalization
+- ai-research
 - ai-safety
 - automation-supervision
 - behavioral-evaluation
@@ -16,12 +17,14 @@ tags:
 - inference-efficiency
 - inspectability
 - long-context-adoption
+- model-behavior
 - open-model-pressure
 - orchestration-layer-growth
 - persistent-agents
 - policy-operationalization
 - qualitative-evals
 - runtime-centralization
+- runtime-systems
 - software-commoditization
 - tool-centric-agents
 - verification-over-principles
