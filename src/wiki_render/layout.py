@@ -1,0 +1,134 @@
+"""Canonical generated wiki layout."""
+
+from __future__ import annotations
+
+import hashlib
+from dataclasses import dataclass
+from pathlib import Path
+
+from src.pipeline.slug import slugify
+
+SOURCES = "sources"
+TOPICS = "topics"
+GLOSSARY = "glossary"
+INDUSTRY_TRENDS = "industry-trends"
+TOOLS = "tools"
+FOUNDATION_MODELS = "foundation-models"
+HOW_TO = "how-to"
+IMPLEMENTATION_STUDIES = "implementation-studies"
+SIGNALS = "signals"
+INTERVIEW_INSIGHTS = "interview-insights"
+INDEXES = "indexes"
+
+MANAGED_FOLDERS: tuple[str, ...] = (
+    SOURCES,
+    TOPICS,
+    GLOSSARY,
+    INDUSTRY_TRENDS,
+    TOOLS,
+    FOUNDATION_MODELS,
+    HOW_TO,
+    IMPLEMENTATION_STUDIES,
+    SIGNALS,
+    INTERVIEW_INSIGHTS,
+    INDEXES,
+)
+MAX_MONTHLY_BASENAME_LENGTH = 160
+
+CATEGORY_FOLDERS: dict[str, str] = {
+    "source": SOURCES,
+    "topic": TOPICS,
+    "glossary": GLOSSARY,
+    "trend": INDUSTRY_TRENDS,
+    "tool": TOOLS,
+    "model": FOUNDATION_MODELS,
+    "how_to": HOW_TO,
+    "impl_study": IMPLEMENTATION_STUDIES,
+    "signal": SIGNALS,
+    "insight": INTERVIEW_INSIGHTS,
+}
+
+
+@dataclass(frozen=True)
+class PagePath:
+    """A rendered page path with both absolute and repo-relative forms."""
+
+    absolute: Path
+    relative: str
+
+
+def safe_slug(value: str) -> str:
+    """Return a filesystem-safe slug for generated page names."""
+    return slugify(value)
+
+
+def month_bucket(date_text: str) -> str:
+    """Return ``YYYY-MM`` from a date string, or ``unknown`` when unavailable."""
+    text = str(date_text or "").strip()
+    if len(text) >= 7 and text[4] == "-":
+        return text[:7]
+    return "unknown"
+
+
+def managed_folder_paths(wiki_dir: Path) -> list[Path]:
+    """Return absolute paths for all generated top-level folders."""
+    return [wiki_dir / folder for folder in MANAGED_FOLDERS]
+
+
+def is_managed_relative_path(relative_path: str) -> bool:
+    """Return True when a relative path is inside a generated folder."""
+    first = relative_path.split("/", 1)[0]
+    return first in MANAGED_FOLDERS
+
+
+def page_path(wiki_dir: Path, category: str, slug: str) -> PagePath:
+    """Return the generated path for a merged knowledge or source page."""
+    folder = CATEGORY_FOLDERS[category]
+    file_name = f"{safe_slug(slug)}.md"
+    absolute = wiki_dir / folder / file_name
+    return PagePath(absolute=absolute, relative=f"{folder}/{file_name}")
+
+
+def monthly_item_path(
+    wiki_dir: Path,
+    category: str,
+    *,
+    source_id: str,
+    slug: str,
+    date_text: str,
+) -> PagePath:
+    """Return the generated path for a signal or interview insight page."""
+    folder = CATEGORY_FOLDERS[category]
+    month = month_bucket(date_text)
+    base_name = _compact_monthly_basename(safe_slug(source_id), safe_slug(slug))
+    file_name = f"{base_name}.md"
+    absolute = wiki_dir / folder / month / file_name
+    return PagePath(absolute=absolute, relative=f"{folder}/{month}/{file_name}")
+
+
+def index_path(wiki_dir: Path, name: str) -> PagePath:
+    """Return the generated path for an index page."""
+    file_name = f"{safe_slug(name)}.md"
+    absolute = wiki_dir / INDEXES / file_name
+    return PagePath(absolute=absolute, relative=f"{INDEXES}/{file_name}")
+
+
+def wikilink(relative_path: str, label: str | None = None) -> str:
+    """Return an Obsidian wikilink for a generated relative markdown path."""
+    target = relative_path.removesuffix(".md")
+    if label:
+        return f"[[{target}|{label}]]"
+    return f"[[{target}]]"
+
+
+def _compact_monthly_basename(source_slug: str, item_slug: str) -> str:
+    """Return a collision-resistant basename that respects filesystem limits."""
+    full = f"{source_slug}-{item_slug}"
+    if len(full) <= MAX_MONTHLY_BASENAME_LENGTH:
+        return full
+    digest = hashlib.sha256(full.encode("utf-8")).hexdigest()[:10]
+    source_part = source_slug[:80].rstrip("-")
+    remaining = MAX_MONTHLY_BASENAME_LENGTH - len(source_part) - len(digest) - 2
+    item_part = item_slug[: max(24, remaining)].rstrip("-")
+    compact = f"{source_part}-{item_part}-{digest}"
+    return compact[:MAX_MONTHLY_BASENAME_LENGTH].strip("-")

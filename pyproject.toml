@@ -64,6 +64,9 @@ tag-migrate = [
 wiki-lint = [
   "python -m src.wiki_lint {args}",
 ]
+wiki-render = [
+  "python -m src.wiki_render {args}",
+]
 wiki-reset = [
   "python -m src.wiki_reset {args}",
 ]
