@@ -118,10 +118,10 @@ def render_regenerate_with_new_title_controls(
     """Regen title input, optional note, and queue button (above decision bar)."""
     st.text_input(
         title_label,
-        value=current_title,
         key=f"{widget_prefix}_regen_new_title",
         help=title_help
-        or "Reframe this proposal under a broader wiki page title before regenerating.",
+        or "Leave empty to let the model suggest a title, or enter one to reframe the proposal.",
+        placeholder=f"Leave empty to suggest a title (current: {current_title})",
     )
     st.text_input(
         "Optional note for regeneration",

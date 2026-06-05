@@ -1,0 +1,1130 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T15:55:42+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnRA9UMDbaLgjTGcSeaKMpYiU47zo",
+          "token_usage": {
+            "completion_tokens": 197,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 33276,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33473
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnRABcJm4UArHVfkWghjuYJiDcCuR",
+          "token_usage": {
+            "completion_tokens": 1296,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 32890,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 34186
+          }
+        },
+        {
+          "cache_hit_rate": 0.9757271815446339,
+          "name": "entities",
+          "prompt_version": "41-entities-interview_or_transcript",
+          "request_id": "chatcmpl-DnRBDYTrwDS7MS09FnobLblVpR0dX",
+          "route": "interview_or_transcript",
+          "token_usage": {
+            "completion_tokens": 2704,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 44865,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 43776
+            },
+            "total_tokens": 47569
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnRBDYTrwDS7MS09FnobLblVpR0dX",
+    "token_usage": {
+      "completion_tokens": 4197,
+      "prompt_tokens": 111031,
+      "prompt_tokens_details": {
+        "cached_tokens": 43776
+      },
+      "total_tokens": 115228
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-04-03",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Andreessen argues that reasoning, coding, agents, and recursive self-improvement are already working and mark a decisive break from earlier AI cycles."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"I think basically it was the reasoning breakthrough. It, it was oh one and then R one that basically answered that question basically said, oh no, we're gonna be able to actually turn this into something that's gonna work in the real world.\"",
+          "\"we've had four fundamental breakthroughs in functionality, l oms reasoning, agents, um, and then, uh, and, and then now RSI, um, and, and they're all actually working.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "AI progress should be evaluated as separate capability milestones, not one monolithic model trend",
+        "insight_type": "trend",
+        "mentioned_entities": [
+          "OpenAI",
+          "Claude",
+          "o1",
+          "R1",
+          "OpenClaw"
+        ],
+        "operational_relevance": "Split model evaluation into separate gates for reasoning, code generation, agent execution, and self-improvement behaviors. Design adoption plans around the specific milestone that changed, not around generic quality scores. This supports better rollout decisions for coding agents, internal copilots, and tool-using workflows.",
+        "primary_tag": "frontier-ai",
+        "proposed_tags": [
+          "frontier-ai",
+          "ai-engineering",
+          "workflow-automation"
+        ],
+        "secondary_tag": "ai-engineering",
+        "service_automation_relevance": "Service automation systems should be judged by whether they can reliably reason over cases, take actions, and maintain state, not just answer questions. That distinction matters for escalation logic, tool access, and human handoff design.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Andreessen frames the current wave as distinct breakthroughs in reasoning, coding, agents, and recursive self-improvement, rather than as a single scaling story. His point is that each step changes what systems can do in practice, and that practical usefulness matters more than whether the underlying architecture is fashionable. He treats the jump from chat to reasoning and then to coding as the moment AI stopped being easy to dismiss as pattern completion.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-03, this is a useful way to avoid overfitting on benchmark hype or on single-model releases. It encourages engineering teams to evaluate which capability boundary has actually moved, because product and workflow changes depend on whether the model can reason, code, use tools, or self-improve. That is a more durable mental model than treating every release as just another bigger chat model.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-03",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Andreessen says the agent is essentially a model plus Unix shell plus file system plus markdown plus cron, and that this is enough to define the core architecture.",
+          "He also suggests agents may rewrite and extend themselves by modifying their own files."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"it turns out what is an agent. So it turns out what we now know is an agent is the following. It's, so it's a language model. And then above that, it's a ba, it's a bash shell. Um, so it's a Unix shell, and then it's, and then the agent has access, uh, has access to, to the shell.\"",
+          "\"So it's the model. Um, it's the shell. Um, and then it's a fi, it's a file system. Um, and then the state is stored in files. And then, you know, there's the markdown format for the, you know, for, for the files themselves. And then, and then there's basically what in Unix is called Aron job. There's a loop and then there's a heartbeat\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Agent architecture can be built from Unix primitives plus stateful files",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "Pi",
+          "OpenClaw",
+          "Unix",
+          "bash",
+          "cron"
+        ],
+        "operational_relevance": "Use file-backed state to make agents portable across models and runtimes. Expose capabilities as command-line tools where possible. Treat shell access, filesystem permissions, and rollback as first-class design concerns because the agent can act directly on its environment.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "runtime-architecture"
+        ],
+        "secondary_tag": "runtime-architecture",
+        "service_automation_relevance": "This architecture is relevant for support automation because it supports persistent case context, repeatable tool use, and scripted follow-up actions. It also raises safety concerns for any system that can modify files or invoke external tools on behalf of customers.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "file-native-ai-workflows",
+        "suggested_new_tags": [
+          "file-native-ai-workflows"
+        ],
+        "summary": "Andreessen argues that Pi and OpenClaw point to a simple agent stack: LLM plus shell plus file system plus markdown plus cron. In his framing, the breakthrough is not a new abstract protocol but the reuse of familiar Unix mechanisms to give the agent executable access, portable state, and a continuous loop. He also emphasizes that the agent can swap models underneath it while preserving its file-based state.",
+        "value_level": "high",
+        "why_it_matters": "This is a durable architectural pattern because it reframes agents as runtime systems rather than chat interfaces. For AI engineering, it suggests that state management, file formats, shell access, and sandboxing may matter more than elaborate orchestration layers. As of 2026-04-03, this is especially relevant for teams building long-running agents or coding agents that need persistence across model upgrades.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-03",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Andreessen claims agents will be able to extend themselves by adding new functions and features without human coding.",
+          "He suggests the practical future of agents includes runtime migration across models, shells, and file systems."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"the agent actually has full introspection. It actually, it actually knows about its own files and it could rewrite its own files.\"",
+          "\"you can tell the agent to add new functions and features to itself and it can do that. Extend yourself. Yeah. Right? Extend, extend yourself.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Self-modifying agents shift the engineering problem to control, verification, and security",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "OpenClaw"
+        ],
+        "operational_relevance": "Build explicit guardrails around self-editing behavior. Require versioned state, diff-based review, and rollback for agent-generated changes. Treat autonomous extension as a privileged action that should be gated separately from ordinary task execution.",
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "test-and-verification",
+          "ai-safety"
+        ],
+        "secondary_tag": "test-and-verification",
+        "service_automation_relevance": "For support automation, self-modification could let agents learn new workflows without manual reconfiguration, but it also increases the chance of unsafe changes to customer-facing logic or internal tooling. Handoff and approval controls become essential.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Andreessen emphasizes that agents can introspect on their own files, migrate themselves, and add new capabilities by rewriting their own code or configuration. In his view, that makes the agent both a runtime and a workspace that can be extended from the inside. The upside is rapid capability growth; the downside is that security and correctness become much harder to reason about.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-03, this is one of the most operationally important agent ideas in the interview because it changes the risk model. If agents can modify themselves, teams need stronger sandboxing, audit trails, rollback, and approval boundaries than they would for a normal chatbot. It also makes agent evaluation a continuous process rather than a one-time model choice.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-03",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Andreessen says proof of bot is not feasible and that proof of human is required instead.",
+          "He also suggests selective disclosure will be needed for age and creditworthiness proofs."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"we quite literally is proof of human. The reason is because you're, you're, you're not gonna have proof of bot. The, the, especially now the, the bots are too good. The, the bots can pass the Turing test.\"",
+          "\"What you can have is you can have proof of human, you can have, you know, cryptographically validated, this is definitely a person\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Proof of human becomes more important than bot detection",
+        "insight_type": "privacy_security",
+        "mentioned_entities": [
+          "World"
+        ],
+        "operational_relevance": "Design identity systems around attestations, not just fraud detection. Separate proof of personhood, age, and other claims into selective-disclosure credentials. Assume adversarial accounts will be able to mimic human behavior and plan accordingly.",
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "ai-safety"
+        ],
+        "secondary_tag": "ai-safety",
+        "service_automation_relevance": "For chatbots and support workflows, proof of human can help gate sensitive actions, reduce abuse, and manage account takeover risks. It also matters for escalation flows where an AI agent must verify who it is acting for.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "privacy-controls-for-ai-products",
+        "suggested_new_tags": [
+          "privacy-controls-for-ai-products"
+        ],
+        "summary": "Andreessen argues that bot detection is no longer a reliable defense because models can pass the Turing test well enough to evade screening. His proposed answer is proof of human: biometric validation plus cryptographic proof, with selective disclosure so that identity checks do not reveal unnecessary personal data. He extends the same logic to proof of age and other attestations.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-03, this is a durable identity and abuse-prevention problem for AI products, platforms, and service automation. If bots can impersonate people convincingly, systems need positive identity proofs rather than heuristic bot scoring. The article is not a full solution, but it clearly identifies the direction of travel for authentication and privacy-preserving verification.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-03",
+        "confidence": "medium",
+        "contrarian_or_speculative_claims": [
+          "Andreessen says large parts of the economy may not change quickly even if AI makes change possible.",
+          "He argues some sectors such as K-12 education are effectively closed to direct AI-driven transformation because of institutional structure."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"the outside world of 8 billion people and institutions and governments and companies and economic systems and social systems is really complicated.\"",
+          "\"So much of our economy is, is, you know, the, the, I I\u2019m, I\u2019m describing the entire healthcare system. I\u2019m describing the entire legal profession. I\u2019m describing the entire housing industry. I\u2019m describing the entire education system, right?\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Institutional friction can delay AI adoption even when the technology is ready",
+        "insight_type": "topic",
+        "mentioned_entities": [
+          "California",
+          "Alpha School"
+        ],
+        "operational_relevance": "Expect uneven adoption across sectors. Build rollout strategies that separate technical feasibility from operational permission. In regulated or unionized environments, focus on new greenfield systems and adjacent workflows rather than expecting direct replacement of legacy processes.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "organizational-design",
+          "ai-policy"
+        ],
+        "secondary_tag": "organizational-design",
+        "service_automation_relevance": "Support automation in particular will face policy, labor, and workflow constraints even when the technology works. This means pilots may succeed technically but stall at organizational adoption or governance review.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Andreessen argues that the real economy is full of licensing, unions, public-sector protections, and other structures that slow change. He treats this as a reason why AI capability and AI adoption will not move in lockstep. The practical implication is that technical progress can be real while organizational uptake remains uneven.",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-04-03, this is a useful caution against assuming that model capability automatically converts into enterprise transformation. AI engineering teams need deployment plans that account for regulation, procurement, labor rules, and institutional inertia. The source\u2019s examples are concrete, but the claim is still a broad strategic view rather than a measured forecast.",
+        "wiki_worthiness": "review_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is primarily a recorded conversation with Marc Andreessen giving strategic interpretation and forecasts about AI, agents, open source, and infrastructure.",
+        "Claims are mostly opinionated assessments and forward-looking judgments rather than reported measurements or experimental results.",
+        "The transcript includes a few concrete anecdotes, but they serve as supporting examples for an expert viewpoint."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This episode is about why Marc Andreessen thinks AI has crossed from research into a new computing platform. He says the big change is not just smarter chatbots, but systems that can reason, write code, use tools, keep state in files, and improve themselves. That makes agents feel less like a demo and more like software that can actually do work. He also argues that open source, local inference, and identity systems will matter because AI is running into cost, trust, and security limits. The core idea is simple: models are getting better, but the bigger story is the new software architecture built around them.",
+      "assessed_as_of": "2026-04-03",
+      "contradictions_and_skepticism": "A recurring tension is that Andreessen treats capability progress as near-inevitable while also saying the real world is messy and slow; both can be true, but the source does not reconcile them quantitatively. Several predictions are intentionally sweeping\u2014such as the possibility that programming languages stop being salient or that agents become the primary software users\u2014and they read more like scenario sketches than evidenced forecasts. The claim that older Nvidia chips can become more valuable because software progress outpaces depreciation is striking, but the article offers anecdotes rather than a rigorous market model. His endorsement of open source and edge inference is persuasive in the context of supply shortages, but the source does not address the maintenance and security burden of pushing more intelligence onto local devices. The discussion of proof of human is also under-specified: the source argues detection is impossible and authentication is needed, but leaves open how to do that without creating new exclusion and privacy problems.",
+      "key_insights": [
+        "Andreessen\u2019s \u201c80-year overnight success\u201d framing compresses AI history into a durable mental model: modern gains are presented as the payoff from decades of neural-network and systems research, not a one-off product cycle.",
+        "He treats reasoning, coding, agents, and recursive self-improvement as separate functional milestones, not just larger chat models, which is a useful way to evaluate what has actually changed.",
+        "His Pi/OpenClaw thesis is an architectural claim: an agent can be modeled as LLM + shell + file system + markdown + cron, with state portability as the key design property.",
+        "He argues that stateful agents should be able to rewrite and extend themselves, which shifts the engineering problem from prompt design to runtime control, security, and safe self-modification.",
+        "He expects proof-of-human and crypto/stablecoin-based payments to become practical complements to AI agents because bots can already mimic humans well enough to defeat simple detection."
+      ],
+      "limitations_and_open_questions": "The transcript gives few hard measurements, so most of the argument rests on Andreessen\u2019s interpretation and examples rather than reproducible evidence. His claim that all current models are \u201csandbagged\u201d by supply constraints may be directionally plausible in the text, but the article does not quantify how much quality is lost or how quickly that would unwind. The Pi/OpenClaw architecture is compelling as a mental model, but the source does not show security, permissions, sandboxing, or failure-mode details needed for safe production deployment. The self-modifying-agent idea raises unresolved questions about verification, rollback, and accountability when an agent edits its own files or extends its own capabilities. His claims about proof of human and biometric plus cryptographic identity are conceptually clear, but the article does not resolve privacy, inclusion, or spoof-resistance tradeoffs. The discussion of institutional inertia is persuasive, yet it remains broad; the source uses examples like licensing, unions, and public-sector rules, but does not estimate which sectors would actually adopt AI first or how fast.",
+      "sources": [
+        "https://www.latent.space/p/pmarca"
+      ],
+      "summary": "Marc Andreessen argues that the current AI wave is the result of an 80-year buildup in ideas and engineering, not a short-lived hype cycle. He traces the arc from early neural network work, expert systems, AlexNet, and transformers to reasoning models, coding models, agents, and recursive self-improvement, and says the decisive change is that these systems are now working in practical settings. He thinks the biggest near-term risks are not model quality but supply constraints, capital overbuild, and the messy way real institutions absorb technology. A major part of the discussion is architectural: he frames Pi and OpenClaw as a Unix-style breakthrough where an agent is essentially an LLM plus shell, file system, markdown, and cron, which makes state portable and lets agents extend themselves. He also argues that open source, edge inference, payments, proof of human, and counter-drone systems are becoming necessary adjuncts to AI deployment, with strong emphasis on how agents will interact with money, identity, and physical devices. His view is optimistic but not naive: he expects technical progress to keep compounding, while adoption in the real economy remains slowed by regulation, unions, legacy institutions, and organizational inertia.",
+      "why_it_matters": "The piece is useful because it gives a compact, opinionated map of where an experienced investor thinks the durable engineering questions are in April 2026. The most reusable idea is that the center of gravity is moving from model scoring to systems design: tool use, state management, portability, sandboxes, self-upgrade paths, and the infrastructure needed to let agents act in the world. His Pi/OpenClaw framing is especially durable because it reuses an old, well-understood abstraction\u2014Unix shells and files\u2014to explain a new agent architecture instead of inventing a fresh taxonomy. The article also surfaces a practical deployment constraint: even if model capability keeps improving, supply-chain bottlenecks, GPU scarcity, and training/inference cost can dominate what users actually experience. The discussion of edge inference is grounded in three concrete motivations the source names: shortage economics, trust/privacy, and low-latency device control. The open-source section matters because he distinguishes between shipping free software and diffusing technical know-how through code and papers, which is a more operational definition of influence. His comments on payments, identity, and proof of human are not fully worked out, but they are important because they connect agent systems to real-world authorization and fraud problems. As of 2026-04-03, the article is best treated as a high-signal strategic read on agent architecture and platform dynamics, but its strongest claims remain expert judgment rather than validated benchmarks."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "Long-form conversation with clear interviewer/interviewee turns and multiple speakers.",
+        "Transcript-like structure with timestamps and back-and-forth Q&A dominates the article.",
+        "The source is centered on Marc Andreessen's spoken views rather than a single authored essay."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-03",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Andreessen argues that reasoning, coding, agents, and recursive self-improvement are already working and mark a decisive break from earlier AI cycles."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"I think basically it was the reasoning breakthrough. It, it was oh one and then R one that basically answered that question basically said, oh no, we're gonna be able to actually turn this into something that's gonna work in the real world.\"",
+            "\"we've had four fundamental breakthroughs in functionality, l oms reasoning, agents, um, and then, uh, and, and then now RSI, um, and, and they're all actually working.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "AI progress should be evaluated as separate capability milestones, not one monolithic model trend",
+          "insight_type": "trend",
+          "mentioned_entities": [
+            "OpenAI",
+            "Claude",
+            "o1",
+            "R1",
+            "OpenClaw"
+          ],
+          "operational_relevance": "Split model evaluation into separate gates for reasoning, code generation, agent execution, and self-improvement behaviors. Design adoption plans around the specific milestone that changed, not around generic quality scores. This supports better rollout decisions for coding agents, internal copilots, and tool-using workflows.",
+          "primary_tag": "frontier-ai",
+          "proposed_tags": [
+            "frontier-ai",
+            "ai-engineering",
+            "workflow-automation"
+          ],
+          "secondary_tag": "ai-engineering",
+          "service_automation_relevance": "Service automation systems should be judged by whether they can reliably reason over cases, take actions, and maintain state, not just answer questions. That distinction matters for escalation logic, tool access, and human handoff design.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Andreessen frames the current wave as distinct breakthroughs in reasoning, coding, agents, and recursive self-improvement, rather than as a single scaling story. His point is that each step changes what systems can do in practice, and that practical usefulness matters more than whether the underlying architecture is fashionable. He treats the jump from chat to reasoning and then to coding as the moment AI stopped being easy to dismiss as pattern completion.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-03, this is a useful way to avoid overfitting on benchmark hype or on single-model releases. It encourages engineering teams to evaluate which capability boundary has actually moved, because product and workflow changes depend on whether the model can reason, code, use tools, or self-improve. That is a more durable mental model than treating every release as just another bigger chat model.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "23e2e26e-37f1-49ab-8e84-088badc5bbd4",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Andreessen argues that reasoning, coding, agents, and recursive self-improvement are already working and mark a decisive break from earlier AI cycles."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"I think basically it was the reasoning breakthrough. It, it was oh one and then R one that basically answered that question basically said, oh no, we're gonna be able to actually turn this into something that's gonna work in the real world.\"",
+              "\"we've had four fundamental breakthroughs in functionality, l oms reasoning, agents, um, and then, uh, and, and then now RSI, um, and, and they're all actually working.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI",
+              "Claude",
+              "o1",
+              "R1",
+              "OpenClaw"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "frontier-ai",
+            "ai-engineering",
+            "workflow-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-03",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Andreessen says the agent is essentially a model plus Unix shell plus file system plus markdown plus cron, and that this is enough to define the core architecture.",
+            "He also suggests agents may rewrite and extend themselves by modifying their own files."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"it turns out what is an agent. So it turns out what we now know is an agent is the following. It's, so it's a language model. And then above that, it's a ba, it's a bash shell. Um, so it's a Unix shell, and then it's, and then the agent has access, uh, has access to, to the shell.\"",
+            "\"So it's the model. Um, it's the shell. Um, and then it's a fi, it's a file system. Um, and then the state is stored in files. And then, you know, there's the markdown format for the, you know, for, for the files themselves. And then, and then there's basically what in Unix is called Aron job. There's a loop and then there's a heartbeat\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Agent architecture can be built from Unix primitives plus stateful files",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "Pi",
+            "OpenClaw",
+            "Unix",
+            "bash",
+            "cron"
+          ],
+          "operational_relevance": "Use file-backed state to make agents portable across models and runtimes. Expose capabilities as command-line tools where possible. Treat shell access, filesystem permissions, and rollback as first-class design concerns because the agent can act directly on its environment.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "runtime-architecture"
+          ],
+          "secondary_tag": "runtime-architecture",
+          "service_automation_relevance": "This architecture is relevant for support automation because it supports persistent case context, repeatable tool use, and scripted follow-up actions. It also raises safety concerns for any system that can modify files or invoke external tools on behalf of customers.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "file-native-ai-workflows",
+          "suggested_new_tags": [
+            "file-native-ai-workflows"
+          ],
+          "summary": "Andreessen argues that Pi and OpenClaw point to a simple agent stack: LLM plus shell plus file system plus markdown plus cron. In his framing, the breakthrough is not a new abstract protocol but the reuse of familiar Unix mechanisms to give the agent executable access, portable state, and a continuous loop. He also emphasizes that the agent can swap models underneath it while preserving its file-based state.",
+          "value_level": "high",
+          "why_it_matters": "This is a durable architectural pattern because it reframes agents as runtime systems rather than chat interfaces. For AI engineering, it suggests that state management, file formats, shell access, and sandboxing may matter more than elaborate orchestration layers. As of 2026-04-03, this is especially relevant for teams building long-running agents or coding agents that need persistence across model upgrades.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "f4c669d7-9d0b-4763-bc57-dbd4ce0b47d7",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Andreessen says the agent is essentially a model plus Unix shell plus file system plus markdown plus cron, and that this is enough to define the core architecture.",
+              "He also suggests agents may rewrite and extend themselves by modifying their own files."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"it turns out what is an agent. So it turns out what we now know is an agent is the following. It's, so it's a language model. And then above that, it's a ba, it's a bash shell. Um, so it's a Unix shell, and then it's, and then the agent has access, uh, has access to, to the shell.\"",
+              "\"So it's the model. Um, it's the shell. Um, and then it's a fi, it's a file system. Um, and then the state is stored in files. And then, you know, there's the markdown format for the, you know, for, for the files themselves. And then, and then there's basically what in Unix is called Aron job. There's a loop and then there's a heartbeat\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Pi",
+              "OpenClaw",
+              "Unix",
+              "bash",
+              "cron"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "runtime-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-03",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Andreessen claims agents will be able to extend themselves by adding new functions and features without human coding.",
+            "He suggests the practical future of agents includes runtime migration across models, shells, and file systems."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"the agent actually has full introspection. It actually, it actually knows about its own files and it could rewrite its own files.\"",
+            "\"you can tell the agent to add new functions and features to itself and it can do that. Extend yourself. Yeah. Right? Extend, extend yourself.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Self-modifying agents shift the engineering problem to control, verification, and security",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "OpenClaw"
+          ],
+          "operational_relevance": "Build explicit guardrails around self-editing behavior. Require versioned state, diff-based review, and rollback for agent-generated changes. Treat autonomous extension as a privileged action that should be gated separately from ordinary task execution.",
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "test-and-verification",
+            "ai-safety"
+          ],
+          "secondary_tag": "test-and-verification",
+          "service_automation_relevance": "For support automation, self-modification could let agents learn new workflows without manual reconfiguration, but it also increases the chance of unsafe changes to customer-facing logic or internal tooling. Handoff and approval controls become essential.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Andreessen emphasizes that agents can introspect on their own files, migrate themselves, and add new capabilities by rewriting their own code or configuration. In his view, that makes the agent both a runtime and a workspace that can be extended from the inside. The upside is rapid capability growth; the downside is that security and correctness become much harder to reason about.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-03, this is one of the most operationally important agent ideas in the interview because it changes the risk model. If agents can modify themselves, teams need stronger sandboxing, audit trails, rollback, and approval boundaries than they would for a normal chatbot. It also makes agent evaluation a continuous process rather than a one-time model choice.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "e1c00544-2f54-45a4-80ef-b48e6feb6d15",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Andreessen claims agents will be able to extend themselves by adding new functions and features without human coding.",
+              "He suggests the practical future of agents includes runtime migration across models, shells, and file systems."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"the agent actually has full introspection. It actually, it actually knows about its own files and it could rewrite its own files.\"",
+              "\"you can tell the agent to add new functions and features to itself and it can do that. Extend yourself. Yeah. Right? Extend, extend yourself.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenClaw"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "test-and-verification",
+            "ai-safety"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-03",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Andreessen says proof of bot is not feasible and that proof of human is required instead.",
+            "He also suggests selective disclosure will be needed for age and creditworthiness proofs."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"we quite literally is proof of human. The reason is because you're, you're, you're not gonna have proof of bot. The, the, especially now the, the bots are too good. The, the bots can pass the Turing test.\"",
+            "\"What you can have is you can have proof of human, you can have, you know, cryptographically validated, this is definitely a person\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Proof of human becomes more important than bot detection",
+          "insight_type": "privacy_security",
+          "mentioned_entities": [
+            "World"
+          ],
+          "operational_relevance": "Design identity systems around attestations, not just fraud detection. Separate proof of personhood, age, and other claims into selective-disclosure credentials. Assume adversarial accounts will be able to mimic human behavior and plan accordingly.",
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "ai-safety"
+          ],
+          "secondary_tag": "ai-safety",
+          "service_automation_relevance": "For chatbots and support workflows, proof of human can help gate sensitive actions, reduce abuse, and manage account takeover risks. It also matters for escalation flows where an AI agent must verify who it is acting for.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "privacy-controls-for-ai-products",
+          "suggested_new_tags": [
+            "privacy-controls-for-ai-products"
+          ],
+          "summary": "Andreessen argues that bot detection is no longer a reliable defense because models can pass the Turing test well enough to evade screening. His proposed answer is proof of human: biometric validation plus cryptographic proof, with selective disclosure so that identity checks do not reveal unnecessary personal data. He extends the same logic to proof of age and other attestations.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-03, this is a durable identity and abuse-prevention problem for AI products, platforms, and service automation. If bots can impersonate people convincingly, systems need positive identity proofs rather than heuristic bot scoring. The article is not a full solution, but it clearly identifies the direction of travel for authentication and privacy-preserving verification.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "25c56f99-966d-4d79-af3f-ab20d34484d9",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Andreessen says proof of bot is not feasible and that proof of human is required instead.",
+              "He also suggests selective disclosure will be needed for age and creditworthiness proofs."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"we quite literally is proof of human. The reason is because you're, you're, you're not gonna have proof of bot. The, the, especially now the, the bots are too good. The, the bots can pass the Turing test.\"",
+              "\"What you can have is you can have proof of human, you can have, you know, cryptographically validated, this is definitely a person\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "World"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-governance",
+            "ai-safety"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-03",
+          "confidence": "medium",
+          "contrarian_or_speculative_claims": [
+            "Andreessen says large parts of the economy may not change quickly even if AI makes change possible.",
+            "He argues some sectors such as K-12 education are effectively closed to direct AI-driven transformation because of institutional structure."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"the outside world of 8 billion people and institutions and governments and companies and economic systems and social systems is really complicated.\"",
+            "\"So much of our economy is, is, you know, the, the, I I\u2019m, I\u2019m describing the entire healthcare system. I\u2019m describing the entire legal profession. I\u2019m describing the entire housing industry. I\u2019m describing the entire education system, right?\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Institutional friction can delay AI adoption even when the technology is ready",
+          "insight_type": "topic",
+          "mentioned_entities": [
+            "California",
+            "Alpha School"
+          ],
+          "operational_relevance": "Expect uneven adoption across sectors. Build rollout strategies that separate technical feasibility from operational permission. In regulated or unionized environments, focus on new greenfield systems and adjacent workflows rather than expecting direct replacement of legacy processes.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "organizational-design",
+            "ai-policy"
+          ],
+          "secondary_tag": "organizational-design",
+          "service_automation_relevance": "Support automation in particular will face policy, labor, and workflow constraints even when the technology works. This means pilots may succeed technically but stall at organizational adoption or governance review.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Andreessen argues that the real economy is full of licensing, unions, public-sector protections, and other structures that slow change. He treats this as a reason why AI capability and AI adoption will not move in lockstep. The practical implication is that technical progress can be real while organizational uptake remains uneven.",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-04-03, this is a useful caution against assuming that model capability automatically converts into enterprise transformation. AI engineering teams need deployment plans that account for regulation, procurement, labor rules, and institutional inertia. The source\u2019s examples are concrete, but the claim is still a broad strategic view rather than a measured forecast.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "0cca2698-e7f9-464e-b59f-72a88b1fa0e1",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Andreessen says large parts of the economy may not change quickly even if AI makes change possible.",
+              "He argues some sectors such as K-12 education are effectively closed to direct AI-driven transformation because of institutional structure."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"the outside world of 8 billion people and institutions and governments and companies and economic systems and social systems is really complicated.\"",
+              "\"So much of our economy is, is, you know, the, the, I I\u2019m, I\u2019m describing the entire healthcare system. I\u2019m describing the entire legal profession. I\u2019m describing the entire housing industry. I\u2019m describing the entire education system, right?\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "California",
+              "Alpha School"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "organizational-design",
+            "ai-policy"
+          ]
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is primarily a recorded conversation with Marc Andreessen giving strategic interpretation and forecasts about AI, agents, open source, and infrastructure.",
+          "Claims are mostly opinionated assessments and forward-looking judgments rather than reported measurements or experimental results.",
+          "The transcript includes a few concrete anecdotes, but they serve as supporting examples for an expert viewpoint."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Andreessen\u2019s \u201c80-year overnight success\u201d framing compresses AI history into a durable mental model: modern gains are presented as the payoff from decades of neural-network and systems research, not a one-off product cycle.",
+          "He treats reasoning, coding, agents, and recursive self-improvement as separate functional milestones, not just larger chat models, which is a useful way to evaluate what has actually changed.",
+          "His Pi/OpenClaw thesis is an architectural claim: an agent can be modeled as LLM + shell + file system + markdown + cron, with state portability as the key design property.",
+          "He argues that stateful agents should be able to rewrite and extend themselves, which shifts the engineering problem from prompt design to runtime control, security, and safe self-modification.",
+          "He expects proof-of-human and crypto/stablecoin-based payments to become practical complements to AI agents because bots can already mimic humans well enough to defeat simple detection."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/pmarca"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "Long-form conversation with clear interviewer/interviewee turns and multiple speakers.",
+          "Transcript-like structure with timestamps and back-and-forth Q&A dominates the article.",
+          "The source is centered on Marc Andreessen's spoken views rather than a single authored essay."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 5,
+    "review_duration_seconds": 325.7,
+    "review_finished_at": "2026-06-05T16:01:07.659117+00:00",
+    "review_started_at": "2026-06-05T15:55:42+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T16:01:07+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/pmarca",
+    "content_sha256": "862a64e5af0e487be97bc0b77314162293674dcac1986bd86a4349e8602b0481",
+    "publication": "Latent",
+    "published_date": "2026-04-03",
+    "raw_html_rel_path": "raw/readwise/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2.html",
+    "raw_md_rel_path": "raw/readwise/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2.md",
+    "source_id": "marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2",
+    "title": "Marc Andreessen introspects on The Death of the Browser, Pi + OpenClaw, and Why \"This Time Is Different\""
+  }
+}

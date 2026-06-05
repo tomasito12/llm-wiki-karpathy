@@ -1,0 +1,666 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T16:08:12+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnRNHKQnMaC4yow2lXT15F7SC7TgD",
+          "token_usage": {
+            "completion_tokens": 197,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5076,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5273
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnRNKFPp8yNILExKKdY6yAvtznv8E",
+          "token_usage": {
+            "completion_tokens": 990,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4687,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5677
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnRNTvvZl0ZZ3fQk9YSAvu1Vj3s4y",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1222,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30095,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 31317
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnRNTvvZl0ZZ3fQk9YSAvu1Vj3s4y",
+    "token_usage": {
+      "completion_tokens": 2409,
+      "prompt_tokens": 39858,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 42267
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-13",
+        "confidence": 0.84,
+        "evidence_from_source": "The article reports weaker graduate outcomes in more AI-exposed fields, a steep fall in full-time employment for the most exposed quintile after 2022, and a continued decline for the class of 2025 in computer science and related majors.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics"
+        ],
+        "related_trends": [
+          "software-commoditization"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "software-engineering",
+        "suggested_new_tags": [
+          "software-engineering",
+          "organizational-design"
+        ],
+        "supporting_data_points": [
+          "\u201cBetween 2022 and 2024\u201d the least-exposed quintile saw average full-time employment fall by 1.5 percentage points.",
+          "The most exposed quintile saw a 6.6 percentage-point drop over the same period.",
+          "For the most exposed fields, full-time employment fell from nearly 70% to 55% in three years.",
+          "Undergraduate enrolment in computer science fell by 11% in 2025.",
+          "Enrolment in computer programming dropped by 26%."
+        ],
+        "supporting_snippet": "\u201cWe found that graduates in fields more exposed to AI have suffered markedly worse outcomes.\u201d",
+        "time_sensitivity": "Actionable as of 2026-05-13; the signal depends on post-2022 labor-market data and may change as hiring conditions and model capabilities evolve.",
+        "trend_description": "Hiring pressure can first appear in junior technical roles when AI systems reduce the need for routine coding and other standardized tasks. The pattern is usually visible through lower postings, weaker employment outcomes, and shifts in student behavior rather than through immediate mass layoffs. Evidence is strongest when the decline is concentrated in highly exposed fields while less-exposed fields fall less sharply. The main uncertainty is whether AI is the primary cause or an amplifier of an existing hiring slowdown.",
+        "trend_slug": "entry-level-technical-hiring-softens-under-ai-pressure",
+        "trend_title": "Entry-Level Technical Hiring Softens Under AI Pressure",
+        "uncertainty_note": "Causality is not settled. The piece also cites studies arguing that declines predated ChatGPT and affected senior workers too, so the evidence supports pressure on entry-level technical hiring but not a clean claim that AI alone caused it.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "The Economist is presenting its own analysis of graduate employment outcomes using survey and postings data.",
+        "It also cites external studies, but the article's main claims are built from the publication's comparison of AI-exposed vs less-exposed fields.",
+        "The piece is not a vendor statement or a formal research report; it is third-party journalistic analysis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article asks whether AI is already making it harder for new graduates to get hired. The short answer is: maybe, especially for computer science and other coding-heavy majors. The Economist says graduate outcomes in the most AI-exposed fields have fallen more sharply since ChatGPT launched in 2022. But the evidence is not one-sided, because some studies say the decline started before ChatGPT and affects senior workers too. The practical takeaway is that the job market for entry-level technical talent looks weaker in May 2026, even if the exact role of AI is still debated.",
+      "assessed_as_of": "2026-05-13",
+      "contradictions_and_skepticism": "The article pushes back on the simple claim that AI is already destroying graduate jobs, and the cited research does not fully support that headline. One tension is that the observed decline in AI-exposed occupations may have started before ChatGPT, which weakens any clean attribution to generative AI. Another is that the evidence comes from employment outcomes and postings, not direct observation of AI substituting for specific workers. The piece is strongest as a warning signal about entry-level technical hiring, not as proof of a universal AI-driven labor-market collapse.",
+      "key_insights": [
+        "The strongest evidence in the article is not a single study but a comparison of graduate outcomes across fields with different AI exposure.",
+        "Computer science and related majors appear more vulnerable than less-exposed subjects such as education, philosophy, and civil engineering.",
+        "The article\u2019s own analysis finds the steepest post-2022 employment drop in the most AI-exposed quintile of majors.",
+        "Enrollment shifts suggest students are already reacting to perceived labor-market risk, not just reading headlines.",
+        "The main uncertainty is causality: the decline may reflect AI, but some cited studies say the trend began before ChatGPT and is not confined to junior workers."
+      ],
+      "limitations_and_open_questions": "The article gives suggestive but not definitive causal evidence. Its own analysis compares outcomes across fields with different AI exposure, but that design cannot fully separate AI effects from other changes affecting tech hiring, macro conditions, or curriculum shifts. The external studies it cites also disagree on whether young workers are uniquely affected. The graduate survey data may miss job quality, part-time work, or underemployment beyond the full-time employment metric. It also does not quantify how much of the decline is directly due to models replacing tasks versus firms freezing hiring or changing job descriptions.",
+      "sources": [
+        "https://www.economist.com/finance-and-economics/2026/05/13/is-ai-putting-graduates-out-of-work-already"
+      ],
+      "summary": "The article argues that artificial intelligence may already be hurting graduate hiring, especially for fields exposed to coding and software work. It notes that recent graduates are more likely to be unemployed than the average American, that campus recruiting is weak, and that job postings for university students on Handshake are far below their 2022 peak. The evidence is mixed: some studies find weaker employment for young workers in AI-exposed jobs, while others suggest the decline started before ChatGPT and is not uniquely concentrated among juniors. The Economist\u2019s own analysis of ten years of graduate survey data finds a sharper post-2022 drop in full-time employment for the most AI-exposed fields than for less-exposed ones, with computer science and related majors hit hardest. It also reports that students are responding by shifting away from computer science and programming enrollments, and that the work computer-science graduates do is changing toward higher-level systems design rather than writing code. The piece does not claim definitive causation, but it presents a credible case that large language models have worsened early-career prospects in some technical fields as of May 2026.",
+      "why_it_matters": "For AI engineering readers, the useful point is that the article ties model adoption to labor-market effects at the entry level, not just to productivity or user experience. It suggests that when AI can absorb routine coding or narrow technical tasks, the first visible pressure may land on new graduates whose jobs are easiest to standardize and compare. The piece is also useful methodologically because it relies on field-level exposure analysis and graduate survey data rather than anecdotes, which makes the signal more durable than a single employer story. At the same time, the article is careful enough to show that the evidence is mixed: some cited work finds declines predating ChatGPT, so AI may be amplifying a preexisting slowdown rather than causing it from scratch. For product builders, this is a reminder that AI can reshape the composition of junior work even before it clearly eliminates whole roles. The article does not discuss customer support, contact centers, voicebots, or back-office automation in depth, so those implications are not central here. Actionable as of May 13, 2026, but the causal story should be treated as provisional rather than settled."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent Economist article, not a bundle of unrelated items.",
+        "Argues from one analysis and a small set of cited studies/data sources rather than a list format.",
+        "No interview/Q&A structure, tool list, or step-by-step tutorial structure."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.93,
+        "evidence_type": "mixed",
+        "examples": "",
+        "key_points": [
+          "Graduates in more AI-exposed fields experienced worse employment outcomes than those in less exposed fields.",
+          "The employment gap widened after the release of large language models, especially from 2022 to 2025.",
+          "Enrollment in computer science and computer programming declined as students responded to labor-market changes.",
+          "Junior technical work is shifting from writing code toward higher-level software organization and design."
+        ],
+        "knowledge_summary": "Recent evidence suggests that labor-market outcomes for new graduates can worsen more in fields with higher AI exposure than in less exposed fields. In the cited analysis, full-time employment fell far more for the most exposed quintile of majors than for the least exposed quintile between 2022 and 2024, and the deterioration continued into the class of 2025. The article also notes that students are already responding by shifting enrollment away from computer science and computer programming, while the work that remains for computer-science graduates is moving toward higher-level design and coordination rather than routine coding.",
+        "match_candidates": [],
+        "operational_insight": "A useful way to monitor AI labor effects is to track graduate outcomes by field exposure, not just aggregate unemployment. If AI is changing junior work first, the earliest signals may show up in reduced entry-level hiring, weaker campus recruiting, lower enrollment in exposed majors, and a shift in junior tasks toward coordination and system design.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "organizational-design",
+          "software-engineering"
+        ],
+        "related_topics": [
+          "ai-exposed-entry-level-hiring"
+        ],
+        "relevance_note": "This is relevant because AI often affects the bottom of the talent pipeline before it visibly replaces entire occupations. Comparing outcomes across exposure levels helps distinguish broad labor softness from AI-linked pressure on entry-level pathways.",
+        "secondary_tag": "organizational-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cWe found that graduates in fields more exposed to AI have suffered markedly worse outcomes. Between 2022 and 2024 graduates in the least-exposed quintile ... saw their average full-time employment rate fall by just 1.5 percentage points. Those in the most exposed quintile ... suffered a 6.6 percentage-point drop.\u201d",
+        "topic_slug": "graduate-outcomes-by-ai-exposure",
+        "topic_title": "Graduate Outcomes by AI Exposure",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.87,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Comparing by exposure level can surface uneven impacts across fields.",
+          "A before/after split around a major capability shift can help localize timing.",
+          "Outcome metrics need to be interpreted carefully because they may reflect both automation and hiring policy changes."
+        ],
+        "knowledge_summary": "Graduate employment outcomes can be analyzed by comparing fields with different levels of exposure to AI-enabled task automation. This approach is useful because it isolates differential effects across majors or occupations rather than treating the labor market as a single block. It can reveal whether technical fields are weakening faster than less-exposed fields, even when the overall job market is noisy. The method is especially valuable when paired with time splits before and after a major model release or capability jump.",
+        "match_candidates": [],
+        "operational_insight": "A practical takeaway is to use exposure-based cohorts when studying labor effects of AI, because broad averages can hide where the pressure is concentrated. For workforce planning, this helps identify which pipelines may need redesign, not just which sectors are weak.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "ai-exposed-entry-level-hiring"
+        ],
+        "relevance_note": "This is a reusable analytical frame for AI economics and organizational planning. It helps teams and researchers separate broad downturns from category-specific substitution pressure in technical and service work.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cWe compared labour-market outcomes in fields with differing levels of exposure to AI before and after the arrival of large language models.\u201d",
+        "topic_slug": "graduate-outcomes-by-ai-exposure",
+        "topic_title": "Graduate Outcomes by AI Exposure",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-13",
+          "confidence": 0.84,
+          "evidence_from_source": "The article reports weaker graduate outcomes in more AI-exposed fields, a steep fall in full-time employment for the most exposed quintile after 2022, and a continued decline for the class of 2025 in computer science and related majors.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics"
+          ],
+          "related_trends": [
+            "software-commoditization"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "software-engineering",
+          "suggested_new_tags": [
+            "software-engineering",
+            "organizational-design"
+          ],
+          "supporting_data_points": [
+            "\u201cBetween 2022 and 2024\u201d the least-exposed quintile saw average full-time employment fall by 1.5 percentage points.",
+            "The most exposed quintile saw a 6.6 percentage-point drop over the same period.",
+            "For the most exposed fields, full-time employment fell from nearly 70% to 55% in three years.",
+            "Undergraduate enrolment in computer science fell by 11% in 2025.",
+            "Enrolment in computer programming dropped by 26%."
+          ],
+          "supporting_snippet": "\u201cWe found that graduates in fields more exposed to AI have suffered markedly worse outcomes.\u201d",
+          "time_sensitivity": "Actionable as of 2026-05-13; the signal depends on post-2022 labor-market data and may change as hiring conditions and model capabilities evolve.",
+          "trend_description": "Hiring pressure can first appear in junior technical roles when AI systems reduce the need for routine coding and other standardized tasks. The pattern is usually visible through lower postings, weaker employment outcomes, and shifts in student behavior rather than through immediate mass layoffs. Evidence is strongest when the decline is concentrated in highly exposed fields while less-exposed fields fall less sharply. The main uncertainty is whether AI is the primary cause or an amplifier of an existing hiring slowdown.",
+          "trend_slug": "entry-level-technical-hiring-softens-under-ai-pressure",
+          "trend_title": "Entry-Level Technical Hiring Softens Under AI Pressure",
+          "uncertainty_note": "Causality is not settled. The piece also cites studies arguing that declines predated ChatGPT and affected senior workers too, so the evidence supports pressure on entry-level technical hiring but not a clean claim that AI alone caused it.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5e135cb4-5295-4a26-88f4-509347f8968b",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "software-commoditization"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cBetween 2022 and 2024\u201d the least-exposed quintile saw average full-time employment fall by 1.5 percentage points.",
+              "The most exposed quintile saw a 6.6 percentage-point drop over the same period.",
+              "For the most exposed fields, full-time employment fell from nearly 70% to 55% in three years.",
+              "Undergraduate enrolment in computer science fell by 11% in 2025.",
+              "Enrolment in computer programming dropped by 26%."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "The Economist is presenting its own analysis of graduate employment outcomes using survey and postings data.",
+          "It also cites external studies, but the article's main claims are built from the publication's comparison of AI-exposed vs less-exposed fields.",
+          "The piece is not a vendor statement or a formal research report; it is third-party journalistic analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The strongest evidence in the article is not a single study but a comparison of graduate outcomes across fields with different AI exposure.",
+          "Computer science and related majors appear more vulnerable than less-exposed subjects such as education, philosophy, and civil engineering.",
+          "The article\u2019s own analysis finds the steepest post-2022 employment drop in the most AI-exposed quintile of majors.",
+          "Enrollment shifts suggest students are already reacting to perceived labor-market risk, not just reading headlines.",
+          "The main uncertainty is causality: the decline may reflect AI, but some cited studies say the trend began before ChatGPT and is not confined to junior workers."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/finance-and-economics/2026/05/13/is-ai-putting-graduates-out-of-work-already"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent Economist article, not a bundle of unrelated items.",
+          "Argues from one analysis and a small set of cited studies/data sources rather than a list format.",
+          "No interview/Q&A structure, tool list, or step-by-step tutorial structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": "mixed",
+          "examples": "",
+          "key_points": [
+            "Graduates in more AI-exposed fields experienced worse employment outcomes than those in less exposed fields.",
+            "The employment gap widened after the release of large language models, especially from 2022 to 2025.",
+            "Enrollment in computer science and computer programming declined as students responded to labor-market changes.",
+            "Junior technical work is shifting from writing code toward higher-level software organization and design."
+          ],
+          "knowledge_summary": "Recent evidence suggests that labor-market outcomes for new graduates can worsen more in fields with higher AI exposure than in less exposed fields. In the cited analysis, full-time employment fell far more for the most exposed quintile of majors than for the least exposed quintile between 2022 and 2024, and the deterioration continued into the class of 2025. The article also notes that students are already responding by shifting enrollment away from computer science and computer programming, while the work that remains for computer-science graduates is moving toward higher-level design and coordination rather than routine coding.",
+          "match_candidates": [],
+          "operational_insight": "A useful way to monitor AI labor effects is to track graduate outcomes by field exposure, not just aggregate unemployment. If AI is changing junior work first, the earliest signals may show up in reduced entry-level hiring, weaker campus recruiting, lower enrollment in exposed majors, and a shift in junior tasks toward coordination and system design.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "organizational-design",
+            "software-engineering"
+          ],
+          "related_topics": [
+            "ai-exposed-entry-level-hiring"
+          ],
+          "relevance_note": "This is relevant because AI often affects the bottom of the talent pipeline before it visibly replaces entire occupations. Comparing outcomes across exposure levels helps distinguish broad labor softness from AI-linked pressure on entry-level pathways.",
+          "secondary_tag": "organizational-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cWe found that graduates in fields more exposed to AI have suffered markedly worse outcomes. Between 2022 and 2024 graduates in the least-exposed quintile ... saw their average full-time employment rate fall by just 1.5 percentage points. Those in the most exposed quintile ... suffered a 6.6 percentage-point drop.\u201d",
+          "topic_slug": "graduate-outcomes-by-ai-exposure",
+          "topic_title": "Graduate Outcomes by AI Exposure",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "d69b0a11-3ba5-4c94-b9b0-3b75618d3578",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-06-05T16:09:38+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "41",
+          "regen_count": 1
+        },
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Graduates in more AI-exposed fields experienced worse employment outcomes than those in less exposed fields.",
+              "The employment gap widened after the release of large language models, especially from 2022 to 2025.",
+              "Enrollment in computer science and computer programming declined as students responded to labor-market changes.",
+              "Junior technical work is shifting from writing code toward higher-level software organization and design."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "ai-exposed-entry-level-hiring"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "organizational-design",
+            "software-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.87,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Comparing by exposure level can surface uneven impacts across fields.",
+            "A before/after split around a major capability shift can help localize timing.",
+            "Outcome metrics need to be interpreted carefully because they may reflect both automation and hiring policy changes."
+          ],
+          "knowledge_summary": "Graduate employment outcomes can be analyzed by comparing fields with different levels of exposure to AI-enabled task automation. This approach is useful because it isolates differential effects across majors or occupations rather than treating the labor market as a single block. It can reveal whether technical fields are weakening faster than less-exposed fields, even when the overall job market is noisy. The method is especially valuable when paired with time splits before and after a major model release or capability jump.",
+          "match_candidates": [],
+          "operational_insight": "A practical takeaway is to use exposure-based cohorts when studying labor effects of AI, because broad averages can hide where the pressure is concentrated. For workforce planning, this helps identify which pipelines may need redesign, not just which sectors are weak.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "ai-exposed-entry-level-hiring"
+          ],
+          "relevance_note": "This is a reusable analytical frame for AI economics and organizational planning. It helps teams and researchers separate broad downturns from category-specific substitution pressure in technical and service work.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cWe compared labour-market outcomes in fields with differing levels of exposure to AI before and after the arrival of large language models.\u201d",
+          "topic_slug": "graduate-outcomes-by-ai-exposure",
+          "topic_title": "Graduate Outcomes by AI Exposure",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "7bba517e-8721-4b1c-a67d-f82bf1512ef0",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Comparing by exposure level can surface uneven impacts across fields.",
+              "A before/after split around a major capability shift can help localize timing.",
+              "Outcome metrics need to be interpreted carefully because they may reflect both automation and hiring policy changes."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "ai-exposed-entry-level-hiring"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "independent_analysis": 2,
+      "mixed": 1
+    },
+    "fields_modified": 0,
+    "proposals_approved": 1,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 2,
+    "proposals_total": 3,
+    "review_duration_seconds": 145.3,
+    "review_finished_at": "2026-06-05T16:10:37.292359+00:00",
+    "review_started_at": "2026-06-05T16:08:12+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T16:10:37+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/finance-and-economics/2026/05/13/is-ai-putting-graduates-out-of-work-already",
+    "content_sha256": "f6d440361fa4b23e04da7e84b79677ec758819bd21528f131c429a3ddbf4cab2",
+    "publication": "Economist",
+    "published_date": "2026-05-13",
+    "raw_html_rel_path": "raw/readwise/is-ai-putting-graduates-out-of-work-already-01krjzm4n3xb3w29agz9ehzxaj.html",
+    "raw_md_rel_path": "raw/readwise/is-ai-putting-graduates-out-of-work-already-01krjzm4n3xb3w29agz9ehzxaj.md",
+    "source_id": "is-ai-putting-graduates-out-of-work-already-01krjzm4n3xb3w29agz9ehzxaj",
+    "title": "Is AI putting graduates out of work already?"
+  }
+}

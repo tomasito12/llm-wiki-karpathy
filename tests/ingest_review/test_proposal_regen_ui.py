@@ -41,6 +41,20 @@ def test_queue_proposal_regen_sets_pending_payload() -> None:
     }
 
 
+def test_queue_proposal_regen_allows_empty_title_with_note() -> None:
+    mock_st = MagicMock()
+    mock_st.session_state = {
+        "pfx_regen_new_title": "",
+        "pfx_regen_note": "reformulate the title to be clearer",
+    }
+    with patch("src.ingest_review.proposal_regen_ui.streamlit_runtime", mock_st):
+        _queue_proposal_regen("trend", "src-1", "pid-2", "pfx")
+    pending = mock_st.session_state["_pending_proposal_regen"]
+    assert isinstance(pending, dict)
+    assert pending["new_title"] == ""
+    assert pending["note"] == "reformulate the title to be clearer"
+
+
 def test_entity_review_tab_for_key_maps_dashboard_labels() -> None:
     assert entity_review_tab_for_key("glossary") == "Glossary"
     assert entity_review_tab_for_key("topic") == "Topics"

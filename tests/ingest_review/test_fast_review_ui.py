@@ -210,10 +210,9 @@ def test_render_inline_regenerate_title_controls_uses_two_row_layout() -> None:
     assert mock_st.text_input.call_count == 2
     mock_st.text_input.assert_any_call(
         "New topic title",
-        value="Old title",
         key="pfx_regen_new_title",
         label_visibility="collapsed",
-        placeholder="New topic title",
+        placeholder="New title (empty = suggest; current: Old title)",
     )
     mock_st.columns.assert_called_once_with([4, 2], vertical_alignment="bottom")
     mock_st.button.assert_called_once()

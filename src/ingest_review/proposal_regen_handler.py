@@ -13,6 +13,10 @@ from src.ingest_review.domain_tag_ui import find_review_node
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.proposal_regen import REGEN_SPECS, apply_regenerated_proposal
 from src.ingest_review.proposal_regen_context import build_regen_context_sections
+from src.ingest_review.proposal_regen_provider import (
+    regen_payload_for_apply,
+    resolve_effective_regen_title,
+)
 from src.ingest_review.proposal_regen_ui import preserve_review_entity_tab_for_regen
 from src.ingest_review.proposal_transfer import (
     resolve_transfer_specs,
@@ -105,10 +109,6 @@ def process_pending_proposal_regen(
 
     new_title = str(pending.get("new_title") or "").strip()
     note = str(pending.get("note") or "").strip()
-    if not new_title:
-        title_hint = spec.title_field.replace("_", " ").title()
-        st.error(f"Enter a **{title_hint}** before regenerating.")
-        return False
     if not os.environ.get("OPENAI_API_KEY"):
         st.error("OPENAI_API_KEY is not set — cannot regenerate.")
         return False
@@ -147,9 +147,14 @@ def process_pending_proposal_regen(
         if is_transfer:
             src_label = source_spec.entity_label or source_entity_key
             tgt_display = transfer_target_label(source_entity_key, target_entity_key)
-            spinner = f"Moving **{new_title}** from {src_label} to {tgt_display}…"
-        else:
+            if new_title:
+                spinner = f"Moving **{new_title}** from {src_label} to {tgt_display}…"
+            else:
+                spinner = f"Moving proposal from {src_label} to {tgt_display} (proposing title)…"
+        elif new_title:
             spinner = f"Regenerating {label.lower()} as **{new_title}**…"
+        else:
+            spinner = f"Regenerating {label.lower()} (proposing new title)…"
         with st.spinner(spinner):
             regen_dict, regen_meta = provider.regenerate_proposal(
                 entity_key=regen_entity_key,
@@ -163,8 +168,15 @@ def process_pending_proposal_regen(
                 max_plain_text_chars=max_plain_text_chars,
                 source_entity_key=source_entity_key if is_transfer else None,
             )
+        effective_title = resolve_effective_regen_title(new_title, regen_dict)
+        if not effective_title:
+            st.error(
+                "Regeneration did not produce a title. "
+                "Enter a title or add a note describing how to change it."
+            )
+            return False
         regenerated = output_model.model_validate(regen_dict)
-        regen_payload = regenerated.model_dump(mode="json")
+        regen_payload = regen_payload_for_apply(regenerated.model_dump(mode="json"))
         pv = str(regen_meta.get("prompt_version") or prompt_version)
 
         if is_transfer:
@@ -174,14 +186,14 @@ def process_pending_proposal_regen(
                 proposal_id,
                 src_spec,
                 tgt_spec,
-                new_title=new_title,
+                new_title=effective_title,
                 regenerated=regen_payload,
                 model=model,
                 prompt_version=pv,
             )
             tgt_display = transfer_target_label(source_entity_key, target_entity_key)
             msg = (
-                f"Moved **{new_title}** from {src_spec.entity_label} to "
+                f"Moved **{effective_title}** from {src_spec.entity_label} to "
                 f"**{tgt_display}** — open that tab to review."
             )
             msg_entity = target_entity_key
@@ -190,12 +202,12 @@ def process_pending_proposal_regen(
                 artifact,
                 proposal_id,
                 spec,
-                new_title=new_title,
+                new_title=effective_title,
                 regenerated=regen_payload,
                 model=model,
                 prompt_version=pv,
             )
-            msg = f"Regenerated {label.lower()} as **{new_title}**."
+            msg = f"Regenerated {label.lower()} as **{effective_title}**."
             msg_entity = source_entity_key
 
         touch_review_session(artifact)

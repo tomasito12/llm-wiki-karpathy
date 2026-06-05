@@ -348,7 +348,13 @@ TOPIC_REVIEWABLE_SCALAR_KEYS: tuple[str, ...] = (
 TOPIC_REVIEWABLE_LIST_KEYS: tuple[str, ...] = ("key_points", "related_topics")
 
 
-class TopicRegenerateOutput(BaseModel):
+class ProposalRegenerateOutputBase(BaseModel):
+    """Shared fields for per-proposal regeneration outputs."""
+
+    proposed_title: str = ""
+
+
+class TopicRegenerateOutput(ProposalRegenerateOutputBase):
     """JSON returned by per-topic regeneration under a reviewer-supplied title."""
 
     knowledge_summary: str = ""
@@ -365,7 +371,7 @@ class TopicRegenerateOutput(BaseModel):
     evidence_type: EvidenceType | None = None
 
 
-class GlossaryRegenerateOutput(BaseModel):
+class GlossaryRegenerateOutput(ProposalRegenerateOutputBase):
     """JSON returned by per-glossary-term regeneration (no term field)."""
 
     proposed_definition: str = ""
@@ -379,7 +385,7 @@ class GlossaryRegenerateOutput(BaseModel):
     evidence_type: EvidenceType | None = None
 
 
-class HowToRegenerateOutput(BaseModel):
+class HowToRegenerateOutput(ProposalRegenerateOutputBase):
     """JSON returned by per-how-to regeneration (no question_title field)."""
 
     what_and_problem: str = ""
@@ -395,7 +401,7 @@ class HowToRegenerateOutput(BaseModel):
     evidence_type: EvidenceType | None = None
 
 
-class TrendRegenerateOutput(BaseModel):
+class TrendRegenerateOutput(ProposalRegenerateOutputBase):
     """JSON returned by per-trend regeneration (no trend_title or trend_slug)."""
 
     trend_description: str = ""
@@ -413,7 +419,7 @@ class TrendRegenerateOutput(BaseModel):
     evidence_type: EvidenceType | None = None
 
 
-class ToolRegenerateOutput(BaseModel):
+class ToolRegenerateOutput(ProposalRegenerateOutputBase):
     """JSON returned by per-tool regeneration (no name field)."""
 
     short_description: str = ""
@@ -432,7 +438,7 @@ class ToolRegenerateOutput(BaseModel):
     evidence_type: EvidenceType | None = None
 
 
-class ModelRegenerateOutput(BaseModel):
+class ModelRegenerateOutput(ProposalRegenerateOutputBase):
     """JSON returned by per-model regeneration (no model_name field)."""
 
     provider: str = ""
@@ -454,7 +460,7 @@ class ModelRegenerateOutput(BaseModel):
     evidence_type: EvidenceType | None = None
 
 
-class ImplStudyRegenerateOutput(BaseModel):
+class ImplStudyRegenerateOutput(ProposalRegenerateOutputBase):
     """JSON returned by per-implementation-study regeneration (no title field)."""
 
     company: str = ""

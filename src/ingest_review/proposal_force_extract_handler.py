@@ -13,6 +13,7 @@ from src.ingest_review.domain_tag_ui import seed_review_tags_on_artifact
 from src.ingest_review.extract import SourceDocument
 from src.ingest_review.proposal_regen import REGEN_SPECS, append_forced_proposal
 from src.ingest_review.proposal_regen_context import build_regen_context_sections
+from src.ingest_review.proposal_regen_provider import regen_payload_for_apply
 from src.ingest_review.proposal_regen_ui import preserve_review_entity_tab_for_regen
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
 from src.ingest_review.schema import (
@@ -120,7 +121,7 @@ def process_pending_forced_extract(
                 max_plain_text_chars=max_plain_text_chars,
             )
         regenerated = output_model.model_validate(regen_dict)
-        regen_payload = regenerated.model_dump(mode="json")
+        regen_payload = regen_payload_for_apply(regenerated.model_dump(mode="json"))
         pv = str(regen_meta.get("prompt_version") or prompt_version)
         append_forced_proposal(
             artifact,

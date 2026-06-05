@@ -1,0 +1,243 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T16:06:57+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnRMEg17yPxwBB4n4RgSeKBlMb6mT",
+          "token_usage": {
+            "completion_tokens": 276,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4415,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4691
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnRMH507QxoJN5fOl7CKjvWm6pgFu",
+          "token_usage": {
+            "completion_tokens": 1105,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4105,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5210
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnRMH507QxoJN5fOl7CKjvWm6pgFu",
+    "token_usage": {
+      "completion_tokens": 1381,
+      "prompt_tokens": 8520,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 9901
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "The excerpt is a single product-focused commentary on Claude Opus 4.7 with a few benchmark and API-interface observations, but not enough durable wiki-ready knowledge beyond a narrow release reaction; better handled in later stages only if the full article adds concrete operational guidance.",
+      "skip_recommended": true,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "benchmark",
+      "reasoning": [
+        "The excerpt foregrounds benchmark results such as SWE-bench Verified, SWE-bench Pro, MCP-Atlas, GDPval-AA, and XBOW visual-acuity.",
+        "Claims about the release are supported mainly by eval numbers and performance deltas, not independent experiments or user reports.",
+        "The surrounding commentary is interpretive, but the source's main factual basis is benchmark-oriented."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about Claude Opus 4.7 and what changed beyond its benchmark scores. The interesting part is not just that it got better on some evals, but that its API removed familiar tuning knobs like temperature and top_p. In their place, developers get higher-level controls that tell the model how much effort to spend and how much budget to use. The article\u2019s main idea is that the model is being asked to manage its own thinking more directly. That makes the release feel like a change in how developers interact with the model, not just a routine upgrade.",
+      "assessed_as_of": "2026-04-22",
+      "contradictions_and_skepticism": "The author\u2019s framing that the release is mostly about the contract between developer and model is plausible, but it is still an interpretive gloss on top of benchmark and API changes. The claim that the model has been trained to sit responsibly inside the new interface should be read cautiously without external validation. The fact that some retrieval-style metrics declined complicates any simple narrative that the release is a clean upgrade. The piece also implies a cleaner, more semantic control plane, but removes knobs that some teams may rely on for reproducibility and fine-grained experimentation.",
+      "key_insights": [
+        "The API change is the core story: several familiar sampling controls were removed, so existing harnesses that rely on them will fail with a 400 error.",
+        "Anthropic replaced token-probability tuning with semantic controls, which makes the model interface less about decoding hacks and more about task-level intent.",
+        "The benchmark mix is uneven: some evals improved sharply, but BrowseComp and long-context multi-needle retrieval went down.",
+        "The article frames self-verification and strict instruction following as trained behaviors, not prompt engineering tricks.",
+        "The release suggests a tighter coupling between model training and interface design, because the model is expected to operate responsibly within the new effort/task_budget contract."
+      ],
+      "limitations_and_open_questions": "The evidence is mostly benchmark scores and vendor framing, so it does not show how the model behaves in real production workloads. The excerpt does not include the exact migration details, compatibility shims, or recommended replacement patterns for removed API parameters. It is unclear how much the new effort/task_budget controls help across different task types, or whether they introduce new tuning ambiguity. The regression on BrowseComp and long-context multi-needle retrieval raises questions about whether the release trades off some retrieval behaviors for reasoning gains. Claims like self-verification, literal instruction following, and file-system memory are presented as product capabilities, but the excerpt does not show failure rates, edge cases, or adversarial tests. Economics, latency, and cost impact are not discussed.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-847-everything",
+        "Metadata: title, author, publication, published_date"
+      ],
+      "summary": "This article argues that Claude Opus 4.7 is less about a small benchmark bump and more about a changed inference contract. It reports strong scores on several evals, including SWE-bench Verified at 87.6%, SWE-bench Pro at 64.3%, MCP-Atlas at +14.6 percentage points, and state-of-the-art performance on GDPval-AA, while also noting gains in visual acuity, finance, and document reasoning, alongside declines on BrowseComp and long-context multi-needle retrieval. The more important change, in the author\u2019s framing, is that Anthropic removed several low-level sampling controls from the API, including temperature, top_p, top_k, and thinking.budget_tokens, and replaced them with semantic controls such as effort levels and task_budget. The piece interprets this as moving from manual tuning of decoding behavior to asking the model how hard to think and how much budget to use. It also says the model is trained to operate responsibly inside that new interface, and that other features like self-verification, literal instruction following, 1:1 pixel mapping, file-system memory, and differential capability shaping flow from that design choice.",
+      "why_it_matters": "The article is useful because it highlights a release where the interface changes matter as much as the benchmark deltas. For AI engineers, the concrete takeaway is that migration work may break in ways that are easy to miss: existing code that sets temperature, top_p, top_k, or thinking.budget_tokens is no longer valid in this version. That is operationally important because it changes how agents, eval harnesses, and test rigs are configured, not just how the model performs. The new effort enum and task_budget suggest a more semantic control surface, which may simplify some applications while reducing fine-grained stochastic tuning. The benchmark spread also matters: the gains are real in some areas, but the regressions on BrowseComp and multi-needle retrieval mean the model is not uniformly better. The article\u2019s emphasis on trained self-verification and literal instruction following is interesting, but it is still a vendor-described capability set, not independent proof of robustness. As of 2026-04-22, this looks actionable for teams planning a Claude Opus 4.7 migration, but it should be treated as a release-note-plus-commentary, not a broad claim that all model control has become simpler or superior. For service automation, the article only hints at downstream implications through instruction following and file-system memory, so any support or back-office payoff should be considered tentative rather than established."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "The piece centers on one coherent topic: Claude Opus 4.7, not a bundle of unrelated items.",
+        "It reads like an analyst's commentary on a product release, with benchmark discussion and API contract changes, rather than a roundup or tutorial.",
+        "No interview structure, step-by-step instruction, or multi-item product list is present in the excerpt."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "benchmark",
+        "reasoning": [
+          "The excerpt foregrounds benchmark results such as SWE-bench Verified, SWE-bench Pro, MCP-Atlas, GDPval-AA, and XBOW visual-acuity.",
+          "Claims about the release are supported mainly by eval numbers and performance deltas, not independent experiments or user reports.",
+          "The surrounding commentary is interpretive, but the source's main factual basis is benchmark-oriented."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The API change is the core story: several familiar sampling controls were removed, so existing harnesses that rely on them will fail with a 400 error.",
+          "Anthropic replaced token-probability tuning with semantic controls, which makes the model interface less about decoding hacks and more about task-level intent.",
+          "The benchmark mix is uneven: some evals improved sharply, but BrowseComp and long-context multi-needle retrieval went down.",
+          "The article frames self-verification and strict instruction following as trained behaviors, not prompt engineering tricks.",
+          "The release suggests a tighter coupling between model training and interface design, because the model is expected to operate responsibly within the new effort/task_budget contract."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-847-everything",
+          "Metadata: title, author, publication, published_date"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "The piece centers on one coherent topic: Claude Opus 4.7, not a bundle of unrelated items.",
+          "It reads like an analyst's commentary on a product release, with benchmark discussion and API contract changes, rather than a roundup or tutorial.",
+          "No interview structure, step-by-step instruction, or multi-item product list is present in the excerpt."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 0.9,
+    "review_finished_at": "2026-06-05T16:07:23.887786+00:00",
+    "review_started_at": "2026-06-05T16:07:23+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T16:07:23+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-847-everything",
+    "content_sha256": "8ce22731d8ad5da3e639f76d922d926d79c548c9a1adf62e63175700df7e5351",
+    "publication": "Substack",
+    "published_date": "2026-04-22",
+    "raw_html_rel_path": "raw/readwise/the-sequence-ai-of-the-week-847-everything-you-need-to-know-about-claude-opus-4-7-01kpteczbrm3736wyth0w10nfk.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-ai-of-the-week-847-everything-you-need-to-know-about-claude-opus-4-7-01kpteczbrm3736wyth0w10nfk.md",
+    "source_id": "the-sequence-ai-of-the-week-847-everything-you-need-to-know-about-claude-opus-4-7-01kpteczbrm3736wyth0w10nfk",
+    "title": "The Sequence AI of the Week #847: Everything You Need to Know About Claude Opus 4.7"
+  }
+}

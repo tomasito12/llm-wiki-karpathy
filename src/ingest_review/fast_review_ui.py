@@ -207,10 +207,9 @@ def render_inline_regenerate_title_controls(
     """New title on its own row; note + regenerate share a second row with room for the label."""
     st.text_input(
         title_label,
-        value=current_title,
         key=f"{widget_prefix}_regen_new_title",
         label_visibility="collapsed",
-        placeholder=title_label,
+        placeholder=f"New title (empty = suggest; current: {current_title})",
     )
     note_col, btn_col = st.columns([4, 2], vertical_alignment="bottom")
     with note_col:

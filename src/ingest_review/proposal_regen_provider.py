@@ -39,6 +39,24 @@ def _truncate_plain_text(plain: str, max_chars: int | None) -> str:
     return plain[:max_chars] + "\n[TRUNCATED]"
 
 
+def resolve_effective_regen_title(
+    reviewer_title: str,
+    regen_dict: dict[str, Any],
+) -> str:
+    """Use reviewer title when set; otherwise fall back to LLM ``proposed_title``."""
+    explicit = reviewer_title.strip()
+    if explicit:
+        return explicit
+    return str(regen_dict.get("proposed_title") or "").strip()
+
+
+def regen_payload_for_apply(regen_dict: dict[str, Any]) -> dict[str, Any]:
+    """Drop title-only fields before merging regenerated content into artifacts."""
+    payload = dict(regen_dict)
+    payload.pop("proposed_title", None)
+    return payload
+
+
 TOPIC_REGEN_RUBRIC = """\
 Regenerate ONE topic contribution under a reviewer-supplied NEW_TOPIC_TITLE.
 
@@ -204,15 +222,19 @@ def run_proposal_regeneration(
     if not cfg:
         raise ValueError(f"Unknown proposal regen entity: {entity_key}")
 
+    from src.ingest_review.proposal_regen import REGEN_SPECS
     from src.ingest_review.providers.openai_provider import (
         PAGE_MATCHING_RUBRIC,
         TITLE_CANONICALIZATION_RUBRIC,
         TITLE_GENERATION_RUBRIC,
     )
 
-    title = new_title.strip()
-    if not title:
-        raise ValueError("new_title must be non-empty")
+    reviewer_title = new_title.strip()
+    auto_title = not reviewer_title
+    regen_spec = REGEN_SPECS.get(entity_key)
+    current_title = ""
+    if regen_spec:
+        current_title = str(current_item.get(regen_spec.title_field) or "").strip()
 
     body = _truncate_plain_text(document.plain_text, max_plain_text_chars)
     current_json = json.dumps(current_item, ensure_ascii=False)
@@ -220,8 +242,15 @@ def run_proposal_regeneration(
     user_blocks = [
         f"prompt_version: {prompt_version or PROMPT_VERSION}",
         f"source_id: {document.source_id}",
-        f"{cfg.new_title_key}: {title}",
     ]
+    if auto_title:
+        user_blocks.append(
+            f"REVIEWER_SET_{cfg.new_title_key}: (none — you must propose a new wiki page title "
+            f"in proposed_title)"
+        )
+        user_blocks.append(f"CURRENT_{cfg.new_title_key}: {current_title or '(none)'}")
+    else:
+        user_blocks.append(f"{cfg.new_title_key}: {reviewer_title}")
     if forced:
         user_blocks.append(FORCED_EXTRACT_PREAMBLE)
     user_blocks.extend(
@@ -238,7 +267,6 @@ def run_proposal_regeneration(
     for heading, content in context_sections.items():
         user_blocks.append(f"## {heading}\n{content}")
     if source_entity_key and source_entity_key != entity_key:
-        from src.ingest_review.proposal_regen import REGEN_SPECS
         from src.ingest_review.proposal_transfer import transfer_target_label
 
         src_spec = REGEN_SPECS.get(source_entity_key)
@@ -253,21 +281,39 @@ def run_proposal_regeneration(
             f"Use {tgt_label.lower()}-appropriate fields only; do not copy "
             f"{src_label.lower()}-specific framing into the output."
         )
+    if auto_title:
+        entity_title_field = regen_spec.title_field if regen_spec else "title"
+        title_instruction = (
+            f"Return one JSON object matching {cfg.output_type_name}. "
+            "Include non-empty proposed_title with your chosen wiki page title. "
+            "Follow REVIEWER_NOTE for how to change the title when provided; otherwise "
+            f"propose a clearer, broader title distinct from CURRENT_{cfg.new_title_key} "
+            "when possible. Regenerate all content fields for proposed_title. "
+            f"Do not output the entity title field ({entity_title_field})."
+        )
+    else:
+        title_instruction = (
+            f"Return one JSON object matching {cfg.output_type_name} (content fields only; "
+            f"do not output the reviewer-set title field). Leave proposed_title empty."
+        )
     user_blocks.extend(
         [
             "## ARTICLE_PLAIN_TEXT\n" + body,
-            "## Instructions\n"
-            f"Return one JSON object matching {cfg.output_type_name} (content fields only; "
-            f"do not output the reviewer-set title field).",
+            "## Instructions\n" + title_instruction,
         ]
     )
     user_prompt = "\n\n".join(user_blocks)
     regen_schema = cfg.output_model.model_json_schema()
+    system_suffix = f" Respond with one JSON object only; {cfg.output_type_name} fields only."
+    if auto_title:
+        system_suffix = (
+            f" Respond with one JSON object only; {cfg.output_type_name} fields including "
+            "proposed_title when the reviewer did not set a title."
+        )
     messages = [
         {
             "role": "system",
-            "content": SYSTEM_PROMPT
-            + f" Respond with one JSON object only; {cfg.output_type_name} fields only.",
+            "content": SYSTEM_PROMPT + system_suffix,
         },
         {"role": "user", "content": user_prompt},
     ]

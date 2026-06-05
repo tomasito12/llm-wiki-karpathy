@@ -99,8 +99,8 @@
     "industry_trends": [
       {
         "assessed_as_of": "2026-05-02",
-        "confidence": 0.86,
-        "evidence_from_source": "The article explicitly contrasts Graphify, which builds a knowledge graph so the assistant can navigate a codebase, with Caveman, which compresses the assistant\u2019s output. It says they solve different problems, and the combined example shows them used together: one for input-side context acquisition and one for output-side brevity.",
+        "confidence": 0.9,
+        "evidence_from_source": "The article says Graphify builds a connected knowledge graph so the assistant can navigate a codebase instead of reading raw files, while Caveman compresses the assistant\u2019s output by removing filler and verbosity. It explicitly states they solve different problems and work well together, with Graphify handling the input side and Caveman handling the output side.",
         "evidence_type": "mixed",
         "match_candidates": [],
         "primary_tag": "workflow-restructuring",
@@ -109,7 +109,9 @@
           "tool-centric-agents"
         ],
         "related_trends": [
-          "artifact-first-ai-workflows"
+          "artifact-first-ai-workflows",
+          "agent-performance-shifts-from-prompting-to-workflow-architecture",
+          "workflow-restructuring"
         ],
         "secondary_tag": "tool-centric-agents",
         "suggested_action": "ignore",
@@ -120,14 +122,15 @@
         "supporting_data_points": [
           "Graphify claims a 71.5\u00d7 token reduction on a 52-file corpus.",
           "Caveman claims an average 65% output-token reduction on real prompts.",
-          "The article presents a combined onboarding example using both tools."
+          "The article presents a combined onboarding example using both tools.",
+          "The article explicitly says the two tools solve different problems and work great together."
         ],
         "supporting_snippet": "\"Graphify handled the input side \u2014 the AI navigated via the graph instead of reading 40 raw files. Caveman handled the output side \u2014 the answer came back in four sentences instead of four paragraphs.\"",
-        "time_sensitivity": "As of 2026-05-02, this is a practical workflow pattern emerging in coding assistants rather than a settled standard. The evidence is product-level and illustrative, so the pattern may persist, but the article does not establish broad industry adoption.",
-        "trend_description": "AI coding assistants are increasingly split into two independently tunable layers: one layer acquires, structures, or navigates context from large codebases, while another layer controls how concise or verbose the final response should be. This broader pattern goes beyond the specific tools in the article and points to a workflow design where input handling and output style are optimized separately to reduce token waste, improve readability, and make assistant behavior easier to manage in long-context coding work.",
-        "trend_slug": "ai-coding-assistants-separate-context-acquisition-from-response-style",
-        "trend_title": "AI Coding Assistants Separate Context Acquisition from Response Style",
-        "uncertainty_note": "The source is a comparison article centered on two open-source tools, so it supports the pattern but does not prove that the separation is universal or best-in-class. Future assistants may absorb these capabilities natively, which could reduce how visible this split remains even if the underlying need persists.",
+        "time_sensitivity": "As of 2026-05-02, this appears to be an emerging workflow pattern in AI coding assistants rather than a settled industry standard. The source is a product-focused article about two open-source tools, so the pattern is well illustrated but not yet proven as a broad default across assistants.",
+        "trend_description": "AI coding assistants are increasingly designed as two separately tunable functions: one that finds, structures, or navigates large codebase context, and another that controls how much the assistant says in its response. The article\u2019s Graphify/Caveman pairing illustrates this split by using one tool to reduce input-side context overload and another to reduce output-side verbosity, suggesting a broader workflow pattern where context acquisition and response style are optimized independently to save tokens and improve usability.",
+        "trend_slug": "ai-coding-assistants-split-context-search-from-output-compression",
+        "trend_title": "AI Coding Assistants Split Context Search from Output Compression",
+        "uncertainty_note": "The evidence comes from a single comparison article and mostly demonstrates a practical pairing, not a universal architectural shift. Future coding assistants may internalize one or both functions, which would make the separation less visible even if the underlying need remains.",
         "value_level": "medium"
       }
     ],
@@ -323,8 +326,8 @@
       {
         "llm_item": {
           "assessed_as_of": "2026-05-02",
-          "confidence": 0.86,
-          "evidence_from_source": "The article explicitly contrasts Graphify, which builds a knowledge graph so the assistant can navigate a codebase, with Caveman, which compresses the assistant\u2019s output. It says they solve different problems, and the combined example shows them used together: one for input-side context acquisition and one for output-side brevity.",
+          "confidence": 0.9,
+          "evidence_from_source": "The article says Graphify builds a connected knowledge graph so the assistant can navigate a codebase instead of reading raw files, while Caveman compresses the assistant\u2019s output by removing filler and verbosity. It explicitly states they solve different problems and work well together, with Graphify handling the input side and Caveman handling the output side.",
           "evidence_type": "mixed",
           "match_candidates": [],
           "primary_tag": "workflow-restructuring",
@@ -333,7 +336,9 @@
             "tool-centric-agents"
           ],
           "related_trends": [
-            "artifact-first-ai-workflows"
+            "artifact-first-ai-workflows",
+            "agent-performance-shifts-from-prompting-to-workflow-architecture",
+            "workflow-restructuring"
           ],
           "secondary_tag": "tool-centric-agents",
           "suggested_action": "ignore",
@@ -344,65 +349,67 @@
           "supporting_data_points": [
             "Graphify claims a 71.5\u00d7 token reduction on a 52-file corpus.",
             "Caveman claims an average 65% output-token reduction on real prompts.",
-            "The article presents a combined onboarding example using both tools."
+            "The article presents a combined onboarding example using both tools.",
+            "The article explicitly says the two tools solve different problems and work great together."
           ],
           "supporting_snippet": "\"Graphify handled the input side \u2014 the AI navigated via the graph instead of reading 40 raw files. Caveman handled the output side \u2014 the answer came back in four sentences instead of four paragraphs.\"",
-          "time_sensitivity": "As of 2026-05-02, this is a practical workflow pattern emerging in coding assistants rather than a settled standard. The evidence is product-level and illustrative, so the pattern may persist, but the article does not establish broad industry adoption.",
-          "trend_description": "AI coding assistants are increasingly split into two independently tunable layers: one layer acquires, structures, or navigates context from large codebases, while another layer controls how concise or verbose the final response should be. This broader pattern goes beyond the specific tools in the article and points to a workflow design where input handling and output style are optimized separately to reduce token waste, improve readability, and make assistant behavior easier to manage in long-context coding work.",
-          "trend_slug": "ai-coding-assistants-separate-context-acquisition-from-response-style",
-          "trend_title": "AI Coding Assistants Separate Context Acquisition from Response Style",
-          "uncertainty_note": "The source is a comparison article centered on two open-source tools, so it supports the pattern but does not prove that the separation is universal or best-in-class. Future assistants may absorb these capabilities natively, which could reduce how visible this split remains even if the underlying need persists.",
+          "time_sensitivity": "As of 2026-05-02, this appears to be an emerging workflow pattern in AI coding assistants rather than a settled industry standard. The source is a product-focused article about two open-source tools, so the pattern is well illustrated but not yet proven as a broad default across assistants.",
+          "trend_description": "AI coding assistants are increasingly designed as two separately tunable functions: one that finds, structures, or navigates large codebase context, and another that controls how much the assistant says in its response. The article\u2019s Graphify/Caveman pairing illustrates this split by using one tool to reduce input-side context overload and another to reduce output-side verbosity, suggesting a broader workflow pattern where context acquisition and response style are optimized independently to save tokens and improve usability.",
+          "trend_slug": "ai-coding-assistants-split-context-search-from-output-compression",
+          "trend_title": "AI Coding Assistants Split Context Search from Output Compression",
+          "uncertainty_note": "The evidence comes from a single comparison article and mostly demonstrates a practical pairing, not a universal architectural shift. Future coding assistants may internalize one or both functions, which would make the separation less visible even if the underlying need remains.",
           "value_level": "medium"
         },
         "notes": null,
         "proposal_id": "be1d7e6c-ec71-47b8-92fe-515b172165cf",
         "proposal_regeneration_meta": {
-          "last_regen_at": "2026-06-05T15:41:06+00:00",
+          "last_regen_at": "2026-06-05T15:52:45+00:00",
           "model": "gpt-5.4-mini-2026-03-17",
           "prompt_version": "41",
-          "regen_count": 1
+          "regen_count": 2
         },
-        "proposal_status": "approved",
+        "proposal_status": "rejected",
         "sections": {
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_data_points": {
             "final_list": null,
             "llm_list": [
               "Graphify claims a 71.5\u00d7 token reduction on a 52-file corpus.",
               "Caveman claims an average 65% output-token reduction on real prompts.",
-              "The article presents a combined onboarding example using both tools."
+              "The article presents a combined onboarding example using both tools.",
+              "The article explicitly says the two tools solve different problems and work great together."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -507,7 +514,6 @@
             "It caches unchanged files so repeated runs can focus on the parts of the repository that changed.",
             "It is described as handling code, docs, PDFs, images, and video, which broadens it beyond ordinary code indexing."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "The source shows a CLI-based flow with `pip install graphifyy && graphify install` followed by `/graphify .`, which makes it easy to slot into a coding-assistant session.",
             "The generated `graph.json` is queryable weeks later, which matters for workflows that want persisted structure instead of ephemeral context windows."
@@ -552,7 +558,7 @@
               "It is described as handling code, docs, PDFs, images, and video, which broadens it beyond ordinary code indexing."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -561,22 +567,22 @@
               "The generated `graph.json` is queryable weeks later, which matters for workflows that want persisted structure instead of ephemeral context windows."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -589,12 +595,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -604,17 +610,23 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
           "approved_new_tags": [],
-          "final_tags": [
-            "open-source",
-            "cli-tool",
-            "coding",
-            "document-analysis",
-            "multimodal"
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent",
+            "ai-infrastructure",
+            "knowledge-management"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "knowledge-management"
           ]
         }
       },
@@ -940,19 +952,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "mixed": 5
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 4,
     "proposals_deferred": 0,
     "proposals_modified": 0,
-    "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
+    "proposals_rejected": 1,
+    "proposals_total": 5,
+    "review_duration_seconds": 916.5,
+    "review_finished_at": "2026-06-05T15:54:08.462156+00:00",
     "review_started_at": "2026-06-05T15:38:52+00:00"
   },
   "review_session": {
-    "last_saved_at": "2026-06-05T15:41:06+00:00",
+    "last_saved_at": "2026-06-05T15:54:08+00:00",
     "saved_by": null
   },
   "source": {

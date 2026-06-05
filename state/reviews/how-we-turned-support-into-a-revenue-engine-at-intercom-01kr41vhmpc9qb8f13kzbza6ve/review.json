@@ -1,0 +1,920 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T16:03:55+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnRJ1U6hSgvEiPYET7kKNbDRVBDGw",
+          "token_usage": {
+            "completion_tokens": 184,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5545,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5729
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnRJ50JPHi9MeTNxAp5z0aNjthaCT",
+          "token_usage": {
+            "completion_tokens": 1054,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5143,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6197
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnRJEL5uznsJ8XgZQ7efeYtcPlMMG",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2350,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30563,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 32913
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnRJEL5uznsJ8XgZQ7efeYtcPlMMG",
+    "token_usage": {
+      "completion_tokens": 3588,
+      "prompt_tokens": 41251,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 44839
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "The case suggests that AI automation can create higher-value human work by reducing reactive load. It also suggests that the quality of the operating model matters as much as the underlying automation layer when teams want to convert support into growth.",
+        "business_objective": "To use support capacity to drive product adoption, retention, and expansion revenue rather than only resolving tickets.",
+        "company": "Intercom",
+        "confidence": 0.93,
+        "deployment_context": "The work began inside Intercom's support organization as a limited experiment while the team still handled day-to-day support. It initially focused on self-serve customers and later expanded into partnerships with sales, success, product, marketing, digital, scale, and high-touch success teams.",
+        "evidence_snippets": [
+          {
+            "claim": "Intercom started from excess capacity created by Fin and support efficiency improvements.",
+            "provenance": "stated",
+            "snippet": "\"Resolution rates were strong, efficiency was improving, and for the first time, something new was emerging: capacity.\""
+          },
+          {
+            "claim": "The team moved toward proactive, consultative support and revenue-adjacent work.",
+            "provenance": "stated",
+            "snippet": "\"we started to see how we could take advantage of the unique intersection support sits at \u2013 deeply connected to customer needs and closely aligned to company goals \u2013 to perform a more consultative role and actively drive value for both customers and the business.\""
+          },
+          {
+            "claim": "Intercom used a small volunteer group rather than a company-wide rollout.",
+            "provenance": "stated",
+            "snippet": "\"we got started with a small group of volunteers who dedicated part of their time every week to exploring how we could provide new, more proactive support.\""
+          },
+          {
+            "claim": "Intercom measured the program with a comparison group over six months.",
+            "provenance": "stated",
+            "snippet": "\"we built a simple but rigorous comparison: accounts we engaged with vs. accounts we reached out to, but didn\u2019t hear back from. Over a six month period, we tracked feature adoption, Fin usage, and expansion revenue across both groups.\""
+          },
+          {
+            "claim": "Intercom reported stronger growth for engaged accounts.",
+            "provenance": "stated",
+            "snippet": "\"The result was clear: engaged accounts grew roughly twice as fast in both usage and expansion.\""
+          }
+        ],
+        "evidence_type": null,
+        "implications_for_service_automation": "This is directly relevant to support automation because it shows how deflection can free people for proactive outreach, onboarding help, and expansion conversations. The case suggests that chatbots and AI agents should be evaluated not only on containment but also on whether they create capacity for revenue-adjacent human work.",
+        "industry": "software / customer support platform",
+        "key_lessons": [
+          "Start with frontline ideas rather than a top-down strategy memo.",
+          "Use a small volunteer pilot before scaling.",
+          "Measure against a control group if you need a business case.",
+          "Train for curiosity and commercial context, not just product knowledge.",
+          "Work with sales, success, product, and marketing instead of treating support as a silo."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How exactly were accounts matched between the engaged group and the comparison group?",
+          "How much labor cost did consultative outreach add relative to revenue lift?",
+          "How much of the result depended on Intercom's own product and customer mix?",
+          "What guardrails prevented proactive outreach from becoming noisy or intrusive?"
+        ],
+        "operational_constraints": "The team still had to handle normal support work, so the pilot stayed small. The article also notes the need for different training, commercial awareness, and a willingness to probe customer context instead of only solving the immediate issue.",
+        "outcome_status": "The approach was reported as successful enough to grow from a volunteer pilot into a broader consultative support function of about 16 teammates across regions. Intercom also says it took over a new sales assist team to drive self-serve trial conversions.",
+        "overview": "Intercom says it used capacity created by Fin and improved support efficiency to build a consultative support function. The team started with ideas from a support town hall, ran a small volunteer pilot, and then expanded the motion across more teams and regions. The work focused on proactive customer engagement for self-serve accounts and tied support activity to adoption and expansion outcomes.",
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "customer-support",
+          "enterprise-ai"
+        ],
+        "related_sources": [
+          "https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/"
+        ],
+        "secondary_tag": "customer-support",
+        "strategic_signals": "Intercom is positioning support as part of growth operations rather than as a standalone cost center. The article also signals that AI-first support can shift human labor toward consultative work instead of pure ticket handling.",
+        "success_or_failure_factors": "It worked because the ideas came from frontline staff, the rollout stayed small until there was evidence, and the team measured against a comparison group. The article also credits close collaboration with sales, success, product, and marketing for finding the right customer touchpoints.",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "technical_approach": "Intercom started with a support town hall to generate campaign ideas, then formed a small volunteer group to trial proactive engagement. It compared engaged accounts against contacted-but-unresponsive accounts over six months and measured feature adoption, Fin usage, resolution outcomes, automation rate, and influenced expansion ARR.",
+        "title": "Intercom's Consultative Support Transformation",
+        "value_level": "high",
+        "what_was_implemented": "A consultative support operating model that combined proactive outreach, customer education, Fin setup help, trial support, optimization help, and escalation into revenue-adjacent conversations."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-08",
+        "confidence": 0.88,
+        "evidence_from_source": "Intercom describes using Fin-driven efficiency to create capacity, then redirecting support into consultative outreach tied to adoption and expansion revenue.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "human-ai-collaboration"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "support-automation-as-operating-model"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "support-automation",
+        "suggested_new_tags": [
+          "support-automation"
+        ],
+        "supporting_data_points": [
+          "Intercom says resolution rates were strong and efficiency was improving.",
+          "The company says engaged accounts grew roughly twice as fast in both usage and expansion.",
+          "The volunteer group reportedly grew to about 16 teammates across regions."
+        ],
+        "supporting_snippet": "\"Support is no longer just there to respond. Now, it drives adoption, influences retention, generates expansion revenue, and, in many cases, acts as the primary touchpoint for self-serve customers.\"",
+        "time_sensitivity": "Actionable as of 2026-05-08; the source presents this as an operating shift already underway inside one company, not a long-range forecast.",
+        "trend_description": "Support teams are shifting from purely reactive ticket handling toward proactive work that can drive adoption, retention, and expansion. The operational change is that automation does not just remove load; it can create capacity for human touchpoints that influence business outcomes. This trend matters when AI systems reduce routine support work enough to let humans take on consultative or revenue-adjacent tasks.",
+        "trend_slug": "support-automation-becomes-a-growth-function",
+        "trend_title": "Support Automation Becomes a Growth Function",
+        "uncertainty_note": "This is based on a single-company internal case study, so it shows a plausible operating pattern rather than industry-wide proof. The article does not provide independent validation or enough methodological detail to know how broadly the pattern transfers.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article describes how Intercom built consultative support, including team setup, experiments, and measurement approach.",
+        "Claims are supported by internal comparison groups and reported business outcomes rather than external analysis.",
+        "The author speaks from direct company experience about a deployed operating model."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "Intercom says it used the time freed up by Fin to make support more proactive. Instead of only answering tickets, the team started reaching out to customers with targeted help, setup guidance, and upgrade conversations. The idea came from the support team itself, then was tested with a small volunteer group before being expanded. Intercom reports that the customers they engaged adopted the product faster and expanded more than a comparison group. The main lesson is simple: support can be used to create business value, not just reduce workload. As of 2026-05-08, the evidence is useful but still based on one company\u2019s internal experiment.",
+      "assessed_as_of": "2026-05-08",
+      "contradictions_and_skepticism": "The headline implies a support function becoming a revenue engine, but the evidence is a single-company internal case study with no independent validation. The article leans on positive outcomes while giving little detail about failure modes, opportunity cost, or cases where proactive outreach may annoy customers. The comparison against accounts that did not respond to outreach is helpful, but it may still understate confounding from customer intent or account quality. The claim that consultative support can be scaled across a 100+ person organization is plausible, but the article does not show the full rollout mechanics or long-term sustainability.",
+      "key_insights": [
+        "A support team can repurpose freed capacity into proactive customer engagement if automation reduces enough reactive load.",
+        "The strongest ideas came from frontline staff in a town hall, not from a top-down strategy memo.",
+        "A small volunteer pilot was used deliberately to prove value before a wider rollout, which made the case easier to defend internally.",
+        "Intercom\u2019s comparison-group setup tied consultative outreach to measurable usage and expansion outcomes instead of relying on anecdotal success.",
+        "The operating model depended on tight collaboration with sales, success, product, marketing, and engineering, not on support acting alone."
+      ],
+      "limitations_and_open_questions": "The report gives limited methodological detail about how accounts were matched, how the comparison group was constructed, and whether selection bias affected the results. It reports roughly two-times-faster growth in engaged accounts, but does not provide full baseline metrics, confidence intervals, or the exact attribution method for expansion ARR. The article also does not quantify the labor cost of consultative outreach relative to the revenue lift, so the economics remain incomplete. It is unclear how much of the outcome depended on Intercom\u2019s own product, customer mix, and internal culture rather than a generally transferable support model. The piece mentions closer work with other teams, but it does not spell out operating guardrails, escalation rules, or how conflicts between support and sales were handled.",
+      "sources": [
+        "https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/"
+      ],
+      "summary": "Intercom describes how it turned spare capacity created by Fin and improved support efficiency into a consultative support model that helps drive adoption, expansion, and revenue. The core shift was organizational rather than technical: the team moved from reacting to tickets toward proactively engaging customers with targeted human touchpoints, especially self-serve accounts that lacked sales or success coverage. The program started with ideas surfaced by the support team itself in a town hall, then ran as a small volunteer experiment instead of a company-wide rollout. Intercom says it validated the approach with a control-group comparison over six months and found engaged accounts grew roughly twice as fast in usage and expansion, while also attributing direct Fin resolutions, higher automation, and influenced expansion ARR to the work. The article emphasizes that consultative support required different training, closer partnerships with sales, success, product, marketing, and engineering, and a willingness to probe customer context rather than only solve the immediate issue. The piece frames this as a durable operating model for Intercom as of 2026-05-08, but the evidence is internal and the reported results come from a single-company case study.",
+      "why_it_matters": "The article is useful because it shows a concrete operating model for turning a support org into a measured growth function rather than a pure cost center. The important part is not the Fin product itself, but the process: create capacity, solicit ideas from the team closest to customers, run a narrow pilot, and compare engaged accounts against a control group. That sequence is durable as a general product-operations pattern because it converts an intuitive claim into something with evidence that leadership can evaluate. The article also gives a useful reminder that consultative work is a different skill set from ticket resolution; it needs curiosity, commercial context, and training. The measurement setup is especially relevant for AI product teams because it links proactive human touchpoints to adoption and expansion metrics instead of vanity activity counts. The downside is that the evidence is entirely internal and the article does not provide full methodological detail, so the business case is stronger than the causal proof. For support and customer-facing operations, the piece suggests that AI-assisted deflection can make human outreach more valuable by freeing staff for higher-leverage conversations. As of 2026-05-08, this is actionable as a design pattern and pilot template, but it should be treated as a single-company case study rather than broad proof."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor-authored blog post about one company program, not a bundle of unrelated items.",
+        "Structured as a narrative case study with lessons learned and metrics, not a roundup or tutorial list.",
+        "Contains implementation details about how Intercom organized and measured consultative support."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Freed capacity can be repurposed into proactive customer engagement rather than only reducing staffing needs.",
+          "Support teams need a different skill mix when they move from reactive resolution to consultative outreach.",
+          "A control group is important if the goal is to show that proactive support drives business outcomes and not just activity."
+        ],
+        "knowledge_summary": "Support automation is not just ticket deflection or cost reduction; it can be used to create capacity that changes the role of support itself. When reactive volume drops, support teams can shift toward proactive engagement, customer education, and revenue-adjacent work. The useful operating pattern is to treat support as part of customer growth infrastructure rather than as a separate queue-handling function. This requires different staffing, training, and success metrics than a traditional support desk.",
+        "match_candidates": [],
+        "operational_insight": "Use automation gains to reassign support capacity into proactive outreach, but only after proving that the new work produces measurable lift against a control group.",
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "organizational-design",
+          "enterprise-workflows"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI support teams because deflection and agent assistance can free humans for higher-leverage customer work instead of simply shrinking headcount. As of 2026-05-08, the durable question is how to redeploy capacity into measurable growth and retention work without creating noisy outreach or weak attribution.",
+        "secondary_tag": "organizational-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"At Intercom, spinning up our consultative support function has changed how we think about what we do entirely. Support is no longer just there to respond. Now, it drives adoption, influences retention, generates expansion revenue, and, in many cases, acts as the primary touchpoint for self-serve customers.\"",
+        "topic_slug": "support-automation-as-operating-model",
+        "topic_title": "Support Automation as Operating Model",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Comparative measurement is more persuasive than isolated before/after claims.",
+          "Tracking business outcomes over a fixed window makes the test easier to interpret.",
+          "The same pattern can be applied to human outreach, agent assistance, or support automation changes."
+        ],
+        "knowledge_summary": "When service teams test new customer motions, a control group helps separate real impact from feel-good anecdotes. The core pattern is to compare engaged accounts against similar accounts that were contacted but did not respond, then measure downstream behavior over a fixed period. This makes it easier to defend a new operating model internally and to decide whether to scale it. It is especially useful when the intervention is human outreach combined with product usage changes, because the causal story is otherwise easy to overstate.",
+        "match_candidates": [],
+        "operational_insight": "If proactive support or customer success is being treated as an experiment, build a comparison group early and use business outcomes, not activity counts, as the success metric.",
+        "primary_tag": "ai-evaluation",
+        "proposed_tags": [
+          "ai-evaluation",
+          "auditability",
+          "support-automation"
+        ],
+        "related_topics": [
+          "support-automation-as-operating-model"
+        ],
+        "relevance_note": "This is durable for AI operations because many service automation teams want to prove that a new workflow improves adoption, containment, or expansion rather than merely changing response volume. As of 2026-05-08, the main value is in the evaluation method: a lightweight control group can be more persuasive than anecdotal success when leadership decides whether to roll out a new support motion.",
+        "secondary_tag": "auditability",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"To find out, we built a simple but rigorous comparison: accounts we engaged with vs. accounts we reached out to, but didn\u2019t hear back from. Over a six month period, we tracked feature adoption, Fin usage, and expansion revenue across both groups.\"",
+        "topic_slug": "control-group-based-service-experimentation",
+        "topic_title": "Control-Group Based Service Experimentation",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "The case suggests that AI automation can create higher-value human work by reducing reactive load. It also suggests that the quality of the operating model matters as much as the underlying automation layer when teams want to convert support into growth.",
+          "business_objective": "To use support capacity to drive product adoption, retention, and expansion revenue rather than only resolving tickets.",
+          "company": "Intercom",
+          "confidence": 0.93,
+          "deployment_context": "The work began inside Intercom's support organization as a limited experiment while the team still handled day-to-day support. It initially focused on self-serve customers and later expanded into partnerships with sales, success, product, marketing, digital, scale, and high-touch success teams.",
+          "evidence_snippets": [
+            {
+              "claim": "Intercom started from excess capacity created by Fin and support efficiency improvements.",
+              "provenance": "stated",
+              "snippet": "\"Resolution rates were strong, efficiency was improving, and for the first time, something new was emerging: capacity.\""
+            },
+            {
+              "claim": "The team moved toward proactive, consultative support and revenue-adjacent work.",
+              "provenance": "stated",
+              "snippet": "\"we started to see how we could take advantage of the unique intersection support sits at \u2013 deeply connected to customer needs and closely aligned to company goals \u2013 to perform a more consultative role and actively drive value for both customers and the business.\""
+            },
+            {
+              "claim": "Intercom used a small volunteer group rather than a company-wide rollout.",
+              "provenance": "stated",
+              "snippet": "\"we got started with a small group of volunteers who dedicated part of their time every week to exploring how we could provide new, more proactive support.\""
+            },
+            {
+              "claim": "Intercom measured the program with a comparison group over six months.",
+              "provenance": "stated",
+              "snippet": "\"we built a simple but rigorous comparison: accounts we engaged with vs. accounts we reached out to, but didn\u2019t hear back from. Over a six month period, we tracked feature adoption, Fin usage, and expansion revenue across both groups.\""
+            },
+            {
+              "claim": "Intercom reported stronger growth for engaged accounts.",
+              "provenance": "stated",
+              "snippet": "\"The result was clear: engaged accounts grew roughly twice as fast in both usage and expansion.\""
+            }
+          ],
+          "evidence_type": null,
+          "implications_for_service_automation": "This is directly relevant to support automation because it shows how deflection can free people for proactive outreach, onboarding help, and expansion conversations. The case suggests that chatbots and AI agents should be evaluated not only on containment but also on whether they create capacity for revenue-adjacent human work.",
+          "industry": "software / customer support platform",
+          "key_lessons": [
+            "Start with frontline ideas rather than a top-down strategy memo.",
+            "Use a small volunteer pilot before scaling.",
+            "Measure against a control group if you need a business case.",
+            "Train for curiosity and commercial context, not just product knowledge.",
+            "Work with sales, success, product, and marketing instead of treating support as a silo."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How exactly were accounts matched between the engaged group and the comparison group?",
+            "How much labor cost did consultative outreach add relative to revenue lift?",
+            "How much of the result depended on Intercom's own product and customer mix?",
+            "What guardrails prevented proactive outreach from becoming noisy or intrusive?"
+          ],
+          "operational_constraints": "The team still had to handle normal support work, so the pilot stayed small. The article also notes the need for different training, commercial awareness, and a willingness to probe customer context instead of only solving the immediate issue.",
+          "outcome_status": "The approach was reported as successful enough to grow from a volunteer pilot into a broader consultative support function of about 16 teammates across regions. Intercom also says it took over a new sales assist team to drive self-serve trial conversions.",
+          "overview": "Intercom says it used capacity created by Fin and improved support efficiency to build a consultative support function. The team started with ideas from a support town hall, ran a small volunteer pilot, and then expanded the motion across more teams and regions. The work focused on proactive customer engagement for self-serve accounts and tied support activity to adoption and expansion outcomes.",
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "customer-support",
+            "enterprise-ai"
+          ],
+          "related_sources": [
+            "https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/"
+          ],
+          "secondary_tag": "customer-support",
+          "strategic_signals": "Intercom is positioning support as part of growth operations rather than as a standalone cost center. The article also signals that AI-first support can shift human labor toward consultative work instead of pure ticket handling.",
+          "success_or_failure_factors": "It worked because the ideas came from frontline staff, the rollout stayed small until there was evidence, and the team measured against a comparison group. The article also credits close collaboration with sales, success, product, and marketing for finding the right customer touchpoints.",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "technical_approach": "Intercom started with a support town hall to generate campaign ideas, then formed a small volunteer group to trial proactive engagement. It compared engaged accounts against contacted-but-unresponsive accounts over six months and measured feature adoption, Fin usage, resolution outcomes, automation rate, and influenced expansion ARR.",
+          "title": "Intercom's Consultative Support Transformation",
+          "value_level": "high",
+          "what_was_implemented": "A consultative support operating model that combined proactive outreach, customer education, Fin setup help, trial support, optimization help, and escalation into revenue-adjacent conversations."
+        },
+        "notes": null,
+        "proposal_id": "905227ad-9c80-4d75-a96a-59c9234a970d",
+        "proposal_status": "approved",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "company": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Start with frontline ideas rather than a top-down strategy memo.",
+              "Use a small volunteer pilot before scaling.",
+              "Measure against a control group if you need a business case.",
+              "Train for curiosity and commercial context, not just product knowledge.",
+              "Work with sales, success, product, and marketing instead of treating support as a silo."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How exactly were accounts matched between the engaged group and the comparison group?",
+              "How much labor cost did consultative outreach add relative to revenue lift?",
+              "How much of the result depended on Intercom's own product and customer mix?",
+              "What guardrails prevented proactive outreach from becoming noisy or intrusive?"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "customer-support",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-08",
+          "confidence": 0.88,
+          "evidence_from_source": "Intercom describes using Fin-driven efficiency to create capacity, then redirecting support into consultative outreach tied to adoption and expansion revenue.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "human-ai-collaboration"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "support-automation-as-operating-model"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "support-automation",
+          "suggested_new_tags": [
+            "support-automation"
+          ],
+          "supporting_data_points": [
+            "Intercom says resolution rates were strong and efficiency was improving.",
+            "The company says engaged accounts grew roughly twice as fast in both usage and expansion.",
+            "The volunteer group reportedly grew to about 16 teammates across regions."
+          ],
+          "supporting_snippet": "\"Support is no longer just there to respond. Now, it drives adoption, influences retention, generates expansion revenue, and, in many cases, acts as the primary touchpoint for self-serve customers.\"",
+          "time_sensitivity": "Actionable as of 2026-05-08; the source presents this as an operating shift already underway inside one company, not a long-range forecast.",
+          "trend_description": "Support teams are shifting from purely reactive ticket handling toward proactive work that can drive adoption, retention, and expansion. The operational change is that automation does not just remove load; it can create capacity for human touchpoints that influence business outcomes. This trend matters when AI systems reduce routine support work enough to let humans take on consultative or revenue-adjacent tasks.",
+          "trend_slug": "support-automation-becomes-a-growth-function",
+          "trend_title": "Support Automation Becomes a Growth Function",
+          "uncertainty_note": "This is based on a single-company internal case study, so it shows a plausible operating pattern rather than industry-wide proof. The article does not provide independent validation or enough methodological detail to know how broadly the pattern transfers.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e5b60bea-9518-4ea1-81ce-e6f66a55cb35",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "support-automation-as-operating-model"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Intercom says resolution rates were strong and efficiency was improving.",
+              "The company says engaged accounts grew roughly twice as fast in both usage and expansion.",
+              "The volunteer group reportedly grew to about 16 teammates across regions."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "human-ai-collaboration"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article describes how Intercom built consultative support, including team setup, experiments, and measurement approach.",
+          "Claims are supported by internal comparison groups and reported business outcomes rather than external analysis.",
+          "The author speaks from direct company experience about a deployed operating model."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A support team can repurpose freed capacity into proactive customer engagement if automation reduces enough reactive load.",
+          "The strongest ideas came from frontline staff in a town hall, not from a top-down strategy memo.",
+          "A small volunteer pilot was used deliberately to prove value before a wider rollout, which made the case easier to defend internally.",
+          "Intercom\u2019s comparison-group setup tied consultative outreach to measurable usage and expansion outcomes instead of relying on anecdotal success.",
+          "The operating model depended on tight collaboration with sales, success, product, marketing, and engineering, not on support acting alone."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor-authored blog post about one company program, not a bundle of unrelated items.",
+          "Structured as a narrative case study with lessons learned and metrics, not a roundup or tutorial list.",
+          "Contains implementation details about how Intercom organized and measured consultative support."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Freed capacity can be repurposed into proactive customer engagement rather than only reducing staffing needs.",
+            "Support teams need a different skill mix when they move from reactive resolution to consultative outreach.",
+            "A control group is important if the goal is to show that proactive support drives business outcomes and not just activity."
+          ],
+          "knowledge_summary": "Support automation is not just ticket deflection or cost reduction; it can be used to create capacity that changes the role of support itself. When reactive volume drops, support teams can shift toward proactive engagement, customer education, and revenue-adjacent work. The useful operating pattern is to treat support as part of customer growth infrastructure rather than as a separate queue-handling function. This requires different staffing, training, and success metrics than a traditional support desk.",
+          "match_candidates": [],
+          "operational_insight": "Use automation gains to reassign support capacity into proactive outreach, but only after proving that the new work produces measurable lift against a control group.",
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "organizational-design",
+            "enterprise-workflows"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI support teams because deflection and agent assistance can free humans for higher-leverage customer work instead of simply shrinking headcount. As of 2026-05-08, the durable question is how to redeploy capacity into measurable growth and retention work without creating noisy outreach or weak attribution.",
+          "secondary_tag": "organizational-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"At Intercom, spinning up our consultative support function has changed how we think about what we do entirely. Support is no longer just there to respond. Now, it drives adoption, influences retention, generates expansion revenue, and, in many cases, acts as the primary touchpoint for self-serve customers.\"",
+          "topic_slug": "support-automation-as-operating-model",
+          "topic_title": "Support Automation as Operating Model",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "d464ce09-4b61-4031-b95c-74b71a72b299",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Freed capacity can be repurposed into proactive customer engagement rather than only reducing staffing needs.",
+              "Support teams need a different skill mix when they move from reactive resolution to consultative outreach.",
+              "A control group is important if the goal is to show that proactive support drives business outcomes and not just activity."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "organizational-design",
+            "enterprise-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Comparative measurement is more persuasive than isolated before/after claims.",
+            "Tracking business outcomes over a fixed window makes the test easier to interpret.",
+            "The same pattern can be applied to human outreach, agent assistance, or support automation changes."
+          ],
+          "knowledge_summary": "When service teams test new customer motions, a control group helps separate real impact from feel-good anecdotes. The core pattern is to compare engaged accounts against similar accounts that were contacted but did not respond, then measure downstream behavior over a fixed period. This makes it easier to defend a new operating model internally and to decide whether to scale it. It is especially useful when the intervention is human outreach combined with product usage changes, because the causal story is otherwise easy to overstate.",
+          "match_candidates": [],
+          "operational_insight": "If proactive support or customer success is being treated as an experiment, build a comparison group early and use business outcomes, not activity counts, as the success metric.",
+          "primary_tag": "ai-evaluation",
+          "proposed_tags": [
+            "ai-evaluation",
+            "auditability",
+            "support-automation"
+          ],
+          "related_topics": [
+            "support-automation-as-operating-model"
+          ],
+          "relevance_note": "This is durable for AI operations because many service automation teams want to prove that a new workflow improves adoption, containment, or expansion rather than merely changing response volume. As of 2026-05-08, the main value is in the evaluation method: a lightweight control group can be more persuasive than anecdotal success when leadership decides whether to roll out a new support motion.",
+          "secondary_tag": "auditability",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"To find out, we built a simple but rigorous comparison: accounts we engaged with vs. accounts we reached out to, but didn\u2019t hear back from. Over a six month period, we tracked feature adoption, Fin usage, and expansion revenue across both groups.\"",
+          "topic_slug": "control-group-based-service-experimentation",
+          "topic_title": "Control-Group Based Service Experimentation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "0bee289a-2469-4a3f-9ae6-691b3c323e42",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Comparative measurement is more persuasive than isolated before/after claims.",
+              "Tracking business outcomes over a fixed window makes the test easier to interpret.",
+              "The same pattern can be applied to human outreach, agent assistance, or support automation changes."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "support-automation-as-operating-model"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evaluation",
+            "auditability",
+            "support-automation"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 162.3,
+    "review_finished_at": "2026-06-05T16:06:37.259897+00:00",
+    "review_started_at": "2026-06-05T16:03:55+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T16:06:37+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Franka Martinovic",
+    "canonical_url": "https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/",
+    "content_sha256": "f413ec6733e83e4ca9014377c3efd7246ccebc621c9c0e9cfce2caf25485b87f",
+    "publication": "Intercom",
+    "published_date": "2026-05-08",
+    "raw_html_rel_path": "raw/readwise/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve.html",
+    "raw_md_rel_path": "raw/readwise/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve.md",
+    "source_id": "how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve",
+    "title": "How we turned support into a revenue engine at Intercom"
+  }
+}

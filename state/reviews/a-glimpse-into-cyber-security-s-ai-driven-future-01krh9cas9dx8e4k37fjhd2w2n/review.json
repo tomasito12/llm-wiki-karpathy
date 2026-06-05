@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T16:01:42+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnRH7uuVnUBMl5sF3jyf11yWY4fIN",
+          "token_usage": {
+            "completion_tokens": 238,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5377,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5615
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnRHB4kCAInuz3J0Mc1OabomAaEcq",
+          "token_usage": {
+            "completion_tokens": 1080,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5029,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6109
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnRHB4kCAInuz3J0Mc1OabomAaEcq",
+    "token_usage": {
+      "completion_tokens": 1318,
+      "prompt_tokens": 10406,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 11724
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "Single narrative news article with a narrow conference case study; it contains some durable observations about AI-assisted cyber defense, but no broad wiki-worthy framework or repeatable procedural knowledge at this stage.",
+      "skip_recommended": true,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article centers on Black Hat Asia's NOC and how it uses AI tools to defend the conference network.",
+        "Claims are grounded in concrete operational anecdotes from Neil Wyler and Bart Stump about what the NOC observed and built.",
+        "It includes expert commentary and examples, but the dominant support is a real-world deployment case rather than benchmarks or research results."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about how one unusually hard network security team is using AI to defend itself. Black Hat\u2019s conference network is built fresh each year, and hackers at the event are supposed to attack it, so it is a stressful real-world test. The team uses AI to sort through huge amounts of noisy traffic, spot compromised devices, and help staff query security data faster. It is interesting because the article shows AI as a practical defender, not just an attacker\u2019s tool. The main takeaway is simple: when attacks are fast and the network is crowded, AI can help humans notice what matters.",
+      "assessed_as_of": "2026-04-29",
+      "contradictions_and_skepticism": "The article presents AI as both a defensive advantage and a source of turbulence, but it does not resolve the tension with hard evidence. Claims such as a model finding severe vulnerabilities in every major operating system and browser are quoted as context, not independently verified in the article. The idea that AI can quickly catch hidden malware is credible in principle, yet the piece provides only anecdotal confirmations rather than measured detection quality. The strongest skepticism is that a conference NOC with exceptional staffing and visibility may not generalize to ordinary security teams with fewer sensors and less discipline.",
+      "key_insights": [
+        "Black Hat\u2019s conference network is a stress test because defenders must distinguish real attacks from legitimate hacking coursework in live traffic.",
+        "The team reports that automated attacks have compressed response time from days to hours or minutes, which makes filtering and triage the main bottlenecks.",
+        "A plain-English chatbot can reduce onboarding friction for freelance operators by turning natural-language questions into database code.",
+        "Machine learning on encrypted beacon timing can surface compromised devices even when payloads are hidden.",
+        "The article\u2019s most cautious practical claim is that AI may reveal old vulnerabilities and improve defense, but the transition period is likely to be noisy and disruptive."
+      ],
+      "limitations_and_open_questions": "This is a single-site case study, so it does not provide benchmark numbers, false-positive rates, cost data, or comparisons against non-AI baselines. The article does not specify how the chatbot, beacon detector, or profiling agent were trained, evaluated, or governed, so it is hard to judge robustness, drift, or operator trust. It also leaves open how well these tools would transfer from a highly instrumented conference network to a typical enterprise environment. The warning that more breaches will occur as firms feed sensitive data into AI systems is plausible within the article\u2019s framing, but it is not quantified here. The long-term equilibrium the interviewees expect is speculative and not validated in the piece.",
+      "sources": [
+        "https://www.economist.com/science-and-technology/2026/04/29/a-glimpse-into-cyber-securitys-ai-driven-future"
+      ],
+      "summary": "The article uses Black Hat Asia\u2019s network operations centre as a concrete case study for AI-assisted cyber defense. Black Hat is an unusual testbed because its organisers build and defend the conference network from scratch while thousands of attendees are explicitly trying to break it. The piece says the NOC has used AI for years against both human attackers and bots, but the pressure has risen because automated attacks have become faster and more capable, shrinking the response window from days to hours or minutes. To cope, the team has built several tools: a chatbot that translates plain English into database code for faster operator onboarding, a machine-learning system that spots compromised devices by their encrypted beaconing patterns, and an AI agent that profiles devices and correlates network clues with public information and registration records. The article treats these tools as practical defensive aids, not magic: they help the team detect malware, trace suspicious activity, and confirm ownership of infected devices in a very noisy environment. It also notes that the NOC has observed recurring patterns such as hacked devices among some Taiwanese participants and attacks that appear to originate from abroad. The broader claim is cautious: AI can uncover long-hidden vulnerabilities and improve defense, but the next two years after April 29, 2026 are expected to be turbulent as more flaws are found, more breaches happen, and more insecure code is written.",
+      "why_it_matters": "The article matters because it gives a concrete, operational example of AI in defensive security rather than a vague claim about AI helping cyber defense. The Black Hat NOC is a harsh environment: the team has to keep a network running while thousands of skilled attendees actively probe it, which makes its tooling choices more informative than a normal enterprise demo. The article\u2019s most durable insight is that AI is being used in three distinct defensive roles here: accelerating operator access to security data, detecting compromised endpoints from subtle traffic patterns, and correlating on-network behavior with external identity clues. That mix is useful because it shows where AI fits best in security operations: high-volume pattern recognition and fast triage, not autonomous decision-making. The piece also grounds the discussion in concrete failure modes, such as malware beaconing, hijacked consumer devices, and attacks hidden inside legitimate hacker traffic. The evidence is still a single conference deployment, so it is stronger as an example of what is plausible than as proof of broad performance gains. As of 2026-04-29, it is actionable as a design reference for defenders building noisy-network triage systems, but not as evidence that AI has solved cyber defense."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "A single coherent magazine article with one main argument, not a bundled digest or listicle.",
+        "Written as reported narrative with named sources and quoted experts, not a Q&A or tutorial.",
+        "No primary structure of numbered tools, practices, or separate roundup items."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article centers on Black Hat Asia's NOC and how it uses AI tools to defend the conference network.",
+          "Claims are grounded in concrete operational anecdotes from Neil Wyler and Bart Stump about what the NOC observed and built.",
+          "It includes expert commentary and examples, but the dominant support is a real-world deployment case rather than benchmarks or research results."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Black Hat\u2019s conference network is a stress test because defenders must distinguish real attacks from legitimate hacking coursework in live traffic.",
+          "The team reports that automated attacks have compressed response time from days to hours or minutes, which makes filtering and triage the main bottlenecks.",
+          "A plain-English chatbot can reduce onboarding friction for freelance operators by turning natural-language questions into database code.",
+          "Machine learning on encrypted beacon timing can surface compromised devices even when payloads are hidden.",
+          "The article\u2019s most cautious practical claim is that AI may reveal old vulnerabilities and improve defense, but the transition period is likely to be noisy and disruptive."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/science-and-technology/2026/04/29/a-glimpse-into-cyber-securitys-ai-driven-future"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "A single coherent magazine article with one main argument, not a bundled digest or listicle.",
+          "Written as reported narrative with named sources and quoted experts, not a Q&A or tutorial.",
+          "No primary structure of numbered tools, practices, or separate roundup items."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 29.6,
+    "review_finished_at": "2026-06-05T16:03:18.621287+00:00",
+    "review_started_at": "2026-06-05T16:02:49+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T16:03:18+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/science-and-technology/2026/04/29/a-glimpse-into-cyber-securitys-ai-driven-future",
+    "content_sha256": "0f209f9f3f907646a6d21ce94c634e8ac81021ed8a318cc78c6e56833c309c7e",
+    "publication": "Economist",
+    "published_date": "2026-04-29",
+    "raw_html_rel_path": "raw/readwise/a-glimpse-into-cyber-security-s-ai-driven-future-01krh9cas9dx8e4k37fjhd2w2n.html",
+    "raw_md_rel_path": "raw/readwise/a-glimpse-into-cyber-security-s-ai-driven-future-01krh9cas9dx8e4k37fjhd2w2n.md",
+    "source_id": "a-glimpse-into-cyber-security-s-ai-driven-future-01krh9cas9dx8e4k37fjhd2w2n",
+    "title": "A glimpse into cyber-security\u2019s AI-driven future"
+  }
+}
