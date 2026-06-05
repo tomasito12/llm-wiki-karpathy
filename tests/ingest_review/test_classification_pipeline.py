@@ -18,6 +18,7 @@ from src.ingest_review.classification_prompts import (
     build_cached_classification_prefix,
     build_entities_prompt_suffix,
     build_prompt_cache_key,
+    build_summary_prompt_suffix,
     build_triage_prompt_suffix,
 )
 from src.ingest_review.extract import load_readwise_pair
@@ -64,6 +65,20 @@ def test_build_cached_classification_prefix_stable(tmp_path: Path) -> None:
 def test_build_prompt_cache_key_includes_version_and_source() -> None:
     key = build_prompt_cache_key(prompt_version="39", source_id="src-1")
     assert key == "ingest-classify:39:src-1"
+
+
+def test_build_summary_prompt_suffix_populates_chapters_when_skip_recommended() -> None:
+    """Skip gate defers entities only; summary stage must still fill source chapters."""
+    triage = TriageStageOutput(
+        extraction_meta=ExtractionMeta(
+            skip_recommended=True,
+            skip_reason="opinion piece",
+        ),
+        source_type_detection=SourceTypeDetection(detected_source_type="standard_article"),
+    )
+    suffix = build_summary_prompt_suffix(triage, prompt_version="39")
+    assert "Populate every source_summary chapter" in suffix
+    assert "minimal empty chapter" not in suffix
 
 
 def test_merge_stage_outputs_produces_full_classification() -> None:

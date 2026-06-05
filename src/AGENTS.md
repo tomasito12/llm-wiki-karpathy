@@ -65,7 +65,7 @@ Run these after substantive code changes:
   - Feedback events (for a future learning loop): `state/review_feedback.sqlite` — **gitignored**; append-only rows when you click **Save review artifact**.
 - **Tag allowlists** (see [`docs/tagging-ontology.md`](../docs/tagging-ontology.md)): `config/review_tags_{topics,trends,glossary,impl_study,tools,models}.yaml`; how-tos reuse topics. **Product types** (separate from retrieval tags): `config/review_tool_types.yaml`, `config/review_model_types.yaml`. Migrate legacy slugs: `hatch run tag-migrate`.
 - This stage **does not** write `wiki/sources/*.md`; it only prepares human-reviewed classification. Downstream wiki ingest still re-reads HTML and may use separate LLM prompts.
-- **Classification pipeline** (default): three LLM calls per source — triage → `source_summary` → route-specific entity extraction (`src/ingest_review/classification_pipeline.py`). Set `INGEST_CLASSIFICATION_PIPELINE=monolithic` to use the legacy single-call path. Prompt version `39` records per-stage `token_usage` / `cached_tokens` under `analysis_meta.classification_pipeline`.
+- **Classification pipeline** (default): three LLM calls per source — triage → `source_summary` → route-specific entity extraction (`src/ingest_review/classification_pipeline.py`). Set `INGEST_CLASSIFICATION_PIPELINE=monolithic` to use the legacy single-call path. Prompt version `41` records per-stage `token_usage` / `cached_tokens` under `analysis_meta.classification_pipeline`.
 
 ## Readwise Reader export
 

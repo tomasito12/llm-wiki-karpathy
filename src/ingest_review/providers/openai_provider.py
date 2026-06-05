@@ -124,9 +124,12 @@ Audience is an advanced AI practitioner focused on conversational AI, chatbots, 
 and service automation—not a research paper audience. Avoid LinkedIn tone, generic AI hype, \
 buzzword stacking, and exaggerated claims. Prefer clarity and usefulness over completeness.
 
-For accessible_overview only ("Easy read"): write for a curious newcomer to AI—plain \
-everyday language, no abbreviations (spell out terms), gentle pacing, usually 7–10 sentences. \
-Expand and explain; do not compress like the practitioner summary."""
+For accessible_overview only ("Easy read"): orientation layer only—not a second summary. \
+Target 4–7 sentences (~80–160 words), usually less than half the length of summary. \
+Skimmable in under 30 seconds: core idea, why it is interesting, basic mechanism in plain \
+language. Prioritize intuition over completeness; sacrifice nuance deliberately. \
+Conversational but precise; short sentences; no bullet points. Do NOT rewrite the whole \
+article, mirror summary length, or stack jargon and abstractions."""
 
 
 TEMPORAL_ANCHORING_RULE = """\
@@ -484,9 +487,9 @@ Do **not** mix topic-style noun phrases with trend-style directional description
 **GOOD topics:** Agent Runtime Architecture; Visual Specifications for AI Systems; \
 Reward Signal Generalization; Behavioral Auditing
 
-**GOOD trends:** Runtime Infrastructure Becomes the Core Agent Differentiator; \
-AI Evaluation Shifts Toward Behavioral Auditing; Efficiency Improvements Unlock New AI \
-Behaviors; AI Shifts Software Scarcity from Production to Distribution
+**GOOD trends:** AI Products Shift from Models to Systems; Verification Loops Become Central \
+to AI Workflows; AI Governance Shifts from Principles to Verification; System Design Becomes \
+More Important Than Model Choice
 
 ### Problems to fix (weak patterns)
 
@@ -494,9 +497,12 @@ Avoid titles that: overcompress ideas; hide causal insight; stack nouns without 
 sound academic not operational; require heavy unpacking; center transient tooling; \
 describe mechanisms without why they matter.
 
-**Weak examples:** Efficiency as Capability; Software Engineering to Distribution \
-Reallocation; Machine-Readable Intent for Resilience Testing; Image Generation for Code \
-Generation Workflows; Orchestration Surface Layering Dynamics
+**Weak trend examples:** Efficiency as Capability; Distribution Reallocation; Verifiable \
+Guardrails; Strategic Runtime Surfaces; Models Become Components in Larger Systems; \
+Machine-Readable Intent for Resilience Testing
+
+**Weak topic examples:** Image Generation for Code Generation Workflows; Orchestration Surface \
+Layering Dynamics
 
 ### Desired characteristics
 
@@ -517,22 +523,59 @@ matters; generalize beyond one vendor/product; survive ecosystem evolution 3–5
 
 ### Trend titles (``trend_title``)
 
-- Express **change over time**, emerging importance, shifting constraints, operational \
-consequences — not timeless domain labels
-- Prefer directional/causal structures with clear verbs:
-  - X becomes Y; X shifts toward Y; X unlocks Y; X requires Y
-  - X depends increasingly on Y; X expands into Y; X moves from Y to Z
-- Broad enough to accumulate evidence across sources; **no** headline/vendor campaign labels \
-in ``trend_slug``/``trend_title``
+Trend titles describe **directional industry shifts**: changing bottlenecks, emerging \
+operational patterns, evolving system architectures, shifting sources of leverage — not \
+timeless domain labels (those belong in ``topic_title``).
 
-**Good trend patterns:** Efficiency Gains Become Product Capabilities; AI Evaluation Shifts \
-Toward Behavioral Auditing; Runtime Architecture Determines Agent Reliability; Distribution \
-Becomes the Bottleneck
+A strong ``trend_title`` must clearly communicate:
+- **what is changing**
+- **what it is changing toward**
+- **why the shift matters**
 
-### Abstraction over implementation
+Prefer **concrete structural insight** over abstract phrasing.
+
+**Good:**
+- AI Products Shift from Models to Systems
+- Verification Loops Become Central to AI Workflows
+- AI Governance Shifts from Principles to Verification
+- System Design Becomes More Important Than Model Choice
+
+**Bad (reject):**
+- Efficiency as Capability
+- Distribution Reallocation
+- Verifiable Guardrails
+- Strategic Runtime Surfaces
+
+**Preferred structures:**
+- X becomes Y
+- X shifts toward Y
+- X becomes more important than Y
+- X depends increasingly on Y
+- X unlocks Y
+- X moves from Y to Z
+
+Trend titles should: sound natural aloud; expose the systems transition immediately; imply \
+operational consequences; remain understandable without reading the summary. Broad enough to \
+accumulate evidence across sources; **no** headline/vendor campaign labels in \
+``trend_slug``/``trend_title``.
+
+**Avoid:** abstract noun stacks; compressed philosophical phrasing; taxonomy-like wording; \
+article-specific framing; implementation-specific details; exaggerated or absolutist claims; \
+topic-style noun stacks without directional verbs.
+
+**Weak → stronger:**
+- Models Become Components in Larger Systems → AI Products Shift from Models to Systems
+- Machine-Readable Intent for Resilience Testing → Resilience Testing Becomes Declarative
 
 Name the **systems transition**, not the temporary stack. If a title would sound wrong in \
 3–5 years because a tool changed, raise abstraction or route to topics instead of trends.
+
+**Trend title generation workflow** (before output in JSON):
+1. Identify the underlying **systems transition**
+2. Identify the **operational consequence**
+3. Internally draft **3–5** candidates; select the title that is most natural, most concrete, \
+most durable, least abstract, and most structurally insightful
+4. Output **only** the final ``trend_title`` and matching ``trend_slug`` — no alternatives
 
 ### Anti-patterns (reject before output)
 
@@ -552,14 +595,14 @@ Name the **systems transition**, not the temporary stack. If a title would sound
 
 ### Title selection workflow (classification JSON)
 
-Before finalizing each ``topic_title`` or ``trend_title``:
-1. Classify the knowledge unit: Topic | Trend | (if mis-routed) Operational Pattern / \
-Conceptual Mechanism / Organizational Pattern / Economic Shift — route to the correct entity \
-per ABSTRACTION_SELECTION_RUBRIC
-2. Internally draft **3–5** candidate titles (include one most durable/future-proof option \
-and one concise option); compare tradeoffs
-3. Output **only the single best** title in JSON (plus matching slug). Do not emit \
-alternatives in the schema unless a reviewer regen step explicitly requests them.
+Before finalizing each ``topic_title``: classify the knowledge unit per \
+ABSTRACTION_SELECTION_RUBRIC; internally draft **3–5** candidates; output **only** the single \
+best title in JSON (plus matching slug).
+
+For ``trend_title``, follow the **Trend title generation workflow** above (systems transition, \
+operational consequence, 3–5 internal candidates, output only final title + slug).
+
+Do not emit alternatives in the schema unless a reviewer regen step explicitly requests them.
 
 Favor clarity over cleverness."""
 
@@ -650,16 +693,31 @@ Fill every field below from the article. Empty string or [] only when truly abse
 
 **summary** (string): Usually 4–10 sentences; adapt to complexity. Core ideas and arguments only; \
 no chronological retelling; no filler openers; explain concepts plainly; practical understanding \
-over technical precision. Audience: advanced AI practitioner.
+over technical precision. Audience: advanced AI practitioner. Preserve nuance, structure, and \
+faithful compression—substantially longer and more complete than **accessible_overview**; do not \
+duplicate Easy read at greater length.
 
-**accessible_overview** (string — "Easy read"): Usually 7–10 sentences; shorter only if the \
-article has little substance. Audience: intelligent reader new to AI—interested but not technical. \
-Use everyday language; spell out terms instead of abbreviations (e.g. "large language model" not \
-"LLM"; explain "retrieval-augmented generation" in full if needed). Cover what the article is \
-about, why people care, and the main story in order—not a compressed expert brief. Avoid jargon \
-stacks, acronym dumps, benchmark numbers without explanation, and telegraphic wiki-style bullets. \
-Write after mentally drafting summary: expand and explain; do NOT copy summary verbatim or make \
-this section shorter than summary.
+**accessible_overview** (string — "Easy read"): **Orientation layer only** — NOT a second \
+summary, NOT a simplified rewrite of the entire article, NOT a complete explanation. \
+Target **4–7 sentences**, roughly **80–160 words**, usually **less than half** the length of \
+**summary** (skim in under 30 seconds).
+
+Purpose: fast mental model for an intelligent newcomer. Answer only: What is this about? \
+Why is it interesting? What is the basic mechanism or insight?
+
+**Do:** concrete wording, intuitive framing, direct explanation, short sentences, natural \
+conversational tone that stays precise; spell out terms instead of abbreviations when needed \
+for clarity (rarely more than one technical term per sentence).
+
+**Do NOT:** preserve every nuance; list many details; operational or implementation nuance \
+unless essential to the core idea; caveats unless central; bullet points; nested clauses; \
+long enumerations; dense abstractions; ontology language; academic phrasing; exhaustive detail.
+
+Compression: keep only the central mechanism and core practical implication; drop edge cases \
+and most implementation detail. Must feel like "here is the core idea in plain English" — NOT \
+"here is the article compressed slightly." Must **not** read redundant with **summary**; \
+do NOT copy or lightly paraphrase **summary** at similar length. If overlap would occur, \
+shorten and simplify further.
 
 **key_insights** (array of strings, at most 5): Only insights that are actionable, strategically \
 important, surprising, or practically useful—and non-obvious. One concise sentence per item. \
@@ -1073,10 +1131,10 @@ a strong page match (PAGE_MATCHING_RUBRIC).
 Each object MUST include:
 - trend_slug: stable kebab-case wiki page id (e.g. inference-cost-collapse, NOT \
 GPT-4o-price-cut or headline labels)
-- trend_title: directional **industry-change** page title per TITLE_GENERATION_RUBRIC \
-(Trend patterns). Must express movement, causality, or shifting constraints with clear \
-verbs — **not** a topic-style noun stack. Broad enough to accumulate evidence across sources. \
-Run the evaluation checklist before output.
+- trend_title: per TITLE_GENERATION_RUBRIC (Trend titles). Concrete structural insight: what \
+is changing, toward what, and why it matters. Natural aloud; operational consequences implied; \
+not abstract noun stacks or taxonomy-like phrasing. Follow the trend title generation workflow \
+before output.
 - trend_description: standalone, source-agnostic description of the pattern
 - evidence_from_source: what this article specifically contributes as evidence
 - time_sensitivity: explicitly state how time-bound this observation is
@@ -1442,11 +1500,15 @@ def _section_regen_rubric(section_key: str) -> str:
     fixed = {
         "summary": (
             "Usually 4–10 sentences; adapt to complexity. Core ideas only; no chronological "
-            "retelling; no filler; practical clarity for an advanced practitioner."
+            "retelling; no filler; practical clarity for an advanced practitioner. Substantially "
+            "longer and more complete than accessible_overview."
         ),
         "accessible_overview": (
-            "Usually 7–10 sentences (shorter if thin source). Plain language for an AI newcomer; "
-            "no abbreviations; explain the article story gently—not a compressed expert summary."
+            "Orientation layer only—not a second summary. 4–7 sentences (~80–160 words), "
+            "usually less than half the length of summary. Core idea, why interesting, basic "
+            "mechanism in plain language; intuition over completeness. No bullets, no dense "
+            "jargon, no implementation detail unless essential. Must not read redundant with "
+            "summary."
         ),
         "key_insights": (
             "Array of at most 5 strings: actionable, strategically important, surprising, "

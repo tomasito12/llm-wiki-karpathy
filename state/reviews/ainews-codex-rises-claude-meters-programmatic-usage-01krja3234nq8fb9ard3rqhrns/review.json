@@ -1,0 +1,584 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-02T20:34:35+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DmQ6TQEiqRwPwUiscdf4GdZyCVNGk",
+          "token_usage": {
+            "completion_tokens": 181,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6726,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6907
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DmQ6Vy8zz74f4DS6k3SmwuWUqsKBs",
+          "token_usage": {
+            "completion_tokens": 1245,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6138,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7383
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DmQ6flP5z2vh7erfa7gjqB0UHwkOt",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 1026,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 17821,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 18847
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DmQ6flP5z2vh7erfa7gjqB0UHwkOt",
+    "token_usage": {
+      "completion_tokens": 2452,
+      "prompt_tokens": 30685,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 33137
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-14",
+        "confidence": 0.9,
+        "evidence_from_source": "The roundup ties Anthropic's Claude pricing change, OpenAI's Codex enterprise promo, and the general shift toward 'subsidy + workflow control + harness compatibility' into one competitive pattern.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "orchestration-layer-growth",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "agent-tooling-shifts-from-prompting-to-workflow-architecture",
+          "harness-design-becomes-more-important-for-agent-reliability"
+        ],
+        "secondary_tag": "orchestration-layer-growth",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Claude paid plans now receive monthly API credits equal to the subscription amount.",
+          "OpenAI offered two months of free Codex usage for enterprise customers switching in the next 30 days.",
+          "Anthropic increased Claude Code weekly limits by 50% through July 13."
+        ],
+        "supporting_snippet": "The competitive dynamic now looks less like \u201cbest model wins\u201d and more like subsidy + workflow control + harness compatibility.",
+        "time_sensitivity": "Actionable as of 2026-05-14; this observation is tied to a pricing and distribution moment that can change with later plan updates.",
+        "trend_description": "For coding agents, vendors are competing on more than model quality. Subscription metering, API-credit allocation, and control over the execution harness shape who can use which workflows economically and under what constraints.",
+        "trend_slug": "pricing-and-harness-control-become-core-agent-product-levers",
+        "trend_title": "Pricing and harness control are becoming core agent product levers",
+        "uncertainty_note": "The article is explicit that day-to-day swings should not be overread; this is a snapshot of one competitive phase, not proof of a durable winner.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-05-14",
+        "evidence_snippets": [
+          "Cline open-sourced a rebuilt Cline SDK and refreshed CLI with a TUI, agent teams, scheduled jobs, and connectors, positioning its harness as a reusable substrate for custom coding agents.",
+          "LangChain\u2019s OSS updates added streaming typed projections, checkpoint storage, code interpreter, harness profiles, and model-specific tuning, all aimed at richer agent event streams than plain tokens.",
+          "The architectural message across these releases is that production agents increasingly need durable execution, inspectable intermediate state, and tool-native UI surfaces rather than stateless prompt/response loops."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Cline",
+          "LangChain",
+          "Notion",
+          "Cursor",
+          "VS Code",
+          "Duet Agent",
+          "Tabracadabra"
+        ],
+        "operational_relevance": "Build for long-running state, checkpointing, and inspectable intermediate outputs rather than only prompt/response chat. This affects orchestration, debugging, and failure recovery for agent systems.",
+        "primary_tag": "execution-oriented-agents",
+        "proposed_tags": [
+          "execution-oriented-agents",
+          "persistent-agents",
+          "inspectability",
+          "orchestration-layer-growth"
+        ],
+        "secondary_tag": "persistent-agents",
+        "service_automation_relevance": "Relevant for support automation because durable state and reviewable steps make multi-turn workflows, escalations, and audit trails easier to manage.",
+        "signal_strength": "high",
+        "signal_title": "Agent products are converging on durable execution and inspectable state",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "trends/",
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Multiple launches in the roundup point to the same operational shape: long-running jobs, checkpoints, streaming event data, scheduled tasks, and tool-native review surfaces. The source argues that production agents are moving away from stateless chat loops toward durable execution systems with intermediate state that humans can inspect.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-14, this is a strong design cue for anyone building agent infrastructure: reliability and reviewability are becoming product requirements, not optional extras.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The source blends vendor announcements, benchmark claims, expert commentary, and independent roundup narration.",
+        "Multiple sections rely on company posts and product launches, but others cite benchmarks, research results, and third-party analysis.",
+        "No single evidence mode dominates the full article."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This newsletter is a summary of a busy day in artificial intelligence. The biggest story is about coding assistants, which are tools that help people write and run software. Anthropic changed how paid Claude plans work so subscribers get some credit for using the model through outside tools, not just Anthropic\u2019s own apps. Some users liked the clearer policy, while others saw it as a sharp change from the earlier subsidized setup. OpenAI answered by offering free Codex use for companies that switch, and it also described how it protects coding agents when they need access to a computer. The roundup says many agent products are becoming more like long-running work systems, with memory, checkpoints, and reviewable steps instead of simple chat. It also mentions research ideas that may make training faster or help models handle memory and multiple streams of information better. Beyond software, the piece points to security tests and robot demonstrations that show agents being used in more demanding settings. The main message, as of 2026-05-14, is that the business rules around these tools matter almost as much as the models themselves, and many of the research results are still things to watch rather than fully proven standards.",
+      "assessed_as_of": "2026-05-14",
+      "contradictions_and_skepticism": "The roundup itself warns against reading too much into day-to-day swings, and that caution is warranted because much of the evidence is promotional or first-party. The claim that Claude\u2019s new policy is a 'rug pull' reflects user sentiment, but the article also notes that Anthropic is making an explicit pricing rule rather than selectively targeting tools. Several benchmark-heavy research claims may overstate generality because they rely on reported lifts under specific training or evaluation conditions. The piece\u2019s broader comparison of vendors is useful, but it should not be read as proof of a stable strategic winner from a single newsletter day.",
+      "key_insights": [
+        "Claude\u2019s new subscription-to-API credit mapping is a pricing policy change that directly affects third-party harness economics, not just model access.",
+        "OpenAI\u2019s Codex switcher promo shows enterprise distribution is being competed with discounts and workflow lock-in, not only model capability.",
+        "The roundup treats durable state, checkpoints, and reviewable intermediate outputs as core requirements for production agents, not optional extras.",
+        "Security and sandboxing details are becoming part of the product pitch for coding agents because these tools need filesystem and tool access.",
+        "Several research claims are promising but still conditional on benchmarks, including faster pretraining, external memory, and data curation wins."
+      ],
+      "limitations_and_open_questions": "The roundup mixes product announcements, opinion, benchmark claims, and social reaction, so evidence quality varies across items. Many performance numbers are presented without full methodological detail, making it hard to compare claims across vendors or papers. The Claude pricing discussion captures user backlash and policy mechanics, but it does not establish long-term demand effects or how much third-party harness usage will fall. Several research items depend on limited benchmark slices, and the article does not show whether their gains survive outside the reported setups. Security and enterprise sandbox descriptions are useful, but the operational burden, maintenance cost, and failure modes are not fully addressed. The robotics and cyber examples are compelling demonstrations, but they are still narrow slices of capability rather than proof of robust deployment.",
+      "sources": [
+        "mailto:reader-forwarded-email/bb3e9f063110dadcafd9afebc895c0d5"
+      ],
+      "summary": "This roundup argues that the most important near-term competition in coding agents is no longer just model quality; it is pricing, harness control, and who gets to meter programmatic use. Anthropic changed Claude subscription economics so paid plans receive API credits equal to the subscription price, which makes third-party or alternative harness use much less subsidized than before. OpenAI countered with two free months of Codex for enterprise switchers, while also publishing more detail about secure Windows sandboxing for coding agents. The same issue threads through the rest of the roundup: agent products are adding durable state, long-running execution, and reviewable context, rather than staying as chat interfaces. On the research side, the piece highlights work on pretraining efficiency, multi-stream agent architectures, external memory, and data curation, but these are presented as promising claims rather than settled methods. The roundup also surfaces stronger enterprise/security framing around bounded execution environments, plus concrete demos in cyber and robotics. As of 2026-05-14, the practical takeaway is that pricing policy and runtime constraints are material product variables for coding agents, while several research claims remain early and benchmark-dependent.",
+      "why_it_matters": "This piece matters because it shows that, for coding agents, pricing and control over the harness are becoming product levers as important as raw model quality. The Claude change is concrete: paid subscriptions now include API credits equal to the plan price, which makes outside usage less subsidized than before and changes the economics of third-party agent shells. The roundup also shows OpenAI responding with enterprise incentives for Codex, which suggests distribution and switching costs matter alongside capability. Separately, the agent-platform section is useful because it names the operational features that keep recurring across products: long-running state, checkpoints, streaming event data, and reviewable context. Those are durable design cues for anyone building agent infrastructure in 2026, because the article ties them to multiple launches rather than a single vendor pitch. The research section is informative but thinner: it lists claims about faster pretraining, multi-stream models, external memory, compression, and data curation, yet most of these are still benchmark claims without broad validation. The security items are also practically relevant because they show vendors packaging sandboxing, isolated execution, and token restrictions as part of enterprise readiness. For service automation, the article only supports a narrow reading: if coding agents and enterprise sandboxes keep maturing, they may eventually support more controlled back-office workflows, but that implication is secondary here. Actionable as of 2026-05-14: track the pricing and sandboxing details closely, adopt the product-level lessons cautiously, and treat the research claims as promising but not settled."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "Newsletter-style digest aggregating many loosely related AI news items and tweets across several sections.",
+        "Primary purpose is roundup and synthesis, not a single coherent article argument.",
+        "Contains named short items, recap sections, and engagement highlights typical of an AI industry roundup."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-14",
+          "confidence": 0.9,
+          "evidence_from_source": "The roundup ties Anthropic's Claude pricing change, OpenAI's Codex enterprise promo, and the general shift toward 'subsidy + workflow control + harness compatibility' into one competitive pattern.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "orchestration-layer-growth",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "agent-tooling-shifts-from-prompting-to-workflow-architecture",
+            "harness-design-becomes-more-important-for-agent-reliability"
+          ],
+          "secondary_tag": "orchestration-layer-growth",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-economics",
+          "suggested_new_tags": [
+            "ai-economics"
+          ],
+          "supporting_data_points": [
+            "Claude paid plans now receive monthly API credits equal to the subscription amount.",
+            "OpenAI offered two months of free Codex usage for enterprise customers switching in the next 30 days.",
+            "Anthropic increased Claude Code weekly limits by 50% through July 13."
+          ],
+          "supporting_snippet": "The competitive dynamic now looks less like \u201cbest model wins\u201d and more like subsidy + workflow control + harness compatibility.",
+          "time_sensitivity": "Actionable as of 2026-05-14; this observation is tied to a pricing and distribution moment that can change with later plan updates.",
+          "trend_description": "For coding agents, vendors are competing on more than model quality. Subscription metering, API-credit allocation, and control over the execution harness shape who can use which workflows economically and under what constraints.",
+          "trend_slug": "pricing-and-harness-control-become-core-agent-product-levers",
+          "trend_title": "Pricing and harness control are becoming core agent product levers",
+          "uncertainty_note": "The article is explicit that day-to-day swings should not be overread; this is a snapshot of one competitive phase, not proof of a durable winner.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "7aa2ce4c-135a-43b6-a117-fde2af3181ae",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "agent-tooling-shifts-from-prompting-to-workflow-architecture",
+              "harness-design-becomes-more-important-for-agent-reliability"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Claude paid plans now receive monthly API credits equal to the subscription amount.",
+              "OpenAI offered two months of free Codex usage for enterprise customers switching in the next 30 days.",
+              "Anthropic increased Claude Code weekly limits by 50% through July 13."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "ai-economics"
+          ],
+          "final_tags": [
+            "enterprise-ai",
+            "orchestration-layer-growth",
+            "workflow-restructuring",
+            "ai-economics"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-14",
+          "evidence_snippets": [
+            "Cline open-sourced a rebuilt Cline SDK and refreshed CLI with a TUI, agent teams, scheduled jobs, and connectors, positioning its harness as a reusable substrate for custom coding agents.",
+            "LangChain\u2019s OSS updates added streaming typed projections, checkpoint storage, code interpreter, harness profiles, and model-specific tuning, all aimed at richer agent event streams than plain tokens.",
+            "The architectural message across these releases is that production agents increasingly need durable execution, inspectable intermediate state, and tool-native UI surfaces rather than stateless prompt/response loops."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Cline",
+            "LangChain",
+            "Notion",
+            "Cursor",
+            "VS Code",
+            "Duet Agent",
+            "Tabracadabra"
+          ],
+          "operational_relevance": "Build for long-running state, checkpointing, and inspectable intermediate outputs rather than only prompt/response chat. This affects orchestration, debugging, and failure recovery for agent systems.",
+          "primary_tag": "execution-oriented-agents",
+          "proposed_tags": [
+            "execution-oriented-agents",
+            "persistent-agents",
+            "inspectability",
+            "orchestration-layer-growth"
+          ],
+          "secondary_tag": "persistent-agents",
+          "service_automation_relevance": "Relevant for support automation because durable state and reviewable steps make multi-turn workflows, escalations, and audit trails easier to manage.",
+          "signal_strength": "high",
+          "signal_title": "Agent products are converging on durable execution and inspectable state",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "trends/",
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Multiple launches in the roundup point to the same operational shape: long-running jobs, checkpoints, streaming event data, scheduled tasks, and tool-native review surfaces. The source argues that production agents are moving away from stateless chat loops toward durable execution systems with intermediate state that humans can inspect.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-14, this is a strong design cue for anyone building agent infrastructure: reliability and reviewability are becoming product requirements, not optional extras.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "3cb195fd-a189-4b30-9a52-01a84d6bd193",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "Cline open-sourced a rebuilt Cline SDK and refreshed CLI with a TUI, agent teams, scheduled jobs, and connectors, positioning its harness as a reusable substrate for custom coding agents.",
+              "LangChain\u2019s OSS updates added streaming typed projections, checkpoint storage, code interpreter, harness profiles, and model-specific tuning, all aimed at richer agent event streams than plain tokens.",
+              "The architectural message across these releases is that production agents increasingly need durable execution, inspectable intermediate state, and tool-native UI surfaces rather than stateless prompt/response loops."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Cline",
+              "LangChain",
+              "Notion",
+              "Cursor",
+              "VS Code",
+              "Duet Agent",
+              "Tabracadabra"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/",
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-oriented-agents",
+            "persistent-agents",
+            "inspectability",
+            "orchestration-layer-growth"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The source blends vendor announcements, benchmark claims, expert commentary, and independent roundup narration.",
+          "Multiple sections rely on company posts and product launches, but others cite benchmarks, research results, and third-party analysis.",
+          "No single evidence mode dominates the full article."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Claude\u2019s new subscription-to-API credit mapping is a pricing policy change that directly affects third-party harness economics, not just model access.",
+          "OpenAI\u2019s Codex switcher promo shows enterprise distribution is being competed with discounts and workflow lock-in, not only model capability.",
+          "The roundup treats durable state, checkpoints, and reviewable intermediate outputs as core requirements for production agents, not optional extras.",
+          "Security and sandboxing details are becoming part of the product pitch for coding agents because these tools need filesystem and tool access.",
+          "Several research claims are promising but still conditional on benchmarks, including faster pretraining, external memory, and data curation wins."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "mailto:reader-forwarded-email/bb3e9f063110dadcafd9afebc895c0d5"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "Newsletter-style digest aggregating many loosely related AI news items and tweets across several sections.",
+          "Primary purpose is roundup and synthesis, not a single coherent article argument.",
+          "Contains named short items, recap sections, and engagement highlights typical of an AI industry roundup."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 2,
+    "review_duration_seconds": 294.9,
+    "review_finished_at": "2026-06-02T20:39:29.924023+00:00",
+    "review_started_at": "2026-06-02T20:34:35+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-02T20:39:29+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "AINews",
+    "canonical_url": "mailto:reader-forwarded-email/bb3e9f063110dadcafd9afebc895c0d5",
+    "content_sha256": "14e63180ce501b43e8d3b769bd617488574d71cf6e1342332d1f1536f431f420",
+    "publication": "Substack",
+    "published_date": "2026-05-14",
+    "raw_html_rel_path": "raw/readwise/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns.html",
+    "raw_md_rel_path": "raw/readwise/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns.md",
+    "source_id": "ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns",
+    "title": "[AINews] Codex Rises, Claude Meters Programmatic Usage"
+  }
+}

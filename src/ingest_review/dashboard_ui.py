@@ -806,12 +806,24 @@ def render_skip_extraction_screen(
     c1, c2, c3 = st.columns(3)
     if c1.button("Keep source only", key=f"{key_prefix}_mode_source_only", type="primary"):
         st.session_state[mode_key] = "source_only"
+        from src.ingest_review.force_extract_ui import source_summary_is_empty
+
+        if source_summary_is_empty(artifact):
+            st.session_state["_pending_source_summary_refresh"] = str(
+                (artifact.get("source") or {}).get("source_id") or key_prefix
+            )
         st.rerun()
     if c2.button("Extract all entities", key=f"{key_prefix}_mode_full"):
         st.session_state[mode_key] = "full"
         st.rerun()
     if c3.button("Decide later", key=f"{key_prefix}_mode_later"):
         st.session_state[mode_key] = "source_only"
+        from src.ingest_review.force_extract_ui import source_summary_is_empty
+
+        if source_summary_is_empty(artifact):
+            st.session_state["_pending_source_summary_refresh"] = str(
+                (artifact.get("source") or {}).get("source_id") or key_prefix
+            )
         st.rerun()
 
     from src.ingest_review.force_extract_ui import render_force_extract_panel

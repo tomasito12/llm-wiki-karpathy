@@ -705,13 +705,26 @@ def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
 
 
 def test_source_chapters_rubric_includes_accessible_overview() -> None:
-    """SOURCE_CHAPTERS_RUBRIC defines Easy read for newcomers."""
+    """SOURCE_CHAPTERS_RUBRIC defines Easy read as a short orientation layer."""
     from src.ingest_review.providers.openai_provider import SOURCE_CHAPTERS_RUBRIC
 
     assert "**accessible_overview**" in SOURCE_CHAPTERS_RUBRIC
     assert "Easy read" in SOURCE_CHAPTERS_RUBRIC
-    assert "abbreviations" in SOURCE_CHAPTERS_RUBRIC.lower()
-    assert "7–10 sentences" in SOURCE_CHAPTERS_RUBRIC
+    assert "Orientation layer" in SOURCE_CHAPTERS_RUBRIC
+    assert "4–7 sentences" in SOURCE_CHAPTERS_RUBRIC
+    assert "80–160 words" in SOURCE_CHAPTERS_RUBRIC
+    assert "7–10 sentences" not in SOURCE_CHAPTERS_RUBRIC
+
+
+def test_easy_read_rubric_differentiates_from_summary() -> None:
+    """Easy read must not read as a second summary."""
+    from src.ingest_review.providers.openai_provider import SOURCE_CHAPTERS_RUBRIC
+
+    lower = SOURCE_CHAPTERS_RUBRIC.lower()
+    assert "not a second summary" in lower or "not a second" in lower
+    assert "less than half" in lower
+    assert "redundant with **summary**" in SOURCE_CHAPTERS_RUBRIC or "redundant with" in lower
+    assert "substantially longer" in lower
 
 
 def test_accessible_overview_in_user_prompt(tmp_path: Path) -> None:
@@ -745,12 +758,14 @@ def test_accessible_overview_in_user_prompt(tmp_path: Path) -> None:
 
 
 def test_section_regen_rubric_accessible_overview() -> None:
-    """Per-section regen includes accessible_overview rubric."""
+    """Per-section regen includes accessible_overview orientation rubric."""
     from src.ingest_review.providers.openai_provider import _section_regen_rubric
 
     rubric = _section_regen_rubric("accessible_overview")
     assert rubric
-    assert "newcomer" in rubric.lower() or "abbreviations" in rubric.lower()
+    assert "orientation layer" in rubric.lower()
+    assert "4–7 sentences" in rubric
+    assert "second summary" in rubric.lower()
 
 
 def test_system_prompt_dual_voice_for_accessible_overview() -> None:
@@ -758,7 +773,8 @@ def test_system_prompt_dual_voice_for_accessible_overview() -> None:
     from src.ingest_review.providers.openai_provider import SYSTEM_PROMPT
 
     assert "accessible_overview" in SYSTEM_PROMPT
-    assert "newcomer" in SYSTEM_PROMPT.lower() or "newcomer to AI" in SYSTEM_PROMPT
+    assert "orientation layer" in SYSTEM_PROMPT.lower()
+    assert "4–7 sentences" in SYSTEM_PROMPT
 
 
 def test_impl_study_rubric_includes_worthiness_gate() -> None:
@@ -1153,10 +1169,20 @@ def test_title_generation_rubric_distinguishes_topics_and_trends() -> None:
 
     assert "Core distinction: Topic vs Trend" in TITLE_GENERATION_RUBRIC
     assert "Agent Runtime Architecture" in TITLE_GENERATION_RUBRIC
-    assert "Shifts Toward Behavioral Auditing" in TITLE_GENERATION_RUBRIC
+    assert "AI Products Shift from Models to Systems" in TITLE_GENERATION_RUBRIC
     assert "Efficiency as Capability" in TITLE_GENERATION_RUBRIC
+    assert "Trend title generation workflow" in TITLE_GENERATION_RUBRIC
     assert "3–5" in TITLE_GENERATION_RUBRIC
     assert "evaluation checklist" in TITLE_GENERATION_RUBRIC.lower()
+
+
+def test_trend_title_rubric_prefers_concrete_structural_insight() -> None:
+    from src.ingest_review.providers.openai_provider import TITLE_GENERATION_RUBRIC, TRENDS_RUBRIC
+
+    assert "concrete structural insight" in TITLE_GENERATION_RUBRIC.lower()
+    assert "what is changing" in TITLE_GENERATION_RUBRIC.lower()
+    assert "Resilience Testing Becomes Declarative" in TITLE_GENERATION_RUBRIC
+    assert "trend title generation workflow" in TRENDS_RUBRIC.lower()
 
 
 def test_topics_and_trends_rubrics_reference_title_generation() -> None:
@@ -1166,8 +1192,8 @@ def test_topics_and_trends_rubrics_reference_title_generation() -> None:
     assert "conceptual-domain" in TOPICS_RUBRIC
     assert "no** directional" in TOPICS_RUBRIC.lower()
     assert "TITLE_GENERATION_RUBRIC" in TRENDS_RUBRIC
-    assert "industry-change" in TRENDS_RUBRIC
-    assert "not** a topic-style noun stack" in TRENDS_RUBRIC
+    assert "concrete structural insight" in TRENDS_RUBRIC.lower()
+    assert "trend title generation workflow" in TRENDS_RUBRIC.lower()
 
 
 def test_title_generation_rubric_in_user_prompt(tmp_path: Path) -> None:
@@ -1207,11 +1233,11 @@ def test_title_generation_rubric_in_user_prompt(tmp_path: Path) -> None:
     assert title_idx < topics_idx
 
 
-def test_prompt_version_is_39() -> None:
-    """Prompt version bumped for staged classification pipeline."""
+def test_prompt_version_is_41() -> None:
+    """Prompt version bumped for trend title rubric redesign."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "39"
+    assert PROMPT_VERSION == "41"
 
 
 def test_title_canonicalization_rubric_replaces_suggested_action() -> None:

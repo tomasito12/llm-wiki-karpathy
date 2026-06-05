@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T13:21:13+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnOlpF8scRWi8gNVNaJvKwWujrTHH",
+          "token_usage": {
+            "completion_tokens": 258,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6037,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6295
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnOlsFqOXQxjUZZVvmB7o1KzxjeOZ",
+          "token_usage": {
+            "completion_tokens": 1058,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5709,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6767
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnOlsFqOXQxjUZZVvmB7o1KzxjeOZ",
+    "token_usage": {
+      "completion_tokens": 1316,
+      "prompt_tokens": 11746,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 13062
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "The piece is an independent Economist analysis and historical argument about AI, jobs, and past technological change, but it does not contain a distinct durable operational method, implementation case, tool review, or extractable entity list for this triage stage. Its main value is a single macro claim and historical framing, which is better handled in a later topic/trend pass if needed.",
+      "skip_recommended": true,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "Published by The Economist as a third-party analytical article, not by a vendor promoting its own product.",
+        "Claims are built from historical examples, polling, and economist commentary rather than original experiments or benchmarks.",
+        "The source primarily interprets existing evidence and expert views about AI and labour markets."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece asks a simple question: if AI really destroys lots of jobs, what would that look like in history? The answer is that past technologies usually spread slowly, so they did not create sudden, long-lasting mass unemployment. The article uses farming, the Industrial Revolution, and the computer age to show that job change can be painful without causing an economy-wide jobs collapse. It also warns that some famous stories about workers losing out may be too simple, because wages and living costs do not move the same way. The basic test for AI would be unusual: fast productivity growth, weak wage growth, rising profits, and widespread job losses at the same time.",
+      "assessed_as_of": "2026-05-14",
+      "contradictions_and_skepticism": "The article pushes back against dramatic claims from AI executives, but it does not prove those claims are wrong; it mainly argues that history gives little precedent for them. Its emphasis on slow diffusion may understate the possibility that digital tools spread faster than tractors or steam engines because software is cheaper to copy and deploy. The Industrial Revolution discussion is also contested in the literature, and the article acknowledges that interpretation is not settled. The argument that a recession would reveal the true labor impact is reasonable, but it can also obscure gradual displacement that accumulates outside downturns.",
+      "key_insights": [
+        "Public fear of AI job loss is high, but the article says economists are wary of treating labor demand as a fixed zero-sum pool.",
+        "Historical technological diffusion has usually been slow enough that labor markets adjust over years or generations, not through abrupt mass unemployment.",
+        "The Industrial Revolution is a weaker template for AI doom stories than it first appears, because wage stagnation in Britain was heavily affected by food prices, war, and tariffs.",
+        "If AI were truly causing labor displacement at scale, the telltale pattern would be productivity growth above historical norms paired with weak real-wage growth and rising corporate profits.",
+        "A recession may be the clearest stress test for AI displacement because downturns are when firms cut routine jobs and reallocate labor and capital most aggressively."
+      ],
+      "limitations_and_open_questions": "The article is a historical analogy, not an empirical forecast model for AI. It relies on broad historical comparisons and selected examples rather than a formal estimate of AI adoption speed, task substitution rates, or firm-level labor response. It does not measure how quickly current AI systems might diffuse relative to past technologies, especially if software deployment is faster than physical capital adoption. It also leaves open whether AI could affect labor markets first through hiring freezes, reduced entry-level opportunities, or wage suppression rather than outright unemployment. The recession point is plausible, but the article does not specify how to disentangle AI effects from ordinary cyclical layoffs.",
+      "sources": [
+        "https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history"
+      ],
+      "summary": "The article argues that mass unemployment caused by AI would be historically unusual, and probably would not arrive the way alarmists imagine. It starts from a clear tension: public anxiety is high, and even major AI executives have warned about job losses, but economists are skeptical because past general-purpose technologies have usually spread slowly and created as many jobs as they destroyed. The piece revisits farming, the mid-20th-century computer and container wave, and the Industrial Revolution to show that technological disruption has not typically produced long-lived mass unemployment. A key point is that the Industrial Revolution\u2019s apparent wage stagnation was shaped as much by food prices, war, and tariffs as by machine-driven labor displacement. The article says AI-driven unemployment would be genuinely unprecedented if it happened at scale, and the early warning signs would be strong productivity growth combined with weak real-wage growth and rising profits, plus broad job losses across industries. It also notes that a recession would likely be the clearest place to see displacement, because downturns expose or remove routine jobs and force firms to restructure.",
+      "why_it_matters": "For AI practitioners, the useful takeaway is not a prediction of immediate labor collapse, but a cleaner test for when AI becomes economically disruptive in a way that matters. The article gives a concrete historical baseline: if AI is merely another slow-moving general-purpose technology, employment can stay resilient even while tasks change quickly. That matters because many product and investment narratives assume job destruction from capability gains will translate directly into labor-market collapse, and the piece says history does not support that shortcut. It also warns against over-reading wage stagnation or worker anger without checking whether living costs, policy, and cyclical effects are the real drivers. The strongest operational signal, as of 2026-05-14, would be a combination of unusually fast productivity growth, weak real wage growth, rising profits, and broad job losses across industries; absent that pattern, the article treats mass-unemployment claims as speculative. For service automation and back-office workflows, the implication is narrower: task replacement can happen without immediate macro unemployment, so product gains may be real even if the labor-market headline remains uncertain. As of 2026-05-14, the argument is useful as a skepticism filter, not as evidence that AI labor disruption is solved or imminent."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent analysis article rather than a bundle of short items or Q&A transcript.",
+        "No numbered list of tools, steps, or roundup structure is present.",
+        "The text develops one historical argument about AI-induced unemployment, with charts used as support."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "Published by The Economist as a third-party analytical article, not by a vendor promoting its own product.",
+          "Claims are built from historical examples, polling, and economist commentary rather than original experiments or benchmarks.",
+          "The source primarily interprets existing evidence and expert views about AI and labour markets."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Public fear of AI job loss is high, but the article says economists are wary of treating labor demand as a fixed zero-sum pool.",
+          "Historical technological diffusion has usually been slow enough that labor markets adjust over years or generations, not through abrupt mass unemployment.",
+          "The Industrial Revolution is a weaker template for AI doom stories than it first appears, because wage stagnation in Britain was heavily affected by food prices, war, and tariffs.",
+          "If AI were truly causing labor displacement at scale, the telltale pattern would be productivity growth above historical norms paired with weak real-wage growth and rising corporate profits.",
+          "A recession may be the clearest stress test for AI displacement because downturns are when firms cut routine jobs and reallocate labor and capital most aggressively."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent analysis article rather than a bundle of short items or Q&A transcript.",
+          "No numbered list of tools, steps, or roundup structure is present.",
+          "The text develops one historical argument about AI-induced unemployment, with charts used as support."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 129.1,
+    "review_finished_at": "2026-06-05T13:23:33.122052+00:00",
+    "review_started_at": "2026-06-05T13:21:24+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T13:23:33+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history",
+    "content_sha256": "a9575bc3d8abb64a1cf1a6637f02773a2674ef0da0354612de44a5e57c3bd1d2",
+    "publication": "Economist",
+    "published_date": "2026-05-14",
+    "raw_html_rel_path": "raw/readwise/the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks.html",
+    "raw_md_rel_path": "raw/readwise/the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks.md",
+    "source_id": "the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks",
+    "title": "The jobs apocalypse: a (very) short history"
+  }
+}

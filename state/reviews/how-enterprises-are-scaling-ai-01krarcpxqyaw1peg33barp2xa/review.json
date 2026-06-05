@@ -1,0 +1,658 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-02T20:10:53+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "39-triage",
+          "request_id": "chatcmpl-DmPjW4lzOgRD9Y9eV6HuQ1GwAJe1M",
+          "token_usage": {
+            "completion_tokens": 194,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4418,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4612
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "39-summary",
+          "request_id": "chatcmpl-DmPjY0QnL4cRMZpwoWGeJocMYPmYv",
+          "token_usage": {
+            "completion_tokens": 1088,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3840,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4928
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "39-entities-standard_article",
+          "request_id": "chatcmpl-DmPjimnvc7Z7BcVL9sZu5lN0Y540W",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1090,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 28598,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 29688
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "39",
+    "provider": "openai",
+    "request_id": "chatcmpl-DmPjimnvc7Z7BcVL9sZu5lN0Y540W",
+    "token_usage": {
+      "completion_tokens": 2372,
+      "prompt_tokens": 36856,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 39228
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-11",
+        "confidence": 0.89,
+        "evidence_from_source": "The source says organizations are \"moving beyond individual productivity toward AI embedded in end-to-end workflows, with human oversight in place,\" and that sustained impact requires \"trust, ownership, and quality built in from the start.\"",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "human-ai-collaboration",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "support-automation-as-operating-model"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Interviews with executives at Philips, BBVA, Mirakl, Scout24, Jetbrains and Scania were used to derive the pattern.",
+          "The article identifies five repeated patterns: culture before tooling, governance as an enabler, ownership over consumption, quality before scale, and protecting judgment work.",
+          "The source frames AI as an operating layer and leadership discipline rather than a simple productivity feature."
+        ],
+        "supporting_snippet": "The direction of travel is consistent: organizations are moving beyond individual productivity toward AI embedded in end-to-end workflows, with human oversight in place.",
+        "time_sensitivity": "Actionable as of 2026-05-11; the observation reflects a near-term enterprise scaling pattern and should be revisited as adoption practices mature.",
+        "trend_description": "Enterprise adoption is shifting from isolated AI features toward AI embedded in end-to-end workflows with explicit human oversight, quality gates, and governance involvement. The practical emphasis is less on exposing more users to AI and more on designing systems that can be trusted, reviewed, and improved in production.",
+        "trend_slug": "enterprise-ai-moves-toward-governed-human-oversight-workflows",
+        "trend_title": "Enterprise AI Moves Toward Governed Human Oversight Workflows",
+        "uncertainty_note": "The evidence is qualitative and drawn from executive interviews, so it shows a plausible direction of travel rather than a measured industry-wide shift.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article summarizes interviews with executives and then distills their shared lessons into leadership patterns.",
+        "Claims are framed as practitioner judgment and interpretation, not as benchmark results or formal research.",
+        "The page is an OpenAI blog guide with qualitative takeaways rather than independently verified metrics-heavy analysis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about how large companies are trying to use artificial intelligence in a way that people will actually trust and adopt. It looks at interviews with leaders from several European companies and pulls out the lessons they shared. The main message is that success is not just about buying the right software or switching on a new tool. It is also about helping employees understand the technology, setting clear rules, and making sure the work fits into real business processes. The article says companies make faster progress when legal, security, compliance, and information technology teams are involved early instead of being brought in at the end. It also says teams do better when they are allowed to redesign their own work instead of only using artificial intelligence as a small add-on. Another important point is that companies should decide what good quality means before they launch widely, and they should be willing to wait if the results are not good enough. The article also argues that the best use of artificial intelligence is often to support expert judgment, not replace it. In plain terms, it is about building trustworthy systems and habits around artificial intelligence, not just installing a tool. As of 2026-05-11, the advice is practical for organizations that are already trying to move from experimentation to broader adoption.",
+      "assessed_as_of": "2026-05-11",
+      "contradictions_and_skepticism": "The article\u2019s main tension is that it presents broad leadership lessons from a small set of executive interviews, which makes the conclusions useful but not strongly evidenced. The language about AI as an operating layer and leadership discipline is persuasive, but it is still a framing choice rather than a demonstrated operating standard. The piece suggests that governance can speed delivery, which is often true in mature organizations, but that depends on execution quality and may not hold if governance is used as a procedural bottleneck. The strongest claims remain qualitative, so readers should treat them as guidance to test rather than as settled fact.",
+      "key_insights": [
+        "Early involvement from security, legal, compliance, and information technology can reduce reversals later because governance is treated as part of design, not as a late-stage blocker.",
+        "Adoption depends on literacy and permission to experiment safely; tooling alone is not the fastest route to scale.",
+        "Teams scale AI more effectively when they can redesign workflows themselves rather than only consume AI as a feature.",
+        "Quality criteria and evaluation should be defined before broad rollout; some teams should be willing to delay launch if the bar is not met.",
+        "Hybrid workflows that preserve human judgment appear more durable than automation that only increases throughput."
+      ],
+      "limitations_and_open_questions": "The article does not provide detailed metrics, experimental design, or a control group, so its patterns are plausible but not independently validated. It also does not specify how to implement governance-as-enabler in concrete terms beyond early involvement of legal, security, compliance, and IT. There is little detail on cost, change management, or failure modes when workflow redesign is attempted in complex organizations. The claim that hybrid workflows are more durable is reasonable, but the article does not quantify tradeoffs between human review time, throughput, and quality. It is also unclear how transferable the European enterprise examples are to smaller companies or less regulated settings.",
+      "sources": [
+        "https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai"
+      ],
+      "summary": "The article distills interviews with leaders at Philips, BBVA, Mirakl, Scout24, Jetbrains, and Scania into a practical view of what it takes to scale enterprise AI. Its core argument is that scaling is less about deploying AI tools and more about creating conditions for trust, adoption, governance, and continuous improvement. It identifies five recurring patterns: build culture before tooling, treat governance as an enabler, give teams ownership over workflow redesign, define quality before scaling, and preserve judgment-heavy human review in hybrid workflows. The article frames AI as an operating layer and a leadership discipline, not just a productivity feature. It emphasizes that AI adoption becomes durable when teams can experiment safely, compliance and security are involved early, and evaluation standards are set before broad rollout. The piece is qualitative and leadership-oriented rather than a technical implementation manual.",
+      "why_it_matters": "The piece is useful because it reframes enterprise AI scaling as an operating problem: how to build trust, governance, workflow ownership, and evaluation into the rollout rather than treating deployment as the finish line. That is a practical lesson for product and platform teams that need adoption inside regulated or process-heavy organizations. The article also gives a compact set of design priorities: teach people how to use the system, involve control functions early, let teams reshape work, and define quality thresholds before expansion. Those ideas are actionable because they map to decisions leaders make about enablement, approvals, and launch gates. The evidence is qualitative, drawn from executive interviews, so it is better treated as a pattern library than as proof of measured causal impact. The stakes are real but the claims are not benchmarked; the article offers direction, not a rigorous operating model. For service automation and similar workflow-heavy use cases, the closing implication is that durable gains likely come from hybrid designs where AI supports expert review rather than replacing it, especially as of 2026-05-11. Practical as of 2026-05-11, but best used as leadership guidance that still needs local validation in each organization."
+    },
+    "source_type_detection": {
+      "confidence": 0.93,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent guide article rather than a bundle of unrelated news items or a numbered list of tools.",
+        "Structured around one argument about enterprise AI scaling patterns, with a short set of repeated patterns and leadership takeaways.",
+        "No interview transcript formatting, step-by-step tutorial, or product roundup structure is present."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "Interviews with executives at Philips, BBVA, Mirakl, Scout24, Jetbrains and Scania emphasized that \"Where security, legal, compliance, and IT were involved early as design partners, teams moved faster later\u2014with fewer reversals and more trust.\"",
+        "key_points": [
+          "Early involvement from security, legal, compliance, and IT can reduce reversals later.",
+          "Governance can speed delivery when it is built into design instead of added after implementation.",
+          "This is most relevant where trust and approval are necessary for production rollout."
+        ],
+        "knowledge_summary": "Enterprise AI scales more reliably when governance is treated as part of the design process rather than as a late approval gate. Security, legal, compliance, and IT can reduce rework if they participate early in shaping workflows, controls, and launch criteria. The practical goal is not maximum restriction; it is faster movement with fewer reversals because the system is trusted by the people who must approve and operate it. This pattern matters most in regulated or process-heavy environments where rollout friction, not model capability, becomes the limiting factor.",
+        "match_candidates": [],
+        "operational_insight": "",
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "enterprise-ai",
+          "organizational-design"
+        ],
+        "related_topics": [
+          "support-automation-as-operating-model"
+        ],
+        "relevance_note": "This is a durable operating pattern for enterprise AI programs because approval, risk, and rollout friction routinely determine whether systems reach production. It is especially relevant for conversational AI and service automation, where compliance, escalation paths, and auditability often shape adoption as much as model quality.",
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "",
+        "topic_slug": "governance-as-enabler-for-enterprise-ai",
+        "topic_title": "Governance as an Enabler for Enterprise AI",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "The article states that \"The most durable gains came from hybrid workflows\u2014using AI to lift the ceiling on expert reasoning and review, not just increase throughput.\"",
+        "key_points": [
+          "AI can raise throughput while humans retain final judgment.",
+          "Hybrid workflows are more durable when the task has meaningful edge cases or quality risk.",
+          "The design target is augmented expert review, not throughput alone."
+        ],
+        "knowledge_summary": "The most durable automation gains often come from workflows that use AI to support human judgment rather than replace it. In these designs, AI handles parts of the task that benefit from speed or scale, while people retain responsibility for review, edge cases, and final decisions. The practical design question is how to allocate work so AI lifts capacity without removing the expert checks that preserve quality. This pattern is important in domains where throughput matters, but the cost of a bad decision is high.",
+        "match_candidates": [],
+        "operational_insight": "",
+        "primary_tag": "human-ai-workflows",
+        "proposed_tags": [
+          "human-ai-workflows",
+          "enterprise-workflows",
+          "support-automation"
+        ],
+        "related_topics": [
+          "support-automation-as-operating-model"
+        ],
+        "relevance_note": "This is a broadly reusable operating pattern for service automation, support triage, and decision support systems. It helps teams design human handoff and review points intentionally instead of assuming full automation is the best endpoint.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "",
+        "topic_slug": "hybrid-human-ai-workflows-for-expert-review",
+        "topic_title": "Hybrid Human-AI Workflows for Expert Review",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-11",
+          "confidence": 0.89,
+          "evidence_from_source": "The source says organizations are \"moving beyond individual productivity toward AI embedded in end-to-end workflows, with human oversight in place,\" and that sustained impact requires \"trust, ownership, and quality built in from the start.\"",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "human-ai-collaboration",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "support-automation-as-operating-model"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Interviews with executives at Philips, BBVA, Mirakl, Scout24, Jetbrains and Scania were used to derive the pattern.",
+            "The article identifies five repeated patterns: culture before tooling, governance as an enabler, ownership over consumption, quality before scale, and protecting judgment work.",
+            "The source frames AI as an operating layer and leadership discipline rather than a simple productivity feature."
+          ],
+          "supporting_snippet": "The direction of travel is consistent: organizations are moving beyond individual productivity toward AI embedded in end-to-end workflows, with human oversight in place.",
+          "time_sensitivity": "Actionable as of 2026-05-11; the observation reflects a near-term enterprise scaling pattern and should be revisited as adoption practices mature.",
+          "trend_description": "Enterprise adoption is shifting from isolated AI features toward AI embedded in end-to-end workflows with explicit human oversight, quality gates, and governance involvement. The practical emphasis is less on exposing more users to AI and more on designing systems that can be trusted, reviewed, and improved in production.",
+          "trend_slug": "enterprise-ai-moves-toward-governed-human-oversight-workflows",
+          "trend_title": "Enterprise AI Moves Toward Governed Human Oversight Workflows",
+          "uncertainty_note": "The evidence is qualitative and drawn from executive interviews, so it shows a plausible direction of travel rather than a measured industry-wide shift.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5ec747bb-bba5-4a33-b8e0-74c6f6c57013",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "support-automation-as-operating-model"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Interviews with executives at Philips, BBVA, Mirakl, Scout24, Jetbrains and Scania were used to derive the pattern.",
+              "The article identifies five repeated patterns: culture before tooling, governance as an enabler, ownership over consumption, quality before scale, and protecting judgment work.",
+              "The source frames AI as an operating layer and leadership discipline rather than a simple productivity feature."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "human-ai-collaboration",
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article summarizes interviews with executives and then distills their shared lessons into leadership patterns.",
+          "Claims are framed as practitioner judgment and interpretation, not as benchmark results or formal research.",
+          "The page is an OpenAI blog guide with qualitative takeaways rather than independently verified metrics-heavy analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Early involvement from security, legal, compliance, and information technology can reduce reversals later because governance is treated as part of design, not as a late-stage blocker.",
+          "Adoption depends on literacy and permission to experiment safely; tooling alone is not the fastest route to scale.",
+          "Teams scale AI more effectively when they can redesign workflows themselves rather than only consume AI as a feature.",
+          "Quality criteria and evaluation should be defined before broad rollout; some teams should be willing to delay launch if the bar is not met.",
+          "Hybrid workflows that preserve human judgment appear more durable than automation that only increases throughput."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.93,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent guide article rather than a bundle of unrelated news items or a numbered list of tools.",
+          "Structured around one argument about enterprise AI scaling patterns, with a short set of repeated patterns and leadership takeaways.",
+          "No interview transcript formatting, step-by-step tutorial, or product roundup structure is present."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "Interviews with executives at Philips, BBVA, Mirakl, Scout24, Jetbrains and Scania emphasized that \"Where security, legal, compliance, and IT were involved early as design partners, teams moved faster later\u2014with fewer reversals and more trust.\"",
+          "key_points": [
+            "Early involvement from security, legal, compliance, and IT can reduce reversals later.",
+            "Governance can speed delivery when it is built into design instead of added after implementation.",
+            "This is most relevant where trust and approval are necessary for production rollout."
+          ],
+          "knowledge_summary": "Enterprise AI scales more reliably when governance is treated as part of the design process rather than as a late approval gate. Security, legal, compliance, and IT can reduce rework if they participate early in shaping workflows, controls, and launch criteria. The practical goal is not maximum restriction; it is faster movement with fewer reversals because the system is trusted by the people who must approve and operate it. This pattern matters most in regulated or process-heavy environments where rollout friction, not model capability, becomes the limiting factor.",
+          "match_candidates": [],
+          "operational_insight": "",
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "enterprise-ai",
+            "organizational-design"
+          ],
+          "related_topics": [
+            "support-automation-as-operating-model"
+          ],
+          "relevance_note": "This is a durable operating pattern for enterprise AI programs because approval, risk, and rollout friction routinely determine whether systems reach production. It is especially relevant for conversational AI and service automation, where compliance, escalation paths, and auditability often shape adoption as much as model quality.",
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "",
+          "topic_slug": "governance-as-enabler-for-enterprise-ai",
+          "topic_title": "Governance as an Enabler for Enterprise AI",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ec0ea57b-5d30-46b6-8e2f-ede1a92c6121",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Early involvement from security, legal, compliance, and IT can reduce reversals later.",
+              "Governance can speed delivery when it is built into design instead of added after implementation.",
+              "This is most relevant where trust and approval are necessary for production rollout."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "support-automation-as-operating-model"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-governance",
+            "enterprise-ai",
+            "organizational-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "The article states that \"The most durable gains came from hybrid workflows\u2014using AI to lift the ceiling on expert reasoning and review, not just increase throughput.\"",
+          "key_points": [
+            "AI can raise throughput while humans retain final judgment.",
+            "Hybrid workflows are more durable when the task has meaningful edge cases or quality risk.",
+            "The design target is augmented expert review, not throughput alone."
+          ],
+          "knowledge_summary": "The most durable automation gains often come from workflows that use AI to support human judgment rather than replace it. In these designs, AI handles parts of the task that benefit from speed or scale, while people retain responsibility for review, edge cases, and final decisions. The practical design question is how to allocate work so AI lifts capacity without removing the expert checks that preserve quality. This pattern is important in domains where throughput matters, but the cost of a bad decision is high.",
+          "match_candidates": [],
+          "operational_insight": "",
+          "primary_tag": "human-ai-workflows",
+          "proposed_tags": [
+            "human-ai-workflows",
+            "enterprise-workflows",
+            "support-automation"
+          ],
+          "related_topics": [
+            "support-automation-as-operating-model"
+          ],
+          "relevance_note": "This is a broadly reusable operating pattern for service automation, support triage, and decision support systems. It helps teams design human handoff and review points intentionally instead of assuming full automation is the best endpoint.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "",
+          "topic_slug": "hybrid-human-ai-workflows-for-expert-review",
+          "topic_title": "Hybrid Human-AI Workflows for Expert Review",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "b86c085b-976c-434a-a3f9-f3fcf195e4ea",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "AI can raise throughput while humans retain final judgment.",
+              "Hybrid workflows are more durable when the task has meaningful edge cases or quality risk.",
+              "The design target is augmented expert review, not throughput alone."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "support-automation-as-operating-model"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "human-ai-workflows",
+            "enterprise-workflows",
+            "support-automation"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 203.8,
+    "review_finished_at": "2026-06-02T20:14:17.775286+00:00",
+    "review_started_at": "2026-06-02T20:10:54+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-02T20:14:17+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai",
+    "content_sha256": "d3be12f4b8fcab724a59b7f449cf5d3182ef30d5c3568a100f434a1967752fb6",
+    "publication": "openai.com",
+    "published_date": "2026-05-11",
+    "raw_html_rel_path": "raw/readwise/how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa.html",
+    "raw_md_rel_path": "raw/readwise/how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa.md",
+    "source_id": "how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa",
+    "title": "How enterprises are scaling AI"
+  }
+}

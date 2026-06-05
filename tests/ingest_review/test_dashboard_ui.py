@@ -252,3 +252,37 @@ def test_render_skip_extraction_screen_returns_source_only_mode() -> None:
         }
     }
     assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") == "source_only"
+
+
+def test_keep_source_only_queues_summary_refresh_when_empty() -> None:
+    """Choosing source-only with empty chapters should trigger a summary re-run."""
+    col1, col2, col3 = MagicMock(), MagicMock(), MagicMock()
+    fe_col1, fe_col2 = MagicMock(), MagicMock()
+    col1.button.return_value = True
+    col2.button.return_value = False
+    col3.button.return_value = False
+    mock_st = MagicMock()
+    mock_st.session_state = {}
+    mock_st.selectbox.return_value = "Topic"
+    mock_st.button.return_value = False
+    mock_st.expander.return_value.__enter__ = MagicMock(return_value=None)
+    mock_st.expander.return_value.__exit__ = MagicMock(return_value=None)
+
+    def _columns(spec: list[int]) -> tuple[MagicMock, ...]:
+        if spec == [2, 1]:
+            return (fe_col1, fe_col2)
+        return (col1, col2, col3)
+
+    mock_st.columns.side_effect = _columns
+    artifact = {
+        "source": {"source_id": "src-law"},
+        "llm_output": {
+            "source_type_detection": {"detected_source_type": "standard_article"},
+            "extraction_meta": {"skip_recommended": True, "skip_reason": "low signal"},
+            "source_summary": {"summary": "", "key_insights": []},
+        },
+    }
+    assert render_skip_extraction_screen(mock_st, artifact, key_prefix="pfx") is None
+    assert mock_st.session_state["pfx_review_mode"] == "source_only"
+    assert mock_st.session_state["_pending_source_summary_refresh"] == "src-law"
+    mock_st.rerun.assert_called_once()

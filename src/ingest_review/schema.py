@@ -10,7 +10,7 @@ from src.ingest_review.tags import MAX_PROPOSED_TAGS as _MAX_PROPOSED_TAGS
 from src.ingest_review.tags import normalize_tag, normalize_tag_list
 
 ARTIFACT_SCHEMA_VERSION = 17
-PROMPT_VERSION = "39"
+PROMPT_VERSION = "41"
 MAX_PROPOSED_TAGS = 5
 
 SuggestedAction = Literal["create", "update", "ignore", "append_to_existing", "create_new_page"]
@@ -99,7 +99,10 @@ class SourceSummaryBlock(BaseModel):
     summary: str = ""
     accessible_overview: str = Field(
         "",
-        description="Plain-language 'Easy read' for newcomers: 7–10 sentences, no abbreviations.",
+        description=(
+            "Easy read: orientation layer for newcomers—4–7 sentences (~80–160 words), "
+            "intuition over completeness; not a second summary."
+        ),
     )
     key_insights: list[str] = Field(
         default_factory=list,

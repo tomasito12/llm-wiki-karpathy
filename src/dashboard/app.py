@@ -588,6 +588,28 @@ def main() -> None:
                 st.session_state["artifact"] = artifact
                 st.error(f"Regeneration failed: {exc}")
 
+    pending_source_summary = st.session_state.pop("_pending_source_summary_refresh", None)
+    if pending_source_summary == source_id and source_summary_is_empty(artifact):
+        if not os.environ.get("OPENAI_API_KEY"):
+            st.warning("Source summary is empty. Set OPENAI_API_KEY to generate it.")
+        else:
+            try:
+                provider = OpenAIIngestionProvider()
+                with st.spinner("Generating source chapters…"):
+                    run_source_summary_refresh(
+                        provider,
+                        doc,
+                        artifact,
+                        model=model,
+                        prompt_version=prompt_version,
+                    )
+                touch_review_session(artifact)
+                save_artifact(artifact_path, artifact)
+                st.success("Source summary generated.")
+                st.rerun()
+            except Exception as exc:  # noqa: BLE001
+                st.error(f"Source summary failed: {exc}")
+
     pending_forced_extract = st.session_state.pop("_pending_forced_extract", None)
     if pending_forced_extract:
         st.session_state["artifact"] = artifact

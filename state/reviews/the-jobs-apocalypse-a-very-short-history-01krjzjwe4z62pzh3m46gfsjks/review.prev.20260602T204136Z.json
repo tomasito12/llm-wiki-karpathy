@@ -1,0 +1,229 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-02T20:40:10+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.9834641723734758,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DmQC6VANy8UDdP3OGRwjYSl0iXqGV",
+          "token_usage": {
+            "completion_tokens": 251,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5987,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 5888
+            },
+            "total_tokens": 6238
+          }
+        },
+        {
+          "cache_hit_rate": 0.5151847786315404,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DmQC9y0I31XDCEe7qQWyut2bTqRbe",
+          "token_usage": {
+            "completion_tokens": 88,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5466,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 2816
+            },
+            "total_tokens": 5554
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DmQC9y0I31XDCEe7qQWyut2bTqRbe",
+    "token_usage": {
+      "completion_tokens": 339,
+      "prompt_tokens": 11453,
+      "prompt_tokens_details": {
+        "cached_tokens": 8704
+      },
+      "total_tokens": 11792
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "A single Economist analysis article with one durable takeaway: AI-driven mass unemployment is presented as historically unprecedented if it occurs, but the piece mostly synthesizes existing economic history and expert commentary rather than introducing a reusable process, tool, or implementation pattern for the wiki.",
+      "skip_recommended": true,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "The piece is written by The Economist as an independent analysis article, not by a vendor describing its own product.",
+        "It relies on historical evidence, cited economists, and interpretive framing rather than original experiments or benchmarks.",
+        "Most claims are synthesized from prior scholarship and quoted expert views, with a few forward-looking judgments about AI and jobs."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "",
+      "assessed_as_of": "2026-05-14",
+      "contradictions_and_skepticism": "",
+      "key_insights": [],
+      "limitations_and_open_questions": "",
+      "sources": [
+        "https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history"
+      ],
+      "summary": "",
+      "why_it_matters": ""
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "This is a coherent long-form article with one argument, not a list-based roundup or tutorial.",
+        "It combines historical analysis, economist commentary, and quoted experts rather than presenting structured how-to steps or product reviews.",
+        "The publication format and content match a standard news-analysis essay."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "The piece is written by The Economist as an independent analysis article, not by a vendor describing its own product.",
+          "It relies on historical evidence, cited economists, and interpretive framing rather than original experiments or benchmarks.",
+          "Most claims are synthesized from prior scholarship and quoted expert views, with a few forward-looking judgments about AI and jobs."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "This is a coherent long-form article with one argument, not a list-based roundup or tutorial.",
+          "It combines historical analysis, economist commentary, and quoted experts rather than presenting structured how-to steps or product reviews.",
+          "The publication format and content match a standard news-analysis essay."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": "2026-06-02T20:40:24+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-02T20:40:38+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history",
+    "content_sha256": "a9575bc3d8abb64a1cf1a6637f02773a2674ef0da0354612de44a5e57c3bd1d2",
+    "publication": "Economist",
+    "published_date": "2026-05-14",
+    "raw_html_rel_path": "raw/readwise/the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks.html",
+    "raw_md_rel_path": "raw/readwise/the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks.md",
+    "source_id": "the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks",
+    "title": "The jobs apocalypse: a (very) short history"
+  }
+}

@@ -232,8 +232,8 @@ def build_summary_prompt_suffix(
         "## Instructions\n"
         f"The detected source type is {detected!r} — do not change it in this stage. "
         "Output one JSON object with key source_summary only, per SOURCE_CHAPTERS_RUBRIC. "
-        "If extraction_meta.skip_recommended is true and the type is not a list-roundup, "
-        "return minimal empty chapter strings. "
+        "Populate every source_summary chapter from ARTICLE_PLAIN_TEXT even when "
+        "extraction_meta.skip_recommended is true (skip only defers entity extraction). "
         "Do NOT extract entity proposal arrays.",
         f"stage_prompt_version: {prompt_version}-summary",
     ]

@@ -1,0 +1,647 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-02T20:21:57+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "39-triage",
+          "request_id": "chatcmpl-DmPuCHbDRcIKiLDkdBkSygyl3Sv8w",
+          "token_usage": {
+            "completion_tokens": 204,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6827,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7031
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "39-summary",
+          "request_id": "chatcmpl-DmPuEE2w8BR5Dr2I7BRRGher2QsTG",
+          "token_usage": {
+            "completion_tokens": 1241,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6271,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7512
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "39-entities-standard_article",
+          "request_id": "chatcmpl-DmPuOAip3xiJfc5do1oD87MPKdTbu",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1144,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 31306,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 32450
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "39",
+    "provider": "openai",
+    "request_id": "chatcmpl-DmPuOAip3xiJfc5do1oD87MPKdTbu",
+    "token_usage": {
+      "completion_tokens": 2589,
+      "prompt_tokens": 44404,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 46993
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-11",
+        "confidence": 0.94,
+        "evidence_from_source": "The article says the jump from \"prompt box connected to ChatGPT\" to modern AI products \"did not happen because models got smarter. It happened because the architecture changed.\" It also describes a \"modern AI product architecture\" with user interface, orchestration layer, context manager, memory, retrieval, state manager, tool layer, LLM, and response/actions.",
+        "evidence_type": "mixed",
+        "match_candidates": [],
+        "primary_tag": "ai-operationalization",
+        "proposed_tags": [
+          "ai-operationalization",
+          "enterprise-ai"
+        ],
+        "related_trends": [
+          "models-become-components-with-retrieval-and-tools"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "orchestration",
+        "suggested_new_tags": [
+          "orchestration"
+        ],
+        "supporting_data_points": [
+          "The article contrasts pure LLMs with RAG, agents, MCP, and context engineering as successive layers added to overcome earlier limits.",
+          "It states that each layer exists because the previous layer failed in an important way.",
+          "It shows a full-stack diagram where UI, orchestration, context management, tools, and the LLM are separate layers in a serious AI product."
+        ],
+        "supporting_snippet": "\"Modern AI systems are architectures: memory systems, retrieval pipelines, orchestration layers, tool ecosystems, context managers, and execution environments wrapped around a model.\"",
+        "time_sensitivity": "Relevant as of 2026-05-11. The source presents this as a structural product-design shift rather than a short-lived tooling fad, so it should remain useful across several product cycles even as specific frameworks change.",
+        "trend_description": "AI products are shifting from being framed as standalone models to being designed as layered systems around a model. In this pattern, the model is only one component inside a broader product architecture that includes retrieval, memory, orchestration, tool execution, context management, and UI. The narrower story is that product quality increasingly depends on how well these layers are assembled and coordinated, not just on the underlying model's raw capability.",
+        "trend_slug": "ai-products-shift-from-models-to-systems",
+        "trend_title": "AI Products Shift from Models to Systems",
+        "uncertainty_note": "This source is a conceptual synthesis and does not measure how often every AI product needs the full stack. Simpler model-centric products can still work for narrow tasks, so the trend describes a dominant direction in serious AI products rather than a universal requirement.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "Claims are primarily the author's interpretation and synthesis of known AI architecture concepts.",
+        "The article explains concepts and frames their significance rather than presenting original experiments, benchmarks, or formal research.",
+        "Vendor mentions (for example, MCP adoption and model providers) are supporting context, not the main evidentiary basis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "The article explains how artificial intelligence changed from a simple chat box into a whole system that can search, remember, and take actions. It starts with large language models, which are good at predicting the next word but can still make things up or forget what happened in earlier conversations. Then it introduces retrieval-augmented generation, a way of giving the model fresh notes or documents before it answers, so it can rely on actual sources instead of memory alone. After that, it explains AI agents, which can do multi-step jobs like using tools, checking results, and deciding what to do next. The article says agents are useful, but they can also get confused, lose track of long tasks, or choose the wrong tool. Next it covers the Model Context Protocol, a shared standard that helps AI systems connect more easily to files, apps, and data sources. The article compares this standard to a universal cable that makes many devices easier to plug in. It also warns that security is still a serious issue, because connecting systems together can create new ways for data to leak or for malicious instructions to slip in. The main message is that the best AI products are not just better models; they are better-designed systems around the models. As of 2026-05-11, the piece is useful as a practical framing of the stack, but some of its adoption and security claims should be checked against primary sources.",
+      "assessed_as_of": "2026-05-11",
+      "contradictions_and_skepticism": "The article is strong on architecture storytelling but lighter on evidence, so some of its confidence exceeds what the text substantiates. The analogy that MCP is like USB-C is useful, but it may hide important differences in trust, security, and governance. The piece also risks over-normalizing MCP adoption by citing major providers and large download numbers without showing how broadly or deeply the protocol is used in real deployments. Its claim that the bottleneck has shifted from model intelligence to system design is plausible within the article\u2019s frame, but it is still a synthesis, not a demonstrated result.",
+      "key_insights": [
+        "Pure large language models are framed as prediction engines, not reliable business systems, because they cannot access live data, retain durable memory, or take actions.",
+        "Retrieval-augmented generation solves grounding and freshness by fetching documents at query time, but it does not solve execution.",
+        "Agents add planning and tool use, but their failure modes are operational: context overflow, memory fragmentation, wrong-tool selection, hallucinated actions, and loops.",
+        "MCP is presented as an integration standard for tools, resources, and prompts, which reduces custom connector work across systems.",
+        "The article\u2019s strongest durable claim is that production AI quality depends on context engineering and system design, not only model capability."
+      ],
+      "limitations_and_open_questions": "The article is conceptual rather than empirical, so it does not provide benchmarks, architecture comparisons, cost analysis, or evaluation results for the layers it describes. Several adoption claims, including download counts and server counts for MCP, are presented without sourcing details in the text. The security discussion is important but incomplete: it names prompt injection, tool permission abuse, and lookalike tools, yet does not show concrete mitigations beyond saying organizations must add their own security layer. The piece also simplifies the boundary between layers; in practice, retrieval, tool use, memory, and orchestration often overlap inside one system. It does not discuss latency, observability, authorization design, or failure recovery in production settings. The claims about major provider adoption are plausible but not independently verified within the article.",
+      "sources": [
+        "https://pub.towardsai.net/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-9ee07e421587"
+      ],
+      "summary": "The article argues that modern AI products are systems built around a model, not just prompts sent to a chatbot. It frames the evolution in four layers: large language models, retrieval-augmented generation, agents, and the Model Context Protocol. Large language models are described as fluent token predictors that are powerful at language tasks but limited by hallucination, stale knowledge, no memory, no access to private data, and no ability to act. Retrieval-augmented generation addresses the knowledge gap by fetching relevant documents at query time and grounding responses in retrieved context. Agents add tool use, planning, and multi-step execution, but bring failures such as context overflow, tool confusion, and runaway loops. MCP is presented as a standard interface for connecting assistants to tools and data sources, reducing bespoke integration work while introducing unresolved security concerns. The article ends by arguing that context engineering and system design are the real differentiators for production AI products as of 2026-05-11.",
+      "why_it_matters": "The piece is useful because it compresses a lot of product architecture into one mental model: large language models handle generation, retrieval-augmented generation handles grounding, agents handle action, and MCP handles standardized connectivity. For an AI engineer, that framing helps separate problems that belong in the model from problems that belong in retrieval, orchestration, or integration layers. The article is also explicit about failure modes, especially that retrieval does not create agency and that agents can fail in predictable ways when context grows, tools multiply, or state is not managed carefully. Its discussion of context engineering is practically valuable because it treats memory, history, retrieval, tool descriptions, and workflow position as design inputs rather than afterthoughts. The MCP section is noteworthy because it gives a concrete interoperability story for connecting assistants to external systems, but the article itself admits that security is not solved by the protocol. The adoption and download figures cited for MCP may be useful signals, but the article does not provide primary evidence or methodology, so they should be treated cautiously. For product builders, the main takeaway is that a working system is usually a layered architecture, not a single prompt. As of 2026-05-11, this is a durable framing article rather than an implementation guide: good for design intuition, but it should be paired with primary docs and security review before adoption."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent explanatory article with staged argumentation, not a bundle of unrelated news items or tool reviews.",
+        "Focuses on one conceptual evolution path: LLMs \u2192 RAG \u2192 agents \u2192 MCP \u2192 context engineering.",
+        "No interview/Q&A structure, no step-by-step implementation tutorial, and no primary list of tools or products."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Pure model calls are fragile when systems need private data, live data, or action execution.",
+          "A layered stack makes failure analysis clearer because each layer addresses a specific limitation.",
+          "The model\u2019s role is narrower than the product\u2019s role in a real application."
+        ],
+        "knowledge_summary": "Production AI systems are often composed of multiple layers, each responsible for a different limitation of the base model. A model may generate language well, but retrieval, memory, tool orchestration, and execution layers are needed to make the system reliable in real workflows. This pattern matters because design failures usually come from placing too much burden on the model itself instead of distributing responsibilities across the stack. The useful abstraction is not just a chatbot, but a system architecture with explicit roles for knowledge, action, and state management.",
+        "match_candidates": [],
+        "operational_insight": "Treat the model as one component in a larger workflow, not as the whole product. When a system fails, check whether the missing capability belongs in retrieval, memory, orchestration, or tool integration before trying to fix it with a better prompt or a bigger model.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "runtime-systems",
+          "orchestration"
+        ],
+        "related_topics": [],
+        "relevance_note": "This pattern is durable because many conversational AI and service automation systems fail for architectural reasons rather than model quality alone. Teams building chatbots, voicebots, and agent workflows need a stable way to assign responsibilities across retrieval, state, tools, and model generation.",
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Modern AI systems are architectures: memory systems, retrieval pipelines, orchestration layers, tool ecosystems, context managers, and execution environments wrapped around a model.\"",
+        "topic_slug": "layered-ai-architecture",
+        "topic_title": "Layered AI Architecture",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Memory, retrieval, tools, history, state, and workflow position are all part of the context surface.",
+          "Better context design can matter more than prompt wording for production reliability.",
+          "This is especially relevant when a system must carry state across multi-step tasks."
+        ],
+        "knowledge_summary": "Context engineering is the practice of designing the information environment around a model so it can act reliably. It includes memory, retrieval, tool descriptions, conversation history, system state, and workflow position. The core idea is that model behavior depends heavily on what information is made available at each step and how that information is organized. This turns context from a passive input into an engineered control surface.",
+        "match_candidates": [],
+        "operational_insight": "For production systems, manage context as a first-class design problem. Control what the model remembers, what gets retrieved, how tools are described, and how task state is preserved across steps so the system can stay on task without relying on prompt cleverness alone.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "context-engineering",
+          "runtime-systems"
+        ],
+        "related_topics": [
+          "layered-ai-architecture"
+        ],
+        "relevance_note": "This is highly reusable for agents, support automation, and any workflow where the model must maintain task state across multiple turns. It gives practitioners a practical framework for reducing drift, confusion, and brittle behavior in long-running conversational systems.",
+        "secondary_tag": "context-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Context engineering is the discipline that makes everything above work reliably.\"",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-11",
+          "confidence": 0.94,
+          "evidence_from_source": "The article says the jump from \"prompt box connected to ChatGPT\" to modern AI products \"did not happen because models got smarter. It happened because the architecture changed.\" It also describes a \"modern AI product architecture\" with user interface, orchestration layer, context manager, memory, retrieval, state manager, tool layer, LLM, and response/actions.",
+          "evidence_type": "mixed",
+          "match_candidates": [],
+          "primary_tag": "ai-operationalization",
+          "proposed_tags": [
+            "ai-operationalization",
+            "enterprise-ai"
+          ],
+          "related_trends": [
+            "models-become-components-with-retrieval-and-tools"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "orchestration",
+          "suggested_new_tags": [
+            "orchestration"
+          ],
+          "supporting_data_points": [
+            "The article contrasts pure LLMs with RAG, agents, MCP, and context engineering as successive layers added to overcome earlier limits.",
+            "It states that each layer exists because the previous layer failed in an important way.",
+            "It shows a full-stack diagram where UI, orchestration, context management, tools, and the LLM are separate layers in a serious AI product."
+          ],
+          "supporting_snippet": "\"Modern AI systems are architectures: memory systems, retrieval pipelines, orchestration layers, tool ecosystems, context managers, and execution environments wrapped around a model.\"",
+          "time_sensitivity": "Relevant as of 2026-05-11. The source presents this as a structural product-design shift rather than a short-lived tooling fad, so it should remain useful across several product cycles even as specific frameworks change.",
+          "trend_description": "AI products are shifting from being framed as standalone models to being designed as layered systems around a model. In this pattern, the model is only one component inside a broader product architecture that includes retrieval, memory, orchestration, tool execution, context management, and UI. The narrower story is that product quality increasingly depends on how well these layers are assembled and coordinated, not just on the underlying model's raw capability.",
+          "trend_slug": "ai-products-shift-from-models-to-systems",
+          "trend_title": "AI Products Shift from Models to Systems",
+          "uncertainty_note": "This source is a conceptual synthesis and does not measure how often every AI product needs the full stack. Simpler model-centric products can still work for narrow tasks, so the trend describes a dominant direction in serious AI products rather than a universal requirement.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "0293e62e-798e-4016-89b7-2fdc5f5d0a4a",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-06-02T20:24:26+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "39",
+          "regen_count": 1
+        },
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The article contrasts pure LLMs with RAG, agents, MCP, and context engineering as successive layers added to overcome earlier limits.",
+              "It states that each layer exists because the previous layer failed in an important way.",
+              "It shows a full-stack diagram where UI, orchestration, context management, tools, and the LLM are separate layers in a serious AI product."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-operationalization",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "Claims are primarily the author's interpretation and synthesis of known AI architecture concepts.",
+          "The article explains concepts and frames their significance rather than presenting original experiments, benchmarks, or formal research.",
+          "Vendor mentions (for example, MCP adoption and model providers) are supporting context, not the main evidentiary basis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Pure large language models are framed as prediction engines, not reliable business systems, because they cannot access live data, retain durable memory, or take actions.",
+          "Retrieval-augmented generation solves grounding and freshness by fetching documents at query time, but it does not solve execution.",
+          "Agents add planning and tool use, but their failure modes are operational: context overflow, memory fragmentation, wrong-tool selection, hallucinated actions, and loops.",
+          "MCP is presented as an integration standard for tools, resources, and prompts, which reduces custom connector work across systems.",
+          "The article\u2019s strongest durable claim is that production AI quality depends on context engineering and system design, not only model capability."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://pub.towardsai.net/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-9ee07e421587"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent explanatory article with staged argumentation, not a bundle of unrelated news items or tool reviews.",
+          "Focuses on one conceptual evolution path: LLMs \u2192 RAG \u2192 agents \u2192 MCP \u2192 context engineering.",
+          "No interview/Q&A structure, no step-by-step implementation tutorial, and no primary list of tools or products."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Pure model calls are fragile when systems need private data, live data, or action execution.",
+            "A layered stack makes failure analysis clearer because each layer addresses a specific limitation.",
+            "The model\u2019s role is narrower than the product\u2019s role in a real application."
+          ],
+          "knowledge_summary": "Production AI systems are often composed of multiple layers, each responsible for a different limitation of the base model. A model may generate language well, but retrieval, memory, tool orchestration, and execution layers are needed to make the system reliable in real workflows. This pattern matters because design failures usually come from placing too much burden on the model itself instead of distributing responsibilities across the stack. The useful abstraction is not just a chatbot, but a system architecture with explicit roles for knowledge, action, and state management.",
+          "match_candidates": [],
+          "operational_insight": "Treat the model as one component in a larger workflow, not as the whole product. When a system fails, check whether the missing capability belongs in retrieval, memory, orchestration, or tool integration before trying to fix it with a better prompt or a bigger model.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "runtime-systems",
+            "orchestration"
+          ],
+          "related_topics": [],
+          "relevance_note": "This pattern is durable because many conversational AI and service automation systems fail for architectural reasons rather than model quality alone. Teams building chatbots, voicebots, and agent workflows need a stable way to assign responsibilities across retrieval, state, tools, and model generation.",
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Modern AI systems are architectures: memory systems, retrieval pipelines, orchestration layers, tool ecosystems, context managers, and execution environments wrapped around a model.\"",
+          "topic_slug": "layered-ai-architecture",
+          "topic_title": "Layered AI Architecture",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "225d97f7-de12-4f13-bc8d-1d4dd0498505",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Pure model calls are fragile when systems need private data, live data, or action execution.",
+              "A layered stack makes failure analysis clearer because each layer addresses a specific limitation.",
+              "The model\u2019s role is narrower than the product\u2019s role in a real application."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "runtime-systems",
+            "orchestration"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Memory, retrieval, tools, history, state, and workflow position are all part of the context surface.",
+            "Better context design can matter more than prompt wording for production reliability.",
+            "This is especially relevant when a system must carry state across multi-step tasks."
+          ],
+          "knowledge_summary": "Context engineering is the practice of designing the information environment around a model so it can act reliably. It includes memory, retrieval, tool descriptions, conversation history, system state, and workflow position. The core idea is that model behavior depends heavily on what information is made available at each step and how that information is organized. This turns context from a passive input into an engineered control surface.",
+          "match_candidates": [],
+          "operational_insight": "For production systems, manage context as a first-class design problem. Control what the model remembers, what gets retrieved, how tools are described, and how task state is preserved across steps so the system can stay on task without relying on prompt cleverness alone.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "context-engineering",
+            "runtime-systems"
+          ],
+          "related_topics": [
+            "layered-ai-architecture"
+          ],
+          "relevance_note": "This is highly reusable for agents, support automation, and any workflow where the model must maintain task state across multiple turns. It gives practitioners a practical framework for reducing drift, confusion, and brittle behavior in long-running conversational systems.",
+          "secondary_tag": "context-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Context engineering is the discipline that makes everything above work reliably.\"",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "68742dc2-6c52-4d06-948e-5fa53e6665c0",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Memory, retrieval, tools, history, state, and workflow position are all part of the context surface.",
+              "Better context design can matter more than prompt wording for production reliability.",
+              "This is especially relevant when a system must carry state across multi-step tasks."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "layered-ai-architecture"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "context-engineering",
+            "runtime-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 2,
+      "mixed": 1
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 598.4,
+    "review_finished_at": "2026-06-02T20:31:55.438482+00:00",
+    "review_started_at": "2026-06-02T20:21:57+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-02T20:31:55+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Divy Yadav",
+    "canonical_url": "https://pub.towardsai.net/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-9ee07e421587",
+    "content_sha256": "0c099d7270a495261faebfd81f2f572b6b3ba69acc5aa04c77d962ed7f0b3c49",
+    "publication": "Medium",
+    "published_date": "2026-05-11",
+    "raw_html_rel_path": "raw/readwise/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-01krn2cgwkpeykxeadbb3f2ntm.html",
+    "raw_md_rel_path": "raw/readwise/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-01krn2cgwkpeykxeadbb3f2ntm.md",
+    "source_id": "llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-01krn2cgwkpeykxeadbb3f2ntm",
+    "title": "LLMs, RAG, Agents, MCP: The AI Evolution You Must Know (A Visual Explanation)"
+  }
+}

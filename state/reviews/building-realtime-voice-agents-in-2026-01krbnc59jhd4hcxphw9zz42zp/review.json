@@ -1,0 +1,979 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-01T16:17:53+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "39-triage",
+          "request_id": "chatcmpl-DlzcJSRaDTQTreLvFNW5cKogfkQ5a",
+          "token_usage": {
+            "completion_tokens": 194,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5586,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5780
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "39-summary",
+          "request_id": "chatcmpl-DlzcME2bPogRp076SPcIG3vDSUjUM",
+          "token_usage": {
+            "completion_tokens": 1152,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5008,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6160
+          }
+        },
+        {
+          "cache_hit_rate": 0.16423000303879529,
+          "name": "entities",
+          "prompt_version": "39-entities-standard_article",
+          "request_id": "chatcmpl-DlzcWCvPQfEUd16TOuSvDDXKqfZuQ",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2223,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 29617,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 31840
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "39",
+    "provider": "openai",
+    "request_id": "chatcmpl-DlzcWCvPQfEUd16TOuSvDDXKqfZuQ",
+    "token_usage": {
+      "completion_tokens": 3569,
+      "prompt_tokens": 40211,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 43780
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The source groups it with Google\u2019s Live audio and ElevenLabs\u2019 conversational stack as systems that can handle the talking part well enough to ship."
+        ],
+        "confidence": 0.88,
+        "core_capabilities": [
+          "It supports bidirectional audio flow through a realtime session.",
+          "It can be instructed to answer inbound calls in a specific style, such as warm, brief, and helpful.",
+          "It can trigger tool use mid-conversation while the application keeps control over deterministic actions."
+        ],
+        "deployment_implications": "Adopting it pushes teams toward an architecture where audio flows over a streaming bridge and the model is isolated from deterministic call logic. The source implies that production systems still need separate handling for session state, retries, observability, escalation, and tool execution, so deployment is closer to distributed-systems integration than to a single-model API call.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The article treats it as a production-relevant choice in 2026 rather than a research preview. It is discussed alongside other mainstream realtime speech stacks, which suggests a maturing product category, but the source gives no third-party validation or scale data.",
+        "model_name": "gpt-realtime-1.5",
+        "operational_profile": "A realtime speech model used here as the live conversation engine for inbound phone calls. The source presents it as good enough to ship the talking part of a voice agent, with the application layer responsible for everything else around it. Its practical value is in streaming conversation, not in replacing telephony or workflow orchestration.",
+        "pricing_inference_implications": "No direct pricing data is given. The source only implies that the value proposition depends less on model cost alone and more on the engineering needed around the audio bridge, telephony transport, and deterministic tooling.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "proprietary-model",
+          "low-latency",
+          "multimodal-model"
+        ],
+        "proposed_types": [
+          "realtime-voice-model"
+        ],
+        "provider": "OpenAI",
+        "related_models": [],
+        "service_automation_implications": "Relevant for inbound call automation, but only as the conversational layer. The source suggests it can handle warm, brief phone interactions and decide when to call tools or escalate, while the system must own reliable record lookups and hand-offs. That makes it suitable for support, scheduling, lead qualification, and screening flows that still require deterministic backend control.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "OpenAI Realtime (gpt-realtime-1.5) for the speech model... The model's audio comes back through the same WebSocket and out through Twilio to the caller.",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not provide latency numbers, reliability data, or failure analysis, so the real-world envelope is unknown. It also does not claim the model should manage deterministic backend actions; the source argues the opposite, which means teams must keep business logic outside the model to avoid brittle behavior."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-07",
+        "confidence": 0.84,
+        "evidence_from_source": "The source explicitly says the model side is mostly solved by 2026 standards, while \"most of the actual work lives\" in the integration layer underneath.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-operationalization",
+        "proposed_tags": [
+          "ai-operationalization",
+          "runtime-centralization",
+          "tool-centric-agents"
+        ],
+        "related_trends": [
+          "models-becoming-execution-layers"
+        ],
+        "secondary_tag": "runtime-centralization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "The article says the model is one box in a larger distributed system.",
+          "It highlights session state, retries, observability, and hand-offs as work outside the model.",
+          "It frames telephony, SIP, media pipelines, and edge integration as the real engineering layer."
+        ],
+        "supporting_snippet": "What\u2019s less striking \u2014 and where most of the actual work lives \u2014 is the integration layer underneath.",
+        "time_sensitivity": "Actionable as of 2026-05-07; the claim is tied to the state of realtime voice tooling at that date and should be rechecked if model or telephony interfaces change.",
+        "trend_description": "As speech models become easier to use, the main engineering burden moves into transport, orchestration, state, and hand-off logic around the model. The conversation layer can be relatively strong while the surrounding system remains the source of production risk.",
+        "trend_slug": "realtime-voice-agents-shift-to-integration-work",
+        "trend_title": "Realtime Voice Agents Shift Toward Integration Work",
+        "uncertainty_note": "The source is a single implementation note, not a benchmark study, so the shift is plausible but not quantified. It may hold best for standard inbound call handling rather than for edge cases like noisy lines, extreme accents, or complex compliance workflows.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article describes the author's own voice-agent stack and call flow in concrete deployment terms.",
+        "Claims are grounded in implementation details such as Twilio Voice, OpenAI Realtime, Next.js, LangChain, SIP, and NAT traversal.",
+        "It includes code snippets and operational design judgments from a build experience rather than a formal benchmark or research result."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about how to build an AI that can answer phone calls and hold a conversation. The author says the speech part is already good enough from several major tools, so the harder work is everything around the model. That includes the phone number, the call routing system, the audio stream, and the code that connects all of those pieces. The example stack uses Twilio for phone calls, a web server built with Next.js, OpenAI for the speaking and listening part, and LangChain for actions the agent can take. The author explains that the AI should decide things like when to ask a follow-up question or when to hand off to a person, but the system should handle reliable tasks like looking up a record or managing the call state. The article also explains that older internet phone rules, called SIP, still matter because calls have to move through networks, firewalls, and address translation devices. In plain terms, the phone system is still a big part of the problem even when the AI sounds impressive. The main takeaway is that a good voice agent is a distributed system, not just a language model with a microphone. As of 2026-05-07, the article is most useful as a practical build guide for people wiring real phone-call systems rather than as a claim that the whole problem is solved.",
+      "assessed_as_of": "2026-05-07",
+      "contradictions_and_skepticism": "The article\u2019s strongest oversimplification is the suggestion that the model side is 'mostly a solved problem' by 2026; that may be true for basic demos, but the source does not provide evidence for real-world robustness across accents, noisy lines, interruptions, or complex call flows. The text also compresses a lot of engineering into a neat split between 'model' and 'system,' while production voice agents often blur that boundary in practice. The statement that SIP has not changed in twenty-one years is directionally plausible in the narrow sense of the helper problem described, but it should not be read as evidence that the surrounding telephony ecosystem is static. Overall, the article is practical and grounded, but its scope is narrow and its claims are strongest as build guidance rather than proof of maturity.",
+      "key_insights": [
+        "Treat the model as one component in a distributed call system, not as the whole voice agent.",
+        "Put deterministic work such as database lookups, retries, and session state outside the model.",
+        "For inbound phone traffic, SIP, WebSocket media streaming, and NAT traversal remain core engineering concerns.",
+        "Managed telephony abstractions like Twilio reduce infrastructure burden, but custom trunk control can matter at scale.",
+        "The same architecture can support support calls, scheduling, lead qualification, or screening by changing prompts and tool surfaces."
+      ],
+      "limitations_and_open_questions": "The article is an implementation note, not a benchmarked evaluation, so it does not show call quality, latency, reliability, failure rates, or cost. The code is explicitly illustrative and omits error handling, retries, observability, and hand-off mechanics, which are likely to be the hard parts in production. It also does not quantify when managed telephony is preferable versus lower-level trunk control, beyond a qualitative scale argument. Security, privacy, and compliance concerns for recorded or mediated phone calls are not discussed. The claim that the speech side is mostly solved is based on the author\u2019s experience and tool quality, not on comparative testing.",
+      "sources": [
+        "https://medium.com/@chentschel/building-realtime-voice-agents-in-2026-3eec38e96fb1",
+        "https://chentschel.xyz"
+      ],
+      "summary": "The article argues that realtime voice agents are mostly a solved problem on the model side by 2026, but the real engineering work is in the surrounding system: telephony, media transport, integration, and deterministic tooling. The author describes a concrete inbound-call stack using Twilio Voice, a Next.js edge handler, OpenAI Realtime with gpt-realtime-1.5, and LangChain for tool calls. The core design point is that the model should handle conversation, while the system should handle session state, retries, escalation logic, and database or API actions with deterministic outcomes. The article also emphasizes that SIP, NAT traversal, firewall pinholing, and media routing remain essential parts of the stack even when the AI layer is strong. Its practical lesson is that building a useful voice agent is less about choosing a capable speech model and more about correctly wiring the older telephony infrastructure around it.",
+      "why_it_matters": "The piece is useful because it reframes realtime voice-agent engineering as systems integration rather than model selection. It gives a concrete stack and call path, which helps separate the parts that are actually novel from the parts that are standard telephony plumbing. The strongest practical claim is that the conversation model can be good enough while the engineering risk sits in transport, state, hand-offs, and tool boundaries. That is a durable architectural reminder for anyone building against phone networks, because the article shows that the call still has to traverse SIP, media streams, NAT behavior, and deterministic backend logic. The snippets also make the division of labor explicit: the model chooses when to call a tool, but the system decides what that tool does. The article\u2019s value is therefore operational, not conceptual novelty. It is less a breakthrough announcement than a concise checklist of where voice-agent builds tend to get hard. For voice, phone-based intake, and other call-shaped interactions, the advice is actionable as of 2026-05-07; the core stack described here should remain relevant so long as telephony infrastructure and realtime model APIs stay in place."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent essay about building realtime voice agents, not a bundle of unrelated items.",
+        "Contains implementation details and architecture diagrams/snippets rather than a roundup or interview.",
+        "No numbered list of products, practices, or Q&A transcript structure."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It connects to a live audio stream so the model can hear and speak during a phone call.",
+          "It lets the application set conversation instructions and a voice profile for the session."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is shown running behind a Next.js edge handler that bridges Twilio media streams to the model.",
+          "It is used together with Twilio Voice for telephony transport and LangChain for tool orchestration."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats it as a shippable component by 2026, alongside other major realtime voice stacks. That is a sign of practical maturity for basic voice-conversation use cases, but the article does not provide independent evidence of robustness across noisy calls, accents, or complex escalation flows.",
+        "name": "OpenAI Realtime API",
+        "operational_relevance": "Useful when the product goal is a live phone conversation rather than a text chat flow. The practical fit is as the speech-and-reasoning layer, while telephony, session control, retries, and tool execution live outside the model boundary. For service automation, it can power warm, brief, helpful call handling, but only if the surrounding system handles deterministic call state and hand-offs.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "low-latency"
+        ],
+        "proposed_types": [],
+        "related_tools": [
+          "Twilio Voice",
+          "LangChain"
+        ],
+        "short_description": "A realtime speech API for building voice agents that can listen and speak with low-friction streaming audio integration. In this source it is used as the conversation layer in an inbound phone-call system.",
+        "strengths": "- Handles the talking side of the call through a streaming audio connection, which makes it suitable for inbound voice experiences.\n- Fits cleanly into a distributed system design where the model focuses on conversation and the application layer handles deterministic operations.\n- Supports session instructions and voice selection, which helps teams shape caller experience without rebuilding the telephony stack.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [
+          "proprietary-model",
+          "multimodal-model"
+        ],
+        "supporting_snippet": "The voice-and-reasoning part is, by 2026 standards, mostly a solved problem: the OpenAI Realtime API, Google\u2019s Live audio, ElevenLabs\u2019 conversational stack all do the talking part well enough to ship.",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not show production metrics, latency, reliability, or failure handling, so the operational ceiling is unclear. It is also only one part of a larger call system; the article emphasizes that session state, retries, observability, and hand-off logic remain outside the model and are where much of the hard work lives."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "The source describes the stack as \"a phone number, a SIP stack accepting the call, a media pipeline handling the audio, a runtime running the conversation, an integration layer holding the pieces together.\"",
+        "key_points": [
+          "The model is one box in the diagram, not the whole agent.",
+          "Deterministic actions such as lookups and retries should live outside the model.",
+          "The same runtime pattern can support support, scheduling, lead qualification, or screening by changing prompts and tools."
+        ],
+        "knowledge_summary": "Realtime voice agents are better understood as distributed systems than as single models. The useful architecture splits telephony transport, audio streaming, runtime conversation, and deterministic backend actions into separate layers. This separation makes it easier to keep the conversational model flexible while preserving reliability for state, retries, and hand-offs. In practice, the model should decide conversational moves, while the system should own actions with definite outcomes.",
+        "match_candidates": [],
+        "operational_insight": "When a voice agent needs to handle real calls, keep the model on the conversational side and move deterministic work into the surrounding runtime. That boundary reduces brittle behavior and makes the system easier to debug, scale, and hand off.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "agent-orchestration",
+          "runtime-architecture"
+        ],
+        "related_topics": [],
+        "relevance_note": "This architecture shows up in call automation, appointment scheduling, and support routing wherever a voice model needs to sit inside a production telephony system. The pattern remains useful because the hard problems are often in transport, state, and orchestration rather than in speech generation itself.",
+        "secondary_tag": "agent-orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "",
+        "topic_slug": "agent-runtime-architecture-for-voice",
+        "topic_title": "Agent Runtime Architecture for Voice",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "The source notes that \"Twilio Voice gives you a SIP trunk wrapped in an HTTP and WebSocket abstraction\" and that the call path runs through Twilio, then a WebSocket bridge, then the model.",
+        "key_points": [
+          "SIP remains the underlying protocol for real phone reachability.",
+          "A trunk provider can hide much of the telephony complexity behind HTTP and WebSocket abstractions.",
+          "Custom trunk control becomes more attractive when codec selection or carrier-specific routing matters."
+        ],
+        "knowledge_summary": "Voice agents that answer real phone calls must integrate with telephony infrastructure rather than only with model APIs. That means handling phone numbers, SIP trunks, media streams, and often a web or socket bridge between carrier traffic and the agent runtime. Managed telephony can simplify this layer, but deeper control becomes important when teams need custom routing, codec decisions, or self-hosted edge components.",
+        "match_candidates": [],
+        "operational_insight": "For production voice systems, choose the telephony abstraction based on how much control the call path needs. Managed trunks are usually enough for generic workflows, while specialized or high-scale setups may justify lower-level control.",
+        "primary_tag": "infrastructure",
+        "proposed_tags": [
+          "infrastructure",
+          "runtime-architecture",
+          "agent-systems"
+        ],
+        "related_topics": [
+          "agent-runtime-architecture-for-voice"
+        ],
+        "relevance_note": "This is a durable topic for any service automation system that has to interact with real phone networks. The main engineering burden is often the carrier and media layer, not the model itself.",
+        "secondary_tag": "runtime-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "",
+        "topic_slug": "telephony-integration-for-voice-agents",
+        "topic_title": "Telephony Integration for Voice Agents",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The source groups it with Google\u2019s Live audio and ElevenLabs\u2019 conversational stack as systems that can handle the talking part well enough to ship."
+          ],
+          "confidence": 0.88,
+          "core_capabilities": [
+            "It supports bidirectional audio flow through a realtime session.",
+            "It can be instructed to answer inbound calls in a specific style, such as warm, brief, and helpful.",
+            "It can trigger tool use mid-conversation while the application keeps control over deterministic actions."
+          ],
+          "deployment_implications": "Adopting it pushes teams toward an architecture where audio flows over a streaming bridge and the model is isolated from deterministic call logic. The source implies that production systems still need separate handling for session state, retries, observability, escalation, and tool execution, so deployment is closer to distributed-systems integration than to a single-model API call.",
+          "match_candidates": [],
+          "maturity_signals": "The article treats it as a production-relevant choice in 2026 rather than a research preview. It is discussed alongside other mainstream realtime speech stacks, which suggests a maturing product category, but the source gives no third-party validation or scale data.",
+          "model_name": "gpt-realtime-1.5",
+          "operational_profile": "A realtime speech model used here as the live conversation engine for inbound phone calls. The source presents it as good enough to ship the talking part of a voice agent, with the application layer responsible for everything else around it. Its practical value is in streaming conversation, not in replacing telephony or workflow orchestration.",
+          "pricing_inference_implications": "No direct pricing data is given. The source only implies that the value proposition depends less on model cost alone and more on the engineering needed around the audio bridge, telephony transport, and deterministic tooling.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "proprietary-model",
+            "low-latency",
+            "multimodal-model"
+          ],
+          "proposed_types": [
+            "realtime-voice-model"
+          ],
+          "provider": "OpenAI",
+          "related_models": [],
+          "service_automation_implications": "Relevant for inbound call automation, but only as the conversational layer. The source suggests it can handle warm, brief phone interactions and decide when to call tools or escalate, while the system must own reliable record lookups and hand-offs. That makes it suitable for support, scheduling, lead qualification, and screening flows that still require deterministic backend control.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "OpenAI Realtime (gpt-realtime-1.5) for the speech model... The model's audio comes back through the same WebSocket and out through Twilio to the caller.",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not provide latency numbers, reliability data, or failure analysis, so the real-world envelope is unknown. It also does not claim the model should manage deterministic backend actions; the source argues the opposite, which means teams must keep business logic outside the model to avoid brittle behavior."
+        },
+        "notes": null,
+        "proposal_id": "50b326f5-9427-4167-91d5-775d5c32613d",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The source groups it with Google\u2019s Live audio and ElevenLabs\u2019 conversational stack as systems that can handle the talking part well enough to ship."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It supports bidirectional audio flow through a realtime session.",
+              "It can be instructed to answer inbound calls in a specific style, such as warm, brief, and helpful.",
+              "It can trigger tool use mid-conversation while the application keeps control over deterministic actions."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "proprietary-model",
+            "low-latency",
+            "multimodal-model"
+          ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-07",
+          "confidence": 0.84,
+          "evidence_from_source": "The source explicitly says the model side is mostly solved by 2026 standards, while \"most of the actual work lives\" in the integration layer underneath.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-operationalization",
+          "proposed_tags": [
+            "ai-operationalization",
+            "runtime-centralization",
+            "tool-centric-agents"
+          ],
+          "related_trends": [
+            "models-becoming-execution-layers"
+          ],
+          "secondary_tag": "runtime-centralization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "The article says the model is one box in a larger distributed system.",
+            "It highlights session state, retries, observability, and hand-offs as work outside the model.",
+            "It frames telephony, SIP, media pipelines, and edge integration as the real engineering layer."
+          ],
+          "supporting_snippet": "What\u2019s less striking \u2014 and where most of the actual work lives \u2014 is the integration layer underneath.",
+          "time_sensitivity": "Actionable as of 2026-05-07; the claim is tied to the state of realtime voice tooling at that date and should be rechecked if model or telephony interfaces change.",
+          "trend_description": "As speech models become easier to use, the main engineering burden moves into transport, orchestration, state, and hand-off logic around the model. The conversation layer can be relatively strong while the surrounding system remains the source of production risk.",
+          "trend_slug": "realtime-voice-agents-shift-to-integration-work",
+          "trend_title": "Realtime Voice Agents Shift Toward Integration Work",
+          "uncertainty_note": "The source is a single implementation note, not a benchmark study, so the shift is plausible but not quantified. It may hold best for standard inbound call handling rather than for edge cases like noisy lines, extreme accents, or complex compliance workflows.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "cfb89d50-fb16-484a-96be-bf8b12afd39a",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "models-becoming-execution-layers"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The article says the model is one box in a larger distributed system.",
+              "It highlights session state, retries, observability, and hand-offs as work outside the model.",
+              "It frames telephony, SIP, media pipelines, and edge integration as the real engineering layer."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-operationalization",
+            "runtime-centralization",
+            "tool-centric-agents"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article describes the author's own voice-agent stack and call flow in concrete deployment terms.",
+          "Claims are grounded in implementation details such as Twilio Voice, OpenAI Realtime, Next.js, LangChain, SIP, and NAT traversal.",
+          "It includes code snippets and operational design judgments from a build experience rather than a formal benchmark or research result."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Treat the model as one component in a distributed call system, not as the whole voice agent.",
+          "Put deterministic work such as database lookups, retries, and session state outside the model.",
+          "For inbound phone traffic, SIP, WebSocket media streaming, and NAT traversal remain core engineering concerns.",
+          "Managed telephony abstractions like Twilio reduce infrastructure burden, but custom trunk control can matter at scale.",
+          "The same architecture can support support calls, scheduling, lead qualification, or screening by changing prompts and tool surfaces."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@chentschel/building-realtime-voice-agents-in-2026-3eec38e96fb1",
+          "https://chentschel.xyz"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent essay about building realtime voice agents, not a bundle of unrelated items.",
+          "Contains implementation details and architecture diagrams/snippets rather than a roundup or interview.",
+          "No numbered list of products, practices, or Q&A transcript structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It connects to a live audio stream so the model can hear and speak during a phone call.",
+            "It lets the application set conversation instructions and a voice profile for the session."
+          ],
+          "integration_ecosystem": [
+            "It is shown running behind a Next.js edge handler that bridges Twilio media streams to the model.",
+            "It is used together with Twilio Voice for telephony transport and LangChain for tool orchestration."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats it as a shippable component by 2026, alongside other major realtime voice stacks. That is a sign of practical maturity for basic voice-conversation use cases, but the article does not provide independent evidence of robustness across noisy calls, accents, or complex escalation flows.",
+          "name": "OpenAI Realtime API",
+          "operational_relevance": "Useful when the product goal is a live phone conversation rather than a text chat flow. The practical fit is as the speech-and-reasoning layer, while telephony, session control, retries, and tool execution live outside the model boundary. For service automation, it can power warm, brief, helpful call handling, but only if the surrounding system handles deterministic call state and hand-offs.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "low-latency"
+          ],
+          "proposed_types": [],
+          "related_tools": [
+            "Twilio Voice",
+            "LangChain"
+          ],
+          "short_description": "A realtime speech API for building voice agents that can listen and speak with low-friction streaming audio integration. In this source it is used as the conversation layer in an inbound phone-call system.",
+          "strengths": "- Handles the talking side of the call through a streaming audio connection, which makes it suitable for inbound voice experiences.\n- Fits cleanly into a distributed system design where the model focuses on conversation and the application layer handles deterministic operations.\n- Supports session instructions and voice selection, which helps teams shape caller experience without rebuilding the telephony stack.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [
+            "proprietary-model",
+            "multimodal-model"
+          ],
+          "supporting_snippet": "The voice-and-reasoning part is, by 2026 standards, mostly a solved problem: the OpenAI Realtime API, Google\u2019s Live audio, ElevenLabs\u2019 conversational stack all do the talking part well enough to ship.",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not show production metrics, latency, reliability, or failure handling, so the operational ceiling is unclear. It is also only one part of a larger call system; the article emphasizes that session state, retries, observability, and hand-off logic remain outside the model and are where much of the hard work lives."
+        },
+        "notes": null,
+        "proposal_id": "5aa54486-4e65-4b80-8c28-4aa3c6dacbf8",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It connects to a live audio stream so the model can hear and speak during a phone call.",
+              "It lets the application set conversation instructions and a voice profile for the session."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is shown running behind a Next.js edge handler that bridges Twilio media streams to the model.",
+              "It is used together with Twilio Voice for telephony transport and LangChain for tool orchestration."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Twilio Voice",
+              "LangChain"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "low-latency"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application",
+            "speach"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "speach"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "The source describes the stack as \"a phone number, a SIP stack accepting the call, a media pipeline handling the audio, a runtime running the conversation, an integration layer holding the pieces together.\"",
+          "key_points": [
+            "The model is one box in the diagram, not the whole agent.",
+            "Deterministic actions such as lookups and retries should live outside the model.",
+            "The same runtime pattern can support support, scheduling, lead qualification, or screening by changing prompts and tools."
+          ],
+          "knowledge_summary": "Realtime voice agents are better understood as distributed systems than as single models. The useful architecture splits telephony transport, audio streaming, runtime conversation, and deterministic backend actions into separate layers. This separation makes it easier to keep the conversational model flexible while preserving reliability for state, retries, and hand-offs. In practice, the model should decide conversational moves, while the system should own actions with definite outcomes.",
+          "match_candidates": [],
+          "operational_insight": "When a voice agent needs to handle real calls, keep the model on the conversational side and move deterministic work into the surrounding runtime. That boundary reduces brittle behavior and makes the system easier to debug, scale, and hand off.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "runtime-architecture"
+          ],
+          "related_topics": [],
+          "relevance_note": "This architecture shows up in call automation, appointment scheduling, and support routing wherever a voice model needs to sit inside a production telephony system. The pattern remains useful because the hard problems are often in transport, state, and orchestration rather than in speech generation itself.",
+          "secondary_tag": "agent-orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "",
+          "topic_slug": "agent-runtime-architecture-for-voice",
+          "topic_title": "Agent Runtime Architecture for Voice",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ad03d5dd-dae9-43bc-a2ef-f9e7b2df93a9",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The model is one box in the diagram, not the whole agent.",
+              "Deterministic actions such as lookups and retries should live outside the model.",
+              "The same runtime pattern can support support, scheduling, lead qualification, or screening by changing prompts and tools."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "runtime-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "The source notes that \"Twilio Voice gives you a SIP trunk wrapped in an HTTP and WebSocket abstraction\" and that the call path runs through Twilio, then a WebSocket bridge, then the model.",
+          "key_points": [
+            "SIP remains the underlying protocol for real phone reachability.",
+            "A trunk provider can hide much of the telephony complexity behind HTTP and WebSocket abstractions.",
+            "Custom trunk control becomes more attractive when codec selection or carrier-specific routing matters."
+          ],
+          "knowledge_summary": "Voice agents that answer real phone calls must integrate with telephony infrastructure rather than only with model APIs. That means handling phone numbers, SIP trunks, media streams, and often a web or socket bridge between carrier traffic and the agent runtime. Managed telephony can simplify this layer, but deeper control becomes important when teams need custom routing, codec decisions, or self-hosted edge components.",
+          "match_candidates": [],
+          "operational_insight": "For production voice systems, choose the telephony abstraction based on how much control the call path needs. Managed trunks are usually enough for generic workflows, while specialized or high-scale setups may justify lower-level control.",
+          "primary_tag": "infrastructure",
+          "proposed_tags": [
+            "infrastructure",
+            "runtime-architecture",
+            "agent-systems"
+          ],
+          "related_topics": [
+            "agent-runtime-architecture-for-voice"
+          ],
+          "relevance_note": "This is a durable topic for any service automation system that has to interact with real phone networks. The main engineering burden is often the carrier and media layer, not the model itself.",
+          "secondary_tag": "runtime-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "",
+          "topic_slug": "telephony-integration-for-voice-agents",
+          "topic_title": "Telephony Integration for Voice Agents",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ebe19487-98ea-4d21-97c2-ee7d40c5c051",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "SIP remains the underlying protocol for real phone reachability.",
+              "A trunk provider can hide much of the telephony complexity behind HTTP and WebSocket abstractions.",
+              "Custom trunk control becomes more attractive when codec selection or carrier-specific routing matters."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-runtime-architecture-for-voice"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "infrastructure",
+            "runtime-architecture",
+            "agent-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 5,
+    "review_duration_seconds": 237.1,
+    "review_finished_at": "2026-06-01T16:21:50.096887+00:00",
+    "review_started_at": "2026-06-01T16:17:53+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-01T16:21:50+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Christian Hentschel",
+    "canonical_url": "https://medium.com/@chentschel/building-realtime-voice-agents-in-2026-3eec38e96fb1",
+    "content_sha256": "04dbb2d36e53feb55cad0950263ee2e95eb83a8789cd00e3f5ddb074585855c9",
+    "publication": "Medium",
+    "published_date": "2026-05-07",
+    "raw_html_rel_path": "raw/readwise/building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp.html",
+    "raw_md_rel_path": "raw/readwise/building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp.md",
+    "source_id": "building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp",
+    "title": "Building Realtime Voice Agents in 2026"
+  }
+}

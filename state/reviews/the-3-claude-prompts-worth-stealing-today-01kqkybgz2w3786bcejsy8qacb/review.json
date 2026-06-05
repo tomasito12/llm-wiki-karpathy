@@ -1,0 +1,514 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-02T20:32:31+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DmQ4KJRqNvX3EZ7UWS9QkhP3oQxM9",
+          "token_usage": {
+            "completion_tokens": 185,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5902,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6087
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DmQ4MmA9VYbPfNE69iAF4aTsMmbbd",
+          "token_usage": {
+            "completion_tokens": 1151,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5315,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6466
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DmQ4VtFo7ycM20GCd3vuH2Assfhma",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 871,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30308,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 31179
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DmQ4VtFo7ycM20GCd3vuH2Assfhma",
+    "token_usage": {
+      "completion_tokens": 2207,
+      "prompt_tokens": 41525,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 43732
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is the author's guidance and interpretation about better Claude prompt design.",
+        "It cites Anthropic docs and a Business Insider report, but these are supporting references rather than the main evidentiary base.",
+        "The examples are illustrative prompts and personal workflow impressions, not benchmarks or formal studies."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about using Claude, a conversational artificial intelligence tool, in a smarter way. Instead of writing short, vague requests and hoping for a useful answer, the author says you should give the tool a real job, some background, and a clear idea of what a good result looks like. The article shares three prompt templates. One helps you learn a topic by having the tool explain it, test you, and adjust to your level. One helps you turn a rough idea into a simple project plan. One helps you look for small business ideas that solve painful problems people already pay for. The author says these prompts work because they reduce confusion for the model. The article also says this style matches guidance from Anthropic, the company behind Claude, which recommends clear instructions, examples, structured context, and precise output formats. A real company example from Gumroad is used to show that Claude can help with practical product work. The main message is that better results come from better structure, not from collecting fancy prompt phrases.",
+      "assessed_as_of": "2026-04-24",
+      "contradictions_and_skepticism": "The article\u2019s strongest claim is that better prompts are really better briefs, which is plausible, but it is presented without controlled evidence. The Gumroad example is suggestive, yet a single company story does not prove that these prompt patterns generalize. The monetization advice leans on the idea that boring problems are where money lives; that may be directionally true for some solo operators, but the article does not quantify it. The post also frames Anthropic guidance as confirmation of the author\u2019s method, but that is more a validation-by-alignment than independent proof. Overall, the skepticism level is moderate: the advice is practical and coherent, but the article is thin on hard evidence.",
+      "key_insights": [
+        "A useful Claude prompt should assign a role, provide context, define good output, and make the result easy to use.",
+        "The learning prompt is designed as a feedback loop: explain, test, correct, and adapt to the user\u2019s level.",
+        "The builder prompt separates context, task, and output so Claude can turn a messy idea into a minimal viable version plus a 7-day plan.",
+        "The monetization prompt favors boring, painful, already-paid-for problems over exciting startup fantasies.",
+        "The article\u2019s strongest practical advice is to treat prompts as reusable systems, not one-off clever phrasing."
+      ],
+      "limitations_and_open_questions": "The article does not provide comparative tests, failure rates, or evidence that these templates outperform other prompt styles across tasks. The strongest support is anecdotal: the author\u2019s own workflow, Anthropic documentation, and one company story about Gumroad. The monetization prompt assumes the reader can accurately judge painful problems, starter pricing, and validation speed, but it does not explain how to verify those judgments. The builder prompt asks for tools or models needed, but it does not address tradeoffs such as cost, privacy, evaluation, or integration complexity. The learning prompt may be useful for broad topics, but the article does not say how well it handles highly technical or ambiguous subjects. It also does not show how these prompts behave over repeated use, different domains, or different model versions.",
+      "sources": [
+        "https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-44cbee166a5b",
+        "https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb"
+      ],
+      "summary": "The article argues that effective Claude prompting is less about clever wording and more about building a clear brief with a defined job, context, success criteria, and output shape. It presents three reusable prompt patterns: a learning prompt that turns Claude into a tutor with feedback loops, a builder prompt that turns messy ideas into a simple build brief and action plan, and a monetization prompt that looks for boring but payable problems for solo creators or service businesses. Across all three, the common mechanism is reducing ambiguity so the model can act more consistently. The author ties this approach to Anthropic\u2019s documentation on clear instructions, structured context, XML tags, explicit output formatting, and prompt chaining, and uses a Gumroad example to suggest Claude can support real product work. The central claim is practical rather than flashy: prompts work better when they behave like small systems for learning, building, and deciding.",
+      "why_it_matters": "The piece is useful because it compresses a fairly durable prompt-design heuristic into three concrete templates that map to common AI work: understanding, building, and finding value. For an AI practitioner, the real contribution is not the specific wording of the prompts but the structure they enforce: role, context, constraints, output format, and a feedback loop. That framing aligns with the article\u2019s cited Anthropic guidance on clear instructions, examples, XML tags, explicit formatting, and prompt chaining, so the advice is not just personal preference. The article also gives a practical lens for judging prompt quality: if a prompt does not reduce ambiguity, it is probably under-specified. The monetization section is especially useful because it discourages idea-hunting and instead points at existing work that already has a budget or time cost. The evidence base is still mostly opinion, examples, and cited documentation rather than benchmarks, so the claims are best treated as pragmatic guidance rather than measured proof. As of 2026-04-24, the material is actionable for anyone designing Claude prompts, but it should be adopted as a working pattern and validated in your own workflow rather than treated as a universal rule."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion piece centered on three prompt templates, not a bundle of unrelated items.",
+        "No interview structure, no step-by-step tutorial emphasis, and no product/tool roundup structure.",
+        "Primary function is argument and practical advice, not reporting or research."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.87,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A strong prompt gives the model a job, context, success criteria, and a usable output shape.",
+          "Ambiguity reduction is the central mechanism behind more reliable model behavior.",
+          "Structured prompts are especially helpful when a task mixes instructions, changing inputs, and formatting needs."
+        ],
+        "knowledge_summary": "Context engineering is the practice of shaping a model\u2019s input so it has enough role, background, constraints, examples, and output structure to do useful work reliably. The goal is not clever phrasing but reducing ambiguity so the model can behave more consistently across repeated tasks. Good context engineering often treats a prompt as a small system rather than a one-off request.",
+        "match_candidates": [],
+        "operational_insight": "For practical AI work, the highest-leverage prompt improvement is usually adding the right context and output shape, not chasing shorter or more ornate wording. Role, goal, constraints, and formatting should be explicit when reliability matters.",
+        "primary_tag": "prompt-engineering",
+        "proposed_tags": [
+          "prompt-engineering",
+          "context-engineering",
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "As of 2026-04-24, context engineering is a durable skill for conversational AI, agent workflows, and service automation because most failures come from underspecified inputs rather than model incapability. It matters whenever teams need repeatable outputs, easier review, or lower handholding across chatbots, voicebots, and internal assistants.",
+        "secondary_tag": "context-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cGive Claude a real job. Give it context. Define what a good answer looks like.\u201d",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.82,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A useful prompt can combine explanation, questions, correction, and next-step guidance.",
+          "The article frames prompt design as a system design problem, not a phrasing problem.",
+          "Prompt chaining is presented as a way to separate draft, critique, and revision steps."
+        ],
+        "knowledge_summary": "A prompt can function as a reusable workflow when it bakes in multiple steps such as explanation, testing, correction, planning, or validation. Instead of producing a single static answer, the model is asked to act as a loop or sequence that moves the user toward a better outcome. This turns prompting into a lightweight orchestration technique.",
+        "match_candidates": [],
+        "operational_insight": "Treat prompts as reusable procedures when you need learning, building, or decision support. Multi-step prompts are more durable than one-shot prompts because they encode the desired interaction pattern, not just the requested content.",
+        "primary_tag": "prompt-engineering",
+        "proposed_tags": [
+          "prompt-engineering",
+          "workflow-design",
+          "human-ai-workflows"
+        ],
+        "related_topics": [],
+        "relevance_note": "As of 2026-04-24, this is useful anywhere teams want a model to do more than answer questions once. It maps directly to agent design, internal copilots, and support workflows where repeated checking and adaptation matter more than a polished first draft.",
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cStart thinking of Claude prompts as small systems for learning, building, and deciding.\u201d",
+        "topic_slug": "prompts-as-workflows",
+        "topic_title": "Prompts as Small Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is the author's guidance and interpretation about better Claude prompt design.",
+          "It cites Anthropic docs and a Business Insider report, but these are supporting references rather than the main evidentiary base.",
+          "The examples are illustrative prompts and personal workflow impressions, not benchmarks or formal studies."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A useful Claude prompt should assign a role, provide context, define good output, and make the result easy to use.",
+          "The learning prompt is designed as a feedback loop: explain, test, correct, and adapt to the user\u2019s level.",
+          "The builder prompt separates context, task, and output so Claude can turn a messy idea into a minimal viable version plus a 7-day plan.",
+          "The monetization prompt favors boring, painful, already-paid-for problems over exciting startup fantasies.",
+          "The article\u2019s strongest practical advice is to treat prompts as reusable systems, not one-off clever phrasing."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-44cbee166a5b",
+          "https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion piece centered on three prompt templates, not a bundle of unrelated items.",
+          "No interview structure, no step-by-step tutorial emphasis, and no product/tool roundup structure.",
+          "Primary function is argument and practical advice, not reporting or research."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.87,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A strong prompt gives the model a job, context, success criteria, and a usable output shape.",
+            "Ambiguity reduction is the central mechanism behind more reliable model behavior.",
+            "Structured prompts are especially helpful when a task mixes instructions, changing inputs, and formatting needs."
+          ],
+          "knowledge_summary": "Context engineering is the practice of shaping a model\u2019s input so it has enough role, background, constraints, examples, and output structure to do useful work reliably. The goal is not clever phrasing but reducing ambiguity so the model can behave more consistently across repeated tasks. Good context engineering often treats a prompt as a small system rather than a one-off request.",
+          "match_candidates": [],
+          "operational_insight": "For practical AI work, the highest-leverage prompt improvement is usually adding the right context and output shape, not chasing shorter or more ornate wording. Role, goal, constraints, and formatting should be explicit when reliability matters.",
+          "primary_tag": "prompt-engineering",
+          "proposed_tags": [
+            "prompt-engineering",
+            "context-engineering",
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "As of 2026-04-24, context engineering is a durable skill for conversational AI, agent workflows, and service automation because most failures come from underspecified inputs rather than model incapability. It matters whenever teams need repeatable outputs, easier review, or lower handholding across chatbots, voicebots, and internal assistants.",
+          "secondary_tag": "context-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cGive Claude a real job. Give it context. Define what a good answer looks like.\u201d",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "c7674ade-6073-461a-951d-266db8d50b9a",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A strong prompt gives the model a job, context, success criteria, and a usable output shape.",
+              "Ambiguity reduction is the central mechanism behind more reliable model behavior.",
+              "Structured prompts are especially helpful when a task mixes instructions, changing inputs, and formatting needs."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "prompt-engineering",
+            "context-engineering",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.82,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A useful prompt can combine explanation, questions, correction, and next-step guidance.",
+            "The article frames prompt design as a system design problem, not a phrasing problem.",
+            "Prompt chaining is presented as a way to separate draft, critique, and revision steps."
+          ],
+          "knowledge_summary": "A prompt can function as a reusable workflow when it bakes in multiple steps such as explanation, testing, correction, planning, or validation. Instead of producing a single static answer, the model is asked to act as a loop or sequence that moves the user toward a better outcome. This turns prompting into a lightweight orchestration technique.",
+          "match_candidates": [],
+          "operational_insight": "Treat prompts as reusable procedures when you need learning, building, or decision support. Multi-step prompts are more durable than one-shot prompts because they encode the desired interaction pattern, not just the requested content.",
+          "primary_tag": "prompt-engineering",
+          "proposed_tags": [
+            "prompt-engineering",
+            "workflow-design",
+            "human-ai-workflows"
+          ],
+          "related_topics": [],
+          "relevance_note": "As of 2026-04-24, this is useful anywhere teams want a model to do more than answer questions once. It maps directly to agent design, internal copilots, and support workflows where repeated checking and adaptation matter more than a polished first draft.",
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cStart thinking of Claude prompts as small systems for learning, building, and deciding.\u201d",
+          "topic_slug": "prompts-as-workflows",
+          "topic_title": "Prompts as Small Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "9d663501-7789-4172-86c6-8dac79b20eea",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A useful prompt can combine explanation, questions, correction, and next-step guidance.",
+              "The article frames prompt design as a system design problem, not a phrasing problem.",
+              "Prompt chaining is presented as a way to separate draft, critique, and revision steps."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "prompt-engineering",
+            "workflow-design",
+            "human-ai-workflows"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 2,
+    "review_duration_seconds": 99.5,
+    "review_finished_at": "2026-06-02T20:34:10.508650+00:00",
+    "review_started_at": "2026-06-02T20:32:31+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-02T20:34:10+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Gabriel Isaac",
+    "canonical_url": "https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-44cbee166a5b",
+    "content_sha256": "fd68902107641806f2ae16c87d05d99c7739633c133cfdee54957a3924a8c8d5",
+    "publication": "Medium",
+    "published_date": "2026-04-24",
+    "raw_html_rel_path": "raw/readwise/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb.html",
+    "raw_md_rel_path": "raw/readwise/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb.md",
+    "source_id": "the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb",
+    "title": "The 3 Claude Prompts Worth Stealing Today"
+  }
+}

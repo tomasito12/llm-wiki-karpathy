@@ -1,0 +1,826 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-01T16:11:57+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "39-triage",
+          "request_id": "chatcmpl-DlzWNG2SZbPpbvVXVljvsz5kWj655",
+          "token_usage": {
+            "completion_tokens": 199,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4232,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4431
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "39-summary",
+          "request_id": "chatcmpl-DlzWdrTIPVMmW6qZg3UhyEEZV3GNz",
+          "token_usage": {
+            "completion_tokens": 1078,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3659,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4737
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "39-entities-standard_article",
+          "request_id": "chatcmpl-DlzWqFBN41SAVFNUmNum8Ax1fFAHr",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1804,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 28154,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 29958
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "39",
+    "provider": "openai",
+    "request_id": "chatcmpl-DlzWqFBN41SAVFNUmNum8Ax1fFAHr",
+    "token_usage": {
+      "completion_tokens": 3081,
+      "prompt_tokens": 36045,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 39126
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The article positions it as the broad baseline recommendation ahead of the other named local models in the roundup."
+        ],
+        "confidence": 0.82,
+        "core_capabilities": [
+          "The source presents it as a broadly recommended general-purpose local model family.",
+          "The source does not specify any narrower specialization such as coding, tool use, or roleplay."
+        ],
+        "deployment_implications": "As of 2026-04-14, teams using local models can treat Qwen 3.5 as a first-pass candidate for broad local evaluation and shortlist building. The source does not give hardware, latency, context-length, or licensing details, so deployment decisions still need separate validation.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The model is presented as widely recommended in local model communities, which is a useful adoption signal. The source does not provide enterprise-readiness evidence, so maturity should be inferred cautiously.",
+        "model_name": "Qwen 3.5",
+        "operational_profile": "- Broadly recommended across use cases, so it functions as a general local baseline rather than a niche specialist.\n- The source frames it as the model family people are recommending most across different tasks, which makes it a practical first model to test when sampling local options.\n- The article does not provide capability details beyond community recommendation patterns, so the operational signal is popularity for general use rather than a verified technical advantage.",
+        "pricing_inference_implications": "No pricing or inference-cost information is given. The article only supports the inference that practitioners find it practical enough to recommend for local use.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "open-weight-model",
+          "developer-focused"
+        ],
+        "proposed_types": [
+          "open-weight-model"
+        ],
+        "provider": "Qwen",
+        "related_models": [
+          "Gemma 4",
+          "GLM-5 / GLM-4.7",
+          "MiniMax M2.5 / M2.7",
+          "DeepSeek V3.2",
+          "GPT-oss 20B"
+        ],
+        "service_automation_implications": "As of 2026-04-14, the article suggests Qwen 3.5 is a sensible local baseline to evaluate for service automation, but it gives no direct evidence on containment, handoff reduction, or support quality.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Qwen 3.5\n\u2014 most broadly recommended family right now across usecases.",
+        "value_level": "high",
+        "weaknesses_limitations": "The source provides no benchmark data, deployment constraints, or task-specific failure modes, so any claim beyond community preference would be unsupported. It is better treated as a recommendation signal than as proof of superior performance."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-14",
+        "confidence": 0.74,
+        "evidence_from_source": "The source explicitly says the roundup is based on what people are actually recommending rather than benchmark supremacy, and that the author surveys local model subreddits to identify consensus picks.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "open-model-pressure",
+        "proposed_tags": [
+          "open-model-pressure"
+        ],
+        "related_trends": [
+          "local-specialist-models-for-preprocessing"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-economics",
+        "suggested_new_tags": [
+          "ai-economics",
+          "developer-tools"
+        ],
+        "supporting_data_points": [
+          "The roundup explicitly prioritizes recommendations over benchmark supremacy.",
+          "The author says they monitor local model subreddits almost daily.",
+          "The article presents the result as community consensus across different model sizes."
+        ],
+        "supporting_snippet": "The top names you should know as a baseline, adjusted for \u201cwhat people are actually recommending\u201d rather than just benchmark supremacy:\n...\nAs you know we read through /r/localLlama, /r/localLLM, and other local model subreddits on an almost daily basis, and every now and then it is good to step back and survey what the community consensus is landing on",
+        "time_sensitivity": "Actionable as of 2026-04-14; the recommendation set is likely to change as community sentiment shifts and new local models appear.",
+        "trend_description": "In local-model workflows, practitioners increasingly use repeated community recommendations as a practical filter for model selection instead of relying only on benchmark rankings. This does not replace evaluation, but it changes the first-pass decision process: shortlist what the community keeps recommending, then test locally. The pattern matters most when the model space is large and users need fast triage under real deployment constraints.",
+        "trend_slug": "local-model-selection-shifts-toward-community-consensus",
+        "trend_title": "Local Model Selection Shifts Toward Community Consensus",
+        "uncertainty_note": "The evidence is limited to one community-sentiment roundup, so it is a directional snapshot rather than a verified market-wide ranking. Recommendation popularity can be distorted by subreddit demographics, recency bias, and model-release cycles.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "Claims are explicitly based on what the author sees people recommending in local model subreddits.",
+        "The article describes community consensus and repeated citations from practitioners rather than benchmark results or formal research.",
+        "The central evidence basis is practitioner anecdote / forum sentiment, not vendor messaging or experimental evaluation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a quick guide to which local language models people in online communities are recommending most. It is based on the author reading discussions in local model forums and noticing which model names keep coming up. Instead of trying to rank every model by test scores, it focuses on what people seem to find practical and worth using. The author says Qwen 3.5 is the broadest recommendation across different kinds of tasks. Gemma 4 is highlighted for being easy to use locally, especially in smaller and medium-sized setups. GLM-5 and GLM-4.7 are described as strong general open models, while MiniMax M2.5 and M2.7 are mentioned for tool-using and agent-like work. DeepSeek V3.2 is included as one of the strongest general open-weight models, and GPT-oss 20B is presented as a practical local choice, including uncensored variants. For coding, the author says the community strongly favors Qwen3-Coder-Next. The article also notes that many local model discussions are centered on roleplay and creative writing. As of 2026-04-14, this is best treated as a practical community snapshot rather than a hard technical ranking.",
+      "assessed_as_of": "2026-04-14",
+      "contradictions_and_skepticism": "The roundup is explicitly preference-based, so its strongest claims rest on community sentiment rather than measured performance. That makes terms like \"overwhelming consensus\" and \"best overall conversation\" suggestive rather than rigorous. The article also blends broad general-purpose recommendations with niche preferences such as roleplay and uncensored variants, which may reflect forum culture as much as model quality. No counterexamples or disconfirming evidence are presented, so the list should be treated as a directional snapshot, not a settled ranking.",
+      "key_insights": [
+        "Community recommendation patterns are treated as more useful than benchmark supremacy for choosing local models.",
+        "Qwen 3.5 is presented as the broad baseline model to know across many use cases.",
+        "MiniMax M2.5/M2.7 are singled out specifically for tool-heavy and agentic workloads, which is a more operationally useful distinction than generic quality claims.",
+        "Qwen3-Coder-Next is described as the overwhelming consensus choice for local coding.",
+        "The article\u2019s evidence is forum sentiment, so it is best used as a shortlist generator rather than a definitive evaluation."
+      ],
+      "limitations_and_open_questions": "The article gives no quantitative benchmark data, testing setup, hardware assumptions, or evaluation criteria, so the recommendations cannot be independently verified from the text. It also does not explain how often the listed models were recommended, whether the author sampled forums systematically, or how recency bias may affect the shortlist. The practical meaning of labels like \"best overall\" and \"broadly recommended\" is left undefined. The piece does not discuss inference cost, context length, licensing, safety, or deployment constraints, all of which matter for local use. It also leaves open whether these recommendations hold across languages, different hardware tiers, or specific application requirements.",
+      "sources": [
+        "https://www.latent.space/p/ainews-top-local-models-list-april"
+      ],
+      "summary": "This short article is a community-sentiment roundup of local large language models, based on what the author sees people repeatedly recommending across local model subreddits. The main point is not benchmark supremacy but practical popularity for real local use. The author highlights a small set of names as baseline models to know: Qwen 3.5 for broad recommendations, Gemma 4 for local usability, GLM-5/GLM-4.7 for broad open-model rankings, MiniMax M2.5/M2.7 for agentic or tool-heavy work, DeepSeek V3.2 for general strength, and GPT-oss 20B as a practical local option and for uncensored variants. The piece also says that for local coding, Qwen3-Coder-Next has overwhelming consensus. It frames the rest of the fuller list as leaning heavily toward roleplay and creative writing use cases. The evidence basis is forum consensus and repeated recommendation patterns, not a formal benchmark study.",
+      "why_it_matters": "The article is useful because it compresses a large, noisy local-model conversation into a small shortlist of names that practitioners are apparently recommending across different task types. For anyone tracking local model options, that makes it easier to decide what to test first instead of reading through scattered subreddit threads. The distinction between broad general models, coding-focused models, and tool-heavy agentic models is practical and durable enough to reuse as a selection frame. The piece is especially valuable as a signal of community preference rather than as a technical benchmark report, which means it can help prioritize evaluation but not replace it. Its strongest contribution is the mapping from use case to model family: general use, coding, agentic work, and creative writing. The evidence is still informal because it comes from repeated recommendations in forums, not controlled comparisons. That limits how far the conclusions can be generalized beyond the local-model community represented in the source. As of 2026-04-14, it is actionable as a community snapshot for shortlisting, but it should be treated as a monitor-and-test input rather than a durable truth claim."
+    },
+    "source_type_detection": {
+      "confidence": 0.94,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Short editorial roundup framed as a community-consensus survey rather than a single tutorial or interview.",
+        "Contains a small set of named model recommendations with brief annotations, not a large list of products or procedures.",
+        "Primary purpose is analyst commentary on which local models people recommend, which fits a standard article more than a dedicated roundup type."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.78,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Forum sentiment can compress a noisy model landscape into a smaller evaluation set.",
+          "Recommendation frequency is useful as a triage signal even when it is not a benchmark result.",
+          "Community consensus is especially helpful when the selection goal is practical local use rather than leaderboard supremacy."
+        ],
+        "knowledge_summary": "Community recommendation patterns can be a useful first filter when choosing local models, especially when the goal is to narrow a large search space before formal testing. Forum consensus is not a substitute for benchmarks, but it can reveal which model families practitioners repeatedly find practical across common local workloads. The most durable use of this pattern is as a shortlist-generation step: identify the models most often recommended, then validate them against your own hardware, latency, and task requirements. This approach is especially useful when the local-model ecosystem is noisy and different users optimize for different constraints.",
+        "match_candidates": [],
+        "operational_insight": "Treat repeated community recommendation as a prioritization signal, not a final ranking. Use it to decide what to test first, then verify on your own workloads and deployment constraints.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "model-behavior",
+          "developer-tools"
+        ],
+        "related_topics": [],
+        "relevance_note": "As of 2026-04-14, this is a durable selection pattern for AI engineers working in local-model environments: use practitioner consensus to reduce evaluation overhead, then validate empirically. It matters because local deployment choices are often made under time and compute constraints, so a practical shortlist can save significant review effort.",
+        "secondary_tag": "model-behavior",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "As you know we read through /r/localLlama, /r/localLLM, and other local model subreddits on an almost daily basis, and every now and then it is good to step back and survey what the community consensus is landing on, with a sampling of models across different sizes.",
+        "topic_slug": "community-shortlisting-of-local-models",
+        "topic_title": "Community Shortlisting of Local Models",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Broad general models are not the same as coding models.",
+          "Agentic and tool-heavy workloads deserve their own evaluation bucket.",
+          "Selection based on workload class is more operational than selection based on abstract model prestige."
+        ],
+        "knowledge_summary": "Local model choice becomes more useful when models are grouped by the work they are best suited for, rather than treated as one generic ranking. Broad general models, coding-focused models, and agentic or tool-heavy models solve different problems and should be evaluated against different success criteria. This framing helps teams avoid overfitting to benchmark supremacy and instead align the model to the task, latency budget, and interaction style they need. It also makes evaluation more operational because the question becomes which model fits which workload.",
+        "match_candidates": [],
+        "operational_insight": "Choose local models by workload class first, then compare candidates inside that class. This reduces evaluation noise and makes it easier to match model behavior to the actual product or automation task.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "coding-agents",
+          "agent-systems"
+        ],
+        "related_topics": [],
+        "relevance_note": "As of 2026-04-14, this is a reusable operational frame for AI practitioners selecting local models for support automation, coding, or agent workflows. It matters because different workloads reward different model behaviors, so a one-size-fits-all model ranking is often less useful than a use-case map.",
+        "secondary_tag": "coding-agents",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The top names you should know as a baseline, adjusted for \u201cwhat people are actually recommending\u201d rather than just benchmark supremacy:\nQwen 3.5\n\u2014 most broadly recommended family right now across usecases.\n...\nMiniMax M2.5 / M2.7\n\u2014 repeatedly cited for agentic/tool-heavy workloads.\n...\nFor local coding, the overwhelming consensus is\nQwen3-Coder-Next\n.",
+        "topic_slug": "use-case-specific-local-model-selection",
+        "topic_title": "Use-Case-Specific Local Model Selection",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The article positions it as the broad baseline recommendation ahead of the other named local models in the roundup."
+          ],
+          "confidence": 0.82,
+          "core_capabilities": [
+            "The source presents it as a broadly recommended general-purpose local model family.",
+            "The source does not specify any narrower specialization such as coding, tool use, or roleplay."
+          ],
+          "deployment_implications": "As of 2026-04-14, teams using local models can treat Qwen 3.5 as a first-pass candidate for broad local evaluation and shortlist building. The source does not give hardware, latency, context-length, or licensing details, so deployment decisions still need separate validation.",
+          "match_candidates": [],
+          "maturity_signals": "The model is presented as widely recommended in local model communities, which is a useful adoption signal. The source does not provide enterprise-readiness evidence, so maturity should be inferred cautiously.",
+          "model_name": "Qwen 3.5",
+          "operational_profile": "- Broadly recommended across use cases, so it functions as a general local baseline rather than a niche specialist.\n- The source frames it as the model family people are recommending most across different tasks, which makes it a practical first model to test when sampling local options.\n- The article does not provide capability details beyond community recommendation patterns, so the operational signal is popularity for general use rather than a verified technical advantage.",
+          "pricing_inference_implications": "No pricing or inference-cost information is given. The article only supports the inference that practitioners find it practical enough to recommend for local use.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "open-weight-model",
+            "developer-focused"
+          ],
+          "proposed_types": [
+            "open-weight-model"
+          ],
+          "provider": "Qwen",
+          "related_models": [
+            "Gemma 4",
+            "GLM-5 / GLM-4.7",
+            "MiniMax M2.5 / M2.7",
+            "DeepSeek V3.2",
+            "GPT-oss 20B"
+          ],
+          "service_automation_implications": "As of 2026-04-14, the article suggests Qwen 3.5 is a sensible local baseline to evaluate for service automation, but it gives no direct evidence on containment, handoff reduction, or support quality.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Qwen 3.5\n\u2014 most broadly recommended family right now across usecases.",
+          "value_level": "high",
+          "weaknesses_limitations": "The source provides no benchmark data, deployment constraints, or task-specific failure modes, so any claim beyond community preference would be unsupported. It is better treated as a recommendation signal than as proof of superior performance."
+        },
+        "notes": null,
+        "proposal_id": "7e150a4e-59b4-466f-8813-f53a3ade187e",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article positions it as the broad baseline recommendation ahead of the other named local models in the roundup."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "The source presents it as a broadly recommended general-purpose local model family.",
+              "The source does not specify any narrower specialization such as coding, tool use, or roleplay."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Gemma 4",
+              "GLM-5 / GLM-4.7",
+              "MiniMax M2.5 / M2.7",
+              "DeepSeek V3.2",
+              "GPT-oss 20B"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-weight-model",
+            "developer-focused"
+          ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-14",
+          "confidence": 0.74,
+          "evidence_from_source": "The source explicitly says the roundup is based on what people are actually recommending rather than benchmark supremacy, and that the author surveys local model subreddits to identify consensus picks.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "open-model-pressure",
+          "proposed_tags": [
+            "open-model-pressure"
+          ],
+          "related_trends": [
+            "local-specialist-models-for-preprocessing"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-economics",
+          "suggested_new_tags": [
+            "ai-economics",
+            "developer-tools"
+          ],
+          "supporting_data_points": [
+            "The roundup explicitly prioritizes recommendations over benchmark supremacy.",
+            "The author says they monitor local model subreddits almost daily.",
+            "The article presents the result as community consensus across different model sizes."
+          ],
+          "supporting_snippet": "The top names you should know as a baseline, adjusted for \u201cwhat people are actually recommending\u201d rather than just benchmark supremacy:\n...\nAs you know we read through /r/localLlama, /r/localLLM, and other local model subreddits on an almost daily basis, and every now and then it is good to step back and survey what the community consensus is landing on",
+          "time_sensitivity": "Actionable as of 2026-04-14; the recommendation set is likely to change as community sentiment shifts and new local models appear.",
+          "trend_description": "In local-model workflows, practitioners increasingly use repeated community recommendations as a practical filter for model selection instead of relying only on benchmark rankings. This does not replace evaluation, but it changes the first-pass decision process: shortlist what the community keeps recommending, then test locally. The pattern matters most when the model space is large and users need fast triage under real deployment constraints.",
+          "trend_slug": "local-model-selection-shifts-toward-community-consensus",
+          "trend_title": "Local Model Selection Shifts Toward Community Consensus",
+          "uncertainty_note": "The evidence is limited to one community-sentiment roundup, so it is a directional snapshot rather than a verified market-wide ranking. Recommendation popularity can be distorted by subreddit demographics, recency bias, and model-release cycles.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "9c5e0cd3-1d71-4db8-87af-58dd5da8a515",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "local-specialist-models-for-preprocessing"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The roundup explicitly prioritizes recommendations over benchmark supremacy.",
+              "The author says they monitor local model subreddits almost daily.",
+              "The article presents the result as community consensus across different model sizes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-model-pressure"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "Claims are explicitly based on what the author sees people recommending in local model subreddits.",
+          "The article describes community consensus and repeated citations from practitioners rather than benchmark results or formal research.",
+          "The central evidence basis is practitioner anecdote / forum sentiment, not vendor messaging or experimental evaluation."
+        ]
+      },
+      "notes": "",
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Community recommendation patterns are treated as more useful than benchmark supremacy for choosing local models.",
+          "Qwen 3.5 is presented as the broad baseline model to know across many use cases.",
+          "MiniMax M2.5/M2.7 are singled out specifically for tool-heavy and agentic workloads, which is a more operationally useful distinction than generic quality claims.",
+          "Qwen3-Coder-Next is described as the overwhelming consensus choice for local coding.",
+          "The article\u2019s evidence is forum sentiment, so it is best used as a shortlist generator rather than a definitive evaluation."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/ainews-top-local-models-list-april"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.94,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Short editorial roundup framed as a community-consensus survey rather than a single tutorial or interview.",
+          "Contains a small set of named model recommendations with brief annotations, not a large list of products or procedures.",
+          "Primary purpose is analyst commentary on which local models people recommend, which fits a standard article more than a dedicated roundup type."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.78,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Forum sentiment can compress a noisy model landscape into a smaller evaluation set.",
+            "Recommendation frequency is useful as a triage signal even when it is not a benchmark result.",
+            "Community consensus is especially helpful when the selection goal is practical local use rather than leaderboard supremacy."
+          ],
+          "knowledge_summary": "Community recommendation patterns can be a useful first filter when choosing local models, especially when the goal is to narrow a large search space before formal testing. Forum consensus is not a substitute for benchmarks, but it can reveal which model families practitioners repeatedly find practical across common local workloads. The most durable use of this pattern is as a shortlist-generation step: identify the models most often recommended, then validate them against your own hardware, latency, and task requirements. This approach is especially useful when the local-model ecosystem is noisy and different users optimize for different constraints.",
+          "match_candidates": [],
+          "operational_insight": "Treat repeated community recommendation as a prioritization signal, not a final ranking. Use it to decide what to test first, then verify on your own workloads and deployment constraints.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "model-behavior",
+            "developer-tools"
+          ],
+          "related_topics": [],
+          "relevance_note": "As of 2026-04-14, this is a durable selection pattern for AI engineers working in local-model environments: use practitioner consensus to reduce evaluation overhead, then validate empirically. It matters because local deployment choices are often made under time and compute constraints, so a practical shortlist can save significant review effort.",
+          "secondary_tag": "model-behavior",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "As you know we read through /r/localLlama, /r/localLLM, and other local model subreddits on an almost daily basis, and every now and then it is good to step back and survey what the community consensus is landing on, with a sampling of models across different sizes.",
+          "topic_slug": "community-shortlisting-of-local-models",
+          "topic_title": "Community Shortlisting of Local Models",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "4cfd6044-665e-495f-bc07-97de293a47a9",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Forum sentiment can compress a noisy model landscape into a smaller evaluation set.",
+              "Recommendation frequency is useful as a triage signal even when it is not a benchmark result.",
+              "Community consensus is especially helpful when the selection goal is practical local use rather than leaderboard supremacy."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "model-behavior",
+            "developer-tools"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Broad general models are not the same as coding models.",
+            "Agentic and tool-heavy workloads deserve their own evaluation bucket.",
+            "Selection based on workload class is more operational than selection based on abstract model prestige."
+          ],
+          "knowledge_summary": "Local model choice becomes more useful when models are grouped by the work they are best suited for, rather than treated as one generic ranking. Broad general models, coding-focused models, and agentic or tool-heavy models solve different problems and should be evaluated against different success criteria. This framing helps teams avoid overfitting to benchmark supremacy and instead align the model to the task, latency budget, and interaction style they need. It also makes evaluation more operational because the question becomes which model fits which workload.",
+          "match_candidates": [],
+          "operational_insight": "Choose local models by workload class first, then compare candidates inside that class. This reduces evaluation noise and makes it easier to match model behavior to the actual product or automation task.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "coding-agents",
+            "agent-systems"
+          ],
+          "related_topics": [],
+          "relevance_note": "As of 2026-04-14, this is a reusable operational frame for AI practitioners selecting local models for support automation, coding, or agent workflows. It matters because different workloads reward different model behaviors, so a one-size-fits-all model ranking is often less useful than a use-case map.",
+          "secondary_tag": "coding-agents",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "The top names you should know as a baseline, adjusted for \u201cwhat people are actually recommending\u201d rather than just benchmark supremacy:\nQwen 3.5\n\u2014 most broadly recommended family right now across usecases.\n...\nMiniMax M2.5 / M2.7\n\u2014 repeatedly cited for agentic/tool-heavy workloads.\n...\nFor local coding, the overwhelming consensus is\nQwen3-Coder-Next\n.",
+          "topic_slug": "use-case-specific-local-model-selection",
+          "topic_title": "Use-Case-Specific Local Model Selection",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "15ddbdfb-7167-4ffa-9f5a-c2ace4438c2e",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Broad general models are not the same as coding models.",
+              "Agentic and tool-heavy workloads deserve their own evaluation bucket.",
+              "Selection based on workload class is more operational than selection based on abstract model prestige."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "coding-agents",
+            "agent-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 2,
+    "proposals_total": 4,
+    "review_duration_seconds": 178.7,
+    "review_finished_at": "2026-06-01T16:14:56.697570+00:00",
+    "review_started_at": "2026-06-01T16:11:58+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-01T16:14:56+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/ainews-top-local-models-list-april",
+    "content_sha256": "55b14fcd949487755b7222a023b8f14995bbea5fc5d0451efa05c2f2427df1e2",
+    "publication": "Latent",
+    "published_date": "2026-04-14",
+    "raw_html_rel_path": "raw/readwise/ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p.html",
+    "raw_md_rel_path": "raw/readwise/ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p.md",
+    "source_id": "ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p",
+    "title": "[AINews] Top Local Models List - April 2026"
+  }
+}
