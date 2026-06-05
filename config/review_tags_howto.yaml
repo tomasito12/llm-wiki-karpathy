@@ -1,2 +1,2 @@
-# How-to proposals use the topic tag vocabulary (see load_howto_tags in tags.py).
-tags: []
+tags:
+- macos

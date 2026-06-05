@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T16:38:23+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnRqfkgMI8GMs8AWJYvzaN0BLeP9C",
+          "token_usage": {
+            "completion_tokens": 229,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5262,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5491
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnRqhFYJIbXcniNv7qGxDayTel2LM",
+          "token_usage": {
+            "completion_tokens": 973,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4905,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5878
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnRqhFYJIbXcniNv7qGxDayTel2LM",
+    "token_usage": {
+      "completion_tokens": 1202,
+      "prompt_tokens": 10167,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 11369
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "Opinion leader on AI infrastructure bottlenecks; useful as a short-form strategic read, but the article mainly restates a narrow set of claims about compute scarcity, pricing power, and capex with limited durable operational detail for wiki extraction.",
+      "skip_recommended": true,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "Written by The Economist as an external analyst/editorial voice rather than the vendors discussed.",
+        "Claims are supported by reported figures and examples from multiple firms, not by a single vendor announcement.",
+        "The article advances an interpretive argument about AI supply constraints and their effects on economics."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "AI is getting more expensive to run because the machines behind it are running short. The article says demand for tokens is rising fast, but chips, memory, and even data-centre equipment are hard to get. That means big firms with huge budgets can lock up supply, while smaller players have less room to compete. It also means model providers may have to ration access or delay products. The basic idea is simple: when compute is scarce, the economics of AI change. Users may need to treat AI less like free software and more like a costly resource to allocate carefully.",
+      "assessed_as_of": "2026-04-30",
+      "contradictions_and_skepticism": "The article\u2019s strongest claims are plausible but still partly inferential. For example, it links rising token demand and capacity shortages to broad economic consequences, but the evidence shown is selective and mostly anecdotal at the firm level. It also treats Nvidia and TSMC as obvious choke-point winners, which may hold while supply stays tight, but the article does not test how durable that pricing power is. The assumption that users will increasingly optimize AI usage like human labor is an argument, not a demonstrated market outcome. The article is strongest as a diagnosis of stress points, weaker as a forecast with precise timing.",
+      "key_insights": [
+        "Token consumption quadrupled between January and March, driven partly by coding tools, which suggests demand growth is outpacing supply.",
+        "The bottleneck is not only GPUs; transformers, switchgear, gas turbines, memory chips, and CPUs all constrain capacity.",
+        "In scarce-hardware markets, balance-sheet strength becomes a strategic advantage because firms can lock up supply ahead of time.",
+        "The article identifies Nvidia and TSMC as the main profit beneficiaries at the chip choke points, with very high gross margins cited as evidence of pricing power.",
+        "Falling inference prices can mask heavy cash burn; cheaper user pricing may coexist with major losses at model providers."
+      ],
+      "limitations_and_open_questions": "The piece is a leader argument, so it gives directional evidence rather than a full measurement of supply and demand. It cites fast token growth and several firm-level examples, but it does not quantify how much of the shortage is temporary versus structural beyond saying supply chains take years to expand. It also does not provide a model of when specific bottlenecks such as GPUs, memory, or power equipment will ease. The claim that higher compute costs will raise AI prices is plausible, but the scale and timing are not established. Custom silicon is mentioned as a response, yet the article does not assess the total cost, performance trade-offs, or adoption barriers in detail.",
+      "sources": [
+        "https://www.economist.com/leaders/2026/04/30/the-ai-supply-crunch-is-here"
+      ],
+      "summary": "The article argues that AI is hitting a supply bottleneck in compute, and that this is already changing how the economics of the field work. Token usage is rising fast, helped by coding tools, while model providers and cloud companies are rationing access or delaying products because capacity is tight. The limiting factors are not just GPUs: data-centre construction is slowed by local opposition, and inputs such as transformers, switchgear and gas turbines can take two to five years to arrive. But the tightest constraint is still advanced chips, including Nvidia GPUs, plus memory chips and CPUs. Because hardware is scarce and expensive, balance-sheet size and bargaining power matter more, which favors hyperscalers, Nvidia, and TSMC. The piece also says high prices are pushing software firms toward custom chips, though that is hard and expensive, and it may slow adoption because companies will have to think about compute efficiency instead of assuming inference will keep getting cheaper.",
+      "why_it_matters": "The article matters because it shifts attention from model quality alone to the physical supply chain behind AI. It says the near-term constraint is capacity, not just product demand, and that constraint is already visible in rationing, delayed launches, and missed growth opportunities at large vendors. For AI builders, that means infrastructure planning and procurement can matter as much as model design. It also implies that pricing assumptions based on steadily cheaper inference may be fragile if compute costs keep rising faster than efficiency gains. The piece is especially useful as a reminder that the main strategic leverage may sit with firms that control scarce hardware or financing, not only with the firms shipping the best models. The article also notes that software companies may respond by designing custom chips, but that path is difficult and slow, so it is not a quick fix. For service automation and chatbot-style products, the practical takeaway as of 2026-04-30 is to watch unit economics closely: low user prices can conceal tight margins, and compute budgeting may become a core product discipline rather than a back-office detail."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent leader essay, not a bundle of items or a step-by-step guide.",
+        "No Q&A structure, numbered list, or tool/product roundup pattern.",
+        "Argumentative opinion piece with a few supporting figures and cited examples from named firms."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "Written by The Economist as an external analyst/editorial voice rather than the vendors discussed.",
+          "Claims are supported by reported figures and examples from multiple firms, not by a single vendor announcement.",
+          "The article advances an interpretive argument about AI supply constraints and their effects on economics."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Token consumption quadrupled between January and March, driven partly by coding tools, which suggests demand growth is outpacing supply.",
+          "The bottleneck is not only GPUs; transformers, switchgear, gas turbines, memory chips, and CPUs all constrain capacity.",
+          "In scarce-hardware markets, balance-sheet strength becomes a strategic advantage because firms can lock up supply ahead of time.",
+          "The article identifies Nvidia and TSMC as the main profit beneficiaries at the chip choke points, with very high gross margins cited as evidence of pricing power.",
+          "Falling inference prices can mask heavy cash burn; cheaper user pricing may coexist with major losses at model providers."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/leaders/2026/04/30/the-ai-supply-crunch-is-here"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent leader essay, not a bundle of items or a step-by-step guide.",
+          "No Q&A structure, numbered list, or tool/product roundup pattern.",
+          "Argumentative opinion piece with a few supporting figures and cited examples from named firms."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 29.2,
+    "review_finished_at": "2026-06-05T16:38:56.166408+00:00",
+    "review_started_at": "2026-06-05T16:38:27+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T16:38:56+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/leaders/2026/04/30/the-ai-supply-crunch-is-here",
+    "content_sha256": "e27c34968d5200011681b2df8c287f89b18d843c094649fe0eb835d4e216a26c",
+    "publication": "Economist",
+    "published_date": "2026-04-30",
+    "raw_html_rel_path": "raw/readwise/the-ai-supply-crunch-is-here-01krh9bpdvngmkty7s2mdnxs6h.html",
+    "raw_md_rel_path": "raw/readwise/the-ai-supply-crunch-is-here-01krh9bpdvngmkty7s2mdnxs6h.md",
+    "source_id": "the-ai-supply-crunch-is-here-01krh9bpdvngmkty7s2mdnxs6h",
+    "title": "The AI supply crunch is here"
+  }
+}

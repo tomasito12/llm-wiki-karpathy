@@ -1,0 +1,1198 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T17:17:36+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.8403593642017968,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnSS9CHUw43BJJdkvSxmhS4LgEqLq",
+          "token_usage": {
+            "completion_tokens": 200,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5788,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 5988
+          }
+        },
+        {
+          "cache_hit_rate": 0.5210954848260547,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnSSC73EaJClDRhEBHe7NHGcEAacp",
+          "token_usage": {
+            "completion_tokens": 1056,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5404,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 2816
+            },
+            "total_tokens": 6460
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-technical_howto",
+          "request_id": "chatcmpl-DnSSPsR1Er51nVYAy3WqaL9OVLVfJ",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 3088,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 31132,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 34220
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnSSPsR1Er51nVYAy3WqaL9OVLVfJ",
+    "token_usage": {
+      "completion_tokens": 4344,
+      "prompt_tokens": 42324,
+      "prompt_tokens_details": {
+        "cached_tokens": 7680
+      },
+      "total_tokens": 46668
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "The source does not report formal benchmark scores or comparative measurements.",
+          "The only operational quality signal is the author's qualitative observation that the model handled text reasoning, multilingual output, and a basic object-detection task in a local console workflow."
+        ],
+        "comparative_observations": [
+          "The source implies the smaller E2B variant is suitable for local use, while larger Gemma 4 variants may achieve better object-detection accuracy.",
+          "Compared with cloud-only models, this setup emphasizes local control and zero per-call inference cost after installation."
+        ],
+        "confidence": 0.97,
+        "core_capabilities": [
+          "It supports OCR, speech-to-text, and object detection in addition to text-only prompting.",
+          "It supports multimodal function calling, reasoning, code completion, and correction.",
+          "It includes both base and instruction-tuned versions across multiple sizes.",
+          "The E2B variant is described as having a 128K context window, which makes it useful for longer prompts or larger working sets."
+        ],
+        "deployment_implications": "The source supports using Gemma 4 locally through Ollama, which means teams can test multimodal and reasoning workflows on their own hardware before committing to cloud inference. The small E2B variant is specifically positioned as practical for local experimentation, but the article also implies that output alignment and preprocessing need attention when using it for object detection.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The model is described as released one day before the article date, so this is early evidence rather than mature field reporting. Still, the source says the family already spans multiple sizes and supports both base and it versions, which suggests a serious product line rather than a one-off demo.",
+        "model_name": "Gemma 4",
+        "operational_profile": "Gemma 4 is presented as a family of models with multiple sizes and capabilities, including OCR, speech-to-text, object detection, text-only use, multimodal function calling, reasoning, code completion, and correction. The source highlights the E2B variant as a small local model with a 128K context window and notes that the family includes both base and instruction-tuned versions.",
+        "pricing_inference_implications": "The article claims zero inference cost after local setup, which is operationally meaningful for development and low-volume use. It does not establish total cost of ownership because hardware, installation, maintenance, and model download costs are not quantified.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "open-weight-model",
+          "multimodal-model",
+          "long-context-model",
+          "tool-use-capable",
+          "developer-focused"
+        ],
+        "proposed_types": [
+          "open-weight-model",
+          "multimodal-model"
+        ],
+        "provider": "Google",
+        "related_models": [
+          "Gemma 4 E2B",
+          "Gemma 4 E4B",
+          "Gemma 4 26B",
+          "Gemma 4 31B"
+        ],
+        "service_automation_implications": "Gemma 4 could support local prototypes for customer-facing assistants that need image understanding, multilingual replies, or structured extraction. The source does not show a production support deployment, so any service-automation use should be treated as experimental as of 2026-04-03.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Gemma 4 E2B \u2014 has a context window of 128K. Parameter size is 2.3B effective, 5.1B with embeddings.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not provide quantitative accuracy, latency, memory, or throughput data. It also shows that object-detection boxes may not align perfectly with the original image, so outputs can require post-processing. The visible reasoning trace is not validated as a faithful explanation, only as surfaced intermediate text."
+      }
+    ],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start by installing the local runtime and making sure it is up to date. Then pull the model you want to use and launch it from the terminal. Once the model is running, test a simple text prompt first so you can confirm the setup is sound. After that, try multimodal inputs or other capabilities one at a time so you can tell whether any problem comes from the runtime, the model, or the prompt. If the model output depends on image handling or preprocessing, inspect that step separately before assuming the model is wrong.",
+        "caveats": "The source shows that a newer runtime version may be required, so version mismatches can block setup. It also shows that object-detection results can depend on preprocessing, so a local run is not just about model quality; image handling matters too. No hardware requirements, latency numbers, or memory limits are given.",
+        "confidence": 0.95,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Install or update the local runtime from the vendor download page.",
+          "Pull the model with the runtime's model-download command.",
+          "Run the model from the terminal.",
+          "Send a simple text-only prompt to verify the setup.",
+          "Test multimodal input by attaching an image and asking a focused question.",
+          "If you use object detection, compare the returned bounding boxes against the original image and adjust preprocessing if needed."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A machine capable of running the chosen model locally.",
+          "A supported version of the local runtime installed.",
+          "Access to the model download and enough storage to pull the model files."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "runtime-systems"
+        ],
+        "question_title": "Local Model Setup",
+        "related_howtos": [
+          "local-model-deployment"
+        ],
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "inference",
+        "suggested_new_tags": [
+          "inference",
+          "local-first",
+          "multimodal"
+        ],
+        "supporting_snippet": "\"If you don\u2019t have Ollama already installed or, like myself, you need to install a new version, just download it from https://ollama.com/download and follow the instructions to install it, depending on your machine. After installing the new version, I can start again by pulling the model.\"",
+        "value_level": "high",
+        "what_and_problem": "This is about getting a model running on your own machine instead of depending on a cloud API. It matters when you want private inference, lower recurring cost, or a setup you can test and debug directly from the terminal. The main challenge is usually installing the right runtime version, downloading the model, and confirming that it works on your hardware. It is also useful when you want to experiment with text and image tasks before deciding whether to deploy anything more permanent."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-03",
+        "confidence": 0.9,
+        "evidence_from_source": "The source shows a local run of Gemma 4 E2B through Ollama on the author's machine, with text reasoning, multimodal prompting, multilingual responses, and a basic object-detection example.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "inference-efficiency",
+        "proposed_tags": [
+          "inference-efficiency",
+          "open-model-pressure",
+          "edge-deployment"
+        ],
+        "related_trends": [
+          "local-model-deployment"
+        ],
+        "secondary_tag": "open-model-pressure",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "multimodal-ai",
+        "suggested_new_tags": [
+          "multimodal-ai"
+        ],
+        "supporting_data_points": [
+          "Gemma 4 E2B is described as a 2.3B effective model with a 128K context window.",
+          "The article reports successful local text QA, image counting, German output, and a JSON bounding-box response.",
+          "The author states that output may require post-processing because preprocessing affects alignment."
+        ],
+        "supporting_snippet": "\"Gemma 4, even in its smallest E2B variant, strikes a compelling balance between performance and efficiency.\"",
+        "time_sensitivity": "Actionable as of 2026-04-03 for developers evaluating local multimodal prototypes; the observation is early-stage and may change as runtimes and model variants evolve.",
+        "trend_description": "Open-weight models become more practical to run on personal or modest local hardware when the combination of model size, runtime tooling, and task scope makes local inference workable for real experimentation. The pattern matters because it shifts some development and prototyping away from cloud-only dependency toward local control, privacy, and lower marginal inference cost. It does not mean every workload is suitable for local execution; larger or more demanding tasks may still require stronger hardware or cloud inference.",
+        "trend_slug": "open-weight-models-become-viable-on-consumer-hardware",
+        "trend_title": "Open-Weight Models Become Viable on Consumer Hardware",
+        "uncertainty_note": "This is a single hands-on demo, not a benchmark or fleet deployment, so it cannot establish broader adoption or performance ceilings. The object-detection example is explicitly imperfect, which means local viability depends on task and preprocessing details.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article reports the author's own local setup and interactions with Ollama and Gemma 4 E2B.",
+        "Claims are supported by firsthand execution examples, screenshots, and command snippets rather than formal benchmarks.",
+        "Most substantive assertions are practical observations from a single deployment case, not vendor documentation or independent evals."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a hands-on demo of running Gemma 4 on a personal machine with Ollama. The appeal is simple: you can keep data on your own computer, avoid cloud inference fees, and still try text and image tasks. The author shows the model answering questions, describing objects in an image, switching languages, and returning a bounding box for an object. It also shows that the model exposes its reasoning in the terminal. The main takeaway is that local multimodal AI is practical to try, but the evidence comes from a single setup rather than a rigorous benchmark.",
+      "assessed_as_of": "2026-04-03",
+      "contradictions_and_skepticism": "The piece presents visible reasoning traces as a feature, but the article does not validate whether those traces are faithful explanations or just surfaced intermediate text. The object-detection example is framed as a feature demonstration, yet the author explicitly notes the bounding box is not exact, which weakens any strong accuracy inference. The claim of being \u201cno limits\u201d is promotional; the article itself shows practical limits in preprocessing sensitivity and the need for a newer Ollama version. The broader claim that local multimodal AI is broadly practical is plausible here, but this source only supports it with one small demo.",
+      "key_insights": [
+        "Ollama can be used to run Gemma 4 E2B locally with a simple pull-and-run workflow.",
+        "The demo shows visible reasoning traces in the terminal, which can help debug prompt behavior.",
+        "Gemma 4 E2B handled text QA, image counting, color identification, and German output in one local setup.",
+        "The object-detection output is usable as JSON, but the article notes bounding boxes may need post-processing to match the original image.",
+        "The practical value claimed by the article is privacy, zero inference cost after setup, and freedom from API constraints."
+      ],
+      "limitations_and_open_questions": "This is a single implementation case, not a benchmark suite. There are no quantitative latency, memory, throughput, or accuracy measurements. The article does not specify hardware details beyond running on the author\u2019s machine, so resource requirements are unclear. Object detection is explicitly shown to be imperfect, and the note about preprocessing implies output alignment may vary with image handling. The privacy and zero-cost claims are true only after local setup and do not address device security, model download size, or maintenance overhead. It is also unclear how stable the reasoning traces are across prompts, languages, or future Ollama/model versions. The article mentions multiple Gemma 4 variants but does not compare them experimentally.",
+      "sources": [
+        "https://medium.com/@gabi.preda/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-7e6c3f6bd860"
+      ],
+      "summary": "This guide shows how to run Google\u2019s Gemma 4 E2B locally with Ollama and test it on text, images, multilingual prompts, and object detection. The core claim is practical rather than benchmark-driven: a local setup can provide private, no-cloud inference with no per-call cost after installation. The author first installs a newer Ollama version, pulls the model, and runs it from the terminal. They then demonstrate text-only QA, an image-counting task, color recognition in another language, and a bounding-box output for a bicycle image. The article also notes that Gemma 4 comes in several variants with different context windows and parameter sizes, including E2B, E4B, 26B, and 31B. A key observation is that the model\u2019s reasoning traces are visible in Ollama and that object-detection results may need post-processing because preprocessing can affect box alignment. The piece concludes that local Gemma use is useful for developers who want to experiment and integrate without API constraints, but the evidence is from one hands-on demo rather than a formal evaluation.",
+      "why_it_matters": "The article is useful because it gives a concrete local-inference path for a multimodal model rather than just describing capabilities in the abstract. It shows that, as of 2026-04-03, Gemma 4 E2B can be pulled and run with Ollama using a straightforward terminal workflow, which lowers the barrier to experimenting on a personal machine. The demo covers several tasks that matter to application builders: text reasoning, image understanding, multilingual responses, and object detection with structured JSON output. The visible reasoning trace in Ollama is also practical for prompt debugging and for understanding how the model is interpreting ambiguous questions. The article\u2019s strongest operational point is control: data stays local, inference is free after setup, and the developer is not constrained by an external API. That said, the evidence is a single author-run demo, so the practical claims are illustrative rather than measured. The object-detection example is especially thin as proof because the article itself says the bounding box was not perfectly aligned and may depend on preprocessing. For builders, the piece is most relevant as a quick local-prototyping reference, not as a performance benchmark. As of 2026-04-03, it is actionable for hands-on experimentation, but the performance claims should be treated as demo-level evidence."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The article is structured as a step-by-step deployment guide with commands and example outputs.",
+        "It walks through installing Ollama, pulling the model, running tests, and trying multimodal/object-detection tasks.",
+        "The primary purpose is implementation guidance rather than news aggregation, interview, or research reporting."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.94,
+        "core_capabilities": [
+          "It can pull a model locally from the command line so the model is available without a cloud-hosted inference service.",
+          "It can run an interactive local chat session that surfaces intermediate reasoning text in the terminal.",
+          "It can accept an image dropped into the console for multimodal prompts in the described workflow."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It supports local terminal workflows on the user's machine, which makes it easy to combine with shell scripts and developer tooling.",
+          "It can be paired with downloaded model artifacts such as Gemma 4 E2B for offline or private experimentation."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Ollama as a practical tool already installed and usable on a personal machine, which suggests an accessible developer-facing product. The write-up does not provide adoption metrics or enterprise details, so maturity evidence is limited to hands-on use rather than scale signals.",
+        "name": "Ollama",
+        "operational_relevance": "Ollama is relevant when you want a simple local inference workflow instead of an API-based one. It fits developer experimentation, private prototypes, and offline or low-dependency setups where terminal access is enough. For service automation, it is useful as a local test harness for multimodal or reasoning-capable models before you decide whether a cloud deployment is justified.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "cli-tool",
+          "multimodal",
+          "open-weight",
+          "low-latency"
+        ],
+        "proposed_types": [
+          "model-serving",
+          "terminal"
+        ],
+        "related_tools": [
+          "llama.cpp",
+          "Msty"
+        ],
+        "short_description": "Ollama is a local model runner that lets you pull and run models from the terminal on your own machine. In this source, it is used to load Gemma 4 E2B and interact with it through a console session.",
+        "strengths": "- Lets you pull and run a model locally with a straightforward terminal workflow, which lowers setup friction for experimentation.\n- Supports interactive testing from the console, including visible reasoning traces, which is useful for debugging prompt behavior and understanding model responses.\n- Works with multimodal inputs in this demo, so it can be part of a local workflow for text and image tasks without sending data to a cloud API.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"All models have both base and it versions. We will use Ollama on a local machine to run Gemma 4 E2B.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source shows that a newer Ollama version was required before the model could be used, so version drift can interrupt a local workflow. It also does not remove model-level limitations: object detection output can still need post-processing, and the article gives no latency, memory, or reliability measurements."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Local deployment shifts the main constraint from API access to machine compatibility and runtime versioning.",
+          "The setup can support private inference and zero per-call inference cost after installation, but it does not remove hardware or maintenance costs.",
+          "Output quality can still depend on preprocessing, so deployment checks must include the full input pipeline, not just the model binary."
+        ],
+        "knowledge_summary": "Local model deployment is the practice of running AI models on a user's own hardware or controlled infrastructure instead of sending requests to a remote service. It changes the engineering problem from API integration to runtime setup, model download, hardware fit, and local troubleshooting. This pattern is especially useful when data privacy, offline operation, or per-call cost control matters. It also pushes evaluation toward practical checks like whether the model launches, fits in memory, and produces usable outputs under local preprocessing constraints.",
+        "match_candidates": [],
+        "operational_insight": "A local deployment is only as useful as the surrounding runtime and preprocessing pipeline. In practice, the model choice, the launcher, and the image or text handling step all matter together.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "inference-systems",
+          "infrastructure",
+          "developer-tools"
+        ],
+        "related_topics": [],
+        "relevance_note": "Local deployment remains important wherever teams need private inference, predictable operating cost, or direct control over the runtime. For conversational and multimodal systems, it is often the fastest way to prototype, debug, and validate whether a model can meet product requirements before a broader rollout.",
+        "secondary_tag": "inference-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "local-first",
+        "suggested_new_tags": [
+          "local-first"
+        ],
+        "supporting_snippet": "\"Running Gemma 4:E2B locally with Ollama proves that powerful multimodal AI is no longer tied to the cloud.\"",
+        "topic_slug": "local-model-deployment",
+        "topic_title": "Local Model Deployment",
+        "value_level": "medium"
+      },
+      {
+        "confidence": 0.83,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The source demonstrates text QA, image counting, language switching, and object detection in one local workflow.",
+          "Object-detection outputs may need post-processing because preprocessing can affect box alignment.",
+          "A local runtime can surface structured JSON-like results that are easier to wire into downstream automation."
+        ],
+        "knowledge_summary": "Local multimodal inference is the use of a model on personal or on-premises hardware to process more than one modality, such as text and images. The operational challenge is not just model capability; it is also input handling, output format, and post-processing. Teams use this pattern when they want private image understanding, structured outputs, or a single runtime for text and vision tasks. It is especially relevant when a model must be tested in a simple developer workflow before it is embedded into a larger application.",
+        "match_candidates": [],
+        "operational_insight": "Treat multimodal local runs as end-to-end pipeline tests. A model that can answer text questions and read images is useful, but the practical quality depends on how well the runtime preserves image geometry, orientation, and other preprocessing details.",
+        "primary_tag": "multimodal-ai",
+        "proposed_tags": [
+          "multimodal-ai",
+          "visual-reasoning",
+          "runtime-systems",
+          "image-conditioned-workflows"
+        ],
+        "related_topics": [
+          "local-model-deployment"
+        ],
+        "relevance_note": "Local multimodal inference matters for product teams building assistants that need to inspect screenshots, forms, photos, or other image inputs without sending data to a cloud service. It is also useful for service automation workflows where structured image outputs or private visual analysis are required.",
+        "secondary_tag": "visual-reasoning",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "local-first",
+        "suggested_new_tags": [
+          "local-first"
+        ],
+        "supporting_snippet": "\"We ask the model to count the candies.\"",
+        "topic_slug": "multimodal-local-inference",
+        "topic_title": "Local Multimodal Inference",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The source does not report formal benchmark scores or comparative measurements.",
+            "The only operational quality signal is the author's qualitative observation that the model handled text reasoning, multilingual output, and a basic object-detection task in a local console workflow."
+          ],
+          "comparative_observations": [
+            "The source implies the smaller E2B variant is suitable for local use, while larger Gemma 4 variants may achieve better object-detection accuracy.",
+            "Compared with cloud-only models, this setup emphasizes local control and zero per-call inference cost after installation."
+          ],
+          "confidence": 0.97,
+          "core_capabilities": [
+            "It supports OCR, speech-to-text, and object detection in addition to text-only prompting.",
+            "It supports multimodal function calling, reasoning, code completion, and correction.",
+            "It includes both base and instruction-tuned versions across multiple sizes.",
+            "The E2B variant is described as having a 128K context window, which makes it useful for longer prompts or larger working sets."
+          ],
+          "deployment_implications": "The source supports using Gemma 4 locally through Ollama, which means teams can test multimodal and reasoning workflows on their own hardware before committing to cloud inference. The small E2B variant is specifically positioned as practical for local experimentation, but the article also implies that output alignment and preprocessing need attention when using it for object detection.",
+          "match_candidates": [],
+          "maturity_signals": "The model is described as released one day before the article date, so this is early evidence rather than mature field reporting. Still, the source says the family already spans multiple sizes and supports both base and it versions, which suggests a serious product line rather than a one-off demo.",
+          "model_name": "Gemma 4",
+          "operational_profile": "Gemma 4 is presented as a family of models with multiple sizes and capabilities, including OCR, speech-to-text, object detection, text-only use, multimodal function calling, reasoning, code completion, and correction. The source highlights the E2B variant as a small local model with a 128K context window and notes that the family includes both base and instruction-tuned versions.",
+          "pricing_inference_implications": "The article claims zero inference cost after local setup, which is operationally meaningful for development and low-volume use. It does not establish total cost of ownership because hardware, installation, maintenance, and model download costs are not quantified.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "open-weight-model",
+            "multimodal-model",
+            "long-context-model",
+            "tool-use-capable",
+            "developer-focused"
+          ],
+          "proposed_types": [
+            "open-weight-model",
+            "multimodal-model"
+          ],
+          "provider": "Google",
+          "related_models": [
+            "Gemma 4 E2B",
+            "Gemma 4 E4B",
+            "Gemma 4 26B",
+            "Gemma 4 31B"
+          ],
+          "service_automation_implications": "Gemma 4 could support local prototypes for customer-facing assistants that need image understanding, multilingual replies, or structured extraction. The source does not show a production support deployment, so any service-automation use should be treated as experimental as of 2026-04-03.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Gemma 4 E2B \u2014 has a context window of 128K. Parameter size is 2.3B effective, 5.1B with embeddings.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not provide quantitative accuracy, latency, memory, or throughput data. It also shows that object-detection boxes may not align perfectly with the original image, so outputs can require post-processing. The visible reasoning trace is not validated as a faithful explanation, only as surfaced intermediate text."
+        },
+        "notes": null,
+        "proposal_id": "75526d62-9ca1-452e-bd0f-4934e2f1122a",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The source does not report formal benchmark scores or comparative measurements.",
+              "The only operational quality signal is the author's qualitative observation that the model handled text reasoning, multilingual output, and a basic object-detection task in a local console workflow."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The source implies the smaller E2B variant is suitable for local use, while larger Gemma 4 variants may achieve better object-detection accuracy.",
+              "Compared with cloud-only models, this setup emphasizes local control and zero per-call inference cost after installation."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It supports OCR, speech-to-text, and object detection in addition to text-only prompting.",
+              "It supports multimodal function calling, reasoning, code completion, and correction.",
+              "It includes both base and instruction-tuned versions across multiple sizes.",
+              "The E2B variant is described as having a 128K context window, which makes it useful for longer prompts or larger working sets."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Gemma 4 E2B",
+              "Gemma 4 E4B",
+              "Gemma 4 26B",
+              "Gemma 4 31B"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-weight-model",
+            "multimodal-model",
+            "long-context-model",
+            "tool-use-capable",
+            "developer-focused"
+          ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by installing the local runtime and making sure it is up to date. Then pull the model you want to use and launch it from the terminal. Once the model is running, test a simple text prompt first so you can confirm the setup is sound. After that, try multimodal inputs or other capabilities one at a time so you can tell whether any problem comes from the runtime, the model, or the prompt. If the model output depends on image handling or preprocessing, inspect that step separately before assuming the model is wrong.",
+          "caveats": "The source shows that a newer runtime version may be required, so version mismatches can block setup. It also shows that object-detection results can depend on preprocessing, so a local run is not just about model quality; image handling matters too. No hardware requirements, latency numbers, or memory limits are given.",
+          "confidence": 0.95,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Install or update the local runtime from the vendor download page.",
+            "Pull the model with the runtime's model-download command.",
+            "Run the model from the terminal.",
+            "Send a simple text-only prompt to verify the setup.",
+            "Test multimodal input by attaching an image and asking a focused question.",
+            "If you use object detection, compare the returned bounding boxes against the original image and adjust preprocessing if needed."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A machine capable of running the chosen model locally.",
+            "A supported version of the local runtime installed.",
+            "Access to the model download and enough storage to pull the model files."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "runtime-systems"
+          ],
+          "question_title": "Local Model Setup",
+          "related_howtos": [
+            "local-model-deployment"
+          ],
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "inference",
+          "suggested_new_tags": [
+            "inference",
+            "local-first",
+            "multimodal"
+          ],
+          "supporting_snippet": "\"If you don\u2019t have Ollama already installed or, like myself, you need to install a new version, just download it from https://ollama.com/download and follow the instructions to install it, depending on your machine. After installing the new version, I can start again by pulling the model.\"",
+          "value_level": "high",
+          "what_and_problem": "This is about getting a model running on your own machine instead of depending on a cloud API. It matters when you want private inference, lower recurring cost, or a setup you can test and debug directly from the terminal. The main challenge is usually installing the right runtime version, downloading the model, and confirming that it works on your hardware. It is also useful when you want to experiment with text and image tasks before deciding whether to deploy anything more permanent."
+        },
+        "notes": null,
+        "proposal_id": "a467f9bc-cfcc-446e-97d6-90b41ef64514",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Install or update the local runtime from the vendor download page.",
+              "Pull the model with the runtime's model-download command.",
+              "Run the model from the terminal.",
+              "Send a simple text-only prompt to verify the setup.",
+              "Test multimodal input by attaching an image and asking a focused question.",
+              "If you use object detection, compare the returned bounding boxes against the original image and adjust preprocessing if needed."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A machine capable of running the chosen model locally.",
+              "A supported version of the local runtime installed.",
+              "Access to the model download and enough storage to pull the model files."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "local-model-deployment"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "runtime-systems"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-03",
+          "confidence": 0.9,
+          "evidence_from_source": "The source shows a local run of Gemma 4 E2B through Ollama on the author's machine, with text reasoning, multimodal prompting, multilingual responses, and a basic object-detection example.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "inference-efficiency",
+          "proposed_tags": [
+            "inference-efficiency",
+            "open-model-pressure",
+            "edge-deployment"
+          ],
+          "related_trends": [
+            "local-model-deployment"
+          ],
+          "secondary_tag": "open-model-pressure",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "multimodal-ai",
+          "suggested_new_tags": [
+            "multimodal-ai"
+          ],
+          "supporting_data_points": [
+            "Gemma 4 E2B is described as a 2.3B effective model with a 128K context window.",
+            "The article reports successful local text QA, image counting, German output, and a JSON bounding-box response.",
+            "The author states that output may require post-processing because preprocessing affects alignment."
+          ],
+          "supporting_snippet": "\"Gemma 4, even in its smallest E2B variant, strikes a compelling balance between performance and efficiency.\"",
+          "time_sensitivity": "Actionable as of 2026-04-03 for developers evaluating local multimodal prototypes; the observation is early-stage and may change as runtimes and model variants evolve.",
+          "trend_description": "Open-weight models become more practical to run on personal or modest local hardware when the combination of model size, runtime tooling, and task scope makes local inference workable for real experimentation. The pattern matters because it shifts some development and prototyping away from cloud-only dependency toward local control, privacy, and lower marginal inference cost. It does not mean every workload is suitable for local execution; larger or more demanding tasks may still require stronger hardware or cloud inference.",
+          "trend_slug": "open-weight-models-become-viable-on-consumer-hardware",
+          "trend_title": "Open-Weight Models Become Viable on Consumer Hardware",
+          "uncertainty_note": "This is a single hands-on demo, not a benchmark or fleet deployment, so it cannot establish broader adoption or performance ceilings. The object-detection example is explicitly imperfect, which means local viability depends on task and preprocessing details.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "0ef9afeb-a463-4773-a64b-fad3fd7f7e6d",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "local-model-deployment"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Gemma 4 E2B is described as a 2.3B effective model with a 128K context window.",
+              "The article reports successful local text QA, image counting, German output, and a JSON bounding-box response.",
+              "The author states that output may require post-processing because preprocessing affects alignment."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "inference-efficiency",
+            "open-model-pressure",
+            "edge-deployment"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article reports the author's own local setup and interactions with Ollama and Gemma 4 E2B.",
+          "Claims are supported by firsthand execution examples, screenshots, and command snippets rather than formal benchmarks.",
+          "Most substantive assertions are practical observations from a single deployment case, not vendor documentation or independent evals."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Ollama can be used to run Gemma 4 E2B locally with a simple pull-and-run workflow.",
+          "The demo shows visible reasoning traces in the terminal, which can help debug prompt behavior.",
+          "Gemma 4 E2B handled text QA, image counting, color identification, and German output in one local setup.",
+          "The object-detection output is usable as JSON, but the article notes bounding boxes may need post-processing to match the original image.",
+          "The practical value claimed by the article is privacy, zero inference cost after setup, and freedom from API constraints."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@gabi.preda/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-7e6c3f6bd860"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The article is structured as a step-by-step deployment guide with commands and example outputs.",
+          "It walks through installing Ollama, pulling the model, running tests, and trying multimodal/object-detection tasks.",
+          "The primary purpose is implementation guidance rather than news aggregation, interview, or research reporting."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "core_capabilities": [
+            "It can pull a model locally from the command line so the model is available without a cloud-hosted inference service.",
+            "It can run an interactive local chat session that surfaces intermediate reasoning text in the terminal.",
+            "It can accept an image dropped into the console for multimodal prompts in the described workflow."
+          ],
+          "integration_ecosystem": [
+            "It supports local terminal workflows on the user's machine, which makes it easy to combine with shell scripts and developer tooling.",
+            "It can be paired with downloaded model artifacts such as Gemma 4 E2B for offline or private experimentation."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Ollama as a practical tool already installed and usable on a personal machine, which suggests an accessible developer-facing product. The write-up does not provide adoption metrics or enterprise details, so maturity evidence is limited to hands-on use rather than scale signals.",
+          "name": "Ollama",
+          "operational_relevance": "Ollama is relevant when you want a simple local inference workflow instead of an API-based one. It fits developer experimentation, private prototypes, and offline or low-dependency setups where terminal access is enough. For service automation, it is useful as a local test harness for multimodal or reasoning-capable models before you decide whether a cloud deployment is justified.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "cli-tool",
+            "multimodal",
+            "open-weight",
+            "low-latency"
+          ],
+          "proposed_types": [
+            "model-serving",
+            "terminal"
+          ],
+          "related_tools": [
+            "llama.cpp",
+            "Msty"
+          ],
+          "short_description": "Ollama is a local model runner that lets you pull and run models from the terminal on your own machine. In this source, it is used to load Gemma 4 E2B and interact with it through a console session.",
+          "strengths": "- Lets you pull and run a model locally with a straightforward terminal workflow, which lowers setup friction for experimentation.\n- Supports interactive testing from the console, including visible reasoning traces, which is useful for debugging prompt behavior and understanding model responses.\n- Works with multimodal inputs in this demo, so it can be part of a local workflow for text and image tasks without sending data to a cloud API.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"All models have both base and it versions. We will use Ollama on a local machine to run Gemma 4 E2B.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source shows that a newer Ollama version was required before the model could be used, so version drift can interrupt a local workflow. It also does not remove model-level limitations: object detection output can still need post-processing, and the article gives no latency, memory, or reliability measurements."
+        },
+        "notes": null,
+        "proposal_id": "8769fdb1-0fb0-4f98-b5e5-8bf1934bd753",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can pull a model locally from the command line so the model is available without a cloud-hosted inference service.",
+              "It can run an interactive local chat session that surfaces intermediate reasoning text in the terminal.",
+              "It can accept an image dropped into the console for multimodal prompts in the described workflow."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It supports local terminal workflows on the user's machine, which makes it easy to combine with shell scripts and developer tooling.",
+              "It can be paired with downloaded model artifacts such as Gemma 4 E2B for offline or private experimentation."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "llama.cpp",
+              "Msty"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "cli-tool",
+            "multimodal",
+            "open-weight",
+            "low-latency"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "model-serving",
+            "terminal"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Local deployment shifts the main constraint from API access to machine compatibility and runtime versioning.",
+            "The setup can support private inference and zero per-call inference cost after installation, but it does not remove hardware or maintenance costs.",
+            "Output quality can still depend on preprocessing, so deployment checks must include the full input pipeline, not just the model binary."
+          ],
+          "knowledge_summary": "Local model deployment is the practice of running AI models on a user's own hardware or controlled infrastructure instead of sending requests to a remote service. It changes the engineering problem from API integration to runtime setup, model download, hardware fit, and local troubleshooting. This pattern is especially useful when data privacy, offline operation, or per-call cost control matters. It also pushes evaluation toward practical checks like whether the model launches, fits in memory, and produces usable outputs under local preprocessing constraints.",
+          "match_candidates": [],
+          "operational_insight": "A local deployment is only as useful as the surrounding runtime and preprocessing pipeline. In practice, the model choice, the launcher, and the image or text handling step all matter together.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "inference-systems",
+            "infrastructure",
+            "developer-tools"
+          ],
+          "related_topics": [],
+          "relevance_note": "Local deployment remains important wherever teams need private inference, predictable operating cost, or direct control over the runtime. For conversational and multimodal systems, it is often the fastest way to prototype, debug, and validate whether a model can meet product requirements before a broader rollout.",
+          "secondary_tag": "inference-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "local-first",
+          "suggested_new_tags": [
+            "local-first"
+          ],
+          "supporting_snippet": "\"Running Gemma 4:E2B locally with Ollama proves that powerful multimodal AI is no longer tied to the cloud.\"",
+          "topic_slug": "local-model-deployment",
+          "topic_title": "Local Model Deployment",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "b4ba4958-d43c-4dc1-b18b-4c4f00ad559e",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Local deployment shifts the main constraint from API access to machine compatibility and runtime versioning.",
+              "The setup can support private inference and zero per-call inference cost after installation, but it does not remove hardware or maintenance costs.",
+              "Output quality can still depend on preprocessing, so deployment checks must include the full input pipeline, not just the model binary."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "inference-systems",
+            "infrastructure",
+            "developer-tools"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.83,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The source demonstrates text QA, image counting, language switching, and object detection in one local workflow.",
+            "Object-detection outputs may need post-processing because preprocessing can affect box alignment.",
+            "A local runtime can surface structured JSON-like results that are easier to wire into downstream automation."
+          ],
+          "knowledge_summary": "Local multimodal inference is the use of a model on personal or on-premises hardware to process more than one modality, such as text and images. The operational challenge is not just model capability; it is also input handling, output format, and post-processing. Teams use this pattern when they want private image understanding, structured outputs, or a single runtime for text and vision tasks. It is especially relevant when a model must be tested in a simple developer workflow before it is embedded into a larger application.",
+          "match_candidates": [],
+          "operational_insight": "Treat multimodal local runs as end-to-end pipeline tests. A model that can answer text questions and read images is useful, but the practical quality depends on how well the runtime preserves image geometry, orientation, and other preprocessing details.",
+          "primary_tag": "multimodal-ai",
+          "proposed_tags": [
+            "multimodal-ai",
+            "visual-reasoning",
+            "runtime-systems",
+            "image-conditioned-workflows"
+          ],
+          "related_topics": [
+            "local-model-deployment"
+          ],
+          "relevance_note": "Local multimodal inference matters for product teams building assistants that need to inspect screenshots, forms, photos, or other image inputs without sending data to a cloud service. It is also useful for service automation workflows where structured image outputs or private visual analysis are required.",
+          "secondary_tag": "visual-reasoning",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "local-first",
+          "suggested_new_tags": [
+            "local-first"
+          ],
+          "supporting_snippet": "\"We ask the model to count the candies.\"",
+          "topic_slug": "multimodal-local-inference",
+          "topic_title": "Local Multimodal Inference",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "aef297da-e274-4a2d-a988-54f286956769",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The source demonstrates text QA, image counting, language switching, and object detection in one local workflow.",
+              "Object-detection outputs may need post-processing because preprocessing can affect box alignment.",
+              "A local runtime can surface structured JSON-like results that are easier to wire into downstream automation."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "local-model-deployment"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "multimodal-ai",
+            "visual-reasoning",
+            "runtime-systems",
+            "image-conditioned-workflows"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 6
+    },
+    "fields_modified": 0,
+    "proposals_approved": 6,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 6,
+    "review_duration_seconds": 55.1,
+    "review_finished_at": "2026-06-05T17:18:31.110834+00:00",
+    "review_started_at": "2026-06-05T17:17:36+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T17:18:31+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Gabriel Preda",
+    "canonical_url": "https://medium.com/@gabi.preda/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-7e6c3f6bd860",
+    "content_sha256": "6cfe28fd6fc2323a910ed95e98ae53dbbc6bee69762b639c3bfb31e3bd88a72a",
+    "publication": "Medium",
+    "published_date": "2026-04-03",
+    "raw_html_rel_path": "raw/readwise/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr.html",
+    "raw_md_rel_path": "raw/readwise/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr.md",
+    "source_id": "run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr",
+    "title": "Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits"
+  }
+}

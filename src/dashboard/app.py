@@ -17,6 +17,7 @@ from typing import Any
 
 import streamlit as st
 
+from src.dashboard.readwise_sync_ui import render_readwise_sync_sidebar
 from src.ingest_queue.queue import list_ingest_items
 from src.ingest_review.analyze import (
     run_classification,
@@ -335,6 +336,11 @@ def main() -> None:
             if has_key
             else "API key: **not set** — add `OPENAI_API_KEY` to `.env` at repo root."
         )
+        render_readwise_sync_sidebar(st, repo_root=root, output_dir=raw_dir)
+
+    readwise_sync_flash = st.session_state.pop("_readwise_sync_flash", None)
+    if readwise_sync_flash:
+        st.success(readwise_sync_flash)
 
     tool_types = load_tool_types(root)
     tool_tags = load_tool_tags(root)
@@ -357,7 +363,11 @@ def main() -> None:
 
     html_paths = list_readwise_html_sources(raw_dir)
     if not html_paths:
-        st.info("No ``*.html`` sources found under the raw directory.")
+        st.info(
+            "No ``*.html`` sources found under the raw directory. "
+            "Use **Sync from Readwise** in the sidebar to import archived Reader items "
+            "tagged **processed**."
+        )
         return
 
     source_ids = [p.stem for p in html_paths]

@@ -1,0 +1,2114 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T17:19:26+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnSTlHFSdnmZYYWOIA415LusbHwei",
+          "token_usage": {
+            "completion_tokens": 177,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6039,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6216
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnSTmAkH7SonNS3toWNegt8JHkZA4",
+          "token_usage": {
+            "completion_tokens": 988,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5632,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6620
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-ai_tools_roundup",
+          "request_id": "chatcmpl-DnSTwMcQy5FmIaplY3fHCSuaQofEe",
+          "route": "ai_tools_roundup",
+          "token_usage": {
+            "completion_tokens": 5442,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19172,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 24614
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnSTwMcQy5FmIaplY3fHCSuaQofEe",
+    "token_usage": {
+      "completion_tokens": 6607,
+      "prompt_tokens": 30843,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 37450
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 12
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The claims are based on the author's first-person experience using each app.",
+        "Descriptions are anecdotal and preference-based, not benchmarked or research-backed.",
+        "No vendor statements or formal evaluation methodology are provided."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a list of small Mac apps the author plans to keep in 2026. The common idea is simple: many annoying Mac habits are not big problems, just small friction points that break focus. These apps solve those points by making folders previewable, windows easier to manage, text cleaner to paste, and menu bars less cluttered. A few are serious productivity tools, and one is mostly just for fun. The article is interesting because it shows how much everyday work can improve when the interface gets out of the way. As of 2025-12-31, it is a practical personal roundup rather than a technical comparison.",
+      "assessed_as_of": "2025-12-31",
+      "contradictions_and_skepticism": "The roundup presents subjective convenience as if it were broadly sufficient evidence for permanence, but the article does not show durability beyond personal use. Some claims lean on familiar productivity tropes, like 'focus' and 'flow,' without measuring whether the apps materially improve either. The strongest skepticism point is that several tools solve problems macOS users may not all experience equally, so the value is highly workflow-dependent. The post is honest about being personal, which limits overclaiming, but it still offers little proof that these apps outperform built-in options or alternatives.",
+      "key_insights": [
+        "Many useful Mac tools target tiny interruptions rather than major feature gaps.",
+        "The author values apps that stay quiet in the background and avoid forcing a new workflow.",
+        "Window management, clipboard cleanup, and menu bar decluttering are recurring friction points in the article.",
+        "Plain-English command translation for Terminal is framed as a way to reduce Googling and copy-pasting.",
+        "The list mixes serious utilities with one explicitly playful app, showing that utility roundups can include morale boosters too."
+      ],
+      "limitations_and_open_questions": "The article gives no benchmark data, pricing analysis, platform compatibility details, or retention evidence beyond the author's own preferences. Several apps are described at a high level without version numbers, release dates, or privacy/security implications. It is unclear how well these utilities handle edge cases, Apple OS changes, or enterprise constraints. The roundup also does not compare alternatives, so it is hard to know whether each app is best-in-class or simply adequate for the author's workflow. The playful app inclusion suggests taste matters, but that also makes the list less transferable across users.",
+      "sources": [
+        "https://medium.com/@simpleandkind788/12-mac-apps-im-keeping-in-2026-d5cb0ffd227c"
+      ],
+      "summary": "This roundup argues that a better Mac experience often comes from small utility apps that remove friction rather than add features. The author keeps 12 apps because they solve specific annoyances: previewing folder contents with Quick Look-like behavior, softly blurring distracting windows, snapping windows into predictable layouts, pinning one reminder in the menu bar, improving app/window switching, making file cut-and-paste behave more intuitively, preventing sleep during long tasks, stripping paste formatting, translating plain-English commands into Terminal actions, compressing images, hiding menu bar clutter, and adding a playful animated cursor-following widget. The throughline is not novelty but reduced context switching and fewer tiny interruptions. Most items are presented as personal favorites rather than benchmarked recommendations, so the evidence is anecdotal and practical rather than rigorous. The list is strongest as a catalog of low-friction Mac workflow fixes, not as a comparative evaluation of the best tools in each category. As of 2025-12-31, the article is actionable as a shortlist of utility patterns to consider, but each app still needs individual verification for maintenance, compatibility, and privacy tradeoffs.",
+      "why_it_matters": "The piece is useful as a compact map of the kinds of Mac friction that are worth automating away: folder inspection, window layout, app switching, clipboard cleanup, sleep control, Terminal command translation, image compression, and menu bar clutter. It is not a systematic review, but it is operationally relevant because each app is tied to a concrete annoyance the author wants removed from daily work. That makes it a good source of workflow ideas for anyone curating a lightweight Mac toolkit, especially if the goal is to preserve focus and reduce repetitive interface actions. The strongest recurring pattern is that the best tools here do one thing well and stay out of the way. The article also shows a preference for subtle interventions over heavy task managers or complex automation. Evidence quality is limited because the claims are based on one person's experience and there are no benchmarks, security notes, or longevity checks. As of 2025-12-31, the list is best treated as a practical shortlist of utility patterns to evaluate, not a durable ranking of the best Mac apps. It does not substantively discuss support, meetings, voice, or back-office workflows, so those implications do not follow from the text."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_tools_roundup",
+      "reasoning": [
+        "The article is primarily a numbered list of named Mac apps, with one section per product.",
+        "Each item gives a short review/explanation of a specific tool rather than a single tutorial or a news digest.",
+        "The structure matches a curated tools roundup more strongly than a general article."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.88,
+        "core_capabilities": [
+          "It previews the contents of folders with a Quick Look-style action, so users can inspect file structures without opening them.",
+          "It shows ZIP archive contents without extraction, which reduces repetitive file-handling steps."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source treats it as a quiet utility rather than a novel platform, which suggests a mature small-app pattern rather than an experimental product. As of 2025-12-31, the evidence is only personal usage and not broader adoption or enterprise readiness.",
+        "name": "Folder Preview",
+        "operational_relevance": "Useful for file-heavy workflows where checking folder contents is a frequent interruption. It reduces context switching by letting users inspect nested content without opening a separate window or extracting archives first. As of 2025-12-31, the value is mainly in shaving off repetitive navigation steps rather than enabling a new class of workflow.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "cleanup"
+        ],
+        "related_tools": [
+          "Quick Look"
+        ],
+        "short_description": "A Mac utility that lets you preview folder contents and ZIP files with Quick Look-style behavior. It is meant to remove the friction of opening folders just to inspect what is inside.",
+        "strengths": "- Adds Quick Look-like folder inspection to macOS, which matters when browsing many directories during a work session.\n- Works on ZIP files without extraction, so it can save a small but repeated unpacking step in file triage workflows.\n- Stays aligned with the article's broader theme of reducing friction rather than introducing a new interface layer.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Folder Preview Application fills that gap in the most obvious way possible. Folder Previews Shows What\u2019s inside the Folder and it works even on the Zip folders Hit space on a folder and (there you go)\u2014 you see what\u2019s inside. Same thing for ZIP files, without extracting anything.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not provide pricing, compatibility details, or any information about maintenance, so adoption risk is unknown. Its value is narrow and workflow-dependent: if a user rarely inspects folders, the benefit is minor."
+      },
+      {
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It soft-blurs inactive windows so the active app stays visually prominent.",
+          "It lets users tune blur strength, tint, and grain to match personal preference.",
+          "It supports app whitelisting so some windows can avoid the blur effect."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The description implies a polished small utility rather than a complex platform. As of 2025-12-31, the source provides no signal about community size, enterprise adoption, or long-term maintenance.",
+        "name": "Monle",
+        "operational_relevance": "This fits workflows where attention loss comes from too many visible windows rather than from lack of task structure. It can help preserve flow during writing, support work, or agent monitoring by making the current task visually dominant. As of 2025-12-31, it is best understood as a lightweight attention-management layer, not a hard blocker or scheduler.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "productivity"
+        ],
+        "related_tools": [
+          "Rectangle",
+          "AltTab"
+        ],
+        "short_description": "A menu bar focus utility for macOS that blurs everything except the active window. It is designed to reduce visual distraction without hiding or blocking other apps.",
+        "strengths": "- Blurs inactive windows instead of blocking them, which lowers distraction without making the system feel punitive.\n- Offers controls for blur levels, tint, grain, and app whitelisting, so users can tune the effect to match their tolerance.\n- Lives in the menu bar and stays out of the way, which matches the article's preference for quiet utilities that do one thing well.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Instead of blocking apps or forcing timers, it softly blurs everything except the app you\u2019re actively using. ... you can also tweak blur levels, tint, grain, and even whitelist apps that shouldn\u2019t trigger the effect.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not mention performance cost, compatibility issues, or whether the blur effect interferes with accessibility. It also does not show evidence that visual blurring improves focus beyond the author's preference, so the benefit remains anecdotal."
+      },
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It snaps windows into common screen regions so layouts can be reproduced quickly.",
+          "It reduces manual resizing overhead, which helps when switching between split-screen tasks."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source presents it as a known replacement for a missing macOS feature rather than an experimental app. As of 2025-12-31, there is no evidence in the text about vendor support or enterprise deployment.",
+        "name": "Rectangle",
+        "operational_relevance": "This is relevant anywhere multi-window work creates drag-and-resize overhead. For support operations, writing, analysis, or agent console work, predictable snapping reduces time spent arranging the desktop and makes side-by-side workflows easier to repeat. As of 2025-12-31, it addresses a basic macOS usability gap rather than a niche automation need.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "productivity"
+        ],
+        "related_tools": [
+          "Loop"
+        ],
+        "short_description": "A macOS window manager that snaps windows into predefined layouts with keyboard shortcuts. It is meant to bring predictable window placement to Mac users.",
+        "strengths": "- Snaps windows into halves, thirds, and quarters, which makes layout management repeatable instead of ad hoc.\n- Removes the need for pixel-perfect resizing, which matters when users switch between tasks and screen sizes frequently.\n- Uses simple shortcuts, so the interaction model stays lightweight and fast once configured.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"With a few simple shortcuts, windows snap into halves, thirds, quarters \u2014 whatever layout your brain already had in mind.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not discuss edge cases, multi-monitor behavior, or whether shortcuts conflict with other tools. It is a workflow convenience tool, so its value depends on how much time the user spends managing windows."
+      },
+      {
+        "confidence": 0.88,
+        "core_capabilities": [
+          "It keeps one reminder visible in the menu bar until the user clears it.",
+          "It supports styling changes like larger text, bold text, and red text to increase salience."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The article treats it as a simple, established utility rather than a high-growth product. As of 2025-12-31, there is no evidence in the source about ecosystem depth or enterprise adoption.",
+        "name": "One Thing",
+        "operational_relevance": "This is useful when the problem is forgetting one critical item rather than managing a queue of tasks. It can support lightweight personal attention management in environments where a full to-do system would be overkill. As of 2025-12-31, it is best treated as a narrow but durable reminder pattern.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "note-taking"
+        ],
+        "related_tools": [
+          "Hidden Bar"
+        ],
+        "short_description": "A menu bar reminder app that displays a single important item at a time. It is intended to keep one priority visible without becoming a full task manager.",
+        "strengths": "- Keeps one priority visible in the menu bar, which is useful when the user needs a persistent nudge without extra workflow overhead.\n- Supports emphasis controls like larger text, bold text, and color, which makes the reminder harder to ignore when needed.\n- Avoids the complexity of a task manager, so it can fit into a low-friction desktop setup.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"You click the menu bar icon, type the one thing you can\u2019t forget, and it sits there\u2026 quietly watching you\u2026 until it\u2019s done.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The source does not describe syncing, notification behavior, or multi-item support, so it may be too minimal for users who need richer task tracking. Its usefulness is inherently narrow because it only solves the 'remember one thing' problem."
+      },
+      {
+        "confidence": 0.89,
+        "core_capabilities": [
+          "It shows previews for individual windows so users can target the right one faster.",
+          "It supports custom shortcuts for keyboard-first switching.",
+          "It includes window-closing commands, which can speed up cleanup during multitasking."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source implies a mature utility category because it is presented as a replacement for a familiar operating-system gap. As of 2025-12-31, the text gives no evidence about enterprise readiness or maintenance cadence.",
+        "name": "AltTab",
+        "operational_relevance": "This matters when app switching is too coarse for real work and the user needs a specific window. In support and automation-heavy setups, better window switching can speed up jumping between dashboards, editors, consoles, and chat tools. As of 2025-12-31, it is a practical desktop efficiency tool rather than a specialized AI product.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "productivity"
+        ],
+        "related_tools": [
+          "Launchy",
+          "Rectangle"
+        ],
+        "short_description": "A macOS window switcher that shows previews of individual windows, not just apps. It is meant to make switching between open work surfaces more precise.",
+        "strengths": "- Shows actual window previews, which helps users switch to the exact surface they want instead of cycling through whole apps.\n- Includes custom shortcuts, which matters for high-frequency use where keyboard-driven navigation is faster than mouse switching.\n- Adds window-closing commands, so it does more than basic selection and can reduce extra steps in window cleanup.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The AltTab Application brings proper window previews to the Mac. Not just apps \u2014 actual windows. Full previews, custom shortcuts, even window-closing commands built in.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not compare it against native macOS switching behavior in detail or discuss resource usage. Its scope is limited to desktop navigation, so the operational gain is indirect and depends on how window-heavy the workflow is."
+      },
+      {
+        "confidence": 0.84,
+        "core_capabilities": [
+          "It presents a small launcher at the cursor for fast app switching.",
+          "It intentionally limits the visible app set to keep the interaction simple."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source frames it as a simpler alternative rather than a flagship platform. As of 2025-12-31, it appears to be a niche utility with no maturity evidence beyond the author's preference.",
+        "name": "Launchy",
+        "operational_relevance": "This is useful for users who want quick access to a small set of frequently used apps without the overhead of a full window switcher. It can reduce hunting in dense desktop sessions and support rapid context jumps in operational work. As of 2025-12-31, it reads as a minimalist companion to more feature-rich switchers.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "productivity"
+        ],
+        "related_tools": [
+          "AltTab"
+        ],
+        "short_description": "A lightweight app switcher for macOS that shows a small circular launcher near the cursor with a limited set of apps. It is designed for fast switching with less visual clutter.",
+        "strengths": "- Keeps the launcher small and cursor-adjacent, which reduces movement and makes the switch action feel immediate.\n- Limits the chooser to six apps, which can improve decision speed for a small core set of tools.\n- Prioritizes simplicity over breadth, which aligns with a low-friction desktop workflow.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Hold a shortcut and a small circular launcher appears right at your cursor. Six apps. That\u2019s it.\"",
+        "value_level": "low",
+        "weaknesses_limitations": "The limitation is also the tradeoff: six apps may be too few for users with broader switching needs. The article does not provide details on customization depth or compatibility."
+      },
+      {
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It changes file cut-and-paste behavior so moving files feels more intuitive.",
+          "It operates in the background without a visible interface or setup burden."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source presents it as a tiny utility that disappears into the background once installed. As of 2025-12-31, the article provides no evidence of scale, ecosystem, or enterprise adoption.",
+        "name": "Command X",
+        "operational_relevance": "This is relevant to workflows involving frequent file movement between folders, projects, or download locations. It removes a small but persistent translation cost for users coming from Windows or Linux, which can reduce mistakes and hesitation. As of 2025-12-31, it is a narrow productivity fix with obvious value for cross-platform users.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "file-transfer"
+        ],
+        "related_tools": [],
+        "short_description": "A background utility that makes macOS file cut-and-paste behave like users expect from other operating systems. It is focused on a single file-moving interaction.",
+        "strengths": "- Makes cut-and-paste for files behave in the more intuitive 'move' pattern many users already know.\n- Runs in the background with no visible interface, so it avoids adding another app to manage.\n- Has no settings or learning curve according to the source, which makes it easy to adopt quickly.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Command X Application fixes this by making cut-and-paste work exactly how your brain expects it to (Windows OS). No interface. No settings. No learning curve.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not describe edge cases, conflicts with native Finder behavior, or support for advanced file workflows. Its benefit is concentrated among users who already feel friction with macOS file moving."
+      },
+      {
+        "confidence": 0.92,
+        "core_capabilities": [
+          "It keeps the Mac awake with a simple menu bar toggle.",
+          "It lets users reverse the setting immediately when the task is done."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source portrays it as a no-frills utility rather than a complex power-management suite. As of 2025-12-31, no broader adoption or maintenance signal is provided.",
+        "name": "KeepingYouAwake",
+        "operational_relevance": "This is useful whenever a machine needs to stay awake for a bounded period and the user does not want to fiddle with system settings. It can support support operations, demos, downloads, and unattended processes where automatic sleep would be disruptive. As of 2025-12-31, it is a straightforward utility with operational relevance in any desktop workflow that includes long-running tasks.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "cleanup"
+        ],
+        "related_tools": [],
+        "short_description": "A menu bar toggle that prevents a Mac from sleeping. It is meant for long downloads, presentations, or other tasks where sleep would interrupt work.",
+        "strengths": "- Adds a single menu bar toggle, which makes sleep prevention easy to start and stop.\n- Avoids settings hunting and timer setup, so it keeps the interaction fast and explicit.\n- Fits scenarios like downloads, presentations, or hands-free reading, which are common practical reasons to keep a laptop awake.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The KeepingYouAwake Application adds a single toggle to your menu bar. Click it, and your Mac stays awake Click it again, and everything goes back to normal.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not mention whether it handles scheduled durations, battery safeguards, or enterprise policies. It solves one narrow problem, so its value is limited to the moments when sleep is the issue."
+      },
+      {
+        "confidence": 0.94,
+        "core_capabilities": [
+          "It strips formatting from pasted text automatically so copied content stays clean.",
+          "It allows a modified paste path for cases where the user wants to preserve formatting."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source presents it as a simple utility that solves one recurring annoyance. As of 2025-12-31, the text gives no evidence about scale, community size, or business adoption.",
+        "name": "PurePaste",
+        "operational_relevance": "This matters in writing-heavy work where copying from the web introduces formatting noise into notes, emails, docs, or ticketing systems. It reduces cleanup time and prevents pasted text from carrying unwanted fonts, links, or spacing. As of 2025-12-31, it is a small but durable clipboard hygiene tool.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "cleanup"
+        ],
+        "related_tools": [],
+        "short_description": "A clipboard utility for macOS that strips formatting from pasted text automatically. It keeps plain text clean while still allowing formatted paste when the user wants it.",
+        "strengths": "- Automatically removes formatting on paste, which prevents copied web content from carrying messy styles into downstream apps.\n- Still allows formatted paste with an Option key modifier, so it preserves an escape hatch when formatting is desired.\n- Cuts out a repetitive cleanup step that accumulates across many small pastes during the day.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The PurePaste Application for Mac strips the formatting automatically \u2014 every single time. ... Just hold the \u2018Option\u2019 while pasting.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not discuss clipboard history, enterprise controls, or compatibility with complex content types. It is specialized for text hygiene, so users needing richer clipboard management may need another tool."
+      },
+      {
+        "confidence": 0.91,
+        "core_capabilities": [
+          "It converts plain-English instructions into terminal commands for common file and media tasks.",
+          "It reduces command memorization and copy-paste lookup during routine shell work."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It works with macOS Terminal workflows by translating user intent into shell commands."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article positions it as a patient assistant layered over Terminal, suggesting a practical utility rather than a broad AI platform. As of 2025-12-31, no adoption or enterprise signals are provided in the source.",
+        "name": "Substage",
+        "operational_relevance": "This is relevant for practitioners who use the terminal for routine operations but do not want to memorize every command. It can support automation-adjacent work by turning natural-language intentions into shell actions such as resizing images, converting videos, or zipping files. As of 2025-12-31, it is best seen as a convenience layer over command-line work rather than a replacement for terminal skill.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cli-tool",
+          "local-first"
+        ],
+        "proposed_types": [
+          "app",
+          "terminal"
+        ],
+        "related_tools": [],
+        "short_description": "A terminal helper that translates plain-English instructions into shell commands. It sits between the user and Terminal to reduce command memorization and lookup overhead.",
+        "strengths": "- Accepts plain-English requests and translates them into commands, which lowers the barrier to basic terminal operations.\n- Supports tasks like image resizing, video conversion, and zipping, so it covers common utility workflows rather than a single niche.\n- Reduces Googling and copy-pasting commands, which can speed up work and reduce the chance of misremembered syntax.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Substage Application lets you type what you want in plain English (resize images, convert videos, zip files and other stuff) and translates it into the right command for you.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not describe command accuracy, safety checks, or whether it exposes generated commands for review before execution. Plain-English translation also creates a trust boundary, so users still need to verify commands for sensitive tasks."
+      },
+      {
+        "confidence": 0.96,
+        "core_capabilities": [
+          "It compresses images while preserving visible quality, which helps with upload and sharing limits.",
+          "It strips unnecessary metadata during optimization, which can reduce file size further."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source treats it as an established utility that remains valuable because it is dependable. As of 2025-12-31, there is no evidence in the text about roadmap, ecosystem, or enterprise adoption.",
+        "name": "ImageOptim",
+        "operational_relevance": "This is useful in publishing, support, and content workflows where images need to be shipped, uploaded, or shared under size constraints. It can reduce friction in asset preparation without requiring manual optimization steps. As of 2025-12-31, it is a straightforward utility with durable value wherever image size is a recurring constraint.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first"
+        ],
+        "proposed_types": [
+          "app",
+          "cleanup"
+        ],
+        "related_tools": [],
+        "short_description": "A macOS image compression utility that reduces file size while preserving visible quality. It is aimed at making image handling less painful when size limits matter.",
+        "strengths": "- Removes unnecessary metadata and compresses images without visible quality loss, which makes files smaller without a noticeable tradeoff.\n- Works by drag-and-drop, so it stays simple enough for repetitive use.\n- Is described as reliable every time, which is the key property users want from a utility that sits in a production-ish workflow.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Drag in your images, and it strips the unnecessary metadata and compresses them without any visible quality loss.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not provide compression ratios, format support, or batch-processing details. Its scope is limited to image optimization, so it is not a general media pipeline tool."
+      },
+      {
+        "confidence": 0.93,
+        "core_capabilities": [
+          "It hides menu bar icons behind a toggle so the visible bar stays cleaner.",
+          "It keeps hidden apps available, which preserves access while reducing clutter."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source presents it as a familiar utility pattern rather than a novelty. As of 2025-12-31, the text offers no evidence about support channels, enterprise fit, or long-term maintenance.",
+        "name": "Hidden Bar",
+        "operational_relevance": "This helps users whose menu bar has become a dumping ground for utilities, VPNs, and background tools. In desktop-heavy workflows, reducing persistent icon clutter can make the top-of-screen area more legible and less distracting. As of 2025-12-31, it is a simple decluttering utility with obvious everyday value.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first"
+        ],
+        "proposed_types": [
+          "app",
+          "cleanup"
+        ],
+        "related_tools": [],
+        "short_description": "A macOS menu bar cleaner that hides less-used icons behind a toggle. It is designed to reduce visual clutter without removing apps.",
+        "strengths": "- Collapses menu bar clutter behind a toggle, which makes the desktop feel less crowded without uninstalling anything.\n- Preserves the hidden apps, so nothing is lost and users can still reach tools when needed.\n- Supports a calmer workspace by reducing the number of persistent icons competing for attention.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Hidden Bar lets you collapse all that clutter behind a simple toggle. And, Nothing breaks, nothing disappears. It just gets quieter.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not mention whether hidden items are searchable, how discovery works, or whether there are OS-version constraints. It is purely a layout and visibility tool, not a workflow engine."
+      },
+      {
+        "confidence": 0.97,
+        "core_capabilities": [
+          "It places animated eyes in the menu bar that follow the cursor.",
+          "It responds with a blink when clicked, adding a small interactive flourish."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The article frames it as a delight-first app rather than a serious utility. As of 2025-12-31, there is no evidence of broader adoption or workflow significance.",
+        "name": "Googly Eyes",
+        "operational_relevance": "This has little operational relevance beyond morale and small breaks during long work sessions. It can be part of a lightweight desktop setup where occasional delight matters, but it does not improve service automation or AI workflows in a direct way. As of 2025-12-31, it is primarily a novelty utility.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first"
+        ],
+        "proposed_types": [
+          "app",
+          "productivity"
+        ],
+        "related_tools": [],
+        "short_description": "A playful menu bar app that adds animated eyes which follow the cursor. It is included for delight rather than productivity.",
+        "strengths": "- Adds a small, whimsical interaction to the menu bar, which can provide a brief mental reset during long work sessions.\n- Follows the cursor and blinks on click, so the app is immediately understandable without instructions.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Is it useful? Well, Not really. Is it delightful? Absolutely.\"",
+        "value_level": "low",
+        "weaknesses_limitations": "The source explicitly says it is not very useful, so its practical value is low. It does not contribute to productivity or automation beyond giving the user a moment of fun."
+      }
+    ],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The claims are based on the author's first-person experience using each app.",
+          "Descriptions are anecdotal and preference-based, not benchmarked or research-backed.",
+          "No vendor statements or formal evaluation methodology are provided."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Many useful Mac tools target tiny interruptions rather than major feature gaps.",
+          "The author values apps that stay quiet in the background and avoid forcing a new workflow.",
+          "Window management, clipboard cleanup, and menu bar decluttering are recurring friction points in the article.",
+          "Plain-English command translation for Terminal is framed as a way to reduce Googling and copy-pasting.",
+          "The list mixes serious utilities with one explicitly playful app, showing that utility roundups can include morale boosters too."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@simpleandkind788/12-mac-apps-im-keeping-in-2026-d5cb0ffd227c"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_tools_roundup",
+        "reasoning": [
+          "The article is primarily a numbered list of named Mac apps, with one section per product.",
+          "Each item gives a short review/explanation of a specific tool rather than a single tutorial or a news digest.",
+          "The structure matches a curated tools roundup more strongly than a general article."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "core_capabilities": [
+            "It previews the contents of folders with a Quick Look-style action, so users can inspect file structures without opening them.",
+            "It shows ZIP archive contents without extraction, which reduces repetitive file-handling steps."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source treats it as a quiet utility rather than a novel platform, which suggests a mature small-app pattern rather than an experimental product. As of 2025-12-31, the evidence is only personal usage and not broader adoption or enterprise readiness.",
+          "name": "Folder Preview",
+          "operational_relevance": "Useful for file-heavy workflows where checking folder contents is a frequent interruption. It reduces context switching by letting users inspect nested content without opening a separate window or extracting archives first. As of 2025-12-31, the value is mainly in shaving off repetitive navigation steps rather than enabling a new class of workflow.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "cleanup"
+          ],
+          "related_tools": [
+            "Quick Look"
+          ],
+          "short_description": "A Mac utility that lets you preview folder contents and ZIP files with Quick Look-style behavior. It is meant to remove the friction of opening folders just to inspect what is inside.",
+          "strengths": "- Adds Quick Look-like folder inspection to macOS, which matters when browsing many directories during a work session.\n- Works on ZIP files without extraction, so it can save a small but repeated unpacking step in file triage workflows.\n- Stays aligned with the article's broader theme of reducing friction rather than introducing a new interface layer.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Folder Preview Application fills that gap in the most obvious way possible. Folder Previews Shows What\u2019s inside the Folder and it works even on the Zip folders Hit space on a folder and (there you go)\u2014 you see what\u2019s inside. Same thing for ZIP files, without extracting anything.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not provide pricing, compatibility details, or any information about maintenance, so adoption risk is unknown. Its value is narrow and workflow-dependent: if a user rarely inspects folders, the benefit is minor."
+        },
+        "notes": null,
+        "proposal_id": "9ef8f50e-cc10-486b-a80f-05857dce3701",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It previews the contents of folders with a Quick Look-style action, so users can inspect file structures without opening them.",
+              "It shows ZIP archive contents without extraction, which reduces repetitive file-handling steps."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Quick Look"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "mac",
+            "productivity"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It soft-blurs inactive windows so the active app stays visually prominent.",
+            "It lets users tune blur strength, tint, and grain to match personal preference.",
+            "It supports app whitelisting so some windows can avoid the blur effect."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The description implies a polished small utility rather than a complex platform. As of 2025-12-31, the source provides no signal about community size, enterprise adoption, or long-term maintenance.",
+          "name": "Monle",
+          "operational_relevance": "This fits workflows where attention loss comes from too many visible windows rather than from lack of task structure. It can help preserve flow during writing, support work, or agent monitoring by making the current task visually dominant. As of 2025-12-31, it is best understood as a lightweight attention-management layer, not a hard blocker or scheduler.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "productivity"
+          ],
+          "related_tools": [
+            "Rectangle",
+            "AltTab"
+          ],
+          "short_description": "A menu bar focus utility for macOS that blurs everything except the active window. It is designed to reduce visual distraction without hiding or blocking other apps.",
+          "strengths": "- Blurs inactive windows instead of blocking them, which lowers distraction without making the system feel punitive.\n- Offers controls for blur levels, tint, grain, and app whitelisting, so users can tune the effect to match their tolerance.\n- Lives in the menu bar and stays out of the way, which matches the article's preference for quiet utilities that do one thing well.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Instead of blocking apps or forcing timers, it softly blurs everything except the app you\u2019re actively using. ... you can also tweak blur levels, tint, grain, and even whitelist apps that shouldn\u2019t trigger the effect.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not mention performance cost, compatibility issues, or whether the blur effect interferes with accessibility. It also does not show evidence that visual blurring improves focus beyond the author's preference, so the benefit remains anecdotal."
+        },
+        "notes": null,
+        "proposal_id": "1d6c6bd2-1a98-4909-8a11-0a53ba92b7bc",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It soft-blurs inactive windows so the active app stays visually prominent.",
+              "It lets users tune blur strength, tint, and grain to match personal preference.",
+              "It supports app whitelisting so some windows can avoid the blur effect."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Rectangle",
+              "AltTab"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "productivity",
+            "mac"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It snaps windows into common screen regions so layouts can be reproduced quickly.",
+            "It reduces manual resizing overhead, which helps when switching between split-screen tasks."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source presents it as a known replacement for a missing macOS feature rather than an experimental app. As of 2025-12-31, there is no evidence in the text about vendor support or enterprise deployment.",
+          "name": "Rectangle",
+          "operational_relevance": "This is relevant anywhere multi-window work creates drag-and-resize overhead. For support operations, writing, analysis, or agent console work, predictable snapping reduces time spent arranging the desktop and makes side-by-side workflows easier to repeat. As of 2025-12-31, it addresses a basic macOS usability gap rather than a niche automation need.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "productivity"
+          ],
+          "related_tools": [
+            "Loop"
+          ],
+          "short_description": "A macOS window manager that snaps windows into predefined layouts with keyboard shortcuts. It is meant to bring predictable window placement to Mac users.",
+          "strengths": "- Snaps windows into halves, thirds, and quarters, which makes layout management repeatable instead of ad hoc.\n- Removes the need for pixel-perfect resizing, which matters when users switch between tasks and screen sizes frequently.\n- Uses simple shortcuts, so the interaction model stays lightweight and fast once configured.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"With a few simple shortcuts, windows snap into halves, thirds, quarters \u2014 whatever layout your brain already had in mind.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not discuss edge cases, multi-monitor behavior, or whether shortcuts conflict with other tools. It is a workflow convenience tool, so its value depends on how much time the user spends managing windows."
+        },
+        "notes": null,
+        "proposal_id": "070d61b2-6ab2-4f78-8eb8-ee3dadafe39d",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It snaps windows into common screen regions so layouts can be reproduced quickly.",
+              "It reduces manual resizing overhead, which helps when switching between split-screen tasks."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Loop"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "productivity",
+            "mac"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "core_capabilities": [
+            "It keeps one reminder visible in the menu bar until the user clears it.",
+            "It supports styling changes like larger text, bold text, and red text to increase salience."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The article treats it as a simple, established utility rather than a high-growth product. As of 2025-12-31, there is no evidence in the source about ecosystem depth or enterprise adoption.",
+          "name": "One Thing",
+          "operational_relevance": "This is useful when the problem is forgetting one critical item rather than managing a queue of tasks. It can support lightweight personal attention management in environments where a full to-do system would be overkill. As of 2025-12-31, it is best treated as a narrow but durable reminder pattern.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "note-taking"
+          ],
+          "related_tools": [
+            "Hidden Bar"
+          ],
+          "short_description": "A menu bar reminder app that displays a single important item at a time. It is intended to keep one priority visible without becoming a full task manager.",
+          "strengths": "- Keeps one priority visible in the menu bar, which is useful when the user needs a persistent nudge without extra workflow overhead.\n- Supports emphasis controls like larger text, bold text, and color, which makes the reminder harder to ignore when needed.\n- Avoids the complexity of a task manager, so it can fit into a low-friction desktop setup.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"You click the menu bar icon, type the one thing you can\u2019t forget, and it sits there\u2026 quietly watching you\u2026 until it\u2019s done.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The source does not describe syncing, notification behavior, or multi-item support, so it may be too minimal for users who need richer task tracking. Its usefulness is inherently narrow because it only solves the 'remember one thing' problem."
+        },
+        "notes": null,
+        "proposal_id": "489778c0-e859-45c8-94e0-fdb8810cea23",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It keeps one reminder visible in the menu bar until the user clears it.",
+              "It supports styling changes like larger text, bold text, and red text to increase salience."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Hidden Bar"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "mac",
+            "productivity"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "core_capabilities": [
+            "It shows previews for individual windows so users can target the right one faster.",
+            "It supports custom shortcuts for keyboard-first switching.",
+            "It includes window-closing commands, which can speed up cleanup during multitasking."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source implies a mature utility category because it is presented as a replacement for a familiar operating-system gap. As of 2025-12-31, the text gives no evidence about enterprise readiness or maintenance cadence.",
+          "name": "AltTab",
+          "operational_relevance": "This matters when app switching is too coarse for real work and the user needs a specific window. In support and automation-heavy setups, better window switching can speed up jumping between dashboards, editors, consoles, and chat tools. As of 2025-12-31, it is a practical desktop efficiency tool rather than a specialized AI product.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "productivity"
+          ],
+          "related_tools": [
+            "Launchy",
+            "Rectangle"
+          ],
+          "short_description": "A macOS window switcher that shows previews of individual windows, not just apps. It is meant to make switching between open work surfaces more precise.",
+          "strengths": "- Shows actual window previews, which helps users switch to the exact surface they want instead of cycling through whole apps.\n- Includes custom shortcuts, which matters for high-frequency use where keyboard-driven navigation is faster than mouse switching.\n- Adds window-closing commands, so it does more than basic selection and can reduce extra steps in window cleanup.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The AltTab Application brings proper window previews to the Mac. Not just apps \u2014 actual windows. Full previews, custom shortcuts, even window-closing commands built in.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not compare it against native macOS switching behavior in detail or discuss resource usage. Its scope is limited to desktop navigation, so the operational gain is indirect and depends on how window-heavy the workflow is."
+        },
+        "notes": null,
+        "proposal_id": "8d0ccb86-67a0-47ef-8338-3544dd920430",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It shows previews for individual windows so users can target the right one faster.",
+              "It supports custom shortcuts for keyboard-first switching.",
+              "It includes window-closing commands, which can speed up cleanup during multitasking."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Launchy",
+              "Rectangle"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "productivity",
+            "mac"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "core_capabilities": [
+            "It presents a small launcher at the cursor for fast app switching.",
+            "It intentionally limits the visible app set to keep the interaction simple."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source frames it as a simpler alternative rather than a flagship platform. As of 2025-12-31, it appears to be a niche utility with no maturity evidence beyond the author's preference.",
+          "name": "Launchy",
+          "operational_relevance": "This is useful for users who want quick access to a small set of frequently used apps without the overhead of a full window switcher. It can reduce hunting in dense desktop sessions and support rapid context jumps in operational work. As of 2025-12-31, it reads as a minimalist companion to more feature-rich switchers.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "productivity"
+          ],
+          "related_tools": [
+            "AltTab"
+          ],
+          "short_description": "A lightweight app switcher for macOS that shows a small circular launcher near the cursor with a limited set of apps. It is designed for fast switching with less visual clutter.",
+          "strengths": "- Keeps the launcher small and cursor-adjacent, which reduces movement and makes the switch action feel immediate.\n- Limits the chooser to six apps, which can improve decision speed for a small core set of tools.\n- Prioritizes simplicity over breadth, which aligns with a low-friction desktop workflow.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Hold a shortcut and a small circular launcher appears right at your cursor. Six apps. That\u2019s it.\"",
+          "value_level": "low",
+          "weaknesses_limitations": "The limitation is also the tradeoff: six apps may be too few for users with broader switching needs. The article does not provide details on customization depth or compatibility."
+        },
+        "notes": null,
+        "proposal_id": "3c1ce3af-dfdc-47fa-8483-54f2c97a6c3d",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It presents a small launcher at the cursor for fast app switching.",
+              "It intentionally limits the visible app set to keep the interaction simple."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "AltTab"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "productivity",
+            "mac"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It changes file cut-and-paste behavior so moving files feels more intuitive.",
+            "It operates in the background without a visible interface or setup burden."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source presents it as a tiny utility that disappears into the background once installed. As of 2025-12-31, the article provides no evidence of scale, ecosystem, or enterprise adoption.",
+          "name": "Command X",
+          "operational_relevance": "This is relevant to workflows involving frequent file movement between folders, projects, or download locations. It removes a small but persistent translation cost for users coming from Windows or Linux, which can reduce mistakes and hesitation. As of 2025-12-31, it is a narrow productivity fix with obvious value for cross-platform users.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "file-transfer"
+          ],
+          "related_tools": [],
+          "short_description": "A background utility that makes macOS file cut-and-paste behave like users expect from other operating systems. It is focused on a single file-moving interaction.",
+          "strengths": "- Makes cut-and-paste for files behave in the more intuitive 'move' pattern many users already know.\n- Runs in the background with no visible interface, so it avoids adding another app to manage.\n- Has no settings or learning curve according to the source, which makes it easy to adopt quickly.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Command X Application fixes this by making cut-and-paste work exactly how your brain expects it to (Windows OS). No interface. No settings. No learning curve.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not describe edge cases, conflicts with native Finder behavior, or support for advanced file workflows. Its benefit is concentrated among users who already feel friction with macOS file moving."
+        },
+        "notes": null,
+        "proposal_id": "b1ecc526-2c20-4b0e-a9ef-26a2a3c98468",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It changes file cut-and-paste behavior so moving files feels more intuitive.",
+              "It operates in the background without a visible interface or setup burden."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "file-transfer",
+            "mac"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "core_capabilities": [
+            "It keeps the Mac awake with a simple menu bar toggle.",
+            "It lets users reverse the setting immediately when the task is done."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source portrays it as a no-frills utility rather than a complex power-management suite. As of 2025-12-31, no broader adoption or maintenance signal is provided.",
+          "name": "KeepingYouAwake",
+          "operational_relevance": "This is useful whenever a machine needs to stay awake for a bounded period and the user does not want to fiddle with system settings. It can support support operations, demos, downloads, and unattended processes where automatic sleep would be disruptive. As of 2025-12-31, it is a straightforward utility with operational relevance in any desktop workflow that includes long-running tasks.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "cleanup"
+          ],
+          "related_tools": [],
+          "short_description": "A menu bar toggle that prevents a Mac from sleeping. It is meant for long downloads, presentations, or other tasks where sleep would interrupt work.",
+          "strengths": "- Adds a single menu bar toggle, which makes sleep prevention easy to start and stop.\n- Avoids settings hunting and timer setup, so it keeps the interaction fast and explicit.\n- Fits scenarios like downloads, presentations, or hands-free reading, which are common practical reasons to keep a laptop awake.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The KeepingYouAwake Application adds a single toggle to your menu bar. Click it, and your Mac stays awake Click it again, and everything goes back to normal.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not mention whether it handles scheduled durations, battery safeguards, or enterprise policies. It solves one narrow problem, so its value is limited to the moments when sleep is the issue."
+        },
+        "notes": null,
+        "proposal_id": "b6642f97-2e1e-4387-bd31-3584e0e5d821",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It keeps the Mac awake with a simple menu bar toggle.",
+              "It lets users reverse the setting immediately when the task is done."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "mac",
+            "productivity"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "core_capabilities": [
+            "It strips formatting from pasted text automatically so copied content stays clean.",
+            "It allows a modified paste path for cases where the user wants to preserve formatting."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source presents it as a simple utility that solves one recurring annoyance. As of 2025-12-31, the text gives no evidence about scale, community size, or business adoption.",
+          "name": "PurePaste",
+          "operational_relevance": "This matters in writing-heavy work where copying from the web introduces formatting noise into notes, emails, docs, or ticketing systems. It reduces cleanup time and prevents pasted text from carrying unwanted fonts, links, or spacing. As of 2025-12-31, it is a small but durable clipboard hygiene tool.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "cleanup"
+          ],
+          "related_tools": [],
+          "short_description": "A clipboard utility for macOS that strips formatting from pasted text automatically. It keeps plain text clean while still allowing formatted paste when the user wants it.",
+          "strengths": "- Automatically removes formatting on paste, which prevents copied web content from carrying messy styles into downstream apps.\n- Still allows formatted paste with an Option key modifier, so it preserves an escape hatch when formatting is desired.\n- Cuts out a repetitive cleanup step that accumulates across many small pastes during the day.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The PurePaste Application for Mac strips the formatting automatically \u2014 every single time. ... Just hold the \u2018Option\u2019 while pasting.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not discuss clipboard history, enterprise controls, or compatibility with complex content types. It is specialized for text hygiene, so users needing richer clipboard management may need another tool."
+        },
+        "notes": null,
+        "proposal_id": "5922db33-20b9-401f-bc50-d0edad73ba80",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It strips formatting from pasted text automatically so copied content stays clean.",
+              "It allows a modified paste path for cases where the user wants to preserve formatting."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "mac",
+            "productivity"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "core_capabilities": [
+            "It converts plain-English instructions into terminal commands for common file and media tasks.",
+            "It reduces command memorization and copy-paste lookup during routine shell work."
+          ],
+          "integration_ecosystem": [
+            "It works with macOS Terminal workflows by translating user intent into shell commands."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article positions it as a patient assistant layered over Terminal, suggesting a practical utility rather than a broad AI platform. As of 2025-12-31, no adoption or enterprise signals are provided in the source.",
+          "name": "Substage",
+          "operational_relevance": "This is relevant for practitioners who use the terminal for routine operations but do not want to memorize every command. It can support automation-adjacent work by turning natural-language intentions into shell actions such as resizing images, converting videos, or zipping files. As of 2025-12-31, it is best seen as a convenience layer over command-line work rather than a replacement for terminal skill.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cli-tool",
+            "local-first"
+          ],
+          "proposed_types": [
+            "app",
+            "terminal"
+          ],
+          "related_tools": [],
+          "short_description": "A terminal helper that translates plain-English instructions into shell commands. It sits between the user and Terminal to reduce command memorization and lookup overhead.",
+          "strengths": "- Accepts plain-English requests and translates them into commands, which lowers the barrier to basic terminal operations.\n- Supports tasks like image resizing, video conversion, and zipping, so it covers common utility workflows rather than a single niche.\n- Reduces Googling and copy-pasting commands, which can speed up work and reduce the chance of misremembered syntax.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Substage Application lets you type what you want in plain English (resize images, convert videos, zip files and other stuff) and translates it into the right command for you.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not describe command accuracy, safety checks, or whether it exposes generated commands for review before execution. Plain-English translation also creates a trust boundary, so users still need to verify commands for sensitive tasks."
+        },
+        "notes": null,
+        "proposal_id": "9b853204-1d8a-4552-870c-ac6644c76152",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It converts plain-English instructions into terminal commands for common file and media tasks.",
+              "It reduces command memorization and copy-paste lookup during routine shell work."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It works with macOS Terminal workflows by translating user intent into shell commands."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cli-tool",
+            "local-first"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "terminal",
+            "mac",
+            "productivity"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "core_capabilities": [
+            "It compresses images while preserving visible quality, which helps with upload and sharing limits.",
+            "It strips unnecessary metadata during optimization, which can reduce file size further."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source treats it as an established utility that remains valuable because it is dependable. As of 2025-12-31, there is no evidence in the text about roadmap, ecosystem, or enterprise adoption.",
+          "name": "ImageOptim",
+          "operational_relevance": "This is useful in publishing, support, and content workflows where images need to be shipped, uploaded, or shared under size constraints. It can reduce friction in asset preparation without requiring manual optimization steps. As of 2025-12-31, it is a straightforward utility with durable value wherever image size is a recurring constraint.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first"
+          ],
+          "proposed_types": [
+            "app",
+            "cleanup"
+          ],
+          "related_tools": [],
+          "short_description": "A macOS image compression utility that reduces file size while preserving visible quality. It is aimed at making image handling less painful when size limits matter.",
+          "strengths": "- Removes unnecessary metadata and compresses images without visible quality loss, which makes files smaller without a noticeable tradeoff.\n- Works by drag-and-drop, so it stays simple enough for repetitive use.\n- Is described as reliable every time, which is the key property users want from a utility that sits in a production-ish workflow.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Drag in your images, and it strips the unnecessary metadata and compresses them without any visible quality loss.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not provide compression ratios, format support, or batch-processing details. Its scope is limited to image optimization, so it is not a general media pipeline tool."
+        },
+        "notes": null,
+        "proposal_id": "6450060f-290c-41d3-95eb-36b71d66d63d",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It compresses images while preserving visible quality, which helps with upload and sharing limits.",
+              "It strips unnecessary metadata during optimization, which can reduce file size further."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "image"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "image"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "core_capabilities": [
+            "It hides menu bar icons behind a toggle so the visible bar stays cleaner.",
+            "It keeps hidden apps available, which preserves access while reducing clutter."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source presents it as a familiar utility pattern rather than a novelty. As of 2025-12-31, the text offers no evidence about support channels, enterprise fit, or long-term maintenance.",
+          "name": "Hidden Bar",
+          "operational_relevance": "This helps users whose menu bar has become a dumping ground for utilities, VPNs, and background tools. In desktop-heavy workflows, reducing persistent icon clutter can make the top-of-screen area more legible and less distracting. As of 2025-12-31, it is a simple decluttering utility with obvious everyday value.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first"
+          ],
+          "proposed_types": [
+            "app",
+            "cleanup"
+          ],
+          "related_tools": [],
+          "short_description": "A macOS menu bar cleaner that hides less-used icons behind a toggle. It is designed to reduce visual clutter without removing apps.",
+          "strengths": "- Collapses menu bar clutter behind a toggle, which makes the desktop feel less crowded without uninstalling anything.\n- Preserves the hidden apps, so nothing is lost and users can still reach tools when needed.\n- Supports a calmer workspace by reducing the number of persistent icons competing for attention.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Hidden Bar lets you collapse all that clutter behind a simple toggle. And, Nothing breaks, nothing disappears. It just gets quieter.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not mention whether hidden items are searchable, how discovery works, or whether there are OS-version constraints. It is purely a layout and visibility tool, not a workflow engine."
+        },
+        "notes": null,
+        "proposal_id": "362c414b-cff5-4fc2-a192-c63479dc4127",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It hides menu bar icons behind a toggle so the visible bar stays cleaner.",
+              "It keeps hidden apps available, which preserves access while reducing clutter."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "mac",
+            "productivity"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "core_capabilities": [
+            "It places animated eyes in the menu bar that follow the cursor.",
+            "It responds with a blink when clicked, adding a small interactive flourish."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The article frames it as a delight-first app rather than a serious utility. As of 2025-12-31, there is no evidence of broader adoption or workflow significance.",
+          "name": "Googly Eyes",
+          "operational_relevance": "This has little operational relevance beyond morale and small breaks during long work sessions. It can be part of a lightweight desktop setup where occasional delight matters, but it does not improve service automation or AI workflows in a direct way. As of 2025-12-31, it is primarily a novelty utility.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first"
+          ],
+          "proposed_types": [
+            "app",
+            "productivity"
+          ],
+          "related_tools": [],
+          "short_description": "A playful menu bar app that adds animated eyes which follow the cursor. It is included for delight rather than productivity.",
+          "strengths": "- Adds a small, whimsical interaction to the menu bar, which can provide a brief mental reset during long work sessions.\n- Follows the cursor and blinks on click, so the app is immediately understandable without instructions.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Is it useful? Well, Not really. Is it delightful? Absolutely.\"",
+          "value_level": "low",
+          "weaknesses_limitations": "The source explicitly says it is not very useful, so its practical value is low. It does not contribute to productivity or automation beyond giving the user a moment of fun."
+        },
+        "notes": null,
+        "proposal_id": "0ba8dc62-f6e2-4998-b851-eaf98179d9fe",
+        "proposal_status": "rejected",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It places animated eyes in the menu bar that follow the cursor.",
+              "It responds with a blink when clicked, adding a small interactive flourish."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "productivity"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 13
+    },
+    "fields_modified": 0,
+    "proposals_approved": 12,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 13,
+    "review_duration_seconds": 596.6,
+    "review_finished_at": "2026-06-05T17:29:22.570608+00:00",
+    "review_started_at": "2026-06-05T17:19:26+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T17:29:22+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Zeeshan Saghir",
+    "canonical_url": "https://medium.com/@simpleandkind788/12-mac-apps-im-keeping-in-2026-d5cb0ffd227c",
+    "content_sha256": "8e146237839dcbdbe512502389c9fc4f407e79934a549b53a5cf37fef0c84914",
+    "publication": "Medium",
+    "published_date": "2025-12-31",
+    "raw_html_rel_path": "raw/readwise/12-mac-apps-i-m-keeping-in-2026-01kr443b2begtqxeweqdscbvq9.html",
+    "raw_md_rel_path": "raw/readwise/12-mac-apps-i-m-keeping-in-2026-01kr443b2begtqxeweqdscbvq9.md",
+    "source_id": "12-mac-apps-i-m-keeping-in-2026-01kr443b2begtqxeweqdscbvq9",
+    "title": "12 Mac Apps I\u2019m Keeping in 2026"
+  }
+}

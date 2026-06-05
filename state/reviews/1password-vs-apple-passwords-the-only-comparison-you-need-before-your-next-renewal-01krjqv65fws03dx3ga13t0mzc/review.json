@@ -1,0 +1,824 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-05T16:35:40+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnRnlYC4V08RCzQYzyg7u7HEw4Pdn",
+          "token_usage": {
+            "completion_tokens": 209,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5266,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5475
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnRnoHYdh0jwfEr9hUpqWquszbBnh",
+          "token_usage": {
+            "completion_tokens": 1205,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4889,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6094
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnRnz3taEK4G2ATs1iOs6Il8GfzZJ",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1778,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30758,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 32536
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnRnz3taEK4G2ATs1iOs6Il8GfzZJ",
+    "token_usage": {
+      "completion_tokens": 3192,
+      "prompt_tokens": 40913,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 44105
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-03-10",
+        "confidence": 0.58,
+        "evidence_from_source": "The article frames a 20% 1Password price increase against Apple Passwords' free, Apple-only offering and concludes that the decision turns on device mix and credential complexity rather than price in isolation.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "enterprise-ai"
+        ],
+        "related_trends": [
+          "software-commoditization",
+          "ai-economics"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "1Password Families plan increases from $59.88 to $71.88 per year.",
+          "The increase is described as effective for first renewals on or after March 27, 2026.",
+          "The author's own renewal does not hit the higher price until 2027."
+        ],
+        "supporting_snippet": "The price hike got me thinking though. There\u2019s a free alternative sitting right on my Mac. The bad news is \u201cfree\u201d always has asterisks.",
+        "time_sensitivity": "Actionable as of 2026-03-10; the specific pricing comparison is tied to 1Password's Families plan increase effective for first renewals on or after March 27, 2026.",
+        "trend_description": "In consumer software, price changes do not land uniformly; the perceived value of a subscription depends on whether the product fits the user's actual workflow constraints. When a free alternative covers the common case, the paid product has to justify itself with portability, collaboration, or structural flexibility rather than with a larger feature list alone. This is a decision pattern about product selection, not a claim about the whole market.",
+        "trend_slug": "consumer-software-pricing-shifts-depend-on-workflow-fit",
+        "trend_title": "Consumer Software Pricing Depends More on Workflow Fit Than Feature Count",
+        "uncertainty_note": "This is based on one user's renewal decision and one price change, so it should be treated as a narrow decision pattern rather than evidence of a broader pricing shift.",
+        "value_level": "low"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article is written as a first-person subscription and renewal experience, centered on the author's own use and preferences.",
+        "Claims about features and tradeoffs are presented as practical user observations rather than benchmarked measurements or formal analysis.",
+        "There is no cited independent testing or research; the evidence base is the writer's anecdotal product experience."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article compares two password managers: Apple Passwords and 1Password. The core question is whether a paid subscription is still worth it after 1Password raised prices. Apple Passwords is free and works well if you live entirely inside Apple\u2019s ecosystem. 1Password costs money, but it supports many devices and handles more complicated sharing and storage needs. The basic insight is simple: if your life is mostly Apple-only and your password setup is simple, Apple Passwords may be enough; if you use other platforms or need more structure, 1Password still has clear advantages.",
+      "assessed_as_of": "2026-03-10",
+      "contradictions_and_skepticism": "The article\u2019s strongest claims are persuasive at the user-experience level, but they are still anecdotal and could reflect the author\u2019s workflow more than a universal pattern. The contrast between Apple Passwords and 1Password is somewhat simplified: the piece treats Apple\u2019s closed ecosystem and one-vault model as fixed constraints without exploring whether those constraints are acceptable for many users. The \u201cfree always has asterisks\u201d framing is catchy, but the article does not measure whether those asterisks matter enough to justify the subscription for a given person. The price increase is real in the article, but its practical impact is modest for many users, so the financial urgency is more rhetorical than analytical. The article\u2019s conclusion is sensible, but it stops short of proving that 1Password\u2019s extra features are worth the cost beyond the author\u2019s stated preferences.",
+      "key_insights": [
+        "Apple Passwords is framed as good enough for simple, Apple-only password use, especially when passkeys, 2FA codes, and autofill cover the whole need.",
+        "1Password\u2019s strongest justification is cross-platform coverage; the article treats Android, Windows, Linux, and broad browser support as the decisive differentiator.",
+        "Multiple vaults and sharing with non-Apple users are presented as the practical features that make 1Password fit more complex personal or work credential setups.",
+        "Apple Passwords\u2019 lack of a web vault and limited export path make switching costs and future portability important considerations.",
+        "The price increase matters less than the user\u2019s device mix and organizational complexity; the article\u2019s decision rule is operational, not ideological."
+      ],
+      "limitations_and_open_questions": "This is a personal comparison article, not a benchmark or security audit, so the claims rest on the author\u2019s experience rather than independent testing. The article does not quantify autofill reliability, sync latency, breach detection quality, or export fidelity. It also does not evaluate account recovery, admin controls, enterprise policy features, or family/team governance in depth. Security claims such as end-to-end encryption and Secure Enclave use are asserted without technical verification in the piece. The pricing analysis is narrow because it focuses on one plan and one renewal date rather than the full range of subscription tiers or competitor pricing. It remains unclear how often Apple Passwords\u2019 limitations become serious in real use for people who are mostly but not entirely in Apple\u2019s ecosystem.",
+      "sources": [
+        "https://medium.com/the-mac-alchemist/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-a9b4aa19c81e"
+      ],
+      "summary": "The article is a first-person comparison of 1Password and Apple Passwords framed around a subscription renewal decision after a 20% price increase in 1Password\u2019s Families plan from $59.88 to $71.88 per year, effective for first renewals on or after March 27, 2026. The author argues that Apple Passwords is a credible free alternative for people fully inside the Apple ecosystem, but it has sharp limits: no Android or Linux support, no web vault, one vault tied to Apple ID, no custom fields, no secure file storage, no dark web monitoring, and clunky export. In contrast, 1Password\u2019s value is cross-platform reach, multiple vaults, sharing with non-Apple users, richer data types like SSH keys and documents, Travel Mode, and broader browser/OS support. The piece\u2019s practical conclusion is not that one tool is universally better, but that the right choice depends on device mix and credential complexity: Apple Passwords fits simple Apple-only use, while 1Password remains better for mixed-device or multi-vault workflows. The author also notes a timing wrinkle: the price increase would not hit their own billing cycle until 2027 because the renewal landed before March 27, 2026.",
+      "why_it_matters": "The piece is useful because it compresses a real product decision into a concrete capability tradeoff rather than a vague loyalty argument. It shows that password managers should be evaluated against the user\u2019s actual environment: device diversity, browser diversity, sharing needs, and the amount of structured data stored beyond usernames and passwords. The article makes clear that Apple Passwords can cover a basic consumer workflow well as of 2026, including autofill, passkeys, 2FA codes, security alerts, family sharing, and hardware-backed unlocking. It also makes clear that 1Password\u2019s paid value is not abstract; it is tied to support for non-Apple platforms, multiple vaults, richer item types, and sharing with people outside Apple\u2019s ecosystem. For product builders, the durable lesson is that \u201cfree\u201d versus \u201cpaid\u201d is less important than whether the tool matches the user\u2019s workflow constraints and migration tolerance. The comparison also highlights portability and export quality as product properties that matter when a vendor\u2019s ecosystem is closed. On balance, the article argues for a simple decision rule rather than a universal winner, and that is useful as of March 10, 2026. The service-automation angle is thin here, but the same logic would apply to credentials used in support tooling, admin workflows, or other back-office systems only insofar as those environments need cross-platform access and structured secret storage."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent comparison article focused on 1Password versus Apple Passwords, not a bundle of unrelated items.",
+        "No interview format, no step-by-step tutorial, and no primary list of tools or practices beyond the comparison itself.",
+        "Structure is opinionated review/decision guidance with pricing and feature contrasts, which fits a standard article."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.96,
+        "core_capabilities": [
+          "It syncs credentials across major operating systems and browsers, so users do not need to stay inside one device ecosystem.",
+          "It supports multiple vaults, which helps separate different classes of credentials and reduce accidental mixing.",
+          "It lets users store more than passwords, including SSH keys, secure notes, API tokens, and documents.",
+          "It supports sharing with anyone, not only users of one vendor's devices, which matters for mixed-device collaboration.",
+          "It includes Travel Mode to hide sensitive vaults when crossing borders."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It supports Chrome, Firefox, Edge, Brave, and Safari for browser-based autofill and access.",
+          "It runs on macOS, iOS, Windows, Android, and Linux, so it can follow users across heterogeneous device fleets."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article presents 1Password as an established product with a long feature history, noting that its feature set has been building since 2005. It is described as broadly available across major operating systems and browsers, which suggests a mature cross-platform footprint rather than a narrow niche app. The source does not provide adoption metrics.",
+        "name": "1Password",
+        "operational_relevance": "Useful when credentials must be available across Apple, Windows, Android, Linux, and multiple browsers. It also fits workflows that involve sharing secrets with people outside one vendor ecosystem or storing structured items beyond passwords. For service automation, the main relevance is keeping operational secrets, notes, and shared credentials organized across mixed-device teams, but the source does not discuss enterprise controls in depth.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cloud-hosted",
+          "enterprise-managed",
+          "local-first"
+        ],
+        "proposed_types": [
+          "cloud-saas",
+          "app"
+        ],
+        "related_tools": [
+          "Apple Passwords"
+        ],
+        "short_description": "A subscription password manager with cross-platform apps and browser support. It stores logins plus richer secret types and is positioned for users who need more than a single-ecosystem vault.",
+        "strengths": "- Works across macOS, iOS, Windows, Android, Linux, and major browsers, which matters when even one device falls outside a single-vendor ecosystem.\n- Supports multiple vaults, making it easier to separate personal, work, and special-purpose credentials without mixing them into one flat list.\n- Allows sharing with non-Apple users, which is practical when contractors or colleagues use mixed hardware.\n- Stores custom fields, secure notes, SSH keys, API tokens, and documents, so it can hold more than basic login pairs.\n- Includes Travel Mode, which is a niche but operationally meaningful feature for people who want to hide sensitive vaults during border crossings.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "1Password runs on macOS, iOS, Windows, Android, Linux, and supports Chrome, Firefox, Edge, Brave, and Safari.",
+        "value_level": "high",
+        "weaknesses_limitations": "The source frames 1Password as expensive relative to a free alternative, and it offers no free tier. Its feature depth can also be more than many users need, which makes the subscription harder to justify for simple password-only use. The article does not evaluate enterprise policy controls, admin features, or measurable security performance."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.89,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Cross-platform support is often the decisive feature when device diversity exists.",
+          "Sharing constraints should match the actual people involved, not just the primary user's devices.",
+          "Vault structure matters when credentials are more than a flat list of logins.",
+          "Export and migration quality are part of product choice because they affect exit cost."
+        ],
+        "knowledge_summary": "Selecting a password manager should be driven by the user or team's actual device mix, browser mix, and sharing needs rather than by brand loyalty or price alone. A tool that works well on one platform can fail operationally if even one important device or collaborator sits outside that ecosystem. The most durable selection criterion is whether the product can carry credentials, shared secrets, and structured data across every place they are needed. Portability and export quality also matter because migration friction becomes part of the real cost of ownership.",
+        "match_candidates": [],
+        "operational_insight": "Treat password managers as workflow infrastructure: evaluate them by coverage, sharing topology, and data portability, not just by subscription price.",
+        "primary_tag": "software-engineering",
+        "proposed_tags": [
+          "software-engineering",
+          "enterprise-workflows",
+          "workflow-design"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters long term because mixed-device environments are common in personal and small-team workflows, and credential stores have to survive that diversity without creating manual workarounds. The same selection logic applies to any shared secret store used in support automation or operations.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "If you touch a non-Apple device \u2014 even occasionally, even reluctantly \u2014 Apple Passwords won\u2019t cut it.",
+        "topic_slug": "cross-platform-password-manager-selection",
+        "topic_title": "Cross-Platform Password Manager Selection",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.81,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Closed ecosystems can be efficient for single-vendor households or teams.",
+          "Lack of web access makes portability and emergency access harder.",
+          "Feature completeness inside the ecosystem does not eliminate interoperability costs.",
+          "The right boundary is the one that matches the user's real device topology."
+        ],
+        "knowledge_summary": "Some consumer products are highly capable inside one ecosystem but lose usefulness when users need cross-platform access, web access, or mixed-vendor collaboration. The practical tradeoff is between seamless integration within a closed ecosystem and portability outside it. When evaluating these products, the question is not whether they are good in isolation, but whether their boundaries match the user's real operating environment. Closed ecosystems often simplify the happy path while increasing switching cost and limiting interoperability.",
+        "match_candidates": [],
+        "operational_insight": "Use ecosystem boundaries as a first-class evaluation criterion; a product can be excellent and still be the wrong fit if its access model does not match the workflow.",
+        "primary_tag": "platform-strategy",
+        "proposed_tags": [
+          "platform-strategy",
+          "distribution",
+          "enterprise-workflows"
+        ],
+        "related_topics": [
+          "cross-platform-password-manager-selection"
+        ],
+        "relevance_note": "This is durable because AI and automation stacks often fail at the edges where teams mix ecosystems, tools, and access patterns. The lesson generalizes to any operational system whose value depends on where it can and cannot be reached.",
+        "secondary_tag": "distribution",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "No Android. No Linux. No web vault you can open from any browser on any device. This isn\u2019t a bug they\u2019re planning to fix. It is Apple\u2019s personality.",
+        "topic_slug": "ecosystem-bounded-product-tradeoffs",
+        "topic_title": "Ecosystem-Bounded Product Tradeoffs",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-03-10",
+          "confidence": 0.58,
+          "evidence_from_source": "The article frames a 20% 1Password price increase against Apple Passwords' free, Apple-only offering and concludes that the decision turns on device mix and credential complexity rather than price in isolation.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "enterprise-ai"
+          ],
+          "related_trends": [
+            "software-commoditization",
+            "ai-economics"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "1Password Families plan increases from $59.88 to $71.88 per year.",
+            "The increase is described as effective for first renewals on or after March 27, 2026.",
+            "The author's own renewal does not hit the higher price until 2027."
+          ],
+          "supporting_snippet": "The price hike got me thinking though. There\u2019s a free alternative sitting right on my Mac. The bad news is \u201cfree\u201d always has asterisks.",
+          "time_sensitivity": "Actionable as of 2026-03-10; the specific pricing comparison is tied to 1Password's Families plan increase effective for first renewals on or after March 27, 2026.",
+          "trend_description": "In consumer software, price changes do not land uniformly; the perceived value of a subscription depends on whether the product fits the user's actual workflow constraints. When a free alternative covers the common case, the paid product has to justify itself with portability, collaboration, or structural flexibility rather than with a larger feature list alone. This is a decision pattern about product selection, not a claim about the whole market.",
+          "trend_slug": "consumer-software-pricing-shifts-depend-on-workflow-fit",
+          "trend_title": "Consumer Software Pricing Depends More on Workflow Fit Than Feature Count",
+          "uncertainty_note": "This is based on one user's renewal decision and one price change, so it should be treated as a narrow decision pattern rather than evidence of a broader pricing shift.",
+          "value_level": "low"
+        },
+        "notes": null,
+        "proposal_id": "7797fef8-74c2-4336-8f26-8a0b7687f1eb",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "software-commoditization",
+              "ai-economics"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "1Password Families plan increases from $59.88 to $71.88 per year.",
+              "The increase is described as effective for first renewals on or after March 27, 2026.",
+              "The author's own renewal does not hit the higher price until 2027."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article is written as a first-person subscription and renewal experience, centered on the author's own use and preferences.",
+          "Claims about features and tradeoffs are presented as practical user observations rather than benchmarked measurements or formal analysis.",
+          "There is no cited independent testing or research; the evidence base is the writer's anecdotal product experience."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Apple Passwords is framed as good enough for simple, Apple-only password use, especially when passkeys, 2FA codes, and autofill cover the whole need.",
+          "1Password\u2019s strongest justification is cross-platform coverage; the article treats Android, Windows, Linux, and broad browser support as the decisive differentiator.",
+          "Multiple vaults and sharing with non-Apple users are presented as the practical features that make 1Password fit more complex personal or work credential setups.",
+          "Apple Passwords\u2019 lack of a web vault and limited export path make switching costs and future portability important considerations.",
+          "The price increase matters less than the user\u2019s device mix and organizational complexity; the article\u2019s decision rule is operational, not ideological."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/the-mac-alchemist/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-a9b4aa19c81e"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent comparison article focused on 1Password versus Apple Passwords, not a bundle of unrelated items.",
+          "No interview format, no step-by-step tutorial, and no primary list of tools or practices beyond the comparison itself.",
+          "Structure is opinionated review/decision guidance with pricing and feature contrasts, which fits a standard article."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "core_capabilities": [
+            "It syncs credentials across major operating systems and browsers, so users do not need to stay inside one device ecosystem.",
+            "It supports multiple vaults, which helps separate different classes of credentials and reduce accidental mixing.",
+            "It lets users store more than passwords, including SSH keys, secure notes, API tokens, and documents.",
+            "It supports sharing with anyone, not only users of one vendor's devices, which matters for mixed-device collaboration.",
+            "It includes Travel Mode to hide sensitive vaults when crossing borders."
+          ],
+          "integration_ecosystem": [
+            "It supports Chrome, Firefox, Edge, Brave, and Safari for browser-based autofill and access.",
+            "It runs on macOS, iOS, Windows, Android, and Linux, so it can follow users across heterogeneous device fleets."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article presents 1Password as an established product with a long feature history, noting that its feature set has been building since 2005. It is described as broadly available across major operating systems and browsers, which suggests a mature cross-platform footprint rather than a narrow niche app. The source does not provide adoption metrics.",
+          "name": "1Password",
+          "operational_relevance": "Useful when credentials must be available across Apple, Windows, Android, Linux, and multiple browsers. It also fits workflows that involve sharing secrets with people outside one vendor ecosystem or storing structured items beyond passwords. For service automation, the main relevance is keeping operational secrets, notes, and shared credentials organized across mixed-device teams, but the source does not discuss enterprise controls in depth.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cloud-hosted",
+            "enterprise-managed",
+            "local-first"
+          ],
+          "proposed_types": [
+            "cloud-saas",
+            "app"
+          ],
+          "related_tools": [
+            "Apple Passwords"
+          ],
+          "short_description": "A subscription password manager with cross-platform apps and browser support. It stores logins plus richer secret types and is positioned for users who need more than a single-ecosystem vault.",
+          "strengths": "- Works across macOS, iOS, Windows, Android, Linux, and major browsers, which matters when even one device falls outside a single-vendor ecosystem.\n- Supports multiple vaults, making it easier to separate personal, work, and special-purpose credentials without mixing them into one flat list.\n- Allows sharing with non-Apple users, which is practical when contractors or colleagues use mixed hardware.\n- Stores custom fields, secure notes, SSH keys, API tokens, and documents, so it can hold more than basic login pairs.\n- Includes Travel Mode, which is a niche but operationally meaningful feature for people who want to hide sensitive vaults during border crossings.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "1Password runs on macOS, iOS, Windows, Android, Linux, and supports Chrome, Firefox, Edge, Brave, and Safari.",
+          "value_level": "high",
+          "weaknesses_limitations": "The source frames 1Password as expensive relative to a free alternative, and it offers no free tier. Its feature depth can also be more than many users need, which makes the subscription harder to justify for simple password-only use. The article does not evaluate enterprise policy controls, admin features, or measurable security performance."
+        },
+        "notes": null,
+        "proposal_id": "0253a3e0-f75d-4797-bf51-807406a66aaf",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It syncs credentials across major operating systems and browsers, so users do not need to stay inside one device ecosystem.",
+              "It supports multiple vaults, which helps separate different classes of credentials and reduce accidental mixing.",
+              "It lets users store more than passwords, including SSH keys, secure notes, API tokens, and documents.",
+              "It supports sharing with anyone, not only users of one vendor's devices, which matters for mixed-device collaboration.",
+              "It includes Travel Mode to hide sensitive vaults when crossing borders."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It supports Chrome, Firefox, Edge, Brave, and Safari for browser-based autofill and access.",
+              "It runs on macOS, iOS, Windows, Android, and Linux, so it can follow users across heterogeneous device fleets."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Apple Passwords"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "cloud-saas",
+            "app",
+            "security"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "security"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Cross-platform support is often the decisive feature when device diversity exists.",
+            "Sharing constraints should match the actual people involved, not just the primary user's devices.",
+            "Vault structure matters when credentials are more than a flat list of logins.",
+            "Export and migration quality are part of product choice because they affect exit cost."
+          ],
+          "knowledge_summary": "Selecting a password manager should be driven by the user or team's actual device mix, browser mix, and sharing needs rather than by brand loyalty or price alone. A tool that works well on one platform can fail operationally if even one important device or collaborator sits outside that ecosystem. The most durable selection criterion is whether the product can carry credentials, shared secrets, and structured data across every place they are needed. Portability and export quality also matter because migration friction becomes part of the real cost of ownership.",
+          "match_candidates": [],
+          "operational_insight": "Treat password managers as workflow infrastructure: evaluate them by coverage, sharing topology, and data portability, not just by subscription price.",
+          "primary_tag": "software-engineering",
+          "proposed_tags": [
+            "software-engineering",
+            "enterprise-workflows",
+            "workflow-design"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters long term because mixed-device environments are common in personal and small-team workflows, and credential stores have to survive that diversity without creating manual workarounds. The same selection logic applies to any shared secret store used in support automation or operations.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "If you touch a non-Apple device \u2014 even occasionally, even reluctantly \u2014 Apple Passwords won\u2019t cut it.",
+          "topic_slug": "cross-platform-password-manager-selection",
+          "topic_title": "Cross-Platform Password Manager Selection",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "71a4fb17-763b-42c5-8c9e-04e190ed5298",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Cross-platform support is often the decisive feature when device diversity exists.",
+              "Sharing constraints should match the actual people involved, not just the primary user's devices.",
+              "Vault structure matters when credentials are more than a flat list of logins.",
+              "Export and migration quality are part of product choice because they affect exit cost."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "software-engineering",
+            "enterprise-workflows",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.81,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Closed ecosystems can be efficient for single-vendor households or teams.",
+            "Lack of web access makes portability and emergency access harder.",
+            "Feature completeness inside the ecosystem does not eliminate interoperability costs.",
+            "The right boundary is the one that matches the user's real device topology."
+          ],
+          "knowledge_summary": "Some consumer products are highly capable inside one ecosystem but lose usefulness when users need cross-platform access, web access, or mixed-vendor collaboration. The practical tradeoff is between seamless integration within a closed ecosystem and portability outside it. When evaluating these products, the question is not whether they are good in isolation, but whether their boundaries match the user's real operating environment. Closed ecosystems often simplify the happy path while increasing switching cost and limiting interoperability.",
+          "match_candidates": [],
+          "operational_insight": "Use ecosystem boundaries as a first-class evaluation criterion; a product can be excellent and still be the wrong fit if its access model does not match the workflow.",
+          "primary_tag": "platform-strategy",
+          "proposed_tags": [
+            "platform-strategy",
+            "distribution",
+            "enterprise-workflows"
+          ],
+          "related_topics": [
+            "cross-platform-password-manager-selection"
+          ],
+          "relevance_note": "This is durable because AI and automation stacks often fail at the edges where teams mix ecosystems, tools, and access patterns. The lesson generalizes to any operational system whose value depends on where it can and cannot be reached.",
+          "secondary_tag": "distribution",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "No Android. No Linux. No web vault you can open from any browser on any device. This isn\u2019t a bug they\u2019re planning to fix. It is Apple\u2019s personality.",
+          "topic_slug": "ecosystem-bounded-product-tradeoffs",
+          "topic_title": "Ecosystem-Bounded Product Tradeoffs",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "37454d42-24db-4c8b-bde2-cc4aa8eb2474",
+        "proposal_status": "rejected",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Closed ecosystems can be efficient for single-vendor households or teams.",
+              "Lack of web access makes portability and emergency access harder.",
+              "Feature completeness inside the ecosystem does not eliminate interoperability costs.",
+              "The right boundary is the one that matches the user's real device topology."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "cross-platform-password-manager-selection"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "platform-strategy",
+            "distribution",
+            "enterprise-workflows"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 1,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 3,
+    "proposals_total": 4,
+    "review_duration_seconds": 136.6,
+    "review_finished_at": "2026-06-05T16:37:56.622044+00:00",
+    "review_started_at": "2026-06-05T16:35:40+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-05T16:37:56+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Nihal Shah",
+    "canonical_url": "https://medium.com/the-mac-alchemist/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-a9b4aa19c81e",
+    "content_sha256": "3c72ebf7c838f96b1983cff6a038d449b0e90b4cce16b7b9cbe320c65c63ae0a",
+    "publication": "Medium",
+    "published_date": "2026-03-10",
+    "raw_html_rel_path": "raw/readwise/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-01krjqv65fws03dx3ga13t0mzc.html",
+    "raw_md_rel_path": "raw/readwise/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-01krjqv65fws03dx3ga13t0mzc.md",
+    "source_id": "1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-01krjqv65fws03dx3ga13t0mzc",
+    "title": "1Password vs Apple Passwords: The Only Comparison You Need Before Your Next Renewal"
+  }
+}
