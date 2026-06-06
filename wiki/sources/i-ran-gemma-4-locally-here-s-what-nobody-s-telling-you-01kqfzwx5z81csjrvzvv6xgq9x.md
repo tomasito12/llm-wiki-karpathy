@@ -29,19 +29,28 @@ ingested_at: '2026-06-05T15:22:46.897461+00:00'
 canonical_url: https://medium.com/ai-in-plain-english/i-ran-gemma-4-locally-heres-what-nobody-s-telling-you-806dcd485925
 content_sha256: 94547502d3d09863956c6655bf00a6830b9f20ae47966b616a812f11d9bee520
 derived_glossary:
-- hallucinations
-- mixture-of-experts
+- glossary/hallucinations.md
+- glossary/mixture-of-experts.md
 derived_how_to:
-- local-model-setup
+- how-to/local-model-setup.md
 derived_models:
-- gemma-4
+- foundation-models/gemma-4.md
 derived_tools:
-- ollama
+- tools/ollama.md
 derived_topics:
-- context-and-backend-sensitivity-in-local-inference
-- local-model-deployment
+- topics/context-and-backend-sensitivity-in-local-inference.md
+- topics/local-model-deployment.md
 derived_trends:
-- open-weight-models-become-viable-on-consumer-hardware
+- industry-trends/open-weight-models-become-viable-on-consumer-hardware.md
+derived_pages:
+- foundation-models/gemma-4.md
+- glossary/hallucinations.md
+- glossary/mixture-of-experts.md
+- how-to/local-model-setup.md
+- industry-trends/open-weight-models-become-viable-on-consumer-hardware.md
+- tools/ollama.md
+- topics/context-and-backend-sensitivity-in-local-inference.md
+- topics/local-model-deployment.md
 ---
 
 # I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.

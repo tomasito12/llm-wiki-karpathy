@@ -18,13 +18,19 @@ ingested_at: '2026-05-17T20:26:15.822145+00:00'
 canonical_url: https://medium.com/@creativeaininja/this-open-source-app-turns-your-documents-into-a-self-building-wiki-b3b5778903dd
 content_sha256: 72014f4130e7df977067f6cd01b9a8ff406a5d6b78acf33631b59fd1659daf5a
 derived_glossary:
-- knowledge-management
-- retrieval-augmented-generation
+- glossary/knowledge-management.md
+- glossary/retrieval-augmented-generation.md
 derived_how_to:
-- two-pass-document-ingestion
+- how-to/two-pass-document-ingestion.md
 derived_topics:
-- context-engineering
-- knowledge-management
+- topics/context-engineering.md
+- topics/knowledge-management.md
+derived_pages:
+- glossary/knowledge-management.md
+- glossary/retrieval-augmented-generation.md
+- how-to/two-pass-document-ingestion.md
+- topics/context-engineering.md
+- topics/knowledge-management.md
 ---
 
 # This Open-Source App Turns Your Documents Into a Self-Building Wiki

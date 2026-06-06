@@ -24,6 +24,8 @@ category: index
 - [[industry-trends/automation-pressures-governments-to-tax-capital-instead-of-labor|Automation Pressures Governments to Tax Capital Instead of Labor]]
 - [[industry-trends/entry-level-technical-hiring-softens-under-ai-pressure|Entry-Level Technical Hiring Softens Under AI Pressure]]
 - [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]]
+- [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]]
 
 ## ai-governance
 
@@ -94,13 +96,16 @@ category: index
 - [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 - [[industry-trends/open-weight-models-become-good-enough-for-local-multimodal-work|Open-Weight Models Become Good Enough for Local Multimodal Work]]
 - [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake|Sales Moves from Fast Follow-Up to Agent-Led Intake]]
 - [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]]
+- [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]]
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|Verification Loops Become Central to AI Workflows]]
 - [[industry-trends/voice-agents-shift-toward-workflow-completion|Voice Agents Shift Toward Workflow Completion]]
 
 ## execution-oriented-agents
 
 - [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
 - [[industry-trends/agentic-commerce-interfaces|Agentic Commerce Interfaces]]
 - [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
@@ -140,6 +145,7 @@ category: index
 ## orchestration-layer-growth
 
 - [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]]
 
 ## policy-operationalization
 
@@ -148,6 +154,7 @@ category: index
 
 ## runtime-centralization
 
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/ai-assisted-file-native-workflows|AI-Assisted File-Native Workflows]]
 - [[industry-trends/efficiency-gains-become-product-capabilities|Efficiency Gains Become Product Capabilities]]
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Harness Design Becomes More Important for Agent Reliability]]
@@ -157,6 +164,7 @@ category: index
 - [[industry-trends/models-becoming-execution-layers|Models Becoming Execution Layers]]
 - [[industry-trends/models-as-commodity-components|Models as Commodity Components]]
 - [[industry-trends/realtime-voice-agents-shift-to-integration-work|Realtime Voice Agents Shift Toward Integration Work]]
+- [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]]
 
 ## runtime-systems
 
@@ -199,4 +207,5 @@ category: index
 - [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 - [[industry-trends/llm-maintained-knowledge-bases|LLM-Maintained Knowledge Bases]]
 - [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake|Sales Moves from Fast Follow-Up to Agent-Led Intake]]
 - [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]

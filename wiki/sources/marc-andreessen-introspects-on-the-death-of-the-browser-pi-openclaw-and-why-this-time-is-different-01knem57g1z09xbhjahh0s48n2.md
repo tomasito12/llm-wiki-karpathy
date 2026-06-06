@@ -30,6 +30,12 @@ derived_interview_insights:
 - interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-institutional-friction-can-delay-ai-adoption-even-when-the-technolog-2329a333ed.md
 - interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-proof-of-human-becomes-more-important-than-bot-detection-fd224eda9f.md
 - interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-self-modifying-agents-shift-the-engineering-problem-to-control-verif-d2be6be01f.md
+derived_pages:
+- interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-agent-architecture-can-be-built-from-unix-primitives-plus-stateful-f-57fa3855c6.md
+- interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-ai-progress-should-be-evaluated-as-separate-capability-milestones-no-08a839b63c.md
+- interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-institutional-friction-can-delay-ai-adoption-even-when-the-technolog-2329a333ed.md
+- interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-proof-of-human-becomes-more-important-than-bot-detection-fd224eda9f.md
+- interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-self-modifying-agents-shift-the-engineering-problem-to-control-verif-d2be6be01f.md
 ---
 
 # Marc Andreessen introspects on The Death of the Browser, Pi + OpenClaw, and Why "This Time Is Different"

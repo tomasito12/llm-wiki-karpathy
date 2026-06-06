@@ -16,12 +16,18 @@ ingested_at: '2026-05-17T13:26:04.904667+00:00'
 canonical_url: https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a
 content_sha256: 14b1d7a9da5ad369719cb9c4c9f325d01f66bfe79bd54379de9108b69951911f
 derived_glossary:
-- feedforward-controls
-- harness
+- glossary/feedforward-controls.md
+- glossary/harness.md
 derived_topics:
-- agentic-workflows
-- context-engineering
-- harness-decay
+- topics/agentic-workflows.md
+- topics/context-engineering.md
+- topics/harness-decay.md
+derived_pages:
+- glossary/feedforward-controls.md
+- glossary/harness.md
+- topics/agentic-workflows.md
+- topics/context-engineering.md
+- topics/harness-decay.md
 ---
 
 # Harness Engineering: What Every AI Engineer Needs to Know in 2026

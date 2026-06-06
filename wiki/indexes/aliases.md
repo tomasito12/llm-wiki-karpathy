@@ -17,6 +17,10 @@ category: diagnostics
 
 - Agent-Maintained Documentation Pipelines
 
+## AI Products Shift from Models to Systems
+
+- AI products are being sold as integrated systems, not standalone models
+
 ## Agentic Commerce Interfaces
 
 - Commerce Interfaces Shift Toward Agentic Guidance

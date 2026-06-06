@@ -24,6 +24,10 @@ derived_interview_insights:
 - interview-insights/2026-04/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-action-conditioned-world-models-beat-passive-video-prediction-for-in-36d92abd30.md
 - interview-insights/2026-04/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-game-engines-are-useful-because-they-expose-actions-state-physics-an-fa1c8f90b1.md
 - interview-insights/2026-04/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-separate-causal-state-from-rendering-to-preserve-control-and-enable-8e0b7dedf2.md
+derived_pages:
+- interview-insights/2026-04/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-action-conditioned-world-models-beat-passive-video-prediction-for-in-36d92abd30.md
+- interview-insights/2026-04/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-game-engines-are-useful-because-they-expose-actions-state-physics-an-fa1c8f90b1.md
+- interview-insights/2026-04/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-separate-causal-state-from-rendering-to-preserve-control-and-enable-8e0b7dedf2.md
 ---
 
 # Moonlake: Causal World Models should be Multimodal, Interactive, and Efficient — with Chris Manning and Fan-yun Sun

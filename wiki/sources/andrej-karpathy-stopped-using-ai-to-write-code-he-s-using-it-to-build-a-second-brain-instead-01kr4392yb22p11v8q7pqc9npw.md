@@ -18,12 +18,17 @@ ingested_at: '2026-05-18T15:36:54.489985+00:00'
 canonical_url: https://medium.com/neuralnotions/andrej-karpathy-stopped-using-ai-to-write-code-hes-using-it-to-build-a-second-brain-instead-cddceadc5df5
 content_sha256: bf1c17bfe85df4cfcd1f23d4a8f15b9d2b2ca5eb603c0e1d5721cc42bd647085
 derived_glossary:
-- knowledge-management
-- retrieval-augmented-generation
+- glossary/knowledge-management.md
+- glossary/retrieval-augmented-generation.md
 derived_topics:
-- ai-assisted-knowledge-compilation
+- topics/ai-assisted-knowledge-compilation.md
 derived_trends:
-- models-becoming-execution-layers
+- industry-trends/models-becoming-execution-layers.md
+derived_pages:
+- glossary/knowledge-management.md
+- glossary/retrieval-augmented-generation.md
+- industry-trends/models-becoming-execution-layers.md
+- topics/ai-assisted-knowledge-compilation.md
 ---
 
 # Andrej Karpathy Stopped Using AI to Write Code. He’s Using It to Build a Second Brain Instead

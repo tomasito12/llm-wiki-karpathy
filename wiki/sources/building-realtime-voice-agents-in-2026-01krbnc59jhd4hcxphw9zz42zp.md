@@ -22,14 +22,20 @@ ingested_at: '2026-06-01T16:21:50.096887+00:00'
 canonical_url: https://medium.com/@chentschel/building-realtime-voice-agents-in-2026-3eec38e96fb1
 content_sha256: 04dbb2d36e53feb55cad0950263ee2e95eb83a8789cd00e3f5ddb074585855c9
 derived_models:
-- gpt-realtime-1-5
+- foundation-models/gpt-realtime-1-5.md
 derived_tools:
-- openai-realtime-api
+- tools/openai-realtime-api.md
 derived_topics:
-- agent-runtime-architecture-for-voice
-- telephony-integration-for-voice-agents
+- topics/agent-runtime-architecture-for-voice.md
+- topics/telephony-integration-for-voice-agents.md
 derived_trends:
-- realtime-voice-agents-shift-to-integration-work
+- industry-trends/realtime-voice-agents-shift-to-integration-work.md
+derived_pages:
+- foundation-models/gpt-realtime-1-5.md
+- industry-trends/realtime-voice-agents-shift-to-integration-work.md
+- tools/openai-realtime-api.md
+- topics/agent-runtime-architecture-for-voice.md
+- topics/telephony-integration-for-voice-agents.md
 ---
 
 # Building Realtime Voice Agents in 2026

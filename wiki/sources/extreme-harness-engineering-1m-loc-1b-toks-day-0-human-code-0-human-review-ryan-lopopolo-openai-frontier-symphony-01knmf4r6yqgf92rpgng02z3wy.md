@@ -22,6 +22,9 @@ content_sha256: ccef8a231ac0f42e08a2c8753a60adb2f0ccc0e9e00c7643ed630023dcb748c7
 derived_interview_insights:
 - interview-insights/2026-04/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-fast-build-loops-and-agent-legible-repos-matter-more-than-human-frien-4b4f024150.md
 - interview-insights/2026-04/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-harness-engineering-treats-human-attention-as-the-scarce-resource-4bd55e8f88.md
+derived_pages:
+- interview-insights/2026-04/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-fast-build-loops-and-agent-legible-repos-matter-more-than-human-frien-4b4f024150.md
+- interview-insights/2026-04/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-harness-engineering-treats-human-attention-as-the-scarce-resource-4bd55e8f88.md
 ---
 
 # Extreme Harness Engineering: 1M LOC, 1B toks/day, 0% human code, 0% human review — Ryan Lopopolo, OpenAI Frontier & Symphony

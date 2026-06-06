@@ -17,10 +17,14 @@ ingested_at: '2026-05-22T15:31:26.737288+00:00'
 canonical_url: https://medium.com/@pankaj_pandey/voicebox-the-open-source-voice-studio-that-just-made-two-paid-saas-tools-optional-06886c8d3392
 content_sha256: abc57512318d6c909b547c535d5bca2f6d8ea515a345705152723cf7dc9c969d
 derived_topics:
-- local-voice-api
-- mcp-enabled-agent-voice-output
+- topics/local-voice-api.md
+- topics/mcp-enabled-agent-voice-output.md
 derived_trends:
-- local-speaker-and-dictation-substitution
+- industry-trends/local-speaker-and-dictation-substitution.md
+derived_pages:
+- industry-trends/local-speaker-and-dictation-substitution.md
+- topics/local-voice-api.md
+- topics/mcp-enabled-agent-voice-output.md
 ---
 
 # Voicebox: The Open-Source Voice Studio That Just Made Two Paid SaaS Tools Optional

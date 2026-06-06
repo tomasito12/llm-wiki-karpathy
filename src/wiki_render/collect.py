@@ -11,6 +11,7 @@ from src.ingest_review.evidence import (
     source_primary_evidence_type,
 )
 from src.pipeline.slug import slugify
+from src.wiki_contract.categories import derived_key_for_graph_category
 from src.wiki_render import layout
 from src.wiki_render.evidence import EvidenceItem, evidence_set_hash, make_evidence_item
 from src.wiki_render.models import Contribution, IndividualPage, SourceRecord
@@ -27,15 +28,41 @@ from src.wiki_render.resolve import (
     source_summary_scalar,
 )
 
-DERIVED_KEY_BY_CATEGORY: dict[str, str] = {
-    "topic": "derived_topics",
-    "glossary": "derived_glossary",
-    "trend": "derived_trends",
-    "tool": "derived_tools",
-    "model": "derived_models",
-    "how_to": "derived_how_to",
-    "impl_study": "derived_implementation_studies",
-}
+IMPLEMENTATION_STUDY_SCALAR_KEYS: tuple[str, ...] = (
+    "title",
+    "company",
+    "industry",
+    "overview",
+    "what_was_implemented",
+    "business_objective",
+    "technical_approach",
+    "deployment_context",
+    "outcome_status",
+    "success_or_failure_factors",
+    "operational_constraints",
+    "ai_model_observations",
+    "implications_for_service_automation",
+    "strategic_signals",
+)
+IMPLEMENTATION_STUDY_LIST_KEYS: tuple[str, ...] = (
+    "key_lessons",
+    "open_questions",
+    "related_sources",
+)
+IMPLEMENTATION_STUDY_EVIDENCE_SCALAR_KEYS: tuple[str, ...] = (
+    "overview",
+    "what_was_implemented",
+    "business_objective",
+    "technical_approach",
+    "deployment_context",
+    "outcome_status",
+    "success_or_failure_factors",
+    "operational_constraints",
+    "ai_model_observations",
+    "implications_for_service_automation",
+    "strategic_signals",
+)
+IMPLEMENTATION_STUDY_EVIDENCE_LIST_KEYS: tuple[str, ...] = ("key_lessons", "open_questions")
 
 
 @dataclass(frozen=True)
@@ -182,44 +209,6 @@ ENTITY_CONFIGS: tuple[EntityConfig, ...] = (
         evidence_list_keys=("implementation_steps", "prerequisites"),
         related_keys=("related_howtos",),
     ),
-    EntityConfig(
-        review_key="implementation_studies",
-        category="impl_study",
-        title_key="title",
-        slug_key=None,
-        scalar_keys=(
-            "title",
-            "company",
-            "industry",
-            "overview",
-            "what_was_implemented",
-            "business_objective",
-            "technical_approach",
-            "deployment_context",
-            "outcome_status",
-            "success_or_failure_factors",
-            "operational_constraints",
-            "ai_model_observations",
-            "implications_for_service_automation",
-            "strategic_signals",
-        ),
-        list_keys=("key_lessons", "open_questions", "related_sources"),
-        evidence_scalar_keys=(
-            "overview",
-            "what_was_implemented",
-            "business_objective",
-            "technical_approach",
-            "deployment_context",
-            "outcome_status",
-            "success_or_failure_factors",
-            "operational_constraints",
-            "ai_model_observations",
-            "implications_for_service_automation",
-            "strategic_signals",
-        ),
-        evidence_list_keys=("key_lessons", "open_questions"),
-        related_keys=("related_sources",),
-    ),
 )
 
 
@@ -231,6 +220,7 @@ class CollectedItems:
     contributions: list[Contribution]
     signals: list[IndividualPage]
     insights: list[IndividualPage]
+    implementation_studies: list[IndividualPage]
 
 
 def collect_items(artifacts: list[dict[str, Any]], wiki_dir: Path) -> CollectedItems:
@@ -239,6 +229,7 @@ def collect_items(artifacts: list[dict[str, Any]], wiki_dir: Path) -> CollectedI
     contributions: list[Contribution] = []
     signals: list[IndividualPage] = []
     insights: list[IndividualPage] = []
+    implementation_studies: list[IndividualPage] = []
     source_by_id: dict[str, SourceRecord] = {}
     for artifact in artifacts:
         source = _source_record(artifact)
@@ -249,18 +240,18 @@ def collect_items(artifacts: list[dict[str, Any]], wiki_dir: Path) -> CollectedI
         insights.extend(
             _individual_pages(artifact, source, "interview_insights", "insight", wiki_dir)
         )
+        implementation_studies.extend(_implementation_study_pages(artifact, source, wiki_dir))
 
     for contribution in contributions:
         source = source_by_id[contribution.source_id]
         source.source_tags.update(contribution.tags)
-        source.derived.setdefault(DERIVED_KEY_BY_CATEGORY[contribution.category], set()).add(
-            contribution.slug
-        )
-    for item in [*signals, *insights]:
+
+    for item in [*signals, *insights, *implementation_studies]:
         source = source_by_id[item.source_id]
         source.source_tags.update(item.tags)
-        key = "derived_signals" if item.category == "signal" else "derived_interview_insights"
-        source.derived_paths.setdefault(key, set()).add(item.path)
+        key = derived_key_for_graph_category(item.category)
+        if key:
+            source.derived_paths.setdefault(key, set()).add(item.path)
     return CollectedItems(
         sources=sorted(sources, key=lambda item: item.source_id),
         contributions=sorted(
@@ -269,6 +260,7 @@ def collect_items(artifacts: list[dict[str, Any]], wiki_dir: Path) -> CollectedI
         ),
         signals=sorted(signals, key=lambda item: item.path),
         insights=sorted(insights, key=lambda item: item.path),
+        implementation_studies=sorted(implementation_studies, key=lambda item: item.path),
     )
 
 
@@ -423,6 +415,66 @@ def _individual_pages(
     return output
 
 
+def _implementation_study_pages(
+    artifact: dict[str, Any],
+    source: SourceRecord,
+    wiki_dir: Path,
+) -> list[IndividualPage]:
+    """Build non-merged implementation-study pages."""
+    review = artifact.get("review") or {}
+    nodes = review.get("implementation_studies") or []
+    if not isinstance(nodes, list):
+        return []
+    output: list[IndividualPage] = []
+    source_primary = source_primary_evidence_type(artifact)
+    for node in nodes:
+        if not isinstance(node, dict) or not proposal_is_included(node):
+            continue
+        item = llm_item(node)
+        title = scalar_value(node, "title")
+        if not title:
+            continue
+        slug = slugify(title)
+        assessed = str(item.get("assessed_as_of") or source.assessed_as_of).strip()
+        source_date = _source_date(source.published_date, assessed)
+        path = layout.monthly_item_path(
+            wiki_dir,
+            "impl_study",
+            source_id=source.source_id,
+            slug=slug,
+            date_text=source_date,
+        ).relative
+        values = _implementation_study_values(node)
+        evidence_type = effective_proposal_evidence_type(source_primary, item)
+        evidence = _implementation_study_evidence(
+            node=node,
+            item=item,
+            slug=slug,
+            source=source,
+            source_date=source_date,
+            assessed_as_of=assessed,
+            evidence_type=evidence_type,
+        )
+        output.append(
+            IndividualPage(
+                category="impl_study",
+                slug=slug,
+                title=title,
+                path=path,
+                source_id=source.source_id,
+                source_title=source.title,
+                source_date=source_date,
+                month=layout.month_bucket(source_date),
+                tags=reviewed_tags(node),
+                values=values,
+                evidence=evidence,
+                evidence_set_hash=evidence_set_hash(evidence),
+                evidence_count=len(evidence),
+            )
+        )
+    return output
+
+
 def _values_for_node(node: dict[str, Any], config: EntityConfig) -> dict[str, object]:
     """Return all configured values for a mergeable proposal."""
     values: dict[str, object] = {}
@@ -433,10 +485,20 @@ def _values_for_node(node: dict[str, Any], config: EntityConfig) -> dict[str, ob
     raw = llm_item(node)
     if raw.get("supporting_snippet"):
         values["supporting_snippet"] = str(raw["supporting_snippet"]).strip()
-    if config.category == "impl_study":
-        snippets = raw.get("evidence_snippets")
-        if isinstance(snippets, list):
-            values["evidence_snippets"] = snippets
+    return values
+
+
+def _implementation_study_values(node: dict[str, Any]) -> dict[str, object]:
+    """Return values for one implementation study."""
+    values: dict[str, object] = {}
+    for key in IMPLEMENTATION_STUDY_SCALAR_KEYS:
+        values[key] = scalar_value(node, key)
+    for key in IMPLEMENTATION_STUDY_LIST_KEYS:
+        values[key] = list_value(node, key)
+    raw = llm_item(node)
+    snippets = raw.get("evidence_snippets")
+    if isinstance(snippets, list):
+        values["evidence_snippets"] = snippets
     return values
 
 
@@ -543,17 +605,60 @@ def _evidence_for_node(
             evidence_type=evidence_type,
             provenance="snippet",
         )
-    if config.category == "impl_study":
-        evidence.extend(
-            _impl_study_evidence(
-                item=item,
+    return _dedupe_evidence(evidence)
+
+
+def _implementation_study_evidence(
+    *,
+    node: dict[str, Any],
+    item: dict[str, Any],
+    slug: str,
+    source: SourceRecord,
+    source_date: str,
+    assessed_as_of: str,
+    evidence_type: str,
+) -> list[EvidenceItem]:
+    """Create evidence items for one implementation study."""
+    evidence: list[EvidenceItem] = []
+    for key in IMPLEMENTATION_STUDY_EVIDENCE_SCALAR_KEYS:
+        _append_evidence(
+            evidence,
+            text=scalar_value(node, key),
+            field=key,
+            source=source,
+            category="impl_study",
+            slug=slug,
+            source_date=source_date,
+            assessed_as_of=assessed_as_of,
+            confidence=item.get("confidence"),
+            value_level=str(item.get("value_level") or "medium"),
+            evidence_type=evidence_type,
+        )
+    for key in IMPLEMENTATION_STUDY_EVIDENCE_LIST_KEYS:
+        for idx, text in enumerate(list_value(node, key)):
+            _append_evidence(
+                evidence,
+                text=text,
+                field=f"{key}[{idx}]",
                 source=source,
+                category="impl_study",
                 slug=slug,
                 source_date=source_date,
                 assessed_as_of=assessed_as_of,
+                confidence=item.get("confidence"),
+                value_level=str(item.get("value_level") or "medium"),
                 evidence_type=evidence_type,
             )
+    evidence.extend(
+        _impl_study_evidence(
+            item=item,
+            source=source,
+            slug=slug,
+            source_date=source_date,
+            assessed_as_of=assessed_as_of,
+            evidence_type=evidence_type,
         )
+    )
     return _dedupe_evidence(evidence)
 
 

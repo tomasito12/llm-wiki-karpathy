@@ -33,6 +33,7 @@ category: index
 - [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
 - [[topics/agent-workspace-layering|Agent Workspace Layering]]
 - [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]]
+- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]]
 - [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 - [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
 - [[topics/agentic-workflow-latency-optimization|Agentic Workflow Latency Optimization]]
@@ -122,6 +123,7 @@ category: index
 - [[topics/model-risk-assessment-for-cyber-capability|Model Risk Assessment for Cyber Capability]]
 - [[topics/proprietary-evals|Proprietary Evals]]
 - [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
+- [[topics/sales-metrics-for-agent-frontlines|Sales Metrics for Agent Frontlines]]
 - [[topics/model-evaluation-with-terminal-benchmarks|Terminal-Centric Model Evaluation]]
 - [[topics/transcription-as-evaluation-bottleneck|Transcription as an Evaluation Bottleneck]]
 - [[topics/verifiable-ai-governance|Verifiable AI Governance]]
@@ -207,11 +209,14 @@ category: index
 
 ## enterprise-workflows
 
+- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]]
+- [[topics/context-engineering|Context Engineering]]
 - [[topics/contextual-operations-summarization|Contextual Operations Summarization]]
 - [[topics/hybrid-human-ai-workflows-for-expert-review|Hybrid Human-AI Workflows for Expert Review]]
 - [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]]
 - [[topics/ops-artifact-generation|Operational Artifact Generation]]
 - [[topics/outcome-based-pricing-for-ai-agents|Outcome-Based Pricing for AI Agents]]
+- [[topics/sales-metrics-for-agent-frontlines|Sales Metrics for Agent Frontlines]]
 - [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## execution-environments
@@ -313,6 +318,7 @@ category: index
 
 ## orchestration
 
+- [[topics/ai-orchestration-over-model-tuning|AI Orchestration Over Model Tuning]]
 - [[topics/harness-engineering|Harness Engineering]]
 - [[topics/knowledge-layer-architecture|Knowledge Layer Architecture]]
 - [[topics/layered-ai-architecture|Layered AI Architecture]]
@@ -321,6 +327,7 @@ category: index
 ## organizational-design
 
 - [[topics/ai-redistribution-through-taxation-and-ownership|AI Redistribution Through Taxation And Ownership]]
+- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]]
 - [[topics/behavioral-instruction-layers-for-agents|Behavioral Instruction Layers]]
 - [[topics/governance-as-enabler-for-enterprise-ai|Governance as an Enabler for Enterprise AI]]
 - [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
@@ -399,14 +406,17 @@ category: index
 
 ## support-automation
 
+- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]]
 - [[topics/approval-based-agent-actions|Approval-Based Agent Actions]]
 - [[topics/contextual-operations-summarization|Contextual Operations Summarization]]
 - [[topics/control-group-based-service-experimentation|Control-Group Based Service Experimentation]]
 - [[topics/human-handoff-design-for-ai-support|Human Handoff Design for AI Support]]
 - [[topics/hybrid-human-ai-workflows-for-expert-review|Hybrid Human-AI Workflows for Expert Review]]
 - [[topics/hybrid-retrieval|Hybrid Retrieval]]
+- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]]
 - [[topics/layered-agent-architecture|Layered Agent Architecture]]
 - [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
+- [[topics/sales-metrics-for-agent-frontlines|Sales Metrics for Agent Frontlines]]
 - [[topics/support-automation-operations|Support Automation Operations]]
 - [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
@@ -443,12 +453,14 @@ category: index
 
 - [[topics/file-grammar-skills-for-ai|File Grammar Skills for AI]]
 - [[topics/file-native-ai-workflows|File-Native AI Workflows]]
+- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]]
 - [[topics/llm-maintained-knowledge-compilation|LLM-Maintained Knowledge Compilation]]
 - [[topics/ops-artifact-generation|Operational Artifact Generation]]
 - [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## workflow-design
 
+- [[topics/ai-orchestration-over-model-tuning|AI Orchestration Over Model Tuning]]
 - [[topics/agent-self-verification|Agent Self-Verification]]
 - [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 - [[topics/answer-concision-as-product-quality|Answer Concision as Product Quality]]

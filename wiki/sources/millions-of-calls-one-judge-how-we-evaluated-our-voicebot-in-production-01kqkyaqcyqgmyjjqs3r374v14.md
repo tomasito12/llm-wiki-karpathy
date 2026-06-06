@@ -23,12 +23,17 @@ ingested_at: '2026-06-05T17:13:29.831310+00:00'
 canonical_url: https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654
 content_sha256: e105aed5beb92ccc955b3a2332cb2f4f097dba150b663c03447261ee8a728f6a
 derived_implementation_studies:
-- voicebot-evaluation-at-telecom-scale
+- implementation-studies/2026-04/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14-voicebot-evaluation-at-telecom-scale.md
 derived_topics:
-- atomic-binary-evaluation-judges
-- transcription-as-evaluation-bottleneck
+- topics/atomic-binary-evaluation-judges.md
+- topics/transcription-as-evaluation-bottleneck.md
 derived_trends:
-- verification-loops-become-central-to-ai-workflows
+- industry-trends/verification-loops-become-central-to-ai-workflows.md
+derived_pages:
+- implementation-studies/2026-04/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14-voicebot-evaluation-at-telecom-scale.md
+- industry-trends/verification-loops-become-central-to-ai-workflows.md
+- topics/atomic-binary-evaluation-judges.md
+- topics/transcription-as-evaluation-bottleneck.md
 ---
 
 # Millions of Calls, One Judge: How We Evaluated Our Voicebot in Production
@@ -45,7 +50,7 @@ This piece is about how a company checked whether its voicebot was good enough t
 
 ## Derived knowledge pages
 
-- [[implementation-studies/voicebot-evaluation-at-telecom-scale]]
+- [[implementation-studies/2026-04/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14-voicebot-evaluation-at-telecom-scale]]
 - [[industry-trends/verification-loops-become-central-to-ai-workflows]]
 - [[topics/atomic-binary-evaluation-judges]]
 - [[topics/transcription-as-evaluation-bottleneck]]

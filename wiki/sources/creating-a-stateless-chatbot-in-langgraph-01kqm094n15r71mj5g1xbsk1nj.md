@@ -20,12 +20,17 @@ ingested_at: '2026-06-01T16:39:05.781105+00:00'
 canonical_url: https://medium.com/@nachiket4jan/creating-a-stateless-chatbot-in-langgraph-62a7f6fb753d
 content_sha256: b53ad6524f859a5dda35064d60f4a5b57233073009d00ebbb0646faca02d2554
 derived_how_to:
-- stateless-chatbot
+- how-to/stateless-chatbot.md
 derived_tools:
-- langgraph
+- tools/langgraph.md
 derived_topics:
-- langgraph-message-reducers
-- stateless-chatbot-architecture
+- topics/langgraph-message-reducers.md
+- topics/stateless-chatbot-architecture.md
+derived_pages:
+- how-to/stateless-chatbot.md
+- tools/langgraph.md
+- topics/langgraph-message-reducers.md
+- topics/stateless-chatbot-architecture.md
 ---
 
 # Creating a Stateless Chatbot in LangGraph

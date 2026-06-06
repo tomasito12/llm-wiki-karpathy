@@ -17,7 +17,7 @@ Applies when the task is about:
 - Add or update tests with code changes.
 - Prefer clear function boundaries over large scripts.
 - Use existing tooling configuration from `pyproject.toml`.
-- Don’t assume. Don’t hide confusion. Surface tradeoffs.
+- Don't assume. Don't hide confusion. Surface tradeoffs.
 - Minimum code that solves the problem. Nothing speculative.
 - Touch only what you must. Clean up only your own mess.
 - Define success criteria. Loop until verified.
@@ -55,6 +55,10 @@ Run these after substantive code changes:
 - Prefer changing config in one place (`pyproject.toml`) and reusing it from hooks.
 - Wiki content is versioned in Git; run `hatch run wiki-lint` before committing wiki changes (not yet wired into `.pre-commit-config.yaml` by default).
 
+## Shared wiki contract
+
+Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both `wiki-render` and `wiki-lint` import from this module — do not duplicate folder lists, category definitions, required frontmatter fields, or heading contracts elsewhere.
+
 ## Ingest review dashboard (classification + human approval)
 
 - Run: `hatch run dashboard` — opens Streamlit at [`src/dashboard/app.py`](src/dashboard/app.py).
@@ -64,8 +68,17 @@ Run these after substantive code changes:
   - Review artifacts: `state/reviews/<source_id>/review.json` (JSON: `llm_output`, `review` decisions, `analysis_meta`, `source` + `content_sha256`). Safe to commit or keep local-only.
   - Feedback events (for a future learning loop): `state/review_feedback.sqlite` — **gitignored**; append-only rows when you click **Save review artifact**.
 - **Tag allowlists** (see [`docs/tagging-ontology.md`](../docs/tagging-ontology.md)): `config/review_tags_{topics,trends,glossary,impl_study,tools,models}.yaml`; how-tos reuse topics. **Product types** (separate from retrieval tags): `config/review_tool_types.yaml`, `config/review_model_types.yaml`. Migrate legacy slugs: `hatch run tag-migrate`.
-- This stage **does not** write `wiki/sources/*.md`; it only prepares human-reviewed classification. Downstream wiki ingest still re-reads HTML and may use separate LLM prompts.
+- This stage **does not** write `wiki/sources/*.md`; it only prepares human-reviewed classification.
 - **Classification pipeline** (default): three LLM calls per source — triage → `source_summary` → route-specific entity extraction (`src/ingest_review/classification_pipeline.py`). Set `INGEST_CLASSIFICATION_PIPELINE=monolithic` to use the legacy single-call path. Prompt version `41` records per-stage `token_usage` / `cached_tokens` under `analysis_meta.classification_pipeline`.
+
+## Wiki render (generated Obsidian vault)
+
+- Run: `hatch run wiki-render`
+- Options: `--dry-run`, `--no-prune`, `--reviews-dir`, `--out-dir`, `--manifest-path`, `--graph-path`
+- **Canonical input:** `state/reviews/*/review.json`
+- **Output:** full regeneration of managed folders under `wiki/` (see [`wiki/AGENTS.md`](../wiki/AGENTS.md))
+- **Audit artifacts:** `state/wiki_render_manifest.json` (advisory file list + hashes), `state/wiki_render_graph.json` (Stage 2 graph export)
+- After review changes, rerun `wiki-render` — do not hand-edit generated pages.
 
 ## Readwise Reader export
 
@@ -83,24 +96,29 @@ Run these after substantive code changes:
 
 ## Ingest queue
 
-- `hatch run ingest-queue` lists exports under `raw/readwise/` and whether `wiki/sources/<same-basename>.md` exists.
-- **Dedupe rule:** a raw item is treated as already ingested when that wiki source file exists. Use `--status pending` (default) to see work left.
-- Examples: `hatch run ingest-queue --status pending --limit 5`, `hatch run ingest-queue --status incomplete` (missing `.md` sidecar next to `.html`).
+- `hatch run ingest-queue` lists exports under `raw/readwise/` and whether `state/reviews/<basename>/review.json` exists.
+- **Dedupe rule:** a raw item is **pending** when the export pair exists but no review artifact is saved yet. Use `--status pending` (default) to see work left.
+- Status values: `pending`, `reviewed`, `incomplete` (missing `.md` sidecar).
+- Examples: `hatch run ingest-queue --status pending --limit 5`, `hatch run ingest-queue --status incomplete`
 
-## Ingest manifest (audit log)
+## Ingest manifest (legacy audit log)
 
-- Persisted at `state/ingest_manifest.json`. **Not** used for dedupe — only for structured audit (Stage 1/2 routes, artifacts, errors).
-- After each completed wiki ingest, the maintainer must upsert one record via `IngestManifestStore.upsert_record` (see `wiki/AGENTS.md` contract).
-- Allowed `status` values: `pending`, `rendered`, `validated`, `failed`, `needs_review`.
+- Persisted at `state/ingest_manifest.json`. **Legacy/optional** — no active writer in the current review → render workflow.
+- Superseded for generation audit by `state/wiki_render_manifest.json`.
 - Inspect: `hatch run ingest-manifest` or `hatch run ingest-manifest --json`.
+
+## Wiki lint
+
+- Run: `hatch run wiki-lint` — validates generated pages under managed folders using [`src/wiki_contract/`](wiki_contract/).
+- `--include-non-managed` also lints preserved/manual paths (`notes/`, `legacy/`, hub files).
 
 ## Wiki baseline reset
 
 - Run: `hatch run wiki-reset` interactively. You must type **`RESET-WIKI`** exactly when prompted, or pass `--confirm RESET-WIKI` (non-interactive).
-- **Preserves** only: `wiki/AGENTS.md`, `wiki/stage1-classifier.md`, `wiki/ingest-templates.md`, `wiki/stage2-artifact-router.md`.
-- **Recreates** empty shells: `wiki/index.md`, `wiki/log.md`, `wiki/questions/question-catalog.md`, `wiki/glossary/index.md`, empty `wiki/sources/` and `wiki/glossary/terms/`.
-- **Clears** `state/ingest_manifest.json` by default (ingest audit log).
-- **Resets** `config/review_tags_*.yaml` and `config/review_tool_types.yaml` / `config/review_model_types.yaml` to minimal baseline allowlists (unless **`--keep-tag-taxonomy`**).
+- **Preserves:** `wiki/AGENTS.md`, `wiki/index.md`, `wiki/log.md`, `wiki/notes/**`, `wiki/legacy/**`
+- **Recreates:** empty managed-folder shells (`sources/`, `topics/`, `indexes/`, etc.)
+- **Clears by default:** `state/ingest_manifest.json`, `state/wiki_render_manifest.json`, `state/reviews/` (unless `--keep-reviews`), tag taxonomy (unless `--keep-tag-taxonomy`)
+- **Post-reset:** run `hatch run wiki-render` when review artifacts are available.
 - Readwise exports store **`publication`** on each `raw/readwise/*.md` sidecar (from API `site_name` or URL via `src/pipeline/source_publication.py`). Backfill existing files: `hatch run readwise-rebuild-index --backfill-publication --backfill-only`.
 - **Does not** clear `state/readwise_library.json` unless you pass **`--reset-readwise-index`** (destructive: drops export dedupe + watermark; next sync may use the ~100-day lookback).
 - Does **not** delete `raw/readwise/` exports.
@@ -110,14 +128,14 @@ Run these after substantive code changes:
 
 | Path | Role | In Git? |
 |------|------|--------|
-| `wiki/**` | Knowledge base + instruction markdown (`wiki/AGENTS.md`, sources, tools, etc.) | **Yes** — commit ingests and instruction updates. |
-| `state/ingest_manifest.json` | Structured ingest audit (Stage 1/2, artifacts, errors). | **Yes** — commit after ingests that update the manifest. |
-| `state/reviews/**` | Human-reviewed ingest classification JSON (per `source_id`). | Optional — commit if you want artifacts in Git. |
+| `wiki/**` | Generated knowledge base + operator docs (`wiki/AGENTS.md`, `wiki/notes/`, etc.) | **Yes** — commit renders and instruction updates. |
+| `state/reviews/**` | Human-reviewed classification JSON (per `source_id`). | Optional — commit if you want artifacts in Git. |
+| `state/wiki_render_manifest.json` | Advisory wiki-render file manifest (paths + hashes). | Optional — useful for prune/idempotency audit. |
+| `state/wiki_render_graph.json` | Machine-readable graph export for Stage 2. | Optional |
+| `state/ingest_manifest.json` | Legacy manual-ingest audit log. | Optional |
 | `state/review_feedback.sqlite` | Append-only reviewer decision log for future tuning. | **No** — gitignored; local only. |
 | `state/readwise_library.json` | Readwise export index (dedupe + `last_updated_after` watermark). | **No** — local cache only; rebuild with `hatch run readwise-rebuild-index` from `raw/readwise/` pairs. **Not** cleared by default `wiki-reset`. |
 | `raw/**` | Readwise exports and other source files. | **No** — keep local / backup separately. |
-
-- `state/ingest_manifest.json` is **cleared** on every `wiki-reset` (regenerate audit from the next ingests, or restore from Git history if needed).
 
 ## Safety
 

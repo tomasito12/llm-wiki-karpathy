@@ -16,12 +16,17 @@ ingested_at: '2026-05-22T16:24:01.156554+00:00'
 canonical_url: https://medium.com/@k.balu124/how-i-turned-andrej-karpathys-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-cfb7f73afa52
 content_sha256: 6347fd613475869e22dd07440cacb1922edd49b41b060eb0754972ee55ce5b00
 derived_how_to:
-- commit-driven-documentation-sync
+- how-to/commit-driven-documentation-sync.md
 derived_topics:
-- citation-locked-ai-documentation
-- commit-driven-documentation-generation
+- topics/citation-locked-ai-documentation.md
+- topics/commit-driven-documentation-generation.md
 derived_trends:
-- agent-maintained-documentation-pipelines
+- industry-trends/agent-maintained-documentation-pipelines.md
+derived_pages:
+- how-to/commit-driven-documentation-sync.md
+- industry-trends/agent-maintained-documentation-pipelines.md
+- topics/citation-locked-ai-documentation.md
+- topics/commit-driven-documentation-generation.md
 ---
 
 # How I turned Andrej Karpathy’s LLM Wiki into a tool that writes wiki’s from code

@@ -17,9 +17,12 @@ ingested_at: '2026-06-05T14:55:34.984915+00:00'
 canonical_url: https://www.economist.com/business/2026/04/27/the-ai-rush-is-hitting-a-bottleneck
 content_sha256: dae422ec67854a86cbba09713af580b020e0b257df34f05d940d6b5f04f96150
 derived_topics:
-- compute-supply-becomes-the-ai-bottleneck
+- topics/compute-supply-becomes-the-ai-bottleneck.md
 derived_trends:
-- ai-infrastructure-scarcity-spreads-beyond-gpus
+- industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus.md
+derived_pages:
+- industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus.md
+- topics/compute-supply-becomes-the-ai-bottleneck.md
 ---
 
 # The AI rush is hitting a bottleneck

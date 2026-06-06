@@ -16,14 +16,20 @@ ingested_at: '2026-05-17T20:06:17.267395+00:00'
 canonical_url: https://medium.com/generative-ai/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-a913fe46e938
 content_sha256: 30ab954001bdfba64fcc36992a7585a7cb8508c3aac4a50e332fd8a7b6dcdd8a
 derived_how_to:
-- local-coding-model-setup
+- how-to/local-coding-model-setup.md
 derived_models:
-- qwen-3-5-9b
+- foundation-models/qwen-3-5-9b.md
 derived_tools:
-- ollama
+- tools/ollama.md
 derived_topics:
-- agentic-workflows
-- context-engineering
+- topics/agentic-workflows.md
+- topics/context-engineering.md
+derived_pages:
+- foundation-models/qwen-3-5-9b.md
+- how-to/local-coding-model-setup.md
+- tools/ollama.md
+- topics/agentic-workflows.md
+- topics/context-engineering.md
 ---
 
 # Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained

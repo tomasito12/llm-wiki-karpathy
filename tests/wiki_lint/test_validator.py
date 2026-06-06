@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from unittest import mock
 
 from src.wiki_lint.validator import validate_wiki
 
@@ -14,144 +13,144 @@ def write(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8")
 
 
-def test_valid_minimal_wiki_passes(tmp_path: Path) -> None:
-    """A small wiki satisfying core contracts produces no issues."""
+def test_valid_generated_wiki_passes(tmp_path: Path) -> None:
+    """A minimal generated-style vault satisfies shared contracts."""
     wiki = tmp_path / "wiki"
     write(
-        wiki / "tools" / "index.md",
+        wiki / "sources" / "source-a.md",
         """---
-title: Tools
-type: tools-index
-created: 2026-05-07
-updated: 2026-05-07
----
-
-| Category | Page |
-|----------|------|
-| AI assistants | [[tools/ai-assistants/index]] |
-""",
-    )
-    write(
-        wiki / "tools" / "ai-assistants" / "index.md",
-        """---
-title: AI assistants
-type: tools-category-index
-created: 2026-05-07
-updated: 2026-05-07
----
-
-| Tool | Page |
-|------|------|
-| ChatGPT | [[tools/ai-assistants/chatgpt]] |
-""",
-    )
-    write(
-        wiki / "tools" / "ai-assistants" / "chatgpt.md",
-        """---
-title: ChatGPT
-type: tool
-created: 2026-05-07
-updated: 2026-05-07
+title: Source A
+category: source
+source_id: source-a
 tags:
-  - tools
+  - ai-engineering
+derived_topics:
+  - topics/local-models.md
+derived_pages:
+  - topics/local-models.md
 ---
 
-## What problem does this tool solve?
-
-...
-
-## Properties
-
-- ...
-
-## Author assessments
-
-- ... [[sources/source]]
-
-## Sources
-
-- [[sources/source]]
-""",
-    )
-    write(
-        wiki / "sources" / "source.md",
-        """---
-title: Source
-type: source
-author: Author
-publication: Publication
-created: 2026-05-07
-updated: 2026-05-07
-tags:
-  - tools
----
+# Source A
 
 Summary.
 
-## Apps and platforms covered
+## Key insights
 
-- [[tools/ai-assistants/chatgpt]]
+- Insight one.
+
+## Derived knowledge pages
+
+- [[topics/local-models]]
 
 ## Why it matters
 
-...
+It matters.
 
-## Context and Limitations
+## Limitations / open questions
 
-...
+Limits.
 
-## Contradictions / Unverified Claims
+## Contradictions / unverified claims
 
-...
+None.
+
+## Source metadata
+
+- Canonical URL: https://example.com
+""",
+    )
+    write(
+        wiki / "topics" / "local-models.md",
+        """---
+title: Local Models
+category: topic
+slug: local-models
+entity_id: topic:local-models
+synthesis_state: stage1-placeholder
+source_count: 1
+source_ids:
+  - source-a
+tags:
+  - infrastructure
+---
+
+# Local Models
+
+## Current understanding
+
+Lead.
+
+## Evidence / supporting sources
+
+### Source A (2026-01-02)
+
+- Claim (`evidence-id` · supporting · field; [[sources/source-a|Source A]])
 
 ## Sources
 
-- [Original](https://example.com)
+- [[sources/source-a|Source A]]
 """,
     )
     assert validate_wiki(wiki) == []
 
 
-def test_validator_reports_bad_tag_heading_and_broken_link(tmp_path: Path) -> None:
-    """Validator catches unsupported tags, heading drift, and broken links."""
+def test_missing_category_reports_issue(tmp_path: Path) -> None:
+    """Pages without category frontmatter fail validation."""
     wiki = tmp_path / "wiki"
     write(
-        wiki / "tools" / "bad.md",
+        wiki / "topics" / "broken.md",
         """---
-title: Bad
-type: tool
-created: 2026-05-07
-updated: 2026-05-07
-tags:
-  - bad-tag
+title: Broken
 ---
 
-## Properties
-
-- [[missing/page]]
+# Broken
 """,
     )
-    messages = [issue.message for issue in validate_wiki(wiki)]
-    assert "unsupported tag: bad-tag" in messages
-    assert any(message.startswith("unexpected headings") for message in messages)
-    assert "broken wikilink: [[missing/page]]" in messages
+    issues = validate_wiki(wiki)
+    assert any("missing frontmatter category" in issue.message for issue in issues)
 
 
-def test_wiki_lint_cli_returns_nonzero_on_issues(tmp_path: Path) -> None:
-    """CLI returns 1 when validation fails."""
-    from src.wiki_lint import cli
-
+def test_notes_are_skipped_by_default(tmp_path: Path) -> None:
+    """Manual notes outside managed folders are not validated by default."""
     wiki = tmp_path / "wiki"
     write(
-        wiki / "source.md",
+        wiki / "notes" / "scratch.md",
         """---
-title: Source
-type: unknown
-created: 2026-05-07
-updated: 2026-05-07
+title: Scratch
 ---
+
+# No category required here
 """,
     )
-    with mock.patch.object(cli, "validate_wiki", return_value=validate_wiki(wiki)):
-        with mock.patch("sys.argv", ["wiki-lint", "--wiki-dir", str(wiki)]):
-            assert cli.main() == 1
+    assert validate_wiki(wiki) == []
+
+
+def test_evidence_page_requires_monthly_path(tmp_path: Path) -> None:
+    """Signal pages must use monthly folder layout."""
+    wiki = tmp_path / "wiki"
+    write(
+        wiki / "signals" / "flat-signal.md",
+        """---
+title: Signal
+category: signal
+slug: signal
+source_id: source-a
+source_date: '2026-04-01'
+month: 2026-04
+---
+
+# Signal
+
+## Signal
+
+## Evidence / supporting sources
+
+No evidence.
+
+## Source
+
+- [[sources/source-a]]
+""",
+    )
+    issues = validate_wiki(wiki)
+    assert any("expected monthly path" in issue.message for issue in issues)

@@ -18,11 +18,16 @@ ingested_at: '2026-05-25T15:43:25.726569+00:00'
 canonical_url: https://www.economist.com/china/2026/05/07/ai-creates-a-fearsome-cold-war-style-dilemma
 content_sha256: 1ade4b441bbaa731742d6758f0ec78b2e767fcd94879a3744f7444ff76875e50
 derived_topics:
-- frontier-models-as-national-infrastructure
-- geopolitics-of-ai-safety
-- verifiable-ai-governance
+- topics/frontier-models-as-national-infrastructure.md
+- topics/geopolitics-of-ai-safety.md
+- topics/verifiable-ai-governance.md
 derived_trends:
-- frontier-ai-governance-requires-verification-mechanisms
+- industry-trends/frontier-ai-governance-requires-verification-mechanisms.md
+derived_pages:
+- industry-trends/frontier-ai-governance-requires-verification-mechanisms.md
+- topics/frontier-models-as-national-infrastructure.md
+- topics/geopolitics-of-ai-safety.md
+- topics/verifiable-ai-governance.md
 ---
 
 # AI creates a fearsome cold-war-style dilemma

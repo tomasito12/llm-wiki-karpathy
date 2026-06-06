@@ -14,7 +14,9 @@ ingested_at: '2026-05-17T12:24:13.695305+00:00'
 canonical_url: https://medium.com/@travisnicholson/100-chatgpt-prompts-that-actually-produce-better-ai-content-1806d7d76d6c
 content_sha256: c18d93599dfae0f2c9cbca0ee15646ec63c24a9a1776c510bdeafad9d21eba77
 derived_topics:
-- prompt-engineering
+- topics/prompt-engineering.md
+derived_pages:
+- topics/prompt-engineering.md
 ---
 
 # 100 ChatGPT Prompts That Actually Produce Better AI Content

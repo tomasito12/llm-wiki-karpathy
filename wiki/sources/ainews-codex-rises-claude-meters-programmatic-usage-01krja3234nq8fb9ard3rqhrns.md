@@ -18,9 +18,12 @@ assessed_as_of: '2026-05-14'
 ingested_at: '2026-06-02T20:39:29.924023+00:00'
 canonical_url: mailto:reader-forwarded-email/bb3e9f063110dadcafd9afebc895c0d5
 content_sha256: 14e63180ce501b43e8d3b769bd617488574d71cf6e1342332d1f1536f431f420
-derived_trends:
-- pricing-and-harness-control-become-core-agent-product-levers
 derived_signals:
+- signals/2026-05/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns-agent-products-are-converging-on-durable-execution-and-inspectable-state.md
+derived_trends:
+- industry-trends/pricing-and-harness-control-become-core-agent-product-levers.md
+derived_pages:
+- industry-trends/pricing-and-harness-control-become-core-agent-product-levers.md
 - signals/2026-05/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns-agent-products-are-converging-on-durable-execution-and-inspectable-state.md
 ---
 

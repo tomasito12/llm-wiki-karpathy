@@ -20,20 +20,32 @@ ingested_at: '2026-05-17T12:55:27.677852+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-849-last-week
 content_sha256: 885c878c078e2ad8b7a7beb399cf64f0364cbde7893e47928d432e5d455b79a7
 derived_models:
-- deepseek-v4
-- gpt-5-5
-- kimi-2-6
-derived_topics:
-- agentic-workflows
-- context-engineering
-derived_trends:
-- models-becoming-execution-layers
+- foundation-models/deepseek-v4.md
+- foundation-models/gpt-5-5.md
+- foundation-models/kimi-2-6.md
 derived_signals:
 - signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-coding-agents-are-becoming-the-clearest-agent-surface-8e4b4e28f8.md
 - signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-long-context-and-agent-reliability-are-the-new-frontier-competition-8509473616.md
 - signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-open-source-and-semi-open-models-are-compressing-frontier-capabiliti-f1654ab572.md
 - signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-openai-is-pushing-chatgpt-toward-shared-organizational-workflows-5105309eff.md
 - signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-real-world-coding-agents-can-be-useful-but-still-costly-and-risky-0ccea7b9ef.md
+derived_topics:
+- topics/agentic-workflows.md
+- topics/context-engineering.md
+derived_trends:
+- industry-trends/models-becoming-execution-layers.md
+derived_pages:
+- foundation-models/deepseek-v4.md
+- foundation-models/gpt-5-5.md
+- foundation-models/kimi-2-6.md
+- industry-trends/models-becoming-execution-layers.md
+- signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-coding-agents-are-becoming-the-clearest-agent-surface-8e4b4e28f8.md
+- signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-long-context-and-agent-reliability-are-the-new-frontier-competition-8509473616.md
+- signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-open-source-and-semi-open-models-are-compressing-frontier-capabiliti-f1654ab572.md
+- signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-openai-is-pushing-chatgpt-toward-shared-organizational-workflows-5105309eff.md
+- signals/2026-04/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deeps-real-world-coding-agents-can-be-useful-but-still-costly-and-risky-0ccea7b9ef.md
+- topics/agentic-workflows.md
+- topics/context-engineering.md
 ---
 
 # The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance

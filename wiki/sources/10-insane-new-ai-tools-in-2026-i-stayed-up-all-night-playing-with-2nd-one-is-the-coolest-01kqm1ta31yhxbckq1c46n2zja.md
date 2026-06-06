@@ -12,16 +12,26 @@ ingested_at: '2026-05-18T15:27:10.524914+00:00'
 canonical_url: https://medium.com/@KanikaBK/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-e11d6542f643
 content_sha256: e3ca58393aa0f8f33130480757950ef071209b96af18bb525928b2b737d47970
 derived_models:
-- deepseek-v4
-- kimi-k2-5
-- mercury-2
+- foundation-models/deepseek-v4.md
+- foundation-models/kimi-k2-5.md
+- foundation-models/mercury-2.md
 derived_tools:
-- granola
-- higgsfield
-- lovable
-- openclaw
-- pomelli
-- wispr-flow
+- tools/granola.md
+- tools/higgsfield.md
+- tools/lovable.md
+- tools/openclaw.md
+- tools/pomelli.md
+- tools/wispr-flow.md
+derived_pages:
+- foundation-models/deepseek-v4.md
+- foundation-models/kimi-k2-5.md
+- foundation-models/mercury-2.md
+- tools/granola.md
+- tools/higgsfield.md
+- tools/lovable.md
+- tools/openclaw.md
+- tools/pomelli.md
+- tools/wispr-flow.md
 ---
 
 # 10 insane new AI tools in 2026 I stayed up all night playing with: 2nd one is the coolest

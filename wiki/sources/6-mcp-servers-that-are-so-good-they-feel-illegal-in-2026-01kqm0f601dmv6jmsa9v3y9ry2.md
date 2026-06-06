@@ -11,12 +11,19 @@ ingested_at: '2026-05-22T15:41:04.187798+00:00'
 canonical_url: https://medium.com/@hii_mohit/6-mcp-servers-that-are-so-good-they-feel-illegal-in-2026-4e080b58de14
 content_sha256: 2f5bd4759a9a1ebab895caf9444c038348a13d273cebf6de1b06335549a1edb9
 derived_tools:
-- e2b-mcp
-- firecrawl-mcp
-- github-mcp
-- publora-mcp
-- supabase-mcp
-- taskade-mcp
+- tools/e2b-mcp.md
+- tools/firecrawl-mcp.md
+- tools/github-mcp.md
+- tools/publora-mcp.md
+- tools/supabase-mcp.md
+- tools/taskade-mcp.md
+derived_pages:
+- tools/e2b-mcp.md
+- tools/firecrawl-mcp.md
+- tools/github-mcp.md
+- tools/publora-mcp.md
+- tools/supabase-mcp.md
+- tools/taskade-mcp.md
 ---
 
 # 6 MCP Servers That Are So Good, They Feel Illegal in 2026

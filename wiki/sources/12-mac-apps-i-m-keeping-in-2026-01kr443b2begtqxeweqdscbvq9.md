@@ -15,18 +15,31 @@ ingested_at: '2026-06-05T17:29:22.570608+00:00'
 canonical_url: https://medium.com/@simpleandkind788/12-mac-apps-im-keeping-in-2026-d5cb0ffd227c
 content_sha256: 8e146237839dcbdbe512502389c9fc4f407e79934a549b53a5cf37fef0c84914
 derived_tools:
-- alttab
-- command-x
-- folder-preview
-- hidden-bar
-- imageoptim
-- keepingyouawake
-- launchy
-- monle
-- one-thing
-- purepaste
-- rectangle
-- substage
+- tools/alttab.md
+- tools/command-x.md
+- tools/folder-preview.md
+- tools/hidden-bar.md
+- tools/imageoptim.md
+- tools/keepingyouawake.md
+- tools/launchy.md
+- tools/monle.md
+- tools/one-thing.md
+- tools/purepaste.md
+- tools/rectangle.md
+- tools/substage.md
+derived_pages:
+- tools/alttab.md
+- tools/command-x.md
+- tools/folder-preview.md
+- tools/hidden-bar.md
+- tools/imageoptim.md
+- tools/keepingyouawake.md
+- tools/launchy.md
+- tools/monle.md
+- tools/one-thing.md
+- tools/purepaste.md
+- tools/rectangle.md
+- tools/substage.md
 ---
 
 # 12 Mac Apps I’m Keeping in 2026

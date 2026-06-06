@@ -16,7 +16,9 @@ ingested_at: '2026-06-05T16:37:56.622044+00:00'
 canonical_url: https://medium.com/the-mac-alchemist/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-a9b4aa19c81e
 content_sha256: 3c72ebf7c838f96b1983cff6a038d449b0e90b4cce16b7b9cbe320c65c63ae0a
 derived_tools:
-- 1password
+- tools/1password.md
+derived_pages:
+- tools/1password.md
 ---
 
 # 1Password vs Apple Passwords: The Only Comparison You Need Before Your Next Renewal

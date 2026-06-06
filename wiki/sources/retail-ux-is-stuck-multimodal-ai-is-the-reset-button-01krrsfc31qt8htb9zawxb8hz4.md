@@ -17,10 +17,14 @@ ingested_at: '2026-05-22T15:11:06.277814+00:00'
 canonical_url: https://www.cognigy.com/blog/retail-ux-is-stuck.-multimodal-ai-is-the-reset-button
 content_sha256: a8ac1462b813225db2e66ea0980d5769303ab58494424a6bf4fc9f6a822d1284
 derived_topics:
-- intent-driven-commerce-interfaces
-- realtime-multimodal-interaction
+- topics/intent-driven-commerce-interfaces.md
+- topics/realtime-multimodal-interaction.md
 derived_trends:
-- agentic-commerce-interfaces
+- industry-trends/agentic-commerce-interfaces.md
+derived_pages:
+- industry-trends/agentic-commerce-interfaces.md
+- topics/intent-driven-commerce-interfaces.md
+- topics/realtime-multimodal-interaction.md
 ---
 
 # Retail UX is Stuck. Multimodal AI is the Reset Button.

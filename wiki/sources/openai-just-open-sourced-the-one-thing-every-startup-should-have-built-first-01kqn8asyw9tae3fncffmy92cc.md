@@ -16,16 +16,23 @@ ingested_at: '2026-05-21T14:36:33.129731+00:00'
 canonical_url: https://medium.com/towards-deep-learning/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-5792ed30c519
 content_sha256: 15b20839b101cddd5ac5426c258aafdb30d67df6e0f34c21c8c17ff38845e56a
 derived_glossary:
-- bioes-tagging
+- glossary/bioes-tagging.md
 derived_how_to:
-- pii-redaction-pipeline
+- how-to/pii-redaction-pipeline.md
 derived_models:
-- privacy-filter
+- foundation-models/privacy-filter.md
 derived_topics:
-- local-pii-redaction
-- token-classification-for-redaction
+- topics/local-pii-redaction.md
+- topics/token-classification-for-redaction.md
 derived_trends:
-- local-specialist-models-for-preprocessing
+- industry-trends/local-specialist-models-for-preprocessing.md
+derived_pages:
+- foundation-models/privacy-filter.md
+- glossary/bioes-tagging.md
+- how-to/pii-redaction-pipeline.md
+- industry-trends/local-specialist-models-for-preprocessing.md
+- topics/local-pii-redaction.md
+- topics/token-classification-for-redaction.md
 ---
 
 # OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First

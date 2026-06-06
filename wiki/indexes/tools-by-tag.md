@@ -23,6 +23,10 @@ category: index
 
 - [[tools/claude-code|Claude Code]]
 
+## chat-interface
+
+- [[tools/cognigy-ai|Cognigy.AI]]
+
 ## cli-tool
 
 - [[tools/caveman|Caveman]]
@@ -49,6 +53,7 @@ category: index
 
 ## customer-support
 
+- [[tools/cognigy-ai|Cognigy.AI]]
 - [[tools/fin-for-ecommerce|Fin for Ecommerce]]
 - [[tools/operator|Operator]]
 
@@ -61,6 +66,7 @@ category: index
 ## enterprise-managed
 
 - [[tools/1password|1Password]]
+- [[tools/cognigy-ai|Cognigy.AI]]
 - [[tools/fin-for-ecommerce|Fin for Ecommerce]]
 - [[tools/operator|Operator]]
 

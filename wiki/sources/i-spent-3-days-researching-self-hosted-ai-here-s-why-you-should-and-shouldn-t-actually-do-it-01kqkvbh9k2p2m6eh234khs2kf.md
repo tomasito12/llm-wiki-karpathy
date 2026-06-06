@@ -16,16 +16,23 @@ ingested_at: '2026-05-17T20:14:00.484459+00:00'
 canonical_url: https://medium.com/ai-threads/i-spent-3-days-researching-self-hosted-ai-heres-why-you-should-and-shouldn-t-actually-do-it-e62ad7fcd9f1
 content_sha256: 58090456da210f868ba774d1046321a6a45589a58daed012769a4b1697b83e38
 derived_glossary:
-- fine-tuning
-- mixture-of-experts
+- glossary/fine-tuning.md
+- glossary/mixture-of-experts.md
 derived_how_to:
-- local-model-deployment
+- how-to/local-model-deployment.md
 derived_models:
-- kimi-2-5
+- foundation-models/kimi-2-5.md
 derived_tools:
-- ollama
+- tools/ollama.md
 derived_topics:
-- local-model-deployment
+- topics/local-model-deployment.md
+derived_pages:
+- foundation-models/kimi-2-5.md
+- glossary/fine-tuning.md
+- glossary/mixture-of-experts.md
+- how-to/local-model-deployment.md
+- tools/ollama.md
+- topics/local-model-deployment.md
 ---
 
 # I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It

@@ -14,7 +14,9 @@ ingested_at: '2026-05-19T19:23:59.233701+00:00'
 canonical_url: https://medium.com/ai-in-plain-english/the-engineering-exodus-has-begun-9e66c441791a
 content_sha256: fa8d6c1d473ed8a3f1984d9a554380e70dd711dd8eaa94eecb4a42792096e69d
 derived_trends:
-- software-differentiation-shifts-from-engineering-to-distribution
+- industry-trends/software-differentiation-shifts-from-engineering-to-distribution.md
+derived_pages:
+- industry-trends/software-differentiation-shifts-from-engineering-to-distribution.md
 ---
 
 # The Engineering Exodus Has Begun

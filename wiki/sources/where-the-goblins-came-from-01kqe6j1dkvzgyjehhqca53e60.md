@@ -17,10 +17,14 @@ ingested_at: '2026-05-22T14:56:40.105532+00:00'
 canonical_url: https://openai.com/index/where-the-goblins-came-from
 content_sha256: 453a98c143ed5e8a4beede70eaae9c12debd60d838c511af65f6e7dad85e00cc
 derived_topics:
-- behavioral-audits-for-model-style-drift
-- reward-generalization-effects
+- topics/behavioral-audits-for-model-style-drift.md
+- topics/reward-generalization-effects.md
 derived_trends:
-- behavioral-regressions-need-qualitative-audits
+- industry-trends/behavioral-regressions-need-qualitative-audits.md
+derived_pages:
+- industry-trends/behavioral-regressions-need-qualitative-audits.md
+- topics/behavioral-audits-for-model-style-drift.md
+- topics/reward-generalization-effects.md
 ---
 
 # Where the goblins came from

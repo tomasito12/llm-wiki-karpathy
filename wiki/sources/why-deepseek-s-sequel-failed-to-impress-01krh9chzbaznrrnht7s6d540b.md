@@ -20,10 +20,14 @@ ingested_at: '2026-05-22T15:14:57.412124+00:00'
 canonical_url: https://www.economist.com/business/2026/04/28/why-deepseeks-sequel-failed-to-impress
 content_sha256: 0f84901d9e5bab0f0a0a8666ecb8d8f89a7f32cc72838a47a2cc235a53568c4a
 derived_topics:
-- ai-model-differentiation-shifts-to-distribution
-- state-control-over-ai-supply-chains
+- topics/ai-model-differentiation-shifts-to-distribution.md
+- topics/state-control-over-ai-supply-chains.md
 derived_trends:
-- model-breakthroughs-become-harder-to-sustain
+- industry-trends/model-breakthroughs-become-harder-to-sustain.md
+derived_pages:
+- industry-trends/model-breakthroughs-become-harder-to-sustain.md
+- topics/ai-model-differentiation-shifts-to-distribution.md
+- topics/state-control-over-ai-supply-chains.md
 ---
 
 # Why DeepSeek’s sequel failed to impress

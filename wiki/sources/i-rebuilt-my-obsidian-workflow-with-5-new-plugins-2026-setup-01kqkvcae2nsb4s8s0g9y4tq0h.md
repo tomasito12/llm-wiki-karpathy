@@ -13,14 +13,22 @@ ingested_at: '2026-05-25T15:56:51.591750+00:00'
 canonical_url: https://medium.com/@lennart.dde/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-463f85509e3b
 content_sha256: 0c4bf6ac70870f8c28ce0a2ded632556e8ab2e60136990ee344156c04143ba6c
 derived_tools:
-- calendar
-- linter
-- make-md
-- obsidian
-- omnisearch
-- quickadd
+- tools/calendar.md
+- tools/linter.md
+- tools/make-md.md
+- tools/obsidian.md
+- tools/omnisearch.md
+- tools/quickadd.md
 derived_topics:
-- agentic-personal-knowledge-management
+- topics/agentic-personal-knowledge-management.md
+derived_pages:
+- tools/calendar.md
+- tools/linter.md
+- tools/make-md.md
+- tools/obsidian.md
+- tools/omnisearch.md
+- tools/quickadd.md
+- topics/agentic-personal-knowledge-management.md
 ---
 
 # I Rebuilt My Obsidian Workflow With 5 New Plugins (2026 Setup)

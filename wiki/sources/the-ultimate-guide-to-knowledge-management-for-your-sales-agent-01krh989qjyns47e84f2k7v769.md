@@ -20,13 +20,19 @@ ingested_at: '2026-05-18T15:39:48.516474+00:00'
 canonical_url: https://www.intercom.com/blog/sales-agent-knowledge-management-guide/
 content_sha256: fea933347abc8aaeefa22409e4a3319f951e3624ab2791f2826d8496e47b360d
 derived_glossary:
-- knowledge-management
-- retrieval-augmented-generation
+- glossary/knowledge-management.md
+- glossary/retrieval-augmented-generation.md
 derived_topics:
-- agentic-workflows
-- knowledge-management
+- topics/agentic-workflows.md
+- topics/knowledge-management.md
 derived_trends:
-- knowledge-base-becomes-runtime-infrastructure
+- industry-trends/knowledge-base-becomes-runtime-infrastructure.md
+derived_pages:
+- glossary/knowledge-management.md
+- glossary/retrieval-augmented-generation.md
+- industry-trends/knowledge-base-becomes-runtime-infrastructure.md
+- topics/agentic-workflows.md
+- topics/knowledge-management.md
 ---
 
 # The ultimate guide to knowledge management for your Sales Agent

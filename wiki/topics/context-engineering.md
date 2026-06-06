@@ -6,13 +6,15 @@ category: topic
 tags:
 - ai-engineering
 - context-engineering
+- enterprise-workflows
 - prompt-engineering
 - runtime-systems
 first_seen: '2025-11-17'
 last_seen: '2026-05-11'
-source_count: 11
-evidence_count: 79
+source_count: 12
+evidence_count: 87
 source_ids:
+- 15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1
 - everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2
 - harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx
 - i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr
@@ -25,7 +27,7 @@ source_ids:
 - the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0
 - this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g
 value_level: high
-confidence: 0.9145454545454544
+confidence: 0.9199999999999999
 synthesis_state: stage1-placeholder
 ---
 
@@ -54,6 +56,10 @@ When an AI system is constrained to a source set, the main performance lever bec
 - Repeated context can become a major cost driver in agentic systems.
 - Long-running workflows need a deliberate strategy for what stays in the prompt and what gets retrieved.
 - Caching and context reuse can materially change feasibility at scale.
+- The model only reasons over what is inside the active context window.
+- Poorly curated context can produce better results from a mediocre prompt than a carefully worded prompt surrounded by noise.
+- Context window pressure forces explicit choices: summarize, truncate, or retrieve selectively.
+- Context rot can appear before the hard window limit is reached.
 - A strong prompt gives the model a job, context, success criteria, and a usable output shape.
 - Ambiguity reduction is the central mechanism behind more reliable model behavior.
 - Structured prompts are especially helpful when a task mixes instructions, changing inputs, and formatting needs.
@@ -87,6 +93,18 @@ Treat corpus design as an engineering task: curate source boundaries, reduce noi
 - layered-ai-architecture
 
 ## Evidence / supporting sources
+
+### 15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You) (2026-04-21)
+
+- Context engineering is the practice of designing what information a model can see at inference time so it has the right facts, instructions, and history to answer well. It includes selecting retrieved documents, trimming conversation history, ordering system context, and managing how much information is packed into the window. The key operational idea is that model performance often depends more on the quality and organization of context than on prompt wording alone. (`23396d359b37` · neutral · knowledge_summary; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+- Treat context as a managed resource. Before iterating on prompt wording, verify that the model has the right information, that irrelevant material is not crowding the window, and that long contexts are not silently degrading quality. (`0ea2ede081db` · neutral · operational_insight; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+- As of 2026-04-21, context engineering matters because many production AI failures come from missing, noisy, or poorly ordered information rather than from model incapability. It is especially relevant for chatbots, voicebots, and support automation systems that must combine user history, retrieved knowledge, and policy constraints under a limited context window. (`82e5af980403` · neutral · relevance_note; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+- The model only reasons over what is inside the active context window. (`44406771893b` · supporting · key_points[0]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+- Poorly curated context can produce better results from a mediocre prompt than a carefully worded prompt surrounded by noise. (`36c8a5656fbe` · supporting · key_points[1]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+- Context window pressure forces explicit choices: summarize, truncate, or retrieve selectively. (`b9fef7f9824f` · supporting · key_points[2]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+- Context rot can appear before the hard window limit is reached. (`5f01b0ad061f` · supporting · key_points[3]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+- Context engineering
+is managing what information the model has access to at inference time: which documents are retrieved, how much conversation history is included, what system-level context to inject, and in what order. (`37d0ecb389f7` · supporting · supporting_snippet; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
 
 ### 💠🌐 Everyone Is Wrong About NotebookLM (2025-11-17)
 
@@ -220,6 +238,7 @@ No contradictions captured in current sources.
 
 ## Sources
 
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2|💠🌐 Everyone Is Wrong About NotebookLM]]
 - [[sources/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx|Harness Engineering: What Every AI Engineer Needs to Know in 2026]]
 - [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]]

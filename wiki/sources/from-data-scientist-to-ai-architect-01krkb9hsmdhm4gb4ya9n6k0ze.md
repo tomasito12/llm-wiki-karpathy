@@ -17,10 +17,14 @@ ingested_at: '2026-05-22T16:35:40.912827+00:00'
 canonical_url: https://towardsdatascience.com/from-data-scientist-to-ai-architect/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-8g0VUj9pjjDcRDTmw_HSK0yhyG_l2viG_3vFtUGcPe2uvvccx1JW9ooV0TswwFEuXGpjEdU-cUY_TD1ZbDQ2-bCFz24w&_hsmi=418698396&utm_source=newsletter
 content_sha256: 416dfd41525ed2e392dc42ea03a1a592fc0372fc2ada87d76e0510b14bdf80b0
 derived_topics:
-- ai-architect-role
-- ai-orchestration-over-model-tuning
+- topics/ai-architect-role.md
+- topics/ai-orchestration-over-model-tuning.md
 derived_trends:
-- models-as-commodity-components
+- industry-trends/models-as-commodity-components.md
+derived_pages:
+- industry-trends/models-as-commodity-components.md
+- topics/ai-architect-role.md
+- topics/ai-orchestration-over-model-tuning.md
 ---
 
 # From Data Scientist to AI Architect

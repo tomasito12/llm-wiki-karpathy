@@ -25,13 +25,19 @@ ingested_at: '2026-06-05T16:14:58.183540+00:00'
 canonical_url: https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0
 content_sha256: a1753308e8a9d5685e362ccc66c76732eecf30d770caf1eee5bc4dc4fffb902c
 derived_tools:
-- cursor
-- obsidian
+- tools/cursor.md
+- tools/obsidian.md
 derived_topics:
-- agent-maintained-knowledge-bases
-- wiki-schema-governance
+- topics/agent-maintained-knowledge-bases.md
+- topics/wiki-schema-governance.md
 derived_trends:
-- agent-maintained-documentation-pipelines
+- industry-trends/agent-maintained-documentation-pipelines.md
+derived_pages:
+- industry-trends/agent-maintained-documentation-pipelines.md
+- tools/cursor.md
+- tools/obsidian.md
+- topics/agent-maintained-knowledge-bases.md
+- topics/wiki-schema-governance.md
 ---
 
 # I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI

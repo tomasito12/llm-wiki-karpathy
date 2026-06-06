@@ -15,14 +15,18 @@ author: OpenAI Blog
 publication: OpenAI
 published_date: '2026-04-10'
 assessed_as_of: '2026-04-10'
-ingested_at: '2026-06-05T20:03:54+00:00'
+ingested_at: '2026-06-05T20:05:50.875872+00:00'
 canonical_url: https://openai.com/academy/operations
 content_sha256: 8ccd6f6f3feb295c83fdbbc09dd3e72e8dc4f083f86348be2acb3c3c55908e97
 derived_topics:
-- contextual-operations-summarization
-- ops-artifact-generation
+- topics/contextual-operations-summarization.md
+- topics/ops-artifact-generation.md
 derived_trends:
-- workflow-based-evaluation
+- industry-trends/workflow-based-evaluation.md
+derived_pages:
+- industry-trends/workflow-based-evaluation.md
+- topics/contextual-operations-summarization.md
+- topics/ops-artifact-generation.md
 ---
 
 # ChatGPT for operations teams

@@ -20,12 +20,17 @@ ingested_at: '2026-05-19T16:41:18.498423+00:00'
 canonical_url: https://www.intercom.com/blog/automate-customer-service-while-improving-customer-experience/
 content_sha256: 60286d524fe8a02485f6f5965d6f1bd777d77628e690b803b361565ed041ed1a
 derived_implementation_studies:
-- intercom-s-ai-first-support-transformation-with-fin
+- implementation-studies/2026-03/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-w-intercom-s-ai-first-support-transformation-with-fin-871998217f.md
 derived_topics:
-- human-handoff-design-for-ai-support
-- support-automation-operations
+- topics/human-handoff-design-for-ai-support.md
+- topics/support-automation-operations.md
 derived_trends:
-- support-automation-as-operating-model
+- industry-trends/support-automation-as-operating-model.md
+derived_pages:
+- implementation-studies/2026-03/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-w-intercom-s-ai-first-support-transformation-with-fin-871998217f.md
+- industry-trends/support-automation-as-operating-model.md
+- topics/human-handoff-design-for-ai-support.md
+- topics/support-automation-operations.md
 ---
 
 # Transformation in action: What it takes to automate 81% of your customer service while improving CX
@@ -42,7 +47,7 @@ This article is about how Intercom used its own customer support product to chan
 
 ## Derived knowledge pages
 
-- [[implementation-studies/intercom-s-ai-first-support-transformation-with-fin]]
+- [[implementation-studies/2026-03/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-w-intercom-s-ai-first-support-transformation-with-fin-871998217f]]
 - [[industry-trends/support-automation-as-operating-model]]
 - [[topics/human-handoff-design-for-ai-support]]
 - [[topics/support-automation-operations]]

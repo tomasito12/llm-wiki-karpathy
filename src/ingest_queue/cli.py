@@ -17,7 +17,7 @@ def build_parser() -> argparse.ArgumentParser:
     root = _repo_root()
     parser = argparse.ArgumentParser(
         prog="ingest-queue",
-        description="List raw/readwise exports vs wiki/sources ingest status.",
+        description="List raw/readwise exports vs state/reviews review status.",
     )
     parser.add_argument(
         "--raw-dir",
@@ -26,16 +26,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="Readwise export directory (default: <repo>/raw/readwise).",
     )
     parser.add_argument(
-        "--wiki-sources-dir",
+        "--reviews-dir",
         type=Path,
-        default=root / "wiki" / "sources",
-        help="Wiki sources directory (default: <repo>/wiki/sources).",
+        default=root / "state" / "reviews",
+        help="Review artifacts directory (default: <repo>/state/reviews).",
     )
     parser.add_argument(
         "--status",
-        choices=["pending", "ingested", "incomplete", "all"],
+        choices=["pending", "reviewed", "incomplete", "all"],
         default="pending",
-        help="Filter by ingest status (default: pending).",
+        help="Filter by review status (default: pending).",
     )
     parser.add_argument(
         "--limit",
@@ -53,7 +53,6 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def _item_to_dict(item: IngestItem) -> dict[str, object]:
-    """Serialize ``item`` with repo-relative paths for machine-readable output."""
     """Serialize one item for JSON output (repo-relative paths when possible)."""
     root = _repo_root()
 
@@ -70,7 +69,7 @@ def _item_to_dict(item: IngestItem) -> dict[str, object]:
         "basename": item.basename,
         "raw_html_path": rel(item.raw_html_path),
         "raw_md_path": rel(item.raw_md_path),
-        "wiki_source_path": rel(item.wiki_source_path),
+        "review_json_path": rel(item.review_json_path),
     }
 
 
@@ -78,13 +77,13 @@ def main() -> int:
     """Run ingest-queue from CLI arguments."""
     args = build_parser().parse_args()
     raw_dir = args.raw_dir.resolve()
-    wiki_dir = args.wiki_sources_dir.resolve()
+    reviews_dir = args.reviews_dir.resolve()
     if not raw_dir.is_dir():
         print(f"raw-dir is not a directory: {raw_dir}", file=sys.stderr)
         return 1
-    wiki_dir.mkdir(parents=True, exist_ok=True)
+    reviews_dir.mkdir(parents=True, exist_ok=True)
 
-    items = list_ingest_items(raw_dir, wiki_dir)
+    items = list_ingest_items(raw_dir, reviews_dir)
     filter_status: IngestStatus | None = None if args.status == "all" else args.status
     if filter_status is not None:
         items = [i for i in items if i.status == filter_status]
@@ -97,13 +96,17 @@ def main() -> int:
         print(json.dumps(payload, indent=2))
         return 0
 
-    print(f"{'status':<12} {'basename':<40} raw_md_path")
+    print(f"{'status':<12} {'basename':<40} review_json")
     for item in items:
-        md_display = str(item.raw_md_path) if item.raw_md_path else "(missing .md)"
+        review_display = (
+            str(item.review_json_path)
+            if item.review_json_path.is_file()
+            else "(missing review.json)"
+        )
         basename = item.basename
         if len(basename) > 40:
             basename = basename[:37] + "..."
-        print(f"{item.status:<12} {basename:<40} {md_display}")
+        print(f"{item.status:<12} {basename:<40} {review_display}")
     return 0
 
 

@@ -18,9 +18,12 @@ ingested_at: '2026-06-01T16:05:55.952710+00:00'
 canonical_url: https://mlechner.substack.com/p/quantized-neural-networks-the-only?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true
 content_sha256: 90ab19d1e894d49a8192841850faffd2ba1302bedff6324824332308fa7d1a5c
 derived_topics:
-- kv-cache-compression
+- topics/kv-cache-compression.md
 derived_trends:
-- inference-efficiency-moves-toward-low-precision-hardware
+- industry-trends/inference-efficiency-moves-toward-low-precision-hardware.md
+derived_pages:
+- industry-trends/inference-efficiency-moves-toward-low-precision-hardware.md
+- topics/kv-cache-compression.md
 ---
 
 # Quantized Neural Networks: The Only Guide You Need

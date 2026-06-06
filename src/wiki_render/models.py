@@ -29,7 +29,6 @@ class SourceRecord:
     limitations_and_open_questions: str
     contradictions_and_skepticism: str
     source_tags: set[str] = field(default_factory=set)
-    derived: dict[str, set[str]] = field(default_factory=dict)
     derived_paths: dict[str, set[str]] = field(default_factory=dict)
 
 
@@ -121,5 +120,6 @@ class KnowledgeGraph:
     knowledge_pages: list[KnowledgePage]
     signals: list[IndividualPage]
     insights: list[IndividualPage]
+    implementation_studies: list[IndividualPage]
     alias_map: dict[str, list[str]]
     taxonomy_version: str

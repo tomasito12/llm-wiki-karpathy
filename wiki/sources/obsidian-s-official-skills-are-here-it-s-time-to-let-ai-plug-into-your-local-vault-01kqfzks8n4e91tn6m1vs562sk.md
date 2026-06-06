@@ -18,17 +18,25 @@ ingested_at: '2026-05-22T16:32:30.857372+00:00'
 canonical_url: https://medium.com/@kurtis-redux/obsidians-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-6c149aae84f6
 content_sha256: b8496b7080f3fae326ac6eec7f0bc45f309494c875300db79fb69529b6cd6c5d
 derived_glossary:
-- json-canvas
-- model-context-protocol
+- glossary/json-canvas.md
+- glossary/model-context-protocol.md
 derived_how_to:
-- obsidian-skills-setup
+- how-to/obsidian-skills-setup.md
 derived_tools:
-- obsidian
+- tools/obsidian.md
 derived_topics:
-- file-grammar-skills-for-ai
-- open-formats-as-ai-integration-boundaries
+- topics/file-grammar-skills-for-ai.md
+- topics/open-formats-as-ai-integration-boundaries.md
 derived_trends:
-- ai-assisted-file-native-workflows
+- industry-trends/ai-assisted-file-native-workflows.md
+derived_pages:
+- glossary/json-canvas.md
+- glossary/model-context-protocol.md
+- how-to/obsidian-skills-setup.md
+- industry-trends/ai-assisted-file-native-workflows.md
+- tools/obsidian.md
+- topics/file-grammar-skills-for-ai.md
+- topics/open-formats-as-ai-integration-boundaries.md
 ---
 
 # Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.

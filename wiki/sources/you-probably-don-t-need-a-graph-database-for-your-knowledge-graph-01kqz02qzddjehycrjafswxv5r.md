@@ -17,13 +17,19 @@ ingested_at: '2026-05-18T15:49:13.762205+00:00'
 canonical_url: https://medium.com/@msakhatsky/you-probably-dont-need-a-graph-database-for-your-knowledge-graph-7178054fe3d3
 content_sha256: e3cdcfef2324d31f72ba98d96bb0622672bcc02067eaec6d59cfce4664bc7904
 derived_glossary:
-- datalog
-- ontology
+- glossary/datalog.md
+- glossary/ontology.md
 derived_topics:
-- knowledge-management
-- ontology-driven-extraction
+- topics/knowledge-management.md
+- topics/ontology-driven-extraction.md
 derived_trends:
-- knowledge-base-becomes-runtime-infrastructure
+- industry-trends/knowledge-base-becomes-runtime-infrastructure.md
+derived_pages:
+- glossary/datalog.md
+- glossary/ontology.md
+- industry-trends/knowledge-base-becomes-runtime-infrastructure.md
+- topics/knowledge-management.md
+- topics/ontology-driven-extraction.md
 ---
 
 # You Probably Don’t Need a Graph Database for Your Knowledge Graph

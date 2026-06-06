@@ -19,13 +19,19 @@ ingested_at: '2026-05-22T15:34:07.882986+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-844-harness
 content_sha256: a0d1a41ea5d3a194436cf82dff16256aac3ca49d4c00ceb8e5cfc36849f4d490
 derived_glossary:
-- feedforward-controls
-- harness
+- glossary/feedforward-controls.md
+- glossary/harness.md
 derived_topics:
-- harness-decay
-- harness-engineering
+- topics/harness-decay.md
+- topics/harness-engineering.md
 derived_trends:
-- harness-design-becomes-more-important-for-agent-reliability
+- industry-trends/harness-design-becomes-more-important-for-agent-reliability.md
+derived_pages:
+- glossary/feedforward-controls.md
+- glossary/harness.md
+- industry-trends/harness-design-becomes-more-important-for-agent-reliability.md
+- topics/harness-decay.md
+- topics/harness-engineering.md
 ---
 
 # The Sequence Opinion #844: Harness Engineering: The Operating System for Agentic Software

@@ -19,18 +19,28 @@ ingested_at: '2026-05-19T19:21:13.723897+00:00'
 canonical_url: https://www.latent.space/p/ainews-openai-launches-gpt-image
 content_sha256: 88d62220f9f624e412639d5a2adc90f05a3d074043cf0f4185b4bc440af8bb86
 derived_models:
-- gpt-image-2
-derived_topics:
-- agent-infrastructure
-- visual-specifications-for-ai-systems
-derived_trends:
-- artifact-first-ai-workflows
+- foundation-models/gpt-image-2.md
 derived_signals:
 - signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-harness-quality-matters-more-as-models-converge.md
 - signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-image-generation-becoming-a-front-end-for-coding-agents.md
 - signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-open-research-agents-moving-toward-full-stack-planning-and-execution.md
 - signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-open-weight-models-becoming-deployment-economics-stories.md
 - signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-research-agent-apis-are-becoming-multimodal-and-connector-aware.md
+derived_topics:
+- topics/agent-infrastructure.md
+- topics/visual-specifications-for-ai-systems.md
+derived_trends:
+- industry-trends/artifact-first-ai-workflows.md
+derived_pages:
+- foundation-models/gpt-image-2.md
+- industry-trends/artifact-first-ai-workflows.md
+- signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-harness-quality-matters-more-as-models-converge.md
+- signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-image-generation-becoming-a-front-end-for-coding-agents.md
+- signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-open-research-agents-moving-toward-full-stack-planning-and-execution.md
+- signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-open-weight-models-becoming-deployment-economics-stories.md
+- signals/2026-04/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7-research-agent-apis-are-becoming-multimodal-and-connector-aware.md
+- topics/agent-infrastructure.md
+- topics/visual-specifications-for-ai-systems.md
 ---
 
 # [AINews] OpenAI launches GPT-Image-2

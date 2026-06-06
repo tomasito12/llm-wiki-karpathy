@@ -16,15 +16,22 @@ ingested_at: '2026-05-18T20:28:47.243748+00:00'
 canonical_url: https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/
 content_sha256: fcb02c75978a6cfcc413b6ade2f523dfd1d80e451a7e6cfdf6c4f4e3a90fe1c0
 derived_glossary:
-- fine-tuning
-- knowledge-management
+- glossary/fine-tuning.md
+- glossary/knowledge-management.md
 derived_models:
-- apex-1-0
+- foundation-models/apex-1-0.md
 derived_topics:
-- proprietary-evals
-- vertical-models
+- topics/proprietary-evals.md
+- topics/vertical-models.md
 derived_trends:
-- vertical-models
+- industry-trends/vertical-models.md
+derived_pages:
+- foundation-models/apex-1-0.md
+- glossary/fine-tuning.md
+- glossary/knowledge-management.md
+- industry-trends/vertical-models.md
+- topics/proprietary-evals.md
+- topics/vertical-models.md
 ---
 
 # Announcing Fin Apex: The age of vertical models is here

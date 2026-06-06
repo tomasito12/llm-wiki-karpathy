@@ -7,16 +7,17 @@ category: diagnostics
 
 - Tool version: `1`
 - Taxonomy version: `0557b8847364`
-- Sources: 120
-- Knowledge pages: 286
-- Signals: 39
+- Sources: 126
+- Knowledge pages: 287
+- Signals: 43
 - Interview insights: 20
+- Implementation studies: 5
 
 ## All topics
 
 - [[topics/ai-architect-role|AI Architect Role]] — sources: 1, evidence: 7
 - [[topics/ai-model-differentiation-shifts-to-distribution|AI Model Differentiation Shifts to Distribution]] — sources: 1, evidence: 7
-- [[topics/ai-orchestration-over-model-tuning|AI Orchestration Over Model Tuning]] — sources: 1, evidence: 7
+- [[topics/ai-orchestration-over-model-tuning|AI Orchestration Over Model Tuning]] — sources: 2, evidence: 15
 - [[topics/ai-redistribution-through-taxation-and-ownership|AI Redistribution Through Taxation And Ownership]] — sources: 1, evidence: 7
 - [[topics/ai-assisted-knowledge-compilation|AI-Assisted Knowledge Compilation]] — sources: 1, evidence: 9
 - [[topics/agent-infrastructure|Agent Infrastructure]] — sources: 1, evidence: 8
@@ -26,6 +27,7 @@ category: diagnostics
 - [[topics/agent-self-verification|Agent Self-Verification]] — sources: 1, evidence: 8
 - [[topics/agent-workspace-layering|Agent Workspace Layering]] — sources: 2, evidence: 15
 - [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]] — sources: 1, evidence: 8
+- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]] — sources: 1, evidence: 8
 - [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — sources: 1, evidence: 9
 - [[topics/agentic-coding-workflows|Agentic Coding Workflows]] — sources: 1, evidence: 7
 - [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — sources: 3, evidence: 25
@@ -42,7 +44,7 @@ category: diagnostics
 - [[topics/citation-locked-ai-documentation|Citation-Locked AI Documentation]] — sources: 1, evidence: 8
 - [[topics/commit-driven-documentation-generation|Commit-Driven Documentation Generation]] — sources: 1, evidence: 8
 - [[topics/compute-supply-becomes-the-ai-bottleneck|Compute Supply Becomes the AI Bottleneck]] — sources: 1, evidence: 8
-- [[topics/context-engineering|Context Engineering]] — sources: 11, evidence: 79
+- [[topics/context-engineering|Context Engineering]] — sources: 12, evidence: 87
 - [[topics/context-and-backend-sensitivity-in-local-inference|Context and Backend Sensitivity in Local Inference]] — sources: 1, evidence: 7
 - [[topics/contextual-operations-summarization|Contextual Operations Summarization]] — sources: 1, evidence: 8
 - [[topics/control-group-based-service-experimentation|Control-Group Based Service Experimentation]] — sources: 1, evidence: 7
@@ -61,7 +63,7 @@ category: diagnostics
 - [[topics/hybrid-human-ai-workflows-for-expert-review|Hybrid Human-AI Workflows for Expert Review]] — sources: 1, evidence: 6
 - [[topics/hybrid-retrieval|Hybrid Retrieval]] — sources: 1, evidence: 8
 - [[topics/intent-driven-chaos-engineering|Intent-Driven Chaos Engineering]] — sources: 1, evidence: 10
-- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]] — sources: 2, evidence: 15
+- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]] — sources: 3, evidence: 23
 - [[topics/interactive-ai|Interactive AI]] — sources: 1, evidence: 8
 - [[topics/kv-cache-compression|KV Cache Compression]] — sources: 2, evidence: 14
 - [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]] — sources: 1, evidence: 7
@@ -100,11 +102,12 @@ category: diagnostics
 - [[topics/realtime-ai-evaluation|Realtime AI Evaluation]] — sources: 2, evidence: 15
 - [[topics/realtime-multimodal-interaction|Realtime Multimodal Interaction]] — sources: 2, evidence: 14
 - [[topics/reward-generalization-effects|Reward Generalization Effects]] — sources: 1, evidence: 8
+- [[topics/sales-metrics-for-agent-frontlines|Sales Metrics for Agent Frontlines]] — sources: 1, evidence: 8
 - [[topics/software-moat-compression|Software Moat Compression]] — sources: 2, evidence: 15
 - [[topics/state-control-over-ai-supply-chains|State Control Over AI Supply Chains]] — sources: 1, evidence: 7
 - [[topics/stateless-chatbot-architecture|Stateless Chatbot Architecture]] — sources: 1, evidence: 9
 - [[topics/support-automation-operations|Support Automation Operations]] — sources: 1, evidence: 10
-- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — sources: 2, evidence: 15
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — sources: 3, evidence: 23
 - [[topics/tax-base-shift-from-labor-to-capital|Tax Base Shift From Labor To Capital]] — sources: 1, evidence: 8
 - [[topics/telephony-integration-for-voice-agents|Telephony Integration for Voice Agents]] — sources: 1, evidence: 7
 - [[topics/model-evaluation-with-terminal-benchmarks|Terminal-Centric Model Evaluation]] — sources: 1, evidence: 7
@@ -125,7 +128,7 @@ category: diagnostics
 - [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]] — sources: 3, evidence: 24
 - [[industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus|AI Infrastructure Scarcity Spreads Beyond GPUs]] — sources: 1, evidence: 10
 - [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]] — sources: 1, evidence: 8
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — sources: 2, evidence: 16
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — sources: 4, evidence: 32
 - [[industry-trends/ai-assisted-file-native-workflows|AI-Assisted File-Native Workflows]] — sources: 1, evidence: 8
 - [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]] — sources: 2, evidence: 16
 - [[industry-trends/agentic-commerce-interfaces|Agentic Commerce Interfaces]] — sources: 2, evidence: 16
@@ -154,11 +157,13 @@ category: diagnostics
 - [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-Weight Models Become Viable on Consumer Hardware]] — sources: 2, evidence: 17
 - [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Pricing and harness control are becoming core agent product levers]] — sources: 1, evidence: 8
 - [[industry-trends/realtime-voice-agents-shift-to-integration-work|Realtime Voice Agents Shift Toward Integration Work]] — sources: 1, evidence: 8
+- [[industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake|Sales Moves from Fast Follow-Up to Agent-Led Intake]] — sources: 1, evidence: 9
 - [[industry-trends/software-differentiation-shifts-from-engineering-to-distribution|Software Differentiation Shifts from Engineering to Distribution]] — sources: 1, evidence: 9
 - [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]] — sources: 1, evidence: 10
-- [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]] — sources: 1, evidence: 8
+- [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]] — sources: 2, evidence: 16
 - [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]] — sources: 1, evidence: 8
 - [[industry-trends/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]] — sources: 1, evidence: 8
+- [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]] — sources: 1, evidence: 9
 - [[industry-trends/transport-layer-optimization-becomes-critical-for-agent-latency|Transport-Layer Optimization Becomes Critical for Agent Latency]] — sources: 1, evidence: 8
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|Verification Loops Become Central to AI Workflows]] — sources: 2, evidence: 18
 - [[industry-trends/vertical-models|Vertical Models]] — sources: 1, evidence: 8
@@ -174,6 +179,7 @@ category: diagnostics
 - [[tools/caveman|Caveman]] — sources: 1, evidence: 11
 - [[tools/claude-code|Claude Code]] — sources: 7, evidence: 86
 - [[tools/codex-security|Codex Security]] — sources: 1, evidence: 11
+- [[tools/cognigy-ai|Cognigy.AI]] — sources: 1, evidence: 12
 - [[tools/command-x|Command X]] — sources: 1, evidence: 8
 - [[tools/cotypist|Cotypist]] — sources: 1, evidence: 8
 - [[tools/cursor|Cursor]] — sources: 2, evidence: 23
@@ -267,20 +273,14 @@ No duplicate candidates captured.
 
 - [[sources/a-glimpse-into-cyber-security-s-ai-driven-future-01krh9cas9dx8e4k37fjhd2w2n|A glimpse into cyber-security’s AI-driven future]]
 - [[sources/ai-and-the-danger-of-cognitive-surrender-01krh9befsnqjcqx2prdsxmy1d|AI and the danger of cognitive surrender]]
-- [[sources/ainews-good-friday-01knem57ejmcktht5v8krq543j|[AINews] Good Friday]]
-- [[sources/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9|[AINews] Humanity's Last Gasp]]
+- [[sources/ainews-founders-and-forward-deployed-engineers-01ksv9r20gcn5b1t2hh2ahxpj3|[AINews] Founders and Forward Deployed Engineers]]
 - [[sources/announcing-monitors-opening-the-ai-black-box-01knemav345zvryfag6rvzng8z|Announcing Monitors: Opening the AI black box]]
 - [[sources/esmfold2-the-bitter-lesson-is-coming-for-proteins-alex-rives-biohub-01ksn8the62x1rdy5sz97gc2rj|🔬ESMFold2: The Bitter Lesson is Coming for Proteins - Alex Rives, BioHub]]
-- [[sources/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-lopopolo-openai-frontier-symphony-01knmf4r6yqgf92rpgng02z3wy|Extreme Harness Engineering: 1M LOC, 1B toks/day, 0% human code, 0% human review — Ryan Lopopolo, OpenAI Frontier & Symphony]]
 - [[sources/fable-studio-launches-generative-ai-tv-show-production-platform-for-custom-streaming-content-01knemkvst3xp8zzm6jmj2gmy8|Fable Studio Launches Generative AI TV Show Production Platform for Custom Streaming Content]]
-- [[sources/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb|Giving Agents Computers — Ivan Burazin, Daytona]]
 - [[sources/healthcare-01knw8fhms8jzjhwed2hbbfhbm|Healthcare]]
 - [[sources/how-frontier-enterprises-are-building-an-ai-advantage-01kqyx957j2tv7mr8b4762vqbw|How frontier enterprises are building an AI advantage]]
 - [[sources/lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj|Lessons From Breaking Down Obsidian’s CEO’s Personal Vault Template]]
-- [[sources/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2|Marc Andreessen introspects on The Death of the Browser, Pi + OpenClaw, and Why "This Time Is Different"]]
 - [[sources/mcdonald-s-abandons-drive-through-ai-for-order-taking-01knemkvn8e8hhtxdjk47vt2tf|McDonald’s Abandons Drive Through AI for Order Taking]]
-- [[sources/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-chris-manning-and-fan-yun-sun-01knem57jh58hr3vntwm29vvc7|Moonlake: Causal World Models should be Multimodal, Interactive, and Efficient — with Chris Manning and Fan-yun Sun]]
-- [[sources/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f|Notion’s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software Factory Future — Simon Last & Sarah Sachs of Notion]]
 - [[sources/openai-models-codex-and-managed-agents-come-to-aws-01kqahjbfrdxmxktyerhsy6wcc|OpenAI models, Codex, and Managed Agents come to AWS]]
 - [[sources/the-ai-supply-crunch-is-here-01krh9bpdvngmkty7s2mdnxs6h|The AI supply crunch is here]]
 - [[sources/the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks|The jobs apocalypse: a (very) short history]]
@@ -291,30 +291,30 @@ No duplicate candidates captured.
 ## Most-used tags
 
 - ai-engineering: 60
-- agent-systems: 35
+- agent-systems: 36
 - runtime-architecture: 34
 - knowledge-systems: 27
-- enterprise-ai: 25
+- enterprise-ai: 26
+- workflow-automation: 23
 - local-first: 23
-- workflow-automation: 22
 - runtime-systems: 17
 - ai-operationalization: 17
+- ai-economics: 15
 - inference-systems: 14
 - support-automation: 14
 - multimodal-ai: 14
-- ai-economics: 13
+- ai-evaluation: 13
 - ai-governance: 13
-- ai-evaluation: 12
 - context-engineering: 11
+- runtime-centralization: 11
 - tool-use-capable: 10
-- runtime-centralization: 9
-- orchestration: 8
+- orchestration: 9
+- workflow-design: 9
+- enterprise-workflows: 9
+- execution-oriented-agents: 9
 - agent-memory: 8
-- workflow-design: 8
 - verification-systems: 8
 - infrastructure: 8
-- execution-oriented-agents: 8
-- agent-orchestration: 7
 
 ## Pages with contradictions
 
@@ -378,6 +378,7 @@ No duplicate candidates captured.
 - [[tools/caveman|Caveman]]
 - [[tools/claude-code|Claude Code]]
 - [[tools/codex-security|Codex Security]]
+- [[tools/cognigy-ai|Cognigy.AI]]
 - [[tools/command-x|Command X]]
 - [[tools/cotypist|Cotypist]]
 - [[tools/cursor|Cursor]]
@@ -461,12 +462,14 @@ No duplicate candidates captured.
 - [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-Weight Models Become Viable on Consumer Hardware]]
 - [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Pricing and harness control are becoming core agent product levers]]
 - [[industry-trends/realtime-voice-agents-shift-to-integration-work|Realtime Voice Agents Shift Toward Integration Work]]
+- [[industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake|Sales Moves from Fast Follow-Up to Agent-Led Intake]]
 - [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]]
 - [[industry-trends/software-differentiation-shifts-from-engineering-to-distribution|Software Differentiation Shifts from Engineering to Distribution]]
 - [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]]
 - [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]
 - [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]]
 - [[industry-trends/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]]
+- [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]]
 - [[industry-trends/transport-layer-optimization-becomes-critical-for-agent-latency|Transport-Layer Optimization Becomes Critical for Agent Latency]]
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|Verification Loops Become Central to AI Workflows]]
 - [[industry-trends/vertical-models|Vertical Models]]
@@ -475,7 +478,7 @@ No duplicate candidates captured.
 
 ## Highest source-count pages
 
-- [[topics/context-engineering|Context Engineering]] — 11
+- [[topics/context-engineering|Context Engineering]] — 12
 - [[tools/claude-code|Claude Code]] — 7
 - [[tools/obsidian|Obsidian]] — 7
 - [[tools/ollama|Ollama]] — 7
@@ -486,6 +489,7 @@ No duplicate candidates captured.
 - [[glossary/knowledge-management|Knowledge Management]] — 4
 - [[glossary/mixture-of-experts|Mixture-of-Experts]] — 4
 - [[topics/local-model-deployment|Local Model Deployment]] — 4
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 4
 - [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]] — 4
 - [[glossary/feedforward-controls|Feedforward Controls]] — 3
 - [[glossary/harness|Harness]] — 3
@@ -496,17 +500,16 @@ No duplicate candidates captured.
 - [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 3
 - [[topics/file-native-ai-workflows|File-Native AI Workflows]] — 3
 - [[topics/harness-engineering|Harness Engineering]] — 3
+- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]] — 3
 - [[topics/ontology-driven-extraction|Ontology-Driven Extraction]] — 3
-- [[topics/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]] — 3
-- [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]] — 3
-- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Harness Design Becomes More Important for Agent Reliability]] — 3
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — 3
 
 ## Highest evidence-count pages
 
+- [[topics/context-engineering|Context Engineering]] — 87
 - [[tools/claude-code|Claude Code]] — 86
 - [[tools/ollama|Ollama]] — 81
 - [[tools/obsidian|Obsidian]] — 80
-- [[topics/context-engineering|Context Engineering]] — 79
 - [[topics/agentic-workflows|Agentic Workflows]] — 52
 - [[industry-trends/models-becoming-execution-layers|Models Becoming Execution Layers]] — 48
 - [[foundation-models/gemma-4|Gemma 4]] — 46
@@ -514,6 +517,7 @@ No duplicate candidates captured.
 - [[how-to/local-coding-model-setup|Local Coding Model Setup]] — 40
 - [[topics/knowledge-management|Knowledge Management]] — 38
 - [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]] — 35
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 32
 - [[how-to/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 29
 - [[foundation-models/deepseek-v4|DeepSeek V4]] — 29
 - [[topics/local-model-deployment|Local Model Deployment]] — 29
@@ -521,13 +525,12 @@ No duplicate candidates captured.
 - [[foundation-models/kimi-2-5|Kimi 2.5]] — 28
 - [[foundation-models/apex-1-0|Apex 1.0]] — 26
 - [[foundation-models/gpt-5-5|GPT-5.5]] — 26
-- [[implementation-studies/intercom-s-consultative-support-transformation|Intercom's Consultative Support Transformation]] — 25
 - [[foundation-models/kimi-2-6|Kimi 2.6]] — 25
 - [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 25
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Harness Design Becomes More Important for Agent Reliability]] — 25
 - [[industry-trends/high-risk-models-move-to-gated-access|High-Risk Models Move to Gated Access]] — 25
 - [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]] — 24
-- [[implementation-studies/voicebot-evaluation-at-telecom-scale|Voicebot Evaluation at Telecom Scale]] — 23
+- [[tools/cursor|Cursor]] — 23
 
 ## Thinly-supported pages
 

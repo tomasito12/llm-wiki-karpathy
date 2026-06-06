@@ -11,9 +11,13 @@ ingested_at: '2026-05-22T16:42:03.212240+00:00'
 canonical_url: https://medium.com/@ryanshrott/snazzy-labs-top-mac-apps-of-2026-the-upgrades-you-actually-need-c122e15efb80
 content_sha256: 7c0b134e437a09a2c8e7280c7aa838b84f47b874fe5ee1e6cb2d3fc8a22857e7
 derived_tools:
-- cotypist
-- dictaflow
-- shottr
+- tools/cotypist.md
+- tools/dictaflow.md
+- tools/shottr.md
+derived_pages:
+- tools/cotypist.md
+- tools/dictaflow.md
+- tools/shottr.md
 ---
 
 # Snazzy Labs’ Top Mac Apps of 2026: The Upgrades You Actually Need

@@ -22,6 +22,13 @@ derived_signals:
 - signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-frontier-evaluation-moving-beyond-saturated-coding-benchmarks.md
 - signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-harness-quality-overtaking-model-chasing.md
 - signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-robotics-exposed-as-a-developer-facing-reasoning-api.md
+derived_pages:
+- signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-3d-generation-shifting-toward-editable-production-assets.md
+- signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-agent-infrastructure-shifting-toward-production-concerns.md
+- signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-browser-prompts-becoming-reusable-workflows.md
+- signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-frontier-evaluation-moving-beyond-saturated-coding-benchmarks.md
+- signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-harness-quality-overtaking-model-chasing.md
+- signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-robotics-exposed-as-a-developer-facing-reasoning-api.md
 ---
 
 # [AINews] Humanity's Last Gasp

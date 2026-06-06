@@ -16,15 +16,22 @@ ingested_at: '2026-05-17T13:37:08.445272+00:00'
 canonical_url: https://medium.com/google-cloud/i-ran-gemma-4-as-a-local-model-in-codex-cli-7fda754dc0d4
 content_sha256: 9b43e012a014ff6d708163182bfcb8e83ee07c55050d0f51db8aa2525ad7e6cf
 derived_how_to:
-- local-coding-model-setup
+- how-to/local-coding-model-setup.md
 derived_models:
-- gemma-4
+- foundation-models/gemma-4.md
 derived_tools:
-- llama-cpp
-- ollama
+- tools/llama-cpp.md
+- tools/ollama.md
 derived_topics:
-- agentic-workflows
-- context-engineering
+- topics/agentic-workflows.md
+- topics/context-engineering.md
+derived_pages:
+- foundation-models/gemma-4.md
+- how-to/local-coding-model-setup.md
+- tools/llama-cpp.md
+- tools/ollama.md
+- topics/agentic-workflows.md
+- topics/context-engineering.md
 ---
 
 # I ran Gemma 4 as a local model in Codex CLI

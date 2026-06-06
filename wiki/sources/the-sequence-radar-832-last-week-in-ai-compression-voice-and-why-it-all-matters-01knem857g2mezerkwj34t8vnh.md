@@ -25,19 +25,30 @@ ingested_at: '2026-05-19T19:29:40.756916+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-832-last-week
 content_sha256: cee597b444f59432256c5d0f7da9313febd5f97d2e584869a7d2b6a410193561
 derived_models:
-- gemini-3-1-flash-live
-- voxtral-tts
-derived_topics:
-- kv-cache-compression
-- native-audio-models-for-voice
-derived_trends:
-- efficiency-gains-become-product-capabilities
+- foundation-models/gemini-3-1-flash-live.md
+- foundation-models/voxtral-tts.md
 derived_signals:
 - signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-long-context-gains-are-becoming-a-memory-compression-problem-f5d19a65f5.md
 - signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-mcp-agent-benchmarks-still-expose-multi-tool-dependency-fragility-f47261ac4e.md
 - signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-native-voice-models-are-replacing-multi-stage-speech-stacks-1818f39d6b.md
 - signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-open-weight-voice-is-being-sold-as-sovereignty-infrastructure-bef4bb1c76.md
 - signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-world-models-are-being-optimized-for-speed-and-compactness-33cb1dfd58.md
+derived_topics:
+- topics/kv-cache-compression.md
+- topics/native-audio-models-for-voice.md
+derived_trends:
+- industry-trends/efficiency-gains-become-product-capabilities.md
+derived_pages:
+- foundation-models/gemini-3-1-flash-live.md
+- foundation-models/voxtral-tts.md
+- industry-trends/efficiency-gains-become-product-capabilities.md
+- signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-long-context-gains-are-becoming-a-memory-compression-problem-f5d19a65f5.md
+- signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-mcp-agent-benchmarks-still-expose-multi-tool-dependency-fragility-f47261ac4e.md
+- signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-native-voice-models-are-replacing-multi-stage-speech-stacks-1818f39d6b.md
+- signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-open-weight-voice-is-being-sold-as-sovereignty-infrastructure-bef4bb1c76.md
+- signals/2026-03/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-world-models-are-being-optimized-for-speed-and-compactness-33cb1dfd58.md
+- topics/kv-cache-compression.md
+- topics/native-audio-models-for-voice.md
 ---
 
 # The Sequence Radar #832: Last Week in AI: Compression, Voice, and Why It All Matters

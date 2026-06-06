@@ -17,10 +17,14 @@ ingested_at: '2026-05-19T16:45:24.997153+00:00'
 canonical_url: https://openai.com/index/speeding-up-agentic-workflows-with-websockets
 content_sha256: 22ff41f5494efcd56a88ce6aa193fc291f60d4f93b74bf150fa6f236caca1570
 derived_topics:
-- agentic-workflow-latency-optimization
-- persistent-connection-response-state-reuse
+- topics/agentic-workflow-latency-optimization.md
+- topics/persistent-connection-response-state-reuse.md
 derived_trends:
-- transport-layer-optimization-becomes-critical-for-agent-latency
+- industry-trends/transport-layer-optimization-becomes-critical-for-agent-latency.md
+derived_pages:
+- industry-trends/transport-layer-optimization-becomes-critical-for-agent-latency.md
+- topics/agentic-workflow-latency-optimization.md
+- topics/persistent-connection-response-state-reuse.md
 ---
 
 # Speeding up agentic workflows with WebSockets in the Responses API

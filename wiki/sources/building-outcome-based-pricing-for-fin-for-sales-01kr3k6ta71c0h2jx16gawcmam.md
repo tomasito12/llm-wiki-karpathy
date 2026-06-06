@@ -15,9 +15,12 @@ ingested_at: '2026-06-01T16:11:09.308498+00:00'
 canonical_url: https://www.intercom.com/blog/building-outcome-based-pricing-for-fin-for-sales/
 content_sha256: bfd871a02c5140cb6ef5ea84ee115fe8a84b961450d075b7e86f6570f66fa838
 derived_tools:
-- fin-for-sales
+- tools/fin-for-sales.md
 derived_topics:
-- outcome-based-pricing-for-ai-agents
+- topics/outcome-based-pricing-for-ai-agents.md
+derived_pages:
+- tools/fin-for-sales.md
+- topics/outcome-based-pricing-for-ai-agents.md
 ---
 
 # Building outcome-based pricing for Fin for Sales

@@ -26,12 +26,17 @@ ingested_at: '2026-06-05T13:47:44.074594+00:00'
 canonical_url: https://medium.com/@kakadaaryan10/one-rtx-3090-and-you-dont-need-any-ai-subscription-anymore-thanks-to-alibaba-qwen-0f03b383d3eb
 content_sha256: fb52bec5772a40b41451cd5cf919ceac525dcbf00db62792a8e22e7b89c80203
 derived_models:
-- qwen3-6-27b
+- foundation-models/qwen3-6-27b.md
 derived_topics:
-- dense-vs-moe-model-consistency
-- early-fusion-multimodal-models
+- topics/dense-vs-moe-model-consistency.md
+- topics/early-fusion-multimodal-models.md
 derived_trends:
-- open-weight-models-become-good-enough-for-local-multimodal-work
+- industry-trends/open-weight-models-become-good-enough-for-local-multimodal-work.md
+derived_pages:
+- foundation-models/qwen3-6-27b.md
+- industry-trends/open-weight-models-become-good-enough-for-local-multimodal-work.md
+- topics/dense-vs-moe-model-consistency.md
+- topics/early-fusion-multimodal-models.md
 ---
 
 # One RTX 3090 and you don’t need any AI subscription anymore. Thanks to Alibaba Qwen.

@@ -21,14 +21,20 @@ ingested_at: '2026-06-02T20:10:11.148408+00:00'
 canonical_url: https://www.intercom.com/blog/announcing-fin-for-ecommerce/
 content_sha256: 77b327ca85bb337e268d1810308b25b94e0bb6a37ca04462d8cd5504139060ed
 derived_models:
-- apex-1-0
+- foundation-models/apex-1-0.md
 derived_tools:
-- fin-for-ecommerce
+- tools/fin-for-ecommerce.md
 derived_topics:
-- intent-driven-commerce-interfaces
-- support-automation-as-operating-model
+- topics/intent-driven-commerce-interfaces.md
+- topics/support-automation-as-operating-model.md
 derived_trends:
-- agentic-commerce-interfaces
+- industry-trends/agentic-commerce-interfaces.md
+derived_pages:
+- foundation-models/apex-1-0.md
+- industry-trends/agentic-commerce-interfaces.md
+- tools/fin-for-ecommerce.md
+- topics/intent-driven-commerce-interfaces.md
+- topics/support-automation-as-operating-model.md
 ---
 
 # Announcing Fin for Ecommerce: Fin’s next role as a Customer Agent

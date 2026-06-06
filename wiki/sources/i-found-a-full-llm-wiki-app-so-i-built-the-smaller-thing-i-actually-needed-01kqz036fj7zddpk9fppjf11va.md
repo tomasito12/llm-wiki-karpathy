@@ -14,8 +14,11 @@ ingested_at: '2026-05-22T16:38:44.812110+00:00'
 canonical_url: https://medium.com/@markchen69/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-62c629b3c8d2
 content_sha256: 243ebbdfcd5bdcb9f33524fe4621338bd0a9496383f11641af48e05111cb5a6d
 derived_topics:
-- llm-wiki
-- two-step-document-ingest
+- topics/llm-wiki.md
+- topics/two-step-document-ingest.md
+derived_pages:
+- topics/llm-wiki.md
+- topics/two-step-document-ingest.md
 ---
 
 # I Found a Full LLM Wiki App. So I Built the Smaller Thing I Actually Needed.

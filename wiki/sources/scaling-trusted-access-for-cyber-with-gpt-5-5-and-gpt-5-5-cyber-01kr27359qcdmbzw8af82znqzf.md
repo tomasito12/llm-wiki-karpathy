@@ -21,13 +21,19 @@ ingested_at: '2026-05-26T21:57:59.751597+00:00'
 canonical_url: https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber
 content_sha256: ed764e5d325daf49ced08b979986cb30424b938fd469b1f47b66d9a11ba786ed
 derived_models:
-- gpt-5-5
-- gpt-5-5-cyber
+- foundation-models/gpt-5-5-cyber.md
+- foundation-models/gpt-5-5.md
 derived_topics:
-- governed-cyber-model-access
-- tiered-access-for-sensitive-model-capabilities
+- topics/governed-cyber-model-access.md
+- topics/tiered-access-for-sensitive-model-capabilities.md
 derived_trends:
-- high-risk-models-move-to-gated-access
+- industry-trends/high-risk-models-move-to-gated-access.md
+derived_pages:
+- foundation-models/gpt-5-5-cyber.md
+- foundation-models/gpt-5-5.md
+- industry-trends/high-risk-models-move-to-gated-access.md
+- topics/governed-cyber-model-access.md
+- topics/tiered-access-for-sensitive-model-capabilities.md
 ---
 
 # Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber

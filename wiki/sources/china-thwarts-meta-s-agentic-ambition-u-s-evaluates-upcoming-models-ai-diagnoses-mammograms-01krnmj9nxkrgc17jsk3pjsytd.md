@@ -16,9 +16,12 @@ assessed_as_of: '2026-05-15'
 ingested_at: '2026-06-05T13:52:59.230398+00:00'
 canonical_url: mailto:reader-forwarded-email/3c4c243446b079d533922aea6a3c42a2
 content_sha256: 38c64bc892eac2b94e7e88eb37859a125e22b4ae65c9a936a64eaba87d2104e0
-derived_trends:
-- high-risk-models-move-to-gated-access
 derived_signals:
+- signals/2026-05/china-thwarts-meta-s-agentic-ambition-u-s-evaluates-upcoming-models-ai-diagnoses-frontier-model-release-is-moving-toward-pre-deployment-government-re-a325f1a237.md
+derived_trends:
+- industry-trends/high-risk-models-move-to-gated-access.md
+derived_pages:
+- industry-trends/high-risk-models-move-to-gated-access.md
 - signals/2026-05/china-thwarts-meta-s-agentic-ambition-u-s-evaluates-upcoming-models-ai-diagnoses-frontier-model-release-is-moving-toward-pre-deployment-government-re-a325f1a237.md
 ---
 

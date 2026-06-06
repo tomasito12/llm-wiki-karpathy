@@ -27,11 +27,16 @@ ingested_at: '2026-06-05T15:54:08.462156+00:00'
 canonical_url: https://medium.com/@shahsoumil519/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-c6cd91378c59
 content_sha256: 8715b197db1faf67f7511fd06de8b146d966d25efc754d99abf4478c3d0db8b1
 derived_tools:
-- caveman
-- graphify
+- tools/caveman.md
+- tools/graphify.md
 derived_topics:
-- answer-concision-as-product-quality
-- file-native-ai-workflows
+- topics/answer-concision-as-product-quality.md
+- topics/file-native-ai-workflows.md
+derived_pages:
+- tools/caveman.md
+- tools/graphify.md
+- topics/answer-concision-as-product-quality.md
+- topics/file-native-ai-workflows.md
 ---
 
 # Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter

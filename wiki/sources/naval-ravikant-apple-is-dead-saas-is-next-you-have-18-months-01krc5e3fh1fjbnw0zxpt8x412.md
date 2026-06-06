@@ -14,9 +14,12 @@ ingested_at: '2026-05-17T20:32:46.461988+00:00'
 canonical_url: https://x.com/mustufa4socials/status/2049518414377480218/?rw_tt_thread=True
 content_sha256: efa168c9fd20dacc2f4dcb0748ec8354c3ff5ad97b3d34d17ee50128748275f6
 derived_topics:
-- software-moat-compression
+- topics/software-moat-compression.md
 derived_trends:
-- models-becoming-execution-layers
+- industry-trends/models-becoming-execution-layers.md
+derived_pages:
+- industry-trends/models-becoming-execution-layers.md
+- topics/software-moat-compression.md
 ---
 
 # Naval Ravikant: Apple is dead, SaaS is next, you have 18 months

@@ -15,13 +15,19 @@ ingested_at: '2026-05-18T19:50:37.149247+00:00'
 canonical_url: https://medium.com/@KanikaBK/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-7239a07d6b9e
 content_sha256: d4fdda6606209399a3d45ed296e087ba472a55256132a9294bf6547f6b32e3be
 derived_how_to:
-- agentic-personal-knowledge-management
+- how-to/agentic-personal-knowledge-management.md
 derived_tools:
-- claude-code
-- obsidian
+- tools/claude-code.md
+- tools/obsidian.md
 derived_topics:
-- agentic-personal-knowledge-management
-- knowledge-base-becomes-runtime-infrastructure
+- topics/agentic-personal-knowledge-management.md
+- topics/knowledge-base-becomes-runtime-infrastructure.md
+derived_pages:
+- how-to/agentic-personal-knowledge-management.md
+- tools/claude-code.md
+- tools/obsidian.md
+- topics/agentic-personal-knowledge-management.md
+- topics/knowledge-base-becomes-runtime-infrastructure.md
 ---
 
 # Obsidian + Claude Code is your 24×7 AI Agent: Here is how to build yours

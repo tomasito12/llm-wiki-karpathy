@@ -7,45 +7,28 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from src.pipeline.slug import slugify
-
-SOURCES = "sources"
-TOPICS = "topics"
-GLOSSARY = "glossary"
-INDUSTRY_TRENDS = "industry-trends"
-TOOLS = "tools"
-FOUNDATION_MODELS = "foundation-models"
-HOW_TO = "how-to"
-IMPLEMENTATION_STUDIES = "implementation-studies"
-SIGNALS = "signals"
-INTERVIEW_INSIGHTS = "interview-insights"
-INDEXES = "indexes"
-
-MANAGED_FOLDERS: tuple[str, ...] = (
-    SOURCES,
-    TOPICS,
-    GLOSSARY,
-    INDUSTRY_TRENDS,
-    TOOLS,
+from src.wiki_contract.categories import CATEGORY_BY_GRAPH
+from src.wiki_contract.layout import (
     FOUNDATION_MODELS,
+    GLOSSARY,
     HOW_TO,
     IMPLEMENTATION_STUDIES,
-    SIGNALS,
-    INTERVIEW_INSIGHTS,
     INDEXES,
+    INDUSTRY_TRENDS,
+    INTERVIEW_INSIGHTS,
+    MANAGED_FOLDERS,
+    NOTES,
+    SIGNALS,
+    SOURCES,
+    TOOLS,
+    TOPICS,
+    is_managed_relative_path,
 )
+
 MAX_MONTHLY_BASENAME_LENGTH = 160
 
 CATEGORY_FOLDERS: dict[str, str] = {
-    "source": SOURCES,
-    "topic": TOPICS,
-    "glossary": GLOSSARY,
-    "trend": INDUSTRY_TRENDS,
-    "tool": TOOLS,
-    "model": FOUNDATION_MODELS,
-    "how_to": HOW_TO,
-    "impl_study": IMPLEMENTATION_STUDIES,
-    "signal": SIGNALS,
-    "insight": INTERVIEW_INSIGHTS,
+    graph_category: spec.folder for graph_category, spec in CATEGORY_BY_GRAPH.items()
 }
 
 
@@ -73,12 +56,6 @@ def month_bucket(date_text: str) -> str:
 def managed_folder_paths(wiki_dir: Path) -> list[Path]:
     """Return absolute paths for all generated top-level folders."""
     return [wiki_dir / folder for folder in MANAGED_FOLDERS]
-
-
-def is_managed_relative_path(relative_path: str) -> bool:
-    """Return True when a relative path is inside a generated folder."""
-    first = relative_path.split("/", 1)[0]
-    return first in MANAGED_FOLDERS
 
 
 def page_path(wiki_dir: Path, category: str, slug: str) -> PagePath:
@@ -132,3 +109,29 @@ def _compact_monthly_basename(source_slug: str, item_slug: str) -> str:
     item_part = item_slug[: max(24, remaining)].rstrip("-")
     compact = f"{source_part}-{item_part}-{digest}"
     return compact[:MAX_MONTHLY_BASENAME_LENGTH].strip("-")
+
+
+__all__ = [
+    "FOUNDATION_MODELS",
+    "GLOSSARY",
+    "HOW_TO",
+    "IMPLEMENTATION_STUDIES",
+    "INDEXES",
+    "INDUSTRY_TRENDS",
+    "INTERVIEW_INSIGHTS",
+    "MANAGED_FOLDERS",
+    "NOTES",
+    "PagePath",
+    "SIGNALS",
+    "SOURCES",
+    "TOOLS",
+    "TOPICS",
+    "index_path",
+    "is_managed_relative_path",
+    "managed_folder_paths",
+    "month_bucket",
+    "monthly_item_path",
+    "page_path",
+    "safe_slug",
+    "wikilink",
+]

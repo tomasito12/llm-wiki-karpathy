@@ -22,6 +22,12 @@ derived_signals:
 - signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-long-horizon-capability-is-improving-but-evidence-remains-uneven.md
 - signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-open-model-usability-depends-on-day-zero-ecosystem-support.md
 - signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-parallel-coding-agents-create-a-human-attention-bottleneck.md
+derived_pages:
+- signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-harness-quality-is-becoming-a-primary-determinant-of-agent-performance.md
+- signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-local-fallback-models-are-becoming-a-practical-hedge-against-hosted-friction.md
+- signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-long-horizon-capability-is-improving-but-evidence-remains-uneven.md
+- signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-open-model-usability-depends-on-day-zero-ecosystem-support.md
+- signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-parallel-coding-agents-create-a-human-attention-bottleneck.md
 ---
 
 # [AINews] Good Friday

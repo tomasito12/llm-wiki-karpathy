@@ -19,10 +19,14 @@ ingested_at: '2026-06-05T19:36:07.115124+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-867-thinking
 content_sha256: b0e6fed2589ee75913eaf52480e49888333dde90a53853a7542c81267b441fa8
 derived_topics:
-- chain-of-thought-as-externalized-depth
-- latent-reasoning-architectures
+- topics/chain-of-thought-as-externalized-depth.md
+- topics/latent-reasoning-architectures.md
 derived_trends:
-- latent-reasoning-replaces-token-chain-of-thought
+- industry-trends/latent-reasoning-replaces-token-chain-of-thought.md
+derived_pages:
+- industry-trends/latent-reasoning-replaces-token-chain-of-thought.md
+- topics/chain-of-thought-as-externalized-depth.md
+- topics/latent-reasoning-architectures.md
 ---
 
 # The Sequence AI of the Week #867: Thinking in Latents: Why Sapient's HRM-Text Is a Quiet Rebuke to Chain-of-Thought

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from src.wiki_render import layout
 from src.wiki_render.collect import collect_items
 from src.wiki_render.graph_export import graph_export_payload
 from src.wiki_render.merge import build_knowledge_graph
@@ -32,6 +33,125 @@ def test_graph_merge_render_and_export_include_stage2_metadata(tmp_path: Path) -
     exported_topic = payload["knowledge_pages"][0]
     assert exported_topic["evidence_count"] == topic.evidence_count
     assert "evidence_set_hash" in exported_topic
+
+
+def test_implementation_studies_render_as_individual_monthly_pages(tmp_path: Path) -> None:
+    """Implementation studies are evidence pages, not merged knowledge pages."""
+    source_id = "millions-of-calls-one-judge-01kqkyaqcyqgmyjjqs3r374v14"
+    artifacts = [
+        {
+            "source": {
+                "source_id": source_id,
+                "title": "Voicebot evaluation article",
+                "author": "Author",
+                "publication": "Publication",
+                "published_date": "2026-04-30",
+                "canonical_url": "https://example.com",
+                "content_sha256": "abc",
+                "raw_md_rel_path": f"raw/{source_id}.md",
+                "raw_html_rel_path": f"raw/{source_id}.html",
+            },
+            "analysis_meta": {"analysis_timestamp_utc": "2026-04-30T00:00:00+00:00"},
+            "llm_output": {
+                "source_summary": {
+                    "summary": "A source about voicebot evaluation.",
+                    "accessible_overview": "Voicebot evaluation at scale.",
+                    "key_insights": ["Evaluation matters."],
+                    "why_it_matters": "It affects support automation.",
+                    "limitations_and_open_questions": "Single case study.",
+                    "contradictions_and_skepticism": "None.",
+                    "assessed_as_of": "2026-04-30",
+                },
+                "source_evidence_profile": {"primary_evidence_type": "case_study"},
+            },
+            "review": {
+                "source_summary": {},
+                "source_evidence_profile": {
+                    "llm_item": {"primary_evidence_type": "case_study"},
+                    "final_item": None,
+                },
+                "implementation_studies": [
+                    {
+                        "proposal_status": "approved",
+                        "llm_item": {
+                            "title": "Voicebot Evaluation at Telecom Scale",
+                            "company": "Artefact and a major French telecom operator",
+                            "industry": "telecom",
+                            "overview": "A telecom voicebot evaluated with LLM-as-a-judge.",
+                            "what_was_implemented": "An end-to-end production evaluation system.",
+                            "business_objective": "Measure voicebot quality at production scale.",
+                            "technical_approach": "Binary metrics evaluated by LLM judges.",
+                            "deployment_context": "A conversational voicebot in production.",
+                            "outcome_status": "Ongoing production use.",
+                            "success_or_failure_factors": "Worked because of atomic checks.",
+                            "operational_constraints": "Human review was impossible at scale.",
+                            "ai_model_observations": "Transcript quality dominated errors.",
+                            "implications_for_service_automation": (
+                                "Shows how to run quality control."
+                            ),
+                            "strategic_signals": "Evaluation becomes part of the operating model.",
+                            "key_lessons": ["Break vague quality into atomic binary checks."],
+                            "open_questions": ["How well does this transfer to other domains?"],
+                            "related_sources": ["https://example.com/article"],
+                            "evidence_snippets": [
+                                {
+                                    "claim": "The system handled production traffic at scale.",
+                                    "snippet": "millions of calls per year in production",
+                                    "provenance": "stated",
+                                }
+                            ],
+                            "assessed_as_of": "2026-04-30",
+                            "proposed_tags": ["support-automation", "production-failure"],
+                            "confidence": 0.95,
+                            "value_level": "high",
+                        },
+                        "sections": {},
+                        "tags": {"final_tags": ["support-automation", "production-failure"]},
+                    }
+                ],
+            },
+            "review_analytics": {"review_finished_at": "2026-04-30T00:00:00+00:00"},
+        }
+    ]
+    wiki_dir = tmp_path / "wiki"
+    collected = collect_items(artifacts, wiki_dir)
+    graph = build_knowledge_graph(collected, wiki_dir=wiki_dir, taxonomy_version="tax123")
+    rendered = render_graph(graph, wiki_dir=wiki_dir)
+    payload = graph_export_payload(graph)
+
+    assert not any(page.category == "impl_study" for page in graph.knowledge_pages)
+    assert len(graph.implementation_studies) == 1
+    study = graph.implementation_studies[0]
+    assert study.path.startswith("implementation-studies/2026-04/")
+    assert study.path.endswith(".md")
+    assert source_id in study.path
+
+    study_page = next(file for file in rendered if file.relative_path == study.path)
+    source_page = next(file for file in rendered if file.relative_path == f"sources/{source_id}.md")
+    month_index = next(
+        file
+        for file in rendered
+        if file.relative_path == "indexes/implementation-studies-by-month.md"
+    )
+    tag_index = next(
+        file
+        for file in rendered
+        if file.relative_path == "indexes/implementation-studies-by-tag.md"
+    )
+
+    assert "category: implementation-study" in study_page.text
+    assert "company: Artefact and a major French telecom operator" in study_page.text
+    assert "Key Lessons" in study_page.text
+    assert "Evidence Snippets" in study_page.text
+    assert "synthesis_state" not in study_page.text
+    assert "derived_implementation_studies:" in source_page.text
+    assert study.path in source_page.text
+    assert "derived_pages:" in source_page.text
+    assert ".md" in source_page.text
+    assert layout.wikilink(study.path, study.title) in month_index.text
+    assert layout.wikilink(study.path, study.title) in tag_index.text
+    assert len(payload["implementation_studies"]) == 1
+    assert payload["implementation_studies"][0]["path"] == study.path
 
 
 def _artifact(source_id: str, title: str, published_date: str) -> dict:

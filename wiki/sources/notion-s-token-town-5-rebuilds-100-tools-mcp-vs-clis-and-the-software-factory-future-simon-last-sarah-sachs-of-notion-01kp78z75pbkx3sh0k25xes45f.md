@@ -34,6 +34,12 @@ derived_interview_insights:
 - interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-retrieval-for-agents-optimizes-differently-than-retrieval-for-humans-af7746ae5a.md
 - interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-the-best-agent-products-expose-primitives-not-hidden-magic-3dd14771ee.md
 - interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-usage-based-pricing-is-required-when-model-search-and-sandbox-costs-5658260ad2.md
+derived_pages:
+- interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-design-agent-products-around-model-constraints-not-product-complexit-f5580eb500.md
+- interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-evals-should-be-treated-as-an-agent-harness-not-just-testing-4d8f7c7373.md
+- interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-retrieval-for-agents-optimizes-differently-than-retrieval-for-humans-af7746ae5a.md
+- interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-the-best-agent-products-expose-primitives-not-hidden-magic-3dd14771ee.md
+- interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-usage-based-pricing-is-required-when-model-search-and-sandbox-costs-5658260ad2.md
 ---
 
 # Notion’s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software Factory Future — Simon Last & Sarah Sachs of Notion

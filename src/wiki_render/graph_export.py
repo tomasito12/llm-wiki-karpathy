@@ -21,6 +21,9 @@ def graph_export_payload(graph: KnowledgeGraph) -> dict[str, Any]:
         "knowledge_pages": [_page_payload(page) for page in graph.knowledge_pages],
         "signals": [_individual_payload(item) for item in graph.signals],
         "interview_insights": [_individual_payload(item) for item in graph.insights],
+        "implementation_studies": [
+            _individual_payload(item) for item in graph.implementation_studies
+        ],
         "alias_map": graph.alias_map,
     }
 
@@ -41,10 +44,12 @@ def _source_payload(source: SourceRecord) -> dict[str, Any]:
         "assessed_as_of": source.assessed_as_of,
         "ingested_at": source.ingested_at,
         "tags": sorted(source.source_tags),
-        "derived": {key: sorted(values) for key, values in sorted(source.derived.items())},
         "derived_paths": {
             key: sorted(values) for key, values in sorted(source.derived_paths.items())
         },
+        "derived_pages": sorted(
+            {path for paths in source.derived_paths.values() for path in paths}
+        ),
     }
 
 

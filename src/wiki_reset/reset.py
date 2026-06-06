@@ -10,28 +10,22 @@ from src.pipeline.atomic import atomic_write_text
 from src.pipeline.ingest_manifest import IngestManifest
 from src.readwise.library_index import LibraryIndex
 from src.readwise.sync import _repo_root
+from src.wiki_contract.layout import MANAGED_FOLDERS, NOTES, is_preserved_wiki_path
 from src.wiki_reset.tag_taxonomy import reset_tag_taxonomy
 
 CONFIRMATION_PHRASE = "RESET-WIKI"
 
-_WIKI_INSTRUCTION_RELPATHS: frozenset[str] = frozenset(
-    {
-        "AGENTS.md",
-        "stage1-classifier.md",
-        "ingest-templates.md",
-        "stage2-artifact-router.md",
-    }
-)
-
 
 def wiki_instruction_relpaths() -> frozenset[str]:
-    """Return POSIX relpaths under ``wiki/`` preserved on reset."""
-    return _WIKI_INSTRUCTION_RELPATHS
+    """Return POSIX relpaths under ``wiki/`` preserved on reset (legacy alias)."""
+    from src.wiki_contract.layout import PRESERVED_ROOT_FILES
+
+    return PRESERVED_ROOT_FILES
 
 
 def is_instruction_wiki_file(relative_posix: str) -> bool:
-    """Return True if this relative path is a preserved instruction file."""
-    return relative_posix in _WIKI_INSTRUCTION_RELPATHS
+    """Return True if this relative path must survive reset."""
+    return is_preserved_wiki_path(relative_posix)
 
 
 def readwise_library_document_count(index_path: Path) -> int:
@@ -51,15 +45,21 @@ def clear_ingest_manifest(manifest_path: Path) -> None:
     IngestManifest.empty().save(manifest_path)
 
 
+def remove_wiki_render_manifest(manifest_path: Path) -> None:
+    """Remove the wiki render advisory manifest if present."""
+    if manifest_path.is_file():
+        manifest_path.unlink()
+
+
 def delete_non_instruction_wiki_files(wiki_root: Path) -> list[str]:
-    """Delete all files under ``wiki_root`` except instruction files.
+    """Delete generated wiki files while preserving operator-owned paths.
 
     Returns sorted POSIX paths relative to ``wiki_root``.
     """
     deleted: list[str] = []
     for path in sorted((p for p in wiki_root.rglob("*") if p.is_file()), reverse=True):
         rel = path.relative_to(wiki_root).as_posix()
-        if is_instruction_wiki_file(rel):
+        if is_preserved_wiki_path(rel):
             continue
         path.unlink()
         deleted.append(rel)
@@ -84,83 +84,80 @@ def write_wiki_shell_files(
     today_iso: str,
     state_results: dict[str, bool],
 ) -> None:
-    """Write minimal hub pages after reset."""
+    """Write minimal wiki-render-era shells after reset."""
     wiki_root.mkdir(parents=True, exist_ok=True)
-    (wiki_root / "sources").mkdir(parents=True, exist_ok=True)
-    (wiki_root / "questions").mkdir(parents=True, exist_ok=True)
-    (wiki_root / "glossary" / "terms").mkdir(parents=True, exist_ok=True)
+    for folder in MANAGED_FOLDERS:
+        (wiki_root / folder).mkdir(parents=True, exist_ok=True)
+    notes_dir = wiki_root / NOTES
+    notes_dir.mkdir(parents=True, exist_ok=True)
+    notes_readme = notes_dir / "README.md"
+    if not notes_readme.is_file():
+        atomic_write_text(
+            notes_readme,
+            "\n".join(
+                [
+                    "---",
+                    "title: Manual Notes",
+                    "category: notes",
+                    "---",
+                    "",
+                    "Operator-owned notes live here. Content in `wiki/notes/` survives "
+                    "`wiki-render` and `wiki-reset`.",
+                    "",
+                ]
+            ),
+        )
 
-    atomic_write_text(
-        wiki_root / "index.md",
-        "\n".join(
-            [
-                "---",
-                "title: Wiki index",
-                "type: index",
-                f"created: {today_iso}",
-                f"updated: {today_iso}",
-                "---",
-                "",
-                "- [[glossary/index]]",
-                "- [[questions/question-catalog]]",
-                "",
-            ]
-        ),
-    )
+    index_path = wiki_root / "index.md"
+    if not index_path.is_file():
+        atomic_write_text(
+            index_path,
+            "\n".join(
+                [
+                    "---",
+                    "title: Wiki Hub",
+                    "category: hub",
+                    f"updated: {today_iso}",
+                    "---",
+                    "",
+                    "- [[indexes/index|Generated indexes]]",
+                    "- [[indexes/system-status|System status]]",
+                    "- [[indexes/knowledge-graph|Knowledge graph diagnostics]]",
+                    f"- [[{NOTES}/README|Manual notes]]",
+                    "",
+                ]
+            ),
+        )
+
+    log_path = wiki_root / "log.md"
     state_summary = ", ".join(
         f"{name} {'cleared' if cleared else 'preserved'}"
         for name, cleared in sorted(state_results.items())
     )
-    atomic_write_text(
-        wiki_root / "log.md",
-        "\n".join(
-            [
-                "---",
-                "title: Wiki log",
-                "type: log",
-                f"created: {today_iso}",
-                f"updated: {today_iso}",
-                "---",
-                "",
-                f"- {today_iso}: Reset wiki knowledge baseline. Instruction files retained; "
-                f"wiki content cleared. State: {state_summary}.",
-                "",
-            ]
-        ),
+    log_entry = (
+        f"- {today_iso}: Reset wiki knowledge baseline. Preserved paths retained; "
+        f"generated content cleared. State: {state_summary}. "
+        "Run `hatch run wiki-render` when review artifacts are available."
     )
-    atomic_write_text(
-        wiki_root / "questions" / "question-catalog.md",
-        "\n".join(
-            [
-                "---",
-                "title: Questions catalog",
-                "type: questions-catalog",
-                f"created: {today_iso}",
-                f"updated: {today_iso}",
-                "---",
-                "",
-                "## ai-engineering",
-                "",
-            ]
-        ),
-    )
-    atomic_write_text(
-        wiki_root / "glossary" / "index.md",
-        "\n".join(
-            [
-                "---",
-                "title: Glossary",
-                "type: glossary",
-                f"created: {today_iso}",
-                f"updated: {today_iso}",
-                "---",
-                "",
-                "| Term | Page |",
-                "|------|------|",
-                "",
-            ]
-        ),
-    )
+    if log_path.is_file():
+        existing = log_path.read_text(encoding="utf-8")
+        atomic_write_text(log_path, existing.rstrip() + "\n" + log_entry + "\n")
+    else:
+        atomic_write_text(
+            log_path,
+            "\n".join(
+                [
+                    "---",
+                    "title: Wiki log",
+                    "category: log",
+                    f"updated: {today_iso}",
+                    "---",
+                    "",
+                    log_entry,
+                    "",
+                ]
+            ),
+        )
 
 
 def clear_review_artifacts(reviews_root: Path) -> int:
@@ -193,6 +190,11 @@ def default_feedback_db_path() -> Path:
     return _repo_root() / "state" / "review_feedback.sqlite"
 
 
+def default_wiki_render_manifest_path() -> Path:
+    """Default ``state/wiki_render_manifest.json`` path."""
+    return _repo_root() / "state" / "wiki_render_manifest.json"
+
+
 def run_wiki_reset(
     wiki_root: Path,
     index_path: Path,
@@ -200,6 +202,8 @@ def run_wiki_reset(
     clear_readwise_index: bool = False,
     manifest_path: Path | None = None,
     clear_manifest: bool = True,
+    clear_wiki_render_manifest: bool = True,
+    wiki_render_manifest_path: Path | None = None,
     clear_reviews: bool = True,
     reset_tag_taxonomy_config: bool = True,
     config_root: Path | None = None,
@@ -218,6 +222,7 @@ def run_wiki_reset(
     state_results = {
         "readwise_library": clear_readwise_index,
         "ingest_manifest": clear_manifest,
+        "wiki_render_manifest": clear_wiki_render_manifest,
         "review_state": clear_reviews,
         "tag_taxonomy": reset_tag_taxonomy_config,
     }
@@ -231,6 +236,10 @@ def run_wiki_reset(
         clear_readwise_export_index(index_path)
     if clear_manifest:
         clear_ingest_manifest(manifest_path or default_ingest_manifest_path())
+    if clear_wiki_render_manifest:
+        remove_wiki_render_manifest(
+            wiki_render_manifest_path or default_wiki_render_manifest_path()
+        )
     if clear_reviews:
         clear_review_artifacts(reviews_root or default_reviews_root())
         clear_feedback_db(feedback_db_path or default_feedback_db_path())

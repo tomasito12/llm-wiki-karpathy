@@ -14,10 +14,14 @@ ingested_at: '2026-05-18T14:57:44.472341+00:00'
 canonical_url: https://nytimes.com/2026/04/30/opinion/ai-labor-work-force-silicon-valley.html/
 content_sha256: 18845027cc3460bff7383c99fcffcc82f7622ad9527147328fe9a4b3e98d6b02
 derived_glossary:
-- benchmark
-- economic-value-benchmark
+- glossary/benchmark.md
+- glossary/economic-value-benchmark.md
 derived_topics:
-- software-moat-compression
+- topics/software-moat-compression.md
+derived_pages:
+- glossary/benchmark.md
+- glossary/economic-value-benchmark.md
+- topics/software-moat-compression.md
 ---
 
 # The A.I. Fear Keeping Silicon Valley Up at Night

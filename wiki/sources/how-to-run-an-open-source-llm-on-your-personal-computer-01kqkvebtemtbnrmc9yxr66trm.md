@@ -15,11 +15,15 @@ ingested_at: '2026-05-25T15:30:45.137182+00:00'
 canonical_url: https://medium.com/data-science-collective/how-to-run-an-open-source-llm-on-your-personal-computer-bc6cca454282
 content_sha256: 9b01193b68109b679dba20b51e04bb059fad849fb66708a8e3a873919e714037
 derived_how_to:
-- local-model-setup
+- how-to/local-model-setup.md
 derived_tools:
-- ollama
+- tools/ollama.md
 derived_topics:
-- local-model-deployment
+- topics/local-model-deployment.md
+derived_pages:
+- how-to/local-model-setup.md
+- tools/ollama.md
+- topics/local-model-deployment.md
 ---
 
 # How To Run an Open-Source LLM on Your Personal Computer

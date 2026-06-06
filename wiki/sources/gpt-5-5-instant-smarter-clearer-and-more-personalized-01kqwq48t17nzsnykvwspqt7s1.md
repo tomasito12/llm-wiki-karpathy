@@ -18,14 +18,20 @@ ingested_at: '2026-05-19T16:21:37.425795+00:00'
 canonical_url: https://openai.com/index/gpt-5-5-instant
 content_sha256: c393d8b4183bff41925b0b06fb1d3a4179e26071a520c661b334b01e722de1d6
 derived_glossary:
-- hallucinations
+- glossary/hallucinations.md
 derived_models:
-- gpt-5-5-instant
+- foundation-models/gpt-5-5-instant.md
 derived_topics:
-- answer-concision-as-product-quality
-- personalized-conversational-ai
+- topics/answer-concision-as-product-quality.md
+- topics/personalized-conversational-ai.md
 derived_trends:
-- stable-api-names-no-longer-guarantee-stable-model-behavior
+- industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior.md
+derived_pages:
+- foundation-models/gpt-5-5-instant.md
+- glossary/hallucinations.md
+- industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior.md
+- topics/answer-concision-as-product-quality.md
+- topics/personalized-conversational-ai.md
 ---
 
 # GPT-5.5 Instant: smarter, clearer, and more personalized

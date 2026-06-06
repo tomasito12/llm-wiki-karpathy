@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, cast
 
+from src.wiki_contract.categories import FRONTMATTER_CATEGORY_BY_GRAPH
 from src.wiki_render.frontmatter import markdown_document
 from src.wiki_render.models import IndividualPage, KnowledgePage, RenderedFile
 from src.wiki_render.render.common import (
@@ -16,15 +17,7 @@ from src.wiki_render.render.common import (
     sources_section,
 )
 
-CATEGORY_LABELS: dict[str, str] = {
-    "topic": "topic",
-    "glossary": "glossary",
-    "trend": "industry-trend",
-    "tool": "tool",
-    "model": "foundation-model",
-    "how_to": "how-to",
-    "impl_study": "implementation-study",
-}
+CATEGORY_LABELS: dict[str, str] = FRONTMATTER_CATEGORY_BY_GRAPH
 
 LEAD_KEYS: dict[str, tuple[str, ...]] = {
     "topic": ("knowledge_summary", "relevance_note"),
@@ -33,7 +26,6 @@ LEAD_KEYS: dict[str, tuple[str, ...]] = {
     "tool": ("short_description", "operational_relevance"),
     "model": ("operational_profile", "deployment_implications"),
     "how_to": ("what_and_problem", "answer_summary"),
-    "impl_study": ("overview", "what_was_implemented"),
 }
 
 DISPLAY_NAMES: dict[str, str] = {
@@ -85,6 +77,21 @@ SKIP_BODY_KEYS = {
     "evidence_snippets",
 }
 
+IMPL_STUDY_BODY_KEYS: tuple[str, ...] = (
+    "overview",
+    "what_was_implemented",
+    "business_objective",
+    "technical_approach",
+    "deployment_context",
+    "outcome_status",
+    "success_or_failure_factors",
+    "operational_constraints",
+    "ai_model_observations",
+    "implications_for_service_automation",
+    "strategic_signals",
+)
+IMPL_STUDY_LIST_KEYS: tuple[str, ...] = ("key_lessons", "open_questions", "related_sources")
+
 
 def render_knowledge_page(page: KnowledgePage) -> RenderedFile:
     """Render one merged knowledge page."""
@@ -126,7 +133,7 @@ def render_individual_page(item: IndividualPage) -> RenderedFile:
         "tags": item.tags,
         "source_id": item.source_id,
         "source_title": item.source_title,
-        "source_date": item.source_date,
+        "source_date": item.source_date or "unknown",
         "month": item.month,
         "evidence_count": item.evidence_count,
         "evidence_set_hash": item.evidence_set_hash,
@@ -154,6 +161,58 @@ def render_individual_page(item: IndividualPage) -> RenderedFile:
         if isinstance(value, list) and value:
             body += heading(3, _titleize(key))
             body += bullet_list(str(entry) for entry in value)
+    body += evidence_section(item.evidence)
+    body += heading(2, "Source")
+    body += bullet_list([f"[[sources/{item.source_id}|{item.source_title}]]"])
+    return RenderedFile(relative_path=item.path, text=markdown_document(frontmatter, body))
+
+
+def render_implementation_study_page(item: IndividualPage) -> RenderedFile:
+    """Render one non-merged implementation study."""
+    frontmatter = {
+        "title": item.title,
+        "slug": item.slug,
+        "category": "implementation-study",
+        "tags": item.tags,
+        "source_id": item.source_id,
+        "source_title": item.source_title,
+        "source_date": item.source_date or "unknown",
+        "month": item.month,
+        "company": item.values.get("company", ""),
+        "industry": item.values.get("industry", ""),
+        "evidence_count": item.evidence_count,
+        "evidence_set_hash": item.evidence_set_hash,
+    }
+    body = heading(1, item.title)
+    body += heading(2, "Implementation Study")
+    for key in IMPL_STUDY_BODY_KEYS:
+        value = item.values.get(key)
+        if isinstance(value, str) and value.strip():
+            body += heading(3, DISPLAY_NAMES.get(key, _titleize(key)))
+            body += paragraph(value)
+    for key in IMPL_STUDY_LIST_KEYS:
+        value = item.values.get(key)
+        if isinstance(value, list) and value:
+            body += heading(3, DISPLAY_NAMES.get(key, _titleize(key)))
+            body += bullet_list(str(entry) for entry in value)
+    snippets = item.values.get("evidence_snippets")
+    if isinstance(snippets, list) and snippets:
+        body += heading(3, "Evidence Snippets")
+        formatted: list[str] = []
+        for snippet in snippets:
+            if not isinstance(snippet, dict):
+                continue
+            snippet_dict = cast(dict[str, object], snippet)
+            claim = str(snippet_dict.get("claim") or "").strip()
+            text = str(snippet_dict.get("snippet") or "").strip()
+            provenance = str(snippet_dict.get("provenance") or "").strip()
+            line = f"{claim} — {text}" if claim and text else claim or text
+            if provenance:
+                line = f"{line} ({provenance})"
+            if line:
+                formatted.append(line)
+        if formatted:
+            body += bullet_list(formatted)
     body += evidence_section(item.evidence)
     body += heading(2, "Source")
     body += bullet_list([f"[[sources/{item.source_id}|{item.source_title}]]"])

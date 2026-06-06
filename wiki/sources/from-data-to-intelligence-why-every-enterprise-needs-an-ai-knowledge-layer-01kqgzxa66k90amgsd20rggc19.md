@@ -17,10 +17,14 @@ ingested_at: '2026-06-05T19:19:12.970613+00:00'
 canonical_url: https://neo4j.com/blog/agentic-ai/knowledge-layer/
 content_sha256: 4f8574befa34560683df51160ecf2dd1d6526706ee3f71d33a20276046223fed
 derived_topics:
-- graph-grounding-for-ai
-- knowledge-layer-architecture
+- topics/graph-grounding-for-ai.md
+- topics/knowledge-layer-architecture.md
 derived_trends:
-- knowledge-base-becomes-runtime-infrastructure
+- industry-trends/knowledge-base-becomes-runtime-infrastructure.md
+derived_pages:
+- industry-trends/knowledge-base-becomes-runtime-infrastructure.md
+- topics/graph-grounding-for-ai.md
+- topics/knowledge-layer-architecture.md
 ---
 
 # From Data to Intelligence: Why Every Enterprise Needs an AI Knowledge Layer

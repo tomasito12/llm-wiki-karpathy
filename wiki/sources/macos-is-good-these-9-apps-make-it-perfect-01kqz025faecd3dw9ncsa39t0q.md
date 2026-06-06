@@ -18,17 +18,28 @@ ingested_at: '2026-06-01T15:39:15.848708+00:00'
 canonical_url: https://medium.com/macoclock/macos-is-good-these-9-apps-make-it-perfect-d16aaec1e1f7
 content_sha256: 23ca7cf40f56e3daae7850b03b10c8f7edd1c7592d4d0ac2325ada8e97f140c4
 derived_models:
-- llama-4
+- foundation-models/llama-4.md
 derived_tools:
-- blip
-- deskin
-- dropover
-- ice
-- loop
-- msty
-- notchnook
-- pearcleaner
-- screenfloat-2
+- tools/blip.md
+- tools/deskin.md
+- tools/dropover.md
+- tools/ice.md
+- tools/loop.md
+- tools/msty.md
+- tools/notchnook.md
+- tools/pearcleaner.md
+- tools/screenfloat-2.md
+derived_pages:
+- foundation-models/llama-4.md
+- tools/blip.md
+- tools/deskin.md
+- tools/dropover.md
+- tools/ice.md
+- tools/loop.md
+- tools/msty.md
+- tools/notchnook.md
+- tools/pearcleaner.md
+- tools/screenfloat-2.md
 ---
 
 # macOS is Good. These 9 Apps Make It Perfect.

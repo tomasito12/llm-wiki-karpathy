@@ -28,14 +28,20 @@ ingested_at: '2026-06-05T16:19:33.221079+00:00'
 canonical_url: https://cursor.com/blog/composer-2
 content_sha256: ddfa2acf0c1b63d7cd5141bdb821d8cfd2cc0ab0fd118c61042cdcd78dd61f53
 derived_models:
-- composer-2
+- foundation-models/composer-2.md
 derived_tools:
-- cursor
+- tools/cursor.md
 derived_topics:
-- agentic-coding-workflows
-- model-evaluation-with-terminal-benchmarks
+- topics/agentic-coding-workflows.md
+- topics/model-evaluation-with-terminal-benchmarks.md
 derived_trends:
-- coding-models-shift-toward-agentic-execution
+- industry-trends/coding-models-shift-toward-agentic-execution.md
+derived_pages:
+- foundation-models/composer-2.md
+- industry-trends/coding-models-shift-toward-agentic-execution.md
+- tools/cursor.md
+- topics/agentic-coding-workflows.md
+- topics/model-evaluation-with-terminal-benchmarks.md
 ---
 
 # Introducing Composer 2

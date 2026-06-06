@@ -29,14 +29,20 @@ ingested_at: '2026-06-02T20:21:28.458586+00:00'
 canonical_url: https://towardsdatascience.com/how-to-make-claude-code-validate-its-own-work/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-983i5IEFCGSE-P3c2Jm_8BItpnyWH-44FiF0Jaq6ncB_r2wi2b8socrX_9XHnImlvp31VqD0tsty1czZcJ4NV54cmKLQ&_hsmi=418698396&utm_source=newsletter
 content_sha256: 5eacc8d04a25802f212a38676f70d13b2732869de087b065a211721005fd4da5
 derived_how_to:
-- self-verification-for-agent-workflows
+- how-to/self-verification-for-agent-workflows.md
 derived_tools:
-- claude-code
+- tools/claude-code.md
 derived_topics:
-- agent-self-verification
-- visual-specifications-for-ai-systems
+- topics/agent-self-verification.md
+- topics/visual-specifications-for-ai-systems.md
 derived_trends:
-- verification-loops-become-central-to-ai-workflows
+- industry-trends/verification-loops-become-central-to-ai-workflows.md
+derived_pages:
+- how-to/self-verification-for-agent-workflows.md
+- industry-trends/verification-loops-become-central-to-ai-workflows.md
+- tools/claude-code.md
+- topics/agent-self-verification.md
+- topics/visual-specifications-for-ai-systems.md
 ---
 
 # How to Make Claude Code Validate its own Work

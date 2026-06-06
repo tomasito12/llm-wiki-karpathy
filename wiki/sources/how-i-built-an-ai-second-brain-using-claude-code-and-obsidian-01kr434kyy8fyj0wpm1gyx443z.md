@@ -24,13 +24,19 @@ ingested_at: '2026-06-05T15:15:26.889070+00:00'
 canonical_url: https://medium.com/@alipilevar/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-b9347ac34a69
 content_sha256: d28fa4256a98f966c5f73ee23a85ba3f9107764b82d6ff231675a4d465e87d8d
 derived_how_to:
-- agentic-personal-knowledge-management
+- how-to/agentic-personal-knowledge-management.md
 derived_tools:
-- claude-code
-- obsidian
+- tools/claude-code.md
+- tools/obsidian.md
 derived_topics:
-- behavioral-instruction-layers-for-agents
-- file-native-ai-workflows
+- topics/behavioral-instruction-layers-for-agents.md
+- topics/file-native-ai-workflows.md
+derived_pages:
+- how-to/agentic-personal-knowledge-management.md
+- tools/claude-code.md
+- tools/obsidian.md
+- topics/behavioral-instruction-layers-for-agents.md
+- topics/file-native-ai-workflows.md
 ---
 
 # How I Built an AI Second Brain Using Claude Code and Obsidian

@@ -29,14 +29,20 @@ ingested_at: '2026-06-05T13:42:50.863395+00:00'
 canonical_url: https://openai.com/index/the-next-evolution-of-the-agents-sdk
 content_sha256: a1dec27fe608f8dd6d36e37c449eee81094271f4cd3e8de8755b20435328ae32
 derived_models:
-- gpt-5-4
+- foundation-models/gpt-5-4.md
 derived_tools:
-- agents-sdk
+- tools/agents-sdk.md
 derived_topics:
-- agent-workspace-layering
-- harness-engineering
+- topics/agent-workspace-layering.md
+- topics/harness-engineering.md
 derived_trends:
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
+- industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture.md
+derived_pages:
+- foundation-models/gpt-5-4.md
+- industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture.md
+- tools/agents-sdk.md
+- topics/agent-workspace-layering.md
+- topics/harness-engineering.md
 ---
 
 # The next evolution of the Agents SDK

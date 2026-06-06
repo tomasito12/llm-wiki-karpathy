@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+from datetime import UTC, datetime
 from typing import TypeAlias
 
 from src.wiki_render import TOOL_VERSION, layout
@@ -25,7 +26,6 @@ CATEGORY_INDEXES: tuple[str, ...] = (
     "model",
     "glossary",
     "how_to",
-    "impl_study",
 )
 
 
@@ -33,13 +33,18 @@ def render_indexes(graph: KnowledgeGraph) -> list[RenderedFile]:
     """Render all generated index pages."""
     files = [
         _master_index(),
+        _system_status_index(graph),
         _aliases_index(graph),
         _knowledge_graph_index(graph),
     ]
     for category in CATEGORY_INDEXES:
         files.append(_by_tag_index(graph, category))
+    files.append(
+        _individual_by_tag_index("implementation-studies-by-tag", graph.implementation_studies)
+    )
     files.append(_monthly_index("signals-by-month", graph.signals))
     files.append(_monthly_index("interview-insights-by-month", graph.insights))
+    files.append(_monthly_index("implementation-studies-by-month", graph.implementation_studies))
     return files
 
 
@@ -54,8 +59,10 @@ def _master_index() -> RenderedFile:
         "glossary-by-tag",
         "how-to-by-tag",
         "implementation-studies-by-tag",
+        "implementation-studies-by-month",
         "signals-by-month",
         "interview-insights-by-month",
+        "system-status",
         "aliases",
         "knowledge-graph",
     ]
@@ -92,6 +99,27 @@ def _by_tag_index(graph: KnowledgeGraph, category: str) -> RenderedFile:
     )
 
 
+def _individual_by_tag_index(name: str, items: list[IndividualPage]) -> RenderedFile:
+    """Render individual pages grouped by tag."""
+    grouped: dict[str, list[IndividualPage]] = defaultdict(list)
+    for item in items:
+        for tag in item.tags or ["untagged"]:
+            grouped[tag].append(item)
+    body = heading(1, name.replace("-", " ").title())
+    if not grouped:
+        body += "No pages captured.\n\n"
+    for tag in sorted(grouped):
+        body += heading(2, tag)
+        body += bullet_list(layout.wikilink(item.path, item.title) for item in grouped[tag])
+    return RenderedFile(
+        relative_path=f"{layout.INDEXES}/{name}.md",
+        text=markdown_document(
+            {"title": name.replace("-", " ").title(), "category": "index"},
+            body,
+        ),
+    )
+
+
 def _monthly_index(name: str, items: list[IndividualPage]) -> RenderedFile:
     """Render chronological individual pages grouped by month."""
     grouped: dict[str, list[IndividualPage]] = defaultdict(list)
@@ -107,6 +135,53 @@ def _monthly_index(name: str, items: list[IndividualPage]) -> RenderedFile:
         relative_path=f"{layout.INDEXES}/{name}.md",
         text=markdown_document(
             {"title": name.replace("-", " ").title(), "category": "index"},
+            body,
+        ),
+    )
+
+
+def _system_status_index(graph: KnowledgeGraph) -> RenderedFile:
+    """Render lightweight system diagnostics for operators."""
+    rendered_at = datetime.now(tz=UTC).isoformat()
+    topic_count = len(_category_pages(graph, "topic"))
+    trend_count = len(_category_pages(graph, "trend"))
+    tool_count = len(_category_pages(graph, "tool"))
+    model_count = len(_category_pages(graph, "model"))
+    glossary_count = len(_category_pages(graph, "glossary"))
+    how_to_count = len(_category_pages(graph, "how_to"))
+    evidence_count = sum(page.evidence_count for page in graph.knowledge_pages)
+    evidence_count += sum(item.evidence_count for item in graph.signals)
+    evidence_count += sum(item.evidence_count for item in graph.insights)
+    evidence_count += sum(item.evidence_count for item in graph.implementation_studies)
+    body = heading(1, "System Status")
+    body += bullet_list(
+        [
+            f"Last render: `{rendered_at}`",
+            f"Tool version: `{TOOL_VERSION}`",
+            f"Taxonomy version: `{graph.taxonomy_version}`",
+            f"Sources: {len(graph.sources)}",
+            f"Topics: {topic_count}",
+            f"Industry trends: {trend_count}",
+            f"Tools: {tool_count}",
+            f"Foundation models: {model_count}",
+            f"Glossary: {glossary_count}",
+            f"How-to: {how_to_count}",
+            f"Signals: {len(graph.signals)}",
+            f"Interview insights: {len(graph.insights)}",
+            f"Implementation studies: {len(graph.implementation_studies)}",
+            f"Knowledge pages (merged total): {len(graph.knowledge_pages)}",
+            f"Evidence items (total): {evidence_count}",
+        ]
+    )
+    return RenderedFile(
+        relative_path=f"{layout.INDEXES}/system-status.md",
+        text=markdown_document(
+            {
+                "title": "System Status",
+                "category": "diagnostics",
+                "rendered_at": rendered_at,
+                "taxonomy_version": graph.taxonomy_version,
+            },
             body,
         ),
     )
@@ -138,6 +213,7 @@ def _knowledge_graph_index(graph: KnowledgeGraph) -> RenderedFile:
             f"Knowledge pages: {len(graph.knowledge_pages)}",
             f"Signals: {len(graph.signals)}",
             f"Interview insights: {len(graph.insights)}",
+            f"Implementation studies: {len(graph.implementation_studies)}",
         ]
     )
     for category in ("topic", "trend", "tool", "model"):
@@ -160,7 +236,7 @@ def _knowledge_graph_index(graph: KnowledgeGraph) -> RenderedFile:
     sources_without_pages = [
         source
         for source in graph.sources
-        if not any(key.startswith("derived_") and values for key, values in source.derived.items())
+        if not any(values for values in source.derived_paths.values())
     ]
     body += heading(2, "Sources without derived knowledge pages")
     body += (
@@ -250,7 +326,6 @@ def _index_name(category: str) -> str:
         "model": "models-by-tag",
         "glossary": "glossary-by-tag",
         "how_to": "how-to-by-tag",
-        "impl_study": "implementation-studies-by-tag",
     }[category]
 
 

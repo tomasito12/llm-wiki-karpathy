@@ -22,12 +22,17 @@ ingested_at: '2026-06-05T19:25:04.961807+00:00'
 canonical_url: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/the-complete-guide-to-building/1277.pdf
 content_sha256: f20941b7275f952865d1c553f9e0d7c6835993dd6a1c3a156c293bd6a42b2216
 derived_how_to:
-- claude-skills-setup
+- how-to/claude-skills-setup.md
 derived_topics:
-- knowledge-layer-architecture
-- progressive-disclosure-skill-design
+- topics/knowledge-layer-architecture.md
+- topics/progressive-disclosure-skill-design.md
 derived_trends:
-- skills-move-ai-products-toward-workflow-packaging
+- industry-trends/skills-move-ai-products-toward-workflow-packaging.md
+derived_pages:
+- how-to/claude-skills-setup.md
+- industry-trends/skills-move-ai-products-toward-workflow-packaging.md
+- topics/knowledge-layer-architecture.md
+- topics/progressive-disclosure-skill-design.md
 ---
 
 # The Complete Guide To Building Skills For Claude

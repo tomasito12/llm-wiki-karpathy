@@ -93,6 +93,7 @@ def main() -> int:
             "knowledge_page_count": len(graph.knowledge_pages),
             "signal_count": len(graph.signals),
             "interview_insight_count": len(graph.insights),
+            "implementation_study_count": len(graph.implementation_studies),
             "graph_export_path": str(args.graph_path),
         },
         dry_run=args.dry_run,

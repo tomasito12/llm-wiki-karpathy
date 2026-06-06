@@ -17,13 +17,19 @@ ingested_at: '2026-05-17T19:33:58.674724+00:00'
 canonical_url: https://medium.com/autocomplete-real-world-ai/wcag-compliance-for-ai-chatbots-074c2370d8a8
 content_sha256: 38cf4f704cbfe99f1ea2ad1b12463e57d7043ce1f103425bb6a9543921e32167
 derived_glossary:
-- aria-live-region
-- web-content-accessibility-guidelines-wcag
+- glossary/aria-live-region.md
+- glossary/web-content-accessibility-guidelines-wcag.md
 derived_how_to:
-- accessible-chatbot-widget
+- how-to/accessible-chatbot-widget.md
 derived_topics:
-- interactive-ai
-- realtime-ai
+- topics/interactive-ai.md
+- topics/realtime-ai.md
+derived_pages:
+- glossary/aria-live-region.md
+- glossary/web-content-accessibility-guidelines-wcag.md
+- how-to/accessible-chatbot-widget.md
+- topics/interactive-ai.md
+- topics/realtime-ai.md
 ---
 
 # WCAG compliance for AI chatbots

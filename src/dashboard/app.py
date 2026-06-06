@@ -461,10 +461,9 @@ def main() -> None:
         st.error(f"Failed to load source: {exc}")
         return
 
-    wiki_sources = wiki_root / "sources"
-    ingest_items = {i.basename: i for i in list_ingest_items(raw_dir, wiki_sources)}
+    ingest_items = {i.basename: i for i in list_ingest_items(raw_dir, reviews_root)}
     item = ingest_items.get(source_id)
-    wiki_ingested = item is not None and item.status == "ingested"
+    review_artifact_exists = item is not None and item.status == "reviewed"
 
     st.subheader("Source metadata")
     st.caption(f"Review queue: **{status_label(source_review_status)}**")
@@ -477,7 +476,7 @@ def main() -> None:
             "or pick another article from the queue."
         )
     c1, c2, c3 = st.columns(3)
-    c1.metric("Wiki source page exists", "yes" if wiki_ingested else "no")
+    c1.metric("Review artifact exists", "yes" if review_artifact_exists else "no")
     c2.text(f"SHA256\n{doc.content_sha256[:16]}…")
     c3.text(f"URL\n{doc.canonical_url or '—'}")
     st.json(

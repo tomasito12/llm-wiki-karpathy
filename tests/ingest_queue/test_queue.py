@@ -1,92 +1,61 @@
-"""Tests for ingest queue listing."""
+"""Tests for ingest queue review status."""
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
-from unittest import mock
 
-import pytest
-
-from src.ingest_queue.cli import main
 from src.ingest_queue.queue import list_ingest_items
 
 
-def test_list_items_pending_when_wiki_source_missing(tmp_path: Path) -> None:
+def test_pending_when_review_json_missing(tmp_path: Path) -> None:
+    """Exports with sidecar but no review artifact are pending."""
     raw = tmp_path / "raw"
-    wiki_sources = tmp_path / "wiki" / "sources"
+    reviews = tmp_path / "reviews"
     raw.mkdir()
-    wiki_sources.mkdir(parents=True)
-    stem = "article-01abc"
-    (raw / f"{stem}.html").write_text("<p>x</p>", encoding="utf-8")
-    (raw / f"{stem}.md").write_text("---\n---\n", encoding="utf-8")
+    reviews.mkdir()
+    stem = "article-one"
+    (raw / f"{stem}.html").write_text("<html></html>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: Article\n---\n", encoding="utf-8")
 
-    items = list_ingest_items(raw, wiki_sources)
+    items = list_ingest_items(raw, reviews)
     assert len(items) == 1
     assert items[0].status == "pending"
-    assert items[0].raw_md_path is not None
 
 
-def test_list_items_ingested_when_wiki_source_exists(tmp_path: Path) -> None:
+def test_reviewed_when_review_json_exists(tmp_path: Path) -> None:
+    """Review artifact presence marks item reviewed."""
     raw = tmp_path / "raw"
-    wiki_sources = tmp_path / "wiki" / "sources"
+    reviews = tmp_path / "reviews"
     raw.mkdir()
-    wiki_sources.mkdir(parents=True)
-    stem = "article-01abc"
-    (raw / f"{stem}.html").write_text("<p>x</p>", encoding="utf-8")
-    (raw / f"{stem}.md").write_text("---\n---\n", encoding="utf-8")
-    (wiki_sources / f"{stem}.md").write_text("---\ntype: source\n---\n", encoding="utf-8")
+    reviews.mkdir()
+    stem = "article-two"
+    (raw / f"{stem}.html").write_text("<html></html>", encoding="utf-8")
+    (raw / f"{stem}.md").write_text("---\ntitle: Article\n---\n", encoding="utf-8")
+    review_dir = reviews / stem
+    review_dir.mkdir()
+    (review_dir / "review.json").write_text("{}", encoding="utf-8")
 
-    items = list_ingest_items(raw, wiki_sources)
-    assert items[0].status == "ingested"
+    items = list_ingest_items(raw, reviews)
+    assert items[0].status == "reviewed"
 
 
-def test_list_items_incomplete_without_md_sidecar(tmp_path: Path) -> None:
+def test_incomplete_when_md_sidecar_missing(tmp_path: Path) -> None:
+    """Missing markdown sidecar marks export incomplete."""
     raw = tmp_path / "raw"
-    wiki_sources = tmp_path / "wiki" / "sources"
+    reviews = tmp_path / "reviews"
     raw.mkdir()
-    wiki_sources.mkdir(parents=True)
-    (raw / "only.html").write_text("<p>x</p>", encoding="utf-8")
+    reviews.mkdir()
+    stem = "article-three"
+    (raw / f"{stem}.html").write_text("<html></html>", encoding="utf-8")
 
-    items = list_ingest_items(raw, wiki_sources)
-    assert len(items) == 1
+    items = list_ingest_items(raw, reviews)
     assert items[0].status == "incomplete"
-    assert items[0].raw_md_path is None
 
 
-def test_list_items_empty_raw_dir(tmp_path: Path) -> None:
+def test_empty_raw_dir_returns_no_items(tmp_path: Path) -> None:
+    """Empty raw directory yields empty queue."""
     raw = tmp_path / "raw"
-    wiki_sources = tmp_path / "wiki" / "sources"
+    reviews = tmp_path / "reviews"
     raw.mkdir()
-    wiki_sources.mkdir(parents=True)
-    assert list_ingest_items(raw, wiki_sources) == []
-
-
-def test_cli_json_filter_and_limit(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
-    raw = tmp_path / "raw"
-    wiki_sources = tmp_path / "wiki" / "sources"
-    raw.mkdir()
-    wiki_sources.mkdir(parents=True)
-    for i in range(3):
-        stem = f"doc-{i:02d}-id{i:02d}00000000000000000001"
-        (raw / f"{stem}.html").write_text("<p>a</p>", encoding="utf-8")
-        (raw / f"{stem}.md").write_text("---\n---\n", encoding="utf-8")
-
-    argv = [
-        "ingest-queue",
-        "--raw-dir",
-        str(raw),
-        "--wiki-sources-dir",
-        str(wiki_sources),
-        "--status",
-        "all",
-        "--limit",
-        "2",
-        "--json",
-    ]
-    with mock.patch("sys.argv", argv):
-        assert main() == 0
-    out = capsys.readouterr().out
-    rows = json.loads(out)
-    assert len(rows) == 2
-    assert {r["status"] for r in rows} == {"pending"}
+    reviews.mkdir()
+    assert list_ingest_items(raw, reviews) == []

@@ -21,20 +21,31 @@ ingested_at: '2026-05-17T15:41:25.055301+00:00'
 canonical_url: https://www.latent.space/p/ainews-thinking-machines-native-interaction
 content_sha256: 186b323609845dea64edef817bcd1d8d868d02e7b4feb0a02fdee2f602783d92
 derived_glossary:
-- continuous-time-interaction
-- mixture-of-experts
+- glossary/continuous-time-interaction.md
+- glossary/mixture-of-experts.md
 derived_models:
-- tml-interaction-small
-derived_topics:
-- realtime-ai-evaluation
-- realtime-multimodal-interaction
-derived_trends:
-- models-becoming-execution-layers
+- foundation-models/tml-interaction-small.md
 derived_signals:
 - signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-background-agents-are-being-paired-with-interactive-models-4b593b4829.md
 - signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-native-realtime-interaction-is-becoming-a-distinct-model-class-e85d0cc306.md
 - signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-sglang-is-part-of-the-interaction-model-stack-41a882f54e.md
 - signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-temporal-evaluation-is-becoming-necessary-for-realtime-assistants-1a3541345b.md
+derived_topics:
+- topics/realtime-ai-evaluation.md
+- topics/realtime-multimodal-interaction.md
+derived_trends:
+- industry-trends/models-becoming-execution-layers.md
+derived_pages:
+- foundation-models/tml-interaction-small.md
+- glossary/continuous-time-interaction.md
+- glossary/mixture-of-experts.md
+- industry-trends/models-becoming-execution-layers.md
+- signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-background-agents-are-being-paired-with-interactive-models-4b593b4829.md
+- signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-native-realtime-interaction-is-becoming-a-distinct-model-class-e85d0cc306.md
+- signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-sglang-is-part-of-the-interaction-model-stack-41a882f54e.md
+- signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-temporal-evaluation-is-becoming-necessary-for-realtime-assistants-1a3541345b.md
+- topics/realtime-ai-evaluation.md
+- topics/realtime-multimodal-interaction.md
 ---
 
 # [AINews] Thinking Machines' Native Interaction Models - TML-Interaction-Small 276B-A12B - advances SOTA Realtime Voice and kills standard VAD

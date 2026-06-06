@@ -12,6 +12,7 @@ from src.wiki_reset.reset import (
     default_ingest_manifest_path,
     default_readwise_index_path,
     default_reviews_root,
+    default_wiki_render_manifest_path,
     default_wiki_root,
     readwise_library_document_count,
     run_wiki_reset,
@@ -23,9 +24,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="wiki-reset",
         description=(
-            "Delete all wiki content except instruction markdown, recreate empty hub shells, "
-            "clear the ingest manifest audit log, and reset config/review_* tag allowlists "
-            "to baseline seeds. "
+            "Delete generated wiki content while preserving operator paths (notes/, legacy/, "
+            "AGENTS.md, index.md, log.md), recreate empty managed-folder shells, clear audit "
+            "manifests, and reset config/review_* tag allowlists to baseline seeds. "
             "Does not touch raw/readwise exports. "
             "The Readwise export index is preserved unless --reset-readwise-index is set."
         ),
@@ -73,6 +74,17 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--keep-wiki-render-manifest",
+        action="store_true",
+        help="Preserve state/wiki_render_manifest.json (cleared by default).",
+    )
+    parser.add_argument(
+        "--wiki-render-manifest",
+        type=Path,
+        default=default_wiki_render_manifest_path(),
+        help="Wiki render manifest path (default: <repo>/state/wiki_render_manifest.json).",
+    )
+    parser.add_argument(
         "--confirm",
         default=None,
         metavar="PHRASE",
@@ -108,6 +120,7 @@ def main() -> int:
         prompt_state = {
             "readwise_library": clear_rw,
             "ingest_manifest": True,
+            "wiki_render_manifest": not args.keep_wiki_render_manifest,
             "review_state": clear_reviews,
             "tag_taxonomy": reset_tags,
         }
@@ -116,8 +129,9 @@ def main() -> int:
             for name, cleared in sorted(prompt_state.items())
         )
         print(
-            "This will DELETE all wiki pages except the four instruction files, "
-            f"recreate empty wiki shells. State: {prompt_summary}."
+            "This will DELETE generated wiki pages while preserving notes/, legacy/, and "
+            f"operator hub files, then recreate empty managed-folder shells. "
+            f"State: {prompt_summary}."
         )
         if clear_rw:
             print(
@@ -136,6 +150,8 @@ def main() -> int:
             index_path,
             clear_readwise_index=clear_rw,
             manifest_path=args.manifest.resolve(),
+            clear_wiki_render_manifest=not args.keep_wiki_render_manifest,
+            wiki_render_manifest_path=args.wiki_render_manifest.resolve(),
             clear_reviews=clear_reviews,
             reset_tag_taxonomy_config=reset_tags,
             reviews_root=default_reviews_root(),

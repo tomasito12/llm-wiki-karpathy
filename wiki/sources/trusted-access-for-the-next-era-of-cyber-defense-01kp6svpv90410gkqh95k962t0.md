@@ -17,16 +17,23 @@ ingested_at: '2026-05-18T20:18:03.595366+00:00'
 canonical_url: https://openai.com/index/scaling-trusted-access-for-cyber-defense
 content_sha256: a54e3f3894b915d6ccdc9ec9e544223ccbfab3b7ff5ead3ffd4d3e233ac21fb2
 derived_glossary:
-- passkey
+- glossary/passkey.md
 derived_models:
-- gpt-5-4-cyber
+- foundation-models/gpt-5-4-cyber.md
 derived_tools:
-- codex-security
+- tools/codex-security.md
 derived_topics:
-- models-becoming-execution-layers
-- tiered-access-for-sensitive-model-capabilities
+- topics/models-becoming-execution-layers.md
+- topics/tiered-access-for-sensitive-model-capabilities.md
 derived_trends:
-- tiered-access-for-sensitive-model-capabilities
+- industry-trends/tiered-access-for-sensitive-model-capabilities.md
+derived_pages:
+- foundation-models/gpt-5-4-cyber.md
+- glossary/passkey.md
+- industry-trends/tiered-access-for-sensitive-model-capabilities.md
+- tools/codex-security.md
+- topics/models-becoming-execution-layers.md
+- topics/tiered-access-for-sensitive-model-capabilities.md
 ---
 
 # Trusted access for the next era of cyber defense

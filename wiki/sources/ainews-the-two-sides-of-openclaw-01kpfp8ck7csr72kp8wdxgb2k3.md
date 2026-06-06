@@ -17,9 +17,16 @@ assessed_as_of: '2026-04-18'
 ingested_at: '2026-05-18T15:08:59.824598+00:00'
 canonical_url: https://www.latent.space/p/ainews-the-two-sides-of-openclaw
 content_sha256: 2d8a7a309d5179c4cd155f72c4f17fc30339d03316b8a48b566635968a02caf4
-derived_trends:
-- harness-design-becomes-more-important-for-agent-reliability
 derived_signals:
+- signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-computer-use-agents-becoming-a-practical-product-surface.md
+- signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-design-and-prototyping-surfaces-are-becoming-model-driven-products.md
+- signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-inference-infrastructure-is-being-optimized-for-goodput-and-payload-size.md
+- signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-launch-week-benchmark-leadership-is-noisy-and-unstable.md
+- signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-local-model-deployment-remains-practical-on-consumer-hardware.md
+derived_trends:
+- industry-trends/harness-design-becomes-more-important-for-agent-reliability.md
+derived_pages:
+- industry-trends/harness-design-becomes-more-important-for-agent-reliability.md
 - signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-computer-use-agents-becoming-a-practical-product-surface.md
 - signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-design-and-prototyping-surfaces-are-becoming-model-driven-products.md
 - signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-inference-infrastructure-is-being-optimized-for-goodput-and-payload-size.md

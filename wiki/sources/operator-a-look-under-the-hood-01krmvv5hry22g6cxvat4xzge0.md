@@ -27,12 +27,17 @@ ingested_at: '2026-06-05T19:58:23.842570+00:00'
 canonical_url: https://www.intercom.com/blog/operator-a-look-under-the-hood/
 content_sha256: 6c4fa2a0b9d1748e7207ff895defb35d81e833b38da2308e501f9a22ee7f34f3
 derived_tools:
-- operator
+- tools/operator.md
 derived_topics:
-- approval-based-agent-actions
-- layered-agent-architecture
+- topics/approval-based-agent-actions.md
+- topics/layered-agent-architecture.md
 derived_trends:
-- ai-products-shift-from-models-to-systems
+- industry-trends/ai-products-shift-from-models-to-systems.md
+derived_pages:
+- industry-trends/ai-products-shift-from-models-to-systems.md
+- tools/operator.md
+- topics/approval-based-agent-actions.md
+- topics/layered-agent-architecture.md
 ---
 
 # Operator: A look under the hood

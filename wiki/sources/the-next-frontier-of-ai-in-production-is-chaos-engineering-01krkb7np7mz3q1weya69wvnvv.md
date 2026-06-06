@@ -19,13 +19,19 @@ ingested_at: '2026-05-21T14:46:11.640692+00:00'
 canonical_url: https://towardsdatascience.com/the-next-frontier-of-ai-in-production-is-chaos-engineering/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_Uw8GBxfagNQurwb8V1rCgPtziUtB_NSEYpqjoLLSfPpXF1GzNxvW-xgVYkR8HAYFIeBBZHBD2_sU09-pXvBxvx7QV2w&_hsmi=418698396&utm_source=newsletter
 content_sha256: 6efb341efa423b1ce1e9f0251c625d1c0340bb2e2f4993be188c1afd534c5ad4
 derived_glossary:
-- feedforward-controls
-- harness
+- glossary/feedforward-controls.md
+- glossary/harness.md
 derived_topics:
-- behavioral-blast-radius-evaluation
-- intent-driven-chaos-engineering
+- topics/behavioral-blast-radius-evaluation.md
+- topics/intent-driven-chaos-engineering.md
 derived_trends:
-- machine-readable-testing-intent
+- industry-trends/machine-readable-testing-intent.md
+derived_pages:
+- glossary/feedforward-controls.md
+- glossary/harness.md
+- industry-trends/machine-readable-testing-intent.md
+- topics/behavioral-blast-radius-evaluation.md
+- topics/intent-driven-chaos-engineering.md
 ---
 
 # The Next Frontier of AI in Production Is Chaos Engineering

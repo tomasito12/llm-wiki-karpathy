@@ -20,10 +20,14 @@ ingested_at: '2026-06-02T20:14:17.775286+00:00'
 canonical_url: https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai
 content_sha256: d3be12f4b8fcab724a59b7f449cf5d3182ef30d5c3568a100f434a1967752fb6
 derived_topics:
-- governance-as-enabler-for-enterprise-ai
-- hybrid-human-ai-workflows-for-expert-review
+- topics/governance-as-enabler-for-enterprise-ai.md
+- topics/hybrid-human-ai-workflows-for-expert-review.md
 derived_trends:
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
+- industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows.md
+derived_pages:
+- industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows.md
+- topics/governance-as-enabler-for-enterprise-ai.md
+- topics/hybrid-human-ai-workflows-for-expert-review.md
 ---
 
 # How enterprises are scaling AI

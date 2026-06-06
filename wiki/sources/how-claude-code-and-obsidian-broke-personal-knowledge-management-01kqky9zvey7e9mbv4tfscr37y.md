@@ -15,10 +15,14 @@ ingested_at: '2026-05-22T18:19:59.278527+00:00'
 canonical_url: https://medium.com/tech-and-ai-guild/how-claude-code-and-obsidian-broke-personal-knowledge-management-d00dc8ae88d3
 content_sha256: 3fdd5f02bc7a26967d150e3b03605e3497baeb8ead6f17cd4669d498db3a3f95
 derived_tools:
-- claude-code
+- tools/claude-code.md
 derived_topics:
-- agentic-personal-knowledge-management
-- file-native-ai-workflows
+- topics/agentic-personal-knowledge-management.md
+- topics/file-native-ai-workflows.md
+derived_pages:
+- tools/claude-code.md
+- topics/agentic-personal-knowledge-management.md
+- topics/file-native-ai-workflows.md
 ---
 
 # How Claude Code and Obsidian Broke Personal Knowledge Management

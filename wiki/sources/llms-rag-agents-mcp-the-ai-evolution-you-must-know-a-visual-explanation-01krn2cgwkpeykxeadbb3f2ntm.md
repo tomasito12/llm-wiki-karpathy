@@ -18,10 +18,14 @@ ingested_at: '2026-06-02T20:31:55.438482+00:00'
 canonical_url: https://pub.towardsai.net/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-9ee07e421587
 content_sha256: 0c099d7270a495261faebfd81f2f572b6b3ba69acc5aa04c77d962ed7f0b3c49
 derived_topics:
-- context-engineering
-- layered-ai-architecture
+- topics/context-engineering.md
+- topics/layered-ai-architecture.md
 derived_trends:
-- ai-products-shift-from-models-to-systems
+- industry-trends/ai-products-shift-from-models-to-systems.md
+derived_pages:
+- industry-trends/ai-products-shift-from-models-to-systems.md
+- topics/context-engineering.md
+- topics/layered-ai-architecture.md
 ---
 
 # LLMs, RAG, Agents, MCP: The AI Evolution You Must Know (A Visual Explanation)

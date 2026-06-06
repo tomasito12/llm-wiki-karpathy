@@ -59,6 +59,7 @@ category: index
 - [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]]
 - [[sources/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-01kqkvj2z9yv69c235tfg6b2gk|RAG, LLM Wiki, or Gbrain? How Your Agent Remembers Changes Everything]]
 - [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]]
+- [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 - [[sources/speeding-up-agentic-workflows-with-websockets-in-the-responses-api-01kpv0wxjnsv9gk1qw36wa3z1x|Speeding up agentic workflows with WebSockets in the Responses API]]
 - [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]]
 - [[sources/the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt|The hardest percentages]]
@@ -92,14 +93,17 @@ category: index
 - [[sources/building-outcome-based-pricing-for-fin-for-sales-01kr3k6ta71c0h2jx16gawcmam|Building outcome-based pricing for Fin for Sales]]
 - [[sources/how-to-share-the-ai-windfall-01krjzk87fkdps6ffa3y51pdzf|How to share the AI windfall]]
 - [[sources/is-ai-putting-graduates-out-of-work-already-01krjzm4n3xb3w29agz9ehzxaj|Is AI putting graduates out of work already?]]
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f|Notion’s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software Factory Future — Simon Last & Sarah Sachs of Notion]]
 - [[sources/the-a-i-fear-keeping-silicon-valley-up-at-night-01krc5cbcftpdzrj5jfka0ec8b|The A.I. Fear Keeping Silicon Valley Up at Night]]
 - [[sources/the-ai-rush-is-hitting-a-bottleneck-01krh9cw3j10nhcqc5srt894rx|The AI rush is hitting a bottleneck]]
+- [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
 - [[sources/why-deepseek-s-sequel-failed-to-impress-01krh9chzbaznrrnht7s6d540b|Why DeepSeek’s sequel failed to impress]]
 
 ## ai-engineering
 
 - [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]]
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]]
 - [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]]
 - [[sources/ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p|[AINews] Top Local Models List - April 2026]]
@@ -174,6 +178,7 @@ category: index
 - [[sources/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14|Millions of Calls, One Judge: How We Evaluated Our Voicebot in Production]]
 - [[sources/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-chris-manning-and-fan-yun-sun-01knem57jh58hr3vntwm29vvc7|Moonlake: Causal World Models should be Multimodal, Interactive, and Efficient — with Chris Manning and Fan-yun Sun]]
 - [[sources/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f|Notion’s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software Factory Future — Simon Last & Sarah Sachs of Notion]]
+- [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 - [[sources/the-next-frontier-of-ai-in-production-is-chaos-engineering-01krkb7np7mz3q1weya69wvnvv|The Next Frontier of AI in Production Is Chaos Engineering]]
 - [[sources/where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60|Where the goblins came from]]
 
@@ -198,8 +203,10 @@ category: index
 
 ## ai-operationalization
 
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/ainews-good-friday-01knem57ejmcktht5v8krq543j|[AINews] Good Friday]]
 - [[sources/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9|[AINews] Humanity's Last Gasp]]
+- [[sources/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x|[AINews] Microsoft Build: MAI-Thinking-1 and MAI Family models]]
 - [[sources/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3|[AINews] The Two Sides of OpenClaw]]
 - [[sources/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a12b-advances-sota-realtime-voice-and-kills-standard-vad-01krd7h0s789k86g2yk4qr8zg8|[AINews] Thinking Machines' Native Interaction Models - TML-Interaction-Small 276B-A12B - advances SOTA Realtime Voice and kills standard VAD]]
 - [[sources/andrej-karpathy-stopped-using-ai-to-write-code-he-s-using-it-to-build-a-second-brain-instead-01kr4392yb22p11v8q7pqc9npw|Andrej Karpathy Stopped Using AI to Write Code. He’s Using It to Build a Second Brain Instead]]
@@ -224,6 +231,7 @@ category: index
 - [[sources/the-sequence-opinion-844-harness-engineering-the-operating-system-for-agentic-software-01kpazg4xdw7fnnebga7hdkbqn|The Sequence Opinion #844: Harness Engineering: The Operating System for Agentic Software]]
 - [[sources/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-01knem857g2mezerkwj34t8vnh|The Sequence Radar #832: Last Week in AI: Compression, Voice, and Why It All Matters]]
 - [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]]
+- [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
 - [[sources/the-ultimate-guide-to-knowledge-management-for-your-sales-agent-01krh989qjyns47e84f2k7v769|The ultimate guide to knowledge management for your Sales Agent]]
 - [[sources/where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60|Where the goblins came from]]
 - [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]]
@@ -270,6 +278,7 @@ category: index
 ## automation-supervision
 
 - [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]]
+- [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
 
 ## behavior-aware-evaluation
 
@@ -287,6 +296,10 @@ category: index
 ## browser-use
 
 - [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]]
+
+## chat-interface
+
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 
 ## cli-tool
 
@@ -334,6 +347,7 @@ category: index
 
 ## context-engineering
 
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]]
 - [[sources/creating-a-stateless-chatbot-in-langgraph-01kqm094n15r71mj5g1xbsk1nj|Creating a Stateless Chatbot in LangGraph]]
 - [[sources/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb|Giving Agents Computers — Ivan Burazin, Daytona]]
@@ -350,6 +364,7 @@ category: index
 
 - [[sources/announcing-fin-for-ecommerce-fin-s-next-role-as-a-customer-agent-01kr1qh2ychqe0q9z5c57325mp|Announcing Fin for Ecommerce: Fin’s next role as a Customer Agent]]
 - [[sources/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve|How we turned support into a revenue engine at Intercom]]
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]]
 
 ## developer-focused
@@ -390,7 +405,9 @@ category: index
 
 ## enterprise-ai
 
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns|[AINews] Codex Rises, Claude Meters Programmatic Usage]]
+- [[sources/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x|[AINews] Microsoft Build: MAI-Thinking-1 and MAI Family models]]
 - [[sources/announcing-agentic-performance-benchmarking-for-speech-to-speech-models-on-01krgrx80q2dg5k4a2bcx1b5xn|Announcing agentic performance benchmarking for Speech to Speech models on...]]
 - [[sources/announcing-fin-for-ecommerce-fin-s-next-role-as-a-customer-agent-01kr1qh2ychqe0q9z5c57325mp|Announcing Fin for Ecommerce: Fin’s next role as a Customer Agent]]
 - [[sources/chatgpt-for-operations-teams-01knw8fhapv0s142tzby3ay37b|ChatGPT for operations teams]]
@@ -399,6 +416,7 @@ category: index
 - [[sources/how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa|How enterprises are scaling AI]]
 - [[sources/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve|How we turned support into a revenue engine at Intercom]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-01krn2cgwkpeykxeadbb3f2ntm|LLMs, RAG, Agents, MCP: The AI Evolution You Must Know (A Visual Explanation)]]
 - [[sources/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2|Marc Andreessen introspects on The Death of the Browser, Pi + OpenClaw, and Why "This Time Is Different"]]
 - [[sources/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14|Millions of Calls, One Judge: How We Evaluated Our Voicebot in Production]]
@@ -409,7 +427,9 @@ category: index
 - [[sources/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-01kqkvj2z9yv69c235tfg6b2gk|RAG, LLM Wiki, or Gbrain? How Your Agent Remembers Changes Everything]]
 - [[sources/retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4|Retail UX is Stuck. Multimodal AI is the Reset Button.]]
 - [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]]
+- [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 - [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]]
+- [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
 - [[sources/voicebox-the-open-source-voice-studio-that-just-made-two-paid-saas-tools-optional-01krbnaenbma855qtcwygg10ya|Voicebox: The Open-Source Voice Studio That Just Made Two Paid SaaS Tools Optional]]
 
 ## enterprise-ai-adoption
@@ -421,6 +441,7 @@ category: index
 
 - [[sources/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-01krjqv65fws03dx3ga13t0mzc|1Password vs Apple Passwords: The Only Comparison You Need Before Your Next Renewal]]
 - [[sources/announcing-fin-for-ecommerce-fin-s-next-role-as-a-customer-agent-01kr1qh2ychqe0q9z5c57325mp|Announcing Fin for Ecommerce: Fin’s next role as a Customer Agent]]
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]]
 
 ## enterprise-oriented
@@ -429,12 +450,15 @@ category: index
 
 ## enterprise-workflows
 
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/announcing-fin-for-ecommerce-fin-s-next-role-as-a-customer-agent-01kr1qh2ychqe0q9z5c57325mp|Announcing Fin for Ecommerce: Fin’s next role as a Customer Agent]]
 - [[sources/building-outcome-based-pricing-for-fin-for-sales-01kr3k6ta71c0h2jx16gawcmam|Building outcome-based pricing for Fin for Sales]]
 - [[sources/chatgpt-for-operations-teams-01knw8fhapv0s142tzby3ay37b|ChatGPT for operations teams]]
 - [[sources/how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa|How enterprises are scaling AI]]
 - [[sources/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve|How we turned support into a revenue engine at Intercom]]
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f|Notion’s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software Factory Future — Simon Last & Sarah Sachs of Notion]]
+- [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 
 ## evals
 
@@ -452,6 +476,7 @@ category: index
 - [[sources/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns|[AINews] Codex Rises, Claude Meters Programmatic Usage]]
 - [[sources/ainews-good-friday-01knem57ejmcktht5v8krq543j|[AINews] Good Friday]]
 - [[sources/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9|[AINews] Humanity's Last Gasp]]
+- [[sources/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x|[AINews] Microsoft Build: MAI-Thinking-1 and MAI Family models]]
 - [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]]
 - [[sources/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3|[AINews] The Two Sides of OpenClaw]]
 - [[sources/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a12b-advances-sota-realtime-voice-and-kills-standard-vad-01krd7h0s789k86g2yk4qr8zg8|[AINews] Thinking Machines' Native Interaction Models - TML-Interaction-Small 276B-A12B - advances SOTA Realtime Voice and kills standard VAD]]
@@ -464,6 +489,7 @@ category: index
 - [[sources/the-sequence-opinion-844-harness-engineering-the-operating-system-for-agentic-software-01kpazg4xdw7fnnebga7hdkbqn|The Sequence Opinion #844: Harness Engineering: The Operating System for Agentic Software]]
 - [[sources/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-01knem857g2mezerkwj34t8vnh|The Sequence Radar #832: Last Week in AI: Compression, Voice, and Why It All Matters]]
 - [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]]
+- [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
 
 ## frontier-ai
@@ -721,6 +747,7 @@ category: index
 
 ## orchestration
 
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]]
 - [[sources/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x|I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
@@ -732,6 +759,7 @@ category: index
 ## orchestration-layer-growth
 
 - [[sources/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns|[AINews] Codex Rises, Claude Meters Programmatic Usage]]
+- [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
 
 ## organizational-design
 
@@ -739,7 +767,9 @@ category: index
 - [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]]
 - [[sources/how-to-share-the-ai-windfall-01krjzk87fkdps6ffa3y51pdzf|How to share the AI windfall]]
 - [[sources/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve|How we turned support into a revenue engine at Intercom]]
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2|Marc Andreessen introspects on The Death of the Browser, Pi + OpenClaw, and Why "This Time Is Different"]]
+- [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 
 ## persistent-agents
 
@@ -867,6 +897,7 @@ category: index
 
 - [[sources/ainews-good-friday-01knem57ejmcktht5v8krq543j|[AINews] Good Friday]]
 - [[sources/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9|[AINews] Humanity's Last Gasp]]
+- [[sources/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x|[AINews] Microsoft Build: MAI-Thinking-1 and MAI Family models]]
 - [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]]
 - [[sources/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3|[AINews] The Two Sides of OpenClaw]]
 - [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]]
@@ -878,6 +909,7 @@ category: index
 - [[sources/quantized-neural-networks-the-only-guide-you-need-01krpr2cp5m514x0kz75vbrr00|Quantized Neural Networks: The Only Guide You Need]]
 - [[sources/the-sequence-opinion-844-harness-engineering-the-operating-system-for-agentic-software-01kpazg4xdw7fnnebga7hdkbqn|The Sequence Opinion #844: Harness Engineering: The Operating System for Agentic Software]]
 - [[sources/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-01knem857g2mezerkwj34t8vnh|The Sequence Radar #832: Last Week in AI: Compression, Voice, and Why It All Matters]]
+- [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
 - [[sources/why-deepseek-s-sequel-failed-to-impress-01krh9chzbaznrrnht7s6d540b|Why DeepSeek’s sequel failed to impress]]
 
 ## runtime-model
@@ -886,6 +918,7 @@ category: index
 
 ## runtime-systems
 
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]]
 - [[sources/creating-a-stateless-chatbot-in-langgraph-01kqm094n15r71mj5g1xbsk1nj|Creating a Stateless Chatbot in LangGraph]]
 - [[sources/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb|Giving Agents Computers — Ivan Burazin, Daytona]]
@@ -936,8 +969,10 @@ category: index
 - [[sources/how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa|How enterprises are scaling AI]]
 - [[sources/how-to-build-an-efficient-knowledge-base-for-ai-models-01krkb3e658t23tx5zznes57v9|How to Build an Efficient Knowledge Base for AI Models]]
 - [[sources/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve|How we turned support into a revenue engine at Intercom]]
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14|Millions of Calls, One Judge: How We Evaluated Our Voicebot in Production]]
 - [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]]
+- [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 - [[sources/the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt|The hardest percentages]]
 - [[sources/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-while-improving-cx-01knemav6qx29wcp2jbje3wjan|Transformation in action: What it takes to automate 81% of your customer service while improving CX]]
 
@@ -953,6 +988,7 @@ category: index
 ## tool-centric-agents
 
 - [[sources/building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp|Building Realtime Voice Agents in 2026]]
+- [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
 
 ## tool-use
 
@@ -1017,6 +1053,7 @@ category: index
 - [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]]
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
+- [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2|Marc Andreessen introspects on The Death of the Browser, Pi + OpenClaw, and Why "This Time Is Different"]]
 - [[sources/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f|Notion’s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software Factory Future — Simon Last & Sarah Sachs of Notion]]
 - [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]]
@@ -1031,6 +1068,7 @@ category: index
 
 ## workflow-design
 
+- [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
 - [[sources/chatgpt-for-operations-teams-01knw8fhapv0s142tzby3ay37b|ChatGPT for operations teams]]
 - [[sources/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-lopopolo-openai-frontier-symphony-01knmf4r6yqgf92rpgng02z3wy|Extreme Harness Engineering: 1M LOC, 1B toks/day, 0% human code, 0% human review — Ryan Lopopolo, OpenAI Frontier & Symphony]]
 - [[sources/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s|Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter]]
@@ -1051,6 +1089,7 @@ category: index
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769|I Used Karpathy’s LLM Wiki to Build a Research Brain That Updates Itself. Here’s What Two Weeks Taught Me.]]
 - [[sources/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22|Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction]]
+- [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 - [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]]
 - [[sources/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-01knem857g2mezerkwj34t8vnh|The Sequence Radar #832: Last Week in AI: Compression, Voice, and Why It All Matters]]
 - [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]]

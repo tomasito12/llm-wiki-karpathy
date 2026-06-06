@@ -1,379 +1,414 @@
-# LLM Wiki — Scoped Rules for `wiki_ops`
+# LLM Wiki — Generated Knowledge Layer
 
-Use this file for wiki maintenance and knowledge operations only.
+Use this file for wiki generation, knowledge-layer structure, Obsidian conventions, and agent behavior around the **generated** vault.
+
+This document describes the **current** architecture implemented by `wiki-render`. It is not a manual-ingest contract.
+
+---
 
 ## Role
 
-You are the wiki maintainer for an AI expert's personal knowledge base.
-You own everything in `wiki/` and never modify `raw/`.
+You maintain and operate an AI expert's Obsidian knowledge base under `wiki/`.
 
-## Core separation
+Your job is to:
 
-- **Process instructions** live in `wiki/AGENTS.md`, `wiki/ingest-templates.md`, `wiki/stage1-classifier.md`, and `wiki/stage2-artifact-router.md`.
-- **Knowledge pages** (`wiki/sources/*.md`, `wiki/questions/*.md`, `wiki/glossary/*`, `wiki/tools/*`, `wiki/foundation-models/*`) should contain knowledge content, not prompt/process meta commentary.
+- keep review artifacts accurate and complete
+- run deterministic regeneration when reviews change
+- preserve provenance, graph relationships, and evidence
+- avoid treating generated markdown as the source of truth
 
-## Directory structure (current)
+You do **not** own `raw/` capture files except through the Readwise export workflow documented in `src/AGENTS.md`.
+
+---
+
+## Core principle
+
+**Canonical source of truth:** `state/reviews/<source_id>/review.json`
+
+Each review artifact contains human-reviewed classification output: approved entity proposals, tags, evidence fields, and source metadata. The Obsidian vault is a **generated projection** of those reviews.
+
+```text
+state/reviews/*
+        ↓
+  Knowledge Graph  (collect → merge → in-memory graph)
+        ↓
+    wiki-render    (hatch run wiki-render)
+        ↓
+   Obsidian Vault  (wiki/)
+```
+
+Agents must **never** treat generated pages as the primary source of truth. If vault content and a review artifact disagree, the review artifact wins. Fix the review, then regenerate.
+
+---
+
+## Generation command
+
+```bash
+hatch run wiki-render
+```
+
+Options:
+
+- `--dry-run` — compute output without writing files
+- `--no-prune` — skip deletion of stale generated files
+- `--reviews-dir`, `--out-dir`, `--manifest-path`, `--graph-path` — override defaults
+
+Every run performs **full regeneration**:
+
+1. Load all `state/reviews/*/review.json` artifacts
+2. Build an in-memory knowledge graph
+3. Render all managed pages from scratch
+4. Write advisory manifest and graph export
+5. Optionally prune files that were generated previously but no longer appear in output
+
+There are **no incremental updates** and **no dependency on previous renders**. The vault must always be reproducible from current reviews alone (plus the tag taxonomy files used for `taxonomy_version`).
+
+---
+
+## Folder structure
+
+All generated top-level folders use **lowercase-hyphenated** names.
 
 ```text
 wiki/
-  AGENTS.md
-  ingest-templates.md
-  stage1-classifier.md
-  stage2-artifact-router.md
-  index.md
-  overview.md
-  log.md
-  sources/
-  questions/
-    question-catalog.md
-    q-*.md
+  sources/                  # one page per reviewed source (never merged)
+  topics/                   # merged knowledge pages
   glossary/
-    index.md
-    terms/
-      *.md
-  foundation-models/
-    index.md
-    <slug>.md
+  industry-trends/
   tools/
-    index.md
-    <category>/
-      index.md
-      <tool-slug>.md
-  implementations/
-    index.md
-    <slug>.md
+  foundation-models/
+  how-to/
+  implementation-studies/   # individual evidence pages (not merged)
+  signals/                  # individual evidence pages (not merged)
+  interview-insights/       # individual evidence pages (not merged)
+  indexes/                  # generated indexes and diagnostics
 ```
 
-## Allowed content tags
-
-Only use tags from this allowlist in page frontmatter:
-
-- `ai-engineering`
-- `tools`
-- `models` (foundation-model pages only)
-
-If a new tag is needed, add it here first.
-
-## Allowed `type` values (frontmatter)
-
-Use these `type` values as documented in each contract below. Do not invent new `type` strings without updating this list.
-
-- `source`, `question`, `glossary`, `glossary-term`, `questions-catalog`, `tool`, `tools-category-index`, `tools-index`, `foundation-model`, `foundation-models-index`, `implementation-study`, `implementations-index`, `index`, `log`, `style`, and other meta types already in use under `wiki/`.
-
-## Filename policy
-
-- Keep filenames in stable kebab-case slugs (filesystem-safe and link-stable).
-- Use human-readable language in `title` and section headings.
-- Never use slug text as the only reader-facing heading when a readable phrasing is possible.
-
-## Fixed contracts by page type
-
-### 1) Glossary index — `wiki/glossary/index.md`
-
-- `type: glossary`
-- No `tags` in frontmatter
-- No "Related pages"
-- Content: plain term table (`Term | Page`), links to `glossary/terms/*`
-
-### 2) Glossary term page — `wiki/glossary/terms/<slug>.md`
-
-- `type: glossary-term`
-- Frontmatter includes: `title`, `type`, `created`, `updated`, `tags`
-- `tags` values must come from allowed tags
-- No `sources` in frontmatter
-- No "Related pages"
-- Body headings are **fixed and mandatory** in this order:
-  1. `## Definition`
-  2. `## Usage Notes`
-  3. `## Disagreements`
-  4. `## Sources` (bullet links)
-
-### 3) Questions catalog — `wiki/questions/question-catalog.md`
-
-- `type: questions-catalog`
-- No `tags` in frontmatter
-- No "Related pages"
-- Group by tag headings (for example `## ai-engineering`)
-- Under each heading: bullet list of `[[q-...]]`
-- A question can appear under multiple tag sections if applicable
-
-### 4) Question page — `wiki/questions/q-<slug>.md`
-
-- `type: question`
-- Frontmatter includes: `title`, `type`, `created`, `updated`, `tags`
-- No `aliases`
-- No `sources` in frontmatter
-- `tags` values must come from allowed tags
-- No "Related pages"
-- Body structure:
-  1. `## Synthesized answer`
-  2. optional additional explanatory subsections
-  3. `## Sources` (bullet links)
-- Do not use dated `Evidence — YYYY-MM-DD` sections on question pages.
-
-### 5) Source page (non-tools overview) — `wiki/sources/<raw-basename>.md`
-
-- `type: source`
-- Frontmatter **must** include: `title`, `type`, `created`, `updated`, `tags`
-- When known from the raw capture (for example Readwise `author`, outlet, or URL), also set:
-  - **`author`** — string; primary byline or organization credited for the piece
-  - **`publication`** — string; **venue or platform** (for example `Medium`, `Substack`, `arXiv`, `IEEE Spectrum`), not the article title or section name
-- Avoid duplicating `author` / `publication` inside `title` when those properties are set
-- `tags` values must come from allowed tags (typically `ai-engineering`; not the tools-overview path)
-- Must not include classifier/process verdict blocks in the page body
-- **Required section order**:
-  1. One rough summary paragraph (no heading required)
-  2. `## Questions addressed by the text`
-  3. For each question: readable H3 question text; include wikilink to canonical `q-*` in the subsection body
-  4. `## Why it matters`
-  5. `## Implications for service-call automation` (only if there are real implications)
-  6. `## Context and Limitations`
-  7. `## Contradictions / Unverified Claims`
-  8. `## Sources` (bullet links)
-- Do not create separate "Driving question(s)" and "Author's answer" sections.
-
-### 6) Source page (tools overview) — `wiki/sources/<raw-basename>.md`
-
-Use when Stage 1 routes to **software-tool-focused** content (see `wiki/stage1-classifier.md`): **multi-tool listicles and single-product reviews alike**. **Do not** create or update question pages for this path. After classification, use **Stage 2** (`wiki/stage2-artifact-router.md`) to decide **per product** whether updates land in `wiki/tools/` or `wiki/foundation-models/`.
-
-- `type: source`
-- Frontmatter **must** include: `title`, `type`, `created`, `updated`, `tags` (with `tags` including `tools` per below)
-- When known from the raw capture, also set **`author`** and **`publication`** (same meaning as contract **5)**); avoid repeating them in `title`
-- Frontmatter `tags` **must** include `tools`.
-- Must not include classifier/process verdict blocks in the page body
-- **Forbidden**: `## Questions addressed by the text`
-- **Coverage sections (after the summary):** include **only** sections that have **one or more** bullets, and list them in **this order**:
-  1. `## Apps and platforms covered` — bullets **only** `[[tools/<category>/<slug>]]` where `<category>` is **not** `mcp-servers` (apps, starters, workflow tools, etc.).
-  2. `## Foundation models covered` — bullets **only** `[[foundation-models/<slug>]]`.
-  3. `## MCP servers covered` — bullets **only** `[[tools/mcp-servers/<slug>]]`.
-- A single-product **tools-overview** article still uses whichever of the above sections apply (often only `## Apps and platforms covered` with one bullet). **Do not** use a flat `## Tools covered` that mixes apps, MCP servers, and foundation models in one list.
-- **Required section order** (full page):
-  1. One rough summary paragraph (no heading required)
-  2. Coverage section(s) above (non-empty only, fixed relative order)
-  3. `## Why it matters`
-  4. `## Implications for service-call automation` (only if there are real implications)
-  5. `## Context and Limitations`
-  6. `## Contradictions / Unverified Claims`
-  7. `## Sources` (bullet links)
-
-### 7) Tool page — `wiki/tools/<category>/<slug>.md`
-
-- `type: tool`
-- Frontmatter includes: `title`, `type`, `created`, `updated`, `tags`
-- `tags` must include `tools`
-- No `aliases`, no YAML `sources`, no "Related pages"
-- Body headings are **fixed and mandatory** in this order:
-  1. `## What problem does this tool solve?`
-  2. `## Properties` — bullet list (e.g. free/paid, learning curve, hosting, integrations); only what the sources support
-  3. `## Author assessments` — bullet list; **each bullet ends with** a wikilink to the `wiki/sources/` page it came from
-  4. `## Sources` — bullet wikilinks to every source page that has touched this tool (cumulative across ingests)
-- **Cross-link rule**: every tools-overview source lists each **app/platform** tool under `## Apps and platforms covered` (and MCP under `## MCP servers covered` when applicable); every matching **tool** page lists each such source under `## Sources`. **Foundation models** link from `## Foundation models covered` only; see contract **10)** for model-page `## Sources`.
-
-### 8) Tool category index — `wiki/tools/<category>/index.md`
-
-- `type: tools-category-index`
-- No `tags` in frontmatter
-- No "Related pages"
-- Content: a single table `| Tool | Page |` with rows wikilinking to every `wiki/tools/<category>/<slug>.md` (excluding `index.md`)
-
-### 9) Tools master index — `wiki/tools/index.md`
-
-- `type: tools-index`
-- No `tags` in frontmatter
-- No "Related pages"
-- Content: a single table `| Category | Page |` with rows wikilinking to every `wiki/tools/<category>/index.md`
-- **Scope:** lists **tool categories only**. **Not** used for foundation-model families—those live under `wiki/foundation-models/`.
-
-### 10) Foundation model page — `wiki/foundation-models/<slug>.md`
-
-- `type: foundation-model`
-- Frontmatter includes: `title`, `type`, `created`, `updated`, `tags` (**must** include `models`); optional `vendor`, `homepage`, `open_weights` (`yes` | `no` | `partial` | `unknown`) when sourced.
-- No `aliases`, no YAML `sources`, no "Related pages"
-- Body headings are **fixed and mandatory** in this order:
-  1. `## Summary` — short neutral overview; mark uncertainty when sources are thin.
-  2. `## Technical snapshot` — bullets grounded in sources (architecture, modalities, context length, tool calling); note when `## Timeline` supersedes a field.
-  3. `## Access and licensing` — API, weights, self-host, pricing **as stated**; `unknown` allowed.
-  4. `## Evaluation claims` — benchmark or headline numbers with **provenance labels**: `Vendor-claimed`, `Third-party`, or `Anecdotal`.
-  5. `## Limitations and risks` — only if sourced; otherwise one line: “Not covered in current sources.”
-  6. `## Timeline` — **append-only**, newest first. Each dated block: `### YYYY-MM-DD`, 1–3 bullets, then a **Source:** line with `[[sources/<basename>]]`.
-  7. `## Commentary` — optional opinion bullets; **each bullet ends with** a `[[sources/...]]` wikilink. Omit if the ingest only adds factual timeline material.
-  8. `## Sources` — cumulative bullet wikilinks to every `wiki/sources/` page that cited this model.
-- **Cross-link rule**: every tools-overview source that mentions the model lists it under `## Foundation models covered`; every foundation-model page lists that source under `## Sources`.
+### Path conventions
 
-### 11) Foundation models index — `wiki/foundation-models/index.md`
+| Artifact class | Path pattern |
+|----------------|--------------|
+| Source | `sources/<source_id>.md` |
+| Merged knowledge | `<category-folder>/<slug>.md` |
+| Signal | `signals/<YYYY-MM>/<source_id>-<slug>.md` |
+| Interview insight | `interview-insights/<YYYY-MM>/<source_id>-<slug>.md` |
+| Implementation study | `implementation-studies/<YYYY-MM>/<source_id>-<slug>.md` |
+| Index | `indexes/<name>.md` |
 
-- `type: foundation-models-index`
-- No `tags` in frontmatter
-- No "Related pages"
-- Content: a single table `| Model | Page |` with rows wikilinking to every `wiki/foundation-models/<slug>.md` (excluding `index.md`)
+Monthly evidence paths use `<source_id>-<slug>` basenames. Very long names are compacted with a deterministic hash suffix (filesystem limit: 160 characters).
 
-### 12) Implementation study page — `wiki/implementations/<slug>.md`
+Tools and foundation models use **flat** folders (`tools/<slug>.md`, `foundation-models/<slug>.md`), not nested category trees.
 
-- `type: implementation-study`
-- Frontmatter includes: `title`, `type`, `created`, `updated`, `tags`
-- `tags` values come from the review-layer `config/review_tags_impl_study.yaml` allowlist (mapped at render time)
-- No `aliases`, no YAML `sources`
-- Body headings are **fixed and mandatory** in this order:
-  1. `## Overview`
-  2. `## Company / organization`
-  3. `## Industry / domain`
-  4. `## What was implemented?`
-  5. `## Business objective`
-  6. `## Technical approach`
-  7. `## Deployment context`
-  8. `## Outcome / current status`
-  9. `## Why it succeeded or struggled`
-  10. `## Operational constraints`
-  11. `## AI / model observations`
-  12. `## Implications for service automation`
-  13. `## Strategic signals`
-  14. `## Key lessons` (bullet list)
-  15. `## Open questions` (bullet list)
-  16. `## Sources` (bullet links)
+---
 
-**Note:** No renderer exists yet. This contract documents the target structure so the future wiki page generator knows what to produce from approved `review.json` implementation-study proposals.
+## Artifact types
 
-### 13) Implementations index — `wiki/implementations/index.md`
+Three classes of generated content:
 
-- `type: implementations-index`
-- No `tags` in frontmatter
-- Content: a single table `| Title | Company | Page |` with rows wikilinking to every `wiki/implementations/<slug>.md` (excluding `index.md`)
-- Used for duplicate detection (existing titles injected into LLM prompt via `WikiSnapshot`)
+### 1. Sources (reviewed articles)
 
-## Implementations index parity rule
+**Not merged.** One page per approved review artifact.
 
-`wiki/implementations/index.md` and `wiki/implementations/*.md` (excluding `index.md`) must stay in **two-way parity** (same spirit as glossary parity).
+Sources summarize the reviewed article and link outward to everything derived from it. They accumulate tags from all derived entities on that source.
 
-- Every row in `wiki/implementations/index.md` must point to an existing `wiki/implementations/<slug>.md`.
-- Every implementation-study page must appear as a row in `wiki/implementations/index.md`.
-- During an ingest, update the study page and index row in the same step.
+### 2. Synthesized knowledge objects (merged)
 
-## Stage 1 classifier rules
+Merged across sources by stable slug and cautious title-alias grouping:
 
-Use `wiki/stage1-classifier.md` to classify:
+| Review key | Folder | Graph category |
+|------------|--------|----------------|
+| `topics` | `topics/` | `topic` |
+| `glossary` | `glossary/` | `glossary` |
+| `industry_trends` | `industry-trends/` | `trend` |
+| `tools` | `tools/` | `tool` |
+| `foundation_models` | `foundation-models/` | `model` |
+| `how_to` | `how-to/` | `how_to` |
 
-- **Industry radar digest** vs **non-radar**, then **named software tool(s) as primary subject** (tools-overview: **one or many** products) vs **thesis-first non-radar** (questions + source + glossary).
-- Stage 1 answers **archetype only**. Per-item routing (**foundation model** vs **app** vs **MCP**) is **Stage 2** — see `wiki/stage2-artifact-router.md`.
-- Classifier output belongs in working notes / logs, not in final source page content.
+Each merged page:
 
-## Question abstraction rule (generic-first)
+- accumulates `EvidenceItem` records from every contributing source
+- tracks `first_seen`, `last_seen`, `source_count`, `source_ids`
+- exposes `entity_id` as `<category>:<slug>` (for example `topic:local-models`)
+- carries `synthesis_state: stage1-placeholder` in Stage 1
 
-When creating or selecting questions, every rule below applies to **both** the filename slug (`q-<slug>.md`) **and** the frontmatter `title`. A question must remain reusable across future sources that ask the same thing.
+Only **non-rejected** proposals from `review.json` are included (`proposal_status != rejected`).
 
-### Q1 — Source-agnostic wording
+### 3. Evidence objects (not merged)
 
-Question titles and slugs must be phrased so any future source asking the same thing can attach evidence to the same page. Do not embed source-specific identifiers, brand names, author framing, or article-specific phrasing.
+Individual observations preserved as separate pages:
 
-- Good: `q-which-elements-underpin-production-ai-systems` / "Which elements underpin production AI systems?"
-- Bad: `q-yadavs-six-pillars-of-production-ai` / "Yadav's six pillars of production AI"
+| Review key | Folder | Graph category |
+|------------|--------|----------------|
+| `roundup_signals` | `signals/` | `signal` |
+| `interview_insights` | `interview-insights/` | `insight` |
+| `implementation_studies` | `implementation-studies/` | `impl_study` |
 
-### Q2 — No quantifier lock-in
+These are case studies, signals, and interview takeaways — **evidence**, not synthesized knowledge. Future cross-source synthesis may consume them via retrieval or Stage 2; Stage 1 does not merge them.
 
-Titles and slugs must not embed numeric counts that come from one source (`six`, `five`, `10`, `three pillars`, `four layers`, etc.). The count belongs to the source's framing, not to the underlying question. Use the unquantified concept noun.
+Implementation studies preserve: title, company, industry, tags, implementation fields, evidence snippets, key lessons, open questions, related sources, and structured `EvidenceItem` records.
 
-- Good: `q-which-elements-underpin-production-ai-systems` / "Which elements underpin production AI systems?"
-- Bad: `q-what-six-concepts-underpin-production-ai-systems` / "What six concepts underpin production AI systems?"
+---
 
-### Q3 — No answer leakage
+## Rendering model (Stage 1)
 
-Question wording must not presuppose, name, or hint at the answer. Prefer neutral interrogatives (`what determines`, `which factors`, `how is X designed`) over leading constructions (`why is X mostly Y`, `why X is the main cause of Y`). The synthesized answer must be free to evolve as new evidence arrives without renaming the question page.
+### Merged knowledge pages
 
-- Good: `q-what-determines-rag-effectiveness` / "What determines RAG effectiveness?"
-- Bad: `q-why-is-rag-effectiveness-mostly-a-retrieval-problem` / "Why is RAG effectiveness mostly a retrieval problem?"
+Structure:
 
-### Dedupe directive
+1. `# <title>`
+2. `## Current understanding` — lead prose with Stage 1 placeholder comment
+3. Category-specific value sections (definition, trend statement, tool properties, etc.)
+4. `## Evidence / supporting sources` — grouped `EvidenceItem` bullets with `evidence_id`, stance, field, source link
+5. `## Contradictions / uncertainty` — counter and uncertainty evidence
+6. `## Related pages` — related entity references when present
+7. `## Sources` — backlinks to contributing source pages
 
-If a new source adds aspects to an existing question, extend the existing `q-*.md` (or add an alias-style heading inside the body if needed) instead of creating a near-duplicate page. Run the `A0` dedupe gate against `wiki/questions/question-catalog.md` before creating any new `q-*` file.
+Lead prose is **not** true multi-source synthesis. It is the highest-ranked single-source contribution, marked explicitly as a placeholder.
 
-## Glossary parity rule
+### Source pages
 
-`wiki/glossary/index.md` and `wiki/glossary/terms/` must stay in two-way parity. Adding a term to the index is only complete once its page exists, and vice versa.
+Structure:
 
-- Every row in `wiki/glossary/index.md` must point to an existing `wiki/glossary/terms/<slug>.md`.
-- Every page under `wiki/glossary/terms/` (excluding hidden/system files) must appear as a row in `wiki/glossary/index.md`.
-- During an ingest, create the term page in the same step as the index row update. Never leave dangling links between ingests.
+1. `# <title>` — accessible overview or summary
+2. `## Key insights`
+3. `## Derived knowledge pages` — wikilinks to all derived pages (knowledge + evidence)
+4. `## Why it matters`
+5. `## Limitations / open questions`
+6. `## Contradictions / unverified claims`
+7. `## Source metadata` — canonical URL, raw capture paths
 
-## Tools index parity rule
+### Evidence pages (signals, insights, implementation studies)
 
-`wiki/tools/index.md`, each `wiki/tools/<category>/index.md`, and all `wiki/tools/<category>/<tool-slug>.md` pages must stay in two-way parity. Adding a tool is only complete once its category index row exists and the master index lists the category if new.
+Structure varies by category but always includes:
 
-- Every row in `wiki/tools/<category>/index.md` must point to an existing `wiki/tools/<category>/<slug>.md`.
-- Every tool page under `wiki/tools/<category>/` (excluding `index.md`) must appear as a row in that category's `index.md`.
-- Every category folder under `wiki/tools/` (excluding the root `index.md`) must appear as a row in `wiki/tools/index.md`, and every such row must resolve to an existing `wiki/tools/<category>/index.md`.
-- During a tools-overview ingest, create or update the tool page, category `index.md`, and master `wiki/tools/index.md` in the same step. Never leave dangling links between ingests.
+- source attribution (`source_id`, `source_title`, `source_date`, `month`)
+- category-specific body fields
+- `## Evidence / supporting sources` when evidence items exist
+- `## Source` backlink
 
-**T0 (tools dedupe):** Before creating a new tool page, read `wiki/tools/index.md` (when present) and the relevant `wiki/tools/<category>/index.md`. If the tool already has a page, extend it; otherwise create a new `<slug>.md` and add index rows.
+---
 
-**T0b (new tool category gate — `wiki/tools` only):** Before creating a **new** `wiki/tools/<category>/` folder, read `wiki/tools/index.md` and reuse the closest existing category row when the product fits an established bucket. If you must add a category, add the folder, category `index.md`, master index row, and append a one-line note to `wiki/log.md`. **Foundation model families never use this gate** — use `wiki/foundation-models/index.md` for dedupe.
+## Frontmatter conventions
 
-## Foundation models index parity rule
+Generated pages use YAML frontmatter with **`category`**, not legacy `type`.
 
-`wiki/foundation-models/index.md` and `wiki/foundation-models/*.md` (excluding `index.md`) must stay in **two-way parity** (same spirit as glossary parity).
+Common fields:
 
-- Every row in `wiki/foundation-models/index.md` must point to an existing `wiki/foundation-models/<slug>.md`.
-- Every foundation-model page must appear as a row in `wiki/foundation-models/index.md`.
-- During an ingest, update the model page, index row, and `## Sources` in the same step.
+| Field | Used on |
+|-------|---------|
+| `title`, `slug` | all pages |
+| `category` | all pages (`source`, `topic`, `glossary`, `industry-trend`, `tool`, `foundation-model`, `how-to`, `implementation-study`, `signal`, `insight`, `index`, `diagnostics`) |
+| `tags` | all pages (from review taxonomy) |
+| `entity_id` | merged knowledge pages |
+| `aliases` | merged knowledge pages |
+| `first_seen`, `last_seen`, `source_count`, `source_ids` | merged knowledge pages |
+| `evidence_count`, `evidence_set_hash` | pages with evidence |
+| `synthesis_state` | merged knowledge pages (`stage1-placeholder`) |
+| `source_id`, `source_title`, `source_date`, `month` | evidence pages |
+| `company`, `industry` | implementation studies |
 
-## Readwise raw hygiene (mandatory)
+### Source derived metadata
 
-For each `raw/readwise/<basename>.md`:
+Source frontmatter records what each review produced:
 
-- Read `.md` frontmatter only for metadata.
-- Read paired `.html` in full for actual content extraction.
-- If paired `.html` is missing, stop and request re-export.
-- A completed ingest creates exactly one `wiki/sources/<basename>.md` with the **same basename** as the raw pair. **That file’s presence is the source of truth for “already ingested”** (see `hatch run ingest-queue`). The ingest manifest is audit-only and must never be used to skip dedupe.
+**Slug lists** (merged knowledge):
 
-## Ingest manifest contract (audit log)
+- `derived_topics`, `derived_glossary`, `derived_trends`, `derived_tools`, `derived_models`, `derived_how_to`
 
-After **every** completed ingest (success or structured failure), upsert **exactly one** manifest record keyed by `source_id` = the raw basename (stem shared by `.html` / `.md` / `wiki/sources/<basename>.md`).
+**Path lists** (evidence objects):
 
-Required fields on the record:
+- `derived_signals`
+- `derived_interview_insights`
+- `derived_implementation_studies`
 
-- `source_id`, `raw_md_path`, `raw_html_path`, `canonical_url` (from raw metadata when known), `title`, optional `author`, `publication`, `published_date`
-- `content_sha256` — hash of the paired `.html` body (same concept as `state/readwise_library.json`)
-- `stage1_route` — one of `radar`, `tools-overview`, `questions`, `unknown`
-- `stage2_routes` — list of `{name, route, target_path?, notes?}` per Stage 2 decisions
-- `wiki_artifacts` — every wiki path created or materially updated in this ingest (source page, tools, models, questions, glossary, indices, `wiki/log.md` if touched)
-- `status` — `rendered` on success; `failed` with `errors` populated when the ingest aborts; `needs_review` when human follow-up is required
+Source `tags` are the union of tags from all derived entities on that source.
 
-**Never** use the manifest to decide whether to ingest — use `hatch run ingest-queue` / wiki file presence instead.
+---
 
-## QA checklist (run after every ingest)
+## Provenance
 
-1. Source page matches required section order exactly (standard source vs tools-overview source, per contract).
-2. No process/prompt text leaked into source/question/glossary content pages.
-3. Question headings are readable natural language, not slug-only text.
-4. Question page has no `aliases`, no YAML `sources`, and includes `## Sources` bullets.
-5. Glossary term pages use exact 4 fixed headings in order.
-6. Glossary index and question catalog contain no "Related pages" section.
-7. Frontmatter tags use only allowed tags.
-8. No unintended `wiki/<tag>/` hub folder/page created.
-9. Question titles and slugs contain no source-specific quantifiers (no `six`, `ten`, `three pillars`, numerals tied to one source) — see Q2.
-10. Question titles use neutral framing and do not presuppose or hint at the answer (no `why X is mostly Y` patterns) — see Q3.
-11. Every term row in `wiki/glossary/index.md` resolves to an existing `wiki/glossary/terms/<slug>.md`.
-12. Every page under `wiki/glossary/terms/` is listed as a row in `wiki/glossary/index.md`.
-13. Tools-overview source pages have tag `tools`, contain no `## Questions addressed by the text`, use split coverage headings (contract **6)**), and do not mix `[[foundation-models/...]]` links into `## Apps and platforms covered` or vice versa.
-14. Tool pages (`type: tool`) use exactly the 4 fixed headings in order (`What problem…`, `Properties`, `Author assessments`, `Sources`).
-15. Each tool page is listed in its category `wiki/tools/<category>/index.md`, and vice versa (tools index parity).
-16. Each category `index.md` is listed in `wiki/tools/index.md`, and vice versa (tools index parity).
-17. Each `[[tools/...]]` wikilink under `## Apps and platforms covered` or `## MCP servers covered` resolves to an existing `wiki/tools/<category>/<slug>.md`.
-18. Each `[[foundation-models/...]]` wikilink under `## Foundation models covered` resolves to an existing `wiki/foundation-models/<slug>.md`.
-19. Foundation-model pages (`type: foundation-model`) use the 8 fixed headings in order (contract **10)**), include tag `models`, and use dated `## Timeline` blocks with explicit `Source:` lines.
-20. `wiki/foundation-models/index.md` is in two-way parity with all non-index model pages.
-21. Ingest manifest: one upsert for this `source_id` with `stage1_route`, `stage2_routes`, `wiki_artifacts`, and `status` consistent with the ingest outcome (see **Ingest manifest contract**).
+### EvidenceItems
 
-## Session start checklist (`wiki_ops`)
+The graph layer materializes atomic **`EvidenceItem`** records from review fields and snippets. Each item carries:
+
+- `evidence_id` — stable short hash from source, entity slug, field, and text
+- `text` — the claim or snippet
+- `source_id`, `source_title`, `source_date`, `published_date`, `assessed_as_of`, `ingested_at`
+- `category`, `entity_slug`, `field`
+- `stance` — `supporting`, `counter`, `uncertainty`, or `neutral` (inferred from field name)
+- `provenance`, `evidence_type`, `confidence`, `value_level`
+
+Evidence items are rendered on page bodies and exported in `state/wiki_render_graph.json`.
+
+### Graph relationships
+
+- **Source → derived pages:** slug/path lists in source frontmatter; wikilinks in `## Derived knowledge pages`
+- **Knowledge page → sources:** `source_ids` in frontmatter; `## Sources` section
+- **Evidence page → source:** `source_id` in frontmatter; `## Source` section
+- **Tag propagation:** entity tags roll up to source tags and appear in tag indexes
+
+Agents must **preserve provenance**. Do not remove source references, evidence sections, or derived metadata from generated pages. Do not rewrite lead prose to imply multi-source synthesis in Stage 1.
+
+---
+
+## Stage 1 vs Stage 2
+
+| | Stage 1 (current) | Stage 2 (future) |
+|---|-------------------|------------------|
+| Lead prose | Single-source placeholder | True multi-source synthesis from accumulated evidence |
+| `synthesis_state` | `stage1-placeholder` | TBD (for example `synthesized`) |
+| Merge | Structural merge + evidence accumulation | May add narrative synthesis, contradiction resolution |
+| Input | `state/reviews/*` | Likely `state/wiki_render_graph.json` + reviews |
+
+Stage 2 is **not implemented**. Agents must not pretend Stage 1 pages contain synthesized multi-source narrative.
+
+---
+
+## Tags and taxonomy
+
+Tags come from human-reviewed proposals in `review.json`, validated against allowlists in:
+
+- `config/review_tags_topics.yaml` (topics and how-tos)
+- `config/review_tags_trends.yaml`
+- `config/review_tags_glossary.yaml`
+- `config/review_tags_tools.yaml`
+- `config/review_tags_models.yaml`
+- `config/review_tags_impl_study.yaml`
+
+Product **types** (separate from retrieval tags): `config/review_tool_types.yaml`, `config/review_model_types.yaml`.
+
+The renderer computes `taxonomy_version` as a hash of these files. It is recorded in the manifest and graph export.
+
+---
+
+## Managed vs editable content
+
+### Generated — do not hand-edit
+
+These paths are owned by `wiki-render`. Manual edits will be **overwritten** on the next run and may be **pruned** if they no longer appear in output:
+
+```text
+wiki/sources/
+wiki/topics/
+wiki/glossary/
+wiki/industry-trends/
+wiki/tools/
+wiki/foundation-models/
+wiki/how-to/
+wiki/implementation-studies/
+wiki/signals/
+wiki/interview-insights/
+wiki/indexes/
+```
+
+To change generated content, update the underlying `state/reviews/<source_id>/review.json` (via the ingest review dashboard) and rerun `hatch run wiki-render`.
+
+### Safe for manual content
+
+Paths **outside** the managed folders above are not regenerated or pruned. Use these for operator-owned notes:
+
+- `wiki/AGENTS.md` (this file)
+- `wiki/notes/` or other top-level folders **not** listed in managed folders — personal annotations, scratchpads, workflow notes
+- Legacy instruction files preserved by `wiki-reset` (see below) — historical reference only
+
+Do **not** store manual notes inside managed folders unless you accept that the next render will delete or overwrite them.
+
+### Legacy files (historical, not generation contracts)
+
+These files may exist under `wiki/` but are **not** produced by `wiki-render`:
+
+- `wiki/legacy/manual-ingest/stage1-classifier.md`
+- `wiki/legacy/manual-ingest/stage2-artifact-router.md`
+- `wiki/legacy/manual-ingest/ingest-templates.md`
+- `wiki/index.md`, `wiki/log.md` (legacy hub/log shells from `wiki-reset`)
+
+They describe the **previous** manual-ingest workflow. Do not use them as contracts for generated pages. Prefer this file and `src/AGENTS.md` for current tooling.
+
+The legacy **`wiki/questions/`** tree is **not part** of the generated architecture. Question-style knowledge is represented as `how-to/` pages and `topics/` in the new model.
+
+---
+
+## Diagnostics and maintenance
+
+| Path | Role |
+|------|------|
+| `state/wiki_render_manifest.json` | Advisory record of last render: file paths, content hashes, counts, `taxonomy_version`. Used for write-if-unchanged and safe prune. **Not** used for incremental merge. |
+| `state/wiki_render_graph.json` | Machine-readable full graph: sources, knowledge pages, signals, interview insights, implementation studies, evidence payloads, alias map. Stage 2 input. |
+| `wiki/indexes/knowledge-graph.md` | Human-readable diagnostics: page counts, duplicate candidates, thinly-supported pages, tag frequency, contradiction highlights |
+| `wiki/indexes/aliases.md` | Canonical entity aliases for ontology maintenance |
+| `wiki/indexes/index.md` | Landing page linking to all generated indexes |
+
+Generated indexes include:
+
+- `*-by-tag.md` for sources, topics, trends, tools, models, glossary, how-to, implementation studies
+- `signals-by-month.md`, `interview-insights-by-month.md`, `implementation-studies-by-month.md`
+
+Use diagnostics pages and graph export when debugging merge behavior, duplicate candidates, or missing backlinks.
+
+---
+
+## Obsidian conventions
+
+- **Wikilinks:** `[[relative/path/to/page|Label]]` — paths omit the `.md` extension
+- **Embeds:** not used by the generator
+- **Callouts / plugins:** generated indexes are plugin-free markdown
+- **Filenames:** kebab-case slugs; human-readable `title` in frontmatter and headings
+- **Links:** generator emits wikilinks for all cross-references between sources, knowledge pages, and evidence pages
+
+---
+
+## Agent guidance
+
+### Do
+
+- Treat `state/reviews/*` as source of truth
+- Run `hatch run wiki-render` after review changes
+- Preserve provenance, evidence sections, and source backlinks
+- Use graph export and diagnostics indexes to investigate structure
+- Fix data upstream in review artifacts, not by patching generated markdown
+- Read `src/AGENTS.md` for ingest dashboard, Readwise sync, and code-side workflows
+
+### Do not
+
+- Hand-edit managed generated pages expecting changes to persist
+- Remove or flatten source attribution
+- Rewrite Stage 1 lead prose as if it were multi-source synthesis
+- Force generated pages back into legacy contracts (`type: question`, nested `tools/<category>/`, `glossary/terms/`, manual index parity tables, etc.)
+- Use `wiki/legacy/manual-ingest/` docs as render contracts
+- Treat `wiki/index.md` or `wiki/log.md` as generated output
+
+### Session checklist (`wiki_ops`)
 
 1. Read this file.
-2. Read `wiki/stage1-classifier.md` and `wiki/stage2-artifact-router.md` (Stage 2 before assigning artifacts on a tools-overview ingest).
-3. Read `wiki/index.md` and latest `wiki/log.md` entries.
-4. Read `wiki/questions/question-catalog.md`.
-5. Read `wiki/glossary/index.md`.
-6. Read `wiki/tools/index.md` when present (before any tools-overview ingest, tool dedupe, or **T0b** category decisions).
-7. Read `wiki/foundation-models/index.md` when ingesting named **models** or model-news listicles.
-8. During a tools-overview ingest, read the relevant `wiki/tools/<category>/index.md` before creating a new tool page (T0 dedupe gate).
+2. Confirm which review artifacts changed (`state/reviews/`).
+3. Run `hatch run wiki-render` (or `--dry-run` first for large changes).
+4. Spot-check `wiki/indexes/knowledge-graph.md` and affected source pages for backlinks.
+5. Commit review artifacts and regenerated vault together when appropriate.
 
-## Notes
+---
 
-- Keep content concise, concrete, and source-grounded.
-- Keep page titles readable and consistent with file purpose.
+## End-to-end workflow (current)
+
+```text
+raw/readwise/*          Readwise export (paired .html + .md)
+        ↓
+ingest review dashboard  hatch run dashboard — classify + human approve
+        ↓
+state/reviews/*         review.json per source
+        ↓
+wiki-render             hatch run wiki-render — full vault regeneration
+        ↓
+wiki/                   Obsidian vault (generated projection)
+```
+
+The ingest review dashboard **does not** write wiki pages directly. Wiki generation is a separate deterministic step.
+
+---
+
+## Related documentation
+
+| Document | Scope |
+|----------|-------|
+| `src/AGENTS.md` | Python tooling, dashboard, Readwise, tests, `wiki-reset` |
+| `docs/tagging-ontology.md` | Tag allowlists and taxonomy migration |
+| Root `AGENTS.md` | Intent routing between `wiki_ops` and `code_ops` |

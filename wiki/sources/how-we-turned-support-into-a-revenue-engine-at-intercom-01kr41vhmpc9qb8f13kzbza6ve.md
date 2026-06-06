@@ -20,12 +20,17 @@ ingested_at: '2026-06-05T16:06:37.259897+00:00'
 canonical_url: https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/
 content_sha256: f413ec6733e83e4ca9014377c3efd7246ccebc621c9c0e9cfce2caf25485b87f
 derived_implementation_studies:
-- intercom-s-consultative-support-transformation
+- implementation-studies/2026-05/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve-intercom-s-consultative-support-transformation.md
 derived_topics:
-- control-group-based-service-experimentation
-- support-automation-as-operating-model
+- topics/control-group-based-service-experimentation.md
+- topics/support-automation-as-operating-model.md
 derived_trends:
-- support-automation-becomes-a-growth-function
+- industry-trends/support-automation-becomes-a-growth-function.md
+derived_pages:
+- implementation-studies/2026-05/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve-intercom-s-consultative-support-transformation.md
+- industry-trends/support-automation-becomes-a-growth-function.md
+- topics/control-group-based-service-experimentation.md
+- topics/support-automation-as-operating-model.md
 ---
 
 # How we turned support into a revenue engine at Intercom
@@ -42,7 +47,7 @@ Intercom says it used the time freed up by Fin to make support more proactive. I
 
 ## Derived knowledge pages
 
-- [[implementation-studies/intercom-s-consultative-support-transformation]]
+- [[implementation-studies/2026-05/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve-intercom-s-consultative-support-transformation]]
 - [[industry-trends/support-automation-becomes-a-growth-function]]
 - [[topics/control-group-based-service-experimentation]]
 - [[topics/support-automation-as-operating-model]]

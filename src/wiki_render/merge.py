@@ -6,6 +6,7 @@ from collections import Counter, defaultdict
 from collections.abc import Iterable
 from pathlib import Path
 
+from src.wiki_contract.categories import derived_key_for_graph_category
 from src.wiki_render import layout
 from src.wiki_render.collect import CollectedItems
 from src.wiki_render.evidence import EvidenceItem, evidence_set_hash
@@ -23,20 +24,22 @@ def build_knowledge_graph(
 ) -> KnowledgeGraph:
     """Merge contributions and return the full in-memory graph."""
     pages = merge_contributions(collected.contributions, wiki_dir=wiki_dir)
-    path_by_category_slug = {(page.category, page.slug): page.path for page in pages}
-    for source in collected.sources:
-        for key, slugs in source.derived.items():
-            category = _category_for_derived_key(key)
-            for slug in slugs:
-                path = path_by_category_slug.get((category, slug))
-                if path:
-                    source.derived_paths.setdefault(f"{key}_paths", set()).add(path)
+    source_by_id = {source.source_id: source for source in collected.sources}
+    for page in pages:
+        derived_key = derived_key_for_graph_category(page.category)
+        if not derived_key:
+            continue
+        for source_id in page.source_ids:
+            source = source_by_id.get(source_id)
+            if source is not None:
+                source.derived_paths.setdefault(derived_key, set()).add(page.path)
     alias_map = {page.entity_id: page.aliases for page in pages if page.aliases}
     return KnowledgeGraph(
         sources=collected.sources,
         knowledge_pages=pages,
         signals=collected.signals,
         insights=collected.insights,
+        implementation_studies=collected.implementation_studies,
         alias_map=alias_map,
         taxonomy_version=taxonomy_version,
     )
@@ -222,16 +225,3 @@ def _title_key(title: str) -> str:
 def _sorted_unique(values: Iterable[object]) -> list[str]:
     """Return sorted unique non-empty strings."""
     return sorted({str(value).strip() for value in values if str(value).strip()})
-
-
-def _category_for_derived_key(key: str) -> str:
-    """Map source derived frontmatter key back to page category."""
-    return {
-        "derived_topics": "topic",
-        "derived_glossary": "glossary",
-        "derived_trends": "trend",
-        "derived_tools": "tool",
-        "derived_models": "model",
-        "derived_how_to": "how_to",
-        "derived_implementation_studies": "impl_study",
-    }[key]

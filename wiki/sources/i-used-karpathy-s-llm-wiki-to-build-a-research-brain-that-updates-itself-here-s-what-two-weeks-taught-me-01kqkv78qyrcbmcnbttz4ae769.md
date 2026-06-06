@@ -16,13 +16,19 @@ ingested_at: '2026-05-22T18:23:52.315022+00:00'
 canonical_url: https://pub.towardsai.net/i-used-karpathys-llm-wiki-to-build-a-research-brain-that-updates-itself-ff02dda47335
 content_sha256: f404b854921821e384331b6a340188de422bd1544de00c5a9689327e0aa689eb
 derived_tools:
-- claude-code
-- obsidian
+- tools/claude-code.md
+- tools/obsidian.md
 derived_topics:
-- llm-assisted-knowledge-compilation
-- wiki-schema-governance
+- topics/llm-assisted-knowledge-compilation.md
+- topics/wiki-schema-governance.md
 derived_trends:
-- llm-maintained-knowledge-bases
+- industry-trends/llm-maintained-knowledge-bases.md
+derived_pages:
+- industry-trends/llm-maintained-knowledge-bases.md
+- tools/claude-code.md
+- tools/obsidian.md
+- topics/llm-assisted-knowledge-compilation.md
+- topics/wiki-schema-governance.md
 ---
 
 # I Used Karpathy’s LLM Wiki to Build a Research Brain That Updates Itself. Here’s What Two Weeks Taught Me.

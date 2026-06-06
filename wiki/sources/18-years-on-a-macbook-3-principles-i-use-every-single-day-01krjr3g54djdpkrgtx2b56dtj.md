@@ -13,9 +13,13 @@ ingested_at: '2026-06-05T16:34:56.702963+00:00'
 canonical_url: https://medium.com/macoclock/18-years-on-a-macbook-3-principles-i-use-every-single-day-ea82231fdcdc
 content_sha256: 066ab64c53b77e8e3061150b33a62e476f55247df8e8d077ce5c44d02716ac51
 derived_how_to:
-- keyboard-first-mac-workflow
-- keyboard-window-management
-- spotlight-command-center
+- how-to/keyboard-first-mac-workflow.md
+- how-to/keyboard-window-management.md
+- how-to/spotlight-command-center.md
+derived_pages:
+- how-to/keyboard-first-mac-workflow.md
+- how-to/keyboard-window-management.md
+- how-to/spotlight-command-center.md
 ---
 
 # 18 Years on a MacBook: 3 Principles I Use Every Single Day

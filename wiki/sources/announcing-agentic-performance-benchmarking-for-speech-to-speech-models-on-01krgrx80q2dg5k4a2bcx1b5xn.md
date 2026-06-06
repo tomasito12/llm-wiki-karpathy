@@ -24,13 +24,19 @@ ingested_at: '2026-06-05T18:50:37.342037+00:00'
 canonical_url: https://x.com/ArtificialAnlys/status/2054234919887573292
 content_sha256: 1c4ce3303902202f89a5b4fe57930c2e226b77126e6d44732de8753d066ff0ca
 derived_models:
-- gpt-realtime-2-high
-- grok-voice-think-fast-1-0
+- foundation-models/gpt-realtime-2-high.md
+- foundation-models/grok-voice-think-fast-1-0.md
 derived_topics:
-- agent-runtime-architecture-for-voice
-- realtime-ai-evaluation
+- topics/agent-runtime-architecture-for-voice.md
+- topics/realtime-ai-evaluation.md
 derived_trends:
-- voice-agents-shift-toward-workflow-completion
+- industry-trends/voice-agents-shift-toward-workflow-completion.md
+derived_pages:
+- foundation-models/gpt-realtime-2-high.md
+- foundation-models/grok-voice-think-fast-1-0.md
+- industry-trends/voice-agents-shift-toward-workflow-completion.md
+- topics/agent-runtime-architecture-for-voice.md
+- topics/realtime-ai-evaluation.md
 ---
 
 # Announcing agentic performance benchmarking for Speech to Speech models on...

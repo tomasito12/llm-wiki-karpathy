@@ -13,7 +13,9 @@ ingested_at: '2026-06-05T16:10:37.292359+00:00'
 canonical_url: https://www.economist.com/finance-and-economics/2026/05/13/is-ai-putting-graduates-out-of-work-already
 content_sha256: f6d440361fa4b23e04da7e84b79677ec758819bd21528f131c429a3ddbf4cab2
 derived_trends:
-- entry-level-technical-hiring-softens-under-ai-pressure
+- industry-trends/entry-level-technical-hiring-softens-under-ai-pressure.md
+derived_pages:
+- industry-trends/entry-level-technical-hiring-softens-under-ai-pressure.md
 ---
 
 # Is AI putting graduates out of work already?

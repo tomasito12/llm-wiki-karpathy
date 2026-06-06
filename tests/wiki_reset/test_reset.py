@@ -24,16 +24,18 @@ from src.wiki_reset.reset import (
 
 
 def test_is_instruction_wiki_file_matches_allowlist() -> None:
-    """Known instruction paths are recognized."""
+    """Known preserved paths are recognized."""
     assert is_instruction_wiki_file("AGENTS.md") is True
+    assert is_instruction_wiki_file("notes/scratch.md") is True
+    assert is_instruction_wiki_file("legacy/manual-ingest/README.md") is True
     assert is_instruction_wiki_file("sources/foo.md") is False
 
 
 def test_wiki_instruction_relpaths_is_non_empty() -> None:
-    """Instruction set is non-empty and stable."""
+    """Preserved root file set is non-empty."""
     paths = wiki_instruction_relpaths()
-    assert len(paths) == 4
-    assert "ingest-templates.md" in paths
+    assert "AGENTS.md" in paths
+    assert "index.md" in paths
 
 
 def test_delete_non_instruction_wiki_files_keeps_instructions(tmp_path: Path) -> None:
@@ -141,6 +143,7 @@ def test_run_wiki_reset_default_preserves_readwise_index(tmp_path: Path) -> None
     assert state_results == {
         "readwise_library": False,
         "ingest_manifest": True,
+        "wiki_render_manifest": True,
         "review_state": True,
         "tag_taxonomy": True,
     }
@@ -151,6 +154,7 @@ def test_run_wiki_reset_default_preserves_readwise_index(tmp_path: Path) -> None
     log_text = (wiki / "log.md").read_text(encoding="utf-8")
     assert "readwise_library preserved" in log_text
     assert "ingest_manifest cleared" in log_text
+    assert "wiki_render_manifest cleared" in log_text
     assert "review_state cleared" in log_text
     assert "tag_taxonomy cleared" in log_text
 
@@ -328,8 +332,9 @@ def test_write_wiki_shell_files_writes_expected_frontmatter(tmp_path: Path) -> N
         },
     )
     text = (wiki / "index.md").read_text(encoding="utf-8")
-    assert "type: index" in text
-    assert "[[glossary/index]]" in text
+    assert "category: hub" in text or "indexes/index" in text
+    assert (wiki / "indexes").is_dir()
+    assert (wiki / "topics").is_dir()
 
 
 def test_run_wiki_reset_missing_wiki_dir_raises(tmp_path: Path) -> None:

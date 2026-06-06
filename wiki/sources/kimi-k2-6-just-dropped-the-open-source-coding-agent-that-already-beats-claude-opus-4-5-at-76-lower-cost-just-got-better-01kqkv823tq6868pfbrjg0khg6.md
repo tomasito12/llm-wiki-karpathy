@@ -17,16 +17,24 @@ ingested_at: '2026-05-17T13:07:05.468303+00:00'
 canonical_url: https://levelup.gitconnected.com/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-2127bcf65122
 content_sha256: 40f0db39c1b446f82f6ad56a33dc56efdbf26dd01688a90f80e287367abed044
 derived_glossary:
-- mixture-of-experts
-- parallel-agent-reinforcement-learning
+- glossary/mixture-of-experts.md
+- glossary/parallel-agent-reinforcement-learning.md
 derived_models:
-- kimi-2-5
-- kimi-2-6
+- foundation-models/kimi-2-5.md
+- foundation-models/kimi-2-6.md
 derived_tools:
-- kimi-code-cli
+- tools/kimi-code-cli.md
 derived_topics:
-- agentic-workflows
-- context-engineering
+- topics/agentic-workflows.md
+- topics/context-engineering.md
+derived_pages:
+- foundation-models/kimi-2-5.md
+- foundation-models/kimi-2-6.md
+- glossary/mixture-of-experts.md
+- glossary/parallel-agent-reinforcement-learning.md
+- tools/kimi-code-cli.md
+- topics/agentic-workflows.md
+- topics/context-engineering.md
 ---
 
 # Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better

@@ -16,8 +16,11 @@ ingested_at: '2026-05-18T15:30:15.451408+00:00'
 canonical_url: https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2
 content_sha256: 10698aafc3235bdcfc049235b5a029d4cd71fa93496ff000bf76eff6957349d1
 derived_topics:
-- context-engineering
-- knowledge-management
+- topics/context-engineering.md
+- topics/knowledge-management.md
+derived_pages:
+- topics/context-engineering.md
+- topics/knowledge-management.md
 ---
 
 # LLM Wiki v2 — extending Karpathy's LLM Wiki pattern with lessons from building agentmemory · GitHub

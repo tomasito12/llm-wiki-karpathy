@@ -5,6 +5,10 @@ category: index
 
 # Signals By Month
 
+## 2026-06
+
+- [[signals/2026-06/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x-microsoft-is-packaging-agents-as-an-end-to-end-platform-stack|Microsoft is packaging agents as an end-to-end platform stack]]
+
 ## 2026-05
 
 - [[signals/2026-05/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns-agent-products-are-converging-on-durable-execution-and-inspectable-state|Agent products are converging on durable execution and inspectable state]]
@@ -13,6 +17,9 @@ category: index
 - [[signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-sglang-is-part-of-the-interaction-model-stack-41a882f54e|SGLang is part of the interaction-model stack]]
 - [[signals/2026-05/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a1-temporal-evaluation-is-becoming-necessary-for-realtime-assistants-1a3541345b|Temporal evaluation is becoming necessary for realtime assistants]]
 - [[signals/2026-05/china-thwarts-meta-s-agentic-ambition-u-s-evaluates-upcoming-models-ai-diagnoses-frontier-model-release-is-moving-toward-pre-deployment-government-re-a325f1a237|Frontier model release is moving toward pre-deployment government review]]
+- [[signals/2026-05/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opu-agent-workflows-are-becoming-the-product-surface-not-just-model-qual-3331b69e97|Agent workflows are becoming the product surface, not just model quality]]
+- [[signals/2026-05/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opu-autonomous-coding-is-moving-from-demo-to-internal-default-ec155ec761|Autonomous coding is moving from demo to internal default]]
+- [[signals/2026-05/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opu-inference-routing-is-becoming-a-standalone-middleware-business-a81150db9b|Inference routing is becoming a standalone middleware business]]
 
 ## 2026-04
 

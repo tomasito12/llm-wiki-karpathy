@@ -17,9 +17,12 @@ ingested_at: '2026-06-01T16:14:56.697570+00:00'
 canonical_url: https://www.latent.space/p/ainews-top-local-models-list-april
 content_sha256: 55b14fcd949487755b7222a023b8f14995bbea5fc5d0451efa05c2f2427df1e2
 derived_models:
-- qwen-3-5
+- foundation-models/qwen-3-5.md
 derived_topics:
-- use-case-specific-local-model-selection
+- topics/use-case-specific-local-model-selection.md
+derived_pages:
+- foundation-models/qwen-3-5.md
+- topics/use-case-specific-local-model-selection.md
 ---
 
 # [AINews] Top Local Models List - April 2026

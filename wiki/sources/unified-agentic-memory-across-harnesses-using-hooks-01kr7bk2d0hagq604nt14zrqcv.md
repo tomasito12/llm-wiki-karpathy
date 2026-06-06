@@ -22,16 +22,23 @@ ingested_at: '2026-06-02T20:00:21.511258+00:00'
 canonical_url: https://towardsdatascience.com/unified-agentic-memory-across-harnesses-using-hooks/
 content_sha256: 72c3dd8cc1c6a1ab77ed620f44e5af271228212c373a2a98e770a0994bfc5720
 derived_glossary:
-- hooks
+- glossary/hooks.md
 derived_how_to:
-- cross-harness-agent-memory
+- how-to/cross-harness-agent-memory.md
 derived_tools:
-- neo4j
+- tools/neo4j.md
 derived_topics:
-- agent-memory
-- harness-engineering
+- topics/agent-memory.md
+- topics/harness-engineering.md
 derived_trends:
-- harness-design-becomes-more-important-for-agent-reliability
+- industry-trends/harness-design-becomes-more-important-for-agent-reliability.md
+derived_pages:
+- glossary/hooks.md
+- how-to/cross-harness-agent-memory.md
+- industry-trends/harness-design-becomes-more-important-for-agent-reliability.md
+- tools/neo4j.md
+- topics/agent-memory.md
+- topics/harness-engineering.md
 ---
 
 # Unified Agentic Memory Across Harnesses Using Hooks

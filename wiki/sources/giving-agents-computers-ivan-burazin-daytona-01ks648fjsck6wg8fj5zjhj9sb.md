@@ -33,6 +33,12 @@ derived_interview_insights:
 - interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-open-source-improves-trust-and-context-more-than-direct-conversion.md
 - interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-spiky-rl-and-eval-workloads-create-a-different-capacity-planning-problem-than-93ac6af44f.md
 - interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-stateful-pause-resume-plus-instant-startup-are-first-order-agent-runtime-requirements.md
+derived_pages:
+- interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-agents-need-a-computer-shaped-runtime-not-just-code-execution.md
+- interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-cli-access-can-outperform-api-only-integrations-for-agent-workflows.md
+- interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-open-source-improves-trust-and-context-more-than-direct-conversion.md
+- interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-spiky-rl-and-eval-workloads-create-a-different-capacity-planning-problem-than-93ac6af44f.md
+- interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-stateful-pause-resume-plus-instant-startup-are-first-order-agent-runtime-requirements.md
 ---
 
 # Giving Agents Computers — Ivan Burazin, Daytona

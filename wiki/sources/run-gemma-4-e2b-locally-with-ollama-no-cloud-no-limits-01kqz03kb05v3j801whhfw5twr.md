@@ -33,16 +33,23 @@ ingested_at: '2026-06-05T17:18:31.110834+00:00'
 canonical_url: https://medium.com/@gabi.preda/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-7e6c3f6bd860
 content_sha256: 6cfe28fd6fc2323a910ed95e98ae53dbbc6bee69762b639c3bfb31e3bd88a72a
 derived_how_to:
-- local-model-setup
+- how-to/local-model-setup.md
 derived_models:
-- gemma-4
+- foundation-models/gemma-4.md
 derived_tools:
-- ollama
+- tools/ollama.md
 derived_topics:
-- local-model-deployment
-- multimodal-local-inference
+- topics/local-model-deployment.md
+- topics/multimodal-local-inference.md
 derived_trends:
-- open-weight-models-become-viable-on-consumer-hardware
+- industry-trends/open-weight-models-become-viable-on-consumer-hardware.md
+derived_pages:
+- foundation-models/gemma-4.md
+- how-to/local-model-setup.md
+- industry-trends/open-weight-models-become-viable-on-consumer-hardware.md
+- tools/ollama.md
+- topics/local-model-deployment.md
+- topics/multimodal-local-inference.md
 ---
 
 # Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits

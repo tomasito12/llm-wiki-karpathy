@@ -11,7 +11,9 @@ ingested_at: '2026-05-21T14:49:25.298962+00:00'
 canonical_url: https://medium.com/@piedpay/the-best-terminal-for-claude-code-ghostty-95c35b2d90e6
 content_sha256: 60e05d1e3c9abdf1e8ddcf034d14ebecac8369334169879fbef8304a2bdaabdb
 derived_tools:
-- ghostty
+- tools/ghostty.md
+derived_pages:
+- tools/ghostty.md
 ---
 
 # The Best Terminal for Claude Code - Ghostty

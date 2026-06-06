@@ -16,12 +16,17 @@ ingested_at: '2026-05-25T16:11:03.968334+00:00'
 canonical_url: https://medium.com/data-science-collective/i-spent-6-months-tuning-claude-code-heres-the-exact-setup-that-finally-worked-b41c67628478
 content_sha256: e0aabc6398b173855b43e8782533aa2399a16e533e5b0dcba26ec44a1a1da959
 derived_tools:
-- claude-code
+- tools/claude-code.md
 derived_topics:
-- agent-workspace-layering
-- token-efficient-agent-instructions
+- topics/agent-workspace-layering.md
+- topics/token-efficient-agent-instructions.md
 derived_trends:
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
+- industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture.md
+derived_pages:
+- industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture.md
+- tools/claude-code.md
+- topics/agent-workspace-layering.md
+- topics/token-efficient-agent-instructions.md
 ---
 
 # I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked.

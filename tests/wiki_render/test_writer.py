@@ -59,3 +59,22 @@ def test_writer_prunes_only_manifest_tracked_files(tmp_path: Path) -> None:
     assert report.pruned == 1
     assert not (wiki_dir / "topics" / "old.md").exists()
     assert untracked.exists()
+
+
+def test_writer_does_not_prune_notes_folder(tmp_path: Path) -> None:
+    """Files under wiki/notes/ are outside managed folders and never pruned."""
+    wiki_dir = tmp_path / "wiki"
+    manifest = tmp_path / "state" / "wiki_render_manifest.json"
+    notes_file = wiki_dir / "notes" / "scratch.md"
+    notes_file.parent.mkdir(parents=True)
+    notes_file.write_text("# scratch\n", encoding="utf-8")
+
+    write_rendered_files(
+        wiki_dir=wiki_dir,
+        files=[RenderedFile(relative_path="topics/only.md", text="only\n")],
+        manifest_path=manifest,
+        run_metadata={},
+        prune=True,
+    )
+
+    assert notes_file.exists()

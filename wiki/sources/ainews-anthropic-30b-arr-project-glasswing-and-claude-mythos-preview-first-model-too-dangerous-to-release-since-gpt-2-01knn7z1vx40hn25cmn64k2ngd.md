@@ -18,14 +18,20 @@ assessed_as_of: '2026-04-08'
 ingested_at: '2026-05-25T15:58:53.211887+00:00'
 canonical_url: https://www.latent.space/p/ainews-anthropic-30b-arr-project
 content_sha256: 8b51554d1263168b2e990e46a7f57452a41bb9c51ebf69e03cc55435f5857bc1
-derived_topics:
-- model-risk-assessment-for-cyber-capability
-- tiered-access-for-sensitive-model-capabilities
-derived_trends:
-- high-risk-models-move-to-gated-access
 derived_signals:
 - signals/2026-04/ainews-anthropic-30b-arr-project-glasswing-and-claude-mythos-preview-first-model-cyber-capability-becomes-a-deployment-risk-boundary-dc863e7bcb.md
 - signals/2026-04/ainews-anthropic-30b-arr-project-glasswing-and-claude-mythos-preview-first-model-restricted-frontier-access-for-cyber-capable-models-f03faecacb.md
+derived_topics:
+- topics/model-risk-assessment-for-cyber-capability.md
+- topics/tiered-access-for-sensitive-model-capabilities.md
+derived_trends:
+- industry-trends/high-risk-models-move-to-gated-access.md
+derived_pages:
+- industry-trends/high-risk-models-move-to-gated-access.md
+- signals/2026-04/ainews-anthropic-30b-arr-project-glasswing-and-claude-mythos-preview-first-model-cyber-capability-becomes-a-deployment-risk-boundary-dc863e7bcb.md
+- signals/2026-04/ainews-anthropic-30b-arr-project-glasswing-and-claude-mythos-preview-first-model-restricted-frontier-access-for-cyber-capable-models-f03faecacb.md
+- topics/model-risk-assessment-for-cyber-capability.md
+- topics/tiered-access-for-sensitive-model-capabilities.md
 ---
 
 # [AINews] Anthropic @ $30B ARR, Project GlassWing and Claude Mythos Preview — first model too dangerous to release since GPT-2

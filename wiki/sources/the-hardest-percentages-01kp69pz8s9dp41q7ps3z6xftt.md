@@ -16,10 +16,14 @@ ingested_at: '2026-05-17T15:47:56.559997+00:00'
 canonical_url: https://www.intercom.com/blog/the-hardest-percentages/
 content_sha256: 2b8825662751478bf1e9499facd90d34620adf2f5fdb999589417070e5ec19cb
 derived_how_to:
-- procedural-support-automation
+- how-to/procedural-support-automation.md
 derived_topics:
-- agentic-workflows
-- context-engineering
+- topics/agentic-workflows.md
+- topics/context-engineering.md
+derived_pages:
+- how-to/procedural-support-automation.md
+- topics/agentic-workflows.md
+- topics/context-engineering.md
 ---
 
 # The hardest percentages

@@ -19,10 +19,14 @@ ingested_at: '2026-06-05T16:12:33.570211+00:00'
 canonical_url: https://ai.gopubby.com/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-56829e66725c
 content_sha256: c8c8eccc70578f2eb3f2e3ffe45539bc9b7a43ff1b21c0bc8c5339d4f1fb9dd3
 derived_topics:
-- agent-memory-architecture
-- llm-maintained-knowledge-compilation
+- topics/agent-memory-architecture.md
+- topics/llm-maintained-knowledge-compilation.md
 derived_trends:
-- knowledge-architectures-converge-into-hybrid-systems
+- industry-trends/knowledge-architectures-converge-into-hybrid-systems.md
+derived_pages:
+- industry-trends/knowledge-architectures-converge-into-hybrid-systems.md
+- topics/agent-memory-architecture.md
+- topics/llm-maintained-knowledge-compilation.md
 ---
 
 # RAG, LLM Wiki, or Gbrain? How Your Agent Remembers Changes Everything

@@ -26,11 +26,17 @@ ingested_at: '2026-05-26T21:53:23.257710+00:00'
 canonical_url: https://medium.com/data-science-collective/agentic-ai-how-to-save-on-tokens-9a1571ac6c85
 content_sha256: b5998d0f3c9394aa0df3d355271c19c543a7b1fcfdf8bb9283896bb9b0a1507f
 derived_how_to:
-- context-compaction
-- lazy-loading-tools
-- model-routing-and-cascades
-- prompt-caching
-- semantic-caching
+- how-to/context-compaction.md
+- how-to/lazy-loading-tools.md
+- how-to/model-routing-and-cascades.md
+- how-to/prompt-caching.md
+- how-to/semantic-caching.md
+derived_pages:
+- how-to/context-compaction.md
+- how-to/lazy-loading-tools.md
+- how-to/model-routing-and-cascades.md
+- how-to/prompt-caching.md
+- how-to/semantic-caching.md
 ---
 
 # Agentic AI: How to Save on Tokens

@@ -17,10 +17,14 @@ ingested_at: '2026-06-05T13:56:42.853620+00:00'
 canonical_url: https://towardsdatascience.com/how-to-build-an-efficient-knowledge-base-for-ai-models/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-9yQGeOrwhLrM91iSbX-cy1jR5vGAIFTOvPt7wLLy7ngW_ACr7Hg86b3deCwBBCceWP-F-AqXqE-9DaWLsVa8Zp236Tzw&_hsmi=418698396&utm_source=newsletter
 content_sha256: abca2ed425a9619fbb7298e8cf0e4f21fead4079891f50114eb898f69edcfbf3
 derived_how_to:
-- knowledge-base-ingestion-pipeline
+- how-to/knowledge-base-ingestion-pipeline.md
 derived_topics:
-- hybrid-retrieval
-- knowledge-base-maintenance
+- topics/hybrid-retrieval.md
+- topics/knowledge-base-maintenance.md
+derived_pages:
+- how-to/knowledge-base-ingestion-pipeline.md
+- topics/hybrid-retrieval.md
+- topics/knowledge-base-maintenance.md
 ---
 
 # How to Build an Efficient Knowledge Base for AI Models

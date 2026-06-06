@@ -24,15 +24,22 @@ ingested_at: '2026-06-05T13:33:04.412271+00:00'
 canonical_url: https://medium.com/@evoailabs/why-andrej-karpathys-llm-wiki-is-the-future-of-personal-knowledge-7ac398383772
 content_sha256: 394c6707733b831fa940f72abb03db1a9aaa8df3e16bb407b9bd69a041c82bb2
 derived_glossary:
-- ontology
-- retrieval-augmented-generation
+- glossary/ontology.md
+- glossary/retrieval-augmented-generation.md
 derived_tools:
-- obsidian
+- tools/obsidian.md
 derived_topics:
-- llm-maintained-knowledge-compilation
-- ontology-driven-extraction
+- topics/llm-maintained-knowledge-compilation.md
+- topics/ontology-driven-extraction.md
 derived_trends:
-- agent-maintained-documentation-pipelines
+- industry-trends/agent-maintained-documentation-pipelines.md
+derived_pages:
+- glossary/ontology.md
+- glossary/retrieval-augmented-generation.md
+- industry-trends/agent-maintained-documentation-pipelines.md
+- tools/obsidian.md
+- topics/llm-maintained-knowledge-compilation.md
+- topics/ontology-driven-extraction.md
 ---
 
 # Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge

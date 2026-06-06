@@ -19,14 +19,20 @@ ingested_at: '2026-05-18T15:44:57.617024+00:00'
 canonical_url: https://medium.com/@aiwithakashgoyal/beyond-simple-extraction-how-production-grade-ontologies-transform-graphrag-from-prototype-to-333742fa41a6
 content_sha256: 0075d9fd82ac08756d3dbfcb76a6a33a6e3a7ec953bb72e6b9fc6bdbe01cb69c
 derived_glossary:
-- ontology
+- glossary/ontology.md
 derived_implementation_studies:
-- ontology-driven-medical-knowledge-graph
+- implementation-studies/2025-12/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22-ontology-driven-medical-knowledge-graph.md
 derived_topics:
-- ontology-driven-extraction
-- provenance-tracking
+- topics/ontology-driven-extraction.md
+- topics/provenance-tracking.md
 derived_trends:
-- knowledge-base-becomes-runtime-infrastructure
+- industry-trends/knowledge-base-becomes-runtime-infrastructure.md
+derived_pages:
+- glossary/ontology.md
+- implementation-studies/2025-12/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22-ontology-driven-medical-knowledge-graph.md
+- industry-trends/knowledge-base-becomes-runtime-infrastructure.md
+- topics/ontology-driven-extraction.md
+- topics/provenance-tracking.md
 ---
 
 # Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction
@@ -44,7 +50,7 @@ This piece is about building better knowledge graphs from messy documents. A kno
 ## Derived knowledge pages
 
 - [[glossary/ontology]]
-- [[implementation-studies/ontology-driven-medical-knowledge-graph]]
+- [[implementation-studies/2025-12/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22-ontology-driven-medical-knowledge-graph]]
 - [[industry-trends/knowledge-base-becomes-runtime-infrastructure]]
 - [[topics/ontology-driven-extraction]]
 - [[topics/provenance-tracking]]

@@ -17,8 +17,11 @@ ingested_at: '2026-06-02T20:34:10.508650+00:00'
 canonical_url: https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-44cbee166a5b
 content_sha256: fd68902107641806f2ae16c87d05d99c7739633c133cfdee54957a3924a8c8d5
 derived_topics:
-- context-engineering
-- prompts-as-workflows
+- topics/context-engineering.md
+- topics/prompts-as-workflows.md
+derived_pages:
+- topics/context-engineering.md
+- topics/prompts-as-workflows.md
 ---
 
 # The 3 Claude Prompts Worth Stealing Today

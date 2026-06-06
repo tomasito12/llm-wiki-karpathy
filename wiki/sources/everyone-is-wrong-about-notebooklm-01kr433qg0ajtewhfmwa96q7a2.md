@@ -18,13 +18,19 @@ ingested_at: '2026-05-17T13:18:48.838481+00:00'
 canonical_url: https://medium.com/@stunspot/everyone-is-wrong-about-notebooklm-802770aa12f7
 content_sha256: 0ff8d25769674d78dda0ff812d73f4443f307f9bf23d8b4d27ac45706a223713
 derived_glossary:
-- closed-resource-information-trust
-- retrieval-augmented-generation
+- glossary/closed-resource-information-trust.md
+- glossary/retrieval-augmented-generation.md
 derived_topics:
-- context-engineering
-- knowledge-management
+- topics/context-engineering.md
+- topics/knowledge-management.md
 derived_trends:
-- models-becoming-execution-layers
+- industry-trends/models-becoming-execution-layers.md
+derived_pages:
+- glossary/closed-resource-information-trust.md
+- glossary/retrieval-augmented-generation.md
+- industry-trends/models-becoming-execution-layers.md
+- topics/context-engineering.md
+- topics/knowledge-management.md
 ---
 
 # 💠🌐 Everyone Is Wrong About NotebookLM

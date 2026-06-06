@@ -30,16 +30,23 @@ ingested_at: '2026-06-05T18:43:13.160500+00:00'
 canonical_url: https://medium.com/data-science-collective/what-is-the-best-local-llm-for-coding-in-2026-8dab3619ff89
 content_sha256: 2645307bca77f1dc30d79bd9b53945a79d1ccc0140c7403816924b8154b85f47
 derived_how_to:
-- local-coding-model-setup
+- how-to/local-coding-model-setup.md
 derived_models:
-- qwen3-coder-next
+- foundation-models/qwen3-coder-next.md
 derived_tools:
-- ollama
+- tools/ollama.md
 derived_topics:
-- openai-compatible-local-endpoints
-- use-case-specific-local-model-selection
+- topics/openai-compatible-local-endpoints.md
+- topics/use-case-specific-local-model-selection.md
 derived_trends:
-- coding-models-shift-toward-agentic-execution
+- industry-trends/coding-models-shift-toward-agentic-execution.md
+derived_pages:
+- foundation-models/qwen3-coder-next.md
+- how-to/local-coding-model-setup.md
+- industry-trends/coding-models-shift-toward-agentic-execution.md
+- tools/ollama.md
+- topics/openai-compatible-local-endpoints.md
+- topics/use-case-specific-local-model-selection.md
 ---
 
 # What Is the Best Local LLM for Coding in 2026?

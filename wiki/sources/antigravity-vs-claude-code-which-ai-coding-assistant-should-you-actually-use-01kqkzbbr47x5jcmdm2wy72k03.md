@@ -18,14 +18,21 @@ ingested_at: '2026-05-19T16:30:04.935004+00:00'
 canonical_url: https://medium.com/no-time/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-8337d9233582
 content_sha256: 38f1c9e0fee36fb8865e78ce3e9a7a881152ffb135b8ddd188e966d21451babc
 derived_models:
-- gemini-3-pro
-- opus-4-6
-- sonnet-4-6
+- foundation-models/gemini-3-pro.md
+- foundation-models/opus-4-6.md
+- foundation-models/sonnet-4-6.md
 derived_topics:
-- agent-first-ide-orchestration
-- approval-based-coding-workflows
+- topics/agent-first-ide-orchestration.md
+- topics/approval-based-coding-workflows.md
 derived_trends:
-- models-becoming-execution-layers
+- industry-trends/models-becoming-execution-layers.md
+derived_pages:
+- foundation-models/gemini-3-pro.md
+- foundation-models/opus-4-6.md
+- foundation-models/sonnet-4-6.md
+- industry-trends/models-becoming-execution-layers.md
+- topics/agent-first-ide-orchestration.md
+- topics/approval-based-coding-workflows.md
 ---
 
 # Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?

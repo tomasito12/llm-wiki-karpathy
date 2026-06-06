@@ -16,10 +16,14 @@ ingested_at: '2026-06-05T14:04:21.498149+00:00'
 canonical_url: https://www.economist.com/finance-and-economics/2026/05/14/how-to-share-the-ai-windfall
 content_sha256: a826b71c047eae870aa54381e0aebac94f996974b397816684490acc96946ab9
 derived_topics:
-- ai-redistribution-through-taxation-and-ownership
-- tax-base-shift-from-labor-to-capital
+- topics/ai-redistribution-through-taxation-and-ownership.md
+- topics/tax-base-shift-from-labor-to-capital.md
 derived_trends:
-- automation-pressures-governments-to-tax-capital-instead-of-labor
+- industry-trends/automation-pressures-governments-to-tax-capital-instead-of-labor.md
+derived_pages:
+- industry-trends/automation-pressures-governments-to-tax-capital-instead-of-labor.md
+- topics/ai-redistribution-through-taxation-and-ownership.md
+- topics/tax-base-shift-from-labor-to-capital.md
 ---
 
 # How to share the AI windfall

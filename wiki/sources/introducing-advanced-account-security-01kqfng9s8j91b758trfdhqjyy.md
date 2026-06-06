@@ -15,12 +15,17 @@ ingested_at: '2026-05-17T19:56:50.694355+00:00'
 canonical_url: https://openai.com/index/advanced-account-security
 content_sha256: 3175a04d1468980f246a2031d419f3dc996519a83160e4cff0f245046bb9d0d7
 derived_glossary:
-- fido-compliant-security-key
-- passkey
+- glossary/fido-compliant-security-key.md
+- glossary/passkey.md
 derived_tools:
-- yubico
+- tools/yubico.md
 derived_topics:
-- privacy-controls-for-ai-products
+- topics/privacy-controls-for-ai-products.md
+derived_pages:
+- glossary/fido-compliant-security-key.md
+- glossary/passkey.md
+- tools/yubico.md
+- topics/privacy-controls-for-ai-products.md
 ---
 
 # Introducing Advanced Account Security

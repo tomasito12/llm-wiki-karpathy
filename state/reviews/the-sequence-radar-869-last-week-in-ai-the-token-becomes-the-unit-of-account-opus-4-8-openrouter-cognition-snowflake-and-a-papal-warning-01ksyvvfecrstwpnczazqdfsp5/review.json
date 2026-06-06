@@ -1,0 +1,1013 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T14:28:06+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnmHqqa9ZtdiM9Tmjd0sHo09BnRC3",
+          "token_usage": {
+            "completion_tokens": 221,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6532,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6753
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnmHuZt8JFFutA1TAkTRkTAc5XyOs",
+          "token_usage": {
+            "completion_tokens": 1242,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6170,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7412
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DnmI5ux4ku3SO2al41YXCGFy6YglY",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 1958,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 18134,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 20092
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnmI5ux4ku3SO2al41YXCGFy6YglY",
+    "token_usage": {
+      "completion_tokens": 3421,
+      "prompt_tokens": 30836,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 34257
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-31",
+        "confidence": 0.9,
+        "evidence_from_source": "The roundup explicitly argues that \"the token becomes the unit of account,\" then ties that to OpenRouter's routed inference take rate, Anthropic's revenue trajectory, Cognition's agent-generated code share, and Snowflake's agent-focused infrastructure commitments.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "enterprise-ai",
+          "runtime-centralization",
+          "orchestration-layer-growth"
+        ],
+        "related_trends": [
+          "pricing-and-harness-control-become-core-agent-product-levers",
+          "models-becoming-execution-layers",
+          "orchestration-layer-growth"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Anthropic projected Q2 revenue of roughly $10.9B and disclosed a $65B round.",
+          "OpenRouter said weekly throughput went from 5T to 25T tokens in six months and takes ~5% of inference spend.",
+          "Cognition said 89% of code committed inside Cognition is written by Devin, up from 13% in December.",
+          "Snowflake announced a $6B AWS compute deal and Natoma acquisition tied to agent access governance."
+        ],
+        "supporting_snippet": "\"This week it became an argument about the present, told in revenue.\" ... \"The whole stack \u2014 model, router, agent, substrate \u2014 is converging on one business model: charge by the token, because the token is the work.\"",
+        "time_sensitivity": "As of 2026-05-31, this is an emerging but evidence-backed framing from a weekly roundup; useful to monitor over the medium term rather than treat as settled law.",
+        "trend_description": "AI products are increasingly monetized and managed as metered runtime systems, where token volume and delegated work become the accounting unit rather than benchmark scores or model announcements alone. This trend matters because it shifts attention to inference routing, agent execution, and infrastructure spend as the core business levers.",
+        "trend_slug": "token-metering-becomes-the-ai-business-unit",
+        "trend_title": "Token metering becomes the AI business unit",
+        "uncertainty_note": "The source assembles several company-reported numbers into one thesis, but it does not independently verify margins, durability, or whether token-based accounting will dominate all AI businesses.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-05-31",
+        "evidence_snippets": [
+          "\"Three changes matter. First, an effort control that lets you dial how hard the model thinks per task\"",
+          "\"dynamic workflows: a Claude Code capability where the model plans a large task, spins up parallel sub-agents to attack the pieces, verifies their outputs, and reports back\"",
+          "\"a Messages API that now accepts live edits to the message array mid-run without breaking the prompt cache\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Anthropic",
+          "Claude Opus 4.8",
+          "Claude Code"
+        ],
+        "operational_relevance": "Design agent systems around controllable effort, multi-step execution, and cache-preserving edits so operators can intervene without restarting long tasks.",
+        "primary_tag": "ai-operationalization",
+        "proposed_tags": [
+          "ai-operationalization",
+          "execution-oriented-agents",
+          "automation-supervision",
+          "tool-centric-agents"
+        ],
+        "secondary_tag": "execution-oriented-agents",
+        "service_automation_relevance": "Relevant to service automation because support workflows often need escalation, mid-flight correction, and auditability rather than a single-turn answer.",
+        "signal_strength": "high",
+        "signal_title": "Agent workflows are becoming the product surface, not just model quality",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The roundup highlights Claude Opus 4.8's effort control, dynamic workflows, and live message edits as features that matter for long-running agent jobs. The practical shift is from one-shot prompting toward managed execution, steering, and self-checking over extended tasks.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-31, builders care less about small benchmark deltas than about whether a model can be governed during unattended work. This favors products that expose control surfaces for effort, task decomposition, and mid-run intervention.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-31",
+        "evidence_snippets": [
+          "\"OpenRouter raised $113M at $1.3B doing something almost embarrassingly simple: routing across 400+ models and taking ~5% of the inference spend that passes through.\"",
+          "\"Its weekly throughput went from 5T to 25T tokens in six months \u2014 5x.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "OpenRouter"
+        ],
+        "operational_relevance": "A routing layer can centralize provider selection, cost control, and fallback behavior across many models, which makes it a control point for latency, cost, and reliability.",
+        "primary_tag": "orchestration-layer-growth",
+        "proposed_tags": [
+          "orchestration-layer-growth",
+          "ai-economics",
+          "enterprise-ai"
+        ],
+        "secondary_tag": "ai-economics",
+        "service_automation_relevance": "Indirectly relevant: service bots and voice agents that depend on multiple models may benefit from a router that optimizes cost and performance per request.",
+        "signal_strength": "medium",
+        "signal_title": "Inference routing is becoming a standalone middleware business",
+        "signal_type": "infrastructure",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "OpenRouter is presented as a routing layer across 400+ models that monetizes the inference spend passing through it. The article treats its rapid token-volume growth as evidence that model access, routing, and spend capture can be a distinct infrastructure business.",
+        "time_horizon": "medium_term",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-05-31, this is a useful signal that orchestration and routing layers can sit between model providers and applications as monetizable infrastructure. Teams building multi-model products should expect routing choice and spend management to matter operationally.",
+        "wiki_worthiness": "review_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-31",
+        "evidence_snippets": [
+          "\"89% of code committed inside Cognition is now written by Devin, up from 13% in December.\"",
+          "\"Autonomous software engineering stopped being a demo and became the default committer.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Cognition",
+          "Devin"
+        ],
+        "operational_relevance": "Teams evaluating coding agents should measure commit share, review burden, and defect escape rate, not just demo quality or benchmark scores.",
+        "primary_tag": "execution-oriented-agents",
+        "proposed_tags": [
+          "execution-oriented-agents",
+          "automation-supervision"
+        ],
+        "secondary_tag": "automation-supervision",
+        "service_automation_relevance": "No direct service automation implications identified.",
+        "signal_strength": "high",
+        "signal_title": "Autonomous coding is moving from demo to internal default",
+        "signal_type": "topic",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "coding-models-shift-toward-agentic-execution",
+        "suggested_new_tags": [
+          "coding-models-shift-toward-agentic-execution"
+        ],
+        "summary": "Cognition says 89% of code committed inside the company is written by Devin, and the article uses that as evidence that autonomous software engineering has become routine inside at least one high-growth AI company. The signal is not just that the tool exists, but that it is shaping internal production output.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-31, this suggests agentic coding is being used as an operational default in a real company environment, not only as a showcase. That raises questions about review, quality control, and how much human engineering becomes supervisory.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-31",
+        "evidence_snippets": [],
+        "evidence_type": null,
+        "mentioned_entities": [],
+        "operational_relevance": "",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-governance",
+          "automation-supervision"
+        ],
+        "secondary_tag": "ai-governance",
+        "service_automation_relevance": "",
+        "signal_strength": "low",
+        "signal_title": "",
+        "signal_type": "ignore",
+        "suggested_destinations": [],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "",
+        "time_horizon": "transient",
+        "value_level": "medium",
+        "why_it_matters": "",
+        "wiki_worthiness": "ignore"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The piece combines the author's editorial interpretation with company announcements and reported funding/revenue figures.",
+        "Several claims are vendor-provided or announcement-based (Anthropic, OpenRouter, Cognition, Snowflake) rather than independently tested here.",
+        "A few items reference external reporting or primary documents, but no single evidence mode dominates the whole source."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says the AI business is starting to look less like a research race and more like a metered utility. Anthropic\u2019s new model is only a modest step up, but the company\u2019s revenue, profit path, and funding are the bigger story. The article also highlights products that help models plan work, split tasks, edit running conversations, and check their own output. OpenRouter, Cognition, and Snowflake are used as examples of companies making money from token traffic and agent work. The editorial then adds a warning: if machines do more delegated decisions, humans may lose visibility and control. As of 2026-05-31, the useful takeaway is to watch the economics and the control surfaces, not just benchmark scores.",
+      "assessed_as_of": "2026-05-31",
+      "contradictions_and_skepticism": "The piece presents token-based accounting as if it cleanly explains the whole stack, but that framing is stronger as an editorial lens than as a demonstrated market law. Anthropic\u2019s profitability signal is based on projections and a funding announcement, so it should not be read as audited proof that frontier labs have solved unit economics. The 89% Devin-written-code claim is powerful but potentially narrow without context on code quality, review burden, or task selection. The article\u2019s language around delegated work and human disintermediation is persuasive, but it is more normative than evidentiary. The roundup is strongest when it stays close to reported numbers and product features, and weaker when it turns those numbers into a generalized moral or economic theory.",
+      "key_insights": [
+        "Anthropic\u2019s Opus 4.8 is described as a modest model upgrade, but the operationally important part is the company\u2019s disclosed path toward first operating profit.",
+        "Effort control is highlighted as a practical governance knob: builders can trade compute against quality explicitly instead of relying on prompt hacks.",
+        "Claude Code\u2019s dynamic workflows and live message edits are presented as tooling for long-running agent jobs that need steering without restart.",
+        "OpenRouter\u2019s 5% take on routed inference spend and 5T-to-25T weekly token growth make token flow itself a measurable business metric.",
+        "Cognition\u2019s 89% Devin-written code figure is the strongest single indicator in the piece that autonomous coding has moved from demo to internal default commit path."
+      ],
+      "limitations_and_open_questions": "The roundup leans heavily on announcement numbers and company-reported metrics, so the claims about revenue, profitability, and internal code generation are not independently verified here. The benchmark deltas for Opus 4.8 are described as modest, and the article itself does not show whether they matter across real production workloads. OpenRouter\u2019s throughput growth and take rate are informative, but the source does not explain margin structure, retention, or whether routed inference is durable outside the current model mix. Cognition\u2019s Devin-commit share is striking, but the text does not disclose how commits are reviewed, what kinds of code are excluded, or whether this transfers cleanly to other teams. Snowflake\u2019s agentic positioning is suggestive, yet the article does not detail product mechanics beyond the AWS deal and Natoma acquisition. The moral critique from the encyclical is relevant, but it remains a high-level argument rather than an engineering prescription.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-radar-869-last-week",
+        "https://thesequence.substack.com/p/the-sequence-radar-869-last-week",
+        "vatican.va"
+      ],
+      "summary": "This weekly roundup argues that the AI business has started pricing itself by token and by delegated work, not by benchmarks or future promises. Anthropic is presented as the clearest example: Claude Opus 4.8 is framed as a modest model upgrade, but the larger story is its move toward first operating profit, a large revenue run-rate, and a huge funding round. The article emphasizes product changes that matter for unattended agent workflows: adjustable effort control, dynamic multi-agent task execution in Claude Code, live message-array edits without breaking the prompt cache, and stronger self-checking/honesty behavior. It then links those capabilities to the economics of infrastructure and intermediaries: OpenRouter\u2019s routing business monetizes inference volume, Cognition\u2019s Devin is writing most internal commits, and Snowflake is reorganizing its data platform around agent workloads. The editorial also folds in Pope Leo XIV\u2019s encyclical as a moral critique of the same trend, arguing that technology is never neutral and that delegated decisions can slip away from human oversight one commit at a time. The roundup\u2019s core thesis is that models, routers, agents, and substrate vendors are converging on token-based accounting, but the article also leaves open what that optimization is actually maximizing for.",
+      "why_it_matters": "The article is valuable because it compresses several adjacent signals into one operational thesis: token volume and delegated work are becoming the accounting unit for AI products. Anthropic\u2019s Opus 4.8 matters less for its benchmark bump than for the combination of stronger agentic tooling, self-checking behavior, and a disclosed revenue/profit trajectory that challenges the old assumption that frontier labs must stay structurally unprofitable. OpenRouter matters because it monetizes inference routing itself, which is a clean example of a middle-layer business built directly on token traffic. Cognition matters because the Devin commit share and revenue run-rate together suggest autonomous software engineering can be a default internal process rather than a novelty. Snowflake matters because its AWS commitment and Natoma acquisition show a data platform adapting its access and compute layer for agentic workloads. The Pope Leo XIV encyclical adds a nontechnical counterpoint: the same delegation that makes these systems economically useful also raises agency and governance concerns. The piece does not prove a universal industry transition; it assembles live examples from one week and makes a strong case that token-metered economics and human oversight are now the two variables to watch. As of 2026-05-31, this is actionable as a framing device for builders and buyers, but it should be treated as a roundup thesis to monitor rather than a settled doctrine."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "Primary structure is a bundled weekly news digest with multiple loosely related AI items and short blurbs.",
+        "The article's main body mixes editorial synthesis with a roundup of separate news items (Opus 4.8, OpenRouter, Cognition, Snowflake, Pope Leo warning).",
+        "It is not primarily a single coherent tutorial, interview, or product review list."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-31",
+          "confidence": 0.9,
+          "evidence_from_source": "The roundup explicitly argues that \"the token becomes the unit of account,\" then ties that to OpenRouter's routed inference take rate, Anthropic's revenue trajectory, Cognition's agent-generated code share, and Snowflake's agent-focused infrastructure commitments.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "enterprise-ai",
+            "runtime-centralization",
+            "orchestration-layer-growth"
+          ],
+          "related_trends": [
+            "pricing-and-harness-control-become-core-agent-product-levers",
+            "models-becoming-execution-layers",
+            "orchestration-layer-growth"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Anthropic projected Q2 revenue of roughly $10.9B and disclosed a $65B round.",
+            "OpenRouter said weekly throughput went from 5T to 25T tokens in six months and takes ~5% of inference spend.",
+            "Cognition said 89% of code committed inside Cognition is written by Devin, up from 13% in December.",
+            "Snowflake announced a $6B AWS compute deal and Natoma acquisition tied to agent access governance."
+          ],
+          "supporting_snippet": "\"This week it became an argument about the present, told in revenue.\" ... \"The whole stack \u2014 model, router, agent, substrate \u2014 is converging on one business model: charge by the token, because the token is the work.\"",
+          "time_sensitivity": "As of 2026-05-31, this is an emerging but evidence-backed framing from a weekly roundup; useful to monitor over the medium term rather than treat as settled law.",
+          "trend_description": "AI products are increasingly monetized and managed as metered runtime systems, where token volume and delegated work become the accounting unit rather than benchmark scores or model announcements alone. This trend matters because it shifts attention to inference routing, agent execution, and infrastructure spend as the core business levers.",
+          "trend_slug": "token-metering-becomes-the-ai-business-unit",
+          "trend_title": "Token metering becomes the AI business unit",
+          "uncertainty_note": "The source assembles several company-reported numbers into one thesis, but it does not independently verify margins, durability, or whether token-based accounting will dominate all AI businesses.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ffd1265d-dd87-4528-b5a5-21231073f6a8",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "pricing-and-harness-control-become-core-agent-product-levers",
+              "models-becoming-execution-layers",
+              "orchestration-layer-growth"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Anthropic projected Q2 revenue of roughly $10.9B and disclosed a $65B round.",
+              "OpenRouter said weekly throughput went from 5T to 25T tokens in six months and takes ~5% of inference spend.",
+              "Cognition said 89% of code committed inside Cognition is written by Devin, up from 13% in December.",
+              "Snowflake announced a $6B AWS compute deal and Natoma acquisition tied to agent access governance."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "enterprise-ai",
+            "runtime-centralization",
+            "orchestration-layer-growth"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-31",
+          "evidence_snippets": [
+            "\"Three changes matter. First, an effort control that lets you dial how hard the model thinks per task\"",
+            "\"dynamic workflows: a Claude Code capability where the model plans a large task, spins up parallel sub-agents to attack the pieces, verifies their outputs, and reports back\"",
+            "\"a Messages API that now accepts live edits to the message array mid-run without breaking the prompt cache\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Anthropic",
+            "Claude Opus 4.8",
+            "Claude Code"
+          ],
+          "operational_relevance": "Design agent systems around controllable effort, multi-step execution, and cache-preserving edits so operators can intervene without restarting long tasks.",
+          "primary_tag": "ai-operationalization",
+          "proposed_tags": [
+            "ai-operationalization",
+            "execution-oriented-agents",
+            "automation-supervision",
+            "tool-centric-agents"
+          ],
+          "secondary_tag": "execution-oriented-agents",
+          "service_automation_relevance": "Relevant to service automation because support workflows often need escalation, mid-flight correction, and auditability rather than a single-turn answer.",
+          "signal_strength": "high",
+          "signal_title": "Agent workflows are becoming the product surface, not just model quality",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The roundup highlights Claude Opus 4.8's effort control, dynamic workflows, and live message edits as features that matter for long-running agent jobs. The practical shift is from one-shot prompting toward managed execution, steering, and self-checking over extended tasks.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-31, builders care less about small benchmark deltas than about whether a model can be governed during unattended work. This favors products that expose control surfaces for effort, task decomposition, and mid-run intervention.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "e657eb89-3697-4cde-aff5-02b077be6657",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"Three changes matter. First, an effort control that lets you dial how hard the model thinks per task\"",
+              "\"dynamic workflows: a Claude Code capability where the model plans a large task, spins up parallel sub-agents to attack the pieces, verifies their outputs, and reports back\"",
+              "\"a Messages API that now accepts live edits to the message array mid-run without breaking the prompt cache\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Anthropic",
+              "Claude Opus 4.8",
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-operationalization",
+            "execution-oriented-agents",
+            "automation-supervision",
+            "tool-centric-agents"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-31",
+          "evidence_snippets": [
+            "\"OpenRouter raised $113M at $1.3B doing something almost embarrassingly simple: routing across 400+ models and taking ~5% of the inference spend that passes through.\"",
+            "\"Its weekly throughput went from 5T to 25T tokens in six months \u2014 5x.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "OpenRouter"
+          ],
+          "operational_relevance": "A routing layer can centralize provider selection, cost control, and fallback behavior across many models, which makes it a control point for latency, cost, and reliability.",
+          "primary_tag": "orchestration-layer-growth",
+          "proposed_tags": [
+            "orchestration-layer-growth",
+            "ai-economics",
+            "enterprise-ai"
+          ],
+          "secondary_tag": "ai-economics",
+          "service_automation_relevance": "Indirectly relevant: service bots and voice agents that depend on multiple models may benefit from a router that optimizes cost and performance per request.",
+          "signal_strength": "medium",
+          "signal_title": "Inference routing is becoming a standalone middleware business",
+          "signal_type": "infrastructure",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "OpenRouter is presented as a routing layer across 400+ models that monetizes the inference spend passing through it. The article treats its rapid token-volume growth as evidence that model access, routing, and spend capture can be a distinct infrastructure business.",
+          "time_horizon": "medium_term",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-05-31, this is a useful signal that orchestration and routing layers can sit between model providers and applications as monetizable infrastructure. Teams building multi-model products should expect routing choice and spend management to matter operationally.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "e26e54bc-5342-4f78-89bf-f316cb73b7f6",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"OpenRouter raised $113M at $1.3B doing something almost embarrassingly simple: routing across 400+ models and taking ~5% of the inference spend that passes through.\"",
+              "\"Its weekly throughput went from 5T to 25T tokens in six months \u2014 5x.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenRouter"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "orchestration-layer-growth",
+            "ai-economics",
+            "enterprise-ai"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-31",
+          "evidence_snippets": [
+            "\"89% of code committed inside Cognition is now written by Devin, up from 13% in December.\"",
+            "\"Autonomous software engineering stopped being a demo and became the default committer.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Cognition",
+            "Devin"
+          ],
+          "operational_relevance": "Teams evaluating coding agents should measure commit share, review burden, and defect escape rate, not just demo quality or benchmark scores.",
+          "primary_tag": "execution-oriented-agents",
+          "proposed_tags": [
+            "execution-oriented-agents",
+            "automation-supervision"
+          ],
+          "secondary_tag": "automation-supervision",
+          "service_automation_relevance": "No direct service automation implications identified.",
+          "signal_strength": "high",
+          "signal_title": "Autonomous coding is moving from demo to internal default",
+          "signal_type": "topic",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "coding-models-shift-toward-agentic-execution",
+          "suggested_new_tags": [
+            "coding-models-shift-toward-agentic-execution"
+          ],
+          "summary": "Cognition says 89% of code committed inside the company is written by Devin, and the article uses that as evidence that autonomous software engineering has become routine inside at least one high-growth AI company. The signal is not just that the tool exists, but that it is shaping internal production output.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-31, this suggests agentic coding is being used as an operational default in a real company environment, not only as a showcase. That raises questions about review, quality control, and how much human engineering becomes supervisory.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "3fd414b2-23f0-4af1-a0e2-3f1b6649edde",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"89% of code committed inside Cognition is now written by Devin, up from 13% in December.\"",
+              "\"Autonomous software engineering stopped being a demo and became the default committer.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Cognition",
+              "Devin"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-oriented-agents",
+            "automation-supervision"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-31",
+          "evidence_snippets": [],
+          "evidence_type": null,
+          "mentioned_entities": [],
+          "operational_relevance": "",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "automation-supervision"
+          ],
+          "secondary_tag": "ai-governance",
+          "service_automation_relevance": "",
+          "signal_strength": "low",
+          "signal_title": "",
+          "signal_type": "ignore",
+          "suggested_destinations": [],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "",
+          "time_horizon": "transient",
+          "value_level": "medium",
+          "why_it_matters": "",
+          "wiki_worthiness": "ignore"
+        },
+        "notes": null,
+        "proposal_id": "d1c72da6-f7b3-4582-9f35-02b6e12946c5",
+        "proposal_status": "rejected",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "automation-supervision"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The piece combines the author's editorial interpretation with company announcements and reported funding/revenue figures.",
+          "Several claims are vendor-provided or announcement-based (Anthropic, OpenRouter, Cognition, Snowflake) rather than independently tested here.",
+          "A few items reference external reporting or primary documents, but no single evidence mode dominates the whole source."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Anthropic\u2019s Opus 4.8 is described as a modest model upgrade, but the operationally important part is the company\u2019s disclosed path toward first operating profit.",
+          "Effort control is highlighted as a practical governance knob: builders can trade compute against quality explicitly instead of relying on prompt hacks.",
+          "Claude Code\u2019s dynamic workflows and live message edits are presented as tooling for long-running agent jobs that need steering without restart.",
+          "OpenRouter\u2019s 5% take on routed inference spend and 5T-to-25T weekly token growth make token flow itself a measurable business metric.",
+          "Cognition\u2019s 89% Devin-written code figure is the strongest single indicator in the piece that autonomous coding has moved from demo to internal default commit path."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-radar-869-last-week",
+          "https://thesequence.substack.com/p/the-sequence-radar-869-last-week",
+          "vatican.va"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "Primary structure is a bundled weekly news digest with multiple loosely related AI items and short blurbs.",
+          "The article's main body mixes editorial synthesis with a roundup of separate news items (Opus 4.8, OpenRouter, Cognition, Snowflake, Pope Leo warning).",
+          "It is not primarily a single coherent tutorial, interview, or product review list."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 5,
+    "review_duration_seconds": 1227.3,
+    "review_finished_at": "2026-06-06T14:48:33.301501+00:00",
+    "review_started_at": "2026-06-06T14:28:06+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-06T14:48:33+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-radar-869-last-week",
+    "content_sha256": "8d9aa8e31f3535cdfb5bcb45f2f5ab27e296a1526a982437a7433c63e02ac998",
+    "publication": "substack.com",
+    "published_date": "2026-05-31",
+    "raw_html_rel_path": "raw/readwise/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5.md",
+    "source_id": "the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5",
+    "title": "The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account \u2014 Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning"
+  }
+}

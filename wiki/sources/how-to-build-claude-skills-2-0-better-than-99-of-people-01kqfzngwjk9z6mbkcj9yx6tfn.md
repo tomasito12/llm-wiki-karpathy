@@ -18,12 +18,17 @@ ingested_at: '2026-06-05T14:40:58.205031+00:00'
 canonical_url: https://medium.com/data-science-collective/how-to-build-claude-skills-2-0-better-than-99-of-people-af4927dd5335
 content_sha256: 5b84df04b1199a31d3b22aa978a936ec9931686f1476f7b9ce65d0ecf05c5f26
 derived_how_to:
-- claude-skills-setup
+- how-to/claude-skills-setup.md
 derived_tools:
-- claude-code
+- tools/claude-code.md
 derived_topics:
-- file-grammar-skills-for-ai
-- token-efficient-agent-instructions
+- topics/file-grammar-skills-for-ai.md
+- topics/token-efficient-agent-instructions.md
+derived_pages:
+- how-to/claude-skills-setup.md
+- tools/claude-code.md
+- topics/file-grammar-skills-for-ai.md
+- topics/token-efficient-agent-instructions.md
 ---
 
 # How to build Claude Skills 2.0 Better than 99% of People

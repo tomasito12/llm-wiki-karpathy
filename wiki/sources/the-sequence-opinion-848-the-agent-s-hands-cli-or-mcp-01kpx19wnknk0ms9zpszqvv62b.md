@@ -14,7 +14,9 @@ ingested_at: '2026-05-18T14:45:57.395895+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-848-the-agents
 content_sha256: d9eedd32ec0caf2413c2fd5f1a43daf8aa22062872cb2278980cd9d6516fe760
 derived_glossary:
-- model-context-protocol
+- glossary/model-context-protocol.md
+derived_pages:
+- glossary/model-context-protocol.md
 ---
 
 # The Sequence Opinion #848: The Agent’s Hands: CLI or MCP?
