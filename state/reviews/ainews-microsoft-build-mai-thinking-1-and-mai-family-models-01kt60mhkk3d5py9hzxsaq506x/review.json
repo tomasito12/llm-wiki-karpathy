@@ -1,0 +1,533 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T14:02:32+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnltCkoip5rv1ztGfNwjeJv6U7z9c",
+          "token_usage": {
+            "completion_tokens": 212,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 10128,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 10340
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnltFbkuOxltnoi2IUNAKDN26dgBc",
+          "token_usage": {
+            "completion_tokens": 1257,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 9756,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 11013
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DnltQLrXjk8Y2RnbIJvPkI24FdyyD",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 1133,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 21659,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 22792
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnltQLrXjk8Y2RnbIJvPkI24FdyyD",
+    "token_usage": {
+      "completion_tokens": 2602,
+      "prompt_tokens": 41543,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 44145
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-06-03",
+        "confidence": 0.84,
+        "evidence_from_source": "Microsoft\u2019s Build recap explicitly ties together MAI models, Windows, GitHub Copilot, Foundry, and Web IQ as a coordinated stack rather than separate launches.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-operationalization",
+        "proposed_tags": [
+          "ai-operationalization",
+          "execution-oriented-agents",
+          "runtime-centralization"
+        ],
+        "related_trends": [
+          "runtime-centralization",
+          "orchestration-layer-growth"
+        ],
+        "secondary_tag": "execution-oriented-agents",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "MAI family models were launched alongside GitHub Copilot app updates.",
+          "Web IQ was presented as the grounding/search layer for agents.",
+          "Windows was framed as an agent runtime, not only an operating system."
+        ],
+        "supporting_snippet": "The Build recap also showed Microsoft trying to integrate all layers of the stack: models: MAI family chips: MAIA 200 cloud: Azure + Foundry OS: Windows agent runtime developer UX: Copilot app / VS Code / CLI retrieval/grounding: Web IQ hardware form factors: Solara / Scout concepts",
+        "time_sensitivity": "Actionable as of 2026-06-03; the product packaging pattern is likely to remain relevant through at least the next several launch cycles, though the specific Microsoft surfaces will change.",
+        "trend_description": "Vendors increasingly package models together with grounding, orchestration, developer tooling, and execution surfaces. The durable pattern is that product value shifts from raw model access toward the surrounding system that makes agents useful and governable.",
+        "trend_slug": "ai-products-shift-from-models-to-systems",
+        "trend_title": "AI products are being sold as integrated systems, not standalone models",
+        "uncertainty_note": "This source is a roundup, so the evidence is real but still partly promotional and directional; it does not prove adoption or customer success.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-06-03",
+        "evidence_snippets": [],
+        "evidence_type": null,
+        "mentioned_entities": [],
+        "operational_relevance": "Expect tighter coupling between model choice, grounding APIs, desktop developer tools, and runtime surfaces. This matters for architecture decisions around where agents run, how they retrieve context, and how workflows move between local and cloud execution.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "execution-oriented-agents",
+          "runtime-centralization"
+        ],
+        "secondary_tag": "execution-oriented-agents",
+        "service_automation_relevance": "Useful for support and automation teams that want one vendor stack spanning agent runtime, retrieval, and operator-facing tooling; however, the article does not show production service outcomes yet.",
+        "signal_strength": "high",
+        "signal_title": "Microsoft is packaging agents as an end-to-end platform stack",
+        "signal_type": "trend",
+        "suggested_destinations": [],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Microsoft\u2019s Build message tied together models, Windows, GitHub Copilot, Foundry, and Web IQ as one agent platform. The operational point is not a single product launch, but a coordinated attempt to make model usage, grounding, execution, and developer workflow cohere across cloud and device surfaces. That makes the stack more relevant for teams building agentic apps on Microsoft infrastructure than isolated model announcements would be.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-03, this suggests Microsoft is competing on platform integration rather than only model quality. For practitioners, the practical question becomes how much of the agent lifecycle can be kept inside Microsoft-controlled surfaces for deployment, orchestration, and governance. The evidence is still a roundup of launch claims, so the strategic signal is stronger than any single product detail.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The source relies on a combination of vendor announcements, third-party benchmark summaries, and commentator reactions.",
+        "Some claims come from Microsoft's own posts and technical report, while others are based on independent benchmark accounts and tweet-level analysis.",
+        "Because no single evidence basis dominates the whole recap, 'mixed' fits best."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a news roundup about Microsoft Build and the new MAI model family. The big idea is that Microsoft did not just announce products; it also published a very detailed technical report about its reasoning model, which is unusual for a system at this scale. That report made people pay attention because it showed how Microsoft trained the model, what data it used, and how it scaled it. The roundup also covers tools around the models, like GitHub Copilot, Windows agent features, and a new grounding API called Web IQ. In plain English: Microsoft is trying to make its own models, its own developer tools, and its own agent platform work together.",
+      "assessed_as_of": "2026-06-03",
+      "contradictions_and_skepticism": "There is visible tension in the source around parameter accounting and compute estimates: commentators disagree on active versus total parameters for MAI models, and the alleged competitor FLOP \u201cleak\u201d was later challenged as likely an estimate rather than a leak. The roundup also mixes official Microsoft claims with enthusiastic reader reactions, so some of the praise for transparency and frontier-lab status is opinion rather than evidence. The clean-lineage, zero-distillation narrative is compelling, but the article itself includes skepticism that synth data may still matter for agentic performance even if Microsoft avoided it here. Several product claims, especially around Web IQ and platform reach, are framed in promotional terms and should be treated cautiously unless independently verified.",
+      "key_insights": [
+        "The most durable signal is Microsoft\u2019s willingness to publish a 109-page technical report with data, infra, and scaling details that are usually hidden at this scale.",
+        "MAI-Thinking-1 is presented as a first reasoning model with clean lineage and no third-party distillation, which matters for enterprise provenance and control.",
+        "Microsoft is pairing model launches with platform surfaces: Windows, GitHub Copilot, Foundry, and Web IQ are being positioned as one stack for agents.",
+        "Independent benchmark summaries suggest the new models are competitive across reasoning, code, image editing, and speech transcription, but several numbers are contested or hard to reconcile.",
+        "The roundup shows Microsoft emphasizing local execution and on-device AI, not only cloud hosting, which matters for how agent workloads may be deployed."
+      ],
+      "limitations_and_open_questions": "The source is a roundup, so several claims come from tweet summaries and secondary readings rather than direct inspection of the report or products. Some reported figures do not fully reconcile, especially around MAI-Code-1-Flash parameter counts versus active parameters, and around compute estimates discussed by commentators. Benchmark results are selective and partly based on vendor or third-party summaries, so they do not establish broad real-world superiority. The article does not fully resolve how much of the reported performance comes from model architecture, post-training, data curation, or hardware-specific optimization. Claims about Web IQ already powering major chatbots are presented through a tweet summary and would need direct validation before being treated as operational fact. The report\u2019s \u201cno synthetic data\u201d and \u201cno distillation\u201d stance is interesting, but the source does not prove that this recipe is optimal for downstream agentic performance.",
+      "sources": [
+        "https://mail.google.com/",
+        "mailto:reader-forwarded-email/9e47db253deff80411a69bddb82691f8"
+      ],
+      "summary": "This roundup centers on Microsoft Build and the launch of seven MAI models, with the most important piece being MAI-Thinking-1: Microsoft\u2019s first reasoning model, described as a 35B-active-parameter MoE with a 256K context window, clean data lineage, and no third-party distillation. The report and the surrounding commentary emphasize unusually detailed disclosure for a frontier-style model release, including pretraining data choices, scaling methodology, infra metrics, and post-training decisions. Microsoft also launched MAI-Code-1-Flash, MAI-Image-2.5, MAI-Transcribe-1.5, and MAI-Voice-2, while independently reported benchmark results suggested strong performance on coding, image editing, and transcription. Beyond models, the recap highlights Microsoft\u2019s broader platform story: agent-native Windows, GitHub Copilot as a desktop home for agentic development, Web IQ for grounding and search, and Foundry as a multi-model distribution layer. The article also notes that readers were impressed by the transparency of the 109-page report, but some details remained unclear or contested, especially around parameter accounting, compute estimates, and benchmark interpretation. Overall, the piece frames Build as Microsoft trying to present itself as both a model builder and an end-to-end AI platform vendor, not just a cloud host for other labs.",
+      "why_it_matters": "This piece matters because it documents Microsoft trying to own more of the AI stack at once: first-party models, developer tooling, search/grounding APIs, and device/runtime surfaces. The MAI-Thinking-1 disclosure is the highest-value technical item, because the report appears to include pretraining pipeline details, data curation, infrastructure metrics, and scaling methodology that other frontier labs often withhold. That makes it useful for practitioners who want to understand what a serious large-model training run looks like when the vendor is unusually explicit about lineage and optimization choices. The no-distillation, clean-lineage positioning is strategically relevant for teams that care about provenance, enterprise control, and the ability to fine-tune or adapt models without opaque third-party dependencies. The recap also suggests Microsoft is treating GitHub Copilot, Windows, and Foundry as complementary surfaces for agent workflows rather than separate products, which is useful context for product planning and systems design. The Web IQ grounding layer and the Copilot app updates are less novel than the model report, but they show how Microsoft intends to connect retrieval, development, and execution inside one platform story. The stakes are strongest for teams already building on Microsoft\u2019s ecosystem; for everyone else, this is still mostly a competitive signal and a technical reference point rather than a direct playbook. Actionable as of 2026-06-03, with the technical report likely durable for model-training study but the product-positioning claims best treated as monitor rather than adopt-uncritically."
+    },
+    "source_type_detection": {
+      "confidence": 0.92,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece is a bundled AI news recap with many loosely related items across models, tools, research, and platform announcements.",
+        "It is structured around multiple short news blurbs and tweet summaries rather than one coherent article argument.",
+        "The title and body both frame it as an AINews recap of Build plus other AI news items from the same period."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-03",
+          "confidence": 0.84,
+          "evidence_from_source": "Microsoft\u2019s Build recap explicitly ties together MAI models, Windows, GitHub Copilot, Foundry, and Web IQ as a coordinated stack rather than separate launches.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-operationalization",
+          "proposed_tags": [
+            "ai-operationalization",
+            "execution-oriented-agents",
+            "runtime-centralization"
+          ],
+          "related_trends": [
+            "runtime-centralization",
+            "orchestration-layer-growth"
+          ],
+          "secondary_tag": "execution-oriented-agents",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "MAI family models were launched alongside GitHub Copilot app updates.",
+            "Web IQ was presented as the grounding/search layer for agents.",
+            "Windows was framed as an agent runtime, not only an operating system."
+          ],
+          "supporting_snippet": "The Build recap also showed Microsoft trying to integrate all layers of the stack: models: MAI family chips: MAIA 200 cloud: Azure + Foundry OS: Windows agent runtime developer UX: Copilot app / VS Code / CLI retrieval/grounding: Web IQ hardware form factors: Solara / Scout concepts",
+          "time_sensitivity": "Actionable as of 2026-06-03; the product packaging pattern is likely to remain relevant through at least the next several launch cycles, though the specific Microsoft surfaces will change.",
+          "trend_description": "Vendors increasingly package models together with grounding, orchestration, developer tooling, and execution surfaces. The durable pattern is that product value shifts from raw model access toward the surrounding system that makes agents useful and governable.",
+          "trend_slug": "ai-products-shift-from-models-to-systems",
+          "trend_title": "AI products are being sold as integrated systems, not standalone models",
+          "uncertainty_note": "This source is a roundup, so the evidence is real but still partly promotional and directional; it does not prove adoption or customer success.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5c8895fb-8ece-420c-85ea-cf5466e1026a",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "runtime-centralization",
+              "orchestration-layer-growth"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "MAI family models were launched alongside GitHub Copilot app updates.",
+              "Web IQ was presented as the grounding/search layer for agents.",
+              "Windows was framed as an agent runtime, not only an operating system."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-operationalization",
+            "execution-oriented-agents",
+            "runtime-centralization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-03",
+          "evidence_snippets": [],
+          "evidence_type": null,
+          "mentioned_entities": [],
+          "operational_relevance": "Expect tighter coupling between model choice, grounding APIs, desktop developer tools, and runtime surfaces. This matters for architecture decisions around where agents run, how they retrieve context, and how workflows move between local and cloud execution.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "execution-oriented-agents",
+            "runtime-centralization"
+          ],
+          "secondary_tag": "execution-oriented-agents",
+          "service_automation_relevance": "Useful for support and automation teams that want one vendor stack spanning agent runtime, retrieval, and operator-facing tooling; however, the article does not show production service outcomes yet.",
+          "signal_strength": "high",
+          "signal_title": "Microsoft is packaging agents as an end-to-end platform stack",
+          "signal_type": "trend",
+          "suggested_destinations": [],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Microsoft\u2019s Build message tied together models, Windows, GitHub Copilot, Foundry, and Web IQ as one agent platform. The operational point is not a single product launch, but a coordinated attempt to make model usage, grounding, execution, and developer workflow cohere across cloud and device surfaces. That makes the stack more relevant for teams building agentic apps on Microsoft infrastructure than isolated model announcements would be.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-03, this suggests Microsoft is competing on platform integration rather than only model quality. For practitioners, the practical question becomes how much of the agent lifecycle can be kept inside Microsoft-controlled surfaces for deployment, orchestration, and governance. The evidence is still a roundup of launch claims, so the strategic signal is stronger than any single product detail.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "809657ff-ddf0-4623-ad0c-1488b4fe494e",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "execution-oriented-agents",
+            "runtime-centralization"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The source relies on a combination of vendor announcements, third-party benchmark summaries, and commentator reactions.",
+          "Some claims come from Microsoft's own posts and technical report, while others are based on independent benchmark accounts and tweet-level analysis.",
+          "Because no single evidence basis dominates the whole recap, 'mixed' fits best."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The most durable signal is Microsoft\u2019s willingness to publish a 109-page technical report with data, infra, and scaling details that are usually hidden at this scale.",
+          "MAI-Thinking-1 is presented as a first reasoning model with clean lineage and no third-party distillation, which matters for enterprise provenance and control.",
+          "Microsoft is pairing model launches with platform surfaces: Windows, GitHub Copilot, Foundry, and Web IQ are being positioned as one stack for agents.",
+          "Independent benchmark summaries suggest the new models are competitive across reasoning, code, image editing, and speech transcription, but several numbers are contested or hard to reconcile.",
+          "The roundup shows Microsoft emphasizing local execution and on-device AI, not only cloud hosting, which matters for how agent workloads may be deployed."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://mail.google.com/",
+          "mailto:reader-forwarded-email/9e47db253deff80411a69bddb82691f8"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.92,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece is a bundled AI news recap with many loosely related items across models, tools, research, and platform announcements.",
+          "It is structured around multiple short news blurbs and tweet summaries rather than one coherent article argument.",
+          "The title and body both frame it as an AINews recap of Build plus other AI news items from the same period."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 2,
+    "review_duration_seconds": 79.4,
+    "review_finished_at": "2026-06-06T14:03:52.376421+00:00",
+    "review_started_at": "2026-06-06T14:02:33+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-06T14:03:52+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "AINews",
+    "canonical_url": "mailto:reader-forwarded-email/9e47db253deff80411a69bddb82691f8",
+    "content_sha256": "a4f3388cb333dab260fca9ab325bd14adc0e6666c7148f2e3a4c4157543b289d",
+    "publication": "Substack",
+    "published_date": "2026-06-03",
+    "raw_html_rel_path": "raw/readwise/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x.html",
+    "raw_md_rel_path": "raw/readwise/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x.md",
+    "source_id": "ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x",
+    "title": "[AINews] Microsoft Build: MAI-Thinking-1 and MAI Family models"
+  }
+}
