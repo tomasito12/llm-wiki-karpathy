@@ -470,7 +470,53 @@ coding-model, tool-use-capable). Same quality rules as topic tags; max 5.
 - suggested_new_type / suggested_new_tags: only when allowlist lacks a durable match."""
 
 
-TITLE_GENERATION_RUBRIC = """\
+TREND_TITLE_DECOMPOSITION_RUBRIC = """\
+## Trend title decomposition
+
+A trend title should describe a single directional change, not the mechanisms that cause it.
+
+Prefer: the outcome, the shift, the changing constraint.
+Avoid embedding specific mechanisms, implementations, or explanations into the title.
+
+Bad:
+- Inference Stacks Get Cheaper by Compressing Memory and Low-Precision Execution
+- Agent Reliability Improves Through Better Memory and Tool Routing
+
+Good:
+- Inference Costs Continue to Fall
+- Agent Reliability Improves
+
+Mechanisms belong in trend_description, evidence_from_source, supporting_snippet, \
+and supporting_data_points — not in trend_title.
+
+One trend, one transition. Before finalizing a trend title, ask:
+"Would this trend still be valid if a different mechanism produced the same outcome?"
+If yes, remove the mechanism from the title.
+
+Titles containing and / through / by / using / with often combine multiple \
+mechanisms or transitions — simplify to one outcome-level shift.
+
+One trend object, one trend.
+
+A single ``industry_trends`` object must describe exactly one directional transition. \
+If a candidate title joins two outcome-level shifts with and, plus, as well as, while, \
+or another coordination pattern, split it into separate trend proposals instead of \
+compressing them into one title.
+
+Before finalizing an ``industry_trends`` item, ask:
+"Can both halves of this title become true, false, stronger, or weaker independently?"
+If yes, they are separate trends and must be emitted as separate objects.
+
+Example:
+Bad:
+- Inference Serving Moves Toward Lower Precision and Hardware-Specific Kernel Fusion
+Good split:
+- Inference Serving Moves Toward Lower Precision
+- Inference Serving Moves Toward Hardware-Specific Kernel Fusion"""
+
+
+TITLE_GENERATION_RUBRIC = (
+    """\
 ## TITLE GENERATION (topic_title, trend_title, and new canonical titles)
 
 Strong titles expose the core insight quickly, read naturally aloud, and remain useful if \
@@ -489,7 +535,7 @@ Reward Signal Generalization; Behavioral Auditing
 
 **GOOD trends:** AI Products Shift from Models to Systems; Verification Loops Become Central \
 to AI Workflows; AI Governance Shifts from Principles to Verification; System Design Becomes \
-More Important Than Model Choice
+More Important Than Model Choice; Inference Costs Continue to Fall; Agent Reliability Improves
 
 ### Problems to fix (weak patterns)
 
@@ -533,18 +579,24 @@ A strong ``trend_title`` must clearly communicate:
 - **why the shift matters**
 
 Prefer **concrete structural insight** over abstract phrasing.
+Follow TREND_TITLE_DECOMPOSITION_RUBRIC: the title names the outcome-level shift; mechanisms \
+and implementation details belong in body fields.
 
 **Good:**
 - AI Products Shift from Models to Systems
 - Verification Loops Become Central to AI Workflows
 - AI Governance Shifts from Principles to Verification
 - System Design Becomes More Important Than Model Choice
+- Inference Costs Continue to Fall
+- Agent Reliability Improves
 
 **Bad (reject):**
 - Efficiency as Capability
 - Distribution Reallocation
 - Verifiable Guardrails
 - Strategic Runtime Surfaces
+- Inference Stacks Get Cheaper by Compressing Memory and Low-Precision Execution
+- Agent Reliability Improves Through Better Memory and Tool Routing
 
 **Preferred structures:**
 - X becomes Y
@@ -575,7 +627,10 @@ Name the **systems transition**, not the temporary stack. If a title would sound
 2. Identify the **operational consequence**
 3. Internally draft **3–5** candidates; select the title that is most natural, most concrete, \
 most durable, least abstract, and most structurally insightful
-4. Output **only** the final ``trend_title`` and matching ``trend_slug`` — no alternatives
+4. Apply the decomposition check: one transition only; remove mechanism words like "through", \
+"by", "using", or "with" when they make the title depend on a specific mechanism; split \
+titles using "and" or other coordination when the halves can vary independently
+5. Output **only** the final ``trend_title`` and matching ``trend_slug`` — no alternatives
 
 ### Anti-patterns (reject before output)
 
@@ -605,6 +660,9 @@ operational consequence, 3–5 internal candidates, output only final title + sl
 Do not emit alternatives in the schema unless a reviewer regen step explicitly requests them.
 
 Favor clarity over cleverness."""
+    + "\n\n"
+    + TREND_TITLE_DECOMPOSITION_RUBRIC
+)
 
 
 TITLE_CANONICALIZATION_RUBRIC = """\
@@ -1133,8 +1191,12 @@ Each object MUST include:
 GPT-4o-price-cut or headline labels)
 - trend_title: per TITLE_GENERATION_RUBRIC (Trend titles). Concrete structural insight: what \
 is changing, toward what, and why it matters. Natural aloud; operational consequences implied; \
-not abstract noun stacks or taxonomy-like phrasing. Follow the trend title generation workflow \
-before output.
+not abstract noun stacks or taxonomy-like phrasing. Apply TREND_TITLE_DECOMPOSITION_RUBRIC: \
+one transition per title; put mechanisms in trend_description, evidence_from_source, \
+supporting_snippet, or supporting_data_points. Follow the trend title generation workflow \
+before output, including the check for mechanism-heavy words such as and, through, by, using, \
+or with. If the candidate contains multiple independently varying transitions, output multiple \
+``industry_trends`` objects instead of one compound trend.
 - trend_description: standalone, source-agnostic description of the pattern
 - evidence_from_source: what this article specifically contributes as evidence
 - time_sensitivity: explicitly state how time-bound this observation is
@@ -1157,7 +1219,8 @@ No hype, no certainty theater.
 Tag semantics (TREND_TAGS_ALLOWLIST): durable industry pattern domain — not \
 headline or vendor campaign labels. Follow TAG_ONTOLOGY_RUBRIC.
 
-Titles: see TITLE_GENERATION_RUBRIC. Page matching: see PAGE_MATCHING_RUBRIC."""
+Titles: see TITLE_GENERATION_RUBRIC and TREND_TITLE_DECOMPOSITION_RUBRIC. Page matching: see \
+PAGE_MATCHING_RUBRIC."""
 
 
 TOOLS_RUBRIC = """\

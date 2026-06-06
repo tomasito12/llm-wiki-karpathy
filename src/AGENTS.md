@@ -69,7 +69,8 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
   - Feedback events (for a future learning loop): `state/review_feedback.sqlite` — **gitignored**; append-only rows when you click **Save review artifact**.
 - **Tag allowlists** (see [`docs/tagging-ontology.md`](../docs/tagging-ontology.md)): `config/review_tags_{topics,trends,glossary,impl_study,tools,models}.yaml`; how-tos reuse topics. **Product types** (separate from retrieval tags): `config/review_tool_types.yaml`, `config/review_model_types.yaml`. Migrate legacy slugs: `hatch run tag-migrate`.
 - This stage **does not** write `wiki/sources/*.md`; it only prepares human-reviewed classification.
-- **Classification pipeline** (default): three LLM calls per source — triage → `source_summary` → route-specific entity extraction (`src/ingest_review/classification_pipeline.py`). Set `INGEST_CLASSIFICATION_PIPELINE=monolithic` to use the legacy single-call path. Prompt version `41` records per-stage `token_usage` / `cached_tokens` under `analysis_meta.classification_pipeline`.
+- **Classification pipeline** (default): three LLM calls per source — triage → `source_summary` → route-specific entity extraction (`src/ingest_review/classification_pipeline.py`). Set `INGEST_CLASSIFICATION_PIPELINE=monolithic` to use the legacy single-call path. Prompt version `42` records per-stage `token_usage` / `cached_tokens` under `analysis_meta.classification_pipeline`.
+- Trend titles follow the decomposition rule: name one outcome-level directional change in `trend_title`; put mechanisms, implementations, and explanations in `trend_description`, evidence, or supporting observations.
 
 ## Wiki render (generated Obsidian vault)
 
@@ -83,9 +84,18 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 ## Readwise Reader export
 
 - Set `READWISE_TOKEN` (or `READWISE_API_TOKEN`) from [readwise.io/access_token](https://readwise.io/access_token), or put it in a repo-root `.env` file (loaded automatically; does not override existing shell variables).
-- Run: `hatch run readwise-sync` (optional: `--dry-run`, `--prune-missing`, `--reset-watermark`, `--output-dir`, `--index`).
+- Run: `hatch run readwise-sync` (optional: `--dry-run`, `--prune-missing`, `--reset-watermark`, `--no-dedupe`, `--dedupe-threshold`, `--dedupe-interactive`, `--output-dir`, `--index`).
 - Each run passes Readwise **`updatedAfter`**: either `last_updated_after` from `state/readwise_library.json`, or on the **first run** (no watermark yet) a timestamp **~100 days** in the past so the initial sync still uses a bounded window.
 - Exports Reader **Library Archive** documents tagged **processed** to `raw/readwise/` as paired `.html` + `.md`, with dedupe in `state/readwise_library.json`.
+- After a successful sync (not `--dry-run`), runs **`readwise-dedupe`** by default: scans `raw/readwise/` for near-duplicate HTML exports and **deletes the shorter copy**, adding its Readwise id to `suppressed_ids` so sync will not re-import it. Pass **`--no-dedupe`** to skip.
+
+## Readwise near-duplicate cleanup
+
+- Run: `hatch run readwise-dedupe` (optional: `--dry-run`, `--interactive`, `--threshold 0.50`, `--raw-dir`, `--index`).
+- Compares exports with word-shingle Jaccard similarity.
+- **Default:** delete the export with fewer plain-text characters and suppress it in `state/readwise_library.json`.
+- **`--interactive`:** prompt per pair instead of auto-deleting the shorter copy.
+- Legacy wrapper: `python scripts/detect_near_duplicates.py` (same behavior via `readwise-dedupe`).
 
 ## Readwise rebuild (recovery)
 

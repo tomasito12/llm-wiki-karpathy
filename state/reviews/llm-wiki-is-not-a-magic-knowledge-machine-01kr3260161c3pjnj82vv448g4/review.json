@@ -1,0 +1,678 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T15:46:51+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnnWCgmm3mJwqbPKAmYMMwSC2aZJN",
+          "token_usage": {
+            "completion_tokens": 191,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5989,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6180
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnnWENwaCMrsx1g0fQ4nwOGeZG7LF",
+          "token_usage": {
+            "completion_tokens": 1201,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5594,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6795
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnnWNY8eC1pSv69xy0I1eBb9pteaY",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1219,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 32603,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33822
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnnWNY8eC1pSv69xy0I1eBb9pteaY",
+    "token_usage": {
+      "completion_tokens": 2611,
+      "prompt_tokens": 44186,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 46797
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-04",
+        "confidence": 0.9,
+        "evidence_from_source": "The source argues that the wiki should be \"the working layer\" and describes operations like ingest, query, lint, index, and log as the life cycle of the system, not optional extras.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-operationalization",
+        "proposed_tags": [
+          "ai-operationalization",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops",
+          "artifact-first-ai-workflows"
+        ],
+        "secondary_tag": "workflow-restructuring",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "knowledge-systems",
+        "suggested_new_tags": [
+          "knowledge-systems"
+        ],
+        "supporting_data_points": [
+          "The article names ingest, query, lint, index, and log as the wiki life cycle.",
+          "It says the wiki is less like a finished database and more like \"a garden of working assumptions.\"",
+          "It warns that without maintenance the system becomes \"another abandoned folder.\""
+        ],
+        "supporting_snippet": "\"LLM Wiki flips the posture. Instead of retrieving from raw sources every time, the model helps compile sources into a persistent, interlinked Markdown wiki. The wiki is not just output. It becomes the working layer.\"",
+        "time_sensitivity": "Actionable as of 2026-05-04; this is an active design pattern in the source, but its adoption depth and tool ecosystem are still early-stage and may change as implementations mature.",
+        "trend_description": "Knowledge systems are shifting from passive storage toward maintained workspaces that support ongoing compilation, review, and revision. The durable value is not simple retrieval, but a persistent layer that preserves synthesis while remaining connected to raw sources and provenance. This raises the importance of maintenance workflows such as linting, indexing, logging, and contradiction checking. The pattern is especially relevant when knowledge must remain reusable over time rather than being re-derived from scratch on every query.",
+        "trend_slug": "knowledge-base-becomes-maintained-workspace",
+        "trend_title": "Knowledge Bases Become Maintained Workspaces",
+        "uncertainty_note": "The article is practitioner testimony, not a controlled evaluation, so the claim that maintained workspaces outperform simpler retrieval flows is plausible but unproven at scale.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The author mainly speaks from first-person experience using the LLM Wiki pattern across personal projects.",
+        "Claims are supported by practitioner reflection on what worked, what broke, and what needs human judgment.",
+        "The piece cites example implementations and related sources, but its core evidence is the author's own usage report."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says LLM Wiki is useful, but not because it creates a perfect second brain. Its real value is that it helps AI do the boring upkeep work that makes knowledge easier to reuse. The human still chooses the topic, checks sources, and decides what matters. The AI helps keep links, summaries, indexes, and contradictions up to date. The author says this works best for one focused area, not for dumping in your whole life. As of 2026-05-04, the idea looks practical for bounded knowledge projects, but only if humans stay responsible for judgment.",
+      "assessed_as_of": "2026-05-04",
+      "contradictions_and_skepticism": "The article is strongest when it rejects the \u2018magic second brain\u2019 framing; that skepticism feels warranted. The remaining tension is that AI-generated compression can itself become a maintenance liability if users trust the wiki more than the sources, especially when subtle caveats disappear during summarization. The piece argues that links are not meaning and that raw sources must stay authoritative, which is an important corrective to overconfident knowledge-base narratives. Still, the benefits are described from first-person use rather than controlled evaluation, so the case is convincing as practitioner testimony but not as proof of general effectiveness.",
+      "key_insights": [
+        "Treat LLM Wiki as a maintenance system, not an oracle; the durable value is keeping knowledge reusable over time.",
+        "The highest-leverage division of labor is: humans choose and judge, AI summarizes, links, indexes, and checks for drift.",
+        "The pattern works best for bounded, coherent corpora; unrelated clutter reduces meaning even if the model can still produce links.",
+        "Raw sources should stay immutable and reachable because wiki compression can smooth over caveats, simplify numbers, or amplify weak interpretations.",
+        "The system needs ongoing ingest, query, lint, index, and log workflows; without them, it degrades into another abandoned folder."
+      ],
+      "limitations_and_open_questions": "The article does not provide benchmarks, error rates, or a comparison against disciplined human-maintained systems, so the performance claim is qualitative rather than measured. It also leaves open how to operationalize trust scoring, contradiction resolution, and stale-claim detection at scale. The scope guidance is persuasive, but the boundary between a \u201cbounded, coherent corpus\u201d and a messy real-world corpus is not formally defined. For enterprise use, the author mentions access control, ownership, freshness, and source-of-truth rules, but does not specify an implementation or governance model. The write-up also assumes that the maintenance tasks AI performs are reliable enough to reduce burden without introducing hidden review debt.",
+      "sources": [
+        "https://medium.com/@markchen69/llm-wiki-is-not-a-magic-knowledge-machine-192b50a76a9f",
+        "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+        "https://github.com/nashsu/llm_wiki",
+        "https://medium.com/@markchen69/i-used-claude-code-to-build-a-personal-knowledge-base-inspired-by-karpathys-llm-wiki-pattern-6a81a9661d49",
+        "https://atlan.com/know/llm-wiki-vs-rag-knowledge-base/"
+      ],
+      "summary": "The article argues that the LLM Wiki pattern is valuable, but only when it is treated as a maintenance system rather than a magic replacement for judgment. Its core claim is that AI should handle the boring work that makes knowledge reusable: summarizing sources, linking pages, updating indexes, flagging contradictions, and keeping schemas tidy, while humans decide what enters the corpus, what matters, and when a synthesis is wrong. The author contrasts this with conventional retrieval-augmented generation, which can answer questions from raw documents but does not reliably preserve the synthesis or shared structure it already helped create. LLM Wiki, by contrast, compiles raw material into a persistent interlinked Markdown workspace that becomes the working layer. The piece is careful about scope: it works best for bounded, coherent collections such as a research project, a client domain, a book, or a focused reporting workflow, and it degrades when used as a dump for unrelated life clutter. It also emphasizes that raw sources and provenance must remain available because compression can lose caveats, distort numbers, or spread weak interpretations. The article therefore treats LLM Wiki as a living artifact that must be ingested, queried, linted, indexed, and logged, not as a finished database. As of 2026-05-04, the practical takeaway is to adopt the pattern for focused corpora where maintenance burden is the main pain point, but to keep human review and source-of-truth discipline in the loop.",
+      "why_it_matters": "The article is useful because it sharpens the mental model for LLM Wiki from \u201cmagic second brain\u201d to \u201cmaintained knowledge artifact.\u201d That framing matters for AI engineering because it defines a realistic division of labor: the model can lower the cost of upkeep, but it cannot replace source selection, trust judgment, or interpretation. The piece also explains why many knowledge systems fail in practice: the expensive part is not initial summarization but ongoing cross-linking, revision, contradiction checking, and index maintenance. By treating the wiki as a living layer built on top of raw sources, the author preserves provenance and reduces the risk that compressed summaries become the new false authority. The most durable lesson is scope discipline: a coherent corpus is a precondition for meaningful synthesis, while a grab bag of unrelated notes mostly produces decorative clutter. That is a concrete design constraint for any personal or team knowledge base built with large language models. As of 2026-05-04, this is a strong, actionable pattern for focused research or work artifacts, but it remains dependent on human review and should be adopted as a maintenance aid rather than a replacement for governance."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion essay with a sustained argument about one concept, not a bundle of unrelated items.",
+        "No numbered tool list, step-by-step tutorial, or interview/Q&A structure.",
+        "The article references external sources but is itself a reflective analysis rather than a roundup or report."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A knowledge base only compounds if it has an active maintenance loop, not just an import pipeline.",
+          "AI is best used for repetitive upkeep tasks such as linking, indexing, contradiction checks, and stale-claim detection.",
+          "Raw sources need to remain accessible so the maintained layer does not become the new false authority.",
+          "Human judgment still owns source selection, ambiguity resolution, and relevance decisions."
+        ],
+        "knowledge_summary": "A maintained knowledge base is a living artifact that is continuously updated by AI and humans rather than treated as a static dump of documents. Its value comes from keeping summaries, links, indexes, and source references aligned as the corpus changes over time. The human role is to decide what belongs, what matters, and when a synthesis should be revised or retired. The machine role is to handle repetitive maintenance work that keeps the structure usable.",
+        "match_candidates": [],
+        "operational_insight": "Use AI to reduce maintenance load, but keep humans in charge of corpus selection, trust decisions, and final interpretation. The knowledge base should remain a working layer on top of immutable sources, not a replacement for them.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "agent-memory",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "knowledge-layer-architecture",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This pattern matters because many AI knowledge systems fail after the first import phase; the recurring cost is upkeep, not initial summarization. For conversational AI and service automation, the same principle applies to agent memory, documentation, and case archives that need ongoing curation rather than one-off ingestion.",
+        "secondary_tag": "agent-memory",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"LLM Wiki flips the posture. Instead of retrieving from raw sources every time, the model helps compile sources into a persistent, interlinked Markdown wiki. The wiki is not just output. It becomes the working layer.\"",
+        "topic_slug": "agent-maintained-knowledge-bases",
+        "topic_title": "Agent-Maintained Knowledge Bases",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A coherent corpus gives the wiki a shared center of gravity.",
+          "Unrelated notes can be summarized, but they do not automatically form meaningful knowledge.",
+          "Scope should be chosen around a project, domain, book, or workflow rather than an entire life archive.",
+          "Meaningful synthesis depends on selection quality before model quality."
+        ],
+        "knowledge_summary": "A bounded corpus is a deliberately scoped set of documents that shares a clear center of gravity, such as one project, one domain, or one workflow. AI synthesis works better when the corpus is coherent, because the system can create meaningful structure instead of merely generating links across unrelated clutter. When the input set is too broad or miscellaneous, the output may still be fluent, but the knowledge artifact loses interpretability and practical value. Scope discipline is therefore a core design constraint for durable AI-assisted knowledge work.",
+        "match_candidates": [],
+        "operational_insight": "Choose a narrow, coherent corpus before introducing AI-assisted compilation. The quality of the maintained knowledge artifact depends more on topical coherence than on the model's summarization ability.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "organizational-design"
+        ],
+        "related_topics": [
+          "agent-maintained-knowledge-bases"
+        ],
+        "relevance_note": "This is a durable planning rule for AI knowledge systems, team wikis, and agent memory stores. Focused corpora tend to produce more reliable synthesis, clearer review paths, and fewer misleading links than broad personal dumps.",
+        "secondary_tag": "organizational-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"LLM Wiki works best when the source collection is bounded, relevant, and coherent.\"",
+        "topic_slug": "bounded-corpus-synthesis",
+        "topic_title": "Bounded Corpus Synthesis",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-04",
+          "confidence": 0.9,
+          "evidence_from_source": "The source argues that the wiki should be \"the working layer\" and describes operations like ingest, query, lint, index, and log as the life cycle of the system, not optional extras.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-operationalization",
+          "proposed_tags": [
+            "ai-operationalization",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops",
+            "artifact-first-ai-workflows"
+          ],
+          "secondary_tag": "workflow-restructuring",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "knowledge-systems",
+          "suggested_new_tags": [
+            "knowledge-systems"
+          ],
+          "supporting_data_points": [
+            "The article names ingest, query, lint, index, and log as the wiki life cycle.",
+            "It says the wiki is less like a finished database and more like \"a garden of working assumptions.\"",
+            "It warns that without maintenance the system becomes \"another abandoned folder.\""
+          ],
+          "supporting_snippet": "\"LLM Wiki flips the posture. Instead of retrieving from raw sources every time, the model helps compile sources into a persistent, interlinked Markdown wiki. The wiki is not just output. It becomes the working layer.\"",
+          "time_sensitivity": "Actionable as of 2026-05-04; this is an active design pattern in the source, but its adoption depth and tool ecosystem are still early-stage and may change as implementations mature.",
+          "trend_description": "Knowledge systems are shifting from passive storage toward maintained workspaces that support ongoing compilation, review, and revision. The durable value is not simple retrieval, but a persistent layer that preserves synthesis while remaining connected to raw sources and provenance. This raises the importance of maintenance workflows such as linting, indexing, logging, and contradiction checking. The pattern is especially relevant when knowledge must remain reusable over time rather than being re-derived from scratch on every query.",
+          "trend_slug": "knowledge-base-becomes-maintained-workspace",
+          "trend_title": "Knowledge Bases Become Maintained Workspaces",
+          "uncertainty_note": "The article is practitioner testimony, not a controlled evaluation, so the claim that maintained workspaces outperform simpler retrieval flows is plausible but unproven at scale.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a6881834-c803-40d8-9f2d-2313914bb96f",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops",
+              "artifact-first-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The article names ingest, query, lint, index, and log as the wiki life cycle.",
+              "It says the wiki is less like a finished database and more like \"a garden of working assumptions.\"",
+              "It warns that without maintenance the system becomes \"another abandoned folder.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "knowledge-systems"
+          ],
+          "final_tags": [
+            "ai-operationalization",
+            "workflow-restructuring",
+            "knowledge-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The author mainly speaks from first-person experience using the LLM Wiki pattern across personal projects.",
+          "Claims are supported by practitioner reflection on what worked, what broke, and what needs human judgment.",
+          "The piece cites example implementations and related sources, but its core evidence is the author's own usage report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Treat LLM Wiki as a maintenance system, not an oracle; the durable value is keeping knowledge reusable over time.",
+          "The highest-leverage division of labor is: humans choose and judge, AI summarizes, links, indexes, and checks for drift.",
+          "The pattern works best for bounded, coherent corpora; unrelated clutter reduces meaning even if the model can still produce links.",
+          "Raw sources should stay immutable and reachable because wiki compression can smooth over caveats, simplify numbers, or amplify weak interpretations.",
+          "The system needs ongoing ingest, query, lint, index, and log workflows; without them, it degrades into another abandoned folder."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@markchen69/llm-wiki-is-not-a-magic-knowledge-machine-192b50a76a9f",
+          "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+          "https://github.com/nashsu/llm_wiki",
+          "https://medium.com/@markchen69/i-used-claude-code-to-build-a-personal-knowledge-base-inspired-by-karpathys-llm-wiki-pattern-6a81a9661d49",
+          "https://atlan.com/know/llm-wiki-vs-rag-knowledge-base/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion essay with a sustained argument about one concept, not a bundle of unrelated items.",
+          "No numbered tool list, step-by-step tutorial, or interview/Q&A structure.",
+          "The article references external sources but is itself a reflective analysis rather than a roundup or report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A knowledge base only compounds if it has an active maintenance loop, not just an import pipeline.",
+            "AI is best used for repetitive upkeep tasks such as linking, indexing, contradiction checks, and stale-claim detection.",
+            "Raw sources need to remain accessible so the maintained layer does not become the new false authority.",
+            "Human judgment still owns source selection, ambiguity resolution, and relevance decisions."
+          ],
+          "knowledge_summary": "A maintained knowledge base is a living artifact that is continuously updated by AI and humans rather than treated as a static dump of documents. Its value comes from keeping summaries, links, indexes, and source references aligned as the corpus changes over time. The human role is to decide what belongs, what matters, and when a synthesis should be revised or retired. The machine role is to handle repetitive maintenance work that keeps the structure usable.",
+          "match_candidates": [],
+          "operational_insight": "Use AI to reduce maintenance load, but keep humans in charge of corpus selection, trust decisions, and final interpretation. The knowledge base should remain a working layer on top of immutable sources, not a replacement for them.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "agent-memory",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "knowledge-layer-architecture",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This pattern matters because many AI knowledge systems fail after the first import phase; the recurring cost is upkeep, not initial summarization. For conversational AI and service automation, the same principle applies to agent memory, documentation, and case archives that need ongoing curation rather than one-off ingestion.",
+          "secondary_tag": "agent-memory",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"LLM Wiki flips the posture. Instead of retrieving from raw sources every time, the model helps compile sources into a persistent, interlinked Markdown wiki. The wiki is not just output. It becomes the working layer.\"",
+          "topic_slug": "agent-maintained-knowledge-bases",
+          "topic_title": "Agent-Maintained Knowledge Bases",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "315cb774-3760-4d9c-b4ce-bfcbbd58158a",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A knowledge base only compounds if it has an active maintenance loop, not just an import pipeline.",
+              "AI is best used for repetitive upkeep tasks such as linking, indexing, contradiction checks, and stale-claim detection.",
+              "Raw sources need to remain accessible so the maintained layer does not become the new false authority.",
+              "Human judgment still owns source selection, ambiguity resolution, and relevance decisions."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-layer-architecture",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "agent-memory",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A coherent corpus gives the wiki a shared center of gravity.",
+            "Unrelated notes can be summarized, but they do not automatically form meaningful knowledge.",
+            "Scope should be chosen around a project, domain, book, or workflow rather than an entire life archive.",
+            "Meaningful synthesis depends on selection quality before model quality."
+          ],
+          "knowledge_summary": "A bounded corpus is a deliberately scoped set of documents that shares a clear center of gravity, such as one project, one domain, or one workflow. AI synthesis works better when the corpus is coherent, because the system can create meaningful structure instead of merely generating links across unrelated clutter. When the input set is too broad or miscellaneous, the output may still be fluent, but the knowledge artifact loses interpretability and practical value. Scope discipline is therefore a core design constraint for durable AI-assisted knowledge work.",
+          "match_candidates": [],
+          "operational_insight": "Choose a narrow, coherent corpus before introducing AI-assisted compilation. The quality of the maintained knowledge artifact depends more on topical coherence than on the model's summarization ability.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "organizational-design"
+          ],
+          "related_topics": [
+            "agent-maintained-knowledge-bases"
+          ],
+          "relevance_note": "This is a durable planning rule for AI knowledge systems, team wikis, and agent memory stores. Focused corpora tend to produce more reliable synthesis, clearer review paths, and fewer misleading links than broad personal dumps.",
+          "secondary_tag": "organizational-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"LLM Wiki works best when the source collection is bounded, relevant, and coherent.\"",
+          "topic_slug": "bounded-corpus-synthesis",
+          "topic_title": "Bounded Corpus Synthesis",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "b1d6f3f4-cb3a-437f-9424-348325023326",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A coherent corpus gives the wiki a shared center of gravity.",
+              "Unrelated notes can be summarized, but they do not automatically form meaningful knowledge.",
+              "Scope should be chosen around a project, domain, book, or workflow rather than an entire life archive.",
+              "Meaningful synthesis depends on selection quality before model quality."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-maintained-knowledge-bases"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 344.5,
+    "review_finished_at": "2026-06-06T15:52:35.509202+00:00",
+    "review_started_at": "2026-06-06T15:46:51+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-06T15:52:35+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Mark Chen",
+    "canonical_url": "https://medium.com/@markchen69/llm-wiki-is-not-a-magic-knowledge-machine-192b50a76a9f",
+    "content_sha256": "dc23d1708d5076c4cee782081e987154d65b745aa812e808eb0f350c2e255cba",
+    "publication": "Medium",
+    "published_date": "2026-05-04",
+    "raw_html_rel_path": "raw/readwise/llm-wiki-is-not-a-magic-knowledge-machine-01kr3260161c3pjnj82vv448g4.html",
+    "raw_md_rel_path": "raw/readwise/llm-wiki-is-not-a-magic-knowledge-machine-01kr3260161c3pjnj82vv448g4.md",
+    "source_id": "llm-wiki-is-not-a-magic-knowledge-machine-01kr3260161c3pjnj82vv448g4",
+    "title": "LLM Wiki Is Not a Magic Knowledge Machine"
+  }
+}

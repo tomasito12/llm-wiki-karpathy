@@ -18,3 +18,4 @@ def test_hatch_scripts_include_local_clis() -> None:
     assert scripts["ingest-manifest"] == ["python -m src.pipeline.ingest_manifest {args}"]
     assert scripts["ingest-queue"] == ["python -m src.ingest_queue {args}"]
     assert scripts["readwise-rebuild-index"] == ["python -m src.readwise.rebuild {args}"]
+    assert scripts["readwise-dedupe"] == ["python -m src.readwise.dedupe_cli {args}"]

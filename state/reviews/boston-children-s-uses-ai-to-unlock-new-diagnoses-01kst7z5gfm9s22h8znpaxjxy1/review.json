@@ -1,0 +1,914 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T15:43:31+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnnSrrbgWYMFe60vWZXoA7v0OA2Dy",
+          "token_usage": {
+            "completion_tokens": 192,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5203,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5395
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnnStedy1R1LlIwOVYvIu6Po7WNR5",
+          "token_usage": {
+            "completion_tokens": 1079,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4809,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5888
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnnT20b4atNJJL7hFF8pjXPT2skUc",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2092,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 31648,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33740
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnnT20b4atNJJL7hFF8pjXPT2skUc",
+    "token_usage": {
+      "completion_tokens": 3363,
+      "prompt_tokens": 41660,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 45023
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "The case suggests that AI is most useful when it acts as a synthesis and routing layer over heterogeneous internal and external information, not just as a standalone assistant.",
+        "business_objective": "Cut operational cost, expand capacity, reduce repetitive work, and improve rare-disease diagnosis for complex pediatric cases.",
+        "company": "Boston Children's Hospital",
+        "confidence": 0.94,
+        "deployment_context": "Deployed across research, clinical, and administrative teams at a large pediatric hospital with close to 1 million outpatient visits each year.",
+        "evidence_snippets": [
+          {
+            "claim": "Boston Children's built a secure internal ChatGPT environment across teams.",
+            "provenance": "stated",
+            "snippet": "\"The hospital shifted to building what Brownstein calls an enterprise AI layer: a secure internal ChatGPT environment used across research, clinical, and administrative teams.\""
+          },
+          {
+            "claim": "AI was applied to operational workflows like invoicing and scheduling.",
+            "provenance": "stated",
+            "snippet": "\"In supply chain operations, AI now manages invoice intake, routing and responses. In parallel, the hospital applied AI to surgical scheduling.\""
+          },
+          {
+            "claim": "The hospital reports measurable operational and clinical outcomes.",
+            "provenance": "stated",
+            "snippet": "\"Across more than 50 automations, Boston Children\u2019s has captured about 60,000 hours in time savings, which is equivalent to more than $7 million in redeployed labor.\""
+          },
+          {
+            "claim": "Rare-disease diagnosis support produced over 40 diagnoses.",
+            "provenance": "stated",
+            "snippet": "\"As a result of this work, more than 40 diagnoses have been made to date that were previously thought impossible.\""
+          }
+        ],
+        "evidence_type": null,
+        "implications_for_service_automation": "The direct service-automation lesson is strong for back-office and knowledge-heavy operations, but the article does not describe a customer-facing chat or voice automation deployment.",
+        "industry": "healthcare",
+        "key_lessons": [
+          "Start with measurable workflows where volume and repetition justify automation.",
+          "Build governance with the platform, not after deployment.",
+          "Use AI where synthesis across documents and structured data is the real bottleneck.",
+          "Treat diagnosis or decision support as a human-plus-AI workflow, not a fully automated endpoint."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How were the reported 60,000 hours saved measured?",
+          "How many AI-assisted diagnoses were later revised or rejected?",
+          "What monitoring and safety checks were used for clinical workflows?",
+          "What were the build and maintenance costs of the enterprise AI layer?"
+        ],
+        "operational_constraints": "The hospital operates under tight financial constraints, high administrative burden, fragmented genetic data, incomplete clinical histories, and a large volume of medical literature that is hard for physicians to synthesize manually.",
+        "outcome_status": "The article reports ongoing use with more than one-third of employees using AI daily, 50+ automations, 60,000 hours saved, $7M+ in redeployed labor, and 40+ rare conditions diagnosed.",
+        "overview": "Boston Children's Hospital embedded AI across clinical, research, and administrative work as shared infrastructure rather than a set of separate pilots. The rollout combined a secure internal ChatGPT environment, governance, and workflow automations, and it was also used for rare-disease diagnosis support.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "enterprise-ai-adoption",
+          "ai-operationalization"
+        ],
+        "related_sources": [
+          "https://openai.com/index/boston-childrens-hospital"
+        ],
+        "secondary_tag": "enterprise-ai-adoption",
+        "strategic_signals": "The organization is treating AI as infrastructure, which implies a shift from isolated experiments toward platform-based adoption across departments.",
+        "success_or_failure_factors": "The article attributes success to embedding AI into daily workflows, building governance alongside the platform, and focusing on use cases where human cognitive limits were a bottleneck.",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "technical_approach": "The hospital created an enterprise AI layer with governance, monitoring, and evaluation, then applied it to supply chain workflows, scheduling, drafting, coding, research analysis, and diagnostic synthesis.",
+        "title": "Boston Children's AI Infrastructure Rollout",
+        "value_level": "high",
+        "what_was_implemented": "A secure internal ChatGPT environment, workflow automations for operations, and a \"co-pilot geneticist\" that combines genetic data, phenotypic information, and medical literature."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-29",
+        "confidence": 0.89,
+        "evidence_from_source": "Boston Children's is described as building a secure internal ChatGPT environment across research, clinical, and administrative teams, with governance structures for safety, monitoring, and consistent evaluation. The article frames AI as infrastructure that supports daily work rather than a standalone experiment.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-operationalization",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents",
+          "support-automation-as-operating-model"
+        ],
+        "secondary_tag": "ai-operationalization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Secure internal ChatGPT environment used across research, clinical, and administrative teams",
+          "Governance built alongside the technology",
+          "More than one-third of employees use AI daily",
+          "More than 50 automations",
+          "60,000 hours saved"
+        ],
+        "supporting_snippet": "\"Governance structures were built alongside the technology to ensure safety, monitoring and consistent evaluation.\"",
+        "time_sensitivity": "Actionable as of 2026-05-29; the evidence reflects enterprise adoption patterns at that date and may remain relevant as long as organizations are centralizing governed AI access.",
+        "trend_description": "Enterprise AI deployments are shifting from isolated experiments toward shared systems that are governed, monitored, and embedded into human workflows. The durable pattern is not full automation; it is AI-assisted work with explicit oversight, especially in regulated or high-stakes environments. This matters because the operational unit becomes the workflow, not the prompt or the model. Organizations that standardize governance and reuse across teams can scale adoption more safely than teams that build one-off assistants.",
+        "trend_slug": "enterprise-ai-moves-toward-governed-human-oversight-workflows",
+        "trend_title": "Enterprise AI Moves Toward Governed Human Oversight Workflows",
+        "uncertainty_note": "This is a vendor case study, so it demonstrates a plausible operating model but does not establish how broadly it generalizes or how many organizations can reproduce the same level of governance maturity.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The piece is published by OpenAI and presents Boston Children's' results in a promotional case-study format.",
+        "Claims are supported by quoted hospital leadership and outcome metrics embedded in the vendor narrative.",
+        "No independent evaluation, methodology, or external benchmark is provided in the text."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about a children\u2019s hospital using AI as part of its normal operating system, not as a side experiment. The hospital created a secure internal ChatGPT environment that staff across clinical, research, and administrative teams can use. It helps with routine work like invoices, scheduling, writing, coding, and literature review. The interesting part is that the same setup also supports rare disease diagnosis by combining genetic data, patient symptoms, and medical papers. The article claims this has saved time and money while helping solve more than 40 previously unresolved cases. As of May 2026, the takeaway is that AI looks most practical when it is embedded into workflows and governed like infrastructure.",
+      "assessed_as_of": "2026-05-29",
+      "contradictions_and_skepticism": "The article presents a polished success narrative, so the main skepticism is evidentiary rather than conceptual. The same vendor format that highlights savings and diagnoses also omits negative cases, failure rates, and implementation tradeoffs. The claim that tools can be deployed in days may be true for this hospital\u2019s internal environment, but it likely depends on existing data access, governance, and integration maturity that many organizations do not have. The rare-disease story is promising, but it should not be generalized into a broad claim that AI can solve diagnosis broadly without strong human expertise and structured data.",
+      "key_insights": [
+        "A shared internal AI layer can support both operations and clinical work, which is more durable than isolated point solutions.",
+        "The article ties measurable value to workflow redesign, not just model capability: invoice handling, scheduling, drafting, and coding are the clearest examples.",
+        "Rare-disease diagnosis is framed as a knowledge-synthesis problem where AI helps overcome human cognitive limits, not as a pure prediction task.",
+        "The \u201cco-pilot geneticist\u201d combines structured clinical data with literature search, suggesting a reusable pattern for evidence-heavy diagnosis support.",
+        "The evidence is presented as a vendor case study with outcome metrics but no external methodology, so the strongest takeaway is implementation pattern, not independent proof."
+      ],
+      "limitations_and_open_questions": "The article provides no independent evaluation, baseline comparison, or methodology for the reported 60,000 hours saved, $7 million in redeployed labor, or 40-plus diagnoses. It does not explain how the hospital measures success, audits errors, handles hallucinations, or tracks clinical safety over time. The rare-disease results are compelling but not enough to know how repeatable they are across specialties, data quality levels, or institutions with weaker research infrastructure. The article also leaves open the cost of building and maintaining the enterprise AI layer, including governance, security, model monitoring, and staff training. For the clinical use case, it is unclear how often AI-assisted leads were confirmed, rejected, or revised before arriving at a diagnosis.",
+      "sources": [
+        "https://openai.com/index/boston-childrens-hospital",
+        "https://openai.com/index/boston-childrens-hospital"
+      ],
+      "summary": "Boston Children\u2019s Hospital is presented as a case study in using AI as shared infrastructure rather than a set of isolated pilots. The article says the hospital built a secure internal ChatGPT environment that spans clinical, research, and administrative work, with governance for safety, monitoring, and evaluation. Operationally, the system is used for invoice intake, routing, responses, surgical scheduling support, documentation, translation, coding, and document drafting. The hospital reports more than 50 automations, about 60,000 hours saved, and more than $7 million in redeployed labor from these workflows. On the clinical side, it describes a \u201cco-pilot geneticist\u201d that combines genetic data, phenotypic information, and medical literature to help diagnose rare diseases, with more than 40 previously unresolved conditions diagnosed and some new gene targets and therapeutic pathways identified. The article\u2019s main argument is that AI is most effective here when it is embedded into daily work, tied to governance, and applied where human cognitive limits block progress.",
+      "why_it_matters": "The piece is useful because it shows a concrete operating model for applying AI inside a large regulated institution: build one secure internal layer, add governance, and let different teams reuse it for their own work. That is a more durable pattern than treating AI as a collection of disconnected tools, and the article explicitly says the fragmented approach hit limits before the enterprise layer was built. The operational claims are specific: more than 50 automations, about 60,000 hours saved, and more than $7 million in redeployed labor, which makes the article relevant to teams trying to justify AI through workflow economics rather than novelty. The clinical example matters for advanced practitioners because it shows AI used as a reasoning-and-retrieval aid for rare disease diagnosis, where the bottleneck is synthesizing genetics, phenotype, and literature. The article also suggests a deployment model that can move quickly once the foundation exists, since new tools can be deployed in days rather than through long custom projects. The stakes are strongest in environments with dense information, heavy compliance, and repeated administrative work; the claims are thinner as a general proof that AI will transform healthcare. As of May 29, 2026, this is actionable as a pattern to emulate in similar enterprise settings, but it should be read as a vendor-backed case study rather than independent validation."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor case study centered on Boston Children's Hospital, not a bundle of unrelated items.",
+        "Narrative structure explains one implementation across clinical and operational workflows, with quoted leadership and outcome figures.",
+        "Published on OpenAI's blog, but the article reads as a single implementation story rather than a roundup or transcript."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "A hospital described a \"secure internal ChatGPT environment\" used across \"research, clinical, and administrative teams\" with governance built alongside the technology.",
+        "key_points": [
+          "A fragmented one-off approach can expose limits once multiple teams need AI.",
+          "Governance, safety, monitoring, and evaluation need to be part of the platform, not added later.",
+          "A shared layer can reduce deployment cycles from long custom projects to days when the foundation is in place."
+        ],
+        "knowledge_summary": "A shared enterprise AI layer is a secure internal AI environment that different teams can reuse for distinct workflows instead of building isolated point solutions. It works best when access, governance, monitoring, and evaluation are designed alongside the tooling so new use cases can be deployed quickly without fragmenting controls. The pattern is especially useful in regulated organizations where clinical, operational, and research users need different permissions but common infrastructure. Its value comes from making AI a shared platform for repeated work, not a one-off assistant.",
+        "match_candidates": [],
+        "operational_insight": "Treat the AI layer as internal platform infrastructure: centralize access and governance, then let teams ship role-specific workflows on top of it.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "infrastructure",
+          "orchestration"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters long term because many enterprise AI deployments fail when they stay as disconnected pilots. A shared layer reduces duplicated integration work and makes governance, auditability, and reuse easier across support, operations, and knowledge work.",
+        "secondary_tag": "infrastructure",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The hospital shifted to building what Brownstein calls an enterprise AI layer: a secure internal ChatGPT environment used across research, clinical, and administrative teams. Instead of treating AI as a collection of tools, the organization created a shared foundation where new capabilities could be developed and deployed quickly.\"",
+        "topic_slug": "enterprise-ai-layer",
+        "topic_title": "Enterprise AI Layer",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "The hospital used AI for \"invoice intake, routing and responses,\" \"surgical scheduling,\" and administrative drafting, coding, and workflow support.",
+        "key_points": [
+          "Workflow value comes from redesign, not just adding a chat box.",
+          "High-volume administrative tasks are often the fastest place to find measurable ROI.",
+          "The article ties the workflow shift to 50+ automations and 60,000 hours saved, which is the right kind of evidence to look for, even if vendor-backed."
+        ],
+        "knowledge_summary": "AI workflow restructuring is the redesign of routine business processes so AI handles repetitive or synthesis-heavy steps inside the workflow rather than sitting outside it as a separate chat interface. The practical goal is to move time from low-value manual coordination into higher-value human judgment. This pattern usually starts with narrow, measurable tasks such as intake, routing, scheduling, drafting, and document handling. It becomes more durable when the workflow is tied to a clear operational owner and a measurable business outcome.",
+        "match_candidates": [],
+        "operational_insight": "Look for repetitive workflows with enough volume to justify redesign, then instrument them so time savings and service quality can be measured.",
+        "primary_tag": "enterprise-workflows",
+        "proposed_tags": [
+          "enterprise-workflows",
+          "workflow-automation",
+          "process-design"
+        ],
+        "related_topics": [
+          "enterprise-ai-layer"
+        ],
+        "relevance_note": "This is durable because most enterprise AI value comes from changing work design, not from generic chatbot access. Support automation, back-office operations, and service teams can reuse the same pattern wherever the bottleneck is repetitive coordination or document-heavy processing.",
+        "secondary_tag": "workflow-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"In supply chain operations, AI now manages invoice intake, routing and responses. In parallel, the hospital applied AI to surgical scheduling.\"",
+        "topic_slug": "ai-workflow-restructuring",
+        "topic_title": "AI Workflow Restructuring",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "The case suggests that AI is most useful when it acts as a synthesis and routing layer over heterogeneous internal and external information, not just as a standalone assistant.",
+          "business_objective": "Cut operational cost, expand capacity, reduce repetitive work, and improve rare-disease diagnosis for complex pediatric cases.",
+          "company": "Boston Children's Hospital",
+          "confidence": 0.94,
+          "deployment_context": "Deployed across research, clinical, and administrative teams at a large pediatric hospital with close to 1 million outpatient visits each year.",
+          "evidence_snippets": [
+            {
+              "claim": "Boston Children's built a secure internal ChatGPT environment across teams.",
+              "provenance": "stated",
+              "snippet": "\"The hospital shifted to building what Brownstein calls an enterprise AI layer: a secure internal ChatGPT environment used across research, clinical, and administrative teams.\""
+            },
+            {
+              "claim": "AI was applied to operational workflows like invoicing and scheduling.",
+              "provenance": "stated",
+              "snippet": "\"In supply chain operations, AI now manages invoice intake, routing and responses. In parallel, the hospital applied AI to surgical scheduling.\""
+            },
+            {
+              "claim": "The hospital reports measurable operational and clinical outcomes.",
+              "provenance": "stated",
+              "snippet": "\"Across more than 50 automations, Boston Children\u2019s has captured about 60,000 hours in time savings, which is equivalent to more than $7 million in redeployed labor.\""
+            },
+            {
+              "claim": "Rare-disease diagnosis support produced over 40 diagnoses.",
+              "provenance": "stated",
+              "snippet": "\"As a result of this work, more than 40 diagnoses have been made to date that were previously thought impossible.\""
+            }
+          ],
+          "evidence_type": null,
+          "implications_for_service_automation": "The direct service-automation lesson is strong for back-office and knowledge-heavy operations, but the article does not describe a customer-facing chat or voice automation deployment.",
+          "industry": "healthcare",
+          "key_lessons": [
+            "Start with measurable workflows where volume and repetition justify automation.",
+            "Build governance with the platform, not after deployment.",
+            "Use AI where synthesis across documents and structured data is the real bottleneck.",
+            "Treat diagnosis or decision support as a human-plus-AI workflow, not a fully automated endpoint."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How were the reported 60,000 hours saved measured?",
+            "How many AI-assisted diagnoses were later revised or rejected?",
+            "What monitoring and safety checks were used for clinical workflows?",
+            "What were the build and maintenance costs of the enterprise AI layer?"
+          ],
+          "operational_constraints": "The hospital operates under tight financial constraints, high administrative burden, fragmented genetic data, incomplete clinical histories, and a large volume of medical literature that is hard for physicians to synthesize manually.",
+          "outcome_status": "The article reports ongoing use with more than one-third of employees using AI daily, 50+ automations, 60,000 hours saved, $7M+ in redeployed labor, and 40+ rare conditions diagnosed.",
+          "overview": "Boston Children's Hospital embedded AI across clinical, research, and administrative work as shared infrastructure rather than a set of separate pilots. The rollout combined a secure internal ChatGPT environment, governance, and workflow automations, and it was also used for rare-disease diagnosis support.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "enterprise-ai-adoption",
+            "ai-operationalization"
+          ],
+          "related_sources": [
+            "https://openai.com/index/boston-childrens-hospital"
+          ],
+          "secondary_tag": "enterprise-ai-adoption",
+          "strategic_signals": "The organization is treating AI as infrastructure, which implies a shift from isolated experiments toward platform-based adoption across departments.",
+          "success_or_failure_factors": "The article attributes success to embedding AI into daily workflows, building governance alongside the platform, and focusing on use cases where human cognitive limits were a bottleneck.",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "technical_approach": "The hospital created an enterprise AI layer with governance, monitoring, and evaluation, then applied it to supply chain workflows, scheduling, drafting, coding, research analysis, and diagnostic synthesis.",
+          "title": "Boston Children's AI Infrastructure Rollout",
+          "value_level": "high",
+          "what_was_implemented": "A secure internal ChatGPT environment, workflow automations for operations, and a \"co-pilot geneticist\" that combines genetic data, phenotypic information, and medical literature."
+        },
+        "notes": null,
+        "proposal_id": "cf11d7e2-7aa2-43d3-b47d-a2fc73e2cfeb",
+        "proposal_status": "approved",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "company": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Start with measurable workflows where volume and repetition justify automation.",
+              "Build governance with the platform, not after deployment.",
+              "Use AI where synthesis across documents and structured data is the real bottleneck.",
+              "Treat diagnosis or decision support as a human-plus-AI workflow, not a fully automated endpoint."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How were the reported 60,000 hours saved measured?",
+              "How many AI-assisted diagnoses were later revised or rejected?",
+              "What monitoring and safety checks were used for clinical workflows?",
+              "What were the build and maintenance costs of the enterprise AI layer?"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://openai.com/index/boston-childrens-hospital"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "enterprise-ai-adoption",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-29",
+          "confidence": 0.89,
+          "evidence_from_source": "Boston Children's is described as building a secure internal ChatGPT environment across research, clinical, and administrative teams, with governance structures for safety, monitoring, and consistent evaluation. The article frames AI as infrastructure that supports daily work rather than a standalone experiment.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-operationalization",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents",
+            "support-automation-as-operating-model"
+          ],
+          "secondary_tag": "ai-operationalization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Secure internal ChatGPT environment used across research, clinical, and administrative teams",
+            "Governance built alongside the technology",
+            "More than one-third of employees use AI daily",
+            "More than 50 automations",
+            "60,000 hours saved"
+          ],
+          "supporting_snippet": "\"Governance structures were built alongside the technology to ensure safety, monitoring and consistent evaluation.\"",
+          "time_sensitivity": "Actionable as of 2026-05-29; the evidence reflects enterprise adoption patterns at that date and may remain relevant as long as organizations are centralizing governed AI access.",
+          "trend_description": "Enterprise AI deployments are shifting from isolated experiments toward shared systems that are governed, monitored, and embedded into human workflows. The durable pattern is not full automation; it is AI-assisted work with explicit oversight, especially in regulated or high-stakes environments. This matters because the operational unit becomes the workflow, not the prompt or the model. Organizations that standardize governance and reuse across teams can scale adoption more safely than teams that build one-off assistants.",
+          "trend_slug": "enterprise-ai-moves-toward-governed-human-oversight-workflows",
+          "trend_title": "Enterprise AI Moves Toward Governed Human Oversight Workflows",
+          "uncertainty_note": "This is a vendor case study, so it demonstrates a plausible operating model but does not establish how broadly it generalizes or how many organizations can reproduce the same level of governance maturity.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "c9249818-0cf1-491d-a9a6-4f448683cf42",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents",
+              "support-automation-as-operating-model"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Secure internal ChatGPT environment used across research, clinical, and administrative teams",
+              "Governance built alongside the technology",
+              "More than one-third of employees use AI daily",
+              "More than 50 automations",
+              "60,000 hours saved"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-operationalization",
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The piece is published by OpenAI and presents Boston Children's' results in a promotional case-study format.",
+          "Claims are supported by quoted hospital leadership and outcome metrics embedded in the vendor narrative.",
+          "No independent evaluation, methodology, or external benchmark is provided in the text."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A shared internal AI layer can support both operations and clinical work, which is more durable than isolated point solutions.",
+          "The article ties measurable value to workflow redesign, not just model capability: invoice handling, scheduling, drafting, and coding are the clearest examples.",
+          "Rare-disease diagnosis is framed as a knowledge-synthesis problem where AI helps overcome human cognitive limits, not as a pure prediction task.",
+          "The \u201cco-pilot geneticist\u201d combines structured clinical data with literature search, suggesting a reusable pattern for evidence-heavy diagnosis support.",
+          "The evidence is presented as a vendor case study with outcome metrics but no external methodology, so the strongest takeaway is implementation pattern, not independent proof."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/index/boston-childrens-hospital",
+          "https://openai.com/index/boston-childrens-hospital"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor case study centered on Boston Children's Hospital, not a bundle of unrelated items.",
+          "Narrative structure explains one implementation across clinical and operational workflows, with quoted leadership and outcome figures.",
+          "Published on OpenAI's blog, but the article reads as a single implementation story rather than a roundup or transcript."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "A hospital described a \"secure internal ChatGPT environment\" used across \"research, clinical, and administrative teams\" with governance built alongside the technology.",
+          "key_points": [
+            "A fragmented one-off approach can expose limits once multiple teams need AI.",
+            "Governance, safety, monitoring, and evaluation need to be part of the platform, not added later.",
+            "A shared layer can reduce deployment cycles from long custom projects to days when the foundation is in place."
+          ],
+          "knowledge_summary": "A shared enterprise AI layer is a secure internal AI environment that different teams can reuse for distinct workflows instead of building isolated point solutions. It works best when access, governance, monitoring, and evaluation are designed alongside the tooling so new use cases can be deployed quickly without fragmenting controls. The pattern is especially useful in regulated organizations where clinical, operational, and research users need different permissions but common infrastructure. Its value comes from making AI a shared platform for repeated work, not a one-off assistant.",
+          "match_candidates": [],
+          "operational_insight": "Treat the AI layer as internal platform infrastructure: centralize access and governance, then let teams ship role-specific workflows on top of it.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "infrastructure",
+            "orchestration"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters long term because many enterprise AI deployments fail when they stay as disconnected pilots. A shared layer reduces duplicated integration work and makes governance, auditability, and reuse easier across support, operations, and knowledge work.",
+          "secondary_tag": "infrastructure",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The hospital shifted to building what Brownstein calls an enterprise AI layer: a secure internal ChatGPT environment used across research, clinical, and administrative teams. Instead of treating AI as a collection of tools, the organization created a shared foundation where new capabilities could be developed and deployed quickly.\"",
+          "topic_slug": "enterprise-ai-layer",
+          "topic_title": "Enterprise AI Layer",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "82937ee7-1c34-4a24-b86d-447207f980ea",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A fragmented one-off approach can expose limits once multiple teams need AI.",
+              "Governance, safety, monitoring, and evaluation need to be part of the platform, not added later.",
+              "A shared layer can reduce deployment cycles from long custom projects to days when the foundation is in place."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "infrastructure",
+            "orchestration"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "The hospital used AI for \"invoice intake, routing and responses,\" \"surgical scheduling,\" and administrative drafting, coding, and workflow support.",
+          "key_points": [
+            "Workflow value comes from redesign, not just adding a chat box.",
+            "High-volume administrative tasks are often the fastest place to find measurable ROI.",
+            "The article ties the workflow shift to 50+ automations and 60,000 hours saved, which is the right kind of evidence to look for, even if vendor-backed."
+          ],
+          "knowledge_summary": "AI workflow restructuring is the redesign of routine business processes so AI handles repetitive or synthesis-heavy steps inside the workflow rather than sitting outside it as a separate chat interface. The practical goal is to move time from low-value manual coordination into higher-value human judgment. This pattern usually starts with narrow, measurable tasks such as intake, routing, scheduling, drafting, and document handling. It becomes more durable when the workflow is tied to a clear operational owner and a measurable business outcome.",
+          "match_candidates": [],
+          "operational_insight": "Look for repetitive workflows with enough volume to justify redesign, then instrument them so time savings and service quality can be measured.",
+          "primary_tag": "enterprise-workflows",
+          "proposed_tags": [
+            "enterprise-workflows",
+            "workflow-automation",
+            "process-design"
+          ],
+          "related_topics": [
+            "enterprise-ai-layer"
+          ],
+          "relevance_note": "This is durable because most enterprise AI value comes from changing work design, not from generic chatbot access. Support automation, back-office operations, and service teams can reuse the same pattern wherever the bottleneck is repetitive coordination or document-heavy processing.",
+          "secondary_tag": "workflow-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"In supply chain operations, AI now manages invoice intake, routing and responses. In parallel, the hospital applied AI to surgical scheduling.\"",
+          "topic_slug": "ai-workflow-restructuring",
+          "topic_title": "AI Workflow Restructuring",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2c8c34de-4680-498a-8d10-1153b88eb42e",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Workflow value comes from redesign, not just adding a chat box.",
+              "High-volume administrative tasks are often the fastest place to find measurable ROI.",
+              "The article ties the workflow shift to 50+ automations and 60,000 hours saved, which is the right kind of evidence to look for, even if vendor-backed."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "enterprise-ai-layer"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-workflows",
+            "workflow-automation",
+            "process-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 174.4,
+    "review_finished_at": "2026-06-06T15:46:25.422645+00:00",
+    "review_started_at": "2026-06-06T15:43:31+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-06T15:46:25+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/index/boston-childrens-hospital",
+    "content_sha256": "1bb4cae20a5ec7a7cde7994e837a017e1b3b4ce9d71d44c78a094906a774dfcd",
+    "publication": "openai.com",
+    "published_date": "2026-05-29",
+    "raw_html_rel_path": "raw/readwise/boston-children-s-uses-ai-to-unlock-new-diagnoses-01kst7z5gfm9s22h8znpaxjxy1.html",
+    "raw_md_rel_path": "raw/readwise/boston-children-s-uses-ai-to-unlock-new-diagnoses-01kst7z5gfm9s22h8znpaxjxy1.md",
+    "source_id": "boston-children-s-uses-ai-to-unlock-new-diagnoses-01kst7z5gfm9s22h8znpaxjxy1",
+    "title": "Boston Children\u2019s uses AI to unlock new diagnoses"
+  }
+}

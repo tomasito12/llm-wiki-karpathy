@@ -1185,6 +1185,41 @@ def test_trend_title_rubric_prefers_concrete_structural_insight() -> None:
     assert "trend title generation workflow" in TRENDS_RUBRIC.lower()
 
 
+def test_trend_title_decomposition_rubric_keeps_mechanisms_out_of_titles() -> None:
+    from src.ingest_review.providers.openai_provider import (
+        TITLE_GENERATION_RUBRIC,
+        TREND_TITLE_DECOMPOSITION_RUBRIC,
+        TRENDS_RUBRIC,
+    )
+
+    assert "single directional change" in TREND_TITLE_DECOMPOSITION_RUBRIC
+    assert "Would this trend still be valid" in TREND_TITLE_DECOMPOSITION_RUBRIC
+    assert "through / by / using / with" in TREND_TITLE_DECOMPOSITION_RUBRIC
+    assert "Inference Costs Continue to Fall" in TITLE_GENERATION_RUBRIC
+    assert "Agent Reliability Improves" in TITLE_GENERATION_RUBRIC
+    assert "Inference Stacks Get Cheaper by Compressing Memory" in TITLE_GENERATION_RUBRIC
+    assert "TREND_TITLE_DECOMPOSITION_RUBRIC" in TRENDS_RUBRIC
+    assert "put mechanisms in trend_description" in TRENDS_RUBRIC
+
+
+def test_trend_title_decomposition_splits_compound_trends() -> None:
+    from src.ingest_review.providers.openai_provider import (
+        TREND_TITLE_DECOMPOSITION_RUBRIC,
+        TRENDS_RUBRIC,
+    )
+
+    assert "One trend object, one trend" in TREND_TITLE_DECOMPOSITION_RUBRIC
+    assert "Can both halves of this title become true" in TREND_TITLE_DECOMPOSITION_RUBRIC
+    assert "stronger, or weaker independently" in TREND_TITLE_DECOMPOSITION_RUBRIC
+    assert "Inference Serving Moves Toward Lower Precision" in TREND_TITLE_DECOMPOSITION_RUBRIC
+    assert (
+        "Inference Serving Moves Toward Hardware-Specific Kernel Fusion"
+        in TREND_TITLE_DECOMPOSITION_RUBRIC
+    )
+    assert "output multiple" in TRENDS_RUBRIC
+    assert "``industry_trends`` objects instead of one compound trend" in TRENDS_RUBRIC
+
+
 def test_topics_and_trends_rubrics_reference_title_generation() -> None:
     from src.ingest_review.providers.openai_provider import TOPICS_RUBRIC, TRENDS_RUBRIC
 
@@ -1228,16 +1263,17 @@ def test_title_generation_rubric_in_user_prompt(tmp_path: Path) -> None:
     assert "## TITLE_GENERATION_RUBRIC" in prompt
     assert TITLE_GENERATION_RUBRIC.split("\n")[0] in prompt
     assert "Topic vs Trend" in prompt
+    assert "Trend title decomposition" in prompt
     title_idx = prompt.index("## TITLE_GENERATION_RUBRIC")
     topics_idx = prompt.index("## TOPICS_RUBRIC")
     assert title_idx < topics_idx
 
 
-def test_prompt_version_is_41() -> None:
+def test_prompt_version_is_42() -> None:
     """Prompt version bumped for trend title rubric redesign."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "41"
+    assert PROMPT_VERSION == "42"
 
 
 def test_title_canonicalization_rubric_replaces_suggested_action() -> None:

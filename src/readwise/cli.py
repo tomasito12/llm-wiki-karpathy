@@ -9,6 +9,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from src.readwise.dedupe_cli import run_readwise_dedupe
+from src.readwise.near_duplicates import DEFAULT_THRESHOLD
 from src.readwise.sync import _repo_root, run_sync
 
 
@@ -64,6 +66,22 @@ def build_parser() -> argparse.ArgumentParser:
             "default ~100-day lookback (document entries are kept)."
         ),
     )
+    parser.add_argument(
+        "--no-dedupe",
+        action="store_true",
+        help="Skip near-duplicate cleanup after sync (default: remove shorter copies).",
+    )
+    parser.add_argument(
+        "--dedupe-threshold",
+        type=float,
+        default=DEFAULT_THRESHOLD,
+        help=f"Similarity threshold for post-sync dedupe (default: {DEFAULT_THRESHOLD:.2f}).",
+    )
+    parser.add_argument(
+        "--dedupe-interactive",
+        action="store_true",
+        help="Prompt for each duplicate pair during post-sync dedupe.",
+    )
     return parser
 
 
@@ -102,6 +120,19 @@ def main() -> int:
             file=sys.stderr,
         )
         print(f"(watermark used: {wm})", file=sys.stderr)
+
+    if not args.no_dedupe and not result.dry_run:
+        dedupe_code = run_readwise_dedupe(
+            raw_dir=args.output_dir,
+            index_path=args.index,
+            threshold=args.dedupe_threshold,
+            dry_run=False,
+            interactive=args.dedupe_interactive,
+            verbose=True,
+        )
+        if dedupe_code != 0:
+            return dedupe_code
+
     return 0
 
 

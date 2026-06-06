@@ -1,0 +1,893 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T15:35:02+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnnKfuAKul5yo2kJxX8B8K2DclDLp",
+          "token_usage": {
+            "completion_tokens": 212,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4980,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5192
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnnKhyDzz6rC5Joqe285LpHS4yFpY",
+          "token_usage": {
+            "completion_tokens": 1039,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4606,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5645
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnnKp0xDYfxoCft4ZeiOFYEg41GiC",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2087,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 31265,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33352
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnnKp0xDYfxoCft4ZeiOFYEg41GiC",
+    "token_usage": {
+      "completion_tokens": 3338,
+      "prompt_tokens": 40851,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 44189
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "The case suggests that once agentic coding workflows land, upstream work such as requirements, planning, and coordination becomes a key bottleneck. It also suggests that AI value expands when models are used to generate operational artifacts, not only code.",
+        "business_objective": "The company aimed to stay relevant in the AI era, speed delivery, and make AI part of everyday work rather than a separate initiative.",
+        "company": "Endava",
+        "confidence": 0.92,
+        "deployment_context": "The rollout was described across Endava's 11,000-person global workforce and included software delivery teams, legal, project management, commercial teams, and leadership groups.",
+        "evidence_snippets": [
+          {
+            "claim": "Endava made OpenAI its enterprise AI platform and rolled it out across the company.",
+            "provenance": "stated",
+            "snippet": "That mindset led Endava to make OpenAI its enterprise AI platform, giving employees across the company access to ChatGPT Enterprise and Codex."
+          },
+          {
+            "claim": "The company created a named AI-native delivery methodology.",
+            "provenance": "stated",
+            "snippet": "That realization led to the creation of DavaFlow, the company\u2019s AI-native delivery methodology."
+          },
+          {
+            "claim": "AI use spread beyond engineering into multiple business functions.",
+            "provenance": "stated",
+            "snippet": "Legal teams began using AI to streamline research and documentation workflows. Project managers started using Codex to generate governance reports and summarize engineering progress. Commercial teams replaced spreadsheet-heavy planning exercises with lightweight AI-generated applications."
+          }
+        ],
+        "evidence_type": null,
+        "implications_for_service_automation": "The article points to useful service-automation patterns in legal research, reporting, inbox management, and coordination, but it does not quantify service outcomes or containment effects.",
+        "industry": "technology services",
+        "key_lessons": [
+          "Embed AI into standard workflows rather than isolating it in a pilot.",
+          "Expect bottlenecks to move from coding to planning, requirements, and coordination.",
+          "Make leadership usage visible if you want broad adoption.",
+          "Tie AI fluency to hiring and promotion if you want it to persist."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How much did delivery speed, quality, or cost actually improve?",
+          "What governance and safety controls were used across the workforce?",
+          "Which parts of DavaFlow were standardized versus left to team discretion?"
+        ],
+        "operational_constraints": "The source does not provide quantitative metrics, governance details, or failure analysis. It also does not specify the templates, controls, or security processes used to operate AI across a large workforce.",
+        "outcome_status": "The article describes an ongoing internal transformation rather than a completed pilot; Endava says AI fluency is now part of hiring and promotion expectations.",
+        "overview": "Endava embedded OpenAI tools into its software delivery and adjacent business workflows, then reorganized its process around an AI-native methodology called DavaFlow. The rollout extended beyond engineering into legal, project management, commercial planning, and leadership tasks.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "software-engineering",
+          "workflow-automation"
+        ],
+        "related_sources": [
+          "https://openai.com/index/endava-frontiers",
+          "OpenAI Blog, \"How Endava is redesigning software delivery around AI agents\", June 4, 2026"
+        ],
+        "secondary_tag": "software-engineering",
+        "strategic_signals": "The company is treating AI as part of its operating model, not merely a productivity add-on. The emphasis on orchestration suggests that integrated human-model workflows are becoming the main design problem.",
+        "success_or_failure_factors": "Adoption was reinforced by leadership usage, hands-on experimentation, and the decision to embed AI in everyday workflows instead of treating it as a separate tool rollout.",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "technical_approach": "OpenAI technology was embedded throughout the DavaFlow lifecycle, and employees used agents for summarization, inbox handling, asynchronous coordination, governance reports, and lightweight internal apps.",
+        "title": "Endava's AI-Native Delivery Rollout",
+        "value_level": "high",
+        "what_was_implemented": "ChatGPT Enterprise and Codex were made the enterprise AI platform, and DavaFlow was introduced as the delivery methodology spanning meeting prep, business planning, product discovery, software engineering, and deployment."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-06-04",
+        "confidence": 0.86,
+        "evidence_from_source": "Endava says its AI work moved from developer experimentation to a company-wide methodology, and that OpenAI technology now spans planning, discovery, engineering, deployment, legal research, reporting, and leadership coordination.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems",
+          "models-becoming-execution-layers"
+        ],
+        "secondary_tag": "workflow-restructuring",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-systems",
+        "suggested_new_tags": [
+          "agent-systems"
+        ],
+        "supporting_data_points": [
+          "AI used across the full DavaFlow lifecycle",
+          "Adoption extended into legal, finance/project management, commercial teams, and leadership",
+          "The company frames AI as part of its operating model"
+        ],
+        "supporting_snippet": "\u201cThere isn\u2019t a part of DavaFlow that doesn\u2019t use OpenAI technology.\u201d ... \u201cFrom reasoning models and Codex agents to automation and enterprise-scale collaboration, Endava believes AI is becoming more than a productivity layer. It\u2019s becoming the operating model itself.\u201d",
+        "time_sensitivity": "Actionable as of 2026-06-04; this is a live organizational pattern, but the article provides only one company case and no independent validation.",
+        "trend_description": "Organizations are moving from using AI as a point productivity tool toward restructuring end-to-end workflows around agents, models, and human coordination. The change matters because the main value comes from redesigning the process, not just automating an isolated step.",
+        "trend_slug": "workflow-restructuring-around-ai-agents",
+        "trend_title": "Workflow Restructuring Around AI Agents",
+        "uncertainty_note": "Evidence is limited to a vendor-published case study, so generalization is uncertain and measured gains are not reported.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article describes how Endava rolled out ChatGPT Enterprise and Codex across teams and redesigned its delivery workflow.",
+        "Claims are supported by concrete deployment examples, such as DavaFlow, legal research, project reporting, and internal pricing apps.",
+        "The piece is primarily a company implementation narrative rather than a benchmark, research result, or independent analysis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about how Endava changed its software delivery process by making AI part of everyday work. The company did not just give people new tools; it redesigned how teams gather requirements, plan work, build software, and coordinate across functions. OpenAI\u2019s ChatGPT Enterprise and Codex sit inside that workflow. The interesting part is that the biggest gains were not limited to coding. Legal, project management, commercial planning, and leadership teams also started using AI for reports, research, and coordination. The core lesson is simple: if AI is treated as part of the process, not a side project, it can reshape how a services company operates.",
+      "assessed_as_of": "2026-06-04",
+      "contradictions_and_skepticism": "The article presents strong claims about redesigning delivery around agents, but most evidence is anecdotal and self-reported. Statements like being AI-native or having agents in the background may describe aspiration as much as measurable practice. The piece implies broad transformation across the organization, yet it does not show whether usage was deep, consistent, or sustainable across all teams. As with many vendor case studies, the narrative is polished and may overstate generalizability beyond Endava.",
+      "key_insights": [
+        "Endava\u2019s main move was organizational: it treated AI adoption as workflow redesign, not as a software rollout.",
+        "Once developers used AI-assisted coding and agents, non-coding bottlenecks such as requirements, planning, and stakeholder coordination became the limiting factor.",
+        "DavaFlow is the company\u2019s named delivery methodology for embedding OpenAI tools across the full lifecycle, from meeting prep to deployment.",
+        "The article highlights practical, low-friction uses outside engineering, including legal research, governance reports, and lightweight internal apps built without dedicated engineering support.",
+        "Endava ties adoption to leadership behavior and hiring/promotion expectations, which makes AI fluency part of the operating model rather than an optional skill."
+      ],
+      "limitations_and_open_questions": "This is a vendor-published case study, so it lacks independent benchmarks, control groups, cost data, or failure analysis. The article does not quantify delivery speed, quality, or ROI, so the scale of benefit is unclear. It also does not explain governance, security, data handling, or how Endava managed model risk across an 11,000-person workforce. DavaFlow is described at a high level, but the article does not specify the mechanics, templates, review gates, or tooling needed to replicate it. The claim that AI became the operating model itself is aspirational and not evaluated with external evidence.",
+      "sources": [
+        "https://openai.com/index/endava-frontiers",
+        "OpenAI Blog, \"How Endava is redesigning software delivery around AI agents\", June 4, 2026"
+      ],
+      "summary": "Endava\u2019s case study argues that AI adoption becomes materially useful when it is embedded into day-to-day delivery work rather than added as a separate tool layer. The company made OpenAI its enterprise AI platform, giving employees ChatGPT Enterprise and Codex, and then reorganized software delivery around an AI-native methodology called DavaFlow. The article\u2019s central claim is that once developers used agentic workflows, the bottleneck shifted to upstream and adjacent work such as requirements gathering, business analysis, planning, stakeholder coordination, legal research, reporting, and internal business tooling. Endava says OpenAI technology is used across the full delivery lifecycle, from meeting preparation and product discovery through engineering and deployment. It also extends beyond engineering into legal, project management, commercial planning, and leadership workflows. The company presents AI fluency as part of hiring and promotion, and frames leadership use as essential for adoption. The piece is a vendor case study, so it provides implementation examples and organizational principles rather than comparative performance data or independent validation.",
+      "why_it_matters": "The article is useful because it shows a concrete enterprise pattern for making AI operational: put models and agents into the actual delivery process, then redesign the process around them. That is more durable than a one-off productivity experiment because Endava describes changes across requirements, planning, engineering, legal, project management, and commercial work. The named DavaFlow methodology is a reusable concept for wiki readers because it compresses the idea of an AI-native delivery lifecycle into one operational frame. The piece also makes a practical point that is easy to miss: AI value did not stop at code generation, because once coding sped up, adjacent coordination work became the new constraint. Its leadership lesson is also specific, not generic: adoption depended on managers using the tools themselves and on making AI fluency visible in hiring and promotion. For builders of enterprise copilots or agent workflows, this is a reminder that workflow integration and behavior change matter as much as model capability. The evidence is still a single-company case study from June 4, 2026, so the claims are actionable as of that date but should be treated as implementation guidance rather than proof of broad performance gains. The service-automation angle is real but secondary here: the article mentions legal, reporting, inbox, and coordination tasks, yet it does not provide rigorous outcomes for those functions."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor-written case study about one company, Endava, rather than a list or digest.",
+        "Structured as a narrative with quotes from Endava's CTO and a short results/lessons section, not a roundup or tutorial.",
+        "Published on OpenAI's blog and centered on OpenAI products in an enterprise deployment context."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "Endava created a named methodology, DavaFlow, and used it across \u201cmeeting preparation and business planning to product discovery, software engineering, and deployment.\u201d",
+        "key_points": [
+          "AI should be integrated into the delivery lifecycle, not isolated as a developer helper.",
+          "Once coding is accelerated, requirements, planning, and stakeholder coordination can become the limiting steps.",
+          "A named methodology can help standardize AI usage across multiple functions and teams."
+        ],
+        "knowledge_summary": "An AI-native delivery methodology is a software delivery approach where AI is embedded across the full work cycle instead of added only as a coding aid. It treats requirements, planning, business analysis, coordination, engineering, and deployment as parts of one AI-assisted workflow. The practical point is that once AI speeds up one stage, surrounding stages often become the real bottleneck. The durable operational lesson is to redesign the whole process, not just automate a single task.",
+        "match_candidates": [],
+        "operational_insight": "When AI is adopted inside delivery teams, the highest leverage comes from reworking adjacent human steps, not from isolated prompt use in one function.",
+        "primary_tag": "enterprise-workflows",
+        "proposed_tags": [
+          "enterprise-workflows",
+          "workflow-design",
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI practitioners because enterprise AI programs often stall when they stay at the tool level. A reusable delivery methodology gives teams a way to encode AI into standard work, which is more scalable than relying on individual enthusiasm. It is especially relevant for conversational AI, support automation, and agent workflows where coordination work can dominate the end-to-end system.",
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "That realization led to the creation of DavaFlow, the company\u2019s AI-native delivery methodology. \u201cThere isn\u2019t a part of DavaFlow that doesn\u2019t use OpenAI technology.\u201d",
+        "topic_slug": "ai-native-delivery-methodology",
+        "topic_title": "AI-Native Delivery Methodology",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.89,
+        "evidence_type": null,
+        "examples": "Endava\u2019s lessons included: \u201cTreat AI adoption as a behavior change, not a software rollout,\u201d \u201cLeaders need to actively use AI,\u201d and \u201cMake AI part of everyday workflows, not a separate initiative.\u201d",
+        "key_points": [
+          "Leadership usage can be an adoption multiplier.",
+          "Hiring and promotion criteria can make AI fluency operational rather than rhetorical.",
+          "Early hands-on experience can reduce skepticism faster than abstract training."
+        ],
+        "knowledge_summary": "AI adoption in organizations is often less a software rollout than a change in how people work, lead, and make decisions. Durable adoption depends on leaders using the tools, teams being exposed to real use cases early, and AI fluency becoming part of expected professional behavior. This framing shifts attention from deployment mechanics to habits, norms, and incentives. It is a practical way to think about why some AI programs spread and others remain shallow.",
+        "match_candidates": [],
+        "operational_insight": "For organizational rollout, adoption succeeds more reliably when AI use is visible, expected, and reinforced through leadership behavior and talent processes.",
+        "primary_tag": "organizational-design",
+        "proposed_tags": [
+          "organizational-design",
+          "enterprise-ai",
+          "human-ai-workflows"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is useful long-term because AI systems are often underused when organizations treat them as optional tools. The same pattern appears in support automation, agent workflows, and internal copilots: if managers do not model usage and incentives do not change, adoption can remain superficial. The concept is durable because it addresses the human side of system deployment, which outlasts any one model or vendor.",
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cTreat AI adoption as a behavior change, not a software rollout\u201d; \u201cLeaders need to actively use AI to drive organization-wide adoption\u201d; \u201cEstablished AI fluency as part of hiring and promotion expectations across the company\u201d",
+        "topic_slug": "ai-adoption-as-behavior-change",
+        "topic_title": "AI Adoption as Behavior Change",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "The case suggests that once agentic coding workflows land, upstream work such as requirements, planning, and coordination becomes a key bottleneck. It also suggests that AI value expands when models are used to generate operational artifacts, not only code.",
+          "business_objective": "The company aimed to stay relevant in the AI era, speed delivery, and make AI part of everyday work rather than a separate initiative.",
+          "company": "Endava",
+          "confidence": 0.92,
+          "deployment_context": "The rollout was described across Endava's 11,000-person global workforce and included software delivery teams, legal, project management, commercial teams, and leadership groups.",
+          "evidence_snippets": [
+            {
+              "claim": "Endava made OpenAI its enterprise AI platform and rolled it out across the company.",
+              "provenance": "stated",
+              "snippet": "That mindset led Endava to make OpenAI its enterprise AI platform, giving employees across the company access to ChatGPT Enterprise and Codex."
+            },
+            {
+              "claim": "The company created a named AI-native delivery methodology.",
+              "provenance": "stated",
+              "snippet": "That realization led to the creation of DavaFlow, the company\u2019s AI-native delivery methodology."
+            },
+            {
+              "claim": "AI use spread beyond engineering into multiple business functions.",
+              "provenance": "stated",
+              "snippet": "Legal teams began using AI to streamline research and documentation workflows. Project managers started using Codex to generate governance reports and summarize engineering progress. Commercial teams replaced spreadsheet-heavy planning exercises with lightweight AI-generated applications."
+            }
+          ],
+          "evidence_type": null,
+          "implications_for_service_automation": "The article points to useful service-automation patterns in legal research, reporting, inbox management, and coordination, but it does not quantify service outcomes or containment effects.",
+          "industry": "technology services",
+          "key_lessons": [
+            "Embed AI into standard workflows rather than isolating it in a pilot.",
+            "Expect bottlenecks to move from coding to planning, requirements, and coordination.",
+            "Make leadership usage visible if you want broad adoption.",
+            "Tie AI fluency to hiring and promotion if you want it to persist."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How much did delivery speed, quality, or cost actually improve?",
+            "What governance and safety controls were used across the workforce?",
+            "Which parts of DavaFlow were standardized versus left to team discretion?"
+          ],
+          "operational_constraints": "The source does not provide quantitative metrics, governance details, or failure analysis. It also does not specify the templates, controls, or security processes used to operate AI across a large workforce.",
+          "outcome_status": "The article describes an ongoing internal transformation rather than a completed pilot; Endava says AI fluency is now part of hiring and promotion expectations.",
+          "overview": "Endava embedded OpenAI tools into its software delivery and adjacent business workflows, then reorganized its process around an AI-native methodology called DavaFlow. The rollout extended beyond engineering into legal, project management, commercial planning, and leadership tasks.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "software-engineering",
+            "workflow-automation"
+          ],
+          "related_sources": [
+            "https://openai.com/index/endava-frontiers",
+            "OpenAI Blog, \"How Endava is redesigning software delivery around AI agents\", June 4, 2026"
+          ],
+          "secondary_tag": "software-engineering",
+          "strategic_signals": "The company is treating AI as part of its operating model, not merely a productivity add-on. The emphasis on orchestration suggests that integrated human-model workflows are becoming the main design problem.",
+          "success_or_failure_factors": "Adoption was reinforced by leadership usage, hands-on experimentation, and the decision to embed AI in everyday workflows instead of treating it as a separate tool rollout.",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "technical_approach": "OpenAI technology was embedded throughout the DavaFlow lifecycle, and employees used agents for summarization, inbox handling, asynchronous coordination, governance reports, and lightweight internal apps.",
+          "title": "Endava's AI-Native Delivery Rollout",
+          "value_level": "high",
+          "what_was_implemented": "ChatGPT Enterprise and Codex were made the enterprise AI platform, and DavaFlow was introduced as the delivery methodology spanning meeting prep, business planning, product discovery, software engineering, and deployment."
+        },
+        "notes": null,
+        "proposal_id": "572b4bd1-ab26-4e90-8eed-25d91643dd12",
+        "proposal_status": "approved",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "company": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Embed AI into standard workflows rather than isolating it in a pilot.",
+              "Expect bottlenecks to move from coding to planning, requirements, and coordination.",
+              "Make leadership usage visible if you want broad adoption.",
+              "Tie AI fluency to hiring and promotion if you want it to persist."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How much did delivery speed, quality, or cost actually improve?",
+              "What governance and safety controls were used across the workforce?",
+              "Which parts of DavaFlow were standardized versus left to team discretion?"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://openai.com/index/endava-frontiers",
+              "OpenAI Blog, \"How Endava is redesigning software delivery around AI agents\", June 4, 2026"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "software-engineering",
+            "workflow-automation"
+          ]
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-04",
+          "confidence": 0.86,
+          "evidence_from_source": "Endava says its AI work moved from developer experimentation to a company-wide methodology, and that OpenAI technology now spans planning, discovery, engineering, deployment, legal research, reporting, and leadership coordination.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems",
+            "models-becoming-execution-layers"
+          ],
+          "secondary_tag": "workflow-restructuring",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-systems",
+          "suggested_new_tags": [
+            "agent-systems"
+          ],
+          "supporting_data_points": [
+            "AI used across the full DavaFlow lifecycle",
+            "Adoption extended into legal, finance/project management, commercial teams, and leadership",
+            "The company frames AI as part of its operating model"
+          ],
+          "supporting_snippet": "\u201cThere isn\u2019t a part of DavaFlow that doesn\u2019t use OpenAI technology.\u201d ... \u201cFrom reasoning models and Codex agents to automation and enterprise-scale collaboration, Endava believes AI is becoming more than a productivity layer. It\u2019s becoming the operating model itself.\u201d",
+          "time_sensitivity": "Actionable as of 2026-06-04; this is a live organizational pattern, but the article provides only one company case and no independent validation.",
+          "trend_description": "Organizations are moving from using AI as a point productivity tool toward restructuring end-to-end workflows around agents, models, and human coordination. The change matters because the main value comes from redesigning the process, not just automating an isolated step.",
+          "trend_slug": "workflow-restructuring-around-ai-agents",
+          "trend_title": "Workflow Restructuring Around AI Agents",
+          "uncertainty_note": "Evidence is limited to a vendor-published case study, so generalization is uncertain and measured gains are not reported.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a76607af-1dcd-437c-b4dc-ea15ece40c8d",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems",
+              "models-becoming-execution-layers"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "AI used across the full DavaFlow lifecycle",
+              "Adoption extended into legal, finance/project management, commercial teams, and leadership",
+              "The company frames AI as part of its operating model"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article describes how Endava rolled out ChatGPT Enterprise and Codex across teams and redesigned its delivery workflow.",
+          "Claims are supported by concrete deployment examples, such as DavaFlow, legal research, project reporting, and internal pricing apps.",
+          "The piece is primarily a company implementation narrative rather than a benchmark, research result, or independent analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Endava\u2019s main move was organizational: it treated AI adoption as workflow redesign, not as a software rollout.",
+          "Once developers used AI-assisted coding and agents, non-coding bottlenecks such as requirements, planning, and stakeholder coordination became the limiting factor.",
+          "DavaFlow is the company\u2019s named delivery methodology for embedding OpenAI tools across the full lifecycle, from meeting prep to deployment.",
+          "The article highlights practical, low-friction uses outside engineering, including legal research, governance reports, and lightweight internal apps built without dedicated engineering support.",
+          "Endava ties adoption to leadership behavior and hiring/promotion expectations, which makes AI fluency part of the operating model rather than an optional skill."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/index/endava-frontiers",
+          "OpenAI Blog, \"How Endava is redesigning software delivery around AI agents\", June 4, 2026"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor-written case study about one company, Endava, rather than a list or digest.",
+          "Structured as a narrative with quotes from Endava's CTO and a short results/lessons section, not a roundup or tutorial.",
+          "Published on OpenAI's blog and centered on OpenAI products in an enterprise deployment context."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "Endava created a named methodology, DavaFlow, and used it across \u201cmeeting preparation and business planning to product discovery, software engineering, and deployment.\u201d",
+          "key_points": [
+            "AI should be integrated into the delivery lifecycle, not isolated as a developer helper.",
+            "Once coding is accelerated, requirements, planning, and stakeholder coordination can become the limiting steps.",
+            "A named methodology can help standardize AI usage across multiple functions and teams."
+          ],
+          "knowledge_summary": "An AI-native delivery methodology is a software delivery approach where AI is embedded across the full work cycle instead of added only as a coding aid. It treats requirements, planning, business analysis, coordination, engineering, and deployment as parts of one AI-assisted workflow. The practical point is that once AI speeds up one stage, surrounding stages often become the real bottleneck. The durable operational lesson is to redesign the whole process, not just automate a single task.",
+          "match_candidates": [],
+          "operational_insight": "When AI is adopted inside delivery teams, the highest leverage comes from reworking adjacent human steps, not from isolated prompt use in one function.",
+          "primary_tag": "enterprise-workflows",
+          "proposed_tags": [
+            "enterprise-workflows",
+            "workflow-design",
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI practitioners because enterprise AI programs often stall when they stay at the tool level. A reusable delivery methodology gives teams a way to encode AI into standard work, which is more scalable than relying on individual enthusiasm. It is especially relevant for conversational AI, support automation, and agent workflows where coordination work can dominate the end-to-end system.",
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "That realization led to the creation of DavaFlow, the company\u2019s AI-native delivery methodology. \u201cThere isn\u2019t a part of DavaFlow that doesn\u2019t use OpenAI technology.\u201d",
+          "topic_slug": "ai-native-delivery-methodology",
+          "topic_title": "AI-Native Delivery Methodology",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "82fe54b0-9d21-4deb-b598-3eca20894841",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "AI should be integrated into the delivery lifecycle, not isolated as a developer helper.",
+              "Once coding is accelerated, requirements, planning, and stakeholder coordination can become the limiting steps.",
+              "A named methodology can help standardize AI usage across multiple functions and teams."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-workflows",
+            "workflow-design",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "evidence_type": null,
+          "examples": "Endava\u2019s lessons included: \u201cTreat AI adoption as a behavior change, not a software rollout,\u201d \u201cLeaders need to actively use AI,\u201d and \u201cMake AI part of everyday workflows, not a separate initiative.\u201d",
+          "key_points": [
+            "Leadership usage can be an adoption multiplier.",
+            "Hiring and promotion criteria can make AI fluency operational rather than rhetorical.",
+            "Early hands-on experience can reduce skepticism faster than abstract training."
+          ],
+          "knowledge_summary": "AI adoption in organizations is often less a software rollout than a change in how people work, lead, and make decisions. Durable adoption depends on leaders using the tools, teams being exposed to real use cases early, and AI fluency becoming part of expected professional behavior. This framing shifts attention from deployment mechanics to habits, norms, and incentives. It is a practical way to think about why some AI programs spread and others remain shallow.",
+          "match_candidates": [],
+          "operational_insight": "For organizational rollout, adoption succeeds more reliably when AI use is visible, expected, and reinforced through leadership behavior and talent processes.",
+          "primary_tag": "organizational-design",
+          "proposed_tags": [
+            "organizational-design",
+            "enterprise-ai",
+            "human-ai-workflows"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is useful long-term because AI systems are often underused when organizations treat them as optional tools. The same pattern appears in support automation, agent workflows, and internal copilots: if managers do not model usage and incentives do not change, adoption can remain superficial. The concept is durable because it addresses the human side of system deployment, which outlasts any one model or vendor.",
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cTreat AI adoption as a behavior change, not a software rollout\u201d; \u201cLeaders need to actively use AI to drive organization-wide adoption\u201d; \u201cEstablished AI fluency as part of hiring and promotion expectations across the company\u201d",
+          "topic_slug": "ai-adoption-as-behavior-change",
+          "topic_title": "AI Adoption as Behavior Change",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "81a550da-3761-4cdc-abec-51bd27d64276",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Leadership usage can be an adoption multiplier.",
+              "Hiring and promotion criteria can make AI fluency operational rather than rhetorical.",
+              "Early hands-on experience can reduce skepticism faster than abstract training."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "organizational-design",
+            "enterprise-ai",
+            "human-ai-workflows"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 113.8,
+    "review_finished_at": "2026-06-06T15:36:55.781543+00:00",
+    "review_started_at": "2026-06-06T15:35:02+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-06T15:36:55+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/index/endava-frontiers",
+    "content_sha256": "3640bca8b884d015b77d8e52e952b7a2866b755cfdfaaef2e7e3393486cac70a",
+    "publication": "openai.com",
+    "published_date": "2026-06-04",
+    "raw_html_rel_path": "raw/readwise/how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2.html",
+    "raw_md_rel_path": "raw/readwise/how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2.md",
+    "source_id": "how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2",
+    "title": "How Endava is redesigning software delivery around AI agents"
+  }
+}

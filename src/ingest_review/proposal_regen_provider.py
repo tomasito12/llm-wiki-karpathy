@@ -93,6 +93,11 @@ Regenerate ONE industry trend under reviewer-supplied NEW_TREND_TITLE.
 
 Rules:
 - Reframe for broader pattern NEW_TREND_TITLE; move narrower angles into trend_description.
+- When REVIEWER_NOTE asks to simplify a title, apply trend-title decomposition: keep one \
+outcome-level transition in the title and move mechanisms into body fields. Otherwise keep \
+NEW_TREND_TITLE verbatim.
+- When REVIEWER_NOTE asks to split a compound trend, regenerate only the one trend named by \
+NEW_TREND_TITLE and keep independently varying transitions out of this proposal.
 - uncertainty_note is REQUIRED (non-empty).
 - related_trends: kebab-case trend_slug values from EXISTING_TREND_SLUGS only.
 - Ground in ARTICLE_PLAIN_TEXT; measured, evidence-grounded voice.

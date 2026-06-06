@@ -1,0 +1,679 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T15:59:46+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DnnijTEDyhCau8UdW5441K9Css72j",
+          "token_usage": {
+            "completion_tokens": 176,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4650,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4826
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DnnilysCIbg988754b4eRt63MRlYZ",
+          "token_usage": {
+            "completion_tokens": 911,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4240,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5151
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DnnitZtnzWObBu0u8s3HCZqs3Jq0n",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1086,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30991,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 32077
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnnitZtnzWObBu0u8s3HCZqs3Jq0n",
+    "token_usage": {
+      "completion_tokens": 2173,
+      "prompt_tokens": 39881,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 42054
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 5
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-21",
+        "confidence": 0.79,
+        "evidence_from_source": "The source argues that voice prompting requires attention to script, punctuation, guardrails, local nuance, and latency because speech output must sound conversational rather than merely correct.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "human-ai-collaboration",
+          "model-behavior",
+          "runtime-systems"
+        ],
+        "related_trends": [
+          "realtime-voice-agents-shift-to-integration-work"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Punctuation is described as affecting breath, hesitation, and pitch in voice output.",
+          "A 3-second pause is described as making a conversation feel broken.",
+          "The author says a friendly US tone can sound too casual or rude in an Indonesian business context."
+        ],
+        "supporting_snippet": "\u201cVoice AI prompting requires a deep understanding of Local Nuance.\u201d",
+        "time_sensitivity": "Actionable as of 2026-04-21; the observation is about voice-system design constraints that apply whenever spoken interaction quality matters.",
+        "trend_description": "Voice assistant quality is increasingly judged by how naturally the system speaks and turns-taking behavior, not only by textual correctness. That means tone, pacing, brevity, and local conversational norms become part of the product surface. Systems that ignore these factors may sound robotic or feel awkward even when the content is right.",
+        "trend_slug": "voice-assistant-quality-shifts-toward-conversational-flow",
+        "trend_title": "Voice Assistant Quality Shifts Toward Conversational Flow",
+        "uncertainty_note": "The evidence is anecdotal and based on one practitioner\u2019s project experience, so it supports a plausible product-direction reading rather than a measured industry-wide shift.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "Written in the first person from the author's own AI PM experience.",
+        "Claims are framed as lessons learned from a Voice AI project and meetings with engineers.",
+        "Evidence is anecdotal and interpretive rather than benchmarked or research-based."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article explains why prompting a voice assistant is not the same as prompting a data extractor. In data work, you care about exact format and correctness. In voice work, you also have to control tone, pauses, politeness, and timing. The author learned that punctuation, local cultural norms, and short response latency can matter as much as the instructions themselves. The main idea is simple: for Voice AI, you are shaping how something sounds in conversation, not just what it says.",
+      "assessed_as_of": "2026-04-21",
+      "contradictions_and_skepticism": "The piece simplifies voice prompting into a clean five-part contrast with data prompting, which is helpful pedagogically but may understate how much voice systems overlap with general LLM prompting. The claim that punctuation is the \u201creal\u201d prompt is directionally useful but likely overstates how deterministically punctuation controls speech across models. The article also treats \u201cfriendly\u201d tone, politeness, and latency as prompt problems, while in practice some of the behavior may be better handled in dialogue policy, post-processing, or TTS configuration. Still, the skepticism is about scope and evidence, not the core intuition.",
+      "key_insights": [
+        "Voice prompts should target script and intent, not try to directly command the spoken voice layer.",
+        "Punctuation in response text acts like prosody control: commas, ellipses, and exclamation marks affect pauses and pitch.",
+        "Guardrails in Voice AI need to prevent long, awkward, or looping speech, not only factual errors.",
+        "Cultural fit can change the meaning of \u201cfriendly\u201d; in Indonesian business settings, honorifics and politeness level matter.",
+        "Latency is a first-class prompt design constraint because multi-second gaps make conversation feel broken."
+      ],
+      "limitations_and_open_questions": "The evidence is entirely anecdotal and based on one AI PM\u2019s experience, so the claims are plausible but not validated. The article does not specify the exact prompting patterns, model settings, or evaluation method used to verify improvements. It also leaves open how much of the behavior comes from the underlying voice model versus the instruction layer or TTS system. The latency claim is intuitive, but there are no measurements showing acceptable thresholds or the trade-offs between response quality and speed. The localization advice is useful but narrow: it is grounded in Indonesian business context and may not transfer cleanly without adaptation.",
+      "sources": [
+        "https://medium.com/@neilaisme/voice-ai-vs-data-ai-5511684c940d"
+      ],
+      "summary": "The article argues that prompting for Voice AI is materially different from prompting for data extraction, even for someone comfortable writing precise prompts. The author frames this as a shift from controlling output structure to shaping spoken intent, pacing, and conversational feel. Five differences are highlighted: you cannot simply command emotion because voice systems may preserve their own stability defaults; punctuation in the response text functions like prosody cues; guardrails need to prevent awkward or overly long speech, not just bad data; local language and cultural context matter for what counts as a friendly tone; and latency is a major constraint because delayed responses feel broken in conversation. The central lesson is that Voice AI requires writing for how speech will sound and flow, not just for correctness. The piece is grounded in one practitioner\u2019s project experience and is explicitly anecdotal rather than benchmark-driven.",
+      "why_it_matters": "The article is useful because it compresses a common but easy-to-miss lesson: voice systems are not just text systems with speech output attached. The author\u2019s distinction between an instruction model and a voice model is practical, even if stated informally, because it reminds builders that the text they generate must satisfy both semantic intent and spoken delivery. The punctuation point is especially durable: response formatting can shape pause, emphasis, and perceived naturalness, so voice prompts need editing discipline beyond ordinary chat prompting. The guardrail discussion adds a useful operational angle, since a voice assistant can fail by being too verbose or awkward even when it is factually correct. The localization example is also concrete: what sounds warm in one business culture may sound disrespectful in another, so tone guidelines cannot be copied blindly across markets. The latency point matters because voice interactions have tighter tolerance for delay than data workflows, making simplicity and response speed part of prompt quality. As of 2026-04-21, this is a practical lesson to adopt for voice prototype design, though the evidence is anecdotal and the article does not provide benchmarks or a formal evaluation."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent first-person article rather than a bundle of unrelated items.",
+        "Structured as an opinionated lessons-learned piece with five differences, not a roundup or tutorial.",
+        "No Q&A transcript, step-by-step implementation, or product list structure dominates the piece."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Voice prompting targets script and intent rather than directly commanding the voice output layer.",
+          "Punctuation can change perceived speech rhythm, pauses, and emphasis.",
+          "Local business norms can change what counts as a friendly or respectful tone.",
+          "Concise responses matter because spoken interactions are less tolerant of verbosity and delay."
+        ],
+        "knowledge_summary": "Voice systems need prompts that shape spoken delivery, not just textual content. In practice, prompt quality depends on how the assistant should sound, where it should pause, how long it should speak, and how polite or formal it should be in a specific conversational setting. This makes voice prompting closer to speech direction than ordinary chat prompting. The operational challenge is to coordinate intent, script, pacing, and cultural tone at the same time.",
+        "match_candidates": [],
+        "operational_insight": "Treat the written response as a performance script. Use wording, punctuation, and brevity to steer pacing and delivery, but assume the speech layer may still impose its own defaults.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "prompt-engineering",
+          "model-behavior",
+          "context-engineering",
+          "multimodal-ai"
+        ],
+        "related_topics": [],
+        "relevance_note": "Voice assistants, phone automation, and spoken copilots depend on more than factual correctness; they also need prosody, pacing, and conversational fit. This topic stays relevant as long as speech interfaces are judged on naturalness and task completion rather than raw text quality.",
+        "secondary_tag": "prompt-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cYou don\u2019t \u2018prompt\u2019 the vocal cords; you prompt the script and the intent.\u201d",
+        "topic_slug": "voice-prompting-for-conversational-systems",
+        "topic_title": "Voice Prompting for Conversational Systems",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Multi-second gaps can make a conversation feel unnatural.",
+          "Fast enough and good enough can beat perfect but slow in spoken interactions.",
+          "Simpler prompts and logic can be preferable when they reduce turn latency.",
+          "Latency should be treated as a first-class constraint in voice assistant design."
+        ],
+        "knowledge_summary": "In conversational systems, response time is part of the user experience, not a backend detail. Long pauses can make an interaction feel broken, awkward, or unreliable even when the answer is correct. This pushes system designers to optimize for fast-enough responses, simpler logic, and shorter generation paths. For voice and real-time assistants, latency is an operational quality dimension alongside accuracy and safety.",
+        "match_candidates": [],
+        "operational_insight": "Design for conversational turn-taking, not just output quality. If a system cannot answer quickly enough, simplify the path or shorten the response rather than letting a technically better answer damage the interaction.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "runtime-systems",
+          "inference-systems",
+          "multimodal-ai",
+          "model-behavior"
+        ],
+        "related_topics": [
+          "voice-prompting-for-conversational-systems"
+        ],
+        "relevance_note": "Latency is a durable systems concern for voicebots, live agents, and real-time assistive interfaces because users experience delay as interruption. This matters for service automation whenever response time affects trust, abandonment, or handoff rates.",
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cIf there is a 3-second gap in a conversation, it feels awkward and \u2018broken\u2019.\u201d",
+        "topic_slug": "latency-as-a-conversation-constraint",
+        "topic_title": "Latency as a Conversation Constraint",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-21",
+          "confidence": 0.79,
+          "evidence_from_source": "The source argues that voice prompting requires attention to script, punctuation, guardrails, local nuance, and latency because speech output must sound conversational rather than merely correct.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "human-ai-collaboration",
+            "model-behavior",
+            "runtime-systems"
+          ],
+          "related_trends": [
+            "realtime-voice-agents-shift-to-integration-work"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Punctuation is described as affecting breath, hesitation, and pitch in voice output.",
+            "A 3-second pause is described as making a conversation feel broken.",
+            "The author says a friendly US tone can sound too casual or rude in an Indonesian business context."
+          ],
+          "supporting_snippet": "\u201cVoice AI prompting requires a deep understanding of Local Nuance.\u201d",
+          "time_sensitivity": "Actionable as of 2026-04-21; the observation is about voice-system design constraints that apply whenever spoken interaction quality matters.",
+          "trend_description": "Voice assistant quality is increasingly judged by how naturally the system speaks and turns-taking behavior, not only by textual correctness. That means tone, pacing, brevity, and local conversational norms become part of the product surface. Systems that ignore these factors may sound robotic or feel awkward even when the content is right.",
+          "trend_slug": "voice-assistant-quality-shifts-toward-conversational-flow",
+          "trend_title": "Voice Assistant Quality Shifts Toward Conversational Flow",
+          "uncertainty_note": "The evidence is anecdotal and based on one practitioner\u2019s project experience, so it supports a plausible product-direction reading rather than a measured industry-wide shift.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "a06173e6-8f69-4ccd-9bf6-1cb65c5c6736",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "realtime-voice-agents-shift-to-integration-work"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Punctuation is described as affecting breath, hesitation, and pitch in voice output.",
+              "A 3-second pause is described as making a conversation feel broken.",
+              "The author says a friendly US tone can sound too casual or rude in an Indonesian business context."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "human-ai-collaboration",
+            "model-behavior",
+            "runtime-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "Written in the first person from the author's own AI PM experience.",
+          "Claims are framed as lessons learned from a Voice AI project and meetings with engineers.",
+          "Evidence is anecdotal and interpretive rather than benchmarked or research-based."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Voice prompts should target script and intent, not try to directly command the spoken voice layer.",
+          "Punctuation in response text acts like prosody control: commas, ellipses, and exclamation marks affect pauses and pitch.",
+          "Guardrails in Voice AI need to prevent long, awkward, or looping speech, not only factual errors.",
+          "Cultural fit can change the meaning of \u201cfriendly\u201d; in Indonesian business settings, honorifics and politeness level matter.",
+          "Latency is a first-class prompt design constraint because multi-second gaps make conversation feel broken."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@neilaisme/voice-ai-vs-data-ai-5511684c940d"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent first-person article rather than a bundle of unrelated items.",
+          "Structured as an opinionated lessons-learned piece with five differences, not a roundup or tutorial.",
+          "No Q&A transcript, step-by-step implementation, or product list structure dominates the piece."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Voice prompting targets script and intent rather than directly commanding the voice output layer.",
+            "Punctuation can change perceived speech rhythm, pauses, and emphasis.",
+            "Local business norms can change what counts as a friendly or respectful tone.",
+            "Concise responses matter because spoken interactions are less tolerant of verbosity and delay."
+          ],
+          "knowledge_summary": "Voice systems need prompts that shape spoken delivery, not just textual content. In practice, prompt quality depends on how the assistant should sound, where it should pause, how long it should speak, and how polite or formal it should be in a specific conversational setting. This makes voice prompting closer to speech direction than ordinary chat prompting. The operational challenge is to coordinate intent, script, pacing, and cultural tone at the same time.",
+          "match_candidates": [],
+          "operational_insight": "Treat the written response as a performance script. Use wording, punctuation, and brevity to steer pacing and delivery, but assume the speech layer may still impose its own defaults.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "prompt-engineering",
+            "model-behavior",
+            "context-engineering",
+            "multimodal-ai"
+          ],
+          "related_topics": [],
+          "relevance_note": "Voice assistants, phone automation, and spoken copilots depend on more than factual correctness; they also need prosody, pacing, and conversational fit. This topic stays relevant as long as speech interfaces are judged on naturalness and task completion rather than raw text quality.",
+          "secondary_tag": "prompt-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "voice-ai",
+          "suggested_new_tags": [
+            "voice-ai"
+          ],
+          "supporting_snippet": "\u201cYou don\u2019t \u2018prompt\u2019 the vocal cords; you prompt the script and the intent.\u201d",
+          "topic_slug": "voice-prompting-for-conversational-systems",
+          "topic_title": "Voice Prompting for Conversational Systems",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "c6b968da-a355-484f-87b5-7369232de249",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Voice prompting targets script and intent rather than directly commanding the voice output layer.",
+              "Punctuation can change perceived speech rhythm, pauses, and emphasis.",
+              "Local business norms can change what counts as a friendly or respectful tone.",
+              "Concise responses matter because spoken interactions are less tolerant of verbosity and delay."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "voice-ai"
+          ],
+          "final_tags": [
+            "ai-engineering",
+            "prompt-engineering",
+            "model-behavior",
+            "context-engineering",
+            "support-automation",
+            "voice-ai"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Multi-second gaps can make a conversation feel unnatural.",
+            "Fast enough and good enough can beat perfect but slow in spoken interactions.",
+            "Simpler prompts and logic can be preferable when they reduce turn latency.",
+            "Latency should be treated as a first-class constraint in voice assistant design."
+          ],
+          "knowledge_summary": "In conversational systems, response time is part of the user experience, not a backend detail. Long pauses can make an interaction feel broken, awkward, or unreliable even when the answer is correct. This pushes system designers to optimize for fast-enough responses, simpler logic, and shorter generation paths. For voice and real-time assistants, latency is an operational quality dimension alongside accuracy and safety.",
+          "match_candidates": [],
+          "operational_insight": "Design for conversational turn-taking, not just output quality. If a system cannot answer quickly enough, simplify the path or shorten the response rather than letting a technically better answer damage the interaction.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "runtime-systems",
+            "inference-systems",
+            "multimodal-ai",
+            "model-behavior"
+          ],
+          "related_topics": [
+            "voice-prompting-for-conversational-systems"
+          ],
+          "relevance_note": "Latency is a durable systems concern for voicebots, live agents, and real-time assistive interfaces because users experience delay as interruption. This matters for service automation whenever response time affects trust, abandonment, or handoff rates.",
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cIf there is a 3-second gap in a conversation, it feels awkward and \u2018broken\u2019.\u201d",
+          "topic_slug": "latency-as-a-conversation-constraint",
+          "topic_title": "Latency as a Conversation Constraint",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "391957f1-3298-4e6a-aa63-46543a6161fa",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Multi-second gaps can make a conversation feel unnatural.",
+              "Fast enough and good enough can beat perfect but slow in spoken interactions.",
+              "Simpler prompts and logic can be preferable when they reduce turn latency.",
+              "Latency should be treated as a first-class constraint in voice assistant design."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "voice-prompting-for-conversational-systems"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "runtime-systems",
+            "inference-systems",
+            "model-behavior",
+            "support-automation",
+            "voice-ai"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 235.6,
+    "review_finished_at": "2026-06-06T16:03:41.576877+00:00",
+    "review_started_at": "2026-06-06T15:59:46+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-06T16:03:41+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "neilaisme",
+    "canonical_url": "https://medium.com/@neilaisme/voice-ai-vs-data-ai-5511684c940d",
+    "content_sha256": "15bd04beedf911a5afef1b0c9d0ad2182f3c7c155ca38eb664bedb8139e08f33",
+    "publication": "Medium",
+    "published_date": "2026-04-21",
+    "raw_html_rel_path": "raw/readwise/voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg.html",
+    "raw_md_rel_path": "raw/readwise/voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg.md",
+    "source_id": "voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg",
+    "title": "Voice AI vs Data AI"
+  }
+}

@@ -32,6 +32,7 @@ tags:
 - frontier-ai
 - generalization
 - human-ai-workflows
+- image-conditioned-workflows
 - inference-systems
 - infrastructure
 - infrastructure-economics
@@ -61,6 +62,6 @@ tags:
 - verification-systems
 - visual-reasoning
 - visual-specifications
+- voice-ai
 - workflow-automation
 - workflow-design
-- image-conditioned-workflows
