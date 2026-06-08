@@ -1,0 +1,1152 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:50:49+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntCDoMEJ6mDRW9rn3jMXnGMJkHkC",
+          "token_usage": {
+            "completion_tokens": 217,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 28446,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 28663
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntCGQOOY8Jm7vBnK0hcKK91uFyax",
+          "token_usage": {
+            "completion_tokens": 1243,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 28080,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 29323
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-interview_or_transcript",
+          "request_id": "chatcmpl-DntCSYLHoTUfnW3roS38azXobSmI9",
+          "route": "interview_or_transcript",
+          "token_usage": {
+            "completion_tokens": 2389,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 40926,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 43315
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntCSYLHoTUfnW3roS38azXobSmI9",
+    "token_usage": {
+      "completion_tokens": 3849,
+      "prompt_tokens": 97452,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 101301
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-05-21",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Agents need composable computers rather than disposable code execution boxes."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"what Daytona is today is essentially composable computers for AI agents\"",
+          "\"they need a computer they can access through an API: something stateful enough to keep working, fast enough to spin up instantly, flexible enough to resize\"",
+          "\"we need something insanely fast, how to make it fast, how to make it long-running, and stateful. And so those two things, it\u2019s like combining a Lambda and an EC2\""
+        ],
+        "evidence_type": "expert_opinion",
+        "insight_title": "Agents need stateful computers, not disposable code runners",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "Daytona",
+          "CodeAnywhere"
+        ],
+        "operational_relevance": "Prioritize stateful sandboxes, snapshot/resume semantics, and resource resizing when designing agent infrastructure. Treat the runtime as a computer abstraction rather than a one-off execution endpoint. This affects orchestration, failure recovery, and how you model work units for long-running agents.",
+        "primary_tag": "runtime-architecture",
+        "proposed_tags": [
+          "runtime-architecture",
+          "long-running-agents"
+        ],
+        "secondary_tag": "long-running-agents",
+        "service_automation_relevance": "Service automation systems that need continuity across handoffs or multi-step investigations benefit from stateful runtime support. A chatbot or voicebot that launches tool-heavy back-office work may need the same pause/resume behavior to avoid losing context between steps.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "agent-infrastructure",
+        "suggested_new_tags": [
+          "agent-infrastructure"
+        ],
+        "summary": "Burazin argues that the useful primitive for agent workloads is a composable computer with persistent state, fast startup, and the ability to resize resources on demand. He contrasts this with narrow code-execution boxes that only run a snippet and return output. The design goal is to let an agent pause, resume, and continue a workflow without losing its working state.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-21, this is a durable architectural frame for teams building agent runtimes and automation products. It suggests that product choices should be driven by workflow continuity and state recovery, not just container isolation or cheap execution. That is especially relevant when agents must survive long tasks, tool chains, and interrupted sessions.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-21",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "RL/eval workloads require infrastructure planning that is unlike human usage patterns."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"background agents or long-running agents\"",
+          "\"the other is, basically RLs and evals\"",
+          "\"their usage patterns are similar to human, which is like follow the sun\"",
+          "\"When you have companies doing sort of like evals and RL, they\u2019re super spiky\"",
+          "\"Daytona\u2019s mean utilization is 15%\""
+        ],
+        "evidence_type": "expert_opinion",
+        "insight_title": "Agent workloads split into steady background use and spiky RL/eval bursts",
+        "insight_type": "research_eval",
+        "mentioned_entities": [
+          "Daytona",
+          "RL",
+          "TerminalBench",
+          "GDPVal",
+          "Harbor"
+        ],
+        "operational_relevance": "Design capacity management around peak concurrency and burst handling, not just average usage. Separate long-running interactive agents from eval/training-style workloads in scheduling, reservation, and billing logic. Expect provisioning pressure to come from sudden CPU spikes rather than smooth growth curves.",
+        "primary_tag": "agent-evals",
+        "proposed_tags": [
+          "agent-evals",
+          "infrastructure-economics",
+          "runtime-systems"
+        ],
+        "secondary_tag": "infrastructure-economics",
+        "service_automation_relevance": "Support automation and agentic operations may inherit the same burst patterns when teams batch-run evaluations, regression suites, or large ticket-processing jobs. Systems that assume human-like traffic shapes may underprovision or queue too aggressively.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Burazin separates Daytona usage into two distinct shapes: long-running background agents and RL/eval workloads. Background agents resemble human usage patterns, while RL/eval jobs can jump from no demand to very large CPU bursts and then drop back to zero. He says this makes average utilization a weak planning metric because peak capacity matters more than mean load.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-21, this is a useful mental model for capacity planning in agent infrastructure. It explains why general cloud heuristics can fail when workloads are highly bursty and why providers may need different pricing, reservation, and scheduling strategies for different agent categories. The insight is operationally durable because it ties economics directly to workload shape.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-21",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "A large share of knowledge work still depends on legacy Windows applications."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"most of them, most of that work is actually still locked into legacy apps inside of Windows\"",
+          "\"we\u2019ve created an actual sandbox, so it\u2019s a second instead of milliseconds\"",
+          "\"macOS has this problem\"",
+          "\"you\u2019re allowed to run only two parallel VMs per machine\"",
+          "\"you can only license to a different user every 24 hours\""
+        ],
+        "evidence_type": "expert_opinion",
+        "insight_title": "Windows support is strategically important because legacy work still lives there",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "Windows",
+          "macOS",
+          "Azure",
+          "EC2",
+          "Apple",
+          "Daytona"
+        ],
+        "operational_relevance": "If the workflow touches desktop software, prioritize Windows runtime support early and model macOS as a constrained, higher-friction offering. Treat OS licensing, snapshot mobility, and concurrent VM limits as product constraints, not just infrastructure details. This affects packaging, pricing, and scheduling.",
+        "primary_tag": "enterprise-workflows",
+        "proposed_tags": [
+          "enterprise-workflows",
+          "execution-environments",
+          "agent-systems"
+        ],
+        "secondary_tag": "execution-environments",
+        "service_automation_relevance": "Service automation for enterprise back-office work often needs to interact with desktop apps, not only APIs. A support or operations agent that can only use web APIs may miss the real system of record if the organization still runs on Windows tools.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Burazin argues that computer-use agents need access to Windows because much knowledge work remains trapped in legacy Windows applications. He describes Windows sandboxes as a new product opportunity because the current spin-up path on EC2 or Azure is measured in minutes, while agent workflows need sandbox-style snapshots and faster startup. He also notes that macOS support is constrained by Apple licensing and snapshot limitations.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-21, this is a practical deployment insight for teams deciding which desktop environments to support first. Windows support is not a niche feature if the target workload is enterprise back-office automation, where legacy desktop apps remain common. The macOS constraints are also important because they make cross-platform parity harder than the product narrative might suggest.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-21",
+        "confidence": "medium",
+        "contrarian_or_speculative_claims": [
+          "CLI may matter more than MCP for agent capability."
+        ],
+        "durability_estimate": "medium_term",
+        "evidence_snippets": [
+          "\"the MCP is an interface against an API, whereas the CLI is like you can actually go do things\"",
+          "\"being able to use a CLI very well enables the agent to do more things\"",
+          "\"a lot of, let\u2019s call them app layer agent companies\""
+        ],
+        "evidence_type": "expert_opinion",
+        "insight_title": "CLI access is a stronger agent interface than MCP for doing real work",
+        "insight_type": "tool",
+        "mentioned_entities": [
+          "MCP",
+          "CLI",
+          "Claude Code"
+        ],
+        "operational_relevance": "Favor CLI-friendly runtimes, shell access, and script execution paths when the goal is autonomous completion rather than read-only integration. Reserve MCP-like interfaces for structured data access, but do not treat them as sufficient for end-to-end task execution. This is especially relevant for tool-heavy workflows and sandbox orchestration.",
+        "primary_tag": "developer-tooling",
+        "proposed_tags": [
+          "developer-tooling",
+          "agent-systems"
+        ],
+        "secondary_tag": "agent-systems",
+        "service_automation_relevance": "Support automation agents often need to log in, export, transform, and validate data across systems. A CLI-capable agent runtime is more likely to complete those workflows than one limited to API-mediated access.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "tool-discipline-in-agent-loops",
+        "suggested_new_tags": [
+          "tool-discipline-in-agent-loops"
+        ],
+        "summary": "Burazin distinguishes MCP as an interface to an API from CLI access, which lets an agent actually execute scripts and operations. His claim is that sandboxes become more valuable when agents can run command-line workflows end to end rather than only read structured API responses. He frames this as a practical difference in how much action the agent can take, not just how much data it can inspect.",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-05-21, this is a useful implementation lens for agent tooling. Teams building agent runtimes should think in terms of executable interfaces, not only data-access interfaces, because the ability to run commands materially expands the set of tasks an agent can complete. The claim is opinionated, but it is operationally useful.",
+        "wiki_worthiness": "review_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-21",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"the number one thing that people come back to us for is that our, we have an insane responsiveness\"",
+          "\"we have had customers like, \u2018Hey, we have a problem. Can you get on Huddle?\u2019 We will get on that Huddle like in five minutes\"",
+          "\"GitHub stars are the worst\"",
+          "\"benchmarks itself, so, in this, in I don\u2019t think the benchmarks equate to market ownership\""
+        ],
+        "evidence_type": "expert_opinion",
+        "insight_title": "Agent infrastructure sales are won by responsiveness and trust, not just benchmarks",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "Daytona",
+          "Slack Connect"
+        ],
+        "operational_relevance": "If you sell runtime infrastructure, invest in live support channels, fast escalation, and high-trust customer relationships. Do not assume benchmarks alone will convert teams using agent sandboxes in production. Operational responsiveness is part of the product surface.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "distribution",
+          "infrastructure"
+        ],
+        "secondary_tag": "distribution",
+        "service_automation_relevance": "For service automation platforms, reliability and response speed can matter more than demo polish when customers are handling live workflows. Human-in-the-loop support and fast escalation paths can reduce adoption friction in enterprise automation.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Burazin says the strongest reason customers stay or return is Daytona\u2019s responsiveness: fast replies in Slack, quick huddles, and direct support from the team. He explicitly downplays GitHub stars and says benchmarks are table stakes rather than the main buying criterion. The operational lesson is that infrastructure products selling into production workflows are evaluated on support quality and trust as much as on raw performance.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-21, this is a durable go-to-market lesson for AI infrastructure vendors. In production agent systems, support latency can be part of the product because customers need rapid help when workflows break. The interview suggests that operational closeness can be a real differentiator even when the technical market is crowded.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "Claims are a blend of the guest's firsthand implementation/accounting details about Daytona and strategic opinions about agent infrastructure.",
+        "The source includes specific operational numbers and product descriptions, but they are presented inside an interview rather than as independently verified analysis.",
+        "There are also forward-looking judgments about market direction that are opinion-led rather than formally benchmarked or researched."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This interview is about what AI agents need from infrastructure if they are going to do real work. Daytona\u2019s CEO argues that agents need more than a container or code runner; they need a full computer that can keep state, start fast, and scale up or down quickly. That is why Daytona runs on bare metal and uses its own scheduler instead of relying only on standard cloud patterns. He also says different agent workloads behave very differently: some look like steady human use, while RL and eval jobs spike hard and unpredictably. The practical takeaway is that agent infrastructure is becoming its own product category, with Windows, macOS, and computer-use support becoming important pieces of the stack.",
+      "assessed_as_of": "2026-05-21",
+      "contradictions_and_skepticism": "The interview leans heavily on a first-principles narrative, but the source does not show controlled comparisons against other sandboxes, Kubernetes setups, or desktop-automation stacks. Some of the market sizing language around agent computers and knowledge work is speculative and extrapolates from broad labor figures rather than measured demand. The claim that the market for every future agent is \u201cinfinite\u201d is rhetorically strong and not a model. The argument that SaaS vendors should stop reselling tokens and expose APIs is plausible, but it is still a business thesis, not a proven market law. The strongest credible parts are the concrete operational details and customer pain points; the more sweeping cloud-category predictions should be treated as directional.",
+      "key_insights": [
+        "Daytona\u2019s differentiated primitive is not a sandbox in the narrow sense, but a stateful, composable computer for agents that can persist and resume work.",
+        "The company\u2019s bare-metal plus custom-scheduler design is explicitly tied to low-latency startup and fast concurrent scale-up, including 60 ms single launches and 50,000 launches in about 75 seconds.",
+        "RL and eval traffic creates a very different capacity problem from background agents: bursts can jump from zero to very large CPU demand, which makes average utilization a poor planning metric.",
+        "Burazin treats Windows support as strategically important because much knowledge work still lives inside legacy Windows apps, while macOS support is constrained by Apple\u2019s licensing and snapshot restrictions.",
+        "He argues that agent-era business models should expose consumption APIs rather than rely on SaaS vendors simply reselling tokens, because that does not match the underlying economics or the need to access siloed data."
+      ],
+      "limitations_and_open_questions": "Several of the strongest claims are self-reported, including growth rate, customer scale, and benchmark performance, and the interview does not provide independent verification or methodology. The 60 ms startup and 50,000-at-once numbers are useful signals, but the exact workload, isolation model, and comparison set are not fully specified. The pricing and economics of macOS support are described as constrained by Apple\u2019s licensing and concurrency limits, but the article does not resolve how viable that business becomes at scale. The claim that agent infra should resemble Stripe more than AWS is a strategic analogy, not an empirical result. The discussion of open source helping adoption is mixed: Burazin also says the biggest impact is often better context for integrations rather than major top-of-funnel growth. The article does not deeply quantify security, multi-tenancy, or compliance tradeoffs for bare metal sandboxes.",
+      "sources": [
+        "https://www.latent.space/p/daytona"
+      ],
+      "summary": "Ivan Burazin argues that Daytona\u2019s core product has shifted from browser-based developer environments to composable computers for AI agents: stateful sandboxes that start fast, can persist state, and can resize resources on demand. The interview\u2019s main technical point is that agent workloads are not well served by disposable code-execution boxes or standard Kubernetes setups; Daytona instead runs on bare metal with its own scheduler, preloaded snapshots, and direct access to disk, CPU, and RAM to reduce latency. Burazin says that this architecture matters because agents increasingly need full computers, including Linux, Windows, and eventually macOS, not just APIs or terminal access, especially for computer-use and long-running background-agent workflows. A second major theme is workload shape: background agents look like human usage patterns, while RL/eval jobs are extremely spiky, jumping from zero to very large CPU bursts, which creates a provisioning problem and low average utilization. He frames Daytona\u2019s growth as coming from strong customer pull, open source visibility, and responsiveness in support, and claims the product is being adopted by both app-layer agent companies and research/lab users. The interview also includes a broader business thesis that agent infrastructure may look more like Stripe-style consumption APIs than classic AWS-style cloud services, and that many SaaS vendors should expose APIs rather than simply resell tokens.",
+      "why_it_matters": "The piece is useful because it compresses a live infrastructure design debate into concrete product and workload choices. Daytona is presented not as another generic sandbox vendor, but as a system optimized for agent-specific requirements: persistent state, instant startup, dynamic resize, and high concurrency on bare metal. That is a durable engineering frame because it ties architecture to observed demand rather than to abstract cloud ideology. The interview gives specific operational signals that are worth keeping in mind, including the claim that one customer runs roughly 850,000 sandboxes per day and that RL/eval usage moved from zero to roughly half of Daytona\u2019s mix in months. Those numbers are interview claims, not independently verified benchmarks, but they do show where the product believes the stress points are. The discussion of managed Kubernetes, desktop computers, and computer-use workloads is especially relevant for teams building agent runtimes, eval infrastructure, or tool-using systems. The open-source and support sections also matter: Burazin says the strongest sales lever is responsiveness and trust, not stars or branding, which is a practical reminder that infrastructure products can win on operations as much as on benchmarks. As of 2026-05-21, the article is actionable mainly for teams deciding whether they need stateful agent runtimes, Windows/macOS support, or a bare-metal strategy; the broader \u201cAI cloud\u201d framing is interesting but still somewhat speculative."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "The source is explicitly labeled as a transcript and is structured as a long-form back-and-forth between Swyx and Ivan Burazin.",
+        "It contains clear interviewer/interviewee turns, timestamps, and conversational topic shifts rather than a standalone article or roundup.",
+        "The content is centered on firsthand product/company discussion and founder commentary within an interview format."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-21",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Agents need composable computers rather than disposable code execution boxes."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"what Daytona is today is essentially composable computers for AI agents\"",
+            "\"they need a computer they can access through an API: something stateful enough to keep working, fast enough to spin up instantly, flexible enough to resize\"",
+            "\"we need something insanely fast, how to make it fast, how to make it long-running, and stateful. And so those two things, it\u2019s like combining a Lambda and an EC2\""
+          ],
+          "evidence_type": "expert_opinion",
+          "insight_title": "Agents need stateful computers, not disposable code runners",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "Daytona",
+            "CodeAnywhere"
+          ],
+          "operational_relevance": "Prioritize stateful sandboxes, snapshot/resume semantics, and resource resizing when designing agent infrastructure. Treat the runtime as a computer abstraction rather than a one-off execution endpoint. This affects orchestration, failure recovery, and how you model work units for long-running agents.",
+          "primary_tag": "runtime-architecture",
+          "proposed_tags": [
+            "runtime-architecture",
+            "long-running-agents"
+          ],
+          "secondary_tag": "long-running-agents",
+          "service_automation_relevance": "Service automation systems that need continuity across handoffs or multi-step investigations benefit from stateful runtime support. A chatbot or voicebot that launches tool-heavy back-office work may need the same pause/resume behavior to avoid losing context between steps.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "agent-infrastructure",
+          "suggested_new_tags": [
+            "agent-infrastructure"
+          ],
+          "summary": "Burazin argues that the useful primitive for agent workloads is a composable computer with persistent state, fast startup, and the ability to resize resources on demand. He contrasts this with narrow code-execution boxes that only run a snippet and return output. The design goal is to let an agent pause, resume, and continue a workflow without losing its working state.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-21, this is a durable architectural frame for teams building agent runtimes and automation products. It suggests that product choices should be driven by workflow continuity and state recovery, not just container isolation or cheap execution. That is especially relevant when agents must survive long tasks, tool chains, and interrupted sessions.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "48344c69-d3a2-4bdd-906a-f72211db67db",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Agents need composable computers rather than disposable code execution boxes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"what Daytona is today is essentially composable computers for AI agents\"",
+              "\"they need a computer they can access through an API: something stateful enough to keep working, fast enough to spin up instantly, flexible enough to resize\"",
+              "\"we need something insanely fast, how to make it fast, how to make it long-running, and stateful. And so those two things, it\u2019s like combining a Lambda and an EC2\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Daytona",
+              "CodeAnywhere"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "runtime-architecture",
+            "long-running-agents"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-21",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "RL/eval workloads require infrastructure planning that is unlike human usage patterns."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"background agents or long-running agents\"",
+            "\"the other is, basically RLs and evals\"",
+            "\"their usage patterns are similar to human, which is like follow the sun\"",
+            "\"When you have companies doing sort of like evals and RL, they\u2019re super spiky\"",
+            "\"Daytona\u2019s mean utilization is 15%\""
+          ],
+          "evidence_type": "expert_opinion",
+          "insight_title": "Agent workloads split into steady background use and spiky RL/eval bursts",
+          "insight_type": "research_eval",
+          "mentioned_entities": [
+            "Daytona",
+            "RL",
+            "TerminalBench",
+            "GDPVal",
+            "Harbor"
+          ],
+          "operational_relevance": "Design capacity management around peak concurrency and burst handling, not just average usage. Separate long-running interactive agents from eval/training-style workloads in scheduling, reservation, and billing logic. Expect provisioning pressure to come from sudden CPU spikes rather than smooth growth curves.",
+          "primary_tag": "agent-evals",
+          "proposed_tags": [
+            "agent-evals",
+            "infrastructure-economics",
+            "runtime-systems"
+          ],
+          "secondary_tag": "infrastructure-economics",
+          "service_automation_relevance": "Support automation and agentic operations may inherit the same burst patterns when teams batch-run evaluations, regression suites, or large ticket-processing jobs. Systems that assume human-like traffic shapes may underprovision or queue too aggressively.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Burazin separates Daytona usage into two distinct shapes: long-running background agents and RL/eval workloads. Background agents resemble human usage patterns, while RL/eval jobs can jump from no demand to very large CPU bursts and then drop back to zero. He says this makes average utilization a weak planning metric because peak capacity matters more than mean load.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-21, this is a useful mental model for capacity planning in agent infrastructure. It explains why general cloud heuristics can fail when workloads are highly bursty and why providers may need different pricing, reservation, and scheduling strategies for different agent categories. The insight is operationally durable because it ties economics directly to workload shape.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "0133658e-9433-4534-8412-455767dae0eb",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "RL/eval workloads require infrastructure planning that is unlike human usage patterns."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"background agents or long-running agents\"",
+              "\"the other is, basically RLs and evals\"",
+              "\"their usage patterns are similar to human, which is like follow the sun\"",
+              "\"When you have companies doing sort of like evals and RL, they\u2019re super spiky\"",
+              "\"Daytona\u2019s mean utilization is 15%\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Daytona",
+              "RL",
+              "TerminalBench",
+              "GDPVal",
+              "Harbor"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-evals",
+            "infrastructure-economics",
+            "runtime-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-21",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "A large share of knowledge work still depends on legacy Windows applications."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"most of them, most of that work is actually still locked into legacy apps inside of Windows\"",
+            "\"we\u2019ve created an actual sandbox, so it\u2019s a second instead of milliseconds\"",
+            "\"macOS has this problem\"",
+            "\"you\u2019re allowed to run only two parallel VMs per machine\"",
+            "\"you can only license to a different user every 24 hours\""
+          ],
+          "evidence_type": "expert_opinion",
+          "insight_title": "Windows support is strategically important because legacy work still lives there",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "Windows",
+            "macOS",
+            "Azure",
+            "EC2",
+            "Apple",
+            "Daytona"
+          ],
+          "operational_relevance": "If the workflow touches desktop software, prioritize Windows runtime support early and model macOS as a constrained, higher-friction offering. Treat OS licensing, snapshot mobility, and concurrent VM limits as product constraints, not just infrastructure details. This affects packaging, pricing, and scheduling.",
+          "primary_tag": "enterprise-workflows",
+          "proposed_tags": [
+            "enterprise-workflows",
+            "execution-environments",
+            "agent-systems"
+          ],
+          "secondary_tag": "execution-environments",
+          "service_automation_relevance": "Service automation for enterprise back-office work often needs to interact with desktop apps, not only APIs. A support or operations agent that can only use web APIs may miss the real system of record if the organization still runs on Windows tools.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Burazin argues that computer-use agents need access to Windows because much knowledge work remains trapped in legacy Windows applications. He describes Windows sandboxes as a new product opportunity because the current spin-up path on EC2 or Azure is measured in minutes, while agent workflows need sandbox-style snapshots and faster startup. He also notes that macOS support is constrained by Apple licensing and snapshot limitations.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-21, this is a practical deployment insight for teams deciding which desktop environments to support first. Windows support is not a niche feature if the target workload is enterprise back-office automation, where legacy desktop apps remain common. The macOS constraints are also important because they make cross-platform parity harder than the product narrative might suggest.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "161b958c-c90b-4124-8f2e-28b3802d76fd",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "A large share of knowledge work still depends on legacy Windows applications."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"most of them, most of that work is actually still locked into legacy apps inside of Windows\"",
+              "\"we\u2019ve created an actual sandbox, so it\u2019s a second instead of milliseconds\"",
+              "\"macOS has this problem\"",
+              "\"you\u2019re allowed to run only two parallel VMs per machine\"",
+              "\"you can only license to a different user every 24 hours\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Windows",
+              "macOS",
+              "Azure",
+              "EC2",
+              "Apple",
+              "Daytona"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-workflows",
+            "execution-environments",
+            "agent-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-21",
+          "confidence": "medium",
+          "contrarian_or_speculative_claims": [
+            "CLI may matter more than MCP for agent capability."
+          ],
+          "durability_estimate": "medium_term",
+          "evidence_snippets": [
+            "\"the MCP is an interface against an API, whereas the CLI is like you can actually go do things\"",
+            "\"being able to use a CLI very well enables the agent to do more things\"",
+            "\"a lot of, let\u2019s call them app layer agent companies\""
+          ],
+          "evidence_type": "expert_opinion",
+          "insight_title": "CLI access is a stronger agent interface than MCP for doing real work",
+          "insight_type": "tool",
+          "mentioned_entities": [
+            "MCP",
+            "CLI",
+            "Claude Code"
+          ],
+          "operational_relevance": "Favor CLI-friendly runtimes, shell access, and script execution paths when the goal is autonomous completion rather than read-only integration. Reserve MCP-like interfaces for structured data access, but do not treat them as sufficient for end-to-end task execution. This is especially relevant for tool-heavy workflows and sandbox orchestration.",
+          "primary_tag": "developer-tooling",
+          "proposed_tags": [
+            "developer-tooling",
+            "agent-systems"
+          ],
+          "secondary_tag": "agent-systems",
+          "service_automation_relevance": "Support automation agents often need to log in, export, transform, and validate data across systems. A CLI-capable agent runtime is more likely to complete those workflows than one limited to API-mediated access.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "tool-discipline-in-agent-loops",
+          "suggested_new_tags": [
+            "tool-discipline-in-agent-loops"
+          ],
+          "summary": "Burazin distinguishes MCP as an interface to an API from CLI access, which lets an agent actually execute scripts and operations. His claim is that sandboxes become more valuable when agents can run command-line workflows end to end rather than only read structured API responses. He frames this as a practical difference in how much action the agent can take, not just how much data it can inspect.",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-05-21, this is a useful implementation lens for agent tooling. Teams building agent runtimes should think in terms of executable interfaces, not only data-access interfaces, because the ability to run commands materially expands the set of tasks an agent can complete. The claim is opinionated, but it is operationally useful.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "f495b50a-4370-4811-a906-8b7a18008066",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "CLI may matter more than MCP for agent capability."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"the MCP is an interface against an API, whereas the CLI is like you can actually go do things\"",
+              "\"being able to use a CLI very well enables the agent to do more things\"",
+              "\"a lot of, let\u2019s call them app layer agent companies\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "MCP",
+              "CLI",
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "developer-tooling",
+            "agent-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-21",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"the number one thing that people come back to us for is that our, we have an insane responsiveness\"",
+            "\"we have had customers like, \u2018Hey, we have a problem. Can you get on Huddle?\u2019 We will get on that Huddle like in five minutes\"",
+            "\"GitHub stars are the worst\"",
+            "\"benchmarks itself, so, in this, in I don\u2019t think the benchmarks equate to market ownership\""
+          ],
+          "evidence_type": "expert_opinion",
+          "insight_title": "Agent infrastructure sales are won by responsiveness and trust, not just benchmarks",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "Daytona",
+            "Slack Connect"
+          ],
+          "operational_relevance": "If you sell runtime infrastructure, invest in live support channels, fast escalation, and high-trust customer relationships. Do not assume benchmarks alone will convert teams using agent sandboxes in production. Operational responsiveness is part of the product surface.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "distribution",
+            "infrastructure"
+          ],
+          "secondary_tag": "distribution",
+          "service_automation_relevance": "For service automation platforms, reliability and response speed can matter more than demo polish when customers are handling live workflows. Human-in-the-loop support and fast escalation paths can reduce adoption friction in enterprise automation.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Burazin says the strongest reason customers stay or return is Daytona\u2019s responsiveness: fast replies in Slack, quick huddles, and direct support from the team. He explicitly downplays GitHub stars and says benchmarks are table stakes rather than the main buying criterion. The operational lesson is that infrastructure products selling into production workflows are evaluated on support quality and trust as much as on raw performance.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-21, this is a durable go-to-market lesson for AI infrastructure vendors. In production agent systems, support latency can be part of the product because customers need rapid help when workflows break. The interview suggests that operational closeness can be a real differentiator even when the technical market is crowded.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "2c518295-1e83-48b4-8970-94738fcd40ed",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"the number one thing that people come back to us for is that our, we have an insane responsiveness\"",
+              "\"we have had customers like, \u2018Hey, we have a problem. Can you get on Huddle?\u2019 We will get on that Huddle like in five minutes\"",
+              "\"GitHub stars are the worst\"",
+              "\"benchmarks itself, so, in this, in I don\u2019t think the benchmarks equate to market ownership\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Daytona",
+              "Slack Connect"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "distribution",
+            "infrastructure"
+          ]
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "Claims are a blend of the guest's firsthand implementation/accounting details about Daytona and strategic opinions about agent infrastructure.",
+          "The source includes specific operational numbers and product descriptions, but they are presented inside an interview rather than as independently verified analysis.",
+          "There are also forward-looking judgments about market direction that are opinion-led rather than formally benchmarked or researched."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Daytona\u2019s differentiated primitive is not a sandbox in the narrow sense, but a stateful, composable computer for agents that can persist and resume work.",
+          "The company\u2019s bare-metal plus custom-scheduler design is explicitly tied to low-latency startup and fast concurrent scale-up, including 60 ms single launches and 50,000 launches in about 75 seconds.",
+          "RL and eval traffic creates a very different capacity problem from background agents: bursts can jump from zero to very large CPU demand, which makes average utilization a poor planning metric.",
+          "Burazin treats Windows support as strategically important because much knowledge work still lives inside legacy Windows apps, while macOS support is constrained by Apple\u2019s licensing and snapshot restrictions.",
+          "He argues that agent-era business models should expose consumption APIs rather than rely on SaaS vendors simply reselling tokens, because that does not match the underlying economics or the need to access siloed data."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/daytona"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "The source is explicitly labeled as a transcript and is structured as a long-form back-and-forth between Swyx and Ivan Burazin.",
+          "It contains clear interviewer/interviewee turns, timestamps, and conversational topic shifts rather than a standalone article or roundup.",
+          "The content is centered on firsthand product/company discussion and founder commentary within an interview format."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/daytona",
+    "content_sha256": "15810bf8aff0f14cc6e3b0968fb28f10ac5e005a2181eadff7cbe0d24332623f",
+    "publication": "latent.space",
+    "published_date": "2026-05-21",
+    "raw_html_rel_path": "raw/readwise/giving-agents-computers-ivan-burazin-daytona-01ks64hjy5db7k6jfrxrnbaznb.html",
+    "raw_md_rel_path": "raw/readwise/giving-agents-computers-ivan-burazin-daytona-01ks64hjy5db7k6jfrxrnbaznb.md",
+    "source_id": "giving-agents-computers-ivan-burazin-daytona-01ks64hjy5db7k6jfrxrnbaznb",
+    "title": "Giving Agents Computers \u2014 Ivan Burazin, Daytona"
+  }
+}

@@ -1,0 +1,699 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T15:30:35+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoWDUTDCEeMaUx2HX93eVAGArRVQt",
+          "token_usage": {
+            "completion_tokens": 197,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7499,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7696
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoWDW38EDdqbFSICSHunawKkn9kRO",
+          "token_usage": {
+            "completion_tokens": 1238,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7112,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8350
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-technical_howto",
+          "request_id": "chatcmpl-DoWDgZvRGGHUMfhANlkPhpGX2zmcQ",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 1479,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 37212,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 38691
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoWDgZvRGGHUMfhANlkPhpGX2zmcQ",
+    "token_usage": {
+      "completion_tokens": 2914,
+      "prompt_tokens": 51823,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 54737
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start by checking how many steps the task needs and whether one agent can realistically handle them without getting overloaded. If the work is simple and uses only a few tools, keep it as a single-agent system. If the work needs distinct responsibilities such as retrieval, writing, testing, or review, split it into multiple agents with a central coordinator. Use the coordinator to route work, pass evidence between stages, and decide when to reuse cached context. Treat the added latency, cost, and maintenance burden as the tradeoff for better specialization and verification.",
+        "caveats": "The boundary between single-agent and multi-agent systems is a heuristic, not a hard rule. A well-structured single agent can sometimes handle jobs that the article frames as multi-agent. More agents also mean more latency, cost, and maintenance complexity.",
+        "confidence": 0.94,
+        "evidence_type": null,
+        "implementation_steps": [
+          "List the task steps and count how many distinct responsibilities are involved.",
+          "Check whether one agent can route tools and verify results without becoming overloaded.",
+          "If the task is simple, implement a single agent with the needed tools and memory.",
+          "If the task is complex, define specialized roles such as retriever, writer, tester, reviewer, or verifier.",
+          "Add a central orchestrator to coordinate the roles and move evidence through the workflow.",
+          "Use cached session evidence for follow-up questions when it is still relevant.",
+          "Keep a guardrail so the system only accepts tasks that fit the intended workflow."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "An LLM-based agent stack with tool access",
+          "A clear view of the target workflow and its steps",
+          "A way to store or pass intermediate evidence between stages",
+          "Basic observability for tool calls and agent outputs"
+        ],
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "agent-orchestration",
+          "multi-agent-systems",
+          "workflow-design"
+        ],
+        "question_title": "Multi-Agent System Design",
+        "related_howtos": [
+          "workflow-restructuring-around-ai-agents",
+          "verification-loops-in-ai-workflows"
+        ],
+        "secondary_tag": "agent-orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "A single-agent design works well for simple tasks that require limited tool use... However, a single agent can become overloaded when the task requires many tools, multi-step reasoning, different responsibilities or verification before the final response is returned to the user. ... A multi-agent system is a better choice when the task may overwhelm a single-agent design and when you need specialised agents with clear roles, their own tools and separate responsibilities.",
+        "value_level": "high",
+        "what_and_problem": "This is about choosing whether one language-model agent should do all the work or whether the job should be split across several specialized agents. The problem is that some tasks are simple enough for one loop, while others become harder to manage when they need different skills, more tool calls, or a separate verification step. A good design avoids unnecessary complexity, but it also avoids stuffing too many responsibilities into one agent. The goal is to match the system shape to the workflow shape."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article centers on the author's own Multi-Agent RAG Researcher project and describes its architecture.",
+        "It gives concrete implementation details such as orchestrator, worker agents, memory, Qdrant, and Tavily.",
+        "Most claims are grounded in a built system walkthrough rather than formal benchmarks or external research."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is a guide for deciding when one AI agent is enough and when you should split the work across several agents. It starts with the basic idea that an agent is an LLM that can think, call tools, and remember useful context. Then it introduces ReAct, which is just a loop of reasoning, acting, and checking results. The main lesson is that simple jobs fit a single agent, but harder jobs can benefit from an orchestrator plus specialized workers. The author finishes by showing a real multi-agent research system with retrieval, writing, and verification steps.",
+      "assessed_as_of": "2026-05-04",
+      "contradictions_and_skepticism": "The article\u2019s main claim\u2014that multi-agent systems are preferable when tasks become complex\u2014is reasonable, but it is presented as a design rule without empirical validation. The role-based decomposition is intuitive, yet in practice some workflows can be handled by a well-structured single agent with tool calling and strong prompts, so the boundary may be less crisp than the article suggests. The example architecture is compelling as a pattern, but it may overstate the need for separate agents in cases where orchestration overhead outweighs the benefit. The source does not claim universal superiority, which keeps the argument grounded, but the lack of measured comparison means the recommendation should be treated as a useful heuristic rather than a settled best practice.",
+      "key_insights": [
+        "A useful design test is whether the task is simple enough for one agent or complex enough to need specialization and verification.",
+        "The article frames ReAct as a practical control loop: reason, choose tools, inspect outputs, and repeat until the evidence is sufficient.",
+        "Multi-agent designs are presented as modular, but the tradeoff is explicit: more latency, cost, and maintenance overhead from extra LLM calls.",
+        "The proposed role split for research work\u2014retriever, writer, verifier\u2014maps cleanly onto grounded content pipelines.",
+        "Session memory is used only to reuse recent query/evidence context, which reduces repeated retrieval in follow-up questions."
+      ],
+      "limitations_and_open_questions": "The piece is mostly architectural and explanatory; it does not include benchmark data, latency measurements, cost comparisons, or failure analysis showing when the multi-agent version outperforms a single agent. The project walkthrough describes Qdrant, Tavily, SQLite memory, and three worker agents, but it does not quantify retrieval quality, verification accuracy, or how often cached evidence actually helps follow-up questions. The guardrail that rejects unrelated tasks is mentioned, but there is little detail on how robust that policy is or how it behaves under adversarial prompts. The article also leaves open how to handle agent coordination failures, contradictory evidence, or verification when tools return incomplete results. Security and privacy concerns around storing session memory and indexing local documents are not discussed in depth.",
+      "sources": [
+        "https://towardsdatascience.com/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz--AiGaiDpU9FLZjFPT04opDJ1pJumLXiL4DXmaLqcjhumd7iX-3NSfDNxL3smSmLS-FFKfaUE2Jkz7BMAloZnmPk_GNMw&_hsmi=418698396&utm_source=newsletter",
+        "https://github.com/ayoolaolafenwa/multi-agent-rag-researcher",
+        "https://developers.openai.com/cookbook",
+        "https://developers.openai.com/api/docs/guides/function-calling"
+      ],
+      "summary": "The article explains how to think about AI agent design through two linked ideas: the ReAct loop and the choice between single-agent and multi-agent architectures. It defines an AI agent as an LLM-based application that can reason, plan, use tools, and maintain memory, then breaks the design into three core components: LLM, tools, and memory. It contrasts a basic chatbot flow with an agentic flow where the model repeatedly reasons, selects tools, observes outputs, and iterates until it has enough evidence to answer. The central design rule is simple: use a single agent for simple tasks with few tools and limited steps, and move to multi-agent systems when the work needs specialization, separate responsibilities, or stronger verification. The article gives concrete role splits such as orchestrator, coder, tester, reviewer for software engineering, and orchestrator, retriever, writer, verifier for research workflows. It also walks through the author's Multi-Agent RAG Researcher project, which uses Qdrant for PDF retrieval, Tavily for web search, SQLite-backed session memory, and a central orchestrator that coordinates retriever, writer, and verifier agents. The implementation section is practical but mostly explanatory; it shows how to structure the system rather than proving performance with benchmarks.",
+      "why_it_matters": "The article is useful because it compresses several agent-design choices into one concrete decision rule: start with a single agent, then introduce multiple agents only when tool routing, role separation, or verification become hard to manage in one loop. That is a durable engineering heuristic as of 2026-05-04 because it is tied to implementation structure, not a vendor-specific feature. The discussion of components\u2014LLM, tools, and memory\u2014gives a simple mental model for building agents that interact with external systems rather than just producing text. The ReAct explanation is also practical: it makes the control loop explicit, which helps when debugging why an agent answers directly, calls tools, or keeps iterating. The walkthrough adds value by showing a real decomposition for research workflows: retrieve evidence, draft from evidence, then verify the draft against that evidence. The article is less strong as evidence for performance claims because it does not provide benchmarks, success rates, or comparative evaluation against a single-agent baseline. It is still actionable as of 2026-05-04 for practitioners deciding how to structure a research assistant or grounded content pipeline, but the choice should be treated as an architecture heuristic rather than a proven rule."
+    },
+    "source_type_detection": {
+      "confidence": 0.84,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The piece is structured as a practical guide with explanations of components, ReAct workflow, and architecture choices.",
+        "It includes a concrete walkthrough of a multi-agent project with setup and run instructions.",
+        "The main value is implementation guidance rather than a roundup, interview, or research paper."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Agent behavior is controlled by a loop, not just a prompt.",
+          "Memory changes the runtime by making follow-up questions cheaper to serve.",
+          "Orchestrators become necessary when a workflow is split across multiple specialized stages.",
+          "Guardrails can keep an agent aligned to a narrow operational role."
+        ],
+        "knowledge_summary": "Agent systems need a runtime that coordinates reasoning, tool use, memory, and state across steps. A useful mental model is to treat the model as one component inside a larger execution loop rather than as a standalone chat endpoint. The runtime decides when to answer directly, when to call tools, when to inspect results, and when to repeat the loop. In more complex systems, the runtime also routes work across specialized roles and preserves enough context for follow-up tasks. This architecture matters because agent quality depends as much on orchestration and state handling as on model capability.",
+        "match_candidates": [],
+        "operational_insight": "For practical agent builds, the runtime is the product. The model is only one part of the system; routing, memory, evidence passing, and guardrails determine whether the agent is reliable.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "runtime-architecture",
+          "orchestration",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "This topic stays useful as agent systems mature because engineering effort tends to move from prompt writing toward runtime design, state management, and tool coordination. It is directly relevant to conversational AI and service automation, where the system must decide when to answer, when to fetch data, and when to hand off or verify.",
+        "secondary_tag": "runtime-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "An AI agent is an application that uses an LLM to reason, plan and use tools to perform tasks... This is where the ReAct approach comes in. ReAct means Reasoning + Acting. It is an agent pattern where the LLM reasons about a task and takes actions, usually through tools, based on that reasoning. It involves designing a core logic loop around an LLM.",
+        "topic_slug": "agent-runtime-architecture",
+        "topic_title": "Agent Runtime Architecture",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Verification is a separate workflow stage, not an afterthought.",
+          "Evidence needs to be passed forward, not just generated.",
+          "The cost of verification is more calls and more latency, but also more trust in the final output."
+        ],
+        "knowledge_summary": "Verification loops add a checking step between evidence gathering and final output. Instead of trusting a model's first draft, the workflow asks another stage to inspect supporting evidence, spot missing claims, and correct weak reasoning. This pattern is useful when outputs must be grounded, cited, or safe enough for downstream use. Verification can be done by the same model in a second pass or by a separate agent with a narrower role. The main operational effect is better reliability at the cost of additional latency and system complexity.",
+        "match_candidates": [],
+        "operational_insight": "When a task has factual or high-stakes output requirements, a dedicated verification stage is often more valuable than a bigger prompt. The extra pass is a structural control, not just a quality tweak.",
+        "primary_tag": "verification-systems",
+        "proposed_tags": [
+          "verification-systems",
+          "test-and-verification",
+          "agent-systems"
+        ],
+        "related_topics": [
+          "agent-runtime-architecture"
+        ],
+        "relevance_note": "Verification loops matter wherever AI outputs feed customer-facing answers, support actions, or other workflows that cannot tolerate unsupported claims. The pattern is especially durable in conversational AI because grounded responses and explicit evidence checks reduce fragile answers and easier-to-miss errors.",
+        "secondary_tag": "test-and-verification",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-evaluation",
+        "suggested_new_tags": [
+          "agent-evaluation"
+        ],
+        "supporting_snippet": "Next, it sends the draft and evidence to the Verifier Agent, which checks the claims and returns the final verified report.",
+        "topic_slug": "verification-loops-in-ai-workflows",
+        "topic_title": "Verification Loops in AI Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by checking how many steps the task needs and whether one agent can realistically handle them without getting overloaded. If the work is simple and uses only a few tools, keep it as a single-agent system. If the work needs distinct responsibilities such as retrieval, writing, testing, or review, split it into multiple agents with a central coordinator. Use the coordinator to route work, pass evidence between stages, and decide when to reuse cached context. Treat the added latency, cost, and maintenance burden as the tradeoff for better specialization and verification.",
+          "caveats": "The boundary between single-agent and multi-agent systems is a heuristic, not a hard rule. A well-structured single agent can sometimes handle jobs that the article frames as multi-agent. More agents also mean more latency, cost, and maintenance complexity.",
+          "confidence": 0.94,
+          "evidence_type": null,
+          "implementation_steps": [
+            "List the task steps and count how many distinct responsibilities are involved.",
+            "Check whether one agent can route tools and verify results without becoming overloaded.",
+            "If the task is simple, implement a single agent with the needed tools and memory.",
+            "If the task is complex, define specialized roles such as retriever, writer, tester, reviewer, or verifier.",
+            "Add a central orchestrator to coordinate the roles and move evidence through the workflow.",
+            "Use cached session evidence for follow-up questions when it is still relevant.",
+            "Keep a guardrail so the system only accepts tasks that fit the intended workflow."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "An LLM-based agent stack with tool access",
+            "A clear view of the target workflow and its steps",
+            "A way to store or pass intermediate evidence between stages",
+            "Basic observability for tool calls and agent outputs"
+          ],
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "multi-agent-systems",
+            "workflow-design"
+          ],
+          "question_title": "Multi-Agent System Design",
+          "related_howtos": [
+            "workflow-restructuring-around-ai-agents",
+            "verification-loops-in-ai-workflows"
+          ],
+          "secondary_tag": "agent-orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "A single-agent design works well for simple tasks that require limited tool use... However, a single agent can become overloaded when the task requires many tools, multi-step reasoning, different responsibilities or verification before the final response is returned to the user. ... A multi-agent system is a better choice when the task may overwhelm a single-agent design and when you need specialised agents with clear roles, their own tools and separate responsibilities.",
+          "value_level": "high",
+          "what_and_problem": "This is about choosing whether one language-model agent should do all the work or whether the job should be split across several specialized agents. The problem is that some tasks are simple enough for one loop, while others become harder to manage when they need different skills, more tool calls, or a separate verification step. A good design avoids unnecessary complexity, but it also avoids stuffing too many responsibilities into one agent. The goal is to match the system shape to the workflow shape."
+        },
+        "notes": null,
+        "proposal_id": "14ce230b-4b9b-4c17-9baa-b506d8dd2fe0",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "List the task steps and count how many distinct responsibilities are involved.",
+              "Check whether one agent can route tools and verify results without becoming overloaded.",
+              "If the task is simple, implement a single agent with the needed tools and memory.",
+              "If the task is complex, define specialized roles such as retriever, writer, tester, reviewer, or verifier.",
+              "Add a central orchestrator to coordinate the roles and move evidence through the workflow.",
+              "Use cached session evidence for follow-up questions when it is still relevant.",
+              "Keep a guardrail so the system only accepts tasks that fit the intended workflow."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "An LLM-based agent stack with tool access",
+              "A clear view of the target workflow and its steps",
+              "A way to store or pass intermediate evidence between stages",
+              "Basic observability for tool calls and agent outputs"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents",
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "multi-agent-systems",
+            "workflow-design"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article centers on the author's own Multi-Agent RAG Researcher project and describes its architecture.",
+          "It gives concrete implementation details such as orchestrator, worker agents, memory, Qdrant, and Tavily.",
+          "Most claims are grounded in a built system walkthrough rather than formal benchmarks or external research."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A useful design test is whether the task is simple enough for one agent or complex enough to need specialization and verification.",
+          "The article frames ReAct as a practical control loop: reason, choose tools, inspect outputs, and repeat until the evidence is sufficient.",
+          "Multi-agent designs are presented as modular, but the tradeoff is explicit: more latency, cost, and maintenance overhead from extra LLM calls.",
+          "The proposed role split for research work\u2014retriever, writer, verifier\u2014maps cleanly onto grounded content pipelines.",
+          "Session memory is used only to reuse recent query/evidence context, which reduces repeated retrieval in follow-up questions."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://towardsdatascience.com/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz--AiGaiDpU9FLZjFPT04opDJ1pJumLXiL4DXmaLqcjhumd7iX-3NSfDNxL3smSmLS-FFKfaUE2Jkz7BMAloZnmPk_GNMw&_hsmi=418698396&utm_source=newsletter",
+          "https://github.com/ayoolaolafenwa/multi-agent-rag-researcher",
+          "https://developers.openai.com/cookbook",
+          "https://developers.openai.com/api/docs/guides/function-calling"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.84,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The piece is structured as a practical guide with explanations of components, ReAct workflow, and architecture choices.",
+          "It includes a concrete walkthrough of a multi-agent project with setup and run instructions.",
+          "The main value is implementation guidance rather than a roundup, interview, or research paper."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Agent behavior is controlled by a loop, not just a prompt.",
+            "Memory changes the runtime by making follow-up questions cheaper to serve.",
+            "Orchestrators become necessary when a workflow is split across multiple specialized stages.",
+            "Guardrails can keep an agent aligned to a narrow operational role."
+          ],
+          "knowledge_summary": "Agent systems need a runtime that coordinates reasoning, tool use, memory, and state across steps. A useful mental model is to treat the model as one component inside a larger execution loop rather than as a standalone chat endpoint. The runtime decides when to answer directly, when to call tools, when to inspect results, and when to repeat the loop. In more complex systems, the runtime also routes work across specialized roles and preserves enough context for follow-up tasks. This architecture matters because agent quality depends as much on orchestration and state handling as on model capability.",
+          "match_candidates": [],
+          "operational_insight": "For practical agent builds, the runtime is the product. The model is only one part of the system; routing, memory, evidence passing, and guardrails determine whether the agent is reliable.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "runtime-architecture",
+            "orchestration",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "This topic stays useful as agent systems mature because engineering effort tends to move from prompt writing toward runtime design, state management, and tool coordination. It is directly relevant to conversational AI and service automation, where the system must decide when to answer, when to fetch data, and when to hand off or verify.",
+          "secondary_tag": "runtime-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "An AI agent is an application that uses an LLM to reason, plan and use tools to perform tasks... This is where the ReAct approach comes in. ReAct means Reasoning + Acting. It is an agent pattern where the LLM reasons about a task and takes actions, usually through tools, based on that reasoning. It involves designing a core logic loop around an LLM.",
+          "topic_slug": "agent-runtime-architecture",
+          "topic_title": "Agent Runtime Architecture",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3129af3f-de41-49ed-ad81-70ee216b845d",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Agent behavior is controlled by a loop, not just a prompt.",
+              "Memory changes the runtime by making follow-up questions cheaper to serve.",
+              "Orchestrators become necessary when a workflow is split across multiple specialized stages.",
+              "Guardrails can keep an agent aligned to a narrow operational role."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "runtime-architecture",
+            "orchestration",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Verification is a separate workflow stage, not an afterthought.",
+            "Evidence needs to be passed forward, not just generated.",
+            "The cost of verification is more calls and more latency, but also more trust in the final output."
+          ],
+          "knowledge_summary": "Verification loops add a checking step between evidence gathering and final output. Instead of trusting a model's first draft, the workflow asks another stage to inspect supporting evidence, spot missing claims, and correct weak reasoning. This pattern is useful when outputs must be grounded, cited, or safe enough for downstream use. Verification can be done by the same model in a second pass or by a separate agent with a narrower role. The main operational effect is better reliability at the cost of additional latency and system complexity.",
+          "match_candidates": [],
+          "operational_insight": "When a task has factual or high-stakes output requirements, a dedicated verification stage is often more valuable than a bigger prompt. The extra pass is a structural control, not just a quality tweak.",
+          "primary_tag": "verification-systems",
+          "proposed_tags": [
+            "verification-systems",
+            "test-and-verification",
+            "agent-systems"
+          ],
+          "related_topics": [
+            "agent-runtime-architecture"
+          ],
+          "relevance_note": "Verification loops matter wherever AI outputs feed customer-facing answers, support actions, or other workflows that cannot tolerate unsupported claims. The pattern is especially durable in conversational AI because grounded responses and explicit evidence checks reduce fragile answers and easier-to-miss errors.",
+          "secondary_tag": "test-and-verification",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-evaluation",
+          "suggested_new_tags": [
+            "agent-evaluation"
+          ],
+          "supporting_snippet": "Next, it sends the draft and evidence to the Verifier Agent, which checks the claims and returns the final verified report.",
+          "topic_slug": "verification-loops-in-ai-workflows",
+          "topic_title": "Verification Loops in AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "82c37fb2-823e-450f-ba4c-f5131d76e736",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Verification is a separate workflow stage, not an afterthought.",
+              "Evidence needs to be passed forward, not just generated.",
+              "The cost of verification is more calls and more latency, but also more trust in the final output."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-runtime-architecture"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "verification-systems",
+            "test-and-verification",
+            "agent-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 204.6,
+    "review_finished_at": "2026-06-08T15:33:59.628065+00:00",
+    "review_started_at": "2026-06-08T15:30:35+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T15:33:59+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Ayoola Olafenwa",
+    "canonical_url": "https://towardsdatascience.com/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz--AiGaiDpU9FLZjFPT04opDJ1pJumLXiL4DXmaLqcjhumd7iX-3NSfDNxL3smSmLS-FFKfaUE2Jkz7BMAloZnmPk_GNMw&_hsmi=418698396&utm_source=newsletter",
+    "content_sha256": "8105ed3253fcc7baffc0dddc3ab968645ab5501ad8fc954f19d94542ea4e2b13",
+    "publication": "Medium",
+    "published_date": "2026-05-04",
+    "raw_html_rel_path": "raw/readwise/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system-01krkb4v6z0k80j5vrx35bb0hg.html",
+    "raw_md_rel_path": "raw/readwise/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system-01krkb4v6z0k80j5vrx35bb0hg.md",
+    "source_id": "single-agent-vs-multi-agent-when-to-build-a-multi-agent-system-01krkb4v6z0k80j5vrx35bb0hg",
+    "title": "Single Agent vs Multi-Agent: When to Build a Multi-Agent System"
+  }
+}

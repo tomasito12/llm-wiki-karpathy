@@ -1,0 +1,665 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:59:40+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntKwYsV5FOcSzpkl1loqgEDVnHP9",
+          "token_usage": {
+            "completion_tokens": 220,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6969,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7189
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntKzut4pg05Gp8UiabkU8Zqzwvq1",
+          "token_usage": {
+            "completion_tokens": 1131,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6603,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7734
+          }
+        },
+        {
+          "cache_hit_rate": 0.1328090869375273,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntL9OOcZaQmLkQlzkcAVWgEp4izJ",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1304,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36624,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 37928
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntL9OOcZaQmLkQlzkcAVWgEp4izJ",
+    "token_usage": {
+      "completion_tokens": 2655,
+      "prompt_tokens": 50196,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 52851
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-04",
+        "confidence": 0.95,
+        "evidence_from_source": "The source contrasts pure RAG with a persistent wiki and explicitly frames the wiki as a compounding artifact that gets updated when new sources arrive.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "knowledge-base-becomes-runtime-infrastructure",
+          "agent-maintained-documentation-pipelines"
+        ],
+        "secondary_tag": "workflow-restructuring",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "The wiki is described as a 'persistent, compounding artifact.'",
+          "Contradictions are flagged and synthesis is kept current rather than re-derived on every query.",
+          "Answers from queries can be filed back into the wiki as new pages."
+        ],
+        "supporting_snippet": "Instead of just retrieving from raw documents at query time, the LLM incrementally builds and maintains a persistent wiki \u2014 a structured, interlinked collection of markdown files that sits between you and the raw sources.",
+        "time_sensitivity": "Actionable as of 2026-04-04; the observation is architectural rather than time-sensitive, but its practical value depends on maintaining the corpus as it grows.",
+        "trend_description": "Knowledge systems can move from answering questions by re-reading raw sources each time to compiling a maintained synthesis layer that accumulates over time. The workflow shifts work from repeated retrieval and reassembly toward incremental curation, contradiction tracking, and page maintenance. This can reduce repeated synthesis cost when the corpus is growing and questions require cross-source integration. The pattern is strongest where the real bottleneck is not reading once, but keeping the synthesized view current.",
+        "trend_slug": "knowledge-systems-shift-toward-compilation-over-retrieval",
+        "trend_title": "Knowledge Systems Shift Toward Compilation Over Retrieval",
+        "uncertainty_note": "The source gives a coherent argument, but no measured comparison against retrieval-first systems, so the claimed advantage is plausible rather than proven.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "Claims are presented as the author's design proposal and judgment about how to build an LLM-maintained wiki.",
+        "The document explicitly says it is 'an idea file' and 'intentionally abstract,' not a specific implementation or measured evaluation.",
+        "Examples and tool mentions are illustrative rather than evidence-backed performance claims."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is an idea for using an LLM to build and maintain a personal wiki, instead of just answering questions from a pile of files. The important twist is that the model does not only retrieve text; it also writes and updates the wiki as new sources arrive. That means summaries, links, contradictions, and related concepts can accumulate over time. The result is meant to feel more like a living knowledge base than a search box. The author presents it as a flexible pattern, not a finished product, so you can adapt the workflow to your own tools and domain.",
+      "assessed_as_of": "2026-04-04",
+      "contradictions_and_skepticism": "The central claim\u2014that LLMs can make wiki maintenance cheap enough to solve the real bottleneck\u2014is plausible, but the article offers no empirical evidence beyond the author\u2019s reasoning. The comparison with RAG is directionally persuasive, yet simplified: retrieval systems can also be layered with summaries, memory, and indexes, so the distinction is not as absolute as the text suggests. The idea depends heavily on disciplined schemas and human guidance, which means it is less like fully autonomous maintenance and more like supervised synthesis. The \u201ctouch 10\u201315 pages in one pass\u201d claim is a capability claim, not a quality guarantee; large edit breadth can also increase the chance of subtle inconsistencies. Overall, the skepticism is mild: the pattern is coherent and practical, but its effectiveness is asserted rather than demonstrated.",
+      "key_insights": [
+        "The durable unit is a persistent wiki, not a one-off answer, so each new source compounds prior work instead of forcing re-analysis.",
+        "A schema file is treated as the control plane for the LLM, which is a useful design pattern for making agent behavior repeatable across sessions.",
+        "Index and log files are singled out as lightweight infrastructure that can replace heavier RAG machinery at moderate scale.",
+        "The workflow explicitly includes contradiction tracking and linting, which makes maintenance an ongoing first-class task rather than an afterthought.",
+        "Answers generated during exploration should be written back into the wiki when they are worth keeping, so analysis does not disappear into chat history."
+      ],
+      "limitations_and_open_questions": "The document is intentionally abstract, so it does not specify concrete page schemas, conflict-resolution rules, evaluation methods, or failure handling. It does not show measured gains over conventional RAG, nor does it compare maintenance cost, latency, or quality across scales. The suggestion that the LLM can keep a wiki consistent depends on the quality of the schema and human oversight, but the article does not define how much review is needed. Security, privacy, and provenance concerns are only implied, not addressed: an LLM updating a knowledge base could easily propagate errors if source boundaries are unclear. The search and lint tooling are described as optional, which leaves open how far the pattern can scale before the index/log approach becomes insufficient. The document also does not say how to handle ambiguous sources, conflicting evidence, or changing source hierarchies in a formal way.",
+      "sources": [
+        "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+      ],
+      "summary": "This gist proposes an LLM-maintained personal wiki as a better alternative to pure retrieval-augmented generation over raw documents. The key claim is that instead of re-deriving answers from scratch on every query, the LLM incrementally reads new sources, updates a persistent markdown wiki, reconciles contradictions, and keeps cross-references and summaries current. The wiki sits between raw sources and user queries, with the raw sources treated as immutable truth, the wiki as the LLM-written synthesis layer, and a schema file as the operating manual for how to ingest, answer, and maintain it. The document frames three recurring workflows: ingest new sources into the wiki, query the wiki for synthesized answers that can themselves be saved back, and periodically lint the wiki for contradictions, stale claims, orphan pages, missing links, and data gaps. It also recommends lightweight supporting files like index.md and log.md, plus optional CLI tooling such as qmd for search. The argument is intentionally abstract and tool-agnostic: the exact directory structure, page formats, and workflows should be adapted to the user\u2019s domain and preferences. The main thesis is that wiki maintenance is the real bottleneck, and LLMs can make that bookkeeping cheap enough that the knowledge base compounds over time instead of decaying.",
+      "why_it_matters": "The article is useful because it reframes LLM-assisted knowledge work as maintenance of a structured artifact rather than repeated question answering over raw documents. That is a durable operational idea for anyone building personal or team knowledge bases: the model reads sources once, updates linked markdown pages, and preserves synthesis, contradictions, and cross-references for later reuse. The proposed architecture is simple enough to be implemented with existing note-taking and file-based workflows, which makes it more actionable than a vague \u201cuse an LLM for RAG\u201d slogan. Its practical value is strongest where information accumulates over time and where keeping pages synchronized is the real bottleneck. The emphasis on index.md, log.md, and a schema file is a concrete reminder that agent systems need an explicit operating model, not just model calls. The piece is also honest that the pattern is abstract and modular, so the value is in the workflow design rather than any single tool recommendation. As of 2026-04-04, the idea looks actionable as a personal or team knowledge-management pattern, but it remains a conceptual proposal rather than a benchmarked system."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent idea file describing one pattern for maintaining a personal wiki with LLMs, not a bundle of unrelated news items or tool reviews.",
+        "The structure is explanatory and conceptual, with sections like core idea, architecture, operations, and why this works.",
+        "Not a transcript, tutorial with step-by-step instructions, or research report; it is an opinionated systems note published as a GitHub gist."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The knowledge base compounds because each new source updates existing pages instead of creating isolated answers.",
+          "Maintenance tasks like contradiction tracking and cross-linking are first-class system behavior.",
+          "Good answers generated during exploration can be filed back into the wiki as reusable pages.",
+          "A schema file can act as the control plane for how the LLM maintains the knowledge base."
+        ],
+        "knowledge_summary": "An LLM-maintained knowledge base is a structured corpus that the model updates over time rather than only querying at read time. New sources are ingested into a persistent set of pages, summaries, links, and revisions so the synthesis compounds across sessions. The key operational idea is that maintenance work such as cross-references, contradiction handling, and stale-claim cleanup becomes part of the system, not an afterthought. This differs from pure retrieval because the knowledge layer can accumulate edits and curation, not just answer generation. The approach is especially useful when the corpus is growing and repeated synthesis would otherwise be re-done from scratch on every question.",
+        "match_candidates": [],
+        "operational_insight": "Treat the wiki as a maintained artifact with schema, logs, and linting, not as a passive dump of notes. The durable value comes from making updates cheap enough that synthesis stays current as sources accumulate.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "agent-systems",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "knowledge-base-becomes-runtime-infrastructure",
+          "knowledge-systems-shift-toward-compilation-over-retrieval"
+        ],
+        "relevance_note": "As of 2026-04-04, this is a practical pattern for AI-assisted knowledge systems that need to preserve synthesis across many sources. It matters because service, research, and operations teams often lose value when analysis stays trapped in chat history instead of becoming a maintained reference layer.",
+        "secondary_tag": "agent-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Instead of just retrieving from raw documents at query time, the LLM incrementally builds and maintains a persistent wiki \u2014 a structured, interlinked collection of markdown files that sits between you and the raw sources.",
+        "topic_slug": "llm-maintained-knowledge-bases",
+        "topic_title": "LLM-Maintained Knowledge Bases",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "An explicit schema reduces drift across sessions by making conventions machine-readable and reviewable.",
+          "The schema can encode ingest, query, and maintenance workflows rather than just file formats.",
+          "Human and model responsibilities become easier to separate when the schema is the shared operating manual."
+        ],
+        "knowledge_summary": "Wiki schema governance is the practice of using an explicit schema document to define how an LLM should organize, update, and maintain a knowledge base. The schema specifies conventions, workflows, and page structure so the model behaves consistently across ingests and queries. This turns an LLM from a generic assistant into a disciplined maintainer with constrained responsibilities. The value is highest when the system must preserve consistency across many pages, sources, and sessions. Schema governance also creates a shared operating contract between human editors and the model.",
+        "match_candidates": [],
+        "operational_insight": "Define the schema as a living control plane for ingestion, query answering, and linting. That makes the workflow repeatable and gives humans a place to steer behavior without rewriting prompts from scratch every session.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "agent-systems",
+          "orchestration"
+        ],
+        "related_topics": [
+          "agent-maintained-knowledge-bases",
+          "procedural-knowledge-for-agents"
+        ],
+        "relevance_note": "As of 2026-04-04, schema governance is a durable design pattern for agentic knowledge work and other file-based AI systems. It is useful wherever an assistant must apply the same rules repeatedly across evolving artifacts, especially in team knowledge bases and support operations.",
+        "secondary_tag": "agent-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "The schema \u2014 a document (e.g. CLAUDE.md for Claude Code or AGENTS.md for Codex) that tells the LLM how the wiki is structured, what the conventions are, and what workflows to follow when ingesting sources, answering questions, or maintaining the wiki.",
+        "topic_slug": "wiki-schema-governance",
+        "topic_title": "Wiki Schema Governance",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-04",
+          "confidence": 0.95,
+          "evidence_from_source": "The source contrasts pure RAG with a persistent wiki and explicitly frames the wiki as a compounding artifact that gets updated when new sources arrive.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "knowledge-base-becomes-runtime-infrastructure",
+            "agent-maintained-documentation-pipelines"
+          ],
+          "secondary_tag": "workflow-restructuring",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "The wiki is described as a 'persistent, compounding artifact.'",
+            "Contradictions are flagged and synthesis is kept current rather than re-derived on every query.",
+            "Answers from queries can be filed back into the wiki as new pages."
+          ],
+          "supporting_snippet": "Instead of just retrieving from raw documents at query time, the LLM incrementally builds and maintains a persistent wiki \u2014 a structured, interlinked collection of markdown files that sits between you and the raw sources.",
+          "time_sensitivity": "Actionable as of 2026-04-04; the observation is architectural rather than time-sensitive, but its practical value depends on maintaining the corpus as it grows.",
+          "trend_description": "Knowledge systems can move from answering questions by re-reading raw sources each time to compiling a maintained synthesis layer that accumulates over time. The workflow shifts work from repeated retrieval and reassembly toward incremental curation, contradiction tracking, and page maintenance. This can reduce repeated synthesis cost when the corpus is growing and questions require cross-source integration. The pattern is strongest where the real bottleneck is not reading once, but keeping the synthesized view current.",
+          "trend_slug": "knowledge-systems-shift-toward-compilation-over-retrieval",
+          "trend_title": "Knowledge Systems Shift Toward Compilation Over Retrieval",
+          "uncertainty_note": "The source gives a coherent argument, but no measured comparison against retrieval-first systems, so the claimed advantage is plausible rather than proven.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "df927d77-f68b-402d-b5c2-d98d901dc270",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure",
+              "agent-maintained-documentation-pipelines"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The wiki is described as a 'persistent, compounding artifact.'",
+              "Contradictions are flagged and synthesis is kept current rather than re-derived on every query.",
+              "Answers from queries can be filed back into the wiki as new pages."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "Claims are presented as the author's design proposal and judgment about how to build an LLM-maintained wiki.",
+          "The document explicitly says it is 'an idea file' and 'intentionally abstract,' not a specific implementation or measured evaluation.",
+          "Examples and tool mentions are illustrative rather than evidence-backed performance claims."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The durable unit is a persistent wiki, not a one-off answer, so each new source compounds prior work instead of forcing re-analysis.",
+          "A schema file is treated as the control plane for the LLM, which is a useful design pattern for making agent behavior repeatable across sessions.",
+          "Index and log files are singled out as lightweight infrastructure that can replace heavier RAG machinery at moderate scale.",
+          "The workflow explicitly includes contradiction tracking and linting, which makes maintenance an ongoing first-class task rather than an afterthought.",
+          "Answers generated during exploration should be written back into the wiki when they are worth keeping, so analysis does not disappear into chat history."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent idea file describing one pattern for maintaining a personal wiki with LLMs, not a bundle of unrelated news items or tool reviews.",
+          "The structure is explanatory and conceptual, with sections like core idea, architecture, operations, and why this works.",
+          "Not a transcript, tutorial with step-by-step instructions, or research report; it is an opinionated systems note published as a GitHub gist."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The knowledge base compounds because each new source updates existing pages instead of creating isolated answers.",
+            "Maintenance tasks like contradiction tracking and cross-linking are first-class system behavior.",
+            "Good answers generated during exploration can be filed back into the wiki as reusable pages.",
+            "A schema file can act as the control plane for how the LLM maintains the knowledge base."
+          ],
+          "knowledge_summary": "An LLM-maintained knowledge base is a structured corpus that the model updates over time rather than only querying at read time. New sources are ingested into a persistent set of pages, summaries, links, and revisions so the synthesis compounds across sessions. The key operational idea is that maintenance work such as cross-references, contradiction handling, and stale-claim cleanup becomes part of the system, not an afterthought. This differs from pure retrieval because the knowledge layer can accumulate edits and curation, not just answer generation. The approach is especially useful when the corpus is growing and repeated synthesis would otherwise be re-done from scratch on every question.",
+          "match_candidates": [],
+          "operational_insight": "Treat the wiki as a maintained artifact with schema, logs, and linting, not as a passive dump of notes. The durable value comes from making updates cheap enough that synthesis stays current as sources accumulate.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "agent-systems",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "knowledge-base-becomes-runtime-infrastructure",
+            "knowledge-systems-shift-toward-compilation-over-retrieval"
+          ],
+          "relevance_note": "As of 2026-04-04, this is a practical pattern for AI-assisted knowledge systems that need to preserve synthesis across many sources. It matters because service, research, and operations teams often lose value when analysis stays trapped in chat history instead of becoming a maintained reference layer.",
+          "secondary_tag": "agent-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Instead of just retrieving from raw documents at query time, the LLM incrementally builds and maintains a persistent wiki \u2014 a structured, interlinked collection of markdown files that sits between you and the raw sources.",
+          "topic_slug": "llm-maintained-knowledge-bases",
+          "topic_title": "LLM-Maintained Knowledge Bases",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6b2cf902-4749-4bf4-aafb-cfa3e8d9d9ae",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The knowledge base compounds because each new source updates existing pages instead of creating isolated answers.",
+              "Maintenance tasks like contradiction tracking and cross-linking are first-class system behavior.",
+              "Good answers generated during exploration can be filed back into the wiki as reusable pages.",
+              "A schema file can act as the control plane for how the LLM maintains the knowledge base."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure",
+              "knowledge-systems-shift-toward-compilation-over-retrieval"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "agent-systems",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "An explicit schema reduces drift across sessions by making conventions machine-readable and reviewable.",
+            "The schema can encode ingest, query, and maintenance workflows rather than just file formats.",
+            "Human and model responsibilities become easier to separate when the schema is the shared operating manual."
+          ],
+          "knowledge_summary": "Wiki schema governance is the practice of using an explicit schema document to define how an LLM should organize, update, and maintain a knowledge base. The schema specifies conventions, workflows, and page structure so the model behaves consistently across ingests and queries. This turns an LLM from a generic assistant into a disciplined maintainer with constrained responsibilities. The value is highest when the system must preserve consistency across many pages, sources, and sessions. Schema governance also creates a shared operating contract between human editors and the model.",
+          "match_candidates": [],
+          "operational_insight": "Define the schema as a living control plane for ingestion, query answering, and linting. That makes the workflow repeatable and gives humans a place to steer behavior without rewriting prompts from scratch every session.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "agent-systems",
+            "orchestration"
+          ],
+          "related_topics": [
+            "agent-maintained-knowledge-bases",
+            "procedural-knowledge-for-agents"
+          ],
+          "relevance_note": "As of 2026-04-04, schema governance is a durable design pattern for agentic knowledge work and other file-based AI systems. It is useful wherever an assistant must apply the same rules repeatedly across evolving artifacts, especially in team knowledge bases and support operations.",
+          "secondary_tag": "agent-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "The schema \u2014 a document (e.g. CLAUDE.md for Claude Code or AGENTS.md for Codex) that tells the LLM how the wiki is structured, what the conventions are, and what workflows to follow when ingesting sources, answering questions, or maintaining the wiki.",
+          "topic_slug": "wiki-schema-governance",
+          "topic_title": "Wiki Schema Governance",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "bf1a72c3-ffcb-4822-9d2c-b29cb3573e53",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "An explicit schema reduces drift across sessions by making conventions machine-readable and reviewable.",
+              "The schema can encode ingest, query, and maintenance workflows rather than just file formats.",
+              "Human and model responsibilities become easier to separate when the schema is the shared operating manual."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-maintained-knowledge-bases",
+              "procedural-knowledge-for-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "agent-systems",
+            "orchestration"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "262588213843476",
+    "canonical_url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+    "content_sha256": "7d48dfb5f3743090e986bc2fb81342aa6c63bfa5bc3a9d8cb0725ea587adf2a1",
+    "publication": "Github",
+    "published_date": "2026-04-04",
+    "raw_html_rel_path": "raw/readwise/llm-wiki-github-01kqh081eg75gw49db3mqd9cpq.html",
+    "raw_md_rel_path": "raw/readwise/llm-wiki-github-01kqh081eg75gw49db3mqd9cpq.md",
+    "source_id": "llm-wiki-github-01kqh081eg75gw49db3mqd9cpq",
+    "title": "llm-wiki \u00b7 GitHub"
+  }
+}

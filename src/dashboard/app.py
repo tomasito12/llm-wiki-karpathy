@@ -17,7 +17,17 @@ from typing import Any
 
 import streamlit as st
 
+from src.dashboard.preanalyze_ui import render_preanalyze_sidebar
 from src.dashboard.readwise_sync_ui import render_readwise_sync_sidebar
+from src.dashboard.review_queue_ui import (
+    FILTER_AFTER_ANALYZE,
+    apply_pending_queue_filter,
+    build_source_selectbox_ids,
+    queue_queue_filter_change,
+    resolve_review_source_id,
+    source_review_mode_session_key,
+    source_widget_key_prefix,
+)
 from src.ingest_queue.queue import list_ingest_items
 from src.ingest_review.analyze import (
     run_classification,
@@ -337,6 +347,15 @@ def main() -> None:
             else "API key: **not set** — add `OPENAI_API_KEY` to `.env` at repo root."
         )
         render_readwise_sync_sidebar(st, repo_root=root, output_dir=raw_dir)
+        render_preanalyze_sidebar(
+            st,
+            repo_root=root,
+            raw_dir=raw_dir,
+            reviews_root=reviews_root,
+            wiki_root=wiki_root,
+            model=model,
+            prompt_version=prompt_version,
+        )
 
     readwise_sync_flash = st.session_state.pop("_readwise_sync_flash", None)
     if readwise_sync_flash:
@@ -388,6 +407,7 @@ def main() -> None:
     )
 
     filter_labels = [label for label, _ in SOURCE_REVIEW_FILTER_OPTIONS]
+    apply_pending_queue_filter(st.session_state)
     if "review_queue_filter_radio" not in st.session_state:
         st.session_state["review_queue_filter_radio"] = DEFAULT_SOURCE_REVIEW_FILTER
 
@@ -406,7 +426,7 @@ def main() -> None:
                 st.warning("No unfinished sources available (or only incomplete exports).")
             else:
                 picked = random.choice(pool_paths)
-                st.session_state["review_queue_filter_radio"] = "Needs work"
+                queue_queue_filter_change(st.session_state, "Needs work")
                 st.session_state["review_source_pick_id"] = picked.stem
                 st.session_state["review_source_id"] = picked.stem
                 st.rerun()
@@ -420,18 +440,35 @@ def main() -> None:
     allowed = filter_statuses_for_label(queue_filter)
     visible_ids = filter_source_ids(source_ids, status_map, allowed)
     id_to_path = {p.stem: p for p in html_paths}
-    visible_paths = [id_to_path[sid] for sid in visible_ids if sid in id_to_path]
+    source_id_set = set(source_ids)
+    current_source_id = st.session_state.get("review_source_id")
+    pinned_current = current_source_id if isinstance(current_source_id, str) else None
+    selectbox_ids, pinned_outside_filter = build_source_selectbox_ids(
+        visible_ids,
+        current_source_id=pinned_current,
+        all_source_ids=source_id_set,
+    )
+    selectbox_paths = [id_to_path[sid] for sid in selectbox_ids if sid in id_to_path]
 
-    if not visible_paths:
+    if not selectbox_paths:
         st.info(f"No sources match **{queue_filter}**. Try another filter.")
         return
 
+    if pinned_outside_filter:
+        pinned_status = status_label(status_map[pinned_outside_filter])
+        st.warning(
+            f"Current source is **{pinned_status}** and is hidden by the "
+            f"**{queue_filter}** filter. It stays selected so review can continue — "
+            "change the filter to see it in the list normally."
+        )
+
     pick_id = st.session_state.pop("review_source_pick_id", None)
-    if pick_id and pick_id in visible_ids:
-        st.session_state["review_source_id"] = pick_id
-    current_source_id = st.session_state.get("review_source_id")
-    if not isinstance(current_source_id, str) or current_source_id not in visible_ids:
-        st.session_state["review_source_id"] = visible_ids[0]
+    st.session_state["review_source_id"] = resolve_review_source_id(
+        selectbox_ids,
+        visible_ids,
+        current_source_id=current_source_id,
+        pick_id=pick_id,
+    )
 
     def _format_source_id(sid: str) -> str:
         path = id_to_path[sid]
@@ -444,7 +481,7 @@ def main() -> None:
 
     source_id = st.selectbox(
         "Source",
-        visible_ids,
+        selectbox_ids,
         format_func=_format_source_id,
         key="review_source_id",
     )
@@ -554,7 +591,8 @@ def main() -> None:
                     )
                     st.session_state["artifact"] = artifact
                     st.session_state["artifact_source_id"] = source_id
-                    st.session_state.pop(f"{source_id[:40]}_review_mode", None)
+                    queue_queue_filter_change(st.session_state, FILTER_AFTER_ANALYZE)
+                    st.session_state.pop(source_review_mode_session_key(source_id), None)
                     st.success("Analysis complete.")
                     st.rerun()
                 except Exception as exc:  # noqa: BLE001
@@ -575,7 +613,7 @@ def main() -> None:
             )
             st.session_state["artifact"] = None
             st.session_state["artifact_source_id"] = None
-            st.session_state.pop(f"{source_id[:40]}_review_mode", None)
+            st.session_state.pop(source_review_mode_session_key(source_id), None)
             refreshed_status = build_source_status_map(reviews_root, source_ids)
             next_pool = unfinished_source_ids(source_ids, refreshed_status)
             if next_pool:
@@ -718,7 +756,7 @@ def main() -> None:
             reviews_root=reviews_root,
         )
 
-    key_prefix = source_id[:40]
+    key_prefix = source_widget_key_prefix(source_id)
     wiki_glossary_seed = parse_glossary_terms(wiki_root / "glossary" / "index.md", cap=200)
     st.caption(
         f"Artifact schema v{artifact.get('artifact_schema_version', '?')} · "

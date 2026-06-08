@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:43:38+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt5cr7NMbsZ2KhxrzODmC5qsjGfB",
+          "token_usage": {
+            "completion_tokens": 234,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5026,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5260
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnt5eKNOvVp8S4TDNFY3dgxnUnPJc",
+          "token_usage": {
+            "completion_tokens": 1004,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4674,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5678
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnt5eKNOvVp8S4TDNFY3dgxnUnPJc",
+    "token_usage": {
+      "completion_tokens": 1238,
+      "prompt_tokens": 9700,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 10938
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "The article is a short, introductory explainer with a few implementation-flavored examples, but it does not contain durable, source-specific knowledge beyond common AI agent/RAG basics. The main value is conceptual orientation rather than a reusable wiki entry.",
+      "skip_recommended": true,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The author is explaining concepts and offering interpretation of agent/workflow distinctions.",
+        "Claims are presented as illustrative guidance rather than as measurements, formal experiments, or vendor documentation.",
+        "Examples are illustrative and implementation-oriented, but the source is primarily a practitioner explanation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article explains the basic building blocks behind conversational AI agents. The main idea is that an agent does more than answer a prompt: it can look at context, call tools, and keep iterating until a task is done. The author contrasts that with a workflow, which follows fixed steps. It also explains retrieval-augmented generation, which means grounding a model in external knowledge so it is less likely to make things up. The examples are practical, but they are mostly simple illustrations rather than a deep technical guide. As of 2025-11-15, it is a useful orientation piece, not a proof that any one architecture is best.",
+      "assessed_as_of": "2025-11-15",
+      "contradictions_and_skepticism": "The post sometimes compresses complex ideas into slogans, especially around what makes an agent distinct from a workflow. The claim that RAG prevents hallucinated facts is directionally right but overstated if read literally, because retrieval can still return irrelevant or misleading context. The examples are useful, but they are not evidence that the architecture is robust under real production conditions. The description of MCP as a unified API is suggestive rather than precise, so readers should treat it as a shorthand rather than a full technical account.",
+      "key_insights": [
+        "The article\u2019s clearest distinction is that workflows are pre-scripted, while agents choose their own next steps inside a constrained environment.",
+        "The proposed agent loop depends on three ingredients: contextual understanding, tool actions through APIs, and feedback from a human or environment.",
+        "RAG is presented as the main guardrail against ungrounded answers when a conversation needs specific facts from a local knowledge base.",
+        "The n8n example shows a common agent pattern: summarize, classify, check availability, request approval, then execute a follow-up action.",
+        "MCP is described as a bridge for external API access when the agent needs resources beyond an existing database."
+      ],
+      "limitations_and_open_questions": "The article does not define evaluation criteria for agents versus workflows, so it is hard to tell when autonomy helps or hurts. The RAG explanation is simplified and does not discuss retrieval quality, chunking strategy, embedding choice, citation faithfulness, or how to handle conflicting sources. The n8n example is illustrative only; it does not specify error handling, permission boundaries, retry logic, auditability, or how approval gating works in failure cases. The MCP mention is brief and does not explain security, tool authorization, or interoperability limits. There is also no discussion of latency, cost, or whether the described loop scales beyond a narrow personal assistant use case.",
+      "sources": [
+        "https://medium.com/@yezi.li_jla/behind-the-scene-of-conversational-ai-agent-ae6fb6e5f57c"
+      ],
+      "summary": "The article gives a high-level explanation of conversational AI agents by contrasting agents with predefined workflows. It frames agents as systems where an LLM uses context, API actions, and feedback loops to decide what to do next, while workflows follow fixed code paths. The author uses simple examples: lead qualification, CRM request routing, and an email-handling agent built with n8n that summarizes newsletters, checks calendar availability for event invitations, and asks for approval in Slack before creating calendar events. The article then introduces retrieval-augmented generation as the mechanism for grounding model outputs in specific context, using embeddings and vector databases to reduce hallucinated answers. It also briefly mentions NotebookLM as an example of a product grounded in user-provided knowledge and cites function calling plus the Model Context Protocol as a way to reach external APIs when existing data is not enough. The piece is introductory and conceptually useful, but it stays at the level of explanation and toy workflow design rather than evaluation or deep implementation detail.",
+      "why_it_matters": "The article is useful as a compact conceptual map for someone building conversational AI systems because it ties together three ideas that often get mixed up: workflow orchestration, agentic control, and retrieval grounding. Its value is mostly in terminology discipline, not in novel technical evidence. The workflow-vs-agent contrast is operationally helpful because it reminds builders that fixed routes and autonomous tool use are different design choices with different failure modes. The RAG section reinforces that factual grounding is a separate problem from generation, and that embeddings plus vector retrieval are the mechanism the author wants readers to use. The n8n example makes the abstraction concrete by showing how summarization, calendar checks, and approval can be chained into one assistant loop. The discussion of function calling and Model Context Protocol is a useful reminder that agent usefulness depends on reliable access to external actions, not just a stronger prompt. The stakes here are limited because the post does not benchmark any approach or compare reliability, latency, or cost across architectures. As of 2025-11-15, the piece is best treated as an introductory orientation and a light implementation sketch, not as evidence that these patterns are universally superior."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent explanatory post, not a roundup or transcript.",
+        "Contains general discussion of agents, workflows, RAG, embeddings, and MCP with illustrative examples.",
+        "Structure is narrative and tutorial-like, but not a step-by-step implementation guide with enough specificity to classify as technical_howto."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The author is explaining concepts and offering interpretation of agent/workflow distinctions.",
+          "Claims are presented as illustrative guidance rather than as measurements, formal experiments, or vendor documentation.",
+          "Examples are illustrative and implementation-oriented, but the source is primarily a practitioner explanation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The article\u2019s clearest distinction is that workflows are pre-scripted, while agents choose their own next steps inside a constrained environment.",
+          "The proposed agent loop depends on three ingredients: contextual understanding, tool actions through APIs, and feedback from a human or environment.",
+          "RAG is presented as the main guardrail against ungrounded answers when a conversation needs specific facts from a local knowledge base.",
+          "The n8n example shows a common agent pattern: summarize, classify, check availability, request approval, then execute a follow-up action.",
+          "MCP is described as a bridge for external API access when the agent needs resources beyond an existing database."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@yezi.li_jla/behind-the-scene-of-conversational-ai-agent-ae6fb6e5f57c"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent explanatory post, not a roundup or transcript.",
+          "Contains general discussion of agents, workflows, RAG, embeddings, and MCP with illustrative examples.",
+          "Structure is narrative and tutorial-like, but not a step-by-step implementation guide with enough specificity to classify as technical_howto."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Yezi Li",
+    "canonical_url": "https://medium.com/@yezi.li_jla/behind-the-scene-of-conversational-ai-agent-ae6fb6e5f57c",
+    "content_sha256": "c5f9cdf70e839fb22ef42d058abbe9d0cee364054c12721a7ff3128a4cb8519e",
+    "publication": "Medium",
+    "published_date": "2025-11-15",
+    "raw_html_rel_path": "raw/readwise/behind-the-scene-of-conversational-ai-agent-01kqh0spkgqy5bvsgb7w50yb4h.html",
+    "raw_md_rel_path": "raw/readwise/behind-the-scene-of-conversational-ai-agent-01kqh0spkgqy5bvsgb7w50yb4h.md",
+    "source_id": "behind-the-scene-of-conversational-ai-agent-01kqh0spkgqy5bvsgb7w50yb4h",
+    "title": "Behind the scene of conversational ai agent"
+  }
+}

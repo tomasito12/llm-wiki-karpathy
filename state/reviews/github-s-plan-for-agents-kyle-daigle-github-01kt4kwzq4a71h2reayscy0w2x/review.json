@@ -1,0 +1,1173 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:49:49+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntBADL7Hw8P30YXPL5jnB6lWQihI",
+          "token_usage": {
+            "completion_tokens": 221,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 27132,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 27353
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntBDvnsPdSBhyuwm3uxrcbQAW0cR",
+          "token_usage": {
+            "completion_tokens": 1470,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 26770,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 28240
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-interview_or_transcript",
+          "request_id": "chatcmpl-DntBXH13BZedZKYbq6s9D6kFw4DC8",
+          "route": "interview_or_transcript",
+          "token_usage": {
+            "completion_tokens": 2165,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 39849,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 42014
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntBXH13BZedZKYbq6s9D6kFw4DC8",
+    "token_usage": {
+      "completion_tokens": 3856,
+      "prompt_tokens": 93751,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 97607
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-06-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"what\u2019s driving this... is building agents and workflows that are connecting very disparate problems to help me out\"",
+          "\"the most valuable... is actually, a recursive loop backwards. I\u2019m always looking at what had happened first\"",
+          "\"I can ask it all these backwards-facing questions\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Agentic coding shifts the bottleneck from code generation to context and orchestration",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "GitHub",
+          "Microsoft",
+          "WorkIQ",
+          "MCP",
+          "Slack",
+          "Teams",
+          "Copilot"
+        ],
+        "operational_relevance": "Build agent workflows that pull from multiple business systems, reduce them into task-specific context, and then route output into existing operational channels. Favor orchestration layers that can consume GitHub, chat, email, transcripts, and notes rather than standalone chat experiences.",
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "context-engineering",
+          "enterprise-workflows"
+        ],
+        "secondary_tag": "context-engineering",
+        "service_automation_relevance": "Service automation systems face the same bottleneck: the main challenge is not answer generation but combining customer context, policy, and prior interactions before acting. This supports designs that emphasize context aggregation and handoff logic over generic chat front ends.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Daigle frames the AI-era problem at GitHub as broader than better code completion. The harder issue is coordinating code, communications, and organizational context across many tools and actors as agents generate far more output. He argues that the value moves toward systems that can assemble the right context, choose the right action, and keep humans in the loop where needed.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-02, this is a durable design lesson for AI engineering: model quality alone is insufficient when the real bottleneck is context assembly and workflow routing. Teams building coding agents, enterprise copilots, or internal assistants should treat context integration and orchestration as first-class product problems, not add-ons.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Large all-in-one skills are brittle and will give way to micro-skills."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"we\u2019re ending the era of these like massive, beautiful, perfect skills\"",
+          "\"we\u2019re really talking about these like incredibly micro skills that are just doing one thing for us very well\"",
+          "\"if you\u2019re just doing similar to any dependency management, just V1 or newest or latest... your mega skill and you\u2019re screwed\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Small micro-skills are more maintainable than giant all-in-one agent skills",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "GitHub",
+          "MCP",
+          "Slack",
+          "Teams",
+          "Copilot"
+        ],
+        "operational_relevance": "Use narrow skills for discrete subtasks, then compose them through orchestration logic. This reduces harness decay, makes updates safer, and lowers the cost of adapting workflows for different roles such as communications, analytics, or leadership support.",
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "workflow-design",
+          "process-design"
+        ],
+        "secondary_tag": "workflow-design",
+        "service_automation_relevance": "In support automation, the same principle suggests splitting intake, classification, policy lookup, drafting, and escalation into separate steps instead of one oversized agent prompt. That usually improves reliability and makes human review easier.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Daigle says GitHub is moving away from large, polished \"mega-skills\" toward smaller micro-skills that do one thing well. His argument is that large workflows become brittle as context changes, while atomic skills can be recombined and updated with less risk.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-02, this is a useful operational principle for agent design: favor composable units over monolithic prompt bundles or end-to-end workflows. It is especially relevant for internal AI tooling where requirements shift quickly and maintenance cost matters.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Passive popularity signals like stars are fundamentally gamifiable and insufficient as trust measures."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"we\u2019re trying to codify trust\"",
+          "\"the trust is kind of diffuse\"",
+          "\"these are all... passive ones that are ultimately gamifiable\"",
+          "\"it\u2019s a social problem ultimately. It\u2019s a it\u2019s a human problem to review it and agree\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Open-source trust remains social, not just technical",
+        "insight_type": "privacy_security",
+        "mentioned_entities": [
+          "GitHub",
+          "GitHub Sponsors",
+          "open source maintainers",
+          "OpenClaw"
+        ],
+        "operational_relevance": "Design approval-based workflows where maintainers define their own trust signals, rather than forcing a universal gate. Combine verification tooling with human review, maintainers\u2019 heuristics, and project-specific policies for accepting agent-generated changes.",
+        "primary_tag": "verification-systems",
+        "proposed_tags": [
+          "verification-systems",
+          "ai-governance"
+        ],
+        "secondary_tag": "ai-governance",
+        "service_automation_relevance": "Service automation has the same pattern: automated outputs can be checked for correctness, but customer-facing trust still depends on escalation rules, accountability, and human-visible approval paths. Verification alone does not create user confidence.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "approval-based-coding-workflows",
+        "suggested_new_tags": [
+          "approval-based-coding-workflows"
+        ],
+        "summary": "Daigle argues that PR verification, stars, commit counts, and other passive signals do not fully solve trust in open source. He says trust is diffuse once agents write and review code, and maintainers still rely on human judgment, project norms, and project-specific rules.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-02, this is a strong warning against treating verification as a purely technical checkbox. For agentic coding and open-source intake, durable trust systems need both machine verification and social approval mechanisms that fit each project\u2019s norms.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "GitHub\u2019s scaling path is becoming a diagonal problem where neither pure vertical nor pure horizontal scaling is enough."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"more tools, more agents, more PRs mean more builds, more builds mean more CPUs\"",
+          "\"the place that we continue to have pain is in, permissioning\"",
+          "\"we\u2019re sort of in a like diagonal, where like vertical doesn\u2019t really work anymore. Horizontal isn\u2019t work either\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Platform reliability breaks in new ways when agents multiply workload",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "GitHub Actions",
+          "MySQL One",
+          "Vitess",
+          "Azure",
+          "GitHub Enterprise Server",
+          "npm"
+        ],
+        "operational_relevance": "Expect more CPU pressure from automation-heavy workflows and more database pressure from permissions and object growth. Reliability work may require both horizontal and vertical changes, plus rewrites of older subsystems that assumed human-scale traffic and smaller pushes.",
+        "primary_tag": "infrastructure",
+        "proposed_tags": [
+          "infrastructure",
+          "runtime-systems"
+        ],
+        "secondary_tag": "runtime-systems",
+        "service_automation_relevance": "For support and conversational systems, the analog is that automation can create load spikes in routing, history storage, and permission checks, not just model inference. Operational planning should include back-end scaling and state management, not only response quality.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "compute-supply-becomes-the-ai-bottleneck",
+        "suggested_new_tags": [
+          "compute-supply-becomes-the-ai-bottleneck"
+        ],
+        "summary": "Daigle says GitHub\u2019s reliability issues are not just old scaling problems returning at larger size. Agentic coding increases commits, PRs, builds, repository size, and permissioning complexity, which stresses Actions, databases, job queues, and on-prem deployments in new combinations.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-02, this is a practical infrastructure lesson for any code platform or developer tool: agent adoption can create load patterns that invalidate older scaling assumptions. The implication is that platform teams need to model permissions, compute, and repository shape as part of reliability planning.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "The next value layer for Copilot is broader agent orchestration, not just better code completion."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"we\u2019re really on this kind of journey to go... now have, a single underlying, SDK and harness for our coding agent Copilot\"",
+          "\"The new CLI, the new desktop app, cloud agents that use the same SDK\"",
+          "\"it\u2019s not solely about the code generation\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Copilot is being repositioned from autocomplete to an agent runtime",
+        "insight_type": "tool",
+        "mentioned_entities": [
+          "GitHub Copilot",
+          "CLI",
+          "desktop app",
+          "cloud agents",
+          "SDK",
+          "GitHub Actions"
+        ],
+        "operational_relevance": "Treat the agent layer as reusable infrastructure: one SDK or harness can power CLI, desktop, issue automation, security remediation, and documentation checks. This reduces fragmentation and makes workflow expansion easier than building separate tools for each task.",
+        "primary_tag": "coding-agents",
+        "proposed_tags": [
+          "coding-agents",
+          "developer-tooling",
+          "agent-systems"
+        ],
+        "secondary_tag": "developer-tooling",
+        "service_automation_relevance": "For service automation, the analogous pattern is a shared action runtime across support channels and back-office tasks rather than isolated bots. That enables consistent policy handling, escalation, and task execution across entry points.",
+        "suggested_destinations": [
+          "topics/",
+          "tools/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Daigle describes Copilot as evolving from code completion into a broader runtime across the CLI, desktop app, cloud agents, and a shared SDK. The strategic shift is from generating code snippets to orchestrating coding-agent workflows across multiple tasks and lifecycle stages.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-02, this shows how mature coding-assistant products may differentiate: not by completion quality alone, but by the breadth of the agent harness they expose. It is useful for teams evaluating whether to build a chat assistant, an IDE helper, or a general-purpose agent runtime.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is an interview where GitHub COO Kyle Daigle gives first-person explanations, judgments, and strategy views about GitHub's AI plans.",
+        "Claims are supported mainly by his stated experience and organizational perspective rather than external data or formal evaluation.",
+        "Several concrete examples are offered from internal workflows and operations, but they function as practitioner testimony inside an expert conversation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This interview is about how GitHub is adapting to AI agents. The big idea is that coding is no longer the only problem; the harder part is handling context, trust, security, and scale when agents create lots of code and workflow noise. Kyle Daigle says GitHub is using small reusable skills, not giant one-size-fits-all automations, and is plugging AI into tools people already use. He also says GitHub\u2019s reliability issues come from a real load spike, not just product bugs. The Microsoft side of the story is about giving agents safe access to work context through systems like WorkIQ and OpenClaw. In plain English: the article is about turning GitHub and Microsoft into platforms that can safely let AI do more of the work.",
+      "assessed_as_of": "2026-06-02",
+      "contradictions_and_skepticism": "Several claims are aspirational and should be treated cautiously. The idea of ambient AI that seamlessly knows every spec, email, transcript, and conversation sounds useful, but the transcript itself admits that no current tool fully does this yet. Daigle\u2019s view that small micro-skills are replacing mega-skills is plausible, but it reads as a design preference more than a demonstrated universal pattern. The trust discussion leans heavily on social heuristics and maintainers\u2019 judgment, which is honest, but it also means the system may remain inconsistent across projects. The reliability explanation is credible, yet it remains partly self-reported and does not isolate root causes with evidence. The broader Microsoft/OpenClaw framing is compelling, but the article stays at platform narrative level and does not show production outcomes beyond internal enthusiasm.",
+      "key_insights": [
+        "GitHub\u2019s internal AI strategy is to layer agents into existing workflows instead of forcing teams to learn a new interface first.",
+        "Daigle says large \u201cmega-skills\u201d are giving way to small micro-skills because brittle one-shot workflows break as context changes.",
+        "For GitHub, AI is acting as a retrospective tool as much as a generation tool: it helps reconstruct what happened from chats, docs, and transcripts before planning the next steps.",
+        "The reliability pain is described as a concrete infrastructure problem: more agents mean more commits, more builds, more Actions load, and more pressure on permissioning and databases.",
+        "Open-source trust is treated as a social signal problem, not just a verification problem, so GitHub is leaning toward configurable maintainer-defined trust mechanisms instead of one universal rule."
+      ],
+      "limitations_and_open_questions": "This is an interview, so most claims are unverified practitioner testimony rather than benchmarked results. Several important details are left vague: how WorkIQ/MCP is secured, how micro-skills are governed, what evaluation proves the workflows save time, and how often the internal AI-generated reports are wrong. The reliability section names likely bottlenecks, but it does not quantify the relative contribution of Actions, permissioning, database sharding, monorepos, or job queuing. The trust discussion is conceptually strong but operationally incomplete: it does not specify which maintainers should adopt which signals, or how to prevent abuse of custom trust rules. OpenClaw, ambient AI, and OS-level sandboxing are presented as promising, but the article does not provide implementation detail, threat modeling, or evidence that these systems are broadly safe enough for enterprise use. The discussion of Copilot\u2019s evolution is also directional rather than evaluative; there is no side-by-side comparison of the new agent stack versus alternatives.",
+      "sources": [
+        "mailto:reader-forwarded-email/8ac3dd17be23477a809af85d0d4e501c"
+      ],
+      "summary": "Kyle Daigle argues that GitHub\u2019s AI-era problem is not just better code generation, but scaling the platform, its trust model, and its internal workflows to a world where agents produce far more code and context than human developers alone. He describes using AI as a retrospective and coordination layer: pulling from GitHub, Slack, Teams, email, Obsidian notes, transcripts, and WorkIQ/MCP to reconstruct what happened, identify what matters, and turn that into plans, reports, and presentations. Internally, GitHub is trying to avoid forcing people into new tools and instead distributing small atomic \u201cmicro-skills\u201d through existing workflows, because large all-in-one skills are brittle and hard to maintain. On the platform side, he ties the reliability issues to a step-change in load from agentic coding, more builds, larger pushes, bigger repositories, and more permissioning complexity, especially in Actions and core database layers like MySQL One. He also frames open-source trust as a social problem, not just a verification problem: stars, commit counts, and even PR review are gamifiable or diffuse, so GitHub is experimenting with tools that let maintainers define their own trust signals rather than imposing one universal policy. Copilot, in his telling, has evolved from completion into a broader agent runtime across the CLI, desktop app, cloud agents, and SDK, with the long-term goal of helping GitHub act on richer personal and company context rather than just code. The Microsoft angle is similar: WorkIQ, FoundryIQ, and OpenClaw are presented as context and agent platform pieces that need OS-level sandboxing and enterprise controls so agents can operate safely on work devices. The article is less a product announcement than a practitioner\u2019s view of how GitHub and Microsoft are reorganizing around agents, context, and compute as of 2026-06-02.",
+      "why_it_matters": "The piece is useful because it gives a rare first-person account of how a platform operator is adapting to agentic coding under real load, rather than speaking in abstract product language. Daigle\u2019s description of GitHub\u2019s internal workflows is operationally valuable: he emphasizes retrospective agents that pull from GitHub, Slack, Teams, email, and notes to build plans and summaries, which is a concrete pattern for using LLMs on organizational context. His micro-skills framing is also durable because it explains why many agent workflows fail in practice: long, composable automations are fragile when the underlying context changes, so small tasks with clear scope are easier to maintain. The Copilot section matters because it shows the product is being repositioned from autocomplete toward an agent runtime spanning CLI, desktop, cloud agents, and SDKs. The reliability discussion is especially grounded: Daigle ties outages to more commits, bigger pushes, larger repositories, permissioning complexity, and Actions compute pressure, which is the kind of infrastructure detail that is reusable for teams running code platforms or internal developer tooling. The trust discussion is similarly important because it rejects the idea that verification alone solves open-source intake; human trust, maintainer norms, and project-specific rules still matter. As of 2026-06-02, this is actionable mainly as a design and infrastructure reference, not a finished blueprint; the claims are strongest where they describe GitHub\u2019s own internal systems and weakest where they project future ambient AI behavior. For service automation, the article only touches it indirectly through GitHub\u2019s internal coordination work and not as a customer-support or back-office case, so the practical takeaway is limited to workflow automation and internal operations."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "The source is structured as a long-form Q&A between an interviewer and Kyle Daigle, with speaker labels and timestamps throughout.",
+        "It includes podcast-style framing, an interview introduction, and transcript sections rather than a single narrative article.",
+        "The content is primarily conversational and testimonial, not a list roundup or step-by-step tutorial."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"what\u2019s driving this... is building agents and workflows that are connecting very disparate problems to help me out\"",
+            "\"the most valuable... is actually, a recursive loop backwards. I\u2019m always looking at what had happened first\"",
+            "\"I can ask it all these backwards-facing questions\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Agentic coding shifts the bottleneck from code generation to context and orchestration",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "GitHub",
+            "Microsoft",
+            "WorkIQ",
+            "MCP",
+            "Slack",
+            "Teams",
+            "Copilot"
+          ],
+          "operational_relevance": "Build agent workflows that pull from multiple business systems, reduce them into task-specific context, and then route output into existing operational channels. Favor orchestration layers that can consume GitHub, chat, email, transcripts, and notes rather than standalone chat experiences.",
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "context-engineering",
+            "enterprise-workflows"
+          ],
+          "secondary_tag": "context-engineering",
+          "service_automation_relevance": "Service automation systems face the same bottleneck: the main challenge is not answer generation but combining customer context, policy, and prior interactions before acting. This supports designs that emphasize context aggregation and handoff logic over generic chat front ends.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Daigle frames the AI-era problem at GitHub as broader than better code completion. The harder issue is coordinating code, communications, and organizational context across many tools and actors as agents generate far more output. He argues that the value moves toward systems that can assemble the right context, choose the right action, and keep humans in the loop where needed.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-02, this is a durable design lesson for AI engineering: model quality alone is insufficient when the real bottleneck is context assembly and workflow routing. Teams building coding agents, enterprise copilots, or internal assistants should treat context integration and orchestration as first-class product problems, not add-ons.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "a88fee8b-d73c-4426-8286-69af3d3554dc",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"what\u2019s driving this... is building agents and workflows that are connecting very disparate problems to help me out\"",
+              "\"the most valuable... is actually, a recursive loop backwards. I\u2019m always looking at what had happened first\"",
+              "\"I can ask it all these backwards-facing questions\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "GitHub",
+              "Microsoft",
+              "WorkIQ",
+              "MCP",
+              "Slack",
+              "Teams",
+              "Copilot"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "context-engineering",
+            "enterprise-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Large all-in-one skills are brittle and will give way to micro-skills."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"we\u2019re ending the era of these like massive, beautiful, perfect skills\"",
+            "\"we\u2019re really talking about these like incredibly micro skills that are just doing one thing for us very well\"",
+            "\"if you\u2019re just doing similar to any dependency management, just V1 or newest or latest... your mega skill and you\u2019re screwed\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Small micro-skills are more maintainable than giant all-in-one agent skills",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "GitHub",
+            "MCP",
+            "Slack",
+            "Teams",
+            "Copilot"
+          ],
+          "operational_relevance": "Use narrow skills for discrete subtasks, then compose them through orchestration logic. This reduces harness decay, makes updates safer, and lowers the cost of adapting workflows for different roles such as communications, analytics, or leadership support.",
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "workflow-design",
+            "process-design"
+          ],
+          "secondary_tag": "workflow-design",
+          "service_automation_relevance": "In support automation, the same principle suggests splitting intake, classification, policy lookup, drafting, and escalation into separate steps instead of one oversized agent prompt. That usually improves reliability and makes human review easier.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Daigle says GitHub is moving away from large, polished \"mega-skills\" toward smaller micro-skills that do one thing well. His argument is that large workflows become brittle as context changes, while atomic skills can be recombined and updated with less risk.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-02, this is a useful operational principle for agent design: favor composable units over monolithic prompt bundles or end-to-end workflows. It is especially relevant for internal AI tooling where requirements shift quickly and maintenance cost matters.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "43f80c6e-9072-480f-9957-e468ad81fe78",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Large all-in-one skills are brittle and will give way to micro-skills."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"we\u2019re ending the era of these like massive, beautiful, perfect skills\"",
+              "\"we\u2019re really talking about these like incredibly micro skills that are just doing one thing for us very well\"",
+              "\"if you\u2019re just doing similar to any dependency management, just V1 or newest or latest... your mega skill and you\u2019re screwed\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "GitHub",
+              "MCP",
+              "Slack",
+              "Teams",
+              "Copilot"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "workflow-design",
+            "process-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Passive popularity signals like stars are fundamentally gamifiable and insufficient as trust measures."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"we\u2019re trying to codify trust\"",
+            "\"the trust is kind of diffuse\"",
+            "\"these are all... passive ones that are ultimately gamifiable\"",
+            "\"it\u2019s a social problem ultimately. It\u2019s a it\u2019s a human problem to review it and agree\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Open-source trust remains social, not just technical",
+          "insight_type": "privacy_security",
+          "mentioned_entities": [
+            "GitHub",
+            "GitHub Sponsors",
+            "open source maintainers",
+            "OpenClaw"
+          ],
+          "operational_relevance": "Design approval-based workflows where maintainers define their own trust signals, rather than forcing a universal gate. Combine verification tooling with human review, maintainers\u2019 heuristics, and project-specific policies for accepting agent-generated changes.",
+          "primary_tag": "verification-systems",
+          "proposed_tags": [
+            "verification-systems",
+            "ai-governance"
+          ],
+          "secondary_tag": "ai-governance",
+          "service_automation_relevance": "Service automation has the same pattern: automated outputs can be checked for correctness, but customer-facing trust still depends on escalation rules, accountability, and human-visible approval paths. Verification alone does not create user confidence.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "approval-based-coding-workflows",
+          "suggested_new_tags": [
+            "approval-based-coding-workflows"
+          ],
+          "summary": "Daigle argues that PR verification, stars, commit counts, and other passive signals do not fully solve trust in open source. He says trust is diffuse once agents write and review code, and maintainers still rely on human judgment, project norms, and project-specific rules.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-02, this is a strong warning against treating verification as a purely technical checkbox. For agentic coding and open-source intake, durable trust systems need both machine verification and social approval mechanisms that fit each project\u2019s norms.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "6d846c69-cabe-4e3b-8f27-00276ee84755",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Passive popularity signals like stars are fundamentally gamifiable and insufficient as trust measures."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"we\u2019re trying to codify trust\"",
+              "\"the trust is kind of diffuse\"",
+              "\"these are all... passive ones that are ultimately gamifiable\"",
+              "\"it\u2019s a social problem ultimately. It\u2019s a it\u2019s a human problem to review it and agree\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "GitHub",
+              "GitHub Sponsors",
+              "open source maintainers",
+              "OpenClaw"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "verification-systems",
+            "ai-governance"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "GitHub\u2019s scaling path is becoming a diagonal problem where neither pure vertical nor pure horizontal scaling is enough."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"more tools, more agents, more PRs mean more builds, more builds mean more CPUs\"",
+            "\"the place that we continue to have pain is in, permissioning\"",
+            "\"we\u2019re sort of in a like diagonal, where like vertical doesn\u2019t really work anymore. Horizontal isn\u2019t work either\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Platform reliability breaks in new ways when agents multiply workload",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "GitHub Actions",
+            "MySQL One",
+            "Vitess",
+            "Azure",
+            "GitHub Enterprise Server",
+            "npm"
+          ],
+          "operational_relevance": "Expect more CPU pressure from automation-heavy workflows and more database pressure from permissions and object growth. Reliability work may require both horizontal and vertical changes, plus rewrites of older subsystems that assumed human-scale traffic and smaller pushes.",
+          "primary_tag": "infrastructure",
+          "proposed_tags": [
+            "infrastructure",
+            "runtime-systems"
+          ],
+          "secondary_tag": "runtime-systems",
+          "service_automation_relevance": "For support and conversational systems, the analog is that automation can create load spikes in routing, history storage, and permission checks, not just model inference. Operational planning should include back-end scaling and state management, not only response quality.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "compute-supply-becomes-the-ai-bottleneck",
+          "suggested_new_tags": [
+            "compute-supply-becomes-the-ai-bottleneck"
+          ],
+          "summary": "Daigle says GitHub\u2019s reliability issues are not just old scaling problems returning at larger size. Agentic coding increases commits, PRs, builds, repository size, and permissioning complexity, which stresses Actions, databases, job queues, and on-prem deployments in new combinations.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-02, this is a practical infrastructure lesson for any code platform or developer tool: agent adoption can create load patterns that invalidate older scaling assumptions. The implication is that platform teams need to model permissions, compute, and repository shape as part of reliability planning.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "7909347a-a769-4708-9f91-11c8d8570422",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "GitHub\u2019s scaling path is becoming a diagonal problem where neither pure vertical nor pure horizontal scaling is enough."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"more tools, more agents, more PRs mean more builds, more builds mean more CPUs\"",
+              "\"the place that we continue to have pain is in, permissioning\"",
+              "\"we\u2019re sort of in a like diagonal, where like vertical doesn\u2019t really work anymore. Horizontal isn\u2019t work either\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "GitHub Actions",
+              "MySQL One",
+              "Vitess",
+              "Azure",
+              "GitHub Enterprise Server",
+              "npm"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "infrastructure",
+            "runtime-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "The next value layer for Copilot is broader agent orchestration, not just better code completion."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"we\u2019re really on this kind of journey to go... now have, a single underlying, SDK and harness for our coding agent Copilot\"",
+            "\"The new CLI, the new desktop app, cloud agents that use the same SDK\"",
+            "\"it\u2019s not solely about the code generation\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Copilot is being repositioned from autocomplete to an agent runtime",
+          "insight_type": "tool",
+          "mentioned_entities": [
+            "GitHub Copilot",
+            "CLI",
+            "desktop app",
+            "cloud agents",
+            "SDK",
+            "GitHub Actions"
+          ],
+          "operational_relevance": "Treat the agent layer as reusable infrastructure: one SDK or harness can power CLI, desktop, issue automation, security remediation, and documentation checks. This reduces fragmentation and makes workflow expansion easier than building separate tools for each task.",
+          "primary_tag": "coding-agents",
+          "proposed_tags": [
+            "coding-agents",
+            "developer-tooling",
+            "agent-systems"
+          ],
+          "secondary_tag": "developer-tooling",
+          "service_automation_relevance": "For service automation, the analogous pattern is a shared action runtime across support channels and back-office tasks rather than isolated bots. That enables consistent policy handling, escalation, and task execution across entry points.",
+          "suggested_destinations": [
+            "topics/",
+            "tools/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Daigle describes Copilot as evolving from code completion into a broader runtime across the CLI, desktop app, cloud agents, and a shared SDK. The strategic shift is from generating code snippets to orchestrating coding-agent workflows across multiple tasks and lifecycle stages.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-02, this shows how mature coding-assistant products may differentiate: not by completion quality alone, but by the breadth of the agent harness they expose. It is useful for teams evaluating whether to build a chat assistant, an IDE helper, or a general-purpose agent runtime.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "129defc2-a97c-41f4-a743-c64355f86b9d",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "The next value layer for Copilot is broader agent orchestration, not just better code completion."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"we\u2019re really on this kind of journey to go... now have, a single underlying, SDK and harness for our coding agent Copilot\"",
+              "\"The new CLI, the new desktop app, cloud agents that use the same SDK\"",
+              "\"it\u2019s not solely about the code generation\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "GitHub Copilot",
+              "CLI",
+              "desktop app",
+              "cloud agents",
+              "SDK",
+              "GitHub Actions"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "tools/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "coding-agents",
+            "developer-tooling",
+            "agent-systems"
+          ]
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is an interview where GitHub COO Kyle Daigle gives first-person explanations, judgments, and strategy views about GitHub's AI plans.",
+          "Claims are supported mainly by his stated experience and organizational perspective rather than external data or formal evaluation.",
+          "Several concrete examples are offered from internal workflows and operations, but they function as practitioner testimony inside an expert conversation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "GitHub\u2019s internal AI strategy is to layer agents into existing workflows instead of forcing teams to learn a new interface first.",
+          "Daigle says large \u201cmega-skills\u201d are giving way to small micro-skills because brittle one-shot workflows break as context changes.",
+          "For GitHub, AI is acting as a retrospective tool as much as a generation tool: it helps reconstruct what happened from chats, docs, and transcripts before planning the next steps.",
+          "The reliability pain is described as a concrete infrastructure problem: more agents mean more commits, more builds, more Actions load, and more pressure on permissioning and databases.",
+          "Open-source trust is treated as a social signal problem, not just a verification problem, so GitHub is leaning toward configurable maintainer-defined trust mechanisms instead of one universal rule."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "mailto:reader-forwarded-email/8ac3dd17be23477a809af85d0d4e501c"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "The source is structured as a long-form Q&A between an interviewer and Kyle Daigle, with speaker labels and timestamps throughout.",
+          "It includes podcast-style framing, an interview introduction, and transcript sections rather than a single narrative article.",
+          "The content is primarily conversational and testimonial, not a list roundup or step-by-step tutorial."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent.Space",
+    "canonical_url": "mailto:reader-forwarded-email/8ac3dd17be23477a809af85d0d4e501f",
+    "content_sha256": "32a5899bb7537f43e9c5c1ae40b3ebb8ff9bc153c1218d3dd920eea8a25e12d2",
+    "publication": "Substack",
+    "published_date": "2026-06-02",
+    "raw_html_rel_path": "raw/readwise/github-s-plan-for-agents-kyle-daigle-github-01kt4kwzq4a71h2reayscy0w2x.html",
+    "raw_md_rel_path": "raw/readwise/github-s-plan-for-agents-kyle-daigle-github-01kt4kwzq4a71h2reayscy0w2x.md",
+    "source_id": "github-s-plan-for-agents-kyle-daigle-github-01kt4kwzq4a71h2reayscy0w2x",
+    "title": "GitHub's plan for Agents \u2014 Kyle Daigle, GitHub"
+  }
+}

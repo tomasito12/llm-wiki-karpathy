@@ -1,0 +1,838 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:49:12+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntAlvRPMhhENsITJkTQ411i3SWk6",
+          "token_usage": {
+            "completion_tokens": 211,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 10592,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 10803
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntAowjXjisajjjxrhMk44Jml08Qw",
+          "token_usage": {
+            "completion_tokens": 1047,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 10217,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 11264
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntAxjkznrAtYPkpA2IEODW62IWZE",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1802,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 39424,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 41226
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntAxjkznrAtYPkpA2IEODW62IWZE",
+    "token_usage": {
+      "completion_tokens": 3060,
+      "prompt_tokens": 60233,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 63293
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "",
+        "confidence": 0.9,
+        "evidence_from_source": "The source describes a read-write loop where the agent checks the brain first, updates pages after new information, and syncs changes for future queries.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "persistent-agents",
+        "proposed_tags": [
+          "persistent-agents",
+          "knowledge-systems"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-systems",
+        "suggested_new_tags": [
+          "agent-systems"
+        ],
+        "supporting_data_points": [
+          "The page describes a repeated read-write-sync loop as the core operating model.",
+          "The system propagates entity updates across people, company, and idea pages.",
+          "The source emphasizes that each cycle adds knowledge rather than treating interactions as disposable."
+        ],
+        "supporting_snippet": "\"Signal arrives (meeting, email, tweet, link)\n\u2192 Agent detects entities (people, companies, ideas)\n\u2192 READ: check the brain first (gbrain search, gbrain get)\n\u2192 Respond with full context\n\u2192 WRITE: update brain pages with new information\n\u2192 Sync: gbrain indexes changes for next query\"",
+        "time_sensitivity": "Actionable as of the source publication date; the workflow is framed as an operating pattern for current agent deployments rather than a speculative future state.",
+        "trend_description": "Agent systems are increasingly being designed as persistent work loops that read from and write to a durable knowledge store, rather than answering from isolated session context. The change matters because repeated work can compound inside the system: past lookups, entity relationships, and meeting notes become reusable operational memory. This pushes agent design toward synchronized knowledge bases, backlinks, and incremental maintenance.",
+        "trend_slug": "agents-move-toward-persistent-memory-backed-workflows",
+        "trend_title": "Agents Move Toward Persistent Memory-Backed Workflows",
+        "uncertainty_note": "The evidence is a single-product implementation narrative, so it shows a credible design pattern but not broad adoption or comparative performance across many deployments.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The source describes a concrete system the author built and how it works in deployment, including architecture, commands, and setup flow.",
+        "Several claims are supported by an example production-like installation and operational numbers from one real deployment.",
+        "The page is primarily a build-and-usage description rather than third-party analysis or formal benchmark evidence."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "GBrain is a memory layer for AI agents. It turns a pile of markdown notes into something you can search by names, meaning, and relationships. The idea is simple: keep human-readable files as the source of truth, then add an index so an agent can read, update, and connect them automatically. Instead of treating notes as dead text, the system keeps building on them after each interaction. The article shows how this works with real data, command-line tools, and setup instructions.",
+      "assessed_as_of": "",
+      "contradictions_and_skepticism": "The page frames the system as making an agent 'smarter over time,' but the evidence shown is architectural and anecdotal rather than comparative or experimental. The claim that the brain 'never forgets' is aspirational, since in practice any memory system still depends on ingestion quality, schema discipline, and the correctness of entity resolution. The setup is presented as relatively smooth, yet the stack has multiple moving parts and some operational friction: embeddings, sync, storage migration, and agent prompt integration. The product pitch also leans on large example counts from one user, which are impressive but do not by themselves prove general usefulness.",
+      "key_insights": [
+        "The durable design pattern is compiled truth plus append-only timeline, which lets an agent rewrite current understanding without losing the evidence trail.",
+        "Hybrid search is positioned as necessary once markdown corpora reach thousands of files: exact keyword lookup and semantic vector search each cover gaps the other misses.",
+        "The article treats entity detection and back-linking as core agent behavior, not optional metadata cleanup.",
+        "The skillpack is part of the product: tools alone are insufficient without instructions for when to read, write, enrich, and maintain.",
+        "The most operationally interesting claim is incremental sync: updating one file should update the index without rescanning the whole repo."
+      ],
+      "limitations_and_open_questions": "The evidence comes from one repository and one described deployment, so the performance, reliability, and maintenance claims are not independently benchmarked. The article gives many commands and schema details, but it does not provide failure rates, retrieval quality metrics, latency distributions, or long-term cost data beyond rough storage and embedding estimates. Security, access control, privacy boundaries, and multi-user conflict handling are mostly absent despite the system storing sensitive people, meeting, and relationship data. It also assumes a fairly opinionated stack: Postgres, pgvector, OpenAI embeddings, Anthropic chunking/expansion, and Supabase as the easiest path. The open question is how much of the value depends on the specific skillpack and curation discipline versus the underlying index/search layer.",
+      "sources": [
+        "https://github.com/garrytan/gbrain"
+      ],
+      "summary": "GBrain is a knowledge backend for OpenClaw agents that turns a markdown repo into searchable long-term memory using Postgres, pgvector, and hybrid search. The core design is a brain repo in git as the source of truth, with compiled truth at the top of each page and an append-only timeline at the bottom; GBrain indexes that content and keeps it synced as files change. The author argues that this matters once a brain grows past a few hundred files, because grep stops being enough for entity-centric retrieval and semantic lookup. The system supports keyword search, vector search, reranking/fusion, incremental sync, entity propagation, and a set of MCP and CLI tools for reading, writing, linking, and maintaining pages. The repo also ships a production-oriented skillpack that tells an agent how to use the tools: read before responding, write back after learning, enrich entities, and maintain the brain over time. The article is both a product pitch and a concrete implementation guide, with installation steps, schema details, migration flows, and example commands.",
+      "why_it_matters": "This piece is useful because it compresses a practical architecture for agent memory into one concrete system: git-backed markdown for human editability, Postgres plus pgvector for retrieval, and an explicit agent loop for maintaining knowledge. That combination is more durable than a pure chat history approach because the source of truth stays inspectable and editable by humans, while the retrieval layer makes the archive usable at scale. The article is also specific about the knowledge model it wants: current best understanding above the separator, evidence below it, and cross-links among entities. That is a reusable pattern for any agent that needs stable memory over people, companies, ideas, and meeting history. The installation and schema sections make the article more operational than a typical concept post, since they spell out the storage, search, and sync mechanics rather than only describing the goal. It is still a single-project self-description, so claims about general effectiveness remain limited to the author\u2019s experience and the example deployment. As of the article\u2019s publication date, the guidance is actionable for teams that want agent-maintained markdown memory and are willing to run Postgres, embeddings, and a skillpack-driven workflow; it is less compelling as a general proof that this is the best architecture for all agents. The meeting and briefing use cases suggest relevance for agent-assisted prep and note ingestion, but those are presented as product behavior rather than independently validated outcomes."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "The page is a single coherent product/project description with sections on problem, architecture, install, and docs rather than a bundle of unrelated items.",
+        "It reads like a GitHub repository README and implementation guide, not a roundup, transcript, or research paper.",
+        "The content centers on one system (GBrain) and how to use it."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.97,
+        "core_capabilities": [
+          "It indexes markdown repositories so agents can search a personal knowledge base by meaning and by exact terms.",
+          "It supports hybrid retrieval, combining keyword search, vector search, and reranking so different query styles can succeed.",
+          "It exposes CLI and MCP interfaces so agents can read, write, link, and traverse the brain programmatically.",
+          "It keeps a compiled-truth-plus-timeline page model so current understanding can change without losing the evidence trail."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It works with OpenClaw agents through an install-and-skillpack workflow.",
+          "It exposes MCP tools for clients such as Claude Code and Cursor.",
+          "It connects to Postgres through Supabase and uses pgvector for embeddings and semantic search.",
+          "It can ingest plain markdown repositories and Obsidian vaults via migration and import flows."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The repo presents GBrain as a production-oriented system rather than a prototype, with CLI commands, MCP tools, schema details, and installation paths. The source also describes a real deployment with thousands of pages and long-running maintenance, which is a meaningful operational signal, but it remains a single-vendor self-description rather than third-party validation. As of the source publication date, it looks like a niche but serious developer tool for agent memory workflows.",
+        "name": "GBrain",
+        "operational_relevance": "GBrain fits workflows where an agent needs durable memory over people, projects, notes, and meetings. It is especially relevant for service automation and agent operations because it supports read-before-write loops, incremental sync, entity propagation, and cross-linking rather than treating each interaction as isolated chat state. The source frames it as a practical layer for long-running agents that need to keep a markdown brain current.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "open-source",
+          "retrieval",
+          "agentic",
+          "memory"
+        ],
+        "proposed_types": [
+          "ai-infrastructure",
+          "knowledge-management"
+        ],
+        "related_tools": [
+          "OpenClaw",
+          "Obsidian",
+          "Claude Code"
+        ],
+        "short_description": "GBrain is a knowledge backend for AI agents that indexes markdown repositories into searchable memory. It uses Postgres, pgvector, and hybrid search so agents can retrieve pages by exact terms and semantic meaning.",
+        "strengths": "- Uses a git-backed markdown repository as the source of truth, which keeps human editability while giving agents a structured memory layer.\n- Combines keyword and vector retrieval with RRF fusion, which matters because exact-name lookup and semantic lookup fail in different ways.\n- Supports incremental sync, so one file change can update the index without a full rescan of the corpus.\n- Includes entity detection, enrichment, and backlinking in the agent workflow, which makes memory maintenance part of the operating loop rather than manual cleanup.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"GBrain is a knowledge brain for OpenClaw agents. It gives your agent a searchable, indexed memory over your markdown repos using Postgres + pgvector + hybrid search.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not provide independent benchmarks, failure rates, or retrieval-quality metrics, so the real-world robustness of the search and sync stack is still mostly asserted by the author. It also depends on a fairly opinionated setup: Postgres, pgvector, embeddings, and skillpack-driven agent behavior. The operational surface is broad, so setup and maintenance will be heavier than a simple note index."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Keep human-readable pages as the editable source of truth.",
+          "Separate current understanding from append-only evidence to preserve provenance.",
+          "Let agents update linked entities automatically after ingesting new information.",
+          "Use incremental sync so memory maintenance does not require full reprocessing."
+        ],
+        "knowledge_summary": "An agent-maintained knowledge base is a human-readable repository of pages that an AI system continuously updates, links, and queries as part of normal work. The durable idea is that memory should be edited like software: pages can have current understanding, evidence trails, backlinks, and incremental updates instead of being static notes. This pattern matters when the corpus grows large enough that manual search and manual upkeep break down. It is strongest when the system preserves a clear source of truth that humans can inspect and correct.",
+        "match_candidates": [],
+        "operational_insight": "Treat knowledge storage as a living workspace, not a write-once archive. The key design choice is to separate current conclusions from evidence history so agents can revise beliefs without erasing provenance.",
+        "primary_tag": "agent-memory",
+        "proposed_tags": [
+          "agent-memory",
+          "knowledge-systems",
+          "agent-systems"
+        ],
+        "related_topics": [
+          "agent-memory-architecture",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This pattern is durable for AI systems that need long-lived memory across meetings, accounts, projects, or cases. It supports agent workflows where retrieval, updating, and cross-referencing are part of the operational loop rather than an afterthought.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The compiled truth is the answer. The timeline is the proof.\"",
+        "topic_slug": "agent-maintained-knowledge-bases",
+        "topic_title": "Agent-Maintained Knowledge Bases",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Keyword search catches exact names, IDs, and quoted phrases.",
+          "Vector search catches paraphrases and conceptual matches.",
+          "Fusion methods such as RRF can combine the two signals into one ranking.",
+          "The pattern becomes more important as corpora grow beyond simple grep-style search."
+        ],
+        "knowledge_summary": "Hybrid retrieval combines keyword search and semantic vector search so a system can answer both exact-match and meaning-based queries. The practical value is not just recall; it is robustness, because each retrieval method covers blind spots in the other. In AI systems, this is especially useful for entity-heavy corpora where names, dates, and relationships matter alongside conceptual similarity. Hybrid retrieval is often paired with fusion or reranking to merge the ranking signals into one result set.",
+        "match_candidates": [],
+        "operational_insight": "Use hybrid retrieval when the corpus contains both precise identifiers and semantically rich content. Keyword lookup should handle names and explicit phrases; vector search should cover paraphrases and conceptual questions.",
+        "primary_tag": "context-engineering",
+        "proposed_tags": [
+          "context-engineering",
+          "agent-systems"
+        ],
+        "related_topics": [
+          "agent-maintained-knowledge-bases"
+        ],
+        "relevance_note": "Hybrid retrieval is a stable architecture choice for knowledge bases, support systems, and agent memory layers because real queries mix exact terms with fuzzy intent. It is particularly useful in conversational AI, where users alternate between named entities and open-ended questions.",
+        "secondary_tag": "agent-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "retrieval",
+        "suggested_new_tags": [
+          "retrieval"
+        ],
+        "supporting_snippet": "\"You need real search: keyword for exact names, vector for semantic meaning, and something that fuses both.\"",
+        "topic_slug": "hybrid-retrieval",
+        "topic_title": "Hybrid Retrieval",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "",
+          "confidence": 0.9,
+          "evidence_from_source": "The source describes a read-write loop where the agent checks the brain first, updates pages after new information, and syncs changes for future queries.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "persistent-agents",
+          "proposed_tags": [
+            "persistent-agents",
+            "knowledge-systems"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-systems",
+          "suggested_new_tags": [
+            "agent-systems"
+          ],
+          "supporting_data_points": [
+            "The page describes a repeated read-write-sync loop as the core operating model.",
+            "The system propagates entity updates across people, company, and idea pages.",
+            "The source emphasizes that each cycle adds knowledge rather than treating interactions as disposable."
+          ],
+          "supporting_snippet": "\"Signal arrives (meeting, email, tweet, link)\n\u2192 Agent detects entities (people, companies, ideas)\n\u2192 READ: check the brain first (gbrain search, gbrain get)\n\u2192 Respond with full context\n\u2192 WRITE: update brain pages with new information\n\u2192 Sync: gbrain indexes changes for next query\"",
+          "time_sensitivity": "Actionable as of the source publication date; the workflow is framed as an operating pattern for current agent deployments rather than a speculative future state.",
+          "trend_description": "Agent systems are increasingly being designed as persistent work loops that read from and write to a durable knowledge store, rather than answering from isolated session context. The change matters because repeated work can compound inside the system: past lookups, entity relationships, and meeting notes become reusable operational memory. This pushes agent design toward synchronized knowledge bases, backlinks, and incremental maintenance.",
+          "trend_slug": "agents-move-toward-persistent-memory-backed-workflows",
+          "trend_title": "Agents Move Toward Persistent Memory-Backed Workflows",
+          "uncertainty_note": "The evidence is a single-product implementation narrative, so it shows a credible design pattern but not broad adoption or comparative performance across many deployments.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5ef7247f-3aea-4b2d-84d5-56539773de0b",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The page describes a repeated read-write-sync loop as the core operating model.",
+              "The system propagates entity updates across people, company, and idea pages.",
+              "The source emphasizes that each cycle adds knowledge rather than treating interactions as disposable."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "persistent-agents",
+            "knowledge-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The source describes a concrete system the author built and how it works in deployment, including architecture, commands, and setup flow.",
+          "Several claims are supported by an example production-like installation and operational numbers from one real deployment.",
+          "The page is primarily a build-and-usage description rather than third-party analysis or formal benchmark evidence."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The durable design pattern is compiled truth plus append-only timeline, which lets an agent rewrite current understanding without losing the evidence trail.",
+          "Hybrid search is positioned as necessary once markdown corpora reach thousands of files: exact keyword lookup and semantic vector search each cover gaps the other misses.",
+          "The article treats entity detection and back-linking as core agent behavior, not optional metadata cleanup.",
+          "The skillpack is part of the product: tools alone are insufficient without instructions for when to read, write, enrich, and maintain.",
+          "The most operationally interesting claim is incremental sync: updating one file should update the index without rescanning the whole repo."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://github.com/garrytan/gbrain"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "The page is a single coherent product/project description with sections on problem, architecture, install, and docs rather than a bundle of unrelated items.",
+          "It reads like a GitHub repository README and implementation guide, not a roundup, transcript, or research paper.",
+          "The content centers on one system (GBrain) and how to use it."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "core_capabilities": [
+            "It indexes markdown repositories so agents can search a personal knowledge base by meaning and by exact terms.",
+            "It supports hybrid retrieval, combining keyword search, vector search, and reranking so different query styles can succeed.",
+            "It exposes CLI and MCP interfaces so agents can read, write, link, and traverse the brain programmatically.",
+            "It keeps a compiled-truth-plus-timeline page model so current understanding can change without losing the evidence trail."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It works with OpenClaw agents through an install-and-skillpack workflow.",
+            "It exposes MCP tools for clients such as Claude Code and Cursor.",
+            "It connects to Postgres through Supabase and uses pgvector for embeddings and semantic search.",
+            "It can ingest plain markdown repositories and Obsidian vaults via migration and import flows."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The repo presents GBrain as a production-oriented system rather than a prototype, with CLI commands, MCP tools, schema details, and installation paths. The source also describes a real deployment with thousands of pages and long-running maintenance, which is a meaningful operational signal, but it remains a single-vendor self-description rather than third-party validation. As of the source publication date, it looks like a niche but serious developer tool for agent memory workflows.",
+          "name": "GBrain",
+          "operational_relevance": "GBrain fits workflows where an agent needs durable memory over people, projects, notes, and meetings. It is especially relevant for service automation and agent operations because it supports read-before-write loops, incremental sync, entity propagation, and cross-linking rather than treating each interaction as isolated chat state. The source frames it as a practical layer for long-running agents that need to keep a markdown brain current.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "open-source",
+            "retrieval",
+            "agentic",
+            "memory"
+          ],
+          "proposed_types": [
+            "ai-infrastructure",
+            "knowledge-management"
+          ],
+          "related_tools": [
+            "OpenClaw",
+            "Obsidian",
+            "Claude Code"
+          ],
+          "short_description": "GBrain is a knowledge backend for AI agents that indexes markdown repositories into searchable memory. It uses Postgres, pgvector, and hybrid search so agents can retrieve pages by exact terms and semantic meaning.",
+          "strengths": "- Uses a git-backed markdown repository as the source of truth, which keeps human editability while giving agents a structured memory layer.\n- Combines keyword and vector retrieval with RRF fusion, which matters because exact-name lookup and semantic lookup fail in different ways.\n- Supports incremental sync, so one file change can update the index without a full rescan of the corpus.\n- Includes entity detection, enrichment, and backlinking in the agent workflow, which makes memory maintenance part of the operating loop rather than manual cleanup.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"GBrain is a knowledge brain for OpenClaw agents. It gives your agent a searchable, indexed memory over your markdown repos using Postgres + pgvector + hybrid search.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not provide independent benchmarks, failure rates, or retrieval-quality metrics, so the real-world robustness of the search and sync stack is still mostly asserted by the author. It also depends on a fairly opinionated setup: Postgres, pgvector, embeddings, and skillpack-driven agent behavior. The operational surface is broad, so setup and maintenance will be heavier than a simple note index."
+        },
+        "notes": null,
+        "proposal_id": "acce2b9b-ddc5-4cef-bfd2-efd0b20e0f60",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It indexes markdown repositories so agents can search a personal knowledge base by meaning and by exact terms.",
+              "It supports hybrid retrieval, combining keyword search, vector search, and reranking so different query styles can succeed.",
+              "It exposes CLI and MCP interfaces so agents can read, write, link, and traverse the brain programmatically.",
+              "It keeps a compiled-truth-plus-timeline page model so current understanding can change without losing the evidence trail."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It works with OpenClaw agents through an install-and-skillpack workflow.",
+              "It exposes MCP tools for clients such as Claude Code and Cursor.",
+              "It connects to Postgres through Supabase and uses pgvector for embeddings and semantic search.",
+              "It can ingest plain markdown repositories and Obsidian vaults via migration and import flows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "OpenClaw",
+              "Obsidian",
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-source",
+            "retrieval",
+            "agentic",
+            "memory"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Keep human-readable pages as the editable source of truth.",
+            "Separate current understanding from append-only evidence to preserve provenance.",
+            "Let agents update linked entities automatically after ingesting new information.",
+            "Use incremental sync so memory maintenance does not require full reprocessing."
+          ],
+          "knowledge_summary": "An agent-maintained knowledge base is a human-readable repository of pages that an AI system continuously updates, links, and queries as part of normal work. The durable idea is that memory should be edited like software: pages can have current understanding, evidence trails, backlinks, and incremental updates instead of being static notes. This pattern matters when the corpus grows large enough that manual search and manual upkeep break down. It is strongest when the system preserves a clear source of truth that humans can inspect and correct.",
+          "match_candidates": [],
+          "operational_insight": "Treat knowledge storage as a living workspace, not a write-once archive. The key design choice is to separate current conclusions from evidence history so agents can revise beliefs without erasing provenance.",
+          "primary_tag": "agent-memory",
+          "proposed_tags": [
+            "agent-memory",
+            "knowledge-systems",
+            "agent-systems"
+          ],
+          "related_topics": [
+            "agent-memory-architecture",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This pattern is durable for AI systems that need long-lived memory across meetings, accounts, projects, or cases. It supports agent workflows where retrieval, updating, and cross-referencing are part of the operational loop rather than an afterthought.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The compiled truth is the answer. The timeline is the proof.\"",
+          "topic_slug": "agent-maintained-knowledge-bases",
+          "topic_title": "Agent-Maintained Knowledge Bases",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "7796a116-3e47-4b3c-afec-3fc2ccdf4ff7",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Keep human-readable pages as the editable source of truth.",
+              "Separate current understanding from append-only evidence to preserve provenance.",
+              "Let agents update linked entities automatically after ingesting new information.",
+              "Use incremental sync so memory maintenance does not require full reprocessing."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-memory-architecture",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-memory",
+            "knowledge-systems",
+            "agent-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Keyword search catches exact names, IDs, and quoted phrases.",
+            "Vector search catches paraphrases and conceptual matches.",
+            "Fusion methods such as RRF can combine the two signals into one ranking.",
+            "The pattern becomes more important as corpora grow beyond simple grep-style search."
+          ],
+          "knowledge_summary": "Hybrid retrieval combines keyword search and semantic vector search so a system can answer both exact-match and meaning-based queries. The practical value is not just recall; it is robustness, because each retrieval method covers blind spots in the other. In AI systems, this is especially useful for entity-heavy corpora where names, dates, and relationships matter alongside conceptual similarity. Hybrid retrieval is often paired with fusion or reranking to merge the ranking signals into one result set.",
+          "match_candidates": [],
+          "operational_insight": "Use hybrid retrieval when the corpus contains both precise identifiers and semantically rich content. Keyword lookup should handle names and explicit phrases; vector search should cover paraphrases and conceptual questions.",
+          "primary_tag": "context-engineering",
+          "proposed_tags": [
+            "context-engineering",
+            "agent-systems"
+          ],
+          "related_topics": [
+            "agent-maintained-knowledge-bases"
+          ],
+          "relevance_note": "Hybrid retrieval is a stable architecture choice for knowledge bases, support systems, and agent memory layers because real queries mix exact terms with fuzzy intent. It is particularly useful in conversational AI, where users alternate between named entities and open-ended questions.",
+          "secondary_tag": "agent-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "retrieval",
+          "suggested_new_tags": [
+            "retrieval"
+          ],
+          "supporting_snippet": "\"You need real search: keyword for exact names, vector for semantic meaning, and something that fuses both.\"",
+          "topic_slug": "hybrid-retrieval",
+          "topic_title": "Hybrid Retrieval",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "db53305a-1c28-46aa-b4bc-c331aedc0d83",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Keyword search catches exact names, IDs, and quoted phrases.",
+              "Vector search catches paraphrases and conceptual matches.",
+              "Fusion methods such as RRF can combine the two signals into one ranking.",
+              "The pattern becomes more important as corpora grow beyond simple grep-style search."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-maintained-knowledge-bases"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "context-engineering",
+            "agent-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "https://github.com/garrytan/",
+    "canonical_url": "https://github.com/garrytan/gbrain",
+    "content_sha256": "060b7ab7e478e8c9642e9dda45c068035435a284947577c6450ac5d7064bb31e",
+    "publication": "GitHub",
+    "published_date": null,
+    "raw_html_rel_path": "raw/readwise/github-garrytan-gbrain-garry-s-opinionated-openclaw-brain-github-01kqh0a0ndw29gjtjmft53j486.html",
+    "raw_md_rel_path": "raw/readwise/github-garrytan-gbrain-garry-s-opinionated-openclaw-brain-github-01kqh0a0ndw29gjtjmft53j486.md",
+    "source_id": "github-garrytan-gbrain-garry-s-opinionated-openclaw-brain-github-01kqh0a0ndw29gjtjmft53j486",
+    "title": "GitHub - garrytan/gbrain: Garry's Opinionated OpenClaw Brain \u00b7 GitHub"
+  }
+}

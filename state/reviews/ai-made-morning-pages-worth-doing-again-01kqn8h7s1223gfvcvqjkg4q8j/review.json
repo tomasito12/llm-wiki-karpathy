@@ -1,0 +1,653 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:29:32+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnsro0wJEpjpkcwajFV5IS2HPvucM",
+          "token_usage": {
+            "completion_tokens": 187,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5638,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5825
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnsrqG8TILoEy4kBi95rc0QlYEbk1",
+          "token_usage": {
+            "completion_tokens": 1033,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5239,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6272
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DnsrzONTQAMsKkc0gxXAfZisPnC1P",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1252,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 33462,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 34714
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnsrzONTQAMsKkc0gxXAfZisPnC1P",
+    "token_usage": {
+      "completion_tokens": 2472,
+      "prompt_tokens": 44339,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 46811
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-29",
+        "confidence": 0.78,
+        "evidence_from_source": "The author uses AI to keep writing in flow and then to transform the notes into a task list, describing morning pages as \"the start of my daily todo list.\"",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-restructuring",
+        "proposed_tags": [
+          "workflow-restructuring",
+          "human-ai-collaboration"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-engineering",
+        "suggested_new_tags": [
+          "ai-engineering"
+        ],
+        "supporting_data_points": [
+          "15-minute time-boxed writing session",
+          "Inline AI used to answer distracting questions without opening new tabs",
+          "AI post-processing used to extract tasks from freeform notes"
+        ],
+        "supporting_snippet": "\"When I\u2019m done, I have the AI assistant read my morning pages and pull out anything that sounds like a todo. That way, my morning pages become the start of my daily todo list.\"",
+        "time_sensitivity": "Actionable as of 2026-04-29; this is a workflow pattern grounded in the author's current practice rather than a long-running market shift.",
+        "trend_description": "A subset of writing workflows is moving from pure drafting toward a two-stage process: freeform human expression followed by AI-assisted extraction, summarization, or task creation. The practical shift is that writing is evaluated less as an end in itself and more as a source of structured operational artifacts. This is relevant where people need both reflection and downstream action from the same text.",
+        "trend_slug": "writing-workflows-shift-toward-ai-assisted-structured-output",
+        "trend_title": "Writing Workflows Shift Toward AI-Assisted Structured Output",
+        "uncertainty_note": "The evidence is a single first-person workflow and does not show whether the pattern generalizes across teams, domains, or long-term use.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article is a first-person account of the author's own writing practice and how AI changed it.",
+        "Claims are supported by personal experience and anecdotes, not formal experiments or vendor data.",
+        "External studies are mentioned, but they are secondary references rather than the main evidentiary basis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about using AI to make a classic journaling habit easier to keep. The author says morning pages worked better once they stopped being only a brain dump and became a way to feed tasks and questions into an AI assistant. The key move is simple: write for 15 minutes, ask the AI to handle interruptions, then have it extract to-dos from the text. That makes the habit feel more useful and easier to repeat. The article also notes a tension: AI can help writing, but some studies suggest it can also make people rely on it too much.",
+      "assessed_as_of": "2026-04-29",
+      "contradictions_and_skepticism": "The article leans on a tension it does not fully resolve: AI is presented as both a cognitive aid and something that can make users dumber. The claim that \u201cAI made morning pages worth doing again\u201d may be more about motivation and habit design than about AI\u2019s unique intelligence. The author also suggests the practice preserves the core benefits of morning pages, but that is hard to verify without a stronger baseline or comparison. The company-specific mention of Medium\u2019s TK adds product context, but the article is still primarily a personal workflow endorsement rather than evidence of a robust new writing method.",
+      "key_insights": [
+        "Time-boxing morning pages to 15 minutes makes the habit more predictable and easier to sustain than an open-ended page target.",
+        "Inline AI matters because it lets the writer delegate questions without opening a new tab and breaking flow.",
+        "Turning morning pages into a task list gives the practice an immediate payoff, which the author says is what changed adherence.",
+        "The author treats AI as a support for offloading thoughts and small lookups, not as a replacement for the writing practice itself.",
+        "The article\u2019s own evidence is personal and anecdotal, so the strongest claim is about one workable workflow, not a general rule."
+      ],
+      "limitations_and_open_questions": "The evidence base is thin: this is a first-person account, so it does not show whether the workflow generalizes beyond one writer. The article does not define how often the AI-generated todo list is accurate, whether it misses important items, or whether it creates false tasks from reflective writing. It also does not address privacy or retention concerns for journaling data sent to an AI assistant. The mention of MIT and Wharton findings is interesting, but the article does not provide the study details needed to judge how comparable those contexts are to this workflow. It is also unclear whether the productivity gain comes from AI itself or from the simpler time-boxing and task extraction structure.",
+      "sources": [
+        "https://medium.com/the-coach-life/i-fell-in-love-with-morning-pages-again-because-of-ai-48a7c76af7a1"
+      ],
+      "summary": "The article argues that AI made the author\u2019s morning-pages practice worth doing again by tying a traditionally goal-less writing ritual to concrete downstream value. Instead of handwriting three pages, the author time-boxes writing to 15 minutes in an AI-enabled editor, uses inline AI to answer distracting questions without opening new tabs, and then asks the assistant to turn the pages into a task list. That keeps the practice predictable, reduces interruption, and makes it easier to sustain because it now serves both mental clarity and daily productivity. The author also experiments with using AI for small supports like finding facts, looking up words, or asking for light analysis of the writing. The piece frames this as a simple, least-fragile workflow rather than a complex system. It also claims the right use of AI can make writing feel more generative, while acknowledging research suggesting some forms of AI use can reduce brain activity or later performance when the tool is removed. The author\u2019s conclusion is not that AI is universally beneficial, but that in this specific setup it helps motivation, consistency, and self-directed thinking as of 2026-04-29.",
+      "why_it_matters": "The piece is useful because it shows a concrete, low-complexity way to embed AI into a writing habit without turning the habit into a heavy automation project. The main engineering lesson is not about model quality but about workflow design: reduce friction, keep the user in flow, and make the output immediately useful. The author\u2019s setup combines three durable ideas that are broadly reusable in product design: time boxing, inline assistance, and post-hoc structuring of freeform text into actionable items. That makes the article more interesting than a generic \u201cAI helps writing\u201d claim, because it specifies the mechanism that improved adherence. The evidence is still narrow, since the benefits come from one person\u2019s experience and not from controlled testing. The external studies mentioned about reduced brain activity and worse performance when AI is removed add a useful caution, but they are not integrated into a stronger evaluation framework here. The article is therefore best read as a practical workflow anecdote, not as proof that AI improves journaling or cognition. As of 2026-04-29, the setup looks actionable as a lightweight writing aid, but its durability is still unproven beyond the author\u2019s own use."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion piece about one personal workflow, not a bundle of separate items or Q&A.",
+        "Structure is narrative with a setup, examples, and reflections on AI-assisted morning pages.",
+        "No strong signals of a roundup, transcript, technical tutorial, or research report."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.87,
+        "evidence_type": null,
+        "examples": "The source describes writing morning pages in an AI-enabled editor, asking the assistant questions inline, and then having it \"pull out anything that sounds like a todo.\"",
+        "key_points": [
+          "Inline assistance reduces the need to open separate tabs and interrupt flow.",
+          "Post-hoc extraction turns unstructured writing into actionable tasks.",
+          "The workflow is more reusable than the specific morning-pages ritual because it is about structured drafting plus downstream conversion."
+        ],
+        "knowledge_summary": "AI-assisted writing workflows combine freeform drafting with post-processing steps that turn text into more usable artifacts. A common pattern is to keep the human in the writing loop while delegating interruption handling, lookup, and extraction tasks to the model. The main operational value is not writing replacement but reducing friction between thinking and producing an actionable output. These workflows are strongest when they preserve flow, minimize context switching, and convert unstructured notes into downstream work products.",
+        "match_candidates": [],
+        "operational_insight": "Treat AI as a drafting companion and structuring layer, not just a generation engine. The durable design choice is to let the human preserve flow while the model handles interruptions and post-hoc extraction.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "workflow-design",
+          "human-ai-workflows"
+        ],
+        "related_topics": [],
+        "relevance_note": "This pattern matters anywhere teams want to preserve human thinking while still producing machine-usable artifacts, such as meeting notes, support logs, incident journals, or agent handoffs. It is especially relevant for conversational AI and service automation because the model can convert messy human text into tasks, summaries, or routing signals without forcing a separate authoring step.",
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"When I\u2019m done, I have the AI assistant read my morning pages and pull out anything that sounds like a todo. That way, my morning pages become the start of my daily todo list.\"",
+        "topic_slug": "ai-assisted-structured-writing-workflows",
+        "topic_title": "AI-Assisted Structured Writing Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "The author says, \"I time-box the practice to 15 minutes,\" and contrasts that with a digital 750-word version that can take almost an hour.",
+        "key_points": [
+          "A fixed session length can matter more than a word-count target for habit adherence.",
+          "Predictability reduces avoidance when the work feels optional or low-urgency.",
+          "Time-boxing pairs well with inline AI because both reduce workflow sprawl."
+        ],
+        "knowledge_summary": "Time-boxing is a workflow control technique that gives a writing or thinking session a fixed duration instead of an open-ended completion target. It improves predictability, makes the habit easier to schedule, and can reduce the temptation to drift into unrelated tasks. In AI-assisted workflows, time-boxing also creates a cleaner boundary for model assistance, which can make the practice more repeatable. The core benefit is operational consistency rather than maximum output per session.",
+        "match_candidates": [],
+        "operational_insight": "When the bottleneck is adherence rather than raw output, shorten the session until the routine is easy to repeat. AI adds value here when it helps keep the session bounded and predictable instead of sprawling.",
+        "primary_tag": "workflow-design",
+        "proposed_tags": [
+          "workflow-design",
+          "human-ai-workflows",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "ai-workflow-restructuring"
+        ],
+        "relevance_note": "This is useful for any AI-assisted knowledge work where open-ended prompting tends to create drift, distraction, or overconsumption of time. It also maps well to support and operations workflows that need a consistent cadence rather than maximum depth per pass.",
+        "secondary_tag": "human-ai-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"I time-box the practice to 15 minutes. This makes the practice easier and more predictable.\"",
+        "topic_slug": "time-boxed-ai-writing-routines",
+        "topic_title": "Time-Boxed AI Writing Routines",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-29",
+          "confidence": 0.78,
+          "evidence_from_source": "The author uses AI to keep writing in flow and then to transform the notes into a task list, describing morning pages as \"the start of my daily todo list.\"",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-restructuring",
+          "proposed_tags": [
+            "workflow-restructuring",
+            "human-ai-collaboration"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-engineering",
+          "suggested_new_tags": [
+            "ai-engineering"
+          ],
+          "supporting_data_points": [
+            "15-minute time-boxed writing session",
+            "Inline AI used to answer distracting questions without opening new tabs",
+            "AI post-processing used to extract tasks from freeform notes"
+          ],
+          "supporting_snippet": "\"When I\u2019m done, I have the AI assistant read my morning pages and pull out anything that sounds like a todo. That way, my morning pages become the start of my daily todo list.\"",
+          "time_sensitivity": "Actionable as of 2026-04-29; this is a workflow pattern grounded in the author's current practice rather than a long-running market shift.",
+          "trend_description": "A subset of writing workflows is moving from pure drafting toward a two-stage process: freeform human expression followed by AI-assisted extraction, summarization, or task creation. The practical shift is that writing is evaluated less as an end in itself and more as a source of structured operational artifacts. This is relevant where people need both reflection and downstream action from the same text.",
+          "trend_slug": "writing-workflows-shift-toward-ai-assisted-structured-output",
+          "trend_title": "Writing Workflows Shift Toward AI-Assisted Structured Output",
+          "uncertainty_note": "The evidence is a single first-person workflow and does not show whether the pattern generalizes across teams, domains, or long-term use.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "df7e64d7-321e-4508-a4ed-7884e4b98dbe",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "15-minute time-boxed writing session",
+              "Inline AI used to answer distracting questions without opening new tabs",
+              "AI post-processing used to extract tasks from freeform notes"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-restructuring",
+            "human-ai-collaboration"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article is a first-person account of the author's own writing practice and how AI changed it.",
+          "Claims are supported by personal experience and anecdotes, not formal experiments or vendor data.",
+          "External studies are mentioned, but they are secondary references rather than the main evidentiary basis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Time-boxing morning pages to 15 minutes makes the habit more predictable and easier to sustain than an open-ended page target.",
+          "Inline AI matters because it lets the writer delegate questions without opening a new tab and breaking flow.",
+          "Turning morning pages into a task list gives the practice an immediate payoff, which the author says is what changed adherence.",
+          "The author treats AI as a support for offloading thoughts and small lookups, not as a replacement for the writing practice itself.",
+          "The article\u2019s own evidence is personal and anecdotal, so the strongest claim is about one workable workflow, not a general rule."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/the-coach-life/i-fell-in-love-with-morning-pages-again-because-of-ai-48a7c76af7a1"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion piece about one personal workflow, not a bundle of separate items or Q&A.",
+          "Structure is narrative with a setup, examples, and reflections on AI-assisted morning pages.",
+          "No strong signals of a roundup, transcript, technical tutorial, or research report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.87,
+          "evidence_type": null,
+          "examples": "The source describes writing morning pages in an AI-enabled editor, asking the assistant questions inline, and then having it \"pull out anything that sounds like a todo.\"",
+          "key_points": [
+            "Inline assistance reduces the need to open separate tabs and interrupt flow.",
+            "Post-hoc extraction turns unstructured writing into actionable tasks.",
+            "The workflow is more reusable than the specific morning-pages ritual because it is about structured drafting plus downstream conversion."
+          ],
+          "knowledge_summary": "AI-assisted writing workflows combine freeform drafting with post-processing steps that turn text into more usable artifacts. A common pattern is to keep the human in the writing loop while delegating interruption handling, lookup, and extraction tasks to the model. The main operational value is not writing replacement but reducing friction between thinking and producing an actionable output. These workflows are strongest when they preserve flow, minimize context switching, and convert unstructured notes into downstream work products.",
+          "match_candidates": [],
+          "operational_insight": "Treat AI as a drafting companion and structuring layer, not just a generation engine. The durable design choice is to let the human preserve flow while the model handles interruptions and post-hoc extraction.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "workflow-design",
+            "human-ai-workflows"
+          ],
+          "related_topics": [],
+          "relevance_note": "This pattern matters anywhere teams want to preserve human thinking while still producing machine-usable artifacts, such as meeting notes, support logs, incident journals, or agent handoffs. It is especially relevant for conversational AI and service automation because the model can convert messy human text into tasks, summaries, or routing signals without forcing a separate authoring step.",
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"When I\u2019m done, I have the AI assistant read my morning pages and pull out anything that sounds like a todo. That way, my morning pages become the start of my daily todo list.\"",
+          "topic_slug": "ai-assisted-structured-writing-workflows",
+          "topic_title": "AI-Assisted Structured Writing Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5781daad-a6d0-40d2-bd37-ea671b2c401d",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Inline assistance reduces the need to open separate tabs and interrupt flow.",
+              "Post-hoc extraction turns unstructured writing into actionable tasks.",
+              "The workflow is more reusable than the specific morning-pages ritual because it is about structured drafting plus downstream conversion."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "workflow-design",
+            "human-ai-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "The author says, \"I time-box the practice to 15 minutes,\" and contrasts that with a digital 750-word version that can take almost an hour.",
+          "key_points": [
+            "A fixed session length can matter more than a word-count target for habit adherence.",
+            "Predictability reduces avoidance when the work feels optional or low-urgency.",
+            "Time-boxing pairs well with inline AI because both reduce workflow sprawl."
+          ],
+          "knowledge_summary": "Time-boxing is a workflow control technique that gives a writing or thinking session a fixed duration instead of an open-ended completion target. It improves predictability, makes the habit easier to schedule, and can reduce the temptation to drift into unrelated tasks. In AI-assisted workflows, time-boxing also creates a cleaner boundary for model assistance, which can make the practice more repeatable. The core benefit is operational consistency rather than maximum output per session.",
+          "match_candidates": [],
+          "operational_insight": "When the bottleneck is adherence rather than raw output, shorten the session until the routine is easy to repeat. AI adds value here when it helps keep the session bounded and predictable instead of sprawling.",
+          "primary_tag": "workflow-design",
+          "proposed_tags": [
+            "workflow-design",
+            "human-ai-workflows",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "ai-workflow-restructuring"
+          ],
+          "relevance_note": "This is useful for any AI-assisted knowledge work where open-ended prompting tends to create drift, distraction, or overconsumption of time. It also maps well to support and operations workflows that need a consistent cadence rather than maximum depth per pass.",
+          "secondary_tag": "human-ai-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"I time-box the practice to 15 minutes. This makes the practice easier and more predictable.\"",
+          "topic_slug": "time-boxed-ai-writing-routines",
+          "topic_title": "Time-Boxed AI Writing Routines",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "c4b6277a-563b-4e70-9d7c-6b6d7fd3f96e",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A fixed session length can matter more than a word-count target for habit adherence.",
+              "Predictability reduces avoidance when the work feels optional or low-urgency.",
+              "Time-boxing pairs well with inline AI because both reduce workflow sprawl."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "ai-workflow-restructuring"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-design",
+            "human-ai-workflows",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 177.8,
+    "review_finished_at": "2026-06-07T20:29:00.829666+00:00",
+    "review_started_at": "2026-06-07T20:26:03+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T20:29:00+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Tony Stubblebine",
+    "canonical_url": "https://medium.com/the-coach-life/i-fell-in-love-with-morning-pages-again-because-of-ai-48a7c76af7a1",
+    "content_sha256": "9f1f2627731bc2c14b8f18ec16384ec4c563e5c72fa0866b85dfe72abf3cff58",
+    "publication": "Medium",
+    "published_date": "2026-04-29",
+    "raw_html_rel_path": "raw/readwise/ai-made-morning-pages-worth-doing-again-01kqn8h7s1223gfvcvqjkg4q8j.html",
+    "raw_md_rel_path": "raw/readwise/ai-made-morning-pages-worth-doing-again-01kqn8h7s1223gfvcvqjkg4q8j.md",
+    "source_id": "ai-made-morning-pages-worth-doing-again-01kqn8h7s1223gfvcvqjkg4q8j",
+    "title": "AI made morning pages worth doing again."
+  }
+}

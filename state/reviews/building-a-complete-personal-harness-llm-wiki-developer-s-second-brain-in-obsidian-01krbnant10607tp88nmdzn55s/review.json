@@ -1,0 +1,1170 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:44:31+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt66hTLgkMvuEI7Ys40JuJmKp3Bm",
+          "token_usage": {
+            "completion_tokens": 195,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 12929,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 13124
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnt690WL5TrFyDDLPJm9Dyeb7f6bT",
+          "token_usage": {
+            "completion_tokens": 1168,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 12540,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 13708
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-technical_howto",
+          "request_id": "chatcmpl-Dnt6ICV3nI0l3MQzkKIUsxTI59Vxz",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 2805,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 41517,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 44322
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnt6ICV3nI0l3MQzkKIUsxTI59Vxz",
+    "token_usage": {
+      "completion_tokens": 4168,
+      "prompt_tokens": 66986,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 71154
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 1
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start by separating what the agent may edit from what it may only read. Put source material in a raw zone, synthesized pages in a wiki zone, and work-in-progress material in a collaborative dev zone. Then define the rules in a root instruction file the agent reads every session. Use Git so you can review diffs and revert mistakes. Add small commands for ingesting sources and answering questions so the agent has a repeatable workflow instead of improvising each time.",
+        "caveats": "The setup depends on disciplined boundaries and human review. If those rules drift, the vault can still become cluttered or unsafe. The source also assumes comfort with terminal, Git, and Claude Code.",
+        "confidence": 0.98,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Create a raw zone for immutable source files, a wiki zone for agent-maintained synthesis, and a dev zone for collaborative work.",
+          "Write a root instruction file that tells the agent what it may read, write, or never touch.",
+          "Use a planned ingest workflow that saves the original source first, then creates or updates wiki pages from it.",
+          "Version the vault with Git and review diffs before committing changes.",
+          "Add commands for ingesting sources and querying the vault so the workflow stays repeatable."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A file-based note system such as Obsidian or another Markdown vault.",
+          "A terminal-based agent that can read and write local files.",
+          "Git for version control and rollback.",
+          "A willingness to enforce edit boundaries between source material and synthesized notes."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-systems",
+          "workflow-automation",
+          "agent-systems"
+        ],
+        "question_title": "Agent-Maintained Knowledge Bases",
+        "related_howtos": [
+          "claude-skills-setup",
+          "knowledge-base-ingestion-pipeline",
+          "commit-driven-documentation-sync"
+        ],
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The vault has three zones with strictly different rules\"",
+        "value_level": "high",
+        "what_and_problem": "This is a way to keep a personal knowledge system where an AI agent helps maintain the structure, but humans still control the source material and important decisions. It solves the common problem where notes, articles, and work artifacts get mixed together until the whole vault becomes hard to trust. The pattern is useful when you want search, synthesis, and cross-linking without losing provenance. It also helps when one workspace needs to hold both research notes and work decisions without turning into a mess."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-03",
+        "confidence": 0.9,
+        "evidence_from_source": "The source presents the vault architecture, CLAUDE.md rules, custom skills, slash commands, and Git rollback as the core of the setup, not the model alone.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems"
+        ],
+        "related_trends": [
+          "agent-maintained-documentation-pipelines",
+          "workflow-restructuring-around-ai-agents"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-engineering",
+        "suggested_new_tags": [
+          "ai-engineering",
+          "agent-systems",
+          "workflow-automation"
+        ],
+        "supporting_data_points": [
+          "The workflow includes zone permissions, root instructions, skills, slash commands, and version control.",
+          "The agent is expected to create, update, and link files rather than simply answer prompts.",
+          "The article recommends starting with direct filesystem access before adding more complex integrations."
+        ],
+        "supporting_snippet": "\"It\u2019s not \u2018a productivity tool.\u2019 It\u2019s knowledge infrastructure that accumulates monotonic value over time\"",
+        "time_sensitivity": "Actionable as of 2026-05-03; the article argues for a workflow-first setup that should remain relevant as models change, though specific tool paths may evolve.",
+        "trend_description": "AI tooling is increasingly packaged as a system of files, instructions, permissions, and workflows rather than as a model endpoint alone. The practical center of gravity moves toward the harness: what the agent may edit, how it links artifacts, how it is reviewed, and how it is rolled back. This matters because reliable use depends on the surrounding operating model, not just on model quality.",
+        "trend_slug": "ai-products-shift-from-models-to-systems",
+        "trend_title": "AI Products Shift from Models to Systems",
+        "uncertainty_note": "The source supports the shift conceptually, but it is still a single implementation tutorial rather than comparative evidence across many products.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article describes a hands-on system the author built and uses, with exact file layouts and commands.",
+        "Claims are supported by procedural implementation details rather than formal benchmarks or research.",
+        "Where trade-offs are discussed, they are framed as setup choices and operational experience, not vendor-neutral analysis."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece shows how to build a personal knowledge system in Obsidian that an AI agent can help maintain. The key idea is to separate raw source material from the wiki the agent writes and from your own working notes, so the system does not turn into a mess. A root instruction file tells the agent what it can edit and what it must leave alone. The article also adds skills and commands so the agent can ingest sources, write ADRs, and answer questions from the vault. The payoff is a searchable second brain that keeps growing instead of being trapped in one-off chats.",
+      "assessed_as_of": "2026-05-03",
+      "contradictions_and_skepticism": "The article is confident that separation plus skills and commands yields a robust knowledge infrastructure, but that conclusion is mostly argued from design logic, not evidence of comparative outcomes. The claim that direct filesystem access is the best starting point may be true for portability, yet it also gives up richer Obsidian integrations until later, so the \u201crecommended\u201d path is a preference rather than a demonstrated universal best practice. The setup depends heavily on the quality of custom instructions and disciplined human review; if those drift, the system could still become messy despite the zone design. The piece\u2019s durability claim is reasonable at the level of workflow design, but it remains an engineering pattern rather than a validated guarantee.",
+      "key_insights": [
+        "Physical zone separation is the core design choice: raw is immutable, wiki is agent-owned, and dev is collaborative.",
+        "A root CLAUDE.md file is treated as the vault\u2019s operating policy, not just documentation.",
+        "Starting with direct filesystem access plus official skills is presented as the most portable and debuggable path.",
+        "Plan-before-execute gating is used to keep ingestion safe, especially when external content could carry prompt injection.",
+        "Git is positioned as the practical rollback layer for agent-written changes, with explicit diffs before commits."
+      ],
+      "limitations_and_open_questions": "The article is a tutorial from one author\u2019s workflow, so its claims are mostly implementation experience rather than comparative evaluation. The recommended path 1 vs path 2 vs path 3 trade-offs are plausible, but the piece does not provide measured data on reliability, maintenance burden, or long-term task success across approaches. The security section identifies prompt injection and destructive actions, but it does not quantify residual risk or show formal safeguards beyond git and tool allowlists. The article assumes comfort with terminal, git, Claude Code, and Obsidian, which narrows the audience. It also leaves open how well the system scales when the vault becomes large, beyond general comments about token cost and session hooks.",
+      "sources": [
+        "https://medium.com/@roanmonteiro/building-a-complete-personal-harness-llm-wiki-developers-second-brain-in-obsidian-d7b61c7398ff",
+        "https://stephango.com/file-over-app",
+        "https://github.com/kepano/obsidian-skills",
+        "https://github.com/AgriciDaniel/claude-obsidian"
+      ],
+      "summary": "This article is a detailed implementation guide for turning an Obsidian vault into an agent-maintained knowledge base that combines a Karpathy-style LLM wiki with a developer second brain. The vault is split into three functional zones: raw for immutable source material, wiki for agent-owned synthesis, and dev for collaborative work such as ADRs, debriefs, projects, snippets, and technical notes. A root CLAUDE.md file defines the rules of engagement, including zone permissions, wikilink conventions, frontmatter requirements, and ingestion workflow. The author recommends starting with direct filesystem access plus Steph Ango\u2019s official Obsidian skills, because that path is the most portable and easiest to debug, then moving to MCP or a packaged plugin only if Obsidian-specific automation becomes necessary. The tutorial also adds custom skills for ADR writing and debrief writing, plus slash commands for ingesting sources and querying the vault, with explicit tool allowlists and a plan-before-execute gate for safety. Git versioning is treated as the backup and rollback mechanism, while prompt-injection risk is mitigated through layered constraints, minimal tool access, and human review. The article\u2019s main claim is that this setup creates a durable, compounding knowledge system rather than a disposable chatbot workflow.",
+      "why_it_matters": "The article is useful because it translates an abstract \u201cAI second brain\u201d idea into a concrete operating model with clear boundaries, file layouts, and permission rules. Its main engineering contribution is not a new model or retrieval method; it is a durable workflow for letting an agent synthesize notes without corrupting source material. The three-zone design is especially reusable because it separates immutable inputs, agent-authored synthesis, and human-led working documents in a way that supports cross-linking without losing trust in provenance. The CLAUDE.md contract is also practical: it turns vault behavior into rules the agent can read every session, which is more durable than relying on ad hoc prompts. The recommendation to start with direct filesystem access is grounded in the author\u2019s portability and debugging preferences, and the article gives specific reasons to defer MCP until Obsidian-only features are truly needed. The custom ADR and debrief skills are a helpful pattern for teams that want decision records and incident writeups to live alongside research notes rather than in a separate system. The security discussion is thin but valuable: minimal allowed-tools, human approval before writes, and git diffs are simple controls with real operational value. As of 2026-05-03, the setup is actionable for practitioners who already want a file-based AI workflow; it looks durable as a pattern, but the broader benefits are asserted from the author\u2019s experience rather than benchmarked."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "Primary structure is a step-by-step tutorial for setting up an Obsidian vault and Claude-based workflow.",
+        "The article gives concrete commands, folder structures, config files, and verification steps.",
+        "It is not primarily a roundup, interview, or research paper; it is an implementation guide."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It can read and write Markdown files directly inside a local vault, which is the core requirement for a file-native agent workflow.",
+          "It can operate from a terminal without requiring the Obsidian app to be open, which simplifies automation and reduces coupling to the UI.",
+          "It can be extended with skills and slash commands so the same agent can handle ingestion, querying, and vault maintenance."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is paired in the article with Obsidian vault files, Git versioning, and Steph Ango\u2019s Obsidian skills.",
+          "The source also says the same skill pattern is portable to Codex CLI, Cursor, and Gemini CLI.",
+          "Custom slash commands are built on top of it to define vault-specific ingest and query workflows."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source presents Claude Code as an established enough tool to anchor an entire vault workflow around it, but the evidence here is a single implementation tutorial rather than broad adoption data. Its maturity signal is practical rather than statistical: the author has built a repeatable file-based harness around it and treats it as the default starting point.",
+        "name": "Claude Code",
+        "operational_relevance": "This is the central execution layer for the vault setup. It fits teams that want an AI agent to work against files instead of a web app, because the article\u2019s main recommendation is to use direct filesystem access first and keep Obsidian optional. It also matters for automation because the same file-based pattern is described as portable across other CLI-oriented agents. As of 2026-05-03, the article treats it as the most debuggable starting point for this workflow.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cli-tool",
+          "coding",
+          "agentic",
+          "local-first",
+          "software-development"
+        ],
+        "proposed_types": [
+          "coding-agent",
+          "terminal"
+        ],
+        "related_tools": [
+          "Obsidian",
+          "kepano/obsidian-skills",
+          "AgriciDaniel/claude-obsidian"
+        ],
+        "short_description": "A terminal-based coding agent from Anthropic that reads and writes files directly in a local workspace. In this workflow it is used to operate an Obsidian vault, generate pages, and run scripted vault commands.",
+        "strengths": "- Direct filesystem access makes the agent easier to debug because changes are visible as ordinary file diffs.\n- The workflow can run without Obsidian being open, which keeps the setup lightweight and local-first.\n- The same skill-based approach is described as portable to other CLI agents, so the pattern is not locked to one product.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Claude Code is just a process on your computer. You open a terminal in the vault folder, type claude, and it reads and writes .md files directly.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not present measured reliability data, so the recommendation is preference-based rather than benchmarked. It also gives up Obsidian-only features until a more complex integration path is added later."
+      },
+      {
+        "confidence": 0.92,
+        "core_capabilities": [
+          "It stores notes as ordinary files, which makes the vault easy to version, inspect, and automate.",
+          "It supports wikilinks, callouts, YAML frontmatter, Canvas, and Bases when the agent is taught the right syntax.",
+          "It can act as the host for a three-zone knowledge architecture that separates raw sources, synthesized wiki pages, and collaborative developer notes."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The workflow combines Obsidian with Claude Code, Git, Steph Ango\u2019s skills, and custom vault commands.",
+          "The article also describes a Local REST API plugin path for deeper Obsidian integration.",
+          "It can be opened as a vault folder directly from the desktop app, which is how the setup begins."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article treats Obsidian as the stable substrate for the whole workflow, which suggests a mature enough ecosystem for file-native knowledge management. The source also points to plugin and skill ecosystems around it, but does not provide comparative market data.",
+        "name": "Obsidian",
+        "operational_relevance": "Obsidian is the storage and editing environment that makes the vault pattern concrete. The article uses it because it supports plain files, open formats, and a folder structure that an agent can safely maintain. That makes it relevant for knowledge systems, agent-maintained notes, and file-native workflows where provenance and editing boundaries matter. As of 2026-05-03, the source frames it as the base layer for an agent-maintained personal harness rather than a standalone note-taking app.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "writing",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "note-taking",
+          "app"
+        ],
+        "related_tools": [
+          "Claude Code",
+          "kepano/obsidian-skills",
+          "Local REST API plugin"
+        ],
+        "short_description": "A local note-taking app and vault-based knowledge workspace. In this workflow it serves as the file system-backed surface for a split raw/wiki/dev knowledge architecture.",
+        "strengths": "- Its file-based vault model supports strict zone separation between immutable sources, agent-maintained synthesis, and collaborative working notes.\n- The open format lets the agent write ordinary Markdown, wikilinks, YAML frontmatter, and Canvas/Base artifacts in a durable way.\n- The article treats it as compatible with Git-backed versioning, which is important for rollback and review.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [
+          "knowledge-management"
+        ],
+        "supporting_snippet": "\"Obsidian won as the base for personal LLM harness \u2014 layer separation, data sovereignty, open format, community convergence.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source notes that richer automation can require Obsidian to be open if you use the Local REST API path. It also implies that some Obsidian-specific features are unavailable until you add extra plugins or skills."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Immutable raw input zones are easier to trust as source-of-truth material.",
+          "Agent-owned synthesis zones can be regenerated instead of manually edited.",
+          "Collaborative zones need approval rules because they are neither fully human-only nor fully agent-only.",
+          "Physical separation is more durable than relying on memory about which files should be touched."
+        ],
+        "knowledge_summary": "A durable agent workspace often works better when different kinds of content live in separate zones with different permissions. Source material, synthesized knowledge, and work-in-progress artifacts serve different purposes and should not be edited under the same rules. This reduces accidental corruption, makes provenance easier to trust, and lets the agent operate with narrower authority. The pattern is especially useful when humans and agents both contribute to the same workspace.",
+        "match_candidates": [],
+        "operational_insight": "Design the workspace around edit boundaries, not around a single generic folder tree. Let the agent own synthesis while humans keep control of source inputs and sensitive work artifacts. That separation makes it easier to audit changes and to route ambiguous requests safely.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-systems",
+          "agent-systems",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This pattern matters wherever humans and agents share a file-based knowledge workspace. It supports safer automation in note systems, documentation repos, and agent-maintained research stores because it preserves source trust while still allowing synthesis and linking.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The vault has three zones with strictly different rules:\"",
+        "topic_slug": "agent-workspace-layering",
+        "topic_title": "Agent Workspace Layering",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Plain files make agent output reviewable with normal developer tooling.",
+          "Open formats reduce lock-in and make later migration easier.",
+          "File-native workflows pair naturally with Git-based rollback and change review.",
+          "The agent can generate links and metadata without needing a database-centric app model."
+        ],
+        "knowledge_summary": "File-native AI workflows treat ordinary files as the primary interface between humans, agents, and memory. Instead of hiding state inside a vendor app, the agent reads and writes Markdown, YAML frontmatter, Canvas files, and similar artifacts directly. This makes review, versioning, and migration simpler because the artifacts stay inspectable outside the model. The approach is especially strong when the agent needs to build a lasting knowledge system rather than complete a single chat turn.",
+        "match_candidates": [],
+        "operational_insight": "Favor file formats the agent can generate deterministically and the human can review with standard tools. When the workflow stays in files, Git diffs, search, and backups all become part of the safety model.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-systems",
+          "workflow-automation",
+          "infrastructure"
+        ],
+        "related_topics": [
+          "agent-workspace-layering",
+          "agent-maintained-knowledge-bases"
+        ],
+        "relevance_note": "This is a durable pattern for AI engineering because file-native systems are easier to audit, automate, and migrate than state hidden in a single app. It is especially relevant for knowledge systems, documentation pipelines, and agent harnesses that need long-lived provenance.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Claude Code is just a process on your computer. You open a terminal in the vault folder, type claude, and it reads and writes .md files directly.\"",
+        "topic_slug": "file-native-ai-workflows",
+        "topic_title": "File-Native AI Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by separating what the agent may edit from what it may only read. Put source material in a raw zone, synthesized pages in a wiki zone, and work-in-progress material in a collaborative dev zone. Then define the rules in a root instruction file the agent reads every session. Use Git so you can review diffs and revert mistakes. Add small commands for ingesting sources and answering questions so the agent has a repeatable workflow instead of improvising each time.",
+          "caveats": "The setup depends on disciplined boundaries and human review. If those rules drift, the vault can still become cluttered or unsafe. The source also assumes comfort with terminal, Git, and Claude Code.",
+          "confidence": 0.98,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Create a raw zone for immutable source files, a wiki zone for agent-maintained synthesis, and a dev zone for collaborative work.",
+            "Write a root instruction file that tells the agent what it may read, write, or never touch.",
+            "Use a planned ingest workflow that saves the original source first, then creates or updates wiki pages from it.",
+            "Version the vault with Git and review diffs before committing changes.",
+            "Add commands for ingesting sources and querying the vault so the workflow stays repeatable."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A file-based note system such as Obsidian or another Markdown vault.",
+            "A terminal-based agent that can read and write local files.",
+            "Git for version control and rollback.",
+            "A willingness to enforce edit boundaries between source material and synthesized notes."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "workflow-automation",
+            "agent-systems"
+          ],
+          "question_title": "Agent-Maintained Knowledge Bases",
+          "related_howtos": [
+            "claude-skills-setup",
+            "knowledge-base-ingestion-pipeline",
+            "commit-driven-documentation-sync"
+          ],
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The vault has three zones with strictly different rules\"",
+          "value_level": "high",
+          "what_and_problem": "This is a way to keep a personal knowledge system where an AI agent helps maintain the structure, but humans still control the source material and important decisions. It solves the common problem where notes, articles, and work artifacts get mixed together until the whole vault becomes hard to trust. The pattern is useful when you want search, synthesis, and cross-linking without losing provenance. It also helps when one workspace needs to hold both research notes and work decisions without turning into a mess."
+        },
+        "notes": null,
+        "proposal_id": "0cc04f29-521b-4f04-8b39-545ae381aa87",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Create a raw zone for immutable source files, a wiki zone for agent-maintained synthesis, and a dev zone for collaborative work.",
+              "Write a root instruction file that tells the agent what it may read, write, or never touch.",
+              "Use a planned ingest workflow that saves the original source first, then creates or updates wiki pages from it.",
+              "Version the vault with Git and review diffs before committing changes.",
+              "Add commands for ingesting sources and querying the vault so the workflow stays repeatable."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A file-based note system such as Obsidian or another Markdown vault.",
+              "A terminal-based agent that can read and write local files.",
+              "Git for version control and rollback.",
+              "A willingness to enforce edit boundaries between source material and synthesized notes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "claude-skills-setup",
+              "knowledge-base-ingestion-pipeline",
+              "commit-driven-documentation-sync"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "workflow-automation",
+            "agent-systems"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-03",
+          "confidence": 0.9,
+          "evidence_from_source": "The source presents the vault architecture, CLAUDE.md rules, custom skills, slash commands, and Git rollback as the core of the setup, not the model alone.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems"
+          ],
+          "related_trends": [
+            "agent-maintained-documentation-pipelines",
+            "workflow-restructuring-around-ai-agents"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-engineering",
+          "suggested_new_tags": [
+            "ai-engineering",
+            "agent-systems",
+            "workflow-automation"
+          ],
+          "supporting_data_points": [
+            "The workflow includes zone permissions, root instructions, skills, slash commands, and version control.",
+            "The agent is expected to create, update, and link files rather than simply answer prompts.",
+            "The article recommends starting with direct filesystem access before adding more complex integrations."
+          ],
+          "supporting_snippet": "\"It\u2019s not \u2018a productivity tool.\u2019 It\u2019s knowledge infrastructure that accumulates monotonic value over time\"",
+          "time_sensitivity": "Actionable as of 2026-05-03; the article argues for a workflow-first setup that should remain relevant as models change, though specific tool paths may evolve.",
+          "trend_description": "AI tooling is increasingly packaged as a system of files, instructions, permissions, and workflows rather than as a model endpoint alone. The practical center of gravity moves toward the harness: what the agent may edit, how it links artifacts, how it is reviewed, and how it is rolled back. This matters because reliable use depends on the surrounding operating model, not just on model quality.",
+          "trend_slug": "ai-products-shift-from-models-to-systems",
+          "trend_title": "AI Products Shift from Models to Systems",
+          "uncertainty_note": "The source supports the shift conceptually, but it is still a single implementation tutorial rather than comparative evidence across many products.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6c4d87f0-f25e-4728-90e5-358c202e18a8",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "agent-maintained-documentation-pipelines",
+              "workflow-restructuring-around-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The workflow includes zone permissions, root instructions, skills, slash commands, and version control.",
+              "The agent is expected to create, update, and link files rather than simply answer prompts.",
+              "The article recommends starting with direct filesystem access before adding more complex integrations."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article describes a hands-on system the author built and uses, with exact file layouts and commands.",
+          "Claims are supported by procedural implementation details rather than formal benchmarks or research.",
+          "Where trade-offs are discussed, they are framed as setup choices and operational experience, not vendor-neutral analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Physical zone separation is the core design choice: raw is immutable, wiki is agent-owned, and dev is collaborative.",
+          "A root CLAUDE.md file is treated as the vault\u2019s operating policy, not just documentation.",
+          "Starting with direct filesystem access plus official skills is presented as the most portable and debuggable path.",
+          "Plan-before-execute gating is used to keep ingestion safe, especially when external content could carry prompt injection.",
+          "Git is positioned as the practical rollback layer for agent-written changes, with explicit diffs before commits."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@roanmonteiro/building-a-complete-personal-harness-llm-wiki-developers-second-brain-in-obsidian-d7b61c7398ff",
+          "https://stephango.com/file-over-app",
+          "https://github.com/kepano/obsidian-skills",
+          "https://github.com/AgriciDaniel/claude-obsidian"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "Primary structure is a step-by-step tutorial for setting up an Obsidian vault and Claude-based workflow.",
+          "The article gives concrete commands, folder structures, config files, and verification steps.",
+          "It is not primarily a roundup, interview, or research paper; it is an implementation guide."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It can read and write Markdown files directly inside a local vault, which is the core requirement for a file-native agent workflow.",
+            "It can operate from a terminal without requiring the Obsidian app to be open, which simplifies automation and reduces coupling to the UI.",
+            "It can be extended with skills and slash commands so the same agent can handle ingestion, querying, and vault maintenance."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It is paired in the article with Obsidian vault files, Git versioning, and Steph Ango\u2019s Obsidian skills.",
+            "The source also says the same skill pattern is portable to Codex CLI, Cursor, and Gemini CLI.",
+            "Custom slash commands are built on top of it to define vault-specific ingest and query workflows."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source presents Claude Code as an established enough tool to anchor an entire vault workflow around it, but the evidence here is a single implementation tutorial rather than broad adoption data. Its maturity signal is practical rather than statistical: the author has built a repeatable file-based harness around it and treats it as the default starting point.",
+          "name": "Claude Code",
+          "operational_relevance": "This is the central execution layer for the vault setup. It fits teams that want an AI agent to work against files instead of a web app, because the article\u2019s main recommendation is to use direct filesystem access first and keep Obsidian optional. It also matters for automation because the same file-based pattern is described as portable across other CLI-oriented agents. As of 2026-05-03, the article treats it as the most debuggable starting point for this workflow.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cli-tool",
+            "coding",
+            "agentic",
+            "local-first",
+            "software-development"
+          ],
+          "proposed_types": [
+            "coding-agent",
+            "terminal"
+          ],
+          "related_tools": [
+            "Obsidian",
+            "kepano/obsidian-skills",
+            "AgriciDaniel/claude-obsidian"
+          ],
+          "short_description": "A terminal-based coding agent from Anthropic that reads and writes files directly in a local workspace. In this workflow it is used to operate an Obsidian vault, generate pages, and run scripted vault commands.",
+          "strengths": "- Direct filesystem access makes the agent easier to debug because changes are visible as ordinary file diffs.\n- The workflow can run without Obsidian being open, which keeps the setup lightweight and local-first.\n- The same skill-based approach is described as portable to other CLI agents, so the pattern is not locked to one product.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Claude Code is just a process on your computer. You open a terminal in the vault folder, type claude, and it reads and writes .md files directly.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not present measured reliability data, so the recommendation is preference-based rather than benchmarked. It also gives up Obsidian-only features until a more complex integration path is added later."
+        },
+        "notes": null,
+        "proposal_id": "f71f6512-5aa1-4624-8e7f-60e2d7ef7ccc",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can read and write Markdown files directly inside a local vault, which is the core requirement for a file-native agent workflow.",
+              "It can operate from a terminal without requiring the Obsidian app to be open, which simplifies automation and reduces coupling to the UI.",
+              "It can be extended with skills and slash commands so the same agent can handle ingestion, querying, and vault maintenance."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is paired in the article with Obsidian vault files, Git versioning, and Steph Ango\u2019s Obsidian skills.",
+              "The source also says the same skill pattern is portable to Codex CLI, Cursor, and Gemini CLI.",
+              "Custom slash commands are built on top of it to define vault-specific ingest and query workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "kepano/obsidian-skills",
+              "AgriciDaniel/claude-obsidian"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cli-tool",
+            "coding",
+            "agentic",
+            "local-first",
+            "software-development"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "core_capabilities": [
+            "It stores notes as ordinary files, which makes the vault easy to version, inspect, and automate.",
+            "It supports wikilinks, callouts, YAML frontmatter, Canvas, and Bases when the agent is taught the right syntax.",
+            "It can act as the host for a three-zone knowledge architecture that separates raw sources, synthesized wiki pages, and collaborative developer notes."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The workflow combines Obsidian with Claude Code, Git, Steph Ango\u2019s skills, and custom vault commands.",
+            "The article also describes a Local REST API plugin path for deeper Obsidian integration.",
+            "It can be opened as a vault folder directly from the desktop app, which is how the setup begins."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article treats Obsidian as the stable substrate for the whole workflow, which suggests a mature enough ecosystem for file-native knowledge management. The source also points to plugin and skill ecosystems around it, but does not provide comparative market data.",
+          "name": "Obsidian",
+          "operational_relevance": "Obsidian is the storage and editing environment that makes the vault pattern concrete. The article uses it because it supports plain files, open formats, and a folder structure that an agent can safely maintain. That makes it relevant for knowledge systems, agent-maintained notes, and file-native workflows where provenance and editing boundaries matter. As of 2026-05-03, the source frames it as the base layer for an agent-maintained personal harness rather than a standalone note-taking app.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "writing",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "note-taking",
+            "app"
+          ],
+          "related_tools": [
+            "Claude Code",
+            "kepano/obsidian-skills",
+            "Local REST API plugin"
+          ],
+          "short_description": "A local note-taking app and vault-based knowledge workspace. In this workflow it serves as the file system-backed surface for a split raw/wiki/dev knowledge architecture.",
+          "strengths": "- Its file-based vault model supports strict zone separation between immutable sources, agent-maintained synthesis, and collaborative working notes.\n- The open format lets the agent write ordinary Markdown, wikilinks, YAML frontmatter, and Canvas/Base artifacts in a durable way.\n- The article treats it as compatible with Git-backed versioning, which is important for rollback and review.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [
+            "knowledge-management"
+          ],
+          "supporting_snippet": "\"Obsidian won as the base for personal LLM harness \u2014 layer separation, data sovereignty, open format, community convergence.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source notes that richer automation can require Obsidian to be open if you use the Local REST API path. It also implies that some Obsidian-specific features are unavailable until you add extra plugins or skills."
+        },
+        "notes": null,
+        "proposal_id": "c6f611ad-2025-495c-b53c-5d3a19bdb3f3",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It stores notes as ordinary files, which makes the vault easy to version, inspect, and automate.",
+              "It supports wikilinks, callouts, YAML frontmatter, Canvas, and Bases when the agent is taught the right syntax.",
+              "It can act as the host for a three-zone knowledge architecture that separates raw sources, synthesized wiki pages, and collaborative developer notes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The workflow combines Obsidian with Claude Code, Git, Steph Ango\u2019s skills, and custom vault commands.",
+              "The article also describes a Local REST API plugin path for deeper Obsidian integration.",
+              "It can be opened as a vault folder directly from the desktop app, which is how the setup begins."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Code",
+              "kepano/obsidian-skills",
+              "Local REST API plugin"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "writing",
+            "workflow-automation"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Immutable raw input zones are easier to trust as source-of-truth material.",
+            "Agent-owned synthesis zones can be regenerated instead of manually edited.",
+            "Collaborative zones need approval rules because they are neither fully human-only nor fully agent-only.",
+            "Physical separation is more durable than relying on memory about which files should be touched."
+          ],
+          "knowledge_summary": "A durable agent workspace often works better when different kinds of content live in separate zones with different permissions. Source material, synthesized knowledge, and work-in-progress artifacts serve different purposes and should not be edited under the same rules. This reduces accidental corruption, makes provenance easier to trust, and lets the agent operate with narrower authority. The pattern is especially useful when humans and agents both contribute to the same workspace.",
+          "match_candidates": [],
+          "operational_insight": "Design the workspace around edit boundaries, not around a single generic folder tree. Let the agent own synthesis while humans keep control of source inputs and sensitive work artifacts. That separation makes it easier to audit changes and to route ambiguous requests safely.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "agent-systems",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This pattern matters wherever humans and agents share a file-based knowledge workspace. It supports safer automation in note systems, documentation repos, and agent-maintained research stores because it preserves source trust while still allowing synthesis and linking.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The vault has three zones with strictly different rules:\"",
+          "topic_slug": "agent-workspace-layering",
+          "topic_title": "Agent Workspace Layering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "cfad3e3c-a643-462f-8cc5-a713d791488f",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Immutable raw input zones are easier to trust as source-of-truth material.",
+              "Agent-owned synthesis zones can be regenerated instead of manually edited.",
+              "Collaborative zones need approval rules because they are neither fully human-only nor fully agent-only.",
+              "Physical separation is more durable than relying on memory about which files should be touched."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "agent-systems",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Plain files make agent output reviewable with normal developer tooling.",
+            "Open formats reduce lock-in and make later migration easier.",
+            "File-native workflows pair naturally with Git-based rollback and change review.",
+            "The agent can generate links and metadata without needing a database-centric app model."
+          ],
+          "knowledge_summary": "File-native AI workflows treat ordinary files as the primary interface between humans, agents, and memory. Instead of hiding state inside a vendor app, the agent reads and writes Markdown, YAML frontmatter, Canvas files, and similar artifacts directly. This makes review, versioning, and migration simpler because the artifacts stay inspectable outside the model. The approach is especially strong when the agent needs to build a lasting knowledge system rather than complete a single chat turn.",
+          "match_candidates": [],
+          "operational_insight": "Favor file formats the agent can generate deterministically and the human can review with standard tools. When the workflow stays in files, Git diffs, search, and backups all become part of the safety model.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "workflow-automation",
+            "infrastructure"
+          ],
+          "related_topics": [
+            "agent-workspace-layering",
+            "agent-maintained-knowledge-bases"
+          ],
+          "relevance_note": "This is a durable pattern for AI engineering because file-native systems are easier to audit, automate, and migrate than state hidden in a single app. It is especially relevant for knowledge systems, documentation pipelines, and agent harnesses that need long-lived provenance.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Claude Code is just a process on your computer. You open a terminal in the vault folder, type claude, and it reads and writes .md files directly.\"",
+          "topic_slug": "file-native-ai-workflows",
+          "topic_title": "File-Native AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3d807aa1-e2a4-4eba-bdb3-21925c79c580",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Plain files make agent output reviewable with normal developer tooling.",
+              "Open formats reduce lock-in and make later migration easier.",
+              "File-native workflows pair naturally with Git-based rollback and change review.",
+              "The agent can generate links and metadata without needing a database-centric app model."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-workspace-layering",
+              "agent-maintained-knowledge-bases"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "workflow-automation",
+            "infrastructure"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Roan Brasil Monteiro",
+    "canonical_url": "https://medium.com/@roanmonteiro/building-a-complete-personal-harness-llm-wiki-developers-second-brain-in-obsidian-d7b61c7398ff",
+    "content_sha256": "47327d506449ee70f44e8ebc42fb8217068bb9bf9c4a0dccd411a6da3c4ab849",
+    "publication": "Medium",
+    "published_date": "2026-05-03",
+    "raw_html_rel_path": "raw/readwise/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s.html",
+    "raw_md_rel_path": "raw/readwise/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s.md",
+    "source_id": "building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s",
+    "title": "Building a Complete Personal Harness: LLM Wiki + Developer\u2019s Second Brain in Obsidian"
+  }
+}

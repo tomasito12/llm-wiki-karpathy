@@ -1,0 +1,657 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:29:53+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnss8el7xnFuTuPiAOPHlfO6mBqVx",
+          "token_usage": {
+            "completion_tokens": 217,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5391,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5608
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnssBWCRSOf649QwgjfBCmDcPak3G",
+          "token_usage": {
+            "completion_tokens": 1038,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5022,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6060
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DnssKSGMkRvmY5ukEQByzzAXbypVT",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1293,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 33306,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 34599
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnssKSGMkRvmY5ukEQByzzAXbypVT",
+    "token_usage": {
+      "completion_tokens": 2548,
+      "prompt_tokens": 43719,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 46267
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-13",
+        "confidence": 0.9,
+        "evidence_from_source": "The article describes RAND's Integrated Strategic Forecasting system, ACLED's CAST, VIEWS, a Munich prediction hub for Germany's defence ministry, and IOM displacement forecasting as active systems used in policy and humanitarian contexts.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-operationalization",
+        "proposed_tags": [
+          "ai-operationalization",
+          "enterprise-ai",
+          "ai-governance"
+        ],
+        "related_trends": [],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "RAND's ISF estimated a 20% chance of regime collapse or replacement in Iran by the end of 2026.",
+          "ACLED's CAST is used by UN agencies and the Dutch foreign ministry.",
+          "VIEWS has been adopted by the UN Development Programme and the EU's diplomatic service.",
+          "The IOM forecasted that 304,362 people in Somalia would be displaced over three months."
+        ],
+        "supporting_snippet": "\"And ISF is not the only game in town.\"",
+        "time_sensitivity": "Actionable as of 2026-05-13; the operationalization described here reflects a live adoption pattern as of the publication date, but the durability of any one system's performance remains uncertain.",
+        "trend_description": "AI forecasting systems are moving from abstract prediction exercises toward operational monitoring of concrete risks such as unrest, displacement, and escalation. The emphasis is on feeding models richer streams of historical and real-time indicators so they can support decision-making in live operational settings. This trend is strongest where organizations can act on the forecast, such as defense, foreign policy, and humanitarian response. It does not imply that forecasting is solved; it implies that the use case is becoming more operationally valuable despite uncertainty.",
+        "trend_slug": "ai-forecasting-shifts-toward-operational-risk-monitoring",
+        "trend_title": "AI Forecasting Shifts Toward Operational Risk Monitoring",
+        "uncertainty_note": "The evidence is mixed: some systems are already in use, but the article also says predictions of new conflict onset remain unreliable and that several users only find the models useful once strife is already under way.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "Relies on reported examples from RAND, ACLED, IOM, UNDP, and other organizations rather than a single study or vendor announcement.",
+        "Includes expert judgments and cautions from named practitioners such as Anthony Vassalo, Katayoun Kishi, Corrado Scognamillo, and others.",
+        "Some claims are supported by concrete deployment examples and forecast results, but the article also contains speculative forward-looking assessment about model usefulness."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about using AI to guess where conflict might break out or intensify. The basic idea is simple: feed models lots of clues from past violence, social data, weather, economics, and even satellite images, then look for patterns humans might miss. Some systems are already in use by think tanks, UN bodies, and defense-related groups. But the article is careful: these tools seem better at tracking violence that is already happening than at predicting a brand-new uprising. It also warns that bad data, disinformation, and the act of forecasting itself can create problems. As of 2026-05-13, the work looks useful but still constrained and uneven.",
+      "assessed_as_of": "2026-05-13",
+      "contradictions_and_skepticism": "The piece is enthusiastic about newer models, but the evidence remains uneven: some examples are specific and operational, while others are aspirational. The 20% Iran collapse estimate sounds precise, yet the article gives no benchmark showing it is better than expert judgment or alternative models. Claims about spotting patterns invisible to humans are plausible but unproven here. The article\u2019s own experts disagree on usefulness, with some saying models are only helpful once strife has already started. That tension makes the central promise real but still unvalidated for the hardest case: predicting first onset of conflict.",
+      "key_insights": [
+        "Conflict forecasting systems appear strongest when they have dense historical data and are predicting continued violence rather than first onset.",
+        "Non-traditional signals such as satellite imagery, traffic patterns, weather, and social media are being fused with standard conflict indicators.",
+        "ACLED\u2019s CAST and similar systems are operational enough to be used by UN agencies and foreign ministries, not just researchers.",
+        "Forecasting models are being extended beyond violence to displacement prediction, as shown by the IOM\u2019s Somalia estimate.",
+        "A major risk is that forecasts may alter behavior: regimes can crack down preemptively, and vulnerable groups may become easier to target."
+      ],
+      "limitations_and_open_questions": "The article repeatedly notes that good data are hard to come by, especially for new-conflict onset where the key trigger may not be observable in public indicators. Several systems are described without details on calibration, error rates, or out-of-sample performance beyond isolated examples like Cear\u00e1 and Somalia. Social media signals are increasingly compromised by disinformation, which weakens a major input class. The Iran forecast was produced without classified intelligence and without human vetting, so its real-world reliability is hard to judge. There is also an unresolved governance question: if forecasts encourage repression or expose vulnerable populations, the model may increase harm even when statistically useful.",
+      "sources": [
+        "https://www.economist.com/science-and-technology/2026/05/13/ai-models-are-being-used-to-predict-conflict"
+      ],
+      "summary": "The article reports renewed use of machine learning and large language models for conflict forecasting, after earlier efforts disappointed. RAND\u2019s Integrated Strategic Forecasting system estimated a 20% chance of regime collapse or replacement in Iran by the end of 2026, but that result came without classified intelligence and without the human vetting that usually accompanies government forecasts. The basic approach is to train on past conflicts and combine many indicators that might precede violence: crime, public health, labor strikes, weather, economic conditions, democratic backsliding, social media, and imagery from satellites, drones, and surveillance cameras. Several organizations are deploying related systems, including ACLED\u2019s CAST for organized political violence, VIEWS for risk amplifiers such as heatwaves and extractable resources, a Munich prediction hub for Germany\u2019s defense ministry, and the IOM\u2019s displacement forecasts. The article also emphasizes that these models work best where data are rich and conflict is already under way, while predicting the onset of new conflict remains unreliable. Data quality, disinformation, and hidden triggers remain major constraints, and forecasts themselves can create risk if regimes react preemptively or exposed groups become more vulnerable.",
+      "why_it_matters": "The article is useful because it shows where AI forecasting has crossed from academic curiosity into operational use, while still exposing clear limits. RAND\u2019s Iran example illustrates the appeal of model-based probabilities, but also how fragile such forecasts are when they lack classified inputs and human review. The broader set of systems described here share a common design: combine historical conflict records with many weak signals, then search for patterns that may precede unrest or displacement. That makes the piece relevant to anyone building prediction pipelines over sparse, noisy, politically sensitive data, especially when evaluation depends on rare events and incomplete labels. It also highlights a practical distinction between forecasting ongoing violence and predicting new conflict onset; the former is described as more dependable, the latter as unreliable. The operational lesson is that better feature coverage does not remove ambiguity about hidden triggers or manipulated public signals. For service automation, the article offers little direct guidance beyond noting that one IOM system forecasts displacement rather than chat or workflow tasks. Actionable as of 2026-05-13, but best treated as a constrained, high-uncertainty forecasting domain rather than a solved application."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent magazine article, not a bundled digest or listicle.",
+        "No interview/Q&A structure, step-by-step tutorial, or product roundup structure.",
+        "Focuses on one reported theme: AI forecasting models for conflict prediction, illustrated with several examples and expert commentary."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Historical conflict data are the strongest feature base when available.",
+          "Useful inputs include social, economic, environmental, and imagery-based signals.",
+          "Predicting ongoing violence is described as more reliable than predicting new conflict onset.",
+          "Forecast quality is limited by hidden triggers and manipulated public signals.",
+          "Forecasts can change behavior, which means the model output is part of the system it is trying to predict."
+        ],
+        "knowledge_summary": "Conflict forecasting models are systems that estimate the likelihood of violence, unrest, displacement, or regime change from historical and contemporary indicators. They typically combine conflict histories with weak signals such as crime, weather, public health, economic conditions, labor strikes, social media, satellite imagery, and political events. Their practical value depends heavily on data quality, label completeness, and the specific event being predicted. They are usually more dependable for detecting continuation or escalation of existing conflict than for predicting a new conflict's first onset.",
+        "match_candidates": [],
+        "operational_insight": "Treat conflict forecasting as a sparse-data prediction problem with high false-signal risk. Models can be useful when the event class is well observed and the situation is already unstable, but they need careful validation, human oversight, and a clear distinction between ongoing violence and first-onset prediction.",
+        "primary_tag": "ai-evaluation",
+        "proposed_tags": [
+          "ai-evaluation",
+          "ai-governance",
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI practitioners because it shows how to structure prediction systems over rare, politically sensitive events where labels are incomplete and the cost of error is high. The same design constraints show up in other service-automation settings that depend on weak signals, hidden triggers, and noisy public data.",
+        "secondary_tag": "ai-governance",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The idea is simple. Models trained on past conflicts are fed indicators that may signal future strife, in the hope that predictive patterns invisible to humans will emerge.\"",
+        "topic_slug": "conflict-forecasting-models",
+        "topic_title": "Conflict Forecasting Models",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.77,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Public signals may be useful because direct measures are unavailable.",
+          "Disinformation reduces the predictive value of social media.",
+          "Satellite, drone, and camera imagery can add complementary context.",
+          "The monitoring system can alter the behavior it observes.",
+          "Proxy quality matters as much as model choice."
+        ],
+        "knowledge_summary": "Forecasting with noisy public signals is the practice of combining many weak, heterogeneous indicators to estimate future events when direct ground truth is scarce. The method often draws from social media, imagery, environmental data, and administrative proxies, then attempts to separate genuine signal from manipulation, lag, and missing context. Its performance depends on whether the inputs remain informative under adversarial pressure or hidden-state changes. In sensitive domains, the signal mix itself becomes a moving target because the act of monitoring can alter the behavior being measured.",
+        "match_candidates": [],
+        "operational_insight": "Use heterogeneous signals as a supplement, not a substitute, for strong labels or direct observation. When disinformation or strategic concealment is plausible, treat public-signal forecasts as fragile and calibrate them conservatively.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "ai-governance",
+          "inference-systems"
+        ],
+        "related_topics": [
+          "conflict-forecasting-models"
+        ],
+        "relevance_note": "This is durable for AI engineering because many production prediction systems must rely on proxies instead of direct truth, especially in compliance, risk, safety, and trust-and-safety settings. The operational problem is not only model quality but also signal integrity under adversarial conditions.",
+        "secondary_tag": "ai-governance",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Social media are widely mined to gauge discontent.\"",
+        "topic_slug": "forecasting-with-noisy-public-signals",
+        "topic_title": "Forecasting With Noisy Public Signals",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-13",
+          "confidence": 0.9,
+          "evidence_from_source": "The article describes RAND's Integrated Strategic Forecasting system, ACLED's CAST, VIEWS, a Munich prediction hub for Germany's defence ministry, and IOM displacement forecasting as active systems used in policy and humanitarian contexts.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-operationalization",
+          "proposed_tags": [
+            "ai-operationalization",
+            "enterprise-ai",
+            "ai-governance"
+          ],
+          "related_trends": [],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "RAND's ISF estimated a 20% chance of regime collapse or replacement in Iran by the end of 2026.",
+            "ACLED's CAST is used by UN agencies and the Dutch foreign ministry.",
+            "VIEWS has been adopted by the UN Development Programme and the EU's diplomatic service.",
+            "The IOM forecasted that 304,362 people in Somalia would be displaced over three months."
+          ],
+          "supporting_snippet": "\"And ISF is not the only game in town.\"",
+          "time_sensitivity": "Actionable as of 2026-05-13; the operationalization described here reflects a live adoption pattern as of the publication date, but the durability of any one system's performance remains uncertain.",
+          "trend_description": "AI forecasting systems are moving from abstract prediction exercises toward operational monitoring of concrete risks such as unrest, displacement, and escalation. The emphasis is on feeding models richer streams of historical and real-time indicators so they can support decision-making in live operational settings. This trend is strongest where organizations can act on the forecast, such as defense, foreign policy, and humanitarian response. It does not imply that forecasting is solved; it implies that the use case is becoming more operationally valuable despite uncertainty.",
+          "trend_slug": "ai-forecasting-shifts-toward-operational-risk-monitoring",
+          "trend_title": "AI Forecasting Shifts Toward Operational Risk Monitoring",
+          "uncertainty_note": "The evidence is mixed: some systems are already in use, but the article also says predictions of new conflict onset remain unreliable and that several users only find the models useful once strife is already under way.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "fa988095-90a8-4195-b3d0-12142e09ee05",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "RAND's ISF estimated a 20% chance of regime collapse or replacement in Iran by the end of 2026.",
+              "ACLED's CAST is used by UN agencies and the Dutch foreign ministry.",
+              "VIEWS has been adopted by the UN Development Programme and the EU's diplomatic service.",
+              "The IOM forecasted that 304,362 people in Somalia would be displaced over three months."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-operationalization",
+            "enterprise-ai",
+            "ai-governance"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "Relies on reported examples from RAND, ACLED, IOM, UNDP, and other organizations rather than a single study or vendor announcement.",
+          "Includes expert judgments and cautions from named practitioners such as Anthony Vassalo, Katayoun Kishi, Corrado Scognamillo, and others.",
+          "Some claims are supported by concrete deployment examples and forecast results, but the article also contains speculative forward-looking assessment about model usefulness."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Conflict forecasting systems appear strongest when they have dense historical data and are predicting continued violence rather than first onset.",
+          "Non-traditional signals such as satellite imagery, traffic patterns, weather, and social media are being fused with standard conflict indicators.",
+          "ACLED\u2019s CAST and similar systems are operational enough to be used by UN agencies and foreign ministries, not just researchers.",
+          "Forecasting models are being extended beyond violence to displacement prediction, as shown by the IOM\u2019s Somalia estimate.",
+          "A major risk is that forecasts may alter behavior: regimes can crack down preemptively, and vulnerable groups may become easier to target."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/science-and-technology/2026/05/13/ai-models-are-being-used-to-predict-conflict"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent magazine article, not a bundled digest or listicle.",
+          "No interview/Q&A structure, step-by-step tutorial, or product roundup structure.",
+          "Focuses on one reported theme: AI forecasting models for conflict prediction, illustrated with several examples and expert commentary."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Historical conflict data are the strongest feature base when available.",
+            "Useful inputs include social, economic, environmental, and imagery-based signals.",
+            "Predicting ongoing violence is described as more reliable than predicting new conflict onset.",
+            "Forecast quality is limited by hidden triggers and manipulated public signals.",
+            "Forecasts can change behavior, which means the model output is part of the system it is trying to predict."
+          ],
+          "knowledge_summary": "Conflict forecasting models are systems that estimate the likelihood of violence, unrest, displacement, or regime change from historical and contemporary indicators. They typically combine conflict histories with weak signals such as crime, weather, public health, economic conditions, labor strikes, social media, satellite imagery, and political events. Their practical value depends heavily on data quality, label completeness, and the specific event being predicted. They are usually more dependable for detecting continuation or escalation of existing conflict than for predicting a new conflict's first onset.",
+          "match_candidates": [],
+          "operational_insight": "Treat conflict forecasting as a sparse-data prediction problem with high false-signal risk. Models can be useful when the event class is well observed and the situation is already unstable, but they need careful validation, human oversight, and a clear distinction between ongoing violence and first-onset prediction.",
+          "primary_tag": "ai-evaluation",
+          "proposed_tags": [
+            "ai-evaluation",
+            "ai-governance",
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI practitioners because it shows how to structure prediction systems over rare, politically sensitive events where labels are incomplete and the cost of error is high. The same design constraints show up in other service-automation settings that depend on weak signals, hidden triggers, and noisy public data.",
+          "secondary_tag": "ai-governance",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The idea is simple. Models trained on past conflicts are fed indicators that may signal future strife, in the hope that predictive patterns invisible to humans will emerge.\"",
+          "topic_slug": "conflict-forecasting-models",
+          "topic_title": "Conflict Forecasting Models",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "d1102cb7-74e3-4c0a-b218-32ea2ee59d78",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Historical conflict data are the strongest feature base when available.",
+              "Useful inputs include social, economic, environmental, and imagery-based signals.",
+              "Predicting ongoing violence is described as more reliable than predicting new conflict onset.",
+              "Forecast quality is limited by hidden triggers and manipulated public signals.",
+              "Forecasts can change behavior, which means the model output is part of the system it is trying to predict."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-application"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.77,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Public signals may be useful because direct measures are unavailable.",
+            "Disinformation reduces the predictive value of social media.",
+            "Satellite, drone, and camera imagery can add complementary context.",
+            "The monitoring system can alter the behavior it observes.",
+            "Proxy quality matters as much as model choice."
+          ],
+          "knowledge_summary": "Forecasting with noisy public signals is the practice of combining many weak, heterogeneous indicators to estimate future events when direct ground truth is scarce. The method often draws from social media, imagery, environmental data, and administrative proxies, then attempts to separate genuine signal from manipulation, lag, and missing context. Its performance depends on whether the inputs remain informative under adversarial pressure or hidden-state changes. In sensitive domains, the signal mix itself becomes a moving target because the act of monitoring can alter the behavior being measured.",
+          "match_candidates": [],
+          "operational_insight": "Use heterogeneous signals as a supplement, not a substitute, for strong labels or direct observation. When disinformation or strategic concealment is plausible, treat public-signal forecasts as fragile and calibrate them conservatively.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "ai-governance",
+            "inference-systems"
+          ],
+          "related_topics": [
+            "conflict-forecasting-models"
+          ],
+          "relevance_note": "This is durable for AI engineering because many production prediction systems must rely on proxies instead of direct truth, especially in compliance, risk, safety, and trust-and-safety settings. The operational problem is not only model quality but also signal integrity under adversarial conditions.",
+          "secondary_tag": "ai-governance",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Social media are widely mined to gauge discontent.\"",
+          "topic_slug": "forecasting-with-noisy-public-signals",
+          "topic_title": "Forecasting With Noisy Public Signals",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "355c38d3-f5c8-4d1b-88a6-4e68bdf5d3c9",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Public signals may be useful because direct measures are unavailable.",
+              "Disinformation reduces the predictive value of social media.",
+              "Satellite, drone, and camera imagery can add complementary context.",
+              "The monitoring system can alter the behavior it observes.",
+              "Proxy quality matters as much as model choice."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "conflict-forecasting-models"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-application"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 154.1,
+    "review_finished_at": "2026-06-07T20:31:35.124790+00:00",
+    "review_started_at": "2026-06-07T20:29:01+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T20:31:35+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/science-and-technology/2026/05/13/ai-models-are-being-used-to-predict-conflict",
+    "content_sha256": "6f23edb97c642a8ee81b6dceba6ee062e199422f385943c53939d84da9cdd5a9",
+    "publication": "Economist",
+    "published_date": "2026-05-13",
+    "raw_html_rel_path": "raw/readwise/ai-models-are-being-used-to-predict-conflict-01krh97hr3s4z8y5w0s5p0004n.html",
+    "raw_md_rel_path": "raw/readwise/ai-models-are-being-used-to-predict-conflict-01krh97hr3s4z8y5w0s5p0004n.md",
+    "source_id": "ai-models-are-being-used-to-predict-conflict-01krh97hr3s4z8y5w0s5p0004n",
+    "title": "AI models are being used to predict conflict"
+  }
+}

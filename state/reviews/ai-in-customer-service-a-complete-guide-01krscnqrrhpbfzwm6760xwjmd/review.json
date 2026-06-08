@@ -1,0 +1,1217 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-07T20:17:31+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "41-triage",
+          "request_id": "chatcmpl-DoEDTcInzvXj7iAeE3s6NoaN0igtd",
+          "token_usage": {
+            "completion_tokens": 187,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7697,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7884
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "41-summary",
+          "request_id": "chatcmpl-DoEDV8zCYK7F9jUoMFZFalyncMQ0b",
+          "token_usage": {
+            "completion_tokens": 1163,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7304,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8467
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "41-entities-standard_article",
+          "request_id": "chatcmpl-DoEDfcRye6ozO4F3nRWkvM2A74KKl",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 3033,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 37219,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 40252
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "41",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoEDfcRye6ozO4F3nRWkvM2A74KKl",
+    "token_usage": {
+      "completion_tokens": 4383,
+      "prompt_tokens": 52220,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 56603
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Begin with one repetitive, high-volume process that has clear steps and a predictable outcome. Connect the system to the tools it needs, such as customer records or knowledge sources, so it can complete the task without unnecessary handoffs. Watch the results closely, then tune the workflow before expanding to other tasks. Once the first workflow is stable, reuse the same patterns for additional agents and more complex service paths.",
+        "caveats": "The article does not give a concrete evaluation method, rollback plan, or governance checklist. Starting narrow reduces risk, but it does not remove the need for human oversight, integration testing, or security review.",
+        "confidence": 0.86,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Pick one high-volume, low-complexity workflow such as identification and verification.",
+          "Integrate the agent with the systems it needs to do the job, especially customer and knowledge systems.",
+          "Deploy the workflow with clear process boundaries and monitor outcomes.",
+          "Optimize the workflow before expanding to adjacent service tasks.",
+          "Reuse the learned pattern to add additional specialized agents."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A clearly defined support workflow",
+          "Access to the systems the workflow depends on",
+          "A way to measure resolution, handoff, and containment",
+          "Operational ownership for tuning and monitoring"
+        ],
+        "primary_tag": "workflow-design",
+        "proposed_tags": [
+          "workflow-design",
+          "enterprise-workflows",
+          "support-automation"
+        ],
+        "question_title": "Narrow Support Automation Rollout",
+        "related_howtos": [],
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Start Narrow & Scale\n\nWhen first deploying an AI Agent, start with a narrow use case that is low complexity but demands significant amounts of time, such as ID&V. This allows you to create a more focused AI Agent that is trained for this specific process. Once deployed, you can monitor and optimize it to improve results and then scale your learnings out across a wider AI Agent workforce with new agents attached to other processes.\"",
+        "value_level": "high",
+        "what_and_problem": "This is about starting an AI support rollout with a small, high-volume task before expanding to more complex work. It helps when a team wants to reduce load without taking on too much risk at once. Support organizations often get better results when they automate one repeatable workflow first instead of trying to replace the whole contact center in one move. The practical problem is choosing a first use case that is valuable, simple enough to automate, and easy to measure."
+      }
+    ],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "This case suggests AI agents are strongest when the workflow has clear lookup and transaction patterns rather than open-ended problem solving.",
+        "business_objective": "Reduce service load, improve self-service, and cut the cost of handling repetitive customer questions.",
+        "company": "Lippert",
+        "confidence": 0.94,
+        "deployment_context": "The deployment is described as a customer-service example for Lippert's support operations; the source does not specify pilot versus full production, but it presents operational results from the rollout.",
+        "evidence_snippets": [
+          {
+            "claim": "Lippert used Cognigy AI agents for customer self-service on product-related queries.",
+            "provenance": "stated",
+            "snippet": "\"By introducing AI Agents, Lippert was able to deploy a self-service solution that helped customers get answers to their product-related queries, including part pricing, availability, and order status.\""
+          },
+          {
+            "claim": "The rollout reported an 80% cost reduction and 37% containment rate.",
+            "provenance": "stated",
+            "snippet": "\"This AI Agent has driven an 80% cost reduction from handled queries and achieved a containment rate of 37%.\""
+          }
+        ],
+        "evidence_type": null,
+        "implications_for_service_automation": "The example supports using AI self-service to absorb repetitive product-support demand and reduce human workload. It does not provide evidence about edge-case handling or long-tail exceptions.",
+        "industry": "manufacturing",
+        "key_lessons": [
+          "Start with repetitive queries that have obvious resolution paths.",
+          "Measure containment and cost impact rather than only user satisfaction.",
+          "Specialized product support is a good fit for structured self-service.",
+          "A narrow workflow can produce clearer operational gains than a broad assistant."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How stable were the reported savings over time?",
+          "How much human oversight was still required for exceptions?",
+          "What happened when customers asked about edge cases outside the workflow?"
+        ],
+        "operational_constraints": "Customer questions were specific and required specialized product knowledge, which made human handling expensive and slow.",
+        "outcome_status": "The source reports an 80% cost reduction from handled queries and a 37% containment rate.",
+        "overview": "Lippert deployed AI agents to handle product-related customer questions and reduce the burden on service teams dealing with detailed, repetitive support requests. The rollout focused on self-service for part pricing, availability, and order status.",
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "customer-support",
+          "enterprise-ai",
+          "enterprise-ai-adoption"
+        ],
+        "related_sources": [
+          "https://www.cognigy.com/blog/customer-service-ai"
+        ],
+        "secondary_tag": "customer-support",
+        "strategic_signals": "This is a classic support-automation rollout: narrow scope, measurable containment, and direct cost impact. The source frames it as a practical customer-service system rather than a chatbot demo.",
+        "success_or_failure_factors": "The apparent success came from choosing highly repetitive, information-heavy support tasks that fit self-service well. The source does not provide failure analysis.",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "technical_approach": "The source says the company introduced AI agents from Cognigy to provide self-service for product-related queries.",
+        "title": "Lippert's Cognigy Support Automation Rollout",
+        "value_level": "high",
+        "what_was_implemented": "AI agents for customer self-service, including responses to product-related queries and support for order-related tasks."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2025-11-11",
+        "confidence": 0.82,
+        "evidence_from_source": "The source repeatedly describes AI agents as handling identification and verification, order tracking, rebooking, refunds/cancellations, and warm handoffs, rather than only answering FAQs.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "workflow-restructuring",
+          "human-ai-collaboration"
+        ],
+        "related_trends": [
+          "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+        ],
+        "secondary_tag": "workflow-restructuring",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "support-automation",
+        "suggested_new_tags": [
+          "support-automation"
+        ],
+        "supporting_data_points": [
+          "Agentic AI is described as suitable for order tracking, rebooking/re-ordering, and refunds/cancellations.",
+          "The article recommends AI agents for ID&V, 24/7 support, and employee assistance.",
+          "Lippert reports 80% cost reduction and 37% containment on product queries."
+        ],
+        "supporting_snippet": "\"Now, with Agentic AI, agents are capable of autonomous decision-making and can handle complex, multi-stage processes such as order tracking, rebooking/re-ordering, and even refunds/cancellations.\"",
+        "time_sensitivity": "Actionable as of 2025-11-11; the source presents this as an active deployment pattern rather than a future concept.",
+        "trend_description": "Support automation is moving away from simple answer generation and toward systems that complete service workflows end to end. The relevant unit is no longer a chatbot reply but a task outcome such as verification, routing, lookup, rebooking, or refund handling. This shift increases the value of integration, process design, and handoff quality. It also raises the bar for evaluation because a support system must be judged on completed work, not just conversational fluency.",
+        "trend_slug": "support-automation-shifts-toward-agentic-workflow-completion",
+        "trend_title": "Support Automation Shifts Toward Workflow Completion",
+        "uncertainty_note": "The evidence here is vendor-led and case-study based, so the pace and breadth of adoption are uncertain. The pattern is credible, but the article does not independently verify how broadly this model performs outside the cited examples.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "Published on cognigy.com and repeatedly promotes Cognigy\u2019s AI agent platform and services.",
+        "Claims are supported mainly by vendor-described use cases, product capabilities, and customer examples featuring Cognigy deployments.",
+        "External references are present, but the article\u2019s dominant framing and evidence remain promotional/vendor-led."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article explains how AI can be used in customer service beyond simple chatbots. It says the useful stack is not just generative AI, but also conversational AI and agentic AI, which can let software follow workflows, make decisions, and help human agents. The core idea is to match the AI to the task: use structured automation for predictable steps, and more autonomous agents for messy, multi-step problems. The piece is interesting because it frames AI as a mix of tools rather than one universal model. It also gives vendor examples showing large-scale deployments and some reported business results. As of 2025-11-11, it is best read as a practical vendor guide, not independent proof.",
+      "assessed_as_of": "2025-11-11",
+      "contradictions_and_skepticism": "The article presents agentic AI as a natural next step from conversational AI, but it does not show that autonomy is safer or more cost-effective across all task types. Several claims about \u201chumanlike\u201d support and \u201ctruly autonomous\u201d agents are promotional and not substantiated with failure analysis. The case studies may reflect well-scoped deployments at companies already investing in Cognigy, so they may not generalize to less structured environments. The article also implies that more autonomy is broadly better, yet its own best-practice section still recommends starting narrow and keeping process boundaries explicit.",
+      "key_insights": [
+        "The article\u2019s most durable idea is task-model fit: structured conversational AI for fixed workflows, agentic AI for multi-step decisions.",
+        "It argues for a composite agent workforce, which is more reusable than treating one chatbot as the answer to every support problem.",
+        "The strongest operational value claimed is in warm handoffs: AI gathers context and verification before passing the case to a human.",
+        "The vendor case studies emphasize measurable outcomes like automation rate, containment, retention, and cost reduction, but those figures are not independently verified here.",
+        "Implementation guidance is pragmatic: start with a narrow, high-volume process, then expand only after integration and model fit are working."
+      ],
+      "limitations_and_open_questions": "The evidence base is mostly vendor-authored and case-study driven, so the reported gains in automation rate, retention, containment, and cost reduction are not independently audited in the article. The guide does not provide detailed evaluation methodology, baseline comparisons, failure rates, or error handling for the deployed agents. It also leaves open how much human oversight is required for agentic decisions, especially in regulated workflows such as claims or refunds. Security and privacy are mentioned only at a high level, without concrete controls, model governance details, or access-boundary design. The article gives little operational guidance on routing between multiple specialized agents, measuring quality over time, or handling edge cases when the AI is uncertain.",
+      "sources": [
+        "https://www.cognigy.com/blog/customer-service-ai",
+        "https://www.pwc.com/us/en/advisory-services/publications/consumer-intelligence-series/pwc-consumer-intelligence-series-customer-experience.pdf#page=8",
+        "https://www.wsj.com/articles/ai-voice-agents-are-ready-to-take-your-call-a62cf03b?utm_source=chatgpt.com"
+      ],
+      "summary": "This vendor-authored guide argues that customer service teams can use AI to reduce wait times, improve personalization, and lower operating cost by combining several layers of automation rather than relying on a single chatbot. It distinguishes generative AI, conversational AI, and agentic AI, then defines AI agents as autonomous virtual agents that can work with customers or assist human agents. The article\u2019s main operational claim is that NLU-driven conversational AI is better for structured, process-heavy tasks such as identity verification or regulated workflows, while agentic AI is better for multi-stage tasks such as order tracking, rebooking, refunds, and cancellations. It also recommends a composite workforce of specialized agents instead of choosing one model for every use case. The guide supports these points with vendor case studies from AEGEA, E.ON, and Lippert, which report outcomes such as high conversation volumes, automation rates, containment, and cost reduction. It closes with implementation advice: integrate with existing systems, choose the right underlying model stack, and start with a narrow, high-volume use case before scaling. The article is useful as a practical taxonomy and sales-facing implementation checklist, but most evidence is vendor-led and the performance claims are not independently benchmarked.",
+      "why_it_matters": "The piece is useful because it separates several concepts that are often collapsed into one vague \u201cAI for support\u201d bucket. That distinction matters for product design: generative systems are described as good at producing text and summaries, conversational systems are described as good at intent recognition and workflow control, and agentic systems are described as making independent decisions over multi-step tasks. For an AI builder, the practical takeaway is to map each workflow to the least powerful system that can reliably do the job, rather than defaulting to a fully autonomous agent. The article also makes a strong case for context handoff: gathering identity, intent, and history before escalation can reduce duplicate questioning and make downstream human work faster. Its examples from AEGEA, E.ON, and Lippert suggest that the vendor\u2019s platform is positioned around orchestration across channels and systems, but the evidence is still promotional and should be treated as case-study evidence rather than benchmark-grade proof. The implementation advice is directionally sound: integration with CRM and knowledge systems, model choice, and narrow initial scope are all sensible deployment constraints. For customer support, voice, and back-office service automation, the article is actionable as of 2025-11-11 for teams looking for a deployment checklist, but the headline performance claims should be monitored rather than accepted at face value."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor-authored guide rather than a bundle of unrelated items.",
+        "Structured as an explanatory article with sections, examples, and FAQs about AI in customer service.",
+        "Not primarily a numbered tool list, roundup, interview, or step-by-step tutorial."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.88,
+        "core_capabilities": [
+          "It can build AI agents that work across voice, chat, and messaging channels for customer-service workflows.",
+          "It can be customized with different underlying large language models or combinations of models.",
+          "It can use a business's own materials to train agents on company-specific context and content.",
+          "It can support both customer-facing automation and human-agent assistance, including summaries and handoffs."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source says it can integrate with existing technology stacks and planned APIs, which is important for connecting support automation to CRM and knowledge systems.",
+          "The source describes deployments across phone, chat, voice, WhatsApp, and other channels, indicating multi-channel support rather than a single-interface product."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article presents Cognigy.AI as an enterprise platform used in customer-service deployments at AEGEA, E.ON, and Lippert, which suggests it is positioned for production support workflows rather than experiments. That said, the maturity signal here comes from vendor case studies and product messaging, not independent market evaluation.",
+        "name": "Cognigy.AI",
+        "operational_relevance": "This is relevant where support teams need a platform that can combine conversational flows, model choice, and system integrations into one contact-center layer. The source emphasizes that it can be used for both customer-facing automation and human-agent assistance, including identity verification, call summaries, and contextual handoffs. For service automation teams, the main value is orchestration across channels and back-office systems rather than a standalone chatbot layer.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "enterprise-managed",
+          "api-first",
+          "customer-support",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "enterprise-ai",
+          "ai-orchestration"
+        ],
+        "related_tools": [
+          "Claude Code"
+        ],
+        "short_description": "An enterprise conversational AI platform for building customer-service agents across voice, chat, and other channels. The source presents it as a customizable system for orchestration, knowledge access, and agent-assisted workflows.",
+        "strengths": "- Supports multi-channel service automation, which matters when a support organization needs the same workflow to work across voice, chat, WhatsApp, and SMS.\n- Lets teams choose from different underlying LLMs or combinations of them, which can reduce lock-in when model fit matters more than a single default provider.\n- Positions AI agents as both customer-facing and employee-support tools, so the same platform can cover containment, handoff, and agent copilot use cases.\n- The source claims it can integrate with existing tools and technologies, which is important because support automation usually fails if it cannot touch CRM, knowledge, and case systems.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Cognigy\u2019s AI Agent platform is fully customizable and allows you to choose from a range of different LLMs or even a combination of them. We can also train AI Agents using your own resources and materials to ensure they understand the context and content of your business.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source is vendor-authored, so the platform claims and reported outcomes should be treated as promotional unless independently verified. The article gives little detail on configuration complexity, governance controls, failure handling, or the cost of operating multiple specialized agents at scale."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Use automation to collect identity, intent, and context before escalation.",
+          "Separate customer-facing resolution from human-agent augmentation, but design them as one workflow.",
+          "Optimize for warm handoff quality, not just deflection.",
+          "Treat support automation as a service process, not as a standalone chatbot feature."
+        ],
+        "knowledge_summary": "Support automation becomes most useful when it is treated as a layered operating model rather than a single chatbot. The system should decide which tasks are safe to automate, which require structured workflows, and which need human escalation. A strong design uses automation to reduce repeat work, collect context early, and move cases through predictable paths. The same design can serve both customer-facing resolution and internal agent assistance. This approach is especially valuable in high-volume service environments where handoff quality matters as much as containment.",
+        "match_candidates": [],
+        "operational_insight": "Design support automation around workflow boundaries, context capture, and escalation quality instead of around the chatbot interface itself. That shifts the focus from conversation novelty to measurable service operations.",
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "enterprise-workflows",
+          "workflow-design",
+          "human-ai-workflows"
+        ],
+        "related_topics": [
+          "agent-runtime-architecture-for-voice"
+        ],
+        "relevance_note": "This is durable because service organizations repeatedly need a way to combine self-service, handoff, and agent assistance into one operating model. The pattern applies across voice, chat, and back-office support automation, especially where context collection and routing are major cost centers.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"AI Agents also help augment your existing human workforce, enabling them to work more efficiently. With Agent Copilot, AI supports at each stage of the call:\"",
+        "topic_slug": "support-automation-as-operating-model",
+        "topic_title": "Support Automation as Operating Model",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Use conversational AI for deterministic or regulated workflows.",
+          "Use agentic AI for multi-stage cases where the path is not fully known in advance.",
+          "Keep process boundaries explicit when compliance matters.",
+          "Prefer the smallest capable system that can reliably solve the task."
+        ],
+        "knowledge_summary": "Different AI systems fit different support tasks. Structured conversational systems are better for fixed, rules-heavy workflows, while more agentic systems are better when the task requires independent decisions across multiple steps. The practical design choice is to match the least powerful system to the job that can still complete it reliably. This avoids over-automation in brittle areas and under-automation in areas where autonomy adds value. It also helps teams design clearer boundaries for compliance, escalation, and auditability.",
+        "match_candidates": [],
+        "operational_insight": "Use structured automation for predictable service paths and reserve agentic behavior for multi-step work that benefits from autonomous decision-making. That reduces unnecessary complexity and makes governance easier.",
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "agent-systems",
+          "workflow-design",
+          "process-design"
+        ],
+        "related_topics": [
+          "support-automation-as-operating-model"
+        ],
+        "relevance_note": "This is useful wherever support teams choose between scripted flows, LLM-driven assistants, and autonomous agents. The distinction helps prevent teams from using expensive autonomy where a narrow workflow would do, or from forcing rigid flows onto messy multi-step service problems.",
+        "secondary_tag": "agent-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"NLU-driven CAI Agents are better when you want to guide a customer through a strict proces,s such as submitting an insurance claim. Agentic AI is more dynamic and better able to solve complex, multi-stage problems.\"",
+        "topic_slug": "task-model-fit-in-support-automation",
+        "topic_title": "Task Model Fit in Support Automation",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Begin with one repetitive, high-volume process that has clear steps and a predictable outcome. Connect the system to the tools it needs, such as customer records or knowledge sources, so it can complete the task without unnecessary handoffs. Watch the results closely, then tune the workflow before expanding to other tasks. Once the first workflow is stable, reuse the same patterns for additional agents and more complex service paths.",
+          "caveats": "The article does not give a concrete evaluation method, rollback plan, or governance checklist. Starting narrow reduces risk, but it does not remove the need for human oversight, integration testing, or security review.",
+          "confidence": 0.86,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Pick one high-volume, low-complexity workflow such as identification and verification.",
+            "Integrate the agent with the systems it needs to do the job, especially customer and knowledge systems.",
+            "Deploy the workflow with clear process boundaries and monitor outcomes.",
+            "Optimize the workflow before expanding to adjacent service tasks.",
+            "Reuse the learned pattern to add additional specialized agents."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A clearly defined support workflow",
+            "Access to the systems the workflow depends on",
+            "A way to measure resolution, handoff, and containment",
+            "Operational ownership for tuning and monitoring"
+          ],
+          "primary_tag": "workflow-design",
+          "proposed_tags": [
+            "workflow-design",
+            "enterprise-workflows",
+            "support-automation"
+          ],
+          "question_title": "Narrow Support Automation Rollout",
+          "related_howtos": [],
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Start Narrow & Scale\n\nWhen first deploying an AI Agent, start with a narrow use case that is low complexity but demands significant amounts of time, such as ID&V. This allows you to create a more focused AI Agent that is trained for this specific process. Once deployed, you can monitor and optimize it to improve results and then scale your learnings out across a wider AI Agent workforce with new agents attached to other processes.\"",
+          "value_level": "high",
+          "what_and_problem": "This is about starting an AI support rollout with a small, high-volume task before expanding to more complex work. It helps when a team wants to reduce load without taking on too much risk at once. Support organizations often get better results when they automate one repeatable workflow first instead of trying to replace the whole contact center in one move. The practical problem is choosing a first use case that is valuable, simple enough to automate, and easy to measure."
+        },
+        "notes": null,
+        "proposal_id": "aafbc5ce-c791-4caf-a026-c2af01e9ad9b",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Pick one high-volume, low-complexity workflow such as identification and verification.",
+              "Integrate the agent with the systems it needs to do the job, especially customer and knowledge systems.",
+              "Deploy the workflow with clear process boundaries and monitor outcomes.",
+              "Optimize the workflow before expanding to adjacent service tasks.",
+              "Reuse the learned pattern to add additional specialized agents."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A clearly defined support workflow",
+              "Access to the systems the workflow depends on",
+              "A way to measure resolution, handoff, and containment",
+              "Operational ownership for tuning and monitoring"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-design",
+            "enterprise-workflows",
+            "support-automation"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "This case suggests AI agents are strongest when the workflow has clear lookup and transaction patterns rather than open-ended problem solving.",
+          "business_objective": "Reduce service load, improve self-service, and cut the cost of handling repetitive customer questions.",
+          "company": "Lippert",
+          "confidence": 0.94,
+          "deployment_context": "The deployment is described as a customer-service example for Lippert's support operations; the source does not specify pilot versus full production, but it presents operational results from the rollout.",
+          "evidence_snippets": [
+            {
+              "claim": "Lippert used Cognigy AI agents for customer self-service on product-related queries.",
+              "provenance": "stated",
+              "snippet": "\"By introducing AI Agents, Lippert was able to deploy a self-service solution that helped customers get answers to their product-related queries, including part pricing, availability, and order status.\""
+            },
+            {
+              "claim": "The rollout reported an 80% cost reduction and 37% containment rate.",
+              "provenance": "stated",
+              "snippet": "\"This AI Agent has driven an 80% cost reduction from handled queries and achieved a containment rate of 37%.\""
+            }
+          ],
+          "evidence_type": null,
+          "implications_for_service_automation": "The example supports using AI self-service to absorb repetitive product-support demand and reduce human workload. It does not provide evidence about edge-case handling or long-tail exceptions.",
+          "industry": "manufacturing",
+          "key_lessons": [
+            "Start with repetitive queries that have obvious resolution paths.",
+            "Measure containment and cost impact rather than only user satisfaction.",
+            "Specialized product support is a good fit for structured self-service.",
+            "A narrow workflow can produce clearer operational gains than a broad assistant."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How stable were the reported savings over time?",
+            "How much human oversight was still required for exceptions?",
+            "What happened when customers asked about edge cases outside the workflow?"
+          ],
+          "operational_constraints": "Customer questions were specific and required specialized product knowledge, which made human handling expensive and slow.",
+          "outcome_status": "The source reports an 80% cost reduction from handled queries and a 37% containment rate.",
+          "overview": "Lippert deployed AI agents to handle product-related customer questions and reduce the burden on service teams dealing with detailed, repetitive support requests. The rollout focused on self-service for part pricing, availability, and order status.",
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "customer-support",
+            "enterprise-ai",
+            "enterprise-ai-adoption"
+          ],
+          "related_sources": [
+            "https://www.cognigy.com/blog/customer-service-ai"
+          ],
+          "secondary_tag": "customer-support",
+          "strategic_signals": "This is a classic support-automation rollout: narrow scope, measurable containment, and direct cost impact. The source frames it as a practical customer-service system rather than a chatbot demo.",
+          "success_or_failure_factors": "The apparent success came from choosing highly repetitive, information-heavy support tasks that fit self-service well. The source does not provide failure analysis.",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "technical_approach": "The source says the company introduced AI agents from Cognigy to provide self-service for product-related queries.",
+          "title": "Lippert's Cognigy Support Automation Rollout",
+          "value_level": "high",
+          "what_was_implemented": "AI agents for customer self-service, including responses to product-related queries and support for order-related tasks."
+        },
+        "notes": null,
+        "proposal_id": "5acd0a5a-7873-45dd-a936-17b218a96e7f",
+        "proposal_status": "approved",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "company": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Start with repetitive queries that have obvious resolution paths.",
+              "Measure containment and cost impact rather than only user satisfaction.",
+              "Specialized product support is a good fit for structured self-service.",
+              "A narrow workflow can produce clearer operational gains than a broad assistant."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How stable were the reported savings over time?",
+              "How much human oversight was still required for exceptions?",
+              "What happened when customers asked about edge cases outside the workflow?"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://www.cognigy.com/blog/customer-service-ai"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "customer-support",
+            "enterprise-ai",
+            "enterprise-ai-adoption"
+          ]
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2025-11-11",
+          "confidence": 0.82,
+          "evidence_from_source": "The source repeatedly describes AI agents as handling identification and verification, order tracking, rebooking, refunds/cancellations, and warm handoffs, rather than only answering FAQs.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "workflow-restructuring",
+            "human-ai-collaboration"
+          ],
+          "related_trends": [
+            "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+          ],
+          "secondary_tag": "workflow-restructuring",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "support-automation",
+          "suggested_new_tags": [
+            "support-automation"
+          ],
+          "supporting_data_points": [
+            "Agentic AI is described as suitable for order tracking, rebooking/re-ordering, and refunds/cancellations.",
+            "The article recommends AI agents for ID&V, 24/7 support, and employee assistance.",
+            "Lippert reports 80% cost reduction and 37% containment on product queries."
+          ],
+          "supporting_snippet": "\"Now, with Agentic AI, agents are capable of autonomous decision-making and can handle complex, multi-stage processes such as order tracking, rebooking/re-ordering, and even refunds/cancellations.\"",
+          "time_sensitivity": "Actionable as of 2025-11-11; the source presents this as an active deployment pattern rather than a future concept.",
+          "trend_description": "Support automation is moving away from simple answer generation and toward systems that complete service workflows end to end. The relevant unit is no longer a chatbot reply but a task outcome such as verification, routing, lookup, rebooking, or refund handling. This shift increases the value of integration, process design, and handoff quality. It also raises the bar for evaluation because a support system must be judged on completed work, not just conversational fluency.",
+          "trend_slug": "support-automation-shifts-toward-agentic-workflow-completion",
+          "trend_title": "Support Automation Shifts Toward Workflow Completion",
+          "uncertainty_note": "The evidence here is vendor-led and case-study based, so the pace and breadth of adoption are uncertain. The pattern is credible, but the article does not independently verify how broadly this model performs outside the cited examples.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "66caea1d-a395-4cba-be74-3a698f50a7eb",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Agentic AI is described as suitable for order tracking, rebooking/re-ordering, and refunds/cancellations.",
+              "The article recommends AI agents for ID&V, 24/7 support, and employee assistance.",
+              "Lippert reports 80% cost reduction and 37% containment on product queries."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "workflow-restructuring",
+            "human-ai-collaboration"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "Published on cognigy.com and repeatedly promotes Cognigy\u2019s AI agent platform and services.",
+          "Claims are supported mainly by vendor-described use cases, product capabilities, and customer examples featuring Cognigy deployments.",
+          "External references are present, but the article\u2019s dominant framing and evidence remain promotional/vendor-led."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The article\u2019s most durable idea is task-model fit: structured conversational AI for fixed workflows, agentic AI for multi-step decisions.",
+          "It argues for a composite agent workforce, which is more reusable than treating one chatbot as the answer to every support problem.",
+          "The strongest operational value claimed is in warm handoffs: AI gathers context and verification before passing the case to a human.",
+          "The vendor case studies emphasize measurable outcomes like automation rate, containment, retention, and cost reduction, but those figures are not independently verified here.",
+          "Implementation guidance is pragmatic: start with a narrow, high-volume process, then expand only after integration and model fit are working."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.cognigy.com/blog/customer-service-ai",
+          "https://www.pwc.com/us/en/advisory-services/publications/consumer-intelligence-series/pwc-consumer-intelligence-series-customer-experience.pdf#page=8",
+          "https://www.wsj.com/articles/ai-voice-agents-are-ready-to-take-your-call-a62cf03b?utm_source=chatgpt.com"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor-authored guide rather than a bundle of unrelated items.",
+          "Structured as an explanatory article with sections, examples, and FAQs about AI in customer service.",
+          "Not primarily a numbered tool list, roundup, interview, or step-by-step tutorial."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "core_capabilities": [
+            "It can build AI agents that work across voice, chat, and messaging channels for customer-service workflows.",
+            "It can be customized with different underlying large language models or combinations of models.",
+            "It can use a business's own materials to train agents on company-specific context and content.",
+            "It can support both customer-facing automation and human-agent assistance, including summaries and handoffs."
+          ],
+          "integration_ecosystem": [
+            "The source says it can integrate with existing technology stacks and planned APIs, which is important for connecting support automation to CRM and knowledge systems.",
+            "The source describes deployments across phone, chat, voice, WhatsApp, and other channels, indicating multi-channel support rather than a single-interface product."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article presents Cognigy.AI as an enterprise platform used in customer-service deployments at AEGEA, E.ON, and Lippert, which suggests it is positioned for production support workflows rather than experiments. That said, the maturity signal here comes from vendor case studies and product messaging, not independent market evaluation.",
+          "name": "Cognigy.AI",
+          "operational_relevance": "This is relevant where support teams need a platform that can combine conversational flows, model choice, and system integrations into one contact-center layer. The source emphasizes that it can be used for both customer-facing automation and human-agent assistance, including identity verification, call summaries, and contextual handoffs. For service automation teams, the main value is orchestration across channels and back-office systems rather than a standalone chatbot layer.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "enterprise-managed",
+            "api-first",
+            "customer-support",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "enterprise-ai",
+            "ai-orchestration"
+          ],
+          "related_tools": [
+            "Claude Code"
+          ],
+          "short_description": "An enterprise conversational AI platform for building customer-service agents across voice, chat, and other channels. The source presents it as a customizable system for orchestration, knowledge access, and agent-assisted workflows.",
+          "strengths": "- Supports multi-channel service automation, which matters when a support organization needs the same workflow to work across voice, chat, WhatsApp, and SMS.\n- Lets teams choose from different underlying LLMs or combinations of them, which can reduce lock-in when model fit matters more than a single default provider.\n- Positions AI agents as both customer-facing and employee-support tools, so the same platform can cover containment, handoff, and agent copilot use cases.\n- The source claims it can integrate with existing tools and technologies, which is important because support automation usually fails if it cannot touch CRM, knowledge, and case systems.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Cognigy\u2019s AI Agent platform is fully customizable and allows you to choose from a range of different LLMs or even a combination of them. We can also train AI Agents using your own resources and materials to ensure they understand the context and content of your business.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source is vendor-authored, so the platform claims and reported outcomes should be treated as promotional unless independently verified. The article gives little detail on configuration complexity, governance controls, failure handling, or the cost of operating multiple specialized agents at scale."
+        },
+        "notes": null,
+        "proposal_id": "34b65dc2-a474-462f-ba61-ea1155f02846",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can build AI agents that work across voice, chat, and messaging channels for customer-service workflows.",
+              "It can be customized with different underlying large language models or combinations of models.",
+              "It can use a business's own materials to train agents on company-specific context and content.",
+              "It can support both customer-facing automation and human-agent assistance, including summaries and handoffs."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source says it can integrate with existing technology stacks and planned APIs, which is important for connecting support automation to CRM and knowledge systems.",
+              "The source describes deployments across phone, chat, voice, WhatsApp, and other channels, indicating multi-channel support rather than a single-interface product."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-managed",
+            "api-first",
+            "customer-support",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "enterprise-ai",
+            "ai-orchestration"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Use automation to collect identity, intent, and context before escalation.",
+            "Separate customer-facing resolution from human-agent augmentation, but design them as one workflow.",
+            "Optimize for warm handoff quality, not just deflection.",
+            "Treat support automation as a service process, not as a standalone chatbot feature."
+          ],
+          "knowledge_summary": "Support automation becomes most useful when it is treated as a layered operating model rather than a single chatbot. The system should decide which tasks are safe to automate, which require structured workflows, and which need human escalation. A strong design uses automation to reduce repeat work, collect context early, and move cases through predictable paths. The same design can serve both customer-facing resolution and internal agent assistance. This approach is especially valuable in high-volume service environments where handoff quality matters as much as containment.",
+          "match_candidates": [],
+          "operational_insight": "Design support automation around workflow boundaries, context capture, and escalation quality instead of around the chatbot interface itself. That shifts the focus from conversation novelty to measurable service operations.",
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "enterprise-workflows",
+            "workflow-design",
+            "human-ai-workflows"
+          ],
+          "related_topics": [
+            "agent-runtime-architecture-for-voice"
+          ],
+          "relevance_note": "This is durable because service organizations repeatedly need a way to combine self-service, handoff, and agent assistance into one operating model. The pattern applies across voice, chat, and back-office support automation, especially where context collection and routing are major cost centers.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"AI Agents also help augment your existing human workforce, enabling them to work more efficiently. With Agent Copilot, AI supports at each stage of the call:\"",
+          "topic_slug": "support-automation-as-operating-model",
+          "topic_title": "Support Automation as Operating Model",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "8771dbf8-82d8-4d91-ad85-d2ed4b69ba5d",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Use automation to collect identity, intent, and context before escalation.",
+              "Separate customer-facing resolution from human-agent augmentation, but design them as one workflow.",
+              "Optimize for warm handoff quality, not just deflection.",
+              "Treat support automation as a service process, not as a standalone chatbot feature."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-runtime-architecture-for-voice"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "enterprise-workflows",
+            "workflow-design",
+            "human-ai-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Use conversational AI for deterministic or regulated workflows.",
+            "Use agentic AI for multi-stage cases where the path is not fully known in advance.",
+            "Keep process boundaries explicit when compliance matters.",
+            "Prefer the smallest capable system that can reliably solve the task."
+          ],
+          "knowledge_summary": "Different AI systems fit different support tasks. Structured conversational systems are better for fixed, rules-heavy workflows, while more agentic systems are better when the task requires independent decisions across multiple steps. The practical design choice is to match the least powerful system to the job that can still complete it reliably. This avoids over-automation in brittle areas and under-automation in areas where autonomy adds value. It also helps teams design clearer boundaries for compliance, escalation, and auditability.",
+          "match_candidates": [],
+          "operational_insight": "Use structured automation for predictable service paths and reserve agentic behavior for multi-step work that benefits from autonomous decision-making. That reduces unnecessary complexity and makes governance easier.",
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "agent-systems",
+            "workflow-design",
+            "process-design"
+          ],
+          "related_topics": [
+            "support-automation-as-operating-model"
+          ],
+          "relevance_note": "This is useful wherever support teams choose between scripted flows, LLM-driven assistants, and autonomous agents. The distinction helps prevent teams from using expensive autonomy where a narrow workflow would do, or from forcing rigid flows onto messy multi-step service problems.",
+          "secondary_tag": "agent-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"NLU-driven CAI Agents are better when you want to guide a customer through a strict proces,s such as submitting an insurance claim. Agentic AI is more dynamic and better able to solve complex, multi-stage problems.\"",
+          "topic_slug": "task-model-fit-in-support-automation",
+          "topic_title": "Task Model Fit in Support Automation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2484d5a7-4539-446f-91af-74fbe4d9b0e6",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Use conversational AI for deterministic or regulated workflows.",
+              "Use agentic AI for multi-stage cases where the path is not fully known in advance.",
+              "Keep process boundaries explicit when compliance matters.",
+              "Prefer the smallest capable system that can reliably solve the task."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "support-automation-as-operating-model"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "agent-systems",
+            "workflow-design",
+            "process-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 6
+    },
+    "fields_modified": 0,
+    "proposals_approved": 6,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 6,
+    "review_duration_seconds": 137.7,
+    "review_finished_at": "2026-06-07T20:19:48.673655+00:00",
+    "review_started_at": "2026-06-07T20:17:31+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T20:19:48+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Alexander Teusz",
+    "canonical_url": "https://www.cognigy.com/blog/customer-service-ai",
+    "content_sha256": "cd7f221e860f2fdd08654fd94b415f0b567126f959e4f9578c8bb48626eb932a",
+    "publication": "cognigy.com",
+    "published_date": "2025-11-11",
+    "raw_html_rel_path": "raw/readwise/ai-in-customer-service-a-complete-guide-01krscnqrrhpbfzwm6760xwjmd.html",
+    "raw_md_rel_path": "raw/readwise/ai-in-customer-service-a-complete-guide-01krscnqrrhpbfzwm6760xwjmd.md",
+    "source_id": "ai-in-customer-service-a-complete-guide-01krscnqrrhpbfzwm6760xwjmd",
+    "title": "AI in Customer Service: A Complete Guide"
+  }
+}

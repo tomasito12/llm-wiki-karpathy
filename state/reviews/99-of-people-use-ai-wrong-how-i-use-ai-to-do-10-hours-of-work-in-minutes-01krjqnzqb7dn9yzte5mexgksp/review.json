@@ -1,0 +1,1193 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:26:07+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DnsoJvOBlwjbsIAudP5jUKH2Gsqxr",
+          "token_usage": {
+            "completion_tokens": 230,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5717,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5947
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnsoLDVNmoBgpQRGd8wmfJ9Nsyz9z",
+          "token_usage": {
+            "completion_tokens": 1110,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5363,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6473
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-ai_tools_roundup",
+          "request_id": "chatcmpl-DnsoUmMKkymNSKZOIphtyNBmp7tBI",
+          "route": "ai_tools_roundup",
+          "token_usage": {
+            "completion_tokens": 3391,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19460,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 22851
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnsoUmMKkymNSKZOIphtyNBmp7tBI",
+    "token_usage": {
+      "completion_tokens": 4731,
+      "prompt_tokens": 30540,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 35271
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The author repeatedly frames the post as what he actually uses and says he has tried the tools himself.",
+        "Claims are based on personal workflow experience and anecdotal examples rather than formal benchmarks or independent analysis.",
+        "The article is promotional and experience-driven, with little external evidence beyond the author's own usage reports."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a list of AI tools the author says he uses to save time. It is interesting because it focuses on practical workflows, not just chat prompts. The examples include charts, task automation, recurring agents, SVGs, images, and visual content. The basic idea is simple: give the tool a clear instruction, and let it do work that would otherwise take several manual steps. It is useful as a menu of possibilities, but it reads more like a personal recommendation post than a rigorous comparison.",
+      "assessed_as_of": "2026-04-10",
+      "contradictions_and_skepticism": "The strongest claims are promotional and sometimes overstated, especially the idea that these tools let one person do \"10+ hours of work in minutes\" without showing the steps or quality checks. The roundup implies a lot of automation value, but the actual examples are mostly prompt-to-output demos rather than audited end-to-end workflows. \"1% of people\" style framing is rhetorical and not evidenced in the article. Some sections blur the line between a feature announcement and an actual operational workflow, so the practical reliability remains uncertain. The article\u2019s own evidence base is personal usage, which is useful for discovery but weak for general conclusions.",
+      "key_insights": [
+        "Claude is presented as useful for turning data or notes into interactive charts and diagrams without manual spreadsheet work.",
+        "Copilot Tasks is framed as background task automation driven by plain-English instructions, such as daily research summaries or email handling.",
+        "Notion custom agents are described as cross-app workflow runners that can move work between Notion, Slack, email, calendar, Figma, Linear, and custom MCP servers.",
+        "Quiver AI is positioned as a fast way to generate SVG icons, logos, and illustrations from prompts, with a weekly free tier mentioned.",
+        "Gamma is no longer treated only as a presentation tool; the article says it can generate webpages, documents, social content, and graphics."
+      ],
+      "limitations_and_open_questions": "The article does not provide benchmarks, reproducible evaluations, latency or cost comparisons, or failure cases for any of the tools. Claims like \"better than ChatGPT\" and \"10+ hours of work in minutes\" are not supported with evidence in the text. It is unclear how often these workflows break, how much human review they still require, and whether the outputs are production-ready or only good for drafts and prototypes. Pricing and access are incomplete: some features are said to be free up to a limit or available via waitlist, but the practical constraints are not fully spelled out. Security, privacy, and data-governance issues are not addressed, especially for tools that connect across email, calendar, Slack, and custom servers. The article also does not distinguish between one-off demos and reliable day-to-day automation.",
+      "sources": [
+        "https://medium.com/@nitinfab/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-a1adb52f0252"
+      ],
+      "summary": "The article is a promotional roundup of six AI tools and workflows the author says he uses to do work faster: Claude for interactive charts and diagrams, Microsoft Copilot Tasks for background task automation, Notion custom agents for recurring multi-app workflows, Quiver AI for SVG generation, Nano Banana 2 for realistic image generation and edits, and Gamma for visual content beyond presentations. The central claim is that most people underuse AI by treating it like a text generator, while a smaller group uses it to automate tasks, generate assets, and prototype faster. Each item is presented as a practical example with a short use case, usually framed around saving time for research, content creation, design, or routine work. The piece is light on benchmarks and heavy on personal experience, with repeated calls to buy or join the author\u2019s workflow playbook. As a roundup, its value is mainly in surfacing a compact list of tools and the kinds of tasks they are supposed to accelerate, not in proving those tools are superior. The strongest recurring idea is that prompt-based workflows can replace a surprising amount of manual assembly work when the task is visual, repetitive, or loosely structured.",
+      "why_it_matters": "The piece is useful as a compact survey of task-specific AI products that go beyond text generation, especially for people building or reviewing workflows around content creation, lightweight analytics, and recurring office tasks. Its main practical value is not in any single model breakthrough, but in the pattern it highlights: structured outputs such as charts, SVGs, images, pages, and cross-app actions can be generated from short instructions instead of assembled manually. That is relevant to AI engineers because it points to the kinds of user-facing capabilities product teams may want to integrate or benchmark: interactive rendering, agentic task execution, and multimodal asset generation. The examples also show how the author thinks about AI as a workflow layer rather than a chat interface, which is a durable product-design lens even though the article itself is promotional. Evidence quality is limited, though, because the claims are mostly anecdotal and there are no hard comparisons, failure modes, or cost analyses. As of 2026-04-10, the article is best treated as a shortlist of candidate workflows to test, not as proof that these tools are objectively best or broadly reliable. The later examples hint at back-office and service-ops automation only indirectly, through recurring tasks and cross-app coordination, but the article does not substantiate those outcomes with operational data."
+    },
+    "source_type_detection": {
+      "confidence": 0.91,
+      "detected_source_type": "ai_tools_roundup",
+      "reasoning": [
+        "The article is structured as a numbered list of named products and services (Claude, Copilot Tasks, Notion custom agents, Quiver AI, Nano Banana 2, Gamma).",
+        "Each section briefly explains a tool's use case and sometimes pricing/free limits, which matches a curated tools roundup more than a single how-to or general article.",
+        "The primary purpose is to compare and recommend tools for specific tasks, with repeated per-item blurbs."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.78,
+        "core_capabilities": [
+          "It can generate interactive charts and diagrams from pasted data, which reduces the need to build visualizations manually.",
+          "It can support follow-up interaction on the generated artifact, which makes iterative analysis faster.",
+          "It can be used to create quick prototypes for developers, which is useful when a team wants an early mock before deeper implementation.",
+          "It can be used to explain complicated topics in an interactive way, which is useful for education and internal enablement."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Claude as a mature, widely recognized assistant rather than an experimental product, but it does not provide adoption data. The practical emphasis is on a specific generated-output feature, not on ecosystem depth or enterprise controls. As of 2026-04-10, the evidence here is mostly user-report style and should be treated as discovery-level rather than proof of reliability.",
+        "name": "Claude",
+        "operational_relevance": "As of 2026-04-10, the article positions Claude as a practical tool for turning raw data or notes into interactive visual outputs without manual spreadsheet work. That fits workflows where a team needs a fast draft of a dashboard, explainer, or prototype before a human refines it. The source also suggests it can be used for lightweight educational content and developer prototyping, but it does not provide evidence of reliability, export fidelity, or production readiness.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "chat-interface",
+          "multimodal",
+          "content-creation"
+        ],
+        "proposed_types": [
+          "ai-application"
+        ],
+        "related_tools": [
+          "ChatGPT",
+          "Excel"
+        ],
+        "short_description": "A general-purpose AI assistant that the article uses for generating interactive charts and diagrams from pasted data or prompts. The source frames this as useful for data exploration, teaching, and quick prototyping.",
+        "strengths": "- Can turn pasted data into an interactive dashboard with filters, which reduces the manual assembly work usually required in spreadsheets or BI tools.\n- Supports follow-up interaction on the generated chart, so the output can be explored and refined without restarting from scratch.\n- The article says it is useful for explaining complicated topics in a single prompt, which makes it relevant for teaching-style or internal communication workflows.\n- The source frames it as useful for quick interactive prototypes, which is valuable when teams need a rough artifact before committing design time.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Now, Claude can even generate interactive charts and diagrams for free. ... Now? You paste your data into Claude and say: Turn this into an interactive dashboard with filters and clear visual insights.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article gives no benchmark, latency, or quality comparison, so claims like \"better than ChatGPT\" are unsupported in the source. It is unclear how robust the generated charts are for messy data, whether exports are clean, or how much manual correction is still needed for real deliverables."
+      },
+      {
+        "confidence": 0.84,
+        "core_capabilities": [
+          "It can automate workflows from plain-English prompts, which makes it easier to assign recurring tasks without building a full orchestration layer.",
+          "It can schedule actions, which is useful for routine research and reporting jobs that should run on a cadence.",
+          "It can run in the background without manual input, which matters when the goal is to reduce repetitive supervision."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The product is presented as part of a shift from assistive chat toward delegated work, but the source does not establish broad adoption. Availability constraints suggest an early or gated rollout rather than a fully open platform. The claims are promotional and based on the author's own workflow experience.",
+        "name": "Copilot Tasks",
+        "operational_relevance": "As of 2026-04-10, the source frames Copilot Tasks as a background execution layer for repetitive knowledge work such as daily summaries, weekly research, and email handling. That makes it relevant to service-ops-adjacent workflows where small administrative tasks can be delegated if the output quality is acceptable. The article is light on technical detail, so its main value is signaling the product direction rather than proving dependable automation at scale.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "workflow-automation",
+          "agentic",
+          "copilot"
+        ],
+        "proposed_types": [
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "OpenClaw",
+          "Claude",
+          "ChatGPT"
+        ],
+        "short_description": "A Microsoft Copilot feature for scheduling and running background tasks from plain-English instructions. The article describes it as a way to automate recurring work without manual input.",
+        "strengths": "- Lets users describe work in simple English, which lowers the setup burden for routine automation.\n- Supports scheduled actions and background execution, which is useful when the work is recurring and does not need synchronous supervision.\n- The examples in the article map to practical office workflows such as daily reports, market research, content ideas, and email summaries.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"With Copilot Tasks, you can: automate workflows, schedule actions, run tasks without manual input. ... The only issue is that it is only available for a group of users, and you need to join the waitlist.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The source says it is only available to a group of users and requires a waitlist, so accessibility is limited as of 2026-04-10. The article does not show error handling, review controls, or task reliability, so it is unclear how much human oversight is still required."
+      },
+      {
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It can route work across multiple apps, which matters when a task spans docs, chat, scheduling, and project tracking.",
+          "It can react to triggers such as a newly created Linear task, which is useful for event-driven internal workflows.",
+          "It can create a document, send a notification, and update a calendar from one instruction, which reduces manual coordination overhead."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It connects to Notion, which is the home surface for the custom agent workflows described in the source.",
+          "It connects to Slack, allowing the agent to notify teams as part of a workflow.",
+          "It connects to Email and Calendar, which lets the agent handle communication and scheduling steps.",
+          "It connects to Figma and Linear, which makes it relevant for product and project operations.",
+          "It can work with custom MCP servers, which suggests an extensibility path for bespoke internal systems."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article describes the feature as newly introduced and useful for saving time, which points to an emerging product capability rather than a long-established automation platform. The integration breadth is promising, but the source gives no evidence of enterprise adoption or large-scale deployment patterns. As of 2026-04-10, this should be treated as a workflow concept worth testing, not a proven automation standard.",
+        "name": "Notion custom agents",
+        "operational_relevance": "As of 2026-04-10, the article positions Notion custom agents as a cross-application workflow runner rather than a note-taking feature. That makes them relevant for teams that want a single prompt or trigger to move work between task systems, docs, chat, and scheduling tools. The source suggests a practical use case for service automation is coordinating multi-step internal work, but it does not demonstrate failure modes, governance controls, or production-scale reliability.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "workflow-automation",
+          "agentic",
+          "multi-step-execution"
+        ],
+        "proposed_types": [
+          "workflow-automation",
+          "ai-orchestration"
+        ],
+        "related_tools": [
+          "Copilot Tasks",
+          "OpenClaw",
+          "Claude"
+        ],
+        "short_description": "Custom agents inside Notion that the article describes as handling recurring work across multiple apps. The source presents them as a way to connect Notion with Slack, email, calendar tools, Figma, Linear, and custom MCP servers.",
+        "strengths": "- Can coordinate recurring work across several business tools, which reduces context switching and manual copy-paste between systems.\n- Supports workflows that start from an event in one system and trigger follow-up actions in others, which is useful for multi-step operations.\n- The article explicitly mentions Notion, Slack, Email, Calendar, Figma, Linear, and custom MCP servers, suggesting broad workflow reach rather than a single-app helper.\n- It can process inputs and trigger actions without the user touching every step, which is the core value of lightweight orchestration.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"With their custom agents, you can handle recurring work across Notion, Slack, Email, Calendar, Figma, Linear, and even your own custom MCP servers. You can even tell: When a new task is created in Linear, summarize it, create a doc in Notion, notify Slack, and add it to my calendar.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source provides no detail on permissions, auditing, conflict resolution, or what happens when one connected app fails. It also does not show whether the workflows are robust enough for sensitive service operations or only suitable for internal productivity demos."
+      },
+      {
+        "confidence": 0.82,
+        "core_capabilities": [
+          "It can generate SVG graphics from text prompts, which is useful for quick vector asset creation.",
+          "It can produce icons, logos, and illustrations, which covers common lightweight design needs.",
+          "It offers a weekly free quota, which lowers the barrier to test whether the output is good enough for a workflow."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Quiver AI as a practical utility rather than a platform with deep ecosystem signals. The limited free plan suggests early monetization or usage gating, but the article does not provide adoption data. As of 2026-04-10, the evidence supports trying it for draft assets, not assuming it is a mature design standard.",
+        "name": "Quiver AI",
+        "operational_relevance": "As of 2026-04-10, the source frames Quiver AI as a fast way to produce vector assets for product, marketing, and publishing workflows. That is operationally useful wherever teams need quick placeholder or draft graphics without opening design software. The source is promotional and does not establish quality consistency, editability, or brand-safety controls, so it reads as a convenience tool rather than a design-system replacement.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "content-creation",
+          "image-generation"
+        ],
+        "proposed_types": [
+          "image"
+        ],
+        "related_tools": [
+          "Canva",
+          "Figma"
+        ],
+        "short_description": "A prompt-driven tool for generating SVG graphics such as icons, logos, and illustrations. The article highlights a free tier with a weekly limit.",
+        "strengths": "- Generates SVG output from a prompt, which is useful when a team needs scalable vector assets quickly.\n- Can reduce dependence on manual design work for simple icons, logos, and illustrations.\n- The article says it offers a free plan with 20 SVGs per week, which makes experimentation easy for lightweight use cases.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"If you want to save your time, then simply use Quiver AI and generate vector graphics in SVG format with just a prompt. ... they provide a free plan which lets you generate 20 SVGs every week with basic export.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not show whether the SVGs are production-ready, editable, or visually consistent across prompt variations. The free-tier limit also implies constrained throughput, so heavier design pipelines would need another solution or a paid plan not described here."
+      },
+      {
+        "confidence": 0.76,
+        "core_capabilities": [
+          "It can generate realistic images from prompts, which is useful for rapid visual drafting.",
+          "It can transform existing images into new variants, which is valuable for asset reuse and editing.",
+          "It can generate stylized outputs such as miniature dioramas, which broadens the range of promptable visual effects."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The author presents the tool as already useful in personal workflows and references prior coverage, which suggests ongoing experimentation. The article does not provide adoption metrics or enterprise-readiness signals. As of 2026-04-10, it appears to be a capable image tool with unclear operational reliability beyond the author's examples.",
+        "name": "Nano Banana 2",
+        "operational_relevance": "As of 2026-04-10, the article positions Nano Banana 2 as a fast multimodal image tool for realistic generation and editing. That is relevant to teams that need quick visual concepts, marketing imagery, or edited assets without moving into a full design workflow. The evidence is entirely anecdotal, so the main wiki value is the feature set and workflow fit rather than an external quality judgment.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "image-generation",
+          "multimodal"
+        ],
+        "proposed_types": [
+          "image"
+        ],
+        "related_tools": [
+          "GPT-Image-2",
+          "Gamma"
+        ],
+        "short_description": "An AI image generator/editor that the article describes as producing more realistic images faster than its predecessor. The source also mentions image transformation and 3D miniature style outputs.",
+        "strengths": "- The article says it can create more realistic images faster, which matters when iteration speed is important.\n- It supports transforming old images into new ones, which is useful for editing and repurposing existing assets.\n- It can generate stylized outputs such as 3D miniature dioramas, which suggests flexible prompt-based image transformation.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Now, they have released Nano Banana 2, which can create better and more realistic images faster. ... That\u2019s not all, you can make your old images into new ones, 3D miniature dioramas, and more.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The source does not include objective quality comparisons, prompt sensitivity details, or limits on how often outputs break consistency. It also does not explain licensing, safety filters, or whether the tool is suitable for brand-critical production assets."
+      },
+      {
+        "confidence": 0.81,
+        "core_capabilities": [
+          "It can generate webpages from an editable outline, which helps structure content before rendering.",
+          "It can create documents and social content, which makes it useful for multi-format publishing workflows.",
+          "It can generate posters, infographics, and logos, which extends it beyond slide decks into general visual content creation."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Gamma as an established product that has expanded beyond its original positioning. The breadth of output formats suggests product maturity, but the article gives no adoption data or enterprise details. As of 2026-04-10, it looks useful for rapid drafts and visual content experiments, not as a proven publishing system.",
+        "name": "Gamma",
+        "operational_relevance": "As of 2026-04-10, the article frames Gamma as a single tool for producing several kinds of visual deliverables from an outline or prompt. That makes it relevant for teams that need fast first drafts of webpages, documents, posters, infographics, or social assets. The source provides no evidence of export quality, collaboration depth, or design-system constraints, so it is best read as a rapid content-generation utility.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "content-creation",
+          "multimodal"
+        ],
+        "proposed_types": [
+          "ai-application"
+        ],
+        "related_tools": [
+          "Canva",
+          "Quiver AI"
+        ],
+        "short_description": "A visual content creation tool that the article says goes beyond presentations to generate webpages, documents, social content, and graphics. The source treats it as a multi-format output tool rather than only a slide maker.",
+        "strengths": "- Can generate webpages, documents, social content, and graphics, which reduces the need to switch tools for each format.\n- The source says it starts with an editable outline before generating the page, which helps keep the user in control of structure.\n- It can produce visual formats such as posters, infographics, and logos, which broadens its utility beyond slide decks.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Gamma was initially introduced as an AI presentation maker. But now, it can help you generate webpages, documents, social content, and even graphics like posters, infographics, logos, and more.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not show how editable the outputs remain after generation or whether they are suitable for production use. It also gives only a vague statement that the tool is free up to a limit, so the practical cost and usage ceiling are not clear."
+      }
+    ],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The author repeatedly frames the post as what he actually uses and says he has tried the tools himself.",
+          "Claims are based on personal workflow experience and anecdotal examples rather than formal benchmarks or independent analysis.",
+          "The article is promotional and experience-driven, with little external evidence beyond the author's own usage reports."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Claude is presented as useful for turning data or notes into interactive charts and diagrams without manual spreadsheet work.",
+          "Copilot Tasks is framed as background task automation driven by plain-English instructions, such as daily research summaries or email handling.",
+          "Notion custom agents are described as cross-app workflow runners that can move work between Notion, Slack, email, calendar, Figma, Linear, and custom MCP servers.",
+          "Quiver AI is positioned as a fast way to generate SVG icons, logos, and illustrations from prompts, with a weekly free tier mentioned.",
+          "Gamma is no longer treated only as a presentation tool; the article says it can generate webpages, documents, social content, and graphics."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@nitinfab/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-a1adb52f0252"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.91,
+        "detected_source_type": "ai_tools_roundup",
+        "reasoning": [
+          "The article is structured as a numbered list of named products and services (Claude, Copilot Tasks, Notion custom agents, Quiver AI, Nano Banana 2, Gamma).",
+          "Each section briefly explains a tool's use case and sometimes pricing/free limits, which matches a curated tools roundup more than a single how-to or general article.",
+          "The primary purpose is to compare and recommend tools for specific tasks, with repeated per-item blurbs."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.78,
+          "core_capabilities": [
+            "It can generate interactive charts and diagrams from pasted data, which reduces the need to build visualizations manually.",
+            "It can support follow-up interaction on the generated artifact, which makes iterative analysis faster.",
+            "It can be used to create quick prototypes for developers, which is useful when a team wants an early mock before deeper implementation.",
+            "It can be used to explain complicated topics in an interactive way, which is useful for education and internal enablement."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Claude as a mature, widely recognized assistant rather than an experimental product, but it does not provide adoption data. The practical emphasis is on a specific generated-output feature, not on ecosystem depth or enterprise controls. As of 2026-04-10, the evidence here is mostly user-report style and should be treated as discovery-level rather than proof of reliability.",
+          "name": "Claude",
+          "operational_relevance": "As of 2026-04-10, the article positions Claude as a practical tool for turning raw data or notes into interactive visual outputs without manual spreadsheet work. That fits workflows where a team needs a fast draft of a dashboard, explainer, or prototype before a human refines it. The source also suggests it can be used for lightweight educational content and developer prototyping, but it does not provide evidence of reliability, export fidelity, or production readiness.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "chat-interface",
+            "multimodal",
+            "content-creation"
+          ],
+          "proposed_types": [
+            "ai-application"
+          ],
+          "related_tools": [
+            "ChatGPT",
+            "Excel"
+          ],
+          "short_description": "A general-purpose AI assistant that the article uses for generating interactive charts and diagrams from pasted data or prompts. The source frames this as useful for data exploration, teaching, and quick prototyping.",
+          "strengths": "- Can turn pasted data into an interactive dashboard with filters, which reduces the manual assembly work usually required in spreadsheets or BI tools.\n- Supports follow-up interaction on the generated chart, so the output can be explored and refined without restarting from scratch.\n- The article says it is useful for explaining complicated topics in a single prompt, which makes it relevant for teaching-style or internal communication workflows.\n- The source frames it as useful for quick interactive prototypes, which is valuable when teams need a rough artifact before committing design time.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Now, Claude can even generate interactive charts and diagrams for free. ... Now? You paste your data into Claude and say: Turn this into an interactive dashboard with filters and clear visual insights.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article gives no benchmark, latency, or quality comparison, so claims like \"better than ChatGPT\" are unsupported in the source. It is unclear how robust the generated charts are for messy data, whether exports are clean, or how much manual correction is still needed for real deliverables."
+        },
+        "notes": null,
+        "proposal_id": "5896ff23-6edd-4817-b8ee-c6fce3daf612",
+        "proposal_status": "rejected",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can generate interactive charts and diagrams from pasted data, which reduces the need to build visualizations manually.",
+              "It can support follow-up interaction on the generated artifact, which makes iterative analysis faster.",
+              "It can be used to create quick prototypes for developers, which is useful when a team wants an early mock before deeper implementation.",
+              "It can be used to explain complicated topics in an interactive way, which is useful for education and internal enablement."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "ChatGPT",
+              "Excel"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "chat-interface",
+            "multimodal",
+            "content-creation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "core_capabilities": [
+            "It can automate workflows from plain-English prompts, which makes it easier to assign recurring tasks without building a full orchestration layer.",
+            "It can schedule actions, which is useful for routine research and reporting jobs that should run on a cadence.",
+            "It can run in the background without manual input, which matters when the goal is to reduce repetitive supervision."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The product is presented as part of a shift from assistive chat toward delegated work, but the source does not establish broad adoption. Availability constraints suggest an early or gated rollout rather than a fully open platform. The claims are promotional and based on the author's own workflow experience.",
+          "name": "Copilot Tasks",
+          "operational_relevance": "As of 2026-04-10, the source frames Copilot Tasks as a background execution layer for repetitive knowledge work such as daily summaries, weekly research, and email handling. That makes it relevant to service-ops-adjacent workflows where small administrative tasks can be delegated if the output quality is acceptable. The article is light on technical detail, so its main value is signaling the product direction rather than proving dependable automation at scale.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "workflow-automation",
+            "agentic",
+            "copilot"
+          ],
+          "proposed_types": [
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "OpenClaw",
+            "Claude",
+            "ChatGPT"
+          ],
+          "short_description": "A Microsoft Copilot feature for scheduling and running background tasks from plain-English instructions. The article describes it as a way to automate recurring work without manual input.",
+          "strengths": "- Lets users describe work in simple English, which lowers the setup burden for routine automation.\n- Supports scheduled actions and background execution, which is useful when the work is recurring and does not need synchronous supervision.\n- The examples in the article map to practical office workflows such as daily reports, market research, content ideas, and email summaries.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"With Copilot Tasks, you can: automate workflows, schedule actions, run tasks without manual input. ... The only issue is that it is only available for a group of users, and you need to join the waitlist.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The source says it is only available to a group of users and requires a waitlist, so accessibility is limited as of 2026-04-10. The article does not show error handling, review controls, or task reliability, so it is unclear how much human oversight is still required."
+        },
+        "notes": null,
+        "proposal_id": "2c9b6632-752f-44c5-b6fe-75d39929dbf7",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can automate workflows from plain-English prompts, which makes it easier to assign recurring tasks without building a full orchestration layer.",
+              "It can schedule actions, which is useful for routine research and reporting jobs that should run on a cadence.",
+              "It can run in the background without manual input, which matters when the goal is to reduce repetitive supervision."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "OpenClaw",
+              "Claude",
+              "ChatGPT"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation",
+            "agentic",
+            "copilot"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "workflow-automation",
+            "ai-application"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It can route work across multiple apps, which matters when a task spans docs, chat, scheduling, and project tracking.",
+            "It can react to triggers such as a newly created Linear task, which is useful for event-driven internal workflows.",
+            "It can create a document, send a notification, and update a calendar from one instruction, which reduces manual coordination overhead."
+          ],
+          "integration_ecosystem": [
+            "It connects to Notion, which is the home surface for the custom agent workflows described in the source.",
+            "It connects to Slack, allowing the agent to notify teams as part of a workflow.",
+            "It connects to Email and Calendar, which lets the agent handle communication and scheduling steps.",
+            "It connects to Figma and Linear, which makes it relevant for product and project operations.",
+            "It can work with custom MCP servers, which suggests an extensibility path for bespoke internal systems."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article describes the feature as newly introduced and useful for saving time, which points to an emerging product capability rather than a long-established automation platform. The integration breadth is promising, but the source gives no evidence of enterprise adoption or large-scale deployment patterns. As of 2026-04-10, this should be treated as a workflow concept worth testing, not a proven automation standard.",
+          "name": "Notion custom agents",
+          "operational_relevance": "As of 2026-04-10, the article positions Notion custom agents as a cross-application workflow runner rather than a note-taking feature. That makes them relevant for teams that want a single prompt or trigger to move work between task systems, docs, chat, and scheduling tools. The source suggests a practical use case for service automation is coordinating multi-step internal work, but it does not demonstrate failure modes, governance controls, or production-scale reliability.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "workflow-automation",
+            "agentic",
+            "multi-step-execution"
+          ],
+          "proposed_types": [
+            "workflow-automation",
+            "ai-orchestration"
+          ],
+          "related_tools": [
+            "Copilot Tasks",
+            "OpenClaw",
+            "Claude"
+          ],
+          "short_description": "Custom agents inside Notion that the article describes as handling recurring work across multiple apps. The source presents them as a way to connect Notion with Slack, email, calendar tools, Figma, Linear, and custom MCP servers.",
+          "strengths": "- Can coordinate recurring work across several business tools, which reduces context switching and manual copy-paste between systems.\n- Supports workflows that start from an event in one system and trigger follow-up actions in others, which is useful for multi-step operations.\n- The article explicitly mentions Notion, Slack, Email, Calendar, Figma, Linear, and custom MCP servers, suggesting broad workflow reach rather than a single-app helper.\n- It can process inputs and trigger actions without the user touching every step, which is the core value of lightweight orchestration.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"With their custom agents, you can handle recurring work across Notion, Slack, Email, Calendar, Figma, Linear, and even your own custom MCP servers. You can even tell: When a new task is created in Linear, summarize it, create a doc in Notion, notify Slack, and add it to my calendar.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source provides no detail on permissions, auditing, conflict resolution, or what happens when one connected app fails. It also does not show whether the workflows are robust enough for sensitive service operations or only suitable for internal productivity demos."
+        },
+        "notes": null,
+        "proposal_id": "9bf670ed-53ba-4c4d-bef7-d89e6ffc9c9e",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can route work across multiple apps, which matters when a task spans docs, chat, scheduling, and project tracking.",
+              "It can react to triggers such as a newly created Linear task, which is useful for event-driven internal workflows.",
+              "It can create a document, send a notification, and update a calendar from one instruction, which reduces manual coordination overhead."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It connects to Notion, which is the home surface for the custom agent workflows described in the source.",
+              "It connects to Slack, allowing the agent to notify teams as part of a workflow.",
+              "It connects to Email and Calendar, which lets the agent handle communication and scheduling steps.",
+              "It connects to Figma and Linear, which makes it relevant for product and project operations.",
+              "It can work with custom MCP servers, which suggests an extensibility path for bespoke internal systems."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Copilot Tasks",
+              "OpenClaw",
+              "Claude"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation",
+            "agentic",
+            "multi-step-execution"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "workflow-automation",
+            "ai-application",
+            "note-taking",
+            "meeting-notes"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.82,
+          "core_capabilities": [
+            "It can generate SVG graphics from text prompts, which is useful for quick vector asset creation.",
+            "It can produce icons, logos, and illustrations, which covers common lightweight design needs.",
+            "It offers a weekly free quota, which lowers the barrier to test whether the output is good enough for a workflow."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Quiver AI as a practical utility rather than a platform with deep ecosystem signals. The limited free plan suggests early monetization or usage gating, but the article does not provide adoption data. As of 2026-04-10, the evidence supports trying it for draft assets, not assuming it is a mature design standard.",
+          "name": "Quiver AI",
+          "operational_relevance": "As of 2026-04-10, the source frames Quiver AI as a fast way to produce vector assets for product, marketing, and publishing workflows. That is operationally useful wherever teams need quick placeholder or draft graphics without opening design software. The source is promotional and does not establish quality consistency, editability, or brand-safety controls, so it reads as a convenience tool rather than a design-system replacement.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "content-creation",
+            "image-generation"
+          ],
+          "proposed_types": [
+            "image"
+          ],
+          "related_tools": [
+            "Canva",
+            "Figma"
+          ],
+          "short_description": "A prompt-driven tool for generating SVG graphics such as icons, logos, and illustrations. The article highlights a free tier with a weekly limit.",
+          "strengths": "- Generates SVG output from a prompt, which is useful when a team needs scalable vector assets quickly.\n- Can reduce dependence on manual design work for simple icons, logos, and illustrations.\n- The article says it offers a free plan with 20 SVGs per week, which makes experimentation easy for lightweight use cases.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"If you want to save your time, then simply use Quiver AI and generate vector graphics in SVG format with just a prompt. ... they provide a free plan which lets you generate 20 SVGs every week with basic export.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not show whether the SVGs are production-ready, editable, or visually consistent across prompt variations. The free-tier limit also implies constrained throughput, so heavier design pipelines would need another solution or a paid plan not described here."
+        },
+        "notes": null,
+        "proposal_id": "6ff22ae0-2271-4166-8676-5c1caf431efa",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can generate SVG graphics from text prompts, which is useful for quick vector asset creation.",
+              "It can produce icons, logos, and illustrations, which covers common lightweight design needs.",
+              "It offers a weekly free quota, which lowers the barrier to test whether the output is good enough for a workflow."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Canva",
+              "Figma"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "content-creation",
+            "image-generation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "image",
+            "ai-application"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.76,
+          "core_capabilities": [
+            "It can generate realistic images from prompts, which is useful for rapid visual drafting.",
+            "It can transform existing images into new variants, which is valuable for asset reuse and editing.",
+            "It can generate stylized outputs such as miniature dioramas, which broadens the range of promptable visual effects."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The author presents the tool as already useful in personal workflows and references prior coverage, which suggests ongoing experimentation. The article does not provide adoption metrics or enterprise-readiness signals. As of 2026-04-10, it appears to be a capable image tool with unclear operational reliability beyond the author's examples.",
+          "name": "Nano Banana 2",
+          "operational_relevance": "As of 2026-04-10, the article positions Nano Banana 2 as a fast multimodal image tool for realistic generation and editing. That is relevant to teams that need quick visual concepts, marketing imagery, or edited assets without moving into a full design workflow. The evidence is entirely anecdotal, so the main wiki value is the feature set and workflow fit rather than an external quality judgment.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "image-generation",
+            "multimodal"
+          ],
+          "proposed_types": [
+            "image"
+          ],
+          "related_tools": [
+            "GPT-Image-2",
+            "Gamma"
+          ],
+          "short_description": "An AI image generator/editor that the article describes as producing more realistic images faster than its predecessor. The source also mentions image transformation and 3D miniature style outputs.",
+          "strengths": "- The article says it can create more realistic images faster, which matters when iteration speed is important.\n- It supports transforming old images into new ones, which is useful for editing and repurposing existing assets.\n- It can generate stylized outputs such as 3D miniature dioramas, which suggests flexible prompt-based image transformation.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Now, they have released Nano Banana 2, which can create better and more realistic images faster. ... That\u2019s not all, you can make your old images into new ones, 3D miniature dioramas, and more.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The source does not include objective quality comparisons, prompt sensitivity details, or limits on how often outputs break consistency. It also does not explain licensing, safety filters, or whether the tool is suitable for brand-critical production assets."
+        },
+        "notes": null,
+        "proposal_id": "4fa42030-3ad2-440a-bc71-33eb4424d4ce",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can generate realistic images from prompts, which is useful for rapid visual drafting.",
+              "It can transform existing images into new variants, which is valuable for asset reuse and editing.",
+              "It can generate stylized outputs such as miniature dioramas, which broadens the range of promptable visual effects."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "GPT-Image-2",
+              "Gamma"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "image-generation",
+            "multimodal"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "image",
+            "ai-application"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.81,
+          "core_capabilities": [
+            "It can generate webpages from an editable outline, which helps structure content before rendering.",
+            "It can create documents and social content, which makes it useful for multi-format publishing workflows.",
+            "It can generate posters, infographics, and logos, which extends it beyond slide decks into general visual content creation."
+          ],
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Gamma as an established product that has expanded beyond its original positioning. The breadth of output formats suggests product maturity, but the article gives no adoption data or enterprise details. As of 2026-04-10, it looks useful for rapid drafts and visual content experiments, not as a proven publishing system.",
+          "name": "Gamma",
+          "operational_relevance": "As of 2026-04-10, the article frames Gamma as a single tool for producing several kinds of visual deliverables from an outline or prompt. That makes it relevant for teams that need fast first drafts of webpages, documents, posters, infographics, or social assets. The source provides no evidence of export quality, collaboration depth, or design-system constraints, so it is best read as a rapid content-generation utility.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "content-creation",
+            "multimodal"
+          ],
+          "proposed_types": [
+            "ai-application"
+          ],
+          "related_tools": [
+            "Canva",
+            "Quiver AI"
+          ],
+          "short_description": "A visual content creation tool that the article says goes beyond presentations to generate webpages, documents, social content, and graphics. The source treats it as a multi-format output tool rather than only a slide maker.",
+          "strengths": "- Can generate webpages, documents, social content, and graphics, which reduces the need to switch tools for each format.\n- The source says it starts with an editable outline before generating the page, which helps keep the user in control of structure.\n- It can produce visual formats such as posters, infographics, and logos, which broadens its utility beyond slide decks.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Gamma was initially introduced as an AI presentation maker. But now, it can help you generate webpages, documents, social content, and even graphics like posters, infographics, logos, and more.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not show how editable the outputs remain after generation or whether they are suitable for production use. It also gives only a vague statement that the tool is free up to a limit, so the practical cost and usage ceiling are not clear."
+        },
+        "notes": null,
+        "proposal_id": "0c3d2879-58c0-4915-9087-2f0ef6bdabd0",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can generate webpages from an editable outline, which helps structure content before rendering.",
+              "It can create documents and social content, which makes it useful for multi-format publishing workflows.",
+              "It can generate posters, infographics, and logos, which extends it beyond slide decks into general visual content creation."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Canva",
+              "Quiver AI"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "content-creation",
+            "multimodal"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application",
+            "presentations"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "presentations"
+          ]
+        }
+      }
+    ],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 6
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 6,
+    "review_duration_seconds": 268.8,
+    "review_finished_at": "2026-06-07T20:00:54.788253+00:00",
+    "review_started_at": "2026-06-07T19:56:26+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T20:00:54+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Nitin Sharma",
+    "canonical_url": "https://medium.com/@nitinfab/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-a1adb52f0252",
+    "content_sha256": "8b3ddcd46846a79a12b155b8d83e6d6ce862a42ad0ca564e2acbe04cd67794a8",
+    "publication": "Medium",
+    "published_date": "2026-04-10",
+    "raw_html_rel_path": "raw/readwise/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-01krjqnzqb7dn9yzte5mexgksp.html",
+    "raw_md_rel_path": "raw/readwise/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-01krjqnzqb7dn9yzte5mexgksp.md",
+    "source_id": "99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-01krjqnzqb7dn9yzte5mexgksp",
+    "title": "99% of People Use AI Wrong \u2014 How I Use AI to Do 10+ Hours of Work in Minutes"
+  }
+}

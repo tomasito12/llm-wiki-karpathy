@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:59:18+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntKlOnPWOtc0awEeRPT1OTHPHpYj",
+          "token_usage": {
+            "completion_tokens": 235,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5300,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5535
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntKn0pNq5flfapJPmFQ6VGFgmzvZ",
+          "token_usage": {
+            "completion_tokens": 1006,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4949,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5955
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntKn0pNq5flfapJPmFQ6VGFgmzvZ",
+    "token_usage": {
+      "completion_tokens": 1241,
+      "prompt_tokens": 10249,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 11490
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "This is a single opinionated social post about one internal implementation case; it contains one durable idea (public agent workflows as apprenticeship), but not enough breadth for downstream entity extraction in this triage stage.",
+      "skip_recommended": true,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The post is about a concrete internal deployment at Shopify: River in Slack, its permissions, and how employees use it.",
+        "It includes operational numbers about usage, pull requests, and merge-rate change tied to that implementation.",
+        "The claims are based on the author's firsthand account of building and observing the system, not external benchmarking or research."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is about using an AI agent as a shared coworker instead of a private assistant. Shopify built River inside Slack, where people can watch each other ask questions, debug problems, and teach the system company-specific knowledge. The interesting part is not just that River can write code or run tests, but that the public setup lets everyone learn from every interaction. The author says this makes the whole company feel like an apprenticeship workshop, where newcomers learn by seeing experts work. It also helps River get better because people can correct it in the open. The main idea is simple: visibility turns AI work into organizational learning.",
+      "assessed_as_of": "2026-05-09",
+      "contradictions_and_skepticism": "The post makes a strong case for public visibility, but it is still partly a narrative of organizational taste and belief. The rise in merge rate is interesting, yet without a baseline and controls it does not prove that the open-channel design caused the improvement. The claim that the company did not retrain a model but still improved River may understate the importance of the custom instructions, memory, and human curation that shaped the system. The broader argument against private AI windows is compelling in this context, but it should not be assumed to generalize to all work, especially sensitive or regulated tasks.",
+      "key_insights": [
+        "A public Slack-based agent can turn routine AI use into a shared apprenticeship instead of a private productivity boost.",
+        "Refusing direct messages is not just a policy choice; it is the mechanism that makes work searchable and teachable across the company.",
+        "People can learn practical prompt patterns, debugging moves, and domain context by observing other teams\u2019 interactions with the agent.",
+        "The system can improve without model retraining when employees annotate failures and write down missing context for the agent.",
+        "The article\u2019s strongest claim is organizational, not model-level: visibility compounds knowledge if the work happens in open channels."
+      ],
+      "limitations_and_open_questions": "This is a single company case study with no controlled comparison against private assistants, so the reported gains may depend on Shopify\u2019s culture, Slack usage, or engineering structure. The post gives usage counts and a merge-rate change, but not a rigorous evaluation of code quality, defect rates, reviewer load, or long-term maintenance costs. It is unclear how much of River\u2019s usefulness comes from its public design versus Shopify\u2019s ability to encode strong team-specific instructions and norms. The article does not address privacy, sensitive code exposure, compliance boundaries, or situations where open channels are inappropriate. It also leaves open whether the apprenticeship effect persists as teams scale, channels proliferate, or novelty fades.",
+      "sources": [
+        "https://x.com/tobi/status/2053121182044451016/?rw_tt_thread=True"
+      ],
+      "summary": "The post argues that Shopify\u2019s internal AI agent, River, turns ordinary work in Slack into a visible apprenticeship system. River can read code, run tests, write code, open pull requests, query data, and inspect traces, but the distinctive design choice is that it only works in public Slack channels and refuses direct messages. That makes every interaction searchable and observable, so people can learn from how others scope requests, debug issues, and teach River company-specific knowledge. The author frames this as a modern version of a German Lehrwerkstatt, where the shop floor is the classroom and learning happens by watching experienced people work. The key claim is that AI\u2019s risk is not simply that it does the work, but that it does the work privately and prevents others from learning from it. Shopify says this public setup also improved River itself: people noticed failure modes, wrote down missing context, and helped increase merge rate without retraining or changing models. The broader point is that public human-agent workflows can compound organizational knowledge if they are visible, searchable, and reused across teams.",
+      "why_it_matters": "The piece is useful because it identifies a concrete product and workflow choice that changes what AI use teaches the organization. River is not presented as a smarter model; it is presented as a social interface that makes code reading, test running, pull requests, and data queries visible to everyone in Slack. That visibility creates a durable knowledge trail: senior developers\u2019 requests become templates, new hires can inspect prior threads, and team-specific instructions can be attached to the channels where the work happens. The article also gives a plausible mechanism for agent improvement that does not depend on retraining: people notice where River gets stuck, document missing knowledge, and feed that back into the shared workflow. The practical lesson is that if an organization wants AI to raise collective skill rather than isolate it, the default should be public-by-design workspaces with searchable interactions. The evidence is still anecdotal and comes from one company, so the generality is limited. As of 2026-05-09, this is a useful operating pattern to consider for internal engineering workflows, but it is best treated as a case study rather than proof that open-agent work is universally superior."
+    },
+    "source_type_detection": {
+      "confidence": 0.86,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent essay-like post with one central argument, not a bundle of unrelated items.",
+        "No interview/Q&A structure, numbered list, or step-by-step tutorial framing.",
+        "Author describes Shopify's internal River system and uses it to support a personal interpretation."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The post is about a concrete internal deployment at Shopify: River in Slack, its permissions, and how employees use it.",
+          "It includes operational numbers about usage, pull requests, and merge-rate change tied to that implementation.",
+          "The claims are based on the author's firsthand account of building and observing the system, not external benchmarking or research."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A public Slack-based agent can turn routine AI use into a shared apprenticeship instead of a private productivity boost.",
+          "Refusing direct messages is not just a policy choice; it is the mechanism that makes work searchable and teachable across the company.",
+          "People can learn practical prompt patterns, debugging moves, and domain context by observing other teams\u2019 interactions with the agent.",
+          "The system can improve without model retraining when employees annotate failures and write down missing context for the agent.",
+          "The article\u2019s strongest claim is organizational, not model-level: visibility compounds knowledge if the work happens in open channels."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://x.com/tobi/status/2053121182044451016/?rw_tt_thread=True"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.86,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent essay-like post with one central argument, not a bundle of unrelated items.",
+          "No interview/Q&A structure, numbered list, or step-by-step tutorial framing.",
+          "Author describes Shopify's internal River system and uses it to support a personal interpretation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "tobi lutke",
+    "canonical_url": "https://x.com/tobi/status/2053121182044451016/?rw_tt_thread=True",
+    "content_sha256": "8ca8f630d83aa0b7cf8a45a7bf215fa0bf8212d8fc2cb1af6982622ca1a00c5c",
+    "publication": "X (formerly Twitter)",
+    "published_date": "2026-05-09",
+    "raw_html_rel_path": "raw/readwise/learning-on-the-shop-floor-01krv8e47g986qdzdmbcdny96n.html",
+    "raw_md_rel_path": "raw/readwise/learning-on-the-shop-floor-01krv8e47g986qdzdmbcdny96n.md",
+    "source_id": "learning-on-the-shop-floor-01krv8e47g986qdzdmbcdny96n",
+    "title": "Learning on the Shop floor"
+  }
+}

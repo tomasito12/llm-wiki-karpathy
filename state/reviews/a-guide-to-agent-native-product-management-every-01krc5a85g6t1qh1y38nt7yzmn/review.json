@@ -1,0 +1,846 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:26:29+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DnsoqcseHnYhvqXyDg5VC1Ekb7pYC",
+          "token_usage": {
+            "completion_tokens": 211,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7649,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7860
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnsosECzKN8bNUhInw1IkrSl3Q0kQ",
+          "token_usage": {
+            "completion_tokens": 1101,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7273,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8374
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-Dnsp0vnPzdrs7TbBRR9w6beEmGJMW",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1741,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35398,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 37139
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnsp0vnPzdrs7TbBRR9w6beEmGJMW",
+    "token_usage": {
+      "completion_tokens": 3053,
+      "prompt_tokens": 50320,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 53373
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-27",
+        "confidence": 0.82,
+        "evidence_from_source": "The article describes product management moving from manual ticket writing and dashboard review toward conversational work in Claude Code, with the agent handling strategy interviews, ticket updates, and product pulse generation.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-restructuring",
+        "proposed_tags": [
+          "workflow-restructuring",
+          "human-ai-collaboration",
+          "ai-operationalization"
+        ],
+        "related_trends": [
+          "artifact-first-ai-workflows",
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "enterprise-workflows",
+        "suggested_new_tags": [
+          "enterprise-workflows"
+        ],
+        "supporting_data_points": [
+          "The author says he no longer writes tickets and instead talks about them with the agent.",
+          "The agent produces a product pulse from analytics, tracing, payments, and read-only database inputs.",
+          "The workflow is described as changing at least weekly, which suggests the implementation details are fluid."
+        ],
+        "supporting_snippet": "\"The conversation is the work.\"",
+        "time_sensitivity": "Actionable as of 2026-04-27; the exact workflow will change as tools and integrations change, but the underlying restructuring pattern is likely to remain relevant.",
+        "trend_description": "Knowledge work is being reorganized so that agents handle repetitive coordination, reporting, and artifact maintenance while humans focus on judgment, design, and exception handling. The shift is strongest when the work can be expressed as conversational loops over connected tools and explicit documents. This is not a claim that agents replace experts; it is a shift in where expert time is spent.",
+        "trend_slug": "workflow-restructuring-around-ai-agents",
+        "trend_title": "Workflow Restructuring Around AI Agents",
+        "uncertainty_note": "The evidence is a single practitioner workflow at one company, so it shows a plausible operating pattern rather than a broadly validated industry standard.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article is built around the author's firsthand workflow using Claude Code, compound engineering, GitHub Issues, and Pulse.",
+        "Claims are mostly supported by personal experience and a concrete implementation at Every/Spiral rather than external research or benchmarks.",
+        "It includes some historical context and cited books, but the dominant evidence is a practitioner implementation narrative."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about using AI agents as a product manager\u2019s day-to-day operating system. Instead of writing lots of tickets, pulling metrics by hand, and repeating the same planning chores, the author describes two agent-driven workflows: one for writing strategy and one for reviewing product health. The strategy workflow interviews you and turns your answers into a strategy document. The pulse workflow gathers analytics, errors, payments, and other signals into a short report. The basic idea is simple: let the agent do the repetitive work so the human can focus on deciding what to build and why.",
+      "assessed_as_of": "2026-04-27",
+      "contradictions_and_skepticism": "The article presents agentic PM work as a replacement for tickets and much of the manual routine, but many teams still need explicit written requirements, cross-functional coordination, and audit trails. The claim that \u201cthe conversation is the work\u201d is directionally useful, but it may understate how much product work still depends on durable artifacts outside the model context. The proposed simplicity of using only now/next/later and a few core metrics may fit a small team like Spiral, but the article does not show how it scales to larger organizations or regulated environments. The guidance is persuasive as a workflow pattern, but the evidence base is mostly anecdotal and localized to the author\u2019s own setup.",
+      "key_insights": [
+        "A strategy document becomes more useful when an agent interviews you section by section and pushes back on vague answers.",
+        "The author treats product management as a plan-review loop, with the agent helping most at planning and post-ship review rather than during build execution.",
+        "A useful pulse report is intentionally short and opinionated: headlines, usage, system performance, and concrete follow-ups.",
+        "Read-only data access matters because the pulse depends on pulling from analytics, tracing, payments, and database sources without giving agents write access.",
+        "Saved pulse reports become a searchable memory of product decisions and trends, which is more durable than isolated dashboards."
+      ],
+      "limitations_and_open_questions": "This is a practitioner case study, not a controlled evaluation, so it does not prove that the workflow is better than conventional PM practice. The article gives structure but not hard benchmarks for time saved, decision quality, or product outcomes. It assumes the product is instrumented well enough to produce useful analytics, traces, and conversion data, which many teams do not have. It also relies on MCP or other integrations for a smoother experience, but does not compare that path against simpler manual workflows. Security and privacy concerns are only lightly addressed: the author recommends read-only database access, but there is little detail on permissions, auditability, or failure modes. The maintenance burden of keeping prompts, connectors, and review habits aligned as tools change weekly is acknowledged but not solved.",
+      "sources": [
+        "https://every.to/guides/ai-product-management-guide/"
+      ],
+      "summary": "The article argues that product management can be reworked around agentic tools so that routine analysis, ticketing, reporting, and strategy maintenance are done in conversation with an LLM rather than through manual screen work. The author anchors the guide in his own workflow at Every\u2019s Spiral product, where he uses Claude Code and Every\u2019s compound-engineering plugin to run two installable skills: ce:strategy and ce:product-pulse. ce:strategy produces a strategy document built around target problem, approach, persona, key metrics, and work tracks, using a conversational interview modeled partly on Good Strategy Bad Strategy and Crossing the Chasm. ce:product-pulse turns instrumented product data into a concise report covering headlines, usage, system performance, and follow-ups, pulling from analytics, tracing, payments, and read-only database access when available. The article also argues that tickets should be agent-managed through an MCP-capable issue tracker, that Kanban-style now/next/later flows are sufficient for small teams, and that recurring pulses can become a product\u2019s memory over time. The core claim is not that agents replace product thinking, but that they remove much of the drudgery so PMs spend more time on strategy, design, user feedback, and judgment.",
+      "why_it_matters": "The piece is useful because it turns a vague \u201cuse AI for PM\u201d idea into two concrete operating patterns: an agent-assisted strategy interview and an agent-generated product pulse. That makes the advice more durable than generic productivity talk, since the article specifies the sections a strategy doc should contain, the metrics that belong in a pulse, and the kinds of data sources an agent can query. It also gives a practical rule for scope: use agents to absorb repetitive coordination work, but keep the human responsible for the core judgment calls around target problem, persona choice, metrics, and prioritization. The strongest operational takeaway is that product management can be restructured around conversational workflows with explicit artifacts, not around endless ticket writing or ad hoc dashboard checks. The evidence is still a single practitioner\u2019s workflow at Every, so the guidance is best read as a tested pattern rather than a broadly validated method. Actionable as of 2026-04-27, but still a point-in-time workflow that will need adaptation as tools and integrations change. The article also has a modest support-automation angle: the pulse combines product analytics, user emails, feature requests, and direct calls into one review loop, which could help smaller teams stay on top of feedback without adding a separate back-office process."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article about one workflow change, not a bundle of unrelated items.",
+        "Uses step-by-step explanatory structure with headings, but the primary purpose is an opinionated guide rather than a tutorial roundup.",
+        "Contains one main case study from the author's own product work, which fits a standard article more than a specialized roundup type."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It supports conversational, agent-driven work inside a terminal-like environment.",
+          "It can run scheduled routines for recurring tasks such as daily product pulse generation.",
+          "It can connect to MCP tools so the agent can query connected systems during the workflow."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article explicitly mentions MCP as the preferred integration path for connected tools.",
+          "It is used alongside GitHub Issues, Linear, PostHog, Datadog, Sentry, Logfire, Honeycomb, Stripe, and Paddle in the described workflow."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Claude Code as a practical working environment rather than a novelty, which suggests it is mature enough for daily use in an advanced practitioner workflow. The mention of routines and MCP integration indicates an ecosystem broad enough to support repeated operational tasks, though the article does not provide adoption data or independent validation.",
+        "name": "Claude Code",
+        "operational_relevance": "Claude Code is relevant wherever teams want an agent to coordinate routine product or engineering work through a terminal workflow instead of a separate chat app. It fits well when the agent needs to read and update artifacts such as strategy docs, tickets, and reports, and when the team wants recurring, reviewable outputs rather than one-off prompts. For service automation teams, the practical value is less about coding alone and more about using an agent as an operational assistant across planning, tracking, and review loops.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cli-tool",
+          "agentic",
+          "coding",
+          "tool-use",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "coding-agent"
+        ],
+        "related_tools": [
+          "Codex"
+        ],
+        "short_description": "A terminal-based agentic coding environment for running conversational workflows against code and connected tools. In this article, it is the environment used to drive product strategy interviews, issue management, and product pulse generation.",
+        "strengths": "- Supports a conversational workflow where the agent can interview the user, update artifacts, and keep recurring outputs aligned with product context.\n- Works with scheduled routines, which makes it suitable for repeatable review loops rather than ad hoc prompting.\n- Can connect to MCP-backed tools, so it can pull live product data and interact with external systems during the same session.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"All of my product management work happens in conversation with, in my case, Claude Code. The conversation is the work.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article implies a fairly tool-integrated, agent-friendly setup, so teams without MCP connectivity or good instrumentation will get less value. It also describes the workflow as changing weekly, which suggests the operational setup may require ongoing maintenance rather than being a set-and-forget system."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The PM loop can be split into plan, ship, and review, with agents most useful in plan and review.",
+          "Conversational artifact generation reduces reliance on manual ticket writing and dashboard checking.",
+          "The human still owns judgment-heavy work such as problem selection, persona focus, and prioritization."
+        ],
+        "knowledge_summary": "Agent-native product management is a workflow pattern where an AI agent handles routine planning, reporting, ticket movement, and review work while the human keeps ownership of product judgment. The durable insight is not that product managers disappear, but that the manager\u2019s role shifts toward strategy, prioritization, and interpretation of signal. This pattern works best when product artifacts are explicit, connected to tools, and updated through conversation rather than manual screen work. It also depends on a tight loop between strategy, shipping, and review so that the agent can maintain context over time.",
+        "match_candidates": [],
+        "operational_insight": "Treat the agent as the coordinator for repetitive PM chores, but keep humans responsible for the target problem, persona choice, metrics, and prioritization decisions.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "enterprise-workflows",
+          "human-ai-workflows",
+          "workflow-design",
+          "organizational-design"
+        ],
+        "related_topics": [
+          "operational-artifact-generation",
+          "workflow-restructuring-around-ai-agents"
+        ],
+        "relevance_note": "Useful as of 2026-04-27 for teams trying to turn AI assistance into an operating model instead of a novelty. The pattern matters wherever product, engineering, and support work are interleaved and a conversational agent can keep the artifacts current with less manual overhead.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The core claim is not that agents replace product thinking, but that they remove much of the drudgery so PMs spend more time on strategy, design, user feedback, and judgment.\"",
+        "topic_slug": "agent-native-product-management",
+        "topic_title": "Agent-Native Product Management",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Good pulses are intentionally compact so the most important signal is visible first.",
+          "The report should combine quantitative product usage with system performance and concrete follow-up questions.",
+          "Saved pulse reports become a time-series memory of the product, not just a one-off status check."
+        ],
+        "knowledge_summary": "An agent-generated product pulse is a concise, recurring operating report that summarizes product usage, system health, and follow-up actions from live data sources. The key design choice is to keep the report short, opinionated, and action-oriented so it can serve as a founder-readable snapshot rather than a dashboard dump. This pattern becomes more useful when the output is saved over time, because the accumulated reports create a searchable memory of product behavior and change. It is especially strong when the agent can query analytics, tracing, payments, and database sources in one run.",
+        "match_candidates": [],
+        "operational_insight": "Use a short pulse format with headlines, usage, system performance, and follow-ups so the agent can convert fragmented telemetry into a single review artifact.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "enterprise-workflows",
+          "workflow-design",
+          "workflow-automation",
+          "inference-systems"
+        ],
+        "related_topics": [
+          "agent-native-product-management",
+          "operational-artifact-generation"
+        ],
+        "relevance_note": "Relevant as of 2026-04-27 for product and support teams that need a lightweight review loop over live operational data. The structure is durable because it translates across analytics stacks, tracing tools, billing systems, and issue feedback channels.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"A good pulse report fits on a single page (about 30 to 40 lines of terminal output) and covers four things:\"",
+        "topic_slug": "agent-generated-product-pulses",
+        "topic_title": "Agent-Generated Product Pulses",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-27",
+          "confidence": 0.82,
+          "evidence_from_source": "The article describes product management moving from manual ticket writing and dashboard review toward conversational work in Claude Code, with the agent handling strategy interviews, ticket updates, and product pulse generation.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-restructuring",
+          "proposed_tags": [
+            "workflow-restructuring",
+            "human-ai-collaboration",
+            "ai-operationalization"
+          ],
+          "related_trends": [
+            "artifact-first-ai-workflows",
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "enterprise-workflows",
+          "suggested_new_tags": [
+            "enterprise-workflows"
+          ],
+          "supporting_data_points": [
+            "The author says he no longer writes tickets and instead talks about them with the agent.",
+            "The agent produces a product pulse from analytics, tracing, payments, and read-only database inputs.",
+            "The workflow is described as changing at least weekly, which suggests the implementation details are fluid."
+          ],
+          "supporting_snippet": "\"The conversation is the work.\"",
+          "time_sensitivity": "Actionable as of 2026-04-27; the exact workflow will change as tools and integrations change, but the underlying restructuring pattern is likely to remain relevant.",
+          "trend_description": "Knowledge work is being reorganized so that agents handle repetitive coordination, reporting, and artifact maintenance while humans focus on judgment, design, and exception handling. The shift is strongest when the work can be expressed as conversational loops over connected tools and explicit documents. This is not a claim that agents replace experts; it is a shift in where expert time is spent.",
+          "trend_slug": "workflow-restructuring-around-ai-agents",
+          "trend_title": "Workflow Restructuring Around AI Agents",
+          "uncertainty_note": "The evidence is a single practitioner workflow at one company, so it shows a plausible operating pattern rather than a broadly validated industry standard.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "2bd3405b-b4c1-4371-8408-4e0da3bc6730",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "artifact-first-ai-workflows",
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The author says he no longer writes tickets and instead talks about them with the agent.",
+              "The agent produces a product pulse from analytics, tracing, payments, and read-only database inputs.",
+              "The workflow is described as changing at least weekly, which suggests the implementation details are fluid."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-restructuring",
+            "human-ai-collaboration",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article is built around the author's firsthand workflow using Claude Code, compound engineering, GitHub Issues, and Pulse.",
+          "Claims are mostly supported by personal experience and a concrete implementation at Every/Spiral rather than external research or benchmarks.",
+          "It includes some historical context and cited books, but the dominant evidence is a practitioner implementation narrative."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A strategy document becomes more useful when an agent interviews you section by section and pushes back on vague answers.",
+          "The author treats product management as a plan-review loop, with the agent helping most at planning and post-ship review rather than during build execution.",
+          "A useful pulse report is intentionally short and opinionated: headlines, usage, system performance, and concrete follow-ups.",
+          "Read-only data access matters because the pulse depends on pulling from analytics, tracing, payments, and database sources without giving agents write access.",
+          "Saved pulse reports become a searchable memory of product decisions and trends, which is more durable than isolated dashboards."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://every.to/guides/ai-product-management-guide/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article about one workflow change, not a bundle of unrelated items.",
+          "Uses step-by-step explanatory structure with headings, but the primary purpose is an opinionated guide rather than a tutorial roundup.",
+          "Contains one main case study from the author's own product work, which fits a standard article more than a specialized roundup type."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It supports conversational, agent-driven work inside a terminal-like environment.",
+            "It can run scheduled routines for recurring tasks such as daily product pulse generation.",
+            "It can connect to MCP tools so the agent can query connected systems during the workflow."
+          ],
+          "integration_ecosystem": [
+            "The article explicitly mentions MCP as the preferred integration path for connected tools.",
+            "It is used alongside GitHub Issues, Linear, PostHog, Datadog, Sentry, Logfire, Honeycomb, Stripe, and Paddle in the described workflow."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Claude Code as a practical working environment rather than a novelty, which suggests it is mature enough for daily use in an advanced practitioner workflow. The mention of routines and MCP integration indicates an ecosystem broad enough to support repeated operational tasks, though the article does not provide adoption data or independent validation.",
+          "name": "Claude Code",
+          "operational_relevance": "Claude Code is relevant wherever teams want an agent to coordinate routine product or engineering work through a terminal workflow instead of a separate chat app. It fits well when the agent needs to read and update artifacts such as strategy docs, tickets, and reports, and when the team wants recurring, reviewable outputs rather than one-off prompts. For service automation teams, the practical value is less about coding alone and more about using an agent as an operational assistant across planning, tracking, and review loops.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cli-tool",
+            "agentic",
+            "coding",
+            "tool-use",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "coding-agent"
+          ],
+          "related_tools": [
+            "Codex"
+          ],
+          "short_description": "A terminal-based agentic coding environment for running conversational workflows against code and connected tools. In this article, it is the environment used to drive product strategy interviews, issue management, and product pulse generation.",
+          "strengths": "- Supports a conversational workflow where the agent can interview the user, update artifacts, and keep recurring outputs aligned with product context.\n- Works with scheduled routines, which makes it suitable for repeatable review loops rather than ad hoc prompting.\n- Can connect to MCP-backed tools, so it can pull live product data and interact with external systems during the same session.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"All of my product management work happens in conversation with, in my case, Claude Code. The conversation is the work.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article implies a fairly tool-integrated, agent-friendly setup, so teams without MCP connectivity or good instrumentation will get less value. It also describes the workflow as changing weekly, which suggests the operational setup may require ongoing maintenance rather than being a set-and-forget system."
+        },
+        "notes": null,
+        "proposal_id": "094e0da9-df0a-4be0-88fa-df21e6482316",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It supports conversational, agent-driven work inside a terminal-like environment.",
+              "It can run scheduled routines for recurring tasks such as daily product pulse generation.",
+              "It can connect to MCP tools so the agent can query connected systems during the workflow."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article explicitly mentions MCP as the preferred integration path for connected tools.",
+              "It is used alongside GitHub Issues, Linear, PostHog, Datadog, Sentry, Logfire, Honeycomb, Stripe, and Paddle in the described workflow."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Codex"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cli-tool",
+            "agentic",
+            "coding",
+            "tool-use",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The PM loop can be split into plan, ship, and review, with agents most useful in plan and review.",
+            "Conversational artifact generation reduces reliance on manual ticket writing and dashboard checking.",
+            "The human still owns judgment-heavy work such as problem selection, persona focus, and prioritization."
+          ],
+          "knowledge_summary": "Agent-native product management is a workflow pattern where an AI agent handles routine planning, reporting, ticket movement, and review work while the human keeps ownership of product judgment. The durable insight is not that product managers disappear, but that the manager\u2019s role shifts toward strategy, prioritization, and interpretation of signal. This pattern works best when product artifacts are explicit, connected to tools, and updated through conversation rather than manual screen work. It also depends on a tight loop between strategy, shipping, and review so that the agent can maintain context over time.",
+          "match_candidates": [],
+          "operational_insight": "Treat the agent as the coordinator for repetitive PM chores, but keep humans responsible for the target problem, persona choice, metrics, and prioritization decisions.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "enterprise-workflows",
+            "human-ai-workflows",
+            "workflow-design",
+            "organizational-design"
+          ],
+          "related_topics": [
+            "operational-artifact-generation",
+            "workflow-restructuring-around-ai-agents"
+          ],
+          "relevance_note": "Useful as of 2026-04-27 for teams trying to turn AI assistance into an operating model instead of a novelty. The pattern matters wherever product, engineering, and support work are interleaved and a conversational agent can keep the artifacts current with less manual overhead.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The core claim is not that agents replace product thinking, but that they remove much of the drudgery so PMs spend more time on strategy, design, user feedback, and judgment.\"",
+          "topic_slug": "agent-native-product-management",
+          "topic_title": "Agent-Native Product Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5d205075-f242-4ff3-a6e4-0edc01869d89",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The PM loop can be split into plan, ship, and review, with agents most useful in plan and review.",
+              "Conversational artifact generation reduces reliance on manual ticket writing and dashboard checking.",
+              "The human still owns judgment-heavy work such as problem selection, persona focus, and prioritization."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "operational-artifact-generation",
+              "workflow-restructuring-around-ai-agents"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-workflows",
+            "human-ai-workflows",
+            "workflow-design",
+            "organizational-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Good pulses are intentionally compact so the most important signal is visible first.",
+            "The report should combine quantitative product usage with system performance and concrete follow-up questions.",
+            "Saved pulse reports become a time-series memory of the product, not just a one-off status check."
+          ],
+          "knowledge_summary": "An agent-generated product pulse is a concise, recurring operating report that summarizes product usage, system health, and follow-up actions from live data sources. The key design choice is to keep the report short, opinionated, and action-oriented so it can serve as a founder-readable snapshot rather than a dashboard dump. This pattern becomes more useful when the output is saved over time, because the accumulated reports create a searchable memory of product behavior and change. It is especially strong when the agent can query analytics, tracing, payments, and database sources in one run.",
+          "match_candidates": [],
+          "operational_insight": "Use a short pulse format with headlines, usage, system performance, and follow-ups so the agent can convert fragmented telemetry into a single review artifact.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "enterprise-workflows",
+            "workflow-design",
+            "workflow-automation",
+            "inference-systems"
+          ],
+          "related_topics": [
+            "agent-native-product-management",
+            "operational-artifact-generation"
+          ],
+          "relevance_note": "Relevant as of 2026-04-27 for product and support teams that need a lightweight review loop over live operational data. The structure is durable because it translates across analytics stacks, tracing tools, billing systems, and issue feedback channels.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"A good pulse report fits on a single page (about 30 to 40 lines of terminal output) and covers four things:\"",
+          "topic_slug": "agent-generated-product-pulses",
+          "topic_title": "Agent-Generated Product Pulses",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "09806366-4014-4908-8a18-a23448229d1c",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Good pulses are intentionally compact so the most important signal is visible first.",
+              "The report should combine quantitative product usage with system performance and concrete follow-up questions.",
+              "Saved pulse reports become a time-series memory of the product, not just a one-off status check."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-native-product-management",
+              "operational-artifact-generation"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "enterprise-workflows",
+            "workflow-design",
+            "workflow-automation",
+            "inference-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "implementation_case": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 158.4,
+    "review_finished_at": "2026-06-07T20:03:33.363308+00:00",
+    "review_started_at": "2026-06-07T20:00:55+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T20:03:33+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Marcus Moretti",
+    "canonical_url": "https://every.to/guides/ai-product-management-guide/",
+    "content_sha256": "ca0cdaaaf27474f4d5a7aaadd0b39a9cd6134d9c78aa47dd64b92cca117c3730",
+    "publication": "every.to",
+    "published_date": "2026-04-27",
+    "raw_html_rel_path": "raw/readwise/a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn.html",
+    "raw_md_rel_path": "raw/readwise/a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn.md",
+    "source_id": "a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn",
+    "title": "A Guide to Agent-native Product Management - Every"
+  }
+}

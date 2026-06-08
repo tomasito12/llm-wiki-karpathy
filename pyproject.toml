@@ -49,6 +49,9 @@ ingest-manifest = [
 ingest-queue = [
   "python -m src.ingest_queue {args}",
 ]
+ingest-preanalyze = [
+  "python -m src.ingest_batch.cli {args}",
+]
 readwise-dedupe = [
   "python -m src.readwise.dedupe_cli {args}",
 ]

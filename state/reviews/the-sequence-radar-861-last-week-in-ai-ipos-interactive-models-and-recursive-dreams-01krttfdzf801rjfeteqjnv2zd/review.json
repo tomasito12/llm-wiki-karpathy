@@ -1,0 +1,870 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T15:27:21+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoWAFGyyc7O74YNm7UYpvDDrziQ1m",
+          "token_usage": {
+            "completion_tokens": 206,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6098,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6304
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoWAH82anSGoAzvfYPiJlhpONAvfe",
+          "token_usage": {
+            "completion_tokens": 1204,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5721,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6925
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DoWASx9KQx9VZ916YUp6Koa7qaD4R",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 2863,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19098,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 21961
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoWASx9KQx9VZ916YUp6Koa7qaD4R",
+    "token_usage": {
+      "completion_tokens": 4273,
+      "prompt_tokens": 30917,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 35190
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 10
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-17",
+        "confidence": 0.86,
+        "evidence_from_source": "The roundup contrasts bigger-model framing with agency, memory, interaction, and workflow structure. It specifically highlights Thinking Machines, memory frameworks, agentic modeling, and safety classifiers as examples of this shift.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "execution-oriented-agents",
+        "proposed_tags": [
+          "execution-oriented-agents",
+          "human-ai-collaboration",
+          "orchestration-layer-growth"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents",
+          "harness-design-becomes-more-important-for-agent-reliability",
+          "persistent-agents"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Thinking Machines frames interaction as part of the model, not the harness.",
+          "The research section includes memory, agentic modeling, forecasting, and safety systems.",
+          "The editorial repeatedly emphasizes workflow and agency over scale."
+        ],
+        "supporting_snippet": "\"The common thread was not bigger models, larger context windows, or yet another benchmark victory. It was agency.\"",
+        "time_sensitivity": "Actionable as of 2026-05-17; this source suggests a live product-design direction, but it does not establish how durable each implementation will be.",
+        "trend_description": "AI product differentiation increasingly comes from the surrounding system: interaction design, orchestration, memory, evaluation, and deployment context. Models still matter, but product value often depends on how the model behaves inside a workflow and how much supervision or structure is built around it.",
+        "trend_slug": "ai-products-shift-from-models-to-systems",
+        "trend_title": "AI products are shifting from standalone models to interaction-heavy systems",
+        "uncertainty_note": "The article is a curated roundup, not a controlled comparison of architectures. It points in a direction but does not quantify whether system-level packaging consistently beats model-centric design.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-05-17",
+        "evidence_snippets": [
+          "\"The model listens, watches, interrupts, yields, and reacts in real time.\"",
+          "\"it treats interaction not as a UI layer bolted onto intelligence, but as part of intelligence itself.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Thinking Machines"
+        ],
+        "operational_relevance": "Suggests a product architecture where model behavior, turn-taking, interruption handling, and shared context are first-class engineering concerns. Relevant to agent orchestration, human-in-the-loop workflows, and multimodal assistants.",
+        "primary_tag": "human-ai-collaboration",
+        "proposed_tags": [
+          "human-ai-collaboration",
+          "model-behavior",
+          "execution-oriented-agents"
+        ],
+        "secondary_tag": "model-behavior",
+        "service_automation_relevance": "Potentially relevant for chatbots and voicebots that need to collaborate over multiple turns, handle corrections gracefully, and remain responsive during task execution. The source does not demonstrate deployed service outcomes.",
+        "signal_strength": "medium",
+        "signal_title": "Interaction is becoming a model capability, not just a UI layer",
+        "signal_type": "model",
+        "suggested_destinations": [
+          "trends/",
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Thinking Machines is described as betting on AI that stays present in the conversation: it \"listens, watches, interrupts, yields, and reacts in real time.\" The source frames this as interaction being part of intelligence itself, not a wrapper around it. That matters for systems that need continuous collaboration instead of one-shot prompt/response behavior.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-17, this is a useful design signal for conversational agents: some products may need models optimized for live back-and-forth behavior rather than only static completion quality. The article is a preview, not evidence of production impact, so the operational stakes are plausible but not yet proven.",
+        "wiki_worthiness": "review_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-17",
+        "evidence_snippets": [
+          "\"systems that improve themselves through automated experimentation\"",
+          "\"automating the loop behind training, alignment, and model adaptation.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Recursive Superintelligence",
+          "Adaption",
+          "AutoScientist"
+        ],
+        "operational_relevance": "Relevant to teams building AutoML, evaluation loops, self-tuning memory, and automated model adaptation. The key operational question is whether the feedback loop improves real task quality or just optimizes proxy metrics.",
+        "primary_tag": "ai-research",
+        "proposed_tags": [
+          "ai-research",
+          "continuous-evaluation",
+          "ai-safety"
+        ],
+        "secondary_tag": "continuous-evaluation",
+        "service_automation_relevance": "Indirectly relevant: more automated research loops can improve the systems that power support automation, but the article does not show direct customer-service deployment. The main lesson is that automation of model improvement still needs strong safeguards.",
+        "signal_strength": "medium",
+        "signal_title": "Automating research loops is emerging as a product category",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "trends/",
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The roundup groups Recursive Superintelligence and Adaption's AutoScientist under an \"AI scientist\" pattern: systems that automate experimentation, diagnosis, and model improvement. The source presents this as a closed-loop approach to research, not just a single model feature. It also explicitly warns that such systems may optimize capabilities without preserving grounding and safety.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-17, this is a meaningful signal that research automation is moving from idea to commercial packaging. The evidence is still early-stage and mostly announcement-level, so the main value is recognizing the workflow shape, not assuming validated gains.",
+        "wiki_worthiness": "review_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-17",
+        "evidence_snippets": [
+          "\"Behind every magical chatbot sits an industrial stack of silicon, power, networking, cooling, capital markets, and geopolitical anxiety.\"",
+          "\"If intelligence is becoming a commodity, compute remains the refinery.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Cerebras"
+        ],
+        "operational_relevance": "Important for teams planning training or inference capacity, especially when model ambition collides with power, networking, and cooling constraints. It also supports the idea that infrastructure strategy can be a product differentiator.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "runtime-systems",
+          "frontier-compression"
+        ],
+        "secondary_tag": "runtime-systems",
+        "service_automation_relevance": "Indirect relevance: service automation systems depend on cheap, reliable inference, so infrastructure bottlenecks affect latency, throughput, and cost. The source does not provide direct service metrics.",
+        "signal_strength": "high",
+        "signal_title": "AI infrastructure remains a physical capital bottleneck",
+        "signal_type": "infrastructure",
+        "suggested_destinations": [
+          "trends/",
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Cerebras's IPO is used as a reminder that AI capability still depends on silicon, power, networking, cooling, capital markets, and geopolitics. The source explicitly frames compute as the \"refinery\" behind intelligence and notes that public markets are deciding which refineries matter. This is infrastructure-first reasoning, not model-only thinking.",
+        "time_horizon": "long_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-17, this is a durable reminder that frontier AI products are constrained by physical and financial infrastructure, not only software. The IPO is a market event, so the signal is informative but not proof of long-term moat quality.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The source combines independent editorial interpretation with vendor/product announcements and research summaries.",
+        "Several claims are presented as reported news items or launch blurbs rather than a single evidence mode.",
+        "The article spans IPO/news, product previews, and research descriptions, so no one evidence type dominates."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a weekly AI news roundup centered on one idea: agency. Instead of focusing on bigger models, it spotlights systems that can interact, remember, and improve themselves. Cerebras\u2019s IPO is used to show that AI still depends on very real hardware and power infrastructure. Thinking Machines is described as building models that stay in the loop during a conversation, not just answer once and leave. The article also covers \u201cAI scientist\u201d startups that automate research loops, plus several agent and safety research papers. The basic takeaway is that, as of 2026-05-17, the interesting work is shifting toward models that can do more than generate text: they can collaborate, adapt, and help build the next version of themselves.",
+      "assessed_as_of": "2026-05-17",
+      "contradictions_and_skepticism": "The roundup is enthusiastic about agency and recursive improvement, but its strongest claims are still largely directional rather than demonstrated at scale. The language around models that \u201clisten, watch, interrupt, yield, and react\u201d is compelling, yet the article does not show whether that interaction style improves task completion enough to justify added complexity. The \u201cAI scientist\u201d framing is especially speculative because automated self-improvement can just as easily optimize proxies or amplify mistakes if the evaluation loop is weak. The Cerebras IPO is informative as a market event, but an IPO price move is not the same thing as proof of a better technical or product moat.",
+      "key_insights": [
+        "Cerebras is framed as evidence that AI infrastructure remains a capital-intensive, physical bottleneck, not just a software problem.",
+        "Thinking Machines\u2019 interaction models treat back-and-forth interaction as part of the model, not merely a wrapper around it.",
+        "Recursive Superintelligence and Adaption\u2019s AutoScientist both target automated research loops, but the roundup explicitly warns that self-improvement raises grounding and safety concerns.",
+        "The China lab item is not just funding news; it is presented as a test of whether open-model talent can sustain a new independent lab under compute constraints and competition from Alibaba and ByteDance.",
+        "The research list clusters around memory, agent training, and lightweight safety, suggesting the practical frontier is making agents more reliable and cheaper, not only more capable."
+      ],
+      "limitations_and_open_questions": "Several items are launch announcements, funding reports, or editorial framings rather than independently verified long-term results. The interaction-model claim is interesting, but the article does not provide benchmarks, latency data, deployment details, or failure modes. Recursive self-improvement and AutoScientist are conceptually compelling, yet the text itself acknowledges the open question of whether capability gains can be achieved without weakening grounding, safety, diversity, or human judgment. The research summaries describe benchmark wins, but not the exact evaluation settings, robustness, or cost. The China lab story depends on reported fundraising terms and on whether a new lab can actually obtain enough compute under export constraints. The roundup does not establish which of these developments will translate into durable product advantage versus temporary excitement.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-radar-861-last-week"
+      ],
+      "summary": "This roundup argues that the most interesting AI developments of the week were about agency, not scale. It frames Cerebras\u2019s IPO as a reminder that AI progress still depends on physical infrastructure: silicon, power, networking, cooling, and capital. It highlights Thinking Machines\u2019 interaction models as a move toward AI that remains present in the conversation, rather than disappearing behind a prompt-and-response interface, with interaction treated as part of the model itself. It then groups Recursive Superintelligence and Adaption\u2019s AutoScientist into a \u201cAI scientist\u201d theme: systems that automate experimentation, diagnosis, and model improvement. The roundup also notes Junyang Lin\u2019s reported plan to raise a large new China AI lab, presenting it as a test case for whether open-model talent can become an independent venture-scale company under chip export constraints and crowded local competition. The research and release sections reinforce the same pattern: agent memory, self-evolving memory, agentic training frameworks, forecasting frameworks, and a compact safety classifier all focus on making systems more adaptive, more structured, or cheaper to run. Overall, the piece is less a single thesis than a curated snapshot of where the author sees leverage: interaction, self-improvement, and infrastructure.",
+      "why_it_matters": "The article matters because it compresses several concrete bets about where AI engineering effort is going as of 2026-05-17: hardware companies still need massive infrastructure, product teams are experimenting with interaction-native models, and startup labs are trying to automate parts of research itself. Cerebras\u2019s IPO is presented as a market signal that compute infrastructure remains strategically important because every chatbot still sits on top of silicon, power, networking, and cooling. Thinking Machines\u2019 preview suggests a different product architecture: instead of treating conversation as a UI layer, it makes listening, interrupting, yielding, and reacting part of the model\u2019s behavior. That is useful for anyone designing agents that need to collaborate over time rather than emit one-shot answers. The \u201cAI scientist\u201d items are more speculative, but they are operationally relevant because they target the loop of diagnosis, experimentation, and model adaptation, which is a plausible source of leverage if the systems can stay grounded. The research roundup reinforces that the next practical gains may come from memory quality, agent scaffolding, and compact safety models rather than only from larger base models. The China lab item adds a real-world constraint check: open-model momentum only becomes durable if it can survive export controls, limited compute, and overlap with existing giants. The piece is actionable as of 2026-05-17, but several claims remain early-stage previews or fundraising reports rather than validated production evidence. For service automation, the closest implication is that interaction-native models and better memory may improve multi-turn workflows and back-office assistants, but the article does not substantiate those deployments directly."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece is structured as a weekly radar/news digest with multiple loosely related items and short blurbs.",
+        "It mixes editorial framing with a bundle of AI news, releases, and research highlights rather than one coherent argument.",
+        "Sections like 'AI Research,' 'AI Tech Releases,' and '10 AI News You Need to Know About' are strong roundup signals."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-17",
+          "confidence": 0.86,
+          "evidence_from_source": "The roundup contrasts bigger-model framing with agency, memory, interaction, and workflow structure. It specifically highlights Thinking Machines, memory frameworks, agentic modeling, and safety classifiers as examples of this shift.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "execution-oriented-agents",
+          "proposed_tags": [
+            "execution-oriented-agents",
+            "human-ai-collaboration",
+            "orchestration-layer-growth"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents",
+            "harness-design-becomes-more-important-for-agent-reliability",
+            "persistent-agents"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Thinking Machines frames interaction as part of the model, not the harness.",
+            "The research section includes memory, agentic modeling, forecasting, and safety systems.",
+            "The editorial repeatedly emphasizes workflow and agency over scale."
+          ],
+          "supporting_snippet": "\"The common thread was not bigger models, larger context windows, or yet another benchmark victory. It was agency.\"",
+          "time_sensitivity": "Actionable as of 2026-05-17; this source suggests a live product-design direction, but it does not establish how durable each implementation will be.",
+          "trend_description": "AI product differentiation increasingly comes from the surrounding system: interaction design, orchestration, memory, evaluation, and deployment context. Models still matter, but product value often depends on how the model behaves inside a workflow and how much supervision or structure is built around it.",
+          "trend_slug": "ai-products-shift-from-models-to-systems",
+          "trend_title": "AI products are shifting from standalone models to interaction-heavy systems",
+          "uncertainty_note": "The article is a curated roundup, not a controlled comparison of architectures. It points in a direction but does not quantify whether system-level packaging consistently beats model-centric design.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "56083564-107c-463b-b3aa-a786baef7755",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents",
+              "harness-design-becomes-more-important-for-agent-reliability",
+              "persistent-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Thinking Machines frames interaction as part of the model, not the harness.",
+              "The research section includes memory, agentic modeling, forecasting, and safety systems.",
+              "The editorial repeatedly emphasizes workflow and agency over scale."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-oriented-agents",
+            "human-ai-collaboration",
+            "orchestration-layer-growth"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-17",
+          "evidence_snippets": [
+            "\"The model listens, watches, interrupts, yields, and reacts in real time.\"",
+            "\"it treats interaction not as a UI layer bolted onto intelligence, but as part of intelligence itself.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Thinking Machines"
+          ],
+          "operational_relevance": "Suggests a product architecture where model behavior, turn-taking, interruption handling, and shared context are first-class engineering concerns. Relevant to agent orchestration, human-in-the-loop workflows, and multimodal assistants.",
+          "primary_tag": "human-ai-collaboration",
+          "proposed_tags": [
+            "human-ai-collaboration",
+            "model-behavior",
+            "execution-oriented-agents"
+          ],
+          "secondary_tag": "model-behavior",
+          "service_automation_relevance": "Potentially relevant for chatbots and voicebots that need to collaborate over multiple turns, handle corrections gracefully, and remain responsive during task execution. The source does not demonstrate deployed service outcomes.",
+          "signal_strength": "medium",
+          "signal_title": "Interaction is becoming a model capability, not just a UI layer",
+          "signal_type": "model",
+          "suggested_destinations": [
+            "trends/",
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Thinking Machines is described as betting on AI that stays present in the conversation: it \"listens, watches, interrupts, yields, and reacts in real time.\" The source frames this as interaction being part of intelligence itself, not a wrapper around it. That matters for systems that need continuous collaboration instead of one-shot prompt/response behavior.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-17, this is a useful design signal for conversational agents: some products may need models optimized for live back-and-forth behavior rather than only static completion quality. The article is a preview, not evidence of production impact, so the operational stakes are plausible but not yet proven.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "34ee2465-05b2-4a0d-8b87-473870cf0ada",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"The model listens, watches, interrupts, yields, and reacts in real time.\"",
+              "\"it treats interaction not as a UI layer bolted onto intelligence, but as part of intelligence itself.\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Thinking Machines"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/",
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "human-ai-collaboration",
+            "model-behavior",
+            "execution-oriented-agents"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-17",
+          "evidence_snippets": [
+            "\"systems that improve themselves through automated experimentation\"",
+            "\"automating the loop behind training, alignment, and model adaptation.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Recursive Superintelligence",
+            "Adaption",
+            "AutoScientist"
+          ],
+          "operational_relevance": "Relevant to teams building AutoML, evaluation loops, self-tuning memory, and automated model adaptation. The key operational question is whether the feedback loop improves real task quality or just optimizes proxy metrics.",
+          "primary_tag": "ai-research",
+          "proposed_tags": [
+            "ai-research",
+            "continuous-evaluation",
+            "ai-safety"
+          ],
+          "secondary_tag": "continuous-evaluation",
+          "service_automation_relevance": "Indirectly relevant: more automated research loops can improve the systems that power support automation, but the article does not show direct customer-service deployment. The main lesson is that automation of model improvement still needs strong safeguards.",
+          "signal_strength": "medium",
+          "signal_title": "Automating research loops is emerging as a product category",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "trends/",
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The roundup groups Recursive Superintelligence and Adaption's AutoScientist under an \"AI scientist\" pattern: systems that automate experimentation, diagnosis, and model improvement. The source presents this as a closed-loop approach to research, not just a single model feature. It also explicitly warns that such systems may optimize capabilities without preserving grounding and safety.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-17, this is a meaningful signal that research automation is moving from idea to commercial packaging. The evidence is still early-stage and mostly announcement-level, so the main value is recognizing the workflow shape, not assuming validated gains.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "80560f5c-1cb7-4394-b2f8-b999f06ae335",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"systems that improve themselves through automated experimentation\"",
+              "\"automating the loop behind training, alignment, and model adaptation.\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Recursive Superintelligence",
+              "Adaption",
+              "AutoScientist"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/",
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-research",
+            "continuous-evaluation",
+            "ai-safety"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-17",
+          "evidence_snippets": [
+            "\"Behind every magical chatbot sits an industrial stack of silicon, power, networking, cooling, capital markets, and geopolitical anxiety.\"",
+            "\"If intelligence is becoming a commodity, compute remains the refinery.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Cerebras"
+          ],
+          "operational_relevance": "Important for teams planning training or inference capacity, especially when model ambition collides with power, networking, and cooling constraints. It also supports the idea that infrastructure strategy can be a product differentiator.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "runtime-systems",
+            "frontier-compression"
+          ],
+          "secondary_tag": "runtime-systems",
+          "service_automation_relevance": "Indirect relevance: service automation systems depend on cheap, reliable inference, so infrastructure bottlenecks affect latency, throughput, and cost. The source does not provide direct service metrics.",
+          "signal_strength": "high",
+          "signal_title": "AI infrastructure remains a physical capital bottleneck",
+          "signal_type": "infrastructure",
+          "suggested_destinations": [
+            "trends/",
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Cerebras's IPO is used as a reminder that AI capability still depends on silicon, power, networking, cooling, capital markets, and geopolitics. The source explicitly frames compute as the \"refinery\" behind intelligence and notes that public markets are deciding which refineries matter. This is infrastructure-first reasoning, not model-only thinking.",
+          "time_horizon": "long_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-17, this is a durable reminder that frontier AI products are constrained by physical and financial infrastructure, not only software. The IPO is a market event, so the signal is informative but not proof of long-term moat quality.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "2b2763d8-8e0c-4c31-9689-b4ae0a2ba110",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"Behind every magical chatbot sits an industrial stack of silicon, power, networking, cooling, capital markets, and geopolitical anxiety.\"",
+              "\"If intelligence is becoming a commodity, compute remains the refinery.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Cerebras"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/",
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "runtime-systems",
+            "frontier-compression"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The source combines independent editorial interpretation with vendor/product announcements and research summaries.",
+          "Several claims are presented as reported news items or launch blurbs rather than a single evidence mode.",
+          "The article spans IPO/news, product previews, and research descriptions, so no one evidence type dominates."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Cerebras is framed as evidence that AI infrastructure remains a capital-intensive, physical bottleneck, not just a software problem.",
+          "Thinking Machines\u2019 interaction models treat back-and-forth interaction as part of the model, not merely a wrapper around it.",
+          "Recursive Superintelligence and Adaption\u2019s AutoScientist both target automated research loops, but the roundup explicitly warns that self-improvement raises grounding and safety concerns.",
+          "The China lab item is not just funding news; it is presented as a test of whether open-model talent can sustain a new independent lab under compute constraints and competition from Alibaba and ByteDance.",
+          "The research list clusters around memory, agent training, and lightweight safety, suggesting the practical frontier is making agents more reliable and cheaper, not only more capable."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-radar-861-last-week"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece is structured as a weekly radar/news digest with multiple loosely related items and short blurbs.",
+          "It mixes editorial framing with a bundle of AI news, releases, and research highlights rather than one coherent argument.",
+          "Sections like 'AI Research,' 'AI Tech Releases,' and '10 AI News You Need to Know About' are strong roundup signals."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": "2026-06-08T15:27:21+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T15:28:30+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-radar-861-last-week",
+    "content_sha256": "8eea54a366baea68c5ed0b28b812f154ab6f00b885329962c33d56dcdcf74298",
+    "publication": "substack.com",
+    "published_date": "2026-05-17",
+    "raw_html_rel_path": "raw/readwise/the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dreams-01krttfdzf801rjfeteqjnv2zd.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dreams-01krttfdzf801rjfeteqjnv2zd.md",
+    "source_id": "the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dreams-01krttfdzf801rjfeteqjnv2zd",
+    "title": "The Sequence Radar #861: Last Week in AI: IPOs, Interactive Models, and Recursive Dreams"
+  }
+}

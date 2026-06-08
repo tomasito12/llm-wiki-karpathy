@@ -1,0 +1,842 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:51:13+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntCj9oHCqmaCbB31ZxRx2nABROc7",
+          "token_usage": {
+            "completion_tokens": 190,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5245,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5435
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntClATDYF8eMZxcwI7wuEIDu5QS8",
+          "token_usage": {
+            "completion_tokens": 1071,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4850,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5921
+          }
+        },
+        {
+          "cache_hit_rate": 0.1423679203863603,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntCt5YyljZasKWZYraVL6pPikuVr",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1904,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34165,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 36069
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntCt5YyljZasKWZYraVL6pPikuVr",
+    "token_usage": {
+      "completion_tokens": 3165,
+      "prompt_tokens": 44260,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 47425
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "Google says it is four times faster than other frontier models, but the source gives no methodology or independent benchmark.",
+          "No quality, cost, or reliability benchmark is provided in the article."
+        ],
+        "comparative_observations": [
+          "Google positions it against \u201cother frontier models\u201d on speed.",
+          "The release is framed as a competitive pressure point for OpenAI\u2019s flagship chatbot strategy."
+        ],
+        "confidence": 0.76,
+        "core_capabilities": [
+          "The model is positioned as a fast engine for consumer AI agents, which matters when responses must feel immediate inside search and assistant workflows.",
+          "It is presented as suitable for coding agents as well as everyday consumer agents, showing a breadth of use beyond a single narrow task.",
+          "Its speed emphasis suggests a design point optimized for high-throughput interactive experiences rather than slow, deliberative workflows."
+        ],
+        "deployment_implications": "If the speed claim holds, it is suited to agentic consumer products that must respond inside Google Search and the Gemini app at scale. The practical implication is that deployment strategy may favor lighter-weight agent actions, tighter usage caps, and more aggressive cost management because the source pairs the model with massive token consumption. The article does not provide enough detail to assess tool-calling reliability, context handling, or enterprise deployment patterns.",
+        "evidence_type": "mixed",
+        "match_candidates": [],
+        "maturity_signals": "The model is discussed in the context of a major product launch at Google I/O, which suggests it is being used in production-facing surfaces rather than as a research demo. The article does not give release artifacts, benchmarks, or third-party validation, so maturity beyond launch-stage deployment is unclear. Google\u2019s own framing makes it strategically important, but the evidence base here remains mostly vendor-described.",
+        "model_name": "Gemini 3.5 Flash",
+        "operational_profile": "Gemini 3.5 Flash is presented as a fast frontier model powering Google\u2019s new consumer and coding agents. The article emphasizes speed rather than a detailed capability breakdown, saying Google says it is four times faster than other frontier models. That makes it relevant as an execution model for high-volume consumer surfaces where latency and cost matter.",
+        "pricing_inference_implications": "The article does not give model pricing, but the surrounding economics imply that high-throughput deployment is expensive because Google says its services consumed 3.2 quadrillion tokens a month and capex may reach $190 billion this year. That points to strong pressure for inference efficiency, usage caps, and monetization attached to model access.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "frontier-model",
+          "proprietary-model",
+          "low-latency"
+        ],
+        "proposed_types": [
+          "frontier-model"
+        ],
+        "provider": "Google",
+        "related_models": [
+          "Gemini 3 Pro",
+          "GPT-5.5",
+          "Claude Opus 4.8"
+        ],
+        "service_automation_implications": "Potentially useful for consumer-facing automation embedded in search and assistant surfaces, but the source does not show service-automation performance details. As of 2026-05-20, the main implication is that faster models may help reduce latency for lightweight agent tasks, while monetization and usage caps still shape how far such automation can be pushed.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cThe release of Gemini 3.5 Flash, which Google says is four times faster than other frontier models, and the new suite of agents is likely to raise fresh questions about what OpenAI is doing with its flagship chatbot.\u201d",
+        "value_level": "medium",
+        "weaknesses_limitations": "The speed claim is unverified in the source and should be treated as a vendor assertion. The article also gives no independent evidence on reasoning quality, cost per task, or robustness under long-running agent loops. Heavy usage appears to be a structural constraint for Google\u2019s services, which means even a fast model can still be expensive to operate at scale."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-20",
+        "confidence": 0.89,
+        "evidence_from_source": "Google plans to surface agents in Gemini and Search, and the piece argues this could let it overtake OpenAI in consumer AI because of distribution advantages.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "distribution",
+        "suggested_new_tags": [
+          "distribution"
+        ],
+        "supporting_data_points": [
+          "Gemini app: 900 million monthly users.",
+          "Google Search: more than 3 billion users.",
+          "New agents will appear both in Gemini and in Search."
+        ],
+        "supporting_snippet": "\u201cSome will appear in the Gemini app, used by 900m people every month. Others will be embedded directly in Google Search, used by more than 3bn. The company is, in sum, bringing agents to the masses.\u201d",
+        "time_sensitivity": "Actionable as of 2026-05-20; the distribution advantage described here is tied to the current product surfaces and user counts mentioned in the source.",
+        "trend_description": "Consumer AI is moving toward products that can reach users through existing high-traffic surfaces rather than only through standalone chat applications. The important shift is from model novelty to default placement inside services people already use every day. That changes competition because reach, habit, and integration can outweigh a single chatbot interface. The trend matters most where assistant-like features can be embedded into search, inbox, and mobile workflows.",
+        "trend_slug": "consumer-ai-shifts-toward-distribution-led-products",
+        "trend_title": "Consumer AI Shifts Toward Distribution-Led Products",
+        "uncertainty_note": "The source is persuasive but not conclusive: it argues from product placement and user scale, not from measured switching behavior or retention data.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "The article is written by The Economist as an outside observer, not by Google or OpenAI.",
+        "Claims are supported by reported product announcements, user counts, market-cap figures, and quoted commentary rather than primary vendor documentation.",
+        "The article offers strategic interpretation of Google's consumer AI position and monetization challenges."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "Google used its developer conference to show a more consumer-focused AI strategy. Instead of only building coding tools, it is putting AI agents into Gemini and Search so they can help with everyday tasks like email, travel, and shopping. The article argues this could put Google ahead of OpenAI in consumer AI because Google already has huge distribution through Search and Gemini. But the same usage that makes the products attractive also burns through massive amounts of compute, which makes the business harder to sustain. Google\u2019s likely fix is to improve efficiency, limit heavy usage, and find more ad revenue.",
+      "assessed_as_of": "2026-05-20",
+      "contradictions_and_skepticism": "The article\u2019s opening examples include somewhat gimmicky use cases, which weakens the case that every staged demo represents durable consumer demand. Google\u2019s claim of consumer leadership is plausible given distribution, but the article does not prove that users prefer these agents over OpenAI\u2019s chatbot in real-world use. The \u201cfour times faster\u201d claim is presented without methodological detail, so it should be treated as a vendor assertion rather than a settled benchmark result. More broadly, the piece suggests that more usage is both a strategic win and a cost problem; that tension is real, but the article does not show how Google will resolve it beyond broad options.",
+      "key_insights": [
+        "Google\u2019s advantage is distribution: consumer agents can be embedded into Gemini and Search, not just shipped as a standalone chatbot.",
+        "The new agent set is not only for coders; Google is trying to make AI useful for everyday consumer tasks.",
+        "Gemini 3.5 Flash is presented as four times faster than other frontier models, but the article does not provide independent benchmarking.",
+        "Token growth is the article\u2019s clearest operational constraint: 3.2 quadrillion monthly tokens implies a steep compute bill.",
+        "Google\u2019s monetization options are still experimental: usage caps, subscriptions, and ads are all mentioned as partial answers."
+      ],
+      "limitations_and_open_questions": "The article relies on Google\u2019s own claims about Gemini 3.5 Flash speed and token usage, without independent performance or cost verification. It does not specify how much the new agents cost to run per task, how often users will need them, or whether the examples shown on stage translate into routine behavior. Usage caps are mentioned only after the event and not described in detail, so the practical impact on adoption is unclear. The ad model is also incomplete: the Gemini app had not yet incorporated ads, and the article does not explain user tolerance for more commercialized AI answers. There is no evidence here about retention, conversion, or whether consumer agent use will be sustained after novelty wears off.",
+      "sources": [
+        "https://www.economist.com/business/2026/05/20/google-is-dethroning-openai-as-the-king-of-consumer-ai"
+      ],
+      "summary": "Google used its May 19, 2026 I/O event to present a new set of AI agents built on Gemini 3.5 Flash, including coding agents and consumer-facing agents for tasks like scanning email, organizing trips, tracking sports, shopping sales, and the stock market. Some of these agents will surface in the Gemini app, which Google says has 900 million monthly users, while others will be embedded into Google Search, which reaches more than 3 billion users. The article\u2019s central claim is that this puts Google in a stronger position than OpenAI in consumer AI, especially after OpenAI\u2019s own shift toward coding agents following Google\u2019s Gemini 3 launch and the resulting \u201cCode Red.\u201d The piece also highlights the economics behind that ambition: Google says its services are consuming 3.2 quadrillion tokens a month, up from 480 trillion a year earlier, and that supporting this usage is pushing annual capital expenditure to as much as $190 billion. Google\u2019s apparent answer is a mix of efficiency gains, usage caps for subscribers, and a larger role for ads inside AI search and Gemini responses.",
+      "why_it_matters": "The piece matters because it gives a concrete snapshot of how a large platform company can use distribution to push AI agents beyond chat into everyday product surfaces. Google is not just marketing a better model; it is wiring agents into products that already have very large audiences, which is materially different from relying on a single consumer chatbot. That makes the competitive comparison with OpenAI more about product placement and default access than about model demos alone. The article also surfaces the economics of consumer AI at scale: Google\u2019s own token volume and capital expenditure figures show that heavy usage can become a first-order business constraint, even for a company with deep infrastructure. Its proposed responses\u2014efficiency improvements, usage caps, and more ads in AI search\u2014are practical but still incomplete. The ad strategy is especially important because the article says Google has not yet added ads to the Gemini app, so the monetization plan is still partly hypothetical as of May 20, 2026. The consumer-side implication for agents, search responses, and adjacent automation tasks is that usefulness may be gated as much by cost control and pricing design as by model quality. Actionable as of May 20, 2026: treat Google\u2019s consumer AI push as strategically significant, but monitor whether its monetization and usage limits actually hold up under scale."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent business/news article with one central argument about Google's consumer AI position versus OpenAI.",
+        "Not structured as a list, roundup, tutorial, or interview transcript.",
+        "Primary content is narrative analysis of a specific product and business event (Google I/O announcements)."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Embed agent features into high-frequency surfaces to reduce activation friction.",
+          "Standalone chatbot strength does not automatically translate into consumer default status.",
+          "Distribution can be a structural advantage even when product demos are gimmicky or uneven."
+        ],
+        "knowledge_summary": "Consumer AI systems gain leverage when they are embedded into products that already have large, habitual audiences. Distribution changes the product question from \u201cCan the model work?\u201d to \u201cCan the capability reach users where they already are?\u201d This matters because even strong standalone chat products can lose ground to less flashy systems that have better placement. The operational unit is not just the model; it is the route by which users encounter and reuse the capability. In practice, this tends to favor search, inbox, and operating-system surfaces over isolated chatbot tabs.",
+        "match_candidates": [],
+        "operational_insight": "For consumer AI, distribution can matter as much as model quality because the same capability can be far more useful when it appears inside existing, high-frequency workflows.",
+        "primary_tag": "distribution",
+        "proposed_tags": [
+          "distribution",
+          "platform-strategy",
+          "enterprise-ai"
+        ],
+        "related_topics": [
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "relevance_note": "This topic matters because consumer AI adoption often depends on where the feature appears, not only on how impressive the model is. Products embedded in search, email, or mobile shells can capture behavior that standalone apps struggle to win.",
+        "secondary_tag": "platform-strategy",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cSome will appear in the Gemini app, used by 900m people every month. Others will be embedded directly in Google Search, used by more than 3bn. The company is, in sum, bringing agents to the masses.\u201d",
+        "topic_slug": "consumer-ai-distribution",
+        "topic_title": "Consumer AI Distribution",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Usage caps can be a product lever as well as a cost-control lever.",
+          "Ad-supported AI responses are a plausible monetization path when direct billing is insufficient.",
+          "Token growth is a practical proxy for infrastructure strain, though it does not by itself reveal unit economics."
+        ],
+        "knowledge_summary": "High-usage consumer AI creates an economic problem: token growth, compute cost, and user expectations can outpace simple subscription pricing. Providers then have to combine efficiency gains, usage caps, and ad-supported surfaces to keep the service viable. This is not just a billing issue; it shapes product design, access policy, and the kinds of tasks the system can afford to support. When usage becomes massive, monetization strategy turns into infrastructure strategy. The practical outcome is that product generosity often has hard limits at scale.",
+        "match_candidates": [],
+        "operational_insight": "When consumer AI usage becomes large enough, pricing, caps, and ads stop being side issues and become core architecture choices.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "infrastructure-economics",
+          "platform-strategy"
+        ],
+        "related_topics": [
+          "compute-supply-and-capex-in-ai"
+        ],
+        "relevance_note": "This topic matters because service teams and product teams need to expect that popular AI features can become expensive very quickly. Cost control, quotas, and monetization design are part of the system, not an afterthought.",
+        "secondary_tag": "infrastructure-economics",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cAccording to Mr Pichai, the number of tokens\u2026 consumed by its services has risen to 3.2 quadrillion a month, up from 480trn a year ago.\u201d",
+        "topic_slug": "consumer-ai-monetization-under-load",
+        "topic_title": "Consumer AI Monetization Under Load",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "Google says it is four times faster than other frontier models, but the source gives no methodology or independent benchmark.",
+            "No quality, cost, or reliability benchmark is provided in the article."
+          ],
+          "comparative_observations": [
+            "Google positions it against \u201cother frontier models\u201d on speed.",
+            "The release is framed as a competitive pressure point for OpenAI\u2019s flagship chatbot strategy."
+          ],
+          "confidence": 0.76,
+          "core_capabilities": [
+            "The model is positioned as a fast engine for consumer AI agents, which matters when responses must feel immediate inside search and assistant workflows.",
+            "It is presented as suitable for coding agents as well as everyday consumer agents, showing a breadth of use beyond a single narrow task.",
+            "Its speed emphasis suggests a design point optimized for high-throughput interactive experiences rather than slow, deliberative workflows."
+          ],
+          "deployment_implications": "If the speed claim holds, it is suited to agentic consumer products that must respond inside Google Search and the Gemini app at scale. The practical implication is that deployment strategy may favor lighter-weight agent actions, tighter usage caps, and more aggressive cost management because the source pairs the model with massive token consumption. The article does not provide enough detail to assess tool-calling reliability, context handling, or enterprise deployment patterns.",
+          "evidence_type": "mixed",
+          "match_candidates": [],
+          "maturity_signals": "The model is discussed in the context of a major product launch at Google I/O, which suggests it is being used in production-facing surfaces rather than as a research demo. The article does not give release artifacts, benchmarks, or third-party validation, so maturity beyond launch-stage deployment is unclear. Google\u2019s own framing makes it strategically important, but the evidence base here remains mostly vendor-described.",
+          "model_name": "Gemini 3.5 Flash",
+          "operational_profile": "Gemini 3.5 Flash is presented as a fast frontier model powering Google\u2019s new consumer and coding agents. The article emphasizes speed rather than a detailed capability breakdown, saying Google says it is four times faster than other frontier models. That makes it relevant as an execution model for high-volume consumer surfaces where latency and cost matter.",
+          "pricing_inference_implications": "The article does not give model pricing, but the surrounding economics imply that high-throughput deployment is expensive because Google says its services consumed 3.2 quadrillion tokens a month and capex may reach $190 billion this year. That points to strong pressure for inference efficiency, usage caps, and monetization attached to model access.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "frontier-model",
+            "proprietary-model",
+            "low-latency"
+          ],
+          "proposed_types": [
+            "frontier-model"
+          ],
+          "provider": "Google",
+          "related_models": [
+            "Gemini 3 Pro",
+            "GPT-5.5",
+            "Claude Opus 4.8"
+          ],
+          "service_automation_implications": "Potentially useful for consumer-facing automation embedded in search and assistant surfaces, but the source does not show service-automation performance details. As of 2026-05-20, the main implication is that faster models may help reduce latency for lightweight agent tasks, while monetization and usage caps still shape how far such automation can be pushed.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cThe release of Gemini 3.5 Flash, which Google says is four times faster than other frontier models, and the new suite of agents is likely to raise fresh questions about what OpenAI is doing with its flagship chatbot.\u201d",
+          "value_level": "medium",
+          "weaknesses_limitations": "The speed claim is unverified in the source and should be treated as a vendor assertion. The article also gives no independent evidence on reasoning quality, cost per task, or robustness under long-running agent loops. Heavy usage appears to be a structural constraint for Google\u2019s services, which means even a fast model can still be expensive to operate at scale."
+        },
+        "notes": null,
+        "proposal_id": "ab7b1e6d-279d-44df-99e9-15b71677f9f9",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "Google says it is four times faster than other frontier models, but the source gives no methodology or independent benchmark.",
+              "No quality, cost, or reliability benchmark is provided in the article."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "Google positions it against \u201cother frontier models\u201d on speed.",
+              "The release is framed as a competitive pressure point for OpenAI\u2019s flagship chatbot strategy."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "The model is positioned as a fast engine for consumer AI agents, which matters when responses must feel immediate inside search and assistant workflows.",
+              "It is presented as suitable for coding agents as well as everyday consumer agents, showing a breadth of use beyond a single narrow task.",
+              "Its speed emphasis suggests a design point optimized for high-throughput interactive experiences rather than slow, deliberative workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Gemini 3 Pro",
+              "GPT-5.5",
+              "Claude Opus 4.8"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "frontier-model",
+            "proprietary-model",
+            "low-latency"
+          ]
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-20",
+          "confidence": 0.89,
+          "evidence_from_source": "Google plans to surface agents in Gemini and Search, and the piece argues this could let it overtake OpenAI in consumer AI because of distribution advantages.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "distribution",
+          "suggested_new_tags": [
+            "distribution"
+          ],
+          "supporting_data_points": [
+            "Gemini app: 900 million monthly users.",
+            "Google Search: more than 3 billion users.",
+            "New agents will appear both in Gemini and in Search."
+          ],
+          "supporting_snippet": "\u201cSome will appear in the Gemini app, used by 900m people every month. Others will be embedded directly in Google Search, used by more than 3bn. The company is, in sum, bringing agents to the masses.\u201d",
+          "time_sensitivity": "Actionable as of 2026-05-20; the distribution advantage described here is tied to the current product surfaces and user counts mentioned in the source.",
+          "trend_description": "Consumer AI is moving toward products that can reach users through existing high-traffic surfaces rather than only through standalone chat applications. The important shift is from model novelty to default placement inside services people already use every day. That changes competition because reach, habit, and integration can outweigh a single chatbot interface. The trend matters most where assistant-like features can be embedded into search, inbox, and mobile workflows.",
+          "trend_slug": "consumer-ai-shifts-toward-distribution-led-products",
+          "trend_title": "Consumer AI Shifts Toward Distribution-Led Products",
+          "uncertainty_note": "The source is persuasive but not conclusive: it argues from product placement and user scale, not from measured switching behavior or retention data.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e8abdfb3-ef45-4a1b-a226-28c02abb4b4f",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Gemini app: 900 million monthly users.",
+              "Google Search: more than 3 billion users.",
+              "New agents will appear both in Gemini and in Search."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "The article is written by The Economist as an outside observer, not by Google or OpenAI.",
+          "Claims are supported by reported product announcements, user counts, market-cap figures, and quoted commentary rather than primary vendor documentation.",
+          "The article offers strategic interpretation of Google's consumer AI position and monetization challenges."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Google\u2019s advantage is distribution: consumer agents can be embedded into Gemini and Search, not just shipped as a standalone chatbot.",
+          "The new agent set is not only for coders; Google is trying to make AI useful for everyday consumer tasks.",
+          "Gemini 3.5 Flash is presented as four times faster than other frontier models, but the article does not provide independent benchmarking.",
+          "Token growth is the article\u2019s clearest operational constraint: 3.2 quadrillion monthly tokens implies a steep compute bill.",
+          "Google\u2019s monetization options are still experimental: usage caps, subscriptions, and ads are all mentioned as partial answers."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/business/2026/05/20/google-is-dethroning-openai-as-the-king-of-consumer-ai"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent business/news article with one central argument about Google's consumer AI position versus OpenAI.",
+          "Not structured as a list, roundup, tutorial, or interview transcript.",
+          "Primary content is narrative analysis of a specific product and business event (Google I/O announcements)."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Embed agent features into high-frequency surfaces to reduce activation friction.",
+            "Standalone chatbot strength does not automatically translate into consumer default status.",
+            "Distribution can be a structural advantage even when product demos are gimmicky or uneven."
+          ],
+          "knowledge_summary": "Consumer AI systems gain leverage when they are embedded into products that already have large, habitual audiences. Distribution changes the product question from \u201cCan the model work?\u201d to \u201cCan the capability reach users where they already are?\u201d This matters because even strong standalone chat products can lose ground to less flashy systems that have better placement. The operational unit is not just the model; it is the route by which users encounter and reuse the capability. In practice, this tends to favor search, inbox, and operating-system surfaces over isolated chatbot tabs.",
+          "match_candidates": [],
+          "operational_insight": "For consumer AI, distribution can matter as much as model quality because the same capability can be far more useful when it appears inside existing, high-frequency workflows.",
+          "primary_tag": "distribution",
+          "proposed_tags": [
+            "distribution",
+            "platform-strategy",
+            "enterprise-ai"
+          ],
+          "related_topics": [
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "relevance_note": "This topic matters because consumer AI adoption often depends on where the feature appears, not only on how impressive the model is. Products embedded in search, email, or mobile shells can capture behavior that standalone apps struggle to win.",
+          "secondary_tag": "platform-strategy",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cSome will appear in the Gemini app, used by 900m people every month. Others will be embedded directly in Google Search, used by more than 3bn. The company is, in sum, bringing agents to the masses.\u201d",
+          "topic_slug": "consumer-ai-distribution",
+          "topic_title": "Consumer AI Distribution",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "1f1a30c1-c6d3-429a-b2be-a39eb4115a09",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Embed agent features into high-frequency surfaces to reduce activation friction.",
+              "Standalone chatbot strength does not automatically translate into consumer default status.",
+              "Distribution can be a structural advantage even when product demos are gimmicky or uneven."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "distribution",
+            "platform-strategy",
+            "enterprise-ai"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Usage caps can be a product lever as well as a cost-control lever.",
+            "Ad-supported AI responses are a plausible monetization path when direct billing is insufficient.",
+            "Token growth is a practical proxy for infrastructure strain, though it does not by itself reveal unit economics."
+          ],
+          "knowledge_summary": "High-usage consumer AI creates an economic problem: token growth, compute cost, and user expectations can outpace simple subscription pricing. Providers then have to combine efficiency gains, usage caps, and ad-supported surfaces to keep the service viable. This is not just a billing issue; it shapes product design, access policy, and the kinds of tasks the system can afford to support. When usage becomes massive, monetization strategy turns into infrastructure strategy. The practical outcome is that product generosity often has hard limits at scale.",
+          "match_candidates": [],
+          "operational_insight": "When consumer AI usage becomes large enough, pricing, caps, and ads stop being side issues and become core architecture choices.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "infrastructure-economics",
+            "platform-strategy"
+          ],
+          "related_topics": [
+            "compute-supply-and-capex-in-ai"
+          ],
+          "relevance_note": "This topic matters because service teams and product teams need to expect that popular AI features can become expensive very quickly. Cost control, quotas, and monetization design are part of the system, not an afterthought.",
+          "secondary_tag": "infrastructure-economics",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cAccording to Mr Pichai, the number of tokens\u2026 consumed by its services has risen to 3.2 quadrillion a month, up from 480trn a year ago.\u201d",
+          "topic_slug": "consumer-ai-monetization-under-load",
+          "topic_title": "Consumer AI Monetization Under Load",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ea3f1bc4-c12d-4d86-878f-f508ff8e41cf",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Usage caps can be a product lever as well as a cost-control lever.",
+              "Ad-supported AI responses are a plausible monetization path when direct billing is insufficient.",
+              "Token growth is a practical proxy for infrastructure strain, though it does not by itself reveal unit economics."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "compute-supply-and-capex-in-ai"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "infrastructure-economics",
+            "platform-strategy"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/business/2026/05/20/google-is-dethroning-openai-as-the-king-of-consumer-ai",
+    "content_sha256": "f5dbe5e7ca18cf4188e91739349afd87ef7528d820781d28202fddb4efa19117",
+    "publication": "Economist",
+    "published_date": "2026-05-20",
+    "raw_html_rel_path": "raw/readwise/google-is-dethroning-openai-as-the-king-of-consumer-ai-01ks5by597783t6ecq88xd3mhd.html",
+    "raw_md_rel_path": "raw/readwise/google-is-dethroning-openai-as-the-king-of-consumer-ai-01ks5by597783t6ecq88xd3mhd.md",
+    "source_id": "google-is-dethroning-openai-as-the-king-of-consumer-ai-01ks5by597783t6ecq88xd3mhd",
+    "title": "Google is dethroning OpenAI as the king of consumer AI"
+  }
+}

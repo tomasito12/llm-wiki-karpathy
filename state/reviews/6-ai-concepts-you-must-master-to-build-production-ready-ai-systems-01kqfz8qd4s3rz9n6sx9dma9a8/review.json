@@ -1,0 +1,662 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:21:43+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DnskGgd0ViSP3FZVCadfCHVJaWso5",
+          "token_usage": {
+            "completion_tokens": 199,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8212,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8411
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnskIPWIGVtvMvWKEpauXvrI2GGTU",
+          "token_usage": {
+            "completion_tokens": 1138,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7825,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8963
+          }
+        },
+        {
+          "cache_hit_rate": 0.1356802142319172,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DnskRSmWcWfJ9CAEjskgs9k8kiqUG",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1189,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35849,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 37038
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnskRSmWcWfJ9CAEjskgs9k8kiqUG",
+    "token_usage": {
+      "completion_tokens": 2526,
+      "prompt_tokens": 51886,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 54412
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-29",
+        "confidence": 0.89,
+        "evidence_from_source": "The source frames the field as a unified system: \"Memory (RAG) + Thinking (LLM + Tokens) + Actions (Agents) + Measurement (Evals), assembled through Context Engineering.\" It also says the sophistication of the system is in \"how well the pieces connect.\"",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "runtime-systems",
+        "proposed_tags": [
+          "runtime-systems",
+          "enterprise-ai"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "harness-design-becomes-more-important-for-agent-reliability"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-engineering",
+        "suggested_new_tags": [
+          "ai-engineering"
+        ],
+        "supporting_data_points": [
+          "The article identifies six concepts that together explain production AI systems.",
+          "It argues that failures become diagnosable when engineers understand the system layers.",
+          "It explicitly says the sophistication of the system is in how well the pieces connect."
+        ],
+        "supporting_snippet": "\"Every AI system is just: Memory (RAG) + Thinking (LLM + Tokens) + Actions (Agents) + Measurement (Evals), assembled through Context Engineering.\"",
+        "time_sensitivity": "Actionable as of 2026-04-29; the article presents this as a stable operating model rather than a short-lived tooling trend.",
+        "trend_description": "AI product design is moving away from treating the model as the product and toward treating the full runtime system as the product. The important unit becomes the combination of memory, retrieval, actions, measurement, and context control around the model. This shift matters because production reliability depends on orchestration and guardrails, not only on raw model capability. In practice, engineering effort concentrates on how the pieces connect rather than on model selection alone.",
+        "trend_slug": "ai-products-shift-from-models-to-systems",
+        "trend_title": "AI Products Shift from Models to Systems",
+        "uncertainty_note": "The source strongly argues for this framing, but it is still an opinionated simplification. Some products may remain model-centric, and the article does not quantify when system-level design dominates model choice across all use cases.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article opens with a personal AWS cost incident and repeatedly uses firsthand team anecdotes as proof points.",
+        "Claims are supported mainly by practitioner stories about production failures and fixes, not formal benchmarks or research.",
+        "The author mixes opinion with implementation anecdotes, but the dominant evidence is experience-based reporting."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says production AI is less about clever prompts and more about six basic building blocks. LLMs have token limits, so what you put into the context window matters a lot. Embeddings let you search by meaning instead of exact words, which powers retrieval-augmented generation. Agents can take actions in loops, but they need stop rules and error handling or they can waste a lot of money. Evals tell you whether changes helped, and context engineering is the discipline of deciding what information the model should see. The core message is simple: learn these concepts and most AI system failures become diagnosable.",
+      "assessed_as_of": "2026-04-29",
+      "contradictions_and_skepticism": "The article makes some strong-sounding simplifications, especially the claim that the whole field reduces to a unified six-part model. That framing is helpful for learning, but it risks flattening important distinctions between product requirements, safety constraints, infrastructure, and UX. The statement that prompt engineering failures are 'actually' token and context failures sometimes overreaches; some failures are indeed prompt design issues or task-specification issues. Likewise, 'RAG is overrated when your retrieval is bad' is directionally true, but the article does not quantify how much retrieval versus generation versus prompting contributes across different workloads. The examples are plausible and vivid, but they are anecdotal rather than controlled evidence, so they support engineering intuition more than universal rules.",
+      "key_insights": [
+        "Many prompt failures are really context-window failures: the important instruction is present but buried under too much text.",
+        "Retrieval quality, not generation quality, is often the main bottleneck in RAG; bad chunking can dominate the error rate.",
+        "Agents need explicit stop conditions, max steps, and empty-result handlers or they can loop into large bills.",
+        "Evals should use a small golden dataset with binary task checks when possible, because subjective scores like 'helpfulness' do not localize regressions.",
+        "Context engineering is framed as the higher-order control layer that decides selection, compression, ordering, and pruning across prompts, retrieval, and agent state."
+      ],
+      "limitations_and_open_questions": "The piece is conceptually strong but light on benchmark data, comparative measurements, and concrete implementation recipes. Claims like 'context engineering matters more than prompt engineering' are plausible but not proven with systematic evidence in the article. The eval guidance is practical, but it leaves open how to design robust goldens for ambiguous tasks, multi-turn conversations, or safety-critical flows. The RAG advice emphasizes retrieval and chunking, but does not address governance, privacy, access control, or cost tradeoffs in depth. The agent discussion covers loop failures well, but not orchestration patterns, state persistence, or human-in-the-loop design beyond brief mention. The article also assumes that the six concepts are sufficient as a complete mental model, which is useful pedagogically but may understate deployment concerns such as monitoring, security, and data quality.",
+      "sources": [
+        "https://medium.com/towards-artificial-intelligence/you-cant-build-ai-systems-without-understanding-these-6-concepts-first-bf20b8469f0d"
+      ],
+      "summary": "The article argues that production AI systems are built from six durable concepts: tokens and context windows, embeddings and vector search, retrieval-augmented generation, the agentic loop, evals, and context engineering. Its central thesis is that most production failures are not mysterious model problems but basic engineering failures around what the model can see, retrieve, do, and measure. Tokens and context windows determine how much information the model can process and why long prompts can bury important instructions. Embeddings and vector search turn semantic similarity into a retrievable mathematical space, which makes RAG possible. RAG grounds model answers in your own data at query time, but its quality depends heavily on retrieval and chunking rather than generation. Agents extend LLMs into action loops, but need stop conditions, tool error handling, and bounded steps to avoid runaway costs. Evals provide the measurement layer needed to tell whether a change improved or degraded the system, while context engineering is the meta-discipline that selects, orders, compresses, and prunes information so the rest of the system works reliably. The article repeatedly frames these concepts as stable building blocks that outlast tools and libraries.",
+      "why_it_matters": "The article is useful because it compresses production AI engineering into a small set of durable mechanisms that explain many failures more reliably than model choice or prompt style. That is operationally valuable for teams building chatbots, retrieval systems, or tool-using agents, because it points debugging effort toward the right layer: token budgets, retrieval quality, loop control, and measurement. Its strongest claim is practical rather than theoretical: systems fail when the model cannot see the right information, cannot retrieve it well, or is allowed to keep acting without guardrails. The RAG section is especially grounded in examples, showing that chunking and retrieval precision can matter more than prompt tuning. The evals section adds a missing production discipline by insisting on repeatable before/after measurement instead of intuition. The context-engineering section usefully reframes prompt writing as one part of a broader information-design problem. For service automation, customer support, and other agent-heavy workflows, the article's advice is directly relevant because the same stop conditions, retrieval hygiene, and evaluation loops are what prevent runaway costs and brittle behavior. Actionable as of 2026-04-29, and likely durable because the article explicitly treats these ideas as stable foundations rather than tool-specific tricks."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent explanatory article with one thesis: six concepts for production AI systems.",
+        "Not a roundup, interview, or step-by-step tutorial with multiple independent items; the numbered concepts are part of one argument.",
+        "Structure is essay-like with examples and opinions rather than a list of products, news items, or Q&A."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Selection determines which facts and history the next decision actually needs.",
+          "Compression preserves useful state without carrying full conversation history forward.",
+          "Ordering matters because critical instructions should stay near the beginning and end of the context.",
+          "Pruning and structure influence whether the model notices the important parts of the input."
+        ],
+        "knowledge_summary": "Context engineering is the discipline of deciding what information an AI model should see, in what order, and with what level of compression so it can do the task reliably. It covers selection, pruning, ordering, and summarization of prompts, retrieved documents, and conversation state. The point is not to maximize input size, but to make the most relevant information salient inside a limited context window. In production systems, this often matters more than prompt wording because the model can only use what remains visible and prominent in context.",
+        "match_candidates": [],
+        "operational_insight": "Treat context as a scarce runtime resource. Keep the task goal, constraints, and freshest evidence prominent; compress older material and remove irrelevant noise before the model makes a decision.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "context-engineering",
+          "runtime-architecture"
+        ],
+        "related_topics": [
+          "agent-runtime-architecture"
+        ],
+        "relevance_note": "This is durable across chatbots, voicebots, support automation, and agent systems because every production LLM workflow has a bounded attention budget. Teams that manage context well get more stable outputs, fewer instruction-loss failures, and better cost control as of 2026-04-29.",
+        "secondary_tag": "context-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Context engineering is the discipline of deciding exactly what information goes into the model\u2019s context window, how it is structured, and what gets left out.\"",
+        "topic_slug": "context-engineering",
+        "topic_title": "Context Engineering",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Keyword search fails when relevant text uses different words with the same meaning.",
+          "Chunking strategy can split the answer away from the surrounding evidence.",
+          "Retrieval precision is often a more useful debugging target than the prompt text itself.",
+          "Semantic retrieval is foundational for grounded answers in RAG systems."
+        ],
+        "knowledge_summary": "Retrieval systems are the layer that selects the most relevant external information for a model at query time. They typically rely on embeddings and vector search to match meaning rather than exact keyword overlap. In AI applications, retrieval quality often determines whether the downstream generation is useful, grounded, and specific. Poor chunking, weak ranking, or missing context can dominate the error rate even when the model itself is strong.",
+        "match_candidates": [],
+        "operational_insight": "Measure retrieval before you tune generation. If the right evidence is not being retrieved, prompt changes will not fix the system; improve chunking, overlap, ranking, and evaluation of retrieved results first.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "retrieval-systems",
+          "enterprise-ai"
+        ],
+        "related_topics": [],
+        "relevance_note": "Retrieval is a core design layer in enterprise search, RAG chatbots, support assistants, and agent memory systems. As of 2026-04-29, it remains one of the highest-leverage places to improve answer quality without changing the model.",
+        "secondary_tag": "retrieval-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The quality of a RAG system is almost entirely determined by the quality of its retrieval.\"",
+        "topic_slug": "retrieval-systems",
+        "topic_title": "Retrieval Systems",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-29",
+          "confidence": 0.89,
+          "evidence_from_source": "The source frames the field as a unified system: \"Memory (RAG) + Thinking (LLM + Tokens) + Actions (Agents) + Measurement (Evals), assembled through Context Engineering.\" It also says the sophistication of the system is in \"how well the pieces connect.\"",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "runtime-systems",
+          "proposed_tags": [
+            "runtime-systems",
+            "enterprise-ai"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "harness-design-becomes-more-important-for-agent-reliability"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-engineering",
+          "suggested_new_tags": [
+            "ai-engineering"
+          ],
+          "supporting_data_points": [
+            "The article identifies six concepts that together explain production AI systems.",
+            "It argues that failures become diagnosable when engineers understand the system layers.",
+            "It explicitly says the sophistication of the system is in how well the pieces connect."
+          ],
+          "supporting_snippet": "\"Every AI system is just: Memory (RAG) + Thinking (LLM + Tokens) + Actions (Agents) + Measurement (Evals), assembled through Context Engineering.\"",
+          "time_sensitivity": "Actionable as of 2026-04-29; the article presents this as a stable operating model rather than a short-lived tooling trend.",
+          "trend_description": "AI product design is moving away from treating the model as the product and toward treating the full runtime system as the product. The important unit becomes the combination of memory, retrieval, actions, measurement, and context control around the model. This shift matters because production reliability depends on orchestration and guardrails, not only on raw model capability. In practice, engineering effort concentrates on how the pieces connect rather than on model selection alone.",
+          "trend_slug": "ai-products-shift-from-models-to-systems",
+          "trend_title": "AI Products Shift from Models to Systems",
+          "uncertainty_note": "The source strongly argues for this framing, but it is still an opinionated simplification. Some products may remain model-centric, and the article does not quantify when system-level design dominates model choice across all use cases.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5631f726-d2af-4446-8825-8513800a3c7a",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "harness-design-becomes-more-important-for-agent-reliability"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The article identifies six concepts that together explain production AI systems.",
+              "It argues that failures become diagnosable when engineers understand the system layers.",
+              "It explicitly says the sophistication of the system is in how well the pieces connect."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "runtime-systems",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article opens with a personal AWS cost incident and repeatedly uses firsthand team anecdotes as proof points.",
+          "Claims are supported mainly by practitioner stories about production failures and fixes, not formal benchmarks or research.",
+          "The author mixes opinion with implementation anecdotes, but the dominant evidence is experience-based reporting."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Many prompt failures are really context-window failures: the important instruction is present but buried under too much text.",
+          "Retrieval quality, not generation quality, is often the main bottleneck in RAG; bad chunking can dominate the error rate.",
+          "Agents need explicit stop conditions, max steps, and empty-result handlers or they can loop into large bills.",
+          "Evals should use a small golden dataset with binary task checks when possible, because subjective scores like 'helpfulness' do not localize regressions.",
+          "Context engineering is framed as the higher-order control layer that decides selection, compression, ordering, and pruning across prompts, retrieval, and agent state."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/towards-artificial-intelligence/you-cant-build-ai-systems-without-understanding-these-6-concepts-first-bf20b8469f0d"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent explanatory article with one thesis: six concepts for production AI systems.",
+          "Not a roundup, interview, or step-by-step tutorial with multiple independent items; the numbered concepts are part of one argument.",
+          "Structure is essay-like with examples and opinions rather than a list of products, news items, or Q&A."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Selection determines which facts and history the next decision actually needs.",
+            "Compression preserves useful state without carrying full conversation history forward.",
+            "Ordering matters because critical instructions should stay near the beginning and end of the context.",
+            "Pruning and structure influence whether the model notices the important parts of the input."
+          ],
+          "knowledge_summary": "Context engineering is the discipline of deciding what information an AI model should see, in what order, and with what level of compression so it can do the task reliably. It covers selection, pruning, ordering, and summarization of prompts, retrieved documents, and conversation state. The point is not to maximize input size, but to make the most relevant information salient inside a limited context window. In production systems, this often matters more than prompt wording because the model can only use what remains visible and prominent in context.",
+          "match_candidates": [],
+          "operational_insight": "Treat context as a scarce runtime resource. Keep the task goal, constraints, and freshest evidence prominent; compress older material and remove irrelevant noise before the model makes a decision.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "context-engineering",
+            "runtime-architecture"
+          ],
+          "related_topics": [
+            "agent-runtime-architecture"
+          ],
+          "relevance_note": "This is durable across chatbots, voicebots, support automation, and agent systems because every production LLM workflow has a bounded attention budget. Teams that manage context well get more stable outputs, fewer instruction-loss failures, and better cost control as of 2026-04-29.",
+          "secondary_tag": "context-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Context engineering is the discipline of deciding exactly what information goes into the model\u2019s context window, how it is structured, and what gets left out.\"",
+          "topic_slug": "context-engineering",
+          "topic_title": "Context Engineering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "dddb5013-6233-432a-9918-527e5849528d",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": [],
+            "llm_list": [
+              "Selection determines which facts and history the next decision actually needs.",
+              "Compression preserves useful state without carrying full conversation history forward.",
+              "Ordering matters because critical instructions should stay near the beginning and end of the context.",
+              "Pruning and structure influence whether the model notices the important parts of the input."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "knowledge_summary": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_insight": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_topics": {
+            "final_list": [],
+            "llm_list": [
+              "agent-runtime-architecture"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "relevance_note": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "topic_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "context-engineering",
+            "runtime-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Keyword search fails when relevant text uses different words with the same meaning.",
+            "Chunking strategy can split the answer away from the surrounding evidence.",
+            "Retrieval precision is often a more useful debugging target than the prompt text itself.",
+            "Semantic retrieval is foundational for grounded answers in RAG systems."
+          ],
+          "knowledge_summary": "Retrieval systems are the layer that selects the most relevant external information for a model at query time. They typically rely on embeddings and vector search to match meaning rather than exact keyword overlap. In AI applications, retrieval quality often determines whether the downstream generation is useful, grounded, and specific. Poor chunking, weak ranking, or missing context can dominate the error rate even when the model itself is strong.",
+          "match_candidates": [],
+          "operational_insight": "Measure retrieval before you tune generation. If the right evidence is not being retrieved, prompt changes will not fix the system; improve chunking, overlap, ranking, and evaluation of retrieved results first.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "retrieval-systems",
+            "enterprise-ai"
+          ],
+          "related_topics": [],
+          "relevance_note": "Retrieval is a core design layer in enterprise search, RAG chatbots, support assistants, and agent memory systems. As of 2026-04-29, it remains one of the highest-leverage places to improve answer quality without changing the model.",
+          "secondary_tag": "retrieval-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The quality of a RAG system is almost entirely determined by the quality of its retrieval.\"",
+          "topic_slug": "retrieval-systems",
+          "topic_title": "Retrieval Systems",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "b75cd71d-4de4-47d0-992d-5d6f2e202e71",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Keyword search fails when relevant text uses different words with the same meaning.",
+              "Chunking strategy can split the answer away from the surrounding evidence.",
+              "Retrieval precision is often a more useful debugging target than the prompt text itself.",
+              "Semantic retrieval is foundational for grounded answers in RAG systems."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "retrieval-systems",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 117.4,
+    "review_finished_at": "2026-06-07T19:50:15.397694+00:00",
+    "review_started_at": "2026-06-07T19:48:18+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T19:50:15+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Divy Yadav",
+    "canonical_url": "https://medium.com/towards-artificial-intelligence/you-cant-build-ai-systems-without-understanding-these-6-concepts-first-bf20b8469f0d",
+    "content_sha256": "eed3da87515e828af52ffc6266690f7443f349021a2dee47540443649e7e3dd1",
+    "publication": "Medium",
+    "published_date": "2026-04-29",
+    "raw_html_rel_path": "raw/readwise/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8.html",
+    "raw_md_rel_path": "raw/readwise/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8.md",
+    "source_id": "6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8",
+    "title": "6 AI Concepts You Must Master to Build Production-Ready AI Systems"
+  }
+}

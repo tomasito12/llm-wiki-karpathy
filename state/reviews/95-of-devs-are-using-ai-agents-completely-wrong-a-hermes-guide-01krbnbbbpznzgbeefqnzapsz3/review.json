@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:25:35+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnso7JrFWTgLXK0roizb0aiK9f3d9",
+          "token_usage": {
+            "completion_tokens": 240,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5419,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5659
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnsoASGF0nMFCIorQ1UIwu6lAOoNH",
+          "token_usage": {
+            "completion_tokens": 1135,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5073,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6208
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnsoASGF0nMFCIorQ1UIwu6lAOoNH",
+    "token_usage": {
+      "completion_tokens": 1375,
+      "prompt_tokens": 10492,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 11867
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "Single opinionated article with a strong vendor/product promo tone and repeated numbered claims, but no durable standalone wiki target was requested at triage. The source is better routed for later entity extraction than summarized as a general knowledge piece at this stage.",
+      "skip_recommended": true,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "Claims are a blend of the author's opinion, product-feature description, and anecdotal usage examples.",
+        "The article cites Hermes capabilities and workflow behaviors, but does not provide independent benchmarks or formal evaluation.",
+        "Several assertions are promotional or interpretive rather than evidence-backed in a research or report sense."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article says most people use Hermes like a smarter chat box, but its real value is in persistent memory, safe experimentation, and automation. Hermes is presented as an agent that can keep project context, remember user preferences, branch a session, roll back bad file changes, and accept steering commands while work is in progress. It can also switch models, route background work to cheaper models, and run the same agent across multiple chat platforms. The author\u2019s main point is simple: if you only type prompts and close the tab, you are ignoring the parts that make the system useful. The article is interesting as a practical feature tour, but it is mostly promotional and does not prove that these features outperform alternatives.",
+      "assessed_as_of": "2026-05-06",
+      "contradictions_and_skepticism": "Several claims are rhetorically strong without independent evidence, especially the opening claim that 95% of developers are using agents completely wrong. The framing that Hermes can replace tools like Zapier and support 17 platforms is impressive on paper, but the article does not show a comparison against existing automation stacks or the operational tradeoffs of consolidation. The promise that persistent memory and model routing solve the main productivity problem may be overstated; poor prompt quality, weak task decomposition, and brittle workflows can still dominate outcomes. The article also assumes that users want a highly stateful, command-heavy agent rather than a simpler tool with fewer modes of failure. Overall, the skepticism level should remain moderate: the features are plausible and operationally relevant, but the evidence is promotional and anecdotal rather than validated.",
+      "key_insights": [
+        "Persistent identity and memory files are positioned as the main fix for repeated re-prompting and context loss across sessions.",
+        "Session branching and filesystem rollback are the most operationally useful safety features because they let you test risky changes without losing the main thread.",
+        "Mid-flight steering and queued instructions are designed for long-running agent runs where requirements change after execution starts.",
+        "Model swapping plus auxiliary routing suggests a cost-control pattern: reserve frontier models for core reasoning and offload compression or summarization to cheaper models.",
+        "Cron jobs, webhook subscriptions, and custom slash commands turn the agent from a chat tool into a reusable workflow runner."
+      ],
+      "limitations_and_open_questions": "The article provides no benchmarks, latency numbers, cost comparisons, or failure rates for the listed features. It does not explain how Hermes handles security, access control, secret storage, auditability, or data retention across 17 platforms. The memory claim relies on FTS5 and an LLM summarizer, but the article does not show retrieval quality, update behavior, or how stale memory is corrected. Rollback is described as a filesystem checkpoint, but the boundaries of that snapshotting system are not specified. The webhook and cron examples are plausible, but the article does not prove reliability, idempotency, or error handling for production workflows. The feature list is broad enough that the practical complexity of operating all of it may offset some of the promised leverage.",
+      "sources": [
+        "https://medium.com/ai-in-plain-english/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-905df737a49d"
+      ],
+      "summary": "The article argues that most Hermes users treat the agent like a chat interface and miss the features that make it a persistent, multi-session automation system. It frames Hermes as a provider-agnostic agent across 17 platforms and then breaks down 12 capabilities: persistent identity files, long-term memory files, session branching, file rollbacks, mid-flight steering, queued instructions, power toggles for approval/speed/reasoning, live model swapping, auxiliary model routing, cross-platform messaging, voice input, cron/webhook automation, and custom slash commands. The core claim is that these features let the agent carry context, recover from mistakes, change models without losing state, and run repeatable workflows across tools and channels. The article repeatedly contrasts this with shallow prompt-and-close usage, which it says wastes the system\u2019s actual operational design. It is written as a product guide with strong promotional framing and only anecdotal support, including one example from the author\u2019s own projects. As a result, the piece is most useful as a feature map and workflow checklist for Hermes users, not as an independently verified evaluation of agent performance.",
+      "why_it_matters": "The piece is useful because it compresses a practical agent-operating model into a small set of durable behaviors: persistent identity, persistent memory, reversible execution, live steering, model routing, and workflow automation. For AI engineers, the main value is not the marketing claim that Hermes is powerful, but the concrete reminder that agent quality often depends on how state, recovery, and routing are configured rather than on prompt quality alone. The article also surfaces a cost pattern worth remembering: background tasks such as summarization and title generation can be routed away from the most expensive model without changing the main session state. The session-forking and rollback features are especially relevant for long-lived development workflows because they reduce the risk of corrupting a working branch of agent activity. The cross-platform layer and custom commands matter because they imply the same agent state can be reused across terminal and messaging surfaces instead of rebuilt in each channel. The claims about eliminating Zapier and pushing webhook payloads into direct agent workflows are interesting, but the evidence in the article is purely descriptive. As of 2026-05-06, the article is actionable as a feature checklist for Hermes users, but it should be read as a vendor-style guide rather than a verified performance benchmark."
+    },
+    "source_type_detection": {
+      "confidence": 0.87,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "The piece is a single coherent argument about Hermes usage patterns rather than a bundle of unrelated news items.",
+        "It is not structured as a true product roundup or step-by-step tutorial despite the numbered list.",
+        "The article reads like an opinionated product guide with promotional framing and implementation anecdotes."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "Claims are a blend of the author's opinion, product-feature description, and anecdotal usage examples.",
+          "The article cites Hermes capabilities and workflow behaviors, but does not provide independent benchmarks or formal evaluation.",
+          "Several assertions are promotional or interpretive rather than evidence-backed in a research or report sense."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Persistent identity and memory files are positioned as the main fix for repeated re-prompting and context loss across sessions.",
+          "Session branching and filesystem rollback are the most operationally useful safety features because they let you test risky changes without losing the main thread.",
+          "Mid-flight steering and queued instructions are designed for long-running agent runs where requirements change after execution starts.",
+          "Model swapping plus auxiliary routing suggests a cost-control pattern: reserve frontier models for core reasoning and offload compression or summarization to cheaper models.",
+          "Cron jobs, webhook subscriptions, and custom slash commands turn the agent from a chat tool into a reusable workflow runner."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/ai-in-plain-english/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-905df737a49d"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.87,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "The piece is a single coherent argument about Hermes usage patterns rather than a bundle of unrelated news items.",
+          "It is not structured as a true product roundup or step-by-step tutorial despite the numbered list.",
+          "The article reads like an opinionated product guide with promotional framing and implementation anecdotes."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 47.4,
+    "review_finished_at": "2026-06-07T19:56:26.419643+00:00",
+    "review_started_at": "2026-06-07T19:55:39+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T19:56:26+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Shashwat",
+    "canonical_url": "https://medium.com/ai-in-plain-english/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-905df737a49d",
+    "content_sha256": "423c3805ab914510c37f6b44c518e4aec30331894740dbbca8d36206dd6c27ae",
+    "publication": "Medium",
+    "published_date": "2026-05-06",
+    "raw_html_rel_path": "raw/readwise/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-01krbnbbbpznzgbeefqnzapsz3.html",
+    "raw_md_rel_path": "raw/readwise/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-01krbnbbbpznzgbeefqnzapsz3.md",
+    "source_id": "95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-01krbnbbbpznzgbeefqnzapsz3",
+    "title": "95% of Devs Are Using AI Agents Completely Wrong: A Hermes Guide"
+  }
+}

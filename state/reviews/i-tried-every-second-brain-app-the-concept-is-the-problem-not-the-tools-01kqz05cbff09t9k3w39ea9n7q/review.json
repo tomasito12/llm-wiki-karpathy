@@ -1,0 +1,804 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:56:28+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntHo3O9Fb1pADBoFWWfRbcN24Yxy",
+          "token_usage": {
+            "completion_tokens": 203,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6620,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6823
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntHqe9H2Uo8YZBIxby5iNJYpp2L6",
+          "token_usage": {
+            "completion_tokens": 1156,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6237,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7393
+          }
+        },
+        {
+          "cache_hit_rate": 0.13498362657490148,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntI1JXpg46ONEiEeXt2EZ1H6EIqo",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1737,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36034,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 37771
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntI1JXpg46ONEiEeXt2EZ1H6EIqo",
+    "token_usage": {
+      "completion_tokens": 3096,
+      "prompt_tokens": 48891,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 51987
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-01",
+        "confidence": 0.89,
+        "evidence_from_source": "The source contrasts six manual second-brain apps with a passive-capture idea, arguing that the real problem is capture rather than organization and highlighting Soda as the first tool that addresses the failure point directly.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "workflow-automation",
+        "suggested_new_tags": [
+          "workflow-automation",
+          "human-ai-workflows"
+        ],
+        "supporting_data_points": [
+          "Six popular second-brain apps were tested: Notion, Obsidian, Capacities, Mem, Tana, and Roam Research.",
+          "Apple Notes was retained because it made the smallest possible demand on attention.",
+          "A passive-capture Mac app called Soda was presented as the most promising alternative because it runs quietly and picks up context from work."
+        ],
+        "supporting_snippet": "\"The interesting tools, the ones that might actually solve this, are the ones that stop asking you to do the capturing at all.\"",
+        "time_sensitivity": "Actionable as of 2026-04-01; the observation is tied to the current wave of note-taking and context-capture tools, but the underlying workflow constraint is durable.",
+        "trend_description": "Personal and work knowledge tools are moving toward designs that record context automatically instead of relying on users to stop and type notes. The underlying change is a response to capture friction: valuable information often appears during active work, not after it. Products that can observe context and surface or route it later reduce interruption and are better aligned with real working conditions. The main tradeoff is that automatic capture raises privacy, trust, and correctness questions.",
+        "trend_slug": "knowledge-systems-shift-toward-passive-capture",
+        "trend_title": "Knowledge Systems Shift Toward Passive Capture",
+        "uncertainty_note": "The article is a single-user report, so it does not prove that passive capture is broadly better than manual capture. Soda is also in private beta, so the source cannot evaluate accuracy, privacy, or long-term usability under real deployment conditions.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article is written as a first-person experience report from weeks of using multiple apps.",
+        "Claims are supported mainly by the author's own trials, setup behavior, and observed friction in daily work.",
+        "There is no formal benchmark or external research; the evidence is anecdotal and practitioner-based."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about why personal knowledge apps often fail in real work. The author tried six popular tools and found that the problem was not which app had the best templates or graphs. The real issue was that all of them still require you to stop what you are doing and write things down. That is hard during meetings, Slack chats, and calls, which is when important details usually appear. Apple Notes worked better because it was simple and fast. The article points to passive-capture tools, like Soda, as the more interesting idea as of 2026-04-01.",
+      "assessed_as_of": "2026-04-01",
+      "contradictions_and_skepticism": "The article\u2019s central claim is persuasive but still mostly based on frustration, not comparative evidence. It may be true that these apps require too much manual capture for this author\u2019s workflow, but that does not prove the concept fails broadly. The praise for Apple Notes is pragmatic, yet it may reflect low ambition rather than a universally better system. The Soda idea is interesting, but the article itself acknowledges unknown privacy implications and does not show that passive capture is more accurate or trustworthy than active capture. The strongest skepticism is that a system that remembers context automatically can trade one burden for another: surveillance, false positives, or overcollection.",
+      "key_insights": [
+        "A second-brain system fails if it optimizes organization but still depends on manual capture during active work.",
+        "High-friction setup can replace note-taking with system-building, especially in apps like Notion and Obsidian.",
+        "A knowledge tool can be structurally sophisticated and still lose to Apple Notes if it slows down capture at the moment of need.",
+        "Mem\u2019s promise of AI-assisted retrieval is not enough if the user cannot trust what gets stored or resurfaced.",
+        "The most durable alternative proposed is passive capture: software that observes work context and records useful details without interrupting the user."
+      ],
+      "limitations_and_open_questions": "The evidence is a single author\u2019s experience across a small set of consumer apps, with no controlled benchmark, no retention metrics, and no comparison against a broader set of workflows. The article does not measure actual recall quality, time saved, or error rates, so the conclusion rests on perceived friction and abandonment. Soda is mentioned only as an intriguing premise; it is in private beta, so there is no evaluation of whether passive capture works, what it misses, or how it behaves under real privacy constraints. The article also does not address whether different users, teams, or note-taking habits would change the outcome. Economics are only lightly covered through rough subscription prices, without analysis of total cost or switching cost.",
+      "sources": [
+        "https://medium.com/@justtalkingtech/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-5015de4c8812"
+      ],
+      "summary": "The article argues that the core failure of \u201csecond brain\u201d apps is not the software choices among Notion, Obsidian, Capacities, Mem, Tana, and Roam Research, but the concept itself: it asks users to capture information at the exact moment they are busy doing the work that creates it. The author describes repeated attempts to build a personal knowledge system, each ending in brief enthusiasm, a few days of use, and abandonment back to Apple Notes. Across the six apps, the differences are real\u2014Notion is flexible but high-friction, Obsidian is local and extensible but decision-heavy, Capacities is structured but still requires capture, Mem is low-friction but opaque, Tana is powerful but overwhelming, and Roam feels dated and expensive. The key technical claim is that organization is not the bottleneck; capture is. The author says the most valuable details arrive during meetings, Slack threads, and calls, when attention is too thin to stop and file them away. Apple Notes wins not because it is smarter, but because it demands almost nothing: open, type, close. The only approach the author sees as addressing the real failure mode is passive capture, exemplified by Soda, a Mac app that listens to work context and surfaces details or sends them to a CRM without manual entry. As of 2026-04-01, the practical takeaway is that \u201csecond brain\u201d products are worth skepticism unless they reduce capture friction rather than merely improve structure.",
+      "why_it_matters": "The piece is useful because it isolates a practical failure mode in personal knowledge tooling: the bottleneck is not whether notes are linked, tagged, or visualized, but whether capture happens at the moment information arrives. That distinction matters for product design, because the article\u2019s comparisons show that a strong editor, a graph view, or an object model does not solve the basic attention problem. The author\u2019s tests also highlight a common trap for productivity software: setup richness can produce a feeling of progress without improving actual retention of useful facts. The Mem example adds a second constraint: AI-assisted retrieval is only valuable if the user can trust what was captured and surface results are consistent enough to rely on. The article is narrow and anecdotal, so it is better read as a product-design critique than as evidence about all knowledge workers. Its strongest reusable lesson is that durable note-taking systems should minimize interruption and reduce cognitive switching costs, not just improve post hoc organization. As of 2026-04-01, the argument is actionable as a design heuristic and worth monitoring, but the claim that passive capture is better remains unproven in the article itself. For meetings and adjacent workflow tools, the closing implication is relevant: if a system cannot capture details during calls, Slack threads, or client conversations without manual interruption, it will likely be abandoned."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion essay about second brain apps, not a bundle of unrelated news items.",
+        "The article centers on one thesis and compares a small set of named products as supporting evidence, rather than functioning as a roundup or tutorial.",
+        "Structure is narrative and evaluative, with personal testing and conclusions rather than step-by-step instruction or transcript format."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It lets users create short notes quickly with minimal setup, which is the main reason it fits busy capture moments.",
+          "It syncs across devices so a note captured on a phone can still be available later on a Mac.",
+          "It supports search well enough for lightweight recall without requiring a more complex system design."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "This is a mature, widely available consumer app rather than an experimental product. The source treats it as stable enough to serve as a durable fallback across repeated attempts with more complex tools.",
+        "name": "Apple Notes",
+        "operational_relevance": "Apple Notes is relevant when the job is to capture small details with almost no interruption. For service automation and AI workflows, it is a reminder that the best capture surface is often the one users actually open during meetings, calls, and Slack threads. Its value is not sophistication; it is low-friction persistence across devices.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "writing"
+        ],
+        "proposed_types": [
+          "note-taking"
+        ],
+        "related_tools": [
+          "Notion",
+          "Obsidian",
+          "Capacities",
+          "Mem",
+          "Tana",
+          "Roam Research",
+          "Soda"
+        ],
+        "short_description": "A lightweight note-taking app that minimizes setup and capture friction. In this source, it functions as the baseline tool that wins by being fast enough to use during busy work.",
+        "strengths": "- Very low capture friction, which matters when the user only has a few seconds to write something before moving on.\n- Fast enough to use in the middle of work, which makes it more likely to survive repeated real-world use than a more structured knowledge system.\n- Simple search and sync are enough for short operational notes when the real bottleneck is attention, not organization.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Apple Notes survived where the second brain apps didn\u2019t, not because it\u2019s a better tool, but because it makes the smallest possible demand on my attention. Open. Type. Close. Done.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "It does not provide graph-based linking, database structure, or AI-assisted retrieval, so it is not a full knowledge management system. The source also implies that its usefulness depends on modest expectations; it is effective because it asks for less, not because it solves deeper memory problems."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Manual capture fails when information arrives during meetings, chats, or calls and the user is already cognitively occupied.",
+          "Better structure does not fix a capture bottleneck if the user still has to interrupt the work to record the note.",
+          "Systems that reduce interruption can outperform more powerful systems that impose more setup or interaction cost."
+        ],
+        "knowledge_summary": "Knowledge systems fail when they require users to interrupt live work in order to record information. The key constraint is not storage or organization, but the moment of capture: if the note-taking action competes with the task generating the information, it will often be skipped. This pattern shows up across personal notes, meeting capture, CRM updates, and workflow logging. Systems that reduce interruption generally outperform systems that merely improve structure after the fact.",
+        "match_candidates": [],
+        "operational_insight": "Design for the capture moment first. If a workflow depends on users stopping mid-call, mid-chat, or mid-task to write something down, expect abandonment unless the tool is nearly invisible at point of capture.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "human-ai-workflows"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI systems because many product designs optimize storage, organization, or retrieval while ignoring the attention cost of capture. In conversational AI, voice assistants, and workflow automation, capture succeeds only if it happens without forcing the user to context-switch away from the live task.",
+        "secondary_tag": "human-ai-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The most valuable pieces of information in my working day are things like: a client mentioning their team is restructuring, a number quoted in a Slack thread I\u2019ll need three weeks from now, a decision made on a call that nobody summarised... These details matter. They are also, without exception, things that happen while I am actively doing something else.\"",
+        "topic_slug": "manual-capture-friction",
+        "topic_title": "Manual Capture Friction",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Passive capture removes the user from the capture loop, which can make retention less dependent on discipline.",
+          "The value proposition is strongest when work context is already being generated in calls, chats, or apps.",
+          "The pattern introduces new concerns around privacy, trust, and whether the system captures the right details."
+        ],
+        "knowledge_summary": "Passive context capture is a workflow pattern where software observes ongoing work signals and records useful details without requiring explicit user entry at the moment the information appears. The idea shifts the burden from manual note-taking to background collection and later surfacing of relevant context. This can reduce interruption, but it also raises trust, privacy, and false-positive concerns. The pattern is most relevant where valuable information is embedded in conversations, calls, and application context rather than in explicit documents.",
+        "match_candidates": [],
+        "operational_insight": "Use passive capture when the value of retained context is high and the cost of manual entry is too disruptive. The design challenge is not only collecting more signals, but deciding what to keep, what to surface, and what users must be able to verify later.",
+        "primary_tag": "agent-memory",
+        "proposed_tags": [
+          "agent-memory",
+          "knowledge-systems",
+          "workflow-automation"
+        ],
+        "related_topics": [
+          "manual-capture-friction"
+        ],
+        "relevance_note": "As of 2026-04-01, this pattern is relevant to AI assistants that need to remember conversation state, work context, or customer details without relying on manual logging. It is especially important for voicebots, meeting copilots, and service automation tools that need to reduce handoffs and preserve context across interactions.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Soda is a small Mac app called Soda that takes an entirely different approach. Instead of asking you to capture information, it runs quietly on your Mac and picks up context from your work: the call you\u2019re on, the app you\u2019re in, the conversation you\u2019re having.\"",
+        "topic_slug": "passive-context-capture",
+        "topic_title": "Passive Context Capture",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-01",
+          "confidence": 0.89,
+          "evidence_from_source": "The source contrasts six manual second-brain apps with a passive-capture idea, arguing that the real problem is capture rather than organization and highlighting Soda as the first tool that addresses the failure point directly.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "workflow-automation",
+          "suggested_new_tags": [
+            "workflow-automation",
+            "human-ai-workflows"
+          ],
+          "supporting_data_points": [
+            "Six popular second-brain apps were tested: Notion, Obsidian, Capacities, Mem, Tana, and Roam Research.",
+            "Apple Notes was retained because it made the smallest possible demand on attention.",
+            "A passive-capture Mac app called Soda was presented as the most promising alternative because it runs quietly and picks up context from work."
+          ],
+          "supporting_snippet": "\"The interesting tools, the ones that might actually solve this, are the ones that stop asking you to do the capturing at all.\"",
+          "time_sensitivity": "Actionable as of 2026-04-01; the observation is tied to the current wave of note-taking and context-capture tools, but the underlying workflow constraint is durable.",
+          "trend_description": "Personal and work knowledge tools are moving toward designs that record context automatically instead of relying on users to stop and type notes. The underlying change is a response to capture friction: valuable information often appears during active work, not after it. Products that can observe context and surface or route it later reduce interruption and are better aligned with real working conditions. The main tradeoff is that automatic capture raises privacy, trust, and correctness questions.",
+          "trend_slug": "knowledge-systems-shift-toward-passive-capture",
+          "trend_title": "Knowledge Systems Shift Toward Passive Capture",
+          "uncertainty_note": "The article is a single-user report, so it does not prove that passive capture is broadly better than manual capture. Soda is also in private beta, so the source cannot evaluate accuracy, privacy, or long-term usability under real deployment conditions.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "4278641e-1120-4b69-bd07-bbc7aaa5fcc8",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Six popular second-brain apps were tested: Notion, Obsidian, Capacities, Mem, Tana, and Roam Research.",
+              "Apple Notes was retained because it made the smallest possible demand on attention.",
+              "A passive-capture Mac app called Soda was presented as the most promising alternative because it runs quietly and picks up context from work."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article is written as a first-person experience report from weeks of using multiple apps.",
+          "Claims are supported mainly by the author's own trials, setup behavior, and observed friction in daily work.",
+          "There is no formal benchmark or external research; the evidence is anecdotal and practitioner-based."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A second-brain system fails if it optimizes organization but still depends on manual capture during active work.",
+          "High-friction setup can replace note-taking with system-building, especially in apps like Notion and Obsidian.",
+          "A knowledge tool can be structurally sophisticated and still lose to Apple Notes if it slows down capture at the moment of need.",
+          "Mem\u2019s promise of AI-assisted retrieval is not enough if the user cannot trust what gets stored or resurfaced.",
+          "The most durable alternative proposed is passive capture: software that observes work context and records useful details without interrupting the user."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@justtalkingtech/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-5015de4c8812"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion essay about second brain apps, not a bundle of unrelated news items.",
+          "The article centers on one thesis and compares a small set of named products as supporting evidence, rather than functioning as a roundup or tutorial.",
+          "Structure is narrative and evaluative, with personal testing and conclusions rather than step-by-step instruction or transcript format."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It lets users create short notes quickly with minimal setup, which is the main reason it fits busy capture moments.",
+            "It syncs across devices so a note captured on a phone can still be available later on a Mac.",
+            "It supports search well enough for lightweight recall without requiring a more complex system design."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "This is a mature, widely available consumer app rather than an experimental product. The source treats it as stable enough to serve as a durable fallback across repeated attempts with more complex tools.",
+          "name": "Apple Notes",
+          "operational_relevance": "Apple Notes is relevant when the job is to capture small details with almost no interruption. For service automation and AI workflows, it is a reminder that the best capture surface is often the one users actually open during meetings, calls, and Slack threads. Its value is not sophistication; it is low-friction persistence across devices.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "writing"
+          ],
+          "proposed_types": [
+            "note-taking"
+          ],
+          "related_tools": [
+            "Notion",
+            "Obsidian",
+            "Capacities",
+            "Mem",
+            "Tana",
+            "Roam Research",
+            "Soda"
+          ],
+          "short_description": "A lightweight note-taking app that minimizes setup and capture friction. In this source, it functions as the baseline tool that wins by being fast enough to use during busy work.",
+          "strengths": "- Very low capture friction, which matters when the user only has a few seconds to write something before moving on.\n- Fast enough to use in the middle of work, which makes it more likely to survive repeated real-world use than a more structured knowledge system.\n- Simple search and sync are enough for short operational notes when the real bottleneck is attention, not organization.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Apple Notes survived where the second brain apps didn\u2019t, not because it\u2019s a better tool, but because it makes the smallest possible demand on my attention. Open. Type. Close. Done.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "It does not provide graph-based linking, database structure, or AI-assisted retrieval, so it is not a full knowledge management system. The source also implies that its usefulness depends on modest expectations; it is effective because it asks for less, not because it solves deeper memory problems."
+        },
+        "notes": null,
+        "proposal_id": "23cdf2ff-6c16-493e-95eb-cd42dc328808",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It lets users create short notes quickly with minimal setup, which is the main reason it fits busy capture moments.",
+              "It syncs across devices so a note captured on a phone can still be available later on a Mac.",
+              "It supports search well enough for lightweight recall without requiring a more complex system design."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Notion",
+              "Obsidian",
+              "Capacities",
+              "Mem",
+              "Tana",
+              "Roam Research",
+              "Soda"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "writing"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Manual capture fails when information arrives during meetings, chats, or calls and the user is already cognitively occupied.",
+            "Better structure does not fix a capture bottleneck if the user still has to interrupt the work to record the note.",
+            "Systems that reduce interruption can outperform more powerful systems that impose more setup or interaction cost."
+          ],
+          "knowledge_summary": "Knowledge systems fail when they require users to interrupt live work in order to record information. The key constraint is not storage or organization, but the moment of capture: if the note-taking action competes with the task generating the information, it will often be skipped. This pattern shows up across personal notes, meeting capture, CRM updates, and workflow logging. Systems that reduce interruption generally outperform systems that merely improve structure after the fact.",
+          "match_candidates": [],
+          "operational_insight": "Design for the capture moment first. If a workflow depends on users stopping mid-call, mid-chat, or mid-task to write something down, expect abandonment unless the tool is nearly invisible at point of capture.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "human-ai-workflows"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI systems because many product designs optimize storage, organization, or retrieval while ignoring the attention cost of capture. In conversational AI, voice assistants, and workflow automation, capture succeeds only if it happens without forcing the user to context-switch away from the live task.",
+          "secondary_tag": "human-ai-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The most valuable pieces of information in my working day are things like: a client mentioning their team is restructuring, a number quoted in a Slack thread I\u2019ll need three weeks from now, a decision made on a call that nobody summarised... These details matter. They are also, without exception, things that happen while I am actively doing something else.\"",
+          "topic_slug": "manual-capture-friction",
+          "topic_title": "Manual Capture Friction",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "8940dca9-c7f1-47ab-9754-4493f8b21337",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Manual capture fails when information arrives during meetings, chats, or calls and the user is already cognitively occupied.",
+              "Better structure does not fix a capture bottleneck if the user still has to interrupt the work to record the note.",
+              "Systems that reduce interruption can outperform more powerful systems that impose more setup or interaction cost."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "human-ai-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Passive capture removes the user from the capture loop, which can make retention less dependent on discipline.",
+            "The value proposition is strongest when work context is already being generated in calls, chats, or apps.",
+            "The pattern introduces new concerns around privacy, trust, and whether the system captures the right details."
+          ],
+          "knowledge_summary": "Passive context capture is a workflow pattern where software observes ongoing work signals and records useful details without requiring explicit user entry at the moment the information appears. The idea shifts the burden from manual note-taking to background collection and later surfacing of relevant context. This can reduce interruption, but it also raises trust, privacy, and false-positive concerns. The pattern is most relevant where valuable information is embedded in conversations, calls, and application context rather than in explicit documents.",
+          "match_candidates": [],
+          "operational_insight": "Use passive capture when the value of retained context is high and the cost of manual entry is too disruptive. The design challenge is not only collecting more signals, but deciding what to keep, what to surface, and what users must be able to verify later.",
+          "primary_tag": "agent-memory",
+          "proposed_tags": [
+            "agent-memory",
+            "knowledge-systems",
+            "workflow-automation"
+          ],
+          "related_topics": [
+            "manual-capture-friction"
+          ],
+          "relevance_note": "As of 2026-04-01, this pattern is relevant to AI assistants that need to remember conversation state, work context, or customer details without relying on manual logging. It is especially important for voicebots, meeting copilots, and service automation tools that need to reduce handoffs and preserve context across interactions.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Soda is a small Mac app called Soda that takes an entirely different approach. Instead of asking you to capture information, it runs quietly on your Mac and picks up context from your work: the call you\u2019re on, the app you\u2019re in, the conversation you\u2019re having.\"",
+          "topic_slug": "passive-context-capture",
+          "topic_title": "Passive Context Capture",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f4cfaf10-0204-4f00-8937-7d4b4af4de28",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Passive capture removes the user from the capture loop, which can make retention less dependent on discipline.",
+              "The value proposition is strongest when work context is already being generated in calls, chats, or apps.",
+              "The pattern introduces new concerns around privacy, trust, and whether the system captures the right details."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "manual-capture-friction"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-memory",
+            "knowledge-systems",
+            "workflow-automation"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Nadia Okafor",
+    "canonical_url": "https://medium.com/@justtalkingtech/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-5015de4c8812",
+    "content_sha256": "979cde15fed85cbb49d4dce260f59bc85f4437fa26f8b1bbe306dab9e162c83a",
+    "publication": "Medium",
+    "published_date": "2026-04-01",
+    "raw_html_rel_path": "raw/readwise/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-01kqz05cbff09t9k3w39ea9n7q.html",
+    "raw_md_rel_path": "raw/readwise/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-01kqz05cbff09t9k3w39ea9n7q.md",
+    "source_id": "i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-01kqz05cbff09t9k3w39ea9n7q",
+    "title": "I Tried Every \u201cSecond Brain\u201d App. The Concept Is the Problem, Not the Tools."
+  }
+}

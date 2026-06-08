@@ -1,0 +1,659 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:51:59+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntDT15FYOBT5VWe0iqKnnonfYQRF",
+          "token_usage": {
+            "completion_tokens": 227,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6274,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6501
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntDWIidJLflKLTPlt4fY26TrFd3G",
+          "token_usage": {
+            "completion_tokens": 1061,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5915,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6976
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntDfKP5HxizJEC537rDldHZzev4G",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1119,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35241,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 36360
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntDfKP5HxizJEC537rDldHZzev4G",
+    "token_usage": {
+      "completion_tokens": 2407,
+      "prompt_tokens": 47430,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 49837
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "May 2026",
+        "confidence": 0.9,
+        "evidence_from_source": "Across the featured companies, leaders involved security, legal, compliance, and IT from the outset, defined what good looked like before scaling, and kept human judgment in place for important decisions.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-governance",
+          "automation-supervision"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "ai-governance",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "BBVA involved security, legal, compliance, and IT from the outset.",
+          "Scout24 delayed features when quality thresholds were not met.",
+          "JetBrains positioned AI to support expert judgment rather than replace it.",
+          "The leadership checklist explicitly asks which decisions must always retain human oversight."
+        ],
+        "supporting_snippet": "\"AI adoption is a leadership discipline. Outcomes are shaped through participation, not sponsorship alone.\"",
+        "time_sensitivity": "Actionable as of May 2026; relevant while enterprise AI adoption continues to move from pilots into production workflows that need explicit oversight.",
+        "trend_description": "Enterprise AI deployment is moving toward workflows where human accountability remains explicit and governance is embedded early. The operational shift is away from loose experimentation and toward systems that combine automation with controls, review, and defined oversight boundaries. This pattern is most visible in regulated or high-stakes environments where trust and quality matter as much as speed.",
+        "trend_slug": "enterprise-ai-shifts-toward-governed-human-oversight-workflows",
+        "trend_title": "Enterprise AI Shifts Toward Governed Human Oversight Workflows",
+        "uncertainty_note": "The source is a curated set of success cases, so it supports the direction of the shift but not the full distribution of outcomes across enterprises.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article draws on concrete enterprise examples from Philips, BBVA, Mirakl, Scout24, JetBrains, and Scania to describe how AI was deployed and scaled.",
+        "Claims are supported by deployment details such as governance setup, workflow redesign, evaluation practices, and adoption outcomes.",
+        "It explicitly says the guide is built from conversations with leaders about what they learned while moving AI from experimentation into production."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is about how large companies move AI from pilots into everyday work. The main idea is that success depends less on having access to a model and more on making the organization ready for it. The article says leaders need trust, clear ownership, good workflow design, and strong quality checks before they scale. It uses examples from healthcare, banking, commerce, search, software, and manufacturing to show how that works in practice. The practical takeaway is simple: AI sticks when it solves real work problems and people can trust the results.",
+      "assessed_as_of": "May 2026",
+      "contradictions_and_skepticism": "The piece argues that governance enables speed, which is plausible, but it provides limited evidence beyond selected success stories. Its claim that the winners will be those who operationalize AI best is directionally reasonable, yet it is still a broad assertion built from a small set of examples. Some of the language around compounding impact and durable advantage is more executive framing than measured proof. The article also leans heavily on enterprise leaders\u2019 retrospective narratives, so it may understate the messiness, reversals, and cost of getting to production.",
+      "key_insights": [
+        "Treat AI as an operating layer, not a one-off tool rollout, if you want adoption to compound across a large organization.",
+        "Bring security, legal, compliance, and IT into design early; the article presents governance as a speed enabler rather than a final review step.",
+        "Measure AI against real workflow outcomes, not novelty; BBVA\u2019s internal assistant is used as the clearest example of time saved in daily work.",
+        "Move teams from consuming AI to building with it when local workflow redesign matters; Mirakl\u2019s emphasis is on ownership and embedded champions.",
+        "Define what 'good' means before scaling; Scout24 delayed launches when evaluation thresholds were not met, which the article treats as a trust mechanism."
+      ],
+      "limitations_and_open_questions": "The guide is selective and mostly anecdotal: it relies on a handful of named company examples rather than comparative benchmarks, controlled studies, or long-term outcome data. The reported gains, such as BBVA\u2019s query handling time reduction, are concrete but not enough to evaluate total cost, error rates, downstream risk, or whether gains persisted at scale. The article does not explain the technical stack, integration burden, change-management cost, or how these programs were funded and staffed. It also leaves open how organizations should quantify 'good' for different tasks, what evaluation frameworks transfer across domains, and where human oversight should be mandatory versus optional. Security, privacy, and model governance are acknowledged, but the operational details are thin.",
+      "sources": [
+        "https://cdn.openai.com/pdf/025ecc00-e528-48dc-95f7-90a96c7be449/frontiers-of-ai-leadership-lessons-guide.pdf"
+      ],
+      "summary": "This guide argues that enterprise AI scale is determined less by model access than by early leadership choices about trust, workflow design, governance, and quality. Across examples from Philips, BBVA, Mirakl, Scout24, JetBrains, and Scania, the common pattern is that organizations treated AI as an operating layer rather than a standalone tool rollout. Philips focused on AI literacy and culture across a 70,000-person workforce so adoption would fit patient care and clinical quality. BBVA involved security, legal, compliance, and IT from the start, used AI in concrete daily workflows, and reported a large reduction in query handling time for an internal assistant in Peru, with rollout expanding to more than 120,000 employees globally. Mirakl emphasized ownership over passive consumption by giving teams autonomy to build agents and redesign workflows. Scout24 invested in evaluation and delayed launches until quality thresholds were met, while JetBrains framed AI as support for expert judgment and maintainable code rather than code generation alone. The article\u2019s core claim is that durable AI impact comes from trust, embedded governance, workflow fit, and protecting human judgment before scale.",
+      "why_it_matters": "The piece is useful because it compresses several enterprise AI deployment lessons into a single operational pattern: scale comes from leadership decisions, not from model capability alone. It is especially relevant for teams that keep seeing pilot fatigue, fragmented point solutions, or weak translation from experimentation into production. The article\u2019s strongest contribution is the repeated emphasis on trust mechanisms: governance, evaluation, and explicit quality criteria are not treated as overhead but as prerequisites for adoption. That is a durable lesson for AI product and platform teams, because it suggests the bottleneck is often organizational design, not prompt quality or model choice. The examples also show that workflow fit matters more than feature breadth; AI adoption followed concrete usefulness in daily work rather than abstract enthusiasm. The article is less strong on economics, technical architecture, and failure cases, so it should be read as an executive operating model rather than a build guide. It is actionable as of May 2026, with the most durable guidance likely to remain relevant through future enterprise deployments because it is grounded in governance, evaluation, and workflow design rather than a specific model release."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Structured as a single coherent guidance document with executive summary and lessons, not a bundle of unrelated items.",
+        "Contains synthesized takeaways from multiple enterprise interviews, but the primary purpose is an article/report-style argument about scaling AI.",
+        "Not a product roundup, step-by-step tutorial, or transcript; the named companies serve as cases within one narrative."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Leadership participation matters; sponsorship alone is not enough.",
+          "Governance works best when security, legal, compliance, and IT are involved in design, not only at review time.",
+          "Workflow fit and trust mechanisms are prerequisites for adoption at scale.",
+          "Quality criteria should be defined before launch to avoid rework and reversals."
+        ],
+        "knowledge_summary": "Organizational AI readiness is the ability of a company to turn AI capability into dependable production outcomes. It depends on leadership ownership, cross-functional governance, workflow redesign, and shared trust in how outputs are used. Readiness is not just about access to models or tools; it is about whether people, processes, and controls can absorb AI without degrading quality. In practice, readiness shows up in whether teams can move from experimentation to repeatable operational use.",
+        "match_candidates": [],
+        "operational_insight": "Treat AI rollout as an organizational design problem first: establish ownership, involve governance stakeholders early, and redesign workflows around real work instead of adding AI on top of fragmented systems.",
+        "primary_tag": "organizational-design",
+        "proposed_tags": [
+          "organizational-design",
+          "enterprise-ai",
+          "ai-governance"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters long term because enterprise AI programs fail or stall when teams focus on model access before operational readiness. The durable pattern is useful for chatbot, voicebot, and service automation deployments where adoption, trust, and governance determine whether systems reach production. As of May 2026, the source frames readiness as the bottleneck between experimentation and measurable outcomes.",
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"We all know AI model capabilities have accelerated fast. But many enterprises still struggle to translate that intelligence into reliable, production-grade outcomes.\"",
+        "topic_slug": "organizational-ai-readiness",
+        "topic_title": "Organizational AI Readiness",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Define acceptance criteria before expansion.",
+          "Use targeted tests to surface edge cases early.",
+          "Delay launches when quality thresholds are not met.",
+          "Pair evaluation with broad internal testing when trust is critical."
+        ],
+        "knowledge_summary": "Verification loops are the evaluation and review mechanisms used to test AI outputs before and during deployment. They reduce the risk of scaling systems whose behavior is untrustworthy, inconsistent, or hard to explain. In operational settings, verification can include custom test sets, internal testing, delayed launches, and explicit quality thresholds. These loops shift AI from a best-effort assistant into a controlled workflow component.",
+        "match_candidates": [],
+        "operational_insight": "Build evaluation before scale: define what good looks like, test for edge cases, and delay rollout when the system does not meet the bar.",
+        "primary_tag": "test-and-verification",
+        "proposed_tags": [
+          "test-and-verification",
+          "ai-evaluation",
+          "verification-systems"
+        ],
+        "related_topics": [
+          "organizational-ai-readiness"
+        ],
+        "relevance_note": "Verification loops are durable in AI engineering because they turn subjective trust into operational controls. They matter for conversational AI, support automation, and high-stakes enterprise workflows where a single bad response can create customer friction or compliance risk. As of May 2026, the source presents verification as a practical prerequisite for scaling, not as an optional QA layer.",
+        "secondary_tag": "ai-evaluation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Scout24's approach highlights a quieter discipline that separated serious deployments from rushed ones: defining what 'good' meant before scaling.\"",
+        "topic_slug": "verification-loops-in-ai-workflows",
+        "topic_title": "Verification Loops in AI Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "May 2026",
+          "confidence": 0.9,
+          "evidence_from_source": "Across the featured companies, leaders involved security, legal, compliance, and IT from the outset, defined what good looked like before scaling, and kept human judgment in place for important decisions.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "automation-supervision"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "ai-governance",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "BBVA involved security, legal, compliance, and IT from the outset.",
+            "Scout24 delayed features when quality thresholds were not met.",
+            "JetBrains positioned AI to support expert judgment rather than replace it.",
+            "The leadership checklist explicitly asks which decisions must always retain human oversight."
+          ],
+          "supporting_snippet": "\"AI adoption is a leadership discipline. Outcomes are shaped through participation, not sponsorship alone.\"",
+          "time_sensitivity": "Actionable as of May 2026; relevant while enterprise AI adoption continues to move from pilots into production workflows that need explicit oversight.",
+          "trend_description": "Enterprise AI deployment is moving toward workflows where human accountability remains explicit and governance is embedded early. The operational shift is away from loose experimentation and toward systems that combine automation with controls, review, and defined oversight boundaries. This pattern is most visible in regulated or high-stakes environments where trust and quality matter as much as speed.",
+          "trend_slug": "enterprise-ai-shifts-toward-governed-human-oversight-workflows",
+          "trend_title": "Enterprise AI Shifts Toward Governed Human Oversight Workflows",
+          "uncertainty_note": "The source is a curated set of success cases, so it supports the direction of the shift but not the full distribution of outcomes across enterprises.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "66304f85-2967-4324-9b73-3202d8e2844c",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "BBVA involved security, legal, compliance, and IT from the outset.",
+              "Scout24 delayed features when quality thresholds were not met.",
+              "JetBrains positioned AI to support expert judgment rather than replace it.",
+              "The leadership checklist explicitly asks which decisions must always retain human oversight."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "automation-supervision"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article draws on concrete enterprise examples from Philips, BBVA, Mirakl, Scout24, JetBrains, and Scania to describe how AI was deployed and scaled.",
+          "Claims are supported by deployment details such as governance setup, workflow redesign, evaluation practices, and adoption outcomes.",
+          "It explicitly says the guide is built from conversations with leaders about what they learned while moving AI from experimentation into production."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Treat AI as an operating layer, not a one-off tool rollout, if you want adoption to compound across a large organization.",
+          "Bring security, legal, compliance, and IT into design early; the article presents governance as a speed enabler rather than a final review step.",
+          "Measure AI against real workflow outcomes, not novelty; BBVA\u2019s internal assistant is used as the clearest example of time saved in daily work.",
+          "Move teams from consuming AI to building with it when local workflow redesign matters; Mirakl\u2019s emphasis is on ownership and embedded champions.",
+          "Define what 'good' means before scaling; Scout24 delayed launches when evaluation thresholds were not met, which the article treats as a trust mechanism."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://cdn.openai.com/pdf/025ecc00-e528-48dc-95f7-90a96c7be449/frontiers-of-ai-leadership-lessons-guide.pdf"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Structured as a single coherent guidance document with executive summary and lessons, not a bundle of unrelated items.",
+          "Contains synthesized takeaways from multiple enterprise interviews, but the primary purpose is an article/report-style argument about scaling AI.",
+          "Not a product roundup, step-by-step tutorial, or transcript; the named companies serve as cases within one narrative."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Leadership participation matters; sponsorship alone is not enough.",
+            "Governance works best when security, legal, compliance, and IT are involved in design, not only at review time.",
+            "Workflow fit and trust mechanisms are prerequisites for adoption at scale.",
+            "Quality criteria should be defined before launch to avoid rework and reversals."
+          ],
+          "knowledge_summary": "Organizational AI readiness is the ability of a company to turn AI capability into dependable production outcomes. It depends on leadership ownership, cross-functional governance, workflow redesign, and shared trust in how outputs are used. Readiness is not just about access to models or tools; it is about whether people, processes, and controls can absorb AI without degrading quality. In practice, readiness shows up in whether teams can move from experimentation to repeatable operational use.",
+          "match_candidates": [],
+          "operational_insight": "Treat AI rollout as an organizational design problem first: establish ownership, involve governance stakeholders early, and redesign workflows around real work instead of adding AI on top of fragmented systems.",
+          "primary_tag": "organizational-design",
+          "proposed_tags": [
+            "organizational-design",
+            "enterprise-ai",
+            "ai-governance"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters long term because enterprise AI programs fail or stall when teams focus on model access before operational readiness. The durable pattern is useful for chatbot, voicebot, and service automation deployments where adoption, trust, and governance determine whether systems reach production. As of May 2026, the source frames readiness as the bottleneck between experimentation and measurable outcomes.",
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"We all know AI model capabilities have accelerated fast. But many enterprises still struggle to translate that intelligence into reliable, production-grade outcomes.\"",
+          "topic_slug": "organizational-ai-readiness",
+          "topic_title": "Organizational AI Readiness",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "10e66d41-4799-498c-93e2-95c824124c67",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Leadership participation matters; sponsorship alone is not enough.",
+              "Governance works best when security, legal, compliance, and IT are involved in design, not only at review time.",
+              "Workflow fit and trust mechanisms are prerequisites for adoption at scale.",
+              "Quality criteria should be defined before launch to avoid rework and reversals."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "organizational-design",
+            "enterprise-ai",
+            "ai-governance"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Define acceptance criteria before expansion.",
+            "Use targeted tests to surface edge cases early.",
+            "Delay launches when quality thresholds are not met.",
+            "Pair evaluation with broad internal testing when trust is critical."
+          ],
+          "knowledge_summary": "Verification loops are the evaluation and review mechanisms used to test AI outputs before and during deployment. They reduce the risk of scaling systems whose behavior is untrustworthy, inconsistent, or hard to explain. In operational settings, verification can include custom test sets, internal testing, delayed launches, and explicit quality thresholds. These loops shift AI from a best-effort assistant into a controlled workflow component.",
+          "match_candidates": [],
+          "operational_insight": "Build evaluation before scale: define what good looks like, test for edge cases, and delay rollout when the system does not meet the bar.",
+          "primary_tag": "test-and-verification",
+          "proposed_tags": [
+            "test-and-verification",
+            "ai-evaluation",
+            "verification-systems"
+          ],
+          "related_topics": [
+            "organizational-ai-readiness"
+          ],
+          "relevance_note": "Verification loops are durable in AI engineering because they turn subjective trust into operational controls. They matter for conversational AI, support automation, and high-stakes enterprise workflows where a single bad response can create customer friction or compliance risk. As of May 2026, the source presents verification as a practical prerequisite for scaling, not as an optional QA layer.",
+          "secondary_tag": "ai-evaluation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Scout24's approach highlights a quieter discipline that separated serious deployments from rushed ones: defining what 'good' meant before scaling.\"",
+          "topic_slug": "verification-loops-in-ai-workflows",
+          "topic_title": "Verification Loops in AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "5f164094-087b-4464-baef-1b7ff299994c",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Define acceptance criteria before expansion.",
+              "Use targeted tests to surface edge cases early.",
+              "Delay launches when quality thresholds are not met.",
+              "Pair evaluation with broad internal testing when trust is critical."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "organizational-ai-readiness"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "test-and-verification",
+            "ai-evaluation",
+            "verification-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI",
+    "canonical_url": "https://cdn.openai.com/pdf/025ecc00-e528-48dc-95f7-90a96c7be449/frontiers-of-ai-leadership-lessons-guide.pdf",
+    "content_sha256": "e835c9064860e3336ac1e885d593b7b7f2a832ee8784081e3ead6e138305bf77",
+    "publication": "openai.com",
+    "published_date": null,
+    "raw_html_rel_path": "raw/readwise/how-enterprises-are-scaling-ai-from-curiosity-to-compounding-impact-01krb30w4035rre51qghcz3qsp.html",
+    "raw_md_rel_path": "raw/readwise/how-enterprises-are-scaling-ai-from-curiosity-to-compounding-impact-01krb30w4035rre51qghcz3qsp.md",
+    "source_id": "how-enterprises-are-scaling-ai-from-curiosity-to-compounding-impact-01krb30w4035rre51qghcz3qsp",
+    "title": "How Enterprises Are Scaling AI From Curiosity To Compounding Impact"
+  }
+}

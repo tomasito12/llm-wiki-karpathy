@@ -1,0 +1,245 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:38:31+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt0cPU4Bcty2FpjlL3TKzzdrjcg9",
+          "token_usage": {
+            "completion_tokens": 246,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8097,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8343
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnt0ezRLYB920xei1H8GDqYUJe4DX",
+          "token_usage": {
+            "completion_tokens": 1194,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7760,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8954
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnt0ezRLYB920xei1H8GDqYUJe4DX",
+    "token_usage": {
+      "completion_tokens": 1440,
+      "prompt_tokens": 15857,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 17297
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "This is a multi-topic AI news roundup with mostly newsy, trend-reinforcing claims and no single durable knowledge unit that clearly warrants wiki extraction at triage stage.",
+      "skip_recommended": true,
+      "total_candidates_considered": 9
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The roundup combines vendor announcements, benchmark references, practitioner reports, and the author's own synthesis.",
+        "Several claims are sourced from company posts or product launches, while others rely on tweets, Reddit anecdotes, and third-party analysis.",
+        "No single evidence basis dominates the whole issue."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This issue is a roundup of AI infra and tooling news. The main idea is that serving models, routing requests across models, and building reliable agent harnesses are becoming more important than just having a better base model. It highlights big funding rounds for Fireworks, Baseten, and OpenRouter, plus product updates from vLLM, W&B, and others. It also surfaces research on long-term memory, long-context bottlenecks, and deep research agents. In plain English: the stack around the model is getting a lot of attention because real applications need routing, memory, and recovery, not just generation quality.",
+      "assessed_as_of": "2026-05-27",
+      "contradictions_and_skepticism": "The roundup leans heavily on funding and engagement as proxies for significance, so some of the momentum could be narrative amplification rather than evidence of durable product advantage. Several technical claims are explicitly framed by the article itself as unverified, especially around Huawei\u2019s engineering roadmap and some benchmark comparisons. The piece also suggests that better harnesses can reveal hidden capability, but that does not automatically imply those capabilities are reliable enough for production without stronger eval discipline. Overall skepticism should remain moderate: the signal is plausible and useful, but much of it is still a mix of product marketing, early measurements, and enthusiast interpretation.",
+      "key_insights": [
+        "OpenRouter\u2019s reported volume growth from 5T to 25T weekly tokens is the clearest concrete signal in the piece that routing is becoming a production layer worth paying for.",
+        "The roundup repeatedly frames harness quality, eval loops, and memory handling as differentiators, not just model size, which matters for agent builders.",
+        "The article treats long-context serving as a systems bottleneck, with inference demand potentially outrunning capacity for longer workloads.",
+        "vLLM\u2019s Rust frontend is a practical serving optimization for CPU/API-server bottlenecks, with a cited throughput jump on a preprocess-heavy workload.",
+        "Several benchmark and product examples are used to argue that real-world agent performance is separating from simple model leaderboard performance."
+      ],
+      "limitations_and_open_questions": "Many of the strongest claims are provisional: Fireworks\u2019 and Baseten\u2019s rounds are described as being in talks or raising, not fully closed, and several benchmark results rely on vendor or practitioner commentary rather than independent replication. The article does not provide detailed workload breakdowns, cost curves, or failure modes for the reported serving and inference gains, so it is hard to judge how broadly they transfer. The \u201csleep\u201d memory idea is conceptually interesting, but the roundup does not show production validation, latency tradeoffs across workloads, or security implications of persistent fast weights. OpenRouter\u2019s volume growth is impressive, but the source does not separate organic demand from routing-induced token inflation or explain how much of that volume is durable versus bursty. The benchmark and product references also mix closed and open systems, which makes apples-to-apples comparison difficult.",
+      "sources": [
+        "https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks",
+        "https://openrouter.ai",
+        "https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks"
+      ],
+      "summary": "This roundup argues that AI infrastructure and product usage are moving fast enough that decacorn-scale funding, routing, and serving layers are worth tracking as a single cluster. The headline items are Fireworks\u2019 reported $15B round, Baseten\u2019s reported $11B round, and OpenRouter\u2019s $113M Series B, which the piece treats as evidence that multi-model inference and routing have become important platform layers. The rest of the issue reinforces that theme with examples from serving infrastructure, memory and harness design, long-context bottlenecks, and benchmark changes that reward full agent stacks rather than just stronger base models. It also notes open research and systems work, including sleep-like memory consolidation, deep research agents, and training/optimizer variants, but presents most of them as active experiments rather than settled practice. On the production side, it highlights concrete tooling updates such as vLLM\u2019s Rust frontend, W&B\u2019s MCP server, and OpenRouter/Cloudflare/retrieval-vendor productionization features. The article is less a single argument than a curated signal bundle: inference demand, agent harnesses, and infra ergonomics are all receiving attention at once.",
+      "why_it_matters": "The piece is useful because it compresses several adjacent signals about AI infrastructure into one date-stamped snapshot: funding, routing, serving, benchmark design, memory systems, and agent tooling. The strongest durable takeaway is that inference and orchestration layers are receiving enough usage and capital to justify standalone attention, especially where one application must route across multiple models or maintain long-running agent state. OpenRouter\u2019s reported Series B and token growth make that point most concretely, while Fireworks and Baseten are presented as the other large funding markers in the same lane. The roundup also shows that operational concerns are becoming more central: context handling, durable turns, reconnects, stale state, and observability are described as practical differentiators, not afterthoughts. On the research side, the \u201csleep\u201d memory idea and deep-research agents suggest active exploration of ways to manage long trajectories without unbounded KV-cache growth, but those are still early-stage as of 2026-05-27. The article\u2019s evidence is mixed and often comes from company posts, tweets, or benchmark claims, so the value is in pattern recognition rather than settled conclusions. As of 2026-05-27, this is actionable mainly as a monitor-and-adopt signal for teams building multi-model or long-context systems, not as proof of a single dominant architecture. For chat, voice, meetings, and back-office automation, the practical relevance is that durable state, routing, and recovery are the infrastructure constraints that will shape those products if they rely on long-running agents."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece is explicitly labeled as AI News for a date range and bundles many loosely related items from Twitter, Reddit, and funding news.",
+        "Its structure is a digest with multiple short blurbs across funding, model updates, infra, and tooling rather than one coherent article argument.",
+        "The author even describes the issue as a recap/roundup and reports scanning many subreddits and tweets."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The roundup combines vendor announcements, benchmark references, practitioner reports, and the author's own synthesis.",
+          "Several claims are sourced from company posts or product launches, while others rely on tweets, Reddit anecdotes, and third-party analysis.",
+          "No single evidence basis dominates the whole issue."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "OpenRouter\u2019s reported volume growth from 5T to 25T weekly tokens is the clearest concrete signal in the piece that routing is becoming a production layer worth paying for.",
+          "The roundup repeatedly frames harness quality, eval loops, and memory handling as differentiators, not just model size, which matters for agent builders.",
+          "The article treats long-context serving as a systems bottleneck, with inference demand potentially outrunning capacity for longer workloads.",
+          "vLLM\u2019s Rust frontend is a practical serving optimization for CPU/API-server bottlenecks, with a cited throughput jump on a preprocess-heavy workload.",
+          "Several benchmark and product examples are used to argue that real-world agent performance is separating from simple model leaderboard performance."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks",
+          "https://openrouter.ai",
+          "https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece is explicitly labeled as AI News for a date range and bundles many loosely related items from Twitter, Reddit, and funding news.",
+          "Its structure is a digest with multiple short blurbs across funding, model updates, infra, and tooling rather than one coherent article argument.",
+          "The author even describes the issue as a recap/roundup and reports scanning many subreddits and tweets."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks",
+    "content_sha256": "c33e1208a0e4e9b7e58cc1e59163f5c9456ce5c645f7e1c168335e2bb7088339",
+    "publication": "latent.space",
+    "published_date": "2026-05-27",
+    "raw_html_rel_path": "raw/readwise/ainews-new-ai-infra-decacorns-fireworks-baseten-with-openrouter-on-the-way-01kskrtd56c1fgw54vw8gae184.html",
+    "raw_md_rel_path": "raw/readwise/ainews-new-ai-infra-decacorns-fireworks-baseten-with-openrouter-on-the-way-01kskrtd56c1fgw54vw8gae184.md",
+    "source_id": "ainews-new-ai-infra-decacorns-fireworks-baseten-with-openrouter-on-the-way-01kskrtd56c1fgw54vw8gae184",
+    "title": "[AINews] New AI Infra decacorns: Fireworks, Baseten (with OpenRouter on the way)"
+  }
+}

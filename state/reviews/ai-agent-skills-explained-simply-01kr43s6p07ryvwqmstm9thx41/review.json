@@ -1,0 +1,672 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:27:49+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DnsqAPYYKuLoHIxwpjjOrwJKIFeKP",
+          "token_usage": {
+            "completion_tokens": 196,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6211,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6407
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnsqChU6BFz0Hx1ygCA0ZmHiU0tnx",
+          "token_usage": {
+            "completion_tokens": 1032,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5821,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6853
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DnsqLnGokfbwtatbaEHI1ikSDNiuX",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1312,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 33936,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 35248
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnsqLnGokfbwtatbaEHI1ikSDNiuX",
+    "token_usage": {
+      "completion_tokens": 2540,
+      "prompt_tokens": 45968,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 48508
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-24",
+        "confidence": 0.83,
+        "evidence_from_source": "The source describes skills as modular capabilities stored in a skill.md file, with instructions, metadata, and optional resources, and says they are portable and version-controlled. It also contrasts them with prompts, RAG, and fine-tuning as a way to supply procedural knowledge.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-restructuring",
+        "proposed_tags": [
+          "workflow-restructuring",
+          "ai-operationalization",
+          "enterprise-ai"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "secondary_tag": "ai-operationalization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Skills are described as filesystem-based resources.",
+          "The format is presented as reusable and version-controlled.",
+          "The article explicitly contrasts skills with prompts, RAG, and fine-tuning.",
+          "It says the format is an open standard adopted by Claude Code and OpenAI Codex."
+        ],
+        "supporting_snippet": "\"Agent Skills are modular capabilities that extend LLM\u2019s functionality.\nThey\u2019re reusable, filesystem-based resources containing instructions, metadata, and optional resources (scripts, templates) that Claude automatically uses when relevant to your request.\n... \nSkills\nWhat they give you: Procedural knowledge\"",
+        "time_sensitivity": "Actionable as of 2026-04-24; the observation is tied to the current packaging pattern for agent workflows and may remain relevant while file-based skill specs retain platform support.",
+        "trend_description": "AI systems increasingly package repeatable procedures into reusable modules rather than relying only on prompts or model weights. This makes products easier to update, version, and move across platforms because the workflow lives in a file-based artifact instead of being embedded only in the model. The change matters most when tasks are structured, repeatable, and expensive to restate manually.",
+        "trend_slug": "skills-move-ai-products-toward-workflow-packaging",
+        "trend_title": "AI Products Shift Toward Workflow Packaging",
+        "uncertainty_note": "The article asserts adoption and portability, but it does not provide independent usage data, interoperability tests, or long-term persistence evidence, so the trend should be treated as a directional pattern rather than a proven market shift.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "independent_analysis",
+      "reasoning": [
+        "Written by a third-party Medium author explaining a concept rather than the vendor of the product or spec.",
+        "Claims are mostly interpretive and explanatory, comparing skills with MCP, RAG, and fine-tuning.",
+        "The article references an open standard and other platforms, but the core evidence is narrative explanation rather than data or formal evaluation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about a simple way to give AI agents repeatable know-how. Instead of forcing the model to guess or retype long instructions, you put the procedure in a skill.md file. The agent loads only a short description at first, then pulls in the full instructions only when they match the task. That keeps it efficient. The article also compares skills with tools like retrieval, fine-tuning, and MCP, and warns that skills can run code, so they need review before use.",
+      "assessed_as_of": "2026-04-24",
+      "contradictions_and_skepticism": "The article simplifies the comparison space a bit: MCP, RAG, fine-tuning, prompts, projects, and subagents are not interchangeable categories, so the neat one-line contrasts are useful but incomplete. The claim that the spec is an open standard adopted by major platforms sounds plausible, but the post does not substantiate breadth or interoperability beyond assertion. The idea that skills are just markdown files is directionally true as presented, but the operational reality may depend on platform-specific loaders, execution policies, and trust controls that the article does not cover. The trust discussion is the strongest skeptical note in the piece, and it is warranted because executable skill bundles can hide harmful behavior.",
+      "key_insights": [
+        "Skills are presented as procedural memory for agents, not just another knowledge store.",
+        "The mandatory skill metadata is minimal: name and description are what drive matching.",
+        "Progressive disclosure is the main scaling idea; it avoids loading every skill into context at startup.",
+        "Skills and MCP are complementary: MCP provides tool access, while skills decide when and how to use it.",
+        "Security is a real concern because a skill can include executable scripts with access to files, environment variables, and API keys."
+      ],
+      "limitations_and_open_questions": "The article is explanatory, not empirical, so it does not measure whether skills improve task success rates, latency, or maintenance cost versus prompts, projects, or subagents. It also does not show the actual skill.md specification beyond a minimal front-matter description, so implementation details remain thin. The open-standard and adoption claims are asserted without evidence in the text beyond named platforms. Security risks are acknowledged, but there is no discussion of sandboxing, permission boundaries, signing, or review workflows for executable skills. The article assumes the model can reliably decide when a skill applies, but it does not examine false matches, missed matches, or prompt-injection failure modes in the matching process.",
+      "sources": [
+        "https://medium.com/@tahirbalarabe2/ai-agent-skills-explained-simply-4010f6d9db92",
+        "https://agentskills.io"
+      ],
+      "summary": "The article explains AI agent skills as modular procedural knowledge packaged in a skill.md file. The core claim is that LLMs can have facts and tools, but they still need a reusable way to learn repeatable workflows, judgment, and ordering for tasks that are too specific to spell out each time. A skill is described as a markdown file with YAML front matter for name and description, followed by instructions, plus optional scripts, references, and assets. The piece emphasizes progressive disclosure: load only metadata first, then full instructions when a request matches, and only load optional resources when needed. It contrasts skills with MCP, RAG, and fine-tuning: MCP supplies tool access, RAG supplies factual retrieval, fine-tuning bakes knowledge into weights, and skills supply procedural know-how. It also says the format is an open standard published at agentskills.io, licensed under Apache 2.0, and adopted by Claude Code, OpenAI Codex, and others. The article closes by warning that skills can execute scripts with access to the file system, environment variables, and API keys, so public skills should be reviewed like any software dependency.",
+      "why_it_matters": "The article is useful because it compresses a practical design pattern for agent behavior into a small, reusable file format: a skill.md file that carries instructions, metadata, and optional execution assets. That is operationally relevant for anyone building agents that must follow repeatable workflows instead of improvising from prompt text alone. The distinction between procedural knowledge, factual retrieval, and tool access is one of the more durable parts of the piece, because it maps skills to a specific gap that RAG, MCP, and fine-tuning do not fully cover on their own. The progressive disclosure section is also useful: load only name and description first, then expand when the description matches, then fetch scripts or references only when needed. That is a concrete context-management pattern rather than a vague architectural idea. The article\u2019s open-standard claim matters only to the extent that the cited spec and adopters exist; the post itself does not benchmark portability or adoption depth. The security warning is practical and should not be skipped, since executable skills can touch local files and secrets. As of 2026-04-24, the piece is actionable as a conceptual and operational primer, but it remains light on empirical validation, safety controls, and failure cases."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent explainer about one concept: AI agent skills.",
+        "Structured as an article with sections and FAQ, not a multi-item roundup or transcript.",
+        "No strong signals of a technical tutorial with step-by-step implementation; it is explanatory and comparative."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Load only skill name and description first to keep startup context small.",
+          "Use the skill description as the trigger for deciding when to expand into full instructions.",
+          "Delay scripts, references, and assets until the task actually needs them.",
+          "The routing step depends on the model's own reasoning, so metadata quality matters."
+        ],
+        "knowledge_summary": "Progressive disclosure in agent systems means loading only lightweight metadata first, then pulling in full instructions and optional resources only when a task matches. This reduces context waste and lets many skills coexist without overwhelming the model at startup. The pattern is especially useful when the agent must choose among many modular capabilities and needs a cheap first-pass index before expanding detail. Its practical value is in balancing scale, token efficiency, and relevance selection in agent runtimes.",
+        "match_candidates": [],
+        "operational_insight": "Treat skill metadata as a routing layer and reserve full instructions for the point of need. The quality of the short description becomes a critical control surface because it determines whether the model expands the right skill at the right time.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "agent-orchestration",
+          "runtime-architecture"
+        ],
+        "related_topics": [
+          "file-native-ai-workflows"
+        ],
+        "relevance_note": "This matters for agent runtimes because modular capabilities scale better when the system can route cheaply before expanding detail. In conversational AI and service automation, it supports many reusable task modules without forcing every request to carry full process instructions.",
+        "secondary_tag": "agent-orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"How Progressive Disclosure Works\nHere\u2019s where it gets interesting. What if an agent has hundreds of skills? Loading all of them into memory would use up every token before anyone asks a question.\nSo skills use progressive disclosure in three tiers.\nTier One: Metadata Only\nThe agent loads just the name and description from each skill. That\u2019s a few tokens per skill. Even with a hundred skills installed, the overhead won\u2019t fill the context window.\nThis is essentially a table of contents.\"",
+        "topic_slug": "progressive-disclosure-skill-design",
+        "topic_title": "Progressive Disclosure in Skill Design",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Procedural knowledge is about action order and judgment, not stored facts.",
+          "A skill can encode repeatable workflows that are awkward to restate in every prompt.",
+          "The concept pairs naturally with RAG for facts and MCP for tools.",
+          "It is most useful for tasks that require consistent execution rather than open-ended creativity."
+        ],
+        "knowledge_summary": "Procedural knowledge is know-how: the stepwise order, judgment, and execution rules needed to complete a task reliably. In agent systems, it complements factual retrieval and tool access by telling the model what to do, when to do it, and in what sequence. This is important whenever tasks are repeatable but too process-heavy to encode in a single prompt. The durable design lesson is that agents need instruction structure, not just more facts.",
+        "match_candidates": [],
+        "operational_insight": "Use procedural modules when the goal is reliable execution of repeatable workflows, especially where the model must preserve order and judgment across steps. Keep the process explicit so the agent does not have to infer the workflow from raw examples or ad hoc prompting.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "workflow-design",
+          "process-design"
+        ],
+        "related_topics": [
+          "progressive-disclosure-skill-design"
+        ],
+        "relevance_note": "This is a durable abstraction for building assistants that must complete service workflows, compliance steps, or multi-stage operations. It helps separate process knowledge from factual knowledge and external actions, which makes orchestration easier to reason about and audit.",
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Skills\nWhat they give you: Procedural knowledge\nWhat they do: Tell the agent how to do things, in what order, with what judgment\"",
+        "topic_slug": "procedural-knowledge-for-agents",
+        "topic_title": "Procedural Knowledge for Agents",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-24",
+          "confidence": 0.83,
+          "evidence_from_source": "The source describes skills as modular capabilities stored in a skill.md file, with instructions, metadata, and optional resources, and says they are portable and version-controlled. It also contrasts them with prompts, RAG, and fine-tuning as a way to supply procedural knowledge.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-restructuring",
+          "proposed_tags": [
+            "workflow-restructuring",
+            "ai-operationalization",
+            "enterprise-ai"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "secondary_tag": "ai-operationalization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Skills are described as filesystem-based resources.",
+            "The format is presented as reusable and version-controlled.",
+            "The article explicitly contrasts skills with prompts, RAG, and fine-tuning.",
+            "It says the format is an open standard adopted by Claude Code and OpenAI Codex."
+          ],
+          "supporting_snippet": "\"Agent Skills are modular capabilities that extend LLM\u2019s functionality.\nThey\u2019re reusable, filesystem-based resources containing instructions, metadata, and optional resources (scripts, templates) that Claude automatically uses when relevant to your request.\n... \nSkills\nWhat they give you: Procedural knowledge\"",
+          "time_sensitivity": "Actionable as of 2026-04-24; the observation is tied to the current packaging pattern for agent workflows and may remain relevant while file-based skill specs retain platform support.",
+          "trend_description": "AI systems increasingly package repeatable procedures into reusable modules rather than relying only on prompts or model weights. This makes products easier to update, version, and move across platforms because the workflow lives in a file-based artifact instead of being embedded only in the model. The change matters most when tasks are structured, repeatable, and expensive to restate manually.",
+          "trend_slug": "skills-move-ai-products-toward-workflow-packaging",
+          "trend_title": "AI Products Shift Toward Workflow Packaging",
+          "uncertainty_note": "The article asserts adoption and portability, but it does not provide independent usage data, interoperability tests, or long-term persistence evidence, so the trend should be treated as a directional pattern rather than a proven market shift.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "80243b62-5b8d-4d94-b154-565098c4be3b",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "ai-products-shift-from-models-to-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Skills are described as filesystem-based resources.",
+              "The format is presented as reusable and version-controlled.",
+              "The article explicitly contrasts skills with prompts, RAG, and fine-tuning.",
+              "It says the format is an open standard adopted by Claude Code and OpenAI Codex."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-restructuring",
+            "ai-operationalization",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "independent_analysis",
+        "reasoning": [
+          "Written by a third-party Medium author explaining a concept rather than the vendor of the product or spec.",
+          "Claims are mostly interpretive and explanatory, comparing skills with MCP, RAG, and fine-tuning.",
+          "The article references an open standard and other platforms, but the core evidence is narrative explanation rather than data or formal evaluation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Skills are presented as procedural memory for agents, not just another knowledge store.",
+          "The mandatory skill metadata is minimal: name and description are what drive matching.",
+          "Progressive disclosure is the main scaling idea; it avoids loading every skill into context at startup.",
+          "Skills and MCP are complementary: MCP provides tool access, while skills decide when and how to use it.",
+          "Security is a real concern because a skill can include executable scripts with access to files, environment variables, and API keys."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@tahirbalarabe2/ai-agent-skills-explained-simply-4010f6d9db92",
+          "https://agentskills.io"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent explainer about one concept: AI agent skills.",
+          "Structured as an article with sections and FAQ, not a multi-item roundup or transcript.",
+          "No strong signals of a technical tutorial with step-by-step implementation; it is explanatory and comparative."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Load only skill name and description first to keep startup context small.",
+            "Use the skill description as the trigger for deciding when to expand into full instructions.",
+            "Delay scripts, references, and assets until the task actually needs them.",
+            "The routing step depends on the model's own reasoning, so metadata quality matters."
+          ],
+          "knowledge_summary": "Progressive disclosure in agent systems means loading only lightweight metadata first, then pulling in full instructions and optional resources only when a task matches. This reduces context waste and lets many skills coexist without overwhelming the model at startup. The pattern is especially useful when the agent must choose among many modular capabilities and needs a cheap first-pass index before expanding detail. Its practical value is in balancing scale, token efficiency, and relevance selection in agent runtimes.",
+          "match_candidates": [],
+          "operational_insight": "Treat skill metadata as a routing layer and reserve full instructions for the point of need. The quality of the short description becomes a critical control surface because it determines whether the model expands the right skill at the right time.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "runtime-architecture"
+          ],
+          "related_topics": [
+            "file-native-ai-workflows"
+          ],
+          "relevance_note": "This matters for agent runtimes because modular capabilities scale better when the system can route cheaply before expanding detail. In conversational AI and service automation, it supports many reusable task modules without forcing every request to carry full process instructions.",
+          "secondary_tag": "agent-orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"How Progressive Disclosure Works\nHere\u2019s where it gets interesting. What if an agent has hundreds of skills? Loading all of them into memory would use up every token before anyone asks a question.\nSo skills use progressive disclosure in three tiers.\nTier One: Metadata Only\nThe agent loads just the name and description from each skill. That\u2019s a few tokens per skill. Even with a hundred skills installed, the overhead won\u2019t fill the context window.\nThis is essentially a table of contents.\"",
+          "topic_slug": "progressive-disclosure-skill-design",
+          "topic_title": "Progressive Disclosure in Skill Design",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "aed1a15b-a80c-407e-810c-62a471862182",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Load only skill name and description first to keep startup context small.",
+              "Use the skill description as the trigger for deciding when to expand into full instructions.",
+              "Delay scripts, references, and assets until the task actually needs them.",
+              "The routing step depends on the model's own reasoning, so metadata quality matters."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "file-native-ai-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "runtime-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Procedural knowledge is about action order and judgment, not stored facts.",
+            "A skill can encode repeatable workflows that are awkward to restate in every prompt.",
+            "The concept pairs naturally with RAG for facts and MCP for tools.",
+            "It is most useful for tasks that require consistent execution rather than open-ended creativity."
+          ],
+          "knowledge_summary": "Procedural knowledge is know-how: the stepwise order, judgment, and execution rules needed to complete a task reliably. In agent systems, it complements factual retrieval and tool access by telling the model what to do, when to do it, and in what sequence. This is important whenever tasks are repeatable but too process-heavy to encode in a single prompt. The durable design lesson is that agents need instruction structure, not just more facts.",
+          "match_candidates": [],
+          "operational_insight": "Use procedural modules when the goal is reliable execution of repeatable workflows, especially where the model must preserve order and judgment across steps. Keep the process explicit so the agent does not have to infer the workflow from raw examples or ad hoc prompting.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "workflow-design",
+            "process-design"
+          ],
+          "related_topics": [
+            "progressive-disclosure-skill-design"
+          ],
+          "relevance_note": "This is a durable abstraction for building assistants that must complete service workflows, compliance steps, or multi-stage operations. It helps separate process knowledge from factual knowledge and external actions, which makes orchestration easier to reason about and audit.",
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Skills\nWhat they give you: Procedural knowledge\nWhat they do: Tell the agent how to do things, in what order, with what judgment\"",
+          "topic_slug": "procedural-knowledge-for-agents",
+          "topic_title": "Procedural Knowledge for Agents",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "67eee9a6-7d13-45ff-ac7a-a059b6f8eba9",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Procedural knowledge is about action order and judgment, not stored facts.",
+              "A skill can encode repeatable workflows that are awkward to restate in every prompt.",
+              "The concept pairs naturally with RAG for facts and MCP for tools.",
+              "It is most useful for tasks that require consistent execution rather than open-ended creativity."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "progressive-disclosure-skill-design"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "workflow-design",
+            "process-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "independent_analysis": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 101.5,
+    "review_finished_at": "2026-06-07T20:10:14.499746+00:00",
+    "review_started_at": "2026-06-07T20:08:33+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T20:10:14+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Tahir",
+    "canonical_url": "https://medium.com/@tahirbalarabe2/ai-agent-skills-explained-simply-4010f6d9db92",
+    "content_sha256": "f3f703e240214535094055c5af4f293c78a18eb7c573b65c1c7fb718ce91b707",
+    "publication": "Medium",
+    "published_date": "2026-04-24",
+    "raw_html_rel_path": "raw/readwise/ai-agent-skills-explained-simply-01kr43s6p07ryvwqmstm9thx41.html",
+    "raw_md_rel_path": "raw/readwise/ai-agent-skills-explained-simply-01kr43s6p07ryvwqmstm9thx41.md",
+    "source_id": "ai-agent-skills-explained-simply-01kr43s6p07ryvwqmstm9thx41",
+    "title": "AI Agent Skills Explained Simply"
+  }
+}

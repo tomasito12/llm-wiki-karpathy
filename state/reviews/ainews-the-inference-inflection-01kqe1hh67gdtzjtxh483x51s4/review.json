@@ -1,0 +1,754 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:42:36+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt4QdEwsJf66c57cvXuHwaVV66al",
+          "token_usage": {
+            "completion_tokens": 206,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7251,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7457
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnt4SfoAfIY2P1HgRt72dF3qmFTED",
+          "token_usage": {
+            "completion_tokens": 1151,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6875,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8026
+          }
+        },
+        {
+          "cache_hit_rate": 0.24804936508745984,
+          "name": "entities",
+          "prompt_version": "42-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-Dnt4d4pBqQAgdKijYd9al1MEu65l3",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 1303,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19609,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 20912
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnt4d4pBqQAgdKijYd9al1MEu65l3",
+    "token_usage": {
+      "completion_tokens": 2660,
+      "prompt_tokens": 33735,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 36395
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-30",
+        "confidence": 0.91,
+        "evidence_from_source": "The source explicitly frames 'the inference inflection' as arrived and links it to CPU demand, GPU workload reshaping, and large increases in token-generation demand. It uses Intel, NVIDIA, OpenAI, and Anthropic commentary as supporting examples.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "runtime-systems",
+          "inference-efficiency",
+          "ai-operationalization"
+        ],
+        "related_trends": [
+          "inference-efficiency-moves-toward-low-precision-hardware",
+          "agent-tooling-shifts-from-prompting-to-workflow-architecture"
+        ],
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "\"inference compute is a strategic resource, currently undervalued\"",
+          "\"To a significant degree, we have to become an AI inference company now.\"",
+          "\"the computing demand of the work has gone up by 10,000 times\"",
+          "Intel CEO notes on rising CPU compute demand"
+        ],
+        "supporting_snippet": "\"the inference inflection has arrived\"",
+        "time_sensitivity": "Anchored to 2026-04-30; this is a medium-term observation that reflects serving pressure and capacity planning priorities as of late April 2026.",
+        "trend_description": "AI system planning shifts from one-time model training toward ongoing inference capacity, because deployed usage, tool calls, and long-running agent loops consume more compute over time. The operational consequence is that inference cost, utilization, and capacity allocation become central product constraints.",
+        "trend_slug": "inference-demand-outgrows-training-as-the-practical-bottleneck",
+        "trend_title": "Inference demand overtakes training as the practical bottleneck",
+        "uncertainty_note": "The article is a roundup with vendor quotes and commentary rather than a single audited study, so the magnitude of the shift is not independently verified here. The direction of travel is consistent across the source, but the exact scale should be treated cautiously.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-04-30",
+        "evidence_snippets": [
+          "\"inference compute is a strategic resource, currently undervalued\"",
+          "\"To a significant degree, we have to become an AI inference company now.\"",
+          "\"the inference inflection has arrived\"",
+          "\"the computing demand of the work has gone up by 10,000 times\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Noam Brown",
+          "Sam Altman",
+          "Intel",
+          "NVIDIA",
+          "OpenAI",
+          "Anthropic"
+        ],
+        "operational_relevance": "This pushes teams toward inference-aware architecture choices: caching, batching, routing, kernel optimization, and workload-specific deployment planning. It also suggests that agent products need capacity budgeting at the workflow level, not just model selection.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "runtime-systems",
+          "inference-efficiency",
+          "ai-operationalization"
+        ],
+        "secondary_tag": "runtime-systems",
+        "service_automation_relevance": "Service automation systems will face higher per-interaction compute pressure as agent loops, tool use, and longer contexts expand. That raises the importance of throughput-aware routing, fallback policies, and cost controls in support automation stacks.",
+        "signal_strength": "high",
+        "signal_title": "Inference capacity becomes the binding constraint for AI products",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The roundup frames inference as a strategic resource rather than a background cost. It cites comments from Noam Brown, Sam Altman, Intel's CEO, and Jensen Huang to support the idea that product usage, token generation, and production workloads are pulling more CPU and GPU capacity into serving. The operational implication is that capacity planning, not just training, is becoming central to AI system design.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-30, builders should treat inference capacity, utilization, and serving efficiency as first-order product constraints. The source is partly opinionated and vendor-adjacent, but it consistently points to the same operational bottleneck across multiple named speakers and examples.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-30",
+        "evidence_snippets": [
+          "\"persistent context, tools, integrations, and team rollout\"",
+          "\"the throughline is that coding-agent UX is now dominated by memory, retrieval, harness quality, and tool orchestration\"",
+          "\"Cursor SDK exposes the same runtime, harness, and models that power Cursor\"",
+          "\"Harness Profiles let teams version per-model prompts, tools, and middleware\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "OpenAI",
+          "Cursor",
+          "VS Code",
+          "LangChain",
+          "Cloudflare"
+        ],
+        "operational_relevance": "Teams building agents should expect to invest in state management, retrieval, tool orchestration, eval hooks, and per-model harness tuning. The article suggests that performance gains increasingly come from the surrounding runtime rather than a single model upgrade.",
+        "primary_tag": "execution-oriented-agents",
+        "proposed_tags": [
+          "execution-oriented-agents",
+          "persistent-agents",
+          "orchestration-layer-growth",
+          "runtime-systems"
+        ],
+        "secondary_tag": "persistent-agents",
+        "service_automation_relevance": "For customer support automation, this implies more robust long-running workflows, better handoffs, and stronger persistence across turns and tools. It also suggests that support bots will be judged on task completion quality, not just response fluency.",
+        "signal_strength": "high",
+        "signal_title": "Agent products are moving toward persistent harnessed workflows",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The roundup says coding-agent UX is being shaped by persistent context, tool integrations, memory, retrieval, and harness quality rather than raw model intelligence alone. It points to Codex, Cursor SDK, VS Code harness upgrades, and LangChain's Deep Agents work as evidence that agents are becoming programmable runtimes with evaluable workflows. The shift is less about chat and more about durable execution loops.",
+        "time_horizon": "long_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-30, this is a durable systems change for AI builders: agent products are converging on workflow architecture, not just model prompts. The evidence is mixed-source and newsletter-curated, but the repeated pattern across multiple products makes it operationally useful.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article combines independent analyst commentary, vendor statements, benchmark figures, and research claims.",
+        "Many assertions are attributed to named people or companies rather than to a single formal study.",
+        "No single evidence mode dominates the whole source; it is a newsletter roundup of heterogeneous claim types."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This issue is about why AI inference has become the bottleneck worth paying attention to. Instead of focusing on training new models, it shows that running models in production is eating more CPU and GPU capacity, and that systems work matters a lot more as a result. The article connects this to coding agents, longer context windows, and more complex tool use, which all make every request more expensive. It also highlights specialized serving tricks like prefill/decode splitting, kernel fusion, and better harnesses. In plain English: making models useful at scale is increasingly a software and infrastructure problem, not just a model-quality problem.",
+      "assessed_as_of": "2026-04-30",
+      "contradictions_and_skepticism": "The strongest claim in the opening is rhetorical: it treats inference as a strategic inflection and cites dramatic multipliers, but the underlying support is a collage of comments and selective examples rather than a single cohesive study. Several model-launch reactions in the roundup are clearly opinionated and may reflect positioning as much as technical reality. The article\u2019s benchmark and throughput highlights are useful, but they risk overstating generality because many results depend on specific hardware, kernels, context lengths, or serving stacks. The knowledge-probe section is provocative, but its claim that black-box evals leak architecture scale should be treated carefully until independently validated across more model families.",
+      "key_insights": [
+        "Inference demand is framed as the main operational constraint, with both CPU and GPU workloads under pressure in the source text.",
+        "Coding agents are being treated as platforms, with persistent context, integrations, and harness quality becoming part of the product surface.",
+        "Model serving performance is increasingly shaped by system design choices such as prefill/decode disaggregation, speculative decoding, and kernel fusion.",
+        "The roundup repeatedly treats harness engineering as a first-class optimization layer, not just prompt tuning.",
+        "Several model releases in the issue are positioned around efficiency, openness, or enterprise reliability rather than raw benchmark leadership."
+      ],
+      "limitations_and_open_questions": "The roundup mixes vendor statements, podcast excerpts, benchmark numbers, and research claims, so evidence quality is uneven across sections. Several performance claims are context-specific and lack enough detail to judge reproducibility, especially where only a metric or headline improvement is quoted. The inference-demand thesis is plausible within the source, but the article does not provide a full cost model, fleet-level utilization data, or a rigorous demand forecast. Some model-release comparisons are benchmark-driven and may not generalize across tasks, deployments, or latency/cost constraints. The article also does not resolve when efficiency gains from better harnesses or kernels outweigh the complexity they add to production systems.",
+      "sources": [
+        "https://www.latent.space/p/ainews-the-inference-inflection",
+        "Latent Space / AINews for 4/28/2026-4/29/2026"
+      ],
+      "summary": "This roundup argues that AI inference demand has become the central operational constraint in late April 2026. The opener frames the issue with comments from Noam Brown and Sam Altman, then ties them to Intel\u2019s CPU demand notes and podcast discussion about software, RL gyms, and agents running on CPUs. It also cites Jensen Huang\u2019s claim that inference is the new inflection point, with token-generation and reasoning workloads expanding compute demand dramatically. Beyond that macro framing, the issue catalogs several engineering consequences: prefill/decode disaggregation, more specialized GPU serving stacks, and tighter hardware/software co-design. The rest of the roundup covers coding-agent platforms, harness engineering, model releases, kernel optimizations, serving postmortems, and research signals, but the shared theme is that serving quality, throughput, and harness design are becoming as important as raw model capability. The most durable takeaway is that, as of 2026-04-30, inference-side capacity, cost, and system design are the practical bottlenecks worth tracking, while many of the product and benchmark claims are still vendor- and newsletter-dependent.",
+      "why_it_matters": "The piece is useful because it compresses a set of late-April-2026 signals around inference economics, agent infrastructure, and serving optimization into one place. The opening claims that inference compute is being treated as a strategic resource, and it backs that up with examples from Intel, OpenAI, Anthropic, and NVIDIA commentary. For an AI builder, the practical message is that model quality alone is no longer the whole story: the article repeatedly points to memory, retrieval, harness quality, tool orchestration, kernel choices, and model-specific serving paths as the things that determine whether an agent product performs well. The coding-agent section is especially concrete, since it describes Codex, Cursor SDK, and VS Code improvements that make persistent workflows and programmable harnesses more important than a single chat loop. The model-release section matters more as a market/engineering readout than as a product recommendation: Mistral, Granite, Ling, Hunyuan, and Qwen are presented through their deployment fit, cost, openness, and efficiency tradeoffs. The serving section is a good reminder that latency and throughput gains can come from stack-level work such as torch.compile hooks, KV-cache fixes, layer splitting, and Blackwell-aware vLLM optimizations. The research snippets add useful caution that black-box benchmarks can leak architecture-scale information, but they do not settle the broader debate they reference. As of 2026-04-30, the most actionable reading is to monitor inference-side capacity planning, agent harness design, and serving optimizations closely; the roundup is rich in operational signals, but many claims are still tied to vendor commentary, benchmark slices, or newsletter curation rather than fully audited studies."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece is structured as a digest of many loosely related AI news items and commentary blocks.",
+        "It aggregates multiple topics, model releases, benchmarks, and infrastructure notes rather than making one coherent argument.",
+        "The opening op-ed section is embedded inside a broader newsletter-style roundup ('AI News for 4/28/2026-4/29/2026')."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-30",
+          "confidence": 0.91,
+          "evidence_from_source": "The source explicitly frames 'the inference inflection' as arrived and links it to CPU demand, GPU workload reshaping, and large increases in token-generation demand. It uses Intel, NVIDIA, OpenAI, and Anthropic commentary as supporting examples.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "runtime-systems",
+            "inference-efficiency",
+            "ai-operationalization"
+          ],
+          "related_trends": [
+            "inference-efficiency-moves-toward-low-precision-hardware",
+            "agent-tooling-shifts-from-prompting-to-workflow-architecture"
+          ],
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "\"inference compute is a strategic resource, currently undervalued\"",
+            "\"To a significant degree, we have to become an AI inference company now.\"",
+            "\"the computing demand of the work has gone up by 10,000 times\"",
+            "Intel CEO notes on rising CPU compute demand"
+          ],
+          "supporting_snippet": "\"the inference inflection has arrived\"",
+          "time_sensitivity": "Anchored to 2026-04-30; this is a medium-term observation that reflects serving pressure and capacity planning priorities as of late April 2026.",
+          "trend_description": "AI system planning shifts from one-time model training toward ongoing inference capacity, because deployed usage, tool calls, and long-running agent loops consume more compute over time. The operational consequence is that inference cost, utilization, and capacity allocation become central product constraints.",
+          "trend_slug": "inference-demand-outgrows-training-as-the-practical-bottleneck",
+          "trend_title": "Inference demand overtakes training as the practical bottleneck",
+          "uncertainty_note": "The article is a roundup with vendor quotes and commentary rather than a single audited study, so the magnitude of the shift is not independently verified here. The direction of travel is consistent across the source, but the exact scale should be treated cautiously.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2aec9354-36c5-44d3-b39a-34867d81104a",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "inference-efficiency-moves-toward-low-precision-hardware",
+              "agent-tooling-shifts-from-prompting-to-workflow-architecture"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "\"inference compute is a strategic resource, currently undervalued\"",
+              "\"To a significant degree, we have to become an AI inference company now.\"",
+              "\"the computing demand of the work has gone up by 10,000 times\"",
+              "Intel CEO notes on rising CPU compute demand"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "runtime-systems",
+            "inference-efficiency",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-30",
+          "evidence_snippets": [
+            "\"inference compute is a strategic resource, currently undervalued\"",
+            "\"To a significant degree, we have to become an AI inference company now.\"",
+            "\"the inference inflection has arrived\"",
+            "\"the computing demand of the work has gone up by 10,000 times\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Noam Brown",
+            "Sam Altman",
+            "Intel",
+            "NVIDIA",
+            "OpenAI",
+            "Anthropic"
+          ],
+          "operational_relevance": "This pushes teams toward inference-aware architecture choices: caching, batching, routing, kernel optimization, and workload-specific deployment planning. It also suggests that agent products need capacity budgeting at the workflow level, not just model selection.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "runtime-systems",
+            "inference-efficiency",
+            "ai-operationalization"
+          ],
+          "secondary_tag": "runtime-systems",
+          "service_automation_relevance": "Service automation systems will face higher per-interaction compute pressure as agent loops, tool use, and longer contexts expand. That raises the importance of throughput-aware routing, fallback policies, and cost controls in support automation stacks.",
+          "signal_strength": "high",
+          "signal_title": "Inference capacity becomes the binding constraint for AI products",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The roundup frames inference as a strategic resource rather than a background cost. It cites comments from Noam Brown, Sam Altman, Intel's CEO, and Jensen Huang to support the idea that product usage, token generation, and production workloads are pulling more CPU and GPU capacity into serving. The operational implication is that capacity planning, not just training, is becoming central to AI system design.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-30, builders should treat inference capacity, utilization, and serving efficiency as first-order product constraints. The source is partly opinionated and vendor-adjacent, but it consistently points to the same operational bottleneck across multiple named speakers and examples.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "f7f163cc-012a-463f-b493-1a06e36374fa",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"inference compute is a strategic resource, currently undervalued\"",
+              "\"To a significant degree, we have to become an AI inference company now.\"",
+              "\"the inference inflection has arrived\"",
+              "\"the computing demand of the work has gone up by 10,000 times\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Noam Brown",
+              "Sam Altman",
+              "Intel",
+              "NVIDIA",
+              "OpenAI",
+              "Anthropic"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "runtime-systems",
+            "inference-efficiency",
+            "ai-operationalization"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-30",
+          "evidence_snippets": [
+            "\"persistent context, tools, integrations, and team rollout\"",
+            "\"the throughline is that coding-agent UX is now dominated by memory, retrieval, harness quality, and tool orchestration\"",
+            "\"Cursor SDK exposes the same runtime, harness, and models that power Cursor\"",
+            "\"Harness Profiles let teams version per-model prompts, tools, and middleware\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "OpenAI",
+            "Cursor",
+            "VS Code",
+            "LangChain",
+            "Cloudflare"
+          ],
+          "operational_relevance": "Teams building agents should expect to invest in state management, retrieval, tool orchestration, eval hooks, and per-model harness tuning. The article suggests that performance gains increasingly come from the surrounding runtime rather than a single model upgrade.",
+          "primary_tag": "execution-oriented-agents",
+          "proposed_tags": [
+            "execution-oriented-agents",
+            "persistent-agents",
+            "orchestration-layer-growth",
+            "runtime-systems"
+          ],
+          "secondary_tag": "persistent-agents",
+          "service_automation_relevance": "For customer support automation, this implies more robust long-running workflows, better handoffs, and stronger persistence across turns and tools. It also suggests that support bots will be judged on task completion quality, not just response fluency.",
+          "signal_strength": "high",
+          "signal_title": "Agent products are moving toward persistent harnessed workflows",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The roundup says coding-agent UX is being shaped by persistent context, tool integrations, memory, retrieval, and harness quality rather than raw model intelligence alone. It points to Codex, Cursor SDK, VS Code harness upgrades, and LangChain's Deep Agents work as evidence that agents are becoming programmable runtimes with evaluable workflows. The shift is less about chat and more about durable execution loops.",
+          "time_horizon": "long_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-30, this is a durable systems change for AI builders: agent products are converging on workflow architecture, not just model prompts. The evidence is mixed-source and newsletter-curated, but the repeated pattern across multiple products makes it operationally useful.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "0af86723-786b-4909-962a-1f3bbfc2cf7e",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"persistent context, tools, integrations, and team rollout\"",
+              "\"the throughline is that coding-agent UX is now dominated by memory, retrieval, harness quality, and tool orchestration\"",
+              "\"Cursor SDK exposes the same runtime, harness, and models that power Cursor\"",
+              "\"Harness Profiles let teams version per-model prompts, tools, and middleware\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI",
+              "Cursor",
+              "VS Code",
+              "LangChain",
+              "Cloudflare"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-oriented-agents",
+            "persistent-agents",
+            "orchestration-layer-growth",
+            "runtime-systems"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article combines independent analyst commentary, vendor statements, benchmark figures, and research claims.",
+          "Many assertions are attributed to named people or companies rather than to a single formal study.",
+          "No single evidence mode dominates the whole source; it is a newsletter roundup of heterogeneous claim types."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Inference demand is framed as the main operational constraint, with both CPU and GPU workloads under pressure in the source text.",
+          "Coding agents are being treated as platforms, with persistent context, integrations, and harness quality becoming part of the product surface.",
+          "Model serving performance is increasingly shaped by system design choices such as prefill/decode disaggregation, speculative decoding, and kernel fusion.",
+          "The roundup repeatedly treats harness engineering as a first-class optimization layer, not just prompt tuning.",
+          "Several model releases in the issue are positioned around efficiency, openness, or enterprise reliability rather than raw benchmark leadership."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/ainews-the-inference-inflection",
+          "Latent Space / AINews for 4/28/2026-4/29/2026"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece is structured as a digest of many loosely related AI news items and commentary blocks.",
+          "It aggregates multiple topics, model releases, benchmarks, and infrastructure notes rather than making one coherent argument.",
+          "The opening op-ed section is embedded inside a broader newsletter-style roundup ('AI News for 4/28/2026-4/29/2026')."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/ainews-the-inference-inflection",
+    "content_sha256": "fe7255c2b9f5d7ec4fe5cfec60d15f3b0a7049f418f084a84a6fb301ed5a3b3d",
+    "publication": "Latent",
+    "published_date": "2026-04-30",
+    "raw_html_rel_path": "raw/readwise/ainews-the-inference-inflection-01kqe1hh67gdtzjtxh483x51s4.html",
+    "raw_md_rel_path": "raw/readwise/ainews-the-inference-inflection-01kqe1hh67gdtzjtxh483x51s4.md",
+    "source_id": "ainews-the-inference-inflection-01kqe1hh67gdtzjtxh483x51s4",
+    "title": "[AINews] The Inference Inflection"
+  }
+}

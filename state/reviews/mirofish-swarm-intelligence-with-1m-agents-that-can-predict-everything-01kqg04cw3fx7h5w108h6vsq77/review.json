@@ -1,0 +1,842 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T22:00:40+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntLiNyfFSEWspXDXH1j2HVmWZtnJ",
+          "token_usage": {
+            "completion_tokens": 209,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7766,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7975
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntLla4wcfd2Nw235mdF2aEwk4YnA",
+          "token_usage": {
+            "completion_tokens": 1183,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7389,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8572
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntLueOMa7Um2OY78E7GrdnTboZ9q",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2155,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 37516,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 39671
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntLueOMa7Um2OY78E7GrdnTboZ9q",
+    "token_usage": {
+      "completion_tokens": 3547,
+      "prompt_tokens": 52671,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 56218
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-03-16",
+        "confidence": 0.91,
+        "evidence_from_source": "The source describes a million-agent simulation stack, but explicitly says there are no published benchmarks against real-world outcomes and that reliable validation would require long-term testing, adversarial evaluation, and systematic benchmarking.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "verification-over-principles",
+        "proposed_tags": [
+          "verification-over-principles"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "workflow-based-evaluation"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-evaluation",
+        "suggested_new_tags": [
+          "ai-evaluation",
+          "agent-systems"
+        ],
+        "supporting_data_points": [
+          "The source states there are \"no published benchmarks against real-world outcomes\".",
+          "The article says validation would require long-term reliability testing, adversarial evaluation, and systematic benchmarking.",
+          "The system is described as scaling to one million agents, which increases the importance of evaluation.",
+          "The author explicitly doubts whether the predictions are better than random for any specific use case."
+        ],
+        "supporting_snippet": "\"A single person can build MiroFish but a single person cannot validate that MiroFish\u2019s predictions correlate with reality, run the long-term reliability testing, the adversarial evaluation, the systematic benchmarking against real-world outcomes that would be necessary to use this system for anything with real stakes\"",
+        "time_sensitivity": "As of 2026-03-16, the gap between impressive simulation demos and evaluation-grade trust remains unresolved in this source, so the observation is medium-term rather than settled.",
+        "trend_description": "AI simulation tools are increasingly expected to do more than produce impressive demos; they are being judged on whether they can support grounded evaluation, reliability checks, and meaningful comparison against real outcomes. As systems grow more agentic and socially interactive, the bar shifts from visual scale to trustworthiness of the simulated behavior. That makes provenance, benchmarking, and adversarial testing part of the system design rather than optional follow-up work.",
+        "trend_slug": "ai-simulation-moves-from-demo-scale-to-evaluation-grade-systems",
+        "trend_title": "AI Simulation Moves Toward Evaluation-Grade Systems",
+        "uncertainty_note": "This is based on one source and one project; it may describe an early stage of a niche pattern rather than a broad market transition. The article itself stresses that predictive value is unproven, so the trend should be treated as a hypothesis anchored to this publication date, not a confirmed industry norm.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The author is interpreting MiroFish and drawing engineering lessons from it, rather than presenting formal benchmarks or research results.",
+        "Claims are supported mainly by commentary, architectural explanation, and selective anecdotes about the project and its users.",
+        "The article explicitly notes the lack of published benchmarks against real-world outcomes, reinforcing that the source is not evidence-heavy in the research sense."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about a system called MiroFish that uses many AI agents to simulate social behavior. It turns a document into a knowledge graph, creates agents from that structure, and lets them interact in different online-style environments. The interesting part is not just the scale, but the idea that one person can now build a simulation that used to require a much larger team. The basic insight is that the same setup that makes the system powerful also makes it fragile: false information can spread from agent to agent and look like real consensus. The author likes the architecture, but says its real forecasting value is still unproven as of 2026-03-16.",
+      "assessed_as_of": "2026-03-16",
+      "contradictions_and_skepticism": "The article is confident about the architecture but much less confident about the claims that matter most: prediction quality and real-world utility. The headline language around predicting everything and one million agents reads as promotional unless supported by benchmarks, which the piece explicitly says are missing. The claim that one person can build what used to require a company may be true for a prototype, but the same article concedes that reliable validation still requires more than one person. The notion that simulation consensus can be used as insight is vulnerable to the Woozle Effect described in the article itself. So the main tension is between impressive scale/demo value and weak evidence that the system is dependable for consequential decisions.",
+      "key_insights": [
+        "GraphRAG is used as a generative substrate, not just a retrieval layer: the extracted entity graph becomes the basis for agent personas, stances, and social links.",
+        "Running the same agent population in Twitter-like and Reddit-like environments is treated as a built-in A/B test for social dynamics.",
+        "Hallucination propagation is the central systems risk: once one agent invents a fact, other agents can absorb and reinforce it until the simulation\u2019s consensus becomes unreliable.",
+        "An offline fork that swaps Zep Cloud for local Neo4j shows that some agentic simulation architectures can be reconfigured for on-premises confidentiality without redesigning the whole stack.",
+        "Scale alone is not enough: the article argues that predictive usefulness depends on provenance tracking, benchmarking, and long-term evaluation against real outcomes."
+      ],
+      "limitations_and_open_questions": "The article explicitly says there are no published benchmarks against real-world outcomes, so MiroFish\u2019s predictive quality is unknown. The hallucination-propagation problem is unresolved, and the article does not offer a cost-effective detection method for distinguishing genuine emergent consensus from contamination. It also leaves open how memory provenance would be implemented at scale across thousands of agents and hundreds of rounds. Cost is a major constraint because each agent decision can require an LLM call, making large runs expensive. The article acknowledges that smaller open-source models may reduce quality, but it does not quantify the tradeoff. Privacy and compliance improve with local Neo4j, but local deployment still does not solve model-bias or evaluation validity problems.",
+      "sources": [
+        "https://medium.com/@agentnativedev/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-114296323663"
+      ],
+      "summary": "The article argues that MiroFish is a notable example of simulation-driven agentic software: it takes a document, extracts entities and relationships into a knowledge graph, uses that graph to generate large populations of LLM-backed agents with distinct personas and memories, and runs them in Twitter-like and Reddit-like environments to observe emergent behavior. The underlying stack is described as OASIS, which handles time scheduling, recommendation logic, environment state, and distributed inference across GPUs, with support for up to one million agents and 23 social actions. The author highlights a few engineering patterns that could transfer elsewhere: GraphRAG as a substrate for agent generation, dual-environment testing as a cheap comparative experiment, and local/offline deployment as a way to keep confidential documents on-premises. The piece also emphasizes a serious failure mode: hallucinations can propagate through agent memories and produce a Woozle Effect, making consensus hard to distinguish from error cascades. The author claims that this memory contamination problem is more important than raw scale, because multi-agent systems can look convincing while being grounded in invented facts. The article is enthusiastic about the architecture but explicitly notes that there are no published benchmarks against real-world outcomes, so the predictive value remains unproven as of 2026-03-16.",
+      "why_it_matters": "The piece is useful because it compresses a concrete architecture for multi-agent simulation into a set of reusable design lessons. MiroFish is not presented as a benchmarked forecasting system; it is presented as a promising pipeline that combines document ingestion, knowledge-graph extraction, persona generation, and environment-specific interaction dynamics. That makes it relevant to anyone building agentic products that need richer behavior than rule-based agents can provide. The article is especially practical in how it separates infrastructure from agent logic and shows that an offline deployment can be achieved by swapping the knowledge-graph backend from Zep Cloud to local Neo4j, which matters when source documents are confidential. It also surfaces a durable warning: if agents can read each other\u2019s outputs, then hallucinations become persistent memory entries, and multi-agent consensus can become indistinguishable from contamination. The suggested mitigations\u2014memory provenance tracking, dual-environment comparisons, and cost-aware scheduling\u2014are more actionable than the usual generic praise for \u201cswarm intelligence.\u201d The limits are equally important: the article says there are no published benchmarks against real-world outcomes, and it does not show that forecasts beat random or simpler baselines. As of 2026-03-16, the architecture looks worth studying and borrowing from, but not yet trustworthy as a decision system for high-stakes use without much stronger evaluation."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article centered on one project, MiroFish, rather than a bundle of unrelated items.",
+        "Contains extended explanatory analysis of architecture, limitations, and implications, not a roundup of tools or practices.",
+        "No interview/Q&A structure and no step-by-step tutorial structure dominates the piece."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.82,
+        "core_capabilities": [
+          "It can scale agent social simulations to one million agents, which enables emergence studies at a size that small bespoke harnesses cannot handle.",
+          "It provides social actions like following, commenting, reposting, liking, muting, and searching, which lets simulations mimic platform-like interaction patterns.",
+          "It distributes LLM calls across GPUs, which is important because multi-agent simulations can become inference-bound very quickly.",
+          "It manages simulation time and agent scheduling so that actions can be triggered by simulated chronology rather than manual turn-taking."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is described as the framework underneath MiroFish, so it is already used as the runtime layer for a GraphRAG-driven simulation pipeline.",
+          "It integrates with GPU-based distributed inference for large agent runs, which is central to keeping throughput viable.",
+          "The article also shows it can sit alongside different knowledge-graph backends and local or remote model providers in the broader stack."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes it as powering a project that can scale to one million agents, which suggests a technically ambitious and modular system. It also appears flexible enough to run with different knowledge-graph backends and local or remote inference setups. At the same time, the article emphasizes missing benchmarks and unresolved reliability issues, so maturity is best read as strong prototype maturity rather than proven production reliability as of 2026-03-16.",
+        "name": "OASIS",
+        "operational_relevance": "This is useful when the core problem is not just orchestrating agents, but running them inside a simulated social world with feeds, posts, and timed actions. It fits agent-system builders who need a reusable simulation runtime rather than a task executor. For service automation teams, it is more of an experimentation substrate than a customer-facing automation product.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "agentic",
+          "open-source",
+          "multi-step-execution",
+          "tool-use"
+        ],
+        "proposed_types": [
+          "ai-infrastructure",
+          "ai-orchestration"
+        ],
+        "related_tools": [
+          "Neo4j",
+          "Zep Cloud"
+        ],
+        "short_description": "An open-source framework for running large-scale agent social simulations. It handles the environment, scheduling, recommendation logic, and distributed inference needed to scale many LLM-backed agents.",
+        "strengths": "- Scales to very large agent counts, which matters when you need emergent behavior rather than a few scripted turns.\n- Separates environment logic, time progression, recommendation systems, and inference distribution, which makes the stack easier to reason about and swap pieces independently.\n- Supports multiple social actions such as following, commenting, reposting, liking, muting, and searching, so simulations can model richer interaction patterns than simple chat loops.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"MiroFish is powered by OASIS (Open Agent Social Interaction Simulations) framework by CAMEL-AI, it can scale to one million agents with 23 different social actions such as following, commenting, reposting, liking, muting, searching. It handles the environment logic, the recommendation systems, the time engine that activates agents on schedules, and the scalable inference layer that distributes LLM calls across GPUs.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "- The source does not provide published benchmarks against real-world outcomes, so the quality of simulation outputs remains unverified.\n- Large-scale runs are expensive because each agent decision can require model inference, and the article warns that per-token hallucination detection would add prohibitive overhead at scale.\n- The tool can make hallucination cascades look like consensus, so users need extra provenance and evaluation machinery before trusting outputs for high-stakes decisions."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Graph extraction can be repurposed from retrieval infrastructure into agent-generation infrastructure.",
+          "Agent stances and relationships can be derived from graph structure rather than hand-authored personas.",
+          "The quality of simulation behavior depends on upstream schema design and grounding fidelity.",
+          "A single graph can support both conversational context and simulated social structure."
+        ],
+        "knowledge_summary": "A knowledge graph can do more than support retrieval: it can serve as the structured substrate for generating agents, assigning stances, and wiring social relationships in a simulation. This makes entity extraction and relationship extraction upstream design decisions for later agent behavior, not just search quality concerns. When the graph is treated as a generative substrate, the same corpus can power both answer generation and simulated interaction. The key engineering issue becomes whether the graph captures enough structure to produce coherent agent behavior without overfitting to surface text.",
+        "match_candidates": [],
+        "operational_insight": "If a team already maintains an entity-and-relationship graph for retrieval, it may be able to reuse that same structure to seed simulations, role-playing agents, or synthetic user populations. The durable design move is to treat schema quality as a downstream behavior lever, not only as an indexing concern.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "agent-systems",
+          "retrieval-systems",
+          "runtime-architecture"
+        ],
+        "related_topics": [
+          "agent-memory-architecture"
+        ],
+        "relevance_note": "This matters because many AI systems already build graphs for retrieval and knowledge compilation, and the same structure can support richer agent behavior, testing, and simulation. It is especially relevant where conversational systems need grounded personas, document-aware role play, or synthetic populations for analysis.",
+        "secondary_tag": "agent-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"MiroFish reads a document, e.g. a policy draft, a financial report, a news article, and extracts every entity and relationship into a knowledge graph. The agents are grounded in this graph. Their personalities, stances, and social connections derive from the actual structure of the input.\"",
+        "topic_slug": "graph-grounding-for-agent-simulation",
+        "topic_title": "Graph Grounding for Agent Simulation",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.98,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Shared memory turns one hallucination into a system-level contamination risk.",
+          "Consensus and hallucination cascade can look the same from the outside.",
+          "Memory provenance metadata is a practical mitigation because it helps distinguish grounded facts from absorbed model output.",
+          "Simulation systems need evaluation methods that can separate emergence from error propagation."
+        ],
+        "knowledge_summary": "When multiple agents can read and reuse each other\u2019s outputs, an invented fact can spread through the system and become persistent shared memory. That makes falsehood propagation a structural problem, not just an individual model error. In simulation systems, this is especially dangerous because emergent consensus can look identical to contamination. The practical challenge is to preserve interaction effects while still tracking what entered the system from grounded sources versus generated noise.",
+        "match_candidates": [],
+        "operational_insight": "Multi-agent systems that share memory or social channels need provenance on every memory write, not just generic moderation or post-processing. Without that, the system can reward self-reinforcing error cascades and misread them as convergence.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "agent-memory",
+          "alignment-failures",
+          "auditability"
+        ],
+        "related_topics": [
+          "provenance-tracking",
+          "agent-memory-architecture"
+        ],
+        "relevance_note": "This is durable because any agent system with shared memory, social feed effects, or conversational recursion can suffer the same failure mode. It directly affects evaluation, auditability, and whether outputs are safe to trust in service automation or decision support.",
+        "secondary_tag": "agent-memory",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Agent A hallucinates a fact during generation Agent A posts this hallucinated fact to the simulated social platform Agents B, C, and D read the post and incorporate it into their memory They share it in their own posts and comments 50 simulation rounds later, the entire population is making decisions based on information that never existed\"",
+        "topic_slug": "hallucination-propagation-in-multi-agent-systems",
+        "topic_title": "Hallucination Propagation in Multi-Agent Systems",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-03-16",
+          "confidence": 0.91,
+          "evidence_from_source": "The source describes a million-agent simulation stack, but explicitly says there are no published benchmarks against real-world outcomes and that reliable validation would require long-term testing, adversarial evaluation, and systematic benchmarking.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "verification-over-principles",
+          "proposed_tags": [
+            "verification-over-principles"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "workflow-based-evaluation"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-evaluation",
+          "suggested_new_tags": [
+            "ai-evaluation",
+            "agent-systems"
+          ],
+          "supporting_data_points": [
+            "The source states there are \"no published benchmarks against real-world outcomes\".",
+            "The article says validation would require long-term reliability testing, adversarial evaluation, and systematic benchmarking.",
+            "The system is described as scaling to one million agents, which increases the importance of evaluation.",
+            "The author explicitly doubts whether the predictions are better than random for any specific use case."
+          ],
+          "supporting_snippet": "\"A single person can build MiroFish but a single person cannot validate that MiroFish\u2019s predictions correlate with reality, run the long-term reliability testing, the adversarial evaluation, the systematic benchmarking against real-world outcomes that would be necessary to use this system for anything with real stakes\"",
+          "time_sensitivity": "As of 2026-03-16, the gap between impressive simulation demos and evaluation-grade trust remains unresolved in this source, so the observation is medium-term rather than settled.",
+          "trend_description": "AI simulation tools are increasingly expected to do more than produce impressive demos; they are being judged on whether they can support grounded evaluation, reliability checks, and meaningful comparison against real outcomes. As systems grow more agentic and socially interactive, the bar shifts from visual scale to trustworthiness of the simulated behavior. That makes provenance, benchmarking, and adversarial testing part of the system design rather than optional follow-up work.",
+          "trend_slug": "ai-simulation-moves-from-demo-scale-to-evaluation-grade-systems",
+          "trend_title": "AI Simulation Moves Toward Evaluation-Grade Systems",
+          "uncertainty_note": "This is based on one source and one project; it may describe an early stage of a niche pattern rather than a broad market transition. The article itself stresses that predictive value is unproven, so the trend should be treated as a hypothesis anchored to this publication date, not a confirmed industry norm.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a1fe5acd-03a1-47e8-9839-135162614f0e",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "workflow-based-evaluation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The source states there are \"no published benchmarks against real-world outcomes\".",
+              "The article says validation would require long-term reliability testing, adversarial evaluation, and systematic benchmarking.",
+              "The system is described as scaling to one million agents, which increases the importance of evaluation.",
+              "The author explicitly doubts whether the predictions are better than random for any specific use case."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "verification-over-principles"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The author is interpreting MiroFish and drawing engineering lessons from it, rather than presenting formal benchmarks or research results.",
+          "Claims are supported mainly by commentary, architectural explanation, and selective anecdotes about the project and its users.",
+          "The article explicitly notes the lack of published benchmarks against real-world outcomes, reinforcing that the source is not evidence-heavy in the research sense."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "GraphRAG is used as a generative substrate, not just a retrieval layer: the extracted entity graph becomes the basis for agent personas, stances, and social links.",
+          "Running the same agent population in Twitter-like and Reddit-like environments is treated as a built-in A/B test for social dynamics.",
+          "Hallucination propagation is the central systems risk: once one agent invents a fact, other agents can absorb and reinforce it until the simulation\u2019s consensus becomes unreliable.",
+          "An offline fork that swaps Zep Cloud for local Neo4j shows that some agentic simulation architectures can be reconfigured for on-premises confidentiality without redesigning the whole stack.",
+          "Scale alone is not enough: the article argues that predictive usefulness depends on provenance tracking, benchmarking, and long-term evaluation against real outcomes."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@agentnativedev/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-114296323663"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article centered on one project, MiroFish, rather than a bundle of unrelated items.",
+          "Contains extended explanatory analysis of architecture, limitations, and implications, not a roundup of tools or practices.",
+          "No interview/Q&A structure and no step-by-step tutorial structure dominates the piece."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.82,
+          "core_capabilities": [
+            "It can scale agent social simulations to one million agents, which enables emergence studies at a size that small bespoke harnesses cannot handle.",
+            "It provides social actions like following, commenting, reposting, liking, muting, and searching, which lets simulations mimic platform-like interaction patterns.",
+            "It distributes LLM calls across GPUs, which is important because multi-agent simulations can become inference-bound very quickly.",
+            "It manages simulation time and agent scheduling so that actions can be triggered by simulated chronology rather than manual turn-taking."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It is described as the framework underneath MiroFish, so it is already used as the runtime layer for a GraphRAG-driven simulation pipeline.",
+            "It integrates with GPU-based distributed inference for large agent runs, which is central to keeping throughput viable.",
+            "The article also shows it can sit alongside different knowledge-graph backends and local or remote model providers in the broader stack."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes it as powering a project that can scale to one million agents, which suggests a technically ambitious and modular system. It also appears flexible enough to run with different knowledge-graph backends and local or remote inference setups. At the same time, the article emphasizes missing benchmarks and unresolved reliability issues, so maturity is best read as strong prototype maturity rather than proven production reliability as of 2026-03-16.",
+          "name": "OASIS",
+          "operational_relevance": "This is useful when the core problem is not just orchestrating agents, but running them inside a simulated social world with feeds, posts, and timed actions. It fits agent-system builders who need a reusable simulation runtime rather than a task executor. For service automation teams, it is more of an experimentation substrate than a customer-facing automation product.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "agentic",
+            "open-source",
+            "multi-step-execution",
+            "tool-use"
+          ],
+          "proposed_types": [
+            "ai-infrastructure",
+            "ai-orchestration"
+          ],
+          "related_tools": [
+            "Neo4j",
+            "Zep Cloud"
+          ],
+          "short_description": "An open-source framework for running large-scale agent social simulations. It handles the environment, scheduling, recommendation logic, and distributed inference needed to scale many LLM-backed agents.",
+          "strengths": "- Scales to very large agent counts, which matters when you need emergent behavior rather than a few scripted turns.\n- Separates environment logic, time progression, recommendation systems, and inference distribution, which makes the stack easier to reason about and swap pieces independently.\n- Supports multiple social actions such as following, commenting, reposting, liking, muting, and searching, so simulations can model richer interaction patterns than simple chat loops.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"MiroFish is powered by OASIS (Open Agent Social Interaction Simulations) framework by CAMEL-AI, it can scale to one million agents with 23 different social actions such as following, commenting, reposting, liking, muting, searching. It handles the environment logic, the recommendation systems, the time engine that activates agents on schedules, and the scalable inference layer that distributes LLM calls across GPUs.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "- The source does not provide published benchmarks against real-world outcomes, so the quality of simulation outputs remains unverified.\n- Large-scale runs are expensive because each agent decision can require model inference, and the article warns that per-token hallucination detection would add prohibitive overhead at scale.\n- The tool can make hallucination cascades look like consensus, so users need extra provenance and evaluation machinery before trusting outputs for high-stakes decisions."
+        },
+        "notes": null,
+        "proposal_id": "c8f05d4b-da18-4b57-af4c-9940503325dc",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can scale agent social simulations to one million agents, which enables emergence studies at a size that small bespoke harnesses cannot handle.",
+              "It provides social actions like following, commenting, reposting, liking, muting, and searching, which lets simulations mimic platform-like interaction patterns.",
+              "It distributes LLM calls across GPUs, which is important because multi-agent simulations can become inference-bound very quickly.",
+              "It manages simulation time and agent scheduling so that actions can be triggered by simulated chronology rather than manual turn-taking."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is described as the framework underneath MiroFish, so it is already used as the runtime layer for a GraphRAG-driven simulation pipeline.",
+              "It integrates with GPU-based distributed inference for large agent runs, which is central to keeping throughput viable.",
+              "The article also shows it can sit alongside different knowledge-graph backends and local or remote model providers in the broader stack."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Neo4j",
+              "Zep Cloud"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic",
+            "open-source",
+            "multi-step-execution",
+            "tool-use"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Graph extraction can be repurposed from retrieval infrastructure into agent-generation infrastructure.",
+            "Agent stances and relationships can be derived from graph structure rather than hand-authored personas.",
+            "The quality of simulation behavior depends on upstream schema design and grounding fidelity.",
+            "A single graph can support both conversational context and simulated social structure."
+          ],
+          "knowledge_summary": "A knowledge graph can do more than support retrieval: it can serve as the structured substrate for generating agents, assigning stances, and wiring social relationships in a simulation. This makes entity extraction and relationship extraction upstream design decisions for later agent behavior, not just search quality concerns. When the graph is treated as a generative substrate, the same corpus can power both answer generation and simulated interaction. The key engineering issue becomes whether the graph captures enough structure to produce coherent agent behavior without overfitting to surface text.",
+          "match_candidates": [],
+          "operational_insight": "If a team already maintains an entity-and-relationship graph for retrieval, it may be able to reuse that same structure to seed simulations, role-playing agents, or synthetic user populations. The durable design move is to treat schema quality as a downstream behavior lever, not only as an indexing concern.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "agent-systems",
+            "retrieval-systems",
+            "runtime-architecture"
+          ],
+          "related_topics": [
+            "agent-memory-architecture"
+          ],
+          "relevance_note": "This matters because many AI systems already build graphs for retrieval and knowledge compilation, and the same structure can support richer agent behavior, testing, and simulation. It is especially relevant where conversational systems need grounded personas, document-aware role play, or synthetic populations for analysis.",
+          "secondary_tag": "agent-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"MiroFish reads a document, e.g. a policy draft, a financial report, a news article, and extracts every entity and relationship into a knowledge graph. The agents are grounded in this graph. Their personalities, stances, and social connections derive from the actual structure of the input.\"",
+          "topic_slug": "graph-grounding-for-agent-simulation",
+          "topic_title": "Graph Grounding for Agent Simulation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "7a5db22a-a0e0-4ce9-a5e1-cf331442a0e6",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Graph extraction can be repurposed from retrieval infrastructure into agent-generation infrastructure.",
+              "Agent stances and relationships can be derived from graph structure rather than hand-authored personas.",
+              "The quality of simulation behavior depends on upstream schema design and grounding fidelity.",
+              "A single graph can support both conversational context and simulated social structure."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-memory-architecture"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "agent-systems",
+            "retrieval-systems",
+            "runtime-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.98,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Shared memory turns one hallucination into a system-level contamination risk.",
+            "Consensus and hallucination cascade can look the same from the outside.",
+            "Memory provenance metadata is a practical mitigation because it helps distinguish grounded facts from absorbed model output.",
+            "Simulation systems need evaluation methods that can separate emergence from error propagation."
+          ],
+          "knowledge_summary": "When multiple agents can read and reuse each other\u2019s outputs, an invented fact can spread through the system and become persistent shared memory. That makes falsehood propagation a structural problem, not just an individual model error. In simulation systems, this is especially dangerous because emergent consensus can look identical to contamination. The practical challenge is to preserve interaction effects while still tracking what entered the system from grounded sources versus generated noise.",
+          "match_candidates": [],
+          "operational_insight": "Multi-agent systems that share memory or social channels need provenance on every memory write, not just generic moderation or post-processing. Without that, the system can reward self-reinforcing error cascades and misread them as convergence.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "agent-memory",
+            "alignment-failures",
+            "auditability"
+          ],
+          "related_topics": [
+            "provenance-tracking",
+            "agent-memory-architecture"
+          ],
+          "relevance_note": "This is durable because any agent system with shared memory, social feed effects, or conversational recursion can suffer the same failure mode. It directly affects evaluation, auditability, and whether outputs are safe to trust in service automation or decision support.",
+          "secondary_tag": "agent-memory",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Agent A hallucinates a fact during generation Agent A posts this hallucinated fact to the simulated social platform Agents B, C, and D read the post and incorporate it into their memory They share it in their own posts and comments 50 simulation rounds later, the entire population is making decisions based on information that never existed\"",
+          "topic_slug": "hallucination-propagation-in-multi-agent-systems",
+          "topic_title": "Hallucination Propagation in Multi-Agent Systems",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "17437e20-3222-4b33-be09-4a9a618b1b16",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Shared memory turns one hallucination into a system-level contamination risk.",
+              "Consensus and hallucination cascade can look the same from the outside.",
+              "Memory provenance metadata is a practical mitigation because it helps distinguish grounded facts from absorbed model output.",
+              "Simulation systems need evaluation methods that can separate emergence from error propagation."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "provenance-tracking",
+              "agent-memory-architecture"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "agent-memory",
+            "alignment-failures",
+            "auditability"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Agent Native",
+    "canonical_url": "https://medium.com/@agentnativedev/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-114296323663",
+    "content_sha256": "2da63fe156609dc36b5298ee430cbb1d97829ab1e0557a1f28d99198a2bf8978",
+    "publication": "Medium",
+    "published_date": "2026-03-16",
+    "raw_html_rel_path": "raw/readwise/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-01kqg04cw3fx7h5w108h6vsq77.html",
+    "raw_md_rel_path": "raw/readwise/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-01kqg04cw3fx7h5w108h6vsq77.md",
+    "source_id": "mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-01kqg04cw3fx7h5w108h6vsq77",
+    "title": "MiroFish: Swarm-Intelligence with 1M Agents That Can Predict Everything"
+  }
+}

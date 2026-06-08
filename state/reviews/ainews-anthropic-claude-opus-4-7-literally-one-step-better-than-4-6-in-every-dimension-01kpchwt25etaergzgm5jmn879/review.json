@@ -1,0 +1,716 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:33:07+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DnsvIEXFwCPqPTvWH6e4lSkraA2uB",
+          "token_usage": {
+            "completion_tokens": 225,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7080,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7305
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnsvKCtSu20fdIpHfJBlFR2Zebsn3",
+          "token_usage": {
+            "completion_tokens": 1193,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6722,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7915
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DnsvT01WFuurZHlkY4osycDwnDG7G",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 1372,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19208,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 20580
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnsvT01WFuurZHlkY4osycDwnDG7G",
+    "token_usage": {
+      "completion_tokens": 2790,
+      "prompt_tokens": 33010,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 35800
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-17",
+        "confidence": 0.91,
+        "evidence_from_source": "Anthropic's Claude Code guidance in the roundup says to \"Delegate, don\u2019t micromanage,\" put full \"goal + constraints + acceptance criteria\" up front, and tell the model \"how to verify\" changes, encoding testing workflows in \"claude.md\" or skills.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "verification-over-principles",
+        "proposed_tags": [
+          "verification-over-principles",
+          "execution-oriented-agents",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents"
+        ],
+        "secondary_tag": "execution-oriented-agents",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Claude Code defaulted to xhigh for Opus 4.7.",
+          "Anthropic highlighted stronger self-verification before responding.",
+          "The roundup explicitly recommends verification steps and test workflows."
+        ],
+        "supporting_snippet": "Cat Wu\u2019s thread is a useful operational signal for engineers:\nDelegate, don\u2019t micromanage\n[\n@_catwu\n]\nPut full\ngoal + constraints + acceptance criteria\nup front\n[\n@_catwu\n]\nTell the model\nhow to verify\nchanges; encode testing workflows in\nclaude.md\nor skills\n[\n@_catwu\n]",
+        "time_sensitivity": "Actionable as of 2026-04-17; the source presents this as Anthropic's current product guidance for Claude Code and Opus 4.7 usage.",
+        "trend_description": "Models are being positioned less as chat endpoints and more as delegated workers that need explicit verification steps. The operational pattern is to give goals, constraints, and acceptance criteria up front, then require the model to check its own work before returning output. This favors harnessed, testable workflows over loose prompting.",
+        "trend_slug": "verification-loops-become-central-to-ai-workflows",
+        "trend_title": "AI workflows are shifting toward verification loops instead of prompt-only operation",
+        "uncertainty_note": "The source is a roundup with social-post and launch-discussion evidence, so this is best read as product-direction evidence rather than a controlled study of outcomes.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-04-17",
+        "evidence_snippets": [
+          "While Anthropic says the new tokenizer ( new pretrain ? ) can cause up to 35% more token usage, the overall reasoning efficiency has improved so much that overall token use is STILL down by up to 50% of their former equivalents.",
+          "Kimmonismus summarized Anthropic\u2019s caveat that the same input can map to 1.0\u20131.35x more tokens depending on content type.",
+          "Anthropic employee Boris Cherny later said they increased limits for all subscribers to offset increased token use."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Anthropic",
+          "Claude Opus 4.7",
+          "Claude Code"
+        ],
+        "operational_relevance": "Benchmarking and routing should measure end-to-end cost on representative prompts, because tokenizer changes can alter spend even when per-token pricing is unchanged.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "inference-efficiency"
+        ],
+        "secondary_tag": "inference-efficiency",
+        "service_automation_relevance": "Support automation workloads with long transcripts, screenshots, or OCR-like text may see materially different cost curves if tokenization expands usage.",
+        "signal_strength": "high",
+        "signal_title": "Tokenization changes can turn flat list pricing into variable effective cost",
+        "signal_type": "pricing_economics",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "token-metering-becomes-the-ai-business-unit",
+        "suggested_new_tags": [
+          "token-metering-becomes-the-ai-business-unit"
+        ],
+        "summary": "The roundup says Opus 4.7 uses a different tokenizer and that the same input can map to 1.0\u20131.35x more tokens depending on content type. Anthropic kept list pricing unchanged, but also increased subscriber limits to offset the higher token usage. Operationally, this means price comparisons need to consider effective tokenization, not only posted price.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-17, this is a practical reminder that model cost is a function of tokenizer behavior as well as sticker price. Teams evaluating upgrades need to estimate effective input/output token counts on their own workloads before assuming a flat-price successor is economically neutral.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-17",
+        "evidence_snippets": [
+          "Opus 4.7 has better vision for high-resolution images: it can accept images up to 2,576 pixels on the long edge (~3.75 megapixels), more than three times as many as prior Claude models.",
+          "This opens up a wealth of multimodal uses that depend on fine visual detail: computer-use agents reading dense screenshots, data extractions from complex diagrams, and work that needs pixel-perfect references.",
+          "This was repeatedly linked to better computer use and screenshot-heavy workflows."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Anthropic",
+          "Claude Opus 4.7"
+        ],
+        "operational_relevance": "Teams building screen-reading agents, document parsers, or multimodal extraction flows should test native high-resolution ingestion rather than assuming post-downscaled screenshots are sufficient.",
+        "primary_tag": "execution-oriented-agents",
+        "proposed_tags": [
+          "execution-oriented-agents",
+          "tool-centric-agents",
+          "ai-operationalization"
+        ],
+        "secondary_tag": "tool-centric-agents",
+        "service_automation_relevance": "Customer support automation that relies on screenshots, receipts, forms, or UI diagnostics may benefit from fewer manual retries when the model can inspect finer visual detail.",
+        "signal_strength": "medium",
+        "signal_title": "High-resolution vision is becoming an enabling feature for computer-use agents",
+        "signal_type": "topic",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Opus 4.7 raised image input support to 2,576 pixels on the long edge, which the roundup describes as more than three times prior Claude image inputs. The practical implication is not generic multimodality hype; it is better handling of dense screenshots, diagrams, and UI/document workflows where downscaling destroys useful detail. That makes vision quality a more direct systems constraint for computer-use automation.",
+        "time_horizon": "medium_term",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-04-17, the source supports treating image resolution as a real product lever for agentic workflows, especially those that depend on pixel-level fidelity. This matters because a model can look strong on text benchmarks yet still fail if the input pipeline loses visual detail.",
+        "wiki_worthiness": "review_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article combines vendor launch claims from Anthropic with third-party benchmark screenshots, partner/customer anecdotes, and independent analysis.",
+        "No single evidence mode dominates across the whole source; the story is built from a mix of launch framing, eval results, and user reactions.",
+        "Several claims are explicitly attributed to user summaries and social posts rather than a formal report or paper."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about Anthropic\u2019s Claude Opus 4.7 launch and the reactions around it. The basic story is that the model seems better at coding, reasoning, image reading, and long-running tasks, but it may also use more tokens. A new high-effort mode called xhigh and stronger support for detailed images are the most practical changes. The article also shows that people disagreed about how big the upgrade really is, because some benchmarks improved while some long-context and document workflows still look mixed. In plain English: it is a meaningful update, but not a clean \u201ceverything is better\u201d story.",
+      "assessed_as_of": "2026-04-17",
+      "contradictions_and_skepticism": "The roundup surfaces a real tension between Anthropic\u2019s \u201cbetter in every dimension\u201d launch vibe and the more mixed external reports. Some users describe the model as a major step up, while others complain about weaker long-context behavior, token bloat, or a more restrictive system prompt. Claims that Opus 4.7 is a new base model, a distilled Mythos-adjacent system, or a knowingly constrained cyber model are all interpretations layered on top of partial evidence. The strongest skeptical reading is that Opus 4.7 is a substantial product iteration with visible wins, but the launch discussion overstates how uniformly those wins apply across tasks.",
+      "key_insights": [
+        "Claude Opus 4.7 appears strongest when used for autonomous coding and other long-running delegated tasks, not as a tiny incremental chat tweak.",
+        "The new xhigh effort tier in Claude Code is part of the product story, and Anthropic is steering users toward explicit goals, constraints, and verification workflows.",
+        "Higher image resolution support up to 2,576 pixels on the long edge is a concrete enabler for screenshot-heavy computer-use and document workflows.",
+        "The tokenizer change matters operationally because some inputs may map to 1.0\u20131.35x more tokens, which can offset the flat list price.",
+        "Independent document-evaluation commentary shows a real tradeoff: charts improved sharply, but layout, OCR-like economics, and some long-context use cases remain uneven."
+      ],
+      "limitations_and_open_questions": "The evidence base is mixed and largely mediated through launch screenshots, social posts, and third-party summaries rather than a single controlled evaluation. Several benchmark claims come from external accounts, so the exact methodology and comparability are unclear. The tokenizer change raises open questions about effective pricing, since flat list price may not translate to flat cost in practice. Long-context performance is disputed, with some users reporting regressions on MRCR-style tests while Anthropic argues those metrics overweight distractor-stacking tricks. Vision gains look strong on high-resolution inputs, but the article does not provide a full accounting of failure modes on real computer-use tasks. Document reasoning improved, yet the source itself notes that specialized OCR or parsing stacks may still be cheaper for some pipelines.",
+      "sources": [
+        "https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally"
+      ],
+      "summary": "This roundup centers on Anthropic\u2019s launch of Claude Opus 4.7 and the technical debate around whether it is a genuine step change or mostly a polished continuation of Opus 4.6. The article says Anthropic emphasized better long-running work, instruction following, self-verification, coding, and computer use, while keeping list pricing flat at $5/$25 per million input/output tokens. It also highlights a new xhigh effort tier in Claude Code, stronger high-resolution image support up to 2,576 pixels on the long edge, and reported benchmark gains such as 64.3% on SWE-bench Pro and 87.6% on SWE-bench Verified. At the same time, the piece notes a different tokenizer, possible token inflation, and active disagreement over whether this is a new base model, a tokenizer-swapped successor, or a distilled system. Independent commentary tempers the launch narrative: some evaluations show broad gains, but document parsing economics, long-context behavior, and some user workflows still look uneven. The roundup also includes operational guidance from Anthropic on using Claude Code more like a delegated engineer, with upfront goals, constraints, verification steps, and test workflows. Overall, the source is a launch-and-reaction roundup rather than a single clean product review, so the strongest durable takeaway is the mix of real capability gains and unresolved cost/behavior tradeoffs as of 2026-04-17.",
+      "why_it_matters": "This roundup matters because it gives a dense snapshot of what Anthropic is claiming Opus 4.7 can do better, and where outside observers think the gains are real versus overstated. The most durable signal is not a single benchmark number, but the combination of reported improvements in coding, instruction following, self-verification, and vision with a new xhigh effort tier that makes Claude Code more explicitly task-delegation oriented. That is useful for AI engineers because it suggests the model may reward workflows that specify goals, constraints, and verification steps up front rather than loose conversational prompting. The benchmark discussion is also practically relevant: the article cites stronger SWE-bench, document reasoning, and agent benchmarks, but also notes token inflation and disagreement over long-context metrics, so performance needs to be judged against cost and workflow shape, not leaderboard rank alone. The independent document-analysis comments are especially valuable because they show that broad model capability does not automatically make OCR-like or enterprise document pipelines cheaper. As of 2026-04-17, the source supports treating Opus 4.7 as a meaningful upgrade to evaluate, not as a universally dominant replacement for every workload. For service automation, the most direct implication is that delegated-agent workflows and screenshot/document-heavy automation may benefit, but the article also shows that cost and reliability still need case-by-case validation."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece is explicitly a weekly AI News issue and aggregates many short blurbs from social posts, benchmarks, and partner comments.",
+        "Its structure is a bundle of loosely related news items centered on one launch plus surrounding reactions and evals, not a single coherent article.",
+        "It includes roundup framing such as checked subreddits/Twitters and multiple topical subsections."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-17",
+          "confidence": 0.91,
+          "evidence_from_source": "Anthropic's Claude Code guidance in the roundup says to \"Delegate, don\u2019t micromanage,\" put full \"goal + constraints + acceptance criteria\" up front, and tell the model \"how to verify\" changes, encoding testing workflows in \"claude.md\" or skills.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "verification-over-principles",
+          "proposed_tags": [
+            "verification-over-principles",
+            "execution-oriented-agents",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents"
+          ],
+          "secondary_tag": "execution-oriented-agents",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Claude Code defaulted to xhigh for Opus 4.7.",
+            "Anthropic highlighted stronger self-verification before responding.",
+            "The roundup explicitly recommends verification steps and test workflows."
+          ],
+          "supporting_snippet": "Cat Wu\u2019s thread is a useful operational signal for engineers:\nDelegate, don\u2019t micromanage\n[\n@_catwu\n]\nPut full\ngoal + constraints + acceptance criteria\nup front\n[\n@_catwu\n]\nTell the model\nhow to verify\nchanges; encode testing workflows in\nclaude.md\nor skills\n[\n@_catwu\n]",
+          "time_sensitivity": "Actionable as of 2026-04-17; the source presents this as Anthropic's current product guidance for Claude Code and Opus 4.7 usage.",
+          "trend_description": "Models are being positioned less as chat endpoints and more as delegated workers that need explicit verification steps. The operational pattern is to give goals, constraints, and acceptance criteria up front, then require the model to check its own work before returning output. This favors harnessed, testable workflows over loose prompting.",
+          "trend_slug": "verification-loops-become-central-to-ai-workflows",
+          "trend_title": "AI workflows are shifting toward verification loops instead of prompt-only operation",
+          "uncertainty_note": "The source is a roundup with social-post and launch-discussion evidence, so this is best read as product-direction evidence rather than a controlled study of outcomes.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a46bafbf-da19-4f44-88c4-4d35155533e3",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Code defaulted to xhigh for Opus 4.7.",
+              "Anthropic highlighted stronger self-verification before responding.",
+              "The roundup explicitly recommends verification steps and test workflows."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "verification-over-principles",
+            "execution-oriented-agents",
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-17",
+          "evidence_snippets": [
+            "While Anthropic says the new tokenizer ( new pretrain ? ) can cause up to 35% more token usage, the overall reasoning efficiency has improved so much that overall token use is STILL down by up to 50% of their former equivalents.",
+            "Kimmonismus summarized Anthropic\u2019s caveat that the same input can map to 1.0\u20131.35x more tokens depending on content type.",
+            "Anthropic employee Boris Cherny later said they increased limits for all subscribers to offset increased token use."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Anthropic",
+            "Claude Opus 4.7",
+            "Claude Code"
+          ],
+          "operational_relevance": "Benchmarking and routing should measure end-to-end cost on representative prompts, because tokenizer changes can alter spend even when per-token pricing is unchanged.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "inference-efficiency"
+          ],
+          "secondary_tag": "inference-efficiency",
+          "service_automation_relevance": "Support automation workloads with long transcripts, screenshots, or OCR-like text may see materially different cost curves if tokenization expands usage.",
+          "signal_strength": "high",
+          "signal_title": "Tokenization changes can turn flat list pricing into variable effective cost",
+          "signal_type": "pricing_economics",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "token-metering-becomes-the-ai-business-unit",
+          "suggested_new_tags": [
+            "token-metering-becomes-the-ai-business-unit"
+          ],
+          "summary": "The roundup says Opus 4.7 uses a different tokenizer and that the same input can map to 1.0\u20131.35x more tokens depending on content type. Anthropic kept list pricing unchanged, but also increased subscriber limits to offset the higher token usage. Operationally, this means price comparisons need to consider effective tokenization, not only posted price.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-17, this is a practical reminder that model cost is a function of tokenizer behavior as well as sticker price. Teams evaluating upgrades need to estimate effective input/output token counts on their own workloads before assuming a flat-price successor is economically neutral.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "7d246215-4950-4560-852b-5abb85cd023e",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "While Anthropic says the new tokenizer ( new pretrain ? ) can cause up to 35% more token usage, the overall reasoning efficiency has improved so much that overall token use is STILL down by up to 50% of their former equivalents.",
+              "Kimmonismus summarized Anthropic\u2019s caveat that the same input can map to 1.0\u20131.35x more tokens depending on content type.",
+              "Anthropic employee Boris Cherny later said they increased limits for all subscribers to offset increased token use."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Anthropic",
+              "Claude Opus 4.7",
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "inference-efficiency"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-17",
+          "evidence_snippets": [
+            "Opus 4.7 has better vision for high-resolution images: it can accept images up to 2,576 pixels on the long edge (~3.75 megapixels), more than three times as many as prior Claude models.",
+            "This opens up a wealth of multimodal uses that depend on fine visual detail: computer-use agents reading dense screenshots, data extractions from complex diagrams, and work that needs pixel-perfect references.",
+            "This was repeatedly linked to better computer use and screenshot-heavy workflows."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Anthropic",
+            "Claude Opus 4.7"
+          ],
+          "operational_relevance": "Teams building screen-reading agents, document parsers, or multimodal extraction flows should test native high-resolution ingestion rather than assuming post-downscaled screenshots are sufficient.",
+          "primary_tag": "execution-oriented-agents",
+          "proposed_tags": [
+            "execution-oriented-agents",
+            "tool-centric-agents",
+            "ai-operationalization"
+          ],
+          "secondary_tag": "tool-centric-agents",
+          "service_automation_relevance": "Customer support automation that relies on screenshots, receipts, forms, or UI diagnostics may benefit from fewer manual retries when the model can inspect finer visual detail.",
+          "signal_strength": "medium",
+          "signal_title": "High-resolution vision is becoming an enabling feature for computer-use agents",
+          "signal_type": "topic",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Opus 4.7 raised image input support to 2,576 pixels on the long edge, which the roundup describes as more than three times prior Claude image inputs. The practical implication is not generic multimodality hype; it is better handling of dense screenshots, diagrams, and UI/document workflows where downscaling destroys useful detail. That makes vision quality a more direct systems constraint for computer-use automation.",
+          "time_horizon": "medium_term",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-04-17, the source supports treating image resolution as a real product lever for agentic workflows, especially those that depend on pixel-level fidelity. This matters because a model can look strong on text benchmarks yet still fail if the input pipeline loses visual detail.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "4fb3971b-9013-4ecb-ad40-7e1b145bd905",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "Opus 4.7 has better vision for high-resolution images: it can accept images up to 2,576 pixels on the long edge (~3.75 megapixels), more than three times as many as prior Claude models.",
+              "This opens up a wealth of multimodal uses that depend on fine visual detail: computer-use agents reading dense screenshots, data extractions from complex diagrams, and work that needs pixel-perfect references.",
+              "This was repeatedly linked to better computer use and screenshot-heavy workflows."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Anthropic",
+              "Claude Opus 4.7"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-oriented-agents",
+            "tool-centric-agents",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article combines vendor launch claims from Anthropic with third-party benchmark screenshots, partner/customer anecdotes, and independent analysis.",
+          "No single evidence mode dominates across the whole source; the story is built from a mix of launch framing, eval results, and user reactions.",
+          "Several claims are explicitly attributed to user summaries and social posts rather than a formal report or paper."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Claude Opus 4.7 appears strongest when used for autonomous coding and other long-running delegated tasks, not as a tiny incremental chat tweak.",
+          "The new xhigh effort tier in Claude Code is part of the product story, and Anthropic is steering users toward explicit goals, constraints, and verification workflows.",
+          "Higher image resolution support up to 2,576 pixels on the long edge is a concrete enabler for screenshot-heavy computer-use and document workflows.",
+          "The tokenizer change matters operationally because some inputs may map to 1.0\u20131.35x more tokens, which can offset the flat list price.",
+          "Independent document-evaluation commentary shows a real tradeoff: charts improved sharply, but layout, OCR-like economics, and some long-context use cases remain uneven."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece is explicitly a weekly AI News issue and aggregates many short blurbs from social posts, benchmarks, and partner comments.",
+          "Its structure is a bundle of loosely related news items centered on one launch plus surrounding reactions and evals, not a single coherent article.",
+          "It includes roundup framing such as checked subreddits/Twitters and multiple topical subsections."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 82.9,
+    "review_finished_at": "2026-06-07T07:35:37.902221+00:00",
+    "review_started_at": "2026-06-07T07:34:15+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T07:35:37+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally",
+    "content_sha256": "b02221acf8f2b1a0893b2cea36fe7a78169c9b04492b84bb0ed795cd0df13378",
+    "publication": "Latent",
+    "published_date": "2026-04-17",
+    "raw_html_rel_path": "raw/readwise/ainews-anthropic-claude-opus-4-7-literally-one-step-better-than-4-6-in-every-dimension-01kpchwt25etaergzgm5jmn879.html",
+    "raw_md_rel_path": "raw/readwise/ainews-anthropic-claude-opus-4-7-literally-one-step-better-than-4-6-in-every-dimension-01kpchwt25etaergzgm5jmn879.md",
+    "source_id": "ainews-anthropic-claude-opus-4-7-literally-one-step-better-than-4-6-in-every-dimension-01kpchwt25etaergzgm5jmn879",
+    "title": "[AINews] Anthropic Claude Opus 4.7 - literally one step better than 4.6 in every dimension"
+  }
+}

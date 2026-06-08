@@ -1,0 +1,759 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:35:07+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DnsxCVPDlVtBzyEIIbBSFLEh3FgND",
+          "token_usage": {
+            "completion_tokens": 219,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8439,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8658
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnsxEPJ404YDbhZqa0BkZvRq9gx0Y",
+          "token_usage": {
+            "completion_tokens": 1282,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8075,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 9357
+          }
+        },
+        {
+          "cache_hit_rate": 0.2352372200996276,
+          "name": "entities",
+          "prompt_version": "42-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DnsxPRVOqtPqXrSdmyDQxoqVOPpLJ",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 1425,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 20677,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 22102
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnsxPRVOqtPqXrSdmyDQxoqVOPpLJ",
+    "token_usage": {
+      "completion_tokens": 2926,
+      "prompt_tokens": 37191,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 40117
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-28",
+        "confidence": 0.91,
+        "evidence_from_source": "The roundup says \"the stack is shifting from 'model quality' to 'model-harness-memory fit'\" and highlights LangSmith Engine automating the \"eval \u2192 diagnosis \u2192 fix loop,\" plus OpenAI, Claude Code, and Cognition productizing reliability and enterprise controls.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "execution-oriented-agents",
+        "proposed_tags": [
+          "execution-oriented-agents",
+          "orchestration-layer-growth",
+          "enterprise-ai",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "workflow-restructuring-around-ai-agents",
+          "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+        ],
+        "secondary_tag": "orchestration-layer-growth",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "verification-loops",
+        "suggested_new_tags": [
+          "verification-loops"
+        ],
+        "supporting_data_points": [
+          "LangChain Deep Agents v0.6 cut checkpoint storage for a 200-turn coding session from 5.3 GB to 129 MB.",
+          "LangSmith Engine was described as automating the eval \u2192 diagnosis \u2192 fix loop.",
+          "OpenAI added private MCP connectivity, Workload Identity Federation, and expanded Admin API controls.",
+          "Cognition reported >$1B raised, a $26B valuation, >10\u00d7 YTD enterprise usage, and $492M run-rate revenue."
+        ],
+        "supporting_snippet": "The stack is shifting from \u201cmodel quality\u201d to \u201cmodel-harness-memory fit\u201d... LangSmith Engine was framed as automating the eval \u2192 diagnosis \u2192 fix loop... enterprise features now include private MCP connectivity... Workload Identity Federation, and expanded Admin API controls... Cognition: >$1B raised at a $26B valuation, enterprise usage up >10\u00d7 YTD, and $492M run-rate revenue.",
+        "time_sensitivity": "Actionable as of 2026-05-28; the evidence is tied to active product launches and platform changes in this newsletter issue.",
+        "trend_description": "Coding agents are moving toward systems where reliability depends on harness design, trace feedback, and enterprise controls rather than raw model capability alone. That shifts operational work toward review loops, context management, permissions, and telemetry around agent actions.",
+        "trend_slug": "agentic-coding-shifts-toward-higher-supervision-costs",
+        "trend_title": "Agentic coding is becoming a supervised workflow, not a hands-off feature",
+        "uncertainty_note": "The article is a roundup, so the signal is directionally strong but based on vendor posts and community summaries rather than a single independent study.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-05-28",
+        "evidence_snippets": [
+          "OpenAI continued tightening Codex\u2019s product surface: GPT-5.2 and GPT-5.3-Codex are being sunset in Codex in favor of GPT-5.5, while enterprise features now include private MCP connectivity over outbound-only HTTPS, Workload Identity Federation, and expanded Admin API controls for spend alerts, allowlists, retention policies, and hosted tool management.",
+          "Claude Code shared a reliability/performance update and easier bug-report capture, while GitHub kept pushing the \u201cagentized IDE\u201d direction with Copilot Dev Days and MCP positioning.",
+          "The biggest commercial datapoint was Cognition: >$1B raised at a $26B valuation, enterprise usage up >10\u00d7 YTD, and $492M run-rate revenue."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Cognition",
+          "OpenAI",
+          "Anthropic",
+          "GitHub",
+          "LangChain",
+          "LangSmith"
+        ],
+        "operational_relevance": "Expect more effort to go into permissioning, traceability, admin policy, and recovery workflows than into prompt tuning alone.",
+        "primary_tag": "execution-oriented-agents",
+        "proposed_tags": [
+          "execution-oriented-agents",
+          "enterprise-ai",
+          "orchestration-layer-growth",
+          "automation-supervision"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "service_automation_relevance": "Relevant for service automation only indirectly: the same governed-workflow pattern is likely to shape back-office and support agents that need audit trails, tool permissions, and human override paths.",
+        "signal_strength": "high",
+        "signal_title": "Enterprise coding agents are being sold as governed systems",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The roundup links Cognition's large funding round with product work from OpenAI and Anthropic that adds admin controls, private connectivity, and reliability tooling. The pattern is that coding agents are no longer framed as demo surfaces; they are being packaged as governed enterprise systems with review, identity, and spend controls. That matters because deployment success depends on operational supervision, not just model choice.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-28, the commercial bar for coding agents appears to include workflow reliability, permissions, and auditability. That raises the importance of harness design, access control, and evaluation loops for teams building or buying agentic coding systems.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-28",
+        "evidence_snippets": [
+          "Inference optimization is increasingly architectural, not just kernel-level.",
+          "Recent API price cuts from Chinese labs look sustainable because they reflect lower serving cost per token, not temporary subsidy.",
+          "The broader takeaway: long-context inference economics are now being pushed by attention design + cache hierarchy + routing, not just cheaper hardware."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "EAGLE 3.1",
+          "vLLM",
+          "TorchSpec",
+          "Perplexity",
+          "Qwen3.5",
+          "DeepSeek",
+          "Xiaomi MiMo"
+        ],
+        "operational_relevance": "Builders should treat long-context serving as a coupled problem across attention patterns, cache management, tokenizer efficiency, and runtime collaboration with serving frameworks.",
+        "primary_tag": "inference-efficiency",
+        "proposed_tags": [
+          "inference-efficiency",
+          "runtime-systems",
+          "long-context-adoption",
+          "ai-economics"
+        ],
+        "secondary_tag": "runtime-systems",
+        "service_automation_relevance": "Lower token cost and better long-context reliability directly improve the viability of support bots that must carry large conversation state or policy context across many turns.",
+        "signal_strength": "high",
+        "signal_title": "Inference cost is being reduced by architecture, not just hardware",
+        "signal_type": "pricing_economics",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Multiple items in the roundup point to lower serving cost coming from attention design, cache hierarchy, routing, and tokenizer/kernel improvements. The practical implication is that price cuts and long-context serving improvements can come from model and runtime architecture changes rather than only cheaper chips. That makes inference optimization a systems problem.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-28, the article suggests serving economics are changing at the architecture layer, which affects pricing, latency targets, and infra planning for agent products. Teams that ignore cache behavior or sparse attention may miss the main cost lever.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The source combines newsletter aggregation, vendor announcements, benchmark mentions, and user-report style commentary.",
+        "Many claims are relayed from tweets, product posts, and community reactions rather than a single primary study or analysis.",
+        "No single evidence basis dominates the whole piece; it is a curated roundup of heterogeneous claims."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a dated AI news roundup with one big headline: Cognition raised $1 billion at a $26 billion valuation. The article uses that deal to argue that coding agents can turn into very large enterprise businesses, not just demos. The rest is a fast tour of what builders were talking about: cheaper inference, better agent memory and evaluation loops, tougher benchmarks, and new model releases across biology, vision, OCR, and local AI. A lot of the technical items are about practical plumbing, like cache efficiency, harness design, and deployment controls. If you want the core takeaway, it is that as of 2026-05-28 the interesting work is moving from model hype toward systems that can actually run, learn, and sell.",
+      "assessed_as_of": "2026-05-28",
+      "contradictions_and_skepticism": "The roundup often presents strong claims from vendors or builders without matching independent validation, so the evidence is uneven. Some items sound structurally important, but the newsletter does not show enough methodology to know whether gains come from real algorithmic advances, benchmark selection, or system-specific tuning. The Cognition valuation is striking, but the article itself only supports it with disclosed ARR and usage growth, not with evidence that the business economics are durable at that scale. Several local-model and inference claims in the Reddit section are also visibly contested in-thread, which is a reminder that community excitement can outrun reproducibility. Overall, the piece is useful for mapping attention, but it should not be read as proof that every listed claim will hold up under independent testing.",
+      "key_insights": [
+        "Cognition\u2019s disclosed $492M run-rate revenue and >$1B ARR projection make it the clearest commercial data point in the roundup, but the article provides only newsletter-level evidence, not audited financial detail.",
+        "Inference economics are presented as an architecture problem as much as a kernel problem, with multiple examples tying lower cost per token to attention design, cache hierarchy, and routing.",
+        "The roundup repeatedly emphasizes that agent performance depends on harness fit, prompts, tools, and memory organization, not just base model quality.",
+        "Post-deployment learning is treated as an emerging product category, with Trajectory and related tooling aimed at turning usage traces into continual post-training.",
+        "Several new benchmarks aim at messy, long-horizon work rather than static tasks, which makes them more relevant for agent evaluation but also harder to interpret across labs."
+      ],
+      "limitations_and_open_questions": "The source is a roundup, so most claims are secondhand and uneven in evidence quality. Many performance numbers come from company posts, tweets, or benchmark summaries without full methodology, reproducibility, or independent verification. The Cognition figures are commercially important, but the article does not provide audited revenue, customer concentration, or margin data, so the valuation context remains incomplete. Several benchmark results, especially for long-horizon agent tasks and incident response, may depend heavily on harness details and may not generalize across products or deployments. The post also mixes research, product news, and community commentary, so it is hard to separate durable capability gains from promotional framing. For the learning and memory items, open questions include how stable post-deployment training is under privacy, safety, and rollback constraints.",
+      "sources": [
+        "mailto:reader-forwarded-email/36e28030404112d4c18c3a9fde72b780"
+      ],
+      "summary": "This roundup centers on Cognition\u2019s $1B Series D at a $26B valuation, with the newsletter framing the company as the largest remaining independent agent lab and noting disclosed ARR of $492M run-rate revenue with a projection above $1B ARR by year-end. The rest of the issue is a broad digest of AI engineering activity: inference optimizations, agent harness and memory tooling, benchmark releases, training-efficiency research, multimodal and OCR models, and enterprise platform controls. A recurring theme is that serving cost, cache behavior, and architecture matter more than raw model scale for long-context inference economics, with examples spanning speculative decoding, tokenizer optimization, sparse attention, and cache hierarchy changes. Another cluster argues that agent systems are being shaped by harness fit, trace-driven evaluation loops, and post-deployment learning infrastructure rather than model quality alone. The roundup also highlights new benchmarks for software engineering and incident response, plus research claiming large memory and compute savings from block-wise training and long-context RL optimizations. On the model side, it lists releases in protein design, multimodal embeddings, grounding, OCR, and local AI hardware, alongside enterprise productization moves from OpenAI, Anthropic, GitHub, Cloudflare, and others. Taken together, the issue is less a single thesis than a snapshot of where AI engineering attention was concentrated as of 2026-05-28: agent reliability, inference efficiency, benchmark realism, and commercialization of coding systems.",
+      "why_it_matters": "The most durable part of the issue is not the Cognition funding headline by itself, but the combination of disclosed revenue scale and the surrounding product narrative: as of 2026-05-28, the article treats coding agents as an enterprise category with enough demand to justify very large private-market valuations. That is useful context for practitioners deciding where reliability work matters, because the newsletter pairs the funding news with multiple examples of productization: enterprise controls for Codex, reliability updates for Claude Code, and broader workflow tooling around agent memory, traces, and admin controls. The engineering theme is also concrete. The roundup shows that long-context inference cost is being attacked through architecture, not just hardware, and that agent quality is being improved through harnesses, memory separation, and trace-driven evaluation loops. That makes the issue relevant for builders who need to choose between model changes, serving changes, and workflow changes when optimizing agent products. The benchmark section is similarly practical because it highlights that new tests are probing real workflows like software engineering and incident response rather than isolated prompts. The closing implication for service automation is narrower: the article does not deeply discuss support, voice, or meetings, but it does show enterprise coding and operations agents being packaged with controls that would matter for back-office and developer-facing automation. Actionable as of 2026-05-28, but the broad roundup format means each claim should be treated as a lead to verify rather than a standalone decision signal."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece is explicitly a dated AI News recap covering many unrelated items across inference, agents, benchmarks, models, and product releases.",
+        "It contains sectioned roundup structure such as 'AI Twitter Recap' and 'AI Reddit Recap' with multiple short blurbs rather than one coherent article argument.",
+        "The Cognition funding item is only one of many news items in a newsletter-style digest."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-28",
+          "confidence": 0.91,
+          "evidence_from_source": "The roundup says \"the stack is shifting from 'model quality' to 'model-harness-memory fit'\" and highlights LangSmith Engine automating the \"eval \u2192 diagnosis \u2192 fix loop,\" plus OpenAI, Claude Code, and Cognition productizing reliability and enterprise controls.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "execution-oriented-agents",
+          "proposed_tags": [
+            "execution-oriented-agents",
+            "orchestration-layer-growth",
+            "enterprise-ai",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "workflow-restructuring-around-ai-agents",
+            "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+          ],
+          "secondary_tag": "orchestration-layer-growth",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "verification-loops",
+          "suggested_new_tags": [
+            "verification-loops"
+          ],
+          "supporting_data_points": [
+            "LangChain Deep Agents v0.6 cut checkpoint storage for a 200-turn coding session from 5.3 GB to 129 MB.",
+            "LangSmith Engine was described as automating the eval \u2192 diagnosis \u2192 fix loop.",
+            "OpenAI added private MCP connectivity, Workload Identity Federation, and expanded Admin API controls.",
+            "Cognition reported >$1B raised, a $26B valuation, >10\u00d7 YTD enterprise usage, and $492M run-rate revenue."
+          ],
+          "supporting_snippet": "The stack is shifting from \u201cmodel quality\u201d to \u201cmodel-harness-memory fit\u201d... LangSmith Engine was framed as automating the eval \u2192 diagnosis \u2192 fix loop... enterprise features now include private MCP connectivity... Workload Identity Federation, and expanded Admin API controls... Cognition: >$1B raised at a $26B valuation, enterprise usage up >10\u00d7 YTD, and $492M run-rate revenue.",
+          "time_sensitivity": "Actionable as of 2026-05-28; the evidence is tied to active product launches and platform changes in this newsletter issue.",
+          "trend_description": "Coding agents are moving toward systems where reliability depends on harness design, trace feedback, and enterprise controls rather than raw model capability alone. That shifts operational work toward review loops, context management, permissions, and telemetry around agent actions.",
+          "trend_slug": "agentic-coding-shifts-toward-higher-supervision-costs",
+          "trend_title": "Agentic coding is becoming a supervised workflow, not a hands-off feature",
+          "uncertainty_note": "The article is a roundup, so the signal is directionally strong but based on vendor posts and community summaries rather than a single independent study.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "df7efe85-a072-4602-86cd-df55ce79f306",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "workflow-restructuring-around-ai-agents",
+              "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "LangChain Deep Agents v0.6 cut checkpoint storage for a 200-turn coding session from 5.3 GB to 129 MB.",
+              "LangSmith Engine was described as automating the eval \u2192 diagnosis \u2192 fix loop.",
+              "OpenAI added private MCP connectivity, Workload Identity Federation, and expanded Admin API controls.",
+              "Cognition reported >$1B raised, a $26B valuation, >10\u00d7 YTD enterprise usage, and $492M run-rate revenue."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-oriented-agents",
+            "orchestration-layer-growth",
+            "enterprise-ai",
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-28",
+          "evidence_snippets": [
+            "OpenAI continued tightening Codex\u2019s product surface: GPT-5.2 and GPT-5.3-Codex are being sunset in Codex in favor of GPT-5.5, while enterprise features now include private MCP connectivity over outbound-only HTTPS, Workload Identity Federation, and expanded Admin API controls for spend alerts, allowlists, retention policies, and hosted tool management.",
+            "Claude Code shared a reliability/performance update and easier bug-report capture, while GitHub kept pushing the \u201cagentized IDE\u201d direction with Copilot Dev Days and MCP positioning.",
+            "The biggest commercial datapoint was Cognition: >$1B raised at a $26B valuation, enterprise usage up >10\u00d7 YTD, and $492M run-rate revenue."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Cognition",
+            "OpenAI",
+            "Anthropic",
+            "GitHub",
+            "LangChain",
+            "LangSmith"
+          ],
+          "operational_relevance": "Expect more effort to go into permissioning, traceability, admin policy, and recovery workflows than into prompt tuning alone.",
+          "primary_tag": "execution-oriented-agents",
+          "proposed_tags": [
+            "execution-oriented-agents",
+            "enterprise-ai",
+            "orchestration-layer-growth",
+            "automation-supervision"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "service_automation_relevance": "Relevant for service automation only indirectly: the same governed-workflow pattern is likely to shape back-office and support agents that need audit trails, tool permissions, and human override paths.",
+          "signal_strength": "high",
+          "signal_title": "Enterprise coding agents are being sold as governed systems",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The roundup links Cognition's large funding round with product work from OpenAI and Anthropic that adds admin controls, private connectivity, and reliability tooling. The pattern is that coding agents are no longer framed as demo surfaces; they are being packaged as governed enterprise systems with review, identity, and spend controls. That matters because deployment success depends on operational supervision, not just model choice.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-28, the commercial bar for coding agents appears to include workflow reliability, permissions, and auditability. That raises the importance of harness design, access control, and evaluation loops for teams building or buying agentic coding systems.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "7f04b4bb-213c-45f1-a906-a202a0addbf9",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI continued tightening Codex\u2019s product surface: GPT-5.2 and GPT-5.3-Codex are being sunset in Codex in favor of GPT-5.5, while enterprise features now include private MCP connectivity over outbound-only HTTPS, Workload Identity Federation, and expanded Admin API controls for spend alerts, allowlists, retention policies, and hosted tool management.",
+              "Claude Code shared a reliability/performance update and easier bug-report capture, while GitHub kept pushing the \u201cagentized IDE\u201d direction with Copilot Dev Days and MCP positioning.",
+              "The biggest commercial datapoint was Cognition: >$1B raised at a $26B valuation, enterprise usage up >10\u00d7 YTD, and $492M run-rate revenue."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Cognition",
+              "OpenAI",
+              "Anthropic",
+              "GitHub",
+              "LangChain",
+              "LangSmith"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-oriented-agents",
+            "enterprise-ai",
+            "orchestration-layer-growth",
+            "automation-supervision"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-28",
+          "evidence_snippets": [
+            "Inference optimization is increasingly architectural, not just kernel-level.",
+            "Recent API price cuts from Chinese labs look sustainable because they reflect lower serving cost per token, not temporary subsidy.",
+            "The broader takeaway: long-context inference economics are now being pushed by attention design + cache hierarchy + routing, not just cheaper hardware."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "EAGLE 3.1",
+            "vLLM",
+            "TorchSpec",
+            "Perplexity",
+            "Qwen3.5",
+            "DeepSeek",
+            "Xiaomi MiMo"
+          ],
+          "operational_relevance": "Builders should treat long-context serving as a coupled problem across attention patterns, cache management, tokenizer efficiency, and runtime collaboration with serving frameworks.",
+          "primary_tag": "inference-efficiency",
+          "proposed_tags": [
+            "inference-efficiency",
+            "runtime-systems",
+            "long-context-adoption",
+            "ai-economics"
+          ],
+          "secondary_tag": "runtime-systems",
+          "service_automation_relevance": "Lower token cost and better long-context reliability directly improve the viability of support bots that must carry large conversation state or policy context across many turns.",
+          "signal_strength": "high",
+          "signal_title": "Inference cost is being reduced by architecture, not just hardware",
+          "signal_type": "pricing_economics",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Multiple items in the roundup point to lower serving cost coming from attention design, cache hierarchy, routing, and tokenizer/kernel improvements. The practical implication is that price cuts and long-context serving improvements can come from model and runtime architecture changes rather than only cheaper chips. That makes inference optimization a systems problem.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-28, the article suggests serving economics are changing at the architecture layer, which affects pricing, latency targets, and infra planning for agent products. Teams that ignore cache behavior or sparse attention may miss the main cost lever.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "db1ed452-7ac1-4980-bff5-da73755d153a",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "Inference optimization is increasingly architectural, not just kernel-level.",
+              "Recent API price cuts from Chinese labs look sustainable because they reflect lower serving cost per token, not temporary subsidy.",
+              "The broader takeaway: long-context inference economics are now being pushed by attention design + cache hierarchy + routing, not just cheaper hardware."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "EAGLE 3.1",
+              "vLLM",
+              "TorchSpec",
+              "Perplexity",
+              "Qwen3.5",
+              "DeepSeek",
+              "Xiaomi MiMo"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "inference-efficiency",
+            "runtime-systems",
+            "long-context-adoption",
+            "ai-economics"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The source combines newsletter aggregation, vendor announcements, benchmark mentions, and user-report style commentary.",
+          "Many claims are relayed from tweets, product posts, and community reactions rather than a single primary study or analysis.",
+          "No single evidence basis dominates the whole piece; it is a curated roundup of heterogeneous claims."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Cognition\u2019s disclosed $492M run-rate revenue and >$1B ARR projection make it the clearest commercial data point in the roundup, but the article provides only newsletter-level evidence, not audited financial detail.",
+          "Inference economics are presented as an architecture problem as much as a kernel problem, with multiple examples tying lower cost per token to attention design, cache hierarchy, and routing.",
+          "The roundup repeatedly emphasizes that agent performance depends on harness fit, prompts, tools, and memory organization, not just base model quality.",
+          "Post-deployment learning is treated as an emerging product category, with Trajectory and related tooling aimed at turning usage traces into continual post-training.",
+          "Several new benchmarks aim at messy, long-horizon work rather than static tasks, which makes them more relevant for agent evaluation but also harder to interpret across labs."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "mailto:reader-forwarded-email/36e28030404112d4c18c3a9fde72b780"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece is explicitly a dated AI News recap covering many unrelated items across inference, agents, benchmarks, models, and product releases.",
+          "It contains sectioned roundup structure such as 'AI Twitter Recap' and 'AI Reddit Recap' with multiple short blurbs rather than one coherent article argument.",
+          "The Cognition funding item is only one of many news items in a newsletter-style digest."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "AINews",
+    "canonical_url": "mailto:reader-forwarded-email/36e28030404112d4c18c3a9fde72b780",
+    "content_sha256": "52186a5510ca76c862a5de3cacd1a3096ecb8a3a8dc152856f56a94c0e0aac67",
+    "publication": "Substack",
+    "published_date": "2026-05-28",
+    "raw_html_rel_path": "raw/readwise/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1.html",
+    "raw_md_rel_path": "raw/readwise/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1.md",
+    "source_id": "ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1",
+    "title": "[AINews] Cognition raises $1B in $26B Series D"
+  }
+}

@@ -1,0 +1,678 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:48:20+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt9ybPpo9Polp7M8K1IPaU3BMzDg",
+          "token_usage": {
+            "completion_tokens": 204,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7903,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8107
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntA11IxfuepDII2kmM1uGNL7UY6U",
+          "token_usage": {
+            "completion_tokens": 1107,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7521,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8628
+          }
+        },
+        {
+          "cache_hit_rate": 0.1323357366344715,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntAALVlJhi4k4VMRkLRrFU7vsYUK",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1206,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36755,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 37961
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntAALVlJhi4k4VMRkLRrFU7vsYUK",
+    "token_usage": {
+      "completion_tokens": 2517,
+      "prompt_tokens": 52179,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 54696
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-12",
+        "confidence": 0.9,
+        "evidence_from_source": "The source argues that professionals are moving beyond vibe coding and toward spec-driven development or \"agentic engineering,\" where humans orchestrate agents against detailed specifications with oversight.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "human-ai-collaboration",
+        "proposed_tags": [
+          "human-ai-collaboration",
+          "workflow-restructuring",
+          "ai-operationalization"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "workflow-restructuring-around-ai-agents"
+        ],
+        "secondary_tag": "workflow-restructuring",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "coding-agents",
+        "suggested_new_tags": [
+          "coding-agents"
+        ],
+        "supporting_data_points": [
+          "The author contrasts vibe coding with a repository-based specification workflow.",
+          "The workflow described includes plan, implement, validate, and replan stages.",
+          "The article says the method works across sessions and across different AI agents because the spec preserves context."
+        ],
+        "supporting_snippet": "\"professional engineers are already moving beyond it and leaning more toward spec-driven development\"",
+        "time_sensitivity": "Actionable as of 2026-05-12; the observation is tied to the emerging coding-agent workflow described in the source and should be treated as a medium-term operating pattern rather than a settled industry law.",
+        "trend_description": "Software creation is moving away from loose prompt-and-edit loops toward workflows where humans define specifications and agents perform implementation under review. The shift is not toward less engineering judgment; it is toward different human leverage, with architecture, validation, and replanning becoming more central. This pattern is most relevant where generated code must fit shared conventions, preserve decisions, and survive multiple sessions or contributors.",
+        "trend_slug": "coding-shifts-toward-supervised-agent-workflows",
+        "trend_title": "Coding Shifts Toward Supervised Agent Workflows",
+        "uncertainty_note": "The evidence is a single personal build and a practitioner argument, not a controlled study. The direction is plausible, but the source does not quantify adoption, productivity gains, or failure rates across teams.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article is centered on the author's own build of a fitness app using spec-driven development.",
+        "Claims about the workflow are supported by described personal experience, prompts, and observed results from that project.",
+        "It references a course and external ideas, but the main evidentiary base is the author's implementation narrative."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about a better way to build software with AI agents. Instead of asking an LLM to make changes in a loose back-and-forth chat, the author recommends writing clear specs first and keeping them in the repository. That makes the project easier to review, update, and continue across sessions. The article shows the method on a personal fitness app and explains how the work moves through planning, implementation, validation, and replanning. The basic idea is simple: let the agent write code, but let the human keep control of the design and decisions.",
+      "assessed_as_of": "2026-05-12",
+      "contradictions_and_skepticism": "The article argues that structured specs are better than loose prompting, but its own success story still depends on repeated human review and iteration, so the agent is not replacing engineering judgment. The emphasis on markdown artifacts may be more process-heavy than some teams will tolerate, especially if they already have strong issue tracking and design review habits. The claim that the approach is a default for larger projects is reasonable, but it is not backed by controlled evidence here. The piece is candid about this being a personal preference and not a silver bullet, which tempers the stronger language around agentic engineering.",
+      "key_insights": [
+        "The main failure mode of vibe coding is not code generation speed; it is lost context, inconsistent conventions, and forgotten reasoning.",
+        "A repository-based specification can serve as the durable memory layer across chat sessions and across different agents.",
+        "The workflow becomes more robust when the human owns architecture and requirements before handing implementation to agents.",
+        "Replanning is treated as a first-class phase, not an afterthought, because early specs will drift once real usage exposes gaps.",
+        "The article\u2019s strongest practical claim is narrow: spec-driven development is most valuable for larger or collaborative projects, while it is likely overkill for small ad hoc tasks."
+      ],
+      "limitations_and_open_questions": "The evidence is a single author case study, not a comparative study against vibe coding, conventional engineering, or other agent workflows. The article does not quantify defect rates, time saved, maintenance burden, or how often the spec actually prevented mistakes. It also leaves open how much discipline is required to keep specs synchronized with code in long-running teams, and whether that overhead offsets the benefits for medium-sized projects. Security, privacy, testing depth, and collaboration failure modes are discussed only indirectly. The generalizability of the fitness app example to other domains is not demonstrated.",
+      "sources": [
+        "https://towardsdatascience.com/from-vibe-coding-to-spec-driven-development/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-8XSNnhczYTrUKaqr5mitq9p-B-M2TBvsqShnr08EjVRSOiYvpBpAtlloSlcgGHaMgUmJamtnSx7FcC1TvK9ndU3toMLA&_hsmi=418698396&utm_source=newsletter"
+      ],
+      "summary": "The article argues that vibe coding is useful for quick experiments but breaks down on larger or shared projects because it loses decisions, conventions, and context across chat sessions. Its alternative is spec-driven development: first write and maintain structured Markdown specs for mission, tech stack, roadmap, feature requirements, and validation, then use LLM agents to implement against those documents. The author demonstrates this on a greenfield personal fitness app, using Claude Code as the agent workflow and repeatedly revisiting specs before and after implementation. The process is presented as plan \u2192 implement \u2192 validate \u2192 replan, with the key discipline being that the specification remains the source of truth rather than ad hoc chat history. The article also notes that the same workflow can be automated with agent \u201cskills\u201d and mentions GitHub\u2019s Spec Kit as a more opinionated out-of-the-box implementation. The practical conclusion is that for larger projects, especially collaborative ones, spec-driven development is the preferred default; for small one-off tasks, it is probably overkill.",
+      "why_it_matters": "The article is useful because it turns a fuzzy \u201cuse AI to code\u201d idea into an operational workflow with explicit artifacts: mission, tech stack, roadmap, feature specs, validation, and replanning. That makes the durable lesson less about any one model or IDE and more about process design for agent-assisted software work. The author\u2019s example shows how a human can keep control of architecture while still using an LLM for much of the implementation, which is a concrete pattern an advanced practitioner can reuse. It also highlights a real failure mode of agentic coding: if the spec is not maintained, the project drifts and the agent loses the rationale behind earlier decisions. The writeup is strongest as a workflow template, not as a benchmarked comparison, because it is based on one personal build rather than systematic evidence. The claim that this should be the default for larger projects is plausible in the article\u2019s own terms, but it is still a practical recommendation rather than proven general law. For service automation, support, voice, meetings, or back-office workflows, the article does not discuss them directly, so any connection is indirect and limited to the general idea of using specs to coordinate multi-step agent work. Actionable as of 2026-05-12, especially if you are already using coding agents and want fewer lost decisions; for small throwaway tasks, the article itself says the overhead is probably not worth it."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article arguing for spec-driven development over vibe coding, not a bundle of unrelated items.",
+        "Includes one worked implementation case and process guidance rather than a curated roundup or transcript.",
+        "Structure is essay-like with sections and a practical build story, which fits a standard article or technical how-to better than a specialized roundup type."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Separate the specification from the implementation so the project can be steered without relying on chat history.",
+          "Treat mission, tech stack, roadmap, feature specs, and validation as durable artifacts rather than one-off prompts.",
+          "Use replanning explicitly when implementation uncovers mismatches between the initial plan and the real product need.",
+          "Keep changes flowing through the agent so related documents stay consistent."
+        ],
+        "knowledge_summary": "A durable AI-assisted development workflow starts with a written specification that separates intent, constraints, and architecture from implementation. The specification becomes the source of truth across chat sessions and agents, which reduces drift, forgotten reasoning, and inconsistent conventions. This approach works best when humans make the architectural decisions first and agents execute against those decisions. Replanning is part of the workflow, because real usage often exposes gaps that require the specification to be revised before more code is added.",
+        "match_candidates": [],
+        "operational_insight": "Keep project intent in repository-backed Markdown rather than in transient chat history so agents can be steered, reviewed, and audited against stable requirements.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "software-engineering",
+          "coding-agents",
+          "process-design"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows",
+          "agentic-coding-workflows"
+        ],
+        "relevance_note": "This pattern matters whenever AI agents are used for software delivery, especially on larger or multi-session work where context loss creates rework. Repository-backed specifications make agent output easier to review, safer to change, and more transferable across contributors and tools.",
+        "secondary_tag": "software-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Instead of jumping straight into implementation, we start by doing the hard thinking ourselves: making architectural decisions, defining requirements, and documenting them in a structured markdown specification stored in the repository and updated alongside the project.\"",
+        "topic_slug": "structured-specification-for-agentic-development",
+        "topic_title": "Structured Specification for Agentic Development",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Validation should be explicit and tied to a written plan or validation document.",
+          "A second agent with fresh context can be useful for critique because it is less anchored to the original conversation.",
+          "Do not skip from a bug report straight to a fix prompt; update the specification first so the source of truth stays aligned.",
+          "Manual review remains necessary, especially for core business logic."
+        ],
+        "knowledge_summary": "Agent-assisted software work becomes more reliable when implementation is followed by explicit validation, and when review is treated as a distinct stage rather than an informal check. Human review still matters for business logic and behavior, while a fresh agent can be used to critique whether the implementation matches the specification. This creates a loop where code is not accepted until it is checked against the requirements and validation criteria. The practical effect is less silent drift between what was intended and what was built.",
+        "match_candidates": [],
+        "operational_insight": "Design coding-agent workflows around plan, implement, validate, and replan steps so the agent is constrained by an auditable review loop instead of open-ended chat.",
+        "primary_tag": "coding-agents",
+        "proposed_tags": [
+          "coding-agents",
+          "test-and-verification",
+          "verification-systems",
+          "ai-evaluation"
+        ],
+        "related_topics": [
+          "structured-specification-for-agentic-development"
+        ],
+        "relevance_note": "Verification loops are valuable in any agent workflow where generated output has to satisfy concrete requirements, not just look plausible. They are especially important in service automation and conversational systems, where small implementation mistakes can create user-facing failures or hidden logic drift.",
+        "secondary_tag": "test-and-verification",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Each feature phase follows a simple cycle: plan \u2192 implement \u2192 validate.\"",
+        "topic_slug": "verification-loops-in-agentic-coding",
+        "topic_title": "Verification Loops in Agentic Coding",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-12",
+          "confidence": 0.9,
+          "evidence_from_source": "The source argues that professionals are moving beyond vibe coding and toward spec-driven development or \"agentic engineering,\" where humans orchestrate agents against detailed specifications with oversight.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "human-ai-collaboration",
+          "proposed_tags": [
+            "human-ai-collaboration",
+            "workflow-restructuring",
+            "ai-operationalization"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "workflow-restructuring-around-ai-agents"
+          ],
+          "secondary_tag": "workflow-restructuring",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "coding-agents",
+          "suggested_new_tags": [
+            "coding-agents"
+          ],
+          "supporting_data_points": [
+            "The author contrasts vibe coding with a repository-based specification workflow.",
+            "The workflow described includes plan, implement, validate, and replan stages.",
+            "The article says the method works across sessions and across different AI agents because the spec preserves context."
+          ],
+          "supporting_snippet": "\"professional engineers are already moving beyond it and leaning more toward spec-driven development\"",
+          "time_sensitivity": "Actionable as of 2026-05-12; the observation is tied to the emerging coding-agent workflow described in the source and should be treated as a medium-term operating pattern rather than a settled industry law.",
+          "trend_description": "Software creation is moving away from loose prompt-and-edit loops toward workflows where humans define specifications and agents perform implementation under review. The shift is not toward less engineering judgment; it is toward different human leverage, with architecture, validation, and replanning becoming more central. This pattern is most relevant where generated code must fit shared conventions, preserve decisions, and survive multiple sessions or contributors.",
+          "trend_slug": "coding-shifts-toward-supervised-agent-workflows",
+          "trend_title": "Coding Shifts Toward Supervised Agent Workflows",
+          "uncertainty_note": "The evidence is a single personal build and a practitioner argument, not a controlled study. The direction is plausible, but the source does not quantify adoption, productivity gains, or failure rates across teams.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "91a9e80a-cebb-496c-b6a9-9639bb80469b",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "workflow-restructuring-around-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The author contrasts vibe coding with a repository-based specification workflow.",
+              "The workflow described includes plan, implement, validate, and replan stages.",
+              "The article says the method works across sessions and across different AI agents because the spec preserves context."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "human-ai-collaboration",
+            "workflow-restructuring",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article is centered on the author's own build of a fitness app using spec-driven development.",
+          "Claims about the workflow are supported by described personal experience, prompts, and observed results from that project.",
+          "It references a course and external ideas, but the main evidentiary base is the author's implementation narrative."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The main failure mode of vibe coding is not code generation speed; it is lost context, inconsistent conventions, and forgotten reasoning.",
+          "A repository-based specification can serve as the durable memory layer across chat sessions and across different agents.",
+          "The workflow becomes more robust when the human owns architecture and requirements before handing implementation to agents.",
+          "Replanning is treated as a first-class phase, not an afterthought, because early specs will drift once real usage exposes gaps.",
+          "The article\u2019s strongest practical claim is narrow: spec-driven development is most valuable for larger or collaborative projects, while it is likely overkill for small ad hoc tasks."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://towardsdatascience.com/from-vibe-coding-to-spec-driven-development/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-8XSNnhczYTrUKaqr5mitq9p-B-M2TBvsqShnr08EjVRSOiYvpBpAtlloSlcgGHaMgUmJamtnSx7FcC1TvK9ndU3toMLA&_hsmi=418698396&utm_source=newsletter"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article arguing for spec-driven development over vibe coding, not a bundle of unrelated items.",
+          "Includes one worked implementation case and process guidance rather than a curated roundup or transcript.",
+          "Structure is essay-like with sections and a practical build story, which fits a standard article or technical how-to better than a specialized roundup type."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Separate the specification from the implementation so the project can be steered without relying on chat history.",
+            "Treat mission, tech stack, roadmap, feature specs, and validation as durable artifacts rather than one-off prompts.",
+            "Use replanning explicitly when implementation uncovers mismatches between the initial plan and the real product need.",
+            "Keep changes flowing through the agent so related documents stay consistent."
+          ],
+          "knowledge_summary": "A durable AI-assisted development workflow starts with a written specification that separates intent, constraints, and architecture from implementation. The specification becomes the source of truth across chat sessions and agents, which reduces drift, forgotten reasoning, and inconsistent conventions. This approach works best when humans make the architectural decisions first and agents execute against those decisions. Replanning is part of the workflow, because real usage often exposes gaps that require the specification to be revised before more code is added.",
+          "match_candidates": [],
+          "operational_insight": "Keep project intent in repository-backed Markdown rather than in transient chat history so agents can be steered, reviewed, and audited against stable requirements.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "software-engineering",
+            "coding-agents",
+            "process-design"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows",
+            "agentic-coding-workflows"
+          ],
+          "relevance_note": "This pattern matters whenever AI agents are used for software delivery, especially on larger or multi-session work where context loss creates rework. Repository-backed specifications make agent output easier to review, safer to change, and more transferable across contributors and tools.",
+          "secondary_tag": "software-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Instead of jumping straight into implementation, we start by doing the hard thinking ourselves: making architectural decisions, defining requirements, and documenting them in a structured markdown specification stored in the repository and updated alongside the project.\"",
+          "topic_slug": "structured-specification-for-agentic-development",
+          "topic_title": "Structured Specification for Agentic Development",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ef6876a7-76ef-4496-bd16-b15dcdc2bdc2",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Separate the specification from the implementation so the project can be steered without relying on chat history.",
+              "Treat mission, tech stack, roadmap, feature specs, and validation as durable artifacts rather than one-off prompts.",
+              "Use replanning explicitly when implementation uncovers mismatches between the initial plan and the real product need.",
+              "Keep changes flowing through the agent so related documents stay consistent."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows",
+              "agentic-coding-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "software-engineering",
+            "coding-agents",
+            "process-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Validation should be explicit and tied to a written plan or validation document.",
+            "A second agent with fresh context can be useful for critique because it is less anchored to the original conversation.",
+            "Do not skip from a bug report straight to a fix prompt; update the specification first so the source of truth stays aligned.",
+            "Manual review remains necessary, especially for core business logic."
+          ],
+          "knowledge_summary": "Agent-assisted software work becomes more reliable when implementation is followed by explicit validation, and when review is treated as a distinct stage rather than an informal check. Human review still matters for business logic and behavior, while a fresh agent can be used to critique whether the implementation matches the specification. This creates a loop where code is not accepted until it is checked against the requirements and validation criteria. The practical effect is less silent drift between what was intended and what was built.",
+          "match_candidates": [],
+          "operational_insight": "Design coding-agent workflows around plan, implement, validate, and replan steps so the agent is constrained by an auditable review loop instead of open-ended chat.",
+          "primary_tag": "coding-agents",
+          "proposed_tags": [
+            "coding-agents",
+            "test-and-verification",
+            "verification-systems",
+            "ai-evaluation"
+          ],
+          "related_topics": [
+            "structured-specification-for-agentic-development"
+          ],
+          "relevance_note": "Verification loops are valuable in any agent workflow where generated output has to satisfy concrete requirements, not just look plausible. They are especially important in service automation and conversational systems, where small implementation mistakes can create user-facing failures or hidden logic drift.",
+          "secondary_tag": "test-and-verification",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Each feature phase follows a simple cycle: plan \u2192 implement \u2192 validate.\"",
+          "topic_slug": "verification-loops-in-agentic-coding",
+          "topic_title": "Verification Loops in Agentic Coding",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "56b5585d-f692-4f81-b059-4b136d3808ee",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Validation should be explicit and tied to a written plan or validation document.",
+              "A second agent with fresh context can be useful for critique because it is less anchored to the original conversation.",
+              "Do not skip from a bug report straight to a fix prompt; update the specification first so the source of truth stays aligned.",
+              "Manual review remains necessary, especially for core business logic."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "structured-specification-for-agentic-development"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "coding-agents",
+            "test-and-verification",
+            "verification-systems",
+            "ai-evaluation"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Mariya Mansurova",
+    "canonical_url": "https://towardsdatascience.com/from-vibe-coding-to-spec-driven-development/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-8XSNnhczYTrUKaqr5mitq9_bP-M2TBvsqShnr08EjVRSOiYvpBpAtlloSlcgGHaMgUmJamtnSx7FcC1TvK9ndU3toMLA&_hsmi=418698396&utm_source=newsletter",
+    "content_sha256": "6d98a82517d33ae94fcb209594db80c1dba0fc5d47533f2e2c78c8ce994b89ba",
+    "publication": "Medium",
+    "published_date": "2026-05-12",
+    "raw_html_rel_path": "raw/readwise/from-vibe-coding-to-spec-driven-development-01krkb186m11xe8rdxgc7wz89m.html",
+    "raw_md_rel_path": "raw/readwise/from-vibe-coding-to-spec-driven-development-01krkb186m11xe8rdxgc7wz89m.md",
+    "source_id": "from-vibe-coding-to-spec-driven-development-01krkb186m11xe8rdxgc7wz89m",
+    "title": "From Vibe Coding to Spec-Driven Development"
+  }
+}

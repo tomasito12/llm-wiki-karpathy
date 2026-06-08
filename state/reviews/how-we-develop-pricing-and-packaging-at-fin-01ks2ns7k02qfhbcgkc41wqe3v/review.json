@@ -1,0 +1,662 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:54:12+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntFhRjCIPezB90QEKFQEl8lQofge",
+          "token_usage": {
+            "completion_tokens": 198,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5923,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6121
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntFj185SK7OpRabCaJGEQpCJdgBW",
+          "token_usage": {
+            "completion_tokens": 1050,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5535,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6585
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntFqnIxArp86l1yPUBAqBuHpQFNr",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1272,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35054,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 36326
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntFqnIxArp86l1yPUBAqBuHpQFNr",
+    "token_usage": {
+      "completion_tokens": 2520,
+      "prompt_tokens": 46512,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 49032
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-20",
+        "confidence": 0.89,
+        "evidence_from_source": "The source describes Fin using a value-based model where customers pay only when Fin delivers an outcome, and defines the metric as a customer service query successfully handled.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "ai-operationalization",
+          "enterprise-ai"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents"
+        ],
+        "secondary_tag": "ai-operationalization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Fin uses an outcome metric defined as successfully handling a customer service query.",
+          "The article contrasts value-based pricing with usage-based pricing.",
+          "Intercom ties the final commercial decision to forecasting logos, ARR, and margins."
+        ],
+        "supporting_snippet": "\u201cWith Fin, we chose a value-based model: you only pay when Fin delivers value.\u201d",
+        "time_sensitivity": "Actionable as of 2026-05-20; the article presents it as an active pricing philosophy for a live AI product, not a settled industry standard.",
+        "trend_description": "AI product monetization is moving toward payment structures tied to measurable results rather than raw usage or generic access. This shift matters because buyer willingness to pay is often anchored to delivered value, especially for automation products that can define a successful task completion. The practical challenge is that the outcome has to be both meaningful to buyers and detectable in operations; otherwise the model becomes hard to administer and hard to trust.",
+        "trend_slug": "ai-product-pricing-shifts-toward-measured-outcomes",
+        "trend_title": "AI Product Pricing Shifts Toward Measured Outcomes",
+        "uncertainty_note": "The evidence is company-specific and self-reported, so it supports the pattern but does not prove that outcome pricing is broadly superior across AI categories. The source also notes that the full process is followed only about half the time, which limits how rigidly the model is applied in practice.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article describes how Fin's pricing and packaging process is developed inside Intercom, step by step.",
+        "It includes concrete internal workflow details such as buyer research, WTP studies, modeling, and exec sign-off.",
+        "The evidence is practice-based and company-specific rather than benchmarked or research-driven."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about how Intercom thinks through pricing for Fin, its AI Agent. The main idea is that pricing is not just picking a number; it starts with research into how buyers think about value. Intercom first decides the pricing model and the unit it will measure, then tests how much people are willing to pay. After that, it models how discounts, usage, and margins affect the real business outcome. The article is useful because it shows pricing as a structured process, not guesswork. It also makes clear that pricing needs to keep evolving as the product grows.",
+      "assessed_as_of": "2026-05-20",
+      "contradictions_and_skepticism": "The article argues for a rigorous process, but also says the full process is followed only around half the time, which suggests the method is aspirational as much as operational. Outcome-based pricing sounds clean, but the piece admits that a single model becomes harder to apply as the product set expands. The claim that the chosen metric should track value is persuasive, but the article does not test whether customers actually experience the metric as fair over time. The narrative is internally coherent, but it is still one company\u2019s self-reported process rather than comparative evidence.",
+      "key_insights": [
+        "Buyer research comes first because the wrong pricing model makes later willingness-to-pay data meaningless.",
+        "Intercom treats the pricing metric as a design choice, not just an accounting unit; for Fin, the metric is outcomes.",
+        "Willingness-to-pay research is used to ground discussion, but not to finalize price, because intent is not the same as behavior.",
+        "The modeling step matters because it converts survey intent into forecasts that include discounting, usage, adoption, ARR, and margins.",
+        "As Fin expands, the harder question becomes system design across products, not optimizing one product\u2019s price in isolation."
+      ],
+      "limitations_and_open_questions": "The article does not provide the actual pricing formula, the full model outputs, or the decision thresholds behind the final recommendation. It does not show how well the chosen model performed after launch, so there is no evidence here on forecast accuracy or realized margins. The discussion of Gabor-Granger and Van Westendorp is method-level, but the article gives only illustrative data, not a reproducible study design. It also leaves open how Intercom balances simplicity against increasing product breadth as Fin becomes more platform-like. The operational burden of rollout, sales enablement, customer education, and ROI tooling is acknowledged but not detailed.",
+      "sources": [
+        "https://www.intercom.com/blog/how-we-develop-pricing-and-packaging-at-fin/"
+      ],
+      "summary": "This article explains how Intercom develops pricing and packaging for Fin as a cross-functional decision, not a late-stage marketing task. The process starts with foundational buyer research to understand how customers define value, what ROI means to them, and which pricing model feels natural. That qualitative work determines two key choices: the pricing model and the pricing metric; for Fin, the company chose a value-based model and an outcomes metric, meaning customers pay when Fin resolves a query. Intercom then runs willingness-to-pay research, using methods such as Gabor-Granger and Van Westendorp, to estimate demand across price points and to surface the growth-versus-revenue tradeoff. After that, finance and data science model the real business case by combining WTP data with discounting, usage expectations, attach rates, margins, segment differences, and commercial constraints. The output is a recommendation for price, forecasted ARR, adoption, and margins, which then goes to executive sign-off. The article\u2019s deeper point is that pricing is not a one-time decision: as Fin\u2019s product surface expands, the company is revisiting whether a single outcome-based logic still fits a broader platform. It frames pricing as an evolving system that must stay aligned to buyer expectations, product value, and company strategy.",
+      "why_it_matters": "The article is valuable because it shows a concrete internal workflow for pricing an AI product: qualitative buyer research, willingness-to-pay studies, then finance and data science modeling before executive approval. That sequence is operationally useful for teams building AI products with monetization uncertainty, because it separates the problem of choosing a pricing logic from the problem of estimating price points. The strongest reusable insight is that the pricing metric itself is strategic; small definition changes can materially alter how customers perceive value. The article also makes a useful distinction between survey intent and real commercial behavior, which is why the modeling step includes discounting, usage, attach rates, and margin constraints. It is less a general theory of AI pricing than a company-specific account of how Intercom tries to keep pricing aligned with product value and business goals. The piece is candid that the ideal process is only followed about half the time, which adds realism and limits overgeneralization. As of 2026-05-20, this is actionable as a process reference, but it should be treated as a durable workflow pattern rather than a universal pricing recipe. The service automation implication is direct: the article is about monetizing an AI Agent that resolves customer queries, so the outcome-based logic is especially relevant for customer support and similar automation products."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "A single coherent blog post explains Intercom's internal pricing and packaging process for Fin.",
+        "The structure is an explanatory article with sections, not a roundup, interview, or step-by-step tutorial focused on one implementation.",
+        "Claims are presented as the company's own process and rationale rather than a multi-item digest."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The pricing model and the pricing metric are separate decisions.",
+          "A metric definition can materially change how customers experience value.",
+          "Outcome-based pricing is easier to justify when the system produces clear, countable results.",
+          "Buyer expectations should shape the model before price-point research starts."
+        ],
+        "knowledge_summary": "Outcome-based pricing ties payment to a measurable unit of customer value rather than to raw usage or fixed access. It is most useful when the product can reliably define and detect an outcome that matters to buyers, such as successfully resolving a task. The pricing metric becomes a strategic design choice because it shapes how value is perceived, how customers compare plans, and how revenue forecasting is built. In practice, teams usually need qualitative buyer research first, then quantitative willingness-to-pay work, and finally commercial modeling before they can translate the concept into a viable price point.",
+        "match_candidates": [],
+        "operational_insight": "Treat the pricing metric as part of the product design, not just the finance layer. If the metric is misdefined, later willingness-to-pay data can be directionally misleading even when the survey work is sound.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "enterprise-ai",
+          "support-automation"
+        ],
+        "related_topics": [
+          "support-automation-as-operating-model"
+        ],
+        "relevance_note": "This matters for AI products that automate support or complete other business tasks because the pricing unit can be aligned to a verified result instead of requests or seats. As of 2026-05-20, it is a durable pattern for monetizing agentic systems, but it works best when the outcome can be defined and measured cleanly.",
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cFor Fin, we chose a value-based model: you only pay when Fin delivers value. Our research clearly showed that buyers don\u2019t want to pay for usage, they want to pay for results.\u201d",
+        "topic_slug": "outcome-based-pricing-for-ai-agents",
+        "topic_title": "Outcome-Based Pricing for AI Agents",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Qualitative research should establish what buyers consider valuable.",
+          "Willingness-to-pay studies are stronger when they test a clear pricing model and metric.",
+          "Commercial modeling should incorporate discounting, segment differences, and margins.",
+          "Intent data needs a second pass before it is treated as a forecast."
+        ],
+        "knowledge_summary": "Pricing model validation is the process of testing whether a monetization structure fits how buyers think about value before committing to a price point. It combines qualitative research on buyer expectations with structured willingness-to-pay studies and then checks the result against business constraints such as margins, discounting, and adoption. This reduces the risk of optimizing for a number that looks good in a spreadsheet but does not match market behavior. The method is especially useful when a product category is new enough that buyers do not have stable expectations about the right commercial structure.",
+        "match_candidates": [],
+        "operational_insight": "Use willingness-to-pay methods only after the model and metric are settled. Otherwise the survey may answer the wrong question with convincing precision.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "enterprise-workflows",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "outcome-based-pricing-for-ai-agents"
+        ],
+        "relevance_note": "This is durable for AI product teams because many agentic products need both a pricing logic and a price test, not just a list price. As of 2026-05-20, the useful lesson is that survey intent must be translated through finance and usage modeling before it becomes an executable commercial plan.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cThe foundational qual is so important as a first step. It helps us decide what we should be asking about before we start asking how much people will pay.\u201d",
+        "topic_slug": "pricing-model-validation-for-ai-products",
+        "topic_title": "Pricing Model Validation for AI Products",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-20",
+          "confidence": 0.89,
+          "evidence_from_source": "The source describes Fin using a value-based model where customers pay only when Fin delivers an outcome, and defines the metric as a customer service query successfully handled.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "ai-operationalization",
+            "enterprise-ai"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents"
+          ],
+          "secondary_tag": "ai-operationalization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Fin uses an outcome metric defined as successfully handling a customer service query.",
+            "The article contrasts value-based pricing with usage-based pricing.",
+            "Intercom ties the final commercial decision to forecasting logos, ARR, and margins."
+          ],
+          "supporting_snippet": "\u201cWith Fin, we chose a value-based model: you only pay when Fin delivers value.\u201d",
+          "time_sensitivity": "Actionable as of 2026-05-20; the article presents it as an active pricing philosophy for a live AI product, not a settled industry standard.",
+          "trend_description": "AI product monetization is moving toward payment structures tied to measurable results rather than raw usage or generic access. This shift matters because buyer willingness to pay is often anchored to delivered value, especially for automation products that can define a successful task completion. The practical challenge is that the outcome has to be both meaningful to buyers and detectable in operations; otherwise the model becomes hard to administer and hard to trust.",
+          "trend_slug": "ai-product-pricing-shifts-toward-measured-outcomes",
+          "trend_title": "AI Product Pricing Shifts Toward Measured Outcomes",
+          "uncertainty_note": "The evidence is company-specific and self-reported, so it supports the pattern but does not prove that outcome pricing is broadly superior across AI categories. The source also notes that the full process is followed only about half the time, which limits how rigidly the model is applied in practice.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "e55adc61-a92f-48a1-9996-d48da12d23c2",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Fin uses an outcome metric defined as successfully handling a customer service query.",
+              "The article contrasts value-based pricing with usage-based pricing.",
+              "Intercom ties the final commercial decision to forecasting logos, ARR, and margins."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "ai-operationalization",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article describes how Fin's pricing and packaging process is developed inside Intercom, step by step.",
+          "It includes concrete internal workflow details such as buyer research, WTP studies, modeling, and exec sign-off.",
+          "The evidence is practice-based and company-specific rather than benchmarked or research-driven."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Buyer research comes first because the wrong pricing model makes later willingness-to-pay data meaningless.",
+          "Intercom treats the pricing metric as a design choice, not just an accounting unit; for Fin, the metric is outcomes.",
+          "Willingness-to-pay research is used to ground discussion, but not to finalize price, because intent is not the same as behavior.",
+          "The modeling step matters because it converts survey intent into forecasts that include discounting, usage, adoption, ARR, and margins.",
+          "As Fin expands, the harder question becomes system design across products, not optimizing one product\u2019s price in isolation."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.intercom.com/blog/how-we-develop-pricing-and-packaging-at-fin/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "A single coherent blog post explains Intercom's internal pricing and packaging process for Fin.",
+          "The structure is an explanatory article with sections, not a roundup, interview, or step-by-step tutorial focused on one implementation.",
+          "Claims are presented as the company's own process and rationale rather than a multi-item digest."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The pricing model and the pricing metric are separate decisions.",
+            "A metric definition can materially change how customers experience value.",
+            "Outcome-based pricing is easier to justify when the system produces clear, countable results.",
+            "Buyer expectations should shape the model before price-point research starts."
+          ],
+          "knowledge_summary": "Outcome-based pricing ties payment to a measurable unit of customer value rather than to raw usage or fixed access. It is most useful when the product can reliably define and detect an outcome that matters to buyers, such as successfully resolving a task. The pricing metric becomes a strategic design choice because it shapes how value is perceived, how customers compare plans, and how revenue forecasting is built. In practice, teams usually need qualitative buyer research first, then quantitative willingness-to-pay work, and finally commercial modeling before they can translate the concept into a viable price point.",
+          "match_candidates": [],
+          "operational_insight": "Treat the pricing metric as part of the product design, not just the finance layer. If the metric is misdefined, later willingness-to-pay data can be directionally misleading even when the survey work is sound.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "enterprise-ai",
+            "support-automation"
+          ],
+          "related_topics": [
+            "support-automation-as-operating-model"
+          ],
+          "relevance_note": "This matters for AI products that automate support or complete other business tasks because the pricing unit can be aligned to a verified result instead of requests or seats. As of 2026-05-20, it is a durable pattern for monetizing agentic systems, but it works best when the outcome can be defined and measured cleanly.",
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cFor Fin, we chose a value-based model: you only pay when Fin delivers value. Our research clearly showed that buyers don\u2019t want to pay for usage, they want to pay for results.\u201d",
+          "topic_slug": "outcome-based-pricing-for-ai-agents",
+          "topic_title": "Outcome-Based Pricing for AI Agents",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "646af90e-e444-4666-8caf-7c323daf9b40",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The pricing model and the pricing metric are separate decisions.",
+              "A metric definition can materially change how customers experience value.",
+              "Outcome-based pricing is easier to justify when the system produces clear, countable results.",
+              "Buyer expectations should shape the model before price-point research starts."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "support-automation-as-operating-model"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "enterprise-ai",
+            "support-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Qualitative research should establish what buyers consider valuable.",
+            "Willingness-to-pay studies are stronger when they test a clear pricing model and metric.",
+            "Commercial modeling should incorporate discounting, segment differences, and margins.",
+            "Intent data needs a second pass before it is treated as a forecast."
+          ],
+          "knowledge_summary": "Pricing model validation is the process of testing whether a monetization structure fits how buyers think about value before committing to a price point. It combines qualitative research on buyer expectations with structured willingness-to-pay studies and then checks the result against business constraints such as margins, discounting, and adoption. This reduces the risk of optimizing for a number that looks good in a spreadsheet but does not match market behavior. The method is especially useful when a product category is new enough that buyers do not have stable expectations about the right commercial structure.",
+          "match_candidates": [],
+          "operational_insight": "Use willingness-to-pay methods only after the model and metric are settled. Otherwise the survey may answer the wrong question with convincing precision.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "enterprise-workflows",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "outcome-based-pricing-for-ai-agents"
+          ],
+          "relevance_note": "This is durable for AI product teams because many agentic products need both a pricing logic and a price test, not just a list price. As of 2026-05-20, the useful lesson is that survey intent must be translated through finance and usage modeling before it becomes an executable commercial plan.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cThe foundational qual is so important as a first step. It helps us decide what we should be asking about before we start asking how much people will pay.\u201d",
+          "topic_slug": "pricing-model-validation-for-ai-products",
+          "topic_title": "Pricing Model Validation for AI Products",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "d59dbe04-60ba-4355-93af-90b142f9d21e",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Qualitative research should establish what buyers consider valuable.",
+              "Willingness-to-pay studies are stronger when they test a clear pricing model and metric.",
+              "Commercial modeling should incorporate discounting, segment differences, and margins.",
+              "Intent data needs a second pass before it is treated as a forecast."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "outcome-based-pricing-for-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "enterprise-workflows",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Sophie Woods",
+    "canonical_url": "https://www.intercom.com/blog/how-we-develop-pricing-and-packaging-at-fin/",
+    "content_sha256": "f30229317ec2e489f865b6a0f366e77142fddcb624705a89c1de6f5626159b42",
+    "publication": "The Intercom Blog",
+    "published_date": "2026-05-20",
+    "raw_html_rel_path": "raw/readwise/how-we-develop-pricing-and-packaging-at-fin-01ks2ns7k02qfhbcgkc41wqe3v.html",
+    "raw_md_rel_path": "raw/readwise/how-we-develop-pricing-and-packaging-at-fin-01ks2ns7k02qfhbcgkc41wqe3v.md",
+    "source_id": "how-we-develop-pricing-and-packaging-at-fin-01ks2ns7k02qfhbcgkc41wqe3v",
+    "title": "How we develop pricing and packaging at Fin"
+  }
+}

@@ -1,0 +1,716 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:56:04+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntHS2G9nihKHwffdMzhYaU8pQtHw",
+          "token_usage": {
+            "completion_tokens": 190,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5767,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5957
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntHT2vNrBNACmz9rswOktItVz7dB",
+          "token_usage": {
+            "completion_tokens": 1226,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5377,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6603
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-ai_tools_roundup",
+          "request_id": "chatcmpl-DntHe1C5UmsTEHftWi8po1ndHcu4V",
+          "route": "ai_tools_roundup",
+          "token_usage": {
+            "completion_tokens": 1790,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19764,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 21554
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntHe1C5UmsTEHftWi8po1ndHcu4V",
+    "token_usage": {
+      "completion_tokens": 3206,
+      "prompt_tokens": 30908,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 34114
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The author describes a six-month personal experiment using the tools on real projects and deadlines.",
+        "Claims are grounded in first-person experience rather than formal benchmarks or vendor documentation.",
+        "The article repeatedly uses anecdotal language like 'I switched,' 'I set up,' and 'I\u2019ve found.'"
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a personal experiment in cutting software subscriptions down to zero where possible. The author tried free tools for note-taking, design, scheduling, focus, storage, invoicing, and team communication. The basic idea is simple: many people pay for features they do not actually use. The piece argues that some free tools are good enough, and in a few cases easier to live with than the paid ones. It is interesting because it gives concrete replacements instead of vague advice. The main takeaway is that a cheaper stack can still be workable if you choose tools that cover the daily basics well.",
+      "assessed_as_of": "2026-04-25",
+      "contradictions_and_skepticism": "The piece is persuasive, but it leans on convenience and personal satisfaction more than on comparative evidence. Claims like \u201cindistinguishable for 90% of use cases\u201d are plausible in narrow contexts but are not supported by controlled testing here. The statement that the free alternatives are \u201cgenuinely better\u201d in several cases is subjective and may reflect the author\u2019s workflow rather than a broad product ranking. Some recommendations are also tied to acceptance of branding, usage caps, or reduced archives, which may be fine for individuals but not for teams with stricter operational requirements. Overall, the skepticism is not that the tools are unusable; it is that the article compresses a lot of nuanced product fit into a simple savings narrative.",
+      "key_insights": [
+        "Obsidian can replace paid note apps for solo workflows when plain Markdown files and no cloud lock-in matter more than bundled collaboration.",
+        "Photopea is presented as a browser-based Photoshop substitute that preserves enough familiar editing behavior to handle PSD work for many cases.",
+        "Cal.com\u2019s free hosted plan includes core scheduling features that remove the need for Calendly for simple booking flows.",
+        "Cold Turkey\u2019s free version is useful because system-level blocking is harder to bypass than browser-based focus tools.",
+        "The article\u2019s strongest operational claim is that replacing paid apps reduced workflow friction, not just monthly spending."
+      ],
+      "limitations_and_open_questions": "The evidence is entirely anecdotal: one person\u2019s six-month workflow test, with no formal benchmarking, usability study, or failure-rate comparison. Several claims depend on the author\u2019s specific use patterns, such as \u201csolo users,\u201d short client calls, or limited focus-block lists, so generalization is uncertain. Some tools have meaningful free-tier constraints that may matter for heavier users, including Slack\u2019s 90-day searchable history, Loom\u2019s video cap, WeTransfer\u2019s size and expiry limits, and Calendar/drive platform dependencies. Security and privacy tradeoffs are mentioned only in broad terms; for example, MEGA\u2019s zero-knowledge claim is asserted but not examined operationally. The article does not quantify switching costs, migration effort, reliability over time, or whether free plans might change pricing or limits later. The savings figure is useful as a rough estimate, but the underlying assumptions are not shown in detail.",
+      "sources": [
+        "https://medium.com/write-a-catalyst/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-heres-what-i-found-2b59cfce0e29",
+        "https://bakkashetti3.gumroad.com/l/zero-productivity-stack",
+        "medium.com/@ajaykumarbakkashetti91"
+      ],
+      "summary": "The article is a first-person roundup of free alternatives to paid productivity apps, based on a six-month experiment replacing subscription software in the author\u2019s workflow. It groups tools by use case: writing and notes, design, scheduling, focus, storage and file sharing, finance, and communication. The author\u2019s main claim is that many paid subscriptions were not necessary for the basic functions being used, and that free tools can be practical rather than compromised. Specific replacements include Obsidian for notes, Hemingway Editor for lightweight editing, Notion\u2019s free plan for solo work, Photopea for Photoshop-like editing, Cal.com for scheduling, Cold Turkey and YouTube lofi streams for focus, MEGA and WeTransfer for storage/sharing, Wave or Zoho Books for accounting, and Google Meet, Slack, and Loom for communication. The piece emphasizes that the tools were tested on real projects and deadlines, and that the author\u2019s workflow friction decreased rather than increased. The strongest value of the article is its concrete comparison of free tiers and free-native tools against familiar paid subscriptions, with a savings estimate of about $2,400 per year. It is framed as a practical guide rather than a formal benchmark, and the article also points to a longer PDF guide with role-based starter stacks and a four-week implementation plan.",
+      "why_it_matters": "The article is useful because it turns an abstract \u201cuse free alternatives\u201d idea into a concrete stack with specific tradeoffs, and it does so from actual use on projects and deadlines rather than from feature-page comparison. For AI or software practitioners who manage a lot of individual tools, the durable lesson is not that every paid app is wasteful, but that many subscription costs survive by inertia while core functionality can often be met by simpler free products. The roundup also highlights a useful evaluation pattern: test whether a tool covers your highest-frequency tasks, whether its free tier has a hidden expiry or history limit, and whether the replacement removes friction rather than adding it. The article\u2019s savings estimate and role-based guide make it operationally relevant as a budgeting and stack-audit reference, although it remains a personal anecdote rather than a measured benchmark. Several recommendations are strongest when the task is narrow and well-bounded, such as formatting, scheduling, blocking sites, or one-off file transfer. The communication tools section is especially relevant for lightweight meetings and async updates, since Google Meet, Slack, and Loom are positioned as adequate free-tier substitutes for short calls, live chat, and brief video messages. As of 2026-04-25, this is actionable as a practical checklist, but it should be treated as a user report, not evidence that free tiers broadly dominate paid software."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_tools_roundup",
+      "reasoning": [
+        "Primary structure is a list of named tools and free alternatives, with separate blurbs for each product.",
+        "The article title and body frame the piece as finding free alternatives to paid apps.",
+        "Most substantive claims compare specific products and plans rather than advancing one general argument."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It stores notes as plain Markdown files so users can edit and move them outside the application.",
+          "It keeps notes on the local device, which matters when long-term access is more important than cloud sync convenience."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source does not mention specific integrations, plugins, or APIs.",
+          "Its Markdown file format is compatible with any tool that can read or edit plain text files."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Obsidian as a stable, working replacement rather than an experimental tool. Its plain-file model suggests a mature, durable niche among users who want local ownership. The article gives no evidence of enterprise adoption; its relevance here is primarily for individual workflows.",
+        "name": "Obsidian",
+        "operational_relevance": "Useful for solo knowledge work where portability and long-term access matter more than collaboration. The article frames it as a replacement for Evernote-style note capture, with the practical advantage that notes remain usable as files even if the product changes pricing or shuts down. For service-automation or AI workflows, the local Markdown storage pattern is relevant because it keeps personal knowledge bases simple and interoperable.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "writing"
+        ],
+        "proposed_types": [
+          "knowledge-management",
+          "note-taking"
+        ],
+        "related_tools": [
+          "Evernote",
+          "Notion"
+        ],
+        "short_description": "A note-taking app that stores notes as plain Markdown files on the user\u2019s device. It is positioned as a local-first replacement for paid note apps that avoids cloud lock-in and subscriptions.",
+        "strengths": "- Stores notes as plain Markdown files on the user\u2019s own device, which matters because the content remains portable outside the app.\n- Avoids subscription dependence and cloud lock-in, which reduces the risk of future pricing changes affecting access to core notes.\n- Fits solo workflows well because the source presents it as sufficient for the author\u2019s note-taking needs without team collaboration overhead.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "I switched to Obsidian for notes and never looked back. It stores everything as plain Markdown files on your own device. No subscription. No cloud lock-in. No risk of the company changing its pricing model in six months. Your notes are just files \u2014 they\u2019ll work forever.",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not describe any major functional gaps, but it implicitly assumes a solo workflow and does not address team collaboration, shared editing, or enterprise governance. It is also not evaluated here against structured knowledge-management needs beyond basic note storage."
+      },
+      {
+        "confidence": 0.94,
+        "core_capabilities": [
+          "It opens PSD files and supports layered editing in the browser, which is the key requirement for many simple Photoshop replacements.",
+          "It supports masks and adjustment layers, which matters because those are core non-destructive editing tools in everyday design work."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source does not mention third-party integrations or APIs.",
+          "It works directly in a browser tab, so it fits web-first workflows without local installation."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Photopea as a practical, already-usable substitute rather than a novelty. Its ability to open PSD files and mimic common Photoshop interactions suggests a mature feature set for lightweight editing. The article does not provide adoption metrics or enterprise signals.",
+        "name": "Photopea",
+        "operational_relevance": "This is operationally relevant when teams or individuals need occasional raster or layered-image editing without paying for Adobe. The source emphasizes that it works in a browser tab and preserves enough familiar Photoshop behavior to handle common design workflows such as PSD editing, which makes it useful for lightweight content production and support-adjacent graphics work. For service automation teams, it matters as a low-friction fallback for quick visual edits rather than as a full creative suite.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "browser-use",
+          "content-creation"
+        ],
+        "proposed_types": [
+          "ui",
+          "image"
+        ],
+        "related_tools": [
+          "Adobe Photoshop",
+          "Canva"
+        ],
+        "short_description": "A browser-based image editor that can open and edit PSD files with Photoshop-like layer and mask support. The article presents it as a free substitute for Photoshop for many common editing tasks.",
+        "strengths": "- Opens and edits PSD files in the browser, which matters because it removes the need for a desktop Photoshop license for many routine tasks.\n- Preserves familiar Photoshop-like concepts such as layers, masks, adjustment layers, and keyboard shortcuts, which lowers switching friction.\n- Covers enough day-to-day editing that the author claims it is indistinguishable from Photoshop for most use cases, at least in the article\u2019s workflow.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Navigate to photopea.com. Open a PSD file. Edit it. Exactly like Photoshop \u2014 layers, masks, adjustment layers, the same keyboard shortcuts \u2014 in a browser tab, for free.",
+        "value_level": "high",
+        "weaknesses_limitations": "The article itself narrows the claim to about 90% of use cases, which implies that advanced or edge-case Photoshop workflows may still require Adobe. It also relies on a browser-based workflow, so performance and offline reliability are not examined here."
+      },
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It provides unlimited event types on the free hosted plan, which is useful when you need different meeting lengths or workflows.",
+          "It supports automated reminders and calendar integrations, which reduces scheduling friction and missed meetings.",
+          "It supports round-robin scheduling and Stripe payment collection, which makes it useful for client-facing booking flows."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It integrates with calendars, which is necessary for automated availability and booking.",
+          "It supports Stripe payment collection, which connects scheduling to paid client sessions."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source presents Cal.com as a fully functional open-source alternative rather than an early prototype. The specific feature list on the free hosted plan suggests a product with enough maturity for real client scheduling. The article offers no evidence of enterprise adoption, but the described feature completeness is strong for individual and small-team use.",
+        "name": "Cal.com",
+        "operational_relevance": "Useful when the main need is a booking page, calendar integrations, and automated reminders without paying for a scheduling subscription. The author highlights that even the free tier covers unlimited event types and payment collection, which makes it relevant for freelancers, consultants, and small service workflows. For service automation, the value is in removing back-and-forth scheduling while keeping the setup simple.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "open-source",
+          "workflow-automation",
+          "cloud-hosted"
+        ],
+        "proposed_types": [
+          "workflow-automation",
+          "cloud-saas"
+        ],
+        "related_tools": [
+          "Calendly",
+          "Google Meet"
+        ],
+        "short_description": "An open-source scheduling tool with a free hosted plan. The article positions it as a Calendly replacement with practical booking features for individual use and client scheduling.",
+        "strengths": "- Provides unlimited event types on the free hosted plan, which matters because it can cover multiple meeting lengths without extra cost.\n- Includes calendar integrations, automated email reminders, round-robin scheduling, and Stripe payment collection, which makes it more than a basic booking page.\n- The free plan includes Cal.com branding, which the article presents as an acceptable tradeoff for a zero-cost scheduling workflow.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Cal.com is the open-source alternative. Free hosted plan. Unlimited event types. Calendar integrations. Automated email reminders. Round-robin scheduling. Stripe payment collection. You get all of it for nothing, including Cal.com branding on your booking page \u2014 which is a reasonable trade.",
+        "value_level": "high",
+        "weaknesses_limitations": "The main limitation noted in the source is branding on the free booking page. The article does not evaluate advanced scheduling policies, compliance needs, or admin controls, so it is best treated as a simple scheduling substitute rather than a full enterprise booking platform."
+      }
+    ],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The author describes a six-month personal experiment using the tools on real projects and deadlines.",
+          "Claims are grounded in first-person experience rather than formal benchmarks or vendor documentation.",
+          "The article repeatedly uses anecdotal language like 'I switched,' 'I set up,' and 'I\u2019ve found.'"
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Obsidian can replace paid note apps for solo workflows when plain Markdown files and no cloud lock-in matter more than bundled collaboration.",
+          "Photopea is presented as a browser-based Photoshop substitute that preserves enough familiar editing behavior to handle PSD work for many cases.",
+          "Cal.com\u2019s free hosted plan includes core scheduling features that remove the need for Calendly for simple booking flows.",
+          "Cold Turkey\u2019s free version is useful because system-level blocking is harder to bypass than browser-based focus tools.",
+          "The article\u2019s strongest operational claim is that replacing paid apps reduced workflow friction, not just monthly spending."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/write-a-catalyst/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-heres-what-i-found-2b59cfce0e29",
+          "https://bakkashetti3.gumroad.com/l/zero-productivity-stack",
+          "medium.com/@ajaykumarbakkashetti91"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_tools_roundup",
+        "reasoning": [
+          "Primary structure is a list of named tools and free alternatives, with separate blurbs for each product.",
+          "The article title and body frame the piece as finding free alternatives to paid apps.",
+          "Most substantive claims compare specific products and plans rather than advancing one general argument."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It stores notes as plain Markdown files so users can edit and move them outside the application.",
+            "It keeps notes on the local device, which matters when long-term access is more important than cloud sync convenience."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The source does not mention specific integrations, plugins, or APIs.",
+            "Its Markdown file format is compatible with any tool that can read or edit plain text files."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Obsidian as a stable, working replacement rather than an experimental tool. Its plain-file model suggests a mature, durable niche among users who want local ownership. The article gives no evidence of enterprise adoption; its relevance here is primarily for individual workflows.",
+          "name": "Obsidian",
+          "operational_relevance": "Useful for solo knowledge work where portability and long-term access matter more than collaboration. The article frames it as a replacement for Evernote-style note capture, with the practical advantage that notes remain usable as files even if the product changes pricing or shuts down. For service-automation or AI workflows, the local Markdown storage pattern is relevant because it keeps personal knowledge bases simple and interoperable.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "writing"
+          ],
+          "proposed_types": [
+            "knowledge-management",
+            "note-taking"
+          ],
+          "related_tools": [
+            "Evernote",
+            "Notion"
+          ],
+          "short_description": "A note-taking app that stores notes as plain Markdown files on the user\u2019s device. It is positioned as a local-first replacement for paid note apps that avoids cloud lock-in and subscriptions.",
+          "strengths": "- Stores notes as plain Markdown files on the user\u2019s own device, which matters because the content remains portable outside the app.\n- Avoids subscription dependence and cloud lock-in, which reduces the risk of future pricing changes affecting access to core notes.\n- Fits solo workflows well because the source presents it as sufficient for the author\u2019s note-taking needs without team collaboration overhead.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "I switched to Obsidian for notes and never looked back. It stores everything as plain Markdown files on your own device. No subscription. No cloud lock-in. No risk of the company changing its pricing model in six months. Your notes are just files \u2014 they\u2019ll work forever.",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not describe any major functional gaps, but it implicitly assumes a solo workflow and does not address team collaboration, shared editing, or enterprise governance. It is also not evaluated here against structured knowledge-management needs beyond basic note storage."
+        },
+        "notes": null,
+        "proposal_id": "f733dde2-c4de-4f0f-8e2a-738b2f20a333",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It stores notes as plain Markdown files so users can edit and move them outside the application.",
+              "It keeps notes on the local device, which matters when long-term access is more important than cloud sync convenience."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source does not mention specific integrations, plugins, or APIs.",
+              "Its Markdown file format is compatible with any tool that can read or edit plain text files."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Evernote",
+              "Notion"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "writing"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "core_capabilities": [
+            "It opens PSD files and supports layered editing in the browser, which is the key requirement for many simple Photoshop replacements.",
+            "It supports masks and adjustment layers, which matters because those are core non-destructive editing tools in everyday design work."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The source does not mention third-party integrations or APIs.",
+            "It works directly in a browser tab, so it fits web-first workflows without local installation."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Photopea as a practical, already-usable substitute rather than a novelty. Its ability to open PSD files and mimic common Photoshop interactions suggests a mature feature set for lightweight editing. The article does not provide adoption metrics or enterprise signals.",
+          "name": "Photopea",
+          "operational_relevance": "This is operationally relevant when teams or individuals need occasional raster or layered-image editing without paying for Adobe. The source emphasizes that it works in a browser tab and preserves enough familiar Photoshop behavior to handle common design workflows such as PSD editing, which makes it useful for lightweight content production and support-adjacent graphics work. For service automation teams, it matters as a low-friction fallback for quick visual edits rather than as a full creative suite.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "browser-use",
+            "content-creation"
+          ],
+          "proposed_types": [
+            "ui",
+            "image"
+          ],
+          "related_tools": [
+            "Adobe Photoshop",
+            "Canva"
+          ],
+          "short_description": "A browser-based image editor that can open and edit PSD files with Photoshop-like layer and mask support. The article presents it as a free substitute for Photoshop for many common editing tasks.",
+          "strengths": "- Opens and edits PSD files in the browser, which matters because it removes the need for a desktop Photoshop license for many routine tasks.\n- Preserves familiar Photoshop-like concepts such as layers, masks, adjustment layers, and keyboard shortcuts, which lowers switching friction.\n- Covers enough day-to-day editing that the author claims it is indistinguishable from Photoshop for most use cases, at least in the article\u2019s workflow.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Navigate to photopea.com. Open a PSD file. Edit it. Exactly like Photoshop \u2014 layers, masks, adjustment layers, the same keyboard shortcuts \u2014 in a browser tab, for free.",
+          "value_level": "high",
+          "weaknesses_limitations": "The article itself narrows the claim to about 90% of use cases, which implies that advanced or edge-case Photoshop workflows may still require Adobe. It also relies on a browser-based workflow, so performance and offline reliability are not examined here."
+        },
+        "notes": null,
+        "proposal_id": "9f70cdb0-30eb-4790-a0f6-72c2f41ee42e",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It opens PSD files and supports layered editing in the browser, which is the key requirement for many simple Photoshop replacements.",
+              "It supports masks and adjustment layers, which matters because those are core non-destructive editing tools in everyday design work."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source does not mention third-party integrations or APIs.",
+              "It works directly in a browser tab, so it fits web-first workflows without local installation."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Adobe Photoshop",
+              "Canva"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "browser-use",
+            "content-creation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It provides unlimited event types on the free hosted plan, which is useful when you need different meeting lengths or workflows.",
+            "It supports automated reminders and calendar integrations, which reduces scheduling friction and missed meetings.",
+            "It supports round-robin scheduling and Stripe payment collection, which makes it useful for client-facing booking flows."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It integrates with calendars, which is necessary for automated availability and booking.",
+            "It supports Stripe payment collection, which connects scheduling to paid client sessions."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source presents Cal.com as a fully functional open-source alternative rather than an early prototype. The specific feature list on the free hosted plan suggests a product with enough maturity for real client scheduling. The article offers no evidence of enterprise adoption, but the described feature completeness is strong for individual and small-team use.",
+          "name": "Cal.com",
+          "operational_relevance": "Useful when the main need is a booking page, calendar integrations, and automated reminders without paying for a scheduling subscription. The author highlights that even the free tier covers unlimited event types and payment collection, which makes it relevant for freelancers, consultants, and small service workflows. For service automation, the value is in removing back-and-forth scheduling while keeping the setup simple.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "open-source",
+            "workflow-automation",
+            "cloud-hosted"
+          ],
+          "proposed_types": [
+            "workflow-automation",
+            "cloud-saas"
+          ],
+          "related_tools": [
+            "Calendly",
+            "Google Meet"
+          ],
+          "short_description": "An open-source scheduling tool with a free hosted plan. The article positions it as a Calendly replacement with practical booking features for individual use and client scheduling.",
+          "strengths": "- Provides unlimited event types on the free hosted plan, which matters because it can cover multiple meeting lengths without extra cost.\n- Includes calendar integrations, automated email reminders, round-robin scheduling, and Stripe payment collection, which makes it more than a basic booking page.\n- The free plan includes Cal.com branding, which the article presents as an acceptable tradeoff for a zero-cost scheduling workflow.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Cal.com is the open-source alternative. Free hosted plan. Unlimited event types. Calendar integrations. Automated email reminders. Round-robin scheduling. Stripe payment collection. You get all of it for nothing, including Cal.com branding on your booking page \u2014 which is a reasonable trade.",
+          "value_level": "high",
+          "weaknesses_limitations": "The main limitation noted in the source is branding on the free booking page. The article does not evaluate advanced scheduling policies, compliance needs, or admin controls, so it is best treated as a simple scheduling substitute rather than a full enterprise booking platform."
+        },
+        "notes": null,
+        "proposal_id": "ef36e41b-033d-4fce-be52-3482133a1db5",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It provides unlimited event types on the free hosted plan, which is useful when you need different meeting lengths or workflows.",
+              "It supports automated reminders and calendar integrations, which reduces scheduling friction and missed meetings.",
+              "It supports round-robin scheduling and Stripe payment collection, which makes it useful for client-facing booking flows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It integrates with calendars, which is necessary for automated availability and booking.",
+              "It supports Stripe payment collection, which connects scheduling to paid client sessions."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Calendly",
+              "Google Meet"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-source",
+            "workflow-automation",
+            "cloud-hosted"
+          ]
+        }
+      }
+    ],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Ajay Kumar Bakkashetti",
+    "canonical_url": "https://medium.com/write-a-catalyst/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-heres-what-i-found-2b59cfce0e29",
+    "content_sha256": "14092e38931f279c576cfc84229f75ce414a42a3bb380e06f8562d0f4d01891b",
+    "publication": "Medium",
+    "published_date": "2026-04-25",
+    "raw_html_rel_path": "raw/readwise/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q.html",
+    "raw_md_rel_path": "raw/readwise/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q.md",
+    "source_id": "i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q",
+    "title": "I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here\u2019s What I Found."
+  }
+}

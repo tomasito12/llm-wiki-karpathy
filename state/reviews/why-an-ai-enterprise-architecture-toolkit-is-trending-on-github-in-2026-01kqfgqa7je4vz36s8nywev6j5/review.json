@@ -1,0 +1,839 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T15:34:56+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoWHahLgVUluo9r706Vfw02DerNbN",
+          "token_usage": {
+            "completion_tokens": 202,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5141,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5343
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoWHcXXpKVZsVbxxCQVvPjFSNVr10",
+          "token_usage": {
+            "completion_tokens": 1082,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4756,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5838
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DoWHmbRcnCwdhcbGjemCk0qWOf84r",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1968,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34701,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 36669
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoWHmbRcnCwdhcbGjemCk0qWOf84r",
+    "token_usage": {
+      "completion_tokens": 3252,
+      "prompt_tokens": 44598,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 47850
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-19",
+        "confidence": 0.84,
+        "evidence_from_source": "The source argues that architecture work becomes usable when it is wrapped in templates, document identifiers, traceability chains, and a governance framework. It also explicitly frames governance as a first-class product and ties the tooling to formal public-sector standards and controls.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "enterprise-ai",
+          "verification-over-principles",
+          "ai-operationalization"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "ArcKit had 878 stars and reached number three on GitHub\u2019s daily trending list.",
+          "The toolkit is opinionated about the GDS Service Standard, Technology Code of Practice, NCSC\u2019s Cyber Assessment Framework, and HM Treasury Green and Orange Books.",
+          "The article says the output can be \"review[ed], version[ed], approve[d], and hand[ed] to a delivery team.\""
+        ],
+        "supporting_snippet": "\"The insight behind ArcKit is that the structure matters more than the generation. You give the model a template, a document identifier convention, a traceability chain, and a governance framework, and suddenly the output is not a disposable draft.\"",
+        "time_sensitivity": "Actionable as of 2026-04-19; the observation is time-bound to a single trending spike and should be treated as an emerging pattern, not settled evidence of category-wide adoption.",
+        "trend_description": "AI governance is moving from abstract principles toward mechanisms that make outputs traceable, reviewable, and approvable inside real workflows. The practical center of gravity is shifting to templates, identifiers, provenance chains, and approval paths that let humans verify AI-produced artifacts before they are used. This matters because governance becomes operational only when it is embedded in the generation process, not bolted on afterward.",
+        "trend_slug": "ai-governance-shifts-toward-verification-mechanisms",
+        "trend_title": "AI Governance Shifts Toward Verification Mechanisms",
+        "uncertainty_note": "The source is a first-person practitioner report with anecdotal adoption signals, so it does not prove that verification-centered governance has broad market traction. GitHub trending measures velocity, not durable scale, and the article does not show comparative outcomes versus other approaches.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The core claims come from the author's own product experience: 'my architecture-governance plugin hit GitHub trending.'",
+        "Most support is anecdotal observation and interpretation of adoption signals, not formal measurement or external benchmarking.",
+        "The article includes a few concrete repository facts and adopter examples, but it is still primarily a first-person practitioner report."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about an AI toolkit for architecture and governance work that unexpectedly showed up on GitHub\u2019s trending list. Instead of helping write code faster, it helps teams produce structured planning documents like requirements, risk registers, and architecture decision records. The basic idea is simple: give the AI templates and traceability rules so the output can be reviewed like a real work artifact, not just a draft. The author thinks this matters because the hard part of AI-assisted development is often the work before coding starts. The article is especially interested in public-sector use, where rules and documentation matter as much as speed.",
+      "assessed_as_of": "2026-04-19",
+      "contradictions_and_skepticism": "The article frames GitHub trending as meaningful, but it also correctly notes that trending measures velocity rather than total adoption, so the signal may be short-lived. The author\u2019s claim that governance became the thing that showed up on trending is interesting, but it rests on one product\u2019s moment rather than broader comparative evidence. The thesis that structure matters more than generation is plausible, but the article does not demonstrate that the structure is necessary rather than simply helpful. The public-sector fit is persuasive, yet it may reflect a niche where documentation-heavy workflows are unusually receptive to this kind of tooling rather than a general market shift.",
+      "key_insights": [
+        "The article\u2019s core claim is that structure, not raw generation, is what makes AI useful for architecture and governance work.",
+        "ArcKit\u2019s value comes from producing traceable artifacts that can be reviewed, versioned, and approved instead of disposable drafts.",
+        "The toolkit targets the outer loop of development: problem framing, stakeholder mapping, non-functional requirements, and build-vs-buy decisions.",
+        "Its early traction appears to come from UK public-sector users who need to work within formal standards and constraints.",
+        "GitHub trending is treated correctly as a velocity signal, not evidence of durable scale or market dominance."
+      ],
+      "limitations_and_open_questions": "The article gives no benchmark data showing that ArcKit improves quality, speed, or governance outcomes versus manual workflows or generic prompting. The evidence for adoption is mostly a single GitHub trending snapshot plus anecdotal references to early users, so long-term retention and real operational impact are unknown. It is unclear how much setup, maintenance, or organizational discipline is required to keep the templates, traceability chains, and document conventions usable. The writeup also does not address security, privacy, or failure modes when agents are connected to external knowledge systems. The proposed non-UK-specific version is only described as being in design, so portability beyond the UK public-sector context is unresolved.",
+      "sources": [
+        "https://medium.com/arckit/why-an-enterprise-architecture-toolkit-is-trending-on-github-in-2026-30b21f1d0ef9"
+      ],
+      "summary": "The article argues that ArcKit, a governance-oriented toolkit for AI coding assistants, trending on GitHub is meaningful because it addresses the neglected outer loop of software work: turning ambiguous architecture and governance questions into structured artifacts. ArcKit provides 68 slash commands for tools like Claude Code, Codex CLI, Gemini CLI, OpenCode, and GitHub Copilot, generating items such as requirements, business cases, data models, stakeholder maps, ADRs, Wardley Maps, and risk registers. The author emphasizes that the key innovation is not exotic model capability but disciplined structure: markdown templates, bash helpers, prompt libraries, traceability conventions, and governance framing that make outputs reviewable and versionable. The article links early uptake to UK public-sector teams because the toolkit aligns with standards and constraints such as the GDS Service Standard, Technology Code of Practice, NCSC Cyber Assessment Framework, and HM Treasury guidance. It also notes that GitHub trending measures velocity rather than total adoption, so the ranking is evidence of rapid discovery and interest rather than proof of long-term success. The piece ends with a cautious outlook: ArcKit may either fade or compound as infrastructure-shaped open source often does, and the author invites real-world testing.",
+      "why_it_matters": "The piece is useful because it identifies a concrete gap in AI coding tools as of 2026-04-19: strong help for inner-loop coding, but weak support for the planning and governance work that precedes implementation. ArcKit\u2019s approach is operationally interesting because it packages architecture work as a repeatable, template-driven workflow rather than a one-off prompt exercise. That makes the outputs more suitable for review, traceability, and institutional use, which is especially relevant when teams need to justify decisions across stakeholders and standards. The article also shows a practical pattern for AI-assisted knowledge work: constrain the model with document IDs, templates, and governance rules so the result is more than a polished draft. The public-sector examples matter because they imply the toolkit fits environments where compliance and documentation are unavoidable, not optional. At the same time, the evidence in the article is still anecdotal and centered on one repo\u2019s trending spike, so the significance is promising but not yet proven durable. As of 2026-04-19, it is actionable as a design pattern and worth testing, but not enough evidence to treat as a settled category winner. The article does not substantively discuss support, meetings, voice, or back-office automation, so those implications are minimal here."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion article about one GitHub-trending toolkit, not a bundle of unrelated items.",
+        "No numbered list of tools, no step-by-step tutorial, and no interview/Q&A structure.",
+        "The piece mixes anecdote and analysis around one product release and its adoption signals."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.88,
+        "core_capabilities": [
+          "It generates structured architecture artifacts such as requirements, business cases, data models, stakeholder maps, ADRs, Wardley Maps, and risk registers.",
+          "It uses markdown templates, bash helpers, and a prompt library to make AI output follow a governed process.",
+          "It is designed to keep generated artifacts traceable to earlier principles and stakeholders."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is described as working with Claude Code, Codex CLI, Gemini CLI, OpenCode, and GitHub Copilot.",
+          "The workflow is built on markdown templates and bash helpers rather than a proprietary runtime."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "As of 2026-04-19, the repository had reached GitHub\u2019s daily trending list and was described as having 878 stars. The article also says early adopters include UK public-sector technologists, which suggests a real niche use case rather than a pure demo project. That said, the writeup is still anecdotal and does not establish long-term adoption or retention.",
+        "name": "ArcKit",
+        "operational_relevance": "ArcKit sits in the outer loop of software work, where teams need to turn ambiguous requirements into reviewable artifacts before implementation starts. That makes it relevant for architecture teams, regulated environments, and public-sector workflows where traceability matters as much as speed. It appears most useful when an AI assistant is being used as a structured drafting layer rather than a freeform chat tool.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cli-tool",
+          "workflow-automation",
+          "coding",
+          "open-source"
+        ],
+        "proposed_types": [
+          "plugin",
+          "ai-orchestration"
+        ],
+        "related_tools": [
+          "Claude Code",
+          "Codex",
+          "Gemini 3 Pro",
+          "GitHub Copilot"
+        ],
+        "short_description": "ArcKit is a governance-oriented toolkit for AI coding assistants. It uses slash commands, templates, and prompt helpers to turn architecture work into structured artifacts such as requirements, ADRs, business cases, stakeholder maps, and risk registers.",
+        "strengths": "- It converts open-ended architecture tasks into repeatable, template-driven outputs, which reduces the variability that usually makes LLM-generated planning docs hard to trust.\n- It emphasizes traceability back to prior principles and stakeholders, so the output can be reviewed, versioned, and approved instead of discarded as a draft.\n- It integrates with multiple AI coding assistants, which makes the workflow portable across common developer environments rather than tied to one client.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"ArcKit is a set of 68 slash commands for AI coding assistants, Claude Code, Codex CLI, Gemini CLI, OpenCode, GitHub Copilot, that turn the blank page of \u201cwe need to do some architecture work\u201d into a structured, template-driven process.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article provides no benchmark evidence that ArcKit improves quality, speed, or governance outcomes versus manual work or generic prompting. It also does not explain the maintenance burden of keeping templates, traceability chains, and governance rules up to date. The tool looks more like a disciplined workflow layer than a magical automation product, so its value depends on organizational process maturity."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "The source gives concrete examples of output shapes: requirements, business cases, data models, stakeholder maps, ADRs, Wardley Maps, and risk registers. It also describes the mechanism: \"markdown templates, bash helpers, and a disciplined prompt library\" plus \"a template, a document identifier convention, a traceability chain, and a governance framework.\"",
+        "key_points": [
+          "Templates reduce output variance and make AI-generated drafts easier to compare.",
+          "Traceability is a governance feature, not just documentation overhead.",
+          "Structured artifacts fit human approval workflows better than open-ended chat responses."
+        ],
+        "knowledge_summary": "When AI is used to draft operational documents, the useful unit is often not the raw text but the structure surrounding it. Templates, identifiers, traceability links, and review conventions make outputs easier for humans to approve, revise, and version. This approach is especially important when the draft needs to survive in a regulated or multi-stakeholder workflow. It shifts the model from a freeform writer into a structured assistant inside a human approval loop.",
+        "match_candidates": [],
+        "operational_insight": "Use the model to fill a controlled document shape, not to invent the document shape itself. The more review, approval, and downstream reuse you need, the more structure matters.",
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "auditability",
+          "workflow-design",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "verifiable-ai-governance"
+        ],
+        "relevance_note": "This pattern is durable in AI-assisted engineering because many high-value outputs are artifacts that must be reviewed by humans, not just generated. It is especially relevant in architecture, compliance, service design, and support operations where traceability and version control matter.",
+        "secondary_tag": "auditability",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The insight behind ArcKit is that the structure matters more than the generation.\"",
+        "topic_slug": "structured-drafting-for-human-review",
+        "topic_title": "Structured Drafting for Human Review",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "The article names concrete governance frameworks and standards: the GDS Service Standard, the Technology Code of Practice, NCSC\u2019s Cyber Assessment Framework, and HM Treasury Green and Orange Books. It also says ArcKit treats governance \"as a first-class product rather than a compliance afterthought.\"",
+        "key_points": [
+          "Governance can be embedded in workflow design instead of added after generation.",
+          "Compliance-heavy environments need AI artifacts that are reviewable, not merely fluent.",
+          "Standards alignment can be a distribution advantage in regulated or public-sector contexts."
+        ],
+        "knowledge_summary": "Governance can increase AI usefulness when it is treated as part of the product workflow instead of as a late-stage compliance check. In enterprise settings, guardrails such as standards, traceability, and approval paths can make AI outputs safer to adopt because they align with how organizations already decide and document work. The practical goal is not to block automation, but to make automation usable inside institutional constraints. This is most relevant where legal, policy, or architectural decisions must be defensible.",
+        "match_candidates": [],
+        "operational_insight": "For enterprise AI, governance features can be a product advantage when they reduce friction between generation and approval. Teams are more likely to adopt AI when outputs already fit the rules they must follow.",
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "enterprise-ai",
+          "compliance-systems",
+          "organizational-design"
+        ],
+        "related_topics": [
+          "structured-drafting-for-human-review"
+        ],
+        "relevance_note": "This matters long term because enterprise AI rarely fails only on model quality; it often fails on the gap between useful output and acceptable output. Governance-aware workflows help teams move faster without creating a separate manual cleanup layer.",
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Above the hood it is something a bit unusual: a toolkit that treats governance as a first-class product rather than a compliance afterthought.\"",
+        "topic_slug": "governance-as-enabler-for-enterprise-ai",
+        "topic_title": "Governance as an Enabler for Enterprise AI",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-19",
+          "confidence": 0.84,
+          "evidence_from_source": "The source argues that architecture work becomes usable when it is wrapped in templates, document identifiers, traceability chains, and a governance framework. It also explicitly frames governance as a first-class product and ties the tooling to formal public-sector standards and controls.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "enterprise-ai",
+            "verification-over-principles",
+            "ai-operationalization"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "ArcKit had 878 stars and reached number three on GitHub\u2019s daily trending list.",
+            "The toolkit is opinionated about the GDS Service Standard, Technology Code of Practice, NCSC\u2019s Cyber Assessment Framework, and HM Treasury Green and Orange Books.",
+            "The article says the output can be \"review[ed], version[ed], approve[d], and hand[ed] to a delivery team.\""
+          ],
+          "supporting_snippet": "\"The insight behind ArcKit is that the structure matters more than the generation. You give the model a template, a document identifier convention, a traceability chain, and a governance framework, and suddenly the output is not a disposable draft.\"",
+          "time_sensitivity": "Actionable as of 2026-04-19; the observation is time-bound to a single trending spike and should be treated as an emerging pattern, not settled evidence of category-wide adoption.",
+          "trend_description": "AI governance is moving from abstract principles toward mechanisms that make outputs traceable, reviewable, and approvable inside real workflows. The practical center of gravity is shifting to templates, identifiers, provenance chains, and approval paths that let humans verify AI-produced artifacts before they are used. This matters because governance becomes operational only when it is embedded in the generation process, not bolted on afterward.",
+          "trend_slug": "ai-governance-shifts-toward-verification-mechanisms",
+          "trend_title": "AI Governance Shifts Toward Verification Mechanisms",
+          "uncertainty_note": "The source is a first-person practitioner report with anecdotal adoption signals, so it does not prove that verification-centered governance has broad market traction. GitHub trending measures velocity, not durable scale, and the article does not show comparative outcomes versus other approaches.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "b7d90146-f81b-4bf4-8e77-f3948f18253a",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "ArcKit had 878 stars and reached number three on GitHub\u2019s daily trending list.",
+              "The toolkit is opinionated about the GDS Service Standard, Technology Code of Practice, NCSC\u2019s Cyber Assessment Framework, and HM Treasury Green and Orange Books.",
+              "The article says the output can be \"review[ed], version[ed], approve[d], and hand[ed] to a delivery team.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-governance",
+            "enterprise-ai",
+            "verification-over-principles",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The core claims come from the author's own product experience: 'my architecture-governance plugin hit GitHub trending.'",
+          "Most support is anecdotal observation and interpretation of adoption signals, not formal measurement or external benchmarking.",
+          "The article includes a few concrete repository facts and adopter examples, but it is still primarily a first-person practitioner report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The article\u2019s core claim is that structure, not raw generation, is what makes AI useful for architecture and governance work.",
+          "ArcKit\u2019s value comes from producing traceable artifacts that can be reviewed, versioned, and approved instead of disposable drafts.",
+          "The toolkit targets the outer loop of development: problem framing, stakeholder mapping, non-functional requirements, and build-vs-buy decisions.",
+          "Its early traction appears to come from UK public-sector users who need to work within formal standards and constraints.",
+          "GitHub trending is treated correctly as a velocity signal, not evidence of durable scale or market dominance."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/arckit/why-an-enterprise-architecture-toolkit-is-trending-on-github-in-2026-30b21f1d0ef9"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion article about one GitHub-trending toolkit, not a bundle of unrelated items.",
+          "No numbered list of tools, no step-by-step tutorial, and no interview/Q&A structure.",
+          "The piece mixes anecdote and analysis around one product release and its adoption signals."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "core_capabilities": [
+            "It generates structured architecture artifacts such as requirements, business cases, data models, stakeholder maps, ADRs, Wardley Maps, and risk registers.",
+            "It uses markdown templates, bash helpers, and a prompt library to make AI output follow a governed process.",
+            "It is designed to keep generated artifacts traceable to earlier principles and stakeholders."
+          ],
+          "integration_ecosystem": [
+            "It is described as working with Claude Code, Codex CLI, Gemini CLI, OpenCode, and GitHub Copilot.",
+            "The workflow is built on markdown templates and bash helpers rather than a proprietary runtime."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "As of 2026-04-19, the repository had reached GitHub\u2019s daily trending list and was described as having 878 stars. The article also says early adopters include UK public-sector technologists, which suggests a real niche use case rather than a pure demo project. That said, the writeup is still anecdotal and does not establish long-term adoption or retention.",
+          "name": "ArcKit",
+          "operational_relevance": "ArcKit sits in the outer loop of software work, where teams need to turn ambiguous requirements into reviewable artifacts before implementation starts. That makes it relevant for architecture teams, regulated environments, and public-sector workflows where traceability matters as much as speed. It appears most useful when an AI assistant is being used as a structured drafting layer rather than a freeform chat tool.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cli-tool",
+            "workflow-automation",
+            "coding",
+            "open-source"
+          ],
+          "proposed_types": [
+            "plugin",
+            "ai-orchestration"
+          ],
+          "related_tools": [
+            "Claude Code",
+            "Codex",
+            "Gemini 3 Pro",
+            "GitHub Copilot"
+          ],
+          "short_description": "ArcKit is a governance-oriented toolkit for AI coding assistants. It uses slash commands, templates, and prompt helpers to turn architecture work into structured artifacts such as requirements, ADRs, business cases, stakeholder maps, and risk registers.",
+          "strengths": "- It converts open-ended architecture tasks into repeatable, template-driven outputs, which reduces the variability that usually makes LLM-generated planning docs hard to trust.\n- It emphasizes traceability back to prior principles and stakeholders, so the output can be reviewed, versioned, and approved instead of discarded as a draft.\n- It integrates with multiple AI coding assistants, which makes the workflow portable across common developer environments rather than tied to one client.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"ArcKit is a set of 68 slash commands for AI coding assistants, Claude Code, Codex CLI, Gemini CLI, OpenCode, GitHub Copilot, that turn the blank page of \u201cwe need to do some architecture work\u201d into a structured, template-driven process.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article provides no benchmark evidence that ArcKit improves quality, speed, or governance outcomes versus manual work or generic prompting. It also does not explain the maintenance burden of keeping templates, traceability chains, and governance rules up to date. The tool looks more like a disciplined workflow layer than a magical automation product, so its value depends on organizational process maturity."
+        },
+        "notes": null,
+        "proposal_id": "361851f5-ff55-4189-8c91-0adf6accfa4a",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It generates structured architecture artifacts such as requirements, business cases, data models, stakeholder maps, ADRs, Wardley Maps, and risk registers.",
+              "It uses markdown templates, bash helpers, and a prompt library to make AI output follow a governed process.",
+              "It is designed to keep generated artifacts traceable to earlier principles and stakeholders."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is described as working with Claude Code, Codex CLI, Gemini CLI, OpenCode, and GitHub Copilot.",
+              "The workflow is built on markdown templates and bash helpers rather than a proprietary runtime."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Code",
+              "Codex",
+              "Gemini 3 Pro",
+              "GitHub Copilot"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "plugin",
+            "ai-infrastructure",
+            "enterprise-ai",
+            "governance"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "governance"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "The source gives concrete examples of output shapes: requirements, business cases, data models, stakeholder maps, ADRs, Wardley Maps, and risk registers. It also describes the mechanism: \"markdown templates, bash helpers, and a disciplined prompt library\" plus \"a template, a document identifier convention, a traceability chain, and a governance framework.\"",
+          "key_points": [
+            "Templates reduce output variance and make AI-generated drafts easier to compare.",
+            "Traceability is a governance feature, not just documentation overhead.",
+            "Structured artifacts fit human approval workflows better than open-ended chat responses."
+          ],
+          "knowledge_summary": "When AI is used to draft operational documents, the useful unit is often not the raw text but the structure surrounding it. Templates, identifiers, traceability links, and review conventions make outputs easier for humans to approve, revise, and version. This approach is especially important when the draft needs to survive in a regulated or multi-stakeholder workflow. It shifts the model from a freeform writer into a structured assistant inside a human approval loop.",
+          "match_candidates": [],
+          "operational_insight": "Use the model to fill a controlled document shape, not to invent the document shape itself. The more review, approval, and downstream reuse you need, the more structure matters.",
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "auditability",
+            "workflow-design",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "verifiable-ai-governance"
+          ],
+          "relevance_note": "This pattern is durable in AI-assisted engineering because many high-value outputs are artifacts that must be reviewed by humans, not just generated. It is especially relevant in architecture, compliance, service design, and support operations where traceability and version control matter.",
+          "secondary_tag": "auditability",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The insight behind ArcKit is that the structure matters more than the generation.\"",
+          "topic_slug": "structured-drafting-for-human-review",
+          "topic_title": "Structured Drafting for Human Review",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "56e6b062-4f1f-485c-9694-346d32364809",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Templates reduce output variance and make AI-generated drafts easier to compare.",
+              "Traceability is a governance feature, not just documentation overhead.",
+              "Structured artifacts fit human approval workflows better than open-ended chat responses."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verifiable-ai-governance"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-governance",
+            "auditability",
+            "workflow-design",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "The article names concrete governance frameworks and standards: the GDS Service Standard, the Technology Code of Practice, NCSC\u2019s Cyber Assessment Framework, and HM Treasury Green and Orange Books. It also says ArcKit treats governance \"as a first-class product rather than a compliance afterthought.\"",
+          "key_points": [
+            "Governance can be embedded in workflow design instead of added after generation.",
+            "Compliance-heavy environments need AI artifacts that are reviewable, not merely fluent.",
+            "Standards alignment can be a distribution advantage in regulated or public-sector contexts."
+          ],
+          "knowledge_summary": "Governance can increase AI usefulness when it is treated as part of the product workflow instead of as a late-stage compliance check. In enterprise settings, guardrails such as standards, traceability, and approval paths can make AI outputs safer to adopt because they align with how organizations already decide and document work. The practical goal is not to block automation, but to make automation usable inside institutional constraints. This is most relevant where legal, policy, or architectural decisions must be defensible.",
+          "match_candidates": [],
+          "operational_insight": "For enterprise AI, governance features can be a product advantage when they reduce friction between generation and approval. Teams are more likely to adopt AI when outputs already fit the rules they must follow.",
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "enterprise-ai",
+            "compliance-systems",
+            "organizational-design"
+          ],
+          "related_topics": [
+            "structured-drafting-for-human-review"
+          ],
+          "relevance_note": "This matters long term because enterprise AI rarely fails only on model quality; it often fails on the gap between useful output and acceptable output. Governance-aware workflows help teams move faster without creating a separate manual cleanup layer.",
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Above the hood it is something a bit unusual: a toolkit that treats governance as a first-class product rather than a compliance afterthought.\"",
+          "topic_slug": "governance-as-enabler-for-enterprise-ai",
+          "topic_title": "Governance as an Enabler for Enterprise AI",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e1c05420-baed-49b9-a575-3a544a95dbb4",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Governance can be embedded in workflow design instead of added after generation.",
+              "Compliance-heavy environments need AI artifacts that are reviewable, not merely fluent.",
+              "Standards alignment can be a distribution advantage in regulated or public-sector contexts."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "structured-drafting-for-human-review"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-governance",
+            "enterprise-ai",
+            "compliance-systems",
+            "organizational-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "user_report": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 327.2,
+    "review_finished_at": "2026-06-08T15:40:23.151892+00:00",
+    "review_started_at": "2026-06-08T15:34:56+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T15:40:23+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Mark Craddock",
+    "canonical_url": "https://medium.com/arckit/why-an-enterprise-architecture-toolkit-is-trending-on-github-in-2026-30b21f1d0ef9",
+    "content_sha256": "282260feb3715f12a4a8756b73dbf5e4fea2d7b2bdd8c0b366455f20078d8f95",
+    "publication": "Medium",
+    "published_date": "2026-04-19",
+    "raw_html_rel_path": "raw/readwise/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5.html",
+    "raw_md_rel_path": "raw/readwise/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5.md",
+    "source_id": "why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5",
+    "title": "Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026"
+  }
+}

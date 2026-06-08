@@ -1,0 +1,921 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:47:06+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt8g8pr8Y5RkmSjOSRz0KPJDF1A6",
+          "token_usage": {
+            "completion_tokens": 198,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7652,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7850
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnt8jjPESo6q6rxi6QVTIgVXUfsJR",
+          "token_usage": {
+            "completion_tokens": 1192,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7267,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8459
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-Dnt8twbCXmfQuqYjDRNweQcxdkOto",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 1611,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 20164,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 21775
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnt8twbCXmfQuqYjDRNweQcxdkOto",
+    "token_usage": {
+      "completion_tokens": 3001,
+      "prompt_tokens": 35083,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 38084
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-06-03",
+        "confidence": 0.89,
+        "evidence_from_source": "The article argues that \"what stays expensive is trust: knowing an agent acted on the right data, with the right permissions, on behalf of the right person, with a record of why\" and that \"the agent era doesn't need less governance. It needs more, located somewhere new.\"",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-governance",
+          "policy-operationalization",
+          "automation-supervision"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "workflow-restructuring-around-ai-agents",
+          "persistent-agents"
+        ],
+        "secondary_tag": "ai-governance",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Snowflake, Microsoft, Databricks, Salesforce, and ServiceNow are described as competing inside this interval.",
+          "The piece says enterprises still need \"governed data, permissions, identity, memory, and trusted context.\"",
+          "It frames the moat as \"governed proximity to intent\" rather than application packaging."
+        ],
+        "supporting_snippet": "What stays expensive is trust: knowing an agent acted on the right data, with the right permissions, on behalf of the right person, with a record of why. ... The agent era doesn't need less governance. It needs more, located somewhere new.",
+        "time_sensitivity": "As of 2026-06-03, this is a live design question for enterprise AI platforms and workflow systems; relevance is likely medium- to long-term because the article frames it as a structural shift rather than a short-lived product cycle.",
+        "trend_description": "Enterprise AI systems are moving toward designs where agents can act only inside explicit governance, identity, permission, and audit boundaries. The operational center of gravity is not raw model capability, but the layer that converts intent into approved action with traceable context. This pattern matters most where workflows touch company systems, compliance, or customer data.",
+        "trend_slug": "enterprise-ai-shifts-toward-governed-human-oversight-workflows",
+        "trend_title": "Enterprise AI Shifts Toward Governed Human Oversight Workflows",
+        "uncertainty_note": "This is a strategic interpretation from a roundup and conference-reporting piece, not measured evidence that governed layers will win commercially. The article does not quantify where governance should live in the stack or whether existing identity/orchestration tools can absorb this role.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-06-03",
+        "evidence_snippets": [
+          "What stays expensive is trust: knowing an agent acted on the right data, with the right permissions, on behalf of the right person, with a record of why.",
+          "The middleman doesn't disappear in the direct-use world; it changes shape.",
+          "It stops being an application ... and becomes a substrate, the trust and permission layer that sits at the moment a stated intention turns into a permitted action."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Snowflake",
+          "Microsoft",
+          "Databricks",
+          "Salesforce",
+          "ServiceNow"
+        ],
+        "operational_relevance": "Design around governed action, not just model access. Expect product work on permissions, provenance, and audit trails to matter as much as prompt quality or model choice.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-governance",
+          "policy-operationalization",
+          "automation-supervision"
+        ],
+        "secondary_tag": "ai-governance",
+        "service_automation_relevance": "Service automation systems will need reliable handoff logic, approval boundaries, and traceability before they can safely execute on behalf of users at scale.",
+        "signal_strength": "high",
+        "signal_title": "Enterprise AI moat shifts from packaged applications to trust layers",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "topics/",
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The article argues that enterprise software middlemen do not simply disappear as agents improve; their role shifts toward governance, permissions, identity, memory, and auditability. The durable value is described as the layer where intention becomes permitted action. That is relevant for system design, product positioning, and platform boundaries.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "If this framing holds as of 2026-06-03, vendors that only bolt AI onto existing products may struggle to defend their role. Teams building enterprise agents may need to treat trust and permission handling as core product surfaces rather than add-ons.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-03",
+        "evidence_snippets": [
+          "capability is moving faster than deployment",
+          "activity doesn't convert into value directly",
+          "models can do more than organizations can absorb",
+          "software can accelerate faster than companies can reorganize themselves"
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Microsoft",
+          "Snowflake",
+          "Kevin Scott",
+          "Sridhar Ramaswamy"
+        ],
+        "operational_relevance": "Measure whether agents reduce end-to-end cycle time or just increase action volume. More tokens, more integrations, and more autonomy can still fail if the organization cannot absorb them.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "automation-supervision",
+          "workflow-restructuring",
+          "workflow-based-evaluation"
+        ],
+        "secondary_tag": "automation-supervision",
+        "service_automation_relevance": "For support automation, more agent actions do not guarantee better resolution rates; routing, escalation, and human review loops still determine value.",
+        "signal_strength": "high",
+        "signal_title": "Agent capability is outpacing organizational absorption",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "topics/",
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The piece says capability is moving faster than deployment, while organizations do not move at model speed. The result is that agents can generate activity without producing proportional value. This is a durable operating warning for teams evaluating agent rollouts.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-03, it suggests that adoption failures may come from workflow and organizational lag rather than model weakness. That shifts attention toward integration, process redesign, and supervision costs.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-03",
+        "evidence_snippets": [
+          "Snowflake, Microsoft, Databricks, Salesforce, ServiceNow are all fighting inside it",
+          "Microsoft Build made the question larger.",
+          "agents are everywhere \u2013 inside work, development, the operating system, local devices, cloud, enterprise knowledge."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Snowflake",
+          "Microsoft",
+          "Databricks",
+          "Salesforce",
+          "ServiceNow"
+        ],
+        "operational_relevance": "Architectures may need to span warehouse, cloud, device, and OS surfaces. Teams should watch where vendors place the approval and execution boundary for agents.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "orchestration-layer-growth",
+          "runtime-centralization",
+          "workflow-restructuring"
+        ],
+        "secondary_tag": "orchestration-layer-growth",
+        "service_automation_relevance": "Customer support and back-office automation will likely be pulled into broader platform runtimes rather than isolated chatbot layers.",
+        "signal_strength": "medium",
+        "signal_title": "Vendors are racing to own the agent runtime boundary",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "topics/",
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Snowflake, Microsoft, Databricks, Salesforce, and ServiceNow are all presented as competing to become the layer between raw model capability and enterprise work. The article suggests this layer may move closer to the moment of execution, including devices, operating systems, and enterprise knowledge surfaces. The competitive boundary is therefore shifting from model access to runtime control.",
+        "time_horizon": "medium_term",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-06-03, platform strategy may depend less on who has the best model and more on who controls the execution boundary and trust model. That affects how teams choose vendors and where they place orchestration, governance, and agent execution.",
+        "wiki_worthiness": "review_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article combines conference-reporting, vendor announcements, and the author's strategic interpretation.",
+        "Many claims are sourced from companies' own summit/build announcements and product claims.",
+        "It also includes research-paper trend summaries, but no single evidence mode dominates across the whole source."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about a simple but important question: if AI agents can do more work directly, what happens to the enterprise software layers in the middle? The author argues that the answer is not \u201cno middlemen,\u201d but \u201cdifferent middlemen.\u201d As models get cheaper and more capable, the scarce part becomes trust: permissions, identity, context, and proof that an agent acted correctly. Snowflake and Microsoft are used as examples of companies trying to move closer to that trust layer. The rest of the article is a fast roundup of major conference announcements and research papers that reinforce the same theme.",
+      "assessed_as_of": "2026-06-03",
+      "contradictions_and_skepticism": "The essay argues that middlemen do not disappear; they move closer to intent. That is plausible, but it is still a thesis, not demonstrated market evidence. The same goes for the claim that more agents and more tokens can create motion without progress: it is directionally sensible, but the article does not quantify when that happens or for which workloads. Some of the conference and model announcements read like competitive messaging, so performance and strategic claims should be treated cautiously until independent results exist. The article is strongest as a framing device and weakest where it implies that governance-oriented substrates will clearly win without showing operating proof.",
+      "key_insights": [
+        "The durable enterprise moat may be governed proximity to intent, not just data storage or application packaging.",
+        "Agent capability can outpace organizational change, so more tokens, more integrations, and more automation can still fail to create value.",
+        "Snowflake\u2019s strategic test is whether it becomes an intent-layer substrate or remains a managed warehouse with AI added on top.",
+        "Microsoft\u2019s Build announcements suggest a device-plus-cloud agent stack, not only cloud-hosted agents, with MAI models and Windows-centric deployment.",
+        "The research roundup points to an ecosystem concern: agents need better memory, coordination, and verifiable environments before autonomy is broadly trustworthy."
+      ],
+      "limitations_and_open_questions": "Most of the evidence is vendor-announcement driven, so the claims about trust layers and intent layers are strategic interpretation rather than measured proof. The article does not provide benchmarked evidence that Snowflake, Microsoft, or any other middleman actually captures more value by moving closer to intent. Several product claims in the roundup are promotional and lack independent validation in the text, including performance, valuation, and deployment assertions. The piece also does not resolve where the trust layer should live in a stack that already includes identity, policy, orchestration, and observability tools. Open questions remain around cost, latency, compliance, and who owns liability when an agent acts on behalf of a user. The research items point to gaps in memory, coordination, and verification, but they are listed as paper summaries rather than validated production patterns.",
+      "sources": [
+        "mailto:reader-forwarded-email/e0fd71d86b1a89cabc30ff2f82ef1efd"
+      ],
+      "summary": "This roundup argues that enterprise AI middlemen are being squeezed between two forces: raw model capability is getting easier to access, while enterprise work still depends on governance, identity, permissions, memory, and trusted context. The author uses Snowflake Summit and Microsoft Build to frame the question of whether companies like Snowflake, Microsoft, Databricks, Salesforce, and ServiceNow remain essential in the agent era, or become extra layers between intent and execution. A central claim is that the durable moat is shifting from packaging capability in applications to providing the trust and permission layer that sits where an intention becomes an approved action. The piece also stresses that agent capability is advancing faster than organizations can absorb it, so activity can increase without producing proportional value. Snowflake is presented as a test case: it has raised guidance, signed a large AWS deal, expanded an Anthropic partnership, and introduced renamed products, but must prove it is moving toward the intent layer rather than just bolting AI onto a warehouse. Microsoft\u2019s Build announcements are framed similarly, with agents spanning devices, cloud, operating systems, and enterprise knowledge, plus a new MAI model family and device-centric agent infrastructure. The latter half of the article is a roundup of product and research announcements, including NVIDIA, Anthropic, OpenAI, Meta, and several papers on research agents, memory, agent operating systems, and verifiable environments.",
+      "why_it_matters": "The article is useful because it compresses a live enterprise AI design problem into a durable abstraction: the winner may not be the company with the most model access, but the one that can convert intent into permitted action with traceable governance. That framing matters for AI engineers building product layers on top of models, because the bottleneck described here is not raw capability; it is whether an organization can safely absorb that capability inside real workflows. The Snowflake discussion is especially relevant as of 2026-06-03 because it ties a well-known data platform to a concrete strategic question: does it move upward into intent, identity, and permission handling, or stay as a warehouse layer with AI features attached. The Microsoft section adds a second concrete angle: agent deployment is being pushed across OS, device, cloud, and enterprise surfaces, which implies that integration and trust boundaries may matter as much as model quality. The product roundup also shows that several vendors are competing on the same substrate problem through different paths, including governance, endpoint execution, and new model families. The research papers reinforce that the field still lacks robust solutions for agent memory, coordination, and verifiable execution. For service automation, support, voice, meetings, and back-office workflows, the practical implication as of 2026-06-03 is that these use cases still depend on trustworthy action routing and auditability, not just better generation. That makes the article actionable as of 2026-06-03, but mostly as a design and positioning guide rather than a deployment playbook."
+    },
+    "source_type_detection": {
+      "confidence": 0.9,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece bundles many short news blurbs and model/product announcements across several companies.",
+        "It includes a 'News from the usual suspects' section plus research highlights and trends, which is roundup structure rather than one coherent article.",
+        "The primary purpose is digesting multiple AI developments from conferences and publications, not arguing a single standalone thesis."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-03",
+          "confidence": 0.89,
+          "evidence_from_source": "The article argues that \"what stays expensive is trust: knowing an agent acted on the right data, with the right permissions, on behalf of the right person, with a record of why\" and that \"the agent era doesn't need less governance. It needs more, located somewhere new.\"",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "policy-operationalization",
+            "automation-supervision"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "workflow-restructuring-around-ai-agents",
+            "persistent-agents"
+          ],
+          "secondary_tag": "ai-governance",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Snowflake, Microsoft, Databricks, Salesforce, and ServiceNow are described as competing inside this interval.",
+            "The piece says enterprises still need \"governed data, permissions, identity, memory, and trusted context.\"",
+            "It frames the moat as \"governed proximity to intent\" rather than application packaging."
+          ],
+          "supporting_snippet": "What stays expensive is trust: knowing an agent acted on the right data, with the right permissions, on behalf of the right person, with a record of why. ... The agent era doesn't need less governance. It needs more, located somewhere new.",
+          "time_sensitivity": "As of 2026-06-03, this is a live design question for enterprise AI platforms and workflow systems; relevance is likely medium- to long-term because the article frames it as a structural shift rather than a short-lived product cycle.",
+          "trend_description": "Enterprise AI systems are moving toward designs where agents can act only inside explicit governance, identity, permission, and audit boundaries. The operational center of gravity is not raw model capability, but the layer that converts intent into approved action with traceable context. This pattern matters most where workflows touch company systems, compliance, or customer data.",
+          "trend_slug": "enterprise-ai-shifts-toward-governed-human-oversight-workflows",
+          "trend_title": "Enterprise AI Shifts Toward Governed Human Oversight Workflows",
+          "uncertainty_note": "This is a strategic interpretation from a roundup and conference-reporting piece, not measured evidence that governed layers will win commercially. The article does not quantify where governance should live in the stack or whether existing identity/orchestration tools can absorb this role.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "cc2d4206-4369-4719-88bd-a59035b35b65",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "workflow-restructuring-around-ai-agents",
+              "persistent-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Snowflake, Microsoft, Databricks, Salesforce, and ServiceNow are described as competing inside this interval.",
+              "The piece says enterprises still need \"governed data, permissions, identity, memory, and trusted context.\"",
+              "It frames the moat as \"governed proximity to intent\" rather than application packaging."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "policy-operationalization",
+            "automation-supervision"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-03",
+          "evidence_snippets": [
+            "What stays expensive is trust: knowing an agent acted on the right data, with the right permissions, on behalf of the right person, with a record of why.",
+            "The middleman doesn't disappear in the direct-use world; it changes shape.",
+            "It stops being an application ... and becomes a substrate, the trust and permission layer that sits at the moment a stated intention turns into a permitted action."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Snowflake",
+            "Microsoft",
+            "Databricks",
+            "Salesforce",
+            "ServiceNow"
+          ],
+          "operational_relevance": "Design around governed action, not just model access. Expect product work on permissions, provenance, and audit trails to matter as much as prompt quality or model choice.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "policy-operationalization",
+            "automation-supervision"
+          ],
+          "secondary_tag": "ai-governance",
+          "service_automation_relevance": "Service automation systems will need reliable handoff logic, approval boundaries, and traceability before they can safely execute on behalf of users at scale.",
+          "signal_strength": "high",
+          "signal_title": "Enterprise AI moat shifts from packaged applications to trust layers",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "topics/",
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The article argues that enterprise software middlemen do not simply disappear as agents improve; their role shifts toward governance, permissions, identity, memory, and auditability. The durable value is described as the layer where intention becomes permitted action. That is relevant for system design, product positioning, and platform boundaries.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "If this framing holds as of 2026-06-03, vendors that only bolt AI onto existing products may struggle to defend their role. Teams building enterprise agents may need to treat trust and permission handling as core product surfaces rather than add-ons.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "1f8c11fd-f20a-4bc6-9393-29b4d0263b07",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "What stays expensive is trust: knowing an agent acted on the right data, with the right permissions, on behalf of the right person, with a record of why.",
+              "The middleman doesn't disappear in the direct-use world; it changes shape.",
+              "It stops being an application ... and becomes a substrate, the trust and permission layer that sits at the moment a stated intention turns into a permitted action."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Snowflake",
+              "Microsoft",
+              "Databricks",
+              "Salesforce",
+              "ServiceNow"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "policy-operationalization",
+            "automation-supervision"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-03",
+          "evidence_snippets": [
+            "capability is moving faster than deployment",
+            "activity doesn't convert into value directly",
+            "models can do more than organizations can absorb",
+            "software can accelerate faster than companies can reorganize themselves"
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Microsoft",
+            "Snowflake",
+            "Kevin Scott",
+            "Sridhar Ramaswamy"
+          ],
+          "operational_relevance": "Measure whether agents reduce end-to-end cycle time or just increase action volume. More tokens, more integrations, and more autonomy can still fail if the organization cannot absorb them.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "automation-supervision",
+            "workflow-restructuring",
+            "workflow-based-evaluation"
+          ],
+          "secondary_tag": "automation-supervision",
+          "service_automation_relevance": "For support automation, more agent actions do not guarantee better resolution rates; routing, escalation, and human review loops still determine value.",
+          "signal_strength": "high",
+          "signal_title": "Agent capability is outpacing organizational absorption",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "topics/",
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The piece says capability is moving faster than deployment, while organizations do not move at model speed. The result is that agents can generate activity without producing proportional value. This is a durable operating warning for teams evaluating agent rollouts.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-03, it suggests that adoption failures may come from workflow and organizational lag rather than model weakness. That shifts attention toward integration, process redesign, and supervision costs.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "3a11f49d-bd53-46ed-a4a5-12a3f378b141",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "capability is moving faster than deployment",
+              "activity doesn't convert into value directly",
+              "models can do more than organizations can absorb",
+              "software can accelerate faster than companies can reorganize themselves"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Microsoft",
+              "Snowflake",
+              "Kevin Scott",
+              "Sridhar Ramaswamy"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "automation-supervision",
+            "workflow-restructuring",
+            "workflow-based-evaluation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-03",
+          "evidence_snippets": [
+            "Snowflake, Microsoft, Databricks, Salesforce, ServiceNow are all fighting inside it",
+            "Microsoft Build made the question larger.",
+            "agents are everywhere \u2013 inside work, development, the operating system, local devices, cloud, enterprise knowledge."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Snowflake",
+            "Microsoft",
+            "Databricks",
+            "Salesforce",
+            "ServiceNow"
+          ],
+          "operational_relevance": "Architectures may need to span warehouse, cloud, device, and OS surfaces. Teams should watch where vendors place the approval and execution boundary for agents.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "orchestration-layer-growth",
+            "runtime-centralization",
+            "workflow-restructuring"
+          ],
+          "secondary_tag": "orchestration-layer-growth",
+          "service_automation_relevance": "Customer support and back-office automation will likely be pulled into broader platform runtimes rather than isolated chatbot layers.",
+          "signal_strength": "medium",
+          "signal_title": "Vendors are racing to own the agent runtime boundary",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "topics/",
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Snowflake, Microsoft, Databricks, Salesforce, and ServiceNow are all presented as competing to become the layer between raw model capability and enterprise work. The article suggests this layer may move closer to the moment of execution, including devices, operating systems, and enterprise knowledge surfaces. The competitive boundary is therefore shifting from model access to runtime control.",
+          "time_horizon": "medium_term",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-06-03, platform strategy may depend less on who has the best model and more on who controls the execution boundary and trust model. That affects how teams choose vendors and where they place orchestration, governance, and agent execution.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "9e1393ff-c341-4354-9463-07f92e6c60a3",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "Snowflake, Microsoft, Databricks, Salesforce, ServiceNow are all fighting inside it",
+              "Microsoft Build made the question larger.",
+              "agents are everywhere \u2013 inside work, development, the operating system, local devices, cloud, enterprise knowledge."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Snowflake",
+              "Microsoft",
+              "Databricks",
+              "Salesforce",
+              "ServiceNow"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "orchestration-layer-growth",
+            "runtime-centralization",
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article combines conference-reporting, vendor announcements, and the author's strategic interpretation.",
+          "Many claims are sourced from companies' own summit/build announcements and product claims.",
+          "It also includes research-paper trend summaries, but no single evidence mode dominates across the whole source."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The durable enterprise moat may be governed proximity to intent, not just data storage or application packaging.",
+          "Agent capability can outpace organizational change, so more tokens, more integrations, and more automation can still fail to create value.",
+          "Snowflake\u2019s strategic test is whether it becomes an intent-layer substrate or remains a managed warehouse with AI added on top.",
+          "Microsoft\u2019s Build announcements suggest a device-plus-cloud agent stack, not only cloud-hosted agents, with MAI models and Windows-centric deployment.",
+          "The research roundup points to an ecosystem concern: agents need better memory, coordination, and verifiable environments before autonomy is broadly trustworthy."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "mailto:reader-forwarded-email/e0fd71d86b1a89cabc30ff2f82ef1efd"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.9,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece bundles many short news blurbs and model/product announcements across several companies.",
+          "It includes a 'News from the usual suspects' section plus research highlights and trends, which is roundup structure rather than one coherent article.",
+          "The primary purpose is digesting multiple AI developments from conferences and publications, not arguing a single standalone thesis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "\ud83d\udd33 Turing Post",
+    "canonical_url": "mailto:reader-forwarded-email/e0fd71d86b1a89cabc30ff2f82ef1efd",
+    "content_sha256": "8b9e6705d79051869c7713bd4e8fa13bd3fbadb8580c8161f2f3ca09ba9d7b02",
+    "publication": "beehiiv.com",
+    "published_date": "2026-06-03",
+    "raw_html_rel_path": "raw/readwise/fod-154-enterprise-ai-middlemen-who-survives-the-agent-era-01kt6d62s1x57c248n6geeycc3.html",
+    "raw_md_rel_path": "raw/readwise/fod-154-enterprise-ai-middlemen-who-survives-the-agent-era-01kt6d62s1x57c248n6geeycc3.md",
+    "source_id": "fod-154-enterprise-ai-middlemen-who-survives-the-agent-era-01kt6d62s1x57c248n6geeycc3",
+    "title": "FOD#154: Enterprise AI Middlemen: Who Survives the Agent Era?"
+  }
+}

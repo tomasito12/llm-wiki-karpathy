@@ -1,0 +1,896 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:52:43+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntECBHj5M0szmue7BoRYUCIhxACz",
+          "token_usage": {
+            "completion_tokens": 220,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5735,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5955
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntEEdpvXKnmduEHRzd270EZYIzRp",
+          "token_usage": {
+            "completion_tokens": 1068,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5371,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6439
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-technical_howto",
+          "request_id": "chatcmpl-DntENzRFFc4WNqzW4SHDHuJNwetSR",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 1921,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34782,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 36703
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntENzRFFc4WNqzW4SHDHuJNwetSR",
+    "token_usage": {
+      "completion_tokens": 3209,
+      "prompt_tokens": 45888,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 49097
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "extended_explanation": "MCP sits between a model and the software it needs to use. Instead of hard-coding one-off integrations, developers expose tools and resources through a standard protocol so different clients can discover and call them in a similar way. In agent systems, that matters because it can reduce integration fragmentation and make policy enforcement more uniform. The tradeoff is that structured tool catalogs can be expensive in context if everything is loaded at once, so implementation details like discovery and selective loading become important.",
+        "match_candidates": [],
+        "primary_tag": "agent-systems",
+        "proposed_definition": "Model Context Protocol (MCP) is a protocol for connecting AI systems to external tools, resources, and prompts in a structured, machine-readable way. It is designed to make tool access consistent across clients and servers while supporting governance, authorization, and auditability.",
+        "proposed_tags": [
+          "agent-systems",
+          "tool-use",
+          "governance"
+        ],
+        "related_terms": [],
+        "relevance_note": "MCP matters in agent and automation stacks because it standardizes how models reach external systems without every team inventing a custom adapter. In service automation, the governance and auditability angle is especially useful when actions touch customer data, enterprise apps, or regulated workflows.",
+        "secondary_tag": "tool-use",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cMCP (The Connective Tissue)\n: The integration protocol that provides rich semantics, platform independence, and crucial enterprise features like OAuth, governance policies, and audit trails.\u201d",
+        "term": "Model Context Protocol",
+        "value_level": "high"
+      }
+    ],
+    "how_to": [
+      {
+        "answer_summary": "Start with a searchable tool catalog instead of preloading every tool schema. Let the model look up tools by name, intent, or category when it needs them. Keep the initial context small, and only fetch the full schema for the selected tool. This reduces token use and makes the agent more scalable for large enterprise toolsets.",
+        "caveats": "This pattern adds a search step, so poorly designed discovery can make tool selection harder rather than easier. It also depends on having good tool metadata and naming, or the model may fail to find the right tool. The source gives a claimed reduction in context usage but does not provide a benchmark methodology.",
+        "confidence": 0.93,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Expose a tool_search capability or similar discovery endpoint.",
+          "Index tools with descriptive names and parameter descriptions.",
+          "Load only the short search results into context first.",
+          "Fetch the full schema only after the model picks a tool.",
+          "Measure context usage before and after discovery to verify the savings."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A tool catalog with searchable metadata.",
+          "A runtime that can load tool schemas on demand.",
+          "Consistent naming and parameter descriptions across tools."
+        ],
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "context-engineering",
+          "runtime-architecture"
+        ],
+        "question_title": "Progressive Discovery for Agent Tools",
+        "related_howtos": [
+          "lazy-loading-tools",
+          "context-compaction"
+        ],
+        "secondary_tag": "context-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cProgressive discovery reduces context bloat by loading tools on demand via tool search. By providing a tool_search capability, the model can look up tools dynamically. This pattern can reduce context usage by a factor of 5.\u201d",
+        "value_level": "high",
+        "what_and_problem": "When an agent has access to many tools, loading everything into the context window can waste space and slow the system down. Progressive discovery is a way to avoid that by showing the model only the tools it asks for, instead of sending the full catalog up front. This helps when the same agent must work across several applications or services. It is especially useful when tool schemas are large or when most tools are irrelevant to a given task."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-02",
+        "confidence": 0.9,
+        "evidence_from_source": "The source explicitly separates Skills, CLI, and MCP into distinct layers and argues that top-tier agents use all of them together rather than treating them as substitutes.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "runtime-systems"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems",
+          "runtime-centralization"
+        ],
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-systems",
+        "suggested_new_tags": [
+          "agent-systems"
+        ],
+        "supporting_data_points": [
+          "Skills are described as reusable procedural instructions.",
+          "CLI is described as token-efficient and composable.",
+          "MCP is described as the enterprise integration layer with governance and audit trails."
+        ],
+        "supporting_snippet": "\u201cIf someone tells you there is a single solution to all your connectivity problems \u2014 be it computer use, MCP, or CLI \u2014 they are wrong. Top-tier agents don\u2019t choose between tools \u2014 they use the entire connectivity stack simultaneously and effortlessly.\u201d",
+        "time_sensitivity": "Actionable as of 2026-05-02; relevant while enterprise agents continue moving from demos into production systems with mixed tool and governance needs.",
+        "trend_description": "Production agent systems increasingly separate connectivity into complementary layers rather than relying on one universal interface. Reusable procedure, local command execution, and governed external integration each solve different parts of the workflow. This changes agent architecture from single-abstraction design toward stack selection based on task shape, control needs, and token cost.",
+        "trend_slug": "enterprise-agents-need-layered-connectivity-stacks",
+        "trend_title": "Enterprise Agents Depend More on Layered Connectivity",
+        "uncertainty_note": "The source presents this as an architectural recommendation, not a comparative study across many production deployments. Different organizations may collapse layers differently depending on tooling maturity and security requirements.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece is an author-led architectural recommendation article, not a vendor announcement or formal study.",
+        "Claims are mostly strategic judgments about when to use Skills, MCP, or CLI, supported by explanatory examples rather than external data.",
+        "It cites a few numeric assertions (e.g. 110M downloads, token counts) but the dominant mode is opinionated guidance."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article explains how to build enterprise AI agents by combining three different ways of connecting them to tools. Skills teach the model how to do a task, CLI gives it a fast way to run local commands, and MCP gives it a structured, secure way to talk to external systems. The main idea is that no single method covers every need. For simple, composable work, CLI is efficient; for governed enterprise integrations, MCP is better; and for reusable task knowledge, Skills fill the gap. It also shows two ways to make MCP less heavy: load tools only when needed, and let the model write a small script to coordinate multiple calls.",
+      "assessed_as_of": "2026-05-02",
+      "contradictions_and_skepticism": "The article frames MCP, CLI, and Skills as a clean three-layer stack, but many real systems will have messier boundaries and overlapping responsibilities. The claim that abandoning MCP in enterprise contexts necessarily causes worse outcomes such as auth fragmentation and vendor lock-in is directionally plausible, but it is argued rather than demonstrated. The 110 million monthly downloads figure is attention-grabbing, but download counts do not prove production suitability or interoperability quality. The piece is strongest as an architecture opinion, not as evidence that one connectivity stack is universally superior.",
+      "key_insights": [
+        "Treat Skills, CLI, and MCP as complementary layers rather than competing standards.",
+        "MCP is strongest when schema-first control, authorization, governance, and auditability matter.",
+        "Loading every MCP tool schema upfront can consume enough context to become a real operational cost.",
+        "Progressive Discovery is a concrete pattern for reducing context bloat by loading tools only when the model searches for them.",
+        "Programmatic Tool Calling can cut orchestration latency by moving multi-step tool use into one generated script instead of many sequential model turns."
+      ],
+      "limitations_and_open_questions": "The article gives architectural guidance, but it does not provide comparative benchmarks, failure rates, or cost measurements across Skills, CLI, and MCP in realistic enterprise workloads. The token numbers cited for naive MCP schema loading are illustrative, but the article does not show the exact workload shape behind them or how often that worst case occurs. Progressive Discovery and Programmatic Tool Calling are plausible mitigations, but the piece does not quantify implementation complexity, debugging burden, or reliability trade-offs. The \u201cproduction-ready\u201d framing is stronger than the evidence presented, because the article is mainly opinionated guidance with examples rather than a controlled evaluation. The roadmap items for stateless transport, cross-app access, and Skills over MCP are forward-looking and appear contingent on ecosystem adoption.",
+      "sources": [
+        "https://medium.com/agentic-builders/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-701dc102863f"
+      ],
+      "summary": "The article argues that production-ready AI agents in 2026 should not rely on a single connectivity mechanism. Instead, it separates agent connectivity into three layers: Skills for reusable domain instructions, CLI/computer use for token-efficient local execution, and MCP for structured, governed integration with external systems. MCP is presented as the right choice when agents need rich semantics, authorization, platform independence, governance, and audit trails, but the article emphasizes that naive MCP use can create large token overhead if all schemas are loaded upfront. To reduce that overhead, it recommends Progressive Discovery, where tools are loaded on demand through search, and Programmatic Tool Calling, where the model writes orchestration code in a REPL or sandbox rather than making many sequential tool calls. The article also argues that server authors should design for agents directly, not just expose REST APIs 1:1, and should use clear tool names, parameter annotations, execution sandboxes, and even UI resources served over MCP. It closes by describing a 2026 roadmap that includes stateless transport, cross-app access with SSO, and Skills over MCP, while maintaining that the best agents will combine Skills, MCP, and CLI rather than treat them as substitutes.",
+      "why_it_matters": "The article is useful because it turns a vague \u201cagent connectivity\u201d debate into a practical architecture choice: use Skills for reusable procedure, CLI for token-efficient local composition, and MCP for governed integration across enterprise systems. That decomposition is operationally valuable because it helps teams choose the right interface based on task shape instead of forcing every capability through one abstraction. The piece\u2019s strongest concrete guidance is not the slogan that MCP is important, but the implementation advice around reducing schema bloat, naming tools clearly, annotating parameters, and using Progressive Discovery so models do not pay the full context cost of every tool at once. Its recommendation to use Programmatic Tool Calling is also practical: if an agent needs to coordinate multiple tools, a sandboxed script can be more efficient than many sequential calls. The article is most convincing where it discusses failure modes such as token overhead, auth gaps, and server quality, because those are real engineering costs rather than abstract platform debates. At the same time, the claims about MCP\u2019s scale and roadmap are presented as assertions from the author and a named source, not as independently benchmarked evidence. Actionable as of 2026-05-02, but the roadmap items should be treated as features to monitor rather than assumptions to build around."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "Primary structure is a step-by-step guide to building production-ready agents with sections for Skills, CLI, MCP, progressive discovery, and code mode.",
+        "The article gives implementation-oriented guidance, examples, and design recommendations rather than a list roundup or interview.",
+        "It has one coherent tutorial arc centered on agent connectivity stack choices and server design."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "\u201cSkills (Domain Knowledge): Reusable procedural instructions and markdown files that teach the model how to use tools.\u201d",
+        "key_points": [
+          "Procedural instructions can be portable across clients and repositories.",
+          "Skills can be written by humans or generated by agents.",
+          "The value is in reusable task guidance, not just static documentation."
+        ],
+        "knowledge_summary": "Agents often need reusable instructions that teach them how to use tools, not just a model prompt or an API endpoint. Procedural knowledge can be packaged as portable task instructions that the model can load when needed. This is useful when the same process must work across different clients, surfaces, or deployments. The key design goal is to keep the instructions compact, specific, and reusable across tasks.",
+        "match_candidates": [],
+        "operational_insight": "Treat procedural instructions as a first-class interface layer. If the agent keeps repeating the same task patterns, encode them once as reusable skill files instead of rediscovering them through prompting.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "knowledge-systems",
+          "workflow-design"
+        ],
+        "related_topics": [],
+        "relevance_note": "This pattern matters because many production agent failures are really instruction-reuse failures: the agent knows what tools exist but not how to apply them reliably. In service automation and conversational systems, reusable procedural knowledge helps standardize task execution across channels and clients.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cSkills (Domain Knowledge)\n: Reusable procedural instructions and markdown files that teach the model how to use tools.\u201d",
+        "topic_slug": "procedural-knowledge-for-agents",
+        "topic_title": "Procedural Knowledge for Agents",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "\u201cTop-tier agents don\u2019t choose between tools \u2014 they use the entire connectivity stack simultaneously and effortlessly.\u201d",
+        "key_points": [
+          "Skills encode reusable procedure.",
+          "CLI is token-efficient for local command composition.",
+          "MCP is best when semantics, authorization, and audit trails matter.",
+          "No single connectivity mechanism covers every use case well."
+        ],
+        "knowledge_summary": "Production agent systems often need more than one way to connect to tools and data. Different layers serve different jobs: procedural skills for reusable guidance, CLI for composable local execution, and MCP for structured external integration. The durable lesson is to choose the layer that matches the task shape instead of forcing every task through the same interface. This reduces wasted context, avoids unnecessary complexity, and makes governance easier to apply where it matters.",
+        "match_candidates": [],
+        "operational_insight": "Use separate connectivity layers for separate kinds of work. Keep local, composable actions in the CLI layer, reserve MCP for governed enterprise integrations, and use skills for reusable task knowledge.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "runtime-architecture",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "procedural-knowledge-for-agents"
+        ],
+        "relevance_note": "This is a durable design pattern for enterprise agents because real workflows mix local execution, governed integrations, and reusable instructions. In support automation and chatbot systems, layered connectivity makes it easier to balance speed, control, and auditability without overfitting one tool to every job.",
+        "secondary_tag": "runtime-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cHere is the step-by-step guide to mastering the 2026 Connectivity Stack: Skills, MCP, and CLI.\u201d",
+        "topic_slug": "agent-connectivity-layering",
+        "topic_title": "Agent Connectivity Layering",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "extended_explanation": "MCP sits between a model and the software it needs to use. Instead of hard-coding one-off integrations, developers expose tools and resources through a standard protocol so different clients can discover and call them in a similar way. In agent systems, that matters because it can reduce integration fragmentation and make policy enforcement more uniform. The tradeoff is that structured tool catalogs can be expensive in context if everything is loaded at once, so implementation details like discovery and selective loading become important.",
+          "match_candidates": [],
+          "primary_tag": "agent-systems",
+          "proposed_definition": "Model Context Protocol (MCP) is a protocol for connecting AI systems to external tools, resources, and prompts in a structured, machine-readable way. It is designed to make tool access consistent across clients and servers while supporting governance, authorization, and auditability.",
+          "proposed_tags": [
+            "agent-systems",
+            "tool-use",
+            "governance"
+          ],
+          "related_terms": [],
+          "relevance_note": "MCP matters in agent and automation stacks because it standardizes how models reach external systems without every team inventing a custom adapter. In service automation, the governance and auditability angle is especially useful when actions touch customer data, enterprise apps, or regulated workflows.",
+          "secondary_tag": "tool-use",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cMCP (The Connective Tissue)\n: The integration protocol that provides rich semantics, platform independence, and crucial enterprise features like OAuth, governance policies, and audit trails.\u201d",
+          "term": "Model Context Protocol",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a2994f9a-ddcb-4861-b0cf-dafee472ac63",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "tool-use",
+            "governance"
+          ]
+        }
+      }
+    ],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start with a searchable tool catalog instead of preloading every tool schema. Let the model look up tools by name, intent, or category when it needs them. Keep the initial context small, and only fetch the full schema for the selected tool. This reduces token use and makes the agent more scalable for large enterprise toolsets.",
+          "caveats": "This pattern adds a search step, so poorly designed discovery can make tool selection harder rather than easier. It also depends on having good tool metadata and naming, or the model may fail to find the right tool. The source gives a claimed reduction in context usage but does not provide a benchmark methodology.",
+          "confidence": 0.93,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Expose a tool_search capability or similar discovery endpoint.",
+            "Index tools with descriptive names and parameter descriptions.",
+            "Load only the short search results into context first.",
+            "Fetch the full schema only after the model picks a tool.",
+            "Measure context usage before and after discovery to verify the savings."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A tool catalog with searchable metadata.",
+            "A runtime that can load tool schemas on demand.",
+            "Consistent naming and parameter descriptions across tools."
+          ],
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "context-engineering",
+            "runtime-architecture"
+          ],
+          "question_title": "Progressive Discovery for Agent Tools",
+          "related_howtos": [
+            "lazy-loading-tools",
+            "context-compaction"
+          ],
+          "secondary_tag": "context-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cProgressive discovery reduces context bloat by loading tools on demand via tool search. By providing a tool_search capability, the model can look up tools dynamically. This pattern can reduce context usage by a factor of 5.\u201d",
+          "value_level": "high",
+          "what_and_problem": "When an agent has access to many tools, loading everything into the context window can waste space and slow the system down. Progressive discovery is a way to avoid that by showing the model only the tools it asks for, instead of sending the full catalog up front. This helps when the same agent must work across several applications or services. It is especially useful when tool schemas are large or when most tools are irrelevant to a given task."
+        },
+        "notes": null,
+        "proposal_id": "80243181-a54a-492d-a011-8f41c667bfb7",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Expose a tool_search capability or similar discovery endpoint.",
+              "Index tools with descriptive names and parameter descriptions.",
+              "Load only the short search results into context first.",
+              "Fetch the full schema only after the model picks a tool.",
+              "Measure context usage before and after discovery to verify the savings."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A tool catalog with searchable metadata.",
+              "A runtime that can load tool schemas on demand.",
+              "Consistent naming and parameter descriptions across tools."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "lazy-loading-tools",
+              "context-compaction"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "context-engineering",
+            "runtime-architecture"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-02",
+          "confidence": 0.9,
+          "evidence_from_source": "The source explicitly separates Skills, CLI, and MCP into distinct layers and argues that top-tier agents use all of them together rather than treating them as substitutes.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "runtime-systems"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems",
+            "runtime-centralization"
+          ],
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-systems",
+          "suggested_new_tags": [
+            "agent-systems"
+          ],
+          "supporting_data_points": [
+            "Skills are described as reusable procedural instructions.",
+            "CLI is described as token-efficient and composable.",
+            "MCP is described as the enterprise integration layer with governance and audit trails."
+          ],
+          "supporting_snippet": "\u201cIf someone tells you there is a single solution to all your connectivity problems \u2014 be it computer use, MCP, or CLI \u2014 they are wrong. Top-tier agents don\u2019t choose between tools \u2014 they use the entire connectivity stack simultaneously and effortlessly.\u201d",
+          "time_sensitivity": "Actionable as of 2026-05-02; relevant while enterprise agents continue moving from demos into production systems with mixed tool and governance needs.",
+          "trend_description": "Production agent systems increasingly separate connectivity into complementary layers rather than relying on one universal interface. Reusable procedure, local command execution, and governed external integration each solve different parts of the workflow. This changes agent architecture from single-abstraction design toward stack selection based on task shape, control needs, and token cost.",
+          "trend_slug": "enterprise-agents-need-layered-connectivity-stacks",
+          "trend_title": "Enterprise Agents Depend More on Layered Connectivity",
+          "uncertainty_note": "The source presents this as an architectural recommendation, not a comparative study across many production deployments. Different organizations may collapse layers differently depending on tooling maturity and security requirements.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "13de54af-9ebe-4fe2-b91f-9cc6c15ea639",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems",
+              "runtime-centralization"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Skills are described as reusable procedural instructions.",
+              "CLI is described as token-efficient and composable.",
+              "MCP is described as the enterprise integration layer with governance and audit trails."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "runtime-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece is an author-led architectural recommendation article, not a vendor announcement or formal study.",
+          "Claims are mostly strategic judgments about when to use Skills, MCP, or CLI, supported by explanatory examples rather than external data.",
+          "It cites a few numeric assertions (e.g. 110M downloads, token counts) but the dominant mode is opinionated guidance."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Treat Skills, CLI, and MCP as complementary layers rather than competing standards.",
+          "MCP is strongest when schema-first control, authorization, governance, and auditability matter.",
+          "Loading every MCP tool schema upfront can consume enough context to become a real operational cost.",
+          "Progressive Discovery is a concrete pattern for reducing context bloat by loading tools only when the model searches for them.",
+          "Programmatic Tool Calling can cut orchestration latency by moving multi-step tool use into one generated script instead of many sequential model turns."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/agentic-builders/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-701dc102863f"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "Primary structure is a step-by-step guide to building production-ready agents with sections for Skills, CLI, MCP, progressive discovery, and code mode.",
+          "The article gives implementation-oriented guidance, examples, and design recommendations rather than a list roundup or interview.",
+          "It has one coherent tutorial arc centered on agent connectivity stack choices and server design."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "\u201cSkills (Domain Knowledge): Reusable procedural instructions and markdown files that teach the model how to use tools.\u201d",
+          "key_points": [
+            "Procedural instructions can be portable across clients and repositories.",
+            "Skills can be written by humans or generated by agents.",
+            "The value is in reusable task guidance, not just static documentation."
+          ],
+          "knowledge_summary": "Agents often need reusable instructions that teach them how to use tools, not just a model prompt or an API endpoint. Procedural knowledge can be packaged as portable task instructions that the model can load when needed. This is useful when the same process must work across different clients, surfaces, or deployments. The key design goal is to keep the instructions compact, specific, and reusable across tasks.",
+          "match_candidates": [],
+          "operational_insight": "Treat procedural instructions as a first-class interface layer. If the agent keeps repeating the same task patterns, encode them once as reusable skill files instead of rediscovering them through prompting.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "knowledge-systems",
+            "workflow-design"
+          ],
+          "related_topics": [],
+          "relevance_note": "This pattern matters because many production agent failures are really instruction-reuse failures: the agent knows what tools exist but not how to apply them reliably. In service automation and conversational systems, reusable procedural knowledge helps standardize task execution across channels and clients.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cSkills (Domain Knowledge)\n: Reusable procedural instructions and markdown files that teach the model how to use tools.\u201d",
+          "topic_slug": "procedural-knowledge-for-agents",
+          "topic_title": "Procedural Knowledge for Agents",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "862da6f0-9f00-4928-8232-02b4651d8ae1",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Procedural instructions can be portable across clients and repositories.",
+              "Skills can be written by humans or generated by agents.",
+              "The value is in reusable task guidance, not just static documentation."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "knowledge-systems",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "\u201cTop-tier agents don\u2019t choose between tools \u2014 they use the entire connectivity stack simultaneously and effortlessly.\u201d",
+          "key_points": [
+            "Skills encode reusable procedure.",
+            "CLI is token-efficient for local command composition.",
+            "MCP is best when semantics, authorization, and audit trails matter.",
+            "No single connectivity mechanism covers every use case well."
+          ],
+          "knowledge_summary": "Production agent systems often need more than one way to connect to tools and data. Different layers serve different jobs: procedural skills for reusable guidance, CLI for composable local execution, and MCP for structured external integration. The durable lesson is to choose the layer that matches the task shape instead of forcing every task through the same interface. This reduces wasted context, avoids unnecessary complexity, and makes governance easier to apply where it matters.",
+          "match_candidates": [],
+          "operational_insight": "Use separate connectivity layers for separate kinds of work. Keep local, composable actions in the CLI layer, reserve MCP for governed enterprise integrations, and use skills for reusable task knowledge.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "runtime-architecture",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "procedural-knowledge-for-agents"
+          ],
+          "relevance_note": "This is a durable design pattern for enterprise agents because real workflows mix local execution, governed integrations, and reusable instructions. In support automation and chatbot systems, layered connectivity makes it easier to balance speed, control, and auditability without overfitting one tool to every job.",
+          "secondary_tag": "runtime-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cHere is the step-by-step guide to mastering the 2026 Connectivity Stack: Skills, MCP, and CLI.\u201d",
+          "topic_slug": "agent-connectivity-layering",
+          "topic_title": "Agent Connectivity Layering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "539b810c-4ded-40bb-aa6e-3131a7ac4aae",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Skills encode reusable procedure.",
+              "CLI is token-efficient for local command composition.",
+              "MCP is best when semantics, authorization, and audit trails matter.",
+              "No single connectivity mechanism covers every use case well."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "procedural-knowledge-for-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "runtime-architecture",
+            "workflow-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Ana Bildea",
+    "canonical_url": "https://medium.com/agentic-builders/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-701dc102863f",
+    "content_sha256": "a2c382089bf9231743cb982f2c496a10fe2196caa842b1091b7a1f3998c5020f",
+    "publication": "Medium",
+    "published_date": "2026-05-02",
+    "raw_html_rel_path": "raw/readwise/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2.html",
+    "raw_md_rel_path": "raw/readwise/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2.md",
+    "source_id": "how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2",
+    "title": "How to Build Production-Ready AI Agents: MCP, CLI, and Skills \u2014 the Right Tool for the Right Job"
+  }
+}

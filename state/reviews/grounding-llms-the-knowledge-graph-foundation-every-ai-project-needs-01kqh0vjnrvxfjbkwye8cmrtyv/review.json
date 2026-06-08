@@ -1,0 +1,662 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T16:23:39+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dno5mGtc2VqtnhFnY4x37Ixbuf84s",
+          "token_usage": {
+            "completion_tokens": 199,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6344,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6543
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dno5oyMvBaFPY9S0VCcMayC4HcWJ9",
+          "token_usage": {
+            "completion_tokens": 1037,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5957,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6994
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-Dno5xnnbdSKJf8Yj5u8w8T4yyfBKs",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1241,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 32917,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 34158
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dno5xnnbdSKJf8Yj5u8w8T4yyfBKs",
+    "token_usage": {
+      "completion_tokens": 2477,
+      "prompt_tokens": 45218,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 47695
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2025-11-07",
+        "confidence": 0.86,
+        "evidence_from_source": "The source argues that LLMs alone are unreliable for critical applications and that knowledge graphs supply the grounding, audit trail, and update path that simple prompting or chunked retrieval lacks. It also frames the useful system as a hybrid of LLM interface plus KG grounding layer.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "knowledge-systems"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-engineering",
+        "suggested_new_tags": [
+          "ai-engineering"
+        ],
+        "supporting_data_points": [
+          "The article cites a legal hallucination case where fabricated citations passed through an LLM.",
+          "It says simple chunk-based RAG cannot provide enough precision for domains with relationships, jurisdiction, and provenance.",
+          "It says knowledge graphs are auditable, explainable, and dynamically updatable."
+        ],
+        "supporting_snippet": "\u201cThe future of AI in critical applications \u2014 across every industry \u2014 depends on building intelligent advisor systems that combine the structured knowledge and explainability of KGs with the natural language understanding and pattern recognition of LLMs.\u201d",
+        "time_sensitivity": "Actionable as of 2025-11-07; the argument is about architecture choices that remain relevant as model quality changes.",
+        "trend_description": "AI products in high-stakes domains increasingly depend on surrounding system architecture, not just model quality. The useful unit becomes a grounded workflow that combines language understanding, verified data, provenance, and human review. This shift matters because model fluency alone does not solve source verification, updateability, or accountability.",
+        "trend_slug": "ai-products-shift-from-models-to-grounded-systems",
+        "trend_title": "AI Products Shift from Models to Grounded Systems",
+        "uncertainty_note": "This is a strong architectural claim, but the source does not provide comparative benchmarks against advanced retrieval or verification stacks, so the degree of advantage over alternatives remains unproven.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is an interpretive argument by a named author about LLM architecture and knowledge graphs.",
+        "It leans on a legal anecdote, quoted judge remarks, and a cited Gartner prediction, but does not present original experiments or benchmarks.",
+        "Most claims are strategic and conceptual rather than empirical implementation reporting."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says that large language models are useful, but they can fail badly when a task needs accurate, source-backed facts. The legal case example shows why: a model can sound confident while inventing citations. The author\u2019s answer is to pair the model with a knowledge graph, which stores domain facts and relationships in a way that can be checked and updated. In this setup, the model helps users ask questions in plain language, while the graph supplies verified information and provenance. The main idea is simple: for serious work, the AI needs a knowledge foundation, not just a fluent surface.",
+      "assessed_as_of": "2025-11-07",
+      "contradictions_and_skepticism": "The article treats the Schwartz case as evidence for a broader architectural conclusion, but it is still a single anecdote plus a conceptual argument. The claim that simple RAG cannot provide sufficient precision may be true for some regulated domains, but the article does not compare against more advanced retrieval, citations enforcement, or verification pipelines. Its framing can feel slightly absolute when it says there is 'no shortcut,' because real systems often combine retrieval, rules, human review, and structured stores in different proportions. The Gartner cancellation statistic is cited to support the thesis, but the article does not unpack methodology or isolate knowledge-grounding as the causal factor. The knowledge graph pitch is strong, but the source does not prove that KGs are the only or universally best foundation for trustworthy AI.",
+      "key_insights": [
+        "A language model can be a bad research tool even when it sounds persuasive; confidence is not evidence.",
+        "Chunk-based retrieval helps with document lookup, but it does not replace explicit domain structure when relationships, jurisdiction, and provenance matter.",
+        "Knowledge graphs are framed as a durable grounding layer because they are updateable, auditable, and explainable.",
+        "The useful division of labor is: LLM for language interaction, knowledge graph for verified domain knowledge and traceable reasoning.",
+        "For critical domains, the article favors intelligent advisor systems over autonomous systems because human gatekeeping remains essential."
+      ],
+      "limitations_and_open_questions": "The article is persuasive but mostly architectural; it does not supply experiments, quantitative comparisons, or deployment cost analysis showing how much a knowledge graph improves reliability over well-tuned RAG, hybrid search, or other grounding methods. It assumes the organization can build and maintain a domain knowledge graph with high-quality updates, but it does not address the operational burden of curation, schema design, entity resolution, or governance. Security, privacy, and access-control issues are not discussed, even though those can be central in legal, medical, and financial settings. The article also does not specify where the boundary should be between knowledge graph facts and document-level evidence when sources conflict or evolve quickly. It is unclear how these systems should be evaluated beyond general claims about explainability and reduced hallucination.",
+      "sources": [
+        "https://medium.com/@alessandro-negro/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec"
+      ],
+      "summary": "The article argues that LLMs are not sufficient on their own for critical domain applications because they cannot reliably ground answers in authoritative, verifiable knowledge. It uses the Steven Schwartz legal-hallucination incident as a concrete example of what happens when a model is treated like a trustworthy research system rather than a probabilistic language tool. The core claim is that retrieval-augmented generation helps, but chunked retrieval over documents still falls short when the domain requires explicit relationships, provenance, jurisdiction, updateability, and auditability. The proposed architectural answer is a knowledge graph: an evolving, domain-specific structure with typed entities, relationships, semantic context, and traceable sources. In the author\u2019s framing, LLMs should serve as the natural-language interface and extraction layer, while the knowledge graph serves as the grounding layer that keeps answers verifiable and current. The article distinguishes intelligent advisor systems, which support human judgment, from autonomous systems, and argues that critical applications should use the former. It concludes that trustworthy AI systems require structured knowledge infrastructure, not just larger models or better prompting.",
+      "why_it_matters": "The article is practically relevant because it gives an architecture-level explanation for a failure mode many teams encounter: using a general LLM as if it were an authoritative knowledge system. Its strongest point is the distinction between fluent answer generation and verifiable domain reasoning, especially in settings where citations, jurisdiction, and updates matter. The knowledge graph proposal is durable because it directly addresses provenance, auditability, and maintenance, which the article argues are weak points of LLM-only and simple RAG setups. The piece is also useful in clarifying role design: the model should help with language understanding, entity extraction, and presentation, while the knowledge graph should hold the facts and relationships. That makes the argument most relevant for applications that must expose sources and support human review, not for generic chat. As of 2025-11-07, the guidance is actionable as a design principle, though the article itself remains conceptual and does not provide comparative benchmarks or cost tradeoffs."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent argument about grounding LLMs with knowledge graphs, not a bundle of separate news items.",
+        "Uses one legal anecdote plus explanatory framework sections, which fits an opinion/analysis article.",
+        "No interview Q&A, no step-by-step tutorial structure, and no multi-tool roundup pattern."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Graphs encode typed entities and named relationships, which makes domain knowledge more explicit than chunked document retrieval.",
+          "Auditability comes from traceable paths back to authoritative sources.",
+          "Dynamic updates can be applied to the knowledge layer without retraining the model.",
+          "The graph can carry domain rules and constraints that general-purpose models do not know.",
+          "This architecture supports human review by exposing why a result was returned."
+        ],
+        "knowledge_summary": "Graph grounding uses a structured knowledge graph as the authoritative layer for facts, entities, relationships, and provenance in AI systems. It is useful when answers must be verifiable, auditable, and sensitive to domain context such as jurisdiction, applicability, or updates over time. The main design idea is to separate language understanding from factual grounding: the model handles query interpretation and presentation, while the graph holds the canonical knowledge. This pattern is especially relevant where document retrieval alone does not capture relationships well enough for reliable reasoning.",
+        "match_candidates": [],
+        "operational_insight": "Use a graph when the application needs explicit relationships, traceable sources, and deterministic updates rather than just semantically similar passages. Treat the LLM as an interface and extraction layer, not the source of truth.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "retrieval-systems",
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This pattern matters as of 2025-11-07 because many AI applications still need answers that can be checked against a source of record. It is especially durable for legal, medical, financial, and compliance workflows where provenance and relationship-aware reasoning affect trust and human review.",
+        "secondary_tag": "retrieval-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cA knowledge graph is an ever-evolving graph data structure composed of a set of typed entities, their attributes, and meaningful named relationships. Built for a specific domain, it integrates both structured and unstructured data to craft knowledge for humans and machines.\u201d",
+        "topic_slug": "graph-grounding-for-ai",
+        "topic_title": "Graph Grounding for AI",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Advisor systems are optimized for explanation and recommendation, not autonomous execution.",
+          "Human gatekeeping remains part of the operating model in regulated or high-stakes tasks.",
+          "The architecture should expose uncertainty and evidence so humans can verify outputs.",
+          "This pattern fits legal, medical, financial, and compliance workflows better than full autonomy in many cases."
+        ],
+        "knowledge_summary": "Human-in-the-loop advisor systems are AI systems designed to support human judgment rather than replace it. They are built for decision support, contextual explanation, and user interaction, while preserving a gatekeeping role for humans in high-stakes settings. This design is distinct from autonomous systems that execute actions independently. The core operational value is that the AI can assist with exploration and summarization without being trusted to make final decisions on its own.",
+        "match_candidates": [],
+        "operational_insight": "Use an advisor-system architecture when errors are costly, sources must be checked, or policy requires human approval. The system should surface recommendations, evidence, and uncertainty rather than bypass review.",
+        "primary_tag": "human-ai-workflows",
+        "proposed_tags": [
+          "human-ai-workflows",
+          "ai-governance",
+          "enterprise-workflows"
+        ],
+        "related_topics": [
+          "graph-grounding-for-ai"
+        ],
+        "relevance_note": "This is durable in service automation and enterprise AI because many deployments need assisted decision-making rather than full autonomy. It is especially relevant where auditability, compliance, or professional accountability remain with a human operator as of 2025-11-07.",
+        "secondary_tag": "ai-governance",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cIntelligent advisor systems (IASs), by contrast, are designed to support rather than replace human judgement. As we define in Knowledge Graphs and LLMs in Action: An intelligent advisor system\u2019s role is to provide information and recommendations.\u201d",
+        "topic_slug": "human-in-the-loop-advisor-systems",
+        "topic_title": "Human-in-the-Loop Advisor Systems",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2025-11-07",
+          "confidence": 0.86,
+          "evidence_from_source": "The source argues that LLMs alone are unreliable for critical applications and that knowledge graphs supply the grounding, audit trail, and update path that simple prompting or chunked retrieval lacks. It also frames the useful system as a hybrid of LLM interface plus KG grounding layer.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "knowledge-systems"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-engineering",
+          "suggested_new_tags": [
+            "ai-engineering"
+          ],
+          "supporting_data_points": [
+            "The article cites a legal hallucination case where fabricated citations passed through an LLM.",
+            "It says simple chunk-based RAG cannot provide enough precision for domains with relationships, jurisdiction, and provenance.",
+            "It says knowledge graphs are auditable, explainable, and dynamically updatable."
+          ],
+          "supporting_snippet": "\u201cThe future of AI in critical applications \u2014 across every industry \u2014 depends on building intelligent advisor systems that combine the structured knowledge and explainability of KGs with the natural language understanding and pattern recognition of LLMs.\u201d",
+          "time_sensitivity": "Actionable as of 2025-11-07; the argument is about architecture choices that remain relevant as model quality changes.",
+          "trend_description": "AI products in high-stakes domains increasingly depend on surrounding system architecture, not just model quality. The useful unit becomes a grounded workflow that combines language understanding, verified data, provenance, and human review. This shift matters because model fluency alone does not solve source verification, updateability, or accountability.",
+          "trend_slug": "ai-products-shift-from-models-to-grounded-systems",
+          "trend_title": "AI Products Shift from Models to Grounded Systems",
+          "uncertainty_note": "This is a strong architectural claim, but the source does not provide comparative benchmarks against advanced retrieval or verification stacks, so the degree of advantage over alternatives remains unproven.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ec91d9a6-8887-4651-924c-cc7f1ebcf577",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The article cites a legal hallucination case where fabricated citations passed through an LLM.",
+              "It says simple chunk-based RAG cannot provide enough precision for domains with relationships, jurisdiction, and provenance.",
+              "It says knowledge graphs are auditable, explainable, and dynamically updatable."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "knowledge-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is an interpretive argument by a named author about LLM architecture and knowledge graphs.",
+          "It leans on a legal anecdote, quoted judge remarks, and a cited Gartner prediction, but does not present original experiments or benchmarks.",
+          "Most claims are strategic and conceptual rather than empirical implementation reporting."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A language model can be a bad research tool even when it sounds persuasive; confidence is not evidence.",
+          "Chunk-based retrieval helps with document lookup, but it does not replace explicit domain structure when relationships, jurisdiction, and provenance matter.",
+          "Knowledge graphs are framed as a durable grounding layer because they are updateable, auditable, and explainable.",
+          "The useful division of labor is: LLM for language interaction, knowledge graph for verified domain knowledge and traceable reasoning.",
+          "For critical domains, the article favors intelligent advisor systems over autonomous systems because human gatekeeping remains essential."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@alessandro-negro/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent argument about grounding LLMs with knowledge graphs, not a bundle of separate news items.",
+          "Uses one legal anecdote plus explanatory framework sections, which fits an opinion/analysis article.",
+          "No interview Q&A, no step-by-step tutorial structure, and no multi-tool roundup pattern."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Graphs encode typed entities and named relationships, which makes domain knowledge more explicit than chunked document retrieval.",
+            "Auditability comes from traceable paths back to authoritative sources.",
+            "Dynamic updates can be applied to the knowledge layer without retraining the model.",
+            "The graph can carry domain rules and constraints that general-purpose models do not know.",
+            "This architecture supports human review by exposing why a result was returned."
+          ],
+          "knowledge_summary": "Graph grounding uses a structured knowledge graph as the authoritative layer for facts, entities, relationships, and provenance in AI systems. It is useful when answers must be verifiable, auditable, and sensitive to domain context such as jurisdiction, applicability, or updates over time. The main design idea is to separate language understanding from factual grounding: the model handles query interpretation and presentation, while the graph holds the canonical knowledge. This pattern is especially relevant where document retrieval alone does not capture relationships well enough for reliable reasoning.",
+          "match_candidates": [],
+          "operational_insight": "Use a graph when the application needs explicit relationships, traceable sources, and deterministic updates rather than just semantically similar passages. Treat the LLM as an interface and extraction layer, not the source of truth.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "retrieval-systems",
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This pattern matters as of 2025-11-07 because many AI applications still need answers that can be checked against a source of record. It is especially durable for legal, medical, financial, and compliance workflows where provenance and relationship-aware reasoning affect trust and human review.",
+          "secondary_tag": "retrieval-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cA knowledge graph is an ever-evolving graph data structure composed of a set of typed entities, their attributes, and meaningful named relationships. Built for a specific domain, it integrates both structured and unstructured data to craft knowledge for humans and machines.\u201d",
+          "topic_slug": "graph-grounding-for-ai",
+          "topic_title": "Graph Grounding for AI",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2919242a-d250-4c38-888e-14ce3543fb61",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Graphs encode typed entities and named relationships, which makes domain knowledge more explicit than chunked document retrieval.",
+              "Auditability comes from traceable paths back to authoritative sources.",
+              "Dynamic updates can be applied to the knowledge layer without retraining the model.",
+              "The graph can carry domain rules and constraints that general-purpose models do not know.",
+              "This architecture supports human review by exposing why a result was returned."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "retrieval-systems",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Advisor systems are optimized for explanation and recommendation, not autonomous execution.",
+            "Human gatekeeping remains part of the operating model in regulated or high-stakes tasks.",
+            "The architecture should expose uncertainty and evidence so humans can verify outputs.",
+            "This pattern fits legal, medical, financial, and compliance workflows better than full autonomy in many cases."
+          ],
+          "knowledge_summary": "Human-in-the-loop advisor systems are AI systems designed to support human judgment rather than replace it. They are built for decision support, contextual explanation, and user interaction, while preserving a gatekeeping role for humans in high-stakes settings. This design is distinct from autonomous systems that execute actions independently. The core operational value is that the AI can assist with exploration and summarization without being trusted to make final decisions on its own.",
+          "match_candidates": [],
+          "operational_insight": "Use an advisor-system architecture when errors are costly, sources must be checked, or policy requires human approval. The system should surface recommendations, evidence, and uncertainty rather than bypass review.",
+          "primary_tag": "human-ai-workflows",
+          "proposed_tags": [
+            "human-ai-workflows",
+            "ai-governance",
+            "enterprise-workflows"
+          ],
+          "related_topics": [
+            "graph-grounding-for-ai"
+          ],
+          "relevance_note": "This is durable in service automation and enterprise AI because many deployments need assisted decision-making rather than full autonomy. It is especially relevant where auditability, compliance, or professional accountability remain with a human operator as of 2025-11-07.",
+          "secondary_tag": "ai-governance",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cIntelligent advisor systems (IASs), by contrast, are designed to support rather than replace human judgement. As we define in Knowledge Graphs and LLMs in Action: An intelligent advisor system\u2019s role is to provide information and recommendations.\u201d",
+          "topic_slug": "human-in-the-loop-advisor-systems",
+          "topic_title": "Human-in-the-Loop Advisor Systems",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "83b3b9f0-51ee-4c49-8bcf-8667098dc5eb",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Advisor systems are optimized for explanation and recommendation, not autonomous execution.",
+              "Human gatekeeping remains part of the operating model in regulated or high-stakes tasks.",
+              "The architecture should expose uncertainty and evidence so humans can verify outputs.",
+              "This pattern fits legal, medical, financial, and compliance workflows better than full autonomy in many cases."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "graph-grounding-for-ai"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "human-ai-workflows",
+            "ai-governance",
+            "enterprise-workflows"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 124.4,
+    "review_finished_at": "2026-06-06T16:25:43.414843+00:00",
+    "review_started_at": "2026-06-06T16:23:39+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-06T16:25:43+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Alessandro Negro",
+    "canonical_url": "https://medium.com/@alessandro-negro/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec",
+    "content_sha256": "9b364a73f46bdc8eabb4478577542e496360f2404337a797c29b99ab5ee77842",
+    "publication": "Medium",
+    "published_date": "2025-11-07",
+    "raw_html_rel_path": "raw/readwise/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-01kqh0vjnrvxfjbkwye8cmrtyv.html",
+    "raw_md_rel_path": "raw/readwise/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-01kqh0vjnrvxfjbkwye8cmrtyv.md",
+    "source_id": "grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-01kqh0vjnrvxfjbkwye8cmrtyv",
+    "title": "Grounding LLMs: The Knowledge Graph foundation every AI project needs"
+  }
+}

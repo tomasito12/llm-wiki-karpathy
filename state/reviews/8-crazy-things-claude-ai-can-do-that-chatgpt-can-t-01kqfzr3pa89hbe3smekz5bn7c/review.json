@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:25:23+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DnsnxDbCqDqE4hjDWNnpjQdxCerBN",
+          "token_usage": {
+            "completion_tokens": 260,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5866,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6126
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnsnzy4AB9aCn1duiilTMT0HWvjBc",
+          "token_usage": {
+            "completion_tokens": 1003,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5540,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6543
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnsnzy4AB9aCn1duiilTMT0HWvjBc",
+    "token_usage": {
+      "completion_tokens": 1263,
+      "prompt_tokens": 11406,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 12669
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "The piece is a promotional comparison article built from product feature claims and subjective judgments, with no durable standalone wiki-worthy concept beyond basic product differentiation. It is better treated as a source for later product-specific extraction, not a high-value triage target.",
+      "skip_recommended": true,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "Most substantive assertions describe Claude and ChatGPT product capabilities, integrations, and limits as presented in a promotional comparison.",
+        "The article does not provide independent testing, benchmarks, citations, or external validation for the feature claims.",
+        "Judgments like 'better' or 'more practical' are author opinion layered on top of product-facing claims."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article compares Claude and ChatGPT by focusing on what Claude can do inside the product. The big idea is that Claude is presented as more useful for long documents, live app building, team work in Slack, and code that can be tested right away. It also says Claude can keep project context across chats and show more of its reasoning on hard problems. The point is not that one model wins everywhere, but that different tools fit different workflows. As of 2026-04-18, the article is mainly a practical feature comparison, not a rigorous benchmark.",
+      "assessed_as_of": "2026-04-18",
+      "contradictions_and_skepticism": "A number of claims read like vendor marketing rather than validated comparison. The article treats visible reasoning as a clear advantage, but exposing step-by-step reasoning is not the same as proving better answers, and the relationship between transparency and correctness is not established here. The claim that Claude 'writes code that actually works' is too strong for a general article and should be read as anecdotal. The contrast between RLHF and Constitutional AI is also simplified; both are training and safety strategies with more nuance than the article presents. Overall, the piece is directionally useful for feature discovery, but its strongest statements deserve skepticism absent external verification.",
+      "key_insights": [
+        "Claude's 200,000-word context window is framed as more useful for long-document workflows than ChatGPT's smaller limit.",
+        "Artifacts are presented as a live-preview layer that turns prompts into interactive apps, diagrams, or documents instead of static code blocks.",
+        "Claude Projects is described as persistent, project-scoped memory that reuses uploaded context and custom instructions across conversations.",
+        "The article treats Slack integration as a meaningful productivity feature because Claude can read workspace context and draft replies inside the collaboration surface.",
+        "The strongest code-related claim is not just generation quality but immediate execution and iteration, which reduces manual testing friction."
+      ],
+      "limitations_and_open_questions": "The article gives no independent benchmarks, reproducible tests, or failure cases for the claimed advantages. Several comparisons rely on qualitative language like 'more practical' or 'works the first time' without evidence. It does not clarify how often long-context performance degrades, how live app previews handle edge cases, or what limits exist for Slack integration and file analysis. The discussion of Constitutional AI is simplified and does not address tradeoffs, training data, or whether the constitutional framing measurably improves outputs. The code-quality claims are especially under-supported because they are based on reported experience rather than controlled evaluation. The article also omits cost, latency, privacy, governance, and security implications of workspace access and persistent project context.",
+      "sources": [
+        "https://medium.com/no-time/8-crazy-things-claude-ai-can-do-that-chatgpt-cant-ef383eeb16f4"
+      ],
+      "summary": "The article is a feature-by-feature comparison arguing that Claude and ChatGPT differ in practical workflows more than in abstract capability. It highlights eight Claude-centric advantages: long-context handling, Artifacts for live app previews, Slack integration, bulk file analysis, persistent Projects context, extended thinking with visible reasoning, Constitutional AI as the training approach, and code generation with live execution. The author\u2019s core claim is that these differences matter when the task involves large documents, prototyping, team collaboration in Slack, project-specific memory, or debugging code quickly. The piece also notes that ChatGPT has its own strengths, including image generation, web search, plugins, and memory, so the article is not claiming Claude is universally better. Overall, it is a promotional comparison built from product claims and subjective judgments rather than independent testing.",
+      "why_it_matters": "The article is useful as a compact inventory of product-level differences that can change how an AI assistant fits into engineering workflows. The most durable takeaway is that Claude is being positioned less as a general chat assistant and more as a workspace for long-context analysis, interactive prototyping, reusable project context, and faster code feedback loops. For practitioners, the relevant question is not abstract model quality but whether these features reduce handoffs between drafting, reviewing, and implementation. The Slack, Projects, and file-upload claims matter because they target collaboration and multi-document synthesis, which are common pain points in applied AI work. The reasoning-transparency section is also relevant because it shows the article values inspectable intermediate steps for harder tasks, even though the piece does not validate that this always improves correctness. The significance is limited by the fact that the article is promotional and does not provide benchmarks, failure rates, or comparative task studies. As of 2026-04-18, it is actionable mainly as a feature checklist to evaluate against real workflows, not as evidence that one product is categorically better. Any service automation, support, or meeting-workflow implications are only indirect here: the article mentions Slack context and drafting, but it does not substantively analyze those use cases beyond product claims."
+    },
+    "source_type_detection": {
+      "confidence": 0.92,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent comparison article rather than a bundle of unrelated news items or a numbered tools roundup.",
+        "The structure is an opinionated feature-by-feature contrast between Claude and ChatGPT, not an interview, research paper, or tutorial.",
+        "Claims are presented as product capabilities and author commentary, which fits a standard article more than a specialized roundup type."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "Most substantive assertions describe Claude and ChatGPT product capabilities, integrations, and limits as presented in a promotional comparison.",
+          "The article does not provide independent testing, benchmarks, citations, or external validation for the feature claims.",
+          "Judgments like 'better' or 'more practical' are author opinion layered on top of product-facing claims."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Claude's 200,000-word context window is framed as more useful for long-document workflows than ChatGPT's smaller limit.",
+          "Artifacts are presented as a live-preview layer that turns prompts into interactive apps, diagrams, or documents instead of static code blocks.",
+          "Claude Projects is described as persistent, project-scoped memory that reuses uploaded context and custom instructions across conversations.",
+          "The article treats Slack integration as a meaningful productivity feature because Claude can read workspace context and draft replies inside the collaboration surface.",
+          "The strongest code-related claim is not just generation quality but immediate execution and iteration, which reduces manual testing friction."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/no-time/8-crazy-things-claude-ai-can-do-that-chatgpt-cant-ef383eeb16f4"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.92,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent comparison article rather than a bundle of unrelated news items or a numbered tools roundup.",
+          "The structure is an opinionated feature-by-feature contrast between Claude and ChatGPT, not an interview, research paper, or tutorial.",
+          "Claims are presented as product capabilities and author commentary, which fits a standard article more than a specialized roundup type."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 7.5,
+    "review_finished_at": "2026-06-07T19:55:04.517933+00:00",
+    "review_started_at": "2026-06-07T19:54:57+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T19:55:04+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Pranit naik",
+    "canonical_url": "https://medium.com/no-time/8-crazy-things-claude-ai-can-do-that-chatgpt-cant-ef383eeb16f4",
+    "content_sha256": "e873a7db7c408b995dba743f79f49fd9eb1204033f5b6b2cb1d6e498186f899f",
+    "publication": "Medium",
+    "published_date": "2026-04-18",
+    "raw_html_rel_path": "raw/readwise/8-crazy-things-claude-ai-can-do-that-chatgpt-can-t-01kqfzr3pa89hbe3smekz5bn7c.html",
+    "raw_md_rel_path": "raw/readwise/8-crazy-things-claude-ai-can-do-that-chatgpt-can-t-01kqfzr3pa89hbe3smekz5bn7c.md",
+    "source_id": "8-crazy-things-claude-ai-can-do-that-chatgpt-can-t-01kqfzr3pa89hbe3smekz5bn7c",
+    "title": "8 Crazy Things Claude AI Can Do (That ChatGPT Can\u2019t)"
+  }
+}

@@ -1,0 +1,676 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T20:36:35+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dns2YqBePSZVbmbqmlm6HDpr3LuiR",
+          "token_usage": {
+            "completion_tokens": 206,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8659,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8865
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dns2b2GyNT39M2AWbOwv0rVe513Ek",
+          "token_usage": {
+            "completion_tokens": 1232,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8285,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 9517
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-Dns2kuukVlY4PxClyEIicUB4bI4HR",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1313,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35607,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 36920
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dns2kuukVlY4PxClyEIicUB4bI4HR",
+    "token_usage": {
+      "completion_tokens": 2751,
+      "prompt_tokens": 52551,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 55302
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-27",
+        "confidence": 0.9,
+        "evidence_from_source": "The article argues that the fourth line in CLAUDE.md is the key unlock: define success criteria and loop until verified, because LLMs are \u201cexceptionally good at looping until they meet specific goals.\u201d",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-based-evaluation",
+        "proposed_tags": [
+          "workflow-based-evaluation",
+          "behavioral-evaluation"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "behavioral-evaluation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-evals",
+        "suggested_new_tags": [
+          "agent-evals",
+          "agent-systems"
+        ],
+        "supporting_data_points": [
+          "CLAUDE.md\u2019s fourth line is \u201cDefine success criteria. Loop until verified.\u201d",
+          "The article frames the first three lines as guardrails and the fourth as leverage.",
+          "Example verification flow uses tests that fail, then pass, then confirm regressions stay green."
+        ],
+        "supporting_snippet": "\u201cLLMs are exceptionally good at looping until they meet specific goals. Don\u2019t tell it what to do. Give it success criteria and watch it go.\u201d",
+        "time_sensitivity": "Actionable as of 2026-04-27; the observation reflects agent workflow design at that date and may remain relevant as long as agents can execute multi-step tasks and verify them with tests or checks.",
+        "trend_description": "AI workflows increasingly rely on explicit success criteria, tests, and verification steps rather than one-shot prompting. The agent is asked to iterate until a check passes, which reduces ambiguous completion claims and makes output easier to trust. This pattern matters most where correctness, auditability, and regression safety are operationally important.",
+        "trend_slug": "verification-loops-become-central-to-ai-workflows",
+        "trend_title": "Verification Loops Become Central to AI Workflows",
+        "uncertainty_note": "The source does not provide controlled measurements of improvement, so the trend is supported by qualitative reasoning and anecdotal examples rather than benchmark evidence.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece primarily interprets Karpathy\u2019s quoted observations and the author\u2019s synthesis of those ideas.",
+        "Claims are supported by commentary, examples, and anecdotal repo/star counts rather than formal measurements or experiments.",
+        "A few numeric references are mentioned, but they are not presented as a benchmark or controlled evaluation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about making Claude Code behave better with just four short rules in a CLAUDE.md file. The core idea is that coding agents usually fail because they guess too much, do too much, and do not verify enough. So the rules push them to ask clarifying questions, keep changes small, avoid touching unrelated code, and keep looping until a test or other success check passes. The author says this works better than long rule lists because behavioral guardrails matter more than huge instruction files. It is a practical argument, not a benchmark study. As of 2026-04-27, it is a useful setup tip for Claude Code, especially for simple project workflows.",
+      "assessed_as_of": "2026-04-27",
+      "contradictions_and_skepticism": "The article contrasts minimal behavioral principles with bloated rule files, but that may oversimplify cases where explicit project rules are genuinely necessary. Its claim that the bottleneck is behavior rather than capability is plausible in the cited examples, but it is still an inference from commentary and anecdote, not a benchmarked conclusion. The \u201cfour lines\u201d framing is rhetorically strong and may invite overgeneralization: some projects need more than behavioral constraints, especially when architecture, compliance, or team conventions are not recoverable from code. The article also treats star counts as evidence of usefulness, which is a weak proxy for real-world performance.",
+      "key_insights": [
+        "Four behavioral rules can be more useful than long style or policy checklists because they constrain how the agent reasons, not just what it outputs.",
+        "The biggest failure mode described is not coding inability but unspoken assumptions: agents often guess scope, format, and side effects instead of asking.",
+        "Surgical diffs matter because reviewability is a major cost in AI-generated code; smaller changes are easier to trust and merge.",
+        "Success criteria turn LLMs\u2019 loop-and-verify ability into leverage, but only when the task is written in a way the agent can check.",
+        "The article treats broader rule sets as diminishing returns once they start duplicating information the codebase or repo already provides."
+      ],
+      "limitations_and_open_questions": "The evidence base is weak for causal claims: the article cites stars, anecdotes, and quoted observations, but no controlled before/after benchmark on code quality or review time. The 60,000-star signal shows resonance, not measured effectiveness. The examples are mostly single-file tasks, so it is unclear how well the four lines handle large monorepos, cross-team refactors, or dependency-heavy changes. The article also admits the rules do not cover compliance requirements, security controls, or team-wide coordination. It does not address how to measure whether a long CLAUDE.md is actually hurting performance versus helping on a given project. The installation guidance is practical but still assumes Claude Code-specific tooling and may not translate cleanly to other agents without adaptation.",
+      "sources": [
+        "https://medium.com/gitconnected/the-4-lines-every-claude-md-needs-2717a46866f6",
+        "https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md",
+        "https://github.com/forrestchang/andrej-karpathy-skills",
+        "Andrej Karpathy thread referenced in article (January 2026)"
+      ],
+      "summary": "The article argues that the real bottleneck in AI-assisted coding is not model capability but agent behavior. It uses Andrej Karpathy\u2019s January 2026 diagnosis of coding agents as the foundation: agents often assume too much, overcomplicate simple tasks, make side changes, and fail to verify work. From that, the author distills four behavioral lines for CLAUDE.md: do not assume or hide confusion, keep solutions minimal, touch only what is necessary, and define success criteria so the agent can loop until verified. The article claims these lines work because they shape how the agent thinks rather than specifying what to build, and because they reduce review burden by making diffs smaller and easier to audit. It also argues that adding more rules has diminishing returns: Claude Code itself has rule-length limits, and bloated instruction sets can compete with the model\u2019s own reasoning instead of improving it. The article is strongest as a practical opinion piece for Claude Code users, with some caveats that the evidence is largely anecdotal and that the approach is less complete for large monorepos, regulated environments, or team-scale coordination. As of 2026-04-27, it is actionable as a lightweight default for single-project Claude Code setups, but still requires judgment and adaptation for complex team or compliance-heavy codebases.",
+      "why_it_matters": "The piece is useful because it compresses a common AI-coding pain point into a small operational pattern: give the agent behavioral constraints before adding more task-specific rules. That is a durable insight for Claude Code workflows, since the article ties each rule to a concrete failure mode from Karpathy\u2019s diagnosis and shows why long instruction files can be ignored or overfit. It also highlights a review economics issue that matters to AI engineering teams: if the agent changes adjacent code, expands scope, or invents abstractions, human review cost rises quickly. The article\u2019s strongest claim is not that four lines solve every coding problem, but that they improve the default interaction model enough to make output more predictable and auditable. Its rule-vs-context framing is practical: use the four lines for behavior, then add only project context the model cannot infer from the repo. The evidence is mostly anecdotal and repo-star social proof, so it should be treated as a useful pattern rather than a validated benchmark. As of 2026-04-27, it looks like a low-friction default worth adopting for Claude Code, but not a substitute for project-specific guardrails in complex or regulated codebases. For conversational AI, chatbots, voicebots, and service automation, the article does not directly discuss those domains, so any transfer is indirect: the main lesson is that agent behavior often needs clearer constraints than more features do."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single cohesive opinion/article with one central argument about CLAUDE.md behavior, not a bundle of unrelated items.",
+        "No primary numbered list of tools or step-by-step tutorial structure that would indicate a roundup or how-to roundup.",
+        "Contains anecdotal examples and quoted expert commentary, but the article is framed as an independent explanatory analysis."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "The source distills the behavioral layer into four lines: \u201cDon\u2019t assume. Don\u2019t hide confusion. Surface tradeoffs.\u201d \u201cMinimum code that solves the problem. Nothing speculative.\u201d \u201cTouch only what you must. Clean up only your own mess.\u201d \u201cDefine success criteria. Loop until verified.\u201d",
+        "key_points": [
+          "Behavioral rules should override default model tendencies rather than restate repository facts.",
+          "Project context is most valuable when the model cannot infer it by reading files.",
+          "The more a rule resembles a style preference already visible in the repo, the less value it adds.",
+          "Instruction files should be judged by whether removing a line would actually cause mistakes."
+        ],
+        "knowledge_summary": "Agent instruction files work best when they separate behavioral guardrails from project-specific facts. The behavioral layer should constrain how an agent reasons and edits: ask before assuming, keep changes minimal, avoid touching unrelated code, and verify outcomes. Project-specific context should be thin and only cover information the agent cannot infer from the repository itself, such as build commands, non-obvious conventions, or past failure modes. Longer rule lists tend to degrade when they repeat what the code already shows or compete with the model\u2019s own reasoning.",
+        "match_candidates": [],
+        "operational_insight": "For agent workflows, keep instruction files small and behavior-focused. Add context only when it materially changes the agent\u2019s chances of making a mistake, not as a dumping ground for preferences.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "developer-tooling",
+          "agent-systems",
+          "context-engineering",
+          "software-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is durable because agent instruction design comes up across coding assistants, support bots, and workflow automation systems. The same separation between behavior and context helps reduce prompt bloat, improve compliance with instructions, and keep agent output easier to review.",
+        "secondary_tag": "developer-tooling",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cThe 4 lines work because they shape how the agent thinks, not what it does. They\u2019re transferable across projects, languages, and problem types.\u201d",
+        "topic_slug": "behavioral-instruction-layers-for-agents",
+        "topic_title": "Behavioral Instruction Layers",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "The source gives a concrete pattern: \u201cWrite test: password change \u2192 old session invalidated \u2192 Verify: test fails (reproduces bug)\u201d followed by implementation and re-verification steps until \u201cfull test suite green.\u201d",
+        "key_points": [
+          "Success criteria should be explicit before execution starts.",
+          "Each loop should end with a check that can fail or pass.",
+          "Verification reduces reliance on vague self-assessment from the model.",
+          "This pattern works best when the agent can access tests, validators, or other objective signals."
+        ],
+        "knowledge_summary": "A useful agent workflow defines success criteria up front and then loops until those criteria are verified. This shifts the task from vague intent to checkable steps, which lets an agent iterate independently instead of waiting for constant human supervision. Verification loops are especially important when the output needs to be auditable, regression-safe, or easy to trust in review. The strongest versions pair each action with a concrete check, such as a test, a failing reproduction, or a green validation step.",
+        "match_candidates": [],
+        "operational_insight": "Write tasks so the agent can prove completion, not just claim it. The more measurable the finish line, the less back-and-forth the human needs to do.",
+        "primary_tag": "verification-systems",
+        "proposed_tags": [
+          "verification-systems",
+          "test-and-verification",
+          "agent-systems",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "behavioral-instruction-layers-for-agents"
+        ],
+        "relevance_note": "This matters for agent systems because verification is what turns iterative generation into dependable automation. It also maps directly to service automation, where agents need clear stop conditions, testable states, and controlled handoff thresholds.",
+        "secondary_tag": "test-and-verification",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cDefine success criteria. Loop until verified.\u201d",
+        "topic_slug": "verification-loops-in-ai-workflows",
+        "topic_title": "Verification Loops in AI Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-27",
+          "confidence": 0.9,
+          "evidence_from_source": "The article argues that the fourth line in CLAUDE.md is the key unlock: define success criteria and loop until verified, because LLMs are \u201cexceptionally good at looping until they meet specific goals.\u201d",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-based-evaluation",
+          "proposed_tags": [
+            "workflow-based-evaluation",
+            "behavioral-evaluation"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "behavioral-evaluation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-evals",
+          "suggested_new_tags": [
+            "agent-evals",
+            "agent-systems"
+          ],
+          "supporting_data_points": [
+            "CLAUDE.md\u2019s fourth line is \u201cDefine success criteria. Loop until verified.\u201d",
+            "The article frames the first three lines as guardrails and the fourth as leverage.",
+            "Example verification flow uses tests that fail, then pass, then confirm regressions stay green."
+          ],
+          "supporting_snippet": "\u201cLLMs are exceptionally good at looping until they meet specific goals. Don\u2019t tell it what to do. Give it success criteria and watch it go.\u201d",
+          "time_sensitivity": "Actionable as of 2026-04-27; the observation reflects agent workflow design at that date and may remain relevant as long as agents can execute multi-step tasks and verify them with tests or checks.",
+          "trend_description": "AI workflows increasingly rely on explicit success criteria, tests, and verification steps rather than one-shot prompting. The agent is asked to iterate until a check passes, which reduces ambiguous completion claims and makes output easier to trust. This pattern matters most where correctness, auditability, and regression safety are operationally important.",
+          "trend_slug": "verification-loops-become-central-to-ai-workflows",
+          "trend_title": "Verification Loops Become Central to AI Workflows",
+          "uncertainty_note": "The source does not provide controlled measurements of improvement, so the trend is supported by qualitative reasoning and anecdotal examples rather than benchmark evidence.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2b740873-42d7-44f0-910d-bb4a6b10d694",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "CLAUDE.md\u2019s fourth line is \u201cDefine success criteria. Loop until verified.\u201d",
+              "The article frames the first three lines as guardrails and the fourth as leverage.",
+              "Example verification flow uses tests that fail, then pass, then confirm regressions stay green."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-based-evaluation",
+            "behavioral-evaluation"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece primarily interprets Karpathy\u2019s quoted observations and the author\u2019s synthesis of those ideas.",
+          "Claims are supported by commentary, examples, and anecdotal repo/star counts rather than formal measurements or experiments.",
+          "A few numeric references are mentioned, but they are not presented as a benchmark or controlled evaluation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Four behavioral rules can be more useful than long style or policy checklists because they constrain how the agent reasons, not just what it outputs.",
+          "The biggest failure mode described is not coding inability but unspoken assumptions: agents often guess scope, format, and side effects instead of asking.",
+          "Surgical diffs matter because reviewability is a major cost in AI-generated code; smaller changes are easier to trust and merge.",
+          "Success criteria turn LLMs\u2019 loop-and-verify ability into leverage, but only when the task is written in a way the agent can check.",
+          "The article treats broader rule sets as diminishing returns once they start duplicating information the codebase or repo already provides."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/gitconnected/the-4-lines-every-claude-md-needs-2717a46866f6",
+          "https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md",
+          "https://github.com/forrestchang/andrej-karpathy-skills",
+          "Andrej Karpathy thread referenced in article (January 2026)"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single cohesive opinion/article with one central argument about CLAUDE.md behavior, not a bundle of unrelated items.",
+          "No primary numbered list of tools or step-by-step tutorial structure that would indicate a roundup or how-to roundup.",
+          "Contains anecdotal examples and quoted expert commentary, but the article is framed as an independent explanatory analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "The source distills the behavioral layer into four lines: \u201cDon\u2019t assume. Don\u2019t hide confusion. Surface tradeoffs.\u201d \u201cMinimum code that solves the problem. Nothing speculative.\u201d \u201cTouch only what you must. Clean up only your own mess.\u201d \u201cDefine success criteria. Loop until verified.\u201d",
+          "key_points": [
+            "Behavioral rules should override default model tendencies rather than restate repository facts.",
+            "Project context is most valuable when the model cannot infer it by reading files.",
+            "The more a rule resembles a style preference already visible in the repo, the less value it adds.",
+            "Instruction files should be judged by whether removing a line would actually cause mistakes."
+          ],
+          "knowledge_summary": "Agent instruction files work best when they separate behavioral guardrails from project-specific facts. The behavioral layer should constrain how an agent reasons and edits: ask before assuming, keep changes minimal, avoid touching unrelated code, and verify outcomes. Project-specific context should be thin and only cover information the agent cannot infer from the repository itself, such as build commands, non-obvious conventions, or past failure modes. Longer rule lists tend to degrade when they repeat what the code already shows or compete with the model\u2019s own reasoning.",
+          "match_candidates": [],
+          "operational_insight": "For agent workflows, keep instruction files small and behavior-focused. Add context only when it materially changes the agent\u2019s chances of making a mistake, not as a dumping ground for preferences.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "developer-tooling",
+            "agent-systems",
+            "context-engineering",
+            "software-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is durable because agent instruction design comes up across coding assistants, support bots, and workflow automation systems. The same separation between behavior and context helps reduce prompt bloat, improve compliance with instructions, and keep agent output easier to review.",
+          "secondary_tag": "developer-tooling",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cThe 4 lines work because they shape how the agent thinks, not what it does. They\u2019re transferable across projects, languages, and problem types.\u201d",
+          "topic_slug": "behavioral-instruction-layers-for-agents",
+          "topic_title": "Behavioral Instruction Layers",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "177c29bd-bea1-4860-a508-c591c7ce0dae",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Behavioral rules should override default model tendencies rather than restate repository facts.",
+              "Project context is most valuable when the model cannot infer it by reading files.",
+              "The more a rule resembles a style preference already visible in the repo, the less value it adds.",
+              "Instruction files should be judged by whether removing a line would actually cause mistakes."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "developer-tooling",
+            "agent-systems",
+            "context-engineering",
+            "software-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "The source gives a concrete pattern: \u201cWrite test: password change \u2192 old session invalidated \u2192 Verify: test fails (reproduces bug)\u201d followed by implementation and re-verification steps until \u201cfull test suite green.\u201d",
+          "key_points": [
+            "Success criteria should be explicit before execution starts.",
+            "Each loop should end with a check that can fail or pass.",
+            "Verification reduces reliance on vague self-assessment from the model.",
+            "This pattern works best when the agent can access tests, validators, or other objective signals."
+          ],
+          "knowledge_summary": "A useful agent workflow defines success criteria up front and then loops until those criteria are verified. This shifts the task from vague intent to checkable steps, which lets an agent iterate independently instead of waiting for constant human supervision. Verification loops are especially important when the output needs to be auditable, regression-safe, or easy to trust in review. The strongest versions pair each action with a concrete check, such as a test, a failing reproduction, or a green validation step.",
+          "match_candidates": [],
+          "operational_insight": "Write tasks so the agent can prove completion, not just claim it. The more measurable the finish line, the less back-and-forth the human needs to do.",
+          "primary_tag": "verification-systems",
+          "proposed_tags": [
+            "verification-systems",
+            "test-and-verification",
+            "agent-systems",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "behavioral-instruction-layers-for-agents"
+          ],
+          "relevance_note": "This matters for agent systems because verification is what turns iterative generation into dependable automation. It also maps directly to service automation, where agents need clear stop conditions, testable states, and controlled handoff thresholds.",
+          "secondary_tag": "test-and-verification",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cDefine success criteria. Loop until verified.\u201d",
+          "topic_slug": "verification-loops-in-ai-workflows",
+          "topic_title": "Verification Loops in AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f7f20ea6-3c37-4dea-bbc9-e00d8996c93a",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Success criteria should be explicit before execution starts.",
+              "Each loop should end with a check that can fail or pass.",
+              "Verification reduces reliance on vague self-assessment from the model.",
+              "This pattern works best when the agent can access tests, validators, or other objective signals."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "behavioral-instruction-layers-for-agents"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "verification-systems",
+            "test-and-verification",
+            "agent-systems",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 98.7,
+    "review_finished_at": "2026-06-06T20:38:13.716302+00:00",
+    "review_started_at": "2026-06-06T20:36:35+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-06T20:38:13+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Yanli Liu",
+    "canonical_url": "https://medium.com/gitconnected/the-4-lines-every-claude-md-needs-2717a46866f6",
+    "content_sha256": "b02ea187433b8f642b227866310d4a6c4fe9f695678d29361ad2bb0807fe277f",
+    "publication": "Medium",
+    "published_date": "2026-04-27",
+    "raw_html_rel_path": "raw/readwise/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x.html",
+    "raw_md_rel_path": "raw/readwise/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x.md",
+    "source_id": "the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x",
+    "title": "The 4 Lines Every CLAUDE.md Needs"
+  }
+}

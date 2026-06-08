@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:26:40+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DnspBGfZeSvhrfFe7TQG9EoAHpSci",
+          "token_usage": {
+            "completion_tokens": 216,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5745,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5961
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DnspEO9YRTy27BVXwDs9kXgZwheA2",
+          "token_usage": {
+            "completion_tokens": 1204,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5375,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6579
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DnspEO9YRTy27BVXwDs9kXgZwheA2",
+    "token_usage": {
+      "completion_tokens": 1420,
+      "prompt_tokens": 11120,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 12540
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "Vendor announcement focused on funding, scale metrics, and strategic framing rather than durable, reusable implementation knowledge; better handled as a source-level signal than as a wiki entry set.",
+      "skip_recommended": true,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The source is the OpenAI Blog speaking about OpenAI's own funding, revenue, products, and infrastructure.",
+        "All material claims are self-reported business and product metrics, not independent verification.",
+        "The article is promotional/strategic in tone and does not cite external analysis or experimental evidence."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is OpenAI explaining why its latest funding round matters to its own platform strategy. The main idea is that better models are only one piece; compute, distribution, and product integration are the other pieces that let the system grow. The company says ChatGPT, APIs, Codex, and enterprise products are feeding each other in a loop. It also says it is spreading infrastructure across more clouds, chips, and data centers so it can scale more flexibly. The most concrete product idea is a single AI superapp that brings together chat, coding, search, and agent actions. As of 2026-03-31, the piece is useful as a view into OpenAI\u2019s strategy, but the claims are self-reported and promotional.",
+      "assessed_as_of": "2026-03-31",
+      "contradictions_and_skepticism": "The article blends strategic explanation with promotion, so its strongest claims should be read as company narrative rather than evidence. The comparison to the internet and mobile eras is rhetorical and not supported here with a careful benchmark framework. The claim that no single architecture can meet the entire frontier may be plausible, but the article does not evaluate alternatives or specify the criteria for that conclusion. The superapp pitch also raises a practical tension: unification can improve coherence, but it can also make product complexity, permissions, and failure modes harder to manage. Overall, the piece is confident but thin on external evidence.",
+      "key_insights": [
+        "OpenAI is explicitly describing its business as a flywheel: more compute enables better models, which improves products, which drives adoption and revenue, which funds more compute.",
+        "The company is no longer presenting ChatGPT as a standalone app; it is positioning it as the consumer front door for enterprise and builder usage.",
+        "OpenAI says it is reducing infrastructure concentration by spanning multiple clouds, chip platforms, and data-center partners, which suggests operational flexibility is part of the strategy.",
+        "The planned superapp is an integration play: combine chat, coding, browsing, and agentic actions into one surface instead of many disconnected tools.",
+        "Most of the article\u2019s quantitative claims are self-reported scale metrics, so they are useful for understanding OpenAI\u2019s narrative but not for independent benchmarking."
+      ],
+      "limitations_and_open_questions": "The article provides no independent validation for the revenue, user, token-throughput, or engagement numbers it cites. It does not give detailed cost curves, margin data, latency figures, reliability metrics, or capacity utilization, so the claim that compute creates operating leverage remains asserted rather than demonstrated. The proposed superapp is described at a high level, but the article does not specify product boundaries, migration path, developer impact, or how third-party tools fit alongside the unified surface. The multi-cloud and multi-chip strategy is named, but there is no detail on tradeoffs among providers, workload placement, or how model training and inference are allocated across the portfolio. Security, privacy, and governance implications of deeper memory, personalization, browsing, and agentic actions are not discussed here. The enterprise parity claim by end of 2026 is directional and depends on future execution that the piece does not substantiate.",
+      "sources": [
+        "https://openai.com/index/accelerating-the-next-phase-ai"
+      ],
+      "summary": "OpenAI frames this funding announcement as a capital and infrastructure story, not just a financing event. The company says it closed a round with $122 billion in committed capital at an $852 billion post-money valuation, and argues that consumer adoption, enterprise deployment, developer usage, and compute reinforce one another in a flywheel. It reports very large self-described scale metrics: ChatGPT reaching more than 900 million weekly active users, over 50 million subscribers, APIs processing more than 15 billion tokens per minute, Codex serving over 2 million weekly users, and enterprise revenue making up more than 40% of total revenue. The article emphasizes that durable access to compute is the strategic advantage that compounds across research, product quality, access, and cost structure. It also says OpenAI is broadening its infrastructure portfolio across multiple cloud partners, chip platforms, and data-center partners rather than relying on a small set of providers. Product-wise, it highlights GPT-5.4, Codex as a flagship coding agent, and a planned unified AI superapp that combines ChatGPT, Codex, browsing, and agentic capabilities. The overall thesis is that OpenAI wants to use consumer scale and infrastructure control to turn model capability into repeated product and revenue expansion.",
+      "why_it_matters": "The piece matters because it shows how OpenAI wants practitioners to think about the next phase of platform design: not as model access alone, but as a stack where compute, distribution, workflow integration, and revenue reinforcement are tied together. The article is explicit that compute is not just a cost center; it is presented as a strategic asset that improves model capability, lowers serving cost per token through hardware and algorithmic gains, and supports deeper deployment. That framing is operationally relevant for teams building on top of OpenAI because it suggests product quality, pricing power, and release cadence will be shaped by infrastructure strategy as much as by model research. The article also gives a clear view of how OpenAI is packaging its surface area: ChatGPT, Codex, search, memory, personalization, APIs, and enterprise offerings are being pulled toward a more unified agent-first experience. For builders, that means integration choices may increasingly need to assume a single dominant front door rather than a set of separate point products. The business metrics are striking, but they are vendor-reported and should be read as directional rather than independently verified evidence. The funding and infrastructure details are most useful as strategic context for product planning and platform dependencies. As of 2026-03-31, the article is actionable as a snapshot of OpenAI\u2019s own roadmap, but it is not a neutral performance study and should be treated as a source of intent, not proof."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent company blog post, not a bundle of unrelated items.",
+        "No numbered tool/practice list, Q&A structure, or research methodology.",
+        "Primary content is OpenAI describing its own funding, products, and infrastructure strategy."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The source is the OpenAI Blog speaking about OpenAI's own funding, revenue, products, and infrastructure.",
+          "All material claims are self-reported business and product metrics, not independent verification.",
+          "The article is promotional/strategic in tone and does not cite external analysis or experimental evidence."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "OpenAI is explicitly describing its business as a flywheel: more compute enables better models, which improves products, which drives adoption and revenue, which funds more compute.",
+          "The company is no longer presenting ChatGPT as a standalone app; it is positioning it as the consumer front door for enterprise and builder usage.",
+          "OpenAI says it is reducing infrastructure concentration by spanning multiple clouds, chip platforms, and data-center partners, which suggests operational flexibility is part of the strategy.",
+          "The planned superapp is an integration play: combine chat, coding, browsing, and agentic actions into one surface instead of many disconnected tools.",
+          "Most of the article\u2019s quantitative claims are self-reported scale metrics, so they are useful for understanding OpenAI\u2019s narrative but not for independent benchmarking."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/index/accelerating-the-next-phase-ai"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent company blog post, not a bundle of unrelated items.",
+          "No numbered tool/practice list, Q&A structure, or research methodology.",
+          "Primary content is OpenAI describing its own funding, products, and infrastructure strategy."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 21.1,
+    "review_finished_at": "2026-06-07T20:04:07.118791+00:00",
+    "review_started_at": "2026-06-07T20:03:46+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-07T20:04:07+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/index/accelerating-the-next-phase-ai",
+    "content_sha256": "4c6e30e8dcb2c2643d88dbd9a1a91254b5987e1a84b3b2900e76bcf87b21cea3",
+    "publication": "openai.com",
+    "published_date": "2026-03-31",
+    "raw_html_rel_path": "raw/readwise/accelerating-the-next-phase-of-ai-01knec6kjts48t4gyq7vh5fe69.html",
+    "raw_md_rel_path": "raw/readwise/accelerating-the-next-phase-of-ai-01knec6kjts48t4gyq7vh5fe69.md",
+    "source_id": "accelerating-the-next-phase-of-ai-01knec6kjts48t4gyq7vh5fe69",
+    "title": "Accelerating the next phase of AI"
+  }
+}

@@ -1,0 +1,656 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T22:02:36+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntNqvflj2gIXVr27cGE6yEyeBXUG",
+          "token_usage": {
+            "completion_tokens": 179,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4631,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4810
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntNs3fiwiP5bPq2dNTzkScMjOKK8",
+          "token_usage": {
+            "completion_tokens": 881,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4224,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5105
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntO0c8lOrjmfa9mcVOFaGWIHjyt9",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1152,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34217,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 35369
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntO0c8lOrjmfa9mcVOFaGWIHjyt9",
+    "token_usage": {
+      "completion_tokens": 2212,
+      "prompt_tokens": 43072,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 45284
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-10",
+        "confidence": 0.78,
+        "evidence_from_source": "The source says that \"skills can help\" and that \"a skill can guide ChatGPT to follow a consistent process, format, or set of instructions that matches how you work,\" which frames product value around repeatable workflows rather than isolated prompts.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "human-ai-collaboration",
+        "proposed_tags": [
+          "human-ai-collaboration"
+        ],
+        "related_trends": [
+          "agents-shift-toward-persistent-memory-backed-workflows"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "enterprise-workflows",
+        "suggested_new_tags": [
+          "enterprise-workflows",
+          "workflow-design"
+        ],
+        "supporting_data_points": [
+          "Skills are described as reusable workflows for repeatable tasks.",
+          "The page explicitly contrasts \"one-off prompts\" with \"more consistent workflows\".",
+          "The guidance extends the product beyond chat into structured process reuse."
+        ],
+        "supporting_snippet": "\"Skills let you turn repeatable tasks into structured, reusable workflows. Instead of starting from scratch each time, a skill can guide ChatGPT to follow a consistent process, format, or set of instructions that matches how you work.\"",
+        "time_sensitivity": "Actionable as of 2026-04-10; the source presents this as a product direction already available in ChatGPT guidance, not as a future roadmap.",
+        "trend_description": "AI products increasingly expose reusable workflow structures instead of only raw chat interactions. The practical shift is from ad hoc prompting to packaged behaviors that users can reuse, configure, and carry across sessions. This makes the product feel more like a workflow system than a blank conversational box.",
+        "trend_slug": "skills-move-ai-products-toward-workflow-packaging",
+        "trend_title": "AI Products Shift Toward Workflow Packaging",
+        "uncertainty_note": "The source is vendor guidance and does not show adoption, usage frequency, or measured outcome improvements, so the trend is directional rather than empirically validated.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "This is an OpenAI blog/academy page describing OpenAI's own product features.",
+        "Claims about custom instructions, Memory, and skills come from the vendor's product guidance.",
+        "There is no independent evaluation, benchmark, or external evidence in the text."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This page shows how to make ChatGPT behave more consistently for you. One option is Custom Instructions, which lets you set defaults like your role, tone, preferred format, and simple rules. The other is Memory, which lets ChatGPT remember details you choose to share so you do not have to repeat them in later chats. The basic idea is to give the model stable context for the things that do not change often. The article also mentions skills, which are reusable workflows for repeated tasks. It is a straightforward guide to getting more reliable responses with less re-explaining.",
+      "assessed_as_of": "2026-04-10",
+      "contradictions_and_skepticism": "The article presents personalization as a straightforward path to better responses, but it provides no empirical evidence that the features reliably improve outcomes. Memory sounds convenient, yet persistent context can also introduce drift or accidental overfitting to old preferences if users do not manage it carefully. The skills reference is high-level and reads more like a teaser than a concrete workflow model, so it should be treated cautiously until separate documentation is reviewed.",
+      "key_insights": [
+        "Custom instructions are best for stable preferences like role, tone, formats, and guardrails; use the prompt for the task-specific request.",
+        "Memory is for recurring context you want reused across chats, not for one-off facts.",
+        "The product lets users inspect and manage remembered items in conversation, including asking what is remembered and telling it to forget specific items.",
+        "Skills are presented as a way to convert repeated tasks into structured, reusable workflows.",
+        "The piece is a feature overview, so it gives useful operating guidance but no comparative evaluation or performance evidence."
+      ],
+      "limitations_and_open_questions": "The page does not quantify how much custom instructions or Memory improve answer quality, consistency, or user satisfaction. It does not explain failure modes, such as stale memory, conflicting instructions, or when remembered context might be ignored. Privacy and governance questions are only implicitly touched by the ability to manage or forget saved items; the article does not discuss retention, access, or data boundaries in detail. The mention of skills is brief and does not define how they are created, versioned, or controlled.",
+      "sources": [
+        "https://openai.com/academy/personalization"
+      ],
+      "summary": "This OpenAI Academy page explains two built-in ways to personalize ChatGPT: Custom Instructions and Memory. Custom instructions let a user specify stable preferences such as role, tone, output format, and guardrails, and those settings apply to new conversations until changed. Memory lets ChatGPT retain user-approved details across chats so replies can be more tailored without repeating background each time. The page also notes that memory can be inspected, updated, or deleted directly in conversation, and that users should save recurring context rather than one-off facts. A third, lighter mention points to skills as a way to turn repeatable tasks into structured workflows, moving from ad hoc prompting toward reusable processes. The article is framed as product guidance rather than evidence-based evaluation, so it is mainly a practical feature overview.",
+      "why_it_matters": "The article is useful because it separates three different persistence layers that are easy to conflate: default behavior via custom instructions, cross-chat recall via Memory, and repeatable workflows via skills. That distinction is operationally important for anyone trying to get consistent output from ChatGPT without overloading a single prompt with every preference and detail. The guidance to keep custom instructions focused on stable preferences and to reserve Memory for recurring context is a practical pattern that can reduce prompt churn. The page also makes clear that Memory is user-governed, with explicit commands to inspect, add, and remove items, which matters for control and trust. For advanced users, the main durable takeaway is the workflow design principle: set defaults once, remember only what repeats, and leave task-specific constraints in the live prompt. Because this is vendor guidance rather than evaluated evidence, the stakes are limited to product usage discipline rather than proven model improvement. As of 2026-04-10, this is actionable as a usage pattern, but it should be treated as a product feature overview rather than a benchmarked claim about reliability gains. The closing implication for support or back-office automation is modest: the page suggests these personalization controls could help repeated service workflows stay consistent, but it does not provide evidence for that broader use case."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent OpenAI Academy explainer rather than a bundle of unrelated items.",
+        "Structured around one topic: personalizing ChatGPT with instructions, Memory, and skills.",
+        "No interview format, numbered tool roundup, or step-by-step multi-item tutorial structure."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Custom instructions are for stable preferences such as role, tone, output format, and guardrails.",
+          "Memory is for recurring context that should carry across chats.",
+          "Task-specific constraints should stay in the live prompt rather than being baked into defaults.",
+          "Users should save recurring context and avoid storing one-off facts."
+        ],
+        "knowledge_summary": "Personalized conversational systems improve usefulness by adapting responses to stable user preferences and recurring context. A useful design separates persistent defaults from task-specific instructions so the model does not need to relearn the same preferences in every chat. Persistent memory is best used for information that will matter again across future conversations, while short-lived task details belong in the active prompt. The operational goal is consistency without forcing every exchange to carry the full user profile.",
+        "match_candidates": [],
+        "operational_insight": "Treat personalization as layered state management: set durable defaults once, store only recurring context, and keep the current task in the live message. That reduces prompt bloat and makes behavior easier to predict and revise.",
+        "primary_tag": "human-ai-workflows",
+        "proposed_tags": [
+          "human-ai-workflows",
+          "agent-memory",
+          "prompt-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for conversational AI and support automation because personalization often fails when teams mix defaults, memory, and task instructions into one undifferentiated prompt. A cleaner separation makes assistants easier to tune, audit, and hand off across sessions.",
+        "secondary_tag": "agent-memory",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Custom instructions tell ChatGPT what it should know about you and how you prefer it to respond.\" \"Memory helps ChatGPT remember details you choose to share so future replies can feel more tailored\u2014without you re-explaining the basics each time.\"",
+        "topic_slug": "personalized-conversational-ai",
+        "topic_title": "Personalized Conversational AI",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Stable preferences should be persistent, not re-specified every turn.",
+          "The live prompt should carry the immediate task and any exceptions.",
+          "Memory should not be used as a catch-all for every detail the user mentions.",
+          "The clearer the instruction hierarchy, the easier it is to troubleshoot inconsistent behavior."
+        ],
+        "knowledge_summary": "Agent behavior becomes more controllable when instructions are separated into layers with different lifetimes and scopes. Stable preferences belong in a default configuration layer, while immediate task constraints stay in the active request. A memory layer can hold user-approved recurring context that should survive across sessions. This reduces conflict between long-term behavior and one-off task needs.",
+        "match_candidates": [],
+        "operational_insight": "Design personalization as a stack of instructions, not a single prompt blob. That makes behavior easier to reason about, update, and debug when outputs drift.",
+        "primary_tag": "model-personality",
+        "proposed_tags": [
+          "model-personality",
+          "context-engineering",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "personalized-conversational-ai"
+        ],
+        "relevance_note": "This is durable for AI assistants because many production failures come from unclear instruction hierarchy rather than model weakness alone. Layering also helps support systems separate policy, persona, and task context without overfitting the assistant to a single conversation.",
+        "secondary_tag": "context-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Think of custom instructions like setting your default 'working style' so you don\u2019t have to repeat yourself every time. Use them for stable preferences (role, tone, formats), and use the chat prompt itself for the specific task at hand.\"",
+        "topic_slug": "behavioral-instruction-layers-for-agents",
+        "topic_title": "Behavioral Instruction Layers",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-10",
+          "confidence": 0.78,
+          "evidence_from_source": "The source says that \"skills can help\" and that \"a skill can guide ChatGPT to follow a consistent process, format, or set of instructions that matches how you work,\" which frames product value around repeatable workflows rather than isolated prompts.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "human-ai-collaboration",
+          "proposed_tags": [
+            "human-ai-collaboration"
+          ],
+          "related_trends": [
+            "agents-shift-toward-persistent-memory-backed-workflows"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "enterprise-workflows",
+          "suggested_new_tags": [
+            "enterprise-workflows",
+            "workflow-design"
+          ],
+          "supporting_data_points": [
+            "Skills are described as reusable workflows for repeatable tasks.",
+            "The page explicitly contrasts \"one-off prompts\" with \"more consistent workflows\".",
+            "The guidance extends the product beyond chat into structured process reuse."
+          ],
+          "supporting_snippet": "\"Skills let you turn repeatable tasks into structured, reusable workflows. Instead of starting from scratch each time, a skill can guide ChatGPT to follow a consistent process, format, or set of instructions that matches how you work.\"",
+          "time_sensitivity": "Actionable as of 2026-04-10; the source presents this as a product direction already available in ChatGPT guidance, not as a future roadmap.",
+          "trend_description": "AI products increasingly expose reusable workflow structures instead of only raw chat interactions. The practical shift is from ad hoc prompting to packaged behaviors that users can reuse, configure, and carry across sessions. This makes the product feel more like a workflow system than a blank conversational box.",
+          "trend_slug": "skills-move-ai-products-toward-workflow-packaging",
+          "trend_title": "AI Products Shift Toward Workflow Packaging",
+          "uncertainty_note": "The source is vendor guidance and does not show adoption, usage frequency, or measured outcome improvements, so the trend is directional rather than empirically validated.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "e461734d-32b0-4c52-82ff-20a4870c5e82",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "agents-shift-toward-persistent-memory-backed-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Skills are described as reusable workflows for repeatable tasks.",
+              "The page explicitly contrasts \"one-off prompts\" with \"more consistent workflows\".",
+              "The guidance extends the product beyond chat into structured process reuse."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "human-ai-collaboration"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "This is an OpenAI blog/academy page describing OpenAI's own product features.",
+          "Claims about custom instructions, Memory, and skills come from the vendor's product guidance.",
+          "There is no independent evaluation, benchmark, or external evidence in the text."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Custom instructions are best for stable preferences like role, tone, formats, and guardrails; use the prompt for the task-specific request.",
+          "Memory is for recurring context you want reused across chats, not for one-off facts.",
+          "The product lets users inspect and manage remembered items in conversation, including asking what is remembered and telling it to forget specific items.",
+          "Skills are presented as a way to convert repeated tasks into structured, reusable workflows.",
+          "The piece is a feature overview, so it gives useful operating guidance but no comparative evaluation or performance evidence."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/academy/personalization"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent OpenAI Academy explainer rather than a bundle of unrelated items.",
+          "Structured around one topic: personalizing ChatGPT with instructions, Memory, and skills.",
+          "No interview format, numbered tool roundup, or step-by-step multi-item tutorial structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Custom instructions are for stable preferences such as role, tone, output format, and guardrails.",
+            "Memory is for recurring context that should carry across chats.",
+            "Task-specific constraints should stay in the live prompt rather than being baked into defaults.",
+            "Users should save recurring context and avoid storing one-off facts."
+          ],
+          "knowledge_summary": "Personalized conversational systems improve usefulness by adapting responses to stable user preferences and recurring context. A useful design separates persistent defaults from task-specific instructions so the model does not need to relearn the same preferences in every chat. Persistent memory is best used for information that will matter again across future conversations, while short-lived task details belong in the active prompt. The operational goal is consistency without forcing every exchange to carry the full user profile.",
+          "match_candidates": [],
+          "operational_insight": "Treat personalization as layered state management: set durable defaults once, store only recurring context, and keep the current task in the live message. That reduces prompt bloat and makes behavior easier to predict and revise.",
+          "primary_tag": "human-ai-workflows",
+          "proposed_tags": [
+            "human-ai-workflows",
+            "agent-memory",
+            "prompt-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for conversational AI and support automation because personalization often fails when teams mix defaults, memory, and task instructions into one undifferentiated prompt. A cleaner separation makes assistants easier to tune, audit, and hand off across sessions.",
+          "secondary_tag": "agent-memory",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Custom instructions tell ChatGPT what it should know about you and how you prefer it to respond.\" \"Memory helps ChatGPT remember details you choose to share so future replies can feel more tailored\u2014without you re-explaining the basics each time.\"",
+          "topic_slug": "personalized-conversational-ai",
+          "topic_title": "Personalized Conversational AI",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "680de082-c09c-46b3-be17-c9c7c28b7ccc",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Custom instructions are for stable preferences such as role, tone, output format, and guardrails.",
+              "Memory is for recurring context that should carry across chats.",
+              "Task-specific constraints should stay in the live prompt rather than being baked into defaults.",
+              "Users should save recurring context and avoid storing one-off facts."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "human-ai-workflows",
+            "agent-memory",
+            "prompt-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Stable preferences should be persistent, not re-specified every turn.",
+            "The live prompt should carry the immediate task and any exceptions.",
+            "Memory should not be used as a catch-all for every detail the user mentions.",
+            "The clearer the instruction hierarchy, the easier it is to troubleshoot inconsistent behavior."
+          ],
+          "knowledge_summary": "Agent behavior becomes more controllable when instructions are separated into layers with different lifetimes and scopes. Stable preferences belong in a default configuration layer, while immediate task constraints stay in the active request. A memory layer can hold user-approved recurring context that should survive across sessions. This reduces conflict between long-term behavior and one-off task needs.",
+          "match_candidates": [],
+          "operational_insight": "Design personalization as a stack of instructions, not a single prompt blob. That makes behavior easier to reason about, update, and debug when outputs drift.",
+          "primary_tag": "model-personality",
+          "proposed_tags": [
+            "model-personality",
+            "context-engineering",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "personalized-conversational-ai"
+          ],
+          "relevance_note": "This is durable for AI assistants because many production failures come from unclear instruction hierarchy rather than model weakness alone. Layering also helps support systems separate policy, persona, and task context without overfitting the assistant to a single conversation.",
+          "secondary_tag": "context-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Think of custom instructions like setting your default 'working style' so you don\u2019t have to repeat yourself every time. Use them for stable preferences (role, tone, formats), and use the chat prompt itself for the specific task at hand.\"",
+          "topic_slug": "behavioral-instruction-layers-for-agents",
+          "topic_title": "Behavioral Instruction Layers",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "07f92819-99b0-40bc-acff-fd41aea99f8b",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Stable preferences should be persistent, not re-specified every turn.",
+              "The live prompt should carry the immediate task and any exceptions.",
+              "Memory should not be used as a catch-all for every detail the user mentions.",
+              "The clearer the instruction hierarchy, the easier it is to troubleshoot inconsistent behavior."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "personalized-conversational-ai"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "model-personality",
+            "context-engineering",
+            "workflow-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/academy/personalization",
+    "content_sha256": "6b1f3671442592ed0cb9b967065a6d77c737d5418ae176ca904db74ff4a135c9",
+    "publication": "OpenAI",
+    "published_date": "2026-04-10",
+    "raw_html_rel_path": "raw/readwise/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f.html",
+    "raw_md_rel_path": "raw/readwise/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f.md",
+    "source_id": "personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f",
+    "title": "Personalizing ChatGPT"
+  }
+}

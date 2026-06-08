@@ -1,0 +1,681 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:58:24+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntJlTqHH2ej0ubSn5jGkdBusuUPC",
+          "token_usage": {
+            "completion_tokens": 194,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4713,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4907
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntJnw6TPMDFqzpNJqgNmFENZEgpa",
+          "token_usage": {
+            "completion_tokens": 897,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4321,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5218
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntJvHg9llZdHsJIu0OskbFn6iSWx",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1248,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34009,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 35257
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntJvHg9llZdHsJIu0OskbFn6iSWx",
+    "token_usage": {
+      "completion_tokens": 2339,
+      "prompt_tokens": 43043,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 45382
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-03-19",
+        "confidence": 0.88,
+        "evidence_from_source": "The article describes Intercom's Fin Flywheel as a repeatable process with four steps\u2014train, test, deploy, analyze\u2014and says the system gets better the more it is used.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-restructuring",
+        "proposed_tags": [
+          "workflow-restructuring",
+          "human-ai-collaboration",
+          "ai-operationalization"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "support-automation-becomes-a-growth-function"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "support-automation",
+        "suggested_new_tags": [
+          "support-automation"
+        ],
+        "supporting_data_points": [
+          "Fin Flywheel has four repeatable steps: train, test, deploy, analyze.",
+          "The process uses fully simulated customer conversations before going live.",
+          "Human support reps log suggestions in the moment for quick review and implementation."
+        ],
+        "supporting_snippet": "This isn\u2019t a one-time setup, it\u2019s a continuous loop where every interaction feeds ongoing improvement. Rather than deploying AI and assuming it will perform as expected, improvement is built into the system itself. The more Fin is used, the better it gets.",
+        "time_sensitivity": "Actionable as of 2026-03-19; the source presents this as an operating principle for AI support systems rather than a time-limited market forecast.",
+        "trend_description": "Support automation systems increasingly depend on continuous feedback loops rather than one-time deployment and occasional tuning. The operational pattern is to train, test, deploy, and analyze in repeated cycles so failures discovered in production or simulation can be fed back into the system. This shifts support quality work from episodic releases toward ongoing maintenance and refinement.",
+        "trend_slug": "ai-support-improvement-becomes-continuous",
+        "trend_title": "AI Support Improvement Becomes Continuous",
+        "uncertainty_note": "The evidence is a vendor self-description, so it shows an operating model but not comparative performance against alternatives. The article does not provide metrics proving that the loop improves outcomes or scales cleanly across organizations.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "Published on Intercom's own blog and describes Intercom's internal practices.",
+        "Core claims are supported by the company's own process descriptions rather than external data or benchmarks.",
+        "The article presents the Fin Flywheel and support workflow as examples of how Intercom applies Kaizen; it is a self-description of implementation."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says small improvements can add up to a better AI support system. It uses Kaizen, a Japanese method of continuous improvement, as the main idea. Intercom says it applies this idea to its AI agent by training, testing, deploying, and then analyzing performance in a loop. It also applies the same thinking to human support work, so agents can quickly capture what went wrong and suggest fixes. The basic insight is simple: don\u2019t treat AI as a one-time launch. Build improvement into the workflow so the system gets better from real use.",
+      "assessed_as_of": "2026-03-19",
+      "contradictions_and_skepticism": "The article leans on a clean continuous-improvement narrative, but real support operations often involve tradeoffs between speed, quality, and escalation policy that are not discussed here. The claim that the first time you solve an issue should be the last time it happens is directionally good, but it is more an ideal than an operational guarantee. The most notable skepticism point is that this is a vendor-authored example, so the evidence is self-reported and may reflect best-case framing more than generalizable performance.",
+      "key_insights": [
+        "Kaizen is presented as a practical operating model: identify one small problem, test a change, measure it, and repeat.",
+        "Intercom\u2019s Fin Flywheel turns AI improvement into a repeatable loop rather than a one-off deployment.",
+        "The article\u2019s strongest operational idea is to use simulated conversations before launch so failures can be found without exposing customers to them.",
+        "Frontline support reps are treated as a source of product and process improvements, not just case resolution.",
+        "The article emphasizes low-friction suggestion capture, which matters because improvement systems fail if logging fixes is burdensome."
+      ],
+      "limitations_and_open_questions": "The article gives no quantitative evidence for the Fin Flywheel or the human support improvement process, so the actual impact is unproven in the text. It does not explain how improvements are prioritized, how often the loop runs, or what thresholds trigger changes. The lightweight logging process sounds useful, but the article does not address whether it creates review bottlenecks, duplicate suggestions, or governance issues. There is no discussion of failure cases, safety controls, or privacy considerations for using customer conversations as training and analysis material. The Kaizen framing is compelling, but the article does not show whether this approach scales beyond a single company\u2019s internal workflow.",
+      "sources": [
+        "https://www.intercom.com/blog/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support/"
+      ],
+      "summary": "The article argues that Kaizen\u2014small, continuous improvement\u2014can be a useful operating model for AI-enabled support systems. It describes Kaizen as a structured loop of small changes, testing, measurement, and refinement, rather than a vague preference for incremental progress. Intercom applies this idea to its Agent Fin product through a \u201cFin Flywheel\u201d with four steps: train, test, deploy, and analyze. The key point is that improvement is embedded in everyday usage, so each interaction can feed the next round of changes. The same philosophy is also applied to the human support team, where frontline reps are encouraged to identify repeat issues, explain why a case reached them, and log fixes with minimal friction. The article presents this as a shared system in which both AI and people learn continuously from customer conversations.",
+      "why_it_matters": "The piece is useful because it turns a familiar management slogan into a concrete workflow for AI product operations. Instead of treating model quality as a one-time tuning problem, it describes a loop where training, simulation, deployment, and analysis are connected. That is a durable pattern for teams that need to keep an AI system aligned with messy real-world cases. The article is also pragmatic in how it uses human feedback: the people handling edge cases are asked to explain failure modes and feed fixes back into the system. That makes the learning process more operational than aspirational, even though the article does not provide metrics, benchmarks, or evidence that this loop outperforms alternatives. The support-team process is the clearest service-automation implication: a human fallback is used as a source of structured learning, and the goal is to reduce repeat issues over time. As of 2026-03-19, the idea is actionable as a design principle, but the article is still a vendor self-description rather than an externally validated study."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article arguing a specific operational philosophy, not a bundle of unrelated items.",
+        "Structured as an explanatory vendor blog post with examples from Intercom's own Fin Flywheel and Human Support process.",
+        "No Q&A transcript, tool roundup, or step-by-step tutorial structure."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "A concrete illustration is the four-step loop described for Agent Fin: \"Train: Teach Fin how to handle and resolve the most complex customer queries. Test: Run fully simulated customer conversations from start to finish... Deploy... Analyze.\"",
+        "key_points": [
+          "Small, repeated changes are easier to adopt than large periodic rewrites.",
+          "Simulation before deployment can catch failure modes without exposing customers to them.",
+          "Human support interactions can be a structured source of product improvement.",
+          "Low-friction suggestion capture matters because improvement systems fail when logging is burdensome."
+        ],
+        "knowledge_summary": "AI support systems improve more reliably when changes are treated as a repeating operational loop rather than a one-time launch. The loop usually includes identifying a small failure mode, testing a change, measuring the result, and refining the system. This approach works best when both automated and human workflows feed lessons back into the product. It is especially useful in service automation, where edge cases and support interactions expose weaknesses that are hard to see in isolated tests.",
+        "match_candidates": [],
+        "operational_insight": "Treat support quality as an operating system with recurring feedback, not as a static model quality problem. The practical leverage comes from making training, simulation, deployment, and analysis part of one loop.",
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "workflow-design",
+          "agent-systems",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "support-automation-as-operating-model",
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "This matters long-term because customer support systems accumulate edge cases faster than teams can manually redesign them. A continuous-improvement loop gives AI support products a durable way to absorb real interaction data and reduce repeat failures over time.",
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "At Intercom, we apply this same philosophy to how we manage our Agent Fin through a process we call the \u201cFin Flywheel\u201d. Here\u2019s how this works.",
+        "topic_slug": "continuous-improvement-for-ai-support-systems",
+        "topic_title": "Continuous Improvement for AI Support Systems",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "The source describes reps asking, \"Why did this reach me? Why couldn\u2019t Fin resolve it? How can we prevent this from happening again?\" and logging suggestions \"in the moment\" with minimal admin.",
+        "key_points": [
+          "Frontline reps can identify failure modes that dashboards miss.",
+          "Fast review and implementation loops prevent suggestion backlogs.",
+          "The pattern links human escalation with knowledge-base and tooling updates.",
+          "Minimal logging friction is a prerequisite for participation."
+        ],
+        "knowledge_summary": "Support organizations can turn frontline case handling into a structured improvement channel. Agents and support reps are well positioned to identify repeat issues, explain why a case escalated, and propose fixes to content, process, or tooling. The key design requirement is to keep feedback capture lightweight so it happens in the flow of work. This pattern connects service delivery with product and knowledge-base maintenance.",
+        "match_candidates": [],
+        "operational_insight": "If the people closest to customers are not given a cheap way to record recurring problems, the organization loses its best signal for reducing repeat work. The durable design pattern is to make case review a source of product and knowledge updates.",
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "human-ai-workflows",
+          "organizational-design",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "support-automation-as-operating-model",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This is durable for service automation because human fallback remains important even in AI-heavy support stacks. The operational advantage comes from converting escalations into fixes instead of letting them remain isolated incidents.",
+        "secondary_tag": "human-ai-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "We\u2019ve built a lightweight, AI-powered way to log suggestions in the moment. No long explanations or heavy admin is required. Ideas are reviewed quickly and implemented by subject matter experts or by the team themselves.",
+        "topic_slug": "human-feedback-loops-in-support-operations",
+        "topic_title": "Human Feedback Loops in Support Operations",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-03-19",
+          "confidence": 0.88,
+          "evidence_from_source": "The article describes Intercom's Fin Flywheel as a repeatable process with four steps\u2014train, test, deploy, analyze\u2014and says the system gets better the more it is used.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-restructuring",
+          "proposed_tags": [
+            "workflow-restructuring",
+            "human-ai-collaboration",
+            "ai-operationalization"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "support-automation-becomes-a-growth-function"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "support-automation",
+          "suggested_new_tags": [
+            "support-automation"
+          ],
+          "supporting_data_points": [
+            "Fin Flywheel has four repeatable steps: train, test, deploy, analyze.",
+            "The process uses fully simulated customer conversations before going live.",
+            "Human support reps log suggestions in the moment for quick review and implementation."
+          ],
+          "supporting_snippet": "This isn\u2019t a one-time setup, it\u2019s a continuous loop where every interaction feeds ongoing improvement. Rather than deploying AI and assuming it will perform as expected, improvement is built into the system itself. The more Fin is used, the better it gets.",
+          "time_sensitivity": "Actionable as of 2026-03-19; the source presents this as an operating principle for AI support systems rather than a time-limited market forecast.",
+          "trend_description": "Support automation systems increasingly depend on continuous feedback loops rather than one-time deployment and occasional tuning. The operational pattern is to train, test, deploy, and analyze in repeated cycles so failures discovered in production or simulation can be fed back into the system. This shifts support quality work from episodic releases toward ongoing maintenance and refinement.",
+          "trend_slug": "ai-support-improvement-becomes-continuous",
+          "trend_title": "AI Support Improvement Becomes Continuous",
+          "uncertainty_note": "The evidence is a vendor self-description, so it shows an operating model but not comparative performance against alternatives. The article does not provide metrics proving that the loop improves outcomes or scales cleanly across organizations.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "42c0d38f-9efd-4fe0-beab-e44918d33dea",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "support-automation-becomes-a-growth-function"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Fin Flywheel has four repeatable steps: train, test, deploy, analyze.",
+              "The process uses fully simulated customer conversations before going live.",
+              "Human support reps log suggestions in the moment for quick review and implementation."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-restructuring",
+            "human-ai-collaboration",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "Published on Intercom's own blog and describes Intercom's internal practices.",
+          "Core claims are supported by the company's own process descriptions rather than external data or benchmarks.",
+          "The article presents the Fin Flywheel and support workflow as examples of how Intercom applies Kaizen; it is a self-description of implementation."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Kaizen is presented as a practical operating model: identify one small problem, test a change, measure it, and repeat.",
+          "Intercom\u2019s Fin Flywheel turns AI improvement into a repeatable loop rather than a one-off deployment.",
+          "The article\u2019s strongest operational idea is to use simulated conversations before launch so failures can be found without exposing customers to them.",
+          "Frontline support reps are treated as a source of product and process improvements, not just case resolution.",
+          "The article emphasizes low-friction suggestion capture, which matters because improvement systems fail if logging fixes is burdensome."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.intercom.com/blog/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article arguing a specific operational philosophy, not a bundle of unrelated items.",
+          "Structured as an explanatory vendor blog post with examples from Intercom's own Fin Flywheel and Human Support process.",
+          "No Q&A transcript, tool roundup, or step-by-step tutorial structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "A concrete illustration is the four-step loop described for Agent Fin: \"Train: Teach Fin how to handle and resolve the most complex customer queries. Test: Run fully simulated customer conversations from start to finish... Deploy... Analyze.\"",
+          "key_points": [
+            "Small, repeated changes are easier to adopt than large periodic rewrites.",
+            "Simulation before deployment can catch failure modes without exposing customers to them.",
+            "Human support interactions can be a structured source of product improvement.",
+            "Low-friction suggestion capture matters because improvement systems fail when logging is burdensome."
+          ],
+          "knowledge_summary": "AI support systems improve more reliably when changes are treated as a repeating operational loop rather than a one-time launch. The loop usually includes identifying a small failure mode, testing a change, measuring the result, and refining the system. This approach works best when both automated and human workflows feed lessons back into the product. It is especially useful in service automation, where edge cases and support interactions expose weaknesses that are hard to see in isolated tests.",
+          "match_candidates": [],
+          "operational_insight": "Treat support quality as an operating system with recurring feedback, not as a static model quality problem. The practical leverage comes from making training, simulation, deployment, and analysis part of one loop.",
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "workflow-design",
+            "agent-systems",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "support-automation-as-operating-model",
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "This matters long-term because customer support systems accumulate edge cases faster than teams can manually redesign them. A continuous-improvement loop gives AI support products a durable way to absorb real interaction data and reduce repeat failures over time.",
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "At Intercom, we apply this same philosophy to how we manage our Agent Fin through a process we call the \u201cFin Flywheel\u201d. Here\u2019s how this works.",
+          "topic_slug": "continuous-improvement-for-ai-support-systems",
+          "topic_title": "Continuous Improvement for AI Support Systems",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f2d9b261-b834-4721-87a0-aa1d26879821",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Small, repeated changes are easier to adopt than large periodic rewrites.",
+              "Simulation before deployment can catch failure modes without exposing customers to them.",
+              "Human support interactions can be a structured source of product improvement.",
+              "Low-friction suggestion capture matters because improvement systems fail when logging is burdensome."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "support-automation-as-operating-model",
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "workflow-design",
+            "agent-systems",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "The source describes reps asking, \"Why did this reach me? Why couldn\u2019t Fin resolve it? How can we prevent this from happening again?\" and logging suggestions \"in the moment\" with minimal admin.",
+          "key_points": [
+            "Frontline reps can identify failure modes that dashboards miss.",
+            "Fast review and implementation loops prevent suggestion backlogs.",
+            "The pattern links human escalation with knowledge-base and tooling updates.",
+            "Minimal logging friction is a prerequisite for participation."
+          ],
+          "knowledge_summary": "Support organizations can turn frontline case handling into a structured improvement channel. Agents and support reps are well positioned to identify repeat issues, explain why a case escalated, and propose fixes to content, process, or tooling. The key design requirement is to keep feedback capture lightweight so it happens in the flow of work. This pattern connects service delivery with product and knowledge-base maintenance.",
+          "match_candidates": [],
+          "operational_insight": "If the people closest to customers are not given a cheap way to record recurring problems, the organization loses its best signal for reducing repeat work. The durable design pattern is to make case review a source of product and knowledge updates.",
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "human-ai-workflows",
+            "organizational-design",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "support-automation-as-operating-model",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This is durable for service automation because human fallback remains important even in AI-heavy support stacks. The operational advantage comes from converting escalations into fixes instead of letting them remain isolated incidents.",
+          "secondary_tag": "human-ai-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "We\u2019ve built a lightweight, AI-powered way to log suggestions in the moment. No long explanations or heavy admin is required. Ideas are reviewed quickly and implemented by subject matter experts or by the team themselves.",
+          "topic_slug": "human-feedback-loops-in-support-operations",
+          "topic_title": "Human Feedback Loops in Support Operations",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6a6026f3-eec0-461e-a6c8-1b7e37f95b55",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Frontline reps can identify failure modes that dashboards miss.",
+              "Fast review and implementation loops prevent suggestion backlogs.",
+              "The pattern links human escalation with knowledge-base and tooling updates.",
+              "Minimal logging friction is a prerequisite for participation."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "support-automation-as-operating-model",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "human-ai-workflows",
+            "organizational-design",
+            "workflow-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Caroline Glackin",
+    "canonical_url": "https://www.intercom.com/blog/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support/",
+    "content_sha256": "ff0073788434d46430283e1839d408f04188b4371011e9ab805d8cd52da3a6dc",
+    "publication": "Intercom",
+    "published_date": "2026-03-19",
+    "raw_html_rel_path": "raw/readwise/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support-01knemav4tebprk93x7286a9fm.html",
+    "raw_md_rel_path": "raw/readwise/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support-01knemav4tebprk93x7286a9fm.md",
+    "source_id": "kaizen-for-the-ai-era-how-small-improvements-build-smarter-support-01knemav4tebprk93x7286a9fm",
+    "title": "Kaizen for the AI era: How small improvements build smarter support"
+  }
+}

@@ -1,0 +1,834 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T22:00:05+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntLIZ72p2o1z5kvwIgpEAkxLRdCK",
+          "token_usage": {
+            "completion_tokens": 194,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5443,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5637
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntLK8Qw40QOyCmnvOLq4p2n75Wns",
+          "token_usage": {
+            "completion_tokens": 1046,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5051,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6097
+          }
+        },
+        {
+          "cache_hit_rate": 0.1390111460417262,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DntLT8O4VC898sCK2CoEBgw3LS5ES",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1951,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34990,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 36941
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntLT8O4VC898sCK2CoEBgw3LS5ES",
+    "token_usage": {
+      "completion_tokens": 3191,
+      "prompt_tokens": 45484,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 48675
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-15",
+        "confidence": 0.84,
+        "evidence_from_source": "Intercom presents Operator as an agent that spans Fin and the helpdesk, handles recurring operational work, and prepares reviewable proposals for human approval.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "enterprise-agents-move-into-customer-infrastructure"
+        ],
+        "secondary_tag": "workflow-restructuring",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "support-automation",
+        "suggested_new_tags": [
+          "support-automation"
+        ],
+        "supporting_data_points": [
+          "Operator works across both Fin and the Intercom helpdesk.",
+          "Intercom says more than 200 early users are trying it.",
+          "The product is available in early access as of 2026-05-15.",
+          "The workflow includes proposal-style human approval before changes go live."
+        ],
+        "supporting_snippet": "\u201cOperator manages help content, builds automation, does the ongoing work that determines how well Fin performs, and runs the operational work your human team doesn\u2019t have time for.\u201d",
+        "time_sensitivity": "Actionable as of 2026-05-15; the source is an early-access product announcement, so the pattern is visible in vendor direction but not yet validated at broad scale.",
+        "trend_description": "Support automation is shifting from isolated bots toward agents that operate across content, configuration, analytics, and human workflows. The important change is that the system is no longer just answering customers; it is also maintaining the operational machinery that keeps the support function working. This includes drafting knowledge-base updates, diagnosing misconfigured behavior, and preparing incident responses for approval. The trend matters because it makes support automation more like an operations layer than a front-end chatbot.",
+        "trend_slug": "support-automation-moves-toward-agentic-operations-layers",
+        "trend_title": "Support Automation Moves Toward Agentic Operations Layers",
+        "uncertainty_note": "Evidence is limited to a vendor launch narrative, with no external benchmarks or operational metrics. The direction may prove durable, but the source does not show whether the claimed scope works reliably in production across diverse support environments.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The article is published on Intercom's own blog and describes its own product launch.",
+        "Claims about Operator's capabilities, user counts, and internal team usage come from the vendor.",
+        "No independent benchmark, research methodology, or external validation is presented."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "Intercom is introducing Operator, a helper agent for support operations. The basic idea is simple: instead of making people manually dig through conversations, update help articles, and tune automation rules one by one, Operator can draft those changes and analysis reports for review. It sits across Fin and the helpdesk, so it can look at both the AI system and the human team\u2019s work. The article says it can answer questions from operational data, keep knowledge bases updated, debug broken behavior, and propose new automations. The human still approves the final change. The piece is mainly interesting because it packages a lot of support-ops chores into one reviewable workflow, but the evidence is only Intercom\u2019s own launch description as of 2026-05-15.",
+      "assessed_as_of": "2026-05-15",
+      "contradictions_and_skepticism": "The launch language is ambitious, but the evidence is mostly aspirational product description. Claims that Operator can broadly handle analysis, content updates, debugging, and automation design are plausible in narrow cases, yet the article does not show verified results or edge-case behavior. The \"purpose-built tools\" framing is stronger than a generic agent claim, but it still depends on how robust those tools are in production. The pull-request metaphor is helpful, though it may understate the complexity of review, versioning, and accountability when many automated proposals are generated.",
+      "key_insights": [
+        "Operator is positioned as an operations layer around Fin, not as a replacement for the underlying model.",
+        "The reviewable proposal workflow is central: Operator drafts changes, but humans approve before anything goes live.",
+        "A single agent is claimed to cover data analysis, knowledge-base maintenance, debugging, and automation design.",
+        "Intercom emphasizes ongoing, recurring work such as weekly analysis and content upkeep, not just one-off tasks.",
+        "The article gives no benchmark numbers for accuracy, savings, or quality, so the practical value remains vendor-asserted as of 2026-05-15."
+      ],
+      "limitations_and_open_questions": "The article does not provide benchmarks for accuracy, latency, cost, human review time, or error rates. It also leaves open how Operator handles unsafe edits, ambiguous product changes, conflicting sources of truth, localization quality, or permissions boundaries across help content and Fin configuration. The \"more than 200 early users\" claim is not accompanied by usage data, retention, or outcomes. It is unclear how much of the value comes from actual autonomy versus better packaging of existing internal tools and workflows. Integration depth, auditability, rollback behavior, and failure modes are not described in detail.",
+      "sources": [
+        "https://www.intercom.com/blog/introducing-operator/"
+      ],
+      "summary": "Intercom announces Operator, an agent that works across Fin and the Intercom helpdesk to manage customer-operations work that usually sits between AI systems and human teams. The article frames the problem as twofold: on the AI side, Fin\u2019s performance depends on surrounding knowledge content, configuration, and diagnosis work; on the human side, teams need help with incident response, rep coaching, prioritization, and repetitive operational follow-up. Operator is presented as a purpose-built system rather than a general model, with tools for asking questions about operational data, analyzing conversation samples, drafting knowledge-base updates, debugging Fin behavior, building Procedures, and proposing changes through a reviewable pull-request-style workflow. The product can also automate recurring analyses, identify content gaps, localize edits, and surface automation opportunities by volume and estimated weekly time spent. Intercom says the system already has more than 200 early users and is available in early access as of 2026-05-15, but the claims are entirely vendor-supplied and unbenchmarked.",
+      "why_it_matters": "The article matters because it describes a concrete pattern for wrapping an operational AI system in a tool-using agent that can inspect data, propose edits, and prepare changes for review. That is more operationally specific than a generic chatbot claim: the agent is asked to explain metric changes, surface conversation patterns, draft help-center updates, and propose fixes for misconfigured behavior. The pull-request-style approval step is also important because it keeps the human in control while still letting the agent do the tedious diagnostic and drafting work. For practitioners building AI products, the useful takeaway is the combination of structured tools, domain-specific actions, and a review gate rather than a free-form agent. The article also suggests a practical way to scope agents: narrow them to repetitive operational work where the team already has clear artifacts to inspect, edit, and approve. The evidence is limited because all performance claims come from the vendor and there are no external evaluations or cost numbers. As of 2026-05-15, the idea looks productizable and worth monitoring for teams already running Intercom and Fin, but the durability of the claimed step change is still unproven outside the launch narrative. For support operations specifically, the closing implication is straightforward: the product is aimed at customer operations, knowledge management, incident response, and team coaching, so its real test is whether it reliably reduces reactive triage and repetitive back-office work."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent product announcement about one named feature, Operator, rather than a bundle of unrelated items.",
+        "Structured as vendor explainer sections ('Why we built it', 'How Operator works') with no roundup/list format.",
+        "Published on the vendor's own blog, which strongly signals a standard product article rather than an interview or independent analysis."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.96,
+        "core_capabilities": [
+          "It can analyze operational data and return structured answers with charts and breakdowns.",
+          "It can find help-center articles that need updating, draft edits in the team\u2019s tone, and propose new articles for review.",
+          "It can debug Fin conversations, propose fixes, and run simulation tests before approval.",
+          "It can build Procedures, Guidance rules, data connectors, monitors, and workflows from a single prompt.",
+          "It can identify affected customers during incidents and draft targeted responses for approval."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It works across Fin and the Intercom helpdesk, which makes it relevant to teams already using Intercom\u2019s support stack.",
+          "It can draft localized help-center content, which implies workflow support across translated documentation.",
+          "It uses a proposal workflow described as a pull request-style review step before changes take effect.",
+          "It is built on purpose-built tools for support operations, including semantic knowledge-base search and conversation-level debugging."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "Intercom says more than 200 early users are already trying Operator, and it is available in early access as of 2026-05-15. That indicates real productization, but the evidence is still launch-stage and entirely vendor-supplied. The maturity signal is therefore early-stage rather than validated at scale.",
+        "name": "Operator",
+        "operational_relevance": "Operator sits in the layer between support work and the systems that execute it: help content, automation rules, conversation analysis, and team workflows. For support operations teams, that makes it relevant as an orchestration product for drafting, diagnosing, and proposing changes that humans then review. The article frames it as useful for recurring operational labor such as weekly analysis, help-center upkeep, incident triage, and rep coaching.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "customer-support",
+          "agentic",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "ai-orchestration",
+          "support-automation"
+        ],
+        "related_tools": [],
+        "short_description": "Operator is an agent that works across Intercom\u2019s Fin and helpdesk to manage customer-operations work. It is presented as a purpose-built, tool-based system rather than a general model.",
+        "strengths": "- It combines analysis, content maintenance, and automation-building in one workflow, which matters because support teams usually do these tasks in separate tools and with separate handoffs.\n- The proposal-review model keeps a human approval gate before changes go live, which is important for customer-facing systems where unsafe edits or bad automations can be expensive.\n- It can work across both Fin and the helpdesk, so it is aimed at the operational surface where AI and human support work intersect.\n- The source says it can generate structured answers with charts and breakdowns from operational data, which makes it useful for recurring reporting and root-cause analysis.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cToday we\u2019re announcing Operator, an Agent that works across both Fin and the Intercom helpdesk to help you manage your customer operations.\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "The article provides no benchmarks for accuracy, latency, review time, cost, or error rates, so practical performance remains vendor-asserted as of 2026-05-15. It also does not describe failure modes, permission boundaries, rollback behavior, or how well it handles ambiguous or conflicting content sources. The product may be more useful as a packaging layer around existing support workflows than as a fully autonomous operator; the source does not prove otherwise."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The agent can do cognitive and drafting work without being trusted to publish directly.",
+          "A proposal format makes AI output legible as a change request rather than an opaque chat response.",
+          "Human approval is a control mechanism, not just a UX detail; it defines the boundary of system autonomy.",
+          "The pattern is useful when failure costs are high and edits must be reviewed before release."
+        ],
+        "knowledge_summary": "Some agent systems are most useful when they prepare work for review rather than execute directly. The agent does the drafting, analysis, or recommendation step, then a human approves the result before it takes effect. This pattern reduces risk in customer-facing or operationally sensitive workflows because it preserves human control over final changes. It also makes agent output easier to audit, edit, and roll back. The approach is especially relevant when the agent is updating live systems, policies, or support content.",
+        "match_candidates": [],
+        "operational_insight": "Use agents to compress the expensive reasoning and drafting work, but keep the final commit behind an explicit approval step when the action affects customers, configuration, or external communications.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "auditability",
+          "human-ai-workflows"
+        ],
+        "related_topics": [
+          "structured-drafting-for-human-review",
+          "agent-native-auditability"
+        ],
+        "relevance_note": "This pattern matters wherever AI systems touch live customer operations, compliance-sensitive changes, or shared configuration. It gives teams a practical middle ground between manual work and full autonomy, which is durable across agent products and support stacks.",
+        "secondary_tag": "auditability",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cWhen Operator updates content, adjusts configuration, or modifies how Fin behaves, it creates a proposal \u2013 a structured diff of what\u2019s changing and why. You review it, edit if needed, and approve before it takes effect.\u201d",
+        "topic_slug": "approval-based-agent-actions",
+        "topic_title": "Approval-Based Agent Actions",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Support automation spans content, configuration, reporting, incident response, and rep coaching.",
+          "Recurring work is often the bottleneck, so an agent that handles the operational backlog can matter more than a better single-turn chatbot.",
+          "The workflow becomes more durable when the agent works across both AI and human support surfaces.",
+          "A good support agent should surface actionable changes, not just summaries."
+        ],
+        "knowledge_summary": "Support operations can be reorganized as a sequence of agent-readable tasks: data analysis, knowledge updates, automation design, incident handling, and team management. The useful unit is not a single chatbot reply but a repeatable workflow that spans multiple artifacts and systems. Agents become most valuable when they can inspect conversations, diagnose root causes, draft changes, and surface next actions for humans. This shifts support from reactive manual triage toward a managed operating loop with review points. The pattern fits customer support teams that already have structured artifacts such as help content, tickets, rules, and metrics.",
+        "match_candidates": [],
+        "operational_insight": "Model support work as a set of structured operational artifacts that an agent can read, transform, and propose changes against, rather than as free-form conversation alone.",
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "enterprise-workflows",
+          "agent-orchestration"
+        ],
+        "related_topics": [
+          "approval-based-agent-actions",
+          "agent-maintained-knowledge-bases"
+        ],
+        "relevance_note": "This is broadly relevant to conversational AI and service automation because many support improvements depend on recurring back-office work rather than live chat handling alone. The pattern helps teams think in terms of maintainable operating loops, not one-off bot launches.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cOperator manages help content, builds automation, does the ongoing work that determines how well Fin performs, and runs the operational work your human team doesn\u2019t have time for.\u201d",
+        "topic_slug": "support-operations-as-agent-workflow",
+        "topic_title": "Support Operations as Agent Workflow",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-15",
+          "confidence": 0.84,
+          "evidence_from_source": "Intercom presents Operator as an agent that spans Fin and the helpdesk, handles recurring operational work, and prepares reviewable proposals for human approval.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "enterprise-agents-move-into-customer-infrastructure"
+          ],
+          "secondary_tag": "workflow-restructuring",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "support-automation",
+          "suggested_new_tags": [
+            "support-automation"
+          ],
+          "supporting_data_points": [
+            "Operator works across both Fin and the Intercom helpdesk.",
+            "Intercom says more than 200 early users are trying it.",
+            "The product is available in early access as of 2026-05-15.",
+            "The workflow includes proposal-style human approval before changes go live."
+          ],
+          "supporting_snippet": "\u201cOperator manages help content, builds automation, does the ongoing work that determines how well Fin performs, and runs the operational work your human team doesn\u2019t have time for.\u201d",
+          "time_sensitivity": "Actionable as of 2026-05-15; the source is an early-access product announcement, so the pattern is visible in vendor direction but not yet validated at broad scale.",
+          "trend_description": "Support automation is shifting from isolated bots toward agents that operate across content, configuration, analytics, and human workflows. The important change is that the system is no longer just answering customers; it is also maintaining the operational machinery that keeps the support function working. This includes drafting knowledge-base updates, diagnosing misconfigured behavior, and preparing incident responses for approval. The trend matters because it makes support automation more like an operations layer than a front-end chatbot.",
+          "trend_slug": "support-automation-moves-toward-agentic-operations-layers",
+          "trend_title": "Support Automation Moves Toward Agentic Operations Layers",
+          "uncertainty_note": "Evidence is limited to a vendor launch narrative, with no external benchmarks or operational metrics. The direction may prove durable, but the source does not show whether the claimed scope works reliably in production across diverse support environments.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "81521887-6a61-4677-8167-507c0d96382e",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "enterprise-agents-move-into-customer-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Operator works across both Fin and the Intercom helpdesk.",
+              "Intercom says more than 200 early users are trying it.",
+              "The product is available in early access as of 2026-05-15.",
+              "The workflow includes proposal-style human approval before changes go live."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The article is published on Intercom's own blog and describes its own product launch.",
+          "Claims about Operator's capabilities, user counts, and internal team usage come from the vendor.",
+          "No independent benchmark, research methodology, or external validation is presented."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Operator is positioned as an operations layer around Fin, not as a replacement for the underlying model.",
+          "The reviewable proposal workflow is central: Operator drafts changes, but humans approve before anything goes live.",
+          "A single agent is claimed to cover data analysis, knowledge-base maintenance, debugging, and automation design.",
+          "Intercom emphasizes ongoing, recurring work such as weekly analysis and content upkeep, not just one-off tasks.",
+          "The article gives no benchmark numbers for accuracy, savings, or quality, so the practical value remains vendor-asserted as of 2026-05-15."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.intercom.com/blog/introducing-operator/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent product announcement about one named feature, Operator, rather than a bundle of unrelated items.",
+          "Structured as vendor explainer sections ('Why we built it', 'How Operator works') with no roundup/list format.",
+          "Published on the vendor's own blog, which strongly signals a standard product article rather than an interview or independent analysis."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "core_capabilities": [
+            "It can analyze operational data and return structured answers with charts and breakdowns.",
+            "It can find help-center articles that need updating, draft edits in the team\u2019s tone, and propose new articles for review.",
+            "It can debug Fin conversations, propose fixes, and run simulation tests before approval.",
+            "It can build Procedures, Guidance rules, data connectors, monitors, and workflows from a single prompt.",
+            "It can identify affected customers during incidents and draft targeted responses for approval."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It works across Fin and the Intercom helpdesk, which makes it relevant to teams already using Intercom\u2019s support stack.",
+            "It can draft localized help-center content, which implies workflow support across translated documentation.",
+            "It uses a proposal workflow described as a pull request-style review step before changes take effect.",
+            "It is built on purpose-built tools for support operations, including semantic knowledge-base search and conversation-level debugging."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "Intercom says more than 200 early users are already trying Operator, and it is available in early access as of 2026-05-15. That indicates real productization, but the evidence is still launch-stage and entirely vendor-supplied. The maturity signal is therefore early-stage rather than validated at scale.",
+          "name": "Operator",
+          "operational_relevance": "Operator sits in the layer between support work and the systems that execute it: help content, automation rules, conversation analysis, and team workflows. For support operations teams, that makes it relevant as an orchestration product for drafting, diagnosing, and proposing changes that humans then review. The article frames it as useful for recurring operational labor such as weekly analysis, help-center upkeep, incident triage, and rep coaching.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "customer-support",
+            "agentic",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "ai-orchestration",
+            "support-automation"
+          ],
+          "related_tools": [],
+          "short_description": "Operator is an agent that works across Intercom\u2019s Fin and helpdesk to manage customer-operations work. It is presented as a purpose-built, tool-based system rather than a general model.",
+          "strengths": "- It combines analysis, content maintenance, and automation-building in one workflow, which matters because support teams usually do these tasks in separate tools and with separate handoffs.\n- The proposal-review model keeps a human approval gate before changes go live, which is important for customer-facing systems where unsafe edits or bad automations can be expensive.\n- It can work across both Fin and the helpdesk, so it is aimed at the operational surface where AI and human support work intersect.\n- The source says it can generate structured answers with charts and breakdowns from operational data, which makes it useful for recurring reporting and root-cause analysis.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cToday we\u2019re announcing Operator, an Agent that works across both Fin and the Intercom helpdesk to help you manage your customer operations.\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "The article provides no benchmarks for accuracy, latency, review time, cost, or error rates, so practical performance remains vendor-asserted as of 2026-05-15. It also does not describe failure modes, permission boundaries, rollback behavior, or how well it handles ambiguous or conflicting content sources. The product may be more useful as a packaging layer around existing support workflows than as a fully autonomous operator; the source does not prove otherwise."
+        },
+        "notes": null,
+        "proposal_id": "0f9aaeef-83a2-411e-a510-967cfbbb9a29",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can analyze operational data and return structured answers with charts and breakdowns.",
+              "It can find help-center articles that need updating, draft edits in the team\u2019s tone, and propose new articles for review.",
+              "It can debug Fin conversations, propose fixes, and run simulation tests before approval.",
+              "It can build Procedures, Guidance rules, data connectors, monitors, and workflows from a single prompt.",
+              "It can identify affected customers during incidents and draft targeted responses for approval."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It works across Fin and the Intercom helpdesk, which makes it relevant to teams already using Intercom\u2019s support stack.",
+              "It can draft localized help-center content, which implies workflow support across translated documentation.",
+              "It uses a proposal workflow described as a pull request-style review step before changes take effect.",
+              "It is built on purpose-built tools for support operations, including semantic knowledge-base search and conversation-level debugging."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "customer-support",
+            "agentic",
+            "workflow-automation"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The agent can do cognitive and drafting work without being trusted to publish directly.",
+            "A proposal format makes AI output legible as a change request rather than an opaque chat response.",
+            "Human approval is a control mechanism, not just a UX detail; it defines the boundary of system autonomy.",
+            "The pattern is useful when failure costs are high and edits must be reviewed before release."
+          ],
+          "knowledge_summary": "Some agent systems are most useful when they prepare work for review rather than execute directly. The agent does the drafting, analysis, or recommendation step, then a human approves the result before it takes effect. This pattern reduces risk in customer-facing or operationally sensitive workflows because it preserves human control over final changes. It also makes agent output easier to audit, edit, and roll back. The approach is especially relevant when the agent is updating live systems, policies, or support content.",
+          "match_candidates": [],
+          "operational_insight": "Use agents to compress the expensive reasoning and drafting work, but keep the final commit behind an explicit approval step when the action affects customers, configuration, or external communications.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "auditability",
+            "human-ai-workflows"
+          ],
+          "related_topics": [
+            "structured-drafting-for-human-review",
+            "agent-native-auditability"
+          ],
+          "relevance_note": "This pattern matters wherever AI systems touch live customer operations, compliance-sensitive changes, or shared configuration. It gives teams a practical middle ground between manual work and full autonomy, which is durable across agent products and support stacks.",
+          "secondary_tag": "auditability",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cWhen Operator updates content, adjusts configuration, or modifies how Fin behaves, it creates a proposal \u2013 a structured diff of what\u2019s changing and why. You review it, edit if needed, and approve before it takes effect.\u201d",
+          "topic_slug": "approval-based-agent-actions",
+          "topic_title": "Approval-Based Agent Actions",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "cbb42c69-8a5e-4fe4-ae23-199495c1c752",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The agent can do cognitive and drafting work without being trusted to publish directly.",
+              "A proposal format makes AI output legible as a change request rather than an opaque chat response.",
+              "Human approval is a control mechanism, not just a UX detail; it defines the boundary of system autonomy.",
+              "The pattern is useful when failure costs are high and edits must be reviewed before release."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "structured-drafting-for-human-review",
+              "agent-native-auditability"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "auditability",
+            "human-ai-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Support automation spans content, configuration, reporting, incident response, and rep coaching.",
+            "Recurring work is often the bottleneck, so an agent that handles the operational backlog can matter more than a better single-turn chatbot.",
+            "The workflow becomes more durable when the agent works across both AI and human support surfaces.",
+            "A good support agent should surface actionable changes, not just summaries."
+          ],
+          "knowledge_summary": "Support operations can be reorganized as a sequence of agent-readable tasks: data analysis, knowledge updates, automation design, incident handling, and team management. The useful unit is not a single chatbot reply but a repeatable workflow that spans multiple artifacts and systems. Agents become most valuable when they can inspect conversations, diagnose root causes, draft changes, and surface next actions for humans. This shifts support from reactive manual triage toward a managed operating loop with review points. The pattern fits customer support teams that already have structured artifacts such as help content, tickets, rules, and metrics.",
+          "match_candidates": [],
+          "operational_insight": "Model support work as a set of structured operational artifacts that an agent can read, transform, and propose changes against, rather than as free-form conversation alone.",
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "enterprise-workflows",
+            "agent-orchestration"
+          ],
+          "related_topics": [
+            "approval-based-agent-actions",
+            "agent-maintained-knowledge-bases"
+          ],
+          "relevance_note": "This is broadly relevant to conversational AI and service automation because many support improvements depend on recurring back-office work rather than live chat handling alone. The pattern helps teams think in terms of maintainable operating loops, not one-off bot launches.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cOperator manages help content, builds automation, does the ongoing work that determines how well Fin performs, and runs the operational work your human team doesn\u2019t have time for.\u201d",
+          "topic_slug": "support-operations-as-agent-workflow",
+          "topic_title": "Support Operations as Agent Workflow",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f40940ba-c447-4086-a4fc-6c6492dae4f6",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Support automation spans content, configuration, reporting, incident response, and rep coaching.",
+              "Recurring work is often the bottleneck, so an agent that handles the operational backlog can matter more than a better single-turn chatbot.",
+              "The workflow becomes more durable when the agent works across both AI and human support surfaces.",
+              "A good support agent should surface actionable changes, not just summaries."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "approval-based-agent-actions",
+              "agent-maintained-knowledge-bases"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "enterprise-workflows",
+            "agent-orchestration"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Patrick Andrews",
+    "canonical_url": "https://www.intercom.com/blog/introducing-operator/",
+    "content_sha256": "ce1ac8170530a94fc13b1ac0e245c58b68c8e37c7d96eaf888a24e35b8a1d53f",
+    "publication": "The Intercom Blog",
+    "published_date": "2026-05-15",
+    "raw_html_rel_path": "raw/readwise/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew.html",
+    "raw_md_rel_path": "raw/readwise/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew.md",
+    "source_id": "meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew",
+    "title": "Meet Operator: An Agent for your customer operations"
+  }
+}

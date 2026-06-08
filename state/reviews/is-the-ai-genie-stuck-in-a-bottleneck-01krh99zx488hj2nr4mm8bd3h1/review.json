@@ -1,0 +1,804 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:58:04+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DntJOW7wdkfzeqC7YaMUZBgT7ipSP",
+          "token_usage": {
+            "completion_tokens": 185,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 13942,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 14127
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DntJQ5tJavLXsqpc9hyaJ3x2oqBjL",
+          "token_usage": {
+            "completion_tokens": 1233,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 13544,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 14777
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-interview_or_transcript",
+          "request_id": "chatcmpl-DntJajl6FpEuV0SABy3y1ekhEWp6d",
+          "route": "interview_or_transcript",
+          "token_usage": {
+            "completion_tokens": 1378,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 26570,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 27948
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DntJajl6FpEuV0SABy3y1ekhEWp6d",
+    "token_usage": {
+      "completion_tokens": 2796,
+      "prompt_tokens": 54056,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 56852
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-05-07",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cDemand is soaring but chips, data centres, transformers and power grids cannot be scaled at the same speed as software.\u201d",
+          "\u201cA typical fab takes anywhere between two to three years to fully build and equip, and it costs around 20 to 25 billion dollars.\u201d"
+        ],
+        "evidence_type": null,
+        "insight_title": "AI demand is constrained by physical supply chains, not just model quality",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "Alphabet",
+          "Amazon",
+          "Meta",
+          "Microsoft",
+          "Oracle",
+          "TSMC",
+          "NVIDIA",
+          "SK Hynix",
+          "Samsung",
+          "Micron"
+        ],
+        "operational_relevance": "Capacity planning should include semiconductor allocation risk, cloud-provider supply constraints, and multi-year infrastructure lead times. Product and platform teams may need to design around rationing, queueing, and priority tiers instead of assuming compute can always be bought on demand.",
+        "primary_tag": "infrastructure",
+        "proposed_tags": [
+          "infrastructure",
+          "infrastructure-economics",
+          "serving-infrastructure"
+        ],
+        "secondary_tag": "infrastructure-economics",
+        "service_automation_relevance": "Service automation systems can inherit the same scarcity pressure through quotas, throttling, and degraded modes when model access is constrained. That makes graceful fallback and demand shaping part of production chatbot and voicebot design.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "compute-supply-becomes-the-ai-bottleneck",
+        "suggested_new_tags": [
+          "compute-supply-becomes-the-ai-bottleneck"
+        ],
+        "summary": "The episode argues that AI demand can rise faster than the physical stack that serves it. Software usage can scale in months, but chips, fabs, data centres, transformers, and grid connections take years and large capital outlays. That mismatch makes infrastructure lead times a first-order planning constraint for AI products and cloud capacity.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-07, AI teams should treat chip supply, fab lead times, and data-centre build schedules as core capacity assumptions rather than background ops details. The source supports a monitor-and-adapt posture: product roadmaps may need quota policies, staged rollouts, and capacity reservations because physical expansion is slower than demand growth.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-07",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cOver the past two years, the price of inference ... has dropped by something of the order of 90% to 95%.\u201d",
+          "\u201cThe only other lever that is left for them is to actually dial up or dial down the token usage ... so that they can actually constrict demand.\u201d"
+        ],
+        "evidence_type": null,
+        "insight_title": "Inference pricing can fall while access rationing becomes more important",
+        "insight_type": "service_automation",
+        "mentioned_entities": [
+          "Claude",
+          "OpenAI",
+          "Sora",
+          "Meta"
+        ],
+        "operational_relevance": "Architectures that assume unlimited cheap inference can fail under load. Teams may need peak/off-peak pricing, quota-based access, adaptive degradation, and token-aware product design to prevent the control plane from becoming the bottleneck.",
+        "primary_tag": "inference-systems",
+        "proposed_tags": [
+          "inference-systems",
+          "serving-infrastructure"
+        ],
+        "secondary_tag": "serving-infrastructure",
+        "service_automation_relevance": "For support bots and voice agents, quota and latency management may matter as much as model quality. Human handoff and fallback flows should be ready when the model tier is intentionally constrained or overloaded.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "pricing-model-validation-for-ai-products",
+        "suggested_new_tags": [
+          "pricing-model-validation-for-ai-products",
+          "consumer-ai-monetization-under-load"
+        ],
+        "summary": "The transcript says inference prices fell by roughly 90% to 95% over two years, yet labs are still trying to control demand with token limits, off-peak nudges, and faster token burn. The operational point is that lower unit prices do not eliminate scarcity when usage expands faster than supply. In practice, access policy becomes part of the product, not just a pricing detail.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-07, AI product teams should expect usage controls to remain normal when demand outstrips compute. The episode suggests that cheaper inference can increase usage so quickly that platforms still need throttles, tiering, and demand-shaping mechanisms to protect service quality and margins.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-07",
+        "confidence": "medium",
+        "contrarian_or_speculative_claims": [
+          "Many announced data-centre load requests are phantom or speculative rather than real projects.",
+          "The US grid can accommodate roughly 50 gigawatts of incremental new data-centre capacity by 2030."
+        ],
+        "durability_estimate": "medium_term",
+        "evidence_snippets": [
+          "\u201cThere\u2019s a lot of hoarding, right? ... They are increasing the cost of equipment for everyone else by 50%.\u201d",
+          "\u201cThere isn\u2019t a lack of supply, right? There\u2019s just a lack of allocation to people who are actually gonna move forward with their projects.\u201d",
+          "\u201cAround 180 different groups have formed all around the US, opposing data centres in that locality.\u201d"
+        ],
+        "evidence_type": null,
+        "insight_title": "Local politics and allocation, not only raw utility capacity, shape data-centre outcomes",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "Jigar Shah",
+          "utilities",
+          "hyper-scalers"
+        ],
+        "operational_relevance": "Build plans should separate committed capacity from paper demand, and should track permitting, transformer lead times, and utility queue quality. A realistic delivery model needs contingency paths for community opposition and for equipment that has been pre-purchased by projects that may never close.",
+        "primary_tag": "infrastructure",
+        "proposed_tags": [
+          "infrastructure",
+          "ai-governance",
+          "ai-policy"
+        ],
+        "secondary_tag": "ai-governance",
+        "service_automation_relevance": "No direct service automation implications identified.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "state-control-over-ai-supply-chains",
+        "suggested_new_tags": [
+          "state-control-over-ai-supply-chains"
+        ],
+        "summary": "The episode distinguishes between true grid limits and local friction around permits, transformer lead times, and pre-booked equipment. One guest argues that many announced load requests are speculative or phantom, while opposition groups and permitting delays are still very real. The practical lesson is that data-centre expansion is a coordination problem across utilities, communities, and financing, not a simple electricity-shortage story.",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-05-07, infrastructure teams cannot treat power availability as a purely engineering question. Project viability depends on land, community acceptance, interconnection timing, equipment allocation, and whether financing is real rather than speculative.",
+        "wiki_worthiness": "review_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "Claims are carried primarily by named guests and hosts interpreting the AI bottleneck situation.",
+        "The episode mixes reported examples with strategic judgments from Shailesh Chitnis and Jigar Shah.",
+        "There is no formal methodology, benchmark, or original research artifact in the source text."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This episode is about why AI services are getting harder to scale even when demand is rising fast. The basic problem is simple: software demand can jump in months, but chips, data centres, transformers, and power infrastructure take much longer to build. The guests argue that this is already affecting product limits, pricing, and infrastructure plans. They also push back on some of the dramatic claims about electricity shortages, saying a lot of the build-out talk is bigger than the realistic near-term need. The core lesson is that AI scaling is not just a model problem; it is a supply-chain and local-politics problem too. As of 2026-05-07, the bottleneck looks real, but the strongest evidence in the episode points more to hardware and coordination delays than to a total power-system failure.",
+      "assessed_as_of": "2026-05-07",
+      "contradictions_and_skepticism": "There is a clear tension between the episode\u2019s headline framing of a looming bottleneck and Shah\u2019s argument that electricity capacity is less constrained than people think. The transcript also mixes real shortages with speculation about phantom projects, so some of the apparent scarcity may be allocation and planning noise rather than true demand collapse. The use of token counts as a proxy for AI productivity is presented as industry practice, but it is not demonstrated to be a valid performance measure. The piece is persuasive on lead times and chip scarcity, but thinner on hard evidence for the most dramatic claims about grid pressure.",
+      "key_insights": [
+        "Token usage is being treated as a practical demand signal, and reported growth in tokens roughly quadrupled between January and March of 2026.",
+        "The labs are using token rationing, off-peak nudges, and other access controls because inference prices have already fallen by roughly 90% to 95%, leaving price cuts as a limited lever.",
+        "TSMC is portrayed as a central bottleneck because leading-edge chip fabs take two to three years to build and equip and cost about $20 billion to $25 billion each.",
+        "The episode argues that a lot of data-centre electricity demand is overstated by speculative load requests and phantom projects, even though local delays and equipment shortages are real.",
+        "Local opposition is not a side issue: the transcript says around 180 U.S. groups have formed to block data-centre projects, and those disputes are already affecting politics and permitting."
+      ],
+      "limitations_and_open_questions": "The episode relies on expert commentary and selected examples, not on a published dataset or formal market model. The transcript mentions figures such as $725 billion of hyperscaler capex, 50 gigawatts of new capacity by 2030, and 180 anti-data-centre groups, but it does not show the underlying methodology or uncertainty ranges. Jigar Shah\u2019s claims about excess transformer capacity in India and the manageability of grid demand are opinionated and not independently validated in the transcript. The discussion also does not quantify how much of the token-growth story is sustained end-user demand versus internal employee experimentation or accounting noise. It remains unclear how much of the bottleneck is temporary allocation friction versus structural capacity shortage.",
+      "sources": [
+        "https://www.economist.com/podcasts/2026/05/07/is-the-ai-genie-stuck-in-a-bottleneck"
+      ],
+      "summary": "This podcast episode argues that the AI boom is running into physical bottlenecks faster than many software teams expected. Demand is being driven by heavy use of coding tools and a rapid rise in token consumption, but inference prices have been pushed down so aggressively that labs are still trying to maximize usage while rationing capacity through token limits, off-peak incentives, and service throttling. The hardware side cannot keep up on the same timetable: hyperscalers are raising capital expenditure sharply, yet chip supply is constrained, leading-edge manufacturing depends heavily on TSMC, and new fabs take two to three years and tens of billions of dollars to build. The discussion also highlights data-centre constraints, but one guest argues that the electricity problem is less severe than the hype suggests and that many announced load requests are speculative or phantom. A larger theme is coordination: utilities, states, local communities, chipmakers, and cloud firms are all making different bets, and the friction is as much political and logistical as technical. The episode ends up more cautious than apocalyptic: as of 2026-05-07, the bind is real, but it is uneven, and the most credible bottleneck may be chips and supply-chain lead times rather than grid collapse.",
+      "why_it_matters": "For AI builders, the useful point is that model capability and user demand are outrunning the physical layers that make products usable at scale. The episode gives concrete examples: rising token consumption, product throttling, and supply-constrained cloud providers. It also shows that capex announcements alone do not solve the problem, because the limiting factors include chip fabrication lead times, concentrated suppliers such as TSMC, and the long path from project announcement to operational data-centre capacity. The episode is especially useful as a corrective to simplistic narratives: it does not claim that every announced project will ship, and it separates speculative load growth from actual infrastructure need. The chip side sounds more durable than the power-side panic because the transcript repeatedly emphasizes multi-year fab timelines and scarce leading-edge capacity. The data-centre side still matters, but the guest Jigar Shah argues that a large share of the electricity alarm is overstated by phantom requests and hoarding, which makes the operational picture more uneven than the headlines suggest. For product teams, the implication is that usage controls, quota policies, and capacity planning are likely to remain part of AI product design rather than temporary exceptions. For service automation and adjacent workflow products, the same scarcity logic implies that access limits and cost controls may shape deployment choices as much as raw model quality. As of 2026-05-07, this is actionable as a planning input, not as proof that AI growth has stalled; the episode supports a monitor-and-adapt posture rather than a declaration that the boom has ended."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "The source is structured as a podcast conversation with alternating speakers and timestamps.",
+        "It includes interviewer/interviewee Q&A segments plus a transcript disclaimer.",
+        "The article text is mainly a transcript of the episode, not a standalone report or roundup."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-07",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cDemand is soaring but chips, data centres, transformers and power grids cannot be scaled at the same speed as software.\u201d",
+            "\u201cA typical fab takes anywhere between two to three years to fully build and equip, and it costs around 20 to 25 billion dollars.\u201d"
+          ],
+          "evidence_type": null,
+          "insight_title": "AI demand is constrained by physical supply chains, not just model quality",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "Alphabet",
+            "Amazon",
+            "Meta",
+            "Microsoft",
+            "Oracle",
+            "TSMC",
+            "NVIDIA",
+            "SK Hynix",
+            "Samsung",
+            "Micron"
+          ],
+          "operational_relevance": "Capacity planning should include semiconductor allocation risk, cloud-provider supply constraints, and multi-year infrastructure lead times. Product and platform teams may need to design around rationing, queueing, and priority tiers instead of assuming compute can always be bought on demand.",
+          "primary_tag": "infrastructure",
+          "proposed_tags": [
+            "infrastructure",
+            "infrastructure-economics",
+            "serving-infrastructure"
+          ],
+          "secondary_tag": "infrastructure-economics",
+          "service_automation_relevance": "Service automation systems can inherit the same scarcity pressure through quotas, throttling, and degraded modes when model access is constrained. That makes graceful fallback and demand shaping part of production chatbot and voicebot design.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "compute-supply-becomes-the-ai-bottleneck",
+          "suggested_new_tags": [
+            "compute-supply-becomes-the-ai-bottleneck"
+          ],
+          "summary": "The episode argues that AI demand can rise faster than the physical stack that serves it. Software usage can scale in months, but chips, fabs, data centres, transformers, and grid connections take years and large capital outlays. That mismatch makes infrastructure lead times a first-order planning constraint for AI products and cloud capacity.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-07, AI teams should treat chip supply, fab lead times, and data-centre build schedules as core capacity assumptions rather than background ops details. The source supports a monitor-and-adapt posture: product roadmaps may need quota policies, staged rollouts, and capacity reservations because physical expansion is slower than demand growth.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "7101bc4a-bbdd-43db-ab93-8661f988f2ae",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cDemand is soaring but chips, data centres, transformers and power grids cannot be scaled at the same speed as software.\u201d",
+              "\u201cA typical fab takes anywhere between two to three years to fully build and equip, and it costs around 20 to 25 billion dollars.\u201d"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Alphabet",
+              "Amazon",
+              "Meta",
+              "Microsoft",
+              "Oracle",
+              "TSMC",
+              "NVIDIA",
+              "SK Hynix",
+              "Samsung",
+              "Micron"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "infrastructure",
+            "infrastructure-economics",
+            "serving-infrastructure"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-07",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cOver the past two years, the price of inference ... has dropped by something of the order of 90% to 95%.\u201d",
+            "\u201cThe only other lever that is left for them is to actually dial up or dial down the token usage ... so that they can actually constrict demand.\u201d"
+          ],
+          "evidence_type": null,
+          "insight_title": "Inference pricing can fall while access rationing becomes more important",
+          "insight_type": "service_automation",
+          "mentioned_entities": [
+            "Claude",
+            "OpenAI",
+            "Sora",
+            "Meta"
+          ],
+          "operational_relevance": "Architectures that assume unlimited cheap inference can fail under load. Teams may need peak/off-peak pricing, quota-based access, adaptive degradation, and token-aware product design to prevent the control plane from becoming the bottleneck.",
+          "primary_tag": "inference-systems",
+          "proposed_tags": [
+            "inference-systems",
+            "serving-infrastructure"
+          ],
+          "secondary_tag": "serving-infrastructure",
+          "service_automation_relevance": "For support bots and voice agents, quota and latency management may matter as much as model quality. Human handoff and fallback flows should be ready when the model tier is intentionally constrained or overloaded.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "pricing-model-validation-for-ai-products",
+          "suggested_new_tags": [
+            "pricing-model-validation-for-ai-products",
+            "consumer-ai-monetization-under-load"
+          ],
+          "summary": "The transcript says inference prices fell by roughly 90% to 95% over two years, yet labs are still trying to control demand with token limits, off-peak nudges, and faster token burn. The operational point is that lower unit prices do not eliminate scarcity when usage expands faster than supply. In practice, access policy becomes part of the product, not just a pricing detail.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-07, AI product teams should expect usage controls to remain normal when demand outstrips compute. The episode suggests that cheaper inference can increase usage so quickly that platforms still need throttles, tiering, and demand-shaping mechanisms to protect service quality and margins.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "3a4f5a20-a802-46d3-ab82-9b8257beb226",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cOver the past two years, the price of inference ... has dropped by something of the order of 90% to 95%.\u201d",
+              "\u201cThe only other lever that is left for them is to actually dial up or dial down the token usage ... so that they can actually constrict demand.\u201d"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Claude",
+              "OpenAI",
+              "Sora",
+              "Meta"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "inference-systems",
+            "serving-infrastructure"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-07",
+          "confidence": "medium",
+          "contrarian_or_speculative_claims": [
+            "Many announced data-centre load requests are phantom or speculative rather than real projects.",
+            "The US grid can accommodate roughly 50 gigawatts of incremental new data-centre capacity by 2030."
+          ],
+          "durability_estimate": "medium_term",
+          "evidence_snippets": [
+            "\u201cThere\u2019s a lot of hoarding, right? ... They are increasing the cost of equipment for everyone else by 50%.\u201d",
+            "\u201cThere isn\u2019t a lack of supply, right? There\u2019s just a lack of allocation to people who are actually gonna move forward with their projects.\u201d",
+            "\u201cAround 180 different groups have formed all around the US, opposing data centres in that locality.\u201d"
+          ],
+          "evidence_type": null,
+          "insight_title": "Local politics and allocation, not only raw utility capacity, shape data-centre outcomes",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "Jigar Shah",
+            "utilities",
+            "hyper-scalers"
+          ],
+          "operational_relevance": "Build plans should separate committed capacity from paper demand, and should track permitting, transformer lead times, and utility queue quality. A realistic delivery model needs contingency paths for community opposition and for equipment that has been pre-purchased by projects that may never close.",
+          "primary_tag": "infrastructure",
+          "proposed_tags": [
+            "infrastructure",
+            "ai-governance",
+            "ai-policy"
+          ],
+          "secondary_tag": "ai-governance",
+          "service_automation_relevance": "No direct service automation implications identified.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "state-control-over-ai-supply-chains",
+          "suggested_new_tags": [
+            "state-control-over-ai-supply-chains"
+          ],
+          "summary": "The episode distinguishes between true grid limits and local friction around permits, transformer lead times, and pre-booked equipment. One guest argues that many announced load requests are speculative or phantom, while opposition groups and permitting delays are still very real. The practical lesson is that data-centre expansion is a coordination problem across utilities, communities, and financing, not a simple electricity-shortage story.",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-05-07, infrastructure teams cannot treat power availability as a purely engineering question. Project viability depends on land, community acceptance, interconnection timing, equipment allocation, and whether financing is real rather than speculative.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "c75a06ab-172f-431b-ad0e-ee8ecb5652c3",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Many announced data-centre load requests are phantom or speculative rather than real projects.",
+              "The US grid can accommodate roughly 50 gigawatts of incremental new data-centre capacity by 2030."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cThere\u2019s a lot of hoarding, right? ... They are increasing the cost of equipment for everyone else by 50%.\u201d",
+              "\u201cThere isn\u2019t a lack of supply, right? There\u2019s just a lack of allocation to people who are actually gonna move forward with their projects.\u201d",
+              "\u201cAround 180 different groups have formed all around the US, opposing data centres in that locality.\u201d"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Jigar Shah",
+              "utilities",
+              "hyper-scalers"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "infrastructure",
+            "ai-governance",
+            "ai-policy"
+          ]
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "Claims are carried primarily by named guests and hosts interpreting the AI bottleneck situation.",
+          "The episode mixes reported examples with strategic judgments from Shailesh Chitnis and Jigar Shah.",
+          "There is no formal methodology, benchmark, or original research artifact in the source text."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Token usage is being treated as a practical demand signal, and reported growth in tokens roughly quadrupled between January and March of 2026.",
+          "The labs are using token rationing, off-peak nudges, and other access controls because inference prices have already fallen by roughly 90% to 95%, leaving price cuts as a limited lever.",
+          "TSMC is portrayed as a central bottleneck because leading-edge chip fabs take two to three years to build and equip and cost about $20 billion to $25 billion each.",
+          "The episode argues that a lot of data-centre electricity demand is overstated by speculative load requests and phantom projects, even though local delays and equipment shortages are real.",
+          "Local opposition is not a side issue: the transcript says around 180 U.S. groups have formed to block data-centre projects, and those disputes are already affecting politics and permitting."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.economist.com/podcasts/2026/05/07/is-the-ai-genie-stuck-in-a-bottleneck"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "The source is structured as a podcast conversation with alternating speakers and timestamps.",
+          "It includes interviewer/interviewee Q&A segments plus a transcript disclaimer.",
+          "The article text is mainly a transcript of the episode, not a standalone report or roundup."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Economist",
+    "canonical_url": "https://www.economist.com/podcasts/2026/05/07/is-the-ai-genie-stuck-in-a-bottleneck",
+    "content_sha256": "1ce55cf8ee2dfec41e865582d15db6e10875e9dba35cc2516fd4db2e59345526",
+    "publication": "Economist",
+    "published_date": "2026-05-07",
+    "raw_html_rel_path": "raw/readwise/is-the-ai-genie-stuck-in-a-bottleneck-01krh99zx488hj2nr4mm8bd3h1.html",
+    "raw_md_rel_path": "raw/readwise/is-the-ai-genie-stuck-in-a-bottleneck-01krh99zx488hj2nr4mm8bd3h1.md",
+    "source_id": "is-the-ai-genie-stuck-in-a-bottleneck-01krh99zx488hj2nr4mm8bd3h1",
+    "title": "Is the AI genie stuck in a bottleneck?"
+  }
+}

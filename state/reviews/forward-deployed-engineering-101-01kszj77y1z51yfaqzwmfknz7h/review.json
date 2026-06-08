@@ -1,0 +1,795 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:47:32+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt98FLX3QpWbO1cHwK9aeZCpwg4q",
+          "token_usage": {
+            "completion_tokens": 219,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6427,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6646
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnt9ASmsqgSrN3XWyTHmMugXhAyth",
+          "token_usage": {
+            "completion_tokens": 1174,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6061,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7235
+          }
+        },
+        {
+          "cache_hit_rate": 0.13805631244323344,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-Dnt9LGUlbbFzya6iKWoywsISUMEw6",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1768,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35232,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 37000
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnt9LGUlbbFzya6iKWoywsISUMEw6",
+    "token_usage": {
+      "completion_tokens": 3161,
+      "prompt_tokens": 47720,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 50881
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start by watching how a human solves the task and write down the steps. Then test the agent against those checkpoints instead of judging only the final output. Build a small set of ideal examples first, and use them as the standard for later runs. Keep the eval close to the real business workflow, because a support or operations agent can be wrong in subtle ways even if the final answer looks plausible.",
+        "caveats": "The source does not define how to quantify eval quality, keep labels consistent over time, or handle workflows that change after deployment. The advice is practical but incomplete for regulated or high-stakes systems.",
+        "confidence": 0.96,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Observe a human performing the target workflow and write down the major checkpoints.",
+          "Create a small set of ideal examples that represent the desired outcome.",
+          "Score the agent on each checkpoint, not just on the final response.",
+          "Use the resulting examples as a baseline for later measurement and iteration."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A real workflow to evaluate",
+          "Access to human examples of good performance",
+          "A way to log agent outputs and intermediate steps"
+        ],
+        "primary_tag": "ai-evaluation",
+        "proposed_tags": [
+          "ai-evaluation",
+          "verification-systems",
+          "workflow-design"
+        ],
+        "question_title": "Agent Evaluation Design",
+        "related_howtos": [
+          "self-verification-for-agent-workflows"
+        ],
+        "secondary_tag": "verification-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "A good eval doesn't just check if the final answer an agent gives you is correct, but also verifies the AI is thinking like a human would. In order to do that, do two things:\nTrace the human's steps and grade the AI on each one: A human doesn't solve problems in one move. It's a multi-step process. Map out those steps and see if the AI is hitting the same checkpoints along the way.\nStart small with great examples of the intended outcome, then measure everything against them: If you're building a customer support agent, sit with a human and figure out what the best possible answer to a user's query is.",
+        "value_level": "high",
+        "what_and_problem": "Agent systems can look useful in a demo and still fail in production if no one checks how they behave step by step. This how-to is about building evaluations that test more than the final answer, so teams can tell whether an agent is following the right process and producing trustworthy results. It addresses the common problem of wanting AI automation without a reliable way to prove it works. It is especially relevant when the workflow is expensive, customer-facing, or hard to inspect manually at scale."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-20",
+        "confidence": 0.88,
+        "evidence_from_source": "The source repeatedly argues that FDEs must be on-site, learn company-specific workflows, and build custom agents on company-specific data and context instead of replacing systems wholesale.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-operationalization"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents",
+          "enterprise-agents-move-into-customer-infrastructure"
+        ],
+        "secondary_tag": "ai-operationalization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "enterprise-workflows",
+        "suggested_new_tags": [
+          "enterprise-workflows"
+        ],
+        "supporting_data_points": [
+          "\"being on-site with a customer\"",
+          "\"building APIs over an existing data layer\"",
+          "\"create an execution environment to test the agent safely\""
+        ],
+        "supporting_snippet": "A company needs to be rebuilt around AI from the ground up. And that is only possible through sitting with the customer and building custom agents that are engineered on company-specific data, with company-specific context.",
+        "time_sensitivity": "Actionable as of 2026-05-20; this appears relevant for enterprise AI delivery motions that need to integrate with real customer infrastructure and may remain so as long as enterprise workflows stay heterogeneous.",
+        "trend_description": "AI delivery is moving toward systems that are installed around a customer's own workflows, data layers, and operational constraints rather than delivered as generic standalone products. The practical implication is that deployment skill, customer immersion, and integration design matter more than a model demo. This trend is strongest where workflows are complex, legacy-heavy, or sensitive to business context.",
+        "trend_slug": "ai-products-shift-toward-customer-specific-deployment",
+        "trend_title": "AI Products Shift Toward Customer-Specific Deployment",
+        "uncertainty_note": "The evidence is opinionated and based on one practitioner account, so it does not prove the trend is universal or highest ROI across all deployments.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The author is giving strategic interpretation and career advice about FDEs based on their own experience.",
+        "Claims are supported mainly by personal experience at Varick and references to Palantir/Anthropic/OpenAI guidance, not original data or formal analysis.",
+        "Several assertions are normative or opinionated, such as what the role requires and why it is 'the hottest role in tech right now.'"
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a guide to a role called forward deployed engineering. The basic idea is simple: if AI is only useful when it fits a company\u2019s real workflow, someone has to go into that environment, study the process, build the right automation, and prove it works. The article says that job has three parts: understand the workflow, test the system carefully, and deploy it without breaking existing operations. It also explains how to prepare for the role with small projects like agents, evals, RAG pipelines, and legacy-software connectors. The core message is that success depends as much on communication and business judgment as on coding. As of 2026-05-20, this is practical career advice, though it is mostly expert opinion rather than evidence from a formal study.",
+      "assessed_as_of": "2026-05-20",
+      "contradictions_and_skepticism": "The article presents FDE as the 'most in-demand role in tech right now,' but provides no market data, so that claim reads as promotional rather than demonstrated. It also simplifies the engineering tradeoff between code, tools, and agents into a few heuristics; those heuristics are useful but will not cover messy edge cases or regulated environments. The emphasis on being onsite and deeply embedded may be true for some deployments, yet it is not shown to be universally required. The advice to avoid major data migrations is practical, but some systems may still require deeper integration than the article acknowledges. Overall, the skepticism is modest: the guidance is coherent, but the strongest statements are unsupported and should be treated as a field-tested opinion, not a benchmarked conclusion.",
+      "key_insights": [
+        "The role is defined less by model training and more by translating company-specific workflows into safe, useful automation.",
+        "The author\u2019s deployment rule is to layer models over existing systems through APIs and sandboxes rather than attempt large migrations.",
+        "Evaluation is treated as a product trust mechanism: grade both end outputs and intermediate steps, not just final correctness.",
+        "The article gives a strong heuristic for when to automate: high-volume, rules-plus-tool workflows are better candidates than low-frequency work or tasks dominated by human judgment.",
+        "For aspiring FDEs, the portfolio is meant to prove both engineering ability and the ability to explain business impact to non-technical decision makers."
+      ],
+      "limitations_and_open_questions": "The article does not provide empirical evidence that FDEs are the highest-ROI hiring category, only an argument from the author\u2019s experience. It assumes that onsite immersion is always necessary, but offers no comparison with remote discovery or hybrid delivery. The recommended eval methods are sensible, but the article does not define benchmark quality, inter-annotator agreement, or how to maintain evals as workflows change. The deployment advice is intentionally cautious, yet it leaves open the security, privacy, and governance requirements for customer data, especially when agents touch production systems. The 30-day prep plan is useful as a checklist, but it does not show how much of the portfolio is sufficient for hiring success or how to validate that the projects generalize across industries.",
+      "sources": [
+        "https://x.com/vasuman/status/2057177266984226892/?rw_tt_thread=True"
+      ],
+      "summary": "The article argues that forward deployed engineering (FDE) is an AI delivery role built around understanding a customer\u2019s workflow in depth, deciding where automation is actually worth deploying, and then shipping and validating the system inside the customer\u2019s environment. It frames the role as a mix of audit, evals, and deployment: first map processes and bottlenecks onsite, then build evaluations that check both final outputs and step-by-step reasoning, then deploy conservatively through APIs, sandboxes, and small autonomy increments. The author argues that many AI projects fail because teams over-automate, ignore volume and ROI, or replace too much infrastructure instead of layering models over existing systems. The piece also gives a 30-day preparation plan for aspiring FDEs, emphasizing agent loops, tool use, guardrails, structured outputs, checkpoints, retries, cost control, golden datasets, and multi-agent patterns. A major theme is that communication is as important as engineering: an FDE must explain AI limits and business impact to non-technical stakeholders. The article is opinionated and career-advice oriented, based on the author\u2019s experience at Varick and references to Palantir-style field deployment.",
+      "why_it_matters": "The piece is useful because it turns a vague career label into an operational workflow: onsite audit, evaluation design, and careful deployment. That structure is durable for anyone building applied AI systems because it emphasizes process discovery before model choice, which is a common failure point in enterprise AI projects. The article also surfaces a concrete deployment philosophy: keep the existing data layer, add APIs and orchestration on top, and move toward production in small, reversible steps. Its strongest practical contribution is the evaluation advice, especially the idea of tracing human steps and creating a small golden dataset before scaling. The portfolio suggestions are also actionable because they map directly to artifacts hiring managers can inspect, such as agents with failure harnesses, eval frameworks, and legacy-system connectors. Still, the stakes are partly career-marketing: the article is trying to define and sell the importance of FDEs, so the strongest claims rely on the author\u2019s experience and examples rather than comparative evidence. The closing relevance is most concrete for applied AI teams that need to layer automation onto existing business systems, including back-office workflows and service automation, because the article repeatedly argues for small, auditable, low-risk deployments over broad replacement. As of 2026-05-20, the guidance looks actionable for practitioners building enterprise AI delivery motions, but it should be read as opinionated playbook advice rather than a validated universal standard."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent essay-style argument about forward deployed engineering, not a bundle of unrelated items.",
+        "Structured as an explanatory guide with sections and a TL;DR rather than a roundup or transcript.",
+        "Contains step-by-step advice, but the primary structure is an opinionated article about one role and how to enter it."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "The source describes this as being \"on-site with a customer\" and says to \"build APIs over an existing data layer (SharePoint or databases) and place a model on top as an orchestrator.\"",
+        "key_points": [
+          "Observe the workflow in the real operating environment before proposing automation.",
+          "Prefer layering models over existing systems through APIs rather than replacing core infrastructure.",
+          "Treat existing enterprise systems as integration surfaces, not obstacles to be removed.",
+          "Move cautiously when the workflow affects production operations or customer-facing work."
+        ],
+        "knowledge_summary": "Production AI systems often need to be designed inside the customer environment, not just for it. The practical pattern is to observe real workflows, understand existing systems and constraints, and then fit automation into that environment with minimal disruption. This approach favors domain immersion, API layering, and small reversible changes over big-bang replacement. It is most useful when the system must interact with legacy infrastructure, non-technical stakeholders, or business processes that differ sharply across customers.",
+        "match_candidates": [],
+        "operational_insight": "Treat the customer site or customer system as part of the product spec; the workflow context is not optional metadata, it is the design surface.",
+        "primary_tag": "enterprise-workflows",
+        "proposed_tags": [
+          "enterprise-workflows",
+          "execution-environments",
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This pattern matters whenever AI has to fit into messy enterprise workflows, especially service automation and internal ops. It keeps the focus on constraints, data access, and handoff points instead of assuming a generic model can be dropped into any stack.",
+        "secondary_tag": "execution-environments",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Being on-site with a customer. Palantir's CTO says that you cannot build products for an environment without actually being in the environment itself. We've seen the same thing internally.",
+        "topic_slug": "agent-deployment-in-customer-environments",
+        "topic_title": "Agent Deployment in Customer Environments",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "The source gives explicit heuristics: if \"the rules and inputs are both predictable, code is faster and cheaper,\" if a job \"runs five times a month\" it is probably not worth the ROI, and \"most automation tasks can be done with a series of tool calls and just one call to an LLM as an orchestrating layer.\"",
+        "key_points": [
+          "Use agents when inputs vary but the workflow still follows rules and needs tool calls.",
+          "Use code when both the rules and the inputs are predictable.",
+          "Leave tasks manual when the work depends mainly on human judgment and domain expertise.",
+          "Do not automate low-volume workflows unless the value per run is high enough to justify the effort."
+        ],
+        "knowledge_summary": "Not every task should be automated with an agent. A durable design rule is to automate workflows that have clear rules, variable inputs, and enough volume to justify the overhead, while leaving low-volume or judgment-heavy work manual. This pushes teams to think about tool use, orchestration, and cost rather than treating every task as an AI candidate. The main benefit is better ROI and fewer cases where automation adds more complexity than value.",
+        "match_candidates": [],
+        "operational_insight": "Use task frequency, input variability, and decision type as the first filter before choosing agents, code, or manual handling.",
+        "primary_tag": "workflow-design",
+        "proposed_tags": [
+          "workflow-design",
+          "orchestration",
+          "ai-engineering"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is useful for AI engineering and service automation because it reduces wasted build effort. Teams can reserve agents for workflows where orchestration actually helps, rather than forcing model calls into every process step.",
+        "secondary_tag": "orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "If a workflow can be distilled into rules but the inputs are different ... and the work involves calling tools, put an agent in. If the rules and inputs are both predictable, code is faster and cheaper. If the decision needs pattern recognition and domain expertise, leave it manual.",
+        "topic_slug": "workflow-based-automation-selection",
+        "topic_title": "Workflow-Based Automation Selection",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start by watching how a human solves the task and write down the steps. Then test the agent against those checkpoints instead of judging only the final output. Build a small set of ideal examples first, and use them as the standard for later runs. Keep the eval close to the real business workflow, because a support or operations agent can be wrong in subtle ways even if the final answer looks plausible.",
+          "caveats": "The source does not define how to quantify eval quality, keep labels consistent over time, or handle workflows that change after deployment. The advice is practical but incomplete for regulated or high-stakes systems.",
+          "confidence": 0.96,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Observe a human performing the target workflow and write down the major checkpoints.",
+            "Create a small set of ideal examples that represent the desired outcome.",
+            "Score the agent on each checkpoint, not just on the final response.",
+            "Use the resulting examples as a baseline for later measurement and iteration."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A real workflow to evaluate",
+            "Access to human examples of good performance",
+            "A way to log agent outputs and intermediate steps"
+          ],
+          "primary_tag": "ai-evaluation",
+          "proposed_tags": [
+            "ai-evaluation",
+            "verification-systems",
+            "workflow-design"
+          ],
+          "question_title": "Agent Evaluation Design",
+          "related_howtos": [
+            "self-verification-for-agent-workflows"
+          ],
+          "secondary_tag": "verification-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "A good eval doesn't just check if the final answer an agent gives you is correct, but also verifies the AI is thinking like a human would. In order to do that, do two things:\nTrace the human's steps and grade the AI on each one: A human doesn't solve problems in one move. It's a multi-step process. Map out those steps and see if the AI is hitting the same checkpoints along the way.\nStart small with great examples of the intended outcome, then measure everything against them: If you're building a customer support agent, sit with a human and figure out what the best possible answer to a user's query is.",
+          "value_level": "high",
+          "what_and_problem": "Agent systems can look useful in a demo and still fail in production if no one checks how they behave step by step. This how-to is about building evaluations that test more than the final answer, so teams can tell whether an agent is following the right process and producing trustworthy results. It addresses the common problem of wanting AI automation without a reliable way to prove it works. It is especially relevant when the workflow is expensive, customer-facing, or hard to inspect manually at scale."
+        },
+        "notes": null,
+        "proposal_id": "104caa16-2188-4894-82fb-c44d2427438c",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Observe a human performing the target workflow and write down the major checkpoints.",
+              "Create a small set of ideal examples that represent the desired outcome.",
+              "Score the agent on each checkpoint, not just on the final response.",
+              "Use the resulting examples as a baseline for later measurement and iteration."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A real workflow to evaluate",
+              "Access to human examples of good performance",
+              "A way to log agent outputs and intermediate steps"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "self-verification-for-agent-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evaluation",
+            "verification-systems",
+            "workflow-design"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-20",
+          "confidence": 0.88,
+          "evidence_from_source": "The source repeatedly argues that FDEs must be on-site, learn company-specific workflows, and build custom agents on company-specific data and context instead of replacing systems wholesale.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-operationalization"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents",
+            "enterprise-agents-move-into-customer-infrastructure"
+          ],
+          "secondary_tag": "ai-operationalization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "enterprise-workflows",
+          "suggested_new_tags": [
+            "enterprise-workflows"
+          ],
+          "supporting_data_points": [
+            "\"being on-site with a customer\"",
+            "\"building APIs over an existing data layer\"",
+            "\"create an execution environment to test the agent safely\""
+          ],
+          "supporting_snippet": "A company needs to be rebuilt around AI from the ground up. And that is only possible through sitting with the customer and building custom agents that are engineered on company-specific data, with company-specific context.",
+          "time_sensitivity": "Actionable as of 2026-05-20; this appears relevant for enterprise AI delivery motions that need to integrate with real customer infrastructure and may remain so as long as enterprise workflows stay heterogeneous.",
+          "trend_description": "AI delivery is moving toward systems that are installed around a customer's own workflows, data layers, and operational constraints rather than delivered as generic standalone products. The practical implication is that deployment skill, customer immersion, and integration design matter more than a model demo. This trend is strongest where workflows are complex, legacy-heavy, or sensitive to business context.",
+          "trend_slug": "ai-products-shift-toward-customer-specific-deployment",
+          "trend_title": "AI Products Shift Toward Customer-Specific Deployment",
+          "uncertainty_note": "The evidence is opinionated and based on one practitioner account, so it does not prove the trend is universal or highest ROI across all deployments.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "20203f36-ae45-43b6-beba-b28b5b60311c",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents",
+              "enterprise-agents-move-into-customer-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "\"being on-site with a customer\"",
+              "\"building APIs over an existing data layer\"",
+              "\"create an execution environment to test the agent safely\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-operationalization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The author is giving strategic interpretation and career advice about FDEs based on their own experience.",
+          "Claims are supported mainly by personal experience at Varick and references to Palantir/Anthropic/OpenAI guidance, not original data or formal analysis.",
+          "Several assertions are normative or opinionated, such as what the role requires and why it is 'the hottest role in tech right now.'"
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The role is defined less by model training and more by translating company-specific workflows into safe, useful automation.",
+          "The author\u2019s deployment rule is to layer models over existing systems through APIs and sandboxes rather than attempt large migrations.",
+          "Evaluation is treated as a product trust mechanism: grade both end outputs and intermediate steps, not just final correctness.",
+          "The article gives a strong heuristic for when to automate: high-volume, rules-plus-tool workflows are better candidates than low-frequency work or tasks dominated by human judgment.",
+          "For aspiring FDEs, the portfolio is meant to prove both engineering ability and the ability to explain business impact to non-technical decision makers."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://x.com/vasuman/status/2057177266984226892/?rw_tt_thread=True"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent essay-style argument about forward deployed engineering, not a bundle of unrelated items.",
+          "Structured as an explanatory guide with sections and a TL;DR rather than a roundup or transcript.",
+          "Contains step-by-step advice, but the primary structure is an opinionated article about one role and how to enter it."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "The source describes this as being \"on-site with a customer\" and says to \"build APIs over an existing data layer (SharePoint or databases) and place a model on top as an orchestrator.\"",
+          "key_points": [
+            "Observe the workflow in the real operating environment before proposing automation.",
+            "Prefer layering models over existing systems through APIs rather than replacing core infrastructure.",
+            "Treat existing enterprise systems as integration surfaces, not obstacles to be removed.",
+            "Move cautiously when the workflow affects production operations or customer-facing work."
+          ],
+          "knowledge_summary": "Production AI systems often need to be designed inside the customer environment, not just for it. The practical pattern is to observe real workflows, understand existing systems and constraints, and then fit automation into that environment with minimal disruption. This approach favors domain immersion, API layering, and small reversible changes over big-bang replacement. It is most useful when the system must interact with legacy infrastructure, non-technical stakeholders, or business processes that differ sharply across customers.",
+          "match_candidates": [],
+          "operational_insight": "Treat the customer site or customer system as part of the product spec; the workflow context is not optional metadata, it is the design surface.",
+          "primary_tag": "enterprise-workflows",
+          "proposed_tags": [
+            "enterprise-workflows",
+            "execution-environments",
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This pattern matters whenever AI has to fit into messy enterprise workflows, especially service automation and internal ops. It keeps the focus on constraints, data access, and handoff points instead of assuming a generic model can be dropped into any stack.",
+          "secondary_tag": "execution-environments",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Being on-site with a customer. Palantir's CTO says that you cannot build products for an environment without actually being in the environment itself. We've seen the same thing internally.",
+          "topic_slug": "agent-deployment-in-customer-environments",
+          "topic_title": "Agent Deployment in Customer Environments",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f9b92027-8183-459b-913d-646be793d5c2",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Observe the workflow in the real operating environment before proposing automation.",
+              "Prefer layering models over existing systems through APIs rather than replacing core infrastructure.",
+              "Treat existing enterprise systems as integration surfaces, not obstacles to be removed.",
+              "Move cautiously when the workflow affects production operations or customer-facing work."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-workflows",
+            "execution-environments",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "The source gives explicit heuristics: if \"the rules and inputs are both predictable, code is faster and cheaper,\" if a job \"runs five times a month\" it is probably not worth the ROI, and \"most automation tasks can be done with a series of tool calls and just one call to an LLM as an orchestrating layer.\"",
+          "key_points": [
+            "Use agents when inputs vary but the workflow still follows rules and needs tool calls.",
+            "Use code when both the rules and the inputs are predictable.",
+            "Leave tasks manual when the work depends mainly on human judgment and domain expertise.",
+            "Do not automate low-volume workflows unless the value per run is high enough to justify the effort."
+          ],
+          "knowledge_summary": "Not every task should be automated with an agent. A durable design rule is to automate workflows that have clear rules, variable inputs, and enough volume to justify the overhead, while leaving low-volume or judgment-heavy work manual. This pushes teams to think about tool use, orchestration, and cost rather than treating every task as an AI candidate. The main benefit is better ROI and fewer cases where automation adds more complexity than value.",
+          "match_candidates": [],
+          "operational_insight": "Use task frequency, input variability, and decision type as the first filter before choosing agents, code, or manual handling.",
+          "primary_tag": "workflow-design",
+          "proposed_tags": [
+            "workflow-design",
+            "orchestration",
+            "ai-engineering"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is useful for AI engineering and service automation because it reduces wasted build effort. Teams can reserve agents for workflows where orchestration actually helps, rather than forcing model calls into every process step.",
+          "secondary_tag": "orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "If a workflow can be distilled into rules but the inputs are different ... and the work involves calling tools, put an agent in. If the rules and inputs are both predictable, code is faster and cheaper. If the decision needs pattern recognition and domain expertise, leave it manual.",
+          "topic_slug": "workflow-based-automation-selection",
+          "topic_title": "Workflow-Based Automation Selection",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "aa3cd1f7-138e-460c-b860-8578341b7a4d",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Use agents when inputs vary but the workflow still follows rules and needs tool calls.",
+              "Use code when both the rules and the inputs are predictable.",
+              "Leave tasks manual when the work depends mainly on human judgment and domain expertise.",
+              "Do not automate low-volume workflows unless the value per run is high enough to justify the effort."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-design",
+            "orchestration",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "vas",
+    "canonical_url": "https://x.com/vasuman/status/2057177266984226892/?rw_tt_thread=True",
+    "content_sha256": "5c9e1ca30ce6ed14d2446b43403b055e9d7e334f41ebf660b1e9a7c6b926bf97",
+    "publication": "X (formerly Twitter)",
+    "published_date": "2026-05-20",
+    "raw_html_rel_path": "raw/readwise/forward-deployed-engineering-101-01kszj77y1z51yfaqzwmfknz7h.html",
+    "raw_md_rel_path": "raw/readwise/forward-deployed-engineering-101-01kszj77y1z51yfaqzwmfknz7h.md",
+    "source_id": "forward-deployed-engineering-101-01kszj77y1z51yfaqzwmfknz7h",
+    "title": "Forward Deployed Engineering 101"
+  }
+}

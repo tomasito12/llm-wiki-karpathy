@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:45:49+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt7fA7j5S31XbWUpCmrZBxA09SE1",
+          "token_usage": {
+            "completion_tokens": 226,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6412,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6638
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnt7h5YMjrzd8p4jGJ6qhAItzTyZX",
+          "token_usage": {
+            "completion_tokens": 1061,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6057,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7118
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnt7h5YMjrzd8p4jGJ6qhAItzTyZX",
+    "token_usage": {
+      "completion_tokens": 1287,
+      "prompt_tokens": 12469,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 13756
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "Practical personal setup walkthrough for a new MacBook Pro; useful as a checklist, but most claims are routine installation steps and device-specific preferences rather than durable AI/wiki-worthy knowledge.",
+      "skip_recommended": true,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The piece is written as the author\u2019s own setup experience on their new MacBook Pro.",
+        "Claims are supported by first-person observations like what worked, what errored, and what they changed.",
+        "There is little independent verification; most value comes from a practitioner anecdote and implementation notes."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a practical checklist for turning a new MacBook Pro into a usable developer machine. The author focuses on a few basics: move bookmarks, install a better terminal setup, get AWS tools working on Apple silicon, and bring over SSH keys safely. The interesting part is that it calls out a few real friction points, like AWS installers that can trigger unnecessary Rosetta steps and SSH keys that can break if copied through a text editor. It is useful because it shows a complete setup flow, not just isolated tips. The basic idea is to use simple, reproducible commands and keep the old workstation\u2019s files intact when migrating.",
+      "assessed_as_of": "2024-02-10",
+      "contradictions_and_skepticism": "The main tension is between the article\u2019s practical tone and the limited evidence behind some claims: it presents one successful setup as if it were a checklist for others, but most steps are preference-driven. The note that the official AWS CLI guide can trigger Rosetta on Apple M1-M3 machines is plausible within the author\u2019s experience, but the article does not show the exact installer behavior or whether it depends on a specific version. The SSH-key warning is credible, yet the failure mode is anecdotal rather than systematically demonstrated. Overall, there is little hype, but the source should still be read as a worked example, not a canonical setup standard.",
+      "key_insights": [
+        "For Apple silicon Macs, installing AWS CLI with Homebrew is presented as the cleaner path than the official installer because it avoids an unnecessary Rosetta 2 prompt.",
+        "Copying SSH private keys through a text editor can corrupt them with invisible characters; transferring the files themselves preserved validity in the author\u2019s workflow.",
+        "VS Code is used as the editing bridge for dotfiles, making terminal customization easier than editing shell config with vim or nano.",
+        "Powerlevel10k setup is treated as a multi-step terminal personalization workflow, including font installation and explicit shell configuration in .zshrc.",
+        "The article\u2019s strongest value is as a migration checklist for a new dev laptop, not as a deep guide to any single tool."
+      ],
+      "limitations_and_open_questions": "The article is a single-user setup narrative, so it does not compare alternatives, measure reliability, or test whether the chosen stack is better than other common Mac developer setups. The AWS CLI and Session Manager steps are presented as working for the author, but there is no verification beyond personal success, and no discussion of security tradeoffs, versioning, or long-term maintenance. The SSH key transfer advice is practical, but it assumes the user already has safe access to the old machine and a trustworthy transfer channel. The terminal theme and editor choices are highly subjective and do not establish generalizable value. The guide also omits details about 1Password migration beyond an external link, so that part is incomplete.",
+      "sources": [
+        "https://medium.com/data-science/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-306e94e974b4"
+      ],
+      "summary": "The article is a personal setup checklist for a new Apple M3 MacBook Pro, aimed at getting a development workstation ready after migration from an older machine. It covers three main setup areas: moving browser bookmarks and 1Password access, building a preferred terminal workflow with Homebrew, iTerm2, Oh My Zsh, Powerlevel10k, and VS Code, and installing AWS CLI plus the Session Manager plugin. The author also includes practical notes about Apple silicon compatibility, such as avoiding Rosetta prompts by installing AWS CLI with Homebrew instead of the official installer. A separate section shows how the author transferred SSH keys by copying the files directly and sending them through Slack, after a text-editor copy/paste attempt produced an invalid key format. The article is less about a general Mac migration theory and more about a working sequence of commands and preferences that got one data-science/developer environment functioning. Its value is mainly as a concrete reference for people setting up a Mac for terminal-heavy work, especially when they need AWS access and SSH continuity.",
+      "why_it_matters": "The piece is useful because it compresses a real workstation migration into a reproducible sequence: browser state, editor setup, shell customization, AWS tooling, and SSH continuity. For an advanced practitioner, the durable part is not the author\u2019s exact visual preferences but the operational pattern of preparing a new macOS laptop so common workflows survive the move. The article also surfaces a few concrete friction points that are easy to overlook in a fresh Apple silicon setup, especially the need to use the right installation path for AWS CLI and the importance of transferring SSH keys as files rather than pasted text. That makes it a decent reference for anyone standardizing a new Mac for terminal-heavy development work. The stakes are limited, though: most of the content is a personal preference stack and routine command sequence rather than a novel technique or validated benchmark. As of 2024-02-10, it is actionable as a practical setup checklist, but it is better treated as a helpful anecdotal guide than as a durable best-practice standard. The article does not substantively discuss customer support, voice, or meeting workflows, so there is no broader automation takeaway to extend here."
+    },
+    "source_type_detection": {
+      "confidence": 0.87,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The article is primarily a step-by-step setup guide with numbered instructions.",
+        "It centers on one coherent workflow: configuring a new MacBook for development use.",
+        "Although it contains multiple sub-steps, it is not a roundup of separate tools or unrelated tips."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The piece is written as the author\u2019s own setup experience on their new MacBook Pro.",
+          "Claims are supported by first-person observations like what worked, what errored, and what they changed.",
+          "There is little independent verification; most value comes from a practitioner anecdote and implementation notes."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "For Apple silicon Macs, installing AWS CLI with Homebrew is presented as the cleaner path than the official installer because it avoids an unnecessary Rosetta 2 prompt.",
+          "Copying SSH private keys through a text editor can corrupt them with invisible characters; transferring the files themselves preserved validity in the author\u2019s workflow.",
+          "VS Code is used as the editing bridge for dotfiles, making terminal customization easier than editing shell config with vim or nano.",
+          "Powerlevel10k setup is treated as a multi-step terminal personalization workflow, including font installation and explicit shell configuration in .zshrc.",
+          "The article\u2019s strongest value is as a migration checklist for a new dev laptop, not as a deep guide to any single tool."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/data-science/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-306e94e974b4"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.87,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The article is primarily a step-by-step setup guide with numbered instructions.",
+          "It centers on one coherent workflow: configuring a new MacBook for development use.",
+          "Although it contains multiple sub-steps, it is not a roundup of separate tools or unrelated tips."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Wen Yang",
+    "canonical_url": "https://medium.com/data-science/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-306e94e974b4",
+    "content_sha256": "aae66b032b472cc3a974cc53162bf2bee6be284462bab095235c3af138e51a15",
+    "publication": "Medium",
+    "published_date": "2024-02-10",
+    "raw_html_rel_path": "raw/readwise/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-01kr436s5krwpk8bnp91x1z081.html",
+    "raw_md_rel_path": "raw/readwise/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-01kr436s5krwpk8bnp91x1z081.md",
+    "source_id": "essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-01kr436s5krwpk8bnp91x1z081",
+    "title": "Essential Checklist for Setting up Your New Apple M3 MacBook Pro"
+  }
+}

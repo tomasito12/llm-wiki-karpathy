@@ -71,6 +71,7 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 - This stage **does not** write `wiki/sources/*.md`; it only prepares human-reviewed classification.
 - **Classification pipeline** (default): three LLM calls per source — triage → `source_summary` → route-specific entity extraction (`src/ingest_review/classification_pipeline.py`). Set `INGEST_CLASSIFICATION_PIPELINE=monolithic` to use the legacy single-call path. Prompt version `42` records per-stage `token_usage` / `cached_tokens` under `analysis_meta.classification_pipeline`.
 - Trend titles follow the decomposition rule: name one outcome-level directional change in `trend_title`; put mechanisms, implementations, and explanations in `trend_description`, evidence, or supporting observations.
+- **Nightly pre-analysis:** run `hatch run ingest-preanalyze --limit 100` to process pending `raw/readwise` exports through the normal synchronous review pipeline unattended. The command writes `state/reviews/<source_id>/review.json` without `review_finished_at`, so sources appear as **In progress** in the dashboard and still require normal human review. The dashboard sidebar can start the same background process and show the latest log from `state/ingest_batches/`. Re-analyze a single source with the existing **Analyze source** button; that path remains synchronous and does not use the pre-analysis loop.
 
 ## Wiki render (generated Obsidian vault)
 

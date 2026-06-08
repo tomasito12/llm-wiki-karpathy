@@ -1,0 +1,659 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-06T21:46:11+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-Dnt7ug3vrObta6Yh7aX4RIFls14V0",
+          "token_usage": {
+            "completion_tokens": 193,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8039,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8232
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-Dnt7w8EsloVjZAKUSHwxfFe5vBQDj",
+          "token_usage": {
+            "completion_tokens": 1142,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7646,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8788
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-Dnt86xF5aNQR4Kpig5iCsZo6Kv5Ov",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1290,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36733,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 38023
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dnt86xF5aNQR4Kpig5iCsZo6Kv5Ov",
+    "token_usage": {
+      "completion_tokens": 2625,
+      "prompt_tokens": 52418,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 55043
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-03-23",
+        "confidence": 0.92,
+        "evidence_from_source": "Cursor says it is \"building indexes for the core operation that modern Agents perform when looking up text\" and that it is doing so on the user's machine because network roundtrips and full scans are too slow for large repositories.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "runtime-systems",
+        "proposed_tags": [
+          "runtime-systems"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents",
+          "agentic-coding-shifts-toward-higher-supervision-costs"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-systems",
+        "suggested_new_tags": [
+          "agent-systems",
+          "developer-tools"
+        ],
+        "supporting_data_points": [
+          "Cursor reports rg invocations taking more than 15 seconds in large monorepos.",
+          "The index is kept local and tied to a Git commit, with user and agent changes layered on top.",
+          "The search path mmaps only the lookup table and reads postings directly from disk."
+        ],
+        "supporting_snippet": "\"we're creating indexes for the core operation that modern Agents perform when looking up text\"",
+        "time_sensitivity": "Actionable as of 2026-03-23 for teams building agentic coding tools or local repository search; relevance depends on large corpora and interactive latency constraints.",
+        "trend_description": "Agent workflows that depend on exact text lookup are moving toward local, precomputed indexes instead of repeated full-corpus scans. The operational shift is toward low-latency candidate filtering near the developer's working copy, with exact matching reserved for a much smaller subset of files. This reduces stalls in interactive loops where search is frequent and latency-sensitive.",
+        "trend_slug": "agent-search-moves-toward-local-text-indexes",
+        "trend_title": "Agent Search Moves Toward Local Text Indexes",
+        "uncertainty_note": "The source is a product blog post, so the trend is directionally useful but not independently benchmarked. The durability of local indexing depends on repository size, update frequency, and whether the tool can keep indexes fresh without becoming expensive to maintain.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "Published by Cursor Blog and describes Cursor's own design choices for client-side regex indexing.",
+        "Uses concrete implementation details such as commit-based indexing, separate postings/hash files, mmap, and binary search.",
+        "Mixes historical references and cited prior work, but the main source of claims is the product team's implementation narrative."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about making regex search fast enough for coding agents to use all the time. The basic trick is to stop scanning every file blindly and instead build an index that narrows the search to a smaller set of likely matches first. Cursor explains several index designs, then describes its own local, client-side approach for large repositories. The reason it matters is simple: if search is slow, the agent stalls and the coding loop feels sluggish. The article is most useful as a practical explanation of how text indexing can support agent tools in big codebases.",
+      "assessed_as_of": "2026-03-23",
+      "contradictions_and_skepticism": "The article is strongest when describing known indexing ideas and Cursor\u2019s implementation choices, but weaker when implying that local regex indexing is broadly transformative without hard numbers. Some of the historical discussion risks making newer search systems sound like simple regressions to grep, when the real point is that agents need exact pattern matching alongside semantic retrieval. The claim that sparse n-grams are the \u201csweetest of the middle grounds\u201d is plausible but subjective; the article does not compare them under standardized workloads. The conclusion that this creates a qualitative difference for Agentic workflows is believable, but the evidence shown is mostly narrative and illustrative rather than rigorous.",
+      "key_insights": [
+        "Regex search is still necessary for some agent queries; semantic indexes do not replace exact text matching.",
+        "Classic trigram inverted indexes work, but query-time decomposition and posting-list size create a real trade-off.",
+        "Sparse n-grams are a compression-oriented refinement that can reduce the number of lookups versus dense trigrams.",
+        "Cursor\u2019s design keeps the regex index local and tied to a Git commit so it stays fresh without server synchronization.",
+        "The implementation stores postings and lookup metadata separately, then mmaps only the small lookup table for fast client-side search."
+      ],
+      "limitations_and_open_questions": "The article does not provide benchmark methodology, corpus sizes, or reproducible comparisons between trigram, sparse n-gram, and suffix-array approaches. Claims like \u201cextremely efficient\u201d and \u201cmeaningful time savings\u201d are directionally persuasive but not quantified. The client-side architecture may be harder to generalize to environments without a local Git-backed working copy or where disk/memory budgets are tighter. The text mentions bloom-filter saturation and update pain for some designs, but it does not quantify how often those failure modes occur in practice. It also does not describe failure handling when hash collisions broaden candidate sets, beyond saying incorrect results cannot happen. Security and privacy benefits are asserted, but the article does not evaluate them beyond avoiding server synchronization and roundtrips.",
+      "sources": [
+        "https://cursor.com/blog/fast-regex-search"
+      ],
+      "summary": "Cursor argues that regex search remains a core primitive for agentic coding, even in an era of semantic indexes and LSP-style code navigation, because some queries can only be answered by matching text patterns directly. The article reviews the classic lineage of regex indexing: inverted indexes with n-grams, trigram decomposition, suffix arrays, probabilistic masks on posting lists, and sparse n-grams. Its main technical point is that regex search can be made fast by using a local index to prefilter candidate files, then running the regex on only that subset. Cursor says this matters especially in very large monorepos, where full ripgrep scans can take more than 15 seconds and stall an interactive agent workflow. The article\u2019s implementation choice is client-side indexing tied to a Git commit, with agent and user edits layered on top, so the index stays fresh and avoids server roundtrips. It stores posting lists and a hash-to-offset table in separate files, mmaps only the lookup table, and uses binary search to resolve n-grams efficiently. The piece also claims that sparse n-grams with frequency-aware weighting can reduce lookup work further than classic trigrams. The practical conclusion is that fast regex search is not a legacy convenience but a performance feature for agent tools, especially in large repositories. As of 2026-03-23, the design is actionable for teams building local developer tools or agent harnesses that need low-latency text lookup in big codebases.",
+      "why_it_matters": "The piece is useful because it turns a vague claim\u2014agent tools need fast search\u2014into a concrete indexing problem with several known solutions and clear trade-offs. It shows why regex search remains a distinct requirement even when semantic retrieval is available: some agent actions depend on exact textual patterns, not similarity search. The article also compresses a useful design space for code-search systems, from classic trigrams to suffix arrays, probabilistic masks, and sparse n-grams, which makes it easier to reason about storage cost versus candidate-filter quality. Cursor\u2019s own implementation details are operationally relevant: local indexing, commit-based state, layered user changes, separated postings and hash tables, and mmap-based lookup are all aimed at reducing latency and keeping the index fresh in large repositories. The main value is not a new theory; it is a practical account of how to make a common primitive fast enough for interactive agent workflows. The evidence is strongest for large codebases, where the article says ripgrep scans can exceed 15 seconds and disrupt the loop between search, reasoning, and editing. The broader lesson is durable for developer tooling, but the article is still a product blog post, so it should be read as an implementation report rather than an independent benchmark. As of 2026-03-23, the guidance is actionable for teams building local agent tooling for large repositories, and still worth monitoring for refinements to sparse-gram indexing and client-side search performance."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent technical blog post, not a bundle of unrelated items or a Q&A transcript.",
+        "Focuses on one implementation and design argument about regex search indexing for agent tools.",
+        "Contains explanatory sections and comparisons, but the structure is article-like rather than roundup-like."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Separate candidate generation from exact regex verification to keep search interactive.",
+          "Index design must balance storage size, query-time lookup count, and update freshness.",
+          "Large monorepos make naive file-by-file regex scans too slow for agent loops.",
+          "Local indexes can be practical when the search is tightly coupled to a working copy and must stay fresh."
+        ],
+        "knowledge_summary": "Regex search indexing is the practice of precomputing text-oriented index structures so regular-expression queries can avoid scanning every file in a corpus. A useful design separates candidate selection from exact matching: the index narrows the file set, then the regex engine verifies matches on that smaller subset. Different index families trade off storage size, update cost, and query precision, so the right choice depends on corpus size, freshness needs, and latency targets.",
+        "match_candidates": [],
+        "operational_insight": "For large codebases and interactive agent workflows, the core design question is not whether regex search is possible but how cheaply you can produce a small candidate set before running the exact match. The source shows that index design is a systems problem: query decomposition, posting-list size, and update strategy matter as much as regex engine speed.",
+        "primary_tag": "retrieval-systems",
+        "proposed_tags": [
+          "retrieval-systems",
+          "inference-systems",
+          "agent-systems"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for agentic coding and service automation because exact text lookup is often the bottleneck before an agent can inspect, edit, or route work. As of 2026-03-23, teams building local developer tools or repository-aware agents can use this pattern to reduce latency in large corpora without giving up exact pattern matching.",
+        "secondary_tag": "inference-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"By decomposing any regular expression into a set of trigrams and loading all the relevant posting lists from the inverted index, we end up with a list of documents that can potentially match our regular expression. This is important! The final result set will only be obtained by actually loading all the potential documents and matching the regular expression 'the old fashioned way'.\"",
+        "topic_slug": "regex-search-indexing",
+        "topic_title": "Regex Search Indexing",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Deterministic selection is required so the index remains queryable.",
+          "Frequency-aware weighting can reduce the number of n-grams that need to be checked.",
+          "Sparse n-grams are a middle ground between dense trigrams and very large n-gram schemes.",
+          "The benefit is lower lookup work, not the elimination of exact regex verification."
+        ],
+        "knowledge_summary": "Sparse n-grams are a text indexing strategy that selects a deterministic subset of substrings rather than storing every overlapping n-gram. The goal is to reduce redundant lookups while preserving enough coverage to filter candidates effectively. In practice, sparse selection can be made frequency-aware so rare character pairs receive higher weight and common pairs are skipped more often.",
+        "match_candidates": [],
+        "operational_insight": "Sparse n-grams are a useful refinement when dense trigram indexes produce too much redundancy or too many posting-list lookups. The durable lesson is that index quality is not only about smaller tokens; it is about choosing the right deterministic sampling rule so query-time work drops without losing correctness.",
+        "primary_tag": "retrieval-systems",
+        "proposed_tags": [
+          "retrieval-systems",
+          "optimization-effects",
+          "runtime-systems"
+        ],
+        "related_topics": [
+          "regex-search-indexing"
+        ],
+        "relevance_note": "This is relevant wherever text search must be fast, local, and exact enough for developer tools or agent harnesses. As of 2026-03-23, it is a durable design pattern for reducing lookup overhead in large code repositories, especially when candidate filtering is part of an interactive loop.",
+        "secondary_tag": "optimization-effects",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"In this algorithm, we extract a random amount of n-grams, with each n-gram having a random length. Of course random here cannot be truly random, because then the index couldn't be queried. We are assigning a 'weight' to every pair of characters in the document.\"",
+        "topic_slug": "sparse-n-grams",
+        "topic_title": "Sparse N-Grams",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-03-23",
+          "confidence": 0.92,
+          "evidence_from_source": "Cursor says it is \"building indexes for the core operation that modern Agents perform when looking up text\" and that it is doing so on the user's machine because network roundtrips and full scans are too slow for large repositories.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "runtime-systems",
+          "proposed_tags": [
+            "runtime-systems"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents",
+            "agentic-coding-shifts-toward-higher-supervision-costs"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-systems",
+          "suggested_new_tags": [
+            "agent-systems",
+            "developer-tools"
+          ],
+          "supporting_data_points": [
+            "Cursor reports rg invocations taking more than 15 seconds in large monorepos.",
+            "The index is kept local and tied to a Git commit, with user and agent changes layered on top.",
+            "The search path mmaps only the lookup table and reads postings directly from disk."
+          ],
+          "supporting_snippet": "\"we're creating indexes for the core operation that modern Agents perform when looking up text\"",
+          "time_sensitivity": "Actionable as of 2026-03-23 for teams building agentic coding tools or local repository search; relevance depends on large corpora and interactive latency constraints.",
+          "trend_description": "Agent workflows that depend on exact text lookup are moving toward local, precomputed indexes instead of repeated full-corpus scans. The operational shift is toward low-latency candidate filtering near the developer's working copy, with exact matching reserved for a much smaller subset of files. This reduces stalls in interactive loops where search is frequent and latency-sensitive.",
+          "trend_slug": "agent-search-moves-toward-local-text-indexes",
+          "trend_title": "Agent Search Moves Toward Local Text Indexes",
+          "uncertainty_note": "The source is a product blog post, so the trend is directionally useful but not independently benchmarked. The durability of local indexing depends on repository size, update frequency, and whether the tool can keep indexes fresh without becoming expensive to maintain.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "c4ee4a60-a942-4728-81c5-4e8333def9fc",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents",
+              "agentic-coding-shifts-toward-higher-supervision-costs"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Cursor reports rg invocations taking more than 15 seconds in large monorepos.",
+              "The index is kept local and tied to a Git commit, with user and agent changes layered on top.",
+              "The search path mmaps only the lookup table and reads postings directly from disk."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "runtime-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "Published by Cursor Blog and describes Cursor's own design choices for client-side regex indexing.",
+          "Uses concrete implementation details such as commit-based indexing, separate postings/hash files, mmap, and binary search.",
+          "Mixes historical references and cited prior work, but the main source of claims is the product team's implementation narrative."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Regex search is still necessary for some agent queries; semantic indexes do not replace exact text matching.",
+          "Classic trigram inverted indexes work, but query-time decomposition and posting-list size create a real trade-off.",
+          "Sparse n-grams are a compression-oriented refinement that can reduce the number of lookups versus dense trigrams.",
+          "Cursor\u2019s design keeps the regex index local and tied to a Git commit so it stays fresh without server synchronization.",
+          "The implementation stores postings and lookup metadata separately, then mmaps only the small lookup table for fast client-side search."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://cursor.com/blog/fast-regex-search"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent technical blog post, not a bundle of unrelated items or a Q&A transcript.",
+          "Focuses on one implementation and design argument about regex search indexing for agent tools.",
+          "Contains explanatory sections and comparisons, but the structure is article-like rather than roundup-like."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Separate candidate generation from exact regex verification to keep search interactive.",
+            "Index design must balance storage size, query-time lookup count, and update freshness.",
+            "Large monorepos make naive file-by-file regex scans too slow for agent loops.",
+            "Local indexes can be practical when the search is tightly coupled to a working copy and must stay fresh."
+          ],
+          "knowledge_summary": "Regex search indexing is the practice of precomputing text-oriented index structures so regular-expression queries can avoid scanning every file in a corpus. A useful design separates candidate selection from exact matching: the index narrows the file set, then the regex engine verifies matches on that smaller subset. Different index families trade off storage size, update cost, and query precision, so the right choice depends on corpus size, freshness needs, and latency targets.",
+          "match_candidates": [],
+          "operational_insight": "For large codebases and interactive agent workflows, the core design question is not whether regex search is possible but how cheaply you can produce a small candidate set before running the exact match. The source shows that index design is a systems problem: query decomposition, posting-list size, and update strategy matter as much as regex engine speed.",
+          "primary_tag": "retrieval-systems",
+          "proposed_tags": [
+            "retrieval-systems",
+            "inference-systems",
+            "agent-systems"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for agentic coding and service automation because exact text lookup is often the bottleneck before an agent can inspect, edit, or route work. As of 2026-03-23, teams building local developer tools or repository-aware agents can use this pattern to reduce latency in large corpora without giving up exact pattern matching.",
+          "secondary_tag": "inference-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"By decomposing any regular expression into a set of trigrams and loading all the relevant posting lists from the inverted index, we end up with a list of documents that can potentially match our regular expression. This is important! The final result set will only be obtained by actually loading all the potential documents and matching the regular expression 'the old fashioned way'.\"",
+          "topic_slug": "regex-search-indexing",
+          "topic_title": "Regex Search Indexing",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ff3b5ef8-91f1-409e-b59b-8bec533a8699",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Separate candidate generation from exact regex verification to keep search interactive.",
+              "Index design must balance storage size, query-time lookup count, and update freshness.",
+              "Large monorepos make naive file-by-file regex scans too slow for agent loops.",
+              "Local indexes can be practical when the search is tightly coupled to a working copy and must stay fresh."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "retrieval-systems",
+            "inference-systems",
+            "agent-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Deterministic selection is required so the index remains queryable.",
+            "Frequency-aware weighting can reduce the number of n-grams that need to be checked.",
+            "Sparse n-grams are a middle ground between dense trigrams and very large n-gram schemes.",
+            "The benefit is lower lookup work, not the elimination of exact regex verification."
+          ],
+          "knowledge_summary": "Sparse n-grams are a text indexing strategy that selects a deterministic subset of substrings rather than storing every overlapping n-gram. The goal is to reduce redundant lookups while preserving enough coverage to filter candidates effectively. In practice, sparse selection can be made frequency-aware so rare character pairs receive higher weight and common pairs are skipped more often.",
+          "match_candidates": [],
+          "operational_insight": "Sparse n-grams are a useful refinement when dense trigram indexes produce too much redundancy or too many posting-list lookups. The durable lesson is that index quality is not only about smaller tokens; it is about choosing the right deterministic sampling rule so query-time work drops without losing correctness.",
+          "primary_tag": "retrieval-systems",
+          "proposed_tags": [
+            "retrieval-systems",
+            "optimization-effects",
+            "runtime-systems"
+          ],
+          "related_topics": [
+            "regex-search-indexing"
+          ],
+          "relevance_note": "This is relevant wherever text search must be fast, local, and exact enough for developer tools or agent harnesses. As of 2026-03-23, it is a durable design pattern for reducing lookup overhead in large code repositories, especially when candidate filtering is part of an interactive loop.",
+          "secondary_tag": "optimization-effects",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"In this algorithm, we extract a random amount of n-grams, with each n-gram having a random length. Of course random here cannot be truly random, because then the index couldn't be queried. We are assigning a 'weight' to every pair of characters in the document.\"",
+          "topic_slug": "sparse-n-grams",
+          "topic_title": "Sparse N-Grams",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "320beed5-91ad-42e1-8326-79bc8be8e2be",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Deterministic selection is required so the index remains queryable.",
+              "Frequency-aware weighting can reduce the number of n-grams that need to be checked.",
+              "Sparse n-grams are a middle ground between dense trigrams and very large n-gram schemes.",
+              "The benefit is lower lookup work, not the elimination of exact regex verification."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "regex-search-indexing"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "retrieval-systems",
+            "optimization-effects",
+            "runtime-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Cursor Blog",
+    "canonical_url": "https://cursor.com/blog/fast-regex-search",
+    "content_sha256": "f7f4c98667411e9d05ed90e4b31d71bee26f773acfc9499e3aa0807a43f9bed3",
+    "publication": "Cursor",
+    "published_date": "2026-03-23",
+    "raw_html_rel_path": "raw/readwise/fast-regex-search-indexing-text-for-agent-tools-01kr1qhvcq7gpqprnhvmvc1bbz.html",
+    "raw_md_rel_path": "raw/readwise/fast-regex-search-indexing-text-for-agent-tools-01kr1qhvcq7gpqprnhvmvc1bbz.md",
+    "source_id": "fast-regex-search-indexing-text-for-agent-tools-01kr1qhvcq7gpqprnhvmvc1bbz",
+    "title": "Fast regex search: indexing text for agent tools"
+  }
+}
