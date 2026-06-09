@@ -1,0 +1,1398 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T15:53:45+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoWZb8NwY3iZwD04IeRFmXQTeEur9",
+          "token_usage": {
+            "completion_tokens": 200,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8779,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8979
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoWZdV4yQgcLNBLCIBt7nUzYKjCLY",
+          "token_usage": {
+            "completion_tokens": 1366,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8396,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 9762
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DoWZpprPhsDYDD6I82tji0ehVPOlo",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 3655,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 38764,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 42419
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoWZpprPhsDYDD6I82tji0ehVPOlo",
+    "token_usage": {
+      "completion_tokens": 5221,
+      "prompt_tokens": 55939,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 61160
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The source contrasts Claude\u2019s local-file workflow with Notion\u2019s hosted AI surface and Confluence\u2019s corporate MCP route.",
+          "It implies Claude is the natural fit for Obsidian\u2019s file-native architecture, while Notion keeps the agent inside its own platform boundary."
+        ],
+        "confidence": 0.72,
+        "core_capabilities": [
+          "It can read and write plain files when used through Claude Code or similar tooling.",
+          "It can drive personal knowledge workflows without needing a vendor-specific note API.",
+          "It is flexible enough to sit behind different editors because the source treats the filesystem as the real interface."
+        ],
+        "deployment_implications": "When paired with a local vault, Claude can operate without a database API layer, which simplifies harness design and lowers integration friction. The source implies that this makes it practical for personal agent loops, custom MCP integrations, and direct file editing. It also means deployment success depends heavily on user-managed review and backups because the model can act directly on files.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "As of 2026-05-02, Claude is presented as mature enough to anchor multiple personal-harness workflows and as one of the models surfaced inside Notion 3.0\u2019s agent stack. The source treats it as an established agent option rather than an experimental model.",
+        "model_name": "Claude",
+        "operational_profile": "Claude is described here as the agent runtime used to read and write local Markdown vaults through tools such as Claude Code. The source does not evaluate model quality directly; instead, it positions Claude as the model family that benefits most from direct filesystem access and custom harnesses in personal knowledge workflows.",
+        "pricing_inference_implications": "The article implies that if you already subscribe to Claude, the AI cost for an Obsidian-based harness comes from that subscription rather than a separate note platform markup. It also contrasts this with Notion\u2019s Business-plan AI pricing, which makes Claude + local files look cheaper for individual use.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "developer-focused",
+          "tool-use-capable",
+          "proprietary-model"
+        ],
+        "proposed_types": [
+          "proprietary-model"
+        ],
+        "provider": "Anthropic",
+        "related_models": [],
+        "service_automation_implications": "The source does not describe customer-support or voicebot use for Claude in this article.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Claude Code runs cat ~/vault/notes/kubernetes-misconfig.md and gets the content.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The article does not provide model-specific weaknesses beyond the general warning that any agent can write incorrect or destructive output. That limitation is operational rather than model-specific, but it matters here because direct file access increases the impact of mistakes."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-02",
+        "confidence": 0.93,
+        "evidence_from_source": "The article argues that the decisive 2026 criterion is agent-friendliness and contrasts Obsidian\u2019s direct file access with Notion\u2019s API layer and Confluence\u2019s managed MCP route.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "ai-operationalization",
+          "enterprise-ai"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "secondary_tag": "ai-operationalization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-systems",
+        "suggested_new_tags": [
+          "agent-systems"
+        ],
+        "supporting_data_points": [
+          "Obsidian exposes local .md files directly to agents.",
+          "Notion requires an API token, rate limits, and block-model translation for external use.",
+          "Confluence relies on Rovo/MCP inside a managed enterprise environment.",
+          "Apple Notes / Bear / Drafts are described as practically impossible for external agents."
+        ],
+        "supporting_snippet": "\"How well can an external agent (LLM) read, write, and operate over your knowledge system? I call this 'agent-friendliness.'\"",
+        "time_sensitivity": "Actionable as of 2026-05-02. The observation is time-sensitive because it depends on 2025-2026 product capabilities and pricing, but the underlying selection criterion is likely to remain relevant as agent tooling matures.",
+        "trend_description": "Knowledge tools are increasingly judged by how easily external AI agents can read, write, and maintain the underlying corpus. That shifts attention away from visual polish alone and toward filesystem access, open formats, permission boundaries, and reviewability. Hosted systems can still compete, but they are evaluated more harshly when they trap the agent inside opaque product boundaries.",
+        "trend_slug": "knowledge-systems-shift-toward-agent-friendliness",
+        "trend_title": "Knowledge Systems Shift Toward Agent Friendliness",
+        "uncertainty_note": "This is a source-backed pattern, but it comes from one comparative essay rather than a controlled benchmark. Vendor APIs, pricing, and agent surfaces can change, so the exact tool rankings may drift even if the underlying criterion stays useful.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is an independent author\u2019s architectural analysis and recommendation, not a vendor announcement.",
+        "Claims are supported mainly by reasoning, product comparisons, and experiential judgments about workflow fit.",
+        "It cites product capabilities and release timing, but the dominant basis is interpretive opinion about tool choice."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece explains why one note app, Obsidian, became the favorite base for personal LLM-powered knowledge systems. The core idea is simple: if an AI agent needs to read and edit your notes, plain files on your disk are much easier than a closed cloud database. Obsidian stores notes as Markdown files, so an agent can work with them directly. Notion and Confluence have stronger built-in AI features, but they keep the data and agent inside their own systems. The article says that makes them better for some teams, but worse for a personal harness where control, portability, and custom tooling matter most.",
+      "assessed_as_of": "2026-05-02",
+      "contradictions_and_skepticism": "The strongest claim \u2014 that Obsidian \u201cwon\u201d as the base for the pattern \u2014 is plausible for technical individuals, but it is still a selection effect from a small set of implementations and visible community adoption. The piece sometimes elevates architectural cleanliness into practical inevitability; that works for power users, but not necessarily for teams that value collaboration or managed cloud defaults more than file sovereignty. The argument that Notion AI is less suitable because it is closed is coherent, but it downplays that many users may prefer the integrated experience and delegated management. Likewise, Confluence is described as too expensive or slow for personal use, which is reasonable, but that judgment is anchored to the author\u2019s workflow rather than a controlled comparison. The article is strongest when it admits trade-offs and weakest when it implies convergence alone proves superiority.",
+      "key_insights": [
+        "The decisive comparison in 2026 is agent-friendliness: how easily an external LLM can read, write, and maintain the knowledge base.",
+        "Obsidian\u2019s separation of storage, format, UI, and agent is the architectural reason it fits personal LLM harnesses.",
+        "Notion 3.0 is genuinely capable, but its AI remains a closed surface that trades sovereignty for convenience.",
+        "Confluence + Rovo is viable for Atlassian-heavy teams, but the article treats it as a corporate answer rather than a personal one.",
+        "The LLM Wiki pattern is not a reliable source of truth; it still needs human review, backups, and versioning."
+      ],
+      "limitations_and_open_questions": "The argument is mostly architectural and experiential, not benchmark-driven. It does not measure task success, latency, error rates, or time saved across tools, so the claims about \u201cwinning\u201d are not empirically validated beyond reasoning and examples. Several platform details are time-sensitive product claims, including Notion 3.0, Notion 3.3, and Atlassian Rovo availability, so the comparison may age as vendors change pricing and APIs. The article assumes a technically comfortable user who can manage git, backups, and local files; it does not address non-technical personal users in depth. It also does not explore security trade-offs rigorously, such as what happens when local agents have destructive filesystem permissions or how permissioning should be audited in mixed setups. The \u201cLLM Wiki\u201d pattern itself is treated as useful for summarization and cross-referencing, but the article leaves open how often human review must occur to keep quality acceptable.",
+      "sources": [
+        "https://medium.com/@roanmonteiro/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldnt-pick-it-9790271e5313",
+        "Karpathy\u2019s LLM Wiki gist (original)",
+        "claude-obsidian (AgriciDaniel)",
+        "obsidian-wiki framework (Ar9av)",
+        "llm-wikid (shannhk)",
+        "Obsidian official docs",
+        "Notion AI overview",
+        "Atlassian Rovo",
+        "Steph Ango \u2014 Obsidian CEO, original post on AI agent skills"
+      ],
+      "summary": "The article argues that Obsidian became the default base for the Karpathy-style \u201cLLM Wiki\u201d pattern because it cleanly separates storage, format, UI, and agent into swappable layers. That architecture matters more than classic note-app comparisons in 2026, because the key question is how well an external LLM agent can read, write, and maintain a knowledge base. Obsidian\u2019s local Markdown files make direct filesystem access trivial for agents, while Notion and Confluence tie the agent to platform APIs, permissions, and hosted infrastructure. The piece is careful to note that Notion 3.0 and Confluence + Rovo gained serious AI capabilities, including multi-step agents and cross-app search, but argues that they remain closed systems with weaker sovereignty and higher friction for a personal harness. It also emphasizes trade-offs: Obsidian is weak for real-time collaboration, visual databases, and zero-maintenance cloud backup, and it depends on user discipline around git and backups. The conclusion is conditional rather than absolutist: Obsidian is the best fit for a technical individual building a personal LLM workspace; Notion is better for polished team consumption and collaboration; Confluence is mainly for Atlassian-heavy corporate environments; Apple Notes/Bear/Drafts are for capture, not agentic knowledge bases.",
+      "why_it_matters": "The article is useful because it frames tool choice around an operational property that matters for AI engineering: whether an agent can reliably operate on your knowledge system without brittle wrappers. That is a more durable criterion than editor polish, database views, or generic collaboration features when the goal is a personal, agent-driven wiki. The author\u2019s strongest claim is architectural: Obsidian\u2019s local Markdown vault lets Claude Code or similar tools read and write files directly, with no API translation layer or platform permission maze. The contrast with Notion is especially practical: Notion 3.0 adds autonomous agents, workspace search, and custom workflows, but the agent remains hosted inside Notion\u2019s product boundary, which limits offline use, custom model choice, and direct scriptable access. Confluence + Rovo is presented as a workable enterprise option, but mainly when an organization is already committed to Atlassian and needs corporate docs and decisions surfaced to the team. The article\u2019s cautions are also valuable: local-first ownership increases the need for backups, git, and review discipline, and the \u201cLLM Wiki\u201d label itself is misleading because these systems do not provide consensus, citation, or auditability like a real wiki. For personal AI note systems, the practical takeaway is to optimize for file access, portability, and diffable artifacts rather than for the richest native AI dashboard. As of 2026-05-02, the recommendation looks actionable for technical individuals building their own harness, but it should be treated as a contextual fit, not a universal default."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent argumentative essay comparing Obsidian, Notion, Confluence, and Apple Notes for a personal LLM harness.",
+        "Not a bundle of unrelated items or a step-by-step tutorial; product mentions support one central thesis.",
+        "Includes opinionated evaluation and use-case framing rather than transcript, report, or roundup structure."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It stores notes as Markdown files in a local folder, which makes the vault directly accessible to external agents.",
+          "It can be used as the visible editor while other tools such as VS Code, Typora, or Cursor open the same files.",
+          "It supports a local-first workflow where git can be used for review, versioning, and rollback."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source mentions direct use with Claude Code as a file-reading and file-writing agent.",
+          "It is described as compatible with other local editors such as VS Code, Typora, iA Writer, Zed, and Cursor because they can all open the same folder.",
+          "The article references Obsidian Sync and Publish as optional services, not core requirements."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes a mature personal-workflow tool with an established community pattern around LLM Wiki setups, official skills, and multiple open-source implementations. It is not presented as an enterprise-managed platform; its maturity signal is portability plus community convergence rather than corporate governance features.",
+        "name": "Obsidian",
+        "operational_relevance": "Obsidian fits workflows where an AI agent needs direct file access rather than an API wrapper. It is practical for personal knowledge bases, technical notes, and agent-driven documentation because Claude Code or similar tools can read and write the same Markdown files the user edits. It is less suited to team collaboration, but strong for developer-centric personal harnesses.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "writing",
+          "research"
+        ],
+        "proposed_types": [
+          "note-taking"
+        ],
+        "related_tools": [
+          "Claude Code",
+          "Cursor",
+          "Notion 3.0"
+        ],
+        "short_description": "A local-first note-taking app built around Markdown files in a folder on your disk. It acts as the UI layer for a personal knowledge vault, while the files remain portable and editable outside the app.",
+        "strengths": "- Stores notes as plain Markdown files, so agents can read and write them directly without an API translation layer.\n- Keeps storage, format, UI, and agent separate, which makes the system portable across editors and model tools.\n- Works well with git-based review because changes land as diffable files rather than opaque database records.\n- Supports optional ecosystem pieces like Sync and Publish, but does not require them for the core harness pattern.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [
+          "developer-focused"
+        ],
+        "supporting_snippet": "\"In Obsidian, the answer is direct: every note is a .md file in a folder on your disk. Claude Code runs cat ~/vault/notes/kubernetes-misconfig.md and gets the content. No API, no auth, no rate limit.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "- It is fundamentally a single-user tool, so real-time collaboration is weak compared with team-first systems like Notion.\n- Local-first storage shifts backup and versioning responsibility to the user; without git or another backup plan, disk loss can mean data loss.\n- The article notes that agent access also raises risk: a misbehaving session can delete or overwrite files if permissions are not disciplined."
+      },
+      {
+        "confidence": 0.93,
+        "core_capabilities": [
+          "It can run AI agents that execute multi-step workflows inside the workspace.",
+          "It can query across the workspace and linked sources like Google Drive and Slack through Ask Notion.",
+          "It supports custom agents for specialized team workflows.",
+          "It offers visual databases such as kanban boards, tables, and calendars in the same product.",
+          "Its data model is block-based rather than Markdown-based, which affects portability and external automation."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source explicitly mentions Google Drive and Slack as connected sources for Ask Notion.",
+          "The article says external use can go through the REST API, but with rate limits and a block-model conversion layer.",
+          "The AI surface is described as residing inside Notion\u2019s own product boundary rather than as a general external runtime."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "As of 2026-05-02, the source presents Notion 3.0 and 3.3 as a serious, mature product line with autonomous agents and custom agent workflows. Its maturity signal is product breadth and polish, but the article treats it as a hosted platform with firm usage and policy boundaries rather than a freely extensible agent substrate.",
+        "name": "Notion 3.0",
+        "operational_relevance": "Notion is relevant when a team wants AI features without building its own harness. The source frames it as strong for polished UX, collaborative workflows, and visual databases, but less suitable when external agents need direct file access or when custom tooling must run outside the vendor boundary. It is therefore a fit for managed team consumption, not for a local personal harness.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cloud-hosted",
+          "enterprise-managed",
+          "real-time",
+          "spreadsheets"
+        ],
+        "proposed_types": [
+          "cloud-saas",
+          "knowledge-management"
+        ],
+        "related_tools": [
+          "Obsidian",
+          "Claude Code",
+          "Confluence + Rovo"
+        ],
+        "short_description": "A cloud workspace platform with built-in AI agents, workspace search, and structured page blocks. It combines notes, databases, collaboration, and hosted automation inside one managed product boundary.",
+        "strengths": "- Provides autonomous AI agents that can execute multi-step workflows rather than only suggest edits.\n- Exposes workspace-wide querying through Ask Notion, including connected sources such as Google Drive and Slack.\n- Supports Custom Agents, which lets teams build specialized workflows inside the product.\n- Offers polished collaboration and visual database features that the article says are stronger than Obsidian for some team use cases.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Notion 3.0, launched in September 2025, introduced autonomous AI Agents capable of executing multi-step workflows, marking a shift from 'AI that suggests' to 'AI that executes.'\"",
+        "value_level": "high",
+        "weaknesses_limitations": "- The platform is closed: the AI agent runs inside Notion rather than in the user\u2019s own environment, so offline use and custom local-model control are limited.\n- External automation depends on the REST API and Notion\u2019s block model, which adds conversion and rate-limit friction.\n- The source says third-party AI access was blocked in May 2025 and that AI access moved to the Business plan, which raises cost and reduces flexibility for individuals."
+      },
+      {
+        "confidence": 0.84,
+        "core_capabilities": [
+          "It can search across Atlassian data and connected SaaS sources.",
+          "It can chat inside Jira, Confluence, and Jira Service Management.\n",
+          "It can execute tasks through agents, such as creating tickets or sending messages.",
+          "It exposes an MCP endpoint for external agent consumption."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The article explicitly names Jira, Confluence, and Jira Service Management Cloud as the core surfaces.",
+          "It mentions an MCP/HTTP server with API token authentication for Claude Code integration.",
+          "It is described as compatible with connected SaaS apps beyond Atlassian, though specific apps are not enumerated in the source."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source frames Rovo as production-ready enough to be bundled into paid Atlassian cloud plans as of April 2025. That suggests meaningful enterprise adoption, but also strong platform control and quota-based usage rather than open-ended local autonomy.",
+        "name": "Atlassian Rovo",
+        "operational_relevance": "Rovo fits corporate environments that already live inside Atlassian and want AI over their existing docs and tickets. The article presents it as viable for Claude Code through MCP, which makes it relevant to agentic workflows, but still a corporate-managed option rather than a personal local harness. It is most useful when decisions, tickets, and documentation need to be queryable across the enterprise stack.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cloud-hosted",
+          "enterprise-managed",
+          "enterprise-search",
+          "tool-use"
+        ],
+        "proposed_types": [
+          "cloud-saas",
+          "enterprise-ai"
+        ],
+        "related_tools": [
+          "Confluence",
+          "Claude Code",
+          "Obsidian"
+        ],
+        "short_description": "An Atlassian AI layer for Jira, Confluence, and Jira Service Management that adds search, chat, and agents over corporate workspace data. The source describes it as accessible through an MCP endpoint for external agents like Claude Code.",
+        "strengths": "- Searches across Atlassian products and connected SaaS apps, which helps teams centralize retrieval over fragmented work artifacts.\n- Provides chat and agents that can act inside Jira, Confluence, and Jira Service Management.\n- Exposes an MCP endpoint the article says Claude Code can consume, which makes external agent integration practical.\n- Is included in paid Jira, Confluence, and JSM Cloud subscriptions, lowering the entry barrier for existing Atlassian customers.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"In April 2025. It exposes an MCP endpoint Claude Code can consume. It works. For a corporate team already living in Atlassian, it\u2019s a good solution.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "- It is tied to Atlassian\u2019s ecosystem, so it is not a lightweight personal setup.\n- The article says it is still a corporate option with quotas and planned usage-based charging, so cost and governance remain managed by the vendor.\n- For personal knowledge work, the source calls it overkill and slower than a local markdown vault."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Plain files let agents operate without a bespoke API layer.",
+          "Diffable artifacts make review, rollback, and audit simpler.",
+          "The approach fits personal harnesses and technical users better than team-first SaaS workflows.",
+          "Portability stays high because files survive UI changes."
+        ],
+        "knowledge_summary": "File-native agent workflows treat files on disk as the primary interface between humans and AI agents. The agent reads and writes the same artifacts that the user edits, which avoids database translation layers, hidden permissions, and brittle export-import cycles. This makes the system easier to script, diff, back up, and reason about. It is especially useful when the goal is a personal or developer-owned workspace rather than a managed team platform.",
+        "match_candidates": [],
+        "operational_insight": "If an agent needs to maintain notes, docs, or research, keeping those assets in plain files usually beats wrapping them in a hosted application API. The operational win is not just convenience; it is direct control over versioning, portability, and review.",
+        "primary_tag": "runtime-architecture",
+        "proposed_tags": [
+          "runtime-architecture",
+          "knowledge-systems",
+          "agent-systems"
+        ],
+        "related_topics": [
+          "agent-workspace-layering",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This pattern matters whenever AI systems must operate over durable internal artifacts such as notes, runbooks, decision logs, or research vaults. It reduces integration friction and makes human review easier because the outputs remain diffable files instead of opaque platform records.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "file-native-agent-workflows",
+        "suggested_new_tags": [
+          "file-native-agent-workflows"
+        ],
+        "supporting_snippet": "\"In Obsidian, the answer is direct: every note is a .md file in a folder on your disk. Claude Code runs cat ~/vault/notes/kubernetes-misconfig.md and gets the content. No API, no auth, no rate limit.\"",
+        "topic_slug": "file-native-agent-workflows",
+        "topic_title": "File-Native Agent Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Separate storage from interface and model runtime.",
+          "Open formats reduce migration risk.",
+          "Layer fusion can improve polish but increases lock-in.",
+          "The best AI substrate is often the one that survives tool churn."
+        ],
+        "knowledge_summary": "Agent workspace layering separates storage, format, UI, and agent execution into distinct layers. Each layer can be swapped independently, which preserves the underlying corpus while allowing different editors, model tools, or operating systems. This reduces lock-in and makes the knowledge base more durable than systems where all layers are fused together. The design also makes the AI surface easier to replace as models and runtimes change.",
+        "match_candidates": [],
+        "operational_insight": "For AI-enabled knowledge systems, separate the durable substrate from the replaceable interface. If storage and format are open, you can change editors and agents later without rebuilding the corpus.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "runtime-architecture",
+          "software-engineering",
+          "knowledge-systems"
+        ],
+        "related_topics": [
+          "file-native-agent-workflows",
+          "open-formats-as-ai-integration-boundaries"
+        ],
+        "relevance_note": "This is a durable systems pattern for AI tooling because the interface layer and the execution layer will change faster than the corpus layer. Teams that isolate those layers can migrate models, UIs, and automation tools without throwing away accumulated knowledge.",
+        "secondary_tag": "runtime-architecture",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"There are four layers in what I call the 'personal knowledge harness,' and most tool comparisons confuse one layer with another: Storage ... Format ... UI / Viewer ... Agent ... Each layer is swappable independent of the others.\"",
+        "topic_slug": "agent-workspace-layering",
+        "topic_title": "Agent Workspace Layering",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The source contrasts Claude\u2019s local-file workflow with Notion\u2019s hosted AI surface and Confluence\u2019s corporate MCP route.",
+            "It implies Claude is the natural fit for Obsidian\u2019s file-native architecture, while Notion keeps the agent inside its own platform boundary."
+          ],
+          "confidence": 0.72,
+          "core_capabilities": [
+            "It can read and write plain files when used through Claude Code or similar tooling.",
+            "It can drive personal knowledge workflows without needing a vendor-specific note API.",
+            "It is flexible enough to sit behind different editors because the source treats the filesystem as the real interface."
+          ],
+          "deployment_implications": "When paired with a local vault, Claude can operate without a database API layer, which simplifies harness design and lowers integration friction. The source implies that this makes it practical for personal agent loops, custom MCP integrations, and direct file editing. It also means deployment success depends heavily on user-managed review and backups because the model can act directly on files.",
+          "match_candidates": [],
+          "maturity_signals": "As of 2026-05-02, Claude is presented as mature enough to anchor multiple personal-harness workflows and as one of the models surfaced inside Notion 3.0\u2019s agent stack. The source treats it as an established agent option rather than an experimental model.",
+          "model_name": "Claude",
+          "operational_profile": "Claude is described here as the agent runtime used to read and write local Markdown vaults through tools such as Claude Code. The source does not evaluate model quality directly; instead, it positions Claude as the model family that benefits most from direct filesystem access and custom harnesses in personal knowledge workflows.",
+          "pricing_inference_implications": "The article implies that if you already subscribe to Claude, the AI cost for an Obsidian-based harness comes from that subscription rather than a separate note platform markup. It also contrasts this with Notion\u2019s Business-plan AI pricing, which makes Claude + local files look cheaper for individual use.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "developer-focused",
+            "tool-use-capable",
+            "proprietary-model"
+          ],
+          "proposed_types": [
+            "proprietary-model"
+          ],
+          "provider": "Anthropic",
+          "related_models": [],
+          "service_automation_implications": "The source does not describe customer-support or voicebot use for Claude in this article.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Claude Code runs cat ~/vault/notes/kubernetes-misconfig.md and gets the content.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The article does not provide model-specific weaknesses beyond the general warning that any agent can write incorrect or destructive output. That limitation is operational rather than model-specific, but it matters here because direct file access increases the impact of mistakes."
+        },
+        "notes": null,
+        "proposal_id": "0511895b-587b-4a4e-a206-5fb0822c9769",
+        "proposal_status": "rejected",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "comparative_observations": {
+            "final_list": [],
+            "llm_list": [
+              "The source contrasts Claude\u2019s local-file workflow with Notion\u2019s hosted AI surface and Confluence\u2019s corporate MCP route.",
+              "It implies Claude is the natural fit for Obsidian\u2019s file-native architecture, while Notion keeps the agent inside its own platform boundary."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "core_capabilities": {
+            "final_list": [],
+            "llm_list": [
+              "It can read and write plain files when used through Claude Code or similar tooling.",
+              "It can drive personal knowledge workflows without needing a vendor-specific note API.",
+              "It is flexible enough to sit behind different editors because the source treats the filesystem as the real interface."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "deployment_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "maturity_signals": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "model_name": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_profile": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "pricing_inference_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "provider": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "developer-focused",
+            "tool-use-capable",
+            "proprietary-model"
+          ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "proprietary-model"
+          ],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-02",
+          "confidence": 0.93,
+          "evidence_from_source": "The article argues that the decisive 2026 criterion is agent-friendliness and contrasts Obsidian\u2019s direct file access with Notion\u2019s API layer and Confluence\u2019s managed MCP route.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "ai-operationalization",
+            "enterprise-ai"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "secondary_tag": "ai-operationalization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-systems",
+          "suggested_new_tags": [
+            "agent-systems"
+          ],
+          "supporting_data_points": [
+            "Obsidian exposes local .md files directly to agents.",
+            "Notion requires an API token, rate limits, and block-model translation for external use.",
+            "Confluence relies on Rovo/MCP inside a managed enterprise environment.",
+            "Apple Notes / Bear / Drafts are described as practically impossible for external agents."
+          ],
+          "supporting_snippet": "\"How well can an external agent (LLM) read, write, and operate over your knowledge system? I call this 'agent-friendliness.'\"",
+          "time_sensitivity": "Actionable as of 2026-05-02. The observation is time-sensitive because it depends on 2025-2026 product capabilities and pricing, but the underlying selection criterion is likely to remain relevant as agent tooling matures.",
+          "trend_description": "Knowledge tools are increasingly judged by how easily external AI agents can read, write, and maintain the underlying corpus. That shifts attention away from visual polish alone and toward filesystem access, open formats, permission boundaries, and reviewability. Hosted systems can still compete, but they are evaluated more harshly when they trap the agent inside opaque product boundaries.",
+          "trend_slug": "knowledge-systems-shift-toward-agent-friendliness",
+          "trend_title": "Knowledge Systems Shift Toward Agent Friendliness",
+          "uncertainty_note": "This is a source-backed pattern, but it comes from one comparative essay rather than a controlled benchmark. Vendor APIs, pricing, and agent surfaces can change, so the exact tool rankings may drift even if the underlying criterion stays useful.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ea909d7b-869d-48b9-b46b-414965503db3",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian exposes local .md files directly to agents.",
+              "Notion requires an API token, rate limits, and block-model translation for external use.",
+              "Confluence relies on Rovo/MCP inside a managed enterprise environment.",
+              "Apple Notes / Bear / Drafts are described as practically impossible for external agents."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "ai-operationalization",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is an independent author\u2019s architectural analysis and recommendation, not a vendor announcement.",
+          "Claims are supported mainly by reasoning, product comparisons, and experiential judgments about workflow fit.",
+          "It cites product capabilities and release timing, but the dominant basis is interpretive opinion about tool choice."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The decisive comparison in 2026 is agent-friendliness: how easily an external LLM can read, write, and maintain the knowledge base.",
+          "Obsidian\u2019s separation of storage, format, UI, and agent is the architectural reason it fits personal LLM harnesses.",
+          "Notion 3.0 is genuinely capable, but its AI remains a closed surface that trades sovereignty for convenience.",
+          "Confluence + Rovo is viable for Atlassian-heavy teams, but the article treats it as a corporate answer rather than a personal one.",
+          "The LLM Wiki pattern is not a reliable source of truth; it still needs human review, backups, and versioning."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@roanmonteiro/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldnt-pick-it-9790271e5313",
+          "Karpathy\u2019s LLM Wiki gist (original)",
+          "claude-obsidian (AgriciDaniel)",
+          "obsidian-wiki framework (Ar9av)",
+          "llm-wikid (shannhk)",
+          "Obsidian official docs",
+          "Notion AI overview",
+          "Atlassian Rovo",
+          "Steph Ango \u2014 Obsidian CEO, original post on AI agent skills"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent argumentative essay comparing Obsidian, Notion, Confluence, and Apple Notes for a personal LLM harness.",
+          "Not a bundle of unrelated items or a step-by-step tutorial; product mentions support one central thesis.",
+          "Includes opinionated evaluation and use-case framing rather than transcript, report, or roundup structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It stores notes as Markdown files in a local folder, which makes the vault directly accessible to external agents.",
+            "It can be used as the visible editor while other tools such as VS Code, Typora, or Cursor open the same files.",
+            "It supports a local-first workflow where git can be used for review, versioning, and rollback."
+          ],
+          "integration_ecosystem": [
+            "The source mentions direct use with Claude Code as a file-reading and file-writing agent.",
+            "It is described as compatible with other local editors such as VS Code, Typora, iA Writer, Zed, and Cursor because they can all open the same folder.",
+            "The article references Obsidian Sync and Publish as optional services, not core requirements."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes a mature personal-workflow tool with an established community pattern around LLM Wiki setups, official skills, and multiple open-source implementations. It is not presented as an enterprise-managed platform; its maturity signal is portability plus community convergence rather than corporate governance features.",
+          "name": "Obsidian",
+          "operational_relevance": "Obsidian fits workflows where an AI agent needs direct file access rather than an API wrapper. It is practical for personal knowledge bases, technical notes, and agent-driven documentation because Claude Code or similar tools can read and write the same Markdown files the user edits. It is less suited to team collaboration, but strong for developer-centric personal harnesses.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "writing",
+            "research"
+          ],
+          "proposed_types": [
+            "note-taking"
+          ],
+          "related_tools": [
+            "Claude Code",
+            "Cursor",
+            "Notion 3.0"
+          ],
+          "short_description": "A local-first note-taking app built around Markdown files in a folder on your disk. It acts as the UI layer for a personal knowledge vault, while the files remain portable and editable outside the app.",
+          "strengths": "- Stores notes as plain Markdown files, so agents can read and write them directly without an API translation layer.\n- Keeps storage, format, UI, and agent separate, which makes the system portable across editors and model tools.\n- Works well with git-based review because changes land as diffable files rather than opaque database records.\n- Supports optional ecosystem pieces like Sync and Publish, but does not require them for the core harness pattern.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [
+            "developer-focused"
+          ],
+          "supporting_snippet": "\"In Obsidian, the answer is direct: every note is a .md file in a folder on your disk. Claude Code runs cat ~/vault/notes/kubernetes-misconfig.md and gets the content. No API, no auth, no rate limit.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "- It is fundamentally a single-user tool, so real-time collaboration is weak compared with team-first systems like Notion.\n- Local-first storage shifts backup and versioning responsibility to the user; without git or another backup plan, disk loss can mean data loss.\n- The article notes that agent access also raises risk: a misbehaving session can delete or overwrite files if permissions are not disciplined."
+        },
+        "notes": null,
+        "proposal_id": "cf14ab4e-0562-451c-a535-c342072848ef",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It stores notes as Markdown files in a local folder, which makes the vault directly accessible to external agents.",
+              "It can be used as the visible editor while other tools such as VS Code, Typora, or Cursor open the same files.",
+              "It supports a local-first workflow where git can be used for review, versioning, and rollback."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source mentions direct use with Claude Code as a file-reading and file-writing agent.",
+              "It is described as compatible with other local editors such as VS Code, Typora, iA Writer, Zed, and Cursor because they can all open the same folder.",
+              "The article references Obsidian Sync and Publish as optional services, not core requirements."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Code",
+              "Cursor",
+              "Notion 3.0"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "writing",
+            "research"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "note-taking"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "core_capabilities": [
+            "It can run AI agents that execute multi-step workflows inside the workspace.",
+            "It can query across the workspace and linked sources like Google Drive and Slack through Ask Notion.",
+            "It supports custom agents for specialized team workflows.",
+            "It offers visual databases such as kanban boards, tables, and calendars in the same product.",
+            "Its data model is block-based rather than Markdown-based, which affects portability and external automation."
+          ],
+          "integration_ecosystem": [
+            "The source explicitly mentions Google Drive and Slack as connected sources for Ask Notion.",
+            "The article says external use can go through the REST API, but with rate limits and a block-model conversion layer.",
+            "The AI surface is described as residing inside Notion\u2019s own product boundary rather than as a general external runtime."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "As of 2026-05-02, the source presents Notion 3.0 and 3.3 as a serious, mature product line with autonomous agents and custom agent workflows. Its maturity signal is product breadth and polish, but the article treats it as a hosted platform with firm usage and policy boundaries rather than a freely extensible agent substrate.",
+          "name": "Notion 3.0",
+          "operational_relevance": "Notion is relevant when a team wants AI features without building its own harness. The source frames it as strong for polished UX, collaborative workflows, and visual databases, but less suitable when external agents need direct file access or when custom tooling must run outside the vendor boundary. It is therefore a fit for managed team consumption, not for a local personal harness.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cloud-hosted",
+            "enterprise-managed",
+            "real-time",
+            "spreadsheets"
+          ],
+          "proposed_types": [
+            "cloud-saas",
+            "knowledge-management"
+          ],
+          "related_tools": [
+            "Obsidian",
+            "Claude Code",
+            "Confluence + Rovo"
+          ],
+          "short_description": "A cloud workspace platform with built-in AI agents, workspace search, and structured page blocks. It combines notes, databases, collaboration, and hosted automation inside one managed product boundary.",
+          "strengths": "- Provides autonomous AI agents that can execute multi-step workflows rather than only suggest edits.\n- Exposes workspace-wide querying through Ask Notion, including connected sources such as Google Drive and Slack.\n- Supports Custom Agents, which lets teams build specialized workflows inside the product.\n- Offers polished collaboration and visual database features that the article says are stronger than Obsidian for some team use cases.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Notion 3.0, launched in September 2025, introduced autonomous AI Agents capable of executing multi-step workflows, marking a shift from 'AI that suggests' to 'AI that executes.'\"",
+          "value_level": "high",
+          "weaknesses_limitations": "- The platform is closed: the AI agent runs inside Notion rather than in the user\u2019s own environment, so offline use and custom local-model control are limited.\n- External automation depends on the REST API and Notion\u2019s block model, which adds conversion and rate-limit friction.\n- The source says third-party AI access was blocked in May 2025 and that AI access moved to the Business plan, which raises cost and reduces flexibility for individuals."
+        },
+        "notes": null,
+        "proposal_id": "31c72727-d08e-43f0-b43e-dbcf87ecfc5b",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can run AI agents that execute multi-step workflows inside the workspace.",
+              "It can query across the workspace and linked sources like Google Drive and Slack through Ask Notion.",
+              "It supports custom agents for specialized team workflows.",
+              "It offers visual databases such as kanban boards, tables, and calendars in the same product.",
+              "Its data model is block-based rather than Markdown-based, which affects portability and external automation."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source explicitly mentions Google Drive and Slack as connected sources for Ask Notion.",
+              "The article says external use can go through the REST API, but with rate limits and a block-model conversion layer.",
+              "The AI surface is described as residing inside Notion\u2019s own product boundary rather than as a general external runtime."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "Claude Code",
+              "Confluence + Rovo"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cloud-hosted",
+            "enterprise-managed",
+            "real-time",
+            "spreadsheets"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "cloud-saas",
+            "knowledge-management"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "core_capabilities": [
+            "It can search across Atlassian data and connected SaaS sources.",
+            "It can chat inside Jira, Confluence, and Jira Service Management.\n",
+            "It can execute tasks through agents, such as creating tickets or sending messages.",
+            "It exposes an MCP endpoint for external agent consumption."
+          ],
+          "integration_ecosystem": [
+            "The article explicitly names Jira, Confluence, and Jira Service Management Cloud as the core surfaces.",
+            "It mentions an MCP/HTTP server with API token authentication for Claude Code integration.",
+            "It is described as compatible with connected SaaS apps beyond Atlassian, though specific apps are not enumerated in the source."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source frames Rovo as production-ready enough to be bundled into paid Atlassian cloud plans as of April 2025. That suggests meaningful enterprise adoption, but also strong platform control and quota-based usage rather than open-ended local autonomy.",
+          "name": "Atlassian Rovo",
+          "operational_relevance": "Rovo fits corporate environments that already live inside Atlassian and want AI over their existing docs and tickets. The article presents it as viable for Claude Code through MCP, which makes it relevant to agentic workflows, but still a corporate-managed option rather than a personal local harness. It is most useful when decisions, tickets, and documentation need to be queryable across the enterprise stack.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cloud-hosted",
+            "enterprise-managed",
+            "enterprise-search",
+            "tool-use"
+          ],
+          "proposed_types": [
+            "cloud-saas",
+            "enterprise-ai"
+          ],
+          "related_tools": [
+            "Confluence",
+            "Claude Code",
+            "Obsidian"
+          ],
+          "short_description": "An Atlassian AI layer for Jira, Confluence, and Jira Service Management that adds search, chat, and agents over corporate workspace data. The source describes it as accessible through an MCP endpoint for external agents like Claude Code.",
+          "strengths": "- Searches across Atlassian products and connected SaaS apps, which helps teams centralize retrieval over fragmented work artifacts.\n- Provides chat and agents that can act inside Jira, Confluence, and Jira Service Management.\n- Exposes an MCP endpoint the article says Claude Code can consume, which makes external agent integration practical.\n- Is included in paid Jira, Confluence, and JSM Cloud subscriptions, lowering the entry barrier for existing Atlassian customers.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"In April 2025. It exposes an MCP endpoint Claude Code can consume. It works. For a corporate team already living in Atlassian, it\u2019s a good solution.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "- It is tied to Atlassian\u2019s ecosystem, so it is not a lightweight personal setup.\n- The article says it is still a corporate option with quotas and planned usage-based charging, so cost and governance remain managed by the vendor.\n- For personal knowledge work, the source calls it overkill and slower than a local markdown vault."
+        },
+        "notes": null,
+        "proposal_id": "52e177be-5093-45fb-8d18-977a003a2035",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can search across Atlassian data and connected SaaS sources.",
+              "It can chat inside Jira, Confluence, and Jira Service Management.\n",
+              "It can execute tasks through agents, such as creating tickets or sending messages.",
+              "It exposes an MCP endpoint for external agent consumption."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The article explicitly names Jira, Confluence, and Jira Service Management Cloud as the core surfaces.",
+              "It mentions an MCP/HTTP server with API token authentication for Claude Code integration.",
+              "It is described as compatible with connected SaaS apps beyond Atlassian, though specific apps are not enumerated in the source."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Confluence",
+              "Claude Code",
+              "Obsidian"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cloud-hosted",
+            "enterprise-managed",
+            "enterprise-search",
+            "tool-use"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "cloud-saas",
+            "enterprise-ai"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Plain files let agents operate without a bespoke API layer.",
+            "Diffable artifacts make review, rollback, and audit simpler.",
+            "The approach fits personal harnesses and technical users better than team-first SaaS workflows.",
+            "Portability stays high because files survive UI changes."
+          ],
+          "knowledge_summary": "File-native agent workflows treat files on disk as the primary interface between humans and AI agents. The agent reads and writes the same artifacts that the user edits, which avoids database translation layers, hidden permissions, and brittle export-import cycles. This makes the system easier to script, diff, back up, and reason about. It is especially useful when the goal is a personal or developer-owned workspace rather than a managed team platform.",
+          "match_candidates": [],
+          "operational_insight": "If an agent needs to maintain notes, docs, or research, keeping those assets in plain files usually beats wrapping them in a hosted application API. The operational win is not just convenience; it is direct control over versioning, portability, and review.",
+          "primary_tag": "runtime-architecture",
+          "proposed_tags": [
+            "runtime-architecture",
+            "knowledge-systems",
+            "agent-systems"
+          ],
+          "related_topics": [
+            "agent-workspace-layering",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This pattern matters whenever AI systems must operate over durable internal artifacts such as notes, runbooks, decision logs, or research vaults. It reduces integration friction and makes human review easier because the outputs remain diffable files instead of opaque platform records.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "file-native-agent-workflows",
+          "suggested_new_tags": [
+            "file-native-agent-workflows"
+          ],
+          "supporting_snippet": "\"In Obsidian, the answer is direct: every note is a .md file in a folder on your disk. Claude Code runs cat ~/vault/notes/kubernetes-misconfig.md and gets the content. No API, no auth, no rate limit.\"",
+          "topic_slug": "file-native-agent-workflows",
+          "topic_title": "File-Native Agent Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e4a65bdd-20a9-4b19-8023-eae1c7eca451",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Plain files let agents operate without a bespoke API layer.",
+              "Diffable artifacts make review, rollback, and audit simpler.",
+              "The approach fits personal harnesses and technical users better than team-first SaaS workflows.",
+              "Portability stays high because files survive UI changes."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-workspace-layering",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "runtime-architecture",
+            "knowledge-systems",
+            "agent-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Separate storage from interface and model runtime.",
+            "Open formats reduce migration risk.",
+            "Layer fusion can improve polish but increases lock-in.",
+            "The best AI substrate is often the one that survives tool churn."
+          ],
+          "knowledge_summary": "Agent workspace layering separates storage, format, UI, and agent execution into distinct layers. Each layer can be swapped independently, which preserves the underlying corpus while allowing different editors, model tools, or operating systems. This reduces lock-in and makes the knowledge base more durable than systems where all layers are fused together. The design also makes the AI surface easier to replace as models and runtimes change.",
+          "match_candidates": [],
+          "operational_insight": "For AI-enabled knowledge systems, separate the durable substrate from the replaceable interface. If storage and format are open, you can change editors and agents later without rebuilding the corpus.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "runtime-architecture",
+            "software-engineering",
+            "knowledge-systems"
+          ],
+          "related_topics": [
+            "file-native-agent-workflows",
+            "open-formats-as-ai-integration-boundaries"
+          ],
+          "relevance_note": "This is a durable systems pattern for AI tooling because the interface layer and the execution layer will change faster than the corpus layer. Teams that isolate those layers can migrate models, UIs, and automation tools without throwing away accumulated knowledge.",
+          "secondary_tag": "runtime-architecture",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"There are four layers in what I call the 'personal knowledge harness,' and most tool comparisons confuse one layer with another: Storage ... Format ... UI / Viewer ... Agent ... Each layer is swappable independent of the others.\"",
+          "topic_slug": "agent-workspace-layering",
+          "topic_title": "Agent Workspace Layering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "029a90ed-b9f3-4309-9597-9989446eb117",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Separate storage from interface and model runtime.",
+              "Open formats reduce migration risk.",
+              "Layer fusion can improve polish but increases lock-in.",
+              "The best AI substrate is often the one that survives tool churn."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "file-native-agent-workflows",
+              "open-formats-as-ai-integration-boundaries"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "runtime-architecture",
+            "software-engineering",
+            "knowledge-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 7
+    },
+    "fields_modified": 0,
+    "proposals_approved": 6,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 7,
+    "review_duration_seconds": 145.4,
+    "review_finished_at": "2026-06-08T15:56:10.375259+00:00",
+    "review_started_at": "2026-06-08T15:53:45+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T15:56:10+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Roan Brasil Monteiro",
+    "canonical_url": "https://medium.com/@roanmonteiro/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldnt-pick-it-9790271e5313",
+    "content_sha256": "db91abb95370e2b71ce21c5a3b4dce707e6a8cb2b715601708280e9908c43a0f",
+    "publication": "Medium",
+    "published_date": "2026-05-02",
+    "raw_html_rel_path": "raw/readwise/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb.html",
+    "raw_md_rel_path": "raw/readwise/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb.md",
+    "source_id": "why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb",
+    "title": "Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn\u2019t Pick It)"
+  }
+}

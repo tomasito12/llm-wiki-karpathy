@@ -1,0 +1,1022 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T16:06:06+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoWlhjG4EEBKewhBozQCl4lLbk9sy",
+          "token_usage": {
+            "completion_tokens": 227,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6410,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6637
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoWlkIxFW4HEk7nuo1mIsT3VZ7srY",
+          "token_usage": {
+            "completion_tokens": 1273,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6051,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7324
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DoWlvV3XAkrqIXSnkGe2C2qqFwuDU",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2767,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36360,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 39127
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoWlvV3XAkrqIXSnkGe2C2qqFwuDU",
+    "token_usage": {
+      "completion_tokens": 4267,
+      "prompt_tokens": 48821,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 53088
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "MCPMark is cited at 37.0 for Qwen versus 18.1 for Gemma 4, and the article treats that as the most relevant benchmark for tool-using agent loops.",
+          "The source says Qwen outscored Gemma on SWE-bench Verified, Terminal-Bench 2.0, and NL2Repo, with specific numbers of 73.4 vs 52.0, 51.5 vs 42.9, and 29.4 vs 15.5.",
+          "The article notes that some internal benchmark claims should be independently verified before being generalized."
+        ],
+        "comparative_observations": [
+          "The source says Qwen 3.6-35B-A3B handled the same CSV task that Gemma 4 failed, while Claude completed it in one shot.",
+          "It also says Qwen was slower than Claude and less polished in the final code, so the comparison is not a blanket superiority claim.",
+          "The article states Gemma still led on HumanEval in community testing, so narrower single-question coding tests can favor a different model."
+        ],
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It can follow multi-step coding workflows involving file reads, transformations, test runs, and self-correction, which the source treats as the meaningful capability.",
+          "It is presented as usable in local tool-using setups through llama.cpp and OpenCode, which matters for on-device agent workflows.",
+          "It is framed as strong on tool-call stability and agent-loop behavior rather than only one-shot chat quality."
+        ],
+        "deployment_implications": "- As of 2026-04-25, the source suggests this model is practical for local coding workflows that need file access and tool calls without sending data off-device.\n- Its sparse active-parameter profile implies a different inference-cost and latency tradeoff than a dense 31B model: a smaller active compute footprint per token, but the article does not provide measured cost numbers.\n- For agent systems, the main implication is that harnesses should be built around multi-step tool execution and verification, because the model is presented as handling that pattern better than one-shot prompting.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The article describes available GGUF builds, llama.cpp compatibility, and immediate use in OpenCode, which are practical adoption signals. It also says the team had already nailed the router after three generations, suggesting the architecture is not presented as experimental in the article's framing. Evidence quality is mixed because the comparison combines firsthand use with benchmark claims and vendor materials.",
+        "model_name": "Qwen 3.6-35B-A3B",
+        "operational_profile": "- A sparse Mixture of Experts model with 35 billion total parameters but only 3 billion active per token, which the source frames as a better fit for agentic coding than a dense model of similar headline size.\n- The article presents it as reliable in tool-using loops: it read a CSV, inferred the schema, wrote a transformation, ran tests, and corrected its own mistake on a second pass.\n- It is positioned as more useful for real workflow execution than for one-shot chat answers, especially when the model must maintain state across tool calls and recover from errors.",
+        "pricing_inference_implications": "The article implies better inference efficiency than a dense 31B model because only 3B parameters are active per token, but it gives no concrete price or latency measurements. The practical read as of 2026-04-25 is that this may lower the cost of local agentic coding compared with dense alternatives, while still requiring verification on real workloads.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "open-weight-model",
+          "coding-model",
+          "tool-use-capable",
+          "agentic-model",
+          "inference-efficient"
+        ],
+        "proposed_types": [
+          "open-weight-model",
+          "coding-model"
+        ],
+        "provider": "Qwen",
+        "related_models": [
+          "Gemma 4",
+          "Claude"
+        ],
+        "service_automation_implications": "The source does not discuss customer support or voice automation directly. The closest implication is for private, on-device task automation where tool use and local data handling matter more than conversational polish.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Qwen 3.6\u201335B-A3B has 35 billion total parameters, but only 3 billion of them are active for any given token you send it. Gemma 4\u201331B uses all 31 billion parameters every single time.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source is cautious that some benchmark numbers are Qwen-published rather than independently verified. It also says Qwen is slower than Claude and less polished in the final code, so the advantage is about workable agent execution rather than best-in-class general reasoning. The article does not establish causality for why MoE helps beyond the author's interpretation."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-25",
+        "confidence": 0.94,
+        "evidence_from_source": "The article argues that the benchmarks that mattered were MCPMark, SWE-bench Verified, Terminal-Bench 2.0, and NL2Repo because they measure tool use and agent loops better than one-shot tests. It explicitly contrasts this with Gemma 4's stronger performance on a single-question benchmark like HumanEval.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-based-evaluation",
+        "proposed_tags": [
+          "workflow-based-evaluation"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "agentic-coding-shifts-toward-higher-supervision-costs"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-evaluation",
+        "suggested_new_tags": [
+          "ai-evaluation",
+          "agent-systems",
+          "coding-agents"
+        ],
+        "supporting_data_points": [
+          "MCPMark: Qwen 37.0 vs Gemma 18.1",
+          "SWE-bench Verified: Qwen 73.4 vs Gemma 52.0",
+          "Terminal-Bench 2.0: Qwen 51.5 vs Gemma 42.9",
+          "NL2Repo: Qwen 29.4 vs Gemma 15.5",
+          "HumanEval note: Gemma still ranks first in community testing at 100 percent while Qwen sits at 93"
+        ],
+        "supporting_snippet": "\"Agent work is not that. Agent work is twenty turns of tool calls, state management, and recovery from errors. The benchmarks did not measure it. Real work did.\"",
+        "time_sensitivity": "As of 2026-04-25, this is a live evaluation preference rather than a settled universal standard. The source presents it as especially relevant for agentic coding workflows, not all model use cases.",
+        "trend_description": "Model evaluation is shifting from single-turn answer quality toward workflow-based tests that include tool calls, state tracking, and recovery from errors. The relevant benchmark is no longer just whether a model answers correctly, but whether it can complete a real task inside an execution loop. This favors evaluation suites that resemble agent work rather than chat completion.",
+        "trend_slug": "agent-evaluation-shifts-toward-workflow-based-tool-use",
+        "trend_title": "AI Evaluation Shifts Toward Workflow-Based Tool Use",
+        "uncertainty_note": "The source is persuasive but not definitive: some cited metrics are vendor-published, and a narrow benchmark can still miss important behavior. It is best read as a workflow-specific evaluation shift, not proof that every team should replace all existing evals.",
+        "value_level": "high"
+      },
+      {
+        "assessed_as_of": "2026-04-25",
+        "confidence": 0.86,
+        "evidence_from_source": "The source says Qwen 3.6-35B-A3B is \"free to download, free to fine-tune, free to ship in a commercial product, running on a 16GB Mac Mini\" and that the author now uses it for tasks where data should not leave the laptop.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "open-model-pressure",
+        "proposed_tags": [
+          "open-model-pressure",
+          "enterprise-ai",
+          "inference-efficiency"
+        ],
+        "related_trends": [
+          "open-model-pressure",
+          "inference-efficiency"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Qwen 3.6-35B-A3B is described as running on a 16GB Mac Mini",
+          "The author reports successful local use in OpenCode",
+          "The use case includes internal scripts and sensitive client work"
+        ],
+        "supporting_snippet": "\"A 3 billion active parameter model, free to download, free to fine-tune, free to ship in a commercial product, running on a 16GB Mac Mini, genuinely usable for real agent workflows.\"",
+        "time_sensitivity": "As of 2026-04-25, this is an active deployment pattern for local coding workloads. The observation may change as newer open models and hardware arrive, but the article presents Qwen 3.6 as already usable in this form.",
+        "trend_description": "Open-weight models are becoming practical for local deployment on consumer or prosumer machines, especially when the workload is narrow and the model can be run efficiently. Viability depends not just on raw capability but on whether the model can actually execute real workflows on-device without cloud dependence. This matters most for private, sensitive, or offline tasks where local execution is a requirement.",
+        "trend_slug": "open-weight-models-become-viable-on-consumer-hardware",
+        "trend_title": "Open-Weight Models Become Viable on Consumer Hardware",
+        "uncertainty_note": "The claim is based on one practitioner's experience and does not prove broad consumer-hardware viability across all workloads. Performance, quantization, and hardware details are not fully specified, so teams still need their own local tests.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article combines a personal use report ('I tried it', 'Gemma failed me') with benchmark comparisons (MCPMark, SWE-bench Verified, Terminal-Bench 2.0, NL2Repo).",
+        "Several claims are supported by cited community issues and discussion pages, but the core argument still relies on the author's firsthand experience.",
+        "No formal research method is presented; the evidence mix is practitioner anecdote plus benchmark numbers and linked issue reports."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about why one writer stopped using Gemma 4 and switched to Qwen 3.6 for coding tasks where an AI has to use tools, not just answer questions. The core idea is simple: some models look good in a chat box, but fail when they must plan, call tools, and recover from mistakes. The author says Gemma 4 kept looping and getting confused in an agent setup, while Qwen 3.6 finished the same work. What makes this interesting is that the article ties the experience to benchmarks meant to measure real tool use. The takeaway is that model choice depends on the workflow, and for agentic coding the author found Qwen far more usable as of 2026-04-25.",
+      "assessed_as_of": "2026-04-25",
+      "contradictions_and_skepticism": "The strongest tension is between the author\u2019s broad language about open-source AI \u201ccatching up\u201d and the actual evidence, which is narrower: one model appears better for one class of workflows. The article leans hard on a few benchmark numbers, but benchmark coverage is uneven and some cited metrics are vendor-produced. The claim that dense models are the \u201cold pattern\u201d goes beyond what the source strictly proves. The piece is persuasive as a practitioner report, but it should not be read as definitive proof that sparse MoE is always superior for all coding or reasoning tasks.",
+      "key_insights": [
+        "Benchmarks that measure tool use and agent loops are more informative than single-turn chat benchmarks for this workflow.",
+        "A model can look strong in ordinary prompts but fail badly once wrapped in an agent loop with tool calls and state changes.",
+        "Qwen 3.6-35B-A3B is described as using only 3B active parameters per token, which the article presents as a reason it can outperform a dense 31B model in this setting.",
+        "The author\u2019s most convincing evidence is practical: the same CSV task that broke Gemma 4 reportedly completed cleanly in Qwen.",
+        "HumanEval-style single-question coding tests may not predict agentic coding quality; the article explicitly says Gemma still leads on that narrower benchmark in community testing."
+      ],
+      "limitations_and_open_questions": "The evidence is partly anecdotal and partly based on benchmarks and issue reports, not a controlled evaluation. Some benchmark numbers cited in the article come from Qwen\u2019s own materials, so independent verification matters. The article does not specify exact prompts, quantization settings, hardware details, or reproducibility steps for the reported task successes and failures. It also leaves open whether the same advantage holds across other agent frameworks, longer-horizon tasks, or different tool schemas. The claim that sparse Mixture of Experts is the key reason for better agent behavior is plausible in the article\u2019s framing, but not demonstrated causally. The article also notes that Gemma 4 may still be preferable on HumanEval-style single-turn coding, so the conclusion is workflow-dependent rather than universal.",
+      "sources": [
+        "https://medium.com/towards-deep-learning/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-5a3c56d2b2b3"
+      ],
+      "summary": "The article argues that Qwen 3.6-35B-A3B is a better fit than Gemma 4 for agentic coding workflows because it behaves reliably inside tool-using loops, not just in one-shot chat prompts. The author says Gemma 4 repeatedly failed in OpenCode on a simple CSV transformation task, getting stuck in repetition loops, leaking prompt text into its output, and never completing the work. In contrast, Qwen 3.6 reportedly completed the same task, plus a harder messy-API-data task, without looping and with working tool calls. The author attributes part of the improvement to architecture: Qwen is a sparse Mixture of Experts model with 35B total parameters but only 3B active per token, which the article frames as more efficient than Gemma 4\u2019s dense 31B model for agent workflows. The piece emphasizes benchmarks that are closer to real tool use, especially MCPMark, SWE-bench Verified, Terminal-Bench 2.0, and NL2Repo, where Qwen is said to outperform Gemma by meaningful margins. The author also notes caveats: some claims come from Qwen\u2019s own benchmarks, and Gemma may still do well on simple single-turn coding tests like HumanEval. The practical conclusion is that, as of 2026-04-25, Qwen 3.6-35B-A3B is presented as the author\u2019s default local model for coding tasks that should stay on-device, while Claude remains the choice for harder reasoning.",
+      "why_it_matters": "The piece is useful because it focuses on a concrete mismatch that matters in applied AI: the benchmark suite a model looks good on may not match the actual workload. The author\u2019s main claim is not just that Qwen 3.6 is better overall, but that its sparse Mixture of Experts design and stronger tool-loop benchmarks map better to agentic coding than Gemma 4\u2019s dense model. That is a durable engineering lesson if you build assistants that call tools, edit files, run code, or recover from errors, because those workflows depend on control flow and state tracking more than on one-shot answer quality. The article is strongest where it compares MCPMark, SWE-bench Verified, Terminal-Bench 2.0, and NL2Repo, since those are closer to the tasks the author actually ran. It is weaker where it generalizes from one practitioner\u2019s experience and vendor-published charts to broader model conclusions, so the evidence supports a workflow-specific adoption decision more than a universal ranking. The practical read as of 2026-04-25 is to treat Qwen 3.6-35B-A3B as worth testing seriously for local agentic coding, while keeping claims about general superiority or architectural inevitability at arm\u2019s length. For local, private coding and other on-device workflows, the article suggests this model is already usable; for broader support-style automation or voice/meeting use cases, the source does not discuss them, so no conclusion is warranted."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinionated article with one central comparison: Gemma 4 vs Qwen 3.6 for agentic coding.",
+        "No numbered list or roundup structure; not an interview, tutorial, or digest.",
+        "Uses anecdotal experience plus benchmark references to support a product-switch argument."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A model can be acceptable in chat and still fail inside an agent loop.",
+          "Task completion depends on tool discipline, state management, and error recovery.",
+          "One-shot coding benchmarks do not capture the full difficulty of agentic execution."
+        ],
+        "knowledge_summary": "Agentic coding workflows are software-development loops where a model does more than answer a prompt: it reads files, calls tools, edits code, runs checks, and recovers from mistakes across multiple turns. These workflows place a premium on state tracking, tool discipline, and stopping behavior, because the hard part is often not code generation but completing the task without looping or losing context. Single-turn benchmark performance can be a weak proxy for this kind of work. Practical evaluation should emphasize end-to-end task completion, error recovery, and correct tool sequencing.",
+        "match_candidates": [],
+        "operational_insight": "Judge coding models by whether they can finish a multi-step task inside an execution loop, not by whether they sound smart in chat. The source's CSV example shows why tool discipline and self-recovery matter more than fluent output.",
+        "primary_tag": "coding-agents",
+        "proposed_tags": [
+          "coding-agents",
+          "agent-systems",
+          "software-engineering",
+          "workflow-design",
+          "ai-evaluation"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows",
+          "tool-discipline-in-agent-loops"
+        ],
+        "relevance_note": "This matters for any engineering team building code assistants, repo agents, or terminal-based automation because the failure mode is usually orchestration, not syntax. As of 2026-04-25, the durable lesson is that agentic coding needs workflow-level evaluation and harness design, not just prompt tuning.",
+        "secondary_tag": "agent-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Agent work is not that. Agent work is twenty turns of tool calls, state management, and recovery from errors.\"",
+        "topic_slug": "agentic-coding-workflows",
+        "topic_title": "Agentic Coding Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "MoE models can reduce active compute per token without reducing total parameter count.",
+          "Router quality is a real operational dependency, not a cosmetic architectural detail.",
+          "Headline size alone can mislead if the workload depends on multi-step execution or tool use."
+        ],
+        "knowledge_summary": "Dense and sparse Mixture of Experts models create different tradeoffs between total parameter count, active compute, and behavior under load. Dense models route every token through the full network, while MoE models activate only a subset of specialists, which can improve inference efficiency and sometimes task fit. The operational question is not just raw size, but whether the router sends the right tokens to the right experts. For real applications, the router and consistency of behavior across tool-heavy loops can matter more than headline parameter count.",
+        "match_candidates": [],
+        "operational_insight": "Use dense-versus-MoE comparisons to reason about efficiency and task fit, but verify behavior on the exact workflow you care about. The article's point is that a smaller active model can outperform a larger dense one when the routing and evaluation target the right kind of work.",
+        "primary_tag": "inference-systems",
+        "proposed_tags": [
+          "inference-systems",
+          "optimization-effects",
+          "agent-systems",
+          "ai-evaluation"
+        ],
+        "related_topics": [
+          "agentic-coding-workflows"
+        ],
+        "relevance_note": "This is relevant wherever teams are choosing local or hosted models for agentic systems, because active-parameter efficiency changes the cost and latency profile of deployment. As of 2026-04-25, the article suggests that MoE should be evaluated against workflow reliability, not just size or elegance of the architecture.",
+        "secondary_tag": "optimization-effects",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Qwen 3.6\u201335B-A3B has 35 billion total parameters, but only 3 billion of them are active for any given token you send it. Gemma 4\u201331B uses all 31 billion parameters every single time.\"",
+        "topic_slug": "dense-vs-moe-model-consistency",
+        "topic_title": "Dense Versus MoE Model Consistency",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "MCPMark is cited at 37.0 for Qwen versus 18.1 for Gemma 4, and the article treats that as the most relevant benchmark for tool-using agent loops.",
+            "The source says Qwen outscored Gemma on SWE-bench Verified, Terminal-Bench 2.0, and NL2Repo, with specific numbers of 73.4 vs 52.0, 51.5 vs 42.9, and 29.4 vs 15.5.",
+            "The article notes that some internal benchmark claims should be independently verified before being generalized."
+          ],
+          "comparative_observations": [
+            "The source says Qwen 3.6-35B-A3B handled the same CSV task that Gemma 4 failed, while Claude completed it in one shot.",
+            "It also says Qwen was slower than Claude and less polished in the final code, so the comparison is not a blanket superiority claim.",
+            "The article states Gemma still led on HumanEval in community testing, so narrower single-question coding tests can favor a different model."
+          ],
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It can follow multi-step coding workflows involving file reads, transformations, test runs, and self-correction, which the source treats as the meaningful capability.",
+            "It is presented as usable in local tool-using setups through llama.cpp and OpenCode, which matters for on-device agent workflows.",
+            "It is framed as strong on tool-call stability and agent-loop behavior rather than only one-shot chat quality."
+          ],
+          "deployment_implications": "- As of 2026-04-25, the source suggests this model is practical for local coding workflows that need file access and tool calls without sending data off-device.\n- Its sparse active-parameter profile implies a different inference-cost and latency tradeoff than a dense 31B model: a smaller active compute footprint per token, but the article does not provide measured cost numbers.\n- For agent systems, the main implication is that harnesses should be built around multi-step tool execution and verification, because the model is presented as handling that pattern better than one-shot prompting.",
+          "match_candidates": [],
+          "maturity_signals": "The article describes available GGUF builds, llama.cpp compatibility, and immediate use in OpenCode, which are practical adoption signals. It also says the team had already nailed the router after three generations, suggesting the architecture is not presented as experimental in the article's framing. Evidence quality is mixed because the comparison combines firsthand use with benchmark claims and vendor materials.",
+          "model_name": "Qwen 3.6-35B-A3B",
+          "operational_profile": "- A sparse Mixture of Experts model with 35 billion total parameters but only 3 billion active per token, which the source frames as a better fit for agentic coding than a dense model of similar headline size.\n- The article presents it as reliable in tool-using loops: it read a CSV, inferred the schema, wrote a transformation, ran tests, and corrected its own mistake on a second pass.\n- It is positioned as more useful for real workflow execution than for one-shot chat answers, especially when the model must maintain state across tool calls and recover from errors.",
+          "pricing_inference_implications": "The article implies better inference efficiency than a dense 31B model because only 3B parameters are active per token, but it gives no concrete price or latency measurements. The practical read as of 2026-04-25 is that this may lower the cost of local agentic coding compared with dense alternatives, while still requiring verification on real workloads.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "open-weight-model",
+            "coding-model",
+            "tool-use-capable",
+            "agentic-model",
+            "inference-efficient"
+          ],
+          "proposed_types": [
+            "open-weight-model",
+            "coding-model"
+          ],
+          "provider": "Qwen",
+          "related_models": [
+            "Gemma 4",
+            "Claude"
+          ],
+          "service_automation_implications": "The source does not discuss customer support or voice automation directly. The closest implication is for private, on-device task automation where tool use and local data handling matter more than conversational polish.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Qwen 3.6\u201335B-A3B has 35 billion total parameters, but only 3 billion of them are active for any given token you send it. Gemma 4\u201331B uses all 31 billion parameters every single time.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source is cautious that some benchmark numbers are Qwen-published rather than independently verified. It also says Qwen is slower than Claude and less polished in the final code, so the advantage is about workable agent execution rather than best-in-class general reasoning. The article does not establish causality for why MoE helps beyond the author's interpretation."
+        },
+        "notes": null,
+        "proposal_id": "bd3bba14-76ce-4d3d-9167-0dff7626c2c8",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": [],
+            "llm_list": [
+              "MCPMark is cited at 37.0 for Qwen versus 18.1 for Gemma 4, and the article treats that as the most relevant benchmark for tool-using agent loops.",
+              "The source says Qwen outscored Gemma on SWE-bench Verified, Terminal-Bench 2.0, and NL2Repo, with specific numbers of 73.4 vs 52.0, 51.5 vs 42.9, and 29.4 vs 15.5.",
+              "The article notes that some internal benchmark claims should be independently verified before being generalized."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "comparative_observations": {
+            "final_list": [],
+            "llm_list": [
+              "The source says Qwen 3.6-35B-A3B handled the same CSV task that Gemma 4 failed, while Claude completed it in one shot.",
+              "It also says Qwen was slower than Claude and less polished in the final code, so the comparison is not a blanket superiority claim.",
+              "The article states Gemma still led on HumanEval in community testing, so narrower single-question coding tests can favor a different model."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "core_capabilities": {
+            "final_list": [],
+            "llm_list": [
+              "It can follow multi-step coding workflows involving file reads, transformations, test runs, and self-correction, which the source treats as the meaningful capability.",
+              "It is presented as usable in local tool-using setups through llama.cpp and OpenCode, which matters for on-device agent workflows.",
+              "It is framed as strong on tool-call stability and agent-loop behavior rather than only one-shot chat quality."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "deployment_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "maturity_signals": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "model_name": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_profile": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "pricing_inference_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "provider": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Gemma 4",
+              "Claude"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-weight-model",
+            "coding-model",
+            "tool-use-capable",
+            "agentic-model",
+            "inference-efficient"
+          ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "open-weight-model",
+            "coding-model"
+          ],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-25",
+          "confidence": 0.94,
+          "evidence_from_source": "The article argues that the benchmarks that mattered were MCPMark, SWE-bench Verified, Terminal-Bench 2.0, and NL2Repo because they measure tool use and agent loops better than one-shot tests. It explicitly contrasts this with Gemma 4's stronger performance on a single-question benchmark like HumanEval.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-based-evaluation",
+          "proposed_tags": [
+            "workflow-based-evaluation"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "agentic-coding-shifts-toward-higher-supervision-costs"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-evaluation",
+          "suggested_new_tags": [
+            "ai-evaluation",
+            "agent-systems",
+            "coding-agents"
+          ],
+          "supporting_data_points": [
+            "MCPMark: Qwen 37.0 vs Gemma 18.1",
+            "SWE-bench Verified: Qwen 73.4 vs Gemma 52.0",
+            "Terminal-Bench 2.0: Qwen 51.5 vs Gemma 42.9",
+            "NL2Repo: Qwen 29.4 vs Gemma 15.5",
+            "HumanEval note: Gemma still ranks first in community testing at 100 percent while Qwen sits at 93"
+          ],
+          "supporting_snippet": "\"Agent work is not that. Agent work is twenty turns of tool calls, state management, and recovery from errors. The benchmarks did not measure it. Real work did.\"",
+          "time_sensitivity": "As of 2026-04-25, this is a live evaluation preference rather than a settled universal standard. The source presents it as especially relevant for agentic coding workflows, not all model use cases.",
+          "trend_description": "Model evaluation is shifting from single-turn answer quality toward workflow-based tests that include tool calls, state tracking, and recovery from errors. The relevant benchmark is no longer just whether a model answers correctly, but whether it can complete a real task inside an execution loop. This favors evaluation suites that resemble agent work rather than chat completion.",
+          "trend_slug": "agent-evaluation-shifts-toward-workflow-based-tool-use",
+          "trend_title": "AI Evaluation Shifts Toward Workflow-Based Tool Use",
+          "uncertainty_note": "The source is persuasive but not definitive: some cited metrics are vendor-published, and a narrow benchmark can still miss important behavior. It is best read as a workflow-specific evaluation shift, not proof that every team should replace all existing evals.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "fe24cbef-fe70-4451-9f6d-e4a08a41393a",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "agentic-coding-shifts-toward-higher-supervision-costs"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "MCPMark: Qwen 37.0 vs Gemma 18.1",
+              "SWE-bench Verified: Qwen 73.4 vs Gemma 52.0",
+              "Terminal-Bench 2.0: Qwen 51.5 vs Gemma 42.9",
+              "NL2Repo: Qwen 29.4 vs Gemma 15.5",
+              "HumanEval note: Gemma still ranks first in community testing at 100 percent while Qwen sits at 93"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-based-evaluation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-25",
+          "confidence": 0.86,
+          "evidence_from_source": "The source says Qwen 3.6-35B-A3B is \"free to download, free to fine-tune, free to ship in a commercial product, running on a 16GB Mac Mini\" and that the author now uses it for tasks where data should not leave the laptop.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "open-model-pressure",
+          "proposed_tags": [
+            "open-model-pressure",
+            "enterprise-ai",
+            "inference-efficiency"
+          ],
+          "related_trends": [
+            "open-model-pressure",
+            "inference-efficiency"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Qwen 3.6-35B-A3B is described as running on a 16GB Mac Mini",
+            "The author reports successful local use in OpenCode",
+            "The use case includes internal scripts and sensitive client work"
+          ],
+          "supporting_snippet": "\"A 3 billion active parameter model, free to download, free to fine-tune, free to ship in a commercial product, running on a 16GB Mac Mini, genuinely usable for real agent workflows.\"",
+          "time_sensitivity": "As of 2026-04-25, this is an active deployment pattern for local coding workloads. The observation may change as newer open models and hardware arrive, but the article presents Qwen 3.6 as already usable in this form.",
+          "trend_description": "Open-weight models are becoming practical for local deployment on consumer or prosumer machines, especially when the workload is narrow and the model can be run efficiently. Viability depends not just on raw capability but on whether the model can actually execute real workflows on-device without cloud dependence. This matters most for private, sensitive, or offline tasks where local execution is a requirement.",
+          "trend_slug": "open-weight-models-become-viable-on-consumer-hardware",
+          "trend_title": "Open-Weight Models Become Viable on Consumer Hardware",
+          "uncertainty_note": "The claim is based on one practitioner's experience and does not prove broad consumer-hardware viability across all workloads. Performance, quantization, and hardware details are not fully specified, so teams still need their own local tests.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "28eb782b-d978-4bdb-8336-1979c791f27e",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "open-model-pressure",
+              "inference-efficiency"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Qwen 3.6-35B-A3B is described as running on a 16GB Mac Mini",
+              "The author reports successful local use in OpenCode",
+              "The use case includes internal scripts and sensitive client work"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-model-pressure",
+            "enterprise-ai",
+            "inference-efficiency"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article combines a personal use report ('I tried it', 'Gemma failed me') with benchmark comparisons (MCPMark, SWE-bench Verified, Terminal-Bench 2.0, NL2Repo).",
+          "Several claims are supported by cited community issues and discussion pages, but the core argument still relies on the author's firsthand experience.",
+          "No formal research method is presented; the evidence mix is practitioner anecdote plus benchmark numbers and linked issue reports."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Benchmarks that measure tool use and agent loops are more informative than single-turn chat benchmarks for this workflow.",
+          "A model can look strong in ordinary prompts but fail badly once wrapped in an agent loop with tool calls and state changes.",
+          "Qwen 3.6-35B-A3B is described as using only 3B active parameters per token, which the article presents as a reason it can outperform a dense 31B model in this setting.",
+          "The author\u2019s most convincing evidence is practical: the same CSV task that broke Gemma 4 reportedly completed cleanly in Qwen.",
+          "HumanEval-style single-question coding tests may not predict agentic coding quality; the article explicitly says Gemma still leads on that narrower benchmark in community testing."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/towards-deep-learning/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-5a3c56d2b2b3"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinionated article with one central comparison: Gemma 4 vs Qwen 3.6 for agentic coding.",
+          "No numbered list or roundup structure; not an interview, tutorial, or digest.",
+          "Uses anecdotal experience plus benchmark references to support a product-switch argument."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A model can be acceptable in chat and still fail inside an agent loop.",
+            "Task completion depends on tool discipline, state management, and error recovery.",
+            "One-shot coding benchmarks do not capture the full difficulty of agentic execution."
+          ],
+          "knowledge_summary": "Agentic coding workflows are software-development loops where a model does more than answer a prompt: it reads files, calls tools, edits code, runs checks, and recovers from mistakes across multiple turns. These workflows place a premium on state tracking, tool discipline, and stopping behavior, because the hard part is often not code generation but completing the task without looping or losing context. Single-turn benchmark performance can be a weak proxy for this kind of work. Practical evaluation should emphasize end-to-end task completion, error recovery, and correct tool sequencing.",
+          "match_candidates": [],
+          "operational_insight": "Judge coding models by whether they can finish a multi-step task inside an execution loop, not by whether they sound smart in chat. The source's CSV example shows why tool discipline and self-recovery matter more than fluent output.",
+          "primary_tag": "coding-agents",
+          "proposed_tags": [
+            "coding-agents",
+            "agent-systems",
+            "software-engineering",
+            "workflow-design",
+            "ai-evaluation"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows",
+            "tool-discipline-in-agent-loops"
+          ],
+          "relevance_note": "This matters for any engineering team building code assistants, repo agents, or terminal-based automation because the failure mode is usually orchestration, not syntax. As of 2026-04-25, the durable lesson is that agentic coding needs workflow-level evaluation and harness design, not just prompt tuning.",
+          "secondary_tag": "agent-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Agent work is not that. Agent work is twenty turns of tool calls, state management, and recovery from errors.\"",
+          "topic_slug": "agentic-coding-workflows",
+          "topic_title": "Agentic Coding Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2198011c-206f-4a24-bf81-a3b4438b9938",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A model can be acceptable in chat and still fail inside an agent loop.",
+              "Task completion depends on tool discipline, state management, and error recovery.",
+              "One-shot coding benchmarks do not capture the full difficulty of agentic execution."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows",
+              "tool-discipline-in-agent-loops"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "coding-agents",
+            "agent-systems",
+            "software-engineering",
+            "workflow-design",
+            "ai-evaluation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "MoE models can reduce active compute per token without reducing total parameter count.",
+            "Router quality is a real operational dependency, not a cosmetic architectural detail.",
+            "Headline size alone can mislead if the workload depends on multi-step execution or tool use."
+          ],
+          "knowledge_summary": "Dense and sparse Mixture of Experts models create different tradeoffs between total parameter count, active compute, and behavior under load. Dense models route every token through the full network, while MoE models activate only a subset of specialists, which can improve inference efficiency and sometimes task fit. The operational question is not just raw size, but whether the router sends the right tokens to the right experts. For real applications, the router and consistency of behavior across tool-heavy loops can matter more than headline parameter count.",
+          "match_candidates": [],
+          "operational_insight": "Use dense-versus-MoE comparisons to reason about efficiency and task fit, but verify behavior on the exact workflow you care about. The article's point is that a smaller active model can outperform a larger dense one when the routing and evaluation target the right kind of work.",
+          "primary_tag": "inference-systems",
+          "proposed_tags": [
+            "inference-systems",
+            "optimization-effects",
+            "agent-systems",
+            "ai-evaluation"
+          ],
+          "related_topics": [
+            "agentic-coding-workflows"
+          ],
+          "relevance_note": "This is relevant wherever teams are choosing local or hosted models for agentic systems, because active-parameter efficiency changes the cost and latency profile of deployment. As of 2026-04-25, the article suggests that MoE should be evaluated against workflow reliability, not just size or elegance of the architecture.",
+          "secondary_tag": "optimization-effects",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Qwen 3.6\u201335B-A3B has 35 billion total parameters, but only 3 billion of them are active for any given token you send it. Gemma 4\u201331B uses all 31 billion parameters every single time.\"",
+          "topic_slug": "dense-vs-moe-model-consistency",
+          "topic_title": "Dense Versus MoE Model Consistency",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "dfd268bb-d1b5-45f1-a4fe-564c49d0a767",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "MoE models can reduce active compute per token without reducing total parameter count.",
+              "Router quality is a real operational dependency, not a cosmetic architectural detail.",
+              "Headline size alone can mislead if the workload depends on multi-step execution or tool use."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-coding-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "inference-systems",
+            "optimization-effects",
+            "agent-systems",
+            "ai-evaluation"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 5,
+    "review_duration_seconds": 111.0,
+    "review_finished_at": "2026-06-08T16:07:57.013069+00:00",
+    "review_started_at": "2026-06-08T16:06:06+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T16:07:57+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Sumit Pandey",
+    "canonical_url": "https://medium.com/towards-deep-learning/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-5a3c56d2b2b3",
+    "content_sha256": "07875aa4f8280480cc54a97d2e72984f001df1ad2bfaae717097563dbfdd3823",
+    "publication": "Medium",
+    "published_date": "2026-04-25",
+    "raw_html_rel_path": "raw/readwise/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b.html",
+    "raw_md_rel_path": "raw/readwise/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b.md",
+    "source_id": "why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b",
+    "title": "Why I Stopped Using Gemma 4 and Switched to Qwen 3.6"
+  }
+}

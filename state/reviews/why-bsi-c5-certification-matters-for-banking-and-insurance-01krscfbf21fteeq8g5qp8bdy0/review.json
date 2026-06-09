@@ -1,0 +1,647 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T18:48:27+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoZJ0wAqfLSDKuvrYQRPd9p2TCFYa",
+          "token_usage": {
+            "completion_tokens": 201,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4767,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4968
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoZJ2YGOQWJJvPXpAi0aION6Ix1YG",
+          "token_usage": {
+            "completion_tokens": 1093,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4382,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5475
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DoZJCfrKSpLsypA02CTZgycrnv8Ff",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1119,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34541,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 35660
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoZJCfrKSpLsypA02CTZgycrnv8Ff",
+    "token_usage": {
+      "completion_tokens": 2413,
+      "prompt_tokens": 43690,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 46103
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2025-10-14",
+        "confidence": 0.81,
+        "evidence_from_source": "The source argues that banking and insurance buyers need transparent cloud partners and that Cognigy's BSI C5 attestation can be used for vendor evaluations, risk assessments, and faster security reviews.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-governance"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-demos-to-production-controls"
+        ],
+        "secondary_tag": "ai-governance",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "enterprise-workflows",
+        "suggested_new_tags": [
+          "enterprise-workflows"
+        ],
+        "supporting_data_points": [
+          "The article names GDPR, BaFin, and EIOPA as relevant regulatory frameworks.",
+          "It says the attestation report can be integrated into internal risk assessments.",
+          "It claims the report reduces the need for custom evidence requests and lengthy questionnaires."
+        ],
+        "supporting_snippet": "\"From a buyer\u2019s perspective, this gives: Auditable assurance that Cognigy is compliant; A concrete tool you can use in your own risk assessments and vendor evaluations; Faster security reviews\"",
+        "time_sensitivity": "Actionable as of 2025-10-14; relevant while regulated buyers continue to require standardized proof for cloud and AI vendors.",
+        "trend_description": "In regulated enterprise procurement, AI vendors are increasingly judged on whether they can provide standardized, independently audited evidence of security and compliance controls. The operational shift is from custom questionnaires and ad hoc reassurance toward reusable attestations that can be reviewed by security, legal, and regulators. This does not eliminate diligence, but it changes the shape of diligence from manual evidence gathering to audit-document review.",
+        "trend_slug": "regulated-enterprise-ai-demand-for-audit-ready-evidence",
+        "trend_title": "Regulated Enterprise AI Demands Audit-Ready Evidence",
+        "uncertainty_note": "The source is vendor-authored and does not measure how broadly this procurement pattern is adopted or how much review burden is actually reduced, so the strength of the shift is asserted rather than independently verified.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The article is published on Cognigy's blog and repeatedly centers Cognigy's own attestation and product positioning.",
+        "Claims about BSI C5's value are framed through the vendor's perspective rather than independent analysis or benchmark evidence.",
+        "No external study, benchmark, or third-party review is presented as the main support."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about a German cloud security certification called BSI C5 and why a vendor says it matters for banks and insurers. The basic idea is simple: instead of asking each cloud provider for custom security proof, buyers can rely on a standardized audit report. That report says whether the provider\u2019s controls were designed well and, in some cases, whether they worked over time. The article uses Cognigy\u2019s own certification to show how this can help with audits, vendor reviews, and compliance checks. It is mainly about trust, paperwork reduction, and security transparency in regulated procurement as of 2025-10-14.",
+      "assessed_as_of": "2025-10-14",
+      "contradictions_and_skepticism": "The article presents BSI C5 as a strong trust shortcut, but that framing can overstate what any attestation proves. A certification report can confirm documented controls and auditor-tested effectiveness within a defined scope and period, yet it does not guarantee safety across all workloads, vendors, or future changes. The phrase 'gold standard' is promotional unless supported by independent adoption or outcome data. The source also implies broad usefulness for regulated sectors without showing sector-specific evidence beyond naming GDPR, BaFin, and EIOPA. That does not invalidate the certification, but it does mean buyers should read it as one input to diligence, not as proof that a deployment is low risk.",
+      "key_insights": [
+        "BSI C5 is framed as an audit-ready control catalogue, not just a marketing badge: 121 criteria across 17 areas are meant to make cloud security evidence more standardized.",
+        "The article distinguishes control-design assurance from operational-effectiveness assurance by referencing Type I versus Type II audits under ISAE 3000.",
+        "For regulated buyers, the practical value is less about technical novelty and more about reducing repeated evidence collection during vendor due diligence.",
+        "The certification is presented as especially relevant where auditors and regulators expect transparency on access control, incident management, subcontractors, and data location.",
+        "The source\u2019s strongest claim is procedural: a single standardized report can shorten security reviews, but the article does not provide independent measurements of the time or cost saved."
+      ],
+      "limitations_and_open_questions": "The evidence base is entirely vendor-authored, so the article does not independently validate how strong BSI C5 is relative to other certifications or whether it materially improves outcomes. It does not show the full attestation, scope boundaries, exceptions, or any findings from the auditor beyond general wording. The claim that BSI C5 is increasingly accepted as the gold standard is asserted without comparative data. The article also does not quantify how much audit burden is reduced, how often reports are accepted without follow-up questions, or what residual vendor risk remains after certification. For AI buyers, the open question is whether the certification maps cleanly to the specific data flows, subprocessors, and model-hosting arrangements in a given deployment.",
+      "sources": [
+        "https://www.cognigy.com/blog/why-bsi-c5-certification-matters-for-banking-and-insurance"
+      ],
+      "summary": "The article explains why BSI C5 matters for banking and insurance buyers evaluating cloud vendors, using Cognigy\u2019s own attestation as the example. BSI C5 is presented as Germany\u2019s cloud security controls catalogue from the Federal Office for Information Security, with 121 audit-ready criteria across 17 areas covering organizational, platform, and data protection controls. The article emphasizes that audits follow international standards such as ISAE 3000, and distinguishes Type I audits, which assess control design, from Type II audits, which also examine operating effectiveness over time. Its main argument is that regulated sectors need transparent, audit-ready evidence for GDPR, BaFin, and EIOPA-related expectations, especially where sensitive financial and personal data are involved. Cognigy says its current attestation can be used as independent assurance, support vendor risk assessments, reduce custom evidence requests, and speed security reviews. The piece also claims BSI C5 combines international standards like ISO 27001 with cloud-specific requirements such as data locality, subcontractor transparency, and detailed control reporting. The article frames this as useful for regulated procurement, but it remains a vendor-authored explanation rather than an independent assessment of the certification\u2019s comparative value.",
+      "why_it_matters": "The piece matters because it shows how a cloud vendor tries to translate compliance into a procurement advantage for regulated AI deployments. The article argues that BSI C5 can serve as a standardized evidence package for banks and insurers that need to justify cloud use under GDPR, BaFin, and EIOPA-related scrutiny. That is operationally relevant for teams that must collect security questionnaires, map controls to internal risk frameworks, and document vendor due diligence. The most durable idea here is not the certification brand itself, but the model of independent, audit-ready reporting as a reusable artifact for enterprise reviews. The article also gives a concrete example of what buyers may want to inspect in such a report: access management, change control, incident response, subcontractor use, and data location. The significance is limited by the fact that the source is vendor-authored and does not benchmark BSI C5 against alternatives or quantify the reduction in review burden. As of 2025-10-14, the takeaway is actionable as a procurement and compliance check-list item, but it should be treated as a trust signal to verify rather than a standalone guarantee of security."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor-authored article about one compliance certification, not a bundle of unrelated items.",
+        "Structured as explanatory marketing content with headings about BSI C5 and Cognigy's attestation, not a roundup or how-to list.",
+        "No interview, transcript, tutorial steps, or research methodology signals."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Standardized attestations can function as a reusable evidence package in vendor due diligence.",
+          "Audit scope and period matter because the report only covers defined controls and a defined time window.",
+          "The practical buyer value is often reduced review burden rather than new technical capability."
+        ],
+        "knowledge_summary": "Audit-ready cloud compliance is the practice of using standardized, independently audited control sets to prove a cloud provider meets security and governance expectations. It is especially useful when buyers must map vendor controls to internal risk reviews, regulator expectations, and procurement questionnaires. The value is not the certification label itself, but the reusable evidence package: scoped controls, audit methodology, and documented operating effectiveness. This reduces the need for one-off questionnaires and lets different vendors be compared on a common reporting basis.",
+        "match_candidates": [],
+        "operational_insight": "For regulated AI deployments, prioritize vendors that can hand you a standardized attestation with clear scope, control domains, and auditor findings. That gives security, legal, and procurement teams a shared artifact instead of repeated bespoke evidence requests.",
+        "primary_tag": "compliance-systems",
+        "proposed_tags": [
+          "compliance-systems",
+          "ai-governance",
+          "enterprise-ai"
+        ],
+        "related_topics": [],
+        "relevance_note": "This matters for AI systems that are sold into regulated enterprises because buyers often need repeatable evidence, not just promises. Audit-ready reporting can reduce friction in vendor approval, especially when the AI product handles sensitive data or sits inside a broader service-automation stack.",
+        "secondary_tag": "ai-governance",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"BSI C5 is a reliable way to verify that cloud providers meet the security expectations of your auditors and regulators.\"",
+        "topic_slug": "audit-ready-cloud-compliance",
+        "topic_title": "Audit-Ready Cloud Compliance",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Type I = design at a point in time.",
+          "Type II = design plus operating effectiveness over time.",
+          "The distinction helps buyers calibrate how much trust to place in an audit report."
+        ],
+        "knowledge_summary": "Type I and Type II audits are two levels of assurance used in control attestation. Type I checks whether controls are designed appropriately at a point in time, while Type II also checks whether those controls operated effectively over a period. This distinction matters because a documented control is weaker evidence than a control that has been observed working over time. In practice, the difference helps buyers judge whether a security report is a static snapshot or a more durable operational signal.",
+        "match_candidates": [],
+        "operational_insight": "When assessing a vendor attestation, treat Type II as stronger evidence than Type I because it includes operating effectiveness over time. Use the distinction to decide how much follow-up testing or custom evidence collection is still needed.",
+        "primary_tag": "compliance-systems",
+        "proposed_tags": [
+          "compliance-systems",
+          "auditability",
+          "ai-governance"
+        ],
+        "related_topics": [],
+        "relevance_note": "This is durable across security, governance, and compliance workflows because enterprise buyers routinely have to distinguish design claims from operational proof. It is especially relevant when AI vendors ask customers to trust controls around access, data handling, and incident response.",
+        "secondary_tag": "auditability",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"A Type I audit confirms control design when the audit was conducted, while a Type II audit adds the proof, showing those controls work effectively over time.\"",
+        "topic_slug": "type-i-vs-type-ii-audit-assurance",
+        "topic_title": "Type I vs Type II Audit Assurance",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2025-10-14",
+          "confidence": 0.81,
+          "evidence_from_source": "The source argues that banking and insurance buyers need transparent cloud partners and that Cognigy's BSI C5 attestation can be used for vendor evaluations, risk assessments, and faster security reviews.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-governance"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-demos-to-production-controls"
+          ],
+          "secondary_tag": "ai-governance",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "enterprise-workflows",
+          "suggested_new_tags": [
+            "enterprise-workflows"
+          ],
+          "supporting_data_points": [
+            "The article names GDPR, BaFin, and EIOPA as relevant regulatory frameworks.",
+            "It says the attestation report can be integrated into internal risk assessments.",
+            "It claims the report reduces the need for custom evidence requests and lengthy questionnaires."
+          ],
+          "supporting_snippet": "\"From a buyer\u2019s perspective, this gives: Auditable assurance that Cognigy is compliant; A concrete tool you can use in your own risk assessments and vendor evaluations; Faster security reviews\"",
+          "time_sensitivity": "Actionable as of 2025-10-14; relevant while regulated buyers continue to require standardized proof for cloud and AI vendors.",
+          "trend_description": "In regulated enterprise procurement, AI vendors are increasingly judged on whether they can provide standardized, independently audited evidence of security and compliance controls. The operational shift is from custom questionnaires and ad hoc reassurance toward reusable attestations that can be reviewed by security, legal, and regulators. This does not eliminate diligence, but it changes the shape of diligence from manual evidence gathering to audit-document review.",
+          "trend_slug": "regulated-enterprise-ai-demand-for-audit-ready-evidence",
+          "trend_title": "Regulated Enterprise AI Demands Audit-Ready Evidence",
+          "uncertainty_note": "The source is vendor-authored and does not measure how broadly this procurement pattern is adopted or how much review burden is actually reduced, so the strength of the shift is asserted rather than independently verified.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "c7fd4f80-329f-4f58-8285-e6c8871b5d79",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-demos-to-production-controls"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": [],
+            "llm_list": [
+              "The article names GDPR, BaFin, and EIOPA as relevant regulatory frameworks.",
+              "It says the attestation report can be integrated into internal risk assessments.",
+              "It claims the report reduces the need for custom evidence requests and lengthy questionnaires."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_description": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_slug": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "uncertainty_note": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-governance"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The article is published on Cognigy's blog and repeatedly centers Cognigy's own attestation and product positioning.",
+          "Claims about BSI C5's value are framed through the vendor's perspective rather than independent analysis or benchmark evidence.",
+          "No external study, benchmark, or third-party review is presented as the main support."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "BSI C5 is framed as an audit-ready control catalogue, not just a marketing badge: 121 criteria across 17 areas are meant to make cloud security evidence more standardized.",
+          "The article distinguishes control-design assurance from operational-effectiveness assurance by referencing Type I versus Type II audits under ISAE 3000.",
+          "For regulated buyers, the practical value is less about technical novelty and more about reducing repeated evidence collection during vendor due diligence.",
+          "The certification is presented as especially relevant where auditors and regulators expect transparency on access control, incident management, subcontractors, and data location.",
+          "The source\u2019s strongest claim is procedural: a single standardized report can shorten security reviews, but the article does not provide independent measurements of the time or cost saved."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.cognigy.com/blog/why-bsi-c5-certification-matters-for-banking-and-insurance"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor-authored article about one compliance certification, not a bundle of unrelated items.",
+          "Structured as explanatory marketing content with headings about BSI C5 and Cognigy's attestation, not a roundup or how-to list.",
+          "No interview, transcript, tutorial steps, or research methodology signals."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Standardized attestations can function as a reusable evidence package in vendor due diligence.",
+            "Audit scope and period matter because the report only covers defined controls and a defined time window.",
+            "The practical buyer value is often reduced review burden rather than new technical capability."
+          ],
+          "knowledge_summary": "Audit-ready cloud compliance is the practice of using standardized, independently audited control sets to prove a cloud provider meets security and governance expectations. It is especially useful when buyers must map vendor controls to internal risk reviews, regulator expectations, and procurement questionnaires. The value is not the certification label itself, but the reusable evidence package: scoped controls, audit methodology, and documented operating effectiveness. This reduces the need for one-off questionnaires and lets different vendors be compared on a common reporting basis.",
+          "match_candidates": [],
+          "operational_insight": "For regulated AI deployments, prioritize vendors that can hand you a standardized attestation with clear scope, control domains, and auditor findings. That gives security, legal, and procurement teams a shared artifact instead of repeated bespoke evidence requests.",
+          "primary_tag": "compliance-systems",
+          "proposed_tags": [
+            "compliance-systems",
+            "ai-governance",
+            "enterprise-ai"
+          ],
+          "related_topics": [],
+          "relevance_note": "This matters for AI systems that are sold into regulated enterprises because buyers often need repeatable evidence, not just promises. Audit-ready reporting can reduce friction in vendor approval, especially when the AI product handles sensitive data or sits inside a broader service-automation stack.",
+          "secondary_tag": "ai-governance",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"BSI C5 is a reliable way to verify that cloud providers meet the security expectations of your auditors and regulators.\"",
+          "topic_slug": "audit-ready-cloud-compliance",
+          "topic_title": "Audit-Ready Cloud Compliance",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f7fe575e-f466-4456-8358-22e26dd9e7a6",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Standardized attestations can function as a reusable evidence package in vendor due diligence.",
+              "Audit scope and period matter because the report only covers defined controls and a defined time window.",
+              "The practical buyer value is often reduced review burden rather than new technical capability."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "compliance-systems",
+            "ai-governance",
+            "enterprise-ai"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Type I = design at a point in time.",
+            "Type II = design plus operating effectiveness over time.",
+            "The distinction helps buyers calibrate how much trust to place in an audit report."
+          ],
+          "knowledge_summary": "Type I and Type II audits are two levels of assurance used in control attestation. Type I checks whether controls are designed appropriately at a point in time, while Type II also checks whether those controls operated effectively over a period. This distinction matters because a documented control is weaker evidence than a control that has been observed working over time. In practice, the difference helps buyers judge whether a security report is a static snapshot or a more durable operational signal.",
+          "match_candidates": [],
+          "operational_insight": "When assessing a vendor attestation, treat Type II as stronger evidence than Type I because it includes operating effectiveness over time. Use the distinction to decide how much follow-up testing or custom evidence collection is still needed.",
+          "primary_tag": "compliance-systems",
+          "proposed_tags": [
+            "compliance-systems",
+            "auditability",
+            "ai-governance"
+          ],
+          "related_topics": [],
+          "relevance_note": "This is durable across security, governance, and compliance workflows because enterprise buyers routinely have to distinguish design claims from operational proof. It is especially relevant when AI vendors ask customers to trust controls around access, data handling, and incident response.",
+          "secondary_tag": "auditability",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"A Type I audit confirms control design when the audit was conducted, while a Type II audit adds the proof, showing those controls work effectively over time.\"",
+          "topic_slug": "type-i-vs-type-ii-audit-assurance",
+          "topic_title": "Type I vs Type II Audit Assurance",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "29bb3e15-a21a-48d3-b932-abf3b9a01b16",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Type I = design at a point in time.",
+              "Type II = design plus operating effectiveness over time.",
+              "The distinction helps buyers calibrate how much trust to place in an audit report."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "compliance-systems",
+            "auditability",
+            "ai-governance"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 146.2,
+    "review_finished_at": "2026-06-08T18:50:53.215006+00:00",
+    "review_started_at": "2026-06-08T18:48:27+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T18:50:53+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jarrod Davis",
+    "canonical_url": "https://www.cognigy.com/blog/why-bsi-c5-certification-matters-for-banking-and-insurance",
+    "content_sha256": "cb3bbf0e1b85a9716b5c9c00e76d4ed9d5e140c9ff77f0b7b9aad6cf7b61ee6d",
+    "publication": "cognigy.com",
+    "published_date": "2025-10-14",
+    "raw_html_rel_path": "raw/readwise/why-bsi-c5-certification-matters-for-banking-and-insurance-01krscfbf21fteeq8g5qp8bdy0.html",
+    "raw_md_rel_path": "raw/readwise/why-bsi-c5-certification-matters-for-banking-and-insurance-01krscfbf21fteeq8g5qp8bdy0.md",
+    "source_id": "why-bsi-c5-certification-matters-for-banking-and-insurance-01krscfbf21fteeq8g5qp8bdy0",
+    "title": "Why BSI C5 Certification Matters for Banking and Insurance"
+  }
+}

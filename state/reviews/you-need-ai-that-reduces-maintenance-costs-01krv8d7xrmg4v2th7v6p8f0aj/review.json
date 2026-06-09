@@ -1,0 +1,664 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T16:00:33+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoWgWGR3LUL0ueNhTy9u7fkC9bcCo",
+          "token_usage": {
+            "completion_tokens": 184,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6163,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6347
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoWgZzsGafuDqGMaTqtZy0YMQ84sN",
+          "token_usage": {
+            "completion_tokens": 1028,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5761,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6789
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-standard_article",
+          "request_id": "chatcmpl-DoWgiGacEB6QLEDjM2MSkEIHM0gg3",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1183,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35773,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 36956
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoWgiGacEB6QLEDjM2MSkEIHM0gg3",
+    "token_usage": {
+      "completion_tokens": 2395,
+      "prompt_tokens": 47697,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 50092
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-05",
+        "confidence": 0.91,
+        "evidence_from_source": "The source argues that if AI doubles code output but also doubles maintenance burden, the short-term gain disappears and long-run productivity can become worse. It also says the code can be \"a bit harder to understand\" and teams may be \"drowning in pull requests.\"",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "coding-agents",
+        "suggested_new_tags": [
+          "coding-agents",
+          "software-engineering"
+        ],
+        "supporting_data_points": [
+          "\"you maybe kinda sorta teensy weensy don\u2019t actually read the code before smashing the approve button\"",
+          "\"About five months after you start using Rock Lobster, your productivity is back down to where you started\"",
+          "\"It ends a few percentage points below the blue line.\""
+        ],
+        "supporting_snippet": "\"Agents are expensive, and they\u2019re only getting more so.\"",
+        "time_sensitivity": "Actionable as of 2026-05-05; relevant while coding agents are being adopted into persistent codebases and review-heavy teams.",
+        "trend_description": "As coding agents are used to produce more software faster, the practical burden of reviewing, understanding, and maintaining generated code becomes a larger part of the workflow. The central tradeoff is that raw output acceleration can be offset by higher downstream supervision and maintenance costs. This trend matters when teams judge coding agents by throughput alone instead of total cost of ownership.",
+        "trend_slug": "agentic-coding-shifts-toward-higher-supervision-costs",
+        "trend_title": "Agentic Coding Shifts Toward Higher Supervision Costs",
+        "uncertainty_note": "The evidence is a stylized model and author interpretation, not controlled empirical data. The exact size of supervision-cost increases will vary by team discipline, codebase architecture, and review rigor.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is largely the author's own strategic interpretation of software maintenance and AI coding agents.",
+        "It relies on illustrative models, anecdotes from the author's consulting experience, and hypothetical graphs rather than external data.",
+        "Claims are framed as judgment calls about tradeoffs, not as benchmarked or research-backed findings."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article says faster code generation is not enough. Every line of code creates future work, so an AI tool that helps you ship faster can still hurt you if it makes the code harder to maintain. The author uses simple graphs to show that productivity gains fade when maintenance costs rise with output. The key idea is that the benefit only lasts if maintenance gets cheaper at least as fast as coding gets faster. If you stop using the tool later, the maintenance burden can stay behind. As of 2026-05-05, the practical takeaway is to judge coding AI by maintenance impact, not just speed.",
+      "assessed_as_of": "2026-05-05",
+      "contradictions_and_skepticism": "The piece is persuasive as a cautionary model, but it overstates certainty by presenting a simplified maintenance curve as if it were broadly representative. Its claim that coding agents generally increase maintenance costs is asserted rather than demonstrated with evidence. The conclusion that users are 'screwed' without inverse maintenance gains is rhetorically strong, but the real-world relationship is likely more contingent on team discipline and system boundaries than the article allows. The article also treats code maintenance as the primary lens, while some AI tools may shift work into review, refactoring, or debugging in ways that are not captured by the model. Still, the skepticism is constructive: the burden of proof should be on any AI tool that claims speedups without measurable maintenance improvements.",
+      "key_insights": [
+        "A coding agent that doubles output but also doubles maintenance can erase its own benefit within months under the article's model.",
+        "The relevant metric is not raw generation speed; it is the ratio between speedup and maintenance-cost reduction.",
+        "If AI output is abandoned later, the maintenance burden can remain even after the productivity boost disappears.",
+        "The article treats late-stage startup slowdowns as a maintenance-cost problem more than a feature-production problem.",
+        "The strongest claim is conditional: AI must reduce maintenance costs by roughly the inverse of its speed gain to create durable value."
+      ],
+      "limitations_and_open_questions": "The argument is based on a stylized maintenance model and the author's consulting anecdotes, not on controlled benchmarks or external empirical data. The article does not define a rigorous way to measure maintenance cost, so teams would need to build their own proxy metrics. It also assumes a fairly direct relationship between more generated code and more future maintenance, which may not hold equally across all codebases, architectures, or review processes. The graphs use illustrative numbers, so the exact break-even timing is unknown. The article gestures at AI helping people understand large systems better, but it does not quantify whether that offsets maintenance risk. It also does not address organizational practices that could reduce the downside, such as stricter review, automated testing, or selective agent use.",
+      "sources": [
+        "https://jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs/"
+      ],
+      "summary": "The article argues that AI coding agents only create durable value if they reduce maintenance costs in proportion to the speedups they deliver in code production. The author frames every line of code as an ongoing liability: even if AI lets a team ship faster, the resulting code still needs bug fixes, cleanup, dependency upgrades, and other maintenance over many future months. Using simple hypothetical graphs, the piece shows that if productivity doubles while maintenance cost per month also doubles, the short-term gain disappears and long-run productivity can become worse than before. Even if AI does not make code less maintainable, the author argues that speed gains still decay unless maintenance costs fall by the inverse of the productivity increase. The article also notes a second-order effect: if an organization stops using the agent later, the productivity boost goes away but the maintenance burden remains, locking in the downside. The main prescription is to treat maintenance reduction as an equally important target as code-generation speed, and to evaluate AI tools against real maintenance impact rather than raw output.",
+      "why_it_matters": "The piece is useful because it reframes AI coding evaluation away from visible throughput and toward the hidden cost of ownership of generated code. That is a durable engineering lens: code that is faster to write but slower to evolve can reduce net productivity over time, especially in large codebases with long maintenance tails. The author\u2019s model is intentionally simple, but the logic is operationally relevant for teams deciding whether to adopt coding agents, how much code review discipline to keep, and what success metrics to track after rollout. It also warns against assuming that a temporary acceleration is equivalent to lasting productivity; the article argues that the long-run outcome depends on whether maintainability improves alongside generation speed. The practical implication as of 2026-05-05 is to measure AI tools against bug-fix, cleanup, and upgrade burden, not just lines shipped or tickets closed. For conversational AI, chatbots, voicebots, and service automation work, the same caution applies to generated workflows and integrations: if the tool makes the system harder to maintain, the first rollout win may be paid back later in support and upkeep costs."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent argumentative blog post, not a bundle of separate items or a tutorial list.",
+        "The piece advances one central thesis about AI coding agents and maintenance costs.",
+        "No interview structure, roundup formatting, or research-paper methodology is present."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Maintenance cost accumulates over time for every line of code that survives beyond initial delivery.",
+          "A speedup without maintainability gains can shift effort from creation to future repair.",
+          "Long-term productivity depends on the ratio between code-output acceleration and maintainability improvement.",
+          "Stopping use of an AI coding agent does not remove the maintenance burden from code already created."
+        ],
+        "knowledge_summary": "Production debt in AI systems is the long-run cost created when fast output today makes systems harder to maintain, debug, upgrade, or trust later. In code-heavy workflows, the relevant question is not just how much faster a team ships, but whether the new output raises or lowers the cost of future changes. The concept includes both direct maintenance work and the hidden burden of carrying forward brittle or poorly understood artifacts. It matters because short-term gains can be erased if maintenance costs grow faster than productivity.",
+        "match_candidates": [],
+        "operational_insight": "Evaluate AI-assisted development by comparing the speedup it delivers against the future maintenance burden it creates. If maintainability does not improve at least as fast as output, apparent productivity gains can decay into net negative throughput over time.",
+        "primary_tag": "software-engineering",
+        "proposed_tags": [
+          "software-engineering",
+          "ai-engineering",
+          "optimization-effects"
+        ],
+        "related_topics": [
+          "agentic-coding-workflows",
+          "approval-based-coding-workflows"
+        ],
+        "relevance_note": "This is durable for AI engineering because many systems fail not at first deployment but during upkeep. Teams building copilots, agents, or generated workflows need a way to think about the long tail of ownership, especially in codebases, service automations, and chat/voice workflows that will be edited for years.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Every line of code you write has to be maintained: bug fixes, cleanup, dependency upgrades, and so forth.\"",
+        "topic_slug": "production-debt-in-ai-systems",
+        "topic_title": "Production Debt in AI Systems",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Raw output metrics can hide downstream maintenance costs.",
+          "The right evaluation target is often net productivity over the full life of the artifact.",
+          "Generated systems should be judged by how expensive they are to keep healthy, not just how quickly they are produced."
+        ],
+        "knowledge_summary": "Maintenance-aware AI evaluation measures AI tools by their impact on future operating cost, not just immediate output quality or speed. For software systems, this means considering bug fixes, cleanup, dependency upgrades, review burden, and the difficulty of understanding generated artifacts later. The evaluation lens is especially important when AI-generated work is expected to persist and evolve inside production systems. A useful evaluation practice compares the productivity gain from AI with the maintenance burden it introduces over time.",
+        "match_candidates": [],
+        "operational_insight": "Add maintainability to the scorecard for coding agents and AI-assisted workflows. If a tool makes teams ship faster but creates code or workflows that are harder to inspect and change, its apparent gain may not survive the next few maintenance cycles.",
+        "primary_tag": "ai-evaluation",
+        "proposed_tags": [
+          "ai-evaluation",
+          "software-engineering",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "production-debt-in-ai-systems"
+        ],
+        "relevance_note": "This is relevant for AI product teams because output quality alone does not capture operational value. In service automation, for example, a workflow that is faster to generate but harder to debug can raise support cost and slow future changes, so maintenance should be part of rollout evaluation.",
+        "secondary_tag": "software-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The lesson is clear. If you want a productive team, you have to focus on their maintenance costs.\"",
+        "topic_slug": "maintenance-aware-ai-evaluation",
+        "topic_title": "Maintenance-Aware AI Evaluation",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-05",
+          "confidence": 0.91,
+          "evidence_from_source": "The source argues that if AI doubles code output but also doubles maintenance burden, the short-term gain disappears and long-run productivity can become worse. It also says the code can be \"a bit harder to understand\" and teams may be \"drowning in pull requests.\"",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "coding-agents",
+          "suggested_new_tags": [
+            "coding-agents",
+            "software-engineering"
+          ],
+          "supporting_data_points": [
+            "\"you maybe kinda sorta teensy weensy don\u2019t actually read the code before smashing the approve button\"",
+            "\"About five months after you start using Rock Lobster, your productivity is back down to where you started\"",
+            "\"It ends a few percentage points below the blue line.\""
+          ],
+          "supporting_snippet": "\"Agents are expensive, and they\u2019re only getting more so.\"",
+          "time_sensitivity": "Actionable as of 2026-05-05; relevant while coding agents are being adopted into persistent codebases and review-heavy teams.",
+          "trend_description": "As coding agents are used to produce more software faster, the practical burden of reviewing, understanding, and maintaining generated code becomes a larger part of the workflow. The central tradeoff is that raw output acceleration can be offset by higher downstream supervision and maintenance costs. This trend matters when teams judge coding agents by throughput alone instead of total cost of ownership.",
+          "trend_slug": "agentic-coding-shifts-toward-higher-supervision-costs",
+          "trend_title": "Agentic Coding Shifts Toward Higher Supervision Costs",
+          "uncertainty_note": "The evidence is a stylized model and author interpretation, not controlled empirical data. The exact size of supervision-cost increases will vary by team discipline, codebase architecture, and review rigor.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3e603338-57cb-4aff-a3df-95f858128c02",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": [],
+            "llm_list": [
+              "\"you maybe kinda sorta teensy weensy don\u2019t actually read the code before smashing the approve button\"",
+              "\"About five months after you start using Rock Lobster, your productivity is back down to where you started\"",
+              "\"It ends a few percentage points below the blue line.\""
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_description": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_slug": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "uncertainty_note": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is largely the author's own strategic interpretation of software maintenance and AI coding agents.",
+          "It relies on illustrative models, anecdotes from the author's consulting experience, and hypothetical graphs rather than external data.",
+          "Claims are framed as judgment calls about tradeoffs, not as benchmarked or research-backed findings."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A coding agent that doubles output but also doubles maintenance can erase its own benefit within months under the article's model.",
+          "The relevant metric is not raw generation speed; it is the ratio between speedup and maintenance-cost reduction.",
+          "If AI output is abandoned later, the maintenance burden can remain even after the productivity boost disappears.",
+          "The article treats late-stage startup slowdowns as a maintenance-cost problem more than a feature-production problem.",
+          "The strongest claim is conditional: AI must reduce maintenance costs by roughly the inverse of its speed gain to create durable value."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent argumentative blog post, not a bundle of separate items or a tutorial list.",
+          "The piece advances one central thesis about AI coding agents and maintenance costs.",
+          "No interview structure, roundup formatting, or research-paper methodology is present."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Maintenance cost accumulates over time for every line of code that survives beyond initial delivery.",
+            "A speedup without maintainability gains can shift effort from creation to future repair.",
+            "Long-term productivity depends on the ratio between code-output acceleration and maintainability improvement.",
+            "Stopping use of an AI coding agent does not remove the maintenance burden from code already created."
+          ],
+          "knowledge_summary": "Production debt in AI systems is the long-run cost created when fast output today makes systems harder to maintain, debug, upgrade, or trust later. In code-heavy workflows, the relevant question is not just how much faster a team ships, but whether the new output raises or lowers the cost of future changes. The concept includes both direct maintenance work and the hidden burden of carrying forward brittle or poorly understood artifacts. It matters because short-term gains can be erased if maintenance costs grow faster than productivity.",
+          "match_candidates": [],
+          "operational_insight": "Evaluate AI-assisted development by comparing the speedup it delivers against the future maintenance burden it creates. If maintainability does not improve at least as fast as output, apparent productivity gains can decay into net negative throughput over time.",
+          "primary_tag": "software-engineering",
+          "proposed_tags": [
+            "software-engineering",
+            "ai-engineering",
+            "optimization-effects"
+          ],
+          "related_topics": [
+            "agentic-coding-workflows",
+            "approval-based-coding-workflows"
+          ],
+          "relevance_note": "This is durable for AI engineering because many systems fail not at first deployment but during upkeep. Teams building copilots, agents, or generated workflows need a way to think about the long tail of ownership, especially in codebases, service automations, and chat/voice workflows that will be edited for years.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Every line of code you write has to be maintained: bug fixes, cleanup, dependency upgrades, and so forth.\"",
+          "topic_slug": "production-debt-in-ai-systems",
+          "topic_title": "Production Debt in AI Systems",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "c70eed35-efa7-4804-be20-4f914af3c610",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Maintenance cost accumulates over time for every line of code that survives beyond initial delivery.",
+              "A speedup without maintainability gains can shift effort from creation to future repair.",
+              "Long-term productivity depends on the ratio between code-output acceleration and maintainability improvement.",
+              "Stopping use of an AI coding agent does not remove the maintenance burden from code already created."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-coding-workflows",
+              "approval-based-coding-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "software-engineering",
+            "ai-engineering",
+            "optimization-effects"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Raw output metrics can hide downstream maintenance costs.",
+            "The right evaluation target is often net productivity over the full life of the artifact.",
+            "Generated systems should be judged by how expensive they are to keep healthy, not just how quickly they are produced."
+          ],
+          "knowledge_summary": "Maintenance-aware AI evaluation measures AI tools by their impact on future operating cost, not just immediate output quality or speed. For software systems, this means considering bug fixes, cleanup, dependency upgrades, review burden, and the difficulty of understanding generated artifacts later. The evaluation lens is especially important when AI-generated work is expected to persist and evolve inside production systems. A useful evaluation practice compares the productivity gain from AI with the maintenance burden it introduces over time.",
+          "match_candidates": [],
+          "operational_insight": "Add maintainability to the scorecard for coding agents and AI-assisted workflows. If a tool makes teams ship faster but creates code or workflows that are harder to inspect and change, its apparent gain may not survive the next few maintenance cycles.",
+          "primary_tag": "ai-evaluation",
+          "proposed_tags": [
+            "ai-evaluation",
+            "software-engineering",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "production-debt-in-ai-systems"
+          ],
+          "relevance_note": "This is relevant for AI product teams because output quality alone does not capture operational value. In service automation, for example, a workflow that is faster to generate but harder to debug can raise support cost and slow future changes, so maintenance should be part of rollout evaluation.",
+          "secondary_tag": "software-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The lesson is clear. If you want a productive team, you have to focus on their maintenance costs.\"",
+          "topic_slug": "maintenance-aware-ai-evaluation",
+          "topic_title": "Maintenance-Aware AI Evaluation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "659c6109-87d0-4270-af03-0f93e6ef82b7",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Raw output metrics can hide downstream maintenance costs.",
+              "The right evaluation target is often net productivity over the full life of the artifact.",
+              "Generated systems should be judged by how expensive they are to keep healthy, not just how quickly they are produced."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "production-debt-in-ai-systems"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evaluation",
+            "software-engineering",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 94.7,
+    "review_finished_at": "2026-06-08T16:02:07.657561+00:00",
+    "review_started_at": "2026-06-08T16:00:33+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T16:02:07+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "jamesshore.com",
+    "canonical_url": "https://jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs/",
+    "content_sha256": "d08640536b64b720e19eb4410950c2f3394e4d05aaad86c8905d18f6fe4d3232",
+    "publication": "Jamesshore",
+    "published_date": "2026-05-05",
+    "raw_html_rel_path": "raw/readwise/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj.html",
+    "raw_md_rel_path": "raw/readwise/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj.md",
+    "source_id": "you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj",
+    "title": "You Need AI That Reduces Maintenance Costs"
+  }
+}

@@ -1,0 +1,852 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T20:11:15+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Doab0fjmK1d6Cn2wSwM3qrHpjkobx",
+          "token_usage": {
+            "completion_tokens": 232,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6144,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6376
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Doab3P08PE7yN3GLyKytEVUnsCYbi",
+          "token_usage": {
+            "completion_tokens": 1264,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5790,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7054
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DoabE8K3IsIXNVRasJhjPnM6HfCtK",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1785,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36476,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 38261
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoabE8K3IsIXNVRasJhjPnM6HfCtK",
+    "token_usage": {
+      "completion_tokens": 3281,
+      "prompt_tokens": 48410,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 51691
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-02-22",
+        "confidence": 0.91,
+        "evidence_from_source": "The source explicitly says the old separate RAG pipeline is dead, that the agent decides when to search and which strategy to use, and that LangGraph-style loops are becoming the default orchestration pattern.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "",
+        "proposed_tags": [],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "workflow-restructuring-around-ai-agents"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-systems",
+        "suggested_new_tags": [
+          "agent-systems",
+          "retrieval-systems",
+          "orchestration"
+        ],
+        "supporting_data_points": [
+          "The source frames autonomous strategy, iterative execution, and interleaved tool use as the key principles.",
+          "It recommends loops, not pipelines, for agentic retrieval.",
+          "It places query rewriting, web search fallback, and answer grading inside the same workflow."
+        ],
+        "supporting_snippet": "\"RAG used to be a separate pipeline. We built a retriever, bolted it onto an LLM, and called it a day. That architecture is dead now. The agent is the retrieval system..\"",
+        "time_sensitivity": "Actionable as of 2026-02-22; the observation is tied to the article's view of production RAG patterns at that date and may shift as orchestration stacks evolve.",
+        "trend_description": "Retrieval-augmented generation is shifting away from a rigid retrieve-then-generate pipeline toward agent-led workflows that decide when to search, whether retrieval is good enough, and when to retry with a different strategy. The operational consequence is that retrieval, grading, query rewriting, fallback search, and answer verification become part of one control loop rather than separate steps. This favors orchestrated systems over linear chains when grounding quality matters.",
+        "trend_slug": "rag-moves-from-fixed-pipelines-to-adaptive-agent-loops",
+        "trend_title": "RAG Moves from Fixed Pipelines to Adaptive Agent Loops",
+        "uncertainty_note": "The article is opinionated and does not provide controlled comparisons showing that every production system should abandon fixed retrieval pipelines. Some workloads may still prefer simpler retrieval for latency, cost, or risk reasons.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article mixes implementation examples, named research references, and practitioner guidance rather than relying on one evidence mode.",
+        "Several claims are supported by code snippets and product/library mentions (LangGraph, DSPy, LightRAG, MCP, RedisVL, RAGAS).",
+        "It also makes strategic judgments such as 'the agent is the retrieval system,' which are opinionated interpretations of the cited sources."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about how to build retrieval-augmented generation for AI agents in a more flexible way. Instead of always running retrieval as a fixed first step, it says the agent should decide when to search, how to search, and whether the answer is grounded enough to trust. The article walks through a few building blocks: hybrid search, self-correction loops, graph-based retrieval, tool protocols, caching, and evaluation. The basic idea is that good RAG systems are no longer just a retriever plus an LLM; they are a set of coordinated components that can check, retry, and measure themselves. It is useful because it turns a vague \u201cbetter RAG\u201d claim into concrete patterns and libraries developers can try.",
+      "assessed_as_of": "2026-02-22",
+      "contradictions_and_skepticism": "The strongest claim is that the old retrieve-then-generate pipeline is \u201cdead,\u201d which is more rhetorical than evidenced in the text. The article also treats the agent as the retrieval system, but many production systems will still use fixed retrieval steps, routing logic, or hybrid orchestration depending on risk and latency constraints. The claim that every major lab adopted MCP is broad and not substantiated in the excerpt. Some of the benchmark and performance statements are directional rather than audited, so they should be read as advocacy for a stack, not proof that every team should switch immediately.",
+      "key_insights": [
+        "Hybrid retrieval is presented as the default baseline because exact-match search and vector search miss different failure modes, and the article recommends merging both before reranking.",
+        "Corrective RAG is framed as a useful first upgrade: grade retrieved documents before generation, then rewrite the query and fall back to web search when grounding is weak.",
+        "DSPy is positioned as a way to optimize prompts and modules from training data instead of hand-tuning them, with the article claiming measurable SemanticF1 gains.",
+        "LightRAG is offered as a lower-infrastructure alternative to heavier graph pipelines for multi-hop questions, especially when entity relationships matter.",
+        "The article treats evaluation as part of the product loop, not an afterthought, by recommending RAGAS metrics and CI checks for retrieval regressions."
+      ],
+      "limitations_and_open_questions": "The article cites claims like improved SemanticF1, stronger benchmark performance for LightRAG, and practical production readiness, but it does not provide full experimental setups, datasets, or comparable baselines in the text shown. Several recommendations depend on specific ecosystems such as LangGraph, DSPy, RedisVL, and MCP, so portability and integration overhead are unresolved. The write-up also assumes access to labeled evaluation data or trustworthy ground truth for RAGAS-style measurement, which many teams may not have. Security, privacy, and access-control implications of letting agents choose between internal retrieval and web search are not explored. The article says these stacks are production-tested, but the durability of that claim depends on versioning, maintenance, and workload-specific behavior that are not detailed here.",
+      "sources": [
+        "https://medium.com/@pankaj_pandey/the-best-rag-architectures-for-ai-agents-every-developer-must-know-434c97cf1645",
+        "A-RAG (arXiv:2602.03442)",
+        "LangGraph RAG Tutorials",
+        "DSPy (Stanford NLP)",
+        "LightRAG (EMNLP 2025)",
+        "RedisVL Semantic Cache",
+        "RAGAS Evaluation Framework",
+        "Agentic RAG Survey (arXiv:2501.09136)",
+        "Redis RAG at Scale"
+      ],
+      "summary": "The article argues that RAG for AI agents should be treated as an adaptive system rather than a fixed retrieve-then-generate pipeline. It claims the agent should decide when to search, what search strategy to use, whether retrieved context is good enough, and whether to loop back with a rewritten query or web search. To support that view, it highlights five production-oriented retrieval patterns and the surrounding infrastructure: hybrid retrieval with Reciprocal Rank Fusion and optional reranking, Corrective RAG implemented as a LangGraph state machine, DSPy for optimizing prompts and modules from training data, LightRAG for lightweight graph-based retrieval, and MCP for exposing retrieval as one tool among many. It also recommends semantic caching to reduce repeated LLM calls and RAGAS plus tracing tools such as Langfuse or MLflow to measure faithfulness, relevancy, and context precision in CI. The article\u2019s core practical stance is that strong systems layer these pieces together rather than choosing one in isolation: hybrid search as the backbone, orchestration and self-correction with LangGraph or DSPy, graph retrieval where entity relationships matter, MCP for tool access, caching for cost control, and evaluation to catch regressions. The references listed at the end suggest the piece is a synthesis of public papers, frameworks, and vendor docs rather than original benchmark research.",
+      "why_it_matters": "The piece is useful because it compresses a lot of practical RAG engineering into a small number of durable patterns: hybrid search, self-correction, graph retrieval, tool orchestration, caching, and evaluation. That is a better abstraction than treating RAG as a single recipe, and it gives developers a clearer map for where failures happen: retrieval relevance, grounding, cost, and orchestration. The strongest operational advice is to layer these components rather than assume one framework solves everything. In particular, the article makes a concrete case for using hybrid retrieval as the baseline, CRAG-style loops to recover from weak retrieval, semantic caching to reduce repeated calls, and RAGAS to prevent silent regressions. The discussion of MCP is also practically relevant because it reframes retrieval as one tool in a broader agent toolset, which is useful for systems that need selective access to files or web search. The article\u2019s claims are mostly implementation-oriented and grounded in named libraries, but the evidence is still a synthesis rather than a controlled comparison, so the guidance is best treated as a strong architecture memo rather than final proof. As of 2026-02-22, the patterns described look actionable for teams building agentic RAG stacks, but the article still leaves benchmark details, integration costs, and production tradeoffs to the reader."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent article with one central argument about RAG architectures for AI agents, not a bundle of unrelated items.",
+        "Contains examples, code snippets, and recommendations, but the primary structure is explanatory rather than a numbered roundup of tools or practices.",
+        "Not framed as an interview, transcript, or formal research paper; it is an opinionated technical article synthesizing patterns and references."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It represents retrieval and generation as stateful graph nodes so control flow can branch on intermediate results.",
+          "It supports conditional execution, which lets a workflow rewrite queries or skip direct generation when documents look weak.",
+          "It is suitable for corrective retrieval loops that add grading before and after generation."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is shown with Python and a StateGraph-based workflow for retrieval, grading, rewriting, web search, and generation.",
+          "The article positions it alongside retrieval backends and web search rather than as a replacement for them."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes LangGraph as having replaced simple chains as a default orchestration pattern for loop-heavy agent workflows. That is a meaningful adoption signal, but it is still presented through an opinionated article rather than independent deployment evidence.",
+        "name": "LangGraph",
+        "operational_relevance": "LangGraph fits when retrieval needs branching, retries, and explicit state transitions rather than a linear retrieve-then-generate chain. For service automation, that matters because the system can inspect retrieval quality before answering and route to fallback search when grounding is weak. It is more useful than a simple chain when you need loops, conditional execution, and a hallucination check in the same workflow.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "agentic",
+          "multi-step-execution",
+          "tool-use",
+          "open-source"
+        ],
+        "proposed_types": [
+          "ai-orchestration"
+        ],
+        "related_tools": [
+          "DSPy",
+          "RAGAS",
+          "RedisVL Semantic Cache"
+        ],
+        "short_description": "A Python orchestration framework for building stateful agent and retrieval workflows as graphs. It is used here as the control layer for corrective RAG loops, query rewriting, web search fallback, and post-generation grading.",
+        "strengths": "- Makes self-correcting RAG easier to express as a state machine, which is a better fit for agents that need to retry or branch based on retrieval quality.\n- Supports conditional edges, so a workflow can rewrite the query or generate directly depending on document relevance.\n- Fits adaptive retrieval patterns where the system decides whether to search again instead of trusting the first result set.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"LangGraph has replaced simple chains as the default orchestration pattern for one reason, agents need loops, not pipelines.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source presents LangGraph as an orchestration layer, not as a complete retrieval or evaluation solution. It still depends on good graders, retrievers, and search backends, and the article does not provide production tradeoff data such as latency, failure rates, or scale limits."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Exact lexical search catches terminology that vector search may miss.",
+          "Vector search helps when users paraphrase or ask in less formal language.",
+          "Reciprocal Rank Fusion is a practical way to combine both result lists.",
+          "Reranking can be added after fusion to improve the final ranking quality.",
+          "The blend factor should be adjusted for domain precision needs and query style."
+        ],
+        "knowledge_summary": "Hybrid retrieval combines sparse lexical search and dense vector search so each compensates for the other's blind spots. A practical implementation often runs both in parallel, merges the ranked lists, and optionally reranks the result set. The main operational benefit is better recall on exact terminology without giving up semantic matching on paraphrases or broader intent. This is especially useful in domains where wording precision matters and in systems that must serve both conversational and document-specific queries.",
+        "match_candidates": [],
+        "operational_insight": "Use hybrid retrieval as a baseline when exact matches and semantic matches both matter. Treat the blend as a tuning knob, not a fixed recipe: lower the vector weight when terminology is important, raise it when conversational phrasing dominates.",
+        "primary_tag": "retrieval-systems",
+        "proposed_tags": [
+          "retrieval-systems",
+          "ai-engineering",
+          "infrastructure"
+        ],
+        "related_topics": [
+          "rag-orchestration-patterns"
+        ],
+        "relevance_note": "This pattern remains useful across search-heavy AI systems because it reduces common retrieval failure modes without requiring a single retrieval strategy to do everything. It is especially relevant for enterprise assistants, support bots, and document QA systems where exact terminology and semantic paraphrase both appear in user queries.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Pure vector search misses exact matches, pure BM25 misses semantics. Production RAG today runs both in parallel, merges results with Reciprocal Rank Fusion, and optionally reranks with a cross-encoder.\"",
+        "topic_slug": "hybrid-retrieval",
+        "topic_title": "Hybrid Retrieval",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Grade retrieval quality before generation instead of assuming the first result set is sufficient.",
+          "Rewrite the query when retrieved documents are weak or off-target.",
+          "Use a fallback source such as web search when internal grounding is insufficient.",
+          "Add a second check after generation to catch hallucinations that survived retrieval.",
+          "Loops are a core runtime requirement for retrieval-heavy agents."
+        ],
+        "knowledge_summary": "Adaptive RAG orchestration treats retrieval as a decision-making loop rather than a fixed preprocessing step. The system can grade retrieved documents, rewrite the query, fall back to another search source, or proceed to answer generation depending on grounding quality. This creates a more robust runtime than a single retrieve-then-generate pass because retrieval can be corrected before a weak answer reaches the user. The pattern is most valuable when answer quality depends on getting the right evidence, not just any evidence.",
+        "match_candidates": [],
+        "operational_insight": "Design the agent to inspect retrieval quality before generating an answer, then retry or switch sources when grounding is weak. Adding a post-generation hallucination check closes the loop and catches fabricated outputs that a single retrieval pass would miss.",
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "retrieval-systems",
+          "verification-systems"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "This is a durable control pattern for agentic systems that need grounded answers under uncertainty. It matters for support automation and knowledge assistants because it reduces the chance that a weak retrieval pass becomes a confident but wrong response.",
+        "secondary_tag": "retrieval-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Instead of blindly trusting retrieval results, an LLM grades them for relevance before generating an answer. If the documents are weak, it rewrites the query and falls back to web search.\"",
+        "topic_slug": "adaptive-rag-orchestration",
+        "topic_title": "Adaptive RAG Orchestration",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-02-22",
+          "confidence": 0.91,
+          "evidence_from_source": "The source explicitly says the old separate RAG pipeline is dead, that the agent decides when to search and which strategy to use, and that LangGraph-style loops are becoming the default orchestration pattern.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "",
+          "proposed_tags": [],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "workflow-restructuring-around-ai-agents"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-systems",
+          "suggested_new_tags": [
+            "agent-systems",
+            "retrieval-systems",
+            "orchestration"
+          ],
+          "supporting_data_points": [
+            "The source frames autonomous strategy, iterative execution, and interleaved tool use as the key principles.",
+            "It recommends loops, not pipelines, for agentic retrieval.",
+            "It places query rewriting, web search fallback, and answer grading inside the same workflow."
+          ],
+          "supporting_snippet": "\"RAG used to be a separate pipeline. We built a retriever, bolted it onto an LLM, and called it a day. That architecture is dead now. The agent is the retrieval system..\"",
+          "time_sensitivity": "Actionable as of 2026-02-22; the observation is tied to the article's view of production RAG patterns at that date and may shift as orchestration stacks evolve.",
+          "trend_description": "Retrieval-augmented generation is shifting away from a rigid retrieve-then-generate pipeline toward agent-led workflows that decide when to search, whether retrieval is good enough, and when to retry with a different strategy. The operational consequence is that retrieval, grading, query rewriting, fallback search, and answer verification become part of one control loop rather than separate steps. This favors orchestrated systems over linear chains when grounding quality matters.",
+          "trend_slug": "rag-moves-from-fixed-pipelines-to-adaptive-agent-loops",
+          "trend_title": "RAG Moves from Fixed Pipelines to Adaptive Agent Loops",
+          "uncertainty_note": "The article is opinionated and does not provide controlled comparisons showing that every production system should abandon fixed retrieval pipelines. Some workloads may still prefer simpler retrieval for latency, cost, or risk reasons.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e90c918e-e558-4e13-b922-c2c9a5df0601",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "workflow-restructuring-around-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The source frames autonomous strategy, iterative execution, and interleaved tool use as the key principles.",
+              "It recommends loops, not pipelines, for agentic retrieval.",
+              "It places query rewriting, web search fallback, and answer grading inside the same workflow."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article mixes implementation examples, named research references, and practitioner guidance rather than relying on one evidence mode.",
+          "Several claims are supported by code snippets and product/library mentions (LangGraph, DSPy, LightRAG, MCP, RedisVL, RAGAS).",
+          "It also makes strategic judgments such as 'the agent is the retrieval system,' which are opinionated interpretations of the cited sources."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Hybrid retrieval is presented as the default baseline because exact-match search and vector search miss different failure modes, and the article recommends merging both before reranking.",
+          "Corrective RAG is framed as a useful first upgrade: grade retrieved documents before generation, then rewrite the query and fall back to web search when grounding is weak.",
+          "DSPy is positioned as a way to optimize prompts and modules from training data instead of hand-tuning them, with the article claiming measurable SemanticF1 gains.",
+          "LightRAG is offered as a lower-infrastructure alternative to heavier graph pipelines for multi-hop questions, especially when entity relationships matter.",
+          "The article treats evaluation as part of the product loop, not an afterthought, by recommending RAGAS metrics and CI checks for retrieval regressions."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@pankaj_pandey/the-best-rag-architectures-for-ai-agents-every-developer-must-know-434c97cf1645",
+          "A-RAG (arXiv:2602.03442)",
+          "LangGraph RAG Tutorials",
+          "DSPy (Stanford NLP)",
+          "LightRAG (EMNLP 2025)",
+          "RedisVL Semantic Cache",
+          "RAGAS Evaluation Framework",
+          "Agentic RAG Survey (arXiv:2501.09136)",
+          "Redis RAG at Scale"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent article with one central argument about RAG architectures for AI agents, not a bundle of unrelated items.",
+          "Contains examples, code snippets, and recommendations, but the primary structure is explanatory rather than a numbered roundup of tools or practices.",
+          "Not framed as an interview, transcript, or formal research paper; it is an opinionated technical article synthesizing patterns and references."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It represents retrieval and generation as stateful graph nodes so control flow can branch on intermediate results.",
+            "It supports conditional execution, which lets a workflow rewrite queries or skip direct generation when documents look weak.",
+            "It is suitable for corrective retrieval loops that add grading before and after generation."
+          ],
+          "integration_ecosystem": [
+            "It is shown with Python and a StateGraph-based workflow for retrieval, grading, rewriting, web search, and generation.",
+            "The article positions it alongside retrieval backends and web search rather than as a replacement for them."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes LangGraph as having replaced simple chains as a default orchestration pattern for loop-heavy agent workflows. That is a meaningful adoption signal, but it is still presented through an opinionated article rather than independent deployment evidence.",
+          "name": "LangGraph",
+          "operational_relevance": "LangGraph fits when retrieval needs branching, retries, and explicit state transitions rather than a linear retrieve-then-generate chain. For service automation, that matters because the system can inspect retrieval quality before answering and route to fallback search when grounding is weak. It is more useful than a simple chain when you need loops, conditional execution, and a hallucination check in the same workflow.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "agentic",
+            "multi-step-execution",
+            "tool-use",
+            "open-source"
+          ],
+          "proposed_types": [
+            "ai-orchestration"
+          ],
+          "related_tools": [
+            "DSPy",
+            "RAGAS",
+            "RedisVL Semantic Cache"
+          ],
+          "short_description": "A Python orchestration framework for building stateful agent and retrieval workflows as graphs. It is used here as the control layer for corrective RAG loops, query rewriting, web search fallback, and post-generation grading.",
+          "strengths": "- Makes self-correcting RAG easier to express as a state machine, which is a better fit for agents that need to retry or branch based on retrieval quality.\n- Supports conditional edges, so a workflow can rewrite the query or generate directly depending on document relevance.\n- Fits adaptive retrieval patterns where the system decides whether to search again instead of trusting the first result set.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"LangGraph has replaced simple chains as the default orchestration pattern for one reason, agents need loops, not pipelines.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source presents LangGraph as an orchestration layer, not as a complete retrieval or evaluation solution. It still depends on good graders, retrievers, and search backends, and the article does not provide production tradeoff data such as latency, failure rates, or scale limits."
+        },
+        "notes": null,
+        "proposal_id": "2ae71f80-71c2-4925-9d1c-94617e761af9",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": [],
+            "llm_list": [
+              "It represents retrieval and generation as stateful graph nodes so control flow can branch on intermediate results.",
+              "It supports conditional execution, which lets a workflow rewrite queries or skip direct generation when documents look weak.",
+              "It is suitable for corrective retrieval loops that add grading before and after generation."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "integration_ecosystem": {
+            "final_list": [],
+            "llm_list": [
+              "It is shown with Python and a StateGraph-based workflow for retrieval, grading, rewriting, web search, and generation.",
+              "The article positions it alongside retrieval backends and web search rather than as a replacement for them."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "maturity_signals": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "name": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "DSPy",
+              "RAGAS",
+              "RedisVL Semantic Cache"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "strengths": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic",
+            "multi-step-execution",
+            "tool-use",
+            "open-source"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-orchestration"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Exact lexical search catches terminology that vector search may miss.",
+            "Vector search helps when users paraphrase or ask in less formal language.",
+            "Reciprocal Rank Fusion is a practical way to combine both result lists.",
+            "Reranking can be added after fusion to improve the final ranking quality.",
+            "The blend factor should be adjusted for domain precision needs and query style."
+          ],
+          "knowledge_summary": "Hybrid retrieval combines sparse lexical search and dense vector search so each compensates for the other's blind spots. A practical implementation often runs both in parallel, merges the ranked lists, and optionally reranks the result set. The main operational benefit is better recall on exact terminology without giving up semantic matching on paraphrases or broader intent. This is especially useful in domains where wording precision matters and in systems that must serve both conversational and document-specific queries.",
+          "match_candidates": [],
+          "operational_insight": "Use hybrid retrieval as a baseline when exact matches and semantic matches both matter. Treat the blend as a tuning knob, not a fixed recipe: lower the vector weight when terminology is important, raise it when conversational phrasing dominates.",
+          "primary_tag": "retrieval-systems",
+          "proposed_tags": [
+            "retrieval-systems",
+            "ai-engineering",
+            "infrastructure"
+          ],
+          "related_topics": [
+            "rag-orchestration-patterns"
+          ],
+          "relevance_note": "This pattern remains useful across search-heavy AI systems because it reduces common retrieval failure modes without requiring a single retrieval strategy to do everything. It is especially relevant for enterprise assistants, support bots, and document QA systems where exact terminology and semantic paraphrase both appear in user queries.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Pure vector search misses exact matches, pure BM25 misses semantics. Production RAG today runs both in parallel, merges results with Reciprocal Rank Fusion, and optionally reranks with a cross-encoder.\"",
+          "topic_slug": "hybrid-retrieval",
+          "topic_title": "Hybrid Retrieval",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "956ebaa0-ccf8-488f-a374-3605e6eb182b",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Exact lexical search catches terminology that vector search may miss.",
+              "Vector search helps when users paraphrase or ask in less formal language.",
+              "Reciprocal Rank Fusion is a practical way to combine both result lists.",
+              "Reranking can be added after fusion to improve the final ranking quality.",
+              "The blend factor should be adjusted for domain precision needs and query style."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "rag-orchestration-patterns"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "retrieval-systems",
+            "ai-engineering",
+            "infrastructure"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Grade retrieval quality before generation instead of assuming the first result set is sufficient.",
+            "Rewrite the query when retrieved documents are weak or off-target.",
+            "Use a fallback source such as web search when internal grounding is insufficient.",
+            "Add a second check after generation to catch hallucinations that survived retrieval.",
+            "Loops are a core runtime requirement for retrieval-heavy agents."
+          ],
+          "knowledge_summary": "Adaptive RAG orchestration treats retrieval as a decision-making loop rather than a fixed preprocessing step. The system can grade retrieved documents, rewrite the query, fall back to another search source, or proceed to answer generation depending on grounding quality. This creates a more robust runtime than a single retrieve-then-generate pass because retrieval can be corrected before a weak answer reaches the user. The pattern is most valuable when answer quality depends on getting the right evidence, not just any evidence.",
+          "match_candidates": [],
+          "operational_insight": "Design the agent to inspect retrieval quality before generating an answer, then retry or switch sources when grounding is weak. Adding a post-generation hallucination check closes the loop and catches fabricated outputs that a single retrieval pass would miss.",
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "retrieval-systems",
+            "verification-systems"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "This is a durable control pattern for agentic systems that need grounded answers under uncertainty. It matters for support automation and knowledge assistants because it reduces the chance that a weak retrieval pass becomes a confident but wrong response.",
+          "secondary_tag": "retrieval-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Instead of blindly trusting retrieval results, an LLM grades them for relevance before generating an answer. If the documents are weak, it rewrites the query and falls back to web search.\"",
+          "topic_slug": "adaptive-rag-orchestration",
+          "topic_title": "Adaptive RAG Orchestration",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "b877a085-c3dc-48ea-905b-b41ef7a7fb6c",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Grade retrieval quality before generation instead of assuming the first result set is sufficient.",
+              "Rewrite the query when retrieved documents are weak or off-target.",
+              "Use a fallback source such as web search when internal grounding is insufficient.",
+              "Add a second check after generation to catch hallucinations that survived retrieval.",
+              "Loops are a core runtime requirement for retrieval-heavy agents."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "retrieval-systems",
+            "verification-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 204.9,
+    "review_finished_at": "2026-06-08T20:14:40.903085+00:00",
+    "review_started_at": "2026-06-08T20:11:16+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T20:14:41+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Pankaj",
+    "canonical_url": "https://medium.com/@pankaj_pandey/the-best-rag-architectures-for-ai-agents-every-developer-must-know-434c97cf1645",
+    "content_sha256": "fdf7182842c362b81906f259d6d4057b53e9a3ac1fdfb7c84214b6a08ecd6359",
+    "publication": "Medium",
+    "published_date": "2026-02-22",
+    "raw_html_rel_path": "raw/readwise/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj.html",
+    "raw_md_rel_path": "raw/readwise/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj.md",
+    "source_id": "the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj",
+    "title": "The Best RAG Architectures for AI Agents Every Developer Must Know"
+  }
+}

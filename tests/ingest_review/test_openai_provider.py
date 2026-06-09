@@ -133,6 +133,45 @@ def test_openai_prompt_contains_source_type_rubrics(tmp_path: Path) -> None:
     assert "source_type_detection" in user_msg
 
 
+def test_glossary_rubric_is_learning_oriented_not_ontology_gated() -> None:
+    """Glossary proposals should define useful terms, not require ontology-worthy pages."""
+    from src.ingest_review.providers.openai_provider import GLOSSARY_RUBRIC
+
+    assert "learning/reference layer" in GLOSSARY_RUBRIC
+    assert 'ask "What does this mean?"' in GLOSSARY_RUBRIC
+    assert "technically curious" in GLOSSARY_RUBRIC
+    assert "stand alone outside the article" in GLOSSARY_RUBRIC
+    assert "ontology-worthy" not in GLOSSARY_RUBRIC.lower()
+    assert "Glossary is the **last** choice" not in GLOSSARY_RUBRIC
+
+
+def test_glossary_rubric_relaxes_common_term_exclusions() -> None:
+    """Common technical terms are allowed when the source teaches them meaningfully."""
+    from src.ingest_review.providers.openai_provider import GLOSSARY_RUBRIC
+
+    assert "Common terms are allowed" in GLOSSARY_RUBRIC
+    assert "do not auto-exclude" in GLOSSARY_RUBRIC
+    assert "RAG" in GLOSSARY_RUBRIC
+    assert "fine-tuning" in GLOSSARY_RUBRIC
+    assert "benchmark" in GLOSSARY_RUBRIC
+    assert "passkey" in GLOSSARY_RUBRIC
+    assert "WCAG" in GLOSSARY_RUBRIC
+    assert "Named negatives" not in GLOSSARY_RUBRIC
+
+
+def test_glossary_rubric_keeps_concise_layer_boundaries() -> None:
+    """Glossary boundaries distinguish term definitions from topics, trends, and signals."""
+    from src.ingest_review.providers.openai_provider import GLOSSARY_RUBRIC
+
+    assert "Layer boundary:" in GLOSSARY_RUBRIC
+    assert "glossary: explains a named term" in GLOSSARY_RUBRIC
+    assert "topics: broad operational domains" in GLOSSARY_RUBRIC
+    assert "trends/signals: directional change or source-specific evidence" in GLOSSARY_RUBRIC
+    assert "Model Context Protocol" in GLOSSARY_RUBRIC
+    assert "Agent Runtime Architecture" in GLOSSARY_RUBRIC
+    assert len(GLOSSARY_RUBRIC.splitlines()) < 80
+
+
 def test_openai_prompt_includes_source_type_override(tmp_path: Path) -> None:
     """source_type_override injects an override block into the prompt."""
     raw = tmp_path / "raw"
@@ -630,32 +669,29 @@ def test_topics_rubric_related_topics_not_tags() -> None:
 
 
 def test_glossary_rubric_includes_extraction_boundaries() -> None:
-    """GLOSSARY_RUBRIC routes generic terms away and defers to abstraction rubric."""
+    """GLOSSARY_RUBRIC uses learning-oriented source-support boundaries."""
     from src.ingest_review.providers.openai_provider import GLOSSARY_RUBRIC
 
-    assert "GLOSSARY EXTRACTION BOUNDARIES" in GLOSSARY_RUBRIC
-    assert "GLOSSARY HARD EXCLUSIONS" in GLOSSARY_RUBRIC
-    assert "not a dictionary of common terms" in GLOSSARY_RUBRIC
-    assert "ABSTRACTION_SELECTION_RUBRIC" in GLOSSARY_RUBRIC
-    assert "last" in GLOSSARY_RUBRIC.lower()
+    assert "GLOSSARY INCLUSION GATE" in GLOSSARY_RUBRIC
+    assert "source defines, explains, contrasts" in GLOSSARY_RUBRIC
+    assert "definition can stand alone outside the article" in GLOSSARY_RUBRIC
+    assert "help a practitioner understand" in GLOSSARY_RUBRIC
+    assert "merely name-dropped" in GLOSSARY_RUBRIC
 
 
 def test_glossary_hard_exclusions_block() -> None:
-    """GLOSSARY_RUBRIC defines hard exclusions, positive bar, and named negatives."""
+    """GLOSSARY_RUBRIC excludes trivial terms without blocking taught common terms."""
     from src.ingest_review.providers.openai_provider import GLOSSARY_RUBRIC
 
-    assert "GLOSSARY HARD EXCLUSIONS" in GLOSSARY_RUBRIC
-    assert "Generic business vocabulary" in GLOSSARY_RUBRIC
-    assert "Generic software terms" in GLOSSARY_RUBRIC
-    assert "Mature web standards" in GLOSSARY_RUBRIC
-    assert "Basic AI terminology" in GLOSSARY_RUBRIC
-    assert "Ontology-worthy" in GLOSSARY_RUBRIC
-    assert "Operationally differentiating" in GLOSSARY_RUBRIC
-    assert "Benchmark" in GLOSSARY_RUBRIC
-    assert "Knowledge Management" in GLOSSARY_RUBRIC
-    assert "Passkey" in GLOSSARY_RUBRIC
+    assert "Common terms are allowed" in GLOSSARY_RUBRIC
+    assert "do not auto-exclude" in GLOSSARY_RUBRIC
+    assert "benchmark" in GLOSSARY_RUBRIC
+    assert "passkey" in GLOSSARY_RUBRIC
     assert "WCAG" in GLOSSARY_RUBRIC
-    assert "flywheel" in GLOSSARY_RUBRIC
+    assert "vendor slogan" in GLOSSARY_RUBRIC
+    assert "too broad to define" in GLOSSARY_RUBRIC
+    assert "author-coined jargon" in GLOSSARY_RUBRIC
+    assert "flywheel" not in GLOSSARY_RUBRIC
 
 
 def test_tag_ontology_rubric_in_user_prompt(tmp_path: Path) -> None:
@@ -929,9 +965,8 @@ def test_abstraction_rubric_in_user_prompt(tmp_path: Path) -> None:
 
 
 def test_entity_rubrics_reference_abstraction_rubric() -> None:
-    """Entity rubrics cross-reference the global abstraction selection rubric."""
+    """Non-glossary entity rubrics cross-reference the global abstraction selection rubric."""
     from src.ingest_review.providers.openai_provider import (
-        GLOSSARY_RUBRIC,
         HOWTOS_RUBRIC,
         IMPL_STUDY_RUBRIC,
         TOOLS_RUBRIC,
@@ -939,7 +974,6 @@ def test_entity_rubrics_reference_abstraction_rubric() -> None:
     )
 
     for name, rubric in [
-        ("GLOSSARY_RUBRIC", GLOSSARY_RUBRIC),
         ("TOPICS_RUBRIC", TOPICS_RUBRIC),
         ("HOWTOS_RUBRIC", HOWTOS_RUBRIC),
         ("IMPL_STUDY_RUBRIC", IMPL_STUDY_RUBRIC),
@@ -1269,11 +1303,11 @@ def test_title_generation_rubric_in_user_prompt(tmp_path: Path) -> None:
     assert title_idx < topics_idx
 
 
-def test_prompt_version_is_42() -> None:
-    """Prompt version bumped for trend title rubric redesign."""
+def test_prompt_version_is_43() -> None:
+    """Prompt version bumped for learning-oriented glossary rubric."""
     from src.ingest_review.schema import PROMPT_VERSION
 
-    assert PROMPT_VERSION == "42"
+    assert PROMPT_VERSION == "43"
 
 
 def test_title_canonicalization_rubric_replaces_suggested_action() -> None:

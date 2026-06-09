@@ -1,0 +1,721 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T18:43:17+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoZE0Gq1BbM7p0zTn4cKrSQD0aNw2",
+          "token_usage": {
+            "completion_tokens": 191,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6421,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6612
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoZE2Jk5mrA13JM1E833ym5QAhysf",
+          "token_usage": {
+            "completion_tokens": 1163,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6035,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7198
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DoZEDsfLHeZX5C1PfKZJTeL29IkmE",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 1188,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19469,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 20657
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoZEDsfLHeZX5C1PfKZJTeL29IkmE",
+    "token_usage": {
+      "completion_tokens": 2542,
+      "prompt_tokens": 31925,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 34467
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-10",
+        "confidence": 0.9,
+        "evidence_from_source": "The roundup explicitly says AI is moving from a model race into an infrastructure race, and it ties voice, long context, and enterprise agent companies to that shift.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "workflow-restructuring",
+          "execution-oriented-agents"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents",
+          "enterprise-agents-move-into-customer-infrastructure",
+          "voice-agents-shift-toward-workflow-completion"
+        ],
+        "secondary_tag": "workflow-restructuring",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "OpenAI voice models were framed as a native interface requiring latency, interruption handling, memory, and tool use.",
+          "SubQ\u2019s context claim was framed as pressure on retrieval, chunking, and agent orchestration.",
+          "Sierra and other enterprise companies were presented as examples of applied systems being valued highly."
+        ],
+        "supporting_snippet": "AI is moving from a model race into an infrastructure race.",
+        "time_sensitivity": "As of 2026-05-10, this is a live industry pattern with medium-term relevance; the source treats it as the week\u2019s central takeaway, but the evidence here is editorial and selective.",
+        "trend_description": "AI product value is moving toward the surrounding system: interfaces, memory, orchestration, deployment layers, and workflow integration. Model capability still matters, but practical usefulness depends on the runtime and product shell around the model.",
+        "trend_slug": "ai-products-shift-from-models-to-systems",
+        "trend_title": "AI products are shifting from models to integrated systems",
+        "uncertainty_note": "This is a strong interpretation from a roundup, not a controlled study. The source supports the direction with multiple examples, but it does not prove that every AI category is following the same path.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-05-10",
+        "evidence_snippets": [
+          "OpenAI\u2019s new voice model release pushed AI further toward becoming a native interface rather than a text box with better UX.",
+          "real-time speech agents require a brutal combination of perception, reasoning, latency management, interruption handling, emotional calibration, tool use, and memory."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "OpenAI"
+        ],
+        "operational_relevance": "Prioritize runtime design for turn-taking, barge-in handling, memory state, and tool orchestration when evaluating real-time voice agents. Treat model quality as one component of a larger interaction stack.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai"
+        ],
+        "secondary_tag": "",
+        "service_automation_relevance": "Directly relevant to support automation, where voicebots and agent-assisted calls need to complete tasks under interruption and latency constraints.",
+        "signal_strength": "high",
+        "signal_title": "Voice agents are becoming workflow systems, not just speech interfaces",
+        "signal_type": "tool",
+        "suggested_destinations": [
+          "trends/",
+          "topics/"
+        ],
+        "suggested_new_tag": "voice-agents-shift-toward-workflow-completion",
+        "suggested_new_tags": [
+          "voice-agents-shift-toward-workflow-completion",
+          "realtime-voice-agents-shift-to-integration-work"
+        ],
+        "summary": "The roundup frames OpenAI\u2019s new voice models as a step toward AI that behaves like an operator rather than a text box. It emphasizes that real-time speech agents need more than speech recognition: they require low latency, interruption handling, memory, tool use, and emotional calibration. The operational implication is that voice quality depends on end-to-end workflow design, not model quality alone.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-05-10, this is a durable systems lesson for anyone building service automation or conversational interfaces: voice succeeds when the surrounding orchestration handles latency, turns, interruptions, and tool calls well. The source does not provide benchmarks, so this is a directional signal rather than proof of readiness.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-10",
+        "evidence_snippets": [
+          "a native 12M-token window would represent something more than incremental progress. It would challenge the current architecture of retrieval-augmented generation, memory systems, chunking strategies, and agent orchestration.",
+          "a massive context window is not the same as reliable reasoning over that context."
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Subquadratic",
+          "SubQ"
+        ],
+        "operational_relevance": "Teams designing retrieval pipelines, memory layers, or agent frameworks should watch for cases where native context can replace parts of their scaffolding, while still validating reasoning quality and cost.",
+        "primary_tag": "long-context-adoption",
+        "proposed_tags": [
+          "long-context-adoption",
+          "knowledge-systems",
+          "orchestration-layer-growth"
+        ],
+        "secondary_tag": "knowledge-systems",
+        "service_automation_relevance": "Indirectly relevant: larger native context could simplify customer-history handling and case continuity, but only if reliability and latency remain acceptable.",
+        "signal_strength": "medium",
+        "signal_title": "Long-context claims are pressuring retrieval and orchestration designs",
+        "signal_type": "infrastructure",
+        "suggested_destinations": [
+          "trends/",
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The roundup treats SubQ\u2019s claimed 12 million-token context window as more than a benchmark headline. If a model can really absorb corpora at that scale, it would pressure retrieval-augmented generation, chunking, memory systems, and agent orchestration. The article also explicitly warns that a large window is not the same as reliable reasoning over that context.",
+        "time_horizon": "medium_term",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-05-10, the practical question is not just context length but whether long-context models reduce the need for surrounding scaffolding. The source is skeptical and gives no evaluation data, so this should be monitored as an architectural pressure signal rather than accepted as settled capability.",
+        "wiki_worthiness": "review_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The source combines independent editorial analysis with vendor/product announcements and research-paper summaries.",
+        "Several claims are grounded in named company releases or funding/news items, while the editorial section adds the author\u2019s interpretation.",
+        "No single evidence mode dominates across the whole piece."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This roundup looks at a week where AI systems seemed to spread in several directions at once. One paper tries to turn a model\u2019s hidden thoughts into readable language, which could make models easier to inspect. OpenAI\u2019s new voice models point toward AI that feels more like a real operator than a text box. A separate startup made a very big claim about a 12 million-token context window, which matters because memory is becoming one of the key technical battlegrounds. The funding and valuation news show how heavily the market is pricing both frontier labs and applied agent products. Overall, the piece says AI is becoming less about one smarter model and more about the interfaces, memory systems, and companies wrapped around it.",
+      "assessed_as_of": "2026-05-10",
+      "contradictions_and_skepticism": "The roundup leans into a few large claims that deserve skepticism, especially the 12 million-token context announcement and the idea that very large windows alone could displace retrieval and orchestration layers. The editorial language is vivid, but some of the market conclusions are more interpretive than evidenced, particularly around strategic valuation and infrastructure framing. The interpretability framing is promising, but the article itself warns that natural-language explanations may be partial or misleading, so they should not be treated as ground truth.",
+      "key_insights": [
+        "Natural Language Autoencoders are notable because they try to use language itself as an interpretability tool for hidden activations, not just post hoc analysis.",
+        "The voice-model discussion treats latency, interruption handling, memory, and tool use as core requirements, not polish, for usable real-time agents.",
+        "A native 12 million-token context window would pressure retrieval-augmented generation and chunking-based application design if the claim holds up.",
+        "The roundup frames DeepSeek and Moonshot valuations as evidence that frontier labs are being valued as strategic infrastructure assets, not just software startups.",
+        "Sierra\u2019s raise is presented as a concrete example of large enterprise value being built around agents embedded in customer operations."
+      ],
+      "limitations_and_open_questions": "The interpretability result is explicitly limited: the article says the explanations can be incomplete, noisy, or misleading, so it is not a solved transparency method. The 12 million-token context claim is a headline claim in a roundup, with no evaluation details here about retrieval accuracy, reasoning quality, or cost. The valuation discussion gives little evidence about product durability or unit economics, so it is hard to separate strategic positioning from hype. The voice-model section names the key engineering challenges but provides no benchmarks for latency, robustness, or real-world task success. Several research summaries are brief and do not include enough methodological detail to judge reproducibility or practical impact.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-radar-857-last-week",
+        "https://the-sequence.substack.com/p/the-sequence-radar-857-last-week"
+      ],
+      "summary": "This weekly roundup argues that AI is becoming more inspectable, more conversational, more memory-rich, and more institutionally valuable. The editorial thread ties together Anthropic\u2019s Natural Language Autoencoders, OpenAI\u2019s new voice models, SubQ\u2019s 12 million-token context claim, major funding/valuation news for DeepSeek and Moonshot, and Sierra\u2019s large raise as evidence that AI is moving from a model race toward an infrastructure race. The Anthropic paper is framed as the week\u2019s most intellectually interesting item because it tries to translate hidden activations into natural language explanations and then reconstruct them, using language as a probe into latent state. The OpenAI voice release is presented as a step toward AI as a native interface, but the piece emphasizes that robust voice agents require low latency, interruption handling, memory, tool use, and emotional calibration. The SubQ claim is treated as provocative but highly uncertain: a native 12M-token window would pressure retrieval, chunking, and agent scaffolding, but long context is not the same as dependable reasoning. The valuation items are read as evidence that frontier labs and applied-agent companies are being priced as strategic infrastructure, while the roundup\u2019s research section also highlights interpretability, self-evolving agents, diffusion tuning, counting reliability, and metacognition as areas worth attention.",
+      "why_it_matters": "The piece is useful because it compresses several technically different developments into one practical frame: interpretability, voice interaction, long-context memory, and company formation around AI infrastructure. The Anthropic paper matters to AI engineers because it suggests a more legible way to inspect model internals, even though the article is careful to note that the explanations can be incomplete or misleading. The OpenAI voice release matters because it highlights that usable speech agents are a systems problem, not just a model problem: perception, latency, interruptions, memory, and tool use all have to work together. The SubQ claim matters less for the specific startup than for the architecture question it raises, since very large context windows could reduce dependence on retrieval and chunking if the numbers are real. The funding items matter as market signals only in a narrow sense: the article is describing how investors are pricing AI labs and agent platforms, not proving a durable regime change. The research list reinforces that core problems remain unresolved, especially reliability, metacognition, and agent skill management. As of 2026-05-10, the most actionable reading is to treat the interpretability and voice items as promising but early, and the long-context and valuation claims as things to monitor rather than adopt as settled engineering truth. The closing implication for voice, service workflows, and back-office automation is that these systems may become viable only when latency, interruption handling, and memory are solved together; the article does substantively discuss that stack, but it does not provide deployment guidance."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "Primary structure is a weekly digest with multiple loosely related news blurbs and research highlights.",
+        "Includes a mix of editorial commentary plus separate sections for research, tech releases, and 10 news items.",
+        "The article\u2019s purpose is aggregation and curation rather than a single coherent tutorial, interview, or paper summary."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-10",
+          "confidence": 0.9,
+          "evidence_from_source": "The roundup explicitly says AI is moving from a model race into an infrastructure race, and it ties voice, long context, and enterprise agent companies to that shift.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "workflow-restructuring",
+            "execution-oriented-agents"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents",
+            "enterprise-agents-move-into-customer-infrastructure",
+            "voice-agents-shift-toward-workflow-completion"
+          ],
+          "secondary_tag": "workflow-restructuring",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "OpenAI voice models were framed as a native interface requiring latency, interruption handling, memory, and tool use.",
+            "SubQ\u2019s context claim was framed as pressure on retrieval, chunking, and agent orchestration.",
+            "Sierra and other enterprise companies were presented as examples of applied systems being valued highly."
+          ],
+          "supporting_snippet": "AI is moving from a model race into an infrastructure race.",
+          "time_sensitivity": "As of 2026-05-10, this is a live industry pattern with medium-term relevance; the source treats it as the week\u2019s central takeaway, but the evidence here is editorial and selective.",
+          "trend_description": "AI product value is moving toward the surrounding system: interfaces, memory, orchestration, deployment layers, and workflow integration. Model capability still matters, but practical usefulness depends on the runtime and product shell around the model.",
+          "trend_slug": "ai-products-shift-from-models-to-systems",
+          "trend_title": "AI products are shifting from models to integrated systems",
+          "uncertainty_note": "This is a strong interpretation from a roundup, not a controlled study. The source supports the direction with multiple examples, but it does not prove that every AI category is following the same path.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "fd4a7a1d-3ab4-47f9-bd8a-2ee14cc13d8e",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents",
+              "enterprise-agents-move-into-customer-infrastructure",
+              "voice-agents-shift-toward-workflow-completion"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI voice models were framed as a native interface requiring latency, interruption handling, memory, and tool use.",
+              "SubQ\u2019s context claim was framed as pressure on retrieval, chunking, and agent orchestration.",
+              "Sierra and other enterprise companies were presented as examples of applied systems being valued highly."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "workflow-restructuring",
+            "execution-oriented-agents"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-10",
+          "evidence_snippets": [
+            "OpenAI\u2019s new voice model release pushed AI further toward becoming a native interface rather than a text box with better UX.",
+            "real-time speech agents require a brutal combination of perception, reasoning, latency management, interruption handling, emotional calibration, tool use, and memory."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "OpenAI"
+          ],
+          "operational_relevance": "Prioritize runtime design for turn-taking, barge-in handling, memory state, and tool orchestration when evaluating real-time voice agents. Treat model quality as one component of a larger interaction stack.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai"
+          ],
+          "secondary_tag": "",
+          "service_automation_relevance": "Directly relevant to support automation, where voicebots and agent-assisted calls need to complete tasks under interruption and latency constraints.",
+          "signal_strength": "high",
+          "signal_title": "Voice agents are becoming workflow systems, not just speech interfaces",
+          "signal_type": "tool",
+          "suggested_destinations": [
+            "trends/",
+            "topics/"
+          ],
+          "suggested_new_tag": "voice-agents-shift-toward-workflow-completion",
+          "suggested_new_tags": [
+            "voice-agents-shift-toward-workflow-completion",
+            "realtime-voice-agents-shift-to-integration-work",
+            "search-automation"
+          ],
+          "summary": "The roundup frames OpenAI\u2019s new voice models as a step toward AI that behaves like an operator rather than a text box. It emphasizes that real-time speech agents need more than speech recognition: they require low latency, interruption handling, memory, tool use, and emotional calibration. The operational implication is that voice quality depends on end-to-end workflow design, not model quality alone.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-05-10, this is a durable systems lesson for anyone building service automation or conversational interfaces: voice succeeds when the surrounding orchestration handles latency, turns, interruptions, and tool calls well. The source does not provide benchmarks, so this is a directional signal rather than proof of readiness.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "bb6869c5-39ad-4309-895c-45c2c01a4fef",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI\u2019s new voice model release pushed AI further toward becoming a native interface rather than a text box with better UX.",
+              "real-time speech agents require a brutal combination of perception, reasoning, latency management, interruption handling, emotional calibration, tool use, and memory."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/",
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [
+            "search-automation"
+          ],
+          "final_tags": [
+            "enterprise-ai",
+            "search-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-10",
+          "evidence_snippets": [
+            "a native 12M-token window would represent something more than incremental progress. It would challenge the current architecture of retrieval-augmented generation, memory systems, chunking strategies, and agent orchestration.",
+            "a massive context window is not the same as reliable reasoning over that context."
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Subquadratic",
+            "SubQ"
+          ],
+          "operational_relevance": "Teams designing retrieval pipelines, memory layers, or agent frameworks should watch for cases where native context can replace parts of their scaffolding, while still validating reasoning quality and cost.",
+          "primary_tag": "long-context-adoption",
+          "proposed_tags": [
+            "long-context-adoption",
+            "knowledge-systems",
+            "orchestration-layer-growth"
+          ],
+          "secondary_tag": "knowledge-systems",
+          "service_automation_relevance": "Indirectly relevant: larger native context could simplify customer-history handling and case continuity, but only if reliability and latency remain acceptable.",
+          "signal_strength": "medium",
+          "signal_title": "Long-context claims are pressuring retrieval and orchestration designs",
+          "signal_type": "infrastructure",
+          "suggested_destinations": [
+            "trends/",
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The roundup treats SubQ\u2019s claimed 12 million-token context window as more than a benchmark headline. If a model can really absorb corpora at that scale, it would pressure retrieval-augmented generation, chunking, memory systems, and agent orchestration. The article also explicitly warns that a large window is not the same as reliable reasoning over that context.",
+          "time_horizon": "medium_term",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-05-10, the practical question is not just context length but whether long-context models reduce the need for surrounding scaffolding. The source is skeptical and gives no evaluation data, so this should be monitored as an architectural pressure signal rather than accepted as settled capability.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "b9891c14-4bd5-4071-9408-6920dc099315",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": [],
+            "llm_list": [
+              "a native 12M-token window would represent something more than incremental progress. It would challenge the current architecture of retrieval-augmented generation, memory systems, chunking strategies, and agent orchestration.",
+              "a massive context window is not the same as reliable reasoning over that context."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "mentioned_entities": {
+            "final_list": [],
+            "llm_list": [
+              "Subquadratic",
+              "SubQ"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "service_automation_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "signal_strength": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "signal_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "signal_type": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "suggested_destinations": {
+            "final_list": [],
+            "llm_list": [
+              "trends/",
+              "topics/"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "summary": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "time_horizon": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "why_it_matters": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "wiki_worthiness": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "long-context-adoption",
+            "knowledge-systems",
+            "orchestration-layer-growth"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The source combines independent editorial analysis with vendor/product announcements and research-paper summaries.",
+          "Several claims are grounded in named company releases or funding/news items, while the editorial section adds the author\u2019s interpretation.",
+          "No single evidence mode dominates across the whole piece."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Natural Language Autoencoders are notable because they try to use language itself as an interpretability tool for hidden activations, not just post hoc analysis.",
+          "The voice-model discussion treats latency, interruption handling, memory, and tool use as core requirements, not polish, for usable real-time agents.",
+          "A native 12 million-token context window would pressure retrieval-augmented generation and chunking-based application design if the claim holds up.",
+          "The roundup frames DeepSeek and Moonshot valuations as evidence that frontier labs are being valued as strategic infrastructure assets, not just software startups.",
+          "Sierra\u2019s raise is presented as a concrete example of large enterprise value being built around agents embedded in customer operations."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-radar-857-last-week",
+          "https://the-sequence.substack.com/p/the-sequence-radar-857-last-week"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "Primary structure is a weekly digest with multiple loosely related news blurbs and research highlights.",
+          "Includes a mix of editorial commentary plus separate sections for research, tech releases, and 10 news items.",
+          "The article\u2019s purpose is aggregation and curation rather than a single coherent tutorial, interview, or paper summary."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 141.3,
+    "review_finished_at": "2026-06-08T18:45:38.295402+00:00",
+    "review_started_at": "2026-06-08T18:43:17+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T18:45:38+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-radar-857-last-week",
+    "content_sha256": "c49ea4a59c43a14e0e35d3e83ff6080746e4d0ccb52d273a505bd159e0cbb80e",
+    "publication": "substack.com",
+    "published_date": "2026-05-10",
+    "raw_html_rel_path": "raw/readwise/the-sequence-radar-857-last-week-in-ai-inside-the-machine-outside-the-text-box-01kr8st5etzxtx29bs2wc1447d.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-radar-857-last-week-in-ai-inside-the-machine-outside-the-text-box-01kr8st5etzxtx29bs2wc1447d.md",
+    "source_id": "the-sequence-radar-857-last-week-in-ai-inside-the-machine-outside-the-text-box-01kr8st5etzxtx29bs2wc1447d",
+    "title": "The Sequence Radar #857: Last Week in AI: Inside the Machine, Outside the Text Box"
+  }
+}

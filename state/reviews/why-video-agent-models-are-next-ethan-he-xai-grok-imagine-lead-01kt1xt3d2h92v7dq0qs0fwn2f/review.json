@@ -1,0 +1,1164 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T15:57:11+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoWd0l0rJbYIBiId9eWIwk6hMLChK",
+          "token_usage": {
+            "completion_tokens": 196,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 30288,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 30484
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoWd4cbK9erTFyZYwaRPXYbPPRPcV",
+          "token_usage": {
+            "completion_tokens": 1189,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 29900,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 31089
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-interview_or_transcript",
+          "request_id": "chatcmpl-DoWdHJhTReUsgFRKoPvCCdn2BMh4j",
+          "route": "interview_or_transcript",
+          "token_usage": {
+            "completion_tokens": 2327,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 43209,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 45536
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoWdHJhTReUsgFRKoPvCCdn2BMh4j",
+    "token_usage": {
+      "completion_tokens": 3712,
+      "prompt_tokens": 103397,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 107109
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-06-01",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "The next leap in video quality comes mostly from language-model improvements rather than diffusion-only gains."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cthe visual intelligence are actually mostly coming from language.\u201d",
+          "\u201cthe video model\u2019s capability increase actually come from language model being more intelligent.\u201d",
+          "\u201cthe prompt rewriter\u2019s task is to take user instruction and convert it to extremely detailed description of the video.\u201d"
+        ],
+        "evidence_type": null,
+        "insight_title": "Video quality gains come from the language layer around generation",
+        "insight_type": "trend",
+        "mentioned_entities": [
+          "xAI",
+          "Grok Imagine",
+          "Cosmos",
+          "Llama",
+          "Mixtral"
+        ],
+        "operational_relevance": "Design video pipelines with an explicit instruction-expansion or prompt-rewrite stage, then treat the generator as one tool in a larger loop. This points toward agentic generation workflows where the harness plans, rewrites, edits, and critiques outputs before delivery.",
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "prompt-engineering",
+          "multimodal-ai",
+          "workflow-design"
+        ],
+        "secondary_tag": "prompt-engineering",
+        "service_automation_relevance": "Indirectly relevant: support and concierge systems may benefit from the same pattern of turning vague user intent into structured generation or action plans. No direct service automation implications identified beyond the general case for better instruction routing.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Ethan argues that the biggest improvements in video systems are increasingly driven by the language-model side: prompt rewriting, planning, tool use, and iterative refinement. He says the video generator itself can be relatively literal, so a stronger language layer helps translate vague user intent into usable instructions. In his account, this matters more than incremental diffusion improvements alone for the next step in generative media.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-01, this is a durable system-design takeaway for multimodal builders: the winning product may be a composed system, not a single generator. It suggests that evaluation, orchestration, and prompt transformation deserve first-class engineering attention alongside model training. The claim is plausible but remains an expert view rather than controlled evidence.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-01",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Video models should be bootstrapped from image models rather than trained directly from video-text pairs."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cbuilding a video model, you actually need to build a image model first.\u201d",
+          "\u201cthe data you need is a hundred percent synthetic pair of language and image or language to video.\u201d",
+          "\u201cimage models are cheaper to train, and they have much denser connection between language and text.\u201d"
+        ],
+        "evidence_type": null,
+        "insight_title": "Image models are the economical bootstrap layer for video models",
+        "insight_type": "topic",
+        "mentioned_entities": [
+          "Cosmos",
+          "VLM",
+          "VAE"
+        ],
+        "operational_relevance": "Start with an image generator, build a captioning or synthetic labeling pipeline, then transfer to video. This affects data acquisition, annotation protocol design, and the order in which model components are built.",
+        "primary_tag": "multimodal-ai",
+        "proposed_tags": [
+          "multimodal-ai",
+          "ai-research",
+          "ai-engineering",
+          "image-conditioned-workflows"
+        ],
+        "secondary_tag": "ai-research",
+        "service_automation_relevance": "No direct service automation implications identified.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Ethan says video training should start from image models because image data is cheaper, more densely aligned with language, and easier to supervise. He also argues that raw internet video-text pairs are weak supervision, so synthetic captions or human-written detailed descriptions are needed to create usable language-video pairs. In his framing, image models are the foundation that makes video learning tractable.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-01, this is a durable training insight for teams building multimodal generative systems. It compresses several practical choices into one rule: denser supervision and cheaper pretraining can reduce the cost of bootstrapping a harder modality. The source supports the argument, though it is still an interview-based claim rather than a benchmark result.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-01",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Models should learn to manage their own context rather than rely mainly on external harness heuristics."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cthe further you are from the current frame, you have a smaller image.\u201d",
+          "\u201cI think one breakthrough in continual learning might be like a way to automatically, manage its own context.\u201d",
+          "\u201creference video allow you to like upload up to seven images as condition and generate the video.\u201d"
+        ],
+        "evidence_type": null,
+        "insight_title": "Context selection will matter more than brute-force context length for interactive video and language models",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "Frame Pack",
+          "Grok Imagine",
+          "OpenAI"
+        ],
+        "operational_relevance": "Build systems that can prune, compress, or rehydrate context instead of naively concatenating all history. For video and agent workflows, this favors selective memory over raw window size, and suggests that context-policy design is a first-class optimization target.",
+        "primary_tag": "context-engineering",
+        "proposed_tags": [
+          "context-engineering",
+          "agent-memory",
+          "agent-orchestration",
+          "runtime-architecture"
+        ],
+        "secondary_tag": "agent-memory",
+        "service_automation_relevance": "Relevant to support bots and voice agents that must manage long conversations without drowning in history. Better context selection can reduce irrelevant carryover, improve handoff quality, and stabilize long-running cases.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Ethan describes long-horizon video as a context-management problem: if you keep appending every prior frame or event, context length explodes. He points to reference-video conditioning and heuristic compression as interim solutions, then argues that models should eventually learn to select which historical context matters. He extends the same idea to language-model tool histories and context compaction.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-01, this is a high-value architectural pattern for both multimodal agents and LLM systems. It implies that the core capability is not just long context windows, but selective retrieval, compression, and context budgeting. That maps directly onto agent runtimes, memory systems, and harness engineering.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-01",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Video training cost can be comparable to language-model training once storage and I/O are included."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\u201cjust storing the videos alone, it costs a lot.\u201d",
+          "\u201cyou have the ingress and egress.\u201d",
+          "\u201cvideo models is-- the cost is very-- is comparable to language models\u201d"
+        ],
+        "evidence_type": null,
+        "insight_title": "Video system cost is dominated by data logistics as well as GPU time",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "AWS",
+          "S3",
+          "xAI",
+          "Cosmos"
+        ],
+        "operational_relevance": "Plan for storage tiers, cache design, and dataset movement costs early. For large video and multimodal systems, infra teams should treat data locality and ingestion throughput as training-enabling constraints, not implementation details.",
+        "primary_tag": "infrastructure",
+        "proposed_tags": [
+          "infrastructure",
+          "infrastructure-economics",
+          "serving-infrastructure",
+          "ai-engineering"
+        ],
+        "secondary_tag": "infrastructure-economics",
+        "service_automation_relevance": "No direct service automation implications identified.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Ethan says video model training is not just a compute problem. He highlights petabyte-scale storage, repeated data pulls, ingress/egress, and I/O as major costs, alongside the GPUs themselves. He also notes that video models are often more I/O bound than LLM training, which makes caching and data-loading optimizations critical.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-01, this is a durable infrastructure lesson for any team handling large multimodal corpora. It reframes capacity planning: the training bill is not only GPU-hours, but also storage architecture, network transfer, and pipeline efficiency. The exact dollar figures are illustrative, but the operational point is strong and reusable.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-01",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "The next frontier in video generation is a video agent rather than a better standalone video model."
+        ],
+        "durability_estimate": "medium_term",
+        "evidence_snippets": [
+          "\u201cthe next Sora won\u2019t be a better video model, but a video agent.\u201d",
+          "\u201cvideo agents are almost a sure bet to be the trend in the coming year.\u201d",
+          "\u201cthe model can iteratively refine the results or even, generate longer content through a very long train of thought.\u201d"
+        ],
+        "evidence_type": null,
+        "insight_title": "Video agents are a practical near-term bridge from generation to interactive systems",
+        "insight_type": "trend",
+        "mentioned_entities": [
+          "Grok Imagine Agent",
+          "FFmpeg",
+          "Photoshop"
+        ],
+        "operational_relevance": "Design the product around task completion, not just media emission: planning, editing, splitting work into substeps, and chaining deterministic tools with generative tools. This is directly relevant to agent workflows that need iterative refinement and post-processing.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "workflow-design",
+          "multimodal-systems",
+          "ui-generation"
+        ],
+        "secondary_tag": "workflow-design",
+        "service_automation_relevance": "Moderately relevant: customer-facing automation may eventually benefit from agentic media generation, but the article mainly discusses video creation rather than support operations. No direct service automation implications identified.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Ethan\u2019s view is that the next step in video is not a better standalone generator but a video agent that can plan, edit, critique, and iterate across a task. He frames video editing requests, long-form generation, and tool use as evidence that the interface is shifting from one-shot output to agentic orchestration. He treats this as an intermediate step toward real-time world models and generative UI.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-01, this is strategically relevant because it shifts product thinking from sample quality alone to workflow completion. Even if the exact timeline is speculative, the pattern is reusable: model capability plus tool orchestration can unlock value before full model-side perfection. It is especially useful for teams deciding whether to build pure generators or systems wrapped around generators.",
+        "wiki_worthiness": "review_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "Most substantive claims come from Ethan He's first-person judgments about video models, world models, and LLMs.",
+        "The episode is framed as a deep dive interview, not a benchmark report or formal paper.",
+        "Several claims are strategic interpretations and predictions rather than independently verified measurements."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a conversation about why video generation is moving toward agent-like systems. Ethan He says the real jump is not just making prettier clips, but using language models to plan, rewrite prompts, edit, and stitch video outputs together. He also explains why video is expensive: the data is huge, the compression is hard, and the system has to stay fast enough to feel interactive. His definition of a world model is practical: it should respond in real time, remember long histories, and support user interaction. The interview is interesting because it connects video generation, generative interfaces, and language-model tooling into one workflow.",
+      "assessed_as_of": "2026-06-01",
+      "contradictions_and_skepticism": "Some of the framing is intentionally provocative. The claim that video-model intelligence mostly comes from language models is plausible as a system-level argument, but the transcript does not provide controlled evidence for it. The assertion that video agents are the near-term next frontier may be right, but it also risks over-crediting harnesses and under-crediting model progress. His generative-UI vision is compelling, yet it depends on inference cost, latency, and accessibility constraints that are not resolved here. The transcript also mixes architecture claims with product enthusiasm, so a cautious reader should separate what xAI demonstrably shipped from what Ethan thinks the field will converge toward.",
+      "key_insights": [
+        "Ethan\u2019s strongest claim is that the next jump in video quality comes mainly from the language-model layer around the generator, not from diffusion improvements alone.",
+        "For video systems, synthetic captioning and an image-model bootstrap are presented as prerequisite infrastructure, because raw internet video-text pairs are weak supervision.",
+        "Storage and network transfer are treated as first-order training costs for video models, not just GPU time; he gives petabyte-scale examples.",
+        "He frames world models as real-time, interactive, long-horizon video systems, and treats video extension plus reference-video conditioning as intermediate steps toward that goal.",
+        "Prompt rewriting is not a minor polish step in his view; it is part of the intelligence that turns vague user intent into usable generation instructions."
+      ],
+      "limitations_and_open_questions": "The transcript is heavy on expert opinion and light on reproducible benchmarks. Several claims are framed as first-principles judgment rather than measured comparisons, including the idea that language intelligence contributes most of the gains in video systems. The storage-cost arithmetic is illustrative, but it depends on assumed video sizes, retrieval patterns, and cloud pricing. The description of world models is Ethan\u2019s preferred definition, not a community consensus. Open questions include how much agent orchestration can be added without jointly training the generator, how to make context selection automatic rather than heuristic, and whether reference-video conditioning scales beyond the interim use case described here. The audio-video section also leaves unresolved how to build robust alignment for music, dialogue, and timing at production quality.",
+      "sources": [
+        "https://www.latent.space/p/video-agents",
+        "https://x.ai/news/grok-imag\u2026",
+        "https://www.linkedin.com/in/ethanhe42",
+        "https://x.com/EthanHe_42"
+      ],
+      "summary": "This transcript is a technical interview with Ethan He about building Grok Imagine at xAI and his broader view of where video generation is heading. His central claim is that video models are becoming less about standalone diffusion quality and more about the language-model and agent layer around them: prompt rewriting, planning, tool use, editing, and iterative refinement. He argues that image models are the foundation for video because they are cheaper, denser in language supervision, and easier to bootstrap from synthetic captions, while video models face much higher storage, I/O, and token-compression costs. He also stresses that small data-pipeline and training bugs can matter more than new algorithms, and that iteration speed, compute, and infra determine how fast teams can find and fix those issues. A second theme is that real-time, long-horizon, interactive video is the right definition of a world model, with video extension and reference-video conditioning as practical intermediate steps. He frames generative UI, video agents, and prompt-rewriting systems as the near-term direction, where the model plans and orchestrates generation rather than emitting pixels in one shot. He also discusses audio-video alignment, watermarking, and why xAI\u2019s public communication understates the amount of work behind Grok Imagine.",
+      "why_it_matters": "The piece is useful because it compresses a builder\u2019s view of frontier video systems into a small set of operational constraints: supervision quality, compression choices, inference speed, and agent orchestration. The most durable takeaway is that video generation is not just a model problem; it is a pipeline problem, because the transcript repeatedly points to synthetic captioning, tokenizer design, storage, egress, and data loading as major determinants of quality and cost. Ethan\u2019s discussion of image-first bootstrapping is especially practical: he argues that image models carry denser text alignment, so they are the economical foundation for later video training. His comments on temporal compression versus per-frame generation are also useful for system design, because they expose a real tradeoff between context efficiency and interactive latency. The discussion of step distillation and GAN-style objectives is a reminder that deployment latency often depends on separate inference-time techniques rather than training-time scale alone. His view of video agents is strategically important as of 2026-06-01 because it suggests product value may come from planning, editing, and tool use around a generator, not only from raw sample quality. For service automation, the article only touches the idea indirectly through generative UI and assistant-like interaction, so the implication is limited and speculative rather than a direct product roadmap. As of 2026-06-01, the piece is best treated as a strong directional map for multimodal builders, but not as evidence that any single architecture has won."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "The page is explicitly labeled as a transcript and contains a long Q&A between multiple speakers.",
+        "The structure is conversational with timestamps and speaker turns rather than a single-author essay or roundup.",
+        "The content centers on one interview subject's firsthand explanations and opinions about building video models and world models."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-01",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "The next leap in video quality comes mostly from language-model improvements rather than diffusion-only gains."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cthe visual intelligence are actually mostly coming from language.\u201d",
+            "\u201cthe video model\u2019s capability increase actually come from language model being more intelligent.\u201d",
+            "\u201cthe prompt rewriter\u2019s task is to take user instruction and convert it to extremely detailed description of the video.\u201d"
+          ],
+          "evidence_type": null,
+          "insight_title": "Video quality gains come from the language layer around generation",
+          "insight_type": "trend",
+          "mentioned_entities": [
+            "xAI",
+            "Grok Imagine",
+            "Cosmos",
+            "Llama",
+            "Mixtral"
+          ],
+          "operational_relevance": "Design video pipelines with an explicit instruction-expansion or prompt-rewrite stage, then treat the generator as one tool in a larger loop. This points toward agentic generation workflows where the harness plans, rewrites, edits, and critiques outputs before delivery.",
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "prompt-engineering",
+            "multimodal-ai",
+            "workflow-design"
+          ],
+          "secondary_tag": "prompt-engineering",
+          "service_automation_relevance": "Indirectly relevant: support and concierge systems may benefit from the same pattern of turning vague user intent into structured generation or action plans. No direct service automation implications identified beyond the general case for better instruction routing.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Ethan argues that the biggest improvements in video systems are increasingly driven by the language-model side: prompt rewriting, planning, tool use, and iterative refinement. He says the video generator itself can be relatively literal, so a stronger language layer helps translate vague user intent into usable instructions. In his account, this matters more than incremental diffusion improvements alone for the next step in generative media.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-01, this is a durable system-design takeaway for multimodal builders: the winning product may be a composed system, not a single generator. It suggests that evaluation, orchestration, and prompt transformation deserve first-class engineering attention alongside model training. The claim is plausible but remains an expert view rather than controlled evidence.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "97d18e7e-72b0-41df-bccb-8c103cd93c2a",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "The next leap in video quality comes mostly from language-model improvements rather than diffusion-only gains."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cthe visual intelligence are actually mostly coming from language.\u201d",
+              "\u201cthe video model\u2019s capability increase actually come from language model being more intelligent.\u201d",
+              "\u201cthe prompt rewriter\u2019s task is to take user instruction and convert it to extremely detailed description of the video.\u201d"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "xAI",
+              "Grok Imagine",
+              "Cosmos",
+              "Llama",
+              "Mixtral"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "prompt-engineering",
+            "multimodal-ai",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-01",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Video models should be bootstrapped from image models rather than trained directly from video-text pairs."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cbuilding a video model, you actually need to build a image model first.\u201d",
+            "\u201cthe data you need is a hundred percent synthetic pair of language and image or language to video.\u201d",
+            "\u201cimage models are cheaper to train, and they have much denser connection between language and text.\u201d"
+          ],
+          "evidence_type": null,
+          "insight_title": "Image models are the economical bootstrap layer for video models",
+          "insight_type": "topic",
+          "mentioned_entities": [
+            "Cosmos",
+            "VLM",
+            "VAE"
+          ],
+          "operational_relevance": "Start with an image generator, build a captioning or synthetic labeling pipeline, then transfer to video. This affects data acquisition, annotation protocol design, and the order in which model components are built.",
+          "primary_tag": "multimodal-ai",
+          "proposed_tags": [
+            "multimodal-ai",
+            "ai-research",
+            "ai-engineering",
+            "image-conditioned-workflows"
+          ],
+          "secondary_tag": "ai-research",
+          "service_automation_relevance": "No direct service automation implications identified.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Ethan says video training should start from image models because image data is cheaper, more densely aligned with language, and easier to supervise. He also argues that raw internet video-text pairs are weak supervision, so synthetic captions or human-written detailed descriptions are needed to create usable language-video pairs. In his framing, image models are the foundation that makes video learning tractable.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-01, this is a durable training insight for teams building multimodal generative systems. It compresses several practical choices into one rule: denser supervision and cheaper pretraining can reduce the cost of bootstrapping a harder modality. The source supports the argument, though it is still an interview-based claim rather than a benchmark result.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "3cc1dabd-1449-4b11-b311-b7ed0cdb25d9",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Video models should be bootstrapped from image models rather than trained directly from video-text pairs."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cbuilding a video model, you actually need to build a image model first.\u201d",
+              "\u201cthe data you need is a hundred percent synthetic pair of language and image or language to video.\u201d",
+              "\u201cimage models are cheaper to train, and they have much denser connection between language and text.\u201d"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Cosmos",
+              "VLM",
+              "VAE"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "multimodal-ai",
+            "ai-research",
+            "ai-engineering",
+            "image-conditioned-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-01",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Models should learn to manage their own context rather than rely mainly on external harness heuristics."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cthe further you are from the current frame, you have a smaller image.\u201d",
+            "\u201cI think one breakthrough in continual learning might be like a way to automatically, manage its own context.\u201d",
+            "\u201creference video allow you to like upload up to seven images as condition and generate the video.\u201d"
+          ],
+          "evidence_type": null,
+          "insight_title": "Context selection will matter more than brute-force context length for interactive video and language models",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "Frame Pack",
+            "Grok Imagine",
+            "OpenAI"
+          ],
+          "operational_relevance": "Build systems that can prune, compress, or rehydrate context instead of naively concatenating all history. For video and agent workflows, this favors selective memory over raw window size, and suggests that context-policy design is a first-class optimization target.",
+          "primary_tag": "context-engineering",
+          "proposed_tags": [
+            "context-engineering",
+            "agent-memory",
+            "agent-orchestration",
+            "runtime-architecture"
+          ],
+          "secondary_tag": "agent-memory",
+          "service_automation_relevance": "Relevant to support bots and voice agents that must manage long conversations without drowning in history. Better context selection can reduce irrelevant carryover, improve handoff quality, and stabilize long-running cases.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Ethan describes long-horizon video as a context-management problem: if you keep appending every prior frame or event, context length explodes. He points to reference-video conditioning and heuristic compression as interim solutions, then argues that models should eventually learn to select which historical context matters. He extends the same idea to language-model tool histories and context compaction.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-01, this is a high-value architectural pattern for both multimodal agents and LLM systems. It implies that the core capability is not just long context windows, but selective retrieval, compression, and context budgeting. That maps directly onto agent runtimes, memory systems, and harness engineering.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "f69d7209-1658-48bb-9406-cebd0fa422e5",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Models should learn to manage their own context rather than rely mainly on external harness heuristics."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cthe further you are from the current frame, you have a smaller image.\u201d",
+              "\u201cI think one breakthrough in continual learning might be like a way to automatically, manage its own context.\u201d",
+              "\u201creference video allow you to like upload up to seven images as condition and generate the video.\u201d"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Frame Pack",
+              "Grok Imagine",
+              "OpenAI"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "context-engineering",
+            "agent-memory",
+            "agent-orchestration",
+            "runtime-architecture"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-01",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Video training cost can be comparable to language-model training once storage and I/O are included."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\u201cjust storing the videos alone, it costs a lot.\u201d",
+            "\u201cyou have the ingress and egress.\u201d",
+            "\u201cvideo models is-- the cost is very-- is comparable to language models\u201d"
+          ],
+          "evidence_type": null,
+          "insight_title": "Video system cost is dominated by data logistics as well as GPU time",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "AWS",
+            "S3",
+            "xAI",
+            "Cosmos"
+          ],
+          "operational_relevance": "Plan for storage tiers, cache design, and dataset movement costs early. For large video and multimodal systems, infra teams should treat data locality and ingestion throughput as training-enabling constraints, not implementation details.",
+          "primary_tag": "infrastructure",
+          "proposed_tags": [
+            "infrastructure",
+            "infrastructure-economics",
+            "serving-infrastructure",
+            "ai-engineering"
+          ],
+          "secondary_tag": "infrastructure-economics",
+          "service_automation_relevance": "No direct service automation implications identified.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Ethan says video model training is not just a compute problem. He highlights petabyte-scale storage, repeated data pulls, ingress/egress, and I/O as major costs, alongside the GPUs themselves. He also notes that video models are often more I/O bound than LLM training, which makes caching and data-loading optimizations critical.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-01, this is a durable infrastructure lesson for any team handling large multimodal corpora. It reframes capacity planning: the training bill is not only GPU-hours, but also storage architecture, network transfer, and pipeline efficiency. The exact dollar figures are illustrative, but the operational point is strong and reusable.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "c9cf2863-bad7-4786-930e-0d6394c6e8ae",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Video training cost can be comparable to language-model training once storage and I/O are included."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cjust storing the videos alone, it costs a lot.\u201d",
+              "\u201cyou have the ingress and egress.\u201d",
+              "\u201cvideo models is-- the cost is very-- is comparable to language models\u201d"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "AWS",
+              "S3",
+              "xAI",
+              "Cosmos"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "infrastructure",
+            "infrastructure-economics",
+            "serving-infrastructure",
+            "ai-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-01",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "The next frontier in video generation is a video agent rather than a better standalone video model."
+          ],
+          "durability_estimate": "medium_term",
+          "evidence_snippets": [
+            "\u201cthe next Sora won\u2019t be a better video model, but a video agent.\u201d",
+            "\u201cvideo agents are almost a sure bet to be the trend in the coming year.\u201d",
+            "\u201cthe model can iteratively refine the results or even, generate longer content through a very long train of thought.\u201d"
+          ],
+          "evidence_type": null,
+          "insight_title": "Video agents are a practical near-term bridge from generation to interactive systems",
+          "insight_type": "trend",
+          "mentioned_entities": [
+            "Grok Imagine Agent",
+            "FFmpeg",
+            "Photoshop"
+          ],
+          "operational_relevance": "Design the product around task completion, not just media emission: planning, editing, splitting work into substeps, and chaining deterministic tools with generative tools. This is directly relevant to agent workflows that need iterative refinement and post-processing.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "workflow-design",
+            "multimodal-systems",
+            "ui-generation"
+          ],
+          "secondary_tag": "workflow-design",
+          "service_automation_relevance": "Moderately relevant: customer-facing automation may eventually benefit from agentic media generation, but the article mainly discusses video creation rather than support operations. No direct service automation implications identified.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Ethan\u2019s view is that the next step in video is not a better standalone generator but a video agent that can plan, edit, critique, and iterate across a task. He frames video editing requests, long-form generation, and tool use as evidence that the interface is shifting from one-shot output to agentic orchestration. He treats this as an intermediate step toward real-time world models and generative UI.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-01, this is strategically relevant because it shifts product thinking from sample quality alone to workflow completion. Even if the exact timeline is speculative, the pattern is reusable: model capability plus tool orchestration can unlock value before full model-side perfection. It is especially useful for teams deciding whether to build pure generators or systems wrapped around generators.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "e908db31-6ce3-40fc-8380-7256012a54aa",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": [],
+            "llm_list": [
+              "The next frontier in video generation is a video agent rather than a better standalone video model."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "durability_estimate": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "evidence_snippets": {
+            "final_list": [],
+            "llm_list": [
+              "\u201cthe next Sora won\u2019t be a better video model, but a video agent.\u201d",
+              "\u201cvideo agents are almost a sure bet to be the trend in the coming year.\u201d",
+              "\u201cthe model can iteratively refine the results or even, generate longer content through a very long train of thought.\u201d"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "insight_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "insight_type": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "mentioned_entities": {
+            "final_list": [],
+            "llm_list": [
+              "Grok Imagine Agent",
+              "FFmpeg",
+              "Photoshop"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "service_automation_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "suggested_destinations": {
+            "final_list": [],
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "summary": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "why_it_matters": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "wiki_worthiness": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "workflow-design",
+            "multimodal-systems",
+            "ui-generation"
+          ]
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "Most substantive claims come from Ethan He's first-person judgments about video models, world models, and LLMs.",
+          "The episode is framed as a deep dive interview, not a benchmark report or formal paper.",
+          "Several claims are strategic interpretations and predictions rather than independently verified measurements."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Ethan\u2019s strongest claim is that the next jump in video quality comes mainly from the language-model layer around the generator, not from diffusion improvements alone.",
+          "For video systems, synthetic captioning and an image-model bootstrap are presented as prerequisite infrastructure, because raw internet video-text pairs are weak supervision.",
+          "Storage and network transfer are treated as first-order training costs for video models, not just GPU time; he gives petabyte-scale examples.",
+          "He frames world models as real-time, interactive, long-horizon video systems, and treats video extension plus reference-video conditioning as intermediate steps toward that goal.",
+          "Prompt rewriting is not a minor polish step in his view; it is part of the intelligence that turns vague user intent into usable generation instructions."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/video-agents",
+          "https://x.ai/news/grok-imag\u2026",
+          "https://www.linkedin.com/in/ethanhe42",
+          "https://x.com/EthanHe_42"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "The page is explicitly labeled as a transcript and contains a long Q&A between multiple speakers.",
+          "The structure is conversational with timestamps and speaker turns rather than a single-author essay or roundup.",
+          "The content centers on one interview subject's firsthand explanations and opinions about building video models and world models."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 5,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 5,
+    "review_duration_seconds": 124.0,
+    "review_finished_at": "2026-06-08T15:59:16.029933+00:00",
+    "review_started_at": "2026-06-08T15:57:12+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T15:59:16+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent Space",
+    "canonical_url": "https://www.latent.space/p/video-agents",
+    "content_sha256": "af60e6c837141119d1035ecf56d68674c8441c664df2891e39fb64f739c5f7fc",
+    "publication": "latent.space",
+    "published_date": "2026-06-01",
+    "raw_html_rel_path": "raw/readwise/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f.html",
+    "raw_md_rel_path": "raw/readwise/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f.md",
+    "source_id": "why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f",
+    "title": "Why Video Agent models are next \u2014 Ethan He, xAI Grok Imagine Lead"
+  }
+}

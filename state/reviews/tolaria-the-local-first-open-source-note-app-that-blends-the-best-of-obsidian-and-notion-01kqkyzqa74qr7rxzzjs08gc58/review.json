@@ -1,0 +1,843 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T19:33:34+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Doa0a8FtPchRkWP3wDkMAj1TqNsaT",
+          "token_usage": {
+            "completion_tokens": 206,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5721,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5927
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Doa0caJIduvHBRw3p0sziJIuyBE5e",
+          "token_usage": {
+            "completion_tokens": 1141,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5344,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6485
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-Doa0nrOAnBHqaeydGXbjwDHXkVjEi",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1777,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35685,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 37462
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-Doa0nrOAnBHqaeydGXbjwDHXkVjEi",
+    "token_usage": {
+      "completion_tokens": 3124,
+      "prompt_tokens": 46750,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 49874
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-28",
+        "confidence": 0.84,
+        "evidence_from_source": "The source argues that Tolaria's design uses plain Markdown files on disk and built-in Git, which is presented as a strong latecomer advantage against cloud-first or database-backed note apps.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "runtime-systems",
+          "enterprise-ai"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Every note is a Markdown file with YAML frontmatter.",
+          "The vault can be versioned with Git.",
+          "The author frames low-friction migration and coexistence as part of the value proposition."
+        ],
+        "supporting_snippet": "\u201cNo black-box database. No enforced cloud lock-in. In Tolaria, every note is a clean .md file with YAML frontmatter.\u201d",
+        "time_sensitivity": "Actionable as of 2026-04-28; this is a product-direction signal rather than a settled market outcome.",
+        "trend_description": "Personal knowledge tools can gain user trust by keeping notes as plain files with version control instead of opaque app-local databases. The pattern favors portability, auditability, and external automation over lock-in. It is especially relevant for products that want to support AI-assisted editing while preserving user ownership of the workspace.",
+        "trend_slug": "knowledge-tools-shift-toward-file-native-control",
+        "trend_title": "Knowledge Tools Shift Toward File-Native Control",
+        "uncertainty_note": "The evidence is a single product review, so it shows a plausible design direction rather than broad adoption or market proof.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece is an independent reviewer\u2019s judgment about Tolaria, framed by subjective evaluation and comparisons to Notion and Obsidian.",
+        "Claims are supported mainly by the author's observations from using or demoing the app, not by benchmarks or formal testing.",
+        "The article includes quoted product positioning, but the dominant basis is still expert-style analysis and commentary."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "Tolaria is a new note-taking app that tries to mix the easy editing of Notion with the file ownership of Obsidian. The big idea is that your notes stay as plain Markdown files on disk, so you can open them anywhere and keep them under Git version control. It also adds simple \u201cTypes\u201d so you can organize notes without forcing a rigid database schema. For AI users, it exposes the whole vault through Model Context Protocol and works with Claude Code, so outside tools can read or edit notes directly. The article argues that this makes Tolaria feel more like an open, AI-friendly workspace than a locked-in subscription product. The catch is that it is still early, with rough edges and no mature plugin ecosystem yet.",
+      "assessed_as_of": "2026-04-28",
+      "contradictions_and_skepticism": "The author presents Tolaria as unusually polished for a very new product, but that is still a subjective review rather than evidence of durable quality. The claim that AI coding makes a small team able to build a mature PKM app is plausible in the article\u2019s framing, but it is not substantiated with maintenance or reliability data. The latecomer narrative is compelling, yet it is mostly rhetorical unless Tolaria sustains momentum and ecosystem growth over time. The strongest skepticism is that local-first, Git-native, and AI-open design can be excellent on paper while still being hard to make smooth for non-technical users.",
+      "key_insights": [
+        "Plain Markdown files plus YAML frontmatter preserve portability and make migration or coexistence with other note apps low-friction.",
+        "Making Git a first-class built-in feature turns every edit and delete into versioned history, which is especially valuable for experimental knowledge work.",
+        "Treating \u201cTypes\u201d as visual lenses instead of a required schema reduces the setup burden that slows many database-style note apps.",
+        "Exposing the vault through Model Context Protocol and Claude Code makes the app a container for external AI tools rather than a locked AI product.",
+        "The article\u2019s strongest caution is practical: as of 2026-04-28, Tolaria looks promising but still early, so replacing a full knowledge base would be premature."
+      ],
+      "limitations_and_open_questions": "The article gives no benchmarks, reliability data, or scale evidence, so claims about polish and late-mover advantage are impressionistic. It also does not show how Tolaria behaves under large vaults, team collaboration, conflict resolution, backup recovery, or long-term maintenance. The AI integration sounds strong in principle, but the article admits it still needs hardening with real-world workflows. There is no plugin ecosystem yet, so extensibility and community momentum remain open questions. Security and privacy implications of giving external AI tools access to the entire vault are not examined in depth.",
+      "sources": [
+        "https://medium.com/@kurtis-redux/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-82a090bc9672"
+      ],
+      "summary": "Tolaria is presented as a polished, local-first, open-source note app that combines some of Notion\u2019s editing experience with Obsidian\u2019s file-based ownership model. The article\u2019s main argument is that Tolaria benefits from arriving late, because better tooling and AI coding make it feasible for a small team to build a mature PKM product without giving up key tradeoffs. The app\u2019s core technical posture is simple: each note is a Markdown file with YAML frontmatter, there is no black-box database, and the vault is a Git repository by default. That means users can edit notes in any editor, track changes and deletions in version control, and migrate or coexist with other tools with low friction. The piece also emphasizes \u201cTypes\u201d as lightweight visual labels rather than a rigid schema, which avoids the structure-first burden common in database-style note apps. On AI, Tolaria is framed as more independent than many AI-wrapped note apps: it integrates with Claude Code, exposes a full Model Context Protocol server, and lets external tools read and edit the vault while Git preserves history. The author likes the direction but warns that the product is still very new, has rough edges, lacks a plugin ecosystem, and needs real-world hardening before anyone should move an entire knowledge base into it.",
+      "why_it_matters": "The piece is useful because it compresses several durable product tradeoffs in personal knowledge management into one concrete example: local-first storage, file-based ownership, built-in Git, lightweight typing, and AI tool integration. For AI engineers building note, knowledge, or workspace products, Tolaria is a useful reference for how to combine user control with AI access without forcing a closed backend. The article\u2019s most operationally relevant point is that the app treats the vault as plain files plus version control, which reduces lock-in and makes external tooling easier to trust. Its \u201cTypes as lenses\u201d framing is also a clean alternative to schema-heavy designs, because it supports browsing and grouping without making note capture feel like database entry. The AI story is not that Tolaria ships a proprietary assistant, but that it exposes a workspace to Claude Code and Model Context Protocol clients while Git keeps a change log. That is a meaningful pattern if your product goal is to let users bring their own model and automate against their own files. Still, the stakes are modest because this is a product review, not a benchmark or adoption study, and the evidence is mainly the author\u2019s hands-on impression. Actionable as of 2026-04-28, it is better read as a design pattern to watch and borrow than as proof that this architecture has already won."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent product-focused essay about Tolaria, not a bundle of unrelated items.",
+        "No numbered list of tools, no step-by-step tutorial structure, and no interview/Q&A format.",
+        "The article relies on the author's evaluation and direct product observations rather than a roundup or report structure."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.97,
+        "core_capabilities": [
+          "It stores each note as a Markdown file with YAML frontmatter so the vault remains readable and portable outside the app.",
+          "It treats the vault as a Git repository so edits and deletions become versioned history inside the workflow.",
+          "It supports block-based editing and slash commands for low-friction note capture and editing.",
+          "It exposes the vault through Model Context Protocol so external tools can read, understand, create, and edit notes.",
+          "It integrates with Claude Code as an AI-facing workflow entry point."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It integrates with Claude Code, which the source calls out as a direct workflow fit.",
+          "It supports Model Context Protocol, which lets external AI tools access the vault structure and files.",
+          "It works with plain editors and Git tooling because the data is stored as files on disk.",
+          "It is available on macOS, Windows, and Linux according to the homepage facts quoted in the article."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes Tolaria as polished for a latecomer, but that judgment is based on hands-on impression rather than adoption data. It is open source, free forever, and available without an account, which lowers trial friction. At the same time, the article warns that the product is early and updates are frequent, so maturity should be treated as provisional as of 2026-04-28.",
+        "name": "Tolaria",
+        "operational_relevance": "Tolaria is relevant wherever teams want personal knowledge tools that keep user data portable while still supporting automation. The article positions it as useful for workflows that need file-native notes, version history, and external AI tools to read or edit the workspace. That makes it a plausible fit for individual PKM users and for AI-assisted drafting or note transformation workflows. As of 2026-04-28, the main operational question is not whether the design is attractive, but whether the product can harden enough for larger real-world vaults and broader adoption.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "open-source",
+          "api-first",
+          "tool-use",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "note-taking",
+          "app"
+        ],
+        "related_tools": [
+          "Obsidian",
+          "Notion",
+          "Claude Code"
+        ],
+        "short_description": "Tolaria is a local-first, open-source note-taking app that stores notes as Markdown files with YAML frontmatter on disk. It combines block-based editing, bidirectional links, Git-backed history, and AI access through Model Context Protocol and Claude Code.",
+        "strengths": "- Stores notes as plain Markdown files with YAML frontmatter, which makes the data easy to inspect, edit, version, and migrate outside the app.\n- Makes Git a first-class built-in feature, so every edit and delete is tracked and users can roll back changes through normal version-control history.\n- Supports block-based editing and slash commands, so it preserves a familiar low-friction note-capture experience while staying file-native.\n- Exposes a full Model Context Protocol server and integrates with Claude Code, which makes it easier for external AI tools to operate directly on the vault.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cJust files on your disk\u201d \u201cEvery note is a Markdown file with a YAML frontmatter\u201d \u201cPlain Markdown on disk\u201d",
+        "value_level": "high",
+        "weaknesses_limitations": "The article is explicit that Tolaria is very new, has rough edges and small bugs, and still needs hardening through real-world workflows. It also notes that there is no plugin ecosystem yet, so extensibility and community momentum are unresolved. The AI integration sounds strong in principle, but the source does not show production-scale reliability, collaboration handling, or recovery behavior under stress."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Plain files make knowledge portable across editors and platforms.",
+          "Git-style history gives cheap rollback and diff-based review.",
+          "External automation becomes simpler when the storage format is already standard filesystem content."
+        ],
+        "knowledge_summary": "File-native AI workflows keep the primary working set as ordinary files on disk rather than trapping it inside a proprietary database or opaque app state. This makes the content easier to inspect, version, transform, and move between tools. For AI systems, file-native design reduces integration friction because agents and external tools can operate on standard file structures instead of bespoke internal storage. It also supports safer automation because history, diffs, and rollback can be managed with normal developer tooling.",
+        "match_candidates": [],
+        "operational_insight": "When a knowledge workspace is file-native, AI automation can be layered on top of ordinary editors, version control, and filesystem access instead of requiring a custom backend contract. That usually simplifies migration, auditability, and trust boundaries.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-systems",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This matters for AI engineering because many practical assistants and agents need durable, inspectable artifacts rather than hidden application state. File-native workflows are especially useful in note systems, drafting tools, and service-automation pipelines where external tools must safely read, rewrite, and diff content over time.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cEvery note is a Markdown file with a YAML frontmatter\u201d \u201cPlain Markdown on disk\u201d",
+        "topic_slug": "file-native-ai-workflows",
+        "topic_title": "File-Native AI Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Types can act as visual navigation aids instead of hard validation rules.",
+          "Optional properties preserve capture speed while still allowing later aggregation.",
+          "Saved filtered or query views can recover structure without forcing it at entry time."
+        ],
+        "knowledge_summary": "Lightweight typing uses labels, types, or visual cues to organize notes without forcing a rigid database schema. The core idea is to improve navigation and retrieval while keeping note capture fast and unstructured when needed. Instead of making users define fields up front, the system treats structure as optional and revisable. This pattern is useful when users want organization without the overhead of schema-first data entry.",
+        "match_candidates": [],
+        "operational_insight": "A useful note system can support classification without turning every capture step into database design. That reduces setup friction and makes it easier to scale from quick notes to structured views later.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "workflow-design",
+          "organizational-design"
+        ],
+        "related_topics": [
+          "file-native-ai-workflows"
+        ],
+        "relevance_note": "This is relevant to AI product design because many workflows need just enough structure for filtering, routing, and recall without slowing capture. Lightweight typing can also support agent-facing workspaces where classification is helpful but mandatory schemas would block adoption.",
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cTypes as lenses\u201d \u201cThose types don\u2019t force you to fill certain fields or validate against a strict schema.\u201d",
+        "topic_slug": "lightweight-typing-in-note-apps",
+        "topic_title": "Lightweight Typing in Note Apps",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-28",
+          "confidence": 0.84,
+          "evidence_from_source": "The source argues that Tolaria's design uses plain Markdown files on disk and built-in Git, which is presented as a strong latecomer advantage against cloud-first or database-backed note apps.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "runtime-systems",
+            "enterprise-ai"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Every note is a Markdown file with YAML frontmatter.",
+            "The vault can be versioned with Git.",
+            "The author frames low-friction migration and coexistence as part of the value proposition."
+          ],
+          "supporting_snippet": "\u201cNo black-box database. No enforced cloud lock-in. In Tolaria, every note is a clean .md file with YAML frontmatter.\u201d",
+          "time_sensitivity": "Actionable as of 2026-04-28; this is a product-direction signal rather than a settled market outcome.",
+          "trend_description": "Personal knowledge tools can gain user trust by keeping notes as plain files with version control instead of opaque app-local databases. The pattern favors portability, auditability, and external automation over lock-in. It is especially relevant for products that want to support AI-assisted editing while preserving user ownership of the workspace.",
+          "trend_slug": "knowledge-tools-shift-toward-file-native-control",
+          "trend_title": "Knowledge Tools Shift Toward File-Native Control",
+          "uncertainty_note": "The evidence is a single product review, so it shows a plausible design direction rather than broad adoption or market proof.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "3e690cec-5eb4-493f-b10f-cee3bc67d411",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Every note is a Markdown file with YAML frontmatter.",
+              "The vault can be versioned with Git.",
+              "The author frames low-friction migration and coexistence as part of the value proposition."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "runtime-systems",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece is an independent reviewer\u2019s judgment about Tolaria, framed by subjective evaluation and comparisons to Notion and Obsidian.",
+          "Claims are supported mainly by the author's observations from using or demoing the app, not by benchmarks or formal testing.",
+          "The article includes quoted product positioning, but the dominant basis is still expert-style analysis and commentary."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Plain Markdown files plus YAML frontmatter preserve portability and make migration or coexistence with other note apps low-friction.",
+          "Making Git a first-class built-in feature turns every edit and delete into versioned history, which is especially valuable for experimental knowledge work.",
+          "Treating \u201cTypes\u201d as visual lenses instead of a required schema reduces the setup burden that slows many database-style note apps.",
+          "Exposing the vault through Model Context Protocol and Claude Code makes the app a container for external AI tools rather than a locked AI product.",
+          "The article\u2019s strongest caution is practical: as of 2026-04-28, Tolaria looks promising but still early, so replacing a full knowledge base would be premature."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@kurtis-redux/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-82a090bc9672"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent product-focused essay about Tolaria, not a bundle of unrelated items.",
+          "No numbered list of tools, no step-by-step tutorial structure, and no interview/Q&A format.",
+          "The article relies on the author's evaluation and direct product observations rather than a roundup or report structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "core_capabilities": [
+            "It stores each note as a Markdown file with YAML frontmatter so the vault remains readable and portable outside the app.",
+            "It treats the vault as a Git repository so edits and deletions become versioned history inside the workflow.",
+            "It supports block-based editing and slash commands for low-friction note capture and editing.",
+            "It exposes the vault through Model Context Protocol so external tools can read, understand, create, and edit notes.",
+            "It integrates with Claude Code as an AI-facing workflow entry point."
+          ],
+          "integration_ecosystem": [
+            "It integrates with Claude Code, which the source calls out as a direct workflow fit.",
+            "It supports Model Context Protocol, which lets external AI tools access the vault structure and files.",
+            "It works with plain editors and Git tooling because the data is stored as files on disk.",
+            "It is available on macOS, Windows, and Linux according to the homepage facts quoted in the article."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes Tolaria as polished for a latecomer, but that judgment is based on hands-on impression rather than adoption data. It is open source, free forever, and available without an account, which lowers trial friction. At the same time, the article warns that the product is early and updates are frequent, so maturity should be treated as provisional as of 2026-04-28.",
+          "name": "Tolaria",
+          "operational_relevance": "Tolaria is relevant wherever teams want personal knowledge tools that keep user data portable while still supporting automation. The article positions it as useful for workflows that need file-native notes, version history, and external AI tools to read or edit the workspace. That makes it a plausible fit for individual PKM users and for AI-assisted drafting or note transformation workflows. As of 2026-04-28, the main operational question is not whether the design is attractive, but whether the product can harden enough for larger real-world vaults and broader adoption.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "open-source",
+            "api-first",
+            "tool-use",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "note-taking",
+            "app"
+          ],
+          "related_tools": [
+            "Obsidian",
+            "Notion",
+            "Claude Code"
+          ],
+          "short_description": "Tolaria is a local-first, open-source note-taking app that stores notes as Markdown files with YAML frontmatter on disk. It combines block-based editing, bidirectional links, Git-backed history, and AI access through Model Context Protocol and Claude Code.",
+          "strengths": "- Stores notes as plain Markdown files with YAML frontmatter, which makes the data easy to inspect, edit, version, and migrate outside the app.\n- Makes Git a first-class built-in feature, so every edit and delete is tracked and users can roll back changes through normal version-control history.\n- Supports block-based editing and slash commands, so it preserves a familiar low-friction note-capture experience while staying file-native.\n- Exposes a full Model Context Protocol server and integrates with Claude Code, which makes it easier for external AI tools to operate directly on the vault.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cJust files on your disk\u201d \u201cEvery note is a Markdown file with a YAML frontmatter\u201d \u201cPlain Markdown on disk\u201d",
+          "value_level": "high",
+          "weaknesses_limitations": "The article is explicit that Tolaria is very new, has rough edges and small bugs, and still needs hardening through real-world workflows. It also notes that there is no plugin ecosystem yet, so extensibility and community momentum are unresolved. The AI integration sounds strong in principle, but the source does not show production-scale reliability, collaboration handling, or recovery behavior under stress."
+        },
+        "notes": null,
+        "proposal_id": "b33e2525-e428-4138-bd1f-b8b0562704e7",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": [],
+            "llm_list": [
+              "It stores each note as a Markdown file with YAML frontmatter so the vault remains readable and portable outside the app.",
+              "It treats the vault as a Git repository so edits and deletions become versioned history inside the workflow.",
+              "It supports block-based editing and slash commands for low-friction note capture and editing.",
+              "It exposes the vault through Model Context Protocol so external tools can read, understand, create, and edit notes.",
+              "It integrates with Claude Code as an AI-facing workflow entry point."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "integration_ecosystem": {
+            "final_list": [],
+            "llm_list": [
+              "It integrates with Claude Code, which the source calls out as a direct workflow fit.",
+              "It supports Model Context Protocol, which lets external AI tools access the vault structure and files.",
+              "It works with plain editors and Git tooling because the data is stored as files on disk.",
+              "It is available on macOS, Windows, and Linux according to the homepage facts quoted in the article."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "maturity_signals": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "name": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "Notion",
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "strengths": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "open-source",
+            "api-first",
+            "tool-use",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "note-taking",
+            "app"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Plain files make knowledge portable across editors and platforms.",
+            "Git-style history gives cheap rollback and diff-based review.",
+            "External automation becomes simpler when the storage format is already standard filesystem content."
+          ],
+          "knowledge_summary": "File-native AI workflows keep the primary working set as ordinary files on disk rather than trapping it inside a proprietary database or opaque app state. This makes the content easier to inspect, version, transform, and move between tools. For AI systems, file-native design reduces integration friction because agents and external tools can operate on standard file structures instead of bespoke internal storage. It also supports safer automation because history, diffs, and rollback can be managed with normal developer tooling.",
+          "match_candidates": [],
+          "operational_insight": "When a knowledge workspace is file-native, AI automation can be layered on top of ordinary editors, version control, and filesystem access instead of requiring a custom backend contract. That usually simplifies migration, auditability, and trust boundaries.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This matters for AI engineering because many practical assistants and agents need durable, inspectable artifacts rather than hidden application state. File-native workflows are especially useful in note systems, drafting tools, and service-automation pipelines where external tools must safely read, rewrite, and diff content over time.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cEvery note is a Markdown file with a YAML frontmatter\u201d \u201cPlain Markdown on disk\u201d",
+          "topic_slug": "file-native-ai-workflows",
+          "topic_title": "File-Native AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ca2e1025-c031-433d-a817-ba13c5470021",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Plain files make knowledge portable across editors and platforms.",
+              "Git-style history gives cheap rollback and diff-based review.",
+              "External automation becomes simpler when the storage format is already standard filesystem content."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Types can act as visual navigation aids instead of hard validation rules.",
+            "Optional properties preserve capture speed while still allowing later aggregation.",
+            "Saved filtered or query views can recover structure without forcing it at entry time."
+          ],
+          "knowledge_summary": "Lightweight typing uses labels, types, or visual cues to organize notes without forcing a rigid database schema. The core idea is to improve navigation and retrieval while keeping note capture fast and unstructured when needed. Instead of making users define fields up front, the system treats structure as optional and revisable. This pattern is useful when users want organization without the overhead of schema-first data entry.",
+          "match_candidates": [],
+          "operational_insight": "A useful note system can support classification without turning every capture step into database design. That reduces setup friction and makes it easier to scale from quick notes to structured views later.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "workflow-design",
+            "organizational-design"
+          ],
+          "related_topics": [
+            "file-native-ai-workflows"
+          ],
+          "relevance_note": "This is relevant to AI product design because many workflows need just enough structure for filtering, routing, and recall without slowing capture. Lightweight typing can also support agent-facing workspaces where classification is helpful but mandatory schemas would block adoption.",
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cTypes as lenses\u201d \u201cThose types don\u2019t force you to fill certain fields or validate against a strict schema.\u201d",
+          "topic_slug": "lightweight-typing-in-note-apps",
+          "topic_title": "Lightweight Typing in Note Apps",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "08d4e803-a6bd-497a-b14c-7768d0d7b9b6",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Types can act as visual navigation aids instead of hard validation rules.",
+              "Optional properties preserve capture speed while still allowing later aggregation.",
+              "Saved filtered or query views can recover structure without forcing it at entry time."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "file-native-ai-workflows"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "workflow-design",
+            "organizational-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 88.2,
+    "review_finished_at": "2026-06-08T19:35:02.165158+00:00",
+    "review_started_at": "2026-06-08T19:33:34+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T19:35:02+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Kurtis Redux",
+    "canonical_url": "https://medium.com/@kurtis-redux/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-82a090bc9672",
+    "content_sha256": "d20e7e9f7cff47eff952bb29e707a091519096f0711702a275683af8ffa1704c",
+    "publication": "Medium",
+    "published_date": "2026-04-28",
+    "raw_html_rel_path": "raw/readwise/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58.html",
+    "raw_md_rel_path": "raw/readwise/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58.md",
+    "source_id": "tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58",
+    "title": "Tolaria: The Local\u2011First, Open\u2011Source Note App That Blends the Best of Obsidian and Notion"
+  }
+}

@@ -443,7 +443,7 @@ def main() -> None:
     source_id_set = set(source_ids)
     current_source_id = st.session_state.get("review_source_id")
     pinned_current = current_source_id if isinstance(current_source_id, str) else None
-    selectbox_ids, pinned_outside_filter = build_source_selectbox_ids(
+    selectbox_ids, _pinned_outside_filter = build_source_selectbox_ids(
         visible_ids,
         current_source_id=pinned_current,
         all_source_ids=source_id_set,
@@ -453,14 +453,6 @@ def main() -> None:
     if not selectbox_paths:
         st.info(f"No sources match **{queue_filter}**. Try another filter.")
         return
-
-    if pinned_outside_filter:
-        pinned_status = status_label(status_map[pinned_outside_filter])
-        st.warning(
-            f"Current source is **{pinned_status}** and is hidden by the "
-            f"**{queue_filter}** filter. It stays selected so review can continue — "
-            "change the filter to see it in the list normally."
-        )
 
     pick_id = st.session_state.pop("review_source_pick_id", None)
     st.session_state["review_source_id"] = resolve_review_source_id(

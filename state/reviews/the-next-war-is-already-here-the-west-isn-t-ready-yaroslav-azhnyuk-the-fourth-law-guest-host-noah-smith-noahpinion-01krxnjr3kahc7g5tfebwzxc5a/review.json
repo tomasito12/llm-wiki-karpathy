@@ -1,0 +1,606 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T18:46:23+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "42-triage",
+          "request_id": "chatcmpl-DoZGxCHuufSYvboS29xL9thNIsmsn",
+          "token_usage": {
+            "completion_tokens": 206,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 33027,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33233
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "42-summary",
+          "request_id": "chatcmpl-DoZH0ePYbHjuA4WFH5EkiqJ0Scdjn",
+          "token_usage": {
+            "completion_tokens": 1207,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 32650,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 33857
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "42-entities-interview_or_transcript",
+          "request_id": "chatcmpl-DoZHDZgwK2Pe3eAMqryoOhtmK6fW5",
+          "route": "interview_or_transcript",
+          "token_usage": {
+            "completion_tokens": 1020,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 45999,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 47019
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "42",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoZHDZgwK2Pe3eAMqryoOhtmK6fW5",
+    "token_usage": {
+      "completion_tokens": 2433,
+      "prompt_tokens": 111676,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 114109
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-05-18",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Azhnyuk\u2019s five-level autonomy taxonomy is speaker-defined rather than a standardized industry schema."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"We define five levels of autonomy. So level one is terminal guidance. Level two is bombing. Level three is autonomous target detection and engagement decision. Level four is autonomous navigation. And level five is autonomous takeoff and landing.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Drone autonomy is a layered capability, not a single feature",
+        "insight_type": "topic",
+        "mentioned_entities": [
+          "The Fourth Law"
+        ],
+        "operational_relevance": "Use the autonomy ladder to separate last-mile perception, decision, navigation, and actuation in system design. It suggests that evaluation and failure analysis should be per-level, since terminal guidance can succeed even when full navigation or target selection is not solved. It also implies that productization can proceed incrementally instead of waiting for full autonomy.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "ai-evaluation",
+          "autonomous-workflows",
+          "ai-safety",
+          "infrastructure"
+        ],
+        "secondary_tag": "ai-evaluation",
+        "service_automation_relevance": "No direct service automation implications identified.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The transcript breaks drone autonomy into five operational levels: terminal guidance, bombing, autonomous target detection and engagement, autonomous navigation, and autonomous takeoff and landing. The point is that different autonomy layers solve different failure modes, so \"autonomy\" should not be treated as one undifferentiated product claim. This framing is useful because it maps model capability to mission design rather than to a generic autonomy label.",
+        "value_level": "high",
+        "why_it_matters": "Actionable as of 2026-05-18 because it gives a reusable decomposition for evaluating autonomous systems in adversarial settings. For AI engineering, it encourages measuring which part of the workflow a model actually replaces, instead of assuming end-to-end autonomy. That is a durable way to reason about capability boundaries, deployment risk, and staged rollout.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-05-18",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "The transcript argues that optics cable used in drones became more expensive because of demand from AI data centers; that causal explanation is asserted, not verified in the source."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"We have our own simulation. We have our own training school for the war fighters. And we\u2019re about to start construction of two semiconductor plants to make sensors for thermal cameras.\"",
+          "\"Fiber optics has its own advantages but also adds weight and decreases the distance and decreases how fast you can sort of turn and with a drone.\"",
+          "\"Optic fiber went up in price from like, $4 per kilometer to like, $32 per kilometer in a few months in the beginning of this year.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Autonomy needs system-level economics, not just model quality",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "Odd Systems",
+          "The Fourth Law"
+        ],
+        "operational_relevance": "Treat deployment as a coupled hardware-software problem: communications, sensing, compute, manufacturing, and training all constrain the final system. This is especially relevant when evaluating whether a model can survive adversarial interference or physical constraints. It also argues for cost-to-effect analysis, not just benchmark scores.",
+        "primary_tag": "infrastructure",
+        "proposed_tags": [
+          "infrastructure",
+          "infrastructure-economics",
+          "ai-engineering",
+          "serving-infrastructure"
+        ],
+        "secondary_tag": "infrastructure-economics",
+        "service_automation_relevance": "No direct service automation implications identified.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The transcript repeatedly argues that drone performance depends on sensors, communications, motors, fiber optics, semiconductors, simulation, training, and manufacturing capacity, not just computer vision. The guest treats fiber optics as a communications tradeoff, not a universal fix, because it adds weight and cost even while improving resilience to jamming and radio-horizon limits. This is a broader infrastructure lesson: a capable model can still lose if the surrounding hardware stack is too expensive, fragile, or slow to scale.",
+        "value_level": "high",
+        "why_it_matters": "Actionable as of 2026-05-18 because it reframes autonomy work as a full-stack deployment problem. For AI systems, this is a reminder that model improvement alone does not solve bottlenecks in latency, reliability, physical constraints, or supply chain dependence. The article\u2019s strongest durable lesson is that scale and integration are part of capability, not an afterthought.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The source is primarily a long-form conversation with a defense founder offering strategic judgments and predictions.",
+        "Claims are supported mainly by the speaker's battlefield perspective, examples, and reasoning rather than formal data or citations.",
+        "Some concrete figures are mentioned, but the dominant basis is expert interpretation and interview testimony."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a conversation about how drones changed the war in Ukraine. The core idea is simple: small cheap drones, especially FPV drones, now do much of the killing on the front line, and adding AI makes them harder to jam and easier to use. The guest explains a ladder of drone autonomy, from last-mile target locking to fully autonomous missions. He also argues that the real bottlenecks are not just software, but manufacturing, sensors, fiber optic links, and supply chains. The main takeaway is that defense is now a mass-production and systems-integration problem, not just a weapons-design problem.",
+      "assessed_as_of": "2026-05-18",
+      "contradictions_and_skepticism": "Some claims are intentionally provocative and should be read as argument, not settled fact. The idea that it will be immoral to use weapons without AI by five to ten years is speculative and not established by evidence in the transcript. Statements that the West lacks autonomy, mass manufacturing, components, and rare earths are broad and need separate sourcing before they can be generalized. The China-versus-West comparison is especially speculative because the transcript itself says Chinese drones in action have not been widely observed. The interview also mixes battlefield reality with rhetorical analogies like iPhones, StarCraft, and Skynet, which are helpful for intuition but can overstate linearity and inevitability.",
+      "key_insights": [
+        "Azhnyuk\u2019s five-level autonomy ladder is operationally useful because it separates last-mile target lock, bombing, target detection, navigation, and takeoff/landing rather than treating \u201cautonomy\u201d as one blob.",
+        "He frames FPV drones as the main frontline kill mechanism in Ukraine, claiming they account for 70\u201380% of frontline casualties and that terminal guidance alone raised one brigade\u2019s mission success rate from 20% to 71%.",
+        "Fiber optic control solves radio-jamming and radio-horizon problems, but adds weight and cost; as of the episode\u2019s publication date, it is a tradeoff rather than a universal upgrade.",
+        "The transcript treats drone warfare as an industrial stack problem: thermal cameras, motors, semiconductors, rare-earth refining, and mass manufacturing matter as much as computer vision.",
+        "The strongest strategic claim is not about a single weapon but about scale: if an adversary can deploy autonomous drones at much higher volume and lower cost, the balance of conventional warfare changes fast."
+      ],
+      "limitations_and_open_questions": "Many of the quantitative claims are asserted in conversation without independent verification in the transcript, including casualty shares, mission success improvements, and production comparisons. The autonomy taxonomy is useful, but the boundaries between levels are speaker-defined rather than standardized. Several strategic claims depend on hypothetical futures, such as China projecting drone power at extreme scale or autonomous systems becoming dominant in five to ten years, and the transcript does not test those assumptions empirically. The discussion gives limited detail on evaluation methods, false-positive rates, robustness under distribution shift, or how autonomous target detection is audited in practice. Economics are emphasized, but the transcript does not provide a full cost model for mass production, countermeasures, or supply-chain replacement outside Chinese sourcing.",
+      "sources": [
+        "https://www.latent.space/p/the-fourth-law"
+      ],
+      "summary": "This transcript is a long conversation with Yaroslav Azhnyuk, founder of The Fourth Law, about how Ukraine\u2019s battlefield drone ecosystem works and what it implies for future warfare. Azhnyuk argues that FPV drones have become the dominant frontline kill mechanism in Ukraine, that autonomy materially improves mission success, and that drone warfare is now a systems problem spanning sensors, communications, navigation, manufacturing, training, and command and control. He lays out a five-level autonomy taxonomy for drones, from terminal guidance to takeoff and landing, and a broader eight-dimension framework for how autonomy propagates across platforms, environments, infrastructure, and scale. The discussion repeatedly returns to economics: fiber optics, thermal cameras, motors, rare-earth refining, and mass manufacturing capacity are presented as the key chokepoints, especially relative to China\u2019s industrial depth. Azhnyuk also argues that the West, including the United States and Europe, is underprepared in defense procurement, industrial capacity, and battlefield adaptation, while Ukraine has become a kind of \u201cdefense valley\u201d where new tactics and products are being forged. The transcript mixes technical detail with strategic speculation, including claims that autonomous weapons will become harder to avoid, that human infantry will remain relevant for some time, and that countermeasures such as shotguns, jammers, nets, and interceptors are already part of the operational stack.",
+      "why_it_matters": "The piece is useful because it compresses a battlefield operator\u2019s view of drone warfare into concrete engineering categories: autonomy, communications, sensors, manufacturing, and command structure. For AI practitioners, the most durable insight is that autonomy is not a single model feature; it is a layered capability that behaves differently across terminal guidance, navigation, target detection, and deployment scale. The guest\u2019s taxonomy of five autonomy levels and eight battlefield dimensions gives a reusable way to reason about where machine learning helps and where classical systems still matter. The article also makes a strong cost-to-effect argument: cheap FPV drones, especially when mass-produced, can outperform far more expensive traditional systems in some land-war scenarios, while countermeasures must be judged economically as well as technically. Its supply-chain discussion is valuable because it ties autonomy to hardware chokepoints like thermal cameras, motors, fiber optic cable, and rare-earth processing rather than treating the problem as software-only. The most actionable reading as of 2026-05-18 is to treat defense AI as an integration-and-scale problem with fast iteration loops, not a lab demo problem. For service automation and voice or meeting-style workflow lessons, the article offers little directly; its value is mainly in how it frames autonomy, human-in-the-loop decisions, and reliability under adversarial conditions."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "The page is explicitly labeled as a transcript and contains long Q&A dialogue between multiple speakers.",
+        "The structure is conversational with timestamps and back-and-forth interviewer/interviewee turns, not a list or report.",
+        "The content centers on expert testimony and interpretation from Yaroslav Azhnyuk about drone warfare and defense technology."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-18",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Azhnyuk\u2019s five-level autonomy taxonomy is speaker-defined rather than a standardized industry schema."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"We define five levels of autonomy. So level one is terminal guidance. Level two is bombing. Level three is autonomous target detection and engagement decision. Level four is autonomous navigation. And level five is autonomous takeoff and landing.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Drone autonomy is a layered capability, not a single feature",
+          "insight_type": "topic",
+          "mentioned_entities": [
+            "The Fourth Law"
+          ],
+          "operational_relevance": "Use the autonomy ladder to separate last-mile perception, decision, navigation, and actuation in system design. It suggests that evaluation and failure analysis should be per-level, since terminal guidance can succeed even when full navigation or target selection is not solved. It also implies that productization can proceed incrementally instead of waiting for full autonomy.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "ai-evaluation",
+            "autonomous-workflows",
+            "ai-safety",
+            "infrastructure"
+          ],
+          "secondary_tag": "ai-evaluation",
+          "service_automation_relevance": "No direct service automation implications identified.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The transcript breaks drone autonomy into five operational levels: terminal guidance, bombing, autonomous target detection and engagement, autonomous navigation, and autonomous takeoff and landing. The point is that different autonomy layers solve different failure modes, so \"autonomy\" should not be treated as one undifferentiated product claim. This framing is useful because it maps model capability to mission design rather than to a generic autonomy label.",
+          "value_level": "high",
+          "why_it_matters": "Actionable as of 2026-05-18 because it gives a reusable decomposition for evaluating autonomous systems in adversarial settings. For AI engineering, it encourages measuring which part of the workflow a model actually replaces, instead of assuming end-to-end autonomy. That is a durable way to reason about capability boundaries, deployment risk, and staged rollout.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "3f45c10a-e55e-4d64-85fb-5b92da4e1c9d",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Azhnyuk\u2019s five-level autonomy taxonomy is speaker-defined rather than a standardized industry schema."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"We define five levels of autonomy. So level one is terminal guidance. Level two is bombing. Level three is autonomous target detection and engagement decision. Level four is autonomous navigation. And level five is autonomous takeoff and landing.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "The Fourth Law"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "ai-evaluation",
+            "autonomous-workflows",
+            "ai-safety",
+            "infrastructure"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-18",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "The transcript argues that optics cable used in drones became more expensive because of demand from AI data centers; that causal explanation is asserted, not verified in the source."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"We have our own simulation. We have our own training school for the war fighters. And we\u2019re about to start construction of two semiconductor plants to make sensors for thermal cameras.\"",
+            "\"Fiber optics has its own advantages but also adds weight and decreases the distance and decreases how fast you can sort of turn and with a drone.\"",
+            "\"Optic fiber went up in price from like, $4 per kilometer to like, $32 per kilometer in a few months in the beginning of this year.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Autonomy needs system-level economics, not just model quality",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "Odd Systems",
+            "The Fourth Law"
+          ],
+          "operational_relevance": "Treat deployment as a coupled hardware-software problem: communications, sensing, compute, manufacturing, and training all constrain the final system. This is especially relevant when evaluating whether a model can survive adversarial interference or physical constraints. It also argues for cost-to-effect analysis, not just benchmark scores.",
+          "primary_tag": "infrastructure",
+          "proposed_tags": [
+            "infrastructure",
+            "infrastructure-economics",
+            "ai-engineering",
+            "serving-infrastructure"
+          ],
+          "secondary_tag": "infrastructure-economics",
+          "service_automation_relevance": "No direct service automation implications identified.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The transcript repeatedly argues that drone performance depends on sensors, communications, motors, fiber optics, semiconductors, simulation, training, and manufacturing capacity, not just computer vision. The guest treats fiber optics as a communications tradeoff, not a universal fix, because it adds weight and cost even while improving resilience to jamming and radio-horizon limits. This is a broader infrastructure lesson: a capable model can still lose if the surrounding hardware stack is too expensive, fragile, or slow to scale.",
+          "value_level": "high",
+          "why_it_matters": "Actionable as of 2026-05-18 because it reframes autonomy work as a full-stack deployment problem. For AI systems, this is a reminder that model improvement alone does not solve bottlenecks in latency, reliability, physical constraints, or supply chain dependence. The article\u2019s strongest durable lesson is that scale and integration are part of capability, not an afterthought.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "6dea4114-597d-420a-8e3b-1b569a77a815",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": [],
+            "llm_list": [
+              "The transcript argues that optics cable used in drones became more expensive because of demand from AI data centers; that causal explanation is asserted, not verified in the source."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "durability_estimate": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "evidence_snippets": {
+            "final_list": [],
+            "llm_list": [
+              "\"We have our own simulation. We have our own training school for the war fighters. And we\u2019re about to start construction of two semiconductor plants to make sensors for thermal cameras.\"",
+              "\"Fiber optics has its own advantages but also adds weight and decreases the distance and decreases how fast you can sort of turn and with a drone.\"",
+              "\"Optic fiber went up in price from like, $4 per kilometer to like, $32 per kilometer in a few months in the beginning of this year.\""
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "insight_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "insight_type": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "mentioned_entities": {
+            "final_list": [],
+            "llm_list": [
+              "Odd Systems",
+              "The Fourth Law"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "service_automation_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "suggested_destinations": {
+            "final_list": [],
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "summary": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "why_it_matters": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "wiki_worthiness": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "infrastructure",
+            "infrastructure-economics",
+            "ai-engineering",
+            "serving-infrastructure"
+          ]
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The source is primarily a long-form conversation with a defense founder offering strategic judgments and predictions.",
+          "Claims are supported mainly by the speaker's battlefield perspective, examples, and reasoning rather than formal data or citations.",
+          "Some concrete figures are mentioned, but the dominant basis is expert interpretation and interview testimony."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Azhnyuk\u2019s five-level autonomy ladder is operationally useful because it separates last-mile target lock, bombing, target detection, navigation, and takeoff/landing rather than treating \u201cautonomy\u201d as one blob.",
+          "He frames FPV drones as the main frontline kill mechanism in Ukraine, claiming they account for 70\u201380% of frontline casualties and that terminal guidance alone raised one brigade\u2019s mission success rate from 20% to 71%.",
+          "Fiber optic control solves radio-jamming and radio-horizon problems, but adds weight and cost; as of the episode\u2019s publication date, it is a tradeoff rather than a universal upgrade.",
+          "The transcript treats drone warfare as an industrial stack problem: thermal cameras, motors, semiconductors, rare-earth refining, and mass manufacturing matter as much as computer vision.",
+          "The strongest strategic claim is not about a single weapon but about scale: if an adversary can deploy autonomous drones at much higher volume and lower cost, the balance of conventional warfare changes fast."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.latent.space/p/the-fourth-law"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "The page is explicitly labeled as a transcript and contains long Q&A dialogue between multiple speakers.",
+          "The structure is conversational with timestamps and back-and-forth interviewer/interviewee turns, not a list or report.",
+          "The content centers on expert testimony and interpretation from Yaroslav Azhnyuk about drone warfare and defense technology."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 2,
+    "review_duration_seconds": 87.9,
+    "review_finished_at": "2026-06-08T18:47:50.933445+00:00",
+    "review_started_at": "2026-06-08T18:46:23+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T18:47:51+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Latent.Space",
+    "canonical_url": "https://www.latent.space/p/the-fourth-law",
+    "content_sha256": "e7f76d5f12b17152eaa20e45a427527501d029f727ee96f6e7c19256fa877378",
+    "publication": "Latent",
+    "published_date": "2026-05-18",
+    "raw_html_rel_path": "raw/readwise/the-next-war-is-already-here-the-west-isn-t-ready-yaroslav-azhnyuk-the-fourth-law-guest-host-noah-smith-noahpinion-01krxnjr3kahc7g5tfebwzxc5a.html",
+    "raw_md_rel_path": "raw/readwise/the-next-war-is-already-here-the-west-isn-t-ready-yaroslav-azhnyuk-the-fourth-law-guest-host-noah-smith-noahpinion-01krxnjr3kahc7g5tfebwzxc5a.md",
+    "source_id": "the-next-war-is-already-here-the-west-isn-t-ready-yaroslav-azhnyuk-the-fourth-law-guest-host-noah-smith-noahpinion-01krxnjr3kahc7g5tfebwzxc5a",
+    "title": "The Next War Is Already Here. The West Isn't Ready. \u2014 Yaroslav Azhnyuk, The Fourth Law & Guest Host Noah Smith, Noahpinion"
+  }
+}

@@ -1,0 +1,1189 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T19:23:39+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DoZqyv22VUzPpFfpWiHzzrtKJ7yKi",
+          "token_usage": {
+            "completion_tokens": 193,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6210,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6403
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DoZr0IJKWnBXHEpncjiULfX7FbSgg",
+          "token_usage": {
+            "completion_tokens": 1237,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5820,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7057
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DoZrANgR84C4kYHt4PxXiUOJWTdj3",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 2260,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19362,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 21622
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoZrANgR84C4kYHt4PxXiUOJWTdj3",
+    "token_usage": {
+      "completion_tokens": 3690,
+      "prompt_tokens": 31392,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 35082
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-05",
+        "confidence": 0.92,
+        "evidence_from_source": "The editorial explicitly says the week was \"a market-structure week\" and that the industry is being reorganized around who can \"finance, deploy, compress, distribute, and operationalize intelligence at scale.\" It also frames AI as \"less like software and more like infrastructure.\"",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "ai-operationalization",
+          "distribution-over-production",
+          "runtime-systems",
+          "software-commoditization"
+        ],
+        "related_trends": [
+          "runtime-centralization",
+          "open-model-pressure",
+          "models-becoming-execution-layers"
+        ],
+        "secondary_tag": "ai-operationalization",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "OpenAI announced a $122 billion funding round at an $852 billion valuation.",
+          "Microsoft released MAI-Transcribe-1, MAI-Voice-1, and MAI-Image-2.",
+          "Google released Gemma 4.",
+          "Z.ai open sourced GLM-5V Turbo with multimodal coding capabilities."
+        ],
+        "supporting_snippet": "\"This week in AI was not really a product week. It was a market-structure week... The industry is no longer organized around who has the most impressive demo. It is being reorganized around who can finance, deploy, compress, distribute, and operationalize intelligence at scale. AI is starting to look less like software and more like infrastructure.\"",
+        "time_sensitivity": "As of 2026-04-05, this is presented as the dominant interpretive frame for the roundup. It is time-sensitive because it depends on the specific combination of OpenAI funding, Microsoft releases, Google Gemma 4, and GLM-5V Turbo discussed in this issue.",
+        "trend_description": "AI competition is moving from model quality alone toward the ability to finance, deploy, compress, distribute, and operationalize intelligence. In this pattern, model releases matter less than the surrounding stack: inference, tooling, enterprise delivery, and user-facing modalities.",
+        "trend_slug": "ai-products-shift-from-models-to-systems",
+        "trend_title": "AI products are shifting from models to integrated systems",
+        "uncertainty_note": "This is a strong editorial synthesis, but the article does not provide direct market data proving a durable sector-wide reorganization; the evidence is a set of announcements and the author's interpretation of them.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-04-05",
+        "evidence_snippets": [
+          "\"At some level, every frontier AI company is now running two races at once: a research race and a capital race.\"",
+          "\"Intelligence is expensive to manufacture, even more expensive to serve\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "OpenAI"
+        ],
+        "operational_relevance": "Plan for inference cost, distribution, and tooling as core product constraints, not post-launch optimizations. Stack choices that reduce serving cost or simplify deployment may matter as much as marginal model gains.",
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "runtime-systems",
+          "enterprise-ai"
+        ],
+        "secondary_tag": "runtime-systems",
+        "service_automation_relevance": "Service automation systems will be shaped by the cost of always-on inference and by how easily models can be embedded into enterprise and consumer workflows.",
+        "signal_strength": "high",
+        "signal_title": "Frontier AI advantage is increasingly capital- and deployment-constrained",
+        "signal_type": "pricing_economics",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The roundup argues that frontier AI companies are now competing on both research output and the ability to fund the operating machine around it. The relevant machine includes training clusters, inference capacity, developer ecosystems, enterprise sales, consumer distribution, and tooling for coding and automation. This makes the economics of serving intelligence a first-order constraint.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "If the article's framing holds as of 2026-04-05, competitive advantage is shifting toward firms that can repeatedly pay for compute and distribution rather than merely ship strong models. That changes what to watch in AI strategy: balance sheet strength, serving cost, and product distribution become part of model competitiveness.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-05",
+        "evidence_snippets": [
+          "\"Microsoft's releases made a different point... it wants to own more of the intelligence layer itself.\"",
+          "\"Speech, voice, and image generation are no longer side features. They are becoming native interfaces.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Microsoft",
+          "MAI-Transcribe-1",
+          "MAI-Voice-1",
+          "MAI-Image-2"
+        ],
+        "operational_relevance": "Builders should expect more first-party speech, voice, and image APIs inside large platforms and should design systems that can swap or combine modality providers. This can reduce dependence on single-text-model interfaces.",
+        "primary_tag": "runtime-systems",
+        "proposed_tags": [
+          "runtime-systems",
+          "enterprise-ai",
+          "workflow-restructuring"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "service_automation_relevance": "Voicebots, transcription pipelines, and image-enabled support workflows may increasingly be shaped by platform-native multimodal APIs rather than text-only chat.",
+        "signal_strength": "medium",
+        "signal_title": "First-party multimodal interfaces are becoming a platform strategy",
+        "signal_type": "model",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Microsoft's MAI-Transcribe-1, MAI-Voice-1, and MAI-Image-2 are presented as a move to own more of the intelligence layer instead of merely hosting third-party models. The editorial emphasizes speech, voice, and image as native interfaces rather than side features. The underlying pattern is platform control over core modalities.",
+        "time_horizon": "medium_term",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-04-05, this suggests platform vendors may compete by controlling how software hears, speaks, sees, and creates, not only by offering general-purpose chat models. That affects product architecture because modality-native interfaces can become the default entry points for workflow automation.",
+        "wiki_worthiness": "review_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-05",
+        "evidence_snippets": [
+          "\"Open models are no longer just the rebel wing of AI. They are becoming essential pieces of the deployment stack\"",
+          "\"Small, efficient, customizable models that can run closer to the edge may shape more real products than the most powerful model in the world sitting behind a distant API.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Google",
+          "Gemma 4"
+        ],
+        "operational_relevance": "Open-weight models can be useful when you need portability, lower inference cost, or deployment closer to the product edge. The article implies that practical fit may outweigh raw benchmark dominance.",
+        "primary_tag": "open-model-pressure",
+        "proposed_tags": [
+          "open-model-pressure",
+          "edge-deployment",
+          "inference-efficiency"
+        ],
+        "secondary_tag": "edge-deployment",
+        "service_automation_relevance": "Service automation stacks may increasingly use smaller open models for cost-sensitive or controlled deployments, especially where latency and customization matter.",
+        "signal_strength": "medium",
+        "signal_title": "Open models are moving into the deployment stack",
+        "signal_type": "model",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The roundup frames Gemma 4 as a sign that open models are becoming strategically important for control, portability, and lower-cost inference. The emphasis is less on benchmark prestige and more on whether efficient models can be deployed close to products and users.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-05, open models are being treated as infrastructure for deployment choice, not just ideological alternatives to closed systems. That matters for teams that need local control, lower serving costs, or easier customization.",
+        "wiki_worthiness": "review_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-05",
+        "evidence_snippets": [
+          "\"Its importance is not just that it is multimodal. It is the type of multimodality that matters: interfaces, files, screens, visual reasoning, coding workflows.\"",
+          "\"They begin to work through it.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "GLM-5V Turbo",
+          "Z.ai"
+        ],
+        "operational_relevance": "For agent builders, the relevant question becomes whether a model can inspect screens, handle files, and move through software tasks reliably. That is closer to execution capability than conversation quality.",
+        "primary_tag": "execution-oriented-agents",
+        "proposed_tags": [
+          "execution-oriented-agents",
+          "tool-centric-agents",
+          "workflow-restructuring"
+        ],
+        "secondary_tag": "tool-centric-agents",
+        "service_automation_relevance": "Support automation may gain from models that can operate across tickets, screens, documents, and coding tools, especially for escalation handling and back-office tasks.",
+        "signal_strength": "medium",
+        "signal_title": "Multimodal models are being judged by workflow competence, not text generation",
+        "signal_type": "model",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "GLM-5V Turbo is described as important because it handles interfaces, files, screens, visual reasoning, and coding workflows. The signal is that multimodal capability is shifting toward operational competence across software environments rather than image or text generation in isolation.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-05, this points toward models that can act inside software workflows, which is more useful for automation than generic multimodal demos. It aligns with a broader shift from describing artifacts to working through them.",
+        "wiki_worthiness": "review_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-05",
+        "evidence_snippets": [
+          "\"minimal coding agents equipped only with a terminal and direct API access perform just as well or better\"",
+          "\"simpler terminal agents are significantly more cost-efficient and resilient without sacrificing effectiveness.\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "ServiceNow",
+          "Mila Quebec AI Institute",
+          "Universit\u00e9 de Montr\u00e9al"
+        ],
+        "operational_relevance": "Design automation around terminal access and direct APIs when possible instead of assuming a browser-heavy agent stack is required. Simpler harnesses may lower cost and improve resilience.",
+        "primary_tag": "tool-centric-agents",
+        "proposed_tags": [
+          "tool-centric-agents",
+          "verification-over-principles",
+          "enterprise-ai"
+        ],
+        "secondary_tag": "verification-over-principles",
+        "service_automation_relevance": "For customer support and internal ops, terminal/API-first agents could handle back-office workflows more reliably than open-ended browser agents, especially when the task boundary is clear.",
+        "signal_strength": "medium",
+        "signal_title": "Simpler terminal-only agents may be enough for enterprise automation",
+        "signal_type": "research_eval",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "One research summary reports that minimal coding agents with only a terminal and direct API access can perform as well as or better than more complex web- and tool-augmented agents for enterprise tasks. The article also says they are more cost-efficient and resilient.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "If this holds as of 2026-04-05, enterprise automation design may favor simpler, more constrained agent harnesses over broad tool access. That reduces orchestration complexity and may improve reliability in production.",
+        "wiki_worthiness": "review_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The source mixes the author's market-structure opinion with vendor announcements and short research summaries.",
+        "Several claims are presented as company/ lab summaries rather than independently validated analysis.",
+        "No single evidence basis dominates across the full article."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a weekly AI news roundup, but its main argument is about market structure, not just product launches. It says the important question is no longer who has the flashiest demo; it is who can fund, ship, compress, and operate AI at scale. OpenAI, Microsoft, Google, and Z.ai are used as examples of different strategies: scale, vertical integration, open deployment, and multimodal action. The roundup also includes research papers and funding news that reinforce the same theme: AI is becoming infrastructure. In plain terms, the piece is asking which companies will control the systems that make models cheap enough and useful enough to deploy.",
+      "assessed_as_of": "2026-04-05",
+      "contradictions_and_skepticism": "The editorial language is more confident than the evidence base in the roundup, because it extrapolates a broad infrastructure thesis from a set of disparate announcements. Claims like AI becoming a new computing substrate are plausible as framing, but the article does not supply direct market data to prove that reorganization. The research blurbs also include some strong conclusions, such as terminal agents matching or beating more complex agents, but the text gives no methodological detail needed to assess edge cases or deployment risk. The \u201copenness matters\u201d argument for Gemma 4 is directionally reasonable, yet the roundup does not compare real-world adoption, latency, safety, or governance tradeoffs against closed alternatives.",
+      "key_insights": [
+        "As of 2026-04-05, the author treats AI as an infrastructure business where financing, inference capacity, and distribution matter alongside model quality.",
+        "Microsoft\u2019s MAI releases are framed as a bid to own first-party speech, voice, and image interfaces rather than rely on embedded third-party models.",
+        "Gemma 4 is presented as strategically important because open, efficient models can be deployed closer to products and users with lower inference cost.",
+        "GLM-5V Turbo is highlighted for multimodal competence across screens, files, and coding workflows, not just for text generation.",
+        "The research roundup leans toward practical evaluation and efficiency questions: simpler terminal agents, better benchmarks, and cheaper code or forecasting methods."
+      ],
+      "limitations_and_open_questions": "The roundup makes a strong structural argument, but most items are compressed to one- or two-sentence summaries, so implementation details, benchmarks, and cost data are mostly absent. The OpenAI, Microsoft, Google, and Z.ai sections are interpretive rather than independently verified analyses, and the article does not show comparative numbers for model quality, deployment cost, or user outcomes. Several research summaries are intriguing but not fully explained, so it is hard to judge robustness, dataset bias, or whether results generalize outside the stated settings. The company-news items are mostly funding or acquisition headlines, which are useful as signals but do not establish product durability or customer demand. The article does not provide evidence that the market-structure thesis will hold across segments beyond the examples listed here.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-radar-837-last-week"
+      ],
+      "summary": "This weekly roundup argues that the most important AI story as of 2026-04-05 is not a single product release but a reorganization of the AI market around infrastructure, capital, and deployability. The editorial frames OpenAI\u2019s $122 billion funding round as evidence that frontier AI companies are now running a research race and a capital race at the same time, because training compute, inference capacity, distribution, and tooling are expensive to build and serve. Microsoft\u2019s MAI-Transcribe-1, MAI-Voice-1, and MAI-Image-2 are presented as an attempt to own more of the intelligence layer rather than simply host third-party models, with speech, voice, and image becoming native interfaces. Google\u2019s Gemma 4 is used to argue that open models matter as deployment infrastructure for control, portability, and lower-cost inference, not just as benchmark competitors. GLM-5V Turbo is framed as a multimodal system aimed at interfaces, files, screens, visual reasoning, and coding workflows, which the author treats as a step toward models that can operate across software environments with functional competence. The rest of the roundup collects research and funding items: TRIBE for fMRI prediction, terminal-only enterprise agents, QUITOBENCH for time series forecasting, self-distillation for code generation, a rubric-based evaluation method, and an annotation-budget tradeoff study, plus company news on OpenAI, Sarvam, TBPN, Yupp, ScaleOps, Rebellions, Mistral, Qodo, Starcloud, and Anthropic.",
+      "why_it_matters": "The piece is useful because it compresses several announcements into one concrete thesis: AI competition is being organized around the ability to finance and operate the stack, not just produce impressive demos. OpenAI\u2019s huge funding round is described as support for compute, inference, developer ecosystems, enterprise sales, consumer distribution, and tooling, which makes the economics of frontier AI explicit rather than implied. Microsoft\u2019s new models matter because they show a platform trying to control core modalities directly, especially speech, voice, and image generation as native interfaces. Google\u2019s Gemma 4 matters because the article argues that open models are becoming deployment assets for control, portability, and lower-cost inference. GLM-5V Turbo matters because its multimodal focus is tied to practical software workflows like screens, files, visual reasoning, and coding. The research items reinforce the same operational theme: smaller task-specific models can outperform larger ones in some settings, simpler terminal agents can be enough for enterprise automation, and evaluation quality depends on task design and annotation strategy. For conversational products, the only explicit implications in the piece are indirect: voice, speech, and image interfaces are becoming core modalities, and models that can hear, speak, see, and work across software may matter more than pure text systems. Actionable as of 2026-04-05, but the roundup is still a mix of editorial interpretation, vendor announcements, and short summaries rather than deep evidence."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece bundles multiple loosely related news items and releases under sections like AI Research, AI Tech Releases, and AI News You Need to Know About.",
+        "Its primary purpose is a weekly digest / radar roundup rather than a single coherent argument or tutorial.",
+        "The editorial intro provides an interpretation, but the structure is still dominated by aggregated news blurbs."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-05",
+          "confidence": 0.92,
+          "evidence_from_source": "The editorial explicitly says the week was \"a market-structure week\" and that the industry is being reorganized around who can \"finance, deploy, compress, distribute, and operationalize intelligence at scale.\" It also frames AI as \"less like software and more like infrastructure.\"",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "ai-operationalization",
+            "distribution-over-production",
+            "runtime-systems",
+            "software-commoditization"
+          ],
+          "related_trends": [
+            "runtime-centralization",
+            "open-model-pressure",
+            "models-becoming-execution-layers"
+          ],
+          "secondary_tag": "ai-operationalization",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "OpenAI announced a $122 billion funding round at an $852 billion valuation.",
+            "Microsoft released MAI-Transcribe-1, MAI-Voice-1, and MAI-Image-2.",
+            "Google released Gemma 4.",
+            "Z.ai open sourced GLM-5V Turbo with multimodal coding capabilities."
+          ],
+          "supporting_snippet": "\"This week in AI was not really a product week. It was a market-structure week... The industry is no longer organized around who has the most impressive demo. It is being reorganized around who can finance, deploy, compress, distribute, and operationalize intelligence at scale. AI is starting to look less like software and more like infrastructure.\"",
+          "time_sensitivity": "As of 2026-04-05, this is presented as the dominant interpretive frame for the roundup. It is time-sensitive because it depends on the specific combination of OpenAI funding, Microsoft releases, Google Gemma 4, and GLM-5V Turbo discussed in this issue.",
+          "trend_description": "AI competition is moving from model quality alone toward the ability to finance, deploy, compress, distribute, and operationalize intelligence. In this pattern, model releases matter less than the surrounding stack: inference, tooling, enterprise delivery, and user-facing modalities.",
+          "trend_slug": "ai-products-shift-from-models-to-systems",
+          "trend_title": "AI products are shifting from models to integrated systems",
+          "uncertainty_note": "This is a strong editorial synthesis, but the article does not provide direct market data proving a durable sector-wide reorganization; the evidence is a set of announcements and the author's interpretation of them.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "48e407b9-3f96-4cef-9e6a-1519a9da0ec7",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "runtime-centralization",
+              "open-model-pressure",
+              "models-becoming-execution-layers"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI announced a $122 billion funding round at an $852 billion valuation.",
+              "Microsoft released MAI-Transcribe-1, MAI-Voice-1, and MAI-Image-2.",
+              "Google released Gemma 4.",
+              "Z.ai open sourced GLM-5V Turbo with multimodal coding capabilities."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "ai-operationalization",
+            "distribution-over-production",
+            "runtime-systems",
+            "software-commoditization"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-05",
+          "evidence_snippets": [
+            "\"At some level, every frontier AI company is now running two races at once: a research race and a capital race.\"",
+            "\"Intelligence is expensive to manufacture, even more expensive to serve\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "OpenAI"
+          ],
+          "operational_relevance": "Plan for inference cost, distribution, and tooling as core product constraints, not post-launch optimizations. Stack choices that reduce serving cost or simplify deployment may matter as much as marginal model gains.",
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "runtime-systems",
+            "enterprise-ai"
+          ],
+          "secondary_tag": "runtime-systems",
+          "service_automation_relevance": "Service automation systems will be shaped by the cost of always-on inference and by how easily models can be embedded into enterprise and consumer workflows.",
+          "signal_strength": "high",
+          "signal_title": "Frontier AI advantage is increasingly capital- and deployment-constrained",
+          "signal_type": "pricing_economics",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The roundup argues that frontier AI companies are now competing on both research output and the ability to fund the operating machine around it. The relevant machine includes training clusters, inference capacity, developer ecosystems, enterprise sales, consumer distribution, and tooling for coding and automation. This makes the economics of serving intelligence a first-order constraint.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "If the article's framing holds as of 2026-04-05, competitive advantage is shifting toward firms that can repeatedly pay for compute and distribution rather than merely ship strong models. That changes what to watch in AI strategy: balance sheet strength, serving cost, and product distribution become part of model competitiveness.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "77e29a97-2f3b-4db2-a7fc-2eb83abcc950",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"At some level, every frontier AI company is now running two races at once: a research race and a capital race.\"",
+              "\"Intelligence is expensive to manufacture, even more expensive to serve\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenAI"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "runtime-systems",
+            "enterprise-ai"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-05",
+          "evidence_snippets": [
+            "\"Microsoft's releases made a different point... it wants to own more of the intelligence layer itself.\"",
+            "\"Speech, voice, and image generation are no longer side features. They are becoming native interfaces.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Microsoft",
+            "MAI-Transcribe-1",
+            "MAI-Voice-1",
+            "MAI-Image-2"
+          ],
+          "operational_relevance": "Builders should expect more first-party speech, voice, and image APIs inside large platforms and should design systems that can swap or combine modality providers. This can reduce dependence on single-text-model interfaces.",
+          "primary_tag": "runtime-systems",
+          "proposed_tags": [
+            "runtime-systems",
+            "enterprise-ai",
+            "workflow-restructuring"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "service_automation_relevance": "Voicebots, transcription pipelines, and image-enabled support workflows may increasingly be shaped by platform-native multimodal APIs rather than text-only chat.",
+          "signal_strength": "medium",
+          "signal_title": "First-party multimodal interfaces are becoming a platform strategy",
+          "signal_type": "model",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Microsoft's MAI-Transcribe-1, MAI-Voice-1, and MAI-Image-2 are presented as a move to own more of the intelligence layer instead of merely hosting third-party models. The editorial emphasizes speech, voice, and image as native interfaces rather than side features. The underlying pattern is platform control over core modalities.",
+          "time_horizon": "medium_term",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-04-05, this suggests platform vendors may compete by controlling how software hears, speaks, sees, and creates, not only by offering general-purpose chat models. That affects product architecture because modality-native interfaces can become the default entry points for workflow automation.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "de7cb90d-accd-4cd6-a809-a278d374dd28",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": [],
+            "llm_list": [
+              "\"Microsoft's releases made a different point... it wants to own more of the intelligence layer itself.\"",
+              "\"Speech, voice, and image generation are no longer side features. They are becoming native interfaces.\""
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "mentioned_entities": {
+            "final_list": [],
+            "llm_list": [
+              "Microsoft",
+              "MAI-Transcribe-1",
+              "MAI-Voice-1",
+              "MAI-Image-2"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "service_automation_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "signal_strength": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "signal_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "signal_type": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "suggested_destinations": {
+            "final_list": [],
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "summary": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "time_horizon": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "why_it_matters": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "wiki_worthiness": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "runtime-systems",
+            "enterprise-ai",
+            "workflow-restructuring"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-05",
+          "evidence_snippets": [
+            "\"Open models are no longer just the rebel wing of AI. They are becoming essential pieces of the deployment stack\"",
+            "\"Small, efficient, customizable models that can run closer to the edge may shape more real products than the most powerful model in the world sitting behind a distant API.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Google",
+            "Gemma 4"
+          ],
+          "operational_relevance": "Open-weight models can be useful when you need portability, lower inference cost, or deployment closer to the product edge. The article implies that practical fit may outweigh raw benchmark dominance.",
+          "primary_tag": "open-model-pressure",
+          "proposed_tags": [
+            "open-model-pressure",
+            "edge-deployment",
+            "inference-efficiency"
+          ],
+          "secondary_tag": "edge-deployment",
+          "service_automation_relevance": "Service automation stacks may increasingly use smaller open models for cost-sensitive or controlled deployments, especially where latency and customization matter.",
+          "signal_strength": "medium",
+          "signal_title": "Open models are moving into the deployment stack",
+          "signal_type": "model",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The roundup frames Gemma 4 as a sign that open models are becoming strategically important for control, portability, and lower-cost inference. The emphasis is less on benchmark prestige and more on whether efficient models can be deployed close to products and users.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-05, open models are being treated as infrastructure for deployment choice, not just ideological alternatives to closed systems. That matters for teams that need local control, lower serving costs, or easier customization.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "3fcd773f-1b21-4dc4-a7f2-7241167982f5",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"Open models are no longer just the rebel wing of AI. They are becoming essential pieces of the deployment stack\"",
+              "\"Small, efficient, customizable models that can run closer to the edge may shape more real products than the most powerful model in the world sitting behind a distant API.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Google",
+              "Gemma 4"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-model-pressure",
+            "edge-deployment",
+            "inference-efficiency"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-05",
+          "evidence_snippets": [
+            "\"Its importance is not just that it is multimodal. It is the type of multimodality that matters: interfaces, files, screens, visual reasoning, coding workflows.\"",
+            "\"They begin to work through it.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "GLM-5V Turbo",
+            "Z.ai"
+          ],
+          "operational_relevance": "For agent builders, the relevant question becomes whether a model can inspect screens, handle files, and move through software tasks reliably. That is closer to execution capability than conversation quality.",
+          "primary_tag": "execution-oriented-agents",
+          "proposed_tags": [
+            "execution-oriented-agents",
+            "tool-centric-agents",
+            "workflow-restructuring"
+          ],
+          "secondary_tag": "tool-centric-agents",
+          "service_automation_relevance": "Support automation may gain from models that can operate across tickets, screens, documents, and coding tools, especially for escalation handling and back-office tasks.",
+          "signal_strength": "medium",
+          "signal_title": "Multimodal models are being judged by workflow competence, not text generation",
+          "signal_type": "model",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "GLM-5V Turbo is described as important because it handles interfaces, files, screens, visual reasoning, and coding workflows. The signal is that multimodal capability is shifting toward operational competence across software environments rather than image or text generation in isolation.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-05, this points toward models that can act inside software workflows, which is more useful for automation than generic multimodal demos. It aligns with a broader shift from describing artifacts to working through them.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "b5bb7c5d-b600-4c9b-95e5-74ad9cb1e9c2",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"Its importance is not just that it is multimodal. It is the type of multimodality that matters: interfaces, files, screens, visual reasoning, coding workflows.\"",
+              "\"They begin to work through it.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "GLM-5V Turbo",
+              "Z.ai"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-oriented-agents",
+            "tool-centric-agents",
+            "workflow-restructuring"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-05",
+          "evidence_snippets": [
+            "\"minimal coding agents equipped only with a terminal and direct API access perform just as well or better\"",
+            "\"simpler terminal agents are significantly more cost-efficient and resilient without sacrificing effectiveness.\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "ServiceNow",
+            "Mila Quebec AI Institute",
+            "Universit\u00e9 de Montr\u00e9al"
+          ],
+          "operational_relevance": "Design automation around terminal access and direct APIs when possible instead of assuming a browser-heavy agent stack is required. Simpler harnesses may lower cost and improve resilience.",
+          "primary_tag": "tool-centric-agents",
+          "proposed_tags": [
+            "tool-centric-agents",
+            "verification-over-principles",
+            "enterprise-ai"
+          ],
+          "secondary_tag": "verification-over-principles",
+          "service_automation_relevance": "For customer support and internal ops, terminal/API-first agents could handle back-office workflows more reliably than open-ended browser agents, especially when the task boundary is clear.",
+          "signal_strength": "medium",
+          "signal_title": "Simpler terminal-only agents may be enough for enterprise automation",
+          "signal_type": "research_eval",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "One research summary reports that minimal coding agents with only a terminal and direct API access can perform as well as or better than more complex web- and tool-augmented agents for enterprise tasks. The article also says they are more cost-efficient and resilient.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "If this holds as of 2026-04-05, enterprise automation design may favor simpler, more constrained agent harnesses over broad tool access. That reduces orchestration complexity and may improve reliability in production.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "e742cc96-7762-490b-9cf9-30c6fa34a57c",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"minimal coding agents equipped only with a terminal and direct API access perform just as well or better\"",
+              "\"simpler terminal agents are significantly more cost-efficient and resilient without sacrificing effectiveness.\""
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "ServiceNow",
+              "Mila Quebec AI Institute",
+              "Universit\u00e9 de Montr\u00e9al"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "tool-centric-agents",
+            "verification-over-principles",
+            "enterprise-ai"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The source mixes the author's market-structure opinion with vendor announcements and short research summaries.",
+          "Several claims are presented as company/ lab summaries rather than independently validated analysis.",
+          "No single evidence basis dominates across the full article."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "As of 2026-04-05, the author treats AI as an infrastructure business where financing, inference capacity, and distribution matter alongside model quality.",
+          "Microsoft\u2019s MAI releases are framed as a bid to own first-party speech, voice, and image interfaces rather than rely on embedded third-party models.",
+          "Gemma 4 is presented as strategically important because open, efficient models can be deployed closer to products and users with lower inference cost.",
+          "GLM-5V Turbo is highlighted for multimodal competence across screens, files, and coding workflows, not just for text generation.",
+          "The research roundup leans toward practical evaluation and efficiency questions: simpler terminal agents, better benchmarks, and cheaper code or forecasting methods."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-radar-837-last-week"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece bundles multiple loosely related news items and releases under sections like AI Research, AI Tech Releases, and AI News You Need to Know About.",
+          "Its primary purpose is a weekly digest / radar roundup rather than a single coherent argument or tutorial.",
+          "The editorial intro provides an interpretation, but the structure is still dominated by aggregated news blurbs."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "mixed": 6
+    },
+    "fields_modified": 0,
+    "proposals_approved": 6,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 6,
+    "review_duration_seconds": 234.9,
+    "review_finished_at": "2026-06-08T19:27:33.882494+00:00",
+    "review_started_at": "2026-06-08T19:23:39+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T19:27:34+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-radar-837-last-week",
+    "content_sha256": "bed5a8b3eb322ccebca32d0b49c724a7cb60c7495b578027ed8c0c9124bd8cb8",
+    "publication": "Substack",
+    "published_date": "2026-04-05",
+    "raw_html_rel_path": "raw/readwise/the-sequence-radar-837-last-week-in-ai-from-model-releases-to-market-structure-01knenmsmq683r0kk1nx30hfz6.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-radar-837-last-week-in-ai-from-model-releases-to-market-structure-01knenmsmq683r0kk1nx30hfz6.md",
+    "source_id": "the-sequence-radar-837-last-week-in-ai-from-model-releases-to-market-structure-01knenmsmq683r0kk1nx30hfz6",
+    "title": "The Sequence Radar #837: Last Week in AI: From Model Releases to Market Structure"
+  }
+}

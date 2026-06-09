@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T19:28:19+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.9222601441031475,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DoZvkoNZAsUxwrUS6QzVdLx6PbAmy",
+          "token_usage": {
+            "completion_tokens": 230,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5274,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 5504
+          }
+        },
+        {
+          "cache_hit_rate": 0.5725904839365595,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DoZvnNZbhFnp7f28WH3bc7CL5atDU",
+          "token_usage": {
+            "completion_tokens": 981,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4918,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 2816
+            },
+            "total_tokens": 5899
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoZvnNZbhFnp7f28WH3bc7CL5atDU",
+    "token_usage": {
+      "completion_tokens": 1211,
+      "prompt_tokens": 10192,
+      "prompt_tokens_details": {
+        "cached_tokens": 7680
+      },
+      "total_tokens": 11403
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "The article is a vendor-authored opinion piece about evaluating customer-service AI agents. It offers practical evaluation advice, but no distinct durable entity-level facts or reusable named artifacts warrant extraction in this triage stage.",
+      "skip_recommended": true,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece is a practitioner-facing argument about what to evaluate in AI agents, framed as guidance from the author.",
+        "It cites general criteria and a quoted customer example, but provides no formal study, benchmark methodology, or experimental results.",
+        "The claims are primarily interpretive and advisory rather than empirical."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says a good AI agent evaluation is not just about accuracy scores. You also need to test how it behaves in real conversations, with messy inputs, handoffs to humans, and situations where it does not know the answer. Just as important, you should judge whether the experience feels natural and on-brand, not robotic. The article adds a third check: can the team keep improving the agent after launch through fast feedback and easy iteration? In plain terms, the question is not only \u201cdoes it work?\u201d but \u201ccan we keep making it better without getting stuck?\u201d",
+      "assessed_as_of": "2026-05-22",
+      "contradictions_and_skepticism": "The strongest claim is that performance alone is insufficient, which is plausible, but the article does not show empirical proof that the proposed additional criteria predict long-term success better than benchmark performance. The vendor discussion leans on relationship quality and transparency, which are useful but somewhat subjective and may be hard to compare consistently across suppliers. The argument also risks overstating the separability of accuracy, experience, and iteration: in practice, they can interact tightly, and a single POC may not isolate them cleanly. Still, the skepticism is modest because the article is framed as evaluation advice, not as a scientific claim.",
+      "key_insights": [
+        "A proof of concept that only tests benchmark accuracy can miss failures that show up in real customer conversations.",
+        "Evaluation should include multi-turn context, typos, incomplete questions, edge cases, rephrasings, multiple knowledge sources, and multilingual inputs.",
+        "Resolution rate is insufficient on its own because it says little about trust, tone, or whether the conversation feels good to the customer.",
+        "A strong handoff to a human is part of the product experience, not a separate operational detail.",
+        "Long-term value depends on the feedback loop, iteration speed, and vendor responsiveness after launch, not just initial performance."
+      ],
+      "limitations_and_open_questions": "The piece gives a strong checklist but no concrete scoring rubric, weighting scheme, or acceptance thresholds, so different teams could still evaluate the same agent differently. It also does not address cost, latency, security, privacy, or compliance, which can matter as much as conversation quality in deployment decisions. The advice to test real-world messiness is sound, but the article does not explain how large or representative the test set should be. The vendor-partnership criterion is important, but it is hard to operationalize without clearer evidence about how to compare vendors on roadmap influence or post-launch support. The article assumes teams have access to real customer interactions or representative testers, which may not be true in every POC.",
+      "sources": [
+        "https://www.intercom.com/blog/what-matters-when-evaluating-ai-agents-for-customer-service/"
+      ],
+      "summary": "The article argues that evaluating an AI agent for customer service requires more than checking whether it gets answers right on curated tests. A strong proof of concept should reflect messy real-world support conditions: multi-turn conversations, vague or fragmented customer inputs, edge cases, multilingual exchanges, and cases that require multiple knowledge sources or human handoff. The author also says quantitative metrics like resolution rate and containment rate miss important differences in tone, trust, and whether the experience feels natural and on-brand. A second major criterion is whether the system can keep improving after launch, which depends on the feedback loop, the speed of iteration, and the quality of the vendor partnership. The underlying claim is that a POC should prove not just that the AI works, but that it can be operated, refined, and trusted over time in the actual customer environment.",
+      "why_it_matters": "The article is useful because it compresses a practical evaluation checklist into three durable questions: does the agent handle real-world messiness, does it feel acceptable to customers, and can the system improve after deployment. That is a better lens than over-weighting curated benchmarks, because the source explicitly argues that high scores can hide failures in context handling, rephrasing, handoff behavior, and tone. It also highlights that an AI agent is judged as a conversation partner, not just as an answer engine, which makes trust and brand fit operational criteria rather than soft preferences. The emphasis on feedback loops and iteration speed is especially valuable for teams that expect to tune behavior after launch, because it frames post-launch operations as part of evaluation. The vendor-partnership section is practical too: support quality, roadmap responsiveness, and transparency become part of the buying decision, not just procurement noise. The article is thinner on hard measurement methodology, so its value is more in shaping review criteria than in prescribing a formal scoring system. As of 2026-05-22, the guidance is actionable for teams comparing customer-service agents, but it should be treated as a qualitative framework rather than evidence of which vendors perform best."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent vendor blog post with one main argument, not a bundle of items or a tutorial series.",
+        "No numbered product reviews, multi-item roundup structure, or interview transcript formatting.",
+        "The content is advisory/opinionated rather than research- or benchmark-driven."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece is a practitioner-facing argument about what to evaluate in AI agents, framed as guidance from the author.",
+          "It cites general criteria and a quoted customer example, but provides no formal study, benchmark methodology, or experimental results.",
+          "The claims are primarily interpretive and advisory rather than empirical."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A proof of concept that only tests benchmark accuracy can miss failures that show up in real customer conversations.",
+          "Evaluation should include multi-turn context, typos, incomplete questions, edge cases, rephrasings, multiple knowledge sources, and multilingual inputs.",
+          "Resolution rate is insufficient on its own because it says little about trust, tone, or whether the conversation feels good to the customer.",
+          "A strong handoff to a human is part of the product experience, not a separate operational detail.",
+          "Long-term value depends on the feedback loop, iteration speed, and vendor responsiveness after launch, not just initial performance."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://www.intercom.com/blog/what-matters-when-evaluating-ai-agents-for-customer-service/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent vendor blog post with one main argument, not a bundle of items or a tutorial series.",
+          "No numbered product reviews, multi-item roundup structure, or interview transcript formatting.",
+          "The content is advisory/opinionated rather than research- or benchmark-driven."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 86.4,
+    "review_finished_at": "2026-06-08T19:29:51.390651+00:00",
+    "review_started_at": "2026-06-08T19:28:25+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T19:29:51+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Declan Ivory",
+    "canonical_url": "https://www.intercom.com/blog/what-matters-when-evaluating-ai-agents-for-customer-service/",
+    "content_sha256": "b1449993a5378a35fd6e6e8ac3406a582f73f80366222944320a789d934dac95",
+    "publication": "The Intercom Blog",
+    "published_date": "2026-05-22",
+    "raw_html_rel_path": "raw/readwise/what-really-matters-when-evaluating-ai-agents-for-customer-service-01ks89tke8b3dsrzc527zcqr3w.html",
+    "raw_md_rel_path": "raw/readwise/what-really-matters-when-evaluating-ai-agents-for-customer-service-01ks89tke8b3dsrzc527zcqr3w.md",
+    "source_id": "what-really-matters-when-evaluating-ai-agents-for-customer-service-01ks89tke8b3dsrzc527zcqr3w",
+    "title": "What really matters when evaluating AI Agents for customer service?"
+  }
+}

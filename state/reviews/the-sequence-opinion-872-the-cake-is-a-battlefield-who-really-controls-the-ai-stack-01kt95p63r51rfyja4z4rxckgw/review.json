@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T19:49:34+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DoaGLgMM1sr6FAtnL2HSR34BcabPO",
+          "token_usage": {
+            "completion_tokens": 214,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4206,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4420
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DoaGOU1ikrCRxBJoj7pLozBDEQjJx",
+          "token_usage": {
+            "completion_tokens": 815,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3834,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4649
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoaGOU1ikrCRxBJoj7pLozBDEQjJx",
+    "token_usage": {
+      "completion_tokens": 1029,
+      "prompt_tokens": 8040,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 9069
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "This is a short opinion piece with a single strategic claim about AI stack control; it does not contain durable, wiki-worthy operational detail beyond a framing metaphor.",
+      "skip_recommended": true,
+      "total_candidates_considered": 1
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is an analyst's interpretation of Jensen Huang's AI stack framing.",
+        "It advances a strategic reading of margin pools and vertical control without presenting data, benchmarks, or case studies.",
+        "Claims are rhetorical and inferential rather than grounded in independent evidence."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece looks at the AI industry stack as a business map, not just a technical one. The author uses Jensen Huang\u2019s five-layer diagram to argue that each layer is a place where companies fight for control and profit. The key idea is that owning one layer is not enough if the layer below it becomes cheap and replaceable. What matters most is owning the scarce bottleneck and the connection right next to it. It is a short but useful lens for thinking about where power sits in the AI stack as of 2026-06-04.",
+      "assessed_as_of": "2026-06-04",
+      "contradictions_and_skepticism": "The argument is rhetorically strong but lightly evidenced. Jensen Huang\u2019s diagram may be both a real systems view and a business framing for Nvidia\u2019s position, so the article\u2019s reinterpretation could overcorrect by treating harmony as mostly marketing. It also risks flattening important differences between layers: some layers may be more interdependent than the article implies, and ownership of a seam does not automatically translate into durable control. The source itself provides no proof that fusion is always better than specialization.",
+      "key_insights": [
+        "The five-layer AI stack can be read as a set of separate margin pools, not just a mutually reinforcing system.",
+        "Strategic control comes from owning the scarce layer and the seam adjacent to it.",
+        "A company that owns only a layer without control of its neighbors risks having that layer commoditized.",
+        "The article frames the AI stack as a vertical competition over integration, not a static architecture diagram."
+      ],
+      "limitations_and_open_questions": "The article offers no empirical evidence for the claim that the AI stack is best understood as competing margin pools. It does not define which layers are actually scarce, how scarcity should be measured, or when a seam is defensible versus commoditized. There is no discussion of counterexamples where specialization outperforms vertical integration. The piece also leaves open how this framing applies across different segments of AI infrastructure, models, and applications, or how quickly control can shift as prices fall or standards emerge.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-opinion-872-the-cake",
+        "the-sequence-opinion-872-the-cake-is-a-battlefield-who-really-controls-the-ai-stack-01kt95p63r51rfyja4z4rxckgw"
+      ],
+      "summary": "The article argues that Jensen Huang\u2019s five-layer AI stack diagram\u2014energy, chips, infrastructure, models, applications\u2014is physically accurate but strategically incomplete. From the author\u2019s perspective, the diagram should be read less as a story of mutual reinforcement and more as a stack of separate margin pools, each of which can become a battlefield for control. The central strategic question is not how many layers a company owns, but whether it owns the scarce layer and the seam directly adjacent to it. In this framing, value comes from fusing layers before the layer underneath commoditizes. The piece is primarily an opinionated strategic reframing of AI stack ownership rather than a data-backed analysis.",
+      "why_it_matters": "The piece is useful because it compresses a common AI industry diagram into a sharper strategic question: where is the bottleneck, and who controls the interface around it? For AI engineers and product builders, that is a reminder that architectural choices have business consequences, especially when a dependency sits one layer below your product. The article\u2019s main value is conceptual rather than empirical: it gives a vocabulary for thinking about capture, commoditization, and integration in the AI stack without pretending the diagram itself proves any market outcome. Its weakness is that it provides no data, case studies, or concrete examples of specific companies winning by owning a seam rather than a layer. That makes the argument easy to reuse as a mental model but hard to operationalize without separate evidence. As of 2026-06-04, it is best treated as a durable framing tool, but only as a strategic lens, not as a validated market thesis."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion essay rather than a bundle of items or a step-by-step guide.",
+        "The text argues a strategic interpretation of Nvidia's layer diagram, not a roundup or interview.",
+        "No structural signals of tools list, how-to list, transcript, or research report."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is an analyst's interpretation of Jensen Huang's AI stack framing.",
+          "It advances a strategic reading of margin pools and vertical control without presenting data, benchmarks, or case studies.",
+          "Claims are rhetorical and inferential rather than grounded in independent evidence."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The five-layer AI stack can be read as a set of separate margin pools, not just a mutually reinforcing system.",
+          "Strategic control comes from owning the scarce layer and the seam adjacent to it.",
+          "A company that owns only a layer without control of its neighbors risks having that layer commoditized.",
+          "The article frames the AI stack as a vertical competition over integration, not a static architecture diagram."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-opinion-872-the-cake",
+          "the-sequence-opinion-872-the-cake-is-a-battlefield-who-really-controls-the-ai-stack-01kt95p63r51rfyja4z4rxckgw"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion essay rather than a bundle of items or a step-by-step guide.",
+          "The text argues a strategic interpretation of Nvidia's layer diagram, not a roundup or interview.",
+          "No structural signals of tools list, how-to list, transcript, or research report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": 1022.8,
+    "review_finished_at": "2026-06-08T20:08:02.806670+00:00",
+    "review_started_at": "2026-06-08T19:51:00+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T20:08:02+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-opinion-872-the-cake",
+    "content_sha256": "33595f1d657dd526dd09e22b439bedf3954eac16b6a53969064e1983096efaf4",
+    "publication": "substack.com",
+    "published_date": "2026-06-04",
+    "raw_html_rel_path": "raw/readwise/the-sequence-opinion-872-the-cake-is-a-battlefield-who-really-controls-the-ai-stack-01kt95p63r51rfyja4z4rxckgw.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-opinion-872-the-cake-is-a-battlefield-who-really-controls-the-ai-stack-01kt95p63r51rfyja4z4rxckgw.md",
+    "source_id": "the-sequence-opinion-872-the-cake-is-a-battlefield-who-really-controls-the-ai-stack-01kt95p63r51rfyja4z4rxckgw",
+    "title": "The Sequence Opinion #872: The Cake Is a Battlefield: Who Really Controls the AI Stack"
+  }
+}

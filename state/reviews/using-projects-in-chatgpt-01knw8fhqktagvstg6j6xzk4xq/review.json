@@ -1,0 +1,986 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T19:47:49+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DoaENkOWaAKINieJockKVWL6jalhq",
+          "token_usage": {
+            "completion_tokens": 188,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4787,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4975
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DoaEPHIOdIK3tRgoAYrYomioHWTFu",
+          "token_usage": {
+            "completion_tokens": 940,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4389,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5329
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DoaEYmWGYrqRHacYK8tVSLs9AwF3v",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2202,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34654,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 36856
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoaEYmWGYrqRHacYK8tVSLs9AwF3v",
+    "token_usage": {
+      "completion_tokens": 3330,
+      "prompt_tokens": 43830,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 47160
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Open Projects from the left-hand menu and create a new project with a clear name. Add files, set project instructions, or move existing chats into the project so the work stays connected. If your plan supports sharing, invite collaborators so they can use the same files, instructions, and conversation history. For Enterprise users, admins can also manage shared projects at the workspace level and control access by group. Use a project when the task has ongoing context; use a regular chat when the work is quick and self-contained.",
+        "caveats": "Sharing depends on plan availability. The article does not specify limits on file size, project size, retention, or how project context interacts with other memory features.",
+        "confidence": 0.95,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Open Projects from the left-hand menu.",
+          "Create a new project and give it a name.",
+          "Add files to the project.",
+          "Set project instructions.",
+          "Move existing chats into the project.",
+          "Invite collaborators if sharing is available on your plan."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A ChatGPT account with access to Projects.",
+          "A task that has ongoing context or multiple related files/chats.",
+          "A supported plan if you want to share the project with other people."
+        ],
+        "primary_tag": "workflow-automation",
+        "proposed_tags": [
+          "workflow-automation",
+          "enterprise-workflows",
+          "context-engineering"
+        ],
+        "question_title": "ChatGPT Projects Setup",
+        "related_howtos": [
+          "context-compaction"
+        ],
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Open Projects from the left-hand menu. Create a new project and give it a name. You can now add files, set project instructions, or move existing chats into the project. If sharing is available on your plan, you can also invite collaborators.\"",
+        "value_level": "high",
+        "what_and_problem": "This is a way to keep related work in one place inside ChatGPT. It solves the common problem of having to re-upload files, repeat instructions, or search through old chats every time you continue a task. It is most useful when a project lasts across several sessions and needs the same background each time. It can also help when more than one person needs access to the same materials."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-04-10",
+        "confidence": 0.89,
+        "evidence_from_source": "The source describes Projects as dedicated spaces that hold chats, files, instructions, and related context in one place, plus shared projects and project-only memory as workspace controls.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "workflow-restructuring",
+          "human-ai-collaboration"
+        ],
+        "related_trends": [
+          "agents-shift-toward-persistent-memory-backed-workflows"
+        ],
+        "secondary_tag": "workflow-restructuring",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Projects hold chats, files, instructions, and related context in one place.",
+          "Project-only memory limits chat context to that project.",
+          "Shared projects let collaborators work from the same files, instructions, and conversation history.",
+          "Enterprise admins can manage shared projects at the workspace level."
+        ],
+        "supporting_snippet": "\"Projects in ChatGPT are dedicated spaces for a specific body of work or area of focus. A project can hold chats, files, instructions, and related context in one place\"",
+        "time_sensitivity": "As of 2026-04-10, this is a product-level pattern that appears established in ChatGPT's guidance; its longevity depends on whether other chat products continue to expand workspace features.",
+        "trend_description": "Chat products increasingly package chats, files, instructions, and history into durable workspaces instead of treating each conversation as isolated. The shift matters because recurring work needs state, not just a sequence of prompts. Persistent workspaces reduce repetition and make multi-session work easier to resume. They also create a cleaner unit for collaboration and access control.",
+        "trend_slug": "chat-products-move-toward-persistent-workspaces",
+        "trend_title": "Chat Products Move Toward Persistent Workspaces",
+        "uncertainty_note": "The source is vendor guidance, so it shows product direction but not adoption scale, user retention, or comparative performance versus simpler chat flows.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "vendor_claim",
+      "reasoning": [
+        "The source is an OpenAI blog / Academy page describing OpenAI's own ChatGPT feature.",
+        "Claims about projects, shared projects, and project-only memory are presented as product guidance from the vendor.",
+        "No independent evaluation, benchmark, or external reporting is included."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article explains a ChatGPT feature for organizing work. A project is like a container for chats, files, instructions, and context tied to one task or theme. The main benefit is that you do not have to repeat the same background every time you start a new chat. It is useful for work that lasts over time, such as research, writing, planning, or shared tasks. The article also describes a project-only memory option that keeps conversations inside that project boundary. In plain terms, it is about making ChatGPT easier to reuse for longer-running work.",
+      "assessed_as_of": "2026-04-10",
+      "contradictions_and_skepticism": "The piece presents projects as a clean answer to scattered context, but that claim is mostly intuitive rather than demonstrated with evidence. It assumes that keeping chats, files, and instructions together is enough to produce more consistent results, yet the article does not show measurable outcomes. The feature may also add another layer of workspace management that some users do not need for short, self-contained tasks. The value is plausible, but the source stays at the level of product rationale rather than proof.",
+      "key_insights": [
+        "Projects are most useful when the same context must survive across multiple chats, rather than for one-off questions.",
+        "The practical payoff is reduced repetition: fewer re-uploads of files, fewer repeated instructions, and less searching through past chats.",
+        "Project-only memory creates a bounded workspace by preventing chats in that project from pulling context from outside it.",
+        "Shared projects are designed around common files, instructions, and conversation history, which reduces duplicate copies of the same work.",
+        "Enterprise admins get workspace-level control over shared projects, so access management is part of the feature, not an afterthought."
+      ],
+      "limitations_and_open_questions": "The article is product guidance from the vendor, so it does not provide independent evaluation, usage data, or failure cases. It does not explain limits on file types, project size, retention, versioning, or how project context interacts with other ChatGPT memory features. Security and privacy questions are only lightly addressed through the project-only memory and Enterprise access-control mentions; there is no deeper policy detail. The practical impact of shared projects depends on plan availability, but the article does not specify the full plan matrix here. No benchmark or comparison is offered to show whether projects improve output quality versus just convenience.",
+      "sources": [
+        "https://openai.com/academy/projects"
+      ],
+      "summary": "Projects in ChatGPT are a way to keep a specific body of work in one dedicated space, with chats, files, instructions, and related context stored together. The article\u2019s main point is that this reduces repetition: instead of re-uploading files or restating background in every new conversation, you can return to the same project and continue from the same context. It is positioned as most useful for work that spans time, such as ongoing research, multi-draft writing, recurring planning, learning, or shared collaboration. The setup described is simple: open Projects from the left-hand menu, create a project, add files or instructions, move existing chats into it, and invite collaborators on plans that support sharing. For Enterprise customers, admins can manage shared projects at the workspace level and control access by group. The article also describes project-only memory, which keeps context limited to that project so chats there do not draw from conversations outside it. Overall, the feature is presented as a context-management and collaboration tool rather than a new model capability, with the main value coming from better organization and continuity.",
+      "why_it_matters": "The article matters because it frames ChatGPT projects as a lightweight state-management layer for work that cannot fit into a single conversation. For AI practitioners building with chat systems, the useful idea is not model behavior but context persistence: chats, files, and instructions are bundled so later turns can reuse the same working memory. That makes projects relevant for workflows where continuity is more important than raw generation quality, such as iterative drafting, research notebooks, or multi-step planning. The piece also clarifies a practical boundary: project-only memory can isolate one body of work from the rest of a user\u2019s chat history, which may matter for organization, privacy, or avoiding accidental context bleed. Shared projects add a collaboration layer by letting multiple people see the same materials and history, reducing copy/version drift. The article is less about novel AI capability than about product ergonomics around context reuse. As of 2026-04-10, the feature looks operationally useful and easy to adopt for teams that repeatedly revisit the same materials, but the source gives no evidence on performance, reliability, or governance beyond basic admin controls."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent OpenAI Academy article explaining one product feature, not a bundle of unrelated items.",
+        "Structured as explanatory guidance with sections like 'How to create a project' and 'When to use a project'.",
+        "No interview transcript, research methodology, or multi-product roundup structure is present."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.93,
+        "core_capabilities": [
+          "It groups chats, files, instructions, and related context into a dedicated workspace for one body of work.",
+          "It lets users move existing chats into a project so prior work stays attached to the same context.",
+          "It supports collaboration on plans where sharing is available, letting others work from the same project history.",
+          "It allows Enterprise admins to manage shared projects at the workspace level and by group access controls."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It integrates with the ChatGPT left-hand menu workflow for creating and opening projects.",
+          "It works with project files and project instructions as part of the same workspace context.",
+          "It supports Enterprise workspace administration and role-based access control for shared projects."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "As of 2026-04-10, the feature is presented as part of OpenAI's product guidance rather than as an experimental prototype, and the article includes Enterprise admin controls plus shared-project support. That suggests product maturity in the sense of being ready for organized team use, but the source does not provide adoption data or external validation. The evidence base here is vendor guidance only, so maturity should be treated as practical but not independently verified.",
+        "name": "Projects in ChatGPT",
+        "operational_relevance": "This is useful when work spans multiple sessions and you want one place for source files, instructions, and prior chats. For AI workflows, the main value is context reuse: fewer repeated uploads and fewer repeated prompts across iterative work. It is also relevant for team collaboration when plan-level sharing is available, because the same project history can be shared instead of copied around.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "chat-interface",
+          "memory",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "productivity",
+          "knowledge-management"
+        ],
+        "related_tools": [
+          "ChatGPT"
+        ],
+        "short_description": "A ChatGPT workspace feature that groups chats, files, instructions, and related context into a dedicated space. It is designed to keep a body of work together so later conversations can reuse the same background.",
+        "strengths": "- Keeps chats, files, and instructions in one workspace, which reduces the repetitive setup that slows down multi-session work.\n- Supports moving existing chats into the project, making it easier to consolidate an ongoing thread of work instead of fragmenting it across separate conversations.\n- On supported plans, shared projects let multiple people work from the same materials and history, which reduces duplicate copies and version drift.\n- For Enterprise customers, admin controls at the workspace level make shared-project access more governable in larger organizations.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Projects in ChatGPT are dedicated spaces for a specific body of work or area of focus. A project can hold chats, files, instructions, and related context in one place, so you do not need to restate the same background every time you start a new conversation.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not give independent evidence of quality, reliability, or measurable productivity gains, so the benefits are plausible but not proven here. It also does not specify file limits, retention rules, versioning behavior, or how project context interacts with other memory features. Sharing is plan-dependent, so the collaboration value is not universal across all users."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A bounded workspace can hold both instructions and history, not just chat text.",
+          "Context reuse reduces repeated uploads and repeated prompt setup.",
+          "Separating work into projects can prevent accidental context bleed across unrelated tasks.",
+          "Shared access changes the workspace from a solo memory aid into a coordination layer."
+        ],
+        "knowledge_summary": "Workspace layering is the practice of separating ongoing work into bounded spaces that carry their own chats, files, instructions, and history. The goal is to reduce context scattering across unrelated conversations and to make it easier to continue a task without rebuilding state. This matters most when work is iterative, shared, or long-running. It also creates a clearer boundary between one project's context and another's, which helps both organization and governance.",
+        "match_candidates": [],
+        "operational_insight": "When a task needs persistent state, the workspace itself becomes part of the system design. Keep the working set close to the chat surface so users do not have to reconstruct context manually in every session.",
+        "primary_tag": "enterprise-workflows",
+        "proposed_tags": [
+          "enterprise-workflows",
+          "context-engineering"
+        ],
+        "related_topics": [
+          "agent-memory-architecture"
+        ],
+        "relevance_note": "This pattern matters for AI systems that support long-running or multi-session work because continuity is often more valuable than a single response. It shows up in research workspaces, drafting systems, service operations, and collaborative agent environments where context reuse lowers friction and improves consistency.",
+        "secondary_tag": "context-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "memory",
+        "suggested_new_tags": [
+          "memory"
+        ],
+        "supporting_snippet": "\"Projects in ChatGPT are dedicated spaces for a specific body of work or area of focus. A project can hold chats, files, instructions, and related context in one place\"",
+        "topic_slug": "agent-workspace-layering",
+        "topic_title": "Agent Workspace Layering",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.87,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Memory boundaries can improve predictability in multi-session work.",
+          "Project-local recall supports continuity without opening the whole account history.",
+          "Isolation is useful for separate client work, sensitive topics, or clean workflow separation.",
+          "The main tradeoff is that cross-project reuse becomes less automatic."
+        ],
+        "knowledge_summary": "Project-scoped memory is a boundary-setting pattern where a workspace can reference its own prior conversations but not draw context from outside it. This makes the working set more predictable and helps keep unrelated conversations from leaking into the task. The pattern is useful when teams want a clean separation between bodies of work or want to limit context exposure. It is especially relevant for structured workflows that need stable context over time.",
+        "match_candidates": [],
+        "operational_insight": "Use scoped memory when you want repeatability and isolation more than global recall. The design tradeoff is less convenience across the whole account in exchange for better separation inside a workstream.",
+        "primary_tag": "context-engineering",
+        "proposed_tags": [
+          "context-engineering",
+          "enterprise-workflows"
+        ],
+        "related_topics": [
+          "agent-memory-architecture",
+          "defensive-context-handling"
+        ],
+        "relevance_note": "This matters for AI engineering because memory boundaries affect both quality and control. A bounded context can reduce accidental contamination across tasks, support cleaner evaluation, and make it easier to reason about what information a chat can access.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "memory",
+        "suggested_new_tags": [
+          "memory"
+        ],
+        "supporting_snippet": "\"With project-only memory, chats can reference other conversations in the same project, but not conversations outside it.\"",
+        "topic_slug": "project-scoped-memory-boundaries",
+        "topic_title": "Project-Scoped Memory Boundaries",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Open Projects from the left-hand menu and create a new project with a clear name. Add files, set project instructions, or move existing chats into the project so the work stays connected. If your plan supports sharing, invite collaborators so they can use the same files, instructions, and conversation history. For Enterprise users, admins can also manage shared projects at the workspace level and control access by group. Use a project when the task has ongoing context; use a regular chat when the work is quick and self-contained.",
+          "caveats": "Sharing depends on plan availability. The article does not specify limits on file size, project size, retention, or how project context interacts with other memory features.",
+          "confidence": 0.95,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Open Projects from the left-hand menu.",
+            "Create a new project and give it a name.",
+            "Add files to the project.",
+            "Set project instructions.",
+            "Move existing chats into the project.",
+            "Invite collaborators if sharing is available on your plan."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A ChatGPT account with access to Projects.",
+            "A task that has ongoing context or multiple related files/chats.",
+            "A supported plan if you want to share the project with other people."
+          ],
+          "primary_tag": "workflow-automation",
+          "proposed_tags": [
+            "workflow-automation",
+            "enterprise-workflows",
+            "context-engineering"
+          ],
+          "question_title": "ChatGPT Projects Setup",
+          "related_howtos": [
+            "context-compaction"
+          ],
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Open Projects from the left-hand menu. Create a new project and give it a name. You can now add files, set project instructions, or move existing chats into the project. If sharing is available on your plan, you can also invite collaborators.\"",
+          "value_level": "high",
+          "what_and_problem": "This is a way to keep related work in one place inside ChatGPT. It solves the common problem of having to re-upload files, repeat instructions, or search through old chats every time you continue a task. It is most useful when a project lasts across several sessions and needs the same background each time. It can also help when more than one person needs access to the same materials."
+        },
+        "notes": null,
+        "proposal_id": "35a1f64d-695a-49ff-997b-6bfc7e5b8255",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Open Projects from the left-hand menu.",
+              "Create a new project and give it a name.",
+              "Add files to the project.",
+              "Set project instructions.",
+              "Move existing chats into the project.",
+              "Invite collaborators if sharing is available on your plan."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A ChatGPT account with access to Projects.",
+              "A task that has ongoing context or multiple related files/chats.",
+              "A supported plan if you want to share the project with other people."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "context-compaction"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation",
+            "enterprise-workflows",
+            "context-engineering"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-10",
+          "confidence": 0.89,
+          "evidence_from_source": "The source describes Projects as dedicated spaces that hold chats, files, instructions, and related context in one place, plus shared projects and project-only memory as workspace controls.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "workflow-restructuring",
+            "human-ai-collaboration"
+          ],
+          "related_trends": [
+            "agents-shift-toward-persistent-memory-backed-workflows"
+          ],
+          "secondary_tag": "workflow-restructuring",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Projects hold chats, files, instructions, and related context in one place.",
+            "Project-only memory limits chat context to that project.",
+            "Shared projects let collaborators work from the same files, instructions, and conversation history.",
+            "Enterprise admins can manage shared projects at the workspace level."
+          ],
+          "supporting_snippet": "\"Projects in ChatGPT are dedicated spaces for a specific body of work or area of focus. A project can hold chats, files, instructions, and related context in one place\"",
+          "time_sensitivity": "As of 2026-04-10, this is a product-level pattern that appears established in ChatGPT's guidance; its longevity depends on whether other chat products continue to expand workspace features.",
+          "trend_description": "Chat products increasingly package chats, files, instructions, and history into durable workspaces instead of treating each conversation as isolated. The shift matters because recurring work needs state, not just a sequence of prompts. Persistent workspaces reduce repetition and make multi-session work easier to resume. They also create a cleaner unit for collaboration and access control.",
+          "trend_slug": "chat-products-move-toward-persistent-workspaces",
+          "trend_title": "Chat Products Move Toward Persistent Workspaces",
+          "uncertainty_note": "The source is vendor guidance, so it shows product direction but not adoption scale, user retention, or comparative performance versus simpler chat flows.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f3a43f8b-1178-4b6a-9b18-6d9c81def2f8",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "agents-shift-toward-persistent-memory-backed-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Projects hold chats, files, instructions, and related context in one place.",
+              "Project-only memory limits chat context to that project.",
+              "Shared projects let collaborators work from the same files, instructions, and conversation history.",
+              "Enterprise admins can manage shared projects at the workspace level."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "workflow-restructuring",
+            "human-ai-collaboration"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "vendor_claim",
+        "reasoning": [
+          "The source is an OpenAI blog / Academy page describing OpenAI's own ChatGPT feature.",
+          "Claims about projects, shared projects, and project-only memory are presented as product guidance from the vendor.",
+          "No independent evaluation, benchmark, or external reporting is included."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Projects are most useful when the same context must survive across multiple chats, rather than for one-off questions.",
+          "The practical payoff is reduced repetition: fewer re-uploads of files, fewer repeated instructions, and less searching through past chats.",
+          "Project-only memory creates a bounded workspace by preventing chats in that project from pulling context from outside it.",
+          "Shared projects are designed around common files, instructions, and conversation history, which reduces duplicate copies of the same work.",
+          "Enterprise admins get workspace-level control over shared projects, so access management is part of the feature, not an afterthought."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://openai.com/academy/projects"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent OpenAI Academy article explaining one product feature, not a bundle of unrelated items.",
+          "Structured as explanatory guidance with sections like 'How to create a project' and 'When to use a project'.",
+          "No interview transcript, research methodology, or multi-product roundup structure is present."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "core_capabilities": [
+            "It groups chats, files, instructions, and related context into a dedicated workspace for one body of work.",
+            "It lets users move existing chats into a project so prior work stays attached to the same context.",
+            "It supports collaboration on plans where sharing is available, letting others work from the same project history.",
+            "It allows Enterprise admins to manage shared projects at the workspace level and by group access controls."
+          ],
+          "integration_ecosystem": [
+            "It integrates with the ChatGPT left-hand menu workflow for creating and opening projects.",
+            "It works with project files and project instructions as part of the same workspace context.",
+            "It supports Enterprise workspace administration and role-based access control for shared projects."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "As of 2026-04-10, the feature is presented as part of OpenAI's product guidance rather than as an experimental prototype, and the article includes Enterprise admin controls plus shared-project support. That suggests product maturity in the sense of being ready for organized team use, but the source does not provide adoption data or external validation. The evidence base here is vendor guidance only, so maturity should be treated as practical but not independently verified.",
+          "name": "Projects in ChatGPT",
+          "operational_relevance": "This is useful when work spans multiple sessions and you want one place for source files, instructions, and prior chats. For AI workflows, the main value is context reuse: fewer repeated uploads and fewer repeated prompts across iterative work. It is also relevant for team collaboration when plan-level sharing is available, because the same project history can be shared instead of copied around.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "chat-interface",
+            "memory",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "productivity",
+            "knowledge-management"
+          ],
+          "related_tools": [
+            "ChatGPT"
+          ],
+          "short_description": "A ChatGPT workspace feature that groups chats, files, instructions, and related context into a dedicated space. It is designed to keep a body of work together so later conversations can reuse the same background.",
+          "strengths": "- Keeps chats, files, and instructions in one workspace, which reduces the repetitive setup that slows down multi-session work.\n- Supports moving existing chats into the project, making it easier to consolidate an ongoing thread of work instead of fragmenting it across separate conversations.\n- On supported plans, shared projects let multiple people work from the same materials and history, which reduces duplicate copies and version drift.\n- For Enterprise customers, admin controls at the workspace level make shared-project access more governable in larger organizations.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Projects in ChatGPT are dedicated spaces for a specific body of work or area of focus. A project can hold chats, files, instructions, and related context in one place, so you do not need to restate the same background every time you start a new conversation.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not give independent evidence of quality, reliability, or measurable productivity gains, so the benefits are plausible but not proven here. It also does not specify file limits, retention rules, versioning behavior, or how project context interacts with other memory features. Sharing is plan-dependent, so the collaboration value is not universal across all users."
+        },
+        "notes": null,
+        "proposal_id": "1b39cb00-921d-4cc5-851d-97f6dc0a064b",
+        "proposal_status": "rejected",
+        "sections": {
+          "core_capabilities": {
+            "final_list": [],
+            "llm_list": [
+              "It groups chats, files, instructions, and related context into a dedicated workspace for one body of work.",
+              "It lets users move existing chats into a project so prior work stays attached to the same context.",
+              "It supports collaboration on plans where sharing is available, letting others work from the same project history.",
+              "It allows Enterprise admins to manage shared projects at the workspace level and by group access controls."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "integration_ecosystem": {
+            "final_list": [],
+            "llm_list": [
+              "It integrates with the ChatGPT left-hand menu workflow for creating and opening projects.",
+              "It works with project files and project instructions as part of the same workspace context.",
+              "It supports Enterprise workspace administration and role-based access control for shared projects."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "maturity_signals": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "name": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_relevance": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "ChatGPT"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "strengths": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "chat-interface",
+            "memory",
+            "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "productivity",
+            "knowledge-management"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A bounded workspace can hold both instructions and history, not just chat text.",
+            "Context reuse reduces repeated uploads and repeated prompt setup.",
+            "Separating work into projects can prevent accidental context bleed across unrelated tasks.",
+            "Shared access changes the workspace from a solo memory aid into a coordination layer."
+          ],
+          "knowledge_summary": "Workspace layering is the practice of separating ongoing work into bounded spaces that carry their own chats, files, instructions, and history. The goal is to reduce context scattering across unrelated conversations and to make it easier to continue a task without rebuilding state. This matters most when work is iterative, shared, or long-running. It also creates a clearer boundary between one project's context and another's, which helps both organization and governance.",
+          "match_candidates": [],
+          "operational_insight": "When a task needs persistent state, the workspace itself becomes part of the system design. Keep the working set close to the chat surface so users do not have to reconstruct context manually in every session.",
+          "primary_tag": "enterprise-workflows",
+          "proposed_tags": [
+            "enterprise-workflows",
+            "context-engineering"
+          ],
+          "related_topics": [
+            "agent-memory-architecture"
+          ],
+          "relevance_note": "This pattern matters for AI systems that support long-running or multi-session work because continuity is often more valuable than a single response. It shows up in research workspaces, drafting systems, service operations, and collaborative agent environments where context reuse lowers friction and improves consistency.",
+          "secondary_tag": "context-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "memory",
+          "suggested_new_tags": [
+            "memory"
+          ],
+          "supporting_snippet": "\"Projects in ChatGPT are dedicated spaces for a specific body of work or area of focus. A project can hold chats, files, instructions, and related context in one place\"",
+          "topic_slug": "agent-workspace-layering",
+          "topic_title": "Agent Workspace Layering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "0aceee7f-2a4a-4397-8259-5d1ae2aa6a64",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A bounded workspace can hold both instructions and history, not just chat text.",
+              "Context reuse reduces repeated uploads and repeated prompt setup.",
+              "Separating work into projects can prevent accidental context bleed across unrelated tasks.",
+              "Shared access changes the workspace from a solo memory aid into a coordination layer."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-memory-architecture"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-workflows",
+            "context-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.87,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Memory boundaries can improve predictability in multi-session work.",
+            "Project-local recall supports continuity without opening the whole account history.",
+            "Isolation is useful for separate client work, sensitive topics, or clean workflow separation.",
+            "The main tradeoff is that cross-project reuse becomes less automatic."
+          ],
+          "knowledge_summary": "Project-scoped memory is a boundary-setting pattern where a workspace can reference its own prior conversations but not draw context from outside it. This makes the working set more predictable and helps keep unrelated conversations from leaking into the task. The pattern is useful when teams want a clean separation between bodies of work or want to limit context exposure. It is especially relevant for structured workflows that need stable context over time.",
+          "match_candidates": [],
+          "operational_insight": "Use scoped memory when you want repeatability and isolation more than global recall. The design tradeoff is less convenience across the whole account in exchange for better separation inside a workstream.",
+          "primary_tag": "context-engineering",
+          "proposed_tags": [
+            "context-engineering",
+            "enterprise-workflows"
+          ],
+          "related_topics": [
+            "agent-memory-architecture",
+            "defensive-context-handling"
+          ],
+          "relevance_note": "This matters for AI engineering because memory boundaries affect both quality and control. A bounded context can reduce accidental contamination across tasks, support cleaner evaluation, and make it easier to reason about what information a chat can access.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "memory",
+          "suggested_new_tags": [
+            "memory"
+          ],
+          "supporting_snippet": "\"With project-only memory, chats can reference other conversations in the same project, but not conversations outside it.\"",
+          "topic_slug": "project-scoped-memory-boundaries",
+          "topic_title": "Project-Scoped Memory Boundaries",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "de62837c-0958-45fb-9bbf-6f966fec8dd0",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Memory boundaries can improve predictability in multi-session work.",
+              "Project-local recall supports continuity without opening the whole account history.",
+              "Isolation is useful for separate client work, sensitive topics, or clean workflow separation.",
+              "The main tradeoff is that cross-project reuse becomes less automatic."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-memory-architecture",
+              "defensive-context-handling"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "context-engineering",
+            "enterprise-workflows"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "vendor_claim": 5
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 1,
+    "proposals_total": 5,
+    "review_duration_seconds": 82.4,
+    "review_finished_at": "2026-06-08T19:49:12.418645+00:00",
+    "review_started_at": "2026-06-08T19:47:50+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T19:49:12+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI Blog",
+    "canonical_url": "https://openai.com/academy/projects",
+    "content_sha256": "7dbffc8f29e2486fb7277bb67a90d1a6b477985fb2307eb2ae6cd328a1c3d769",
+    "publication": "OpenAI",
+    "published_date": "2026-04-10",
+    "raw_html_rel_path": "raw/readwise/using-projects-in-chatgpt-01knw8fhqktagvstg6j6xzk4xq.html",
+    "raw_md_rel_path": "raw/readwise/using-projects-in-chatgpt-01knw8fhqktagvstg6j6xzk4xq.md",
+    "source_id": "using-projects-in-chatgpt-01knw8fhqktagvstg6j6xzk4xq",
+    "title": "Using projects in ChatGPT"
+  }
+}

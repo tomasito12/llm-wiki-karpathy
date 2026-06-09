@@ -1,0 +1,670 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T19:42:59+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Doa9j0DenBZsdVmFeuB6vXOO4EnJG",
+          "token_usage": {
+            "completion_tokens": 169,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4166,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4335
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Doa9nB6ApvsuU6ESNcr7RNtM8AsDG",
+          "token_usage": {
+            "completion_tokens": 989,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3749,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4738
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-Doa9xjuExsfT2TzniduvSY1pOYSgJ",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1226,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34041,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 35267
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-Doa9xjuExsfT2TzniduvSY1pOYSgJ",
+    "token_usage": {
+      "completion_tokens": 2384,
+      "prompt_tokens": 41956,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 44340
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 1
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-21",
+        "confidence": 0.89,
+        "evidence_from_source": "The source argues that the next phase of AI agents will be defined by access to a computer-like execution environment and describes micro-containers, sandboxes, browser runtimes, and agent workspaces as the emerging substrate.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "runtime-systems",
+        "proposed_tags": [
+          "runtime-systems"
+        ],
+        "related_trends": [
+          "agent-products-shift-from-models-to-systems",
+          "runtime-centralization"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "agent-systems",
+        "suggested_new_tags": [
+          "agent-systems",
+          "infrastructure"
+        ],
+        "supporting_data_points": [
+          "The article names filesystem, terminal, browser, network, package manager, credentials, memory, and guardrails as needed components.",
+          "It frames micro-containers, sandboxes, browser runtimes, and agent workspaces as the relevant infrastructure categories.",
+          "It explicitly contrasts token-only agents with agents that can execute, inspect, and iterate."
+        ],
+        "supporting_snippet": "\"The emerging market for micro-containers, sandboxes, browser runtimes, and agent workspaces is really the market for giving intelligence a body.\"",
+        "time_sensitivity": "Actionable as of 2026-05-21; the claim is a conceptual direction and should be monitored rather than treated as a measured market conclusion.",
+        "trend_description": "AI systems increasingly derive value from the environment around the model, not from model output alone. The execution layer includes files, terminals, browsers, memory, credentials, and guardrails that let the system act on the world and verify results. This makes infrastructure, isolation, and runtime design more central to practical agent usefulness.",
+        "trend_slug": "models-becoming-execution-layers",
+        "trend_title": "Models Become Execution Layers",
+        "uncertainty_note": "The article offers an architectural thesis, not benchmark evidence. It does not show that execution access always dominates model quality, planning, or orchestration quality, so the shift should be treated as plausible but not proven.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece is a Substack opinion article advancing the author's architectural thesis.",
+        "Claims are framed as interpretation and prediction, not as measured results or formal experiments.",
+        "No external data, benchmarks, or implementation case evidence is provided in the text."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says an AI agent is much more useful if it can actually use a computer. A text-only model can think and talk, but it cannot do the messy work of reading files, running commands, fixing errors, or checking results. The author\u2019s point is that those abilities need a safe workspace, like a container or sandbox, not just a better prompt or longer context window. In plain terms, the article is about giving agents hands and feet, not just a brain. That makes the infrastructure around the model as important as the model itself. As of 2026-05-21, this is a conceptual argument worth monitoring rather than a measured claim.",
+      "assessed_as_of": "2026-05-21",
+      "contradictions_and_skepticism": "The article presents a strong architectural thesis, but it is still a thesis. It assumes that giving agents broader computer access is the main missing ingredient, without showing that model quality, planning, or tool orchestration are not equally limiting. The phrase that this is the market for 'giving intelligence a body' is evocative, but it is metaphorical rather than evidence-based. The argument also compresses a wide range of infrastructure options into one direction, when the right level of access may vary by task and risk profile.",
+      "key_insights": [
+        "The article\u2019s main architectural claim is that agent capability depends on access to a real execution environment, not only on better model behavior.",
+        "A useful agent is described as needing a filesystem, terminal, browser, network, package manager, credentials, memory, and guardrails in one isolated workspace.",
+        "The author treats micro-containers, sandboxes, browser runtimes, and agent workspaces as the practical substrate for agent reliability and iteration.",
+        "Token generation alone is framed as insufficient because agents must be able to inspect outputs, recover from errors, and loop through execution-feedback cycles.",
+        "The piece is a thesis statement, not evidence; its value is in clarifying the infrastructure layer to design for, not in proving it experimentally."
+      ],
+      "limitations_and_open_questions": "The piece does not provide benchmarks, comparative systems, safety analysis, or implementation details for the proposed computer-like agent environment. It does not explain how to isolate credentials, prevent harmful side effects, or evaluate whether the environment materially improves task success. The claims about micro-containers, sandboxes, and browser runtimes are plausible but unsupported in the text by experiments or case studies. Economics are also absent: there is no discussion of cost, latency, or operational overhead for giving every agent a programmable workspace. The article leaves open which tasks truly require full computer access versus lighter tool use.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-opinion-864-every-ai"
+      ],
+      "summary": "The article argues that the next phase of AI agents will be defined less by model quality and more by whether the agent has access to a real computer-like execution environment. The author contrasts a token-only agent with an agent that can use a filesystem, terminal, browser, network access, package manager, credentials, memory, and guardrails, framing the latter as a worker rather than a disembodied model. The core claim is architectural: serious agents need a safe, isolated, programmable workspace where they can write code, run commands, inspect outputs, manipulate files, browse the web, recover from errors, and iterate. The piece treats micro-containers, sandboxes, browser runtimes, and agent workspaces as the infrastructure layer that gives intelligence a practical body. It is an opinion piece rather than an empirical report, so the evidence is conceptual and rhetorical rather than measured.",
+      "why_it_matters": "The article is useful because it compresses a design principle that advanced AI builders can apply directly: if an agent must do real work, the model must be embedded in a controlled computer-like environment, not left as a pure text generator. That changes how to think about agent stacks, because the important unit is not just prompting or tool calling, but the full execution surface the agent can safely use. The specific capabilities named in the piece\u2014filesystem access, terminal commands, browsing, package installation, credentials, memory, and guardrails\u2014provide a concrete checklist for evaluating whether an agent can actually complete tasks rather than only propose them. The emphasis on iteration and error recovery is also practical, because these are the feedback loops that let software agents behave like operators instead of chatbots. The article\u2019s framing is especially durable as a conceptual lens as of 2026-05-21, but it remains an opinionated architectural argument rather than a benchmarked demonstration, so it is best treated as a design direction to test rather than a settled result. The service automation implication is indirect here: if an agent has a safe workspace, it can support back-office or support workflows more reliably, but the article itself does not discuss those applications in detail."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion piece with one central thesis about agent infrastructure.",
+        "No numbered list, roundup structure, or interview dialogue.",
+        "The article argues a strategic interpretation rather than presenting a tutorial, benchmark, or research report."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A serious agent needs a filesystem, terminal, browser, network access, package manager, credentials, memory, and guardrails.",
+          "The runtime must be safe and isolated so the agent can act without uncontrolled side effects.",
+          "Iteration and error recovery are first-class parts of the architecture, not incidental behavior.",
+          "Micro-containers, sandboxes, browser runtimes, and agent workspaces are presented as the practical substrate for this design."
+        ],
+        "knowledge_summary": "Agent systems often need a controlled execution environment, not just a language interface. The useful unit is the workspace around the model: files, commands, browsing, network access, credentials, memory, and guardrails that let the agent act, inspect results, and recover from errors. This shifts agent design away from pure token generation toward a real operating surface where tasks can be completed through iterative feedback loops. The architecture matters because it determines whether an agent can behave like a worker or only like a responder.",
+        "match_candidates": [],
+        "operational_insight": "Design agents around a safe, isolated runtime that can execute code, inspect outputs, manipulate files, and retry after failures. Treat the execution environment as part of the product, not as an optional add-on to the model.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "runtime-systems",
+          "infrastructure"
+        ],
+        "related_topics": [
+          "agent-runtime-architecture-for-voice",
+          "agent-workspace-layering"
+        ],
+        "relevance_note": "This matters for AI engineering because many useful agent behaviors depend on the runtime contract, not just model quality. Service automation systems, coding agents, and back-office assistants all become more reliable when they can execute in an isolated workspace with clear boundaries and recovery paths.",
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"An agent that can only emit tokens is a brilliant brain in a jar; an agent with a filesystem, terminal, browser, network, package manager, credentials, memory, and guardrails becomes a worker inside a real execution environment.\"",
+        "topic_slug": "agent-runtime-architecture",
+        "topic_title": "Agent Runtime Architecture",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A programmable workspace is better suited to agent work than token-only interaction.",
+          "Safe isolation is important because agents need to execute actions, not only suggest them.",
+          "The execution layer is where error recovery and iteration happen.",
+          "The pattern maps directly to micro-containers, sandboxes, and agent workspaces."
+        ],
+        "knowledge_summary": "Some agent workloads need their own programmable execution space rather than a purely remote or chat-based interface. A self-hosted or isolated execution layer gives the agent access to files, commands, browsers, and local state while keeping control boundaries explicit. This pattern is useful when agents must run code, manipulate artifacts, or recover from errors inside a constrained environment. It also creates a cleaner place to apply guardrails and operational controls.",
+        "match_candidates": [],
+        "operational_insight": "When agents must do real work, place execution inside a controlled workspace that can be inspected, sandboxed, and governed. That makes debugging, safety, and repeatability much easier than relying on ad hoc tool calls alone.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "runtime-systems",
+          "infrastructure"
+        ],
+        "related_topics": [
+          "agent-runtime-architecture"
+        ],
+        "relevance_note": "This is operationally important for AI systems that touch files, credentials, or business workflows. It gives teams a concrete deployment boundary for support automation, coding assistants, and other agentic systems that need controlled execution rather than open-ended model output.",
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"It needs a safe, isolated, programmable space where it can write code, run commands, inspect outputs, manipulate files, browse the web, recover from errors, and iterate through the same feedback loops that make software useful.\"",
+        "topic_slug": "self-hosted-agent-execution",
+        "topic_title": "Self-Hosted Agent Execution",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-21",
+          "confidence": 0.89,
+          "evidence_from_source": "The source argues that the next phase of AI agents will be defined by access to a computer-like execution environment and describes micro-containers, sandboxes, browser runtimes, and agent workspaces as the emerging substrate.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "runtime-systems",
+          "proposed_tags": [
+            "runtime-systems"
+          ],
+          "related_trends": [
+            "agent-products-shift-from-models-to-systems",
+            "runtime-centralization"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "agent-systems",
+          "suggested_new_tags": [
+            "agent-systems",
+            "infrastructure"
+          ],
+          "supporting_data_points": [
+            "The article names filesystem, terminal, browser, network, package manager, credentials, memory, and guardrails as needed components.",
+            "It frames micro-containers, sandboxes, browser runtimes, and agent workspaces as the relevant infrastructure categories.",
+            "It explicitly contrasts token-only agents with agents that can execute, inspect, and iterate."
+          ],
+          "supporting_snippet": "\"The emerging market for micro-containers, sandboxes, browser runtimes, and agent workspaces is really the market for giving intelligence a body.\"",
+          "time_sensitivity": "Actionable as of 2026-05-21; the claim is a conceptual direction and should be monitored rather than treated as a measured market conclusion.",
+          "trend_description": "AI systems increasingly derive value from the environment around the model, not from model output alone. The execution layer includes files, terminals, browsers, memory, credentials, and guardrails that let the system act on the world and verify results. This makes infrastructure, isolation, and runtime design more central to practical agent usefulness.",
+          "trend_slug": "models-becoming-execution-layers",
+          "trend_title": "Models Become Execution Layers",
+          "uncertainty_note": "The article offers an architectural thesis, not benchmark evidence. It does not show that execution access always dominates model quality, planning, or orchestration quality, so the shift should be treated as plausible but not proven.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ebeb5682-5497-493a-9056-87cd74b46029",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "agent-products-shift-from-models-to-systems",
+              "runtime-centralization"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": [],
+            "llm_list": [
+              "The article names filesystem, terminal, browser, network, package manager, credentials, memory, and guardrails as needed components.",
+              "It frames micro-containers, sandboxes, browser runtimes, and agent workspaces as the relevant infrastructure categories.",
+              "It explicitly contrasts token-only agents with agents that can execute, inspect, and iterate."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_description": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_slug": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "trend_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "uncertainty_note": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "runtime-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece is a Substack opinion article advancing the author's architectural thesis.",
+          "Claims are framed as interpretation and prediction, not as measured results or formal experiments.",
+          "No external data, benchmarks, or implementation case evidence is provided in the text."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The article\u2019s main architectural claim is that agent capability depends on access to a real execution environment, not only on better model behavior.",
+          "A useful agent is described as needing a filesystem, terminal, browser, network, package manager, credentials, memory, and guardrails in one isolated workspace.",
+          "The author treats micro-containers, sandboxes, browser runtimes, and agent workspaces as the practical substrate for agent reliability and iteration.",
+          "Token generation alone is framed as insufficient because agents must be able to inspect outputs, recover from errors, and loop through execution-feedback cycles.",
+          "The piece is a thesis statement, not evidence; its value is in clarifying the infrastructure layer to design for, not in proving it experimentally."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-opinion-864-every-ai"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion piece with one central thesis about agent infrastructure.",
+          "No numbered list, roundup structure, or interview dialogue.",
+          "The article argues a strategic interpretation rather than presenting a tutorial, benchmark, or research report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A serious agent needs a filesystem, terminal, browser, network access, package manager, credentials, memory, and guardrails.",
+            "The runtime must be safe and isolated so the agent can act without uncontrolled side effects.",
+            "Iteration and error recovery are first-class parts of the architecture, not incidental behavior.",
+            "Micro-containers, sandboxes, browser runtimes, and agent workspaces are presented as the practical substrate for this design."
+          ],
+          "knowledge_summary": "Agent systems often need a controlled execution environment, not just a language interface. The useful unit is the workspace around the model: files, commands, browsing, network access, credentials, memory, and guardrails that let the agent act, inspect results, and recover from errors. This shifts agent design away from pure token generation toward a real operating surface where tasks can be completed through iterative feedback loops. The architecture matters because it determines whether an agent can behave like a worker or only like a responder.",
+          "match_candidates": [],
+          "operational_insight": "Design agents around a safe, isolated runtime that can execute code, inspect outputs, manipulate files, and retry after failures. Treat the execution environment as part of the product, not as an optional add-on to the model.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "runtime-systems",
+            "infrastructure"
+          ],
+          "related_topics": [
+            "agent-runtime-architecture-for-voice",
+            "agent-workspace-layering"
+          ],
+          "relevance_note": "This matters for AI engineering because many useful agent behaviors depend on the runtime contract, not just model quality. Service automation systems, coding agents, and back-office assistants all become more reliable when they can execute in an isolated workspace with clear boundaries and recovery paths.",
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"An agent that can only emit tokens is a brilliant brain in a jar; an agent with a filesystem, terminal, browser, network, package manager, credentials, memory, and guardrails becomes a worker inside a real execution environment.\"",
+          "topic_slug": "agent-runtime-architecture",
+          "topic_title": "Agent Runtime Architecture",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "97a60653-750e-4ca7-8828-04f3b53a3e42",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A serious agent needs a filesystem, terminal, browser, network access, package manager, credentials, memory, and guardrails.",
+              "The runtime must be safe and isolated so the agent can act without uncontrolled side effects.",
+              "Iteration and error recovery are first-class parts of the architecture, not incidental behavior.",
+              "Micro-containers, sandboxes, browser runtimes, and agent workspaces are presented as the practical substrate for this design."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-runtime-architecture-for-voice",
+              "agent-workspace-layering"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "runtime-systems",
+            "infrastructure"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A programmable workspace is better suited to agent work than token-only interaction.",
+            "Safe isolation is important because agents need to execute actions, not only suggest them.",
+            "The execution layer is where error recovery and iteration happen.",
+            "The pattern maps directly to micro-containers, sandboxes, and agent workspaces."
+          ],
+          "knowledge_summary": "Some agent workloads need their own programmable execution space rather than a purely remote or chat-based interface. A self-hosted or isolated execution layer gives the agent access to files, commands, browsers, and local state while keeping control boundaries explicit. This pattern is useful when agents must run code, manipulate artifacts, or recover from errors inside a constrained environment. It also creates a cleaner place to apply guardrails and operational controls.",
+          "match_candidates": [],
+          "operational_insight": "When agents must do real work, place execution inside a controlled workspace that can be inspected, sandboxed, and governed. That makes debugging, safety, and repeatability much easier than relying on ad hoc tool calls alone.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "runtime-systems",
+            "infrastructure"
+          ],
+          "related_topics": [
+            "agent-runtime-architecture"
+          ],
+          "relevance_note": "This is operationally important for AI systems that touch files, credentials, or business workflows. It gives teams a concrete deployment boundary for support automation, coding assistants, and other agentic systems that need controlled execution rather than open-ended model output.",
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"It needs a safe, isolated, programmable space where it can write code, run commands, inspect outputs, manipulate files, browse the web, recover from errors, and iterate through the same feedback loops that make software useful.\"",
+          "topic_slug": "self-hosted-agent-execution",
+          "topic_title": "Self-Hosted Agent Execution",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f1369e8e-9280-4704-9552-ce5ff5b19911",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A programmable workspace is better suited to agent work than token-only interaction.",
+              "Safe isolation is important because agents need to execute actions, not only suggest them.",
+              "The execution layer is where error recovery and iteration happen.",
+              "The pattern maps directly to micro-containers, sandboxes, and agent workspaces."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-runtime-architecture"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "runtime-systems",
+            "infrastructure"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 3
+    },
+    "fields_modified": 0,
+    "proposals_approved": 3,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 3,
+    "review_duration_seconds": 74.0,
+    "review_finished_at": "2026-06-08T19:44:13.016998+00:00",
+    "review_started_at": "2026-06-08T19:42:59+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T19:44:13+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-opinion-864-every-ai",
+    "content_sha256": "473872b1eb74d8b2026159c7a5516103a9b71fc66d72acf4ac1c818cc5c54d58",
+    "publication": "substack.com",
+    "published_date": "2026-05-21",
+    "raw_html_rel_path": "raw/readwise/the-sequence-opinion-864-every-ai-agent-needs-a-computer-01ks52k8mh3afy2fnmb57gzhth.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-opinion-864-every-ai-agent-needs-a-computer-01ks52k8mh3afy2fnmb57gzhth.md",
+    "source_id": "the-sequence-opinion-864-every-ai-agent-needs-a-computer-01ks52k8mh3afy2fnmb57gzhth",
+    "title": "The Sequence Opinion #864: Every AI Agent Needs a Computer"
+  }
+}

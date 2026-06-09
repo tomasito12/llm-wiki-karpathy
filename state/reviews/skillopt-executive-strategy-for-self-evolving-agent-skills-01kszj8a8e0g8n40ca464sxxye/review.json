@@ -1,0 +1,533 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-08T19:44:46+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DoaBTWBn82hzF7h5nfKJ61tySg3gw",
+          "token_usage": {
+            "completion_tokens": 205,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 27493,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 27698
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DoaBWsVfi8rAm2pgUM2h25W9tMVxA",
+          "token_usage": {
+            "completion_tokens": 1134,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 27115,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 28249
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-research_paper_or_report",
+          "request_id": "chatcmpl-DoaBixUKhafiJuzSmyRoWZNeN1PMH",
+          "route": "research_paper_or_report",
+          "token_usage": {
+            "completion_tokens": 912,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 57551,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 58463
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DoaBixUKhafiJuzSmyRoWZNeN1PMH",
+    "token_usage": {
+      "completion_tokens": 2251,
+      "prompt_tokens": 112159,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 114410
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "research_result",
+      "reasoning": [
+        "The central claims are backed by experimental results across six benchmarks, seven target models, and three execution harnesses.",
+        "The paper includes ablation studies, transfer studies, and quantitative comparisons against baselines.",
+        "Method and conclusion sections summarize empirical findings from the reported research artifact."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "SkillOpt is a way to improve an agent by training its instructions, not its weights. A frozen model runs tasks with a skill file, and a separate optimizer rewrites that file in small steps using feedback from past runs. Each candidate change must beat the old skill on held-out examples, so the system behaves more like controlled training than freeform prompt editing. The paper says this produces compact, readable skill documents that can transfer across models and even across different execution harnesses. In plain terms, it is trying to make agent procedures reusable and auditable instead of one-off prompt hacks.",
+      "assessed_as_of": "",
+      "contradictions_and_skepticism": "The strongest claims are empirical and bounded to the reported benchmarks; the paper does not prove that every agent domain benefits from this style of skill training. The comparison set is broad but still limited to the baselines and harnesses studied here, so 'best or tied-best on 52 of 52 cells' should be read in that scope only. The method looks more like disciplined prompt/skill search than a general solution to agent adaptation, especially since it relies on stable evaluators and repeated offline optimization. The transfer results are encouraging, but they do not eliminate the risk that some learned rules are benchmark- or harness-shaped rather than broadly general.",
+      "key_insights": [
+        "Bounded skill edits plus held-out acceptance are the core mechanism; the paper argues this is what makes text-space optimization stable rather than brittle.",
+        "The optimizer keeps failed edits as negative feedback, so rejected proposals still influence later revisions without adding deployment-time cost.",
+        "The slow/meta update is a separate cross-epoch memory for longer-horizon lessons; the deployed skill itself remains compact.",
+        "The strongest gains appear on procedural benchmarks such as spreadsheet work, document QA, and tool-heavy tasks, where rules about formatting, evidence binding, and search discipline matter.",
+        "The learned skills transfer across model scales and across Codex/Claude Code harnesses, which is stronger evidence of reusable procedure than benchmark-specific prompt tuning."
+      ],
+      "limitations_and_open_questions": "The method depends on scored trajectories and a held-out selection split, so it fits best when there is an automatic verifier, exact-match metric, or otherwise reliable feedback signal. The paper notes that open-ended tasks with subjective or costly evaluation may need stronger human or model-based judgment. Training also requires extra rollout computation plus optimizer-model calls, even though deployment is cheap once best_skill.md is exported. The paper focuses on one compact skill per domain, so it may not scale cleanly to heterogeneous domains that need many disjoint procedures. Transfer is positive in the reported cases, but the authors still warn that skills can encode domain-specific heuristics, so moving them to substantially different models or settings still needs careful held-out testing.",
+      "sources": [
+        "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/skillopt-executive-strategy-fo/1293.pdf"
+      ],
+      "summary": "SkillOpt is a text-space optimizer for agent skills: instead of rewriting model weights or hand-editing prompts once, it treats a skill document as a trainable external state for a frozen target model. The system uses an offline optimizer model to analyze rollout trajectories, propose bounded add/delete/replace edits, and accept a candidate skill only if it strictly improves a held-out validation score. That gives the process training-like controls: an edit budget as a textual learning rate, a rejected-edit buffer as negative feedback, and an epoch-level slow/meta update for longer-horizon lessons. The paper evaluates this setup on six benchmarks, seven target models, and three execution harnesses, reporting best-or-tied-best results in all 52 evaluated cells against human-written, one-shot, prompt-optimization, and prior skill-evolution baselines. It also reports cross-model, cross-harness, and cross-benchmark transfer, suggesting the exported skill artifact is reusable beyond the exact training setting. The learned skills stay compact and inspectable, typically under 2,000 tokens and often changing through only 1\u20134 accepted edits.",
+      "why_it_matters": "This paper matters because it proposes a concrete way to treat agent procedure as trainable state, which is a durable abstraction for AI engineering as of the paper's publication date. The key contribution is not just that a model can be prompted differently, but that a skill document can be optimized with explicit controls: batch evidence, edit budgets, validation gating, and rejected-edit memory. That makes the process easier to audit than unconstrained self-revision, and the authors show the resulting artifacts are small enough to inspect and reuse. The evaluation is also broad enough to be operationally interesting: six benchmarks, seven target models, and three harnesses, with gains reported across direct chat, Codex, and Claude Code. The transfer results are especially useful because they suggest the optimized skill is not just a one-off prompt for one model-harness pair. The ablations strengthen the engineering story by showing that the validation gate, bounded edits, and slow/meta update matter more than tweaking batch sizes or the exact schedule. At the same time, the payoff is clearest when there is a reliable scorer and executable feedback, so the method is best read as a controlled optimization recipe for tasks with measurable outcomes. For voice, meetings, or support workflows, the paper does not directly study them, but the procedure is plausibly relevant wherever a reusable, inspectable instruction artifact can steer tool-using agents. Actionable as of the source framing in 2026: promising for benchmarked agent workflows with strong feedback signals, but still something to validate carefully before broad adoption."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "research_paper_or_report",
+      "reasoning": [
+        "This is a formal arXiv paper with abstract, numbered sections, method, experiments, ablations, and conclusion.",
+        "Claims are supported by benchmark tables, transfer experiments, and component ablations rather than by opinion or product marketing.",
+        "The text presents a research contribution ('SkillOpt') and evaluates it systematically across datasets, models, and harnesses."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.98,
+        "evidence_type": null,
+        "examples": "\"a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score.\"",
+        "key_points": [
+          "Treat the skill document as an external state that can be trained.",
+          "Use bounded edits plus validation gating to avoid brittle freeform rewriting.",
+          "Keep deployment cheap by moving optimization offline and exporting a static skill artifact.",
+          "Preserve rejected edits as negative feedback so optimization history is not lost."
+        ],
+        "knowledge_summary": "Agent skills can be treated as trainable external text state rather than static prompts. A separate optimizer can propose bounded edits to the skill document, validate those edits against held-out examples, and keep only changes that improve measured performance. The important operational idea is to optimize the procedure itself while keeping the underlying model frozen, which preserves deployment simplicity and makes the resulting artifact auditable. This pattern is especially useful when teams need reusable procedural guidance that can be inspected, versioned, and transferred across related tasks or harnesses.",
+        "match_candidates": [],
+        "operational_insight": "Use the skill document as the optimization target when the goal is to improve agent behavior without changing model weights. The durable value is not the specific edit format, but the training loop: collect rollout evidence, propose constrained changes, validate on held-out data, and export only the best accepted skill.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "agent-orchestration",
+          "optimization-effects"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows",
+          "procedural-knowledge-for-agents"
+        ],
+        "relevance_note": "This matters for AI engineering because many production agent systems need behavior improvements that are easier to audit than weight updates. The pattern creates a reusable control point for procedural adaptation in tool-using agents, support automation, and other workflow-bound systems.",
+        "secondary_tag": "agent-orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"SkillOpt is, to our knowledge, the first systematic controllable text-space optimizer for agent skills: a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score.\"",
+        "topic_slug": "agent-skill-optimization",
+        "topic_title": "Agent Skill Optimization",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "\"the skill should instead be trained as the external state of a frozen agent\" and \"a held-out gate accepts only edits that improve validation performance.\"",
+        "key_points": [
+          "A textual learning-rate budget constrains update size.",
+          "Held-out gating turns reflection into propose-and-test optimization.",
+          "Rejected edits are retained as future training signal rather than discarded.",
+          "The approach is designed to prevent harmful drift from uncontrolled rewriting."
+        ],
+        "knowledge_summary": "A text-based agent update is more stable when each revision is capped by an edit budget and accepted only if it beats the current version on held-out evaluation. This replaces unbounded prompt rewriting with a controlled update process that behaves more like training than ad hoc editing. The edit budget limits how far a skill can move in one step, while the validation gate prevents plausible but harmful edits from being shipped. Rejected edits can still be stored and used as negative feedback in later rounds, which makes the loop more robust over time.",
+        "match_candidates": [],
+        "operational_insight": "When prompt or skill changes have real downstream cost, use a hard budget and a held-out accept/reject check rather than letting the optimizer rewrite the whole artifact. This keeps the system auditable and reduces regressions from overfitting to one bad rollout batch.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "test-and-verification",
+          "context-engineering"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "This is broadly useful in AI engineering wherever instructions are deployed as durable artifacts. It maps cleanly to agent prompts, skill files, and other text-based control layers that need versioned, reviewable updates.",
+        "secondary_tag": "test-and-verification",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"SkillOpt supports constant, linear, cosine, and autonomous schedules. The default cosine schedule starts with larger edits and decays toward smaller consolidation steps.\"",
+        "topic_slug": "bounded-text-updates-with-validation-gates",
+        "topic_title": "Bounded Text Updates With Validation Gates",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "research_result",
+        "reasoning": [
+          "The central claims are backed by experimental results across six benchmarks, seven target models, and three execution harnesses.",
+          "The paper includes ablation studies, transfer studies, and quantitative comparisons against baselines.",
+          "Method and conclusion sections summarize empirical findings from the reported research artifact."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Bounded skill edits plus held-out acceptance are the core mechanism; the paper argues this is what makes text-space optimization stable rather than brittle.",
+          "The optimizer keeps failed edits as negative feedback, so rejected proposals still influence later revisions without adding deployment-time cost.",
+          "The slow/meta update is a separate cross-epoch memory for longer-horizon lessons; the deployed skill itself remains compact.",
+          "The strongest gains appear on procedural benchmarks such as spreadsheet work, document QA, and tool-heavy tasks, where rules about formatting, evidence binding, and search discipline matter.",
+          "The learned skills transfer across model scales and across Codex/Claude Code harnesses, which is stronger evidence of reusable procedure than benchmark-specific prompt tuning."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/skillopt-executive-strategy-fo/1293.pdf"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "research_paper_or_report",
+        "reasoning": [
+          "This is a formal arXiv paper with abstract, numbered sections, method, experiments, ablations, and conclusion.",
+          "Claims are supported by benchmark tables, transfer experiments, and component ablations rather than by opinion or product marketing.",
+          "The text presents a research contribution ('SkillOpt') and evaluates it systematically across datasets, models, and harnesses."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.98,
+          "evidence_type": null,
+          "examples": "\"a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score.\"",
+          "key_points": [
+            "Treat the skill document as an external state that can be trained.",
+            "Use bounded edits plus validation gating to avoid brittle freeform rewriting.",
+            "Keep deployment cheap by moving optimization offline and exporting a static skill artifact.",
+            "Preserve rejected edits as negative feedback so optimization history is not lost."
+          ],
+          "knowledge_summary": "Agent skills can be treated as trainable external text state rather than static prompts. A separate optimizer can propose bounded edits to the skill document, validate those edits against held-out examples, and keep only changes that improve measured performance. The important operational idea is to optimize the procedure itself while keeping the underlying model frozen, which preserves deployment simplicity and makes the resulting artifact auditable. This pattern is especially useful when teams need reusable procedural guidance that can be inspected, versioned, and transferred across related tasks or harnesses.",
+          "match_candidates": [],
+          "operational_insight": "Use the skill document as the optimization target when the goal is to improve agent behavior without changing model weights. The durable value is not the specific edit format, but the training loop: collect rollout evidence, propose constrained changes, validate on held-out data, and export only the best accepted skill.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "optimization-effects"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows",
+            "procedural-knowledge-for-agents"
+          ],
+          "relevance_note": "This matters for AI engineering because many production agent systems need behavior improvements that are easier to audit than weight updates. The pattern creates a reusable control point for procedural adaptation in tool-using agents, support automation, and other workflow-bound systems.",
+          "secondary_tag": "agent-orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"SkillOpt is, to our knowledge, the first systematic controllable text-space optimizer for agent skills: a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score.\"",
+          "topic_slug": "agent-skill-optimization",
+          "topic_title": "Agent Skill Optimization",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "bcae3f99-9a02-43cb-b196-e39a3ba419e7",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Treat the skill document as an external state that can be trained.",
+              "Use bounded edits plus validation gating to avoid brittle freeform rewriting.",
+              "Keep deployment cheap by moving optimization offline and exporting a static skill artifact.",
+              "Preserve rejected edits as negative feedback so optimization history is not lost."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows",
+              "procedural-knowledge-for-agents"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "optimization-effects"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "\"the skill should instead be trained as the external state of a frozen agent\" and \"a held-out gate accepts only edits that improve validation performance.\"",
+          "key_points": [
+            "A textual learning-rate budget constrains update size.",
+            "Held-out gating turns reflection into propose-and-test optimization.",
+            "Rejected edits are retained as future training signal rather than discarded.",
+            "The approach is designed to prevent harmful drift from uncontrolled rewriting."
+          ],
+          "knowledge_summary": "A text-based agent update is more stable when each revision is capped by an edit budget and accepted only if it beats the current version on held-out evaluation. This replaces unbounded prompt rewriting with a controlled update process that behaves more like training than ad hoc editing. The edit budget limits how far a skill can move in one step, while the validation gate prevents plausible but harmful edits from being shipped. Rejected edits can still be stored and used as negative feedback in later rounds, which makes the loop more robust over time.",
+          "match_candidates": [],
+          "operational_insight": "When prompt or skill changes have real downstream cost, use a hard budget and a held-out accept/reject check rather than letting the optimizer rewrite the whole artifact. This keeps the system auditable and reduces regressions from overfitting to one bad rollout batch.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "test-and-verification",
+            "context-engineering"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "This is broadly useful in AI engineering wherever instructions are deployed as durable artifacts. It maps cleanly to agent prompts, skill files, and other text-based control layers that need versioned, reviewable updates.",
+          "secondary_tag": "test-and-verification",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"SkillOpt supports constant, linear, cosine, and autonomous schedules. The default cosine schedule starts with larger edits and decays toward smaller consolidation steps.\"",
+          "topic_slug": "bounded-text-updates-with-validation-gates",
+          "topic_title": "Bounded Text Updates With Validation Gates",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f9abb476-6775-4ce9-97fa-d2b7832e6036",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "key_points": {
+            "final_list": [],
+            "llm_list": [
+              "A textual learning-rate budget constrains update size.",
+              "Held-out gating turns reflection into propose-and-test optimization.",
+              "Rejected edits are retained as future training signal rather than discarded.",
+              "The approach is designed to prevent harmful drift from uncontrolled rewriting."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "knowledge_summary": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_insight": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "related_topics": {
+            "final_list": [],
+            "llm_list": [
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "relevance_note": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "topic_title": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "test-and-verification",
+            "context-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "research_result": 2
+    },
+    "fields_modified": 0,
+    "proposals_approved": 2,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 2,
+    "review_duration_seconds": 147.5,
+    "review_finished_at": "2026-06-08T19:47:13.504428+00:00",
+    "review_started_at": "2026-06-08T19:44:46+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-08T19:47:13+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Yifan Yang, Ziyang Gong, Weiquan Huang, Qihao Yang, Ziwei Zhou, Zisu Huang, Yan Li, Xuemei Gao, Qi Dai, Bei Liu, Kai Qiu, Yuqing Yang, Dongdong Chen, Xue Yang, Chong Luo",
+    "canonical_url": "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/skillopt-executive-strategy-fo/1293.pdf",
+    "content_sha256": "d9b29c1c7fbbcf12e94d278d6b69f13d319e9ad798066fccf71a61ffc6ddcfd5",
+    "publication": "arXiv.org",
+    "published_date": null,
+    "raw_html_rel_path": "raw/readwise/skillopt-executive-strategy-for-self-evolving-agent-skills-01kszj8a8e0g8n40ca464sxxye.html",
+    "raw_md_rel_path": "raw/readwise/skillopt-executive-strategy-for-self-evolving-agent-skills-01kszj8a8e0g8n40ca464sxxye.md",
+    "source_id": "skillopt-executive-strategy-for-self-evolving-agent-skills-01kszj8a8e0g8n40ca464sxxye",
+    "title": "Skillopt: Executive Strategy For Self-Evolving Agent Skills"
+  }
+}

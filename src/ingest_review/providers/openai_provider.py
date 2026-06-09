@@ -907,52 +907,33 @@ Follow TAG_ONTOLOGY_RUBRIC."""
 GLOSSARY_RUBRIC = """\
 ## glossary (array of objects — glossary term proposals)
 
-GLOSSARY-WORTHINESS GATE — before proposing any term, ALL must be true:
-1. Would this term deserve a standalone glossary entry in ANY future article?
-2. Is it an established industry term (not article-specific jargon)?
-3. Is it reusable across multiple AI engineering contexts?
-4. Does the source provide enough depth for a useful definition?
-5. Is it NOT merely a supporting term mentioned in passing?
-If any answer is "no", do NOT propose it. Prefer 1-2 high-value terms \
-over 5+ marginal ones.
+Glossary is the learning/reference layer. Propose a term when a technically curious \
+AI practitioner would ask "What does this mean?" and the source gives enough context \
+to answer clearly.
 
-GLOSSARY HARD EXCLUSIONS — do NOT extract glossary entries for:
-- **Generic business vocabulary** — e.g. knowledge management, flywheel, ecosystem, \
-platform strategy, innovation loop, transformation journey, management terminology
-- **Generic software terms** — e.g. passkey, API, database, authentication (unless the \
-source teaches a genuinely new operational framing for AI systems)
-- **Mature web standards** — e.g. WCAG, HTTP, OAuth (dictionary-level; omit unless the \
-source adds genuinely new AI-chatbot or service-automation operational framing)
-- **Basic AI terminology** — e.g. LLM, prompt, RAG, fine-tuning (widely known; omit \
-unless the source reframes them operationally for this wiki)
-- **Widely known concepts** — e.g. benchmark, evaluation in the generic sense (omit \
-unless the source adds genuinely new operational framing beyond a textbook definition)
+GLOSSARY INCLUSION GATE — propose when ALL are true:
+1. The term is AI-related, technical, operational, architectural, infrastructure, \
+evaluation, security, standards, or governance vocabulary.
+2. The source defines, explains, contrasts, exemplifies, or meaningfully teaches the term.
+3. The definition can stand alone outside the article.
+4. The entry would help a practitioner understand this or future AI/technical writing.
 
-**Named negatives (default omit):** Benchmark, Knowledge Management, Passkey, WCAG — \
-only propose if the source teaches operationally distinctive AI-engineering usage you \
-could not get from a dictionary, standard doc, or common practitioner knowledge.
+Common terms are allowed when the source teaches them usefully; do not auto-exclude \
+RAG, fine-tuning, benchmark, passkey, WCAG, API, authentication, or similar terms. \
+For dense technical sources, several glossary entries are OK; for conceptual/business \
+sources, 0-2 may be enough.
 
-Glossary entries should feel:
-- **Ontology-worthy** — a stable wiki primitive, not article vocabulary
-- **Reusable across many future sources** — not one-article context
-- **Operationally differentiating** — changes how a practitioner designs, evaluates, or \
-operates AI systems
+Exclude only when the term is merely name-dropped, generic business language, a vendor \
+slogan, too broad to define (AI, software, data, cloud, automation), article-specific \
+framing, author-coined jargon without independent meaning, or a procedure better suited \
+to how_to/topics.
 
-Criteria 1–5 still apply; if any is "no" **or** a hard exclusion matches, omit the term.
-
-CRITICAL: Only propose ESTABLISHED industry terms that already exist in \
-professional usage and are verifiable via a web search. Do NOT propose \
-neologisms coined by the article author, ad-hoc phrases, or terms invented \
-for this specific article. If in doubt, omit the term.
-
-GLOSSARY EXTRACTION BOUNDARIES — see GLOSSARY HARD EXCLUSIONS above. The glossary is \
-not a dictionary of common terms; it is for durable conceptual primitives and recurring \
-operational AI concepts only. Do NOT propose marketing abstractions, temporary framing, \
-product slogans, or company-specific narratives.
-
-Apply ABSTRACTION_SELECTION_RUBRIC before proposing any term. Glossary is the \
-**last** choice for durable knowledge, not the default — use only for narrow \
-established primitives after layer selection.
+Layer boundary:
+- glossary: explains a named term/acronym/protocol/concept (Model Context Protocol, \
+Mixture of Experts, KV cache, passkey, ARIA live region)
+- topics: broad operational domains that accumulate lessons (Agent Runtime Architecture, \
+Context Engineering, Harness Engineering, Local Model Deployment)
+- trends/signals: directional change or source-specific evidence, not term definitions
 
 Page matching: reuse an existing ``term`` from CANONICAL_GLOSSARY_TERMS / EXISTING_GLOSSARY_TERMS \
 **only** on a strong page match (PAGE_MATCHING_RUBRIC). Weakly related concepts belong in \
