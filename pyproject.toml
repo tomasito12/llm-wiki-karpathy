@@ -13,6 +13,7 @@ dependencies = [
   "beautifulsoup4>=4.12.0",
   "httpx>=0.28.0",
   "openai>=1.59.0",
+  "playwright>=1.49.0",
   "pydantic>=2.10.0",
   "python-dotenv>=1.0.0",
   "pyyaml>=6.0.0",
@@ -51,6 +52,9 @@ ingest-queue = [
 ]
 ingest-preanalyze = [
   "python -m src.ingest_batch.cli {args}",
+]
+medium-to-readwise = [
+  "python -m src.medium_to_readwise.cli {args}",
 ]
 readwise-dedupe = [
   "python -m src.readwise.dedupe_cli {args}",

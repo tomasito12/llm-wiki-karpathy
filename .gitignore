@@ -30,6 +30,7 @@ htmlcov/
 
 # Local-only data (large / machine-specific; not committed)
 raw/**
+state/medium_to_readwise/**
 state/readwise_library.json
 state/review_feedback.sqlite
 

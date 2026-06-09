@@ -1,0 +1,835 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-09T15:41:09+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DospHXfhgKhoG35b0HvryTEDItR0i",
+          "token_usage": {
+            "completion_tokens": 209,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4329,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4538
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DospKu54WnUhAQjPaNZNhZyflPNYf",
+          "token_usage": {
+            "completion_tokens": 959,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3952,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4911
+          }
+        },
+        {
+          "cache_hit_rate": 0.9760754409453403,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DosrQ7F5CvcptXWfOl40NH2QJd5Wc",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1750,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 34358,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 33536
+            },
+            "total_tokens": 36108
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DosrQ7F5CvcptXWfOl40NH2QJd5Wc",
+    "token_usage": {
+      "completion_tokens": 2918,
+      "prompt_tokens": 42639,
+      "prompt_tokens_details": {
+        "cached_tokens": 33536
+      },
+      "total_tokens": 45557
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The source contrasts Mercury with LLaDA by implying Mercury is less about scientific proof and more about commercial utility.",
+          "The source places Mercury alongside Gemini Diffusion as part of the field conversation, but does not supply direct head-to-head comparisons."
+        ],
+        "confidence": 0.55,
+        "core_capabilities": [
+          "The model is positioned as a diffusion-based text generator that updates many positions iteratively instead of predicting the next token only.",
+          "The source credits it with a commercial speed advantage, which suggests latency or throughput properties that matter for production use."
+        ],
+        "deployment_implications": "If the source framing is correct, a diffusion-based text model like Mercury could change generation workflows by allowing parallel updates across many positions and revisiting outputs during decoding. The excerpt does not supply enough evidence to quantify latency, cost, or integration tradeoffs, so this should be treated as an emerging architecture to monitor as of 2026-05-26 rather than a deployment recipe.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The article treats Mercury as evidence of industrial deployment rather than a purely academic prototype. That said, the excerpt gives no release details, customer references, or adoption metrics, so maturity is only lightly evidenced as of 2026-05-26.",
+        "model_name": "Mercury",
+        "operational_profile": "Mercury is presented as a text diffusion system that turns generation into iterative denoising over an entire sequence rather than left-to-right token emission. The source frames it as the example that made diffusion look commercially viable by showing a speed advantage, but it does not provide the underlying mechanism, benchmark details, or deployment setup in the excerpt.",
+        "pricing_inference_implications": "The source implies a speed advantage, which could matter for inference economics, but it gives no actual cost figures or throughput data. Any pricing inference remains speculative based on the excerpt alone.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "proprietary-model",
+          "frontier-model"
+        ],
+        "proposed_types": [
+          "proprietary-model"
+        ],
+        "provider": "",
+        "related_models": [
+          "LLaDA",
+          "Gemini Diffusion"
+        ],
+        "service_automation_implications": "Potentially relevant to service automation if the promised speed advantage holds, because faster iterative refinement could support lower-latency text generation loops. The source does not show any customer-support, voice, or workflow-automation deployment details, so no direct service automation conclusion is supported.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cMercury, which turned diffusion into a genuine commercial speed advantage\u201d",
+        "value_level": "medium",
+        "weaknesses_limitations": "The excerpt gives no benchmark numbers, task coverage, context-length data, or failure modes, so the claimed commercial speed advantage is not auditable here. It also does not explain how Mercury handles long-form coherence, controllability, or compute cost at scale."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-26",
+        "confidence": 0.84,
+        "evidence_from_source": "The source explicitly says text diffusion models challenge the long-standing assumption that text must be produced one token at a time from left to right, and it presents three named systems as reference points for the paradigm.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "ai-research",
+        "proposed_tags": [
+          "ai-research",
+          "model-behavior"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "secondary_tag": "model-behavior",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "frontier-ai",
+        "suggested_new_tags": [
+          "frontier-ai"
+        ],
+        "supporting_data_points": [
+          "Text diffusion models start from noise or masks and iteratively refine the sequence.",
+          "The article says the field is defined by LLaDA, Mercury, and Gemini Diffusion.",
+          "The source frames the change as a different computational worldview, not a small stylistic tweak."
+        ],
+        "supporting_snippet": "\u201cFor most of the LLM era, language generation has been built around a single assumption: text should be produced like a typewriter, one token at a time, left to right... Text diffusion models challenge that assumption at its root.\u201d",
+        "time_sensitivity": "As of 2026-05-26, this is an early-stage architectural trend that should be monitored rather than assumed to dominate deployed language systems.",
+        "trend_description": "Text generation systems are beginning to explore architectures that do not rely exclusively on autoregressive next-token prediction. Diffusion-style generation reframes the problem as iterative reconstruction of an entire sequence, which changes how models can use context and revise outputs. The trend matters because it introduces an alternative path for quality, latency, and controllability tradeoffs in language systems.",
+        "trend_slug": "text-generation-moves-beyond-left-to-right-decoding",
+        "trend_title": "Text Generation Moves Beyond Left-to-Right Decoding",
+        "uncertainty_note": "The excerpt is an interpretive overview, not a benchmark study, so it does not prove that diffusion will outperform autoregressive models broadly. The evidence here supports the existence and relevance of the architectural direction, not a settled winner.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is written as an explanatory/interpretive newsletter piece by an analyst, not a vendor announcement or tutorial.",
+        "Claims are framed as the author's synthesis of a paradigm shift and the roles of LLaDA, Mercury, and Gemini Diffusion.",
+        "No benchmark table, experimental method, or primary research artifact is provided in the excerpt."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about text diffusion models, which generate language by refining noisy text instead of writing one token after another. The basic idea is closer to editing than typing: the model looks at the whole sequence, fixes many spots at once, and can revisit earlier choices. The piece says this matters because it offers a different way to build language models, not just a small tweak to existing ones. It uses three examples to anchor the idea: LLaDA, Mercury, and Gemini Diffusion. The point is that these models show the approach can be studied, used in products, and taken seriously by frontier labs. As of 2026-05-26, the article treats the space as early but credible, not fully settled.",
+      "assessed_as_of": "2026-05-26",
+      "contradictions_and_skepticism": "The piece makes a strong architectural contrast between diffusion and next-token generation, but the excerpt does not show evidence that the difference is always operationally decisive. Calling Mercury a commercial speed advantage and Gemini Diffusion strategic validation is plausible framing, yet the article supplies no hard numbers or deployment detail in the excerpt. The \u2018scientific proof, industrial deployment, frontier validation\u2019 storyline is elegant, but it is still an interpretation layered on top of three named systems rather than a demonstrated industry taxonomy.",
+      "key_insights": [
+        "Text diffusion treats generation as iterative denoising over a whole sequence, not left-to-right token completion.",
+        "Because the model revises many positions at once, it can use bidirectional context during generation.",
+        "The article positions LLaDA as the strongest evidence that diffusion scales into a real large language model.",
+        "Mercury is presented as the example that turns diffusion into a commercial speed advantage, though the excerpt gives no benchmark details.",
+        "Gemini Diffusion is used as signaling evidence that frontier labs view the paradigm as strategically important."
+      ],
+      "limitations_and_open_questions": "The excerpt gives no benchmark table, task breakdown, latency numbers, or cost comparisons, so claims about speed and commercial advantage are not verifiable here. It also does not explain training data, inference procedure, sequence length limits, or failure modes for the named systems. The article asserts that LLaDA, Mercury, and Gemini Diffusion define the conversation, but that is a framing choice rather than demonstrated field consensus in the text. Open questions include whether iterative denoising preserves quality on long-form generation, how well it handles controllability, and what the compute tradeoffs are versus autoregressive models.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-knowledge-866-three"
+      ],
+      "summary": "The article argues that text diffusion models are a distinct alternative to left-to-right token generation. Instead of producing text one token at a time, these models start from noise or masks and iteratively denoise a whole sequence, which lets them revise multiple positions and use bidirectional context during generation. The piece frames this as a different computational worldview: language is modeled through a corruption process and a learned reverse process, rather than next-token prediction. It highlights three named systems as the field\u2019s reference points: LLaDA as the proof that diffusion can scale to a real large language model, Mercury as evidence that diffusion can deliver commercial speed advantages, and Gemini Diffusion as a sign that frontier labs consider the approach strategically relevant. The article\u2019s core claim is not that diffusion has replaced autoregressive models, but that these three systems define the conversation around a new architecture class by showing scientific feasibility, industrial deployment, and frontier validation.",
+      "why_it_matters": "The article is useful because it compresses a new model family into one mental frame: diffusion for text is not just a decoding trick, but a different training and generation setup that may change how sequence models are built. For AI engineers, the main takeaway is that the relevant comparison is no longer only quality on next-token prediction; the source argues that diffusion can support whole-sequence revision, bidirectional context, and multi-position updates during generation. That makes the architecture worth tracking as a separate design path rather than as a minor variant of standard autoregressive LLMs. The three examples also map the field onto three practical questions: can it scale, can it be monetized, and do frontier labs care enough to invest in it. The article does not provide enough evidence here to conclude how broadly applicable these claims are, but it does establish why the category deserves attention. As of 2026-05-26, the sensible posture is to monitor diffusion-language systems as an emerging alternative and not to assume they have displaced token-by-token generation. The service-automation, support, voice, and meeting implications are not discussed in this excerpt, so they should not be read into the piece."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent explanatory article about text diffusion models, not a bundle of unrelated news items.",
+        "No numbered tool list, step-by-step tutorial, interview structure, or formal research-paper apparatus is present.",
+        "The piece advances an analyst's interpretation of three named systems and their significance rather than reporting multiple discrete round-up items."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Generation is modeled as corruption plus learned denoising rather than next-token prediction.",
+          "Bidirectional context can be used during generation because the model revisits the whole sequence.",
+          "Parallel updates across positions may create different latency and quality tradeoffs than autoregressive decoding."
+        ],
+        "knowledge_summary": "Text diffusion models generate language by repeatedly refining a noisy or masked sequence rather than emitting tokens strictly left to right. The core training idea is to learn a reverse process that undoes corruption across the whole sequence. This gives the model bidirectional context during generation and allows it to revise multiple positions at once. The architecture is best understood as an alternative computational setup for sequence generation, not a small tweak to standard autoregressive decoding.",
+        "match_candidates": [],
+        "operational_insight": "When evaluating or designing around text diffusion, think in terms of whole-sequence refinement, not single-token commitment. That changes how you reason about decoding speed, controllability, and whether a model can revise bad early choices instead of locking them in.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "model-behavior",
+          "inference-systems"
+        ],
+        "related_topics": [
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "relevance_note": "This matters because sequence generation is a core primitive in assistants, summarizers, drafting tools, and agent outputs. A whole-sequence editing approach may change how engineers think about latency, revision loops, and output quality in conversational systems as of 2026-05-26 and beyond.",
+        "secondary_tag": "model-behavior",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cText diffusion models challenge that assumption at its root. They treat generation less like typing and more like editing: start from noise or masks, look at the whole canvas, and iteratively refine it into coherent language.\u201d",
+        "topic_slug": "text-diffusion-models",
+        "topic_title": "Text Diffusion Models",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.79,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The learned reverse process is the defining mechanism.",
+          "Generation can be framed as denoising over a full canvas.",
+          "This pattern may be useful when re-editing or global consistency matters more than strict left-to-right emission."
+        ],
+        "knowledge_summary": "Diffusion as sequence generation treats text creation as an iterative reconstruction problem. A model is trained to reverse a corruption process, typically from masks or noisy latent states, until the output becomes coherent text. The method differs from classic autoregressive generation because it can reconsider earlier positions during decoding. This makes it a distinct architecture pattern for language systems, especially where revision and global consistency matter.",
+        "match_candidates": [],
+        "operational_insight": "The practical question is not whether diffusion can write text, but whether iterative revision gives you better control, parallelism, or robustness than token-by-token generation. That tradeoff should be assessed on real latency, coherence, and controllability requirements rather than on novelty alone.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "runtime-systems",
+          "inference-systems"
+        ],
+        "related_topics": [
+          "text-diffusion-models"
+        ],
+        "relevance_note": "This is durable because it captures a reusable design pattern for generation systems, not a single model family. It is relevant wherever teams evaluate non-autoregressive generation, editable outputs, or architectures that need global sequence revision.",
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\u201cInstead of factorizing language as \u2018the next token given all previous tokens,\u2019 diffusion models define a corruption process and then learn how to reverse it.\u201d",
+        "topic_slug": "diffusion-as-sequence-generation",
+        "topic_title": "Diffusion as Sequence Generation",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The source contrasts Mercury with LLaDA by implying Mercury is less about scientific proof and more about commercial utility.",
+            "The source places Mercury alongside Gemini Diffusion as part of the field conversation, but does not supply direct head-to-head comparisons."
+          ],
+          "confidence": 0.55,
+          "core_capabilities": [
+            "The model is positioned as a diffusion-based text generator that updates many positions iteratively instead of predicting the next token only.",
+            "The source credits it with a commercial speed advantage, which suggests latency or throughput properties that matter for production use."
+          ],
+          "deployment_implications": "If the source framing is correct, a diffusion-based text model like Mercury could change generation workflows by allowing parallel updates across many positions and revisiting outputs during decoding. The excerpt does not supply enough evidence to quantify latency, cost, or integration tradeoffs, so this should be treated as an emerging architecture to monitor as of 2026-05-26 rather than a deployment recipe.",
+          "match_candidates": [],
+          "maturity_signals": "The article treats Mercury as evidence of industrial deployment rather than a purely academic prototype. That said, the excerpt gives no release details, customer references, or adoption metrics, so maturity is only lightly evidenced as of 2026-05-26.",
+          "model_name": "Mercury",
+          "operational_profile": "Mercury is presented as a text diffusion system that turns generation into iterative denoising over an entire sequence rather than left-to-right token emission. The source frames it as the example that made diffusion look commercially viable by showing a speed advantage, but it does not provide the underlying mechanism, benchmark details, or deployment setup in the excerpt.",
+          "pricing_inference_implications": "The source implies a speed advantage, which could matter for inference economics, but it gives no actual cost figures or throughput data. Any pricing inference remains speculative based on the excerpt alone.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "proposed_types": [
+            "proprietary-model"
+          ],
+          "provider": "",
+          "related_models": [
+            "LLaDA",
+            "Gemini Diffusion"
+          ],
+          "service_automation_implications": "Potentially relevant to service automation if the promised speed advantage holds, because faster iterative refinement could support lower-latency text generation loops. The source does not show any customer-support, voice, or workflow-automation deployment details, so no direct service automation conclusion is supported.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cMercury, which turned diffusion into a genuine commercial speed advantage\u201d",
+          "value_level": "medium",
+          "weaknesses_limitations": "The excerpt gives no benchmark numbers, task coverage, context-length data, or failure modes, so the claimed commercial speed advantage is not auditable here. It also does not explain how Mercury handles long-form coherence, controllability, or compute cost at scale."
+        },
+        "notes": null,
+        "proposal_id": "1d78d81d-3f3a-426c-8ce1-cce8183d825f",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "approved"
+          },
+          "comparative_observations": {
+            "final_list": [],
+            "llm_list": [
+              "The source contrasts Mercury with LLaDA by implying Mercury is less about scientific proof and more about commercial utility.",
+              "The source places Mercury alongside Gemini Diffusion as part of the field conversation, but does not supply direct head-to-head comparisons."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "core_capabilities": {
+            "final_list": [],
+            "llm_list": [
+              "The model is positioned as a diffusion-based text generator that updates many positions iteratively instead of predicting the next token only.",
+              "The source credits it with a commercial speed advantage, which suggests latency or throughput properties that matter for production use."
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "deployment_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "maturity_signals": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "model_name": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_profile": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "pricing_inference_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "LLaDA",
+              "Gemini Diffusion"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "proprietary-model",
+            "frontier-model"
+          ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "proprietary-model"
+          ],
+          "reviewer_types_added": []
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-26",
+          "confidence": 0.84,
+          "evidence_from_source": "The source explicitly says text diffusion models challenge the long-standing assumption that text must be produced one token at a time from left to right, and it presents three named systems as reference points for the paradigm.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "ai-research",
+          "proposed_tags": [
+            "ai-research",
+            "model-behavior"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "secondary_tag": "model-behavior",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "frontier-ai",
+          "suggested_new_tags": [
+            "frontier-ai"
+          ],
+          "supporting_data_points": [
+            "Text diffusion models start from noise or masks and iteratively refine the sequence.",
+            "The article says the field is defined by LLaDA, Mercury, and Gemini Diffusion.",
+            "The source frames the change as a different computational worldview, not a small stylistic tweak."
+          ],
+          "supporting_snippet": "\u201cFor most of the LLM era, language generation has been built around a single assumption: text should be produced like a typewriter, one token at a time, left to right... Text diffusion models challenge that assumption at its root.\u201d",
+          "time_sensitivity": "As of 2026-05-26, this is an early-stage architectural trend that should be monitored rather than assumed to dominate deployed language systems.",
+          "trend_description": "Text generation systems are beginning to explore architectures that do not rely exclusively on autoregressive next-token prediction. Diffusion-style generation reframes the problem as iterative reconstruction of an entire sequence, which changes how models can use context and revise outputs. The trend matters because it introduces an alternative path for quality, latency, and controllability tradeoffs in language systems.",
+          "trend_slug": "text-generation-moves-beyond-left-to-right-decoding",
+          "trend_title": "Text Generation Moves Beyond Left-to-Right Decoding",
+          "uncertainty_note": "The excerpt is an interpretive overview, not a benchmark study, so it does not prove that diffusion will outperform autoregressive models broadly. The evidence here supports the existence and relevance of the architectural direction, not a settled winner.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "81db0dd0-9d64-4967-939a-aa201478a53f",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Text diffusion models start from noise or masks and iteratively refine the sequence.",
+              "The article says the field is defined by LLaDA, Mercury, and Gemini Diffusion.",
+              "The source frames the change as a different computational worldview, not a small stylistic tweak."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-research",
+            "model-behavior"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is written as an explanatory/interpretive newsletter piece by an analyst, not a vendor announcement or tutorial.",
+          "Claims are framed as the author's synthesis of a paradigm shift and the roles of LLaDA, Mercury, and Gemini Diffusion.",
+          "No benchmark table, experimental method, or primary research artifact is provided in the excerpt."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Text diffusion treats generation as iterative denoising over a whole sequence, not left-to-right token completion.",
+          "Because the model revises many positions at once, it can use bidirectional context during generation.",
+          "The article positions LLaDA as the strongest evidence that diffusion scales into a real large language model.",
+          "Mercury is presented as the example that turns diffusion into a commercial speed advantage, though the excerpt gives no benchmark details.",
+          "Gemini Diffusion is used as signaling evidence that frontier labs view the paradigm as strategically important."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-knowledge-866-three"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent explanatory article about text diffusion models, not a bundle of unrelated news items.",
+          "No numbered tool list, step-by-step tutorial, interview structure, or formal research-paper apparatus is present.",
+          "The piece advances an analyst's interpretation of three named systems and their significance rather than reporting multiple discrete round-up items."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Generation is modeled as corruption plus learned denoising rather than next-token prediction.",
+            "Bidirectional context can be used during generation because the model revisits the whole sequence.",
+            "Parallel updates across positions may create different latency and quality tradeoffs than autoregressive decoding."
+          ],
+          "knowledge_summary": "Text diffusion models generate language by repeatedly refining a noisy or masked sequence rather than emitting tokens strictly left to right. The core training idea is to learn a reverse process that undoes corruption across the whole sequence. This gives the model bidirectional context during generation and allows it to revise multiple positions at once. The architecture is best understood as an alternative computational setup for sequence generation, not a small tweak to standard autoregressive decoding.",
+          "match_candidates": [],
+          "operational_insight": "When evaluating or designing around text diffusion, think in terms of whole-sequence refinement, not single-token commitment. That changes how you reason about decoding speed, controllability, and whether a model can revise bad early choices instead of locking them in.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "model-behavior",
+            "inference-systems"
+          ],
+          "related_topics": [
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "relevance_note": "This matters because sequence generation is a core primitive in assistants, summarizers, drafting tools, and agent outputs. A whole-sequence editing approach may change how engineers think about latency, revision loops, and output quality in conversational systems as of 2026-05-26 and beyond.",
+          "secondary_tag": "model-behavior",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cText diffusion models challenge that assumption at its root. They treat generation less like typing and more like editing: start from noise or masks, look at the whole canvas, and iteratively refine it into coherent language.\u201d",
+          "topic_slug": "text-diffusion-models",
+          "topic_title": "Text Diffusion Models",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "4d8fabb6-0c8a-44c5-bcd5-7d9dd554c56a",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Generation is modeled as corruption plus learned denoising rather than next-token prediction.",
+              "Bidirectional context can be used during generation because the model revisits the whole sequence.",
+              "Parallel updates across positions may create different latency and quality tradeoffs than autoregressive decoding."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "model-behavior",
+            "inference-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.79,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The learned reverse process is the defining mechanism.",
+            "Generation can be framed as denoising over a full canvas.",
+            "This pattern may be useful when re-editing or global consistency matters more than strict left-to-right emission."
+          ],
+          "knowledge_summary": "Diffusion as sequence generation treats text creation as an iterative reconstruction problem. A model is trained to reverse a corruption process, typically from masks or noisy latent states, until the output becomes coherent text. The method differs from classic autoregressive generation because it can reconsider earlier positions during decoding. This makes it a distinct architecture pattern for language systems, especially where revision and global consistency matter.",
+          "match_candidates": [],
+          "operational_insight": "The practical question is not whether diffusion can write text, but whether iterative revision gives you better control, parallelism, or robustness than token-by-token generation. That tradeoff should be assessed on real latency, coherence, and controllability requirements rather than on novelty alone.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "runtime-systems",
+            "inference-systems"
+          ],
+          "related_topics": [
+            "text-diffusion-models"
+          ],
+          "relevance_note": "This is durable because it captures a reusable design pattern for generation systems, not a single model family. It is relevant wherever teams evaluate non-autoregressive generation, editable outputs, or architectures that need global sequence revision.",
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\u201cInstead of factorizing language as \u2018the next token given all previous tokens,\u2019 diffusion models define a corruption process and then learn how to reverse it.\u201d",
+          "topic_slug": "diffusion-as-sequence-generation",
+          "topic_title": "Diffusion as Sequence Generation",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "1f442f31-4985-4643-8a88-b3730234197c",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The learned reverse process is the defining mechanism.",
+              "Generation can be framed as denoising over a full canvas.",
+              "This pattern may be useful when re-editing or global consistency matters more than strict left-to-right emission."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "text-diffusion-models"
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "runtime-systems",
+            "inference-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {
+      "expert_opinion": 4
+    },
+    "fields_modified": 0,
+    "proposals_approved": 4,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 4,
+    "review_duration_seconds": 322.4,
+    "review_finished_at": "2026-06-09T15:46:31.400209+00:00",
+    "review_started_at": "2026-06-09T15:41:09+00:00"
+  },
+  "review_session": {
+    "last_saved_at": "2026-06-09T15:46:32+00:00",
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-knowledge-866-three",
+    "content_sha256": "72df246855da38768c3531ff231c9a61d28d11be609a99efd4ae90da6da4320d",
+    "publication": "substack.com",
+    "published_date": "2026-05-26",
+    "raw_html_rel_path": "raw/readwise/the-sequence-knowledge-866-three-text-diffusion-models-you-need-to-know-about-01kshz8jb3nx8m3gw4r97f2brs.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-knowledge-866-three-text-diffusion-models-you-need-to-know-about-01kshz8jb3nx8m3gw4r97f2brs.md",
+    "source_id": "the-sequence-knowledge-866-three-text-diffusion-models-you-need-to-know-about-01kshz8jb3nx8m3gw4r97f2brs",
+    "title": "The Sequence Knowledge #866: Three Text Diffusion Models You Need To Know About"
+  }
+}

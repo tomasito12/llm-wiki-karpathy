@@ -91,6 +91,20 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 - Exports Reader **Library Archive** documents tagged **processed** to `raw/readwise/` as paired `.html` + `.md`, with dedupe in `state/readwise_library.json`.
 - After a successful sync (not `--dry-run`), runs **`readwise-dedupe`** by default: scans `raw/readwise/` for near-duplicate HTML exports and **deletes the shorter copy**, adding its Readwise id to `suppressed_ids` so sync will not re-import it. Pass **`--no-dedupe`** to skip.
 
+## Medium → Readwise browser import
+
+- Run Brave with CDP enabled before automation. **Quit Brave first** — on macOS, `open -a "Brave Browser" --args ...` does not apply flags to an already-running instance. Launch the binary directly: `/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --remote-debugging-port=9222`. Verify with `curl -s http://127.0.0.1:9222/json/version`.
+- Set your Reading List in repo-root `.env` as `MEDIUM_READING_LIST_URL=https://medium.com/@<username>/list/reading-list`, or pass `--reading-list-url` explicitly. The generic `https://medium.com/list/reading-list` is not the same as a user-specific list.
+- Dry run first: `hatch run medium-to-readwise --dry-run` — harvests the Medium Reading List and prints planned article saves without triggering Readwise. After changing the list URL or URL filter logic, rerun with `--refresh-articles`.
+- Small test batch: `hatch run medium-to-readwise --limit 5 --delay 5`.
+- Full resumable run: `hatch run medium-to-readwise`. It connects to the existing Brave session, opens the Medium Reading List, stores discovered URLs in `state/medium_to_readwise/articles.json`, skips successful entries in `state/medium_to_readwise/processed.json`, visits each pending article, waits for article content, dismisses Medium image zoom overlays, and sends **Option+R** through macOS system input (`--shortcut-mode system`, default on macOS). Playwright page-level key events do **not** trigger browser extension shortcuts reliably.
+- Optional env vars: `READWISE_SAVE_SHORTCUT=Alt+KeyR` (same as Option+R), `READWISE_SHORTCUT_MODE=system`, `READWISE_BROWSER_APP_NAME=Brave Browser`, `MEDIUM_REMOVE_FROM_LIST=true`, `READWISE_CONFIRM_TIMEOUT=15`, `MEDIUM_DELAY_JITTER=3`, `MEDIUM_BETWEEN_ARTICLES_DELAY=8`, `MEDIUM_MAX_PER_HOUR=20`.
+- Human-like pacing defaults: post-save `--delay` with `--jitter`, extra `--between-articles` pause, and `--max-per-hour` cap. If Medium shows human verification (`Verify you are human`), the run stops immediately (exit code 2) instead of continuing.
+- By default, after visible Readwise save confirmation, the script returns to your Reading List and removes the article via the entry menu (`--no-remove-from-list` to keep items on Medium).
+- Failure screenshots go to `state/medium_to_readwise/screenshots/`. This state directory is local-only and gitignored.
+- This workflow does not call Medium or Readwise APIs and does not bypass paywalls; it only automates the browser session that already has access. If shortcuts do not fire, grant **Accessibility** permission to Terminal/iTerm/Cursor for `osascript` system keystrokes and confirm the Readwise extension shortcut works manually on Medium.
+- After articles are saved in Readwise, use the normal `hatch run readwise-sync` export flow.
+
 ## Readwise near-duplicate cleanup
 
 - Run: `hatch run readwise-dedupe` (optional: `--dry-run`, `--interactive`, `--threshold 0.50`, `--raw-dir`, `--index`).
