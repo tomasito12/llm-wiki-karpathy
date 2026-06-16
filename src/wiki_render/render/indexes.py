@@ -62,6 +62,8 @@ def _master_index() -> RenderedFile:
         "implementation-studies-by-month",
         "signals-by-month",
         "interview-insights-by-month",
+        "synthesis-status",
+        "needs-synthesis",
         "system-status",
         "aliases",
         "knowledge-graph",

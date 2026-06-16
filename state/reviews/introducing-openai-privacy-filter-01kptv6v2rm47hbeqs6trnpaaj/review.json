@@ -135,6 +135,45 @@
         "supporting_snippet": "\"Privacy Filter is a small model with frontier personal data detection capability. It is designed for high-throughput privacy workflows, and is able to perform context-aware detection of PII in unstructured text. It can run locally\"",
         "value_level": "high",
         "weaknesses_limitations": "The source says performance may vary across languages, scripts, naming conventions, and domains outside the training distribution. It can miss uncommon identifiers and ambiguous private references, and it can over- or under-redact when context is limited, especially in short sequences. OpenAI also notes it is not an anonymization tool or compliance certification."
+      },
+      {
+        "benchmark_observations": [
+          "Claims state-of-the-art performance on PII-Masking-300k when corrected for annotation issues identified during evaluation",
+          "Reports 96% F1 on PII-Masking-300k with 94.04% precision and 98.04% recall",
+          "Reports 97.43% F1 on the corrected benchmark with 96.79% precision and 98.08% recall",
+          "Fine-tuning on a small amount of data improved a domain-adaptation benchmark from 54% to 96% F1",
+          "Evaluation included synthetic and chat-style cases, multilingual and adversarial stress tests, and secret detection in codebases"
+        ],
+        "comparative_observations": [
+          "OpenAI contrasts Privacy Filter with traditional deterministic PII detectors that rely on format rules like phone numbers and email addresses",
+          "The source argues that deeper language and context awareness lets it catch subtler private information that rule-based systems may miss",
+          "It is framed as a small model with frontier personal-data detection capability, combining efficiency with strong privacy filtering performance",
+          "Unlike server-side de-identification, the model can run locally so unfiltered data need not leave the machine"
+        ],
+        "confidence": 0.98,
+        "core_capabilities": [
+          "Detects and redacts personally identifiable information in unstructured text",
+          "Runs locally so sensitive text can remain on device",
+          "Processes long inputs efficiently in a single pass",
+          "Provides context-aware span detection beyond simple pattern matching",
+          "Supports fine-tuning for different privacy policies and domains",
+          "Handles multiple PII categories including private person, address, email, phone, URL, date, account number, and secret",
+          "Uses constrained span decoding to produce coherent masking boundaries"
+        ],
+        "deployment_implications": "The main deployment implication is that teams can keep sensitive text on-device or inside their own environment while applying automated redaction before data leaves the system boundary. The model is intended for experimentation, customization, and commercial deployment under Apache 2.0, and OpenAI frames it as infrastructure for privacy-by-design systems. Because it is a token-classification model rather than a generative model, integration centers on span labeling, decoding controls, and downstream masking actions. The source also points to practical tuning of recall versus precision, so deployment will likely need workflow-specific operating points and evaluation before use in high-stakes settings.",
+        "evidence_type": "vendor_claim",
+        "maturity_signals": "OpenAI says it uses a fine-tuned version internally in its own privacy-preserving workflows, which is a strong adoption signal. The release reports state-of-the-art performance on the PII-Masking-300k benchmark, and also notes corrected benchmark results after annotation issues were identified during evaluation. Additional maturity signals include targeted evaluation on secret detection in codebases, stress tests across multilingual and adversarial examples, and documentation covering architecture, label taxonomy, decoding controls, use cases, evaluation, and known limitations.",
+        "model_name": "Privacy Filter",
+        "operational_profile": "Privacy Filter is a small open-weight bidirectional token-classification model for detecting and redacting personally identifiable information in unstructured text. The source describes it as context-aware, designed for high-throughput privacy workflows, and able to run locally so masking can happen without sending data to a server. It supports long inputs up to 128,000 tokens and makes a single-pass decision over the full sequence, which makes it suited to batch redaction in documents, logs, training data, indexing pipelines, and review workflows. OpenAI also says it can be fine-tuned for different data distributions and privacy policies.",
+        "pricing_inference_implications": "The source does not mention pricing. The strongest inference is that local deployment and open-weight availability could lower operational cost compared with sending data to an external service for redaction, especially for high-throughput workloads. The small active-parameter footprint and single-pass token classification also suggest efficiency advantages, but no direct pricing claims are made.",
+        "provider": "OpenAI",
+        "related_models": [
+          "GPT-Rosalind"
+        ],
+        "service_automation_implications": "The model is positioned for automation in training, indexing, logging, and review pipelines where sensitive text needs to be filtered before storage, sharing, or model use. The source emphasizes a quick single-pass workflow, which suggests it can serve as a preprocessing layer in automated ETL or content moderation steps. Its secret-detection support also makes it relevant for codebase scanning and software-secret redaction. Because OpenAI reports strong performance on harder context-sensitive cases and fine-tuning gains on domain-specific tasks, teams could use it as a base redaction service with workflow-specific policy overlays.",
+        "supporting_snippet": "\"Today we\u2019re releasing OpenAI Privacy Filter, an open-weight model for detecting and redacting personally identifiable information (PII) in text.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The release is explicit that Privacy Filter is not an anonymization tool, a compliance certification, or a substitute for policy review. Its behavior depends on the label taxonomy and decision boundaries it was trained on, so organizations with different masking rules may need in-domain evaluation or further fine-tuning. Performance may vary across languages, scripts, naming conventions, and domains outside the training distribution. The source also notes it can miss uncommon identifiers or ambiguous private references and can over- or under-redact when context is limited, especially in short sequences."
       }
     ],
     "glossary": [],
@@ -338,7 +377,6 @@
             "It allows fine-tuning for different privacy policies and data distributions."
           ],
           "deployment_implications": "- Fits as a local preprocessing stage before training, indexing, logging, or human review, so sensitive text can be filtered before leaving a machine.\n- The 128,000-token context window and single-pass labeling make it practical for long documents and noisy production text where multi-step chunking would be awkward.\n- Developers can tune recall versus precision and fine-tune for local policy, so deployment should include task-specific evaluation rather than relying on the default threshold.\n- The model is better treated as a privacy layer inside a broader workflow than as a standalone compliance mechanism.",
-          "evidence_type": null,
           "match_candidates": [],
           "maturity_signals": "OpenAI says the model is released under Apache 2.0 on Hugging Face and GitHub, with documentation for architecture, taxonomy, decoding, evaluation, and limitations. That combination points to a real release artifact rather than a concept note. The source does not provide external adoption evidence, so maturity should be read as release-ready rather than proven at scale.",
           "model_name": "Privacy Filter",
@@ -375,7 +413,7 @@
               "The source says fine-tuning on a small amount of data raised F1 from 54% to 96% on the domain-adaption benchmark it evaluated."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "comparative_observations": {
             "final_list": null,
@@ -384,7 +422,7 @@
               "OpenAI frames the model as achieving frontier-level privacy filtering performance while remaining small enough to run locally."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "core_capabilities": {
             "final_list": null,
@@ -395,37 +433,37 @@
               "It allows fine-tuning for different privacy policies and data distributions."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "deployment_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "model_name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_profile": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "pricing_inference_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "provider": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_models": {
             "final_list": null,
@@ -436,7 +474,7 @@
           "service_automation_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -446,7 +484,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -457,6 +495,152 @@
             "long-context-model",
             "tool-use-capable"
           ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "open-weight-model"
+          ],
+          "reviewer_types_added": []
+        }
+      },
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "Claims state-of-the-art performance on PII-Masking-300k when corrected for annotation issues identified during evaluation",
+            "Reports 96% F1 on PII-Masking-300k with 94.04% precision and 98.04% recall",
+            "Reports 97.43% F1 on the corrected benchmark with 96.79% precision and 98.08% recall",
+            "Fine-tuning on a small amount of data improved a domain-adaptation benchmark from 54% to 96% F1",
+            "Evaluation included synthetic and chat-style cases, multilingual and adversarial stress tests, and secret detection in codebases"
+          ],
+          "comparative_observations": [
+            "OpenAI contrasts Privacy Filter with traditional deterministic PII detectors that rely on format rules like phone numbers and email addresses",
+            "The source argues that deeper language and context awareness lets it catch subtler private information that rule-based systems may miss",
+            "It is framed as a small model with frontier personal-data detection capability, combining efficiency with strong privacy filtering performance",
+            "Unlike server-side de-identification, the model can run locally so unfiltered data need not leave the machine"
+          ],
+          "confidence": 0.98,
+          "core_capabilities": [
+            "Detects and redacts personally identifiable information in unstructured text",
+            "Runs locally so sensitive text can remain on device",
+            "Processes long inputs efficiently in a single pass",
+            "Provides context-aware span detection beyond simple pattern matching",
+            "Supports fine-tuning for different privacy policies and domains",
+            "Handles multiple PII categories including private person, address, email, phone, URL, date, account number, and secret",
+            "Uses constrained span decoding to produce coherent masking boundaries"
+          ],
+          "deployment_implications": "The main deployment implication is that teams can keep sensitive text on-device or inside their own environment while applying automated redaction before data leaves the system boundary. The model is intended for experimentation, customization, and commercial deployment under Apache 2.0, and OpenAI frames it as infrastructure for privacy-by-design systems. Because it is a token-classification model rather than a generative model, integration centers on span labeling, decoding controls, and downstream masking actions. The source also points to practical tuning of recall versus precision, so deployment will likely need workflow-specific operating points and evaluation before use in high-stakes settings.",
+          "evidence_type": "vendor_claim",
+          "maturity_signals": "OpenAI says it uses a fine-tuned version internally in its own privacy-preserving workflows, which is a strong adoption signal. The release reports state-of-the-art performance on the PII-Masking-300k benchmark, and also notes corrected benchmark results after annotation issues were identified during evaluation. Additional maturity signals include targeted evaluation on secret detection in codebases, stress tests across multilingual and adversarial examples, and documentation covering architecture, label taxonomy, decoding controls, use cases, evaluation, and known limitations.",
+          "model_name": "Privacy Filter",
+          "operational_profile": "Privacy Filter is a small open-weight bidirectional token-classification model for detecting and redacting personally identifiable information in unstructured text. The source describes it as context-aware, designed for high-throughput privacy workflows, and able to run locally so masking can happen without sending data to a server. It supports long inputs up to 128,000 tokens and makes a single-pass decision over the full sequence, which makes it suited to batch redaction in documents, logs, training data, indexing pipelines, and review workflows. OpenAI also says it can be fine-tuned for different data distributions and privacy policies.",
+          "pricing_inference_implications": "The source does not mention pricing. The strongest inference is that local deployment and open-weight availability could lower operational cost compared with sending data to an external service for redaction, especially for high-throughput workloads. The small active-parameter footprint and single-pass token classification also suggest efficiency advantages, but no direct pricing claims are made.",
+          "provider": "OpenAI",
+          "related_models": [
+            "GPT-Rosalind"
+          ],
+          "service_automation_implications": "The model is positioned for automation in training, indexing, logging, and review pipelines where sensitive text needs to be filtered before storage, sharing, or model use. The source emphasizes a quick single-pass workflow, which suggests it can serve as a preprocessing layer in automated ETL or content moderation steps. Its secret-detection support also makes it relevant for codebase scanning and software-secret redaction. Because OpenAI reports strong performance on harder context-sensitive cases and fine-tuning gains on domain-specific tasks, teams could use it as a base redaction service with workflow-specific policy overlays.",
+          "supporting_snippet": "\"Today we\u2019re releasing OpenAI Privacy Filter, an open-weight model for detecting and redacting personally identifiable information (PII) in text.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The release is explicit that Privacy Filter is not an anonymization tool, a compliance certification, or a substitute for policy review. Its behavior depends on the label taxonomy and decision boundaries it was trained on, so organizations with different masking rules may need in-domain evaluation or further fine-tuning. Performance may vary across languages, scripts, naming conventions, and domains outside the training distribution. The source also notes it can miss uncommon identifiers or ambiguous private references and can over- or under-redact when context is limited, especially in short sequences."
+        },
+        "notes": null,
+        "proposal_id": "77d68d5b4e8a474884fa19a948093f6b",
+        "proposal_regeneration_meta": {
+          "forced_extract": true,
+          "last_regen_at": "2026-06-16T16:29:43+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "43",
+          "regen_count": 0
+        },
+        "proposal_status": "rejected",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": [],
+            "llm_list": [
+              "Claims state-of-the-art performance on PII-Masking-300k when corrected for annotation issues identified during evaluation",
+              "Reports 96% F1 on PII-Masking-300k with 94.04% precision and 98.04% recall",
+              "Reports 97.43% F1 on the corrected benchmark with 96.79% precision and 98.08% recall",
+              "Fine-tuning on a small amount of data improved a domain-adaptation benchmark from 54% to 96% F1",
+              "Evaluation included synthetic and chat-style cases, multilingual and adversarial stress tests, and secret detection in codebases"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "comparative_observations": {
+            "final_list": [],
+            "llm_list": [
+              "OpenAI contrasts Privacy Filter with traditional deterministic PII detectors that rely on format rules like phone numbers and email addresses",
+              "The source argues that deeper language and context awareness lets it catch subtler private information that rule-based systems may miss",
+              "It is framed as a small model with frontier personal-data detection capability, combining efficiency with strong privacy filtering performance",
+              "Unlike server-side de-identification, the model can run locally so unfiltered data need not leave the machine"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "core_capabilities": {
+            "final_list": [],
+            "llm_list": [
+              "Detects and redacts personally identifiable information in unstructured text",
+              "Runs locally so sensitive text can remain on device",
+              "Processes long inputs efficiently in a single pass",
+              "Provides context-aware span detection beyond simple pattern matching",
+              "Supports fine-tuning for different privacy policies and domains",
+              "Handles multiple PII categories including private person, address, email, phone, URL, date, account number, and secret",
+              "Uses constrained span decoding to produce coherent masking boundaries"
+            ],
+            "notes": null,
+            "status": "modified"
+          },
+          "deployment_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "maturity_signals": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "model_name": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "operational_profile": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "pricing_inference_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "provider": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "service_automation_implications": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          },
+          "weaknesses_limitations": {
+            "final_text": "",
+            "notes": null,
+            "status": "modified"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": []
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [],
+          "reviewer_types_added": []
         }
       }
     ],
@@ -505,7 +689,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -524,7 +708,7 @@
               "Can be fine-tuned for different privacy policies"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -534,27 +718,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -660,7 +844,6 @@
             "It supports up to 128,000 tokens of context, which makes it usable on long documents and logs.",
             "It can be fine-tuned to different data distributions and privacy policies."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "The model is released under Apache 2.0 on Hugging Face, which makes it straightforward to fetch and adapt in common machine-learning workflows.",
             "The model is also released on GitHub, which suggests standard source-controlled deployment and customization workflows."
@@ -688,10 +871,10 @@
         },
         "notes": null,
         "proposal_id": "3891b71f-147a-468a-8c85-a6040d8db312",
-        "proposal_status": "approved",
+        "proposal_status": "rejected",
         "sections": {
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It detects personally identifiable information in unstructured text using context-aware token classification rather than only deterministic patterns.",
               "It redacts sensitive spans in one pass, which reduces the need for multi-step preprocessing pipelines.",
@@ -699,31 +882,31 @@
               "It can be fine-tuned to different data distributions and privacy policies."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "integration_ecosystem": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "The model is released under Apache 2.0 on Hugging Face, which makes it straightforward to fetch and adapt in common machine-learning workflows.",
               "The model is also released on GitHub, which suggests standard source-controlled deployment and customization workflows."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -734,12 +917,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -749,7 +932,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -760,6 +943,12 @@
             "document-analysis",
             "api-first"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -805,7 +994,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -816,17 +1005,17 @@
               "Task-specific evaluation is still necessary because privacy policies differ across organizations."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -834,12 +1023,12 @@
               "token-classification-for-redaction"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -849,12 +1038,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -908,7 +1097,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -919,17 +1108,17 @@
               "The approach works best when combined with human review for high-risk domains."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -937,12 +1126,12 @@
               "local-pii-redaction"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -952,12 +1141,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -974,19 +1163,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "vendor_claim": 6
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 4,
     "proposals_deferred": 0,
     "proposals_modified": 0,
-    "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_rejected": 2,
+    "proposals_total": 6,
+    "review_duration_seconds": 194.2,
+    "review_finished_at": "2026-06-16T16:30:21.232967+00:00",
+    "review_started_at": "2026-06-16T16:27:07+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-06-16T16:30:21+00:00",
     "saved_by": null
   },
   "source": {

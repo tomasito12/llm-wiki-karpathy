@@ -16,6 +16,8 @@ category: index
 - [[indexes/implementation-studies-by-month]]
 - [[indexes/signals-by-month]]
 - [[indexes/interview-insights-by-month]]
+- [[indexes/synthesis-status]]
+- [[indexes/needs-synthesis]]
 - [[indexes/system-status]]
 - [[indexes/aliases]]
 - [[indexes/knowledge-graph]]

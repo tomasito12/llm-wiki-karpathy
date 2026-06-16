@@ -1199,12 +1199,12 @@
     "proposals_modified": 0,
     "proposals_rejected": 1,
     "proposals_total": 6,
-    "review_duration_seconds": 182.5,
-    "review_finished_at": "2026-06-16T16:16:43.494791+00:00",
+    "review_duration_seconds": 688.1,
+    "review_finished_at": "2026-06-16T16:25:09.060312+00:00",
     "review_started_at": "2026-06-16T16:13:41+00:00"
   },
   "review_session": {
-    "last_saved_at": "2026-06-16T16:16:43+00:00",
+    "last_saved_at": "2026-06-16T16:25:09+00:00",
     "saved_by": null
   },
   "source": {

@@ -100,6 +100,21 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
   - `--include-single-source` — include candidate/thin single-source pages.
   - `--json` — print machine-readable output.
 
+## Wiki synthesis indexes (Stage 2 routing)
+
+- Run: `hatch run wiki-synthesis-indexes`
+- This command makes **no LLM calls**.
+- Inputs: `state/wiki_render_graph.json` and optional `state/synthesis/<category>/<slug>.json` cache entries.
+- Outputs:
+  - `wiki/indexes/synthesis-status.md`
+  - `wiki/indexes/needs-synthesis.md`
+  - high-value tag hubs under `wiki/indexes/tags/`
+- Purpose: expose Stage 2 planning and tag-based routing in Obsidian so humans and LLMs can find useful entry points without scanning the whole vault.
+- Useful options:
+  - `--dry-run` — compute output without writing files.
+  - `--tag ai-engineering` — render one tag hub; may be passed multiple times.
+  - `--out-dir`, `--graph-path`, `--cache-dir` — override default paths.
+
 ## Readwise Reader export
 
 - Set `READWISE_TOKEN` (or `READWISE_API_TOKEN`) from [readwise.io/access_token](https://readwise.io/access_token), or put it in a repo-root `.env` file (loaded automatically; does not override existing shell variables).

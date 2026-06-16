@@ -77,6 +77,9 @@ wiki-lint = [
 wiki-render = [
   "python -m src.wiki_render {args}",
 ]
+wiki-synthesis-indexes = [
+  "python -m src.wiki_synthesis.indexes_cli {args}",
+]
 wiki-synthesis-plan = [
   "python -m src.wiki_synthesis {args}",
 ]

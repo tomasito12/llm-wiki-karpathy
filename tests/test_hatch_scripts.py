@@ -13,6 +13,7 @@ def test_hatch_scripts_include_local_clis() -> None:
     scripts = data["tool"]["hatch"]["envs"]["default"]["scripts"]
     assert scripts["wiki-lint"] == ["python -m src.wiki_lint {args}"]
     assert scripts["wiki-render"] == ["python -m src.wiki_render {args}"]
+    assert scripts["wiki-synthesis-indexes"] == ["python -m src.wiki_synthesis.indexes_cli {args}"]
     assert scripts["wiki-synthesis-plan"] == ["python -m src.wiki_synthesis {args}"]
     assert scripts["wiki-reset"] == ["python -m src.wiki_reset {args}"]
     assert scripts["dashboard"] == ["streamlit run src/dashboard/app.py {args}"]

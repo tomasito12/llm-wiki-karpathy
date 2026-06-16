@@ -348,7 +348,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -368,7 +368,7 @@
               "launch coordination across HF, vLLM, llama.cpp, Ollama, NVIDIA, Unsloth, SGLang, Docker, and Cloudflare"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -378,27 +378,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -472,7 +472,7 @@
               "\"Gemma 4 E2B on an iPhone 17 Pro at roughly 40 tok/s with MLX\""
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "mentioned_entities": {
             "final_list": null,
@@ -490,32 +490,32 @@
               "MLX"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "service_automation_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_strength": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_type": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "suggested_destinations": {
             "final_list": null,
@@ -524,27 +524,27 @@
               "topics/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "time_horizon": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "why_it_matters": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "wiki_worthiness": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -602,17 +602,17 @@
         "proposal_status": "approved",
         "sections": {
           "evidence_snippets": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "\"the core narrative is that Nous\u2019 system is winning mindshare by combining persistent memory, self-generated/refined skills, and a more opinionated self-improvement loop\"",
               "\"The launch of a Manim skill ... demonstrated an agent skill that produces immediately legible artifacts\"",
               "\"The contrast with OpenClaw centered on architecture and business-model fragility\""
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "mentioned_entities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Hermes Agent",
               "NousResearch",
@@ -621,61 +621,61 @@
               "OpenClaw"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "service_automation_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_strength": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_type": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "suggested_destinations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "topics/",
               "trends/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "summary": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "time_horizon": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "why_it_matters": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "wiki_worthiness": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -741,7 +741,7 @@
               "\"learn directly from recorded production traces instead of requiring clean sandboxes\""
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "mentioned_entities": {
             "final_list": null,
@@ -752,32 +752,32 @@
               "Baseten"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "service_automation_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_strength": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_type": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "suggested_destinations": {
             "final_list": null,
@@ -786,27 +786,27 @@
               "topics/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "time_horizon": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "why_it_matters": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "wiki_worthiness": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -905,19 +905,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "mixed": 4
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 4,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 4,
+    "review_duration_seconds": 104.0,
+    "review_finished_at": "2026-06-16T16:26:54.993609+00:00",
+    "review_started_at": "2026-06-16T16:25:11+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-06-16T16:26:55+00:00",
     "saved_by": null
   },
   "source": {
