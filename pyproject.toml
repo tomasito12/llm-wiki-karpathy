@@ -83,6 +83,12 @@ wiki-synthesis-indexes = [
 wiki-synthesis-plan = [
   "python -m src.wiki_synthesis {args}",
 ]
+wiki-synthesis-prompt = [
+  "python -m src.wiki_synthesis.prompt_cli {args}",
+]
+wiki-synthesis-run = [
+  "python -m src.wiki_synthesis.run_cli {args}",
+]
 wiki-reset = [
   "python -m src.wiki_reset {args}",
 ]

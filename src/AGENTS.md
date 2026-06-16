@@ -116,6 +116,34 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
   - `--tag ai-engineering` — render one tag hub; may be passed multiple times.
   - `--out-dir`, `--graph-path`, `--cache-dir` — override default paths.
 
+## Wiki synthesis prompt preview (Stage 2 executor preparation)
+
+- Run: `hatch run wiki-synthesis-prompt --entity topic:agentic-coding-workflows`
+- This command makes **no LLM calls**.
+- Inputs: `state/wiki_render_graph.json` and optional previous cache entry from `state/synthesis/<category>/<slug>.json`.
+- Purpose: preview the exact system prompt, user prompt, evidence context, previous-synthesis continuity block, and expected JSON schema before implementing or running the synthesis executor.
+- Useful options:
+  - `--json` — print the prompt bundle as machine-readable JSON with chat messages.
+  - `--out-path state/synthesis_prompts/<entity>.md` — write a review artifact for a prompt preview.
+  - `--graph-path`, `--cache-dir` — override default input paths.
+
+## Wiki synthesis executor (Stage 2 cache writer)
+
+- Run: `hatch run wiki-synthesis-run --dry-run`
+- This command makes LLM calls only when `--yes` is passed and `--dry-run` is absent.
+- Inputs: `state/wiki_render_graph.json`, the existing synthesis plan, and optional previous cache entries in `state/synthesis/<category>/<slug>.json`.
+- Output: validated cache entries under `state/synthesis/<category>/<slug>.json`.
+- Safety rules:
+  - Default `--limit 1`; raise it deliberately for batches.
+  - Only `new` and `stale` plan entries are executable.
+  - Single-source pages are skipped by default via the planner.
+  - Provider output is normalized with local entity metadata, prompt version, schema version, timestamp, and current input hash before writing.
+  - Invalid provider JSON or incomplete synthesis content must fail without writing a cache file.
+- Useful examples:
+  - `hatch run wiki-synthesis-run --dry-run --entity glossary:fine-tuning`
+  - `hatch run wiki-synthesis-run --entity glossary:fine-tuning --yes`
+  - `hatch run wiki-synthesis-run --category glossary --limit 5 --yes`
+
 ## Readwise Reader export
 
 - Set `READWISE_TOKEN` (or `READWISE_API_TOKEN`) from [readwise.io/access_token](https://readwise.io/access_token), or put it in a repo-root `.env` file (loaded automatically; does not override existing shell variables).

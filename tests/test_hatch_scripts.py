@@ -15,6 +15,8 @@ def test_hatch_scripts_include_local_clis() -> None:
     assert scripts["wiki-render"] == ["python -m src.wiki_render {args}"]
     assert scripts["wiki-synthesis-indexes"] == ["python -m src.wiki_synthesis.indexes_cli {args}"]
     assert scripts["wiki-synthesis-plan"] == ["python -m src.wiki_synthesis {args}"]
+    assert scripts["wiki-synthesis-prompt"] == ["python -m src.wiki_synthesis.prompt_cli {args}"]
+    assert scripts["wiki-synthesis-run"] == ["python -m src.wiki_synthesis.run_cli {args}"]
     assert scripts["wiki-reset"] == ["python -m src.wiki_reset {args}"]
     assert scripts["dashboard"] == ["streamlit run src/dashboard/app.py {args}"]
     assert scripts["ingest-manifest"] == ["python -m src.pipeline.ingest_manifest {args}"]
