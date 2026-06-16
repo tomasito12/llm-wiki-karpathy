@@ -36,7 +36,7 @@ def test_plan_marks_matching_cache_unchanged(tmp_path: Path) -> None:
     """A matching cached input hash should avoid synthesis work."""
     page = _page(source_count=2)
     cache_path = cache_file_path(tmp_path / "cache", category="topic", slug="local-models")
-    atomic_write_json(cache_path, {"synthesis_input_hash": synthesis_input_hash(page)})
+    atomic_write_json(cache_path, _cache_entry(page, synthesis_input_hash(page)))
 
     plan = plan_from_graph({"knowledge_pages": [page]}, cache_dir=tmp_path / "cache")
 
@@ -48,7 +48,7 @@ def test_plan_marks_mismatched_cache_stale(tmp_path: Path) -> None:
     """A mismatched cached input hash should mark a page stale."""
     page = _page(source_count=2)
     cache_path = cache_file_path(tmp_path / "cache", category="topic", slug="local-models")
-    atomic_write_json(cache_path, {"synthesis_input_hash": "oldhash"})
+    atomic_write_json(cache_path, _cache_entry(page, "oldhash"))
 
     plan = plan_from_graph({"knowledge_pages": [page]}, cache_dir=tmp_path / "cache")
 
@@ -60,7 +60,7 @@ def test_plan_changed_only_hides_unchanged_entries(tmp_path: Path) -> None:
     """Changed-only output should keep summary counts but hide unchanged entries."""
     page = _page(source_count=2)
     cache_path = cache_file_path(tmp_path / "cache", category="topic", slug="local-models")
-    atomic_write_json(cache_path, {"synthesis_input_hash": synthesis_input_hash(page)})
+    atomic_write_json(cache_path, _cache_entry(page, synthesis_input_hash(page)))
 
     plan = plan_from_graph(
         {"knowledge_pages": [page]},
@@ -77,9 +77,21 @@ def test_loadable_cache_json_is_stable(tmp_path: Path) -> None:
     """Cache files should be ordinary JSON artifacts."""
     page = _page(source_count=2)
     cache_path = cache_file_path(tmp_path / "cache", category="topic", slug="local-models")
-    atomic_write_json(cache_path, {"synthesis_input_hash": synthesis_input_hash(page)})
+    atomic_write_json(cache_path, _cache_entry(page, synthesis_input_hash(page)))
 
     assert json.loads(cache_path.read_text(encoding="utf-8"))["synthesis_input_hash"]
+
+
+def test_plan_marks_incomplete_cache_as_error(tmp_path: Path) -> None:
+    """A cache file with only a hash should not be treated as renderable synthesis."""
+    page = _page(source_count=2)
+    cache_path = cache_file_path(tmp_path / "cache", category="topic", slug="local-models")
+    atomic_write_json(cache_path, {"synthesis_input_hash": synthesis_input_hash(page)})
+
+    plan = plan_from_graph({"knowledge_pages": [page]}, cache_dir=tmp_path / "cache")
+
+    assert plan.summary.error == 1
+    assert plan.entries[0].state == "error"
 
 
 def _page(*, source_count: int) -> dict[str, object]:
@@ -112,4 +124,21 @@ def _page(*, source_count: int) -> dict[str, object]:
                 "stance": "neutral",
             }
         ],
+    }
+
+
+def _cache_entry(page: dict[str, object], input_hash: str) -> dict[str, object]:
+    """Return a complete minimal synthesis cache entry for a page."""
+    return {
+        "entity_id": page["entity_id"],
+        "category": page["category"],
+        "slug": page["slug"],
+        "title": page["title"],
+        "synthesis_input_hash": input_hash,
+        "executive_synthesis": "Local models run near users.",
+        "what_to_remember": ["They can reduce hosted API dependency."],
+        "consensus": ["Useful for privacy or latency needs."],
+        "tensions": ["Operational overhead can outweigh control."],
+        "evidence_quality": ["Small but consistent evidence set."],
+        "practical_takeaway": "Use when control matters more than convenience.",
     }

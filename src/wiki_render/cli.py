@@ -52,6 +52,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Machine-readable graph export path.",
     )
     parser.add_argument(
+        "--synthesis-cache-dir",
+        type=Path,
+        default=root / "state" / "synthesis",
+        help="Optional Stage 2 synthesis cache directory.",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Compute and report planned writes without changing files.",
@@ -79,7 +85,12 @@ def main() -> int:
         wiki_dir=wiki_dir,
         taxonomy_version=tax_version,
     )
-    rendered = render_graph(graph, wiki_dir=wiki_dir)
+    synthesis_cache_dir = args.synthesis_cache_dir.resolve()
+    rendered = render_graph(
+        graph,
+        wiki_dir=wiki_dir,
+        synthesis_cache_dir=synthesis_cache_dir,
+    )
     write_graph_export(args.graph_path.resolve(), graph, dry_run=args.dry_run)
     report = write_rendered_files(
         wiki_dir=wiki_dir,
@@ -95,6 +106,7 @@ def main() -> int:
             "interview_insight_count": len(graph.insights),
             "implementation_study_count": len(graph.implementation_studies),
             "graph_export_path": str(args.graph_path),
+            "synthesis_cache_dir": str(args.synthesis_cache_dir),
         },
         dry_run=args.dry_run,
         prune=not args.no_prune,

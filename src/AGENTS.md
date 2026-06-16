@@ -78,10 +78,11 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 ## Wiki render (generated Obsidian vault)
 
 - Run: `hatch run wiki-render`
-- Options: `--dry-run`, `--no-prune`, `--reviews-dir`, `--out-dir`, `--manifest-path`, `--graph-path`
+- Options: `--dry-run`, `--no-prune`, `--reviews-dir`, `--out-dir`, `--manifest-path`, `--graph-path`, `--synthesis-cache-dir`
 - **Canonical input:** `state/reviews/*/review.json`
 - **Output:** full regeneration of managed folders under `wiki/` (see [`wiki/AGENTS.md`](../wiki/AGENTS.md))
 - **Audit artifacts:** `state/wiki_render_manifest.json` (advisory file list + hashes), `state/wiki_render_graph.json` (Stage 2 graph export)
+- The renderer may read existing Stage 2 cache entries from `state/synthesis/<category>/<slug>.json`; it never creates cache entries and never makes LLM calls. Fresh cache entries render synthesized Obsidian pages, stale cache entries render with a visible warning, and missing/invalid cache entries fall back to Stage 1.
 - After review changes, rerun `wiki-render` — do not hand-edit generated pages.
 
 ## Wiki synthesis planning (Stage 2 groundwork)

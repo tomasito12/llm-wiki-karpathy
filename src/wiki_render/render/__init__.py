@@ -14,11 +14,19 @@ from src.wiki_render.render.knowledge import (
 from src.wiki_render.render.source import render_source_page
 
 
-def render_graph(graph: KnowledgeGraph, *, wiki_dir: Path) -> list[RenderedFile]:
+def render_graph(
+    graph: KnowledgeGraph,
+    *,
+    wiki_dir: Path,
+    synthesis_cache_dir: Path | None = None,
+) -> list[RenderedFile]:
     """Render the full graph to markdown files."""
     files: list[RenderedFile] = []
     files.extend(render_source_page(source, wiki_dir=wiki_dir) for source in graph.sources)
-    files.extend(render_knowledge_page(page) for page in graph.knowledge_pages)
+    files.extend(
+        render_knowledge_page(page, synthesis_cache_dir=synthesis_cache_dir)
+        for page in graph.knowledge_pages
+    )
     files.extend(render_individual_page(item) for item in graph.signals)
     files.extend(render_individual_page(item) for item in graph.insights)
     files.extend(render_implementation_study_page(item) for item in graph.implementation_studies)

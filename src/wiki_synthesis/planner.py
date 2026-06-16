@@ -6,7 +6,12 @@ import json
 from pathlib import Path
 from typing import Any
 
-from src.wiki_synthesis.cache import cached_input_hash, load_cache_entry
+from src.wiki_synthesis.cache import (
+    VALIDATION_STALE,
+    cached_input_hash,
+    load_cache_entry,
+    validate_cache_entry,
+)
 from src.wiki_synthesis.input_hash import synthesis_input_hash
 from src.wiki_synthesis.models import PlanEntry, PlanSummary, SynthesisPlan
 
@@ -78,15 +83,21 @@ def _entry_for_page(
     else:
         cache_entry = load_cache_entry(cache_dir, category=category, slug=slug)
         cached_hash = cached_input_hash(cache_entry)
-        if not cached_hash:
+        if cache_entry is None:
             state = "new"
             reason = "no synthesis cache entry exists"
-        elif cached_hash != current_hash:
-            state = "stale"
-            reason = "current synthesis input hash differs from cached hash"
         else:
-            state = "unchanged"
-            reason = "cached synthesis input hash matches current input"
+            validation = validate_cache_entry(cache_entry, current_input_hash=current_hash)
+            if not validation.is_usable:
+                state = "error"
+                reason = validation.reason
+            elif validation.state == VALIDATION_STALE:
+                state = "stale"
+                reason = validation.reason
+            else:
+                state = "unchanged"
+                reason = validation.reason
+            cached_hash = validation.cached_input_hash
     return PlanEntry(
         entity_id=str(page.get("entity_id", "")),
         category=category,

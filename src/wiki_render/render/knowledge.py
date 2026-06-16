@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any, cast
 
 from src.wiki_contract.categories import FRONTMATTER_CATEGORY_BY_GRAPH
@@ -16,6 +17,14 @@ from src.wiki_render.render.common import (
     paragraph,
     sources_section,
 )
+from src.wiki_synthesis import SYNTHESIS_PROMPT_VERSION, SYNTHESIS_SCHEMA_VERSION
+from src.wiki_synthesis.cache import (
+    VALIDATION_STALE,
+    CacheValidation,
+    load_cache_entry,
+    validate_cache_entry,
+)
+from src.wiki_synthesis.render_input import synthesis_input_hash_for_knowledge_page
 
 CATEGORY_LABELS: dict[str, str] = FRONTMATTER_CATEGORY_BY_GRAPH
 
@@ -93,8 +102,16 @@ IMPL_STUDY_BODY_KEYS: tuple[str, ...] = (
 IMPL_STUDY_LIST_KEYS: tuple[str, ...] = ("key_lessons", "open_questions", "related_sources")
 
 
-def render_knowledge_page(page: KnowledgePage) -> RenderedFile:
+def render_knowledge_page(
+    page: KnowledgePage,
+    *,
+    synthesis_cache_dir: Path | None = None,
+) -> RenderedFile:
     """Render one merged knowledge page."""
+    cache_entry, validation = _load_renderable_synthesis(page, synthesis_cache_dir)
+    if cache_entry and validation and validation.is_usable:
+        return _render_synthesized_knowledge_page(page, cache_entry, validation)
+
     frontmatter = {
         "title": page.title,
         "slug": page.slug,
@@ -121,6 +138,137 @@ def render_knowledge_page(page: KnowledgePage) -> RenderedFile:
     body += _related_section(page)
     body += sources_section(page.source_ids, page.source_titles)
     return RenderedFile(relative_path=page.path, text=markdown_document(frontmatter, body))
+
+
+def _load_renderable_synthesis(
+    page: KnowledgePage,
+    synthesis_cache_dir: Path | None,
+) -> tuple[dict[str, Any] | None, CacheValidation | None]:
+    """Load and validate an optional Stage 2 synthesis cache entry."""
+    if synthesis_cache_dir is None:
+        return None, None
+    current_hash = synthesis_input_hash_for_knowledge_page(page)
+    entry = load_cache_entry(
+        synthesis_cache_dir,
+        category=page.category,
+        slug=page.slug,
+    )
+    validation = validate_cache_entry(entry, current_input_hash=current_hash)
+    if not validation.is_usable:
+        return None, validation
+    return entry, validation
+
+
+def _render_synthesized_knowledge_page(
+    page: KnowledgePage,
+    cache_entry: dict[str, Any],
+    validation: CacheValidation,
+) -> RenderedFile:
+    """Render one merged knowledge page from an existing synthesis cache entry."""
+    is_stale = validation.state == VALIDATION_STALE
+    frontmatter = {
+        "title": page.title,
+        "slug": page.slug,
+        "entity_id": page.entity_id,
+        "category": CATEGORY_LABELS[page.category],
+        "tags": page.tags,
+        "aliases": page.aliases,
+        "first_seen": page.first_seen,
+        "last_seen": page.last_seen,
+        "source_count": page.source_count,
+        "evidence_count": page.evidence_count,
+        "source_ids": page.source_ids,
+        "value_level": page.value_level,
+        "confidence": page.confidence,
+        "synthesis_state": "stale" if is_stale else "synthesized",
+        "synthesis_stale": is_stale,
+        "synthesis_input_hash": validation.cached_input_hash,
+        "current_input_hash": validation.current_input_hash,
+        "synthesis_schema_version": cache_entry.get(
+            "synthesis_schema_version",
+            SYNTHESIS_SCHEMA_VERSION,
+        ),
+        "synthesis_prompt_version": cache_entry.get(
+            "synthesis_prompt_version",
+            SYNTHESIS_PROMPT_VERSION,
+        ),
+        "last_synthesized_at": cache_entry.get("last_synthesized_at", ""),
+        "maturity": page.maturity,
+        "types": page.types,
+    }
+    body = heading(1, page.title)
+    if is_stale:
+        body += (
+            "> [!warning] Synthesis may be stale\n"
+            "> New or changed evidence exists. The prose synthesis below was "
+            "generated from an older evidence hash.\n\n"
+        )
+    body += heading(2, "Executive synthesis")
+    body += paragraph(str(cache_entry.get("executive_synthesis", "")))
+    body += _context_card_section(cache_entry)
+    body += _cache_list_section("What to remember", cache_entry, "what_to_remember")
+    body += _cache_list_section("Consensus", cache_entry, "consensus")
+    body += _cache_list_section("Tensions / open questions", cache_entry, "tensions")
+    body += _cache_list_section("Evidence quality", cache_entry, "evidence_quality")
+    body += heading(2, "Practical takeaway")
+    body += paragraph(str(cache_entry.get("practical_takeaway", "")))
+    body += _evidence_index_section(page, validation, cache_entry)
+    body += _related_section(page)
+    body += sources_section(page.source_ids, page.source_titles)
+    return RenderedFile(relative_path=page.path, text=markdown_document(frontmatter, body))
+
+
+def _context_card_section(cache_entry: dict[str, Any]) -> str:
+    """Render the compact routing card stored in a synthesis cache entry."""
+    card = cache_entry.get("context_card")
+    if not isinstance(card, dict):
+        return ""
+    rows: list[str] = []
+    for key, label in (
+        ("use_this_page_when", "Use this page when"),
+        ("best_for_questions_about", "Best for questions about"),
+        ("not_enough_for", "Not enough for"),
+        ("strongest_sources", "Strongest sources"),
+        ("related_tags", "Related tags"),
+    ):
+        value = _display_value(card.get(key))
+        if value:
+            rows.append(f"**{label}:** {value}")
+    return heading(2, "Context card") + bullet_list(rows) if rows else ""
+
+
+def _cache_list_section(title: str, cache_entry: dict[str, Any], key: str) -> str:
+    """Render one list section from a synthesis cache entry."""
+    value = cache_entry.get(key)
+    if not isinstance(value, list):
+        return ""
+    return heading(2, title) + bullet_list(str(item) for item in value)
+
+
+def _evidence_index_section(
+    page: KnowledgePage,
+    validation: CacheValidation,
+    cache_entry: dict[str, Any],
+) -> str:
+    """Render audit metadata that lets humans and agents judge freshness."""
+    lines = [
+        f"Sources: {page.source_count}",
+        f"Evidence items: {page.evidence_count}",
+        f"Current input hash: `{validation.current_input_hash}`",
+        f"Cached input hash: `{validation.cached_input_hash}`",
+    ]
+    synthesized_at = str(cache_entry.get("last_synthesized_at", "")).strip()
+    if synthesized_at:
+        lines.append(f"Last synthesized: {synthesized_at}")
+    lines.append(f"Synthesis status: `{validation.state}`")
+    return heading(2, "Evidence index") + bullet_list(lines)
+
+
+def _display_value(value: Any) -> str:
+    """Return a readable inline display value for cache metadata."""
+    if isinstance(value, list):
+        return ", ".join(str(item).strip() for item in value if str(item).strip())
+    return str(value or "").strip()
 
 
 def render_individual_page(item: IndividualPage) -> RenderedFile:
