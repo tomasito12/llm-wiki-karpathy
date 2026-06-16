@@ -382,7 +382,6 @@
             "It supports a routing strategy where stronger models are reserved for harder synthesis tasks."
           ],
           "deployment_implications": "Using Sonnet first suggests a routing strategy where most routine tasks stay on the cheaper or more efficient model, and only hard synthesis tasks escalate. For production workflows, that implies an orchestration policy that reduces cost pressure and keeps the expensive model reserved for high-stakes work. The source does not provide throughput, latency, or context-window data, so deployment guidance remains qualitative.",
-          "evidence_type": null,
           "match_candidates": [],
           "maturity_signals": "The model is presented as established enough to be part of a stable everyday routing pattern. The source assumes users can switch models inside the same product without reworking the workflow. No external adoption evidence is provided.",
           "model_name": "Sonnet 4.6",
@@ -417,7 +416,7 @@
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "comparative_observations": {
             "final_list": null,
@@ -426,7 +425,7 @@
               "It is treated as a better everyday default than Haiku for anything beyond very lightweight summarization."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "core_capabilities": {
             "final_list": null,
@@ -436,37 +435,37 @@
               "It supports a routing strategy where stronger models are reserved for harder synthesis tasks."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "deployment_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "model_name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_profile": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "pricing_inference_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "provider": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_models": {
             "final_list": null,
@@ -480,7 +479,7 @@
           "service_automation_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -490,7 +489,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -499,6 +498,14 @@
             "proprietary-model",
             "frontier-model"
           ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "reviewer_types_added": []
         }
       },
       {
@@ -515,7 +522,6 @@
             "It provides the highest-quality response path inside the user's model ladder."
           ],
           "deployment_implications": "In a deployed workflow, Opus acts as the escalation model for tasks where answer quality matters more than efficiency. That means the orchestration layer should identify synthesis-heavy tasks and route them upward rather than using Opus everywhere. The source implies higher token cost, so careful gating matters for sustainable use.",
-          "evidence_type": null,
           "match_candidates": [],
           "maturity_signals": "The model is treated as a top-tier option inside an established product workflow, which suggests stable availability and practical trust. No external adoption or benchmark evidence is provided. The source presents it as the quality-first choice in a model routing ladder.",
           "model_name": "Opus 4.6",
@@ -550,56 +556,56 @@
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "comparative_observations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It is positioned above Sonnet for difficult tasks that justify higher token consumption.",
               "It is described as stronger than Haiku for anything beyond lightweight summarization."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It is used for complex synthesis tasks that need stronger judgment and integration.",
               "It is the preferred model for deep research work in the described workflow.",
               "It provides the highest-quality response path inside the user's model ladder."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "deployment_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "model_name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_profile": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "pricing_inference_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "provider": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_models": {
             "final_list": null,
@@ -611,9 +617,9 @@
             "status": "pending"
           },
           "service_automation_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -621,9 +627,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -632,6 +638,14 @@
             "proprietary-model",
             "frontier-model"
           ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "reviewer_types_added": []
         }
       }
     ],
@@ -684,12 +698,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -703,7 +717,7 @@
               "Start each new session with a short prompt that tells the model to read the identity file, then the vault map and skill map."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -713,12 +727,12 @@
               "A willingness to maintain map files and session prompts."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -737,7 +751,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -844,7 +858,6 @@
             "It can make file edits and structural changes such as renaming and moving files, which is important for maintaining note systems.",
             "It supports model selection inside the same app, allowing lighter or stronger models to be used for different task types."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It works with a folder on the local computer rather than requiring a new data store, which fits file-native workflows.",
             "It is used alongside Obsidian markdown notes, which remain readable outside the app.",
@@ -879,7 +892,7 @@
         },
         "notes": null,
         "proposal_id": "e2cda4fb-9c98-4876-bcb7-4f22e7f07eba",
-        "proposal_status": "approved",
+        "proposal_status": "rejected",
         "sections": {
           "core_capabilities": {
             "final_list": null,
@@ -889,7 +902,7 @@
               "It supports model selection inside the same app, allowing lighter or stronger models to be used for different task types."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -899,22 +912,22 @@
               "It can be paired with recurring tasks and session-start prompts to load the right context before work begins."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -929,12 +942,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -944,7 +957,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -954,6 +967,15 @@
             "cloud-hosted",
             "workflow-automation"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-application",
+            "app"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -999,7 +1021,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -1010,17 +1032,17 @@
               "Keeping generated material in a separate folder helps preserve the integrity of personal notes."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -1029,12 +1051,12 @@
               "agentic-personal-knowledge-management"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1044,12 +1066,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1102,7 +1124,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -1113,17 +1135,17 @@
               "A translation layer creates a stable interface across AI vendors."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -1132,12 +1154,12 @@
               "knowledge-base-becomes-runtime-infrastructure"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1147,12 +1169,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1168,19 +1190,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "implementation_case": 6
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 5,
     "proposals_deferred": 0,
     "proposals_modified": 0,
-    "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_rejected": 1,
+    "proposals_total": 6,
+    "review_duration_seconds": 182.5,
+    "review_finished_at": "2026-06-16T16:16:43.494791+00:00",
+    "review_started_at": "2026-06-16T16:13:41+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-06-16T16:16:43+00:00",
     "saved_by": null
   },
   "source": {

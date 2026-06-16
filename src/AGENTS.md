@@ -84,6 +84,22 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 - **Audit artifacts:** `state/wiki_render_manifest.json` (advisory file list + hashes), `state/wiki_render_graph.json` (Stage 2 graph export)
 - After review changes, rerun `wiki-render` — do not hand-edit generated pages.
 
+## Wiki synthesis planning (Stage 2 groundwork)
+
+- Run: `hatch run wiki-synthesis-plan`
+- This command makes **no LLM calls** and writes no files.
+- Input: `state/wiki_render_graph.json`
+- Cache lookup path: `state/synthesis/<category>/<slug>.json`
+- Purpose: classify knowledge pages as `new`, `stale`, `unchanged`, or skipped before any future synthesis execution.
+- Default behavior skips single-source knowledge pages and always treats signals, interview insights, and implementation studies as evidence objects rather than synthesis targets.
+- Useful options:
+  - `--changed-only` — show only pages that would need synthesis work.
+  - `--limit 20` — cap displayed entries.
+  - `--category topic` — inspect one graph category.
+  - `--entity topic:agentic-coding-workflows` — inspect one entity.
+  - `--include-single-source` — include candidate/thin single-source pages.
+  - `--json` — print machine-readable output.
+
 ## Readwise Reader export
 
 - Set `READWISE_TOKEN` (or `READWISE_API_TOKEN`) from [readwise.io/access_token](https://readwise.io/access_token), or put it in a repo-root `.env` file (loaded automatically; does not override existing shell variables).
