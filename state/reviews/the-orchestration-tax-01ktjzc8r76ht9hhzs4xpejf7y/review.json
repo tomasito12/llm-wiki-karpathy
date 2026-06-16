@@ -1,0 +1,680 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-16T01:25:20+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrCpxMd7ukiDRCCDYHoSRjigzs3GM",
+          "token_usage": {
+            "completion_tokens": 224,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5714,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5938
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrCpz3jwvnE6kViIIWjhmSXH87mpI",
+          "token_usage": {
+            "completion_tokens": 970,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5352,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6322
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DrCq8ptiNldGnuWrv4nXHUaWsXGKd",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1149,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 37470,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 38619
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DrCq8ptiNldGnuWrv4nXHUaWsXGKd",
+    "token_usage": {
+      "completion_tokens": 2343,
+      "prompt_tokens": 48536,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 50879
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "",
+        "confidence": 0.93,
+        "evidence_from_source": "The source argues that the review and reconciliation step remains single-threaded even when many agents run in parallel, so more agents increase queue depth more than shipped output.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-restructuring",
+        "proposed_tags": [
+          "workflow-restructuring",
+          "human-ai-collaboration"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "coding-agents",
+        "suggested_new_tags": [
+          "coding-agents",
+          "agent-orchestration",
+          "software-engineering"
+        ],
+        "supporting_data_points": [
+          "Starting agents is described as cheap.",
+          "Judgment and merge decisions remain serial.",
+          "The author says the right number of parallel agents is usually a low single digit for most people."
+        ],
+        "supporting_snippet": "\"Spawning 8 agents doesn\u2019t speed up your judgement time. It just makes the queue of things feeding into it much deeper.\"",
+        "time_sensitivity": "Actionable as of 2026-05-28; the claim is tied to present-day agentic coding workflows where human review remains required.",
+        "trend_description": "As AI agents take on more coding tasks, the practical bottleneck shifts toward human supervision, review, and merge decisions. Parallel generation can grow faster than the person responsible for validation, so total throughput is constrained by the serial human step. This makes agentic coding less like fully automated production and more like supervised workflow design.",
+        "trend_slug": "agentic-coding-shifts-toward-higher-supervision-costs",
+        "trend_title": "Agentic Coding Shifts Toward Higher Supervision Costs",
+        "uncertainty_note": "This is a strong conceptual framing, but the source provides no measurement across teams or task types, so the size of the effect remains uncertain.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The source is primarily the author's strategic interpretation and advice about agent orchestration and attention management.",
+        "Claims are supported by analogies (GIL, Amdahl's Law, context switching) and personal experience from a panel discussion, not by data or experiments.",
+        "No benchmarks, formal research results, or implementation case evidence are presented as the main basis for the argument."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece says that agent tools can make you feel much busier than you really are. You can start many agents, but you still have to review, judge, and merge their work yourself. That review step is the slow part, so it becomes the bottleneck. The author calls this the \"orchestration tax.\" The basic fix is to treat your attention like a scarce system resource: keep agent count low enough that you can review well, batch your checks, and use agents to verify simple things while you focus on the hard decisions.",
+      "assessed_as_of": "2026-05-28",
+      "contradictions_and_skepticism": "The argument is persuasive, but it is still a conceptual essay, not evidence that agentic development is broadly bottlenecked exactly this way in every team. The claim that the right number of parallel agents is usually a low single digit is presented as experience-based guidance, not a general result. The GIL and Amdahl\u2019s Law analogies are useful, but they can encourage overconfidence in the neatness of the mapping; human judgment is less deterministic than CPU scheduling. The warning about cognitive surrender is plausible, though the article does not show how often it happens in practice or how to measure it reliably.",
+      "key_insights": [
+        "Starting more agents does not create more human attention; it only increases the amount of work queued for review.",
+        "The true bottleneck in agentic workflows is often judgment and integration, not generation.",
+        "Busy dashboards can hide low throughput if the serial review step cannot keep up.",
+        "Batching reviews and reducing context switches can materially lower the cognitive cost of orchestrating agents.",
+        "Use agents to prove the boring 80% themselves, so human attention is spent on the 20% that requires judgment."
+      ],
+      "limitations_and_open_questions": "The piece does not provide benchmarks, experiments, or case studies showing how much throughput changes under different agent counts or review patterns. The advice is directionally strong but leaves open how to set the right review threshold for different task types, team sizes, or codebase complexity. It also does not quantify the cost of batching versus immediate feedback, or discuss how tooling, pair review, or automated checks could change the serial bottleneck. The concurrency metaphors are helpful, but they can oversimplify workflows where humans and agents have different error modes or where partial automation is safe. There is also no discussion of security, privacy, or organizational controls around agent-generated code.",
+      "sources": [
+        "https://x.com/addyosmani/status/2059844244907696186/?rw_tt_thread=True"
+      ],
+      "summary": "The article argues that agentic coding workflows create an \"orchestration tax\": starting more agents is cheap, but judging, merging, and reconciling their output still runs through one serial human bottleneck. The author frames the developer as the single-threaded resource in the system, analogous to a global interpreter lock or the serial fraction in Amdahl\u2019s Law. More agents can increase apparent activity without increasing shipped work, because the review and decision step remains bounded by one person\u2019s attention. The result is not just inefficiency but cognitive strain: context switching, stale mental models, shallow reviews, and eventually accepting agent output without fully understanding it. The practical response is to architect attention like a concurrent system: scale fleet size to review rate, separate isolated tasks from judgment-heavy work, batch reviews, use agents to verify boring parts, and reserve protected time for deep thinking. The piece closes by arguing that the real skill is not spawning agents but designing the workflow around the irreducible serial resource: human attention.",
+      "why_it_matters": "The article is useful because it reframes agentic coding as a systems-design problem instead of a productivity contest. That is a durable mental model for AI engineering: the limiting resource is often not model output, but the human process that validates, merges, and understands it. The concurrency analogies are concrete and operationally relevant as of 2026-05-28 because they translate well into everyday workflow choices: cap parallelism to review capacity, separate delegation-friendly tasks from judgment-heavy tasks, and use backpressure instead of letting queues expand unchecked. The piece is strongest where it describes the failure mode of shallow reviews and cognitive surrender, because those are realistic risks when agent volume rises faster than human inspection time. It is weaker as evidence for any broad productivity claim, since it is mostly expert opinion and personal experience rather than measurement. Still, the guidance is practical enough to adopt as a working heuristic: treat attention as the scarce serial resource and design around it. For conversational AI, chatbots, voicebots, and service automation work, the same logic applies to handoff quality, review gates, and avoiding over-automation of complex judgment steps."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent essay arguing one central concept ('the orchestration tax') rather than a bundle of unrelated items.",
+        "No numbered tool list, step-by-step tutorial, or digest structure; the panel reference is supporting context, not an interview transcript.",
+        "Written as an opinion/expert commentary with analogies to concurrency and personal workflow, not a report or research paper."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Starting an agent is cheap; closing the loop is expensive.",
+          "The serial review step, not generation, often determines throughput.",
+          "Parallel agent work can increase apparent activity without increasing shipped work.",
+          "Verification gates and human review capacity should shape workflow design."
+        ],
+        "knowledge_summary": "Agentic coding workflows are development setups where one or more AI agents generate, edit, or inspect code while a human remains responsible for judgment, integration, and final approval. The main operational issue is not generation speed but the human review bottleneck that limits safe throughput. These workflows work best when the human role is narrowed to high-value decisions and the agents handle verifiable or isolated tasks. They become risky when parallelism grows faster than the reviewer\u2019s ability to understand, reconcile, and trust the output.",
+        "match_candidates": [],
+        "operational_insight": "Treat agent count as a function of review capacity, not enthusiasm for automation. A workflow that creates more code than a person can understand just moves the bottleneck downstream and increases shallow reviews.",
+        "primary_tag": "coding-agents",
+        "proposed_tags": [
+          "coding-agents",
+          "ai-assisted-development",
+          "agent-orchestration",
+          "workflow-design",
+          "software-engineering"
+        ],
+        "related_topics": [
+          "cognitive-debt-in-ai-workflows"
+        ],
+        "relevance_note": "This is durable for AI engineering as of 2026-05-28 because many coding teams are adding agents faster than they are redesigning review and merge workflows. The pattern matters wherever humans must still validate outputs before shipping, including service automation systems where incorrect automation can compound quickly.",
+        "secondary_tag": "ai-assisted-development",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Starting more AI agents is easy now. However, more agents running doesn\u2019t mean there's more of you available - your cognitive bandwidth doesn\u2019t parallelize.\"",
+        "topic_slug": "agentic-coding-workflows",
+        "topic_title": "Agentic Coding Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Shallow review creates hidden technical debt and cognitive debt together.",
+          "The failure may not appear in dashboards until a real incident occurs.",
+          "Stale mental models make later debugging and change management harder.",
+          "Attention loss can silently reduce standards without an obvious alert."
+        ],
+        "knowledge_summary": "Cognitive debt is the accumulation of stale understanding, shallow review habits, and reduced ability to reason clearly about a system after delegating too much work to AI. It emerges when people accept agent output without fully inspecting it, or when context switching and orchestration overhead exhaust the attention needed for real judgment. Unlike normal task backlog, cognitive debt degrades the operator\u2019s internal model of the system. The practical consequence is that future changes and failures become harder to diagnose because understanding has been eroded over time.",
+        "match_candidates": [],
+        "operational_insight": "If the human stops fully reading, reasoning, and reconciling outputs, the workflow may still move but the team\u2019s understanding decays. That decay is itself a production risk, not just a personal productivity problem.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "human-ai-workflows",
+          "workflow-design",
+          "organizational-design"
+        ],
+        "related_topics": [
+          "agentic-coding-workflows"
+        ],
+        "relevance_note": "This is useful across AI-assisted development and service automation because over-delegation can leave teams unable to explain or fix the behavior of their own systems. As of 2026-05-28, it is a practical warning that automation quality depends on human comprehension, not only output volume.",
+        "secondary_tag": "human-ai-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "cognitive-debt-in-ai-workflows",
+        "suggested_new_tags": [
+          "cognitive-debt-in-ai-workflows"
+        ],
+        "supporting_snippet": "\"The orchestration tax left unpaid is how you accumulate both at once. You merge stuff you didn\u2019t read well. Your mental model of the codebase goes completely stale.\"",
+        "topic_slug": "cognitive-debt-in-ai-workflows",
+        "topic_title": "Cognitive Debt in AI Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "",
+          "confidence": 0.93,
+          "evidence_from_source": "The source argues that the review and reconciliation step remains single-threaded even when many agents run in parallel, so more agents increase queue depth more than shipped output.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-restructuring",
+          "proposed_tags": [
+            "workflow-restructuring",
+            "human-ai-collaboration"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "coding-agents",
+          "suggested_new_tags": [
+            "coding-agents",
+            "agent-orchestration",
+            "software-engineering"
+          ],
+          "supporting_data_points": [
+            "Starting agents is described as cheap.",
+            "Judgment and merge decisions remain serial.",
+            "The author says the right number of parallel agents is usually a low single digit for most people."
+          ],
+          "supporting_snippet": "\"Spawning 8 agents doesn\u2019t speed up your judgement time. It just makes the queue of things feeding into it much deeper.\"",
+          "time_sensitivity": "Actionable as of 2026-05-28; the claim is tied to present-day agentic coding workflows where human review remains required.",
+          "trend_description": "As AI agents take on more coding tasks, the practical bottleneck shifts toward human supervision, review, and merge decisions. Parallel generation can grow faster than the person responsible for validation, so total throughput is constrained by the serial human step. This makes agentic coding less like fully automated production and more like supervised workflow design.",
+          "trend_slug": "agentic-coding-shifts-toward-higher-supervision-costs",
+          "trend_title": "Agentic Coding Shifts Toward Higher Supervision Costs",
+          "uncertainty_note": "This is a strong conceptual framing, but the source provides no measurement across teams or task types, so the size of the effect remains uncertain.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "bd782042-a6f7-42f2-a775-c770c0105911",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Starting agents is described as cheap.",
+              "Judgment and merge decisions remain serial.",
+              "The author says the right number of parallel agents is usually a low single digit for most people."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-restructuring",
+            "human-ai-collaboration"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The source is primarily the author's strategic interpretation and advice about agent orchestration and attention management.",
+          "Claims are supported by analogies (GIL, Amdahl's Law, context switching) and personal experience from a panel discussion, not by data or experiments.",
+          "No benchmarks, formal research results, or implementation case evidence are presented as the main basis for the argument."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Starting more agents does not create more human attention; it only increases the amount of work queued for review.",
+          "The true bottleneck in agentic workflows is often judgment and integration, not generation.",
+          "Busy dashboards can hide low throughput if the serial review step cannot keep up.",
+          "Batching reviews and reducing context switches can materially lower the cognitive cost of orchestrating agents.",
+          "Use agents to prove the boring 80% themselves, so human attention is spent on the 20% that requires judgment."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://x.com/addyosmani/status/2059844244907696186/?rw_tt_thread=True"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent essay arguing one central concept ('the orchestration tax') rather than a bundle of unrelated items.",
+          "No numbered tool list, step-by-step tutorial, or digest structure; the panel reference is supporting context, not an interview transcript.",
+          "Written as an opinion/expert commentary with analogies to concurrency and personal workflow, not a report or research paper."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Starting an agent is cheap; closing the loop is expensive.",
+            "The serial review step, not generation, often determines throughput.",
+            "Parallel agent work can increase apparent activity without increasing shipped work.",
+            "Verification gates and human review capacity should shape workflow design."
+          ],
+          "knowledge_summary": "Agentic coding workflows are development setups where one or more AI agents generate, edit, or inspect code while a human remains responsible for judgment, integration, and final approval. The main operational issue is not generation speed but the human review bottleneck that limits safe throughput. These workflows work best when the human role is narrowed to high-value decisions and the agents handle verifiable or isolated tasks. They become risky when parallelism grows faster than the reviewer\u2019s ability to understand, reconcile, and trust the output.",
+          "match_candidates": [],
+          "operational_insight": "Treat agent count as a function of review capacity, not enthusiasm for automation. A workflow that creates more code than a person can understand just moves the bottleneck downstream and increases shallow reviews.",
+          "primary_tag": "coding-agents",
+          "proposed_tags": [
+            "coding-agents",
+            "ai-assisted-development",
+            "agent-orchestration",
+            "workflow-design",
+            "software-engineering"
+          ],
+          "related_topics": [
+            "cognitive-debt-in-ai-workflows"
+          ],
+          "relevance_note": "This is durable for AI engineering as of 2026-05-28 because many coding teams are adding agents faster than they are redesigning review and merge workflows. The pattern matters wherever humans must still validate outputs before shipping, including service automation systems where incorrect automation can compound quickly.",
+          "secondary_tag": "ai-assisted-development",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Starting more AI agents is easy now. However, more agents running doesn\u2019t mean there's more of you available - your cognitive bandwidth doesn\u2019t parallelize.\"",
+          "topic_slug": "agentic-coding-workflows",
+          "topic_title": "Agentic Coding Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "de386076-7f6b-4643-8d4e-3bd65a84436d",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Starting an agent is cheap; closing the loop is expensive.",
+              "The serial review step, not generation, often determines throughput.",
+              "Parallel agent work can increase apparent activity without increasing shipped work.",
+              "Verification gates and human review capacity should shape workflow design."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "cognitive-debt-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "coding-agents",
+            "ai-assisted-development",
+            "agent-orchestration",
+            "workflow-design",
+            "software-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Shallow review creates hidden technical debt and cognitive debt together.",
+            "The failure may not appear in dashboards until a real incident occurs.",
+            "Stale mental models make later debugging and change management harder.",
+            "Attention loss can silently reduce standards without an obvious alert."
+          ],
+          "knowledge_summary": "Cognitive debt is the accumulation of stale understanding, shallow review habits, and reduced ability to reason clearly about a system after delegating too much work to AI. It emerges when people accept agent output without fully inspecting it, or when context switching and orchestration overhead exhaust the attention needed for real judgment. Unlike normal task backlog, cognitive debt degrades the operator\u2019s internal model of the system. The practical consequence is that future changes and failures become harder to diagnose because understanding has been eroded over time.",
+          "match_candidates": [],
+          "operational_insight": "If the human stops fully reading, reasoning, and reconciling outputs, the workflow may still move but the team\u2019s understanding decays. That decay is itself a production risk, not just a personal productivity problem.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "human-ai-workflows",
+            "workflow-design",
+            "organizational-design"
+          ],
+          "related_topics": [
+            "agentic-coding-workflows"
+          ],
+          "relevance_note": "This is useful across AI-assisted development and service automation because over-delegation can leave teams unable to explain or fix the behavior of their own systems. As of 2026-05-28, it is a practical warning that automation quality depends on human comprehension, not only output volume.",
+          "secondary_tag": "human-ai-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "cognitive-debt-in-ai-workflows",
+          "suggested_new_tags": [
+            "cognitive-debt-in-ai-workflows"
+          ],
+          "supporting_snippet": "\"The orchestration tax left unpaid is how you accumulate both at once. You merge stuff you didn\u2019t read well. Your mental model of the codebase goes completely stale.\"",
+          "topic_slug": "cognitive-debt-in-ai-workflows",
+          "topic_title": "Cognitive Debt in AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "e1c3c409-56a3-4b9d-b74f-9af7a2d92c67",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Shallow review creates hidden technical debt and cognitive debt together.",
+              "The failure may not appear in dashboards until a real incident occurs.",
+              "Stale mental models make later debugging and change management harder.",
+              "Attention loss can silently reduce standards without an obvious alert."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-coding-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "human-ai-workflows",
+            "workflow-design",
+            "organizational-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Addy Osmani",
+    "canonical_url": "https://x.com/addyosmani/status/2059844244907696186/?rw_tt_thread=True",
+    "content_sha256": "564c021f3c26d82b4d89ab858e6ea5908f0a83317f1c67a3df9e7899541ac368",
+    "publication": "X (formerly Twitter)",
+    "published_date": "2026-05-28",
+    "raw_html_rel_path": "raw/readwise/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y.html",
+    "raw_md_rel_path": "raw/readwise/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y.md",
+    "source_id": "the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y",
+    "title": "The Orchestration Tax"
+  }
+}

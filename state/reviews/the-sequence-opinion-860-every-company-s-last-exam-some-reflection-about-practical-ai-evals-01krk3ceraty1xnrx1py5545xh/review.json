@@ -1,0 +1,666 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-09T18:53:41+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Dovrd3gi1KF2GrWrfxRVzxYm8ZXJq",
+          "token_usage": {
+            "completion_tokens": 203,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4464,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 4667
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DovrfCMxJJjuNJLR2JxLMr2g8mBYI",
+          "token_usage": {
+            "completion_tokens": 942,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4081,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5023
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DovroQBqqhqMCmLS4nipTnUyXRmLD",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1199,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35231,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 36430
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DovroQBqqhqMCmLS4nipTnUyXRmLD",
+    "token_usage": {
+      "completion_tokens": 2344,
+      "prompt_tokens": 43776,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 46120
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 2
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-14",
+        "confidence": 0.97,
+        "evidence_from_source": "The essay argues that \"every meaningful task performed by every agent inside every company will need its own evaluation layer\" and rejects \"generic benchmarks\" in favor of \"company-specific exams\" tied to real work.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "workflow-based-evaluation"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "workflow-based-evaluation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "ai-evaluation",
+        "suggested_new_tags": [
+          "ai-evaluation"
+        ],
+        "supporting_data_points": [
+          "Every meaningful task inside a company is described as needing its own evaluation layer.",
+          "Public benchmarks are described as insufficient for production truth.",
+          "The source points to private documents, internal policies, and exceptions as the missing test surface."
+        ],
+        "supporting_snippet": "\"Practical, dynamic, company-specific exams that measure whether an AI system can actually survive contact with real work. Not generic benchmarks. Not leaderboard theater.\"",
+        "time_sensitivity": "Actionable as of 2026-05-14; relevant as long as AI systems are evaluated for production workflows rather than only public benchmark performance.",
+        "trend_description": "AI evaluation is shifting from broad model benchmarks toward tests built around the actual workflows a system must complete. The relevant question is less whether a model looks strong in general and more whether it can survive the company\u2019s documents, rules, exceptions, and task boundaries. This makes evaluation more context-specific and operationally tied to production behavior. The shift is especially important for agentic systems that must execute multi-step work rather than answer isolated prompts.",
+        "trend_slug": "workflow-based-evaluation",
+        "trend_title": "AI Evaluation Moves Toward Workflow-Based Testing",
+        "uncertainty_note": "The direction is plausible and well-motivated, but the source is an opinion essay rather than a controlled study, so the scale and cost of workflow-specific evaluation remain uncertain.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The author advances a strategic interpretation about evals as a 'fourth pillar' and the need for company-specific exams.",
+        "Claims are framed as reflection and analogy, not as a formal study or benchmark report.",
+        "Evidence is mainly illustrative references to Humanity's Last Exam and HLE-Verified rather than primary research from this source."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This essay says AI evaluation is becoming as important as models, data, and compute. The basic idea is simple: public benchmarks are not enough once AI systems start doing real company work. Each company needs its own test suite that checks whether an agent can handle the exact tasks, documents, and exceptions that matter in production. The author uses Humanity\u2019s Last Exam as an example of a benchmark that became a kind of infrastructure, not a one-time scorecard. The main takeaway is that practical evals should be living systems, not static leaderboards.",
+      "assessed_as_of": "2026-05-14",
+      "contradictions_and_skepticism": "The central thesis is compelling but somewhat abstract: calling evals a 'fourth pillar' is a useful framing, yet the article does not prove that every company needs a separate evaluation layer at the same depth. The piece also assumes that production-derived tests are feasible and representative, which may be harder in messy or rapidly changing workflows. There is a mild tension between praising public benchmarks as still relevant and insisting that production truth has moved downstream; the balance is plausible, but the operational boundary is not fully specified. The argument is strong on why generic benchmarks are insufficient, but weaker on the cost and maintenance burden of the proposed alternative.",
+      "key_insights": [
+        "Company-specific evals are presented as the right unit of measurement for production AI, not generic public benchmarks.",
+        "The article frames evals as infrastructure, meaning they need maintenance, verification, and continuous updates.",
+        "Benchmark quality can materially change results; the cited HLE-Verified example reportedly shifted average accuracy by 7 to 10 percentage points.",
+        "Task-specific evals should be built from production-derived data, internal policies, and edge cases that public benchmarks miss.",
+        "Success criteria need to be explicit and operational, not based on vibes or leaderboard position."
+      ],
+      "limitations_and_open_questions": "The piece argues by analogy rather than by presenting a full empirical study of enterprise eval programs. It does not specify how to design, version, or govern company-specific exam suites, or how to keep them from becoming expensive bureaucracy. The article also does not address privacy, security, or data access constraints when turning production workflows into evaluation datasets. It is unclear how much verification effort is justified for smaller teams or lower-risk tasks. The cited accuracy shift from HLE-Verified is relevant, but it comes from benchmark maintenance, not necessarily from enterprise deployment conditions.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-opinion-860-every-companys"
+      ],
+      "summary": "The essay argues that AI evaluations are becoming a fourth foundational layer of modern AI, alongside compute, data, and models. The core claim is that as systems move from chatbots to agents and from demos to production workflows, each meaningful task inside each company will need its own private evaluation layer. The author rejects generic benchmarks and leaderboard-style comparisons in favor of practical, dynamic, company-specific exams that test whether an AI system can survive real work. To support the analogy, the piece points to Humanity\u2019s Last Exam as a case where a benchmark became a piece of infrastructure rather than a fixed report card. It also cites HLE-Verified as evidence that benchmark maintenance matters, since verification and cleanup materially changed measured accuracy. The article then extends the lesson to enterprises: production truth lives in proprietary workflows, private documents, internal policies, and exception handling, so success definitions must be explicit and task-specific. The practical implication is that eval design, maintenance, and production-derived datasets should be treated as core infrastructure rather than an afterthought.",
+      "why_it_matters": "The article is useful because it gives a durable framing for enterprise AI quality control: if agents are going to do real work, the relevant question is whether they pass the company\u2019s own exam for that work. That is a more actionable standard than comparing model scores on broad public tests that may not reflect private workflows, internal rules, or exception-heavy tasks. The piece also highlights an important operational point: evals are not static artifacts, since noise and flawed items can distort comparisons and require ongoing maintenance. That makes evaluation design part of the system, not a one-time procurement check. For AI teams, the practical takeaway is to invest in task-specific tests, production-derived datasets, and explicit success definitions before trusting deployment decisions. The significance is substantial for teams building agentic systems, but the article is still an opinion essay, so the stakes are argued rather than demonstrated with a full implementation study. As of 2026-05-14, the recommendation is actionable as a design principle, but its exact ROI still needs validation in each company\u2019s own workflow."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion essay arguing one thesis about AI evals, not a bundle of unrelated items.",
+        "No numbered list of tools, practices, or news blurbs; the structure is argumentative and essay-like.",
+        "Contains examples and references, but the dominant form is commentary rather than roundup or tutorial."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.96,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "They are private and organization-specific, not public benchmark replacements.",
+          "They focus on highest-value and highest-risk tasks inside a company.",
+          "They should be tied to real workflows, internal policies, and edge cases.",
+          "They are useful for production go/no-go decisions, not just model comparison."
+        ],
+        "knowledge_summary": "Proprietary evals are private evaluation suites built around an organization\u2019s own tasks, documents, policies, and edge cases. They measure whether an AI system can perform useful work in the specific environment where it will be deployed, rather than how it scores on broad public benchmarks. The point is to evaluate task fit, failure modes, and workflow reliability under real operating constraints. In practice, they function as a company-specific test harness for deciding whether an agent is ready for production.",
+        "match_candidates": [],
+        "operational_insight": "For production AI, the most useful evals are usually tied to the exact workflows, exceptions, and success criteria that matter inside one organization. Generic leaderboards can help with model selection, but they are not enough to approve deployment in a private operational setting.",
+        "primary_tag": "ai-evaluation",
+        "proposed_tags": [
+          "ai-evaluation",
+          "enterprise-ai",
+          "verification-systems"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "Proprietary evals matter because many enterprise AI failures only appear against private documents, internal policies, exception handling, and workflow-specific success criteria. As of 2026-05-14, teams building agents for service automation or conversational systems need these tests to decide whether a system is safe and useful in their own environment.",
+        "secondary_tag": "enterprise-ai",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Practical, dynamic, company-specific exams that measure whether an AI system can actually survive contact with real work. Not generic benchmarks. Not leaderboard theater.\"",
+        "topic_slug": "proprietary-evals",
+        "topic_title": "Proprietary Evals",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Evaluation artifacts can drift and become misleading if they are not maintained.",
+          "Verification can materially change measured performance.",
+          "Evals should be versioned and refreshed as workflows change.",
+          "A benchmark should be treated as infrastructure, not a one-time report card."
+        ],
+        "knowledge_summary": "Maintenance-aware AI evaluation treats evaluation suites as living systems that require cleanup, verification, and periodic updates. The goal is to keep scores meaningful as tasks, datasets, and answer keys drift over time. This matters because noisy or flawed items can distort comparisons and create false confidence. A durable eval process therefore includes versioning, verification, and refresh cycles rather than assuming a benchmark is fixed once published.",
+        "match_candidates": [],
+        "operational_insight": "An eval suite should be operated like infrastructure: monitored for drift, cleaned up when items become noisy, and updated when the underlying workflow changes. Otherwise the numbers can become misleading even if the model itself has not changed.",
+        "primary_tag": "ai-evaluation",
+        "proposed_tags": [
+          "ai-evaluation",
+          "verification-systems",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "proprietary-evals",
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "Maintenance-aware evaluation is important for any team that depends on stable AI quality signals over time. As of 2026-05-14, conversational AI, chatbots, and service automation systems need ongoing verification because content, policies, and workflows change after launch.",
+        "secondary_tag": "verification-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Even 'the last exam' needs maintenance. HLE-Verified later showed that noisy items and flawed answers could materially distort comparisons, and that systematic verification could shift measured accuracy by 7 to 10 percentage points on average. In other words, the benchmark was not a stone tablet. It was infrastructure.\"",
+        "topic_slug": "maintenance-aware-ai-evaluation",
+        "topic_title": "Maintenance-Aware AI Evaluation",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-14",
+          "confidence": 0.97,
+          "evidence_from_source": "The essay argues that \"every meaningful task performed by every agent inside every company will need its own evaluation layer\" and rejects \"generic benchmarks\" in favor of \"company-specific exams\" tied to real work.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "workflow-based-evaluation"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "workflow-based-evaluation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "ai-evaluation",
+          "suggested_new_tags": [
+            "ai-evaluation"
+          ],
+          "supporting_data_points": [
+            "Every meaningful task inside a company is described as needing its own evaluation layer.",
+            "Public benchmarks are described as insufficient for production truth.",
+            "The source points to private documents, internal policies, and exceptions as the missing test surface."
+          ],
+          "supporting_snippet": "\"Practical, dynamic, company-specific exams that measure whether an AI system can actually survive contact with real work. Not generic benchmarks. Not leaderboard theater.\"",
+          "time_sensitivity": "Actionable as of 2026-05-14; relevant as long as AI systems are evaluated for production workflows rather than only public benchmark performance.",
+          "trend_description": "AI evaluation is shifting from broad model benchmarks toward tests built around the actual workflows a system must complete. The relevant question is less whether a model looks strong in general and more whether it can survive the company\u2019s documents, rules, exceptions, and task boundaries. This makes evaluation more context-specific and operationally tied to production behavior. The shift is especially important for agentic systems that must execute multi-step work rather than answer isolated prompts.",
+          "trend_slug": "workflow-based-evaluation",
+          "trend_title": "AI Evaluation Moves Toward Workflow-Based Testing",
+          "uncertainty_note": "The direction is plausible and well-motivated, but the source is an opinion essay rather than a controlled study, so the scale and cost of workflow-specific evaluation remain uncertain.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "50825ae5-5e22-41ea-ae88-c2838f9987a3",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Every meaningful task inside a company is described as needing its own evaluation layer.",
+              "Public benchmarks are described as insufficient for production truth.",
+              "The source points to private documents, internal policies, and exceptions as the missing test surface."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "workflow-based-evaluation"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The author advances a strategic interpretation about evals as a 'fourth pillar' and the need for company-specific exams.",
+          "Claims are framed as reflection and analogy, not as a formal study or benchmark report.",
+          "Evidence is mainly illustrative references to Humanity's Last Exam and HLE-Verified rather than primary research from this source."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Company-specific evals are presented as the right unit of measurement for production AI, not generic public benchmarks.",
+          "The article frames evals as infrastructure, meaning they need maintenance, verification, and continuous updates.",
+          "Benchmark quality can materially change results; the cited HLE-Verified example reportedly shifted average accuracy by 7 to 10 percentage points.",
+          "Task-specific evals should be built from production-derived data, internal policies, and edge cases that public benchmarks miss.",
+          "Success criteria need to be explicit and operational, not based on vibes or leaderboard position."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-opinion-860-every-companys"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion essay arguing one thesis about AI evals, not a bundle of unrelated items.",
+          "No numbered list of tools, practices, or news blurbs; the structure is argumentative and essay-like.",
+          "Contains examples and references, but the dominant form is commentary rather than roundup or tutorial."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "They are private and organization-specific, not public benchmark replacements.",
+            "They focus on highest-value and highest-risk tasks inside a company.",
+            "They should be tied to real workflows, internal policies, and edge cases.",
+            "They are useful for production go/no-go decisions, not just model comparison."
+          ],
+          "knowledge_summary": "Proprietary evals are private evaluation suites built around an organization\u2019s own tasks, documents, policies, and edge cases. They measure whether an AI system can perform useful work in the specific environment where it will be deployed, rather than how it scores on broad public benchmarks. The point is to evaluate task fit, failure modes, and workflow reliability under real operating constraints. In practice, they function as a company-specific test harness for deciding whether an agent is ready for production.",
+          "match_candidates": [],
+          "operational_insight": "For production AI, the most useful evals are usually tied to the exact workflows, exceptions, and success criteria that matter inside one organization. Generic leaderboards can help with model selection, but they are not enough to approve deployment in a private operational setting.",
+          "primary_tag": "ai-evaluation",
+          "proposed_tags": [
+            "ai-evaluation",
+            "enterprise-ai",
+            "verification-systems"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "Proprietary evals matter because many enterprise AI failures only appear against private documents, internal policies, exception handling, and workflow-specific success criteria. As of 2026-05-14, teams building agents for service automation or conversational systems need these tests to decide whether a system is safe and useful in their own environment.",
+          "secondary_tag": "enterprise-ai",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Practical, dynamic, company-specific exams that measure whether an AI system can actually survive contact with real work. Not generic benchmarks. Not leaderboard theater.\"",
+          "topic_slug": "proprietary-evals",
+          "topic_title": "Proprietary Evals",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "33d2acb7-981b-44e9-a5e7-c95aa41d3933",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "They are private and organization-specific, not public benchmark replacements.",
+              "They focus on highest-value and highest-risk tasks inside a company.",
+              "They should be tied to real workflows, internal policies, and edge cases.",
+              "They are useful for production go/no-go decisions, not just model comparison."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evaluation",
+            "enterprise-ai",
+            "verification-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Evaluation artifacts can drift and become misleading if they are not maintained.",
+            "Verification can materially change measured performance.",
+            "Evals should be versioned and refreshed as workflows change.",
+            "A benchmark should be treated as infrastructure, not a one-time report card."
+          ],
+          "knowledge_summary": "Maintenance-aware AI evaluation treats evaluation suites as living systems that require cleanup, verification, and periodic updates. The goal is to keep scores meaningful as tasks, datasets, and answer keys drift over time. This matters because noisy or flawed items can distort comparisons and create false confidence. A durable eval process therefore includes versioning, verification, and refresh cycles rather than assuming a benchmark is fixed once published.",
+          "match_candidates": [],
+          "operational_insight": "An eval suite should be operated like infrastructure: monitored for drift, cleaned up when items become noisy, and updated when the underlying workflow changes. Otherwise the numbers can become misleading even if the model itself has not changed.",
+          "primary_tag": "ai-evaluation",
+          "proposed_tags": [
+            "ai-evaluation",
+            "verification-systems",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "proprietary-evals",
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "Maintenance-aware evaluation is important for any team that depends on stable AI quality signals over time. As of 2026-05-14, conversational AI, chatbots, and service automation systems need ongoing verification because content, policies, and workflows change after launch.",
+          "secondary_tag": "verification-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Even 'the last exam' needs maintenance. HLE-Verified later showed that noisy items and flawed answers could materially distort comparisons, and that systematic verification could shift measured accuracy by 7 to 10 percentage points on average. In other words, the benchmark was not a stone tablet. It was infrastructure.\"",
+          "topic_slug": "maintenance-aware-ai-evaluation",
+          "topic_title": "Maintenance-Aware AI Evaluation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "1b6e078e-12cf-4bf8-b731-f45a9c760cb4",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Evaluation artifacts can drift and become misleading if they are not maintained.",
+              "Verification can materially change measured performance.",
+              "Evals should be versioned and refreshed as workflows change.",
+              "A benchmark should be treated as infrastructure, not a one-time report card."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "proprietary-evals",
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evaluation",
+            "verification-systems",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-opinion-860-every-companys",
+    "content_sha256": "980acfaf5c98e12a12e74406a33a6b9d372b941bd2cfe1069065f9ec4f64c800",
+    "publication": "substack.com",
+    "published_date": "2026-05-14",
+    "raw_html_rel_path": "raw/readwise/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh.md",
+    "source_id": "the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh",
+    "title": "The Sequence Opinion #860: Every Company\u2019s Last eXam: Some Reflection About Practical AI Evals"
+  }
+}

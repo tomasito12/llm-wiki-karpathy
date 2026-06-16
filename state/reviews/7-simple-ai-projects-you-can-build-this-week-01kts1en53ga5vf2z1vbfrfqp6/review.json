@@ -1,0 +1,1352 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T20:32:51+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Dr8GhQvpISmEIIwJGqKZB1G3JWYLv",
+          "token_usage": {
+            "completion_tokens": 210,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6108,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6318
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Dr8GjbQa9brgU5S0xItlEw4t8kmaT",
+          "token_usage": {
+            "completion_tokens": 1056,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5734,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6790
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-how_to_roundup",
+          "request_id": "chatcmpl-Dr8GsE2pyHuQLYSvqcCdNQhrdUTwH",
+          "route": "how_to_roundup",
+          "token_usage": {
+            "completion_tokens": 3466,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 17411,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 20877
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dr8GsE2pyHuQLYSvqcCdNQhrdUTwH",
+    "token_usage": {
+      "completion_tokens": 4732,
+      "prompt_tokens": 29253,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 33985
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 7
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Start with a source asset such as a transcript or long-form article. Put it into a simple input store, then trigger an AI step that rewrites it in the voice you want. Ask for several output formats at once, such as social posts and a newsletter summary. Keep the process narrow so the system handles distribution work, not original idea generation. Review the outputs before scheduling them.",
+        "caveats": "The source does not show testing, quality controls, or how well this holds up for different brand voices. It also does not cover copyright, attribution, or reuse rights for the source material. Treat the outputs as drafts that still need human review.",
+        "confidence": 0.95,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Choose one long-form source asset, such as a transcript or blog post.",
+          "Store it in an input table or row.",
+          "Trigger an automation when a new row appears.",
+          "Send the text to a language model with a prompt that preserves brand voice.",
+          "Generate several downstream formats in one pass.",
+          "Review and schedule the outputs."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A source piece of content to repurpose",
+          "An input table or similar storage step",
+          "A no-code automation tool",
+          "Access to a language model API or chat model",
+          "A clear brand voice prompt"
+        ],
+        "primary_tag": "workflow-automation",
+        "proposed_tags": [
+          "workflow-automation",
+          "distribution",
+          "prompt-engineering",
+          "human-ai-workflows"
+        ],
+        "question_title": "Content Repurposing Pipeline",
+        "related_howtos": [
+          "workflow-automation",
+          "distribution"
+        ],
+        "secondary_tag": "distribution",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "You drop a YouTube transcript or long-form blog post into an Airtable row. Make.com detects the new entry, sends the text to Claude with a prompt that captures your brand voice, and returns a full content package \u2014 three LinkedIn posts, five tweets, and a newsletter summary \u2014 formatted and ready to schedule.",
+        "value_level": "high",
+        "what_and_problem": "This is a way to turn one long piece of content into several shorter formats without rewriting everything by hand. It helps when a marketer or creator has one strong source asset but needs posts for different channels. The goal is to save time and keep distribution consistent across platforms. It is useful when the main bottleneck is repackaging, not coming up with the original idea. A structured workflow can move the same material from a transcript or article into social posts and a newsletter summary."
+      },
+      {
+        "answer_summary": "Connect your inbox to an automation that reads new messages. Have the model score urgency and sentiment, then assign labels that separate important messages from low-priority ones. Use the same step to draft a reply and place it in Drafts for approval. Keep a human approval step for anything that should not be sent automatically. The main benefit is faster triage, not full replacement of judgment.",
+        "caveats": "The source does not discuss misclassification, privacy, or rules for sensitive email. Draft quality will depend on the prompt and the quality of the input email text. Human approval is still needed for messages that carry customer or business risk.",
+        "confidence": 0.94,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Connect new email arrivals to an automation tool.",
+          "Classify each message for urgency and sentiment.",
+          "Apply labels or routing rules based on the classification.",
+          "Draft a reply using the message context.",
+          "Place the reply in Drafts for one-click approval.",
+          "Escalate sensitive or uncertain cases to a human."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "An email account",
+          "An automation tool",
+          "A language model for classification and drafting",
+          "A label or routing scheme",
+          "A review step for approvals"
+        ],
+        "primary_tag": "workflow-automation",
+        "proposed_tags": [
+          "workflow-automation",
+          "support-automation",
+          "human-ai-workflows",
+          "prompt-engineering"
+        ],
+        "question_title": "Inbox Triage Automation",
+        "related_howtos": [
+          "procedural-support-automation",
+          "manager-drafting-workflows"
+        ],
+        "secondary_tag": "support-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Every incoming email is scanned by an AI that evaluates urgency and sentiment, applies a custom label (\u201cUrgent: Client Issue,\u201d \u201cLow Priority: Newsletter\u201d), and drafts a context-aware reply that sits in your Drafts folder, awaiting one-click approval. You never start from a blank reply again.",
+        "value_level": "high",
+        "what_and_problem": "This is a way to sort incoming email and draft replies automatically so people do not start every response from scratch. It helps when email volume creates constant context switching and anxiety about missing something important. The workflow is meant for routine triage, not for every message without review. It can reduce the time spent deciding what matters most in an inbox. It is especially relevant for people who need quick prioritization and lightweight drafting."
+      },
+      {
+        "answer_summary": "Set up page monitoring on the competitor pages that matter most. Run the checks on a schedule and detect changes in the raw page content. Feed those changes into a language model that explains what changed in plain language. Deliver the result as a short brief to a team channel such as Slack. Focus on material changes, not every mention or minor edit.",
+        "caveats": "The source does not describe false positives, page-rendering issues, or how to filter out trivial changes. It also does not show whether weekly monitoring is enough for fast-moving markets. Use it as a briefing system, not as a substitute for full market research.",
+        "confidence": 0.93,
+        "evidence_type": null,
+        "implementation_steps": [
+          "List the competitor pages that matter.",
+          "Set a weekly monitoring schedule.",
+          "Capture page diffs or change alerts.",
+          "Send the diffs to a language model for summarization.",
+          "Extract only the material changes.",
+          "Post the brief into a team channel."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A set of target competitor pages",
+          "A page monitoring tool",
+          "An automation layer to move diffs into the model",
+          "A summarization prompt that emphasizes material changes",
+          "A delivery channel such as Slack"
+        ],
+        "primary_tag": "competitive-dynamics",
+        "proposed_tags": [
+          "competitive-dynamics",
+          "workflow-automation",
+          "distribution",
+          "prompt-engineering"
+        ],
+        "question_title": "Competitor Change Monitoring",
+        "related_howtos": [
+          "competitive-dynamics",
+          "workflow-automation"
+        ],
+        "secondary_tag": "workflow-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Browse.ai monitors specific competitor pages \u2014 pricing pages, feature announcements, landing pages \u2014 on a weekly schedule. When changes are detected, the raw data feeds into an LLM via Make, which extracts what specifically changed and delivers a bulleted executive brief directly to your Slack. No more manually refreshing competitor sites every Monday.",
+        "value_level": "high",
+        "what_and_problem": "This is a method for watching key competitor pages and turning page changes into a concise brief. It helps founders who want market signals without manually checking pricing pages, feature pages, or landing pages every week. The problem is not lack of information but the cost of collecting and interpreting it. The workflow is useful when material changes matter more than broad mentions. It turns scattered page updates into a structured update for a team channel."
+      },
+      {
+        "answer_summary": "Collect the documents that already hold the answers, such as SOPs, onboarding files, and policy pages. Load them into a chatbot system that can search and answer in plain language. Make sure the chatbot returns sourced answers rather than unsourced guesses. Use it for common internal questions like refunds or contractor invoices. Keep the scope to documented knowledge, not open-ended judgment.",
+        "caveats": "The source does not explain retrieval quality, source freshness, access control, or what happens when documents conflict. It also does not cover governance for sensitive internal material. The system is only as good as the documents it is fed.",
+        "confidence": 0.92,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Gather the authoritative internal documents.",
+          "Upload them into a chatbot or retrieval system.",
+          "Test common employee questions.",
+          "Verify that answers are sourced from the documents.",
+          "Limit use to documented, low-judgment questions.",
+          "Update the content when policies change."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A set of internal documents",
+          "A chatbot or retrieval tool",
+          "Permission to expose the documents to employees",
+          "A process for keeping source material current"
+        ],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "retrieval-systems",
+          "enterprise-workflows",
+          "human-ai-workflows"
+        ],
+        "question_title": "Internal Knowledge Chatbot",
+        "related_howtos": [
+          "retrieval-systems",
+          "knowledge-systems"
+        ],
+        "secondary_tag": "retrieval-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "Upload your company\u2019s SOPs, onboarding PDFs, Notion pages, and internal policies. The result is a chatbot your team can query in plain language \u2014 \u201cWhat\u2019s our refund policy?\u201d or \u201cHow do I submit a contractor invoice?\u201d \u2014 and receive accurate, sourced answers instantly.",
+        "value_level": "high",
+        "what_and_problem": "This is a chatbot that answers questions from company documents instead of forcing people to search through folders, handbooks, or policy pages. It helps teams that keep answering the same onboarding or policy questions over and over. The problem is that the knowledge exists but is hard to access in practice. A question-and-answer layer makes internal information easier to use without changing the source documents. It is most useful when the documents are already written and reasonably current."
+      },
+      {
+        "answer_summary": "Record a rough voice memo with your ideas, meeting notes, or debriefs. Send the audio to speech-to-text software, then clean and structure the transcript with an AI step. Extract action items and put them into a task or project board. Attach enough context so the task is usable later. Keep the workflow focused on organizing and routing, not on perfect transcription.",
+        "caveats": "The source does not describe transcription errors, speaker diarization, or how to handle unclear action items. It also does not address privacy for recorded calls or voice notes. Human review is still important before tasks are treated as committed work.",
+        "confidence": 0.93,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Record a voice memo after a meeting or call.",
+          "Transcribe the audio with speech-to-text software.",
+          "Run a cleanup pass to organize the transcript.",
+          "Extract action items from the cleaned text.",
+          "Create tasks in a project board.",
+          "Add context so each task can be understood later."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A voice recording source",
+          "Speech-to-text software",
+          "An automation tool",
+          "A task board or note system",
+          "A review habit for extracted tasks"
+        ],
+        "primary_tag": "workflow-automation",
+        "proposed_tags": [
+          "workflow-automation",
+          "workflow-design",
+          "voice-ai",
+          "human-ai-workflows"
+        ],
+        "question_title": "Voice Note To Tasks Pipeline",
+        "related_howtos": [
+          "workflow-design",
+          "knowledge-systems"
+        ],
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "You record a messy, stream-of-consciousness voice memo \u2014 a post-meeting brain dump, a product idea, a client call debrief. The pipeline transcribes it using OpenAI\u2019s Whisper, runs a cleanup and structuring pass, extracts action items, and populates them directly into a Notion project board with context attached.",
+        "value_level": "high",
+        "what_and_problem": "This is a workflow that turns spoken notes into structured tasks. It helps people who think better out loud than they type and who lose momentum when ideas stay in unorganized form. The core problem is the gap between capturing an idea and turning it into something actionable. This pattern is useful after meetings, calls, or brainstorming sessions. It reduces the friction between thinking and doing."
+      },
+      {
+        "answer_summary": "Capture reviews or survey responses in a form. Send each response to a language model that labels the sentiment and the issue type. Store the results in a spreadsheet so patterns can be reviewed over time. Use the sheet as a simple health dashboard for product feedback. Keep the categories narrow enough to be useful, such as praise, bug report, or feature request.",
+        "caveats": "The source does not show how to validate sentiment labels or handle ambiguous feedback. It also does not discuss privacy or response storage rules. A dashboard is only useful if someone reviews it and acts on the results.",
+        "confidence": 0.92,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Collect feedback through a form.",
+          "Send each response to a language model for sentiment and category labeling.",
+          "Write the labeled output to a spreadsheet.",
+          "Review the sheet for recurring themes.",
+          "Use the dashboard to route product fixes or follow-up work."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A feedback collection form",
+          "A spreadsheet destination",
+          "A language model for classification",
+          "A simple category scheme"
+        ],
+        "primary_tag": "workflow-automation",
+        "proposed_tags": [
+          "workflow-automation",
+          "test-and-verification",
+          "enterprise-workflows",
+          "human-ai-workflows"
+        ],
+        "question_title": "Feedback Sentiment Dashboard",
+        "related_howtos": [
+          "test-and-verification",
+          "workflow-automation"
+        ],
+        "secondary_tag": "test-and-verification",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "When a customer submits a review or survey response, AI analyzes the open-ended text for emotional sentiment and categorizes it automatically \u2014 feature request, bug report, or praise \u2014 and populates a live Google Sheet. What you get is a real-time health dashboard of your product, built from the voices of actual users.",
+        "value_level": "medium",
+        "what_and_problem": "This is a way to turn open-ended customer feedback into a live dashboard. It helps founders who collect surveys or reviews but do not have a systematic way to read and sort the responses. The problem is scale: one person can read a few messages, but not many hundreds without missing patterns. The workflow makes emotional tone and issue types easier to spot. It is useful for seeing product health through customer language."
+      },
+      {
+        "answer_summary": "Set up a text number and route incoming messages through an automation. Use a custom prompt so the assistant can answer routine business questions accurately and politely. Add escalation rules for sensitive or complex cases. Send the easy cases back to the customer right away and hand the hard ones to a human. Design the escalation logic before you launch.",
+        "caveats": "The source explicitly warns that escalation logic matters, but it does not explain how to build safe guardrails. It also does not cover compliance, identity checks, or message logging. A poorly designed fallback path can turn this into a deflection layer instead of a real support upgrade.",
+        "confidence": 0.94,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Set up an SMS entry point.",
+          "Route incoming texts through a webhook or automation.",
+          "Prompt the assistant to answer routine questions.",
+          "Define clear escalation rules for complex or sensitive cases.",
+          "Return simple answers automatically.",
+          "Hand off edge cases to a human agent."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "An SMS provider",
+          "An automation layer",
+          "A language model with a custom prompt",
+          "Escalation rules and human fallback",
+          "A list of supported question types"
+        ],
+        "primary_tag": "support-automation",
+        "proposed_tags": [
+          "support-automation",
+          "workflow-automation",
+          "human-ai-workflows",
+          "voice-ai"
+        ],
+        "question_title": "SMS Support Concierge",
+        "related_howtos": [
+          "procedural-support-automation",
+          "support-automation"
+        ],
+        "secondary_tag": "workflow-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "A customer texts a standard business question \u2014 hours, pricing, integration compatibility \u2014 and the webhook routes it to a custom-prompted AI assistant that replies instantly, politely, and accurately. Complex or sensitive queries escalate to a human. Everything else resolves without you touching it.",
+        "value_level": "high",
+        "what_and_problem": "This is a text-message assistant that answers routine customer questions and escalates the hard ones to a human. It helps when a business wants to handle more support requests without adding more staff for basic questions. The problem is repetitive customer messaging that does not need a person every time. This pattern is useful for hours, pricing, and integration questions. It works best when the assistant knows what it should not handle."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article presents concrete build blueprints with tool stacks, inputs, transformations, and outputs for each project.",
+        "Claims are grounded in implementation logic and workflow design rather than research, benchmarks, or formal evaluation.",
+        "The value comes from practical examples of how to assemble no-code automations, not from vendor announcements or measured performance data."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a list of seven simple AI automations you can build without being a programmer. Each one takes some input, uses an AI model to transform it, and sends the result somewhere useful. The examples cover things like turning one piece of content into many formats, sorting email, tracking competitors, and turning notes into tasks. The main point is that useful AI work is often about wiring tools together, not writing code. The article also gives a basic build recipe: map the workflow, test the AI part first, then connect everything with a no-code tool.",
+      "assessed_as_of": "2026-05-18",
+      "contradictions_and_skepticism": "The article presents these automations as weekend-friendly and broadly accessible, which is plausible for shallow prototypes but may understate integration complexity in real environments. Claims like 'pays for itself the first week' are promotional and unsupported by measurement. The projects are framed as business-grade, but the evidence shown is only conceptual workflow design, not operating data or durability under load. The piece also simplifies the human-in-the-loop problem: escalation logic is mentioned, but not the governance or QA needed for customer-facing systems.",
+      "key_insights": [
+        "The article\u2019s most durable idea is the input \u2192 AI transformation \u2192 output pattern, which generalizes across all seven examples.",
+        "It argues that the real value is in automating distribution, triage, and structuring work, not in generating raw text alone.",
+        "The strongest operational advice is to validate the AI prompt in isolation before building the automation wrapper.",
+        "The roundup favors systems that reduce recurring friction, such as inbox sorting, competitor monitoring, and knowledge lookup.",
+        "The final framework is intentionally simple, which makes it reusable for other no-code AI workflows beyond the seven examples."
+      ],
+      "limitations_and_open_questions": "The article gives blueprint-level descriptions, but not implementation details such as failure modes, prompt design, error handling, cost, latency, permissioning, or data retention. It assumes the listed tools can be connected cleanly and that the AI outputs are reliable enough after prompt tuning, but it does not show testing methodology. Several examples depend on accurate classification or summarization of messy real-world text, which can be brittle without evaluation loops. The article also does not discuss privacy risks for email, internal documents, customer feedback, or SMS data. The business ROI claims are qualitative, so it is unclear which projects outperform manual workflows in practice.",
+      "sources": [
+        "https://blog.howtoprofitai.com/ai-projects-you-can-build-this-week-ae701ebbf485"
+      ],
+      "summary": "This article presents seven weekend-sized no-code AI project blueprints built from a simple pattern: take an input, run it through an AI transformation, and send the result to a useful output. The projects target specific business pains rather than abstract experimentation: content repurposing, email triage, competitor monitoring, internal knowledge lookup, voice-note-to-tasks conversion, feedback analysis, and SMS-based customer replies. The author repeatedly emphasizes that the first useful version should be simple, with tools like Make.com, Zapier, Airtable, Slack, Notion, Google Sheets, Twilio, Claude, OpenAI, Whisper, Browse.ai, Mendable.ai, Voiceflow, and Custom GPTs handling the glue. A central argument is that people are underusing AI if they only prompt it for answers; the higher-leverage move is to build recurring workflows that automate high-friction work and leave human judgment for edge cases. The roundup also includes a reusable three-step build method: map the logic, validate the AI output first, then connect the automation. As of 2026-05-18, the piece is most useful as a practical ideation catalog and workflow template, not as evidence about tool performance or market adoption.",
+      "why_it_matters": "The piece is useful because it compresses a set of practical AI workflow patterns into a reusable build template rather than a one-off list of tools. Each example shows a different place where AI can sit inside a business process: repurposing content, labeling and drafting email responses, summarizing competitor page changes, answering questions from internal documents, structuring voice notes into tasks, tagging customer feedback, or replying to routine SMS questions. That makes it a decent ideation map for people who want to move from prompting to building small systems. The article\u2019s real contribution is the abstraction: most of the value comes from deciding what to automate, what the AI should transform, and where a human still needs to approve or escalate. It is especially practical where the raw task is repetitive and the output format is predictable. The SMS and inbox examples also show that the author treats escalation and approval as part of the design, not an afterthought, which is important for any workflow that touches customers or internal ops. The article\u2019s stakes are modest, though: it is a roundup of prototypes and patterns, not a benchmarked comparison of platforms or a proof that these automations will work across every business. As of 2026-05-18, it is actionable as a build prompt and workflow reference, but it should be treated as a lightweight playbook rather than evidence of durable vendor or market performance."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "how_to_roundup",
+      "reasoning": [
+        "The article is explicitly organized as 'The 7 Projects' with seven separated, numbered workflows.",
+        "Each item describes a repeatable procedure or automation pattern rather than a single unified tutorial.",
+        "The closing section presents a reusable 3-step framework for building any of the listed projects, reinforcing the roundup-of-methods structure."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Start with a source asset such as a transcript or long-form article. Put it into a simple input store, then trigger an AI step that rewrites it in the voice you want. Ask for several output formats at once, such as social posts and a newsletter summary. Keep the process narrow so the system handles distribution work, not original idea generation. Review the outputs before scheduling them.",
+          "caveats": "The source does not show testing, quality controls, or how well this holds up for different brand voices. It also does not cover copyright, attribution, or reuse rights for the source material. Treat the outputs as drafts that still need human review.",
+          "confidence": 0.95,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Choose one long-form source asset, such as a transcript or blog post.",
+            "Store it in an input table or row.",
+            "Trigger an automation when a new row appears.",
+            "Send the text to a language model with a prompt that preserves brand voice.",
+            "Generate several downstream formats in one pass.",
+            "Review and schedule the outputs."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A source piece of content to repurpose",
+            "An input table or similar storage step",
+            "A no-code automation tool",
+            "Access to a language model API or chat model",
+            "A clear brand voice prompt"
+          ],
+          "primary_tag": "workflow-automation",
+          "proposed_tags": [
+            "workflow-automation",
+            "distribution",
+            "prompt-engineering",
+            "human-ai-workflows"
+          ],
+          "question_title": "Content Repurposing Pipeline",
+          "related_howtos": [
+            "workflow-automation",
+            "distribution"
+          ],
+          "secondary_tag": "distribution",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "You drop a YouTube transcript or long-form blog post into an Airtable row. Make.com detects the new entry, sends the text to Claude with a prompt that captures your brand voice, and returns a full content package \u2014 three LinkedIn posts, five tweets, and a newsletter summary \u2014 formatted and ready to schedule.",
+          "value_level": "high",
+          "what_and_problem": "This is a way to turn one long piece of content into several shorter formats without rewriting everything by hand. It helps when a marketer or creator has one strong source asset but needs posts for different channels. The goal is to save time and keep distribution consistent across platforms. It is useful when the main bottleneck is repackaging, not coming up with the original idea. A structured workflow can move the same material from a transcript or article into social posts and a newsletter summary."
+        },
+        "notes": null,
+        "proposal_id": "3912e259-e201-40f8-90de-c27034fd4ea1",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Choose one long-form source asset, such as a transcript or blog post.",
+              "Store it in an input table or row.",
+              "Trigger an automation when a new row appears.",
+              "Send the text to a language model with a prompt that preserves brand voice.",
+              "Generate several downstream formats in one pass.",
+              "Review and schedule the outputs."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A source piece of content to repurpose",
+              "An input table or similar storage step",
+              "A no-code automation tool",
+              "Access to a language model API or chat model",
+              "A clear brand voice prompt"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-automation",
+              "distribution"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation",
+            "distribution",
+            "prompt-engineering",
+            "human-ai-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Connect your inbox to an automation that reads new messages. Have the model score urgency and sentiment, then assign labels that separate important messages from low-priority ones. Use the same step to draft a reply and place it in Drafts for approval. Keep a human approval step for anything that should not be sent automatically. The main benefit is faster triage, not full replacement of judgment.",
+          "caveats": "The source does not discuss misclassification, privacy, or rules for sensitive email. Draft quality will depend on the prompt and the quality of the input email text. Human approval is still needed for messages that carry customer or business risk.",
+          "confidence": 0.94,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Connect new email arrivals to an automation tool.",
+            "Classify each message for urgency and sentiment.",
+            "Apply labels or routing rules based on the classification.",
+            "Draft a reply using the message context.",
+            "Place the reply in Drafts for one-click approval.",
+            "Escalate sensitive or uncertain cases to a human."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "An email account",
+            "An automation tool",
+            "A language model for classification and drafting",
+            "A label or routing scheme",
+            "A review step for approvals"
+          ],
+          "primary_tag": "workflow-automation",
+          "proposed_tags": [
+            "workflow-automation",
+            "support-automation",
+            "human-ai-workflows",
+            "prompt-engineering"
+          ],
+          "question_title": "Inbox Triage Automation",
+          "related_howtos": [
+            "procedural-support-automation",
+            "manager-drafting-workflows"
+          ],
+          "secondary_tag": "support-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Every incoming email is scanned by an AI that evaluates urgency and sentiment, applies a custom label (\u201cUrgent: Client Issue,\u201d \u201cLow Priority: Newsletter\u201d), and drafts a context-aware reply that sits in your Drafts folder, awaiting one-click approval. You never start from a blank reply again.",
+          "value_level": "high",
+          "what_and_problem": "This is a way to sort incoming email and draft replies automatically so people do not start every response from scratch. It helps when email volume creates constant context switching and anxiety about missing something important. The workflow is meant for routine triage, not for every message without review. It can reduce the time spent deciding what matters most in an inbox. It is especially relevant for people who need quick prioritization and lightweight drafting."
+        },
+        "notes": null,
+        "proposal_id": "c87d3e73-d228-4ee5-9dfe-422c130568a2",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Connect new email arrivals to an automation tool.",
+              "Classify each message for urgency and sentiment.",
+              "Apply labels or routing rules based on the classification.",
+              "Draft a reply using the message context.",
+              "Place the reply in Drafts for one-click approval.",
+              "Escalate sensitive or uncertain cases to a human."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "An email account",
+              "An automation tool",
+              "A language model for classification and drafting",
+              "A label or routing scheme",
+              "A review step for approvals"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "procedural-support-automation",
+              "manager-drafting-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation",
+            "support-automation",
+            "human-ai-workflows",
+            "prompt-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Set up page monitoring on the competitor pages that matter most. Run the checks on a schedule and detect changes in the raw page content. Feed those changes into a language model that explains what changed in plain language. Deliver the result as a short brief to a team channel such as Slack. Focus on material changes, not every mention or minor edit.",
+          "caveats": "The source does not describe false positives, page-rendering issues, or how to filter out trivial changes. It also does not show whether weekly monitoring is enough for fast-moving markets. Use it as a briefing system, not as a substitute for full market research.",
+          "confidence": 0.93,
+          "evidence_type": null,
+          "implementation_steps": [
+            "List the competitor pages that matter.",
+            "Set a weekly monitoring schedule.",
+            "Capture page diffs or change alerts.",
+            "Send the diffs to a language model for summarization.",
+            "Extract only the material changes.",
+            "Post the brief into a team channel."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A set of target competitor pages",
+            "A page monitoring tool",
+            "An automation layer to move diffs into the model",
+            "A summarization prompt that emphasizes material changes",
+            "A delivery channel such as Slack"
+          ],
+          "primary_tag": "competitive-dynamics",
+          "proposed_tags": [
+            "competitive-dynamics",
+            "workflow-automation",
+            "distribution",
+            "prompt-engineering"
+          ],
+          "question_title": "Competitor Change Monitoring",
+          "related_howtos": [
+            "competitive-dynamics",
+            "workflow-automation"
+          ],
+          "secondary_tag": "workflow-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Browse.ai monitors specific competitor pages \u2014 pricing pages, feature announcements, landing pages \u2014 on a weekly schedule. When changes are detected, the raw data feeds into an LLM via Make, which extracts what specifically changed and delivers a bulleted executive brief directly to your Slack. No more manually refreshing competitor sites every Monday.",
+          "value_level": "high",
+          "what_and_problem": "This is a method for watching key competitor pages and turning page changes into a concise brief. It helps founders who want market signals without manually checking pricing pages, feature pages, or landing pages every week. The problem is not lack of information but the cost of collecting and interpreting it. The workflow is useful when material changes matter more than broad mentions. It turns scattered page updates into a structured update for a team channel."
+        },
+        "notes": null,
+        "proposal_id": "a74fe4aa-bd2e-4617-9f7f-47d451cc96c2",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "List the competitor pages that matter.",
+              "Set a weekly monitoring schedule.",
+              "Capture page diffs or change alerts.",
+              "Send the diffs to a language model for summarization.",
+              "Extract only the material changes.",
+              "Post the brief into a team channel."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A set of target competitor pages",
+              "A page monitoring tool",
+              "An automation layer to move diffs into the model",
+              "A summarization prompt that emphasizes material changes",
+              "A delivery channel such as Slack"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "competitive-dynamics",
+              "workflow-automation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "competitive-dynamics",
+            "workflow-automation",
+            "distribution",
+            "prompt-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Collect the documents that already hold the answers, such as SOPs, onboarding files, and policy pages. Load them into a chatbot system that can search and answer in plain language. Make sure the chatbot returns sourced answers rather than unsourced guesses. Use it for common internal questions like refunds or contractor invoices. Keep the scope to documented knowledge, not open-ended judgment.",
+          "caveats": "The source does not explain retrieval quality, source freshness, access control, or what happens when documents conflict. It also does not cover governance for sensitive internal material. The system is only as good as the documents it is fed.",
+          "confidence": 0.92,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Gather the authoritative internal documents.",
+            "Upload them into a chatbot or retrieval system.",
+            "Test common employee questions.",
+            "Verify that answers are sourced from the documents.",
+            "Limit use to documented, low-judgment questions.",
+            "Update the content when policies change."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A set of internal documents",
+            "A chatbot or retrieval tool",
+            "Permission to expose the documents to employees",
+            "A process for keeping source material current"
+          ],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "retrieval-systems",
+            "enterprise-workflows",
+            "human-ai-workflows"
+          ],
+          "question_title": "Internal Knowledge Chatbot",
+          "related_howtos": [
+            "retrieval-systems",
+            "knowledge-systems"
+          ],
+          "secondary_tag": "retrieval-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "Upload your company\u2019s SOPs, onboarding PDFs, Notion pages, and internal policies. The result is a chatbot your team can query in plain language \u2014 \u201cWhat\u2019s our refund policy?\u201d or \u201cHow do I submit a contractor invoice?\u201d \u2014 and receive accurate, sourced answers instantly.",
+          "value_level": "high",
+          "what_and_problem": "This is a chatbot that answers questions from company documents instead of forcing people to search through folders, handbooks, or policy pages. It helps teams that keep answering the same onboarding or policy questions over and over. The problem is that the knowledge exists but is hard to access in practice. A question-and-answer layer makes internal information easier to use without changing the source documents. It is most useful when the documents are already written and reasonably current."
+        },
+        "notes": null,
+        "proposal_id": "9f969b1c-6c57-44da-988d-753b3c54c0bf",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Gather the authoritative internal documents.",
+              "Upload them into a chatbot or retrieval system.",
+              "Test common employee questions.",
+              "Verify that answers are sourced from the documents.",
+              "Limit use to documented, low-judgment questions.",
+              "Update the content when policies change."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A set of internal documents",
+              "A chatbot or retrieval tool",
+              "Permission to expose the documents to employees",
+              "A process for keeping source material current"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "retrieval-systems",
+              "knowledge-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "retrieval-systems",
+            "enterprise-workflows",
+            "human-ai-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Record a rough voice memo with your ideas, meeting notes, or debriefs. Send the audio to speech-to-text software, then clean and structure the transcript with an AI step. Extract action items and put them into a task or project board. Attach enough context so the task is usable later. Keep the workflow focused on organizing and routing, not on perfect transcription.",
+          "caveats": "The source does not describe transcription errors, speaker diarization, or how to handle unclear action items. It also does not address privacy for recorded calls or voice notes. Human review is still important before tasks are treated as committed work.",
+          "confidence": 0.93,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Record a voice memo after a meeting or call.",
+            "Transcribe the audio with speech-to-text software.",
+            "Run a cleanup pass to organize the transcript.",
+            "Extract action items from the cleaned text.",
+            "Create tasks in a project board.",
+            "Add context so each task can be understood later."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A voice recording source",
+            "Speech-to-text software",
+            "An automation tool",
+            "A task board or note system",
+            "A review habit for extracted tasks"
+          ],
+          "primary_tag": "workflow-automation",
+          "proposed_tags": [
+            "workflow-automation",
+            "workflow-design",
+            "voice-ai",
+            "human-ai-workflows"
+          ],
+          "question_title": "Voice Note To Tasks Pipeline",
+          "related_howtos": [
+            "workflow-design",
+            "knowledge-systems"
+          ],
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "You record a messy, stream-of-consciousness voice memo \u2014 a post-meeting brain dump, a product idea, a client call debrief. The pipeline transcribes it using OpenAI\u2019s Whisper, runs a cleanup and structuring pass, extracts action items, and populates them directly into a Notion project board with context attached.",
+          "value_level": "high",
+          "what_and_problem": "This is a workflow that turns spoken notes into structured tasks. It helps people who think better out loud than they type and who lose momentum when ideas stay in unorganized form. The core problem is the gap between capturing an idea and turning it into something actionable. This pattern is useful after meetings, calls, or brainstorming sessions. It reduces the friction between thinking and doing."
+        },
+        "notes": null,
+        "proposal_id": "ed0bde37-2af7-44f8-b935-f1c7de98c900",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Record a voice memo after a meeting or call.",
+              "Transcribe the audio with speech-to-text software.",
+              "Run a cleanup pass to organize the transcript.",
+              "Extract action items from the cleaned text.",
+              "Create tasks in a project board.",
+              "Add context so each task can be understood later."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A voice recording source",
+              "Speech-to-text software",
+              "An automation tool",
+              "A task board or note system",
+              "A review habit for extracted tasks"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-design",
+              "knowledge-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation",
+            "workflow-design",
+            "voice-ai",
+            "human-ai-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Capture reviews or survey responses in a form. Send each response to a language model that labels the sentiment and the issue type. Store the results in a spreadsheet so patterns can be reviewed over time. Use the sheet as a simple health dashboard for product feedback. Keep the categories narrow enough to be useful, such as praise, bug report, or feature request.",
+          "caveats": "The source does not show how to validate sentiment labels or handle ambiguous feedback. It also does not discuss privacy or response storage rules. A dashboard is only useful if someone reviews it and acts on the results.",
+          "confidence": 0.92,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Collect feedback through a form.",
+            "Send each response to a language model for sentiment and category labeling.",
+            "Write the labeled output to a spreadsheet.",
+            "Review the sheet for recurring themes.",
+            "Use the dashboard to route product fixes or follow-up work."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A feedback collection form",
+            "A spreadsheet destination",
+            "A language model for classification",
+            "A simple category scheme"
+          ],
+          "primary_tag": "workflow-automation",
+          "proposed_tags": [
+            "workflow-automation",
+            "test-and-verification",
+            "enterprise-workflows",
+            "human-ai-workflows"
+          ],
+          "question_title": "Feedback Sentiment Dashboard",
+          "related_howtos": [
+            "test-and-verification",
+            "workflow-automation"
+          ],
+          "secondary_tag": "test-and-verification",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "When a customer submits a review or survey response, AI analyzes the open-ended text for emotional sentiment and categorizes it automatically \u2014 feature request, bug report, or praise \u2014 and populates a live Google Sheet. What you get is a real-time health dashboard of your product, built from the voices of actual users.",
+          "value_level": "medium",
+          "what_and_problem": "This is a way to turn open-ended customer feedback into a live dashboard. It helps founders who collect surveys or reviews but do not have a systematic way to read and sort the responses. The problem is scale: one person can read a few messages, but not many hundreds without missing patterns. The workflow makes emotional tone and issue types easier to spot. It is useful for seeing product health through customer language."
+        },
+        "notes": null,
+        "proposal_id": "098a8edb-30e4-42cc-b5e0-77ce2da4624e",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Collect feedback through a form.",
+              "Send each response to a language model for sentiment and category labeling.",
+              "Write the labeled output to a spreadsheet.",
+              "Review the sheet for recurring themes.",
+              "Use the dashboard to route product fixes or follow-up work."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A feedback collection form",
+              "A spreadsheet destination",
+              "A language model for classification",
+              "A simple category scheme"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "test-and-verification",
+              "workflow-automation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation",
+            "test-and-verification",
+            "enterprise-workflows",
+            "human-ai-workflows"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Set up a text number and route incoming messages through an automation. Use a custom prompt so the assistant can answer routine business questions accurately and politely. Add escalation rules for sensitive or complex cases. Send the easy cases back to the customer right away and hand the hard ones to a human. Design the escalation logic before you launch.",
+          "caveats": "The source explicitly warns that escalation logic matters, but it does not explain how to build safe guardrails. It also does not cover compliance, identity checks, or message logging. A poorly designed fallback path can turn this into a deflection layer instead of a real support upgrade.",
+          "confidence": 0.94,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Set up an SMS entry point.",
+            "Route incoming texts through a webhook or automation.",
+            "Prompt the assistant to answer routine questions.",
+            "Define clear escalation rules for complex or sensitive cases.",
+            "Return simple answers automatically.",
+            "Hand off edge cases to a human agent."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "An SMS provider",
+            "An automation layer",
+            "A language model with a custom prompt",
+            "Escalation rules and human fallback",
+            "A list of supported question types"
+          ],
+          "primary_tag": "support-automation",
+          "proposed_tags": [
+            "support-automation",
+            "workflow-automation",
+            "human-ai-workflows",
+            "voice-ai"
+          ],
+          "question_title": "SMS Support Concierge",
+          "related_howtos": [
+            "procedural-support-automation",
+            "support-automation"
+          ],
+          "secondary_tag": "workflow-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "A customer texts a standard business question \u2014 hours, pricing, integration compatibility \u2014 and the webhook routes it to a custom-prompted AI assistant that replies instantly, politely, and accurately. Complex or sensitive queries escalate to a human. Everything else resolves without you touching it.",
+          "value_level": "high",
+          "what_and_problem": "This is a text-message assistant that answers routine customer questions and escalates the hard ones to a human. It helps when a business wants to handle more support requests without adding more staff for basic questions. The problem is repetitive customer messaging that does not need a person every time. This pattern is useful for hours, pricing, and integration questions. It works best when the assistant knows what it should not handle."
+        },
+        "notes": null,
+        "proposal_id": "9159e9f5-2f2a-4215-ba98-5d5f110d33e9",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Set up an SMS entry point.",
+              "Route incoming texts through a webhook or automation.",
+              "Prompt the assistant to answer routine questions.",
+              "Define clear escalation rules for complex or sensitive cases.",
+              "Return simple answers automatically.",
+              "Hand off edge cases to a human agent."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "An SMS provider",
+              "An automation layer",
+              "A language model with a custom prompt",
+              "Escalation rules and human fallback",
+              "A list of supported question types"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "procedural-support-automation",
+              "support-automation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "support-automation",
+            "workflow-automation",
+            "human-ai-workflows",
+            "voice-ai"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article presents concrete build blueprints with tool stacks, inputs, transformations, and outputs for each project.",
+          "Claims are grounded in implementation logic and workflow design rather than research, benchmarks, or formal evaluation.",
+          "The value comes from practical examples of how to assemble no-code automations, not from vendor announcements or measured performance data."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The article\u2019s most durable idea is the input \u2192 AI transformation \u2192 output pattern, which generalizes across all seven examples.",
+          "It argues that the real value is in automating distribution, triage, and structuring work, not in generating raw text alone.",
+          "The strongest operational advice is to validate the AI prompt in isolation before building the automation wrapper.",
+          "The roundup favors systems that reduce recurring friction, such as inbox sorting, competitor monitoring, and knowledge lookup.",
+          "The final framework is intentionally simple, which makes it reusable for other no-code AI workflows beyond the seven examples."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://blog.howtoprofitai.com/ai-projects-you-can-build-this-week-ae701ebbf485"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "how_to_roundup",
+        "reasoning": [
+          "The article is explicitly organized as 'The 7 Projects' with seven separated, numbered workflows.",
+          "Each item describes a repeatable procedure or automation pattern rather than a single unified tutorial.",
+          "The closing section presents a reusable 3-step framework for building any of the listed projects, reinforcing the roundup-of-methods structure."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Marcellinus Prevailer",
+    "canonical_url": "https://blog.howtoprofitai.com/ai-projects-you-can-build-this-week-ae701ebbf485",
+    "content_sha256": "d404faf60330f1c6ea3ac220b6f36acbeba0bce985e8a56a4282ea08ce55e2a0",
+    "publication": "How To Profit AI",
+    "published_date": "2026-05-18",
+    "raw_html_rel_path": "raw/readwise/7-simple-ai-projects-you-can-build-this-week-01kts1en53ga5vf2z1vbfrfqp6.html",
+    "raw_md_rel_path": "raw/readwise/7-simple-ai-projects-you-can-build-this-week-01kts1en53ga5vf2z1vbfrfqp6.md",
+    "source_id": "7-simple-ai-projects-you-can-build-this-week-01kts1en53ga5vf2z1vbfrfqp6",
+    "title": "7 Simple AI Projects You Can Build This Week"
+  }
+}

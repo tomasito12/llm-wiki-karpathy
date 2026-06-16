@@ -3,21 +3,28 @@ title: DeepSeek V4
 slug: deepseek-v4
 entity_id: model:deepseek-v4
 category: foundation-model
+tags:
+- inference-efficient
+- long-context-model
+- open-weight-model
+- reasoning-model
 aliases:
 - DeepSeek v4
 first_seen: '2026-04-25'
-last_seen: '2026-04-26'
-source_count: 2
-evidence_count: 29
+last_seen: '2026-05-16'
+source_count: 3
+evidence_count: 43
 source_ids:
 - 10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja
+- recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf
 - the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0
 value_level: high
-confidence: 0.88
+confidence: 0.9
 synthesis_state: stage1-placeholder
 types:
 - multimodal-model
 - open-weight-model
+- reasoning-model
 ---
 
 # DeepSeek V4
@@ -38,12 +45,16 @@ DeepSeek V4 is presented as an open-weight foundation model with native multimod
 - The article claims 92% accuracy on math benchmarks.
 - The article claims 90% accuracy on coding benchmarks.
 - No benchmark methodology or evaluator details are provided in the source.
+- At a 1M-token context length, DeepSeek V4-Pro uses 27% of the single-token inference FLOPs and 10% of the KV cache size versus DeepSeek V3.2, according to the source.
+- DeepSeek V4-Flash is reported at 10% of the FLOPs and 7% of the KV cache size relative to DeepSeek V3.2.
 
 ## Comparative Observations
 
 - The article frames DeepSeek V4 as cheaper to operate than rival cloud-priced models if self-hosted.
 - It is positioned as a stronger multimodal and long-context option than the prior V3 release.
 - The source suggests it is part of a competitive push that has made major AI labs nervous.
+- The source presents CSA/HCA as more aggressive than MLA-style compression, but not as a general-purpose replacement.
+- The source frames V4 as more efficient for very long contexts than the earlier DeepSeek V3.2 stack, though the comparison includes more than just architecture changes.
 - It is discussed alongside GPT-5.5 and Kimi 2.6 as part of a frontier-compression story from open and semi-open models.
 - The source implies competition on long context, coding, tool use, latency, and cost rather than on chat quality alone.
 
@@ -54,6 +65,9 @@ DeepSeek V4 is presented as an open-weight foundation model with native multimod
 - Open-weight deployment with local or self-hosted use
 - Cost-focused indexer claim for more efficient inference
 - Benchmarked math and coding performance claims
+- It compresses long-context attention by summarizing groups of tokens into fewer compressed KV entries.
+- It alternates between milder CSA and heavier HCA layers to balance detail retention against cache reduction.
+- It keeps a local sliding-window branch so recent tokens remain available without compression.
 - It is described as having a 1M context length, which is operationally relevant for long documents, large codebases, and extended agent traces.
 - It is described as having agentic capabilities, which indicates it is intended for multi-step workflows that require action rather than only response generation.
 
@@ -75,6 +89,7 @@ DeepSeek
 - Kimi 2.5
 - Gemma 4
 - GPT-5.5
+- DeepSeek V3.2
 - Kimi 2.6
 
 ## Service automation implications
@@ -114,6 +129,26 @@ The article gives benchmark-style claims but no testing methodology, so the accu
 - "DeepSeek V4 dropped in early March 2026 and continued a run that has made every major AI lab nervous. The big shift from V3: full native multimodal support for text, images, and video in one model. Plus a context window of over one million tokens and a new indexer that cuts computational costs by roughly fifty percent. 92% accuracy on math benchmarks, 90% on coding. Open-weight: run it locally or deploy it yourself. No per-token cloud pricing if you self-host." (`35a83539b126` · supporting · supporting_snippet; [[sources/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja|10 insane new AI tools in 2026 I stayed up all night playing with: 2nd one is the coolest]])
 - The article gives benchmark-style claims but no testing methodology, so the accuracy numbers cannot be validated from the source alone. It also does not explain latency, memory footprint, or the practical serving burden of running a very large multimodal open-weight model. Self-hosting may eliminate per-token cloud pricing, but the source does not cover infrastructure, ops, or maintenance costs. Because the evidence is vendor-linked and promotional in tone, independent verification would still be needed before treating the performance claims as settled. (`3688be25d1d8` · uncertainty · weaknesses_limitations; [[sources/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja|10 insane new AI tools in 2026 I stayed up all night playing with: 2nd one is the coolest]])
 
+### Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention (2026-05-16)
+
+- The source presents CSA/HCA as more aggressive than MLA-style compression, but not as a general-purpose replacement. (`5aa1850ba7a9` · neutral · comparative_observations[0]; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- The source frames V4 as more efficient for very long contexts than the earlier DeepSeek V3.2 stack, though the comparison includes more than just architecture changes. (`2f7492b344dd` · neutral · comparative_observations[1]; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- Adopting this style of model pushes engineering toward cache-efficient long-context serving and more careful memory budgeting. The architecture suggests that 1M-token workloads may be materially cheaper than earlier MLA-based designs, but the source makes clear that the reported savings come from the full recipe, not architecture alone. (`16cccc3c950b` · neutral · deployment_implications; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- As of 2026-05-16, the source treats DeepSeek V4 as a flagship production-style release rather than a small experiment. It reports strong benchmark and retrieval results for the full recipe, but also notes that architecture-only attribution is unclear because other training and system changes are bundled in. (`d24c00d348e5` · neutral · maturity_signals; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- - Uses manifold-constrained hyper-connections to widen the residual pathway while keeping the main attention/MoE layers narrower.
+- Combines CSA and HCA compressed-attention variants with a local sliding-window branch to reduce long-context attention cost.
+- The source describes it as a flagship release with strong overall modeling results, but the article treats the architecture changes as the key reusable idea.
+- Its long-context design is explicitly aimed at making attention and cache costs smaller at very long sequence lengths. (`1068141e86c6` · neutral · operational_profile; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- The source reports that at 1M tokens DeepSeek V4-Pro uses 27% of the single-token inference FLOPs and 10% of the KV cache size relative to DeepSeek V3.2, while V4-Flash uses 10% of the FLOPs and 7% of the KV cache size. That points to materially better inference economics for very long-context workloads, assuming the deployment can absorb the complexity of the full stack. (`bf877f795b31` · neutral · pricing_inference_implications; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- For service automation, the main implication is cheaper retention of very long interaction or case histories, which could help support workflows that need broad context. The source does not claim direct contact-center gains, so the implication is indirect and should be treated as a long-context serving benefit rather than a proven service-automation outcome. (`2401f8de042e` · neutral · service_automation_implications; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- At a 1M-token context length, DeepSeek V4-Pro uses 27% of the single-token inference FLOPs and 10% of the KV cache size versus DeepSeek V3.2, according to the source. (`c6e244fc1c9d` · supporting · benchmark_observations[0]; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- DeepSeek V4-Flash is reported at 10% of the FLOPs and 7% of the KV cache size relative to DeepSeek V3.2. (`9dbcd94a8135` · supporting · benchmark_observations[1]; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- It compresses long-context attention by summarizing groups of tokens into fewer compressed KV entries. (`0ec159037940` · supporting · core_capabilities[0]; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- It alternates between milder CSA and heavier HCA layers to balance detail retention against cache reduction. (`8f733921a2f3` · supporting · core_capabilities[1]; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- It keeps a local sliding-window branch so recent tokens remain available without compression. (`0ec5bd002fb8` · supporting · core_capabilities[2]; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- The DeepSeek V4 paper reports that, at a 1M-token context length, DeepSeek V4-Pro uses only 27% of the single-token inference FLOPs and 10% of the KV cache size compared with DeepSeek V3.2 (`33475ebc5703` · supporting · supporting_snippet; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+- The source notes that CSA/HCA are more complicated than MLA-style compression and that the paper lacks an ablation study, so the effect of each component is hard to isolate. The architecture also gives up some token-level information through sequence compression, so quality tradeoffs remain a concern. (`f11248154d6f` · uncertainty · weaknesses_limitations; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
+
 ### The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance (2026-04-26)
 
 - It is discussed alongside GPT-5.5 and Kimi 2.6 as part of a frontier-compression story from open and semi-open models. (`e425d7d9b8f6` · neutral · comparative_observations[0]; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
@@ -139,10 +174,12 @@ with 1M context length and impressive agentic capabilities. (`c9c7d4ba66e5` · s
 
 - The article gives benchmark-style claims but no testing methodology, so the accuracy numbers cannot be validated from the source alone. It also does not explain latency, memory footprint, or the practical serving burden of running a very large multimodal open-weight model. Self-hosting may eliminate per-token cloud pricing, but the source does not cover infrastructure, ops, or maintenance costs. Because the evidence is vendor-linked and promotional in tone, independent verification would still be needed before treating the performance claims as settled. (uncertainty; [[sources/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja|10 insane new AI tools in 2026 I stayed up all night playing with: 2nd one is the coolest]])
 - The source does not provide benchmarking detail or operational failure modes, so the strength claim is largely promotional in this roundup. 'Impressive agentic capabilities' is underspecified and does not tell a practitioner where the model breaks. (uncertainty; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
+- The source notes that CSA/HCA are more complicated than MLA-style compression and that the paper lacks an ablation study, so the effect of each component is hard to isolate. The architecture also gives up some token-level information through sequence compression, so quality tradeoffs remain a concern. (uncertainty; [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]])
 
 ## Related pages
 
 - DeepSeek V3
+- DeepSeek V3.2
 - GPT-5.5
 - Gemma 4
 - Kimi 2.5
@@ -151,4 +188,5 @@ with 1M context length and impressive agentic capabilities. (`c9c7d4ba66e5` · s
 ## Sources
 
 - [[sources/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja|10 insane new AI tools in 2026 I stayed up all night playing with: 2nd one is the coolest]]
+- [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]]
 - [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]]

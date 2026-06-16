@@ -1,0 +1,1137 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-16T00:53:42+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrCLBSl096WFSj2ECgegDruspZwWj",
+          "token_usage": {
+            "completion_tokens": 217,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5145,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5362
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrCLEOdmK3q76LrM8TQd1wI7MLXMR",
+          "token_usage": {
+            "completion_tokens": 1033,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4778,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5811
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-technical_howto",
+          "request_id": "chatcmpl-DrCLMWKaHOpqliBaeny3fSO56Wx77",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 2819,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36862,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 39681
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DrCLMWKaHOpqliBaeny3fSO56Wx77",
+    "token_usage": {
+      "completion_tokens": 4069,
+      "prompt_tokens": 46785,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 50854
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Set up the system as a pipeline with separate jobs: capture, routing, storage, and analysis. First, collect material from a few easy capture channels such as highlights, audio clips, and messages to yourself. Then use an automation layer to turn those raw inputs into clean files and place them into a local vault with a very small folder structure. After that, let an agent read the vault on a schedule and produce a short briefing that highlights new connections, repeated themes, and one useful question to think about. Keep the instruction file for the agent up to date, because stale instructions lead to stale outputs.",
+        "caveats": "This workflow depends on discipline: the vault needs clean folders, the instruction file needs regular updates, and the automation must keep routing content correctly. The source does not show benchmarks, privacy controls, or failure rates, so it is not proof that this stack is better than simpler review habits.",
+        "confidence": 0.93,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Choose a small set of capture channels and make them frictionless to use.",
+          "Route incoming text into Markdown files with an automation layer.",
+          "Store the files in a local vault with a strict folder limit.",
+          "Write an instruction file at the vault root that tells the agent how to read and challenge the corpus.",
+          "Schedule a daily briefing that reads recent captures and older notes.",
+          "Run a weekly deeper synthesis to surface contradictions, themes, and missing perspectives."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A local note vault that an agent can read.",
+          "An automation tool that can watch inputs and write files.",
+          "A model or agent that can read local context and generate structured summaries.",
+          "A willingness to maintain the instruction file and folder discipline."
+        ],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "agent-memory",
+          "workflow-automation"
+        ],
+        "question_title": "Agentic Personal Knowledge Management",
+        "related_howtos": [
+          "knowledge-base-ingestion-pipeline",
+          "agent-maintained-knowledge-bases"
+        ],
+        "secondary_tag": "agent-memory",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Instead of a vault you manually add to, build a vault that automatically adds to you.\"",
+        "value_level": "high",
+        "what_and_problem": "This is about building a note system that does more than store information. The problem it addresses is that many people collect articles, clips, and ideas, but the material never comes back into view in a useful way. A better system should automatically resurface connections, patterns, and questions so the notes help thinking instead of becoming a dead archive. The goal is to make the knowledge base work like a small assistant that keeps learning from what is saved. That matters when manual review is too slow to keep up with daily capture."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article describes a personal build and workflow that the author says is working for them.",
+        "Claims are supported by concrete setup details, folder structure, prompts, and automation steps rather than experiments or benchmarks.",
+        "The narrative is a deployment walkthrough, not a vendor announcement or research report."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about turning a note-taking vault into an automatic thinking assistant. Instead of saving articles, podcasts, and ideas into Obsidian and forgetting them, the setup moves them through n8n into a structured vault and then asks Claude Code to read that vault every day. The result is a briefing that surfaces links between old and new notes, recurring obsessions, and useful questions to think about. A small instruction file called CLAUDE.md tells the model how to behave and what goals to focus on. The appeal is not better storage, but getting your own notes to come back to you as insight.",
+      "assessed_as_of": "2026-05-15",
+      "contradictions_and_skepticism": "The article presents a strong automation story, but the evidence is primarily anecdotal and promotional. The claim that the vault \u201creads your mind\u201d is rhetorical, not demonstrated. The setup may also overfit to a highly motivated user who will keep the instructions, prompts, and folder discipline updated every week. Without comparison data, it is unclear whether the gains come from automation itself or from the author\u2019s deliberate habit of reviewing and refining the vault. The article\u2019s assertion that the idea came from four blogs and works well for the author is useful context, but not validation.",
+      "key_insights": [
+        "A useful knowledge system needs an output loop; capture without resurfacing becomes a dead archive.",
+        "A strict separation between capture, routing, storage, and analysis reduces folder sprawl and keeps the workflow mechanically simple.",
+        "CLAUDE.md is treated as the control layer for the agent, and stale instructions are framed as a cause of stale insights.",
+        "The daily prompt is designed to return one connection, one obsession, and one question, which is a compact output format for review.",
+        "The article\u2019s strongest claim is personal compounding, but it is based on a self-reported workflow rather than comparative evidence."
+      ],
+      "limitations_and_open_questions": "The article does not provide benchmarks, time savings, error rates, or evidence that the system outperforms a simpler manual review workflow. It assumes the user will maintain a clean CLAUDE.md and disciplined folder boundaries, but it does not address how often such setups drift or fail in practice. Security, privacy, and local data governance are not discussed, even though the workflow depends on sending vault context to Claude Code. The operational cost of maintaining multiple capture channels and automation rules is also unclear. The claim that the setup compounds insight is plausible, but the article does not show a before/after evaluation or any failure cases.",
+      "sources": [
+        "https://ai.plainenglish.io/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-709e240150d3"
+      ],
+      "summary": "The article proposes a four-layer personal knowledge system that turns Obsidian from a passive archive into an automated intelligence vault. The core idea is to separate capture, routing, storage, and analysis: Readwise, Airr, Whisper, and Telegram collect input; n8n converts it into Markdown and routes it into Obsidian; a strict five-folder vault keeps storage simple; and Claude Code reads the vault to produce daily and weekly briefings. The author argues that the system works only if Claude is given a root-level CLAUDE.md file that defines goals, active projects, and behavioral instructions such as surfacing unseen connections and challenging assumptions. The daily prompt asks Claude to summarize the most interesting connection, one obsessive pattern, and one high-leverage question from recent notes, while the weekly prompt asks for a deeper synthesis of the thesis being built, contradictions with older beliefs, and missing perspectives. The article\u2019s main claim is that knowledge compounds when the vault actively pushes insights back to the user instead of serving as a dead archive. It is presented as a personal build assembled from four other blogs and said to be working for the author, but the evidence is anecdotal rather than benchmarked.",
+      "why_it_matters": "The piece is useful because it turns a vague \u201csecond brain\u201d idea into a concrete operating model: automated capture, deterministic file routing, a small vault schema, and a fixed instruction file for the model that reads the vault. For AI engineering, the notable part is not the note-taking app itself but the separation of concerns: input tools collect raw material, n8n normalizes it, Obsidian stores it as local ground truth, and Claude Code performs recurring synthesis over a bounded context. That architecture is durable as a design pattern because it can be reused with other capture sources and other local-knowledge workflows, even if the specific tool choices change. The daily and weekly prompts are also a practical reminder that agent usefulness depends on prompt shape and retrieval scope, not just on model capability. The article\u2019s evidence is still narrow: it is a personal build, described as working for the author, with no benchmarked comparison against manual review or simpler search-based setups. Actionable as of 2026-05-15, but best treated as a useful implementation pattern rather than proof that this exact stack is broadly superior."
+    },
+    "source_type_detection": {
+      "confidence": 0.93,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The piece is primarily a single implementation guide for building an automated Obsidian vault, with layered steps and specific workflow prompts.",
+        "It gives a concrete setup process across Obsidian, n8n, Claude Code, Readwise, Airr, Whisper, and Telegram bots rather than a bundle of unrelated items.",
+        "The structure is instructional and procedural, centered on how to assemble and operate the system."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It stores captures, notes, ideas, and project context in a local vault that other tools can read and write to.",
+          "It can be organized into a small fixed folder structure so agent workflows have predictable places to look for content."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is used here with n8n to receive routed Markdown files from capture sources.",
+          "It is used here with Claude Code to let an agent read the vault and generate daily and weekly briefings."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "Obsidian is treated as a mature enough local workspace to serve as the anchor for automated capture and agent synthesis. The source does not claim anything about market adoption or enterprise readiness beyond its role in a personal workflow.",
+        "name": "Obsidian",
+        "operational_relevance": "Obsidian is operationally relevant when teams want a durable, local-first knowledge store that can be structured for downstream automation. In this workflow, it is not just a note app; it is the bounded corpus that an agent can repeatedly analyze for daily and weekly synthesis. That makes it useful for AI-assisted knowledge work where file-based context, retrieval, and repeatable prompting matter more than a polished UI.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "note-taking"
+        ],
+        "related_tools": [
+          "n8n",
+          "Claude Code"
+        ],
+        "short_description": "A local note-taking vault used here as the permanent storage layer for captured notes, highlights, ideas, and project context. It acts as the system of record that later gets read by an agent for synthesis.",
+        "strengths": "- Supports local, file-based storage, which makes the vault easier to inspect and route through automation than a proprietary black box.\n- Works as a stable ground-truth layer for recurring agent reads, so the same corpus can be revisited over time instead of being trapped in one-off chats.\n- Fits a strict folder schema, which helps reduce note sprawl and keeps the knowledge base mechanically simple.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [
+          "knowledge-management"
+        ],
+        "supporting_snippet": "\"By bridging Obsidian, n8n automations, and Claude Code, you can architect a local knowledge base that autonomously surfaces connections and compounds insight every single morning, without you doing any manual filing.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not discuss sync, collaboration, permissions, or failure modes, so the operational tradeoffs of using Obsidian as an agent-readable store are not addressed. The setup also depends on disciplined folder hygiene; if that discipline slips, the system can become noisy and less useful."
+      },
+      {
+        "confidence": 0.94,
+        "core_capabilities": [
+          "It watches capture sources and turns raw input into a normalized Markdown file.",
+          "It routes captured content directly into a vault without requiring manual filing."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is used with Readwise, Telegram, and Obsidian as part of the capture-to-vault pipeline.",
+          "It can serve as the control layer between collection tools and an agent-readable store."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "n8n is presented as a practical automation layer rather than an experimental component. The article uses it in a production-like personal workflow, but provides no adoption metrics or reliability data.",
+        "name": "n8n",
+        "operational_relevance": "n8n fits where teams need deterministic routing between capture channels and a knowledge base. In this workflow it normalizes raw inputs, converts them into files, and removes manual filing from the loop. That makes it relevant for AI-assisted knowledge systems, inbox automation, and any setup that needs predictable handoffs before an agent reads the corpus.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "workflow-automation",
+          "autonomous",
+          "api-first"
+        ],
+        "proposed_types": [
+          "workflow-automation"
+        ],
+        "related_tools": [
+          "Obsidian",
+          "Claude Code",
+          "Readwise",
+          "Telegram"
+        ],
+        "short_description": "A workflow automation tool used here to watch capture sources, format raw text into Markdown, and route it into Obsidian. It serves as the automation layer between intake and storage.",
+        "strengths": "- Connects multiple capture sources into one routing pipeline, which keeps intake from becoming fragmented across tools.\n- Converts raw text into Markdown files, which makes the output portable and easy for local tools to consume.\n- Removes manual filing from the loop, which is useful when the goal is to keep knowledge capture lightweight and repeatable.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"An n8n workflow watches your capture sources (like Telegram or Readwise) and automatically formats the raw text into a clean Markdown file, routing it directly into your Obsidian vault. Zero manual filing.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not discuss error handling, retries, or maintenance burden, so the operational overhead of keeping the workflows healthy is unknown. It also assumes the routing logic remains simple; once the pipeline becomes more complex, the system may need more governance than the article describes."
+      },
+      {
+        "confidence": 0.86,
+        "core_capabilities": [
+          "It reads a local vault and synthesizes higher-level observations from the stored material.",
+          "It can follow a maintained instruction file such as CLAUDE.md to keep behavior aligned over time.",
+          "It can generate recurring artifacts like daily briefings and weekly synthesis notes."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is used with Obsidian as the corpus it reads.",
+          "It is used with n8n as the workflow that schedules and writes out the generated briefing."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "Claude Code is used as the core reasoning layer in a working personal workflow, which suggests enough maturity for local recurring automation. The source does not provide broader adoption evidence or benchmark comparisons.",
+        "name": "Claude Code",
+        "operational_relevance": "Claude Code is relevant when an agent needs to repeatedly read a bounded local corpus and produce structured outputs from it. In this workflow, it is asked to surface connections, contradictions, and high-leverage questions, which is a useful pattern for recurring knowledge review and self-audit. For service automation teams, the same mechanism maps to recurring corpus review, policy checks, and operational brief generation over a controlled file set.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "agentic",
+          "cli-tool",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "coding-agent"
+        ],
+        "related_tools": [
+          "Obsidian",
+          "n8n"
+        ],
+        "short_description": "An agentic coding tool used here as the intelligence engine that reads the vault and writes daily and weekly briefings. It is the analysis layer that turns stored notes into synthesis.",
+        "strengths": "- Reads the local vault and produces recurring synthesis, which is more valuable than a one-off chat over isolated notes.\n- Can be instructed through CLAUDE.md, so the agent behavior is treated as a maintained interface rather than a single prompt.\n- Supports daily and weekly output loops, which makes it useful for ongoing review rather than ad hoc querying.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Layer 4: Claude Code (The Intelligence Engine) This is where the magic happens. Claude reads the local vault, finds the hidden patterns, and writes the daily briefing.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not provide evidence about accuracy, latency, or drift, so the quality of the generated briefings is not measured. The workflow also depends on a current instruction file and a clean vault; stale instructions or messy notes can degrade output quality."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "A knowledge base becomes more useful when it is designed for recurring synthesis, not only storage.",
+          "Agent behavior can be controlled with a root-level instruction file that sets goals and reading rules.",
+          "A small, stable folder structure reduces the chance that the corpus turns into a maintenance burden.",
+          "Recurring agent review can surface contradictions between older beliefs and newer captures."
+        ],
+        "knowledge_summary": "An agent-maintained knowledge base is a corpus that is not only stored for later lookup but also periodically read, synthesized, and rewritten by an AI system. The value comes from turning passive storage into an active review loop that can surface links, contradictions, and recurring themes. The corpus needs a clear structure, because the agent is only as useful as the boundaries and instructions it receives. This pattern is especially useful when humans keep adding notes faster than they can manually review them.",
+        "match_candidates": [],
+        "operational_insight": "Treat the knowledge base as a maintained workspace with explicit instructions, scheduled reviews, and a bounded corpus. The agent should not be expected to improvise around a messy archive; the archive should be shaped so the agent can reliably read it and generate repeatable outputs.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "agent-memory",
+          "workflow-automation"
+        ],
+        "related_topics": [
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This pattern matters wherever AI systems need to summarize, audit, or mine a growing body of internal material over time. It shows up in personal knowledge systems, internal documentation, support corpora, and other file-based workspaces where recurring synthesis is more valuable than ad hoc search.",
+        "secondary_tag": "agent-memory",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The system was designed for input, but there was zero structural output.\"",
+        "topic_slug": "agent-maintained-knowledge-bases",
+        "topic_title": "Agent-Maintained Knowledge Bases",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.9,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Markdown is a practical interchange format because it is simple for both automation tools and agents to consume.",
+          "Local file boundaries make it easier to see what the system knows and where it stores that knowledge.",
+          "File-native workflows reduce dependence on chat history as the only memory substrate."
+        ],
+        "knowledge_summary": "File-native AI workflows organize work around local files that an automation layer and an agent can both read and write. The practical advantage is portability: the same corpus can be stored, routed, versioned, and revisited without depending on a single chat session or vendor interface. This makes the workflow easier to inspect and easier to automate. It also gives the agent stable context boundaries, which is important for recurring jobs like synthesis, review, and brief generation.",
+        "match_candidates": [],
+        "operational_insight": "Use files as the interface between capture tools, routing automation, and agent analysis. Once the system speaks Markdown and local folders, it becomes much easier to reason about failures, add new capture sources, and keep context bounded.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "workflow-automation",
+          "agent-systems"
+        ],
+        "related_topics": [
+          "agent-maintained-knowledge-bases"
+        ],
+        "relevance_note": "File-native workflows are durable because many AI systems still need a concrete, inspectable artifact to operate on reliably. They are especially useful in knowledge work, documentation pipelines, and automation setups where local control and repeatability matter.",
+        "secondary_tag": "workflow-automation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"automatically formats the raw text into a clean Markdown file, routing it directly into your Obsidian vault\"",
+        "topic_slug": "file-native-ai-workflows",
+        "topic_title": "File-Native AI Workflows",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Set up the system as a pipeline with separate jobs: capture, routing, storage, and analysis. First, collect material from a few easy capture channels such as highlights, audio clips, and messages to yourself. Then use an automation layer to turn those raw inputs into clean files and place them into a local vault with a very small folder structure. After that, let an agent read the vault on a schedule and produce a short briefing that highlights new connections, repeated themes, and one useful question to think about. Keep the instruction file for the agent up to date, because stale instructions lead to stale outputs.",
+          "caveats": "This workflow depends on discipline: the vault needs clean folders, the instruction file needs regular updates, and the automation must keep routing content correctly. The source does not show benchmarks, privacy controls, or failure rates, so it is not proof that this stack is better than simpler review habits.",
+          "confidence": 0.93,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Choose a small set of capture channels and make them frictionless to use.",
+            "Route incoming text into Markdown files with an automation layer.",
+            "Store the files in a local vault with a strict folder limit.",
+            "Write an instruction file at the vault root that tells the agent how to read and challenge the corpus.",
+            "Schedule a daily briefing that reads recent captures and older notes.",
+            "Run a weekly deeper synthesis to surface contradictions, themes, and missing perspectives."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A local note vault that an agent can read.",
+            "An automation tool that can watch inputs and write files.",
+            "A model or agent that can read local context and generate structured summaries.",
+            "A willingness to maintain the instruction file and folder discipline."
+          ],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "agent-memory",
+            "workflow-automation"
+          ],
+          "question_title": "Agentic Personal Knowledge Management",
+          "related_howtos": [
+            "knowledge-base-ingestion-pipeline",
+            "agent-maintained-knowledge-bases"
+          ],
+          "secondary_tag": "agent-memory",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Instead of a vault you manually add to, build a vault that automatically adds to you.\"",
+          "value_level": "high",
+          "what_and_problem": "This is about building a note system that does more than store information. The problem it addresses is that many people collect articles, clips, and ideas, but the material never comes back into view in a useful way. A better system should automatically resurface connections, patterns, and questions so the notes help thinking instead of becoming a dead archive. The goal is to make the knowledge base work like a small assistant that keeps learning from what is saved. That matters when manual review is too slow to keep up with daily capture."
+        },
+        "notes": null,
+        "proposal_id": "3ce5150d-62d9-4771-8450-1750741e04bf",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Choose a small set of capture channels and make them frictionless to use.",
+              "Route incoming text into Markdown files with an automation layer.",
+              "Store the files in a local vault with a strict folder limit.",
+              "Write an instruction file at the vault root that tells the agent how to read and challenge the corpus.",
+              "Schedule a daily briefing that reads recent captures and older notes.",
+              "Run a weekly deeper synthesis to surface contradictions, themes, and missing perspectives."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A local note vault that an agent can read.",
+              "An automation tool that can watch inputs and write files.",
+              "A model or agent that can read local context and generate structured summaries.",
+              "A willingness to maintain the instruction file and folder discipline."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-ingestion-pipeline",
+              "agent-maintained-knowledge-bases"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "agent-memory",
+            "workflow-automation"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article describes a personal build and workflow that the author says is working for them.",
+          "Claims are supported by concrete setup details, folder structure, prompts, and automation steps rather than experiments or benchmarks.",
+          "The narrative is a deployment walkthrough, not a vendor announcement or research report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A useful knowledge system needs an output loop; capture without resurfacing becomes a dead archive.",
+          "A strict separation between capture, routing, storage, and analysis reduces folder sprawl and keeps the workflow mechanically simple.",
+          "CLAUDE.md is treated as the control layer for the agent, and stale instructions are framed as a cause of stale insights.",
+          "The daily prompt is designed to return one connection, one obsession, and one question, which is a compact output format for review.",
+          "The article\u2019s strongest claim is personal compounding, but it is based on a self-reported workflow rather than comparative evidence."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://ai.plainenglish.io/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-709e240150d3"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.93,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The piece is primarily a single implementation guide for building an automated Obsidian vault, with layered steps and specific workflow prompts.",
+          "It gives a concrete setup process across Obsidian, n8n, Claude Code, Readwise, Airr, Whisper, and Telegram bots rather than a bundle of unrelated items.",
+          "The structure is instructional and procedural, centered on how to assemble and operate the system."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It stores captures, notes, ideas, and project context in a local vault that other tools can read and write to.",
+            "It can be organized into a small fixed folder structure so agent workflows have predictable places to look for content."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It is used here with n8n to receive routed Markdown files from capture sources.",
+            "It is used here with Claude Code to let an agent read the vault and generate daily and weekly briefings."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "Obsidian is treated as a mature enough local workspace to serve as the anchor for automated capture and agent synthesis. The source does not claim anything about market adoption or enterprise readiness beyond its role in a personal workflow.",
+          "name": "Obsidian",
+          "operational_relevance": "Obsidian is operationally relevant when teams want a durable, local-first knowledge store that can be structured for downstream automation. In this workflow, it is not just a note app; it is the bounded corpus that an agent can repeatedly analyze for daily and weekly synthesis. That makes it useful for AI-assisted knowledge work where file-based context, retrieval, and repeatable prompting matter more than a polished UI.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "note-taking"
+          ],
+          "related_tools": [
+            "n8n",
+            "Claude Code"
+          ],
+          "short_description": "A local note-taking vault used here as the permanent storage layer for captured notes, highlights, ideas, and project context. It acts as the system of record that later gets read by an agent for synthesis.",
+          "strengths": "- Supports local, file-based storage, which makes the vault easier to inspect and route through automation than a proprietary black box.\n- Works as a stable ground-truth layer for recurring agent reads, so the same corpus can be revisited over time instead of being trapped in one-off chats.\n- Fits a strict folder schema, which helps reduce note sprawl and keeps the knowledge base mechanically simple.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [
+            "knowledge-management"
+          ],
+          "supporting_snippet": "\"By bridging Obsidian, n8n automations, and Claude Code, you can architect a local knowledge base that autonomously surfaces connections and compounds insight every single morning, without you doing any manual filing.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not discuss sync, collaboration, permissions, or failure modes, so the operational tradeoffs of using Obsidian as an agent-readable store are not addressed. The setup also depends on disciplined folder hygiene; if that discipline slips, the system can become noisy and less useful."
+        },
+        "notes": null,
+        "proposal_id": "7333f495-e90f-4641-998c-29b85f9fdfd3",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It stores captures, notes, ideas, and project context in a local vault that other tools can read and write to.",
+              "It can be organized into a small fixed folder structure so agent workflows have predictable places to look for content."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is used here with n8n to receive routed Markdown files from capture sources.",
+              "It is used here with Claude Code to let an agent read the vault and generate daily and weekly briefings."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "n8n",
+              "Claude Code"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "workflow-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "core_capabilities": [
+            "It watches capture sources and turns raw input into a normalized Markdown file.",
+            "It routes captured content directly into a vault without requiring manual filing."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It is used with Readwise, Telegram, and Obsidian as part of the capture-to-vault pipeline.",
+            "It can serve as the control layer between collection tools and an agent-readable store."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "n8n is presented as a practical automation layer rather than an experimental component. The article uses it in a production-like personal workflow, but provides no adoption metrics or reliability data.",
+          "name": "n8n",
+          "operational_relevance": "n8n fits where teams need deterministic routing between capture channels and a knowledge base. In this workflow it normalizes raw inputs, converts them into files, and removes manual filing from the loop. That makes it relevant for AI-assisted knowledge systems, inbox automation, and any setup that needs predictable handoffs before an agent reads the corpus.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "workflow-automation",
+            "autonomous",
+            "api-first"
+          ],
+          "proposed_types": [
+            "workflow-automation"
+          ],
+          "related_tools": [
+            "Obsidian",
+            "Claude Code",
+            "Readwise",
+            "Telegram"
+          ],
+          "short_description": "A workflow automation tool used here to watch capture sources, format raw text into Markdown, and route it into Obsidian. It serves as the automation layer between intake and storage.",
+          "strengths": "- Connects multiple capture sources into one routing pipeline, which keeps intake from becoming fragmented across tools.\n- Converts raw text into Markdown files, which makes the output portable and easy for local tools to consume.\n- Removes manual filing from the loop, which is useful when the goal is to keep knowledge capture lightweight and repeatable.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"An n8n workflow watches your capture sources (like Telegram or Readwise) and automatically formats the raw text into a clean Markdown file, routing it directly into your Obsidian vault. Zero manual filing.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not discuss error handling, retries, or maintenance burden, so the operational overhead of keeping the workflows healthy is unknown. It also assumes the routing logic remains simple; once the pipeline becomes more complex, the system may need more governance than the article describes."
+        },
+        "notes": null,
+        "proposal_id": "f72c612e-cc24-413d-a037-215a88dbf781",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It watches capture sources and turns raw input into a normalized Markdown file.",
+              "It routes captured content directly into a vault without requiring manual filing."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is used with Readwise, Telegram, and Obsidian as part of the capture-to-vault pipeline.",
+              "It can serve as the control layer between collection tools and an agent-readable store."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "Claude Code",
+              "Readwise",
+              "Telegram"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation",
+            "autonomous",
+            "api-first"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.86,
+          "core_capabilities": [
+            "It reads a local vault and synthesizes higher-level observations from the stored material.",
+            "It can follow a maintained instruction file such as CLAUDE.md to keep behavior aligned over time.",
+            "It can generate recurring artifacts like daily briefings and weekly synthesis notes."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It is used with Obsidian as the corpus it reads.",
+            "It is used with n8n as the workflow that schedules and writes out the generated briefing."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "Claude Code is used as the core reasoning layer in a working personal workflow, which suggests enough maturity for local recurring automation. The source does not provide broader adoption evidence or benchmark comparisons.",
+          "name": "Claude Code",
+          "operational_relevance": "Claude Code is relevant when an agent needs to repeatedly read a bounded local corpus and produce structured outputs from it. In this workflow, it is asked to surface connections, contradictions, and high-leverage questions, which is a useful pattern for recurring knowledge review and self-audit. For service automation teams, the same mechanism maps to recurring corpus review, policy checks, and operational brief generation over a controlled file set.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "agentic",
+            "cli-tool",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "coding-agent"
+          ],
+          "related_tools": [
+            "Obsidian",
+            "n8n"
+          ],
+          "short_description": "An agentic coding tool used here as the intelligence engine that reads the vault and writes daily and weekly briefings. It is the analysis layer that turns stored notes into synthesis.",
+          "strengths": "- Reads the local vault and produces recurring synthesis, which is more valuable than a one-off chat over isolated notes.\n- Can be instructed through CLAUDE.md, so the agent behavior is treated as a maintained interface rather than a single prompt.\n- Supports daily and weekly output loops, which makes it useful for ongoing review rather than ad hoc querying.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Layer 4: Claude Code (The Intelligence Engine) This is where the magic happens. Claude reads the local vault, finds the hidden patterns, and writes the daily briefing.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not provide evidence about accuracy, latency, or drift, so the quality of the generated briefings is not measured. The workflow also depends on a current instruction file and a clean vault; stale instructions or messy notes can degrade output quality."
+        },
+        "notes": null,
+        "proposal_id": "44ac8ea6-0df5-44bb-8e8e-045ca24b0bec",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It reads a local vault and synthesizes higher-level observations from the stored material.",
+              "It can follow a maintained instruction file such as CLAUDE.md to keep behavior aligned over time.",
+              "It can generate recurring artifacts like daily briefings and weekly synthesis notes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is used with Obsidian as the corpus it reads.",
+              "It is used with n8n as the workflow that schedules and writes out the generated briefing."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "n8n"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic",
+            "cli-tool",
+            "workflow-automation"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "A knowledge base becomes more useful when it is designed for recurring synthesis, not only storage.",
+            "Agent behavior can be controlled with a root-level instruction file that sets goals and reading rules.",
+            "A small, stable folder structure reduces the chance that the corpus turns into a maintenance burden.",
+            "Recurring agent review can surface contradictions between older beliefs and newer captures."
+          ],
+          "knowledge_summary": "An agent-maintained knowledge base is a corpus that is not only stored for later lookup but also periodically read, synthesized, and rewritten by an AI system. The value comes from turning passive storage into an active review loop that can surface links, contradictions, and recurring themes. The corpus needs a clear structure, because the agent is only as useful as the boundaries and instructions it receives. This pattern is especially useful when humans keep adding notes faster than they can manually review them.",
+          "match_candidates": [],
+          "operational_insight": "Treat the knowledge base as a maintained workspace with explicit instructions, scheduled reviews, and a bounded corpus. The agent should not be expected to improvise around a messy archive; the archive should be shaped so the agent can reliably read it and generate repeatable outputs.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "agent-memory",
+            "workflow-automation"
+          ],
+          "related_topics": [
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This pattern matters wherever AI systems need to summarize, audit, or mine a growing body of internal material over time. It shows up in personal knowledge systems, internal documentation, support corpora, and other file-based workspaces where recurring synthesis is more valuable than ad hoc search.",
+          "secondary_tag": "agent-memory",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The system was designed for input, but there was zero structural output.\"",
+          "topic_slug": "agent-maintained-knowledge-bases",
+          "topic_title": "Agent-Maintained Knowledge Bases",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f94fa13d-2ce2-4951-a6b2-cdd28c3e8b42",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "A knowledge base becomes more useful when it is designed for recurring synthesis, not only storage.",
+              "Agent behavior can be controlled with a root-level instruction file that sets goals and reading rules.",
+              "A small, stable folder structure reduces the chance that the corpus turns into a maintenance burden.",
+              "Recurring agent review can surface contradictions between older beliefs and newer captures."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "agent-memory",
+            "workflow-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Markdown is a practical interchange format because it is simple for both automation tools and agents to consume.",
+            "Local file boundaries make it easier to see what the system knows and where it stores that knowledge.",
+            "File-native workflows reduce dependence on chat history as the only memory substrate."
+          ],
+          "knowledge_summary": "File-native AI workflows organize work around local files that an automation layer and an agent can both read and write. The practical advantage is portability: the same corpus can be stored, routed, versioned, and revisited without depending on a single chat session or vendor interface. This makes the workflow easier to inspect and easier to automate. It also gives the agent stable context boundaries, which is important for recurring jobs like synthesis, review, and brief generation.",
+          "match_candidates": [],
+          "operational_insight": "Use files as the interface between capture tools, routing automation, and agent analysis. Once the system speaks Markdown and local folders, it becomes much easier to reason about failures, add new capture sources, and keep context bounded.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "workflow-automation",
+            "agent-systems"
+          ],
+          "related_topics": [
+            "agent-maintained-knowledge-bases"
+          ],
+          "relevance_note": "File-native workflows are durable because many AI systems still need a concrete, inspectable artifact to operate on reliably. They are especially useful in knowledge work, documentation pipelines, and automation setups where local control and repeatability matter.",
+          "secondary_tag": "workflow-automation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"automatically formats the raw text into a clean Markdown file, routing it directly into your Obsidian vault\"",
+          "topic_slug": "file-native-ai-workflows",
+          "topic_title": "File-Native AI Workflows",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "b5f32602-348e-4e92-aad5-d15ce35349f6",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Markdown is a practical interchange format because it is simple for both automation tools and agents to consume.",
+              "Local file boundaries make it easier to see what the system knows and where it stores that knowledge.",
+              "File-native workflows reduce dependence on chat history as the only memory substrate."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-maintained-knowledge-bases"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "workflow-automation",
+            "agent-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Shashwat",
+    "canonical_url": "https://ai.plainenglish.io/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-709e240150d3",
+    "content_sha256": "368002cd12dc60dc44f25a1d096080ff875dadc10b93225c53820323708db15a",
+    "publication": "Medium",
+    "published_date": "2026-05-15",
+    "raw_html_rel_path": "raw/readwise/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3.html",
+    "raw_md_rel_path": "raw/readwise/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3.md",
+    "source_id": "the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3",
+    "title": "The Automated Obsidian Intelligence Vault That Gets Smarter Every Day"
+  }
+}

@@ -4,17 +4,21 @@ slug: context-engineering
 entity_id: topic:context-engineering
 category: topic
 tags:
+- agent-systems
 - ai-engineering
 - context-engineering
 - enterprise-workflows
+- orchestration
 - prompt-engineering
+- runtime-architecture
 - runtime-systems
 first_seen: '2025-11-17'
 last_seen: '2026-05-11'
-source_count: 12
-evidence_count: 87
+source_count: 14
+evidence_count: 99
 source_ids:
 - 15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1
+- 6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8
 - everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2
 - harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx
 - i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr
@@ -22,12 +26,13 @@ source_ids:
 - llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp
 - llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-01krn2cgwkpeykxeadbb3f2ntm
 - run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14
+- technology-radar-01krc5f8a8a6x35ke2kdjn5d9w
 - the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb
 - the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt
 - the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0
 - this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g
 value_level: high
-confidence: 0.9199999999999999
+confidence: 0.927857142857143
 synthesis_state: stage1-placeholder
 ---
 
@@ -50,6 +55,10 @@ When an AI system is constrained to a source set, the main performance lever bec
 - Large agent system prompts can consume most of the usable context window.
 - Quantizing the key-value cache can be the difference between fitting a model and crashing it.
 - Context failures often look like model failures even when the root cause is the serving configuration.
+- Context is a design surface, not just a prompt field.
+- Progressive disclosure keeps the model from being flooded with irrelevant instructions.
+- Dynamic retrieval can select tools or MCP servers only when needed.
+- Stateful compression and sub-agents can keep long workflows from accumulating noise.
 - Only request information when the workflow actually needs it.
 - Structured summaries make human review easier during checkpoints.
 - Context quality affects whether the agent can complete a workflow end to end.
@@ -90,6 +99,8 @@ Treat corpus design as an engineering task: curate source boundaries, reduce noi
 - knowledge-management
 - agentic-workflows
 - retrieval-augmented-generation
+- progressive-disclosure-skill-design
+- harness-engineering
 - layered-ai-architecture
 
 ## Evidence / supporting sources
@@ -105,6 +116,13 @@ Treat corpus design as an engineering task: curate source boundaries, reduce noi
 - Context rot can appear before the hard window limit is reached. (`5f01b0ad061f` · supporting · key_points[3]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
 - Context engineering
 is managing what information the model has access to at inference time: which documents are retrieved, how much conversation history is included, what system-level context to inject, and in what order. (`37d0ecb389f7` · supporting · supporting_snippet; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+
+### 6 AI Concepts You Must Master to Build Production-Ready AI Systems (2026-04-29)
+
+- Context engineering is the discipline of deciding what information an AI model should see, in what order, and with what level of compression so it can do the task reliably. It covers selection, pruning, ordering, and summarization of prompts, retrieved documents, and conversation state. The point is not to maximize input size, but to make the most relevant information salient inside a limited context window. In production systems, this often matters more than prompt wording because the model can only use what remains visible and prominent in context. (`9211d13991f1` · neutral · knowledge_summary; [[sources/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8|6 AI Concepts You Must Master to Build Production-Ready AI Systems]])
+- Treat context as a scarce runtime resource. Keep the task goal, constraints, and freshest evidence prominent; compress older material and remove irrelevant noise before the model makes a decision. (`6d22cfcaf4f1` · neutral · operational_insight; [[sources/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8|6 AI Concepts You Must Master to Build Production-Ready AI Systems]])
+- This is durable across chatbots, voicebots, support automation, and agent systems because every production LLM workflow has a bounded attention budget. Teams that manage context well get more stable outputs, fewer instruction-loss failures, and better cost control as of 2026-04-29. (`eeff33460895` · neutral · relevance_note; [[sources/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8|6 AI Concepts You Must Master to Build Production-Ready AI Systems]])
+- "Context engineering is the discipline of deciding exactly what information goes into the model’s context window, how it is structured, and what gets left out." (`830f5d0cba83` · supporting · supporting_snippet; [[sources/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8|6 AI Concepts You Must Master to Build Production-Ready AI Systems]])
 
 ### 💠🌐 Everyone Is Wrong About NotebookLM (2025-11-17)
 
@@ -184,6 +202,17 @@ What is scaffolding? (`b1f17e58ad3d` · supporting · supporting_snippet; [[sour
 - Config-driven context makes task switching easier than hardcoding prompts. (`46f176448c9b` · supporting · key_points[2]; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
 - "Today's date is provided in the system context." (`671537ee38bb` · supporting · supporting_snippet; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
 
+### Technology Radar (2026-04-13)
+
+- Context engineering treats the model context window as a managed system rather than a passive prompt box. The practice is to decide what information should enter the context, when it should appear, and how much should be revealed at each step so the model can reason with a sharper signal-to-noise ratio. It often combines structured instructions, progressive disclosure, retrieval, caching, and stateful compression to avoid context rot. The point is to reduce hallucinations, wasted tokens, and brittle behavior in long-running workflows. (`5775a6b48371` · neutral · knowledge_summary; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- For agentic systems, design context flow explicitly: load only what is needed, when it is needed, and prefer modular context sources over monolithic instruction blobs. (`9a0c5f51b534` · neutral · operational_insight; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- As of 2026-04-13, this is a durable design concern for AI systems that need to behave consistently across multi-step tasks, especially chatbots, voicebots, and service agents that must combine instructions, policies, and live retrieval without overwhelming the model. (`58c37ac248a5` · neutral · relevance_note; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Context is a design surface, not just a prompt field. (`e6e984e8c836` · supporting · key_points[0]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Progressive disclosure keeps the model from being flooded with irrelevant instructions. (`d8c7b6256248` · supporting · key_points[1]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Dynamic retrieval can select tools or MCP servers only when needed. (`04961f7b31f2` · supporting · key_points[2]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Stateful compression and sub-agents can keep long workflows from accumulating noise. (`1ee38b73b1ab` · supporting · key_points[3]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- "Context engineering has evolved from an optimization tactic into a foundational architectural concern for modern AI systems. Unlike prompt engineering, which focuses on wording, context engineering treats the context window as a design surface and intentionally constructs the AI's information environment." (`c4f89ea4ebb7` · supporting · supporting_snippet; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+
 ### The 3 Claude Prompts Worth Stealing Today (2026-04-24)
 
 - Context engineering is the practice of shaping a model’s input so it has enough role, background, constraints, examples, and output structure to do useful work reliably. The goal is not clever phrasing but reducing ambiguity so the model can behave more consistently across repeated tasks. Good context engineering often treats a prompt as a small system rather than a one-off request. (`d48327181ad9` · neutral · knowledge_summary; [[sources/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb|The 3 Claude Prompts Worth Stealing Today]])
@@ -231,14 +260,17 @@ No contradictions captured in current sources.
 ## Related pages
 
 - agentic-workflows
+- harness-engineering
 - knowledge-management
 - layered-ai-architecture
+- progressive-disclosure-skill-design
 - prompt-engineering
 - retrieval-augmented-generation
 
 ## Sources
 
 - [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]]
+- [[sources/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8|6 AI Concepts You Must Master to Build Production-Ready AI Systems]]
 - [[sources/everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2|💠🌐 Everyone Is Wrong About NotebookLM]]
 - [[sources/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx|Harness Engineering: What Every AI Engineer Needs to Know in 2026]]
 - [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]]
@@ -246,6 +278,7 @@ No contradictions captured in current sources.
 - [[sources/llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp|LLM Wiki v2 — extending Karpathy's LLM Wiki pattern with lessons from building agentmemory · GitHub]]
 - [[sources/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-01krn2cgwkpeykxeadbb3f2ntm|LLMs, RAG, Agents, MCP: The AI Evolution You Must Know (A Visual Explanation)]]
 - [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb|The 3 Claude Prompts Worth Stealing Today]]
 - [[sources/the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt|The hardest percentages]]
 - [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]]

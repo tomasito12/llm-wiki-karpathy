@@ -1,0 +1,839 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-16T15:22:27+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrPtr4enF2hSOagEbS5fxDktIZd2d",
+          "token_usage": {
+            "completion_tokens": 201,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6317,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6518
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrPttKgUmezwR52HFFeif4uPMyYQ2",
+          "token_usage": {
+            "completion_tokens": 1132,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5932,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7064
+          }
+        },
+        {
+          "cache_hit_rate": 0.12656119900083265,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DrPu40aZhzsP9eY0tNzIyCXD5w2Bm",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1926,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 38432,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 4864
+            },
+            "total_tokens": 40358
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DrPu40aZhzsP9eY0tNzIyCXD5w2Bm",
+    "token_usage": {
+      "completion_tokens": 3259,
+      "prompt_tokens": 50681,
+      "prompt_tokens_details": {
+        "cached_tokens": 4864
+      },
+      "total_tokens": 53940
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-23",
+        "confidence": 0.87,
+        "evidence_from_source": "The article argues that Ollama's abstraction layer is no longer needed because llama.cpp now provides the underlying capabilities directly, including router mode and a web UI. It frames this as a replacement for convenience-driven wrappers in local inference.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "runtime-systems",
+        "proposed_tags": [
+          "runtime-systems"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems",
+          "open-model-pressure"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "infrastructure",
+        "suggested_new_tags": [
+          "infrastructure",
+          "developer-tools"
+        ],
+        "supporting_data_points": [
+          "Claimed 30\u201370% token/second gap versus llama.cpp in some benchmarks.",
+          "Ollama v0.30.0-rc15 is described as switching back to llama.cpp directly.",
+          "llama.cpp is described as having router mode and a web UI."
+        ],
+        "supporting_snippet": "\"The convenience gap has closed. llama.cpp now has router mode for model switching and a built-in web chat interface. You don\u2019t need Ollama\u2019s abstraction layer anymore.\"",
+        "time_sensitivity": "Time-bound as of 2026-05-23; the observation depends on the source's claim that llama.cpp had recently closed the convenience gap and that Ollama had switched back to llama.cpp in v0.30.0-rc15.",
+        "trend_description": "Local model deployment tools become less valuable when the underlying engine is accessible directly with comparable or better usability. As this happens, the wrapper layer has to justify itself on clear product advantages rather than on being the easiest default. The practical effect is a shift from abstraction-first packaging toward direct use of the runtime that actually performs inference.",
+        "trend_slug": "local-inference-stacks-shift-toward-direct-engine-access",
+        "trend_title": "Local Inference Stacks Shift Toward Direct Engine Access",
+        "uncertainty_note": "This is based on one opinionated source with benchmarks and user reports, not a controlled cross-runtime study, so the strength of the shift may vary by hardware, model, and workload.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The article combines community benchmark numbers, user reports, and quoted expert opinion from llama.cpp's creator.",
+        "Several claims rely on anecdotal reports and cited GitHub/Reddit issues rather than a formal study.",
+        "The piece is an independent opinionated analysis, but its support is not from one dominant evidence channel."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article says Ollama was useful when local AI was hard to start, but by May 2026 it argues there are better choices. The main idea is that Ollama adds extra layers that can slow inference and reduce flexibility. It also claims the project made trust mistakes, like confusing model names and drifting away from its original local-first promise. The author points to llama.cpp and other tools as the better way to run models directly. In plain English: the article is a warning that convenience can come with speed, transparency, and lock-in costs.",
+      "assessed_as_of": "2026-05-23",
+      "contradictions_and_skepticism": "The article is persuasive but strongly one-sided. It treats benchmark gaps and implementation criticisms as if they settle the product question, yet the user experience value of Ollama\u2019s packaging and simplicity is not measured here. The claim that one should \u201ccompletely avoid\u201d Ollama overstates what can be inferred from a source that mainly documents one period of performance and trust issues. The portability and naming criticisms are serious if accurate, but they are presented through the author\u2019s framing and selected examples, so they should be checked against release history and current docs before making a tooling decision.",
+      "key_insights": [
+        "The strongest practical claim is that the same model can run materially faster through llama.cpp than through Ollama, with cited gaps of 30\u201370% tokens per second.",
+        "The article\u2019s lock-in critique is about Ollama\u2019s proprietary storage format during its 2024\u20132025 fork period, which made model files less portable across other runtimes.",
+        "The trust argument is not just about code; it also targets naming choices, attribution practices, and a desktop-app launch that the author says was unclear about source and license.",
+        "The cloud critique is operational rather than ideological: the article cites high failure rates, timeouts, broken tool calling, and throttling as reasons paid cloud users moved away.",
+        "The author\u2019s replacement list is practical: use llama.cpp for raw performance, LM Studio for GUI convenience, and vLLM or SGLang for multi-user production workloads."
+      ],
+      "limitations_and_open_questions": "The evidence is mixed rather than systematic: the article cites community benchmarks, a few user-documented cases, GitHub issues, and one quoted expert opinion, but not a controlled head-to-head evaluation across hardware, model families, and settings. Some claims are time-sensitive because they refer to specific Ollama versions, a custom backend period, and cloud incidents that may change after publication. The article does not quantify how much setup time, maintenance burden, or feature parity differs across the suggested replacements. It also leaves open whether the cited performance gaps persist across all workloads, since tokens per second can vary with model choice, quantization, hardware, and runtime options. The cloud criticism raises privacy and reliability concerns, but the article does not provide a formal threat model or incident analysis.",
+      "sources": [
+        "https://blog.gopenai.com/why-you-should-completely-avoid-ollama-in-2026-6135d9e8591e"
+      ],
+      "summary": "The article argues that Ollama had an important early role in making local LLM use easy, but that by May 2026 it is a worse choice than alternatives such as llama.cpp, LM Studio, vLLM, SGLang, and MLX. Its central claims are that Ollama is slower than llama.cpp in multiple community benchmarks, that its earlier fork/proprietary storage choices created lock-in, and that it has had credibility problems around attribution, naming, and source openness. The author also says Ollama\u2019s cloud offering undercuts its original local-first promise and has had severe reliability issues, including failures, timeouts, broken tool calling, throttling, and poor support. A separate thread in the article is feature velocity: the author claims llama.cpp has added support for new model architectures and router-style workflows faster than Ollama\u2019s custom backend. The article\u2019s practical conclusion is not nuanced: for local inference, choose the underlying engines and UIs directly instead of relying on Ollama\u2019s abstraction layer. The piece is opinionated and relies on benchmarks, user reports, GitHub issues, and a quoted statement from llama.cpp\u2019s creator rather than a formal comparative study.",
+      "why_it_matters": "The article matters because it is a concrete critique of an abstraction layer that once lowered the barrier to local LLM use but, according to the author, now adds measurable cost in speed, portability, and trust as of May 2026. For AI engineers, the useful signal is not the slogan \u201cavoid Ollama,\u201d but the repeated claim that direct use of the underlying runtime can recover throughput and remove packaging constraints. The piece also highlights a real engineering tradeoff: convenience wrappers can become a second implementation burden when model support, structured output, or new inference features lag behind the upstream engine. Its most durable point is the portability lesson: storage format, dependency attribution, and model naming are product decisions that can affect whether an AI stack remains inspectable and swappable. The cloud discussion is narrower but operationally relevant because it ties reliability, tool use, and throttling to whether a service can support workflows that depend on consistent inference behavior. For local assistants and automation pipelines, the article\u2019s bottom line is that the wrapper is not free; it may be worth replacing if the underlying engine and UI are already good enough. Actionable as of May 2026, but the claims are mainly a mix of benchmarks, community reports, and vendor-specific incidents rather than a controlled study."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion article centered on one subject (Ollama) rather than a bundle of independent items.",
+        "Uses argumentative sections and cited examples/benchmarks, not a roundup or tutorial structure.",
+        "No interview/Q&A, and not a step-by-step how-to or product list as the primary form."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.92,
+        "core_capabilities": [
+          "It provides a one-command way to run a local language model, which reduces setup friction for experimentation.",
+          "It acts as a packaging and abstraction layer over local inference, which can simplify first-time usage at the cost of extra indirection.",
+          "It supports a local-first model workflow, although the article argues that this promise was weakened by later cloud and platform moves."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is compared directly with llama.cpp as the underlying engine that users can access more directly.",
+          "It is positioned against LM Studio for GUI-oriented local usage.",
+          "It is contrasted with vLLM, SGLang, and MLX as alternatives for production or Apple Silicon workflows."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes Ollama as widely recommended and familiar to newcomers, which suggests strong mindshare. At the same time, it also portrays the project as moving into a platform-and-cloud phase that introduced controversy and user complaints. As of 2026-05-23, the maturity signal here is mixed: popular and easy to start, but questioned on performance and trust.",
+        "name": "Ollama",
+        "operational_relevance": "Useful when a team wants an easy on-ramp to local model use, especially for experimentation or lightweight developer workflows. The article frames it as less attractive when speed, portability, and transparency matter more than convenience. For service automation, the main question is whether the wrapper adds avoidable latency or operational friction compared with running the underlying engine directly.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "open-source",
+          "cli-tool"
+        ],
+        "proposed_types": [
+          "app",
+          "ai-infrastructure"
+        ],
+        "related_tools": [
+          "llama.cpp",
+          "LM Studio",
+          "vLLM",
+          "SGLang",
+          "MLX"
+        ],
+        "short_description": "A local model runner and packaging layer for open-weight language models. It provides a simple way to start and serve models on a local machine, with an abstraction layer over lower-level inference engines.",
+        "strengths": "- Low-friction local model startup makes it easy to try models without compiling from source, which lowers adoption cost for individual developers.\n- Packages model access behind a simple command-line workflow, which can help teams prototype quickly before deciding on a more specialized serving stack.\n- The source credits Ollama for making local LLM use accessible to people who did not want to deal with C++ builds or configuration complexity.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"When I first started playing with local AI, Ollama was my go-to. It was simple. It was user-friendly. You typed ollama run llama3 and boom \u2014 you had a running LLM.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "- The article claims Ollama can be materially slower than llama.cpp, with reported gaps of 30\u201370% tokens per second in some cases, which matters if latency or throughput is important.\n- It also claims that earlier proprietary storage and backend choices created lock-in, reducing portability across other runtimes.\n- The article argues that trust and transparency issues around naming, attribution, and cloud positioning weaken its fit for teams that care about inspectable, swappable infrastructure."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.89,
+        "evidence_type": null,
+        "examples": "The article contrasts Ollama with llama.cpp and says the same model can run \"30\u201370% fewer tokens per second\" through the wrapper. It also describes a period where \"Your downloaded models were stored in hashed filenames in Ollama\u2019s own registry format,\" making them hard to reuse elsewhere.",
+        "key_points": [
+          "Convenience layers can hide real inference overhead.",
+          "A proprietary storage format reduces model portability.",
+          "Wrapper maintenance can lag upstream engine feature support.",
+          "Model-serving decisions should be tested on throughput and migration cost, not only on ease of use."
+        ],
+        "knowledge_summary": "Wrappers around lower-level model runtimes can add measurable latency, reduce portability, and create a second layer of maintenance burden. The wrapper may improve onboarding, but it can also obscure performance characteristics and make it harder to swap engines or reuse model files across tools. For local inference stacks, the practical question is whether the convenience layer is cheap enough to justify the operational cost it adds. Teams should evaluate wrappers against direct-engine usage on the dimensions that matter most: throughput, feature parity, and migration cost.",
+        "match_candidates": [],
+        "operational_insight": "Treat wrappers as infrastructure components with real overhead, not as free convenience. If the underlying runtime is already easy to use, the wrapper needs a clear benefit to justify slower execution or lock-in risk.",
+        "primary_tag": "inference-systems",
+        "proposed_tags": [
+          "inference-systems",
+          "runtime-systems",
+          "developer-tools"
+        ],
+        "related_topics": [
+          "local-model-deployment",
+          "use-case-specific-local-model-selection"
+        ],
+        "relevance_note": "This matters for AI engineering because many production and semi-production stacks add a packaging layer on top of the actual inference engine. That layer can become a hidden source of latency, migration pain, and feature lag when teams need direct control over serving behavior.",
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"30\u201370% fewer tokens per second compared to running it through llama.cpp directly.\"",
+        "topic_slug": "agent-tool-wrapper-overhead",
+        "topic_title": "Agent Tool Wrapper Overhead",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "The source says Ollama used a \"proprietary model storage format\" and that \"You couldn\u2019t just point llama.cpp, LM Studio, or any other inference framework at those files.\"",
+        "key_points": [
+          "Model-file portability is part of system resilience.",
+          "Opaque registries can create lock-in even when a product is branded as open source.",
+          "Open formats make it easier to compare engines and recover from tool churn.",
+          "Artifact portability matters for both local experimentation and production migration."
+        ],
+        "knowledge_summary": "Open file and model formats make it easier to move workloads between runtimes, tools, and deployment environments. When model artifacts are stored in proprietary or opaque formats, the operational cost of switching rises and the system becomes harder to audit, test, and reuse. Open formats are especially important in model-serving stacks, where portability determines whether teams can migrate to faster engines or safer workflows without reprocessing artifacts. This is a design issue, not just a licensing issue.",
+        "match_candidates": [],
+        "operational_insight": "Use open formats when the same artifacts may need to move across local runners, GUIs, and production servers. Portability is an operational safeguard: it lowers switching cost and reduces the chance that a tool choice traps the team inside one ecosystem.",
+        "primary_tag": "infrastructure",
+        "proposed_tags": [
+          "infrastructure",
+          "runtime-systems",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "local-model-deployment",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This is durable for AI systems because model and artifact portability affects model serving, evaluation, and recovery from vendor or tool changes. Teams building service automation benefit when model files, configs, and outputs are inspectable and transferable across runtimes.",
+        "secondary_tag": "runtime-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"You couldn\u2019t just point llama.cpp, LM Studio, or any other inference framework at those files.\"",
+        "topic_slug": "open-formats-as-ai-integration-boundaries",
+        "topic_title": "Open Formats as AI Integration Boundaries",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-23",
+          "confidence": 0.87,
+          "evidence_from_source": "The article argues that Ollama's abstraction layer is no longer needed because llama.cpp now provides the underlying capabilities directly, including router mode and a web UI. It frames this as a replacement for convenience-driven wrappers in local inference.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "runtime-systems",
+          "proposed_tags": [
+            "runtime-systems"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems",
+            "open-model-pressure"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "infrastructure",
+          "suggested_new_tags": [
+            "infrastructure",
+            "developer-tools"
+          ],
+          "supporting_data_points": [
+            "Claimed 30\u201370% token/second gap versus llama.cpp in some benchmarks.",
+            "Ollama v0.30.0-rc15 is described as switching back to llama.cpp directly.",
+            "llama.cpp is described as having router mode and a web UI."
+          ],
+          "supporting_snippet": "\"The convenience gap has closed. llama.cpp now has router mode for model switching and a built-in web chat interface. You don\u2019t need Ollama\u2019s abstraction layer anymore.\"",
+          "time_sensitivity": "Time-bound as of 2026-05-23; the observation depends on the source's claim that llama.cpp had recently closed the convenience gap and that Ollama had switched back to llama.cpp in v0.30.0-rc15.",
+          "trend_description": "Local model deployment tools become less valuable when the underlying engine is accessible directly with comparable or better usability. As this happens, the wrapper layer has to justify itself on clear product advantages rather than on being the easiest default. The practical effect is a shift from abstraction-first packaging toward direct use of the runtime that actually performs inference.",
+          "trend_slug": "local-inference-stacks-shift-toward-direct-engine-access",
+          "trend_title": "Local Inference Stacks Shift Toward Direct Engine Access",
+          "uncertainty_note": "This is based on one opinionated source with benchmarks and user reports, not a controlled cross-runtime study, so the strength of the shift may vary by hardware, model, and workload.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "290e0412-3dd9-4d04-afd1-d5aebe4850b8",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems",
+              "open-model-pressure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Claimed 30\u201370% token/second gap versus llama.cpp in some benchmarks.",
+              "Ollama v0.30.0-rc15 is described as switching back to llama.cpp directly.",
+              "llama.cpp is described as having router mode and a web UI."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "runtime-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The article combines community benchmark numbers, user reports, and quoted expert opinion from llama.cpp's creator.",
+          "Several claims rely on anecdotal reports and cited GitHub/Reddit issues rather than a formal study.",
+          "The piece is an independent opinionated analysis, but its support is not from one dominant evidence channel."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The strongest practical claim is that the same model can run materially faster through llama.cpp than through Ollama, with cited gaps of 30\u201370% tokens per second.",
+          "The article\u2019s lock-in critique is about Ollama\u2019s proprietary storage format during its 2024\u20132025 fork period, which made model files less portable across other runtimes.",
+          "The trust argument is not just about code; it also targets naming choices, attribution practices, and a desktop-app launch that the author says was unclear about source and license.",
+          "The cloud critique is operational rather than ideological: the article cites high failure rates, timeouts, broken tool calling, and throttling as reasons paid cloud users moved away.",
+          "The author\u2019s replacement list is practical: use llama.cpp for raw performance, LM Studio for GUI convenience, and vLLM or SGLang for multi-user production workloads."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://blog.gopenai.com/why-you-should-completely-avoid-ollama-in-2026-6135d9e8591e"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion article centered on one subject (Ollama) rather than a bundle of independent items.",
+          "Uses argumentative sections and cited examples/benchmarks, not a roundup or tutorial structure.",
+          "No interview/Q&A, and not a step-by-step how-to or product list as the primary form."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "core_capabilities": [
+            "It provides a one-command way to run a local language model, which reduces setup friction for experimentation.",
+            "It acts as a packaging and abstraction layer over local inference, which can simplify first-time usage at the cost of extra indirection.",
+            "It supports a local-first model workflow, although the article argues that this promise was weakened by later cloud and platform moves."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It is compared directly with llama.cpp as the underlying engine that users can access more directly.",
+            "It is positioned against LM Studio for GUI-oriented local usage.",
+            "It is contrasted with vLLM, SGLang, and MLX as alternatives for production or Apple Silicon workflows."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes Ollama as widely recommended and familiar to newcomers, which suggests strong mindshare. At the same time, it also portrays the project as moving into a platform-and-cloud phase that introduced controversy and user complaints. As of 2026-05-23, the maturity signal here is mixed: popular and easy to start, but questioned on performance and trust.",
+          "name": "Ollama",
+          "operational_relevance": "Useful when a team wants an easy on-ramp to local model use, especially for experimentation or lightweight developer workflows. The article frames it as less attractive when speed, portability, and transparency matter more than convenience. For service automation, the main question is whether the wrapper adds avoidable latency or operational friction compared with running the underlying engine directly.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "open-source",
+            "cli-tool"
+          ],
+          "proposed_types": [
+            "app",
+            "ai-infrastructure"
+          ],
+          "related_tools": [
+            "llama.cpp",
+            "LM Studio",
+            "vLLM",
+            "SGLang",
+            "MLX"
+          ],
+          "short_description": "A local model runner and packaging layer for open-weight language models. It provides a simple way to start and serve models on a local machine, with an abstraction layer over lower-level inference engines.",
+          "strengths": "- Low-friction local model startup makes it easy to try models without compiling from source, which lowers adoption cost for individual developers.\n- Packages model access behind a simple command-line workflow, which can help teams prototype quickly before deciding on a more specialized serving stack.\n- The source credits Ollama for making local LLM use accessible to people who did not want to deal with C++ builds or configuration complexity.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"When I first started playing with local AI, Ollama was my go-to. It was simple. It was user-friendly. You typed ollama run llama3 and boom \u2014 you had a running LLM.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "- The article claims Ollama can be materially slower than llama.cpp, with reported gaps of 30\u201370% tokens per second in some cases, which matters if latency or throughput is important.\n- It also claims that earlier proprietary storage and backend choices created lock-in, reducing portability across other runtimes.\n- The article argues that trust and transparency issues around naming, attribution, and cloud positioning weaken its fit for teams that care about inspectable, swappable infrastructure."
+        },
+        "notes": null,
+        "proposal_id": "7cf25fe2-a13b-4c1b-bf27-730daf4fc0c3",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It provides a one-command way to run a local language model, which reduces setup friction for experimentation.",
+              "It acts as a packaging and abstraction layer over local inference, which can simplify first-time usage at the cost of extra indirection.",
+              "It supports a local-first model workflow, although the article argues that this promise was weakened by later cloud and platform moves."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is compared directly with llama.cpp as the underlying engine that users can access more directly.",
+              "It is positioned against LM Studio for GUI-oriented local usage.",
+              "It is contrasted with vLLM, SGLang, and MLX as alternatives for production or Apple Silicon workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "llama.cpp",
+              "LM Studio",
+              "vLLM",
+              "SGLang",
+              "MLX"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "open-source",
+            "cli-tool"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "evidence_type": null,
+          "examples": "The article contrasts Ollama with llama.cpp and says the same model can run \"30\u201370% fewer tokens per second\" through the wrapper. It also describes a period where \"Your downloaded models were stored in hashed filenames in Ollama\u2019s own registry format,\" making them hard to reuse elsewhere.",
+          "key_points": [
+            "Convenience layers can hide real inference overhead.",
+            "A proprietary storage format reduces model portability.",
+            "Wrapper maintenance can lag upstream engine feature support.",
+            "Model-serving decisions should be tested on throughput and migration cost, not only on ease of use."
+          ],
+          "knowledge_summary": "Wrappers around lower-level model runtimes can add measurable latency, reduce portability, and create a second layer of maintenance burden. The wrapper may improve onboarding, but it can also obscure performance characteristics and make it harder to swap engines or reuse model files across tools. For local inference stacks, the practical question is whether the convenience layer is cheap enough to justify the operational cost it adds. Teams should evaluate wrappers against direct-engine usage on the dimensions that matter most: throughput, feature parity, and migration cost.",
+          "match_candidates": [],
+          "operational_insight": "Treat wrappers as infrastructure components with real overhead, not as free convenience. If the underlying runtime is already easy to use, the wrapper needs a clear benefit to justify slower execution or lock-in risk.",
+          "primary_tag": "inference-systems",
+          "proposed_tags": [
+            "inference-systems",
+            "runtime-systems",
+            "developer-tools"
+          ],
+          "related_topics": [
+            "local-model-deployment",
+            "use-case-specific-local-model-selection"
+          ],
+          "relevance_note": "This matters for AI engineering because many production and semi-production stacks add a packaging layer on top of the actual inference engine. That layer can become a hidden source of latency, migration pain, and feature lag when teams need direct control over serving behavior.",
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"30\u201370% fewer tokens per second compared to running it through llama.cpp directly.\"",
+          "topic_slug": "agent-tool-wrapper-overhead",
+          "topic_title": "Agent Tool Wrapper Overhead",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "a2940885-7702-4db1-a7bc-02d306356a89",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Convenience layers can hide real inference overhead.",
+              "A proprietary storage format reduces model portability.",
+              "Wrapper maintenance can lag upstream engine feature support.",
+              "Model-serving decisions should be tested on throughput and migration cost, not only on ease of use."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "local-model-deployment",
+              "use-case-specific-local-model-selection"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "inference-systems",
+            "runtime-systems",
+            "developer-tools"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "The source says Ollama used a \"proprietary model storage format\" and that \"You couldn\u2019t just point llama.cpp, LM Studio, or any other inference framework at those files.\"",
+          "key_points": [
+            "Model-file portability is part of system resilience.",
+            "Opaque registries can create lock-in even when a product is branded as open source.",
+            "Open formats make it easier to compare engines and recover from tool churn.",
+            "Artifact portability matters for both local experimentation and production migration."
+          ],
+          "knowledge_summary": "Open file and model formats make it easier to move workloads between runtimes, tools, and deployment environments. When model artifacts are stored in proprietary or opaque formats, the operational cost of switching rises and the system becomes harder to audit, test, and reuse. Open formats are especially important in model-serving stacks, where portability determines whether teams can migrate to faster engines or safer workflows without reprocessing artifacts. This is a design issue, not just a licensing issue.",
+          "match_candidates": [],
+          "operational_insight": "Use open formats when the same artifacts may need to move across local runners, GUIs, and production servers. Portability is an operational safeguard: it lowers switching cost and reduces the chance that a tool choice traps the team inside one ecosystem.",
+          "primary_tag": "infrastructure",
+          "proposed_tags": [
+            "infrastructure",
+            "runtime-systems",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "local-model-deployment",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This is durable for AI systems because model and artifact portability affects model serving, evaluation, and recovery from vendor or tool changes. Teams building service automation benefit when model files, configs, and outputs are inspectable and transferable across runtimes.",
+          "secondary_tag": "runtime-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"You couldn\u2019t just point llama.cpp, LM Studio, or any other inference framework at those files.\"",
+          "topic_slug": "open-formats-as-ai-integration-boundaries",
+          "topic_title": "Open Formats as AI Integration Boundaries",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "0badc188-5a27-4734-9aaa-51e96ce89a02",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Model-file portability is part of system resilience.",
+              "Opaque registries can create lock-in even when a product is branded as open source.",
+              "Open formats make it easier to compare engines and recover from tool churn.",
+              "Artifact portability matters for both local experimentation and production migration."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "local-model-deployment",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "infrastructure",
+            "runtime-systems",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Andrew Zhu",
+    "canonical_url": "https://blog.gopenai.com/why-you-should-completely-avoid-ollama-in-2026-6135d9e8591e",
+    "content_sha256": "6feb141f6d465d94fbe5b7e716aa7841f5d56efb0186848e847da22af5f2d5e6",
+    "publication": "Medium",
+    "published_date": "2026-05-23",
+    "raw_html_rel_path": "raw/readwise/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd.html",
+    "raw_md_rel_path": "raw/readwise/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd.md",
+    "source_id": "why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd",
+    "title": "Why You Should Completely Avoid Ollama in 2026"
+  }
+}

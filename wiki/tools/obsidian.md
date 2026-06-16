@@ -7,20 +7,28 @@ tags:
 - document-analysis
 - ide-integrated
 - local-first
+- memory
+- open-source
+- research
 - workflow-automation
 - writing
 first_seen: '2026-01-16'
-last_seen: '2026-05-03'
-source_count: 7
-evidence_count: 80
+last_seen: '2026-05-15'
+source_count: 12
+evidence_count: 136
 source_ids:
+- building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s
 - how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z
 - i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h
+- i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q
+- i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb
 - i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee
 - i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769
 - obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft
 - obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk
+- the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3
 - why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8
+- why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb
 value_level: high
 confidence: 0.9400000000000001
 synthesis_state: stage1-placeholder
@@ -28,6 +36,7 @@ types:
 - app
 - knowledge-management
 - note-taking
+- plugin
 - ui
 ---
 
@@ -45,6 +54,9 @@ Obsidian is a local note-taking application built around Markdown files and othe
 - It supports a workflow where generated artifacts remain editable in the same environment that stores the notes.
 - It provides a markdown-centered interface for reviewing raw documents, generated summaries, and derived pages in the same workspace.
 - It supports plugins that can render alternate outputs such as slide decks, which makes the knowledge base usable beyond text review.
+- It provides a markdown-based vault that can hold raw sources, wiki pages, and daily notes in one local workspace.
+- It supports plugin-driven dashboards and automation, which makes the vault operational instead of purely archival.
+- It keeps the knowledge base in files rather than a closed database, which is important for agent access and portability.
 - It stores notes in markdown files, which makes the underlying content portable and easy to reorganize.
 - It supports plugin-driven customization, allowing the app to be adapted into a personal knowledge workspace.
 - It works as the central environment where search, capture, formatting, and calendar-based note habits can be combined.
@@ -54,9 +66,19 @@ Obsidian is a local note-taking application built around Markdown files and othe
 - It stores notes as local markdown files, which allows external tools to read and write them through file access.
 - It supports backlinks, tags, and folder structure so notes can be organized as a connected knowledge system.
 - It can expose current note context through an Obsidian-specific MCP bridge when paired with compatible tools.
+- It stores notes as plain Markdown files so users can edit and move them outside the application.
+- It keeps notes on the local device, which matters when long-term access is more important than cloud sync convenience.
+- It stores notes as Markdown files in a local folder, which makes the vault directly accessible to external agents.
+- It can be used as the visible editor while other tools such as VS Code, Typora, or Cursor open the same files.
+- It supports a local-first workflow where git can be used for review, versioning, and rollback.
+- It stores notes as ordinary files, which makes the vault easy to version, inspect, and automate.
+- It supports wikilinks, callouts, YAML frontmatter, Canvas, and Bases when the agent is taught the right syntax.
+- It can act as the host for a three-zone knowledge architecture that separates raw sources, synthesized wiki pages, and collaborative developer notes.
 - It stores notes as plain-text markdown files, which makes them durable and easy for automation to manipulate.
 - It supports a vault structure that can be organized into inbox, projects, areas, resources, archives, daily notes, and people.
 - It functions as a local knowledge base that can be directly updated by an AI tool with filesystem access.
+- It stores captures, notes, ideas, and project context in a local vault that other tools can read and write to.
+- It can be organized into a small fixed folder structure so agent workflows have predictable places to look for content.
 - It provides a markdown vault that can store the AI-generated wiki as plain files.
 - It supports graph view so relationships between pages are visible during review.
 - It can be pre-configured with hotkeys and default layout settings to speed navigation.
@@ -68,6 +90,9 @@ Obsidian is a local note-taking application built around Markdown files and othe
 - It can accept AI-generated .md, .base, and .canvas files that the application understands.
 - The source explicitly mentions the Marp plugin as a way to render slides inside the workflow.
 - It is used alongside a markdown-based wiki structure rather than as a standalone note app.
+- The article names Dataview, Templater, and Tasks as the plugins doing the heavy lifting.
+- It is paired with Claude Code through a root-level CLAUDE.md file that defines the schema and workflow.
+- It sits inside a broader local file layout that includes inbox notes, project folders, clippings, and an AI-maintained wiki.
 - The article highlights compatibility with plugins such as Make.md, Omnisearch, Linter, QuickAdd, and Calendar.
 - Its markdown foundation makes it compatible with file-based workflows and other tools that can read plain text notes.
 - It works with plain markdown files stored in a local folder, which keeps the knowledge base portable.
@@ -76,9 +101,19 @@ Obsidian is a local note-taking application built around Markdown files and othe
 - It works with filesystem access because the vault is just a folder of markdown files.
 - It can be exposed to Claude Code through an Obsidian MCP plugin.
 - It supports tags and links that the agent can use as structural context.
+- The source does not mention specific integrations, plugins, or APIs.
+- Its Markdown file format is compatible with any tool that can read or edit plain text files.
+- The source mentions direct use with Claude Code as a file-reading and file-writing agent.
+- It is described as compatible with other local editors such as VS Code, Typora, iA Writer, Zed, and Cursor because they can all open the same folder.
+- The article references Obsidian Sync and Publish as optional services, not core requirements.
+- The workflow combines Obsidian with Claude Code, Git, Steph Ango’s skills, and custom vault commands.
+- The article also describes a Local REST API plugin path for deeper Obsidian integration.
+- It can be opened as a vault folder directly from the desktop app, which is how the setup begins.
 - It works with Claude Code because the tool can directly read and write the vault files.
 - It pairs with PARA-style folder organization, which gives automated routing a clear destination scheme.
 - It can hold daily notes and contact notes that are then enriched by external data pulled through MCP-enabled commands.
+- It is used here with n8n to receive routed Markdown files from capture sources.
+- It is used here with Claude Code to let an agent read the vault and generate daily and weekly briefings.
 - It works with a file-based vault structure, so source documents and generated pages can live in the same local project folder.
 - It is paired here with Cursor as the AI editing environment, which lets one app generate changes while the other app visualizes the result.
 
@@ -96,8 +131,14 @@ The article presents Obsidian as already established enough to have official ski
 - Linter
 - QuickAdd
 - Calendar
-- Granola
+- Evernote
+- Notion
 - Cursor
+- Notion 3.0
+- kepano/obsidian-skills
+- Local REST API plugin
+- Granola
+- n8n
 
 ## Strengths
 
@@ -110,6 +151,23 @@ The article presents Obsidian as already established enough to have official ski
 The article does not discuss performance, collaboration limits, or how well the app handles large-scale AI-assisted edits. Its value here also depends on whether the surrounding AI client can reliably follow the file conventions; Obsidian alone does not solve that. The source does not provide evidence that this approach is easier for non-technical users.
 
 ## Evidence / supporting sources
+
+### Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian (2026-05-03)
+
+- The workflow combines Obsidian with Claude Code, Git, Steph Ango’s skills, and custom vault commands. (`52990a6b53a4` · neutral · integration_ecosystem[0]; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- The article also describes a Local REST API plugin path for deeper Obsidian integration. (`2c78494cccfa` · neutral · integration_ecosystem[1]; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- It can be opened as a vault folder directly from the desktop app, which is how the setup begins. (`9917fb81258e` · neutral · integration_ecosystem[2]; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- The article treats Obsidian as the stable substrate for the whole workflow, which suggests a mature enough ecosystem for file-native knowledge management. The source also points to plugin and skill ecosystems around it, but does not provide comparative market data. (`4f90a8fde742` · neutral · maturity_signals; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- Obsidian is the storage and editing environment that makes the vault pattern concrete. The article uses it because it supports plain files, open formats, and a folder structure that an agent can safely maintain. That makes it relevant for knowledge systems, agent-maintained notes, and file-native workflows where provenance and editing boundaries matter. As of 2026-05-03, the source frames it as the base layer for an agent-maintained personal harness rather than a standalone note-taking app. (`88111c601d9c` · neutral · operational_relevance; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- A local note-taking app and vault-based knowledge workspace. In this workflow it serves as the file system-backed surface for a split raw/wiki/dev knowledge architecture. (`26d14e2005b6` · neutral · short_description; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- - Its file-based vault model supports strict zone separation between immutable sources, agent-maintained synthesis, and collaborative working notes.
+- The open format lets the agent write ordinary Markdown, wikilinks, YAML frontmatter, and Canvas/Base artifacts in a durable way.
+- The article treats it as compatible with Git-backed versioning, which is important for rollback and review. (`77fefa4833b6` · neutral · strengths; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- It stores notes as ordinary files, which makes the vault easy to version, inspect, and automate. (`d1fcbfa0fd25` · supporting · core_capabilities[0]; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- It supports wikilinks, callouts, YAML frontmatter, Canvas, and Bases when the agent is taught the right syntax. (`e909e1c20642` · supporting · core_capabilities[1]; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- It can act as the host for a three-zone knowledge architecture that separates raw sources, synthesized wiki pages, and collaborative developer notes. (`077b2308f94f` · supporting · core_capabilities[2]; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- "Obsidian won as the base for personal LLM harness — layer separation, data sovereignty, open format, community convergence." (`00efd9dfd9d5` · supporting · supporting_snippet; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
+- The source notes that richer automation can require Obsidian to be open if you use the Local REST API path. It also implies that some Obsidian-specific features are unavailable until you add extra plugins or skills. (`6a275e74c723` · uncertainty · weaknesses_limitations; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
 
 ### How I Built an AI Second Brain Using Claude Code and Obsidian (2026-05-03)
 
@@ -143,6 +201,38 @@ The article does not discuss performance, collaboration limits, or how well the 
 - It works as the central environment where search, capture, formatting, and calendar-based note habits can be combined. (`e6180325377c` · supporting · core_capabilities[2]; [[sources/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h|I Rebuilt My Obsidian Workflow With 5 New Plugins (2026 Setup)]])
 - "my old Obsidian vault looked like a crime scene. Notes everywhere, tags that made sense only at 2am, and a search function that somehow always found everything except what I needed" (`f5499f8834f1` · supporting · supporting_snippet; [[sources/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h|I Rebuilt My Obsidian Workflow With 5 New Plugins (2026 Setup)]])
 - The article implicitly shows that the base app can feel fragmented without additional structure, search help, and capture automation. A practical downside of this model is plugin dependency: the workflow can become harder to maintain if too many add-ons are required to keep it coherent. (`461432c8e395` · uncertainty · weaknesses_limitations; [[sources/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h|I Rebuilt My Obsidian Workflow With 5 New Plugins (2026 Setup)]])
+
+### I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found. (2026-04-25)
+
+- The source does not mention specific integrations, plugins, or APIs. (`be85bfeb92eb` · neutral · integration_ecosystem[0]; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- Its Markdown file format is compatible with any tool that can read or edit plain text files. (`84ab02730aec` · neutral · integration_ecosystem[1]; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- The source treats Obsidian as a stable, working replacement rather than an experimental tool. Its plain-file model suggests a mature, durable niche among users who want local ownership. The article gives no evidence of enterprise adoption; its relevance here is primarily for individual workflows. (`c765b7e4e851` · neutral · maturity_signals; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- Useful for solo knowledge work where portability and long-term access matter more than collaboration. The article frames it as a replacement for Evernote-style note capture, with the practical advantage that notes remain usable as files even if the product changes pricing or shuts down. For service-automation or AI workflows, the local Markdown storage pattern is relevant because it keeps personal knowledge bases simple and interoperable. (`ceba73b26dbb` · neutral · operational_relevance; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- A note-taking app that stores notes as plain Markdown files on the user’s device. It is positioned as a local-first replacement for paid note apps that avoids cloud lock-in and subscriptions. (`3980ad60dc29` · neutral · short_description; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- - Stores notes as plain Markdown files on the user’s own device, which matters because the content remains portable outside the app.
+- Avoids subscription dependence and cloud lock-in, which reduces the risk of future pricing changes affecting access to core notes.
+- Fits solo workflows well because the source presents it as sufficient for the author’s note-taking needs without team collaboration overhead. (`8772c083dd7b` · neutral · strengths; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- It stores notes as plain Markdown files so users can edit and move them outside the application. (`46bf601e20b0` · supporting · core_capabilities[0]; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- It keeps notes on the local device, which matters when long-term access is more important than cloud sync convenience. (`fbd4634d345b` · supporting · core_capabilities[1]; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- I switched to Obsidian for notes and never looked back. It stores everything as plain Markdown files on your own device. No subscription. No cloud lock-in. No risk of the company changing its pricing model in six months. Your notes are just files — they’ll work forever. (`7422505ac6bf` · supporting · supporting_snippet; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- The article does not describe any major functional gaps, but it implicitly assumes a solo workflow and does not address team collaboration, shared editing, or enterprise governance. It is also not evaluated here against structured knowledge-management needs beyond basic note storage. (`a9ddb6030955` · uncertainty · weaknesses_limitations; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+
+### I Stopped Taking Notes and Built a Second Brain That Maintains Itself (2026-04-14)
+
+- The article names Dataview, Templater, and Tasks as the plugins doing the heavy lifting. (`becf566cabba` · neutral · integration_ecosystem[0]; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- It is paired with Claude Code through a root-level CLAUDE.md file that defines the schema and workflow. (`61dd4b1ad25f` · neutral · integration_ecosystem[1]; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- It sits inside a broader local file layout that includes inbox notes, project folders, clippings, and an AI-maintained wiki. (`967d2988ccf9` · neutral · integration_ecosystem[2]; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- The article describes Obsidian as an established workspace rather than an experimental prototype. Its plugin ecosystem is part of the appeal, but the evidence here is anecdotal and centered on one personal vault. As of 2026-04-14, it looks mature enough for practical file-native knowledge workflows, though the source does not prove enterprise-scale readiness. (`7832ed3c2596` · neutral · maturity_signals; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- Obsidian is relevant when teams want a local-first knowledge workspace that can be edited by both humans and file-aware agents. In this setup it is not just a note app; it is the container for raw clippings, daily notes, projects, and an AI-maintained wiki. That makes it useful for AI-assisted knowledge compilation and file-native workflows that need durable markdown artifacts. (`218659fb616a` · neutral · operational_relevance; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- An open-source markdown editor used here as the local workspace for a personal wiki and daily notes. It provides the file-based vault structure that the agent reads and updates. (`7e082d92a2d4` · neutral · short_description; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- - Uses a local markdown vault, which keeps the knowledge base in plain files that agents can read and modify reliably.
+- Supports a plugin ecosystem that can turn the vault into an operational dashboard rather than a static notebook.
+- Works well as a human-and-agent shared workspace because folders, pages, and metadata are visible and editable on disk. (`8593bd9f7825` · neutral · strengths; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- It provides a markdown-based vault that can hold raw sources, wiki pages, and daily notes in one local workspace. (`47cfebc0a5ca` · supporting · core_capabilities[0]; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- It supports plugin-driven dashboards and automation, which makes the vault operational instead of purely archival. (`348c0de516d7` · supporting · core_capabilities[1]; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- It keeps the knowledge base in files rather than a closed database, which is important for agent access and portability. (`3766cb570baa` · supporting · core_capabilities[2]; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- "My setup runs in Obsidian, an open-source markdown editor with a powerful plugin ecosystem." (`e592fe27c0bd` · supporting · supporting_snippet; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
+- The source does not compare Obsidian against alternative note systems or quantify any scalability limits. The setup still depends on disciplined folder structure and schema maintenance, so the tool alone does not solve knowledge upkeep. (`b27fd21ed3c4` · uncertainty · weaknesses_limitations; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
 
 ### I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI (2026-04-07)
 
@@ -211,6 +301,21 @@ The article does not discuss performance, collaboration limits, or how well the 
 - "Obsidian has always walked this talk: starting with local Markdown and open formats so it could slot cleanly into a toolchain rather than own every step." (`b7821f11e9b5` · supporting · supporting_snippet; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
 - The article does not discuss performance, collaboration limits, or how well the app handles large-scale AI-assisted edits. Its value here also depends on whether the surrounding AI client can reliably follow the file conventions; Obsidian alone does not solve that. The source does not provide evidence that this approach is easier for non-technical users. (`dd37b6343fcb` · uncertainty · weaknesses_limitations; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
 
+### The Automated Obsidian Intelligence Vault That Gets Smarter Every Day (2026-05-15)
+
+- It is used here with n8n to receive routed Markdown files from capture sources. (`76e71e269eaf` · neutral · integration_ecosystem[0]; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- It is used here with Claude Code to let an agent read the vault and generate daily and weekly briefings. (`af0ea5bad20c` · neutral · integration_ecosystem[1]; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- Obsidian is treated as a mature enough local workspace to serve as the anchor for automated capture and agent synthesis. The source does not claim anything about market adoption or enterprise readiness beyond its role in a personal workflow. (`e6cb9de2745f` · neutral · maturity_signals; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- Obsidian is operationally relevant when teams want a durable, local-first knowledge store that can be structured for downstream automation. In this workflow, it is not just a note app; it is the bounded corpus that an agent can repeatedly analyze for daily and weekly synthesis. That makes it useful for AI-assisted knowledge work where file-based context, retrieval, and repeatable prompting matter more than a polished UI. (`ce4a0e9818be` · neutral · operational_relevance; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- A local note-taking vault used here as the permanent storage layer for captured notes, highlights, ideas, and project context. It acts as the system of record that later gets read by an agent for synthesis. (`d8d93320afbc` · neutral · short_description; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- - Supports local, file-based storage, which makes the vault easier to inspect and route through automation than a proprietary black box.
+- Works as a stable ground-truth layer for recurring agent reads, so the same corpus can be revisited over time instead of being trapped in one-off chats.
+- Fits a strict folder schema, which helps reduce note sprawl and keeps the knowledge base mechanically simple. (`3096bc20bbd1` · neutral · strengths; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- It stores captures, notes, ideas, and project context in a local vault that other tools can read and write to. (`8416c4fe6650` · supporting · core_capabilities[0]; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- It can be organized into a small fixed folder structure so agent workflows have predictable places to look for content. (`e5dffb481c2e` · supporting · core_capabilities[1]; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- "By bridging Obsidian, n8n automations, and Claude Code, you can architect a local knowledge base that autonomously surfaces connections and compounds insight every single morning, without you doing any manual filing." (`2e48b4dd26ce` · supporting · supporting_snippet; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+- The article does not discuss sync, collaboration, permissions, or failure modes, so the operational tradeoffs of using Obsidian as an agent-readable store are not addressed. The setup also depends on disciplined folder hygiene; if that discipline slips, the system can become noisy and less useful. (`3d06500946a8` · uncertainty · weaknesses_limitations; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
+
 ### Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge (2026-04-06)
 
 - The source explicitly mentions the Marp plugin as a way to render slides inside the workflow. (`2a6a798950cd` · neutral · integration_ecosystem[0]; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
@@ -227,35 +332,73 @@ The article does not discuss performance, collaboration limits, or how well the 
 I use Obsidian as the IDE "frontend" where I can view the raw data, the the compiled wiki, and the derived visualizations. Important to note that the LLM writes and maintains all of the data of the wiki, I rarely touch it directly. I've played with a few Obsidian plugins to render and view data in other ways (e.g. Marp for slides). (`fd18f9328663` · supporting · supporting_snippet; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
 - The source does not present a deep product review of Obsidian itself, and it does not discuss collaboration, sync reliability, or enterprise controls. Its role here is mainly as a local interface, so the evidence is strong for workflow fit but thin for product-level evaluation. (`816b9fbb8caa` · uncertainty · weaknesses_limitations; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
 
+### Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It) (2026-05-02)
+
+- The source mentions direct use with Claude Code as a file-reading and file-writing agent. (`3ea75940b660` · neutral · integration_ecosystem[0]; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- It is described as compatible with other local editors such as VS Code, Typora, iA Writer, Zed, and Cursor because they can all open the same folder. (`685b69cc1faf` · neutral · integration_ecosystem[1]; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- The article references Obsidian Sync and Publish as optional services, not core requirements. (`58bef0e81cbd` · neutral · integration_ecosystem[2]; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- The source describes a mature personal-workflow tool with an established community pattern around LLM Wiki setups, official skills, and multiple open-source implementations. It is not presented as an enterprise-managed platform; its maturity signal is portability plus community convergence rather than corporate governance features. (`eaa7eb6f44a3` · neutral · maturity_signals; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- Obsidian fits workflows where an AI agent needs direct file access rather than an API wrapper. It is practical for personal knowledge bases, technical notes, and agent-driven documentation because Claude Code or similar tools can read and write the same Markdown files the user edits. It is less suited to team collaboration, but strong for developer-centric personal harnesses. (`c26becc24367` · neutral · operational_relevance; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- A local-first note-taking app built around Markdown files in a folder on your disk. It acts as the UI layer for a personal knowledge vault, while the files remain portable and editable outside the app. (`4326a4c166d7` · neutral · short_description; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- - Stores notes as plain Markdown files, so agents can read and write them directly without an API translation layer.
+- Keeps storage, format, UI, and agent separate, which makes the system portable across editors and model tools.
+- Works well with git-based review because changes land as diffable files rather than opaque database records.
+- Supports optional ecosystem pieces like Sync and Publish, but does not require them for the core harness pattern. (`ea78250a724f` · neutral · strengths; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- It stores notes as Markdown files in a local folder, which makes the vault directly accessible to external agents. (`baeb02ee1e25` · supporting · core_capabilities[0]; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- It can be used as the visible editor while other tools such as VS Code, Typora, or Cursor open the same files. (`25a10b7a54d4` · supporting · core_capabilities[1]; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- It supports a local-first workflow where git can be used for review, versioning, and rollback. (`c8532adb4f8d` · supporting · core_capabilities[2]; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- "In Obsidian, the answer is direct: every note is a .md file in a folder on your disk. Claude Code runs cat ~/vault/notes/kubernetes-misconfig.md and gets the content. No API, no auth, no rate limit." (`a4a185b5928e` · supporting · supporting_snippet; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- - It is fundamentally a single-user tool, so real-time collaboration is weak compared with team-first systems like Notion.
+- Local-first storage shifts backup and versioning responsibility to the user; without git or another backup plan, disk loss can mean data loss.
+- The article notes that agent access also raises risk: a misbehaving session can delete or overwrite files if permissions are not disciplined. (`72ce1fb85ff4` · uncertainty · weaknesses_limitations; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+
 ## Contradictions / tensions
 
 - The article does not discuss performance, collaboration limits, or how well the app handles large-scale AI-assisted edits. Its value here also depends on whether the surrounding AI client can reliably follow the file conventions; Obsidian alone does not solve that. The source does not provide evidence that this approach is easier for non-technical users. (uncertainty; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
 - The source does not present a deep product review of Obsidian itself, and it does not discuss collaboration, sync reliability, or enterprise controls. Its role here is mainly as a local interface, so the evidence is strong for workflow fit but thin for product-level evaluation. (uncertainty; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
 - The article does not provide evidence that Obsidian itself improves retrieval quality or scales beyond the author’s workflow. Its usefulness depends on disciplined schema design and AI maintenance; without those, it is just a note-taking app with a graph view. (uncertainty; [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]])
+- The source does not compare Obsidian against alternative note systems or quantify any scalability limits. The setup still depends on disciplined folder structure and schema maintenance, so the tool alone does not solve knowledge upkeep. (uncertainty; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
 - The article implicitly shows that the base app can feel fragmented without additional structure, search help, and capture automation. A practical downside of this model is plugin dependency: the workflow can become harder to maintain if too many add-ons are required to keep it coherent. (uncertainty; [[sources/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h|I Rebuilt My Obsidian Workflow With 5 New Plugins (2026 Setup)]])
 - The article makes clear that Obsidian is only the window, not the brain, so it does not solve knowledge maintenance by itself. The value depends on the underlying agent and schema quality; without those, it would just be a note viewer with a graph. (uncertainty; [[sources/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769|I Used Karpathy’s LLM Wiki to Build a Research Brain That Updates Itself. Here’s What Two Weeks Taught Me.]])
 - The article does not address synchronization, collaboration, or governance concerns. It also assumes that the user maintains a disciplined vault structure; without that discipline, the agent has little to work with. The tool is presented as powerful for personal organization, but the source offers no evidence about team-scale reliability. (uncertainty; [[sources/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft|Obsidian + Claude Code is your 24×7 AI Agent: Here is how to build yours]])
+- The article does not describe any major functional gaps, but it implicitly assumes a solo workflow and does not address team collaboration, shared editing, or enterprise governance. It is also not evaluated here against structured knowledge-management needs beyond basic note storage. (uncertainty; [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]])
+- - It is fundamentally a single-user tool, so real-time collaboration is weak compared with team-first systems like Notion.
+- Local-first storage shifts backup and versioning responsibility to the user; without git or another backup plan, disk loss can mean data loss.
+- The article notes that agent access also raises risk: a misbehaving session can delete or overwrite files if permissions are not disciplined. (uncertainty; [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]])
+- The source notes that richer automation can require Obsidian to be open if you use the Local REST API path. It also implies that some Obsidian-specific features are unavailable until you add extra plugins or skills. (uncertainty; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
 - The source does not discuss deep plugin behavior, sync strategy, or collaborative limits. It is strong as a local knowledge store, but the workflow still depends on external orchestration to become useful. (uncertainty; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
+- The article does not discuss sync, collaboration, permissions, or failure modes, so the operational tradeoffs of using Obsidian as an agent-readable store are not addressed. The setup also depends on disciplined folder hygiene; if that discipline slips, the system can become noisy and less useful. (uncertainty; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
 
 ## Related pages
 
 - Calendar
 - Claude Code
 - Cursor
+- Evernote
 - Goose
 - Granola
 - Linter
+- Local REST API plugin
 - Make.md
+- Notion
+- Notion 3.0
 - Omnisearch
 - OpenCode
 - QuickAdd
+- kepano/obsidian-skills
+- n8n
 
 ## Sources
 
+- [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]]
 - [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]]
 - [[sources/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h|I Rebuilt My Obsidian Workflow With 5 New Plugins (2026 Setup)]]
+- [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]]
+- [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769|I Used Karpathy’s LLM Wiki to Build a Research Brain That Updates Itself. Here’s What Two Weeks Taught Me.]]
 - [[sources/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft|Obsidian + Claude Code is your 24×7 AI Agent: Here is how to build yours]]
 - [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]]
+- [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 - [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]]
+- [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]]

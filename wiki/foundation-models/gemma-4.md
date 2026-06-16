@@ -9,21 +9,24 @@ tags:
 - long-context-model
 - multimodal-model
 - open-weight-model
+- reasoning-model
 - tool-use-capable
 first_seen: '2026-04-03'
-last_seen: '2026-04-13'
-source_count: 3
-evidence_count: 46
+last_seen: '2026-04-25'
+source_count: 4
+evidence_count: 58
 source_ids:
+- i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m
 - i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr
 - i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x
 - run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr
 value_level: high
-confidence: 0.9566666666666667
+confidence: 0.9525
 synthesis_state: stage1-placeholder
 types:
 - multimodal-model
 - open-weight-model
+- reasoning-model
 ---
 
 # Gemma 4
@@ -53,6 +56,8 @@ Gemma 4 is presented as a family of models with multiple sizes and capabilities,
 - The article contrasts Gemma 4 with previous Gemma generations that scored 6.6 per cent on tool calling, framing the improvement as the key threshold.
 - The cloud baseline GPT-5.4 was faster and cleaner on the same coding task, so Gemma 4 was viable locally but not superior in this spot check.
 - The GB10's dense 31B variant was slower than the Mac's 26B MoE variant, yet it produced better end-to-end coding results in this task.
+- The source says it is the author's preferred local general-purpose model over Qwen 3.5 for most tasks.
+- It is described as good enough that the author rarely needs to reach for a cloud model for coding-adjacent work in Claude Code or OpenCode.
 
 ## Core Capabilities
 
@@ -66,6 +71,9 @@ Gemma 4 is presented as a family of models with multiple sizes and capabilities,
 - It can emit tool calls reliably enough to work inside a local coding-agent loop in the described setup.
 - It can run in a sparse mixture-of-experts configuration that the author measures as materially faster on the Mac.
 - It can support local inference on both Apple Silicon and NVIDIA Blackwell when paired with the right serving stack.
+- It supports a dual-variant workflow, with a faster non-thinking version for quick tasks and a thinking coder variant for code and harder reasoning.
+- Its MoE structure makes it practical to host a large total-parameter model on memory-rich local hardware without paying the full compute cost per token.
+- It serves as a general-purpose local model for day-to-day work in a local AI stack.
 
 ## Maturity signals
 
@@ -88,6 +96,7 @@ Google
 - Llama 4
 - Qwen 3.5
 - GPT-5.4
+- Qwen 3 Embedding:0.6B
 
 ## Service automation implications
 
@@ -98,6 +107,24 @@ Gemma 4 could support local prototypes for customer-facing assistants that need 
 The article does not provide quantitative accuracy, latency, memory, or throughput data. It also shows that object-detection boxes may not align perfectly with the original image, so outputs can require post-processing. The visible reasoning trace is not validated as a faithful explanation, only as surfaced intermediate text.
 
 ## Evidence / supporting sources
+
+### I Finally Have My Dream Local AI Stack (and it runs on AMD) (2026-04-25)
+
+- The source says it is the author's preferred local general-purpose model over Qwen 3.5 for most tasks. (`8c028f59aac0` · neutral · comparative_observations[0]; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- It is described as good enough that the author rarely needs to reach for a cloud model for coding-adjacent work in Claude Code or OpenCode. (`7c7f9bcff174` · neutral · comparative_observations[1]; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- Adopting this kind of model changes the local stack design because it encourages MoE selection for memory-rich, compute-limited hardware. It also supports a split between fast-answer and thinking/coder variants, which can reduce unnecessary cost or latency escalation for routine prompts. In a local-serving setup, it appears to be practical enough to anchor default local inference for many daily tasks. (`661a1fc2eea7` · neutral · deployment_implications; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- The source says AMD shipped day-zero support for this model through Lemonade, which is a strong sign that it is operationally relevant in at least one current local-inference ecosystem. The model is treated as a stable daily driver rather than a novelty demo. Evidence quality is still a single-user deployment report, not a benchmark suite. (`2ffbaea21c51` · neutral · maturity_signals; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- - The source identifies Gemma 4:26B-A4B as the primary local LLM.
+- It is described as a mixture-of-experts model with 26 billion total parameters but only 4 billion active per token, which makes it attractive when memory is plentiful but compute is limited.
+- The author uses two variants: a non-thinking version for quick tasks and a thinking coder-optimized variant for code and complex reasoning.
+- The practical takeaway is that it can serve as a general-purpose local workhorse when the machine has enough unified memory to host a larger model while still keeping runtime costs manageable. (`5384e6973cb4` · neutral · operational_profile; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- The article implies that a large MoE model can be economical locally if the hardware has enough unified memory, because the active compute load stays closer to a smaller model. The tradeoff is that hardware spend shifts upfront, while cloud token spend drops for routine use. No exact dollar figures or throughput numbers are given. (`3ec02916dff9` · neutral · pricing_inference_implications; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- For service automation, a model like this can cover a large share of routine conversational and coding-adjacent work locally, reducing cloud calls for everyday tasks. The author suggests that a thinking variant is useful when complexity rises, which fits agent flows that need a cheap default path plus escalation for harder turns. (`c3762d6015cf` · neutral · service_automation_implications; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- It supports a dual-variant workflow, with a faster non-thinking version for quick tasks and a thinking coder variant for code and harder reasoning. (`c2aa5c1f160e` · supporting · core_capabilities[0]; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- Its MoE structure makes it practical to host a large total-parameter model on memory-rich local hardware without paying the full compute cost per token. (`54a1018f78b7` · supporting · core_capabilities[1]; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- It serves as a general-purpose local model for day-to-day work in a local AI stack. (`a914c27b4a5e` · supporting · core_capabilities[2]; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- "Gemma 4:26B-A4B is my primary LLM. This is a mixture-of-experts model with 26 billion total parameters but only 4 billion active per token." (`ceab15b1f1e9` · supporting · supporting_snippet; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
+- The source implicitly shows the main limitation: MoE structure reduces active compute per token but does not make the model fast on weak hardware. It is not presented with benchmark data, so claims about quality and speed remain user-specific. The article also notes that some image tasks still favor cloud models, which suggests the local stack is not uniformly better across modalities. (`9542237253ae` · uncertainty · weaknesses_limitations; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
 
 ### I ran Gemma 4 as a local model in Codex CLI (2026-04-13)
 
@@ -178,6 +205,7 @@ In practice, that means Gemma 4’s 26B A3B variant runs comfortably on an RTX 3
 - - The article shows that local deployment can be fragile: Apple Silicon required specific serving choices, and some combinations failed because of streaming bugs or prompt-length freezes.
 - The Mac setup produced more retries, broken tool calls, and dead code than the GB10 setup, so local viability still depends on serving stack and quantization choices.
 - The source does not show broader task coverage beyond one coding prompt, so generalization remains open. (uncertainty; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
+- The source implicitly shows the main limitation: MoE structure reduces active compute per token but does not make the model fast on weak hardware. It is not presented with benchmark data, so claims about quality and speed remain user-specific. The article also notes that some image tasks still favor cloud models, which suggests the local stack is not uniformly better across modalities. (uncertainty; [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]])
 
 ## Related pages
 
@@ -187,10 +215,12 @@ In practice, that means Gemma 4’s 26B A3B variant runs comfortably on an RTX 3
 - Gemma 4 E2B
 - Gemma 4 E4B
 - Llama 4
+- Qwen 3 Embedding:0.6B
 - Qwen 3.5
 
 ## Sources
 
+- [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]]
 - [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]]
 - [[sources/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x|I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.]]
 - [[sources/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr|Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits]]

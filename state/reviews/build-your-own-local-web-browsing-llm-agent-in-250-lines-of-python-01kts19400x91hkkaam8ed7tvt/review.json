@@ -1,0 +1,1014 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T21:45:39+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Dr9P7tJL8VgPJTVT2bzCTArSH6cXB",
+          "token_usage": {
+            "completion_tokens": 196,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 14245,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 14441
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Dr9PArDin8Mqu3OPSlIEaDx1ma8Jy",
+          "token_usage": {
+            "completion_tokens": 1190,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 13857,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 15047
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-technical_howto",
+          "request_id": "chatcmpl-Dr9PKqBW7L1jFLhdPuV7MVdut6VOP",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 2932,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 45681,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 48613
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dr9PKqBW7L1jFLhdPuV7MVdut6VOP",
+    "token_usage": {
+      "completion_tokens": 4318,
+      "prompt_tokens": 73783,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 78101
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "The article implies this 9B local model is usable for the task, but only with stronger orchestration than a larger or more reliable model would likely need.",
+          "It is contrasted indirectly with the limitations of smaller models in general, such as empty turns and missed tool chaining, rather than with a specific benchmark competitor."
+        ],
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It can drive a tool-using agent loop when the system prompt and recursion are explicit.",
+          "It can participate in JSON-mode extraction when the browser server asks it to fill a schema from a page snapshot.",
+          "It is small enough to fit a local-first stack, which makes it practical for self-hosted workflows."
+        ],
+        "deployment_implications": "Using a 9B model makes the stack feasible on local hardware, but it also raises the importance of prompt discipline, recursive tool handling, and readable tool errors. The article shows that a smaller model can chain search and fetch, but it may also produce empty turns, guess URLs, or stop after search unless the harness explicitly nudges it. For structured extraction, the model is called inside the browser server with JSON formatting enabled, so deployment depends on careful snapshot budgeting and output constraints.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The source uses Qwen 3.5 9B as the working model across all stages, which is a practical signal that it is sufficiently usable for local agent prototyping as of 2026-05-23. The article does not provide formal benchmarks, but it does show successful end-to-end use on live web pages and structured extraction tasks. The evidence is hands-on and limited to one project, so maturity should be read as developer-ready rather than universally robust.",
+        "model_name": "Qwen 3.5 9B",
+        "operational_profile": "A small tool-capable local model used to run the agent loop in this tutorial. The source implies it is capable enough to search, fetch, and extract when the system prompt and tool loop are tightly constrained, but it also needs strong orchestration to stay on task.",
+        "pricing_inference_implications": "The article does not provide pricing, but the local 9B setup implies a low marginal inference cost compared with hosted API calls. The tradeoff is not price alone; the source makes clear that lower-capability local models need more harness work, which can offset some of the cost advantage in engineering time.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "open-weight-model",
+          "tool-use-capable",
+          "developer-focused",
+          "low-cost"
+        ],
+        "proposed_types": [
+          "open-weight-model",
+          "reasoning-model"
+        ],
+        "provider": "Qwen",
+        "related_models": [],
+        "service_automation_implications": "Useful for browser-backed service workflows when the task is simple enough to be broken into search, fetch, and extract steps. The source suggests it can power grounded support lookups, but only if the agent is tightly instructed to fetch actual pages rather than answer from snippets. It is not presented as a drop-in autonomous support model; the orchestration matters as much as the model.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"I am using the qwen3.5:9b model throughout. So, please make sure you have Ollama installed with that model pulled, or edit the config to point at another tool-capable model.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article repeatedly shows that this class of model can be brittle in multi-step tool use. It may stop after search snippets, return an empty response after a tool result, or infer an incorrect URL pattern, so the surrounding harness has to compensate. The source also shows that extraction quality depends on how much of the page survives truncation, which limits reliability on long pages."
+      }
+    ],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Set up a search tool and a browser fetch tool as separate services, then force the agent to use search first when it needs fresh information. After search returns candidate URLs, make the next step a browser fetch on the most promising result. Do not let the agent answer from snippets alone; have it read the page snapshot and then answer from that content. Use recursive tool handling so the model can chain another fetch if the first page is not enough. Add strong system-prompt rules that say the model must call the tool rather than merely describing what it would do.",
+        "caveats": "This pattern depends on a model that can reliably follow tool instructions. The source shows smaller models can stop after search, return empty turns, or pick a bad URL, so the harness needs recursion and nudges. Search snippets can still be misleading, and long page snapshots may need truncation, which can hide relevant facts.",
+        "confidence": 0.96,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Run a local search service and a browser service, then expose each one through MCP.",
+          "Register the tools with fully qualified names so the agent can distinguish them.",
+          "Write a system prompt that requires search first for fresh questions and fetch immediately after search results.",
+          "Implement recursive tool handling so the model can call another tool after a tool result.",
+          "Return readable tool errors and truncate overly long results before sending them back to the model."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A tool-capable language model",
+          "An MCP-capable agent harness",
+          "A search backend such as SearXNG",
+          "A browser-fetch backend such as camofox-browser"
+        ],
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "retrieval-systems",
+          "runtime-architecture",
+          "workflow-design"
+        ],
+        "question_title": "Search-Then-Fetch Browser Agent",
+        "related_howtos": [
+          "Progressive Discovery for Agent Tools",
+          "Lazy-Loading Tools"
+        ],
+        "secondary_tag": "retrieval-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The two tools compose into this pipeline:\nuser question -> search -> pick best URL -> fetch -> answer.\"",
+        "value_level": "high",
+        "what_and_problem": "This is a procedure for building an agent that can find a web page and then read the page itself instead of guessing from search snippets. It solves a common problem in web-assisted automation: search results often give enough hints to find a page, but not enough detail to answer a question accurately. The pattern is useful when a model needs evidence from live pages, not just recalled knowledge. It also helps when the task requires a browser rather than a plain HTTP fetch because the page is wrapped in JavaScript or protected by anti-bot defenses. The overall goal is to make the agent compose search and browsing as one flow."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The article centers on a concrete build: Docker services, MCP servers, agent wiring, and code examples.",
+        "Claims are supported by described implementation behavior and observed runs, not formal benchmarks or research.",
+        "The author reports specific failure modes and fixes from the project itself, which is characteristic of an implementation case."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about giving a local LLM agent a real browser, not just search snippets. It uses one service to search the web and another to open pages and read them in a compact form. The interesting part is that the agent learns to chain those tools on its own: search first, then fetch the best page, then answer from what it read. A later step adds a structured extraction tool that turns a page into JSON when you already know which fields you want. The overall lesson is that a few small MCP services can make a local agent much more capable without needing a big framework.",
+      "assessed_as_of": "2026-05-23",
+      "contradictions_and_skepticism": "The article\u2019s strongest claims are practical, but some are still based on small demos rather than systematic evidence. The author says the stealth browser handled a Cloudflare-protected site in tests, but that is not the same as proving broad anti-bot robustness. The structured extraction result is useful, yet the article itself shows that array fields and middle-truncated pages can fail, which is a reminder that the tool is only as good as the snapshot and prompt. The prompt rules are quite forceful; that helps a 9B model, but it also suggests the setup may be more brittle than the clean examples imply. There is no benchmark showing that this approach is better than simpler scripted retrieval for all tasks; the article\u2019s own conclusion is narrower, namely that it is understandable and workable when built by hand.",
+      "key_insights": [
+        "A browser snapshot in accessibility-tree form is much smaller than raw HTML, which makes page content more usable inside a limited model context window.",
+        "Search snippets are treated as insufficient evidence; the agent is explicitly pushed to fetch the underlying page before answering.",
+        "Tool recursion matters: without a loop that lets the model call another tool after a tool result, search-then-fetch composition breaks.",
+        "A structured extractor can be built by having the MCP server call the LLM itself, which lets it handle schemas with arrays that a server-side parser may not support.",
+        "Snapshot truncation is a real failure mode: if the middle of the page is dropped, infobox-style facts can disappear even when the page was fetched successfully."
+      ],
+      "limitations_and_open_questions": "The article is honest that truncation can remove important middle-of-page content, which makes structured extraction fragile unless the snapshot budget is large enough. It does not provide quantitative evaluation of success rates, latency, or cost across many sites, so the reliability claims remain anecdotal. The search-and-browse pipeline depends on a 9B model following the prompt correctly; the article notes empty turns, wrong URL guesses, and failure to chain tools, but does not measure how often these happen. The server-side extract tool still depends on the model reading the snapshot accurately, so it is not deterministic parsing and can vary across runs, especially for fuzzy fields like \"major versions.\" Security and privacy are mostly outside the scope, despite the use of a stealth browser and live web access. It also remains unclear how well this pattern scales to more complex interactions such as clicking, form filling, or multi-step browsing beyond read-only fetches.",
+      "sources": [
+        "https://generativeai.pub/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-1437f21e781d",
+        "https://github.com/jfjensen/local-LLM-agent-mcp-search-n-browse",
+        "https://github.com/jo-inc/camofox-browser"
+      ],
+      "summary": "This tutorial shows how to build a local web-browsing LLM agent by combining Ollama, MCP, SearXNG, and a stealth browser server called camofox-browser. The agent starts with search-only access, then gains a fetch tool that can open real pages and return compact accessibility-tree snapshots instead of raw HTML. The key engineering choice is to compose search and browse as separate MCP servers so the model can first find candidate pages and then read the page contents, rather than answer from snippets. The article also adds a structured extract tool that takes a URL plus JSON Schema and returns clean JSON, implemented by having the browser MCP server call an LLM internally after fetching the page. Along the way, the author emphasizes practical details like Docker setup, config.toml centralization, scoped DEBUG logging, recursive tool handling, and careful truncation of long snapshots. The main limitations are also concrete: truncation can cut out structured data in the middle of a page, smaller models can fail to choose or chain tools reliably, and the server-side extractor depends on the model and snapshot budget rather than deterministic parsing.",
+      "why_it_matters": "The piece is useful because it turns abstract MCP talk into a concrete, reproducible pattern for local agent design as of 2026-05-23. It shows a clean separation between search, browser fetch, and structured extraction, which is a durable architecture for agents that need evidence rather than guesses. The article is especially valuable in the way it surfaces the operational details that usually get skipped: Docker setup, config centralization, health checks, tab lifecycle handling, truncation budgets, and readable tool-error paths. It also shows why a small model needs strong prompting and recursive orchestration to reliably chain tools, instead of treating tool use as a one-shot action. The server-side extract pattern is interesting because it reframes MCP servers as small agents, not just API wrappers, which is a reusable design idea beyond this exact project. The evidence is practical but narrow: it comes from one build, not a benchmark suite, so the claims are best read as an implementation pattern rather than a universal rule. As of 2026-05-23, it looks actionable for anyone building local browser-enabled agents, and worth adopting when you need grounded page reading or schema-based page extraction; the broader reliability limits still need monitoring."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The article is a step-by-step implementation guide with five explicit stages and code snippets.",
+        "Primary goal is to show how to build and wire together a local browser-capable LLM agent.",
+        "It is not a roundup or interview; the structure is a single coherent tutorial."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.96,
+        "core_capabilities": [
+          "It serves a local tool-capable model for the agent loop so the browser and search servers can be orchestrated without a remote dependency.",
+          "It can be used with JSON-constrained output for structured extraction, which helps turn web pages into clean records.",
+          "It supports a local-first deployment style that fits privacy-sensitive or offline workflows."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It is used together with MCP servers, including the browser server and the SearXNG search server.",
+          "It is accessed from Python through the Ollama client library in the agent and extraction code.",
+          "It is configured through a shared config.toml file so model choice can be swapped without editing each stage."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article treats Ollama as the practical local inference layer for a multi-service agent stack, which suggests it is mature enough for hands-on engineering use as of 2026-05-23. The integration is straightforward enough that the author uses it throughout the tutorial rather than presenting it as experimental plumbing. That said, the source only supports a niche developer-use picture, not broad enterprise adoption.",
+        "name": "Ollama",
+        "operational_relevance": "This matters anywhere teams want local or self-hosted inference behind an agent runtime. It lets the agent call a tool-capable model without depending on a remote API, which is useful for privacy-sensitive workflows, offline-friendly setups, and reproducible local automation. It also makes the browser server itself capable of acting like a small specialized agent when it performs structured extraction.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "local-first",
+          "api-first",
+          "tool-use",
+          "open-source"
+        ],
+        "proposed_types": [
+          "model-serving"
+        ],
+        "related_tools": [
+          "Model Context Protocol",
+          "SearXNG",
+          "camofox-browser"
+        ],
+        "short_description": "Ollama is a local model-serving and client stack for running and calling language models on your own machine or infrastructure. In this article it is used as the model backend for both the agent loop and the browser-side structured extractor.",
+        "strengths": "- Supports a fully local workflow, which keeps the agent and the extraction step under the operator's control rather than sending page contents to an external model endpoint.\n- Works as the shared model backend for both the main agent and the extraction helper, which keeps the stack simple and makes the behavior easier to debug.\n- Can be called in a constrained JSON mode for structured extraction, which is useful when you want page data back as clean machine-readable output rather than prose.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"I am using the qwen3.5:9b model throughout. So, please make sure you have Ollama installed with that model pulled, or edit the config to point at another tool-capable model.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source gives no evidence of benchmark performance, latency, or cost characteristics beyond the fact that a 9B model is used. The setup is still model-dependent: the agent can fail to chain tools, return empty turns, or misread structured page data, so Ollama does not make the system deterministic."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.94,
+        "evidence_type": null,
+        "examples": "The source separates a local SearXNG search server from a camofox browser server and then connects both to the agent through MCP. It also adds a third browser-side extraction path that calls the model internally when the user wants structured JSON.",
+        "key_points": [
+          "Separate tools can represent distinct knowledge-access steps instead of one overloaded agent action.",
+          "Clear tool boundaries help the model decide whether it is searching, reading, or extracting.",
+          "A browser server can be reused for both free-form page reading and structured JSON extraction."
+        ],
+        "knowledge_summary": "Agent systems often work better when each external capability is exposed as a separate service boundary instead of being merged into one monolith. Search, page fetch, and structured extraction can then be mixed and matched by the orchestrator without changing the underlying services. This reduces coupling and makes each capability easier to test, replace, and debug. It also gives the model a clearer tool list, which matters when tool names and behaviors need to stay distinct. The pattern is especially valuable for local agents that need browser access, retrieval, and structured extraction in one workflow.",
+        "match_candidates": [],
+        "operational_insight": "Design agent integrations as layered capabilities: retrieve, read, and extract should not be forced into one generic tool if the workflow benefits from different failure modes and prompts. Clear boundaries make the orchestration more robust and easier to reason about.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "agent-orchestration",
+          "runtime-architecture",
+          "workflow-design"
+        ],
+        "related_topics": [],
+        "relevance_note": "This pattern matters for AI systems that need to combine search, browsing, and structured extraction without turning the whole stack into a single brittle API. It is useful in conversational assistants, support automation, and internal research tools where each capability has a different latency, context, or trust profile.",
+        "secondary_tag": "agent-orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"You bring up two services in Docker, you wrap the browser in an MCP server, and you connect both the search server from Part 3 and the new browser server to the agent. The agent then composes them on its own.\"",
+        "topic_slug": "agent-connectivity-layering",
+        "topic_title": "Agent Connectivity Layering",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.91,
+        "evidence_type": null,
+        "examples": "The source shows an `extract` tool that fetches a page, then prompts Ollama with a JSON Schema and asks it to return only JSON. It also describes a failure case where middle truncation caused infobox fields such as a mayor and postal code to disappear from the snapshot.",
+        "key_points": [
+          "LLM extraction can handle array-shaped outputs that a rigid server-side extractor may reject.",
+          "The schema should describe the fields clearly enough that the model can map page text to them.",
+          "Snapshot truncation is a major failure mode for infobox-style or mid-page facts."
+        ],
+        "knowledge_summary": "A browser or scraper can use a language model to turn page content into structured JSON instead of relying only on deterministic parsers. This is especially useful when the desired output is described in a schema and the information is spread across headings, infoboxes, or loosely structured page text. The technique trades determinism for flexibility: the model can populate arrays and fuzzy fields, but it is still limited by snapshot quality and prompt discipline. It works best when the page snapshot contains the relevant facts and the schema is specific enough to guide extraction. For long pages, snapshot budgeting becomes a first-order design constraint because truncation can remove the exact fields you wanted.",
+        "match_candidates": [],
+        "operational_insight": "Use model-based extraction when the structure is too irregular for a simple parser, but treat the output as schema-guided reading rather than guaranteed parsing. Keep the snapshot large enough to preserve the region where the target data lives.",
+        "primary_tag": "context-engineering",
+        "proposed_tags": [
+          "context-engineering",
+          "retrieval-systems",
+          "runtime-architecture",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "agent-connectivity-layering"
+        ],
+        "relevance_note": "This is useful for automating page-to-record workflows in knowledge systems, cataloging, compliance review, and support tooling where the input is a web page but the output must be structured fields. It is also relevant when a conversation agent needs to extract specific facts from a page without asking the user to manually copy them.",
+        "secondary_tag": "retrieval-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The `extract` tool fetches the page snapshot, then makes its own Ollama call with a strict prompt: here is a schema, here is the page, fill in the schema and respond with only JSON.\"",
+        "topic_slug": "structured-page-extraction-with-llms",
+        "topic_title": "Structured Page Extraction With LLMs",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "The article implies this 9B local model is usable for the task, but only with stronger orchestration than a larger or more reliable model would likely need.",
+            "It is contrasted indirectly with the limitations of smaller models in general, such as empty turns and missed tool chaining, rather than with a specific benchmark competitor."
+          ],
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It can drive a tool-using agent loop when the system prompt and recursion are explicit.",
+            "It can participate in JSON-mode extraction when the browser server asks it to fill a schema from a page snapshot.",
+            "It is small enough to fit a local-first stack, which makes it practical for self-hosted workflows."
+          ],
+          "deployment_implications": "Using a 9B model makes the stack feasible on local hardware, but it also raises the importance of prompt discipline, recursive tool handling, and readable tool errors. The article shows that a smaller model can chain search and fetch, but it may also produce empty turns, guess URLs, or stop after search unless the harness explicitly nudges it. For structured extraction, the model is called inside the browser server with JSON formatting enabled, so deployment depends on careful snapshot budgeting and output constraints.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "maturity_signals": "The source uses Qwen 3.5 9B as the working model across all stages, which is a practical signal that it is sufficiently usable for local agent prototyping as of 2026-05-23. The article does not provide formal benchmarks, but it does show successful end-to-end use on live web pages and structured extraction tasks. The evidence is hands-on and limited to one project, so maturity should be read as developer-ready rather than universally robust.",
+          "model_name": "Qwen 3.5 9B",
+          "operational_profile": "A small tool-capable local model used to run the agent loop in this tutorial. The source implies it is capable enough to search, fetch, and extract when the system prompt and tool loop are tightly constrained, but it also needs strong orchestration to stay on task.",
+          "pricing_inference_implications": "The article does not provide pricing, but the local 9B setup implies a low marginal inference cost compared with hosted API calls. The tradeoff is not price alone; the source makes clear that lower-capability local models need more harness work, which can offset some of the cost advantage in engineering time.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "open-weight-model",
+            "tool-use-capable",
+            "developer-focused",
+            "low-cost"
+          ],
+          "proposed_types": [
+            "open-weight-model",
+            "reasoning-model"
+          ],
+          "provider": "Qwen",
+          "related_models": [],
+          "service_automation_implications": "Useful for browser-backed service workflows when the task is simple enough to be broken into search, fetch, and extract steps. The source suggests it can power grounded support lookups, but only if the agent is tightly instructed to fetch actual pages rather than answer from snippets. It is not presented as a drop-in autonomous support model; the orchestration matters as much as the model.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"I am using the qwen3.5:9b model throughout. So, please make sure you have Ollama installed with that model pulled, or edit the config to point at another tool-capable model.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article repeatedly shows that this class of model can be brittle in multi-step tool use. It may stop after search snippets, return an empty response after a tool result, or infer an incorrect URL pattern, so the surrounding harness has to compensate. The source also shows that extraction quality depends on how much of the page survives truncation, which limits reliability on long pages."
+        },
+        "notes": null,
+        "proposal_id": "75116b1c-95ae-4781-8485-87e63523b1e3",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The article implies this 9B local model is usable for the task, but only with stronger orchestration than a larger or more reliable model would likely need.",
+              "It is contrasted indirectly with the limitations of smaller models in general, such as empty turns and missed tool chaining, rather than with a specific benchmark competitor."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can drive a tool-using agent loop when the system prompt and recursion are explicit.",
+              "It can participate in JSON-mode extraction when the browser server asks it to fill a schema from a page snapshot.",
+              "It is small enough to fit a local-first stack, which makes it practical for self-hosted workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "open-weight-model",
+            "tool-use-capable",
+            "developer-focused",
+            "low-cost"
+          ]
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Set up a search tool and a browser fetch tool as separate services, then force the agent to use search first when it needs fresh information. After search returns candidate URLs, make the next step a browser fetch on the most promising result. Do not let the agent answer from snippets alone; have it read the page snapshot and then answer from that content. Use recursive tool handling so the model can chain another fetch if the first page is not enough. Add strong system-prompt rules that say the model must call the tool rather than merely describing what it would do.",
+          "caveats": "This pattern depends on a model that can reliably follow tool instructions. The source shows smaller models can stop after search, return empty turns, or pick a bad URL, so the harness needs recursion and nudges. Search snippets can still be misleading, and long page snapshots may need truncation, which can hide relevant facts.",
+          "confidence": 0.96,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Run a local search service and a browser service, then expose each one through MCP.",
+            "Register the tools with fully qualified names so the agent can distinguish them.",
+            "Write a system prompt that requires search first for fresh questions and fetch immediately after search results.",
+            "Implement recursive tool handling so the model can call another tool after a tool result.",
+            "Return readable tool errors and truncate overly long results before sending them back to the model."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A tool-capable language model",
+            "An MCP-capable agent harness",
+            "A search backend such as SearXNG",
+            "A browser-fetch backend such as camofox-browser"
+          ],
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "retrieval-systems",
+            "runtime-architecture",
+            "workflow-design"
+          ],
+          "question_title": "Search-Then-Fetch Browser Agent",
+          "related_howtos": [
+            "Progressive Discovery for Agent Tools",
+            "Lazy-Loading Tools"
+          ],
+          "secondary_tag": "retrieval-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The two tools compose into this pipeline:\nuser question -> search -> pick best URL -> fetch -> answer.\"",
+          "value_level": "high",
+          "what_and_problem": "This is a procedure for building an agent that can find a web page and then read the page itself instead of guessing from search snippets. It solves a common problem in web-assisted automation: search results often give enough hints to find a page, but not enough detail to answer a question accurately. The pattern is useful when a model needs evidence from live pages, not just recalled knowledge. It also helps when the task requires a browser rather than a plain HTTP fetch because the page is wrapped in JavaScript or protected by anti-bot defenses. The overall goal is to make the agent compose search and browsing as one flow."
+        },
+        "notes": null,
+        "proposal_id": "6c02b08c-0b06-4da3-8b64-f873924e1048",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Run a local search service and a browser service, then expose each one through MCP.",
+              "Register the tools with fully qualified names so the agent can distinguish them.",
+              "Write a system prompt that requires search first for fresh questions and fetch immediately after search results.",
+              "Implement recursive tool handling so the model can call another tool after a tool result.",
+              "Return readable tool errors and truncate overly long results before sending them back to the model."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A tool-capable language model",
+              "An MCP-capable agent harness",
+              "A search backend such as SearXNG",
+              "A browser-fetch backend such as camofox-browser"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "Progressive Discovery for Agent Tools",
+              "Lazy-Loading Tools"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "retrieval-systems",
+            "runtime-architecture",
+            "workflow-design"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The article centers on a concrete build: Docker services, MCP servers, agent wiring, and code examples.",
+          "Claims are supported by described implementation behavior and observed runs, not formal benchmarks or research.",
+          "The author reports specific failure modes and fixes from the project itself, which is characteristic of an implementation case."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "A browser snapshot in accessibility-tree form is much smaller than raw HTML, which makes page content more usable inside a limited model context window.",
+          "Search snippets are treated as insufficient evidence; the agent is explicitly pushed to fetch the underlying page before answering.",
+          "Tool recursion matters: without a loop that lets the model call another tool after a tool result, search-then-fetch composition breaks.",
+          "A structured extractor can be built by having the MCP server call the LLM itself, which lets it handle schemas with arrays that a server-side parser may not support.",
+          "Snapshot truncation is a real failure mode: if the middle of the page is dropped, infobox-style facts can disappear even when the page was fetched successfully."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://generativeai.pub/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-1437f21e781d",
+          "https://github.com/jfjensen/local-LLM-agent-mcp-search-n-browse",
+          "https://github.com/jo-inc/camofox-browser"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The article is a step-by-step implementation guide with five explicit stages and code snippets.",
+          "Primary goal is to show how to build and wire together a local browser-capable LLM agent.",
+          "It is not a roundup or interview; the structure is a single coherent tutorial."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "core_capabilities": [
+            "It serves a local tool-capable model for the agent loop so the browser and search servers can be orchestrated without a remote dependency.",
+            "It can be used with JSON-constrained output for structured extraction, which helps turn web pages into clean records.",
+            "It supports a local-first deployment style that fits privacy-sensitive or offline workflows."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It is used together with MCP servers, including the browser server and the SearXNG search server.",
+            "It is accessed from Python through the Ollama client library in the agent and extraction code.",
+            "It is configured through a shared config.toml file so model choice can be swapped without editing each stage."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article treats Ollama as the practical local inference layer for a multi-service agent stack, which suggests it is mature enough for hands-on engineering use as of 2026-05-23. The integration is straightforward enough that the author uses it throughout the tutorial rather than presenting it as experimental plumbing. That said, the source only supports a niche developer-use picture, not broad enterprise adoption.",
+          "name": "Ollama",
+          "operational_relevance": "This matters anywhere teams want local or self-hosted inference behind an agent runtime. It lets the agent call a tool-capable model without depending on a remote API, which is useful for privacy-sensitive workflows, offline-friendly setups, and reproducible local automation. It also makes the browser server itself capable of acting like a small specialized agent when it performs structured extraction.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "local-first",
+            "api-first",
+            "tool-use",
+            "open-source"
+          ],
+          "proposed_types": [
+            "model-serving"
+          ],
+          "related_tools": [
+            "Model Context Protocol",
+            "SearXNG",
+            "camofox-browser"
+          ],
+          "short_description": "Ollama is a local model-serving and client stack for running and calling language models on your own machine or infrastructure. In this article it is used as the model backend for both the agent loop and the browser-side structured extractor.",
+          "strengths": "- Supports a fully local workflow, which keeps the agent and the extraction step under the operator's control rather than sending page contents to an external model endpoint.\n- Works as the shared model backend for both the main agent and the extraction helper, which keeps the stack simple and makes the behavior easier to debug.\n- Can be called in a constrained JSON mode for structured extraction, which is useful when you want page data back as clean machine-readable output rather than prose.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"I am using the qwen3.5:9b model throughout. So, please make sure you have Ollama installed with that model pulled, or edit the config to point at another tool-capable model.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source gives no evidence of benchmark performance, latency, or cost characteristics beyond the fact that a 9B model is used. The setup is still model-dependent: the agent can fail to chain tools, return empty turns, or misread structured page data, so Ollama does not make the system deterministic."
+        },
+        "notes": null,
+        "proposal_id": "d75b8ced-3a49-461b-8101-608b04864cf7",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It serves a local tool-capable model for the agent loop so the browser and search servers can be orchestrated without a remote dependency.",
+              "It can be used with JSON-constrained output for structured extraction, which helps turn web pages into clean records.",
+              "It supports a local-first deployment style that fits privacy-sensitive or offline workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It is used together with MCP servers, including the browser server and the SearXNG search server.",
+              "It is accessed from Python through the Ollama client library in the agent and extraction code.",
+              "It is configured through a shared config.toml file so model choice can be swapped without editing each stage."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Model Context Protocol",
+              "SearXNG",
+              "camofox-browser"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "local-first",
+            "api-first",
+            "tool-use",
+            "open-source"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "evidence_type": null,
+          "examples": "The source separates a local SearXNG search server from a camofox browser server and then connects both to the agent through MCP. It also adds a third browser-side extraction path that calls the model internally when the user wants structured JSON.",
+          "key_points": [
+            "Separate tools can represent distinct knowledge-access steps instead of one overloaded agent action.",
+            "Clear tool boundaries help the model decide whether it is searching, reading, or extracting.",
+            "A browser server can be reused for both free-form page reading and structured JSON extraction."
+          ],
+          "knowledge_summary": "Agent systems often work better when each external capability is exposed as a separate service boundary instead of being merged into one monolith. Search, page fetch, and structured extraction can then be mixed and matched by the orchestrator without changing the underlying services. This reduces coupling and makes each capability easier to test, replace, and debug. It also gives the model a clearer tool list, which matters when tool names and behaviors need to stay distinct. The pattern is especially valuable for local agents that need browser access, retrieval, and structured extraction in one workflow.",
+          "match_candidates": [],
+          "operational_insight": "Design agent integrations as layered capabilities: retrieve, read, and extract should not be forced into one generic tool if the workflow benefits from different failure modes and prompts. Clear boundaries make the orchestration more robust and easier to reason about.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "runtime-architecture",
+            "workflow-design"
+          ],
+          "related_topics": [],
+          "relevance_note": "This pattern matters for AI systems that need to combine search, browsing, and structured extraction without turning the whole stack into a single brittle API. It is useful in conversational assistants, support automation, and internal research tools where each capability has a different latency, context, or trust profile.",
+          "secondary_tag": "agent-orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"You bring up two services in Docker, you wrap the browser in an MCP server, and you connect both the search server from Part 3 and the new browser server to the agent. The agent then composes them on its own.\"",
+          "topic_slug": "agent-connectivity-layering",
+          "topic_title": "Agent Connectivity Layering",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "14d38741-3273-44b7-81a3-db2bc4b7ba47",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Separate tools can represent distinct knowledge-access steps instead of one overloaded agent action.",
+              "Clear tool boundaries help the model decide whether it is searching, reading, or extracting.",
+              "A browser server can be reused for both free-form page reading and structured JSON extraction."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "agent-orchestration",
+            "runtime-architecture",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "evidence_type": null,
+          "examples": "The source shows an `extract` tool that fetches a page, then prompts Ollama with a JSON Schema and asks it to return only JSON. It also describes a failure case where middle truncation caused infobox fields such as a mayor and postal code to disappear from the snapshot.",
+          "key_points": [
+            "LLM extraction can handle array-shaped outputs that a rigid server-side extractor may reject.",
+            "The schema should describe the fields clearly enough that the model can map page text to them.",
+            "Snapshot truncation is a major failure mode for infobox-style or mid-page facts."
+          ],
+          "knowledge_summary": "A browser or scraper can use a language model to turn page content into structured JSON instead of relying only on deterministic parsers. This is especially useful when the desired output is described in a schema and the information is spread across headings, infoboxes, or loosely structured page text. The technique trades determinism for flexibility: the model can populate arrays and fuzzy fields, but it is still limited by snapshot quality and prompt discipline. It works best when the page snapshot contains the relevant facts and the schema is specific enough to guide extraction. For long pages, snapshot budgeting becomes a first-order design constraint because truncation can remove the exact fields you wanted.",
+          "match_candidates": [],
+          "operational_insight": "Use model-based extraction when the structure is too irregular for a simple parser, but treat the output as schema-guided reading rather than guaranteed parsing. Keep the snapshot large enough to preserve the region where the target data lives.",
+          "primary_tag": "context-engineering",
+          "proposed_tags": [
+            "context-engineering",
+            "retrieval-systems",
+            "runtime-architecture",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "agent-connectivity-layering"
+          ],
+          "relevance_note": "This is useful for automating page-to-record workflows in knowledge systems, cataloging, compliance review, and support tooling where the input is a web page but the output must be structured fields. It is also relevant when a conversation agent needs to extract specific facts from a page without asking the user to manually copy them.",
+          "secondary_tag": "retrieval-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The `extract` tool fetches the page snapshot, then makes its own Ollama call with a strict prompt: here is a schema, here is the page, fill in the schema and respond with only JSON.\"",
+          "topic_slug": "structured-page-extraction-with-llms",
+          "topic_title": "Structured Page Extraction With LLMs",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3d1c6651-a53f-4d48-8d7d-faba870f58ce",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "LLM extraction can handle array-shaped outputs that a rigid server-side extractor may reject.",
+              "The schema should describe the fields clearly enough that the model can map page text to them.",
+              "Snapshot truncation is a major failure mode for infobox-style or mid-page facts."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "agent-connectivity-layering"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "context-engineering",
+            "retrieval-systems",
+            "runtime-architecture",
+            "workflow-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jes Fink-Jensen",
+    "canonical_url": "https://generativeai.pub/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-1437f21e781d",
+    "content_sha256": "f7c36d1803f6ef7d88ce45ee249788dd695496a23a309d27134b381c768fe52b",
+    "publication": "Medium",
+    "published_date": "2026-05-23",
+    "raw_html_rel_path": "raw/readwise/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt.html",
+    "raw_md_rel_path": "raw/readwise/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt.md",
+    "source_id": "build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt",
+    "title": "Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python"
+  }
+}

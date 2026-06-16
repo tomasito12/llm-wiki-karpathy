@@ -1,0 +1,1197 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T22:59:17+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrAYKuiQxCC9FWxVkhbPKNVQegSJD",
+          "token_usage": {
+            "completion_tokens": 194,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8604,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8798
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrAYNlU7OUeXb7Fzsm0vR7s4L8ACv",
+          "token_usage": {
+            "completion_tokens": 1160,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8214,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 9374
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-technical_howto",
+          "request_id": "chatcmpl-DrAYXoeCHEFWwZ4MQfWXvfmhIShgR",
+          "route": "technical_howto",
+          "token_usage": {
+            "completion_tokens": 3238,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 40211,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 43449
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DrAYXoeCHEFWwZ4MQfWXvfmhIShgR",
+    "token_usage": {
+      "completion_tokens": 4592,
+      "prompt_tokens": 57029,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 61621
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "It is described as less intensive than Opus, which makes it the preferred first pass for ordinary work.",
+          "It is treated as a better everyday default than Haiku for anything beyond very lightweight summarization."
+        ],
+        "confidence": 0.89,
+        "core_capabilities": [
+          "It serves as the default general-purpose model for routine assistant work in the described workflow.",
+          "It is positioned as sufficiently capable for most tasks without needing the highest-cost model.",
+          "It supports a routing strategy where stronger models are reserved for harder synthesis tasks."
+        ],
+        "deployment_implications": "Using Sonnet first suggests a routing strategy where most routine tasks stay on the cheaper or more efficient model, and only hard synthesis tasks escalate. For production workflows, that implies an orchestration policy that reduces cost pressure and keeps the expensive model reserved for high-stakes work. The source does not provide throughput, latency, or context-window data, so deployment guidance remains qualitative.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The model is presented as established enough to be part of a stable everyday routing pattern. The source assumes users can switch models inside the same product without reworking the workflow. No external adoption evidence is provided.",
+        "model_name": "Sonnet 4.6",
+        "operational_profile": "Sonnet 4.6 is used as the default model for most tasks in the workflow because it offers a practical middle ground between cost and capability.\n- The source positions it as the first-choice model for ordinary work, which implies good general-purpose quality without the cost of a larger model.\n- It is the model used when the task does not need the extra depth of the top-tier option.\n- It is treated as the model that helps the user preserve Pro usage for harder jobs.",
+        "pricing_inference_implications": "The advice to use Sonnet first is an explicit cost-management cue: it is meant to preserve higher-tier usage for harder tasks. The source implies it is cheaper in practical token usage than Opus, but gives no price figures.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "proprietary-model",
+          "frontier-model"
+        ],
+        "proposed_types": [
+          "proprietary-model",
+          "frontier-model"
+        ],
+        "provider": "Anthropic",
+        "related_models": [
+          "Opus 4.6",
+          "Haiku"
+        ],
+        "service_automation_implications": "For service automation, the implication is that a mid-tier model can handle many routine support or planning tasks, while escalation paths reserve stronger models for harder synthesis or exception handling. That is useful for building tiered agent workflows rather than sending every request to the most expensive model.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The first is that Claude says that they don't train on your data... The other reason I'm using Claude is that it's one of the least restrictive Frontier apps out there... The best general approach and to allow you to use Pro more often, try to use the sonnet model first. That's themiddle model. It's less intensive, butit's good for most tasks.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The source does not describe specific technical weaknesses beyond being the middle-tier option, so any capability limits are unclear. Its role is defined relative to Opus and Haiku, not by measured performance on external benchmarks."
+      },
+      {
+        "benchmark_observations": [],
+        "comparative_observations": [
+          "It is positioned above Sonnet for difficult tasks that justify higher token consumption.",
+          "It is described as stronger than Haiku for anything beyond lightweight summarization."
+        ],
+        "confidence": 0.89,
+        "core_capabilities": [
+          "It is used for complex synthesis tasks that need stronger judgment and integration.",
+          "It is the preferred model for deep research work in the described workflow.",
+          "It provides the highest-quality response path inside the user's model ladder."
+        ],
+        "deployment_implications": "In a deployed workflow, Opus acts as the escalation model for tasks where answer quality matters more than efficiency. That means the orchestration layer should identify synthesis-heavy tasks and route them upward rather than using Opus everywhere. The source implies higher token cost, so careful gating matters for sustainable use.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The model is treated as a top-tier option inside an established product workflow, which suggests stable availability and practical trust. No external adoption or benchmark evidence is provided. The source presents it as the quality-first choice in a model routing ladder.",
+        "model_name": "Opus 4.6",
+        "operational_profile": "Opus 4.6 is the high-capability model in the workflow and is reserved for complex synthesis and deep research tasks.\n- The source treats it as the strongest option when quality matters more than cost.\n- It is the model used for harder synthesis, which implies higher reasoning depth or better handling of complex context.\n- It is not the default because it burns tokens faster, so the workflow uses it selectively.",
+        "pricing_inference_implications": "The source explicitly says it \"uses tokens faster,\" so the economic implication is that it should be reserved for the hardest tasks. That makes it a premium tier in a routing cascade rather than the default operating point.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "proprietary-model",
+          "frontier-model"
+        ],
+        "proposed_types": [
+          "proprietary-model",
+          "frontier-model"
+        ],
+        "provider": "Anthropic",
+        "related_models": [
+          "Sonnet 4.6",
+          "Haiku"
+        ],
+        "service_automation_implications": "For service automation, this kind of model is best reserved for escalations, complex case synthesis, and tasks that need stronger judgment than a routine support model can provide. It is less suitable as the default model in high-volume automation because of cost pressure.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"When something is meteor, a complex synthesis, a deep research task, something where the quality really matters, that's when I'll switch to Opus. It uses tokens faster, but it does the best job possible right now.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "Its main limitation in the source is cost: it uses tokens faster, so it is not efficient for routine work. The source does not provide benchmark numbers or concrete failure modes."
+      }
+    ],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Keep your knowledge in plain markdown files inside folders you control. Add a small translation layer with a portable identity file, a vault map, and a skill map so the AI knows who you are, where to go, and what it can do. Point the AI tool at the right folder, then start each session with a short prompt that tells it which files to read first. Keep AI-generated material in a separate folder so your personal notes stay clean. If the note base is large, use the map files instead of expecting the model to scan everything.",
+        "caveats": "This setup depends on disciplined folder structure and maintenance. If the vault grows large without a map, the model can miss relevant context or behave as if it has read more than it actually has. It also still depends on a vendor tool for execution, so portability is partial rather than absolute.",
+        "confidence": 0.98,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Store notes as markdown files in a local folder you control.",
+          "Create a separate AIOS folder for AI-specific files and outputs.",
+          "Add a portable identity file that tells the model how to work with you.",
+          "Create a vault map that explains how the AI should navigate the notes.",
+          "Create a skill map that defines available skills and when to use them.",
+          "Point the AI tool at the correct folder.",
+          "Start each new session with a short prompt that tells the model to read the identity file, then the vault map and skill map."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A local note vault with markdown files.",
+          "An AI tool that can read a selected folder.",
+          "A willingness to maintain map files and session prompts."
+        ],
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "workflow-design",
+          "knowledge-systems"
+        ],
+        "question_title": "File-Native AI Workspace",
+        "related_howtos": [
+          "agentic-personal-knowledge-management",
+          "claude-skills-setup"
+        ],
+        "secondary_tag": "workflow-design",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The middle layer of the AI operating system. And this is where our maps and manuals live... This is a separate area from your idea verse that lives inside your main idea verse folder... The big three files that make this whole thing work.\"",
+        "value_level": "high",
+        "what_and_problem": "This is about setting up an AI workflow that works directly on your own files instead of living only inside chat. It solves the problem of context loss, vendor lock-in, and repeated re-uploading of documents. The goal is to keep your notes portable while letting an AI tool act on them safely. It also helps when the note base is large enough that manual context sharing becomes unreliable."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "implementation_case",
+      "reasoning": [
+        "The speaker describes his own deployed workflow and how he uses it in practice.",
+        "Claims are grounded in a personal setup: vaults, map files, daily brief, and recurring tasks.",
+        "The value comes from a concrete implementation example rather than external benchmarks or formal research."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This video explains a way to connect personal notes to an AI tool without locking yourself into one app. The idea is to keep your thinking in plain markdown notes, then add a small set of map files that tell the AI who you are, how to move through your notes, and what skills it can use. Claude Co-work is used as the example tool, but the system is meant to be portable if you switch tools later. The setup is interesting because it treats AI as a layer on top of your own files, not as the place where your knowledge lives. It also shows how the same structure can power daily planning, note capture, reviews, and sharing with a team.",
+      "assessed_as_of": "2026-06-05",
+      "contradictions_and_skepticism": "The video argues for portability and anti-lock-in, but it still relies on a vendor-specific desktop app and its folder-permission model, so the independence is partial rather than absolute. The claim that an AI can safely interact with a 17,000-note vault only if given maps is plausible, but the video does not test that against simpler retrieval or search-based approaches. Several systems are described in promotional terms, and their effectiveness is asserted from personal use rather than independently verified. The future-oriented comments about local models and on-device silicon are speculative and are not supported with evidence in the source itself.",
+      "key_insights": [
+        "Treat your note vault as the durable core and the AI tool as replaceable plumbing.",
+        "Use a portable identity file plus a vault map and skill map to keep AI navigation explicit instead of relying on full-context scanning.",
+        "Separate AI-generated material into its own folder so your personal note base stays clean and easy to manage.",
+        "Recurring prompts can reduce session drift because the model may not reliably load all needed context at the start of a new chat.",
+        "A maintenance skill matters because a real AI workflow needs cleanup, sanitization, and ongoing file hygiene, not just generation."
+      ],
+      "limitations_and_open_questions": "The video is a personal workflow demo, not a benchmarked evaluation, so it does not show error rates, time saved, or comparative reliability against alternative systems. Several important details are deferred to linked guides, including the exact contents of the map files, the skill definitions, and the setup steps for recurring tasks. The claim that Claude does not train on user data is presented as a deciding factor, but the video does not analyze the full privacy model or retention implications beyond mentioning a rolling 30-day server window. It also assumes a fairly large, well-structured vault and a user willing to maintain maps and skill files; the maintenance burden for smaller or messier vaults is not quantified. The system depends on recurring prompts and careful folder selection, so failures in setup could produce misleading or incomplete AI behavior. It is unclear how robust the approach is across different AI tools beyond the speaker's own preference for Claude Co-work.",
+      "sources": [
+        "https://youtube.com/watch/?v=rRa9td4oe7k"
+      ],
+      "summary": "The video presents a three-layer AI operating system built around Obsidian, a portable markdown-based note vault, and Claude Co-work as the external AI layer. The first layer is the user's own note base, organized into Atlas, Calendar, and Efforts for knowledge, time-based notes, and projects. The second layer is a translation layer inside an AIOS folder, centered on a portable identity file (MIMD/mi.md), a vault map, and a skill map so an AI can navigate notes and apply the right workflows without scanning everything. The third layer is the tool layer, where Claude Co-work is pointed at a selected folder so it can read, modify, rename, and create files on behalf of the user. The key design goal is portability: if Claude or Obsidian changes, the files and instructions are meant to travel with the user rather than trapping them in one vendor. The video then shows several recurring skills built on this structure, including a daily brief, daily log, topic mapping, weekly review, fast-feedback writing support, conversation capture, cleanup/maintenance, and sanitized sharing to a team. The practical argument is that AI works better when it is constrained by clear maps, explicit skills, and recurring prompts, especially when the note base is large enough that naive full-context access would be unreliable.",
+      "why_it_matters": "The piece is valuable because it offers a concrete pattern for making AI workflows less vendor-dependent and more maintainable: keep notes in markdown, keep identity and instruction files in your own vault, and let the tool sit on top as a swappable layer. That is a stronger operational idea than simply prompting a chatbot, because the video explicitly separates durable personal knowledge from AI-specific instructions and from the external model. The vault map and skill map are the most reusable concepts here: they compress a large note base into a navigable structure so the AI can find relevant context without pretending to have read everything. The article also makes a practical point that is easy to miss in AI demos: long-lived systems need routines for recurring work, context loading, capture, review, and cleanup, not just generation. The daily brief and daily log examples show how the same architecture can be used to pull together calendar, email, task, and note signals into structured daily workflows. The emphasis on storage in files you can open outside Obsidian is a useful durability claim, but it is still a single-person implementation rather than evidence of broader reliability. As of 2026-06-05, the approach looks actionable for practitioners who already manage a substantial note base and want a portable AI workflow; it is best treated as a solid implementation pattern to adapt, not as a proven universal standard."
+    },
+    "source_type_detection": {
+      "confidence": 0.94,
+      "detected_source_type": "technical_howto",
+      "reasoning": [
+        "The source is primarily a step-by-step setup walkthrough for an AI workflow using Obsidian and Claude Cowork.",
+        "It explains concrete implementation steps: folder structure, map files, prompts, and recurring tasks.",
+        "The structure is instructional and procedural rather than a multi-item roundup or an interview transcript."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.96,
+        "core_capabilities": [
+          "It can read all files in a selected folder after permission is granted, which makes it useful for local workspace automation.",
+          "It can make file edits and structural changes such as renaming and moving files, which is important for maintaining note systems.",
+          "It supports model selection inside the same app, allowing lighter or stronger models to be used for different task types."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It works with a folder on the local computer rather than requiring a new data store, which fits file-native workflows.",
+          "It is used alongside Obsidian markdown notes, which remain readable outside the app.",
+          "It can be paired with recurring tasks and session-start prompts to load the right context before work begins."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source treats Claude as a mature enough desktop workflow tool to use daily for recurring automations, not as a one-off demo. It is presented as one of the least restrictive frontier apps, but that assessment is the speaker's judgment rather than independently verified evidence. The app's usefulness here depends on stable folder access and session prompts, which suggests practical maturity but not tool-agnostic guarantees.",
+        "name": "Claude",
+        "operational_relevance": "Claude is functioning as the outer execution layer in a file-native personal AI workflow. It fits teams or individuals who want an AI assistant that can inspect local files, update notes, and run recurring tasks without repeatedly pasting context into chat. The practical value is less about chat and more about turning a desktop AI app into a controlled workspace that operates on a chosen folder.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "chat-interface",
+          "cloud-hosted",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "ai-application",
+          "app"
+        ],
+        "related_tools": [
+          "Obsidian",
+          "Codex",
+          "Gemini"
+        ],
+        "short_description": "A proprietary AI assistant app used here through its desktop client and Co-work mode to read and modify files in a selected folder. The workflow depends on folder-level access, session prompts, and model choice inside the app.",
+        "strengths": "- Can read, modify, move, rename, and create files in a linked folder, which makes it useful for file-native automation rather than only conversational help.\n- Supports a simple folder-permission model, so the user can scope AI access to a single knowledge folder instead of exposing an entire machine.\n- Lets the user switch between model options and reserve stronger models for harder tasks, which is useful when balancing cost and task difficulty.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"download the Claude desktop app and then sign in with your Claude account... Claude can now read files, make modifications, move things around, rename them, and even create new files on your behalf.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The workflow is still vendor-dependent because it uses Claude desktop and Claude-specific session behavior, even if the files themselves are portable. The source also notes that data lives on Anthropic servers for a rolling 30-day window, so this is not a zero-retention or fully local setup. Large vaults can overwhelm naive folder access without a map layer, so the product alone is not enough."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Markdown files keep notes usable across multiple apps.",
+          "Folder-level AI access can support reading, editing, renaming, and creating files.",
+          "A file-native system still needs explicit navigation aids for large corpora.",
+          "Keeping generated material in a separate folder helps preserve the integrity of personal notes."
+        ],
+        "knowledge_summary": "File-native AI workflows treat local files as the primary interface between a person and an AI tool. Instead of pushing knowledge into a chatbot workspace, the user keeps durable material in ordinary files and lets the model operate on that folder with explicit permissions. This approach improves portability because the files remain useful outside any one app. It also creates a cleaner boundary between durable knowledge, AI instructions, and generated output. The main operational challenge is that file access alone does not solve navigation, so the system needs maps, skills, and session startup conventions.",
+        "match_candidates": [],
+        "operational_insight": "The durable design move is not the chatbot itself but the decision to make files the source of truth and AI just another consumer of that file system. Once that boundary exists, vendor swaps become much less painful.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "knowledge-systems",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "knowledge-base-becomes-runtime-infrastructure",
+          "agentic-personal-knowledge-management"
+        ],
+        "relevance_note": "This matters because many AI workflows become fragile when knowledge lives inside one vendor's chat history or project container. File-native patterns keep knowledge portable, auditable, and easier to integrate with other automation tools. They are especially useful for personal knowledge bases, team runbooks, and service workflows that need long-lived artifacts.",
+        "secondary_tag": "knowledge-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Obsidian is at its core just a folder of notes sitting on your computer... you can also open them up in any other app that reads markdown... Claude can now read files, make modifications, move things around, rename them, and even create new files on your behalf.\"",
+        "topic_slug": "file-native-ai-workflows",
+        "topic_title": "File-Native AI Workflows",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Identity files tell the AI how to work with a person or workspace.",
+          "Maps reduce the need for full-corpus scanning.",
+          "Skills make behavior explicit instead of implicit.",
+          "A translation layer creates a stable interface across AI vendors."
+        ],
+        "knowledge_summary": "A translation layer in an AI system sits between durable human knowledge and a model's raw file or context access. It translates a messy or large knowledge base into a navigable structure the model can use safely and consistently. In practice, this means explicit identity files, maps, permissions, and skills. The layer prevents the model from pretending it has full context when it has only partial access. It also makes the workflow more portable because the instructions are stored outside the model vendor.",
+        "match_candidates": [],
+        "operational_insight": "When the corpus is large, direct context access is not enough; the system needs an intermediate layer that tells the model where to look and how to behave. This is a strong pattern for agent reliability and maintainability.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "orchestration",
+          "runtime-architecture"
+        ],
+        "related_topics": [
+          "file-native-ai-workflows",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This is useful in agent systems where the model must navigate many files, tasks, or tools without direct human supervision. Translation layers reduce confusion, improve retrieval quality, and make workflows easier to port across tools. They are also a practical governance boundary because they separate durable instructions from vendor-specific execution.",
+        "secondary_tag": "orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The middle layer of the AI operating system. And this is where our maps and manuals live... These maps are the translation layer between Claude on the outside or whatever that AI tool is and Obsidian and our ideaverse of notes in the middle.\"",
+        "topic_slug": "translation-layer-ai-architecture",
+        "topic_title": "Translation Layer AI Architecture",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "It is described as less intensive than Opus, which makes it the preferred first pass for ordinary work.",
+            "It is treated as a better everyday default than Haiku for anything beyond very lightweight summarization."
+          ],
+          "confidence": 0.89,
+          "core_capabilities": [
+            "It serves as the default general-purpose model for routine assistant work in the described workflow.",
+            "It is positioned as sufficiently capable for most tasks without needing the highest-cost model.",
+            "It supports a routing strategy where stronger models are reserved for harder synthesis tasks."
+          ],
+          "deployment_implications": "Using Sonnet first suggests a routing strategy where most routine tasks stay on the cheaper or more efficient model, and only hard synthesis tasks escalate. For production workflows, that implies an orchestration policy that reduces cost pressure and keeps the expensive model reserved for high-stakes work. The source does not provide throughput, latency, or context-window data, so deployment guidance remains qualitative.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "maturity_signals": "The model is presented as established enough to be part of a stable everyday routing pattern. The source assumes users can switch models inside the same product without reworking the workflow. No external adoption evidence is provided.",
+          "model_name": "Sonnet 4.6",
+          "operational_profile": "Sonnet 4.6 is used as the default model for most tasks in the workflow because it offers a practical middle ground between cost and capability.\n- The source positions it as the first-choice model for ordinary work, which implies good general-purpose quality without the cost of a larger model.\n- It is the model used when the task does not need the extra depth of the top-tier option.\n- It is treated as the model that helps the user preserve Pro usage for harder jobs.",
+          "pricing_inference_implications": "The advice to use Sonnet first is an explicit cost-management cue: it is meant to preserve higher-tier usage for harder tasks. The source implies it is cheaper in practical token usage than Opus, but gives no price figures.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "proposed_types": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "provider": "Anthropic",
+          "related_models": [
+            "Opus 4.6",
+            "Haiku"
+          ],
+          "service_automation_implications": "For service automation, the implication is that a mid-tier model can handle many routine support or planning tasks, while escalation paths reserve stronger models for harder synthesis or exception handling. That is useful for building tiered agent workflows rather than sending every request to the most expensive model.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The first is that Claude says that they don't train on your data... The other reason I'm using Claude is that it's one of the least restrictive Frontier apps out there... The best general approach and to allow you to use Pro more often, try to use the sonnet model first. That's themiddle model. It's less intensive, butit's good for most tasks.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The source does not describe specific technical weaknesses beyond being the middle-tier option, so any capability limits are unclear. Its role is defined relative to Opus and Haiku, not by measured performance on external benchmarks."
+        },
+        "notes": null,
+        "proposal_id": "f2647deb-64d2-49aa-82fa-7e36565af689",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "It is described as less intensive than Opus, which makes it the preferred first pass for ordinary work.",
+              "It is treated as a better everyday default than Haiku for anything beyond very lightweight summarization."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It serves as the default general-purpose model for routine assistant work in the described workflow.",
+              "It is positioned as sufficiently capable for most tasks without needing the highest-cost model.",
+              "It supports a routing strategy where stronger models are reserved for harder synthesis tasks."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Opus 4.6",
+              "Haiku"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "proprietary-model",
+            "frontier-model"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "benchmark_observations": [],
+          "comparative_observations": [
+            "It is positioned above Sonnet for difficult tasks that justify higher token consumption.",
+            "It is described as stronger than Haiku for anything beyond lightweight summarization."
+          ],
+          "confidence": 0.89,
+          "core_capabilities": [
+            "It is used for complex synthesis tasks that need stronger judgment and integration.",
+            "It is the preferred model for deep research work in the described workflow.",
+            "It provides the highest-quality response path inside the user's model ladder."
+          ],
+          "deployment_implications": "In a deployed workflow, Opus acts as the escalation model for tasks where answer quality matters more than efficiency. That means the orchestration layer should identify synthesis-heavy tasks and route them upward rather than using Opus everywhere. The source implies higher token cost, so careful gating matters for sustainable use.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "maturity_signals": "The model is treated as a top-tier option inside an established product workflow, which suggests stable availability and practical trust. No external adoption or benchmark evidence is provided. The source presents it as the quality-first choice in a model routing ladder.",
+          "model_name": "Opus 4.6",
+          "operational_profile": "Opus 4.6 is the high-capability model in the workflow and is reserved for complex synthesis and deep research tasks.\n- The source treats it as the strongest option when quality matters more than cost.\n- It is the model used for harder synthesis, which implies higher reasoning depth or better handling of complex context.\n- It is not the default because it burns tokens faster, so the workflow uses it selectively.",
+          "pricing_inference_implications": "The source explicitly says it \"uses tokens faster,\" so the economic implication is that it should be reserved for the hardest tasks. That makes it a premium tier in a routing cascade rather than the default operating point.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "proposed_types": [
+            "proprietary-model",
+            "frontier-model"
+          ],
+          "provider": "Anthropic",
+          "related_models": [
+            "Sonnet 4.6",
+            "Haiku"
+          ],
+          "service_automation_implications": "For service automation, this kind of model is best reserved for escalations, complex case synthesis, and tasks that need stronger judgment than a routine support model can provide. It is less suitable as the default model in high-volume automation because of cost pressure.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"When something is meteor, a complex synthesis, a deep research task, something where the quality really matters, that's when I'll switch to Opus. It uses tokens faster, but it does the best job possible right now.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "Its main limitation in the source is cost: it uses tokens faster, so it is not efficient for routine work. The source does not provide benchmark numbers or concrete failure modes."
+        },
+        "notes": null,
+        "proposal_id": "e7b57141-1e39-4856-8cf7-f997db8cab59",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "It is positioned above Sonnet for difficult tasks that justify higher token consumption.",
+              "It is described as stronger than Haiku for anything beyond lightweight summarization."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It is used for complex synthesis tasks that need stronger judgment and integration.",
+              "It is the preferred model for deep research work in the described workflow.",
+              "It provides the highest-quality response path inside the user's model ladder."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Sonnet 4.6",
+              "Haiku"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "proprietary-model",
+            "frontier-model"
+          ]
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Keep your knowledge in plain markdown files inside folders you control. Add a small translation layer with a portable identity file, a vault map, and a skill map so the AI knows who you are, where to go, and what it can do. Point the AI tool at the right folder, then start each session with a short prompt that tells it which files to read first. Keep AI-generated material in a separate folder so your personal notes stay clean. If the note base is large, use the map files instead of expecting the model to scan everything.",
+          "caveats": "This setup depends on disciplined folder structure and maintenance. If the vault grows large without a map, the model can miss relevant context or behave as if it has read more than it actually has. It also still depends on a vendor tool for execution, so portability is partial rather than absolute.",
+          "confidence": 0.98,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Store notes as markdown files in a local folder you control.",
+            "Create a separate AIOS folder for AI-specific files and outputs.",
+            "Add a portable identity file that tells the model how to work with you.",
+            "Create a vault map that explains how the AI should navigate the notes.",
+            "Create a skill map that defines available skills and when to use them.",
+            "Point the AI tool at the correct folder.",
+            "Start each new session with a short prompt that tells the model to read the identity file, then the vault map and skill map."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A local note vault with markdown files.",
+            "An AI tool that can read a selected folder.",
+            "A willingness to maintain map files and session prompts."
+          ],
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "workflow-design",
+            "knowledge-systems"
+          ],
+          "question_title": "File-Native AI Workspace",
+          "related_howtos": [
+            "agentic-personal-knowledge-management",
+            "claude-skills-setup"
+          ],
+          "secondary_tag": "workflow-design",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The middle layer of the AI operating system. And this is where our maps and manuals live... This is a separate area from your idea verse that lives inside your main idea verse folder... The big three files that make this whole thing work.\"",
+          "value_level": "high",
+          "what_and_problem": "This is about setting up an AI workflow that works directly on your own files instead of living only inside chat. It solves the problem of context loss, vendor lock-in, and repeated re-uploading of documents. The goal is to keep your notes portable while letting an AI tool act on them safely. It also helps when the note base is large enough that manual context sharing becomes unreliable."
+        },
+        "notes": null,
+        "proposal_id": "1cd36a3e-3cd2-4ec8-a66c-a8d199f6839f",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Store notes as markdown files in a local folder you control.",
+              "Create a separate AIOS folder for AI-specific files and outputs.",
+              "Add a portable identity file that tells the model how to work with you.",
+              "Create a vault map that explains how the AI should navigate the notes.",
+              "Create a skill map that defines available skills and when to use them.",
+              "Point the AI tool at the correct folder.",
+              "Start each new session with a short prompt that tells the model to read the identity file, then the vault map and skill map."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A local note vault with markdown files.",
+              "An AI tool that can read a selected folder.",
+              "A willingness to maintain map files and session prompts."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "agentic-personal-knowledge-management",
+              "claude-skills-setup"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "workflow-design",
+            "knowledge-systems"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "implementation_case",
+        "reasoning": [
+          "The speaker describes his own deployed workflow and how he uses it in practice.",
+          "Claims are grounded in a personal setup: vaults, map files, daily brief, and recurring tasks.",
+          "The value comes from a concrete implementation example rather than external benchmarks or formal research."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Treat your note vault as the durable core and the AI tool as replaceable plumbing.",
+          "Use a portable identity file plus a vault map and skill map to keep AI navigation explicit instead of relying on full-context scanning.",
+          "Separate AI-generated material into its own folder so your personal note base stays clean and easy to manage.",
+          "Recurring prompts can reduce session drift because the model may not reliably load all needed context at the start of a new chat.",
+          "A maintenance skill matters because a real AI workflow needs cleanup, sanitization, and ongoing file hygiene, not just generation."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://youtube.com/watch/?v=rRa9td4oe7k"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.94,
+        "detected_source_type": "technical_howto",
+        "reasoning": [
+          "The source is primarily a step-by-step setup walkthrough for an AI workflow using Obsidian and Claude Cowork.",
+          "It explains concrete implementation steps: folder structure, map files, prompts, and recurring tasks.",
+          "The structure is instructional and procedural rather than a multi-item roundup or an interview transcript."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.96,
+          "core_capabilities": [
+            "It can read all files in a selected folder after permission is granted, which makes it useful for local workspace automation.",
+            "It can make file edits and structural changes such as renaming and moving files, which is important for maintaining note systems.",
+            "It supports model selection inside the same app, allowing lighter or stronger models to be used for different task types."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It works with a folder on the local computer rather than requiring a new data store, which fits file-native workflows.",
+            "It is used alongside Obsidian markdown notes, which remain readable outside the app.",
+            "It can be paired with recurring tasks and session-start prompts to load the right context before work begins."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source treats Claude as a mature enough desktop workflow tool to use daily for recurring automations, not as a one-off demo. It is presented as one of the least restrictive frontier apps, but that assessment is the speaker's judgment rather than independently verified evidence. The app's usefulness here depends on stable folder access and session prompts, which suggests practical maturity but not tool-agnostic guarantees.",
+          "name": "Claude",
+          "operational_relevance": "Claude is functioning as the outer execution layer in a file-native personal AI workflow. It fits teams or individuals who want an AI assistant that can inspect local files, update notes, and run recurring tasks without repeatedly pasting context into chat. The practical value is less about chat and more about turning a desktop AI app into a controlled workspace that operates on a chosen folder.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "chat-interface",
+            "cloud-hosted",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "ai-application",
+            "app"
+          ],
+          "related_tools": [
+            "Obsidian",
+            "Codex",
+            "Gemini"
+          ],
+          "short_description": "A proprietary AI assistant app used here through its desktop client and Co-work mode to read and modify files in a selected folder. The workflow depends on folder-level access, session prompts, and model choice inside the app.",
+          "strengths": "- Can read, modify, move, rename, and create files in a linked folder, which makes it useful for file-native automation rather than only conversational help.\n- Supports a simple folder-permission model, so the user can scope AI access to a single knowledge folder instead of exposing an entire machine.\n- Lets the user switch between model options and reserve stronger models for harder tasks, which is useful when balancing cost and task difficulty.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"download the Claude desktop app and then sign in with your Claude account... Claude can now read files, make modifications, move things around, rename them, and even create new files on your behalf.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The workflow is still vendor-dependent because it uses Claude desktop and Claude-specific session behavior, even if the files themselves are portable. The source also notes that data lives on Anthropic servers for a rolling 30-day window, so this is not a zero-retention or fully local setup. Large vaults can overwhelm naive folder access without a map layer, so the product alone is not enough."
+        },
+        "notes": null,
+        "proposal_id": "e2cda4fb-9c98-4876-bcb7-4f22e7f07eba",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can read all files in a selected folder after permission is granted, which makes it useful for local workspace automation.",
+              "It can make file edits and structural changes such as renaming and moving files, which is important for maintaining note systems.",
+              "It supports model selection inside the same app, allowing lighter or stronger models to be used for different task types."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It works with a folder on the local computer rather than requiring a new data store, which fits file-native workflows.",
+              "It is used alongside Obsidian markdown notes, which remain readable outside the app.",
+              "It can be paired with recurring tasks and session-start prompts to load the right context before work begins."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Obsidian",
+              "Codex",
+              "Gemini"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "chat-interface",
+            "cloud-hosted",
+            "workflow-automation"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Markdown files keep notes usable across multiple apps.",
+            "Folder-level AI access can support reading, editing, renaming, and creating files.",
+            "A file-native system still needs explicit navigation aids for large corpora.",
+            "Keeping generated material in a separate folder helps preserve the integrity of personal notes."
+          ],
+          "knowledge_summary": "File-native AI workflows treat local files as the primary interface between a person and an AI tool. Instead of pushing knowledge into a chatbot workspace, the user keeps durable material in ordinary files and lets the model operate on that folder with explicit permissions. This approach improves portability because the files remain useful outside any one app. It also creates a cleaner boundary between durable knowledge, AI instructions, and generated output. The main operational challenge is that file access alone does not solve navigation, so the system needs maps, skills, and session startup conventions.",
+          "match_candidates": [],
+          "operational_insight": "The durable design move is not the chatbot itself but the decision to make files the source of truth and AI just another consumer of that file system. Once that boundary exists, vendor swaps become much less painful.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "knowledge-base-becomes-runtime-infrastructure",
+            "agentic-personal-knowledge-management"
+          ],
+          "relevance_note": "This matters because many AI workflows become fragile when knowledge lives inside one vendor's chat history or project container. File-native patterns keep knowledge portable, auditable, and easier to integrate with other automation tools. They are especially useful for personal knowledge bases, team runbooks, and service workflows that need long-lived artifacts.",
+          "secondary_tag": "knowledge-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Obsidian is at its core just a folder of notes sitting on your computer... you can also open them up in any other app that reads markdown... Claude can now read files, make modifications, move things around, rename them, and even create new files on your behalf.\"",
+          "topic_slug": "file-native-ai-workflows",
+          "topic_title": "File-Native AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2ef2fc89-3e01-4a4d-b377-812bb2639bd1",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Markdown files keep notes usable across multiple apps.",
+              "Folder-level AI access can support reading, editing, renaming, and creating files.",
+              "A file-native system still needs explicit navigation aids for large corpora.",
+              "Keeping generated material in a separate folder helps preserve the integrity of personal notes."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-base-becomes-runtime-infrastructure",
+              "agentic-personal-knowledge-management"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "knowledge-systems",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Identity files tell the AI how to work with a person or workspace.",
+            "Maps reduce the need for full-corpus scanning.",
+            "Skills make behavior explicit instead of implicit.",
+            "A translation layer creates a stable interface across AI vendors."
+          ],
+          "knowledge_summary": "A translation layer in an AI system sits between durable human knowledge and a model's raw file or context access. It translates a messy or large knowledge base into a navigable structure the model can use safely and consistently. In practice, this means explicit identity files, maps, permissions, and skills. The layer prevents the model from pretending it has full context when it has only partial access. It also makes the workflow more portable because the instructions are stored outside the model vendor.",
+          "match_candidates": [],
+          "operational_insight": "When the corpus is large, direct context access is not enough; the system needs an intermediate layer that tells the model where to look and how to behave. This is a strong pattern for agent reliability and maintainability.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "orchestration",
+            "runtime-architecture"
+          ],
+          "related_topics": [
+            "file-native-ai-workflows",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This is useful in agent systems where the model must navigate many files, tasks, or tools without direct human supervision. Translation layers reduce confusion, improve retrieval quality, and make workflows easier to port across tools. They are also a practical governance boundary because they separate durable instructions from vendor-specific execution.",
+          "secondary_tag": "orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The middle layer of the AI operating system. And this is where our maps and manuals live... These maps are the translation layer between Claude on the outside or whatever that AI tool is and Obsidian and our ideaverse of notes in the middle.\"",
+          "topic_slug": "translation-layer-ai-architecture",
+          "topic_title": "Translation Layer AI Architecture",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "2a16ef73-14e9-4df0-9400-6844eef07e8d",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Identity files tell the AI how to work with a person or workspace.",
+              "Maps reduce the need for full-corpus scanning.",
+              "Skills make behavior explicit instead of implicit.",
+              "A translation layer creates a stable interface across AI vendors."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "file-native-ai-workflows",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "orchestration",
+            "runtime-architecture"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Linking Your Thinking with Nick Milo",
+    "canonical_url": "https://youtube.com/watch/?v=rRa9td4oe7k",
+    "content_sha256": "b11009e9d0c68900341b74b9f22c219810357d7d9186cf11581dcb57536b131b",
+    "publication": "YouTube",
+    "published_date": "2026-06-05",
+    "raw_html_rel_path": "raw/readwise/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c.html",
+    "raw_md_rel_path": "raw/readwise/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c.md",
+    "source_id": "how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c",
+    "title": "How I Use Obsidian + Claude Cowork to Run My Life"
+  }
+}

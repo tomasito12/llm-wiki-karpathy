@@ -1,0 +1,668 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-10T14:58:50+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DpEft9ElWOjyRM3QMqCGtnP6dudXj",
+          "token_usage": {
+            "completion_tokens": 191,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4895,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5086
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DpEfvwavRaArYPF9IGNMsfcsQrO1e",
+          "token_usage": {
+            "completion_tokens": 1038,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4500,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5538
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DpEg55G79IXjMalt4ilMx5FjjNCfW",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 1258,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 35792,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 37050
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DpEg55G79IXjMalt4ilMx5FjjNCfW",
+    "token_usage": {
+      "completion_tokens": 2487,
+      "prompt_tokens": 45187,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 47674
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-30",
+        "confidence": 0.9,
+        "evidence_from_source": "The article explicitly argues that \"the binding constraint has moved from can you build it to can you tell whether it\u2019s right\" and that agentic tools \"collapsed one of those paths and not the other.\"",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "verification-over-principles",
+        "proposed_tags": [
+          "verification-over-principles"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "agentic-coding-shifts-toward-higher-supervision-costs"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "software-engineering",
+        "suggested_new_tags": [
+          "software-engineering",
+          "ai-engineering"
+        ],
+        "supporting_data_points": [
+          "The source contrasts domain experts who can verify outputs with generalist engineers who may not detect plausible but wrong results.",
+          "The source states that the agent does the transcription while humans do the judging.",
+          "The source argues that code-generation skill has become less scarce than verified domain knowledge."
+        ],
+        "supporting_snippet": "\"Agentic tools collapsed one of those paths and not the other.\"",
+        "time_sensitivity": "Actionable as of 2026-05-30; relevant while agentic coding tools continue lowering the cost of generation faster than they lower the cost of correctness review.",
+        "trend_description": "As AI systems generate more of the implementation layer, the limiting factor shifts toward verifying whether outputs satisfy real domain rules. The productive unit of work becomes a draft-plus-check loop, not just code generation. This tends to increase the value of domain experts, reviewers, and test writers who can judge correctness against operational truth.",
+        "trend_slug": "software-work-moves-toward-domain-verified-ai-output",
+        "trend_title": "Software Work Moves Toward Domain-Verified AI Output",
+        "uncertainty_note": "This is a source-level argument, not measured evidence. It may not hold equally across every software domain because some systems still require substantial architecture and debugging beyond transcription.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is a first-person strategic essay by the author, advancing an interpretation of how agentic AI changes software work.",
+        "Claims are supported by illustrative examples and reasoning, not by benchmark data, formal experiments, or implementation details.",
+        "The piece frames a judgment about professional value and skill scarcity rather than reporting a specific case study or vendor claim."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article says the hardest part of software was never typing code. It was understanding the real-world rules behind the code. Agentic AI can write a lot of the software for you, but it cannot tell you whether the result is actually correct. That makes domain knowledge more valuable than general coding speed in the author\u2019s view. A person who knows payroll, logistics, or clinical coding can often judge the output better than a strong engineer who does not know the field. The basic idea is simple: the model can produce the draft, but only a human with real domain experience can provide ground truth.",
+      "assessed_as_of": "2026-05-30",
+      "contradictions_and_skepticism": "The argument may overstate the extent to which code generation has been commoditized, because many real systems still require architecture, reliability work, and debugging that are not just transcription. It also compresses a spectrum of expertise into a binary between domain expert and engineer, when many useful contributors sit between those poles. The claim that domain experts can reliably judge truth may be weaker in ambiguous or fast-changing domains where the ground truth itself is contested. Still, the core tension is plausible: agent output can look correct without being correct, and that makes verification the real scarce step.",
+      "key_insights": [
+        "Agentic AI lowers the cost of turning a domain model into code, but it does not lower the cost of knowing what correct output looks like.",
+        "A non-programmer domain expert can be unusually effective with AI because they supply the oracle the model cannot create.",
+        "A strong engineer without domain knowledge may build a system that compiles and tests cleanly while still being wrong in important ways.",
+        "The article\u2019s main career advice is to build deep expertise in one real domain, because that tacit model is harder to replace than coding syntax.",
+        "The highest-value worker is someone who can verify both the software layer and the domain layer."
+      ],
+      "limitations_and_open_questions": "The piece is an opinion essay, so it offers no benchmarks, case studies, or controlled evidence showing that domain experts consistently outperform engineers with agents across tasks. It assumes that tacit domain knowledge can be acquired deeply enough to serve as a reliable oracle, but does not address how long that takes or how often it is enough without technical fluency. It also leaves open how teams should structure verification when no single person has both strong domain knowledge and strong software engineering skill. The economic question is unresolved: if agents reduce implementation cost, the bottleneck may move to review, governance, and integration rather than simply domain knowledge. The article does not discuss error rates, safety-critical constraints, or what kinds of domains remain too ambiguous for human judgment to be dependable.",
+      "sources": [
+        "https://brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/"
+      ],
+      "summary": "The article argues that agentic AI has changed the center of gravity in software work. Before these tools, the hard part was building a correct mental model of the domain and then translating it into code; code was just the transcription layer. With agentic tools, the transcription step becomes cheap, so the scarce skill is no longer mainly implementation speed but the ability to tell whether generated software is actually right. The author contrasts a domain expert who can spot a plausible-but-wrong schedule or billing rule with a strong generalist engineer who can build reliable systems but may lack the domain oracle needed to verify correctness. The piece says the old career path for engineers was to learn a domain slowly and become both translator and judge, but the agent has collapsed the translation advantage while leaving domain judgment intact. Its conclusion is that the most valuable people are those who can verify at both layers: they know the code is sound and the domain answer is true. The practical prescription is to acquire deep expertise in a real domain, regulation, instrument, or physical process, because that tacit knowledge is what the agent cannot supply.",
+      "why_it_matters": "The article matters because it reframes what is scarce in AI-assisted software work: not just implementation skill, but verified domain judgment. That is useful for anyone choosing where to spend learning time, because the author argues that code generation has become comparatively cheap while correctness still depends on tacit knowledge about a specific field. The most durable claim in the piece is not that engineers are obsolete; it is that the ability to translate a known idea into code is less differentiated than the ability to know whether the idea itself is right. For product teams, that means AI output should be treated as transcription that still needs a human oracle for validation, especially in domains with strict rules or costly errors. It also implies that generalist engineering strength is incomplete without exposure to the business, regulatory, or operational domain being automated. The article is opinionated rather than evidenced with benchmarks, so its practical value is mainly as a strategic lens, not a measured performance study. Actionable as of 2026-05-30: useful as a planning heuristic, but it should be treated as a durable argument to test against your own domain and failure modes rather than a universal law."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion essay, not a list, roundup, or Q&A.",
+        "Argument is sustained prose about domain expertise and agentic AI.",
+        "No structural signals of tools roundup, how-to guide, or research report."
+      ]
+    },
+    "tools": [],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Agentic AI reduces the cost of transcription from domain understanding into code, but not the cost of knowing what correct output looks like.",
+          "In regulated or operationally constrained domains, plausibility is not enough; reviewers need a domain-specific oracle.",
+          "A strong generalist engineer can verify software structure while still missing business or domain correctness.",
+          "The most valuable hybrid role is a person who can judge both code quality and domain truth."
+        ],
+        "knowledge_summary": "In AI-assisted work, implementation is only half the job; the other half is checking whether the output is actually correct. When a system can generate code or artifacts quickly, the scarce capability becomes the ability to recognize wrong-but-plausible results against real-world rules. Domain expertise supplies the ground truth needed for that judgment, especially in fields with tacit constraints, regulatory details, or operational edge cases. Technical fluency still matters, but it is no longer sufficient on its own for high-stakes correctness.",
+        "match_candidates": [],
+        "operational_insight": "Treat AI output as a draft that still needs a domain oracle. For production workflows, the reviewer should be the person who can detect invalid answers, not only the person who can judge code quality.",
+        "primary_tag": "ai-engineering",
+        "proposed_tags": [
+          "ai-engineering",
+          "verification-systems",
+          "software-engineering"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "Durable as of 2026-05-30: AI systems that generate artifacts still need humans who can verify correctness against real operational rules. This matters in service automation, conversational systems, and agent workflows where a plausible response can still be operationally wrong and expensive if the reviewer lacks domain knowledge.",
+        "secondary_tag": "verification-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"the binding constraint has moved from\ncan you build it\nto\ncan you tell whether it\u2019s right\n.\"",
+        "topic_slug": "domain-expertise-as-verification",
+        "topic_title": "Domain Expertise as Verification",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Pre-agent programming tied code production to deep domain understanding; agentic tools decouple those steps.",
+          "Generated code can pass tests and still be wrong if the tests do not encode the right domain rule.",
+          "The best outcomes come from combining code-generation help with human review that knows the target domain.",
+          "In high-stakes domains, the engineering bottleneck becomes correctness judgment rather than typing speed."
+        ],
+        "knowledge_summary": "Agentic coding changes software production by separating code generation from code verification. The model can draft the implementation, but a human still has to decide whether the output matches the real-world requirement. This shifts engineering value toward review, testing, and domain-aware validation rather than pure code-writing speed. The pattern is especially important when the system is used in environments where incorrect outputs can compile cleanly yet still fail operationally.",
+        "match_candidates": [],
+        "operational_insight": "Design coding workflows so the agent produces drafts and the human owns correctness. The workflow should force explicit checks for domain constraints, not just syntax, tests, or compile success.",
+        "primary_tag": "coding-agents",
+        "proposed_tags": [
+          "coding-agents",
+          "software-engineering",
+          "test-and-verification"
+        ],
+        "related_topics": [
+          "domain-expertise-as-verification",
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "Durable as of 2026-05-30: as code generation gets cheaper, the bottleneck in many agentic coding setups moves toward verification and domain review. That is highly relevant for AI-assisted development, where a working build can still encode the wrong business rule.",
+        "secondary_tag": "software-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"The code was a transcription of that understanding. Acquiring the understanding was the job.\"",
+        "topic_slug": "agentic-coding-workflows",
+        "topic_title": "Agentic Coding Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-30",
+          "confidence": 0.9,
+          "evidence_from_source": "The article explicitly argues that \"the binding constraint has moved from can you build it to can you tell whether it\u2019s right\" and that agentic tools \"collapsed one of those paths and not the other.\"",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "verification-over-principles",
+          "proposed_tags": [
+            "verification-over-principles"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "agentic-coding-shifts-toward-higher-supervision-costs"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "software-engineering",
+          "suggested_new_tags": [
+            "software-engineering",
+            "ai-engineering"
+          ],
+          "supporting_data_points": [
+            "The source contrasts domain experts who can verify outputs with generalist engineers who may not detect plausible but wrong results.",
+            "The source states that the agent does the transcription while humans do the judging.",
+            "The source argues that code-generation skill has become less scarce than verified domain knowledge."
+          ],
+          "supporting_snippet": "\"Agentic tools collapsed one of those paths and not the other.\"",
+          "time_sensitivity": "Actionable as of 2026-05-30; relevant while agentic coding tools continue lowering the cost of generation faster than they lower the cost of correctness review.",
+          "trend_description": "As AI systems generate more of the implementation layer, the limiting factor shifts toward verifying whether outputs satisfy real domain rules. The productive unit of work becomes a draft-plus-check loop, not just code generation. This tends to increase the value of domain experts, reviewers, and test writers who can judge correctness against operational truth.",
+          "trend_slug": "software-work-moves-toward-domain-verified-ai-output",
+          "trend_title": "Software Work Moves Toward Domain-Verified AI Output",
+          "uncertainty_note": "This is a source-level argument, not measured evidence. It may not hold equally across every software domain because some systems still require substantial architecture and debugging beyond transcription.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "4f474f1e-7320-4afb-ac3b-d2e85235155c",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "agentic-coding-shifts-toward-higher-supervision-costs"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "The source contrasts domain experts who can verify outputs with generalist engineers who may not detect plausible but wrong results.",
+              "The source states that the agent does the transcription while humans do the judging.",
+              "The source argues that code-generation skill has become less scarce than verified domain knowledge."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "verification-over-principles"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is a first-person strategic essay by the author, advancing an interpretation of how agentic AI changes software work.",
+          "Claims are supported by illustrative examples and reasoning, not by benchmark data, formal experiments, or implementation details.",
+          "The piece frames a judgment about professional value and skill scarcity rather than reporting a specific case study or vendor claim."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Agentic AI lowers the cost of turning a domain model into code, but it does not lower the cost of knowing what correct output looks like.",
+          "A non-programmer domain expert can be unusually effective with AI because they supply the oracle the model cannot create.",
+          "A strong engineer without domain knowledge may build a system that compiles and tests cleanly while still being wrong in important ways.",
+          "The article\u2019s main career advice is to build deep expertise in one real domain, because that tacit model is harder to replace than coding syntax.",
+          "The highest-value worker is someone who can verify both the software layer and the domain layer."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion essay, not a list, roundup, or Q&A.",
+          "Argument is sustained prose about domain expertise and agentic AI.",
+          "No structural signals of tools roundup, how-to guide, or research report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Agentic AI reduces the cost of transcription from domain understanding into code, but not the cost of knowing what correct output looks like.",
+            "In regulated or operationally constrained domains, plausibility is not enough; reviewers need a domain-specific oracle.",
+            "A strong generalist engineer can verify software structure while still missing business or domain correctness.",
+            "The most valuable hybrid role is a person who can judge both code quality and domain truth."
+          ],
+          "knowledge_summary": "In AI-assisted work, implementation is only half the job; the other half is checking whether the output is actually correct. When a system can generate code or artifacts quickly, the scarce capability becomes the ability to recognize wrong-but-plausible results against real-world rules. Domain expertise supplies the ground truth needed for that judgment, especially in fields with tacit constraints, regulatory details, or operational edge cases. Technical fluency still matters, but it is no longer sufficient on its own for high-stakes correctness.",
+          "match_candidates": [],
+          "operational_insight": "Treat AI output as a draft that still needs a domain oracle. For production workflows, the reviewer should be the person who can detect invalid answers, not only the person who can judge code quality.",
+          "primary_tag": "ai-engineering",
+          "proposed_tags": [
+            "ai-engineering",
+            "verification-systems",
+            "software-engineering"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "Durable as of 2026-05-30: AI systems that generate artifacts still need humans who can verify correctness against real operational rules. This matters in service automation, conversational systems, and agent workflows where a plausible response can still be operationally wrong and expensive if the reviewer lacks domain knowledge.",
+          "secondary_tag": "verification-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"the binding constraint has moved from\ncan you build it\nto\ncan you tell whether it\u2019s right\n.\"",
+          "topic_slug": "domain-expertise-as-verification",
+          "topic_title": "Domain Expertise as Verification",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "850abfe3-b19a-4c23-ac82-b5ee1bc2482b",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Agentic AI reduces the cost of transcription from domain understanding into code, but not the cost of knowing what correct output looks like.",
+              "In regulated or operationally constrained domains, plausibility is not enough; reviewers need a domain-specific oracle.",
+              "A strong generalist engineer can verify software structure while still missing business or domain correctness.",
+              "The most valuable hybrid role is a person who can judge both code quality and domain truth."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-engineering",
+            "verification-systems",
+            "software-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Pre-agent programming tied code production to deep domain understanding; agentic tools decouple those steps.",
+            "Generated code can pass tests and still be wrong if the tests do not encode the right domain rule.",
+            "The best outcomes come from combining code-generation help with human review that knows the target domain.",
+            "In high-stakes domains, the engineering bottleneck becomes correctness judgment rather than typing speed."
+          ],
+          "knowledge_summary": "Agentic coding changes software production by separating code generation from code verification. The model can draft the implementation, but a human still has to decide whether the output matches the real-world requirement. This shifts engineering value toward review, testing, and domain-aware validation rather than pure code-writing speed. The pattern is especially important when the system is used in environments where incorrect outputs can compile cleanly yet still fail operationally.",
+          "match_candidates": [],
+          "operational_insight": "Design coding workflows so the agent produces drafts and the human owns correctness. The workflow should force explicit checks for domain constraints, not just syntax, tests, or compile success.",
+          "primary_tag": "coding-agents",
+          "proposed_tags": [
+            "coding-agents",
+            "software-engineering",
+            "test-and-verification"
+          ],
+          "related_topics": [
+            "domain-expertise-as-verification",
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "Durable as of 2026-05-30: as code generation gets cheaper, the bottleneck in many agentic coding setups moves toward verification and domain review. That is highly relevant for AI-assisted development, where a working build can still encode the wrong business rule.",
+          "secondary_tag": "software-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"The code was a transcription of that understanding. Acquiring the understanding was the job.\"",
+          "topic_slug": "agentic-coding-workflows",
+          "topic_title": "Agentic Coding Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "4ccc3661-35ea-489a-802a-686bb9a6cfa0",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Pre-agent programming tied code production to deep domain understanding; agentic tools decouple those steps.",
+              "Generated code can pass tests and still be wrong if the tests do not encode the right domain rule.",
+              "The best outcomes come from combining code-generation help with human review that knows the target domain.",
+              "In high-stakes domains, the engineering bottleneck becomes correctness judgment rather than typing speed."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "domain-expertise-as-verification",
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "coding-agents",
+            "software-engineering",
+            "test-and-verification"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "brethorsting.com",
+    "canonical_url": "https://brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/",
+    "content_sha256": "4a97355ea2f034f6f1a63fa5c839e6c4fffa318ecf2745ba970a88a0fb6ecb63",
+    "publication": "Brethorsting",
+    "published_date": "2026-05-30",
+    "raw_html_rel_path": "raw/readwise/domain-expertise-has-always-been-the-real-moat-01ktjz6cyb7sg9znxh03mrzw1v.html",
+    "raw_md_rel_path": "raw/readwise/domain-expertise-has-always-been-the-real-moat-01ktjz6cyb7sg9znxh03mrzw1v.md",
+    "source_id": "domain-expertise-has-always-been-the-real-moat-01ktjz6cyb7sg9znxh03mrzw1v",
+    "title": "Domain Expertise Has Always Been the Real Moat"
+  }
+}

@@ -30,9 +30,14 @@ def test_build_parser_sets_expected_defaults(monkeypatch: pytest.MonkeyPatch) ->
     monkeypatch.delenv("MEDIUM_DELAY_JITTER", raising=False)
     monkeypatch.delenv("MEDIUM_BETWEEN_ARTICLES_DELAY", raising=False)
     monkeypatch.delenv("MEDIUM_MAX_PER_HOUR", raising=False)
+    monkeypatch.delenv("MEDIUM_LAUNCH_BRAVE", raising=False)
+    monkeypatch.delenv("MEDIUM_VERIFICATION_WAIT", raising=False)
+    monkeypatch.delenv("MEDIUM_BRAVE_STARTUP_TIMEOUT", raising=False)
     monkeypatch.setattr(cli, "default_shortcut_mode", lambda: "system")
     args = cli.build_parser().parse_args([])
     assert args.cdp_url == "http://127.0.0.1:9222"
+    assert args.launch_brave is True
+    assert args.brave_startup_timeout == 30.0
     assert args.reading_list_url == cli.FALLBACK_READING_LIST_URL
     assert args.delay == 3.0
     assert args.retry_failed is True
@@ -40,6 +45,10 @@ def test_build_parser_sets_expected_defaults(monkeypatch: pytest.MonkeyPatch) ->
     assert args.shortcut_mode == "system"
     assert args.remove_from_list is True
     assert args.readwise_confirm_timeout == 15.0
+    assert args.readwise_confirm_mode == "relaxed"
+    assert args.article_min_chars == 1200
+    assert args.article_scroll_steps == 6
+    assert args.verification_wait == 600.0
     assert args.jitter == 3.0
     assert args.between_articles == 8.0
     assert args.max_per_hour == 20

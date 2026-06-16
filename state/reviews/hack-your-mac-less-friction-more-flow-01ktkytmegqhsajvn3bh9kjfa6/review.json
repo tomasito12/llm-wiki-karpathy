@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T22:48:39+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrAORm3pEyHUPttKD25P9TwbmR1mk",
+          "token_usage": {
+            "completion_tokens": 244,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5641,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5885
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrAOU01jDjvYBIux4HACxynjsiJF2",
+          "token_usage": {
+            "completion_tokens": 1013,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 5299,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6312
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DrAOU01jDjvYBIux4HACxynjsiJF2",
+    "token_usage": {
+      "completion_tokens": 1257,
+      "prompt_tokens": 10940,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 12197
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "This is a single-person productivity/opinion article with repetitive Mac workflow tips and no durable, wiki-worthy implementation detail beyond common usage advice; better handled as a lightweight source if needed, but the content is thin and largely promotional/anecdotal.",
+      "skip_recommended": true,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article is written as a first-person experience report ('I was losing hours every year', 'I use').",
+        "Claims are supported by personal workflow anecdotes and subjective time-savings estimates, not external data or benchmarks.",
+        "Named tools are presented as the author's own setup choices rather than independently verified findings."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about making a Mac feel easier to use by removing tiny sources of friction. The author says the biggest productivity loss came from switching apps, copying things around, typing too much, and dealing with visual clutter. Instead of adding more planning systems, the fix is to use tools that keep hands on the keyboard, preserve clipboard history, and let speech or prediction handle some writing. The result is less interruption and more continuity while working. It is interesting because the argument is less \u201cwork harder\u201d and more \u201cmake the computer stop getting in your way.\u201d",
+      "assessed_as_of": "2026-02-26",
+      "contradictions_and_skepticism": "The article presents subjective friction reduction as if it were broadly applicable, but the evidence is personal and thin. The claim that typing is \u201cslow in 2026\u201d is more rhetorical than demonstrated, and may not hold across use cases. Some tool choices look like a stack of productivity products solving one another\u2019s problems, which can itself create complexity. The article also implies that less friction is almost always better, but it does not examine cases where deliberate slowness or manual review is valuable. Overall, the argument is plausible but promotional and not strongly evidenced.",
+      "key_insights": [
+        "App-switching delays of only a few seconds can matter when they happen dozens of times a day, because the real cost is broken momentum rather than raw elapsed time.",
+        "A keyboard-first setup can replace multiple mouse-heavy transitions with direct commands and reduce context switching.",
+        "Clipboard history changes repeated copy/paste work from a loop into a batch operation, which preserves mental continuity.",
+        "Speech input and sentence prediction are framed as a way to capture ideas before they degrade through typing.",
+        "Menu bar cleanup is treated as cognitive load reduction, not cosmetic cleanup."
+      ],
+      "limitations_and_open_questions": "The article is entirely anecdotal and provides no before/after measurements, user studies, or task benchmarks. The claimed time savings from app switching are back-of-the-envelope estimates rather than validated data. It is unclear how much of the benefit depends on the author\u2019s specific work pattern, tool preferences, or keyboard discipline. Several recommendations rely on paid third-party apps, so cost, maintenance burden, and lock-in are unaddressed. Privacy and data handling questions are also missing, especially for voice input, clipboard history, and AI-assisted workflows. The article does not discuss failure modes, accessibility tradeoffs, or whether the setup becomes fragile across macOS updates.",
+      "sources": [
+        "https://medium.com/@simpleandkind788/hack-your-mac-less-friction-more-flow-c98b1e147b42"
+      ],
+      "summary": "This article argues that the author\u2019s Mac workflow problems were not mainly about motivation or generic productivity systems, but about friction: app switching, file lookup, copy-paste loops, typing overhead, and visual clutter. The core thesis is that small delays and micro-interruptions compound into lost momentum, so the better lever is to reduce resistance in the computer environment rather than add more planning discipline. The author describes a keyboard-first setup built around Raycast for search and commands, RCMD for direct app switching, Paste for clipboard history, CleanShot X for capture and annotation, Whisper Flow for speech-to-text, Cotypist for local sentence prediction, Claude for analysis, Notion for organization, Bartender for menu bar cleanup, and Supercharge for quick system actions. The workflow is presented as an \u201cinspiration \u2192 analysis \u2192 organization \u2192 expression\u201d loop that keeps ideas moving without repeated context switching. The article\u2019s main practical claim is that a well-optimized Mac can feel like an extension of the brain: you think, and the computer responds with less delay. The evidence is entirely anecdotal and framed as personal experience rather than benchmarked productivity data.",
+      "why_it_matters": "The piece is useful as a compact example of a workflow principle that matters to individual AI practitioners: the biggest wins sometimes come from removing small interaction costs, not from adding another planning framework. Its strongest value is operational, not conceptual. The author shows a concrete stack of tools that support faster search, faster app switching, better clipboard handling, capture/annotation, voice input, local sentence prediction, and calmer system controls. For someone building or evaluating AI-assisted knowledge work setups, the article is a reminder that model quality alone does not solve workflow drag if the surrounding interface still forces repeated context shifts. The \u201cinspiration \u2192 analysis \u2192 organization \u2192 expression\u201d loop is a simple pattern worth reusing when designing personal information pipelines. That said, the source offers no benchmarks, no controlled comparison, and no evidence that these tools outperform simpler defaults for other users. As of 2026-02-26, the article is actionable mainly as a personal workflow checklist rather than a durable general rule, and it should be treated as a plausible setup recipe rather than validated guidance. Its service-automation relevance is minimal; the closer takeaway is about reducing friction in individual computer use, not about a broader automation architecture."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "The piece is a single coherent personal essay, not a bundle of unrelated items.",
+        "It argues a general workflow thesis ('less friction, more flow') and uses named products as examples rather than reviewing many tools.",
+        "There is no Q&A, transcript structure, or stepwise tutorial format."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article is written as a first-person experience report ('I was losing hours every year', 'I use').",
+          "Claims are supported by personal workflow anecdotes and subjective time-savings estimates, not external data or benchmarks.",
+          "Named tools are presented as the author's own setup choices rather than independently verified findings."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "App-switching delays of only a few seconds can matter when they happen dozens of times a day, because the real cost is broken momentum rather than raw elapsed time.",
+          "A keyboard-first setup can replace multiple mouse-heavy transitions with direct commands and reduce context switching.",
+          "Clipboard history changes repeated copy/paste work from a loop into a batch operation, which preserves mental continuity.",
+          "Speech input and sentence prediction are framed as a way to capture ideas before they degrade through typing.",
+          "Menu bar cleanup is treated as cognitive load reduction, not cosmetic cleanup."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@simpleandkind788/hack-your-mac-less-friction-more-flow-c98b1e147b42"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "The piece is a single coherent personal essay, not a bundle of unrelated items.",
+          "It argues a general workflow thesis ('less friction, more flow') and uses named products as examples rather than reviewing many tools.",
+          "There is no Q&A, transcript structure, or stepwise tutorial format."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Zeeshan Saghir",
+    "canonical_url": "https://medium.com/@simpleandkind788/hack-your-mac-less-friction-more-flow-c98b1e147b42",
+    "content_sha256": "bb8c86122114debbfb07c1001db026ee66971545849f2a3070e50835834cffb6",
+    "publication": "Medium",
+    "published_date": "2026-02-26",
+    "raw_html_rel_path": "raw/readwise/hack-your-mac-less-friction-more-flow-01ktkytmegqhsajvn3bh9kjfa6.html",
+    "raw_md_rel_path": "raw/readwise/hack-your-mac-less-friction-more-flow-01ktkytmegqhsajvn3bh9kjfa6.md",
+    "source_id": "hack-your-mac-less-friction-more-flow-01ktkytmegqhsajvn3bh9kjfa6",
+    "title": "Hack Your Mac: Less Friction, More Flow"
+  }
+}

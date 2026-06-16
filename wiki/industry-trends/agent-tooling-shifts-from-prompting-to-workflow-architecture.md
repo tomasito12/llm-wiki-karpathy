@@ -6,15 +6,21 @@ category: industry-trend
 tags:
 - ai-operationalization
 - execution-oriented-agents
+- orchestration-layer-growth
+- runtime-systems
+- tool-centric-agents
+aliases:
+- Agent performance is shifting from prompting to workflow architecture
 first_seen: '2026-04-15'
-last_seen: '2026-04-25'
-source_count: 2
-evidence_count: 16
+last_seen: '2026-05-22'
+source_count: 3
+evidence_count: 26
 source_ids:
+- ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7
 - i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj
 - the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf
 value_level: high
-confidence: 0.905
+confidence: 0.91
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---
@@ -31,6 +37,8 @@ Agent quality is becoming increasingly dependent on the surrounding workflow arc
 - harness-design-becomes-more-important-for-agent-reliability
 - models-becoming-execution-layers
 - artifact-first-ai-workflows
+- workflow-restructuring-around-ai-agents
+- persistent-agents
 
 ## Supporting Data Points
 
@@ -40,6 +48,11 @@ Agent quality is becoming increasingly dependent on the surrounding workflow arc
 - The article describes seven configuration layers before reaching the final replay.
 - The author claims the first setup takes an afternoon, but later tasks compound.
 - Headless mode, subagents, hooks, and worktrees are used together in the same workflow.
+- physics-intern boosts Gemini 3.1 Pro from 17.7 to 31.4
+- GPT 5.5 Pro did not benefit from the harness
+- Codex can securely use apps on your Mac from your phone even when the Mac is locked
+- Weaviate shipped a built-in MCP server inside the database
+- LangChain introduced a sandbox Auth Proxy and a typed streaming protocol
 
 ## Time sensitivity
 
@@ -50,6 +63,19 @@ Actionable as of 2026-04-15; the signal is tied to the current generation of age
 This is a vendor-framed trend supported by one product announcement, not by independent market data. The direction is plausible, but the article does not show adoption curves or comparative outcomes across multiple vendors.
 
 ## Evidence / supporting sources
+
+### [AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer (2026-05-22)
+
+- Agent capability is increasingly determined by harnesses, orchestration, retrieval, sandboxes, and streaming layers rather than prompt quality alone. The pattern matters because it changes where teams should invest: in task scaffolding, boundary control, and tool composition, not just model selection. (`ba6fa3c39a02` · neutral · trend_description; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- The roundup highlights physics-intern boosting Gemini 3.1 Pro in one harness, Codex gaining richer context and cross-device Mac control, Weaviate adding an MCP server with hybrid retrieval, LangChain adding sandbox and streaming primitives, and mini-swe-agent being made runnable on ProgramBench. (`041cc2d642bd` · supporting · evidence_from_source; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- physics-intern boosts Gemini 3.1 Pro from 17.7 to 31.4 (`aee384539ac1` · supporting · supporting_data_points[0]; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- GPT 5.5 Pro did not benefit from the harness (`272b6d02fd95` · supporting · supporting_data_points[1]; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- Codex can securely use apps on your Mac from your phone even when the Mac is locked (`db4b25b550c9` · supporting · supporting_data_points[2]; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- Weaviate shipped a built-in MCP server inside the database (`98442464d7e5` · supporting · supporting_data_points[3]; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- LangChain introduced a sandbox Auth Proxy and a typed streaming protocol (`3eaa9cd6236d` · supporting · supporting_data_points[4]; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- Harnesses are still a major source of capability gains... Agent design patterns are maturing from “single agent first” to explicit subagent orchestration... Developer infra is converging around retrieval, streaming, sandboxes, and security boundaries (`5095c8d92046` · supporting · supporting_snippet; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- Actionable as of 2026-05-22; the source presents this as an active 2026 engineering direction rather than a settled endpoint. (`e998adf6f48d` · uncertainty · time_sensitivity; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- The source is a roundup of mixed evidence, so the magnitude of harness gains and the transferability across models remain uncertain. The strongest examples are product- and setup-specific rather than universal. (`a049d1891397` · uncertainty · uncertainty_note; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
 
 ### I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked. (2026-04-25)
 
@@ -79,14 +105,19 @@ This is a vendor-framed trend supported by one product announcement, not by inde
 - This is a vendor-framed trend supported by one product announcement, not by independent market data. The direction is plausible, but the article does not show adoption curves or comparative outcomes across multiple vendors. (uncertainty; [[sources/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf|The next evolution of the Agents SDK]])
 - Actionable as of 2026-04-25; strongest for teams already using agentic coding tools and likely to remain relevant as long as context limits and tool schemas remain binding constraints. (uncertainty; [[sources/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj|I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked.]])
 - This is based on one practitioner setup, so it supports a workflow-architecture thesis more than a universal rule about all coding agents. (uncertainty; [[sources/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj|I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked.]])
+- Actionable as of 2026-05-22; the source presents this as an active 2026 engineering direction rather than a settled endpoint. (uncertainty; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
+- The source is a roundup of mixed evidence, so the magnitude of harness gains and the transferability across models remain uncertain. The strongest examples are product- and setup-specific rather than universal. (uncertainty; [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]])
 
 ## Related pages
 
 - artifact-first-ai-workflows
 - harness-design-becomes-more-important-for-agent-reliability
 - models-becoming-execution-layers
+- persistent-agents
+- workflow-restructuring-around-ai-agents
 
 ## Sources
 
+- [[sources/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7|[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer]]
 - [[sources/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj|I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked.]]
 - [[sources/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf|The next evolution of the Agents SDK]]

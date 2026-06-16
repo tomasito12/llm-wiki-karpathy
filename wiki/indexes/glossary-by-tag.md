@@ -7,8 +7,15 @@ category: index
 
 ## agent-systems
 
+- [[glossary/amdahl-s-law|Amdahl's law]]
+- [[glossary/llm-wikis|LLM Wikis]]
+- [[glossary/living-specification|Living Specification]]
+- [[glossary/model-context-protocol|Model Context Protocol]]
 - [[glossary/ontology|Ontology]]
+- [[glossary/recursive-self-improvement|Recursive self-improvement]]
 - [[glossary/sim-to-real|Sim-to-Real]]
+- [[glossary/specification-drift|Specification Drift]]
+- [[glossary/transport-layer-security-gap|Transport Layer Security Gap]]
 
 ## ai-economics
 
@@ -29,7 +36,17 @@ category: index
 
 ## alignment
 
+- [[glossary/recursive-self-improvement|Recursive self-improvement]]
 - [[glossary/sim-to-real|Sim-to-Real]]
+
+## context-engineering
+
+- [[glossary/behavior-driven-development|Behavior-Driven Development]]
+- [[glossary/gherkin|Gherkin]]
+- [[glossary/living-specification|Living Specification]]
+- [[glossary/model-context-protocol|Model Context Protocol]]
+- [[glossary/reference-ids|Reference IDs]]
+- [[glossary/specification-drift|Specification Drift]]
 
 ## evals
 
@@ -41,10 +58,15 @@ category: index
 
 - [[glossary/fido-compliant-security-key|FIDO-compliant security key]]
 - [[glossary/harness|Harness]]
+- [[glossary/model-context-protocol|Model Context Protocol]]
 - [[glossary/passkey|Passkey]]
+- [[glossary/transport-layer-security-gap|Transport Layer Security Gap]]
 
 ## inference
 
+- [[glossary/amdahl-s-law|Amdahl's law]]
+- [[glossary/grouped-query-attention|Grouped Query Attention]]
+- [[glossary/kv-cache|KV cache]]
 - [[glossary/mixture-of-experts|Mixture-of-Experts]]
 
 ## interactive-ai
@@ -55,7 +77,10 @@ category: index
 
 - [[glossary/closed-resource-information-trust|Closed-Resource Information Trust]]
 - [[glossary/datalog|Datalog]]
+- [[glossary/grouped-query-attention|Grouped Query Attention]]
+- [[glossary/kv-cache|KV cache]]
 - [[glossary/knowledge-management|Knowledge Management]]
+- [[glossary/llm-wikis|LLM Wikis]]
 - [[glossary/ontology|Ontology]]
 - [[glossary/retrieval-augmented-generation|Retrieval-Augmented Generation]]
 
@@ -66,9 +91,13 @@ category: index
 
 ## orchestration
 
+- [[glossary/amdahl-s-law|Amdahl's law]]
+- [[glossary/checkpointing|Checkpointing]]
 - [[glossary/hallucinations|Hallucinations]]
 - [[glossary/mixture-of-experts|Mixture-of-Experts]]
+- [[glossary/model-context-protocol|Model Context Protocol]]
 - [[glossary/ontology|Ontology]]
+- [[glossary/recursive-self-improvement|Recursive self-improvement]]
 
 ## rag
 
@@ -77,6 +106,7 @@ category: index
 ## retrieval
 
 - [[glossary/hallucinations|Hallucinations]]
+- [[glossary/llm-wikis|LLM Wikis]]
 - [[glossary/retrieval-augmented-generation|Retrieval-Augmented Generation]]
 
 ## runtime-architecture
@@ -88,6 +118,14 @@ category: index
 - [[glossary/model-context-protocol|Model Context Protocol]]
 - [[glossary/retrieval-augmented-generation|Retrieval-Augmented Generation]]
 - [[glossary/world-model|World model]]
+
+## tool-use
+
+- [[glossary/behavior-driven-development|Behavior-Driven Development]]
+- [[glossary/gherkin|Gherkin]]
+- [[glossary/mixture-of-experts|Mixture-of-Experts]]
+- [[glossary/model-context-protocol|Model Context Protocol]]
+- [[glossary/transport-layer-security-gap|Transport Layer Security Gap]]
 
 ## untagged
 

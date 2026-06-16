@@ -8,17 +8,21 @@ tags:
 - ai-engineering
 - coding-agents
 - developer-tools
+- inference-systems
 - infrastructure
+- runtime-systems
 - software-engineering
 first_seen: '2026-04-14'
 last_seen: '2026-05-11'
-source_count: 2
-evidence_count: 15
+source_count: 4
+evidence_count: 30
 source_ids:
 - ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p
+- choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj
+- the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71
 - what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z
 value_level: high
-confidence: 0.895
+confidence: 0.9124999999999999
 synthesis_state: stage1-placeholder
 ---
 
@@ -34,6 +38,13 @@ Local model choice becomes more useful when models are grouped by the work they 
 - Broad general models are not the same as coding models.
 - Agentic and tool-heavy workloads deserve their own evaluation bucket.
 - Selection based on workload class is more operational than selection based on abstract model prestige.
+- Under roughly 14B parameters, compute limits dominate and MLX tends to lead on Apple Silicon.
+- At 27B and above, memory bandwidth becomes the bottleneck and runtime choice matters less than quantization and available memory.
+- Distribution rules, fine-tuning requirements, and offload support can eliminate candidates before performance is considered.
+- Prefer model-task fit over raw parameter count.
+- Use Q4 as the practical floor before considering smaller models.
+- Reserve larger local models for chips with enough memory headroom.
+- Expect quality loss to vary by task when quantization becomes too aggressive.
 - A local model should be selected against the hardware tier that will actually run it.
 - Latency and memory pressure can matter more than raw benchmark rank for daily use.
 - Different tasks inside the same workflow may need different model sizes and speed profiles.
@@ -45,6 +56,8 @@ Choose local models by workload class first, then compare candidates inside that
 
 ## Related Topics
 
+- local-model-deployment
+- layered-local-and-cloud-inference
 - agentic-workflows
 
 ## Evidence / supporting sources
@@ -68,6 +81,27 @@ For local coding, the overwhelming consensus is
 Qwen3-Coder-Next
 . (`33245d90a5a1` · supporting · supporting_snippet; [[sources/ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p|[AINews] Top Local Models List - April 2026]])
 
+### Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks (2026-04-20)
+
+- Choosing a local LLM runtime is often an architecture decision, not a pure benchmark contest. The right choice depends on deployment constraints, model formats, integration depth, fine-tuning needs, hardware layering behavior, and vendor risk. Performance only matters after the workload regime is understood, because compute-bound and bandwidth-bound models behave differently. A single tok/s result can be misleading if it ignores model family, context length, quantization, or hardware class. (`034666054c01` · neutral · knowledge_summary; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+- Treat runtime selection as a multi-factor decision matrix instead of a leaderboard. A team that needs local fine-tuning, layer offload, or App Store embedding can lose on speed and still choose the correct runtime for production. (`8ffe943aa08a` · neutral · operational_insight; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+- This matters because local model deployment repeatedly turns into a fit-for-purpose problem: the best runtime depends on the model, device class, distribution channel, and integration surface. Teams building conversational AI, assistants, or service automation on local hardware need a reusable way to avoid overfitting to one benchmark. (`e31304236296` · neutral · relevance_note; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+- Under roughly 14B parameters, compute limits dominate and MLX tends to lead on Apple Silicon. (`cd1f0faf5a07` · supporting · key_points[0]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+- At 27B and above, memory bandwidth becomes the bottleneck and runtime choice matters less than quantization and available memory. (`2cc959daa4ca` · supporting · key_points[1]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+- Distribution rules, fine-tuning requirements, and offload support can eliminate candidates before performance is considered. (`5fcd34a6366b` · supporting · key_points[2]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+- "Performance benchmarks expire faster than architecture decisions. Runtime selection needs a structured decision framework, not a leaderboard." (`fb2be5949f8e` · supporting · supporting_snippet; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+
+### The Local AI Stack for Apple Silicon, Now With Superpowers. (2026-05-08)
+
+- Local model choice should be driven by the task, the device class, and the amount of memory and compute available. Smaller models are appropriate for structured outputs and lightweight reasoning, while larger models become practical only on higher-end hardware. Aggressive quantization is a tradeoff, not a free win, because memory savings can come with quality loss. Practical selection means matching model size and runtime to the job instead of chasing the largest model that can barely fit. (`400e3754cbf3` · neutral · knowledge_summary; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
+- A useful local AI stack starts with the smallest model that can reliably solve the target task, then moves up only when the quality gain is worth the extra memory and latency. Hardware-aware selection avoids brittle setups where a model technically loads but degrades user experience. The most durable decision rule in the source is to prefer Q4 models and smaller base models over pushing quantization too hard. (`c7669842c74f` · neutral · operational_insight; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
+- This is useful for anyone deploying local or edge AI because fit and quality are inseparable operational constraints. It generalizes to chatbots, voicebots, and embedded assistants where hardware varies and memory headroom matters. (`25d75aad1d16` · neutral · relevance_note; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
+- Prefer model-task fit over raw parameter count. (`f295da0dc90b` · supporting · key_points[0]; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
+- Use Q4 as the practical floor before considering smaller models. (`b7b2811ce725` · supporting · key_points[1]; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
+- Reserve larger local models for chips with enough memory headroom. (`7b5539331b11` · supporting · key_points[2]; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
+- Expect quality loss to vary by task when quantization becomes too aggressive. (`d355fc8cc087` · supporting · key_points[3]; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
+- "Quantizing aggressively to fit smaller hardware. Q2 or Q3 quantization saves memory but degrades quality unevenly across tasks. If your model does not fit at Q4, downgrade to a smaller model rather than quantizing harder. A Q4 8B beats a Q2 14B on most workloads." (`8c47797d9c1f` · supporting · supporting_snippet; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
+
 ### What Is the Best Local LLM for Coding in 2026? (2026-05-11)
 
 - Choosing a local model is primarily a systems fit problem, not a ranking problem. The useful choice depends on hardware tier, latency tolerance, memory bandwidth, and the task the model must perform. Chat, autocomplete, file editing, and agent loops often need different model sizes and speed targets. Quantization changes what fits, but aggressive compression can degrade coding reliability. A practical selection process therefore starts with the machine and workflow, then narrows to the smallest model that still stays responsive and accurate enough for the task. (`c611e4d00e73` · neutral · knowledge_summary; [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]])
@@ -86,8 +120,12 @@ No contradictions captured in current sources.
 ## Related pages
 
 - agentic-workflows
+- layered-local-and-cloud-inference
+- local-model-deployment
 
 ## Sources
 
 - [[sources/ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p|[AINews] Top Local Models List - April 2026]]
+- [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]]
+- [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]

@@ -1,0 +1,1208 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T23:51:39+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrBN667zgXMSl0OZnI94ja6epWpgu",
+          "token_usage": {
+            "completion_tokens": 190,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 10479,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 10669
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrBN7lijFjAIPKFPLGJbgtV6OXuvy",
+          "token_usage": {
+            "completion_tokens": 1354,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 10089,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 11443
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-DrBNMGzPIHs6N8T7bT2HSAAkBZx8v",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 2405,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 24416,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 26821
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DrBNMGzPIHs6N8T7bT2HSAAkBZx8v",
+    "token_usage": {
+      "completion_tokens": 3949,
+      "prompt_tokens": 44984,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 48933
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-06-12",
+        "confidence": 0.9,
+        "evidence_from_source": "Anthropic describes Claude Mythos 5 as the fully capable but limited-distribution model, while Claude Fable 5 is the general-use version with classifiers and refusals or handoff for prompts about cybersecurity, biology, chemistry, distillation, and building cutting-edge AI.",
+        "evidence_type": "vendor_claim",
+        "match_candidates": [],
+        "primary_tag": "ai-governance",
+        "proposed_tags": [
+          "ai-governance",
+          "ai-safety",
+          "policy-operationalization",
+          "model-behavior"
+        ],
+        "related_trends": [
+          "high-risk-models-move-to-gated-access",
+          "stable-api-names-no-longer-guarantee-stable-model-behavior",
+          "ai-governance-shifts-toward-layered-verification"
+        ],
+        "secondary_tag": "ai-safety",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Claude Fable 5 degrades or refuses on cybersecurity, biology, chemistry, distillation, and cutting-edge AI prompts.",
+          "Anthropic says Mythos 5 initially had strictly limited distribution.",
+          "Claude Fable 5 is available on subscription plans; Mythos 5 is initially for selected partners."
+        ],
+        "supporting_snippet": "\u201cClaude Mythos 5 is fine-tuned for alignment but not designed to be \u2018safe for general use.\u2019 On the other hand, Claude Fable 5 implements extra layers of precaution\u2026 Prompts to Claude Fable 5 pass through classifiers that flag requests related to cybersecurity, biology, chemistry, distillation, or building cutting-edge AI. Given a prompt like this, Claude Fable 5 can be set to either refuse to respond or hand them off to Claude Opus 4.8\u2026\u201d",
+        "time_sensitivity": "Actionable as of 2026-06-12; relevant as long as frontier providers keep shipping gated general-use variants for sensitive capabilities.",
+        "trend_description": "Frontier model providers are separating general-use access from higher-capability or higher-risk access, with extra safeguards, refusals, or handoff behavior for sensitive requests. This creates distinct product tiers for the same underlying model family and makes access policy part of model design.",
+        "trend_slug": "tiered-access-for-sensitive-model-capabilities",
+        "trend_title": "High-risk model capabilities are being split across access tiers",
+        "uncertainty_note": "The source is a roundup and relies partly on vendor disclosure. It shows a specific release pattern from Anthropic, but it does not prove that all frontier providers will follow the same access-tiering strategy.",
+        "value_level": "high"
+      },
+      {
+        "assessed_as_of": "2026-06-12",
+        "confidence": 0.94,
+        "evidence_from_source": "The newsletter says the main way desktop agents are built is by creating tools, providing them to a frontier LLM, and setting up permissions and guardrails; it also says the software that wraps around the LLM is called the agent harness and enables the key loop that decides what to do next.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "tool-centric-agents",
+        "proposed_tags": [
+          "tool-centric-agents",
+          "orchestration-layer-growth",
+          "execution-oriented-agents",
+          "persistent-agents"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents",
+          "agentic-coding-shifts-toward-higher-supervision-costs",
+          "persistent-agents"
+        ],
+        "secondary_tag": "orchestration-layer-growth",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "Desktop agents are described as reading/editing local files, sending messages, and scheduling deliverables.",
+          "Cursor trained Composer 2.5 with a simulated agentic harness and tools that matched Cursor CLI.",
+          "OpenCoworker is described as an open-source alternative with local-model support and memory saved on the user\u2019s computer."
+        ],
+        "supporting_snippet": "\u201cThe software that wraps around the LLM to implement a desired agentic system is called the agent harness, and it enables the LLM to drive the key loop that decides what to do next at each step.\u201d",
+        "time_sensitivity": "Actionable as of 2026-06-12; likely durable because the source frames harness design as a core requirement for desktop and coding agents.",
+        "trend_description": "For tool-using agents, the surrounding harness increasingly determines whether a model can act effectively. Permissions, tool routing, feedback loops, memory, and local integrations shape performance as much as the base model does.",
+        "trend_slug": "harness-design-becomes-more-important-for-agent-reliability",
+        "trend_title": "Agent reliability is shifting toward harness design",
+        "uncertainty_note": "The source is descriptive rather than comparative research. It argues for the importance of harnesses, but it does not quantify how much harness quality matters relative to model quality across deployments.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-06-12",
+        "evidence_snippets": [
+          "\u201cDesktop agents not only chat with you but also read and edit local files, read/send messages, and provide scheduled deliverables like a daily news summary.\u201d",
+          "\u201cThe software that wraps around the LLM to implement a desired agentic system is called the agent harness\u2026\u201d"
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "OpenCoworker",
+          "aisuite",
+          "Ollama"
+        ],
+        "operational_relevance": "Designing desktop agents requires tool permissioning, local context handling, and safe action execution across files, email, and messaging tools.",
+        "primary_tag": "tool-centric-agents",
+        "proposed_tags": [
+          "tool-centric-agents",
+          "persistent-agents",
+          "orchestration-layer-growth",
+          "automation-supervision"
+        ],
+        "secondary_tag": "persistent-agents",
+        "service_automation_relevance": "Potentially relevant for back-office automation and support operations where agents need to draft, update, or route artifacts rather than only answer questions.",
+        "signal_strength": "high",
+        "signal_title": "Desktop agents are becoming file-native execution tools",
+        "signal_type": "tool",
+        "suggested_destinations": [
+          "topics/",
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The article frames desktop agents as systems that can read and edit local files, send messages, and produce scheduled deliverables. That makes them closer to workflow executors than chat interfaces. For builders, the important constraint is not only model quality but also file access, app integration, and a permission model that matches the task risk.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "This is a durable product-shape shift as of 2026-06-12: if an agent can act on a user\u2019s computer, reliability, privacy, and guardrails matter more than chat fluency alone.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-12",
+        "evidence_snippets": [
+          "\u201cI do not use existing commercial desktop agents for highly confidential tasks, since I\u2019m uncomfortable with some of their data-retention policies\u2026\u201d",
+          "\u201cIt saves its memory on your computer, and you can choose a LLM provider with a zero data-retention policy, local inference, or other options depending on your privacy requirements.\u201d"
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "OpenCoworker",
+          "Anthropic"
+        ],
+        "operational_relevance": "Teams shipping desktop or enterprise agents need explicit retention controls, local inference options, and clear data-flow documentation.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "ai-governance",
+          "ai-operationalization",
+          "persistent-agents"
+        ],
+        "secondary_tag": "ai-governance",
+        "service_automation_relevance": "Important for support systems that process confidential tickets, attachments, or internal messages, where retention and privilege exposure can block adoption.",
+        "signal_strength": "high",
+        "signal_title": "Privacy and retention policies are product constraints for enterprise desktop agents",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "topics/",
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The source says commercial desktop agents are avoided for highly confidential tasks because of data-retention policies and possible legal-privilege consequences. It also highlights OpenCoworker\u2019s local-memory and local-model options as a privacy-oriented alternative. The operational lesson is that data handling is part of the product specification for agentic software.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-12, agent products that can read local documents or messages face trust barriers that are not present in ordinary chat apps.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-12",
+        "evidence_snippets": [
+          "\u201cComposer 2.5 is built specifically for agentic coding.\u201d",
+          "\u201cDuring reinforcement learning, the model was rewarded not only for success but also for brevity and elegance of its output.\u201d",
+          "\u201cThe team fine-tuned the model using 25 times as many synthetic tasks as they used for Composer 2.\u201d"
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Cursor",
+          "Composer 2.5",
+          "Moonshot",
+          "Cursor CLI"
+        ],
+        "operational_relevance": "Useful for teams building coding agents or other execution-heavy assistants that need short, tool-accurate outputs and low task cost.",
+        "primary_tag": "tool-centric-agents",
+        "proposed_tags": [
+          "tool-centric-agents",
+          "inference-efficiency",
+          "orchestration-layer-growth"
+        ],
+        "secondary_tag": "inference-efficiency",
+        "service_automation_relevance": "Indirect but relevant: the same pattern applies to support systems that need concise, action-oriented outputs inside a fixed workflow.",
+        "signal_strength": "high",
+        "signal_title": "Specialist coding models are being trained inside product-specific harnesses",
+        "signal_type": "model",
+        "suggested_destinations": [
+          "topics/",
+          "trends/"
+        ],
+        "suggested_new_tag": "coding-models-shift-toward-agentic-execution",
+        "suggested_new_tags": [
+          "coding-models-shift-toward-agentic-execution"
+        ],
+        "summary": "Cursor\u2019s Composer 2.5 is presented as a product-specific coding model trained from open weights and then refined with a simulated agentic harness, tool feedback, and many synthetic tasks. The setup optimizes for speed, cost, brevity, and task completion inside Cursor\u2019s environment rather than for general-purpose capability. This is a concrete example of model training being tightly coupled to the runtime it will serve.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-12, it suggests that strong agent products may come from co-designing the model with the product workflow instead of depending only on general frontier models.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-06-12",
+        "evidence_snippets": [
+          "\u201cWhen prompted in Chinese, those LLMs express a more positive attitude toward the Chinese government than they do when prompted in English.\u201d",
+          "\u201cThe models nearly reproduced the strings roughly 3 to 5 percent of the time.\u201d",
+          "\u201cThe judges found the Chinese responses more favorable to China 75.3 percent of the time.\u201d"
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Anthropic",
+          "OpenAI",
+          "GPT-4o",
+          "Claude 3 Sonnet"
+        ],
+        "operational_relevance": "Evaluation pipelines should compare outputs across languages and translation paths, not only across prompts in English.",
+        "primary_tag": "behavioral-evaluation",
+        "proposed_tags": [
+          "behavioral-evaluation",
+          "continuous-evaluation",
+          "model-behavior",
+          "ai-governance"
+        ],
+        "secondary_tag": "continuous-evaluation",
+        "service_automation_relevance": "Relevant for multilingual customer-facing systems, where tone and policy responses may vary by user language and could create inconsistent or biased support experiences.",
+        "signal_strength": "medium",
+        "signal_title": "Prompt language can change model political tone",
+        "signal_type": "research_eval",
+        "suggested_destinations": [
+          "topics/",
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The study summarized in the newsletter found that language and media environment affect how models answer political questions. In the reported experiments, Chinese-language prompts produced more pro-government responses than English prompts. That makes multilingual evaluation a real deployment requirement, not a nice-to-have.",
+        "time_horizon": "medium_term",
+        "value_level": "medium",
+        "why_it_matters": "As of 2026-06-12, teams serving multilingual users need to test for language-conditioned behavior shifts, especially for politically sensitive or value-laden domains.",
+        "wiki_worthiness": "review_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The newsletter combines vendor announcements, benchmark-driven product comparisons, and references to an academic study.",
+        "Some sections rely on Anthropic and Cursor\u2019s own claims, while others summarize independent analysis and research results.",
+        "No single evidence basis dominates the whole source."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This roundup is about AI systems that do work, not just chat. It looks at desktop agents, coding agents, and new model releases that are built to use tools, edit files, and act inside software. The interesting part is that the same model can behave differently depending on the harness, safety rules, and the language of the prompt. It also shows that privacy and data-control choices matter when agents can read local documents or send messages. One study in the issue suggests that the information environment in a language can shape how models answer political questions. As of 2026-06-12, the practical takeaway is to treat agent design, model selection, and data governance as linked decisions, not separate ones.",
+      "assessed_as_of": "2026-06-12",
+      "contradictions_and_skepticism": "The article contains some promotional framing, especially around major model launches and RSI, so the strongest claims should be treated cautiously. Anthropic\u2019s safety bifurcation is presented as reasonable by the authors, but the piece also acknowledges that the company\u2019s ability to judge harmful-use risk and performance tradeoffs is imperfect. The initial hidden degradation in Fable 5 is a genuine trust problem, and the later disclosure does not remove the concern that safety policy can be used to limit legitimate competitive or research use. The RSI discussion leans speculative relative to the concrete evidence about coding productivity, so the article itself distinguishes near-term productivity gains from far-future self-improvement claims. The state-media findings are striking, but they rest on controlled prompts and evaluation pipelines, so they should not be overread as a complete map of real-world political influence.",
+      "key_insights": [
+        "Desktop agents become materially more useful when the model can call tools directly and the harness can manage permissions and guardrails.",
+        "OpenCoworker is positioned as a privacy-first alternative because it can use local inference or providers with zero data retention, while keeping memory on the user\u2019s machine.",
+        "Anthropic\u2019s Fable 5 controversy shows that safety filters can degrade model behavior on sensitive prompts, and hidden degradation can trigger user backlash even when the model is later changed to disclose refusal or handoff.",
+        "Cursor\u2019s Composer 2.5 is a case where a product-specific model is trained inside the product\u2019s own harness to optimize for speed, brevity, and cost, not just raw benchmark score.",
+        "The state-media study suggests that prompt language and training-data composition can materially affect political tone, so multilingual evaluation is not optional if a model will serve users across language communities."
+      ],
+      "limitations_and_open_questions": "The newsletter mixes vendor claims, benchmark summaries, and one academic study, so the evidence quality varies by section. Anthropic\u2019s model details are limited: parameter count, architecture, and training data are undisclosed, and independent evaluations for Mythos 5 were not available in the article. Many benchmark claims depend on proprietary or composite evaluations, which may not predict real user tasks outside the reported setup. Cursor\u2019s Composer 2.5 training recipe is described, but the source does not disclose the model used to generate synthetic tasks or the full additional data. The desktop-agent discussion is still a work in progress, and the article says some integrations like email remain difficult to set up. The state-media study shows correlation across languages and prompts, but it does not prove intentional manipulation by governments or directly measure downstream user harm.",
+      "sources": [
+        "mailto:reader-forwarded-email/3813d7061048f17a0b20b7a7ed5566be"
+      ],
+      "summary": "This newsletter roundup covers four main themes: desktop agents, Anthropic\u2019s Claude Mythos 5 and Claude Fable 5 launch, Cursor\u2019s Composer 2.5 coding model, the idea of recursive self-improvement, and a study on how state media can bias large language model outputs. The desktop-agent section argues that agents become more useful when they can read and edit local files, use tools, and take actions directly, but it also raises privacy and legal-risk concerns for commercial offerings; the authors point to their open-source OpenCoworker project as an alternative that can run with local models or privacy-preserving providers. The Anthropic segment says Mythos 5 is the fully capable model with limited distribution while Fable 5 is the consumer/general-use version with safety filters and some degraded behavior on prompts about biology, chemistry, cybersecurity, and cutting-edge AI; the article emphasizes strong benchmark results, but also notes controversy over the first version of Fable\u2019s restrictions. The Cursor section presents Composer 2.5 as a specialized coding model built from Moonshot\u2019s open weights and then trained with more code, simulated agentic harnesses, and reinforcement learning to optimize speed, cost, and task completion inside Cursor\u2019s environment. The final research section argues that language, media environment, and training data composition can materially bias model outputs, with Chinese-language prompts producing more pro-government responses than English prompts in the reported experiments.",
+      "why_it_matters": "The piece is useful because it ties together three practical layers of agentic AI: the model, the harness, and the data environment. The desktop-agent section is a concrete reminder that action-taking agents need more than chat quality; they need file access, app integrations, scheduling, and a permission model that matches the risks of local data. That is a real operational issue as of 2026-06-12, because the article explicitly says commercial desktop agents raise retention and legal-privilege concerns, while OpenCoworker tries to solve those concerns with local memory and optional local models. The Anthropic section is important because it shows a high-capability model split into a limited partner release and a heavily guarded general-use release, with explicit refusals or model handoff on prompts tied to cybersecurity, biology, chemistry, distillation, and advanced AI construction. The controversy over Fable 5\u2019s initial hidden degradation is a reminder that product behavior changes can matter as much as headline benchmark wins. Cursor\u2019s Composer 2.5 section is valuable because it gives a concrete example of specialized model training inside a real coding environment, using synthetic tasks, tool feedback, and reward shaping for brevity and elegance. That suggests harness engineering and model training can be co-designed instead of treated as separate layers. The language-bias study adds a quieter but durable point: multilingual LLM behavior can inherit the information structure of the training corpus, so evaluation and governance should not assume English results generalize. For AI engineering teams building desktop workflows or developer tools, the practical lesson as of 2026-06-12 is to treat tool access, privacy policy, and multilingual behavior as first-class product constraints, not afterthoughts."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece is structured as a newsletter roundup with multiple separated news items and commentary sections.",
+        "It covers several distinct AI news stories rather than one coherent argument or one tutorial.",
+        "The main body alternates between short reported items and opinionated 'Why it matters' blurbs, which matches a digest format."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-12",
+          "confidence": 0.9,
+          "evidence_from_source": "Anthropic describes Claude Mythos 5 as the fully capable but limited-distribution model, while Claude Fable 5 is the general-use version with classifiers and refusals or handoff for prompts about cybersecurity, biology, chemistry, distillation, and building cutting-edge AI.",
+          "evidence_type": "vendor_claim",
+          "match_candidates": [],
+          "primary_tag": "ai-governance",
+          "proposed_tags": [
+            "ai-governance",
+            "ai-safety",
+            "policy-operationalization",
+            "model-behavior"
+          ],
+          "related_trends": [
+            "high-risk-models-move-to-gated-access",
+            "stable-api-names-no-longer-guarantee-stable-model-behavior",
+            "ai-governance-shifts-toward-layered-verification"
+          ],
+          "secondary_tag": "ai-safety",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Claude Fable 5 degrades or refuses on cybersecurity, biology, chemistry, distillation, and cutting-edge AI prompts.",
+            "Anthropic says Mythos 5 initially had strictly limited distribution.",
+            "Claude Fable 5 is available on subscription plans; Mythos 5 is initially for selected partners."
+          ],
+          "supporting_snippet": "\u201cClaude Mythos 5 is fine-tuned for alignment but not designed to be \u2018safe for general use.\u2019 On the other hand, Claude Fable 5 implements extra layers of precaution\u2026 Prompts to Claude Fable 5 pass through classifiers that flag requests related to cybersecurity, biology, chemistry, distillation, or building cutting-edge AI. Given a prompt like this, Claude Fable 5 can be set to either refuse to respond or hand them off to Claude Opus 4.8\u2026\u201d",
+          "time_sensitivity": "Actionable as of 2026-06-12; relevant as long as frontier providers keep shipping gated general-use variants for sensitive capabilities.",
+          "trend_description": "Frontier model providers are separating general-use access from higher-capability or higher-risk access, with extra safeguards, refusals, or handoff behavior for sensitive requests. This creates distinct product tiers for the same underlying model family and makes access policy part of model design.",
+          "trend_slug": "tiered-access-for-sensitive-model-capabilities",
+          "trend_title": "High-risk model capabilities are being split across access tiers",
+          "uncertainty_note": "The source is a roundup and relies partly on vendor disclosure. It shows a specific release pattern from Anthropic, but it does not prove that all frontier providers will follow the same access-tiering strategy.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "4b5f2e5c-5707-47e8-91ab-3de9cf19313d",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "high-risk-models-move-to-gated-access",
+              "stable-api-names-no-longer-guarantee-stable-model-behavior",
+              "ai-governance-shifts-toward-layered-verification"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Fable 5 degrades or refuses on cybersecurity, biology, chemistry, distillation, and cutting-edge AI prompts.",
+              "Anthropic says Mythos 5 initially had strictly limited distribution.",
+              "Claude Fable 5 is available on subscription plans; Mythos 5 is initially for selected partners."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-governance",
+            "ai-safety",
+            "policy-operationalization",
+            "model-behavior"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-12",
+          "confidence": 0.94,
+          "evidence_from_source": "The newsletter says the main way desktop agents are built is by creating tools, providing them to a frontier LLM, and setting up permissions and guardrails; it also says the software that wraps around the LLM is called the agent harness and enables the key loop that decides what to do next.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "tool-centric-agents",
+          "proposed_tags": [
+            "tool-centric-agents",
+            "orchestration-layer-growth",
+            "execution-oriented-agents",
+            "persistent-agents"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents",
+            "agentic-coding-shifts-toward-higher-supervision-costs",
+            "persistent-agents"
+          ],
+          "secondary_tag": "orchestration-layer-growth",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "Desktop agents are described as reading/editing local files, sending messages, and scheduling deliverables.",
+            "Cursor trained Composer 2.5 with a simulated agentic harness and tools that matched Cursor CLI.",
+            "OpenCoworker is described as an open-source alternative with local-model support and memory saved on the user\u2019s computer."
+          ],
+          "supporting_snippet": "\u201cThe software that wraps around the LLM to implement a desired agentic system is called the agent harness, and it enables the LLM to drive the key loop that decides what to do next at each step.\u201d",
+          "time_sensitivity": "Actionable as of 2026-06-12; likely durable because the source frames harness design as a core requirement for desktop and coding agents.",
+          "trend_description": "For tool-using agents, the surrounding harness increasingly determines whether a model can act effectively. Permissions, tool routing, feedback loops, memory, and local integrations shape performance as much as the base model does.",
+          "trend_slug": "harness-design-becomes-more-important-for-agent-reliability",
+          "trend_title": "Agent reliability is shifting toward harness design",
+          "uncertainty_note": "The source is descriptive rather than comparative research. It argues for the importance of harnesses, but it does not quantify how much harness quality matters relative to model quality across deployments.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "6e994eb5-a66d-4076-acc0-4026a206bace",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents",
+              "agentic-coding-shifts-toward-higher-supervision-costs",
+              "persistent-agents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Desktop agents are described as reading/editing local files, sending messages, and scheduling deliverables.",
+              "Cursor trained Composer 2.5 with a simulated agentic harness and tools that matched Cursor CLI.",
+              "OpenCoworker is described as an open-source alternative with local-model support and memory saved on the user\u2019s computer."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "tool-centric-agents",
+            "orchestration-layer-growth",
+            "execution-oriented-agents",
+            "persistent-agents"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-12",
+          "evidence_snippets": [
+            "\u201cDesktop agents not only chat with you but also read and edit local files, read/send messages, and provide scheduled deliverables like a daily news summary.\u201d",
+            "\u201cThe software that wraps around the LLM to implement a desired agentic system is called the agent harness\u2026\u201d"
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "OpenCoworker",
+            "aisuite",
+            "Ollama"
+          ],
+          "operational_relevance": "Designing desktop agents requires tool permissioning, local context handling, and safe action execution across files, email, and messaging tools.",
+          "primary_tag": "tool-centric-agents",
+          "proposed_tags": [
+            "tool-centric-agents",
+            "persistent-agents",
+            "orchestration-layer-growth",
+            "automation-supervision"
+          ],
+          "secondary_tag": "persistent-agents",
+          "service_automation_relevance": "Potentially relevant for back-office automation and support operations where agents need to draft, update, or route artifacts rather than only answer questions.",
+          "signal_strength": "high",
+          "signal_title": "Desktop agents are becoming file-native execution tools",
+          "signal_type": "tool",
+          "suggested_destinations": [
+            "topics/",
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The article frames desktop agents as systems that can read and edit local files, send messages, and produce scheduled deliverables. That makes them closer to workflow executors than chat interfaces. For builders, the important constraint is not only model quality but also file access, app integration, and a permission model that matches the task risk.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "This is a durable product-shape shift as of 2026-06-12: if an agent can act on a user\u2019s computer, reliability, privacy, and guardrails matter more than chat fluency alone.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "9f0dd488-f2d8-4515-b0cc-7b418f5b690f",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cDesktop agents not only chat with you but also read and edit local files, read/send messages, and provide scheduled deliverables like a daily news summary.\u201d",
+              "\u201cThe software that wraps around the LLM to implement a desired agentic system is called the agent harness\u2026\u201d"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenCoworker",
+              "aisuite",
+              "Ollama"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "tool-centric-agents",
+            "persistent-agents",
+            "orchestration-layer-growth",
+            "automation-supervision"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-12",
+          "evidence_snippets": [
+            "\u201cI do not use existing commercial desktop agents for highly confidential tasks, since I\u2019m uncomfortable with some of their data-retention policies\u2026\u201d",
+            "\u201cIt saves its memory on your computer, and you can choose a LLM provider with a zero data-retention policy, local inference, or other options depending on your privacy requirements.\u201d"
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "OpenCoworker",
+            "Anthropic"
+          ],
+          "operational_relevance": "Teams shipping desktop or enterprise agents need explicit retention controls, local inference options, and clear data-flow documentation.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "ai-operationalization",
+            "persistent-agents"
+          ],
+          "secondary_tag": "ai-governance",
+          "service_automation_relevance": "Important for support systems that process confidential tickets, attachments, or internal messages, where retention and privilege exposure can block adoption.",
+          "signal_strength": "high",
+          "signal_title": "Privacy and retention policies are product constraints for enterprise desktop agents",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "topics/",
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The source says commercial desktop agents are avoided for highly confidential tasks because of data-retention policies and possible legal-privilege consequences. It also highlights OpenCoworker\u2019s local-memory and local-model options as a privacy-oriented alternative. The operational lesson is that data handling is part of the product specification for agentic software.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-12, agent products that can read local documents or messages face trust barriers that are not present in ordinary chat apps.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "960299bc-9f50-4166-8990-406b95b2f1e6",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cI do not use existing commercial desktop agents for highly confidential tasks, since I\u2019m uncomfortable with some of their data-retention policies\u2026\u201d",
+              "\u201cIt saves its memory on your computer, and you can choose a LLM provider with a zero data-retention policy, local inference, or other options depending on your privacy requirements.\u201d"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenCoworker",
+              "Anthropic"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "ai-governance",
+            "ai-operationalization",
+            "persistent-agents"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-12",
+          "evidence_snippets": [
+            "\u201cComposer 2.5 is built specifically for agentic coding.\u201d",
+            "\u201cDuring reinforcement learning, the model was rewarded not only for success but also for brevity and elegance of its output.\u201d",
+            "\u201cThe team fine-tuned the model using 25 times as many synthetic tasks as they used for Composer 2.\u201d"
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Cursor",
+            "Composer 2.5",
+            "Moonshot",
+            "Cursor CLI"
+          ],
+          "operational_relevance": "Useful for teams building coding agents or other execution-heavy assistants that need short, tool-accurate outputs and low task cost.",
+          "primary_tag": "tool-centric-agents",
+          "proposed_tags": [
+            "tool-centric-agents",
+            "inference-efficiency",
+            "orchestration-layer-growth"
+          ],
+          "secondary_tag": "inference-efficiency",
+          "service_automation_relevance": "Indirect but relevant: the same pattern applies to support systems that need concise, action-oriented outputs inside a fixed workflow.",
+          "signal_strength": "high",
+          "signal_title": "Specialist coding models are being trained inside product-specific harnesses",
+          "signal_type": "model",
+          "suggested_destinations": [
+            "topics/",
+            "trends/"
+          ],
+          "suggested_new_tag": "coding-models-shift-toward-agentic-execution",
+          "suggested_new_tags": [
+            "coding-models-shift-toward-agentic-execution"
+          ],
+          "summary": "Cursor\u2019s Composer 2.5 is presented as a product-specific coding model trained from open weights and then refined with a simulated agentic harness, tool feedback, and many synthetic tasks. The setup optimizes for speed, cost, brevity, and task completion inside Cursor\u2019s environment rather than for general-purpose capability. This is a concrete example of model training being tightly coupled to the runtime it will serve.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-12, it suggests that strong agent products may come from co-designing the model with the product workflow instead of depending only on general frontier models.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "7904b6b5-c623-4656-9ce9-193af545fe77",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cComposer 2.5 is built specifically for agentic coding.\u201d",
+              "\u201cDuring reinforcement learning, the model was rewarded not only for success but also for brevity and elegance of its output.\u201d",
+              "\u201cThe team fine-tuned the model using 25 times as many synthetic tasks as they used for Composer 2.\u201d"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Cursor",
+              "Composer 2.5",
+              "Moonshot",
+              "Cursor CLI"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "tool-centric-agents",
+            "inference-efficiency",
+            "orchestration-layer-growth"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-12",
+          "evidence_snippets": [
+            "\u201cWhen prompted in Chinese, those LLMs express a more positive attitude toward the Chinese government than they do when prompted in English.\u201d",
+            "\u201cThe models nearly reproduced the strings roughly 3 to 5 percent of the time.\u201d",
+            "\u201cThe judges found the Chinese responses more favorable to China 75.3 percent of the time.\u201d"
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Anthropic",
+            "OpenAI",
+            "GPT-4o",
+            "Claude 3 Sonnet"
+          ],
+          "operational_relevance": "Evaluation pipelines should compare outputs across languages and translation paths, not only across prompts in English.",
+          "primary_tag": "behavioral-evaluation",
+          "proposed_tags": [
+            "behavioral-evaluation",
+            "continuous-evaluation",
+            "model-behavior",
+            "ai-governance"
+          ],
+          "secondary_tag": "continuous-evaluation",
+          "service_automation_relevance": "Relevant for multilingual customer-facing systems, where tone and policy responses may vary by user language and could create inconsistent or biased support experiences.",
+          "signal_strength": "medium",
+          "signal_title": "Prompt language can change model political tone",
+          "signal_type": "research_eval",
+          "suggested_destinations": [
+            "topics/",
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The study summarized in the newsletter found that language and media environment affect how models answer political questions. In the reported experiments, Chinese-language prompts produced more pro-government responses than English prompts. That makes multilingual evaluation a real deployment requirement, not a nice-to-have.",
+          "time_horizon": "medium_term",
+          "value_level": "medium",
+          "why_it_matters": "As of 2026-06-12, teams serving multilingual users need to test for language-conditioned behavior shifts, especially for politically sensitive or value-laden domains.",
+          "wiki_worthiness": "review_candidate"
+        },
+        "notes": null,
+        "proposal_id": "5c626a7a-26b1-43ee-a0dd-a4385902dccc",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\u201cWhen prompted in Chinese, those LLMs express a more positive attitude toward the Chinese government than they do when prompted in English.\u201d",
+              "\u201cThe models nearly reproduced the strings roughly 3 to 5 percent of the time.\u201d",
+              "\u201cThe judges found the Chinese responses more favorable to China 75.3 percent of the time.\u201d"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Anthropic",
+              "OpenAI",
+              "GPT-4o",
+              "Claude 3 Sonnet"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/",
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "behavioral-evaluation",
+            "continuous-evaluation",
+            "model-behavior",
+            "ai-governance"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The newsletter combines vendor announcements, benchmark-driven product comparisons, and references to an academic study.",
+          "Some sections rely on Anthropic and Cursor\u2019s own claims, while others summarize independent analysis and research results.",
+          "No single evidence basis dominates the whole source."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Desktop agents become materially more useful when the model can call tools directly and the harness can manage permissions and guardrails.",
+          "OpenCoworker is positioned as a privacy-first alternative because it can use local inference or providers with zero data retention, while keeping memory on the user\u2019s machine.",
+          "Anthropic\u2019s Fable 5 controversy shows that safety filters can degrade model behavior on sensitive prompts, and hidden degradation can trigger user backlash even when the model is later changed to disclose refusal or handoff.",
+          "Cursor\u2019s Composer 2.5 is a case where a product-specific model is trained inside the product\u2019s own harness to optimize for speed, brevity, and cost, not just raw benchmark score.",
+          "The state-media study suggests that prompt language and training-data composition can materially affect political tone, so multilingual evaluation is not optional if a model will serve users across language communities."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "mailto:reader-forwarded-email/3813d7061048f17a0b20b7a7ed5566be"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece is structured as a newsletter roundup with multiple separated news items and commentary sections.",
+          "It covers several distinct AI news stories rather than one coherent argument or one tutorial.",
+          "The main body alternates between short reported items and opinionated 'Why it matters' blurbs, which matches a digest format."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "The Batch @ DeepLearning.AI",
+    "canonical_url": "mailto:reader-forwarded-email/3813d7061048f17a0b20b7a7ed5566be",
+    "content_sha256": "db412e4bdf789acc5d0d29fd1c66b7370a16d32b7415be0ff8bcd5b9f30e18ab",
+    "publication": "GILL, an Innovative Approach to Multimodal Model Training",
+    "published_date": "2026-06-12",
+    "raw_html_rel_path": "raw/readwise/mythos-begets-fable-cursor-s-composer-2-5-agents-building-agents-01ktxm9yka45ht6v4236w9yszr.html",
+    "raw_md_rel_path": "raw/readwise/mythos-begets-fable-cursor-s-composer-2-5-agents-building-agents-01ktxm9yka45ht6v4236w9yszr.md",
+    "source_id": "mythos-begets-fable-cursor-s-composer-2-5-agents-building-agents-01ktxm9yka45ht6v4236w9yszr",
+    "title": "Mythos Begets Fable, Cursor's Composer 2.5, Agents Building Agents"
+  }
+}

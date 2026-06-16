@@ -9,15 +9,19 @@ tags:
 - infrastructure
 - multimodal-ai
 - runtime-architecture
+- test-and-verification
+- voice-ai
 first_seen: '2026-05-07'
-last_seen: '2026-05-12'
-source_count: 2
-evidence_count: 15
+last_seen: '2026-06-04'
+source_count: 4
+evidence_count: 30
 source_ids:
 - announcing-agentic-performance-benchmarking-for-speech-to-speech-models-on-01krgrx80q2dg5k4a2bcx1b5xn
 - building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp
+- parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy
+- playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx
 value_level: high
-confidence: 0.94
+confidence: 0.9299999999999999
 synthesis_state: stage1-placeholder
 ---
 
@@ -37,10 +41,17 @@ The source describes the stack as "a phone number, a SIP stack accepting the cal
 - The model is one box in the diagram, not the whole agent.
 - Deterministic actions such as lookups and retries should live outside the model.
 - The same runtime pattern can support support, scheduling, lead qualification, or screening by changing prompts and tools.
+- Speech-to-text, reasoning, and text-to-speech should be evaluated separately.
+- Latency compounds across the full voice pipeline, so model quality alone is not enough.
+- Post-call summarization and intent classification are part of the runtime, not just analytics.
 - Voice agents must preserve state across long conversations while still responding quickly.
 - Transport issues such as packet loss are part of the runtime problem, not an edge case.
 - Tool use is integral to voice-agent architecture when the job is completing service tasks.
 - Different models can produce materially different call lengths, changing infrastructure cost.
+- Real-time speech handling should be treated as a separate layer from answer generation.
+- Phone support requires timing and turn-taking discipline, not just textual response quality.
+- Handoff is part of the runtime, because many calls cannot be fully resolved by the agent.
+- The architecture should support confirmation before action in high-stakes tasks.
 
 ## Operational Insight
 
@@ -48,8 +59,11 @@ When a voice agent needs to handle real calls, keep the model on the conversatio
 
 ## Related Topics
 
+- verification-loops-in-ai-workflows
+- layered-agent-architecture
 - realtime-ai-evaluation
 - support-automation-as-operating-model
+- voice-agents-shift-toward-workflow-completion
 
 ## Evidence / supporting sources
 
@@ -74,16 +88,42 @@ When a voice agent needs to handle real calls, keep the model on the conversatio
 - Deterministic actions such as lookups and retries should live outside the model. (`b87873f4b073` · supporting · key_points[1]; [[sources/building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp|Building Realtime Voice Agents in 2026]])
 - The same runtime pattern can support support, scheduling, lead qualification, or screening by changing prompts and tools. (`51fce5bbf913` · supporting · key_points[2]; [[sources/building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp|Building Realtime Voice Agents in 2026]])
 
+### Parloa builds service agents customers want to talk to (2026-05-07)
+
+- Voice agents work best when the runtime is treated as a coordinated system rather than a single prompt. The stack usually separates speech-to-text, model reasoning, retrieval, tool execution, and text-to-speech, because each stage has different failure modes and latency constraints. Production systems also need orchestration rules for routing, handoff, and post-call analysis. The practical unit of design is the end-to-end voice workflow, not the model call alone. (`653ebf1910c5` · neutral · knowledge_summary; [[sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy|Parloa builds service agents customers want to talk to]])
+- For voice automation, evaluate and control each runtime layer separately, then verify that the layers still work together under realistic traffic and latency pressure. (`3a0e2f3adc42` · neutral · operational_insight; [[sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy|Parloa builds service agents customers want to talk to]])
+- This is durable because most real voice systems fail at the seams between transcription, reasoning, retrieval, and synthesis. Teams building voicebots and contact-center automation need a layered runtime view to manage latency, accuracy, and escalation risk as of 2026-05-07 and beyond. (`1af072533d21` · neutral · relevance_note; [[sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy|Parloa builds service agents customers want to talk to]])
+- Speech-to-text, reasoning, and text-to-speech should be evaluated separately. (`d3cc193ec4fc` · supporting · key_points[0]; [[sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy|Parloa builds service agents customers want to talk to]])
+- Latency compounds across the full voice pipeline, so model quality alone is not enough. (`633e79f22e0e` · supporting · key_points[1]; [[sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy|Parloa builds service agents customers want to talk to]])
+- Post-call summarization and intent classification are part of the runtime, not just analytics. (`7611d6083658` · supporting · key_points[2]; [[sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy|Parloa builds service agents customers want to talk to]])
+- Parloa evaluates each component of the voice stack independently: Speech-to-text systems are tested for word error rate, especially for sensitive inputs like policy numbers or account identifiers. Text-to-speech models are evaluated through blind listening tests to assess how natural the voice sounds to real users. (`31c34b18f599` · supporting · supporting_snippet; [[sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy|Parloa builds service agents customers want to talk to]])
+
+### Playing a different game (2026-06-04)
+
+- Voice agents benefit from a runtime that separates low-latency speech handling from slower response generation. That split lets the system preserve conversational timing while still allowing policy checks, external actions, and human handoff. In practice, voice quality depends on orchestration details as much as on model quality, because call flow, confirmations, escalation, and context transfer shape the user experience. This pattern becomes especially important when the agent must act in real time on phone calls rather than answer text prompts. (`07295ceea13d` · neutral · knowledge_summary; [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]])
+- Design voice agents as a layered runtime: keep speech processing on the critical path, isolate slower reasoning or response generation, and make handoff part of the core architecture. That is more durable than treating voice as a simple transcription-plus-chat wrapper. (`d8bf05771fd1` · neutral · operational_insight; [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]])
+- This pattern matters for any production voicebot because latency, turn-taking, and escalation are part of the core system, not just UI polish. It is especially relevant for customer support and service automation where a voice agent must hold a call, perform actions, and recover cleanly when uncertain. (`380a64674e06` · neutral · relevance_note; [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]])
+- Real-time speech handling should be treated as a separate layer from answer generation. (`fa05c17b2f86` · supporting · key_points[0]; [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]])
+- Phone support requires timing and turn-taking discipline, not just textual response quality. (`35bc9239713d` · supporting · key_points[1]; [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]])
+- Handoff is part of the runtime, because many calls cannot be fully resolved by the agent. (`2303731e079c` · supporting · key_points[2]; [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]])
+- The architecture should support confirmation before action in high-stakes tasks. (`6c324ea3b490` · supporting · key_points[3]; [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]])
+- "Most voice AI products are slow because they convert speech to text, send it to a general model, get a text answer, and then convert it back to speech. Fin Voice 2 was designed to work differently, separating the real time layer that handles speech processing, and the layer that generates answers." (`12e07544cdba` · supporting · supporting_snippet; [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]])
+
 ## Contradictions / tensions
 
 No contradictions captured in current sources.
 
 ## Related pages
 
+- layered-agent-architecture
 - realtime-ai-evaluation
 - support-automation-as-operating-model
+- verification-loops-in-ai-workflows
+- voice-agents-shift-toward-workflow-completion
 
 ## Sources
 
 - [[sources/announcing-agentic-performance-benchmarking-for-speech-to-speech-models-on-01krgrx80q2dg5k4a2bcx1b5xn|Announcing agentic performance benchmarking for Speech to Speech models on...]]
 - [[sources/building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp|Building Realtime Voice Agents in 2026]]
+- [[sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy|Parloa builds service agents customers want to talk to]]
+- [[sources/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx|Playing a different game]]

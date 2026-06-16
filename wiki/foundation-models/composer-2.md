@@ -9,16 +9,18 @@ tags:
 - proprietary-model
 - tool-use-capable
 first_seen: '2026-03-19'
-last_seen: '2026-03-19'
-source_count: 1
-evidence_count: 15
+last_seen: '2026-03-25'
+source_count: 2
+evidence_count: 24
 source_ids:
 - introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1
+- run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy
 value_level: high
-confidence: 0.94
+confidence: 0.7949999999999999
 synthesis_state: stage1-placeholder
 types:
 - coding-model
+- frontier-model
 - proprietary-model
 ---
 
@@ -45,6 +47,8 @@ Composer 2 is Cursor's coding model positioned for demanding software work. The 
 - It is positioned as a coding-focused model for long-horizon tasks that may require hundreds of actions.
 - It is trained from a continued-pretraining base and then reinforced on coding tasks, which the source presents as the reason for the quality jump.
 - It has a faster variant that claims the same intelligence while changing the price point.
+- It can be selected as the model inside Cursor’s multi-model agent workflow.
+- It is compatible with custom-built agent harnesses, which matters when coding tasks need tool execution and verification loops.
 
 ## Maturity signals
 
@@ -92,9 +96,22 @@ The evidence is vendor-controlled and benchmark-centric, so real-world reliabili
 - "Composer 2 is now available in Cursor. It's frontier-level at coding and priced at $0.50/M input and $2.50/M output tokens" (`c22bf9a46c78` · supporting · supporting_snippet; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
 - The evidence is vendor-controlled and benchmark-centric, so real-world reliability is not independently established in this source. The article does not provide failure modes, benchmark task composition, or workload-specific regressions, so the "frontier-level" framing should be treated cautiously as of 2026-03-19. (`846b0d66987f` · uncertainty · weaknesses_limitations; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
 
+### Run cloud agents in your own infrastructure (2026-03-25)
+
+- If used in self-hosted agents, Composer 2 has to work inside a worker-based execution loop where tool calls, repo access, and test runs happen on customer machines. That shifts the real deployment question from raw chat quality to whether the model can support reliable multi-step coding workflows under enterprise security constraints. (`3113f0fa8043` · neutral · deployment_implications; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- The source treats Composer 2 as an already-usable option in a generally available product, which suggests productization rather than a research preview. However, the article offers no independent evidence about adoption, benchmark standing, or ecosystem depth. (`8eed41e66f2a` · neutral · maturity_signals; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- Composer 2 is presented as one of the models available to Cursor’s self-hosted cloud agents. In this source, its main operational significance is that it can be used inside an agent harness that runs in customer infrastructure, which means model choice is being exposed as part of the agent execution layer rather than as a standalone chat experience. (`47e323db6885` · neutral · operational_profile; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- No pricing or inference-cost details are given. The only defensible inference is that model choice is being combined with self-hosted execution, so total cost would depend on both model usage and customer-run worker infrastructure. (`05b2bc4c1650` · neutral · pricing_inference_implications; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- No direct service-automation implication is stated beyond its use in autonomous coding agents. (`2e60ec9f4763` · neutral · service_automation_implications; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- It can be selected as the model inside Cursor’s multi-model agent workflow. (`e3266c802127` · supporting · core_capabilities[0]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- It is compatible with custom-built agent harnesses, which matters when coding tasks need tool execution and verification loops. (`c91b63c8bc97` · supporting · core_capabilities[1]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- "Multi-model: use Composer 2 or any model from frontier labs with custom-built agent harnesses." (`1c40dabee54e` · supporting · supporting_snippet; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- The article does not provide benchmark data, pricing, or failure cases for Composer 2. Because it is only mentioned as an available option, the source gives no basis for judging its quality relative to the other frontier models Cursor supports. (`774848323072` · uncertainty · weaknesses_limitations; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+
 ## Contradictions / tensions
 
 - The evidence is vendor-controlled and benchmark-centric, so real-world reliability is not independently established in this source. The article does not provide failure modes, benchmark task composition, or workload-specific regressions, so the "frontier-level" framing should be treated cautiously as of 2026-03-19. (uncertainty; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
+- The article does not provide benchmark data, pricing, or failure cases for Composer 2. Because it is only mentioned as an available option, the source gives no basis for judging its quality relative to the other frontier models Cursor supports. (uncertainty; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
 
 ## Related pages
 
@@ -105,3 +122,4 @@ The evidence is vendor-controlled and benchmark-centric, so real-world reliabili
 ## Sources
 
 - [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]]
+- [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]]

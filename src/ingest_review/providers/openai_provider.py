@@ -1648,6 +1648,10 @@ class OpenAIIngestionProvider(IngestionProvider):
         self._client = client or OpenAI()
         self._prompt_cache_key_supported = _supports_prompt_cache_key(self._client)
 
+    def close(self) -> None:
+        """Close the underlying OpenAI HTTP client and release connections."""
+        self._client.close()
+
     @property
     def provider_name(self) -> str:
         """Return ``openai``."""

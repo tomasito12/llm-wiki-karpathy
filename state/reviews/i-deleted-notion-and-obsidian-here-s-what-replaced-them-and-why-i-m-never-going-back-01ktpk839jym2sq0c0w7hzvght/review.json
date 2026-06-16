@@ -1,0 +1,967 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T23:30:39+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrB2ruJgh5ZGFlwsjScAJCBpHR00d",
+          "token_usage": {
+            "completion_tokens": 189,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4824,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5013
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrB2tbDf7ftVlvMNyy4WYV3ky25gG",
+          "token_usage": {
+            "completion_tokens": 979,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4427,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5406
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DrB32G1ABUfVCADlINanhHs5gEI5O",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2211,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 36330,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 38541
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DrB32G1ABUfVCADlINanhHs5gEI5O",
+    "token_usage": {
+      "completion_tokens": 3379,
+      "prompt_tokens": 45581,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 48960
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 3
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-12",
+        "confidence": 0.75,
+        "evidence_from_source": "The source describes NotebookLM as a system where users add sources once and ask questions later, and Gemini Canvas as a way to generate and rewrite project trackers and formatted documents on demand.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems"
+        ],
+        "related_trends": [
+          "ai-products-shift-from-models-to-systems",
+          "knowledge-systems-shift-toward-compilation-over-retrieval"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "workflow-design",
+        "suggested_new_tags": [
+          "workflow-design",
+          "human-ai-workflows"
+        ],
+        "supporting_data_points": [
+          "NotebookLM is described as source-based question answering over saved notes.",
+          "Gemini Canvas is described as generating project trackers and formatted documents from prompts.",
+          "The author frames both tools as reducing maintenance rather than adding power-user control."
+        ],
+        "supporting_snippet": "\"You put information in \u2014 you get information out.\"",
+        "time_sensitivity": "Actionable as of 2026-05-12; the observation reflects a product/workflow preference visible in this source date, but the broader durability depends on whether these tools keep improving retrieval and document generation.",
+        "trend_description": "Knowledge tools increasingly aim to complete the next useful work step instead of only storing or organizing information. The practical shift is from passive note repositories to assistants that can retrieve, synthesize, restructure, and export working artifacts. This changes the value proposition from organization quality to output completion.",
+        "trend_slug": "knowledge-work-moves-toward-agentic-workflow-completion",
+        "trend_title": "Knowledge Work Moves Toward Agentic Workflow Completion",
+        "uncertainty_note": "This is based on a single first-person workflow report, so it does not prove a general market shift or superior outcomes across users. It may reflect one user's preference for lower-maintenance tools rather than a broad change in how all knowledge work is done.",
+        "value_level": "medium"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The article is written in first person and centers on the author's own workflow and preferences.",
+        "Claims are supported by personal experience with Notion, Obsidian, NotebookLM, and Gemini rather than external data.",
+        "No benchmarks, citations, or independent measurements are provided."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is about swapping traditional note-taking and workspace apps for AI tools that do more of the organizing work for you. The author says Notion and Obsidian turned into projects to maintain, not places to get work done. NotebookLM is described as a way to ask questions over your saved notes instead of hunting through folders or backlinks. Gemini Canvas is presented as a simpler replacement for building documents and trackers by hand. The main idea is not that these tools are perfect, but that they reduce setup and keep the system from becoming the job.",
+      "assessed_as_of": "2026-05-12",
+      "contradictions_and_skepticism": "The article treats Notion and Obsidian as if their flexibility is mainly a liability, but many users choose them specifically for that control. It also assumes that AI-assisted retrieval and document generation are a cleaner replacement than manual systems without showing error rates or failure modes. The claim that these tools eliminate maintenance may be overstated, since any source-based workflow still needs curation, verification, and some structure. The piece is persuasive as personal testimony, but it does not prove that the new setup scales better or lasts longer for other workflows.",
+      "key_insights": [
+        "Notion\u2019s flexibility can create a hidden maintenance burden when solo users keep expanding simple notes into full database systems.",
+        "Obsidian\u2019s usefulness depends heavily on remembering what to search for and on having already built a backlink structure.",
+        "NotebookLM changes the retrieval model from keyword search to question answering over added sources, which reduces the cost of forgetting where information lives.",
+        "Gemini Canvas is positioned as a prompt-driven substitute for hand-designed document structure, with inline revision instead of full regeneration.",
+        "The article\u2019s strongest practical claim is about friction reduction, not feature superiority: the winning system is the one that does not require ongoing administration."
+      ],
+      "limitations_and_open_questions": "The article provides no benchmarks, task completion comparisons, or retention/quality measures, so it does not establish that NotebookLM or Gemini are better in general. It also does not discuss privacy, data governance, offline access, export portability beyond Google Docs/Sheets, or what happens when source libraries become large. The argument assumes the author\u2019s pain point is note organization overhead, which may not apply to users who value manual control, local storage, or long-term archival structure. It is unclear how robust NotebookLM\u2019s source synthesis is across messy notes, conflicting sources, or very large knowledge bases. The article does not compare cost, subscription tiers, or lock-in risks against the replaced tools.",
+      "sources": [
+        "https://medium.com/write-a-catalyst/i-deleted-notion-and-obsidian-heres-what-replaced-them-and-why-i-m-never-going-back-27a7d8545606"
+      ],
+      "summary": "The article is a first-person case for replacing Notion and Obsidian with NotebookLM and Gemini. The author argues that Notion encourages endless system-building through databases, tags, templates, and maintenance, while Obsidian depends on careful upfront structure, keyword search, backlinks, and plugin-heavy AI setup. In contrast, NotebookLM is presented as a source-based question-answering workspace that reduces retrieval friction by letting the user add notes once and then ask questions against them, with extras like mind maps, flashcards, slides, infographics, and quizzes. Gemini Canvas is framed as the direct replacement for Notion because it can generate project trackers and formatted documents from a prompt, revise sections in place, and export to Google Docs or Sheets. The core claim is that these tools remove the need to design and maintain a personal knowledge system, so the user can spend more time using information than organizing it. The evidence is entirely anecdotal and based on the author\u2019s own workflow, with no benchmarks or comparative evaluation beyond personal preference.",
+      "why_it_matters": "The piece is useful as a compact description of a real workflow tradeoff: some productivity tools reward system design, while others reduce the need for it. For AI practitioners building knowledge workflows, the interesting part is the shift from note organization to source-grounded retrieval and generation. The author\u2019s NotebookLM example shows a low-friction pattern: add material once, then query it later without relying on a manually curated folder structure or backlink graph. The Gemini Canvas section adds a second pattern: generate structured working documents on demand and edit them in place instead of maintaining templates and schemas. That is a practical reminder that the value of AI assistants in personal knowledge work may come less from raw capability than from lowering setup and upkeep costs. The article is thin on evidence, so the claims should be treated as a personal workflow report rather than a general proof. Actionable as of 2026-05-12, but best read as a user-experience anecdote to test, not a settled recommendation."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent opinion/article rather than a bundle of unrelated items or a step-by-step guide.",
+        "Compares three named products and describes a personal workflow change, but the structure is a narrative argument, not a roundup.",
+        "No interview format, transcript markers, or research/report methodology are present."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.88,
+        "core_capabilities": [
+          "It lets users add sources and ask questions over them, which shifts work from manual search to source-grounded retrieval.",
+          "It can synthesize saved notes into a knowledge base that responds when queried, which reduces the need to remember exact file locations.",
+          "It can generate mind maps, flashcards, slideshows, infographics, and quizzes from the same source set, which broadens reuse of the corpus."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The article treats it as a ready-to-use replacement in an everyday workflow, which suggests a polished consumer product rather than an experimental prototype. Beyond that, the source gives no adoption data, enterprise signal, or ecosystem evidence, so maturity should be treated as modestly inferred rather than established.",
+        "name": "NotebookLM",
+        "operational_relevance": "Useful when the workflow problem is retrieval from a personal or team knowledge base rather than managing a large manual note system. It fits conversational knowledge work, source-grounded synthesis, and lightweight study workflows where the user wants answers over added material instead of keyword search. For service automation teams, it is a reminder that a source-bound assistant can reduce the need for manual curation if the corpus stays reasonably scoped.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "retrieval",
+          "document-analysis",
+          "research-assistance"
+        ],
+        "proposed_types": [
+          "knowledge-management",
+          "app"
+        ],
+        "related_tools": [
+          "Gemini"
+        ],
+        "short_description": "A source-based note and question-answering workspace from Google. It lets you add documents or notes as sources and then ask questions against that bounded corpus.",
+        "strengths": "- Lets users ask questions over added sources instead of hunting through folders or backlinks, which lowers retrieval friction in knowledge work.\n- Supports a low-setup workflow because sources can be added once and reused for synthesis later.\n- Produces multiple artifact formats like mind maps, flashcards, slideshows, infographics, and quizzes, which makes it useful for repackaging the same source set into different review modes.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"NotebookLM is actually simple: you can add sources and ask questions. But the workflow shift is creating a huge difference here. You no longer need to search for something that you have saved; just ask for it.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source provides no benchmarks, quality measures, or scale limits, so the strength claim is experiential rather than proven. It is also unclear how well the workflow holds up with very large, messy, or conflicting source sets, and the article does not address privacy, governance, or export portability beyond the implied source-based workflow."
+      },
+      {
+        "confidence": 0.91,
+        "core_capabilities": [
+          "It can build a project tracker or formatted document from a user description, which reduces template-building overhead.",
+          "It can rewrite selected sections in place, which supports iterative editing without starting over.",
+          "It can export directly to Google Docs or Sheets, which helps the generated output fit existing collaboration workflows."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It exports directly to Google Docs, which supports document sharing and review.",
+          "It exports directly to Google Sheets, which supports tabular project tracking and lightweight data workflows."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The description implies a mature consumer-facing feature set rather than a prototype, especially because the workflow includes direct export into Google productivity formats. Still, the source is only a personal workflow report, so there is no independent signal about enterprise adoption or long-term robustness.",
+        "name": "Gemini Canvas",
+        "operational_relevance": "Useful when the job is to produce or edit structured working documents without manually designing a schema or template. It fits drafting, project tracking, and iterative document refinement workflows where inline revision matters more than managing a custom workspace. For service automation, the relevant pattern is prompt-to-structure generation followed by in-place edits and export into shared office formats.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "writing",
+          "workflow-automation",
+          "spreadsheets"
+        ],
+        "proposed_types": [
+          "ai-application",
+          "productivity"
+        ],
+        "related_tools": [
+          "Notion",
+          "Obsidian",
+          "NotebookLM"
+        ],
+        "short_description": "A structured document-generation workspace inside Gemini. It is presented here as a prompt-driven way to create and revise documents, trackers, and exportable working files.",
+        "strengths": "- Generates structured artifacts from a plain description, which removes the need to hand-design a database schema for many solo or lightweight workflows.\n- Supports in-place rewriting of highlighted sections, so users can edit targeted portions without regenerating the whole document.\n- Exports to Google Docs or Sheets, which makes the output easier to share and reuse in existing office workflows.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Gemini\u2019s Canvas is the actual replacement for Notion. You no longer need to design a database schema; just describe what you want. Project tracker? It will be done. Formatted document? Done.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not provide evidence about reliability, formatting edge cases, or how well it handles complex project schemas over time. The article also does not discuss vendor lock-in, offline use, or what happens when documents need more rigorous governance than prompt-driven generation can provide."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.88,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Manual systems can become self-consuming when the user keeps optimizing the container instead of using the content.",
+          "Question-answering over a bounded corpus reduces dependence on exact filenames, backlink graphs, or hand-built taxonomy.",
+          "Generated artifacts can be a better output than raw note retrieval when the goal is to move work forward."
+        ],
+        "knowledge_summary": "Personal knowledge systems can be designed around question answering and artifact generation instead of manual organization. The core shift is from building and maintaining a note structure to feeding a bounded corpus into an assistant that can retrieve, synthesize, and rewrite on demand. This pattern matters when the overhead of tags, backlinks, templates, and schema design starts to dominate actual use. It is strongest when the knowledge base is small enough to stay curated and source-grounded. It becomes weaker when governance, scale, or long-term archival discipline matter more than convenience.",
+        "match_candidates": [],
+        "operational_insight": "The durable design choice is to minimize maintenance work per note and maximize the chance that stored material can be reused later through natural-language queries or generated artifacts.",
+        "primary_tag": "knowledge-systems",
+        "proposed_tags": [
+          "knowledge-systems",
+          "human-ai-workflows",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "knowledge-systems-shift-toward-compilation-over-retrieval",
+          "knowledge-base-becomes-runtime-infrastructure"
+        ],
+        "relevance_note": "This pattern is durable for AI workflows because many teams care less about perfect organization and more about fast retrieval, synthesis, and reuse of internal material. It shows up in personal workspaces, team knowledge bases, and support operations where the cost of manual upkeep can exceed the value of the structure itself.",
+        "secondary_tag": "human-ai-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"I was spending more time organizing information than using it.\"",
+        "topic_slug": "agentic-personal-knowledge-management",
+        "topic_title": "Agentic Personal Knowledge Management",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.84,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The value is in collapsing the gap between intent and the first usable structure.",
+          "Inline rewriting is operationally important because it preserves momentum after the initial draft.",
+          "Export into standard office files reduces friction for review and handoff."
+        ],
+        "knowledge_summary": "Some AI tools reduce workflow friction by generating structured working documents directly from a short description. This avoids hand-building templates, schemas, or layout logic for routine artifacts like trackers, briefs, and formatted docs. The useful operational pattern is not just generation, but bounded revision: users can update a section in place rather than recreating the entire artifact. The pattern is most effective when the output needs to be shared in standard office formats. It is less useful when the artifact requires strict governance or highly customized information architecture.",
+        "match_candidates": [],
+        "operational_insight": "Use prompt-to-structure generation when the main bottleneck is setup time, and preserve the ability to edit specific sections without redoing the whole document.",
+        "primary_tag": "workflow-design",
+        "proposed_tags": [
+          "workflow-design",
+          "ai-engineering"
+        ],
+        "related_topics": [
+          "visual-specifications-for-ai-systems",
+          "artifact-first-ai-workflows"
+        ],
+        "relevance_note": "This matters in AI engineering and service automation because many operational workflows need quick structured outputs more than fully bespoke systems. It is relevant to project tracking, internal ops docs, and support artifacts where a generated first draft can replace manual template work.",
+        "secondary_tag": "ai-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "writing",
+        "suggested_new_tags": [
+          "writing"
+        ],
+        "supporting_snippet": "\"You no longer need to design a database schema; just describe what you want.\"",
+        "topic_slug": "prompt-driven-structured-document-generation",
+        "topic_title": "Prompt-Driven Structured Document Generation",
+        "value_level": "medium"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-12",
+          "confidence": 0.75,
+          "evidence_from_source": "The source describes NotebookLM as a system where users add sources once and ask questions later, and Gemini Canvas as a way to generate and rewrite project trackers and formatted documents on demand.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems"
+          ],
+          "related_trends": [
+            "ai-products-shift-from-models-to-systems",
+            "knowledge-systems-shift-toward-compilation-over-retrieval"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "workflow-design",
+          "suggested_new_tags": [
+            "workflow-design",
+            "human-ai-workflows"
+          ],
+          "supporting_data_points": [
+            "NotebookLM is described as source-based question answering over saved notes.",
+            "Gemini Canvas is described as generating project trackers and formatted documents from prompts.",
+            "The author frames both tools as reducing maintenance rather than adding power-user control."
+          ],
+          "supporting_snippet": "\"You put information in \u2014 you get information out.\"",
+          "time_sensitivity": "Actionable as of 2026-05-12; the observation reflects a product/workflow preference visible in this source date, but the broader durability depends on whether these tools keep improving retrieval and document generation.",
+          "trend_description": "Knowledge tools increasingly aim to complete the next useful work step instead of only storing or organizing information. The practical shift is from passive note repositories to assistants that can retrieve, synthesize, restructure, and export working artifacts. This changes the value proposition from organization quality to output completion.",
+          "trend_slug": "knowledge-work-moves-toward-agentic-workflow-completion",
+          "trend_title": "Knowledge Work Moves Toward Agentic Workflow Completion",
+          "uncertainty_note": "This is based on a single first-person workflow report, so it does not prove a general market shift or superior outcomes across users. It may reflect one user's preference for lower-maintenance tools rather than a broad change in how all knowledge work is done.",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "3fb62d22-27f7-4ca6-8037-68dfa1520408",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "ai-products-shift-from-models-to-systems",
+              "knowledge-systems-shift-toward-compilation-over-retrieval"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "NotebookLM is described as source-based question answering over saved notes.",
+              "Gemini Canvas is described as generating project trackers and formatted documents from prompts.",
+              "The author frames both tools as reducing maintenance rather than adding power-user control."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The article is written in first person and centers on the author's own workflow and preferences.",
+          "Claims are supported by personal experience with Notion, Obsidian, NotebookLM, and Gemini rather than external data.",
+          "No benchmarks, citations, or independent measurements are provided."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Notion\u2019s flexibility can create a hidden maintenance burden when solo users keep expanding simple notes into full database systems.",
+          "Obsidian\u2019s usefulness depends heavily on remembering what to search for and on having already built a backlink structure.",
+          "NotebookLM changes the retrieval model from keyword search to question answering over added sources, which reduces the cost of forgetting where information lives.",
+          "Gemini Canvas is positioned as a prompt-driven substitute for hand-designed document structure, with inline revision instead of full regeneration.",
+          "The article\u2019s strongest practical claim is about friction reduction, not feature superiority: the winning system is the one that does not require ongoing administration."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/write-a-catalyst/i-deleted-notion-and-obsidian-heres-what-replaced-them-and-why-i-m-never-going-back-27a7d8545606"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent opinion/article rather than a bundle of unrelated items or a step-by-step guide.",
+          "Compares three named products and describes a personal workflow change, but the structure is a narrative argument, not a roundup.",
+          "No interview format, transcript markers, or research/report methodology are present."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "core_capabilities": [
+            "It lets users add sources and ask questions over them, which shifts work from manual search to source-grounded retrieval.",
+            "It can synthesize saved notes into a knowledge base that responds when queried, which reduces the need to remember exact file locations.",
+            "It can generate mind maps, flashcards, slideshows, infographics, and quizzes from the same source set, which broadens reuse of the corpus."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The article treats it as a ready-to-use replacement in an everyday workflow, which suggests a polished consumer product rather than an experimental prototype. Beyond that, the source gives no adoption data, enterprise signal, or ecosystem evidence, so maturity should be treated as modestly inferred rather than established.",
+          "name": "NotebookLM",
+          "operational_relevance": "Useful when the workflow problem is retrieval from a personal or team knowledge base rather than managing a large manual note system. It fits conversational knowledge work, source-grounded synthesis, and lightweight study workflows where the user wants answers over added material instead of keyword search. For service automation teams, it is a reminder that a source-bound assistant can reduce the need for manual curation if the corpus stays reasonably scoped.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "retrieval",
+            "document-analysis",
+            "research-assistance"
+          ],
+          "proposed_types": [
+            "knowledge-management",
+            "app"
+          ],
+          "related_tools": [
+            "Gemini"
+          ],
+          "short_description": "A source-based note and question-answering workspace from Google. It lets you add documents or notes as sources and then ask questions against that bounded corpus.",
+          "strengths": "- Lets users ask questions over added sources instead of hunting through folders or backlinks, which lowers retrieval friction in knowledge work.\n- Supports a low-setup workflow because sources can be added once and reused for synthesis later.\n- Produces multiple artifact formats like mind maps, flashcards, slideshows, infographics, and quizzes, which makes it useful for repackaging the same source set into different review modes.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"NotebookLM is actually simple: you can add sources and ask questions. But the workflow shift is creating a huge difference here. You no longer need to search for something that you have saved; just ask for it.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source provides no benchmarks, quality measures, or scale limits, so the strength claim is experiential rather than proven. It is also unclear how well the workflow holds up with very large, messy, or conflicting source sets, and the article does not address privacy, governance, or export portability beyond the implied source-based workflow."
+        },
+        "notes": null,
+        "proposal_id": "e8fdc64c-45d3-40c3-9a29-d997369d272c",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It lets users add sources and ask questions over them, which shifts work from manual search to source-grounded retrieval.",
+              "It can synthesize saved notes into a knowledge base that responds when queried, which reduces the need to remember exact file locations.",
+              "It can generate mind maps, flashcards, slideshows, infographics, and quizzes from the same source set, which broadens reuse of the corpus."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Gemini"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "retrieval",
+            "document-analysis",
+            "research-assistance"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.91,
+          "core_capabilities": [
+            "It can build a project tracker or formatted document from a user description, which reduces template-building overhead.",
+            "It can rewrite selected sections in place, which supports iterative editing without starting over.",
+            "It can export directly to Google Docs or Sheets, which helps the generated output fit existing collaboration workflows."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It exports directly to Google Docs, which supports document sharing and review.",
+            "It exports directly to Google Sheets, which supports tabular project tracking and lightweight data workflows."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The description implies a mature consumer-facing feature set rather than a prototype, especially because the workflow includes direct export into Google productivity formats. Still, the source is only a personal workflow report, so there is no independent signal about enterprise adoption or long-term robustness.",
+          "name": "Gemini Canvas",
+          "operational_relevance": "Useful when the job is to produce or edit structured working documents without manually designing a schema or template. It fits drafting, project tracking, and iterative document refinement workflows where inline revision matters more than managing a custom workspace. For service automation, the relevant pattern is prompt-to-structure generation followed by in-place edits and export into shared office formats.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "writing",
+            "workflow-automation",
+            "spreadsheets"
+          ],
+          "proposed_types": [
+            "ai-application",
+            "productivity"
+          ],
+          "related_tools": [
+            "Notion",
+            "Obsidian",
+            "NotebookLM"
+          ],
+          "short_description": "A structured document-generation workspace inside Gemini. It is presented here as a prompt-driven way to create and revise documents, trackers, and exportable working files.",
+          "strengths": "- Generates structured artifacts from a plain description, which removes the need to hand-design a database schema for many solo or lightweight workflows.\n- Supports in-place rewriting of highlighted sections, so users can edit targeted portions without regenerating the whole document.\n- Exports to Google Docs or Sheets, which makes the output easier to share and reuse in existing office workflows.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Gemini\u2019s Canvas is the actual replacement for Notion. You no longer need to design a database schema; just describe what you want. Project tracker? It will be done. Formatted document? Done.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not provide evidence about reliability, formatting edge cases, or how well it handles complex project schemas over time. The article also does not discuss vendor lock-in, offline use, or what happens when documents need more rigorous governance than prompt-driven generation can provide."
+        },
+        "notes": null,
+        "proposal_id": "12409bf0-8f4b-46ba-886c-6ae8b9291723",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can build a project tracker or formatted document from a user description, which reduces template-building overhead.",
+              "It can rewrite selected sections in place, which supports iterative editing without starting over.",
+              "It can export directly to Google Docs or Sheets, which helps the generated output fit existing collaboration workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It exports directly to Google Docs, which supports document sharing and review.",
+              "It exports directly to Google Sheets, which supports tabular project tracking and lightweight data workflows."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Notion",
+              "Obsidian",
+              "NotebookLM"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "writing",
+            "workflow-automation",
+            "spreadsheets"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Manual systems can become self-consuming when the user keeps optimizing the container instead of using the content.",
+            "Question-answering over a bounded corpus reduces dependence on exact filenames, backlink graphs, or hand-built taxonomy.",
+            "Generated artifacts can be a better output than raw note retrieval when the goal is to move work forward."
+          ],
+          "knowledge_summary": "Personal knowledge systems can be designed around question answering and artifact generation instead of manual organization. The core shift is from building and maintaining a note structure to feeding a bounded corpus into an assistant that can retrieve, synthesize, and rewrite on demand. This pattern matters when the overhead of tags, backlinks, templates, and schema design starts to dominate actual use. It is strongest when the knowledge base is small enough to stay curated and source-grounded. It becomes weaker when governance, scale, or long-term archival discipline matter more than convenience.",
+          "match_candidates": [],
+          "operational_insight": "The durable design choice is to minimize maintenance work per note and maximize the chance that stored material can be reused later through natural-language queries or generated artifacts.",
+          "primary_tag": "knowledge-systems",
+          "proposed_tags": [
+            "knowledge-systems",
+            "human-ai-workflows",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "knowledge-systems-shift-toward-compilation-over-retrieval",
+            "knowledge-base-becomes-runtime-infrastructure"
+          ],
+          "relevance_note": "This pattern is durable for AI workflows because many teams care less about perfect organization and more about fast retrieval, synthesis, and reuse of internal material. It shows up in personal workspaces, team knowledge bases, and support operations where the cost of manual upkeep can exceed the value of the structure itself.",
+          "secondary_tag": "human-ai-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"I was spending more time organizing information than using it.\"",
+          "topic_slug": "agentic-personal-knowledge-management",
+          "topic_title": "Agentic Personal Knowledge Management",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "0ef89fe1-5a92-4bd9-97e7-577f7c07f2f5",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Manual systems can become self-consuming when the user keeps optimizing the container instead of using the content.",
+              "Question-answering over a bounded corpus reduces dependence on exact filenames, backlink graphs, or hand-built taxonomy.",
+              "Generated artifacts can be a better output than raw note retrieval when the goal is to move work forward."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "knowledge-systems-shift-toward-compilation-over-retrieval",
+              "knowledge-base-becomes-runtime-infrastructure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "knowledge-systems",
+            "human-ai-workflows",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.84,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The value is in collapsing the gap between intent and the first usable structure.",
+            "Inline rewriting is operationally important because it preserves momentum after the initial draft.",
+            "Export into standard office files reduces friction for review and handoff."
+          ],
+          "knowledge_summary": "Some AI tools reduce workflow friction by generating structured working documents directly from a short description. This avoids hand-building templates, schemas, or layout logic for routine artifacts like trackers, briefs, and formatted docs. The useful operational pattern is not just generation, but bounded revision: users can update a section in place rather than recreating the entire artifact. The pattern is most effective when the output needs to be shared in standard office formats. It is less useful when the artifact requires strict governance or highly customized information architecture.",
+          "match_candidates": [],
+          "operational_insight": "Use prompt-to-structure generation when the main bottleneck is setup time, and preserve the ability to edit specific sections without redoing the whole document.",
+          "primary_tag": "workflow-design",
+          "proposed_tags": [
+            "workflow-design",
+            "ai-engineering"
+          ],
+          "related_topics": [
+            "visual-specifications-for-ai-systems",
+            "artifact-first-ai-workflows"
+          ],
+          "relevance_note": "This matters in AI engineering and service automation because many operational workflows need quick structured outputs more than fully bespoke systems. It is relevant to project tracking, internal ops docs, and support artifacts where a generated first draft can replace manual template work.",
+          "secondary_tag": "ai-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "writing",
+          "suggested_new_tags": [
+            "writing"
+          ],
+          "supporting_snippet": "\"You no longer need to design a database schema; just describe what you want.\"",
+          "topic_slug": "prompt-driven-structured-document-generation",
+          "topic_title": "Prompt-Driven Structured Document Generation",
+          "value_level": "medium"
+        },
+        "notes": null,
+        "proposal_id": "e3d4d703-6a63-4d4d-9855-2ba10c730b41",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The value is in collapsing the gap between intent and the first usable structure.",
+              "Inline rewriting is operationally important because it preserves momentum after the initial draft.",
+              "Export into standard office files reduces friction for review and handoff."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "visual-specifications-for-ai-systems",
+              "artifact-first-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-design",
+            "ai-engineering"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Suraj Jha",
+    "canonical_url": "https://medium.com/write-a-catalyst/i-deleted-notion-and-obsidian-heres-what-replaced-them-and-why-i-m-never-going-back-27a7d8545606",
+    "content_sha256": "8263dab301343cb84d98cc4b185a5797bd3bef8ebeb3dd2b68b66e76867310fb",
+    "publication": "Medium",
+    "published_date": "2026-05-12",
+    "raw_html_rel_path": "raw/readwise/i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght.html",
+    "raw_md_rel_path": "raw/readwise/i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght.md",
+    "source_id": "i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght",
+    "title": "I Deleted Notion and Obsidian. Here\u2019s What Replaced Them \u2014 and Why I\u2019m Never Going Back."
+  }
+}

@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
-from time import monotonic
+from time import monotonic, sleep
 from typing import Any, Protocol
 
 from src.ingest_queue.queue import IngestItem, list_ingest_items
@@ -90,6 +90,46 @@ class PreanalyzeResult:
         return self.selected > 0 and not self.processed and bool(self.failed)
 
 
+def create_ingestion_provider(provider: Any | None = None) -> tuple[Any, bool]:
+    """Return an ingestion provider and whether this run owns its lifecycle."""
+    if provider is not None:
+        return provider, False
+    return OpenAIIngestionProvider(), True
+
+
+def close_ingestion_provider(provider: Any, *, owns_provider: bool) -> None:
+    """Close a provider created for one article when this run owns it."""
+    if not owns_provider:
+        return
+    close = getattr(provider, "close", None)
+    if callable(close):
+        close()
+
+
+def wait_between_articles(
+    seconds: float,
+    *,
+    source_id: str,
+    index: int,
+    total: int,
+    on_progress: Callable[[PreanalyzeProgress], None] | None = None,
+) -> None:
+    """Pause between article ingestions so each run uses a fresh provider session."""
+    if seconds <= 0:
+        return
+    _emit_progress(
+        on_progress,
+        PreanalyzeProgress(
+            source_id,
+            "waiting",
+            index,
+            total,
+            f"pausing {seconds:.0f}s before next article (OpenAI disconnected)",
+        ),
+    )
+    sleep(seconds)
+
+
 def select_pending_items(
     raw_dir: Path,
     reviews_root: Path,
@@ -127,6 +167,7 @@ def preanalyze_pending(
     prompt_version: str = PROMPT_VERSION,
     limit: int | None = 50,
     skip_existing: bool = True,
+    between_articles_seconds: float = 0.0,
     provider: Any | None = None,
     runner: ClassificationRunner = run_classification,
     on_progress: Callable[[PreanalyzeProgress], None] | None = None,
@@ -137,7 +178,6 @@ def preanalyze_pending(
     processed: list[str] = []
     skipped: list[str] = []
     failed: list[PreanalyzeFailure] = []
-    active_provider = provider if provider is not None else OpenAIIngestionProvider()
     total = len(items)
 
     for index, item in enumerate(items, start=1):
@@ -149,6 +189,7 @@ def preanalyze_pending(
                 PreanalyzeProgress(item.basename, "skipped", index, total, "review.json exists"),
             )
             continue
+        active_provider, owns_provider = create_ingestion_provider(provider)
         try:
             document = load_readwise_pair(item.raw_html_path)
             artifact, _parsed = runner(
@@ -182,6 +223,16 @@ def preanalyze_pending(
                 on_progress,
                 PreanalyzeProgress(item.basename, "failed", index, total, failure.message),
             )
+        finally:
+            close_ingestion_provider(active_provider, owns_provider=owns_provider)
+        if index < total:
+            wait_between_articles(
+                between_articles_seconds,
+                source_id=item.basename,
+                index=index,
+                total=total,
+                on_progress=on_progress,
+            )
 
     return PreanalyzeResult(
         selected=total,
@@ -202,6 +253,7 @@ def preanalyze_pending_with_repo_defaults(
     prompt_version: str = PROMPT_VERSION,
     limit: int | None = 50,
     skip_existing: bool = True,
+    between_articles_seconds: float = 0.0,
     on_progress: Callable[[PreanalyzeProgress], None] | None = None,
 ) -> PreanalyzeResult:
     """Pre-analyze pending sources using the same allowlist defaults as the dashboard."""
@@ -223,6 +275,7 @@ def preanalyze_pending_with_repo_defaults(
         prompt_version=prompt_version,
         limit=limit,
         skip_existing=skip_existing,
+        between_articles_seconds=between_articles_seconds,
         on_progress=on_progress,
     )
 

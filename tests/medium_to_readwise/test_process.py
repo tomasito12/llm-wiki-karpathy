@@ -8,9 +8,11 @@ from typing import Any, cast
 
 import pytest
 
+from src.medium_to_readwise.medium_session import MediumLoginRequired
 from src.medium_to_readwise.process import (
     capture_failure_screenshot,
     dismiss_page_overlays,
+    emit_step,
     focus_article_text,
     process_article_once,
     process_article_with_retries,
@@ -39,8 +41,8 @@ class FakeLocator:
         page: FakeProcessPage,
         selector: str,
         *,
-        match_count: int = 1,
-        visible: bool = True,
+        match_count: int = 0,
+        visible: bool = False,
         inner_text_value: str | None = None,
     ) -> None:
         """Initialize locator state."""
@@ -94,7 +96,10 @@ class FakeProcessPage:
         fail_goto: bool = False,
         fail_selectors: set[str] | None = None,
         body_text: str = "Sample article body text.",
+        article_text: str = "x" * 500,
         verification_phrases: set[str] | None = None,
+        logged_out_phrases: set[str] | None = None,
+        show_sign_in_controls: bool = False,
     ) -> None:
         """Initialize fake page behavior."""
         self.url = "about:blank"
@@ -102,22 +107,38 @@ class FakeProcessPage:
         self.fail_goto = fail_goto
         self.fail_selectors = fail_selectors or set()
         self.body_text = body_text
+        self.article_text = article_text
         self.verification_phrases = verification_phrases or set()
+        self.logged_out_phrases = logged_out_phrases or set()
+        self.show_sign_in_controls = show_sign_in_controls
         self.clicked: list[str] = []
         self.screenshots: list[Path] = []
         self.brought_to_front = False
 
     def locator(self, selector: str) -> FakeLocator:
         """Return a fake locator for ``selector``."""
-        inner_text_value = self.body_text if selector == "body" else None
-        return FakeLocator(self, selector, inner_text_value=inner_text_value)
+        if selector == "body":
+            return FakeLocator(self, selector, inner_text_value=self.body_text)
+        if selector == "article":
+            return FakeLocator(self, selector, match_count=1, inner_text_value=self.article_text)
+        if self.show_sign_in_controls and (
+            "accounts.medium.com" in selector or "/m/signin" in selector
+        ):
+            return FakeLocator(self, selector, match_count=1, visible=True)
+        return FakeLocator(self, selector)
 
     def get_by_text(self, phrase: str, *, exact: bool = False) -> FakeLocator:
         """Return a fake text locator for human-verification detection."""
         del exact
-        if phrase in self.verification_phrases:
+        if phrase in self.verification_phrases or phrase in self.logged_out_phrases:
             return FakeLocator(self, f"text={phrase}", match_count=1, visible=True)
         return FakeLocator(self, f"text={phrase}", match_count=0, visible=False)
+
+    def get_by_role(self, role: str, *, name: str) -> FakeLocator:
+        """Return a fake role locator for sign-in detection."""
+        if self.show_sign_in_controls and role == "link" and name in {"Sign in", "Sign up"}:
+            return FakeLocator(self, f"role={role}:{name}", match_count=1, visible=True)
+        return FakeLocator(self, f"role={role}:{name}", match_count=0, visible=False)
 
     async def bring_to_front(self) -> None:
         """Record that the tab was focused."""
@@ -128,7 +149,7 @@ class FakeProcessPage:
         if self.fail_goto:
             raise RuntimeError("navigation failed")
         self.url = f"{url}?redirected=1"
-        assert wait_until == "domcontentloaded"
+        assert wait_until in {"domcontentloaded", "load"}
 
     async def wait_for_selector(self, selector: str, *, timeout: int) -> None:
         """Pretend the article selector appeared."""
@@ -147,9 +168,36 @@ class FakeProcessPage:
         path.write_text("image", encoding="utf-8")
 
 
-def test_wait_for_article_content_uses_article_heuristic() -> None:
-    """Article readiness waits for both selector and rendered text."""
-    asyncio.run(wait_for_article_content(cast(Any, FakeProcessPage())))
+@pytest.fixture(autouse=True)
+def _skip_full_article_scroll_in_process_tests(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Process tests mock full-article loading to keep fake pages minimal."""
+
+    async def fake_wait_for_article_content(*_args: Any, **_kwargs: Any) -> int:
+        return 1500
+
+    monkeypatch.setattr(
+        "src.medium_to_readwise.process.wait_for_article_content",
+        fake_wait_for_article_content,
+    )
+
+
+def test_wait_for_article_content_uses_article_heuristic(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Article readiness delegates to the full-article loader."""
+    calls: list[int] = []
+
+    async def fake_wait(*_args: Any, **kwargs: Any) -> int:
+        calls.append(kwargs.get("min_chars", 0))
+        return 1500
+
+    monkeypatch.setattr(
+        "src.medium_to_readwise.process.wait_for_full_article_content",
+        fake_wait,
+    )
+    length = asyncio.run(wait_for_article_content(cast(Any, FakeProcessPage()), min_chars=1200))
+    assert length == 1500
+    assert calls == [1200]
 
 
 def test_dismiss_page_overlays_presses_escape_twice() -> None:
@@ -217,8 +265,8 @@ def test_process_article_once_triggers_playwright_shortcut_when_configured(
 ) -> None:
     """Playwright shortcut mode still sends Alt+KeyR for non-macOS testing."""
 
-    async def fake_wait(*_args: Any, **_kwargs: Any) -> bool:
-        return True
+    async def fake_wait(*_args: Any, **_kwargs: Any) -> tuple[bool, str]:
+        return True, "visible"
 
     async def fake_remove(*_args: Any, **_kwargs: Any) -> None:
         return None
@@ -252,8 +300,8 @@ def test_process_article_once_fails_when_readwise_confirmation_missing(
 ) -> None:
     """Articles are not marked successful when Readwise confirmation never appears."""
 
-    async def fake_wait(*_args: Any, **_kwargs: Any) -> bool:
-        return False
+    async def fake_wait(*_args: Any, **_kwargs: Any) -> tuple[bool, str]:
+        return False, "none"
 
     monkeypatch.setattr("src.medium_to_readwise.process.wait_for_readwise_save", fake_wait)
     page = FakeProcessPage()
@@ -293,4 +341,72 @@ def test_process_article_with_retries_records_failure(tmp_path: Path) -> None:
     assert result["status"] == "failed"
     assert result["attempts"] == 2
     assert result["screenshot"] is not None
-    assert len(logs) == 4
+    assert any("opening " in line for line in logs)
+    assert any("failed " in line for line in logs)
+
+
+def test_emit_step_only_logs_when_callback_configured() -> None:
+    """Step logging is a no-op without a callback."""
+    logs: list[str] = []
+    emit_step(logs.append, "visible step")
+    emit_step(None, "hidden step")
+    assert logs == ["visible step"]
+
+
+def test_process_article_once_raises_when_medium_not_logged_in(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Logged-out Medium pages stop before Readwise automation."""
+
+    async def reject_article_load(*_args: Any, **_kwargs: Any) -> int:
+        raise AssertionError("should not load article")
+
+    monkeypatch.setattr(
+        "src.medium_to_readwise.process.wait_for_article_content",
+        reject_article_load,
+    )
+    page = FakeProcessPage(
+        logged_out_phrases={"sign in to read"},
+        article_text="short preview",
+        body_text="Sign in to read this member-only story.",
+    )
+    with pytest.raises(MediumLoginRequired):
+        asyncio.run(
+            process_article_once(
+                cast(Any, page),
+                url="https://medium.com/@a/one-abc12345",
+                delay_seconds=0,
+                dry_run=False,
+                reading_list_url="https://medium.com/@plischke81/list/reading-list",
+                shortcut_mode="playwright",
+            )
+        )
+
+
+def test_process_article_with_retries_propagates_medium_login_required(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Login failures abort retries immediately."""
+
+    async def reject_article_load(*_args: Any, **_kwargs: Any) -> int:
+        raise AssertionError("should not load article")
+
+    monkeypatch.setattr(
+        "src.medium_to_readwise.process.wait_for_article_content",
+        reject_article_load,
+    )
+    page = FakeProcessPage(show_sign_in_controls=True, article_text="short")
+    with pytest.raises(MediumLoginRequired):
+        asyncio.run(
+            process_article_with_retries(
+                cast(Any, page),
+                url="https://medium.com/@a/one-abc12345",
+                state_dir=Path("."),
+                reading_list_url="https://medium.com/@plischke81/list/reading-list",
+                delay_seconds=0,
+                dry_run=False,
+                max_retries=2,
+                retry_delay_seconds=0,
+                shortcut_mode="playwright",
+            )
+        )

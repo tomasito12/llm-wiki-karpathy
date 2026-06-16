@@ -71,6 +71,17 @@ def build_parser() -> argparse.ArgumentParser:
         default=root / "wiki",
         help="Wiki root directory (default: <repo>/wiki).",
     )
+    parser.add_argument(
+        "--between-articles",
+        type=float,
+        default=float(os.environ.get("INGEST_BETWEEN_ARTICLES_DELAY", "0")),
+        metavar="SECONDS",
+        help=(
+            "Pause between articles after closing the OpenAI client "
+            "(default: INGEST_BETWEEN_ARTICLES_DELAY or 0). "
+            "Use 600 for a 10-minute manual-ingest rhythm."
+        ),
+    )
     return parser
 
 
@@ -120,6 +131,7 @@ def main(argv: list[str] | None = None) -> int:
         prompt_version=args.prompt_version,
         limit=args.limit,
         skip_existing=args.skip_existing,
+        between_articles_seconds=args.between_articles,
         on_progress=print_progress,
     )
     print(format_result_summary(result))

@@ -6,16 +6,19 @@ category: how-to
 tags:
 - ai-engineering
 - context-engineering
+- developer-tooling
+- knowledge-systems
 - workflow-automation
 first_seen: '2026-01-26'
-last_seen: '2026-03-25'
-source_count: 2
-evidence_count: 28
+last_seen: '2026-04-14'
+source_count: 3
+evidence_count: 41
 source_ids:
 - how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn
 - the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz
+- your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn
 value_level: high
-confidence: 0.95
+confidence: 0.9533333333333333
 synthesis_state: stage1-placeholder
 ---
 
@@ -45,6 +48,12 @@ The guide treats the suggested success thresholds as rough benchmarks, not hard 
 - Put step-by-step instructions in the body of SKILL.md.
 - Add examples that show concrete use of the skill.
 - Keep the main instructions under 500 lines and move detailed reference material into separate files if needed.
+- Run Claude Code in the vault root.
+- Use /init to generate a first-pass CLAUDE.md.
+- Rewrite CLAUDE.md with vault structure, conventions, and safety rules.
+- Install Obsidian skills with npx skills add git@github.com:kepano/obsidian-skills.git.
+- Update the active context before each session.
+- Optionally ask Claude to append a short session log at the end of each session.
 
 ## Prerequisites
 
@@ -55,12 +64,17 @@ The guide treats the suggested success thresholds as rough benchmarks, not hard 
 - Access to Claude Code or a similar environment that loads skills.
 - A recurring workflow or task that benefits from reusable instructions.
 - Templates, rules, or domain-specific details that should be encoded into the skill.
+- A local Obsidian vault with a known folder structure.
+- Claude Code installed and runnable from the terminal.
+- A willingness to maintain a root CLAUDE.md file over time.
 
 ## Related Howtos
 
 - context-compaction
 - self-verification-for-agent-workflows
 - local-model-setup
+- agent-maintained-knowledge-bases
+- file-native-agent-workflows
 
 ## Evidence / supporting sources
 
@@ -98,14 +112,33 @@ The guide treats the suggested success thresholds as rough benchmarks, not hard 
 - A skill is a set of instructions - packaged as a simple folder - that teaches Claude how to handle specific tasks or workflows. Skills are one of the most powerful ways to customize Claude for your specific needs. Instead of re-explaining your preferences, processes, and domain expertise in every conversation, skills let you teach Claude once and benefit every time. (`64dea8c17f0b` · supporting · supporting_snippet; [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]])
 - The guide treats the suggested success thresholds as rough benchmarks, not hard standards. Some measurement advice is explicitly described as aspirational, so the procedure is operationally useful but not a rigorous evaluation framework. Skills can also fail for simple packaging mistakes like a misnamed SKILL.md or invalid frontmatter. (`9d3cf21ccf55` · uncertainty · caveats; [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]])
 
+### Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly). (2026-04-14)
+
+- Start by running Claude Code from the vault root and let it generate a starter CLAUDE.md. Then rewrite that file to describe your folder structure, note conventions, and things the agent must never touch. Add explicit instructions for where drafts should go and what context it should use for synthesis. Install the Obsidian skills package so Claude learns the vault-specific file grammar, including wikilinks and callouts. Keep the active context section fresh before each session so the agent does not work from stale priorities. (`a60c3b177906` · neutral · answer_summary; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- Run Claude Code in the vault root. (`2c8614a45291` · neutral · implementation_steps[0]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- Use /init to generate a first-pass CLAUDE.md. (`c217e44c98aa` · neutral · implementation_steps[1]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- Rewrite CLAUDE.md with vault structure, conventions, and safety rules. (`76aa84b8c4bb` · neutral · implementation_steps[2]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- Install Obsidian skills with npx skills add git@github.com:kepano/obsidian-skills.git. (`4e125d4fc8b2` · neutral · implementation_steps[3]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- Update the active context before each session. (`623044ade9b1` · neutral · implementation_steps[4]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- Optionally ask Claude to append a short session log at the end of each session. (`0d8565c025a7` · neutral · implementation_steps[5]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- A local Obsidian vault with a known folder structure. (`2b7293186909` · neutral · prerequisites[0]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- Claude Code installed and runnable from the terminal. (`72180954763a` · neutral · prerequisites[1]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- A willingness to maintain a root CLAUDE.md file over time. (`aceafde2b0ad` · neutral · prerequisites[2]; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- This is about preparing a Claude Code environment so it understands the structure and conventions of an Obsidian vault. The problem is that a capable agent can still misread markdown, ignore vault-specific syntax, or make unsafe edits if it is not taught the local file grammar and rules. The setup gives the agent a shared vocabulary for wikilinks, callouts, templates, and folder conventions. It also reduces the chance of it treating vault content like generic text instead of a structured knowledge base. (`0a3a84edf591` · neutral · what_and_problem; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- "I run /init the first time, which generates a starting point by scanning my vault structure. Then I rewrite it heavily." (`4cc24be4e9f0` · supporting · supporting_snippet; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+- The generated file is only a starting point; without manual rewriting, it will miss the conventions that matter. Stale active context can make the agent pursue old priorities. Negative instructions matter because the agent may otherwise modify folders that should remain untouched. (`20542c5704ab` · uncertainty · caveats; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
+
 ## Contradictions / tensions
 
 - The guide treats the suggested success thresholds as rough benchmarks, not hard standards. Some measurement advice is explicitly described as aspirational, so the procedure is operationally useful but not a rigorous evaluation framework. Skills can also fail for simple packaging mistakes like a misnamed SKILL.md or invalid frontmatter. (uncertainty; [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]])
 - The source stresses that metadata accuracy matters a lot, so weak or vague descriptions can reduce matching accuracy. It also recommends keeping SKILL.md under 500 lines, which means large workflows need deliberate file splitting. The article is explanatory rather than tested, so production reliability, governance, and security are not demonstrated here. (uncertainty; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
+- The generated file is only a starting point; without manual rewriting, it will miss the conventions that matter. Stale active context can make the agent pursue old priorities. Negative instructions matter because the agent may otherwise modify folders that should remain untouched. (uncertainty; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
 
 ## Related pages
 
+- agent-maintained-knowledge-bases
 - context-compaction
+- file-native-agent-workflows
 - local-model-setup
 - self-verification-for-agent-workflows
 
@@ -113,3 +146,4 @@ The guide treats the suggested success thresholds as rough benchmarks, not hard 
 
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]
 - [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]]
+- [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]

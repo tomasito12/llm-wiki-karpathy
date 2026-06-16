@@ -1,0 +1,1298 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T20:43:23+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Dr8QunTEeX015aTPuj9wJdXr66tBm",
+          "token_usage": {
+            "completion_tokens": 194,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 8148,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8342
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Dr8Qwm60FtLyxGjSq8OUUcRIKI6fa",
+          "token_usage": {
+            "completion_tokens": 1089,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7758,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8847
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-how_to_roundup",
+          "request_id": "chatcmpl-Dr8R7VgyNKshxhLsbJ1Mul9rRKJXN",
+          "route": "how_to_roundup",
+          "token_usage": {
+            "completion_tokens": 3014,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19547,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 22561
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dr8R7VgyNKshxhLsbJ1Mul9rRKJXN",
+    "token_usage": {
+      "completion_tokens": 4297,
+      "prompt_tokens": 35453,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 39750
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "answer_summary": "Put the static parts of the request first so the provider can reuse them. Keep the system prompt, few-shot examples, and any repeated retrieved documents before the user message. Let dynamic content come last. For providers that support it, use prefix caching or automatic caching to reduce repeated-token charges. This works best when the same long prefix shows up across many requests.",
+        "caveats": "Savings depend on having repeated prefixes. If you mix dynamic content into the front of the prompt, cache hits drop. The article also notes provider-specific pricing and break-even behavior, so exact savings are workload- and vendor-dependent as of 2026-04-17.",
+        "confidence": 0.96,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Identify repeated static text in your requests.",
+          "Move system prompts, examples, and repeated documents to the front.",
+          "Place the user message and other dynamic fields last.",
+          "Enable provider caching or automatic caching if available.",
+          "Measure cache-hit rate and cost per request over time."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A request pattern with repeated prefixes",
+          "Access to a provider or stack that supports prefix caching",
+          "Basic logging for token counts and cost"
+        ],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "inference-systems",
+          "context-engineering",
+          "prompt-engineering"
+        ],
+        "question_title": "Prompt Caching",
+        "related_howtos": [
+          "semantic-caching",
+          "prompt-engineering-fundamentals"
+        ],
+        "secondary_tag": "inference-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Prefix caching stores the computed result for a repeated prefix. The next request that shares that prefix starts from the cached state.\"",
+        "value_level": "high",
+        "what_and_problem": "Prompt caching is a way to avoid paying for the same long static text on every request. It helps when your app sends the same system prompt, examples, or retrieved context many times and the repeated prefix drives up cost. The problem is common in chatbots, support tools, and other applications with stable instructions. Without caching, the model recomputes the same prefix from scratch each time. That makes even simple traffic expensive at scale."
+      },
+      {
+        "answer_summary": "Embed the incoming query and compare it to cached queries by meaning. If the similarity score is high enough, return the stored answer instead of calling the model again. If there is no strong match, generate a fresh answer and store it for later. Start with a conservative threshold and adjust it based on mistakes and hit rate. Use this only where repeated intent is common and wrong reuse would be acceptable or easy to detect.",
+        "caveats": "The article warns that the similarity threshold is the main failure mode: too low returns the wrong answer, too high reduces savings. The cited hit rates and savings are workload-specific and should not be treated as universal as of 2026-04-17.",
+        "confidence": 0.95,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Embed each incoming query into a vector.",
+          "Search for similar cached queries in a vector store.",
+          "Return the cached response when similarity is above the chosen threshold.",
+          "Call the model and store the result when there is no match.",
+          "Tune the threshold using production error cases and hit-rate data."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A vector embedding model",
+          "A cache or vector store",
+          "A workload with repeated questions or intents"
+        ],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "retrieval-systems",
+          "support-automation",
+          "inference-systems"
+        ],
+        "question_title": "Semantic Caching",
+        "related_howtos": [
+          "prompt-caching",
+          "feedback-sentiment-dashboard"
+        ],
+        "secondary_tag": "retrieval-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Semantic caching does not match exact strings. It matches meaning.\"",
+        "value_level": "high",
+        "what_and_problem": "Semantic caching reuses a previous answer when a new question means the same thing, even if the wording is different. It is useful when users keep asking similar support or FAQ questions in many forms. The problem it solves is paying full inference cost for repeated intent. This matters most in high-repetition workflows where exact string matching is too strict. It can turn a slow model call into a fast cache lookup."
+      },
+      {
+        "answer_summary": "Remove repeated wording from system prompts and keep only the rules that matter. Ask for a strict output format instead of open-ended prose when the task is structured. For retrieval-heavy systems, compress long context before sending it to the model. The article specifically points to LLMLingua for reducing retrieved context size. Use this approach before chasing more complex infrastructure changes.",
+        "caveats": "Compression can hurt quality if you remove information the model actually needs. The article\u2019s output-size examples are illustrative rather than controlled benchmarks, so savings should be validated on the target workload as of 2026-04-17.",
+        "confidence": 0.93,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Trim repeated language from system prompts.",
+          "Define constrained output schemas for structured tasks.",
+          "Shorten asks that do not need open-ended detail.",
+          "Compress retrieved context before it enters the prompt.",
+          "Check that answer quality stays within your target bar."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A task with a stable instruction set or structured output",
+          "A way to measure output quality",
+          "Optional: a context-compression tool for retrieval workflows"
+        ],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "prompt-engineering",
+          "context-engineering",
+          "retrieval-systems"
+        ],
+        "question_title": "Prompt Compression",
+        "related_howtos": [
+          "context-compaction",
+          "prompt-caching"
+        ],
+        "secondary_tag": "prompt-engineering",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Most system prompts have significant redundancy. A 2,000-token prompt often contains the same instruction restated three different ways.\"",
+        "value_level": "high",
+        "what_and_problem": "Prompt compression is about sending fewer tokens while keeping the information the model needs. It helps when long prompts, long retrieved passages, or verbose output formats are making every request more expensive than necessary. The problem is especially sharp because output tokens are described as costing more than input tokens. If you can say the same thing with less text, you reduce cost on every call. That makes compression one of the simplest ways to cut spend."
+      },
+      {
+        "answer_summary": "Classify incoming requests by difficulty before calling a model. Send simple tasks to a small or cheap model, medium tasks to a mid-tier model, and only the hardest tasks to a frontier model. Start conservatively so you do not misroute complex requests to weak models. Use signals such as request length, keywords, task type, and expected output length. Monitor quality carefully, because a bad routing decision is visible to users.",
+        "caveats": "The article explicitly says to start conservative because wrong routing can produce visibly bad output. The suggested tier splits and savings are workload-dependent and should be treated as guidance, not universal rules, as of 2026-04-17.",
+        "confidence": 0.96,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Define request features that correlate with complexity.",
+          "Build a simple classifier or rules layer.",
+          "Map simple, medium, and complex requests to different model tiers.",
+          "Start with conservative routing thresholds.",
+          "Review misroutes and adjust the classifier over time."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "Access to at least two model tiers",
+          "A routing signal or classifier",
+          "A quality evaluation loop"
+        ],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "inference-systems",
+          "orchestration",
+          "support-automation"
+        ],
+        "question_title": "Model Routing And Cascades",
+        "related_howtos": [
+          "semantic-caching",
+          "prompt-caching"
+        ],
+        "secondary_tag": "inference-systems",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Model routing classifies each incoming request and sends it to the appropriate model tier. Simple requests go to cheap models. Complex requests go to capable ones.\"",
+        "value_level": "high",
+        "what_and_problem": "Model routing sends each request to the cheapest model that can handle it well enough. It is useful when simple classification, extraction, or short answers are getting routed to expensive frontier models. The problem is overspending on easy requests while reserving high-cost models only for genuinely hard ones. Routing creates a tiered system instead of one expensive default model. That usually makes cost more proportional to task difficulty."
+      },
+      {
+        "answer_summary": "Use a strong model to generate outputs for many representative examples. Train a smaller model on those outputs so it learns the behavior pattern, not just labels. Keep the task narrow and stable so the smaller model can specialize. Evaluate it against a test set before deploying it in production. This is usually a later-stage optimization after routing and caching have been tried.",
+        "caveats": "The article notes this is only worth it when the task is high-volume and stable enough to justify training effort. It also does not cover the full maintenance cost of retraining and dataset upkeep, which matters in production as of 2026-04-17.",
+        "confidence": 0.92,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Collect representative inputs from the target task.",
+          "Generate target outputs with a stronger model.",
+          "Train a smaller model on those outputs.",
+          "Evaluate the student model on a held-out test set.",
+          "Deploy only if quality and cost both meet the target."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "A narrow, high-volume task",
+          "A large set of representative examples",
+          "Engineering capacity for training and evaluation"
+        ],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "ai-research",
+          "inference-systems",
+          "ai-evaluation"
+        ],
+        "question_title": "Model Distillation",
+        "related_howtos": [
+          "model-routing-and-cascades",
+          "agent-evaluation-design"
+        ],
+        "secondary_tag": "ai-research",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Run your frontier model on thousands of representative inputs. Collect the outputs (including the probability distributions, not just the answers). Train a smaller model to replicate those outputs.\"",
+        "value_level": "medium",
+        "what_and_problem": "Model distillation is a way to teach a smaller model to imitate a larger one on a specific task. It is useful when you have a high-volume workflow that needs near-frontier quality but cannot pay frontier-model prices forever. The problem is not general intelligence; it is getting stable performance on one repeated task at lower cost. Distillation makes more sense when the task is well defined and the traffic is predictable. It is less attractive when the input variety is broad or the quality target is vague."
+      },
+      {
+        "answer_summary": "For a self-hosted model, first reduce precision with quantization and then remove unnecessary connections with pruning. Move from 32-bit weights to 8-bit or 4-bit representations when quality allows. Use sparsity or pruning to cut more compute after that. Check memory use, throughput, latency, and task quality after each step. The article recommends these as infrastructure-level optimizations for teams that own the serving stack.",
+        "caveats": "These methods are only relevant if you self-host or otherwise control inference hardware. The exact memory and throughput gains depend on the model, serving stack, and acceptable quality loss as of 2026-04-17.",
+        "confidence": 0.9,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Measure the model\u2019s baseline memory and latency.",
+          "Apply quantization to reduce weight precision.",
+          "Test whether accuracy stays within tolerance.",
+          "Apply pruning or sparsity where supported.",
+          "Re-measure throughput, latency, and cost after each change."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "Self-hosted or controlled inference infrastructure",
+          "A benchmark set for quality checks",
+          "Serving hardware with memory pressure"
+        ],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "infrastructure",
+          "serving-infrastructure",
+          "inference-systems"
+        ],
+        "question_title": "Quantization And Pruning",
+        "related_howtos": [
+          "local-model-deployment",
+          "local-model-setup"
+        ],
+        "secondary_tag": "infrastructure",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Quantization reduces this to 8-bit or 4-bit integers... Pruning removes redundant connections in the neural network.\"",
+        "value_level": "high",
+        "what_and_problem": "Quantization and pruning reduce the compute cost of running self-hosted models. They are useful when model weights are too large for the available hardware or when serving costs are too high. The problem is that full-precision models can require too much memory and too many GPUs. Quantization shrinks numerical precision, and pruning removes redundant connections. Together they make local or self-hosted inference cheaper and more practical."
+      },
+      {
+        "answer_summary": "Log token counts, model name, prompt category, and cost for each call. Aggregate the data to find the prompts and features that consume the most money. Watch cache hit rates and quality trends as you change the system. Add hard spending caps at the provider level so a looping agent cannot spend unchecked. Use tracing tools if you need faster visibility into complex workflows.",
+        "caveats": "The article treats hard caps as non-optional, but it does not discuss alert tuning or the operational details of false positives. The best observability stack depends on your provider and telemetry needs as of 2026-04-17.",
+        "confidence": 0.97,
+        "evidence_type": null,
+        "implementation_steps": [
+          "Instrument each LLM call with model, input tokens, output tokens, and estimated cost.",
+          "Classify prompts into categories for analysis.",
+          "Track cache-hit rates and quality metrics over time.",
+          "Identify the top cost-driving prompts and features.",
+          "Set provider-side hard spending limits and alerts."
+        ],
+        "match_candidates": [],
+        "prerequisites": [
+          "Basic application logging",
+          "A cost calculator or provider pricing data",
+          "Access to provider usage limits or budget caps"
+        ],
+        "primary_tag": "ai-economics",
+        "proposed_tags": [
+          "ai-economics",
+          "ai-evaluation",
+          "auditability",
+          "infrastructure"
+        ],
+        "question_title": "LLM Cost Observability",
+        "related_howtos": [
+          "agent-evaluation-design",
+          "prompt-caching"
+        ],
+        "secondary_tag": "ai-evaluation",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"You cannot optimize what you cannot see.\"",
+        "value_level": "high",
+        "what_and_problem": "LLM cost observability is the practice of measuring which prompts, users, and features are actually driving spend. It solves the common problem of teams knowing only their monthly bill, not the source of that bill. Without this visibility, it is hard to decide what to cache, compress, route, or cap. It also helps catch runaway agent loops before they become expensive. This is the foundation for any serious cost-optimization work."
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is an independent explanatory guide by a named writer, not a vendor post or formal study.",
+        "It mixes general pricing explanations, practitioner-style examples, and cited product/benchmark claims without a single formal research method.",
+        "Most recommendations are framed as author guidance on cost optimization rather than as experimentally validated results."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is about cutting LLM API bills without making your app worse. The core idea is simple: you pay for tokens, so every repeated prompt, long context block, and unnecessary model call adds cost. It shows eight ways to reduce spend, including caching repeated prefixes, reusing answers for similar questions, shortening prompts and outputs, routing easy tasks to cheaper models, and using quantization for self-hosted models. The main message is that you should spend expensive model calls only where they actually matter. It is most useful if your app sees lots of repeated or predictable requests.",
+      "assessed_as_of": "2026-04-17",
+      "contradictions_and_skepticism": "The article occasionally compresses a complicated space into neat rules, such as implying that static-content-first prompt ordering is sufficient for major savings or that a single semantic-similarity threshold can safely gate cache hits. The claim that all eight techniques can compound to a 92% reduction is plausible only for a very repetitive, highly optimized workload and should not be treated as a general expectation. Some model pricing comparisons and benchmark references are dated or vendor-specific, so they should be checked against the exact provider and date before acting. The piece is persuasive, but it relies more on practitioner logic and illustrative math than on rigorous comparative evidence.",
+      "key_insights": [
+        "Repeated prefixes are a major hidden cost; placing static prompt content first improves prefix-cache hit rates.",
+        "Semantic caching can skip the model entirely when different user phrasings map to the same intent, but similarity thresholds need calibration.",
+        "Output control matters because output tokens are described as costing 2\u20134x more than input tokens.",
+        "Model routing is safest when conservative; wrong cheap-model routing can degrade visible quality fast.",
+        "For self-hosted models, quantization and pruning are positioned as infrastructure-level cost levers, not just model-compression tricks."
+      ],
+      "limitations_and_open_questions": "The article gives useful heuristics, but many savings claims are illustrative rather than experimentally validated in a controlled setting. Several percentages and dollar figures are presented as examples or cited production outcomes without enough context to generalize across workloads, model vendors, or traffic patterns. The semantic caching thresholds, routing cutoffs, and token-compression effects are highly workload-dependent, but the article does not provide a calibration methodology beyond broad advice. Distillation is presented as a practical option, yet the engineering cost, dataset quality requirements, and maintenance burden are only briefly acknowledged. The quantization and pruning section focuses on self-hosting, but does not discuss accuracy regressions, hardware compatibility, or serving-stack complexity in detail. Security, privacy, and cache invalidation risks are mostly absent even though they matter for production deployments.",
+      "sources": [
+        "https://pub.towardsai.net/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-edf7339d0c9a"
+      ],
+      "summary": "The article argues that LLM costs are usually an engineering problem, not a model-pricing problem. It explains the basic billing model of input and output tokens, then shows how repeated prompts, agent loops, and verbose outputs can multiply spend even on simple tasks. It presents eight cost levers: prefix caching, semantic caching, output and prompt compression, smaller models, model routing, distillation, quantization/pruning, and observability with hard spending caps. The central pattern is to reduce what you send, reduce when you call the model, and reserve expensive models for genuinely hard cases. The piece also gives a practical rollout order: token reduction and observability first, routing and smaller models next, then prefix caching, semantic caching, and only later distillation and quantization for specialized high-volume workloads. Its examples are mostly operational rather than theoretical, but many claims are framed as practitioner guidance rather than as controlled benchmarks. The article\u2019s strongest durable value is as a cost-optimization checklist for teams running repetitive or agentic LLM workloads as of 2026-04-17.",
+      "why_it_matters": "The article is useful because it turns LLM spend into a concrete systems-design problem with multiple levers, not a single pricing comparison. Its strongest contribution is the framing that token volume, request repetition, and model selection interact multiplicatively, so a team can get large savings by combining smaller improvements rather than chasing one magic optimization. The caching sections are especially operational: prefix caching is tied to prompt ordering, and semantic caching is tied to repeat-question workloads with a similarity threshold that must be tuned. The routing and smaller-model guidance is also practical because it recommends treating easy classification and extraction tasks differently from multi-step reasoning. The observability section is important because the article correctly points out that teams cannot optimize spend they do not measure, and it adds hard spending caps as a guardrail against agent loops. The distillation and quantization sections are narrower, but they are durable for teams that self-host or have a stable, high-volume task. As of 2026-04-17, the advice appears actionable for cost-sensitive teams with repetitive LLM traffic, while the more advanced techniques are better treated as later-stage investments than default starting points. For customer support, voice, and back-office automation, the article\u2019s repeated-query and agent-loop examples are directly relevant, but the stakes are mostly cost control rather than new product capability."
+    },
+    "source_type_detection": {
+      "confidence": 0.95,
+      "detected_source_type": "how_to_roundup",
+      "reasoning": [
+        "The article is primarily a numbered list of eight distinct techniques/practices for reducing LLM spend.",
+        "Its structure is procedural and comparative, not a single tutorial or a product roundup.",
+        "The decision matrix and implementation order further reinforce a techniques guide format."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [
+      {
+        "llm_item": {
+          "answer_summary": "Put the static parts of the request first so the provider can reuse them. Keep the system prompt, few-shot examples, and any repeated retrieved documents before the user message. Let dynamic content come last. For providers that support it, use prefix caching or automatic caching to reduce repeated-token charges. This works best when the same long prefix shows up across many requests.",
+          "caveats": "Savings depend on having repeated prefixes. If you mix dynamic content into the front of the prompt, cache hits drop. The article also notes provider-specific pricing and break-even behavior, so exact savings are workload- and vendor-dependent as of 2026-04-17.",
+          "confidence": 0.96,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Identify repeated static text in your requests.",
+            "Move system prompts, examples, and repeated documents to the front.",
+            "Place the user message and other dynamic fields last.",
+            "Enable provider caching or automatic caching if available.",
+            "Measure cache-hit rate and cost per request over time."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A request pattern with repeated prefixes",
+            "Access to a provider or stack that supports prefix caching",
+            "Basic logging for token counts and cost"
+          ],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "inference-systems",
+            "context-engineering",
+            "prompt-engineering"
+          ],
+          "question_title": "Prompt Caching",
+          "related_howtos": [
+            "semantic-caching",
+            "prompt-engineering-fundamentals"
+          ],
+          "secondary_tag": "inference-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Prefix caching stores the computed result for a repeated prefix. The next request that shares that prefix starts from the cached state.\"",
+          "value_level": "high",
+          "what_and_problem": "Prompt caching is a way to avoid paying for the same long static text on every request. It helps when your app sends the same system prompt, examples, or retrieved context many times and the repeated prefix drives up cost. The problem is common in chatbots, support tools, and other applications with stable instructions. Without caching, the model recomputes the same prefix from scratch each time. That makes even simple traffic expensive at scale."
+        },
+        "notes": null,
+        "proposal_id": "1749a3d7-6b14-43c5-a40e-d602e65e8899",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Identify repeated static text in your requests.",
+              "Move system prompts, examples, and repeated documents to the front.",
+              "Place the user message and other dynamic fields last.",
+              "Enable provider caching or automatic caching if available.",
+              "Measure cache-hit rate and cost per request over time."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A request pattern with repeated prefixes",
+              "Access to a provider or stack that supports prefix caching",
+              "Basic logging for token counts and cost"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "semantic-caching",
+              "prompt-engineering-fundamentals"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "inference-systems",
+            "context-engineering",
+            "prompt-engineering"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Embed the incoming query and compare it to cached queries by meaning. If the similarity score is high enough, return the stored answer instead of calling the model again. If there is no strong match, generate a fresh answer and store it for later. Start with a conservative threshold and adjust it based on mistakes and hit rate. Use this only where repeated intent is common and wrong reuse would be acceptable or easy to detect.",
+          "caveats": "The article warns that the similarity threshold is the main failure mode: too low returns the wrong answer, too high reduces savings. The cited hit rates and savings are workload-specific and should not be treated as universal as of 2026-04-17.",
+          "confidence": 0.95,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Embed each incoming query into a vector.",
+            "Search for similar cached queries in a vector store.",
+            "Return the cached response when similarity is above the chosen threshold.",
+            "Call the model and store the result when there is no match.",
+            "Tune the threshold using production error cases and hit-rate data."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A vector embedding model",
+            "A cache or vector store",
+            "A workload with repeated questions or intents"
+          ],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "retrieval-systems",
+            "support-automation",
+            "inference-systems"
+          ],
+          "question_title": "Semantic Caching",
+          "related_howtos": [
+            "prompt-caching",
+            "feedback-sentiment-dashboard"
+          ],
+          "secondary_tag": "retrieval-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Semantic caching does not match exact strings. It matches meaning.\"",
+          "value_level": "high",
+          "what_and_problem": "Semantic caching reuses a previous answer when a new question means the same thing, even if the wording is different. It is useful when users keep asking similar support or FAQ questions in many forms. The problem it solves is paying full inference cost for repeated intent. This matters most in high-repetition workflows where exact string matching is too strict. It can turn a slow model call into a fast cache lookup."
+        },
+        "notes": null,
+        "proposal_id": "04d26350-abb7-48c9-8f3f-eac24077309a",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Embed each incoming query into a vector.",
+              "Search for similar cached queries in a vector store.",
+              "Return the cached response when similarity is above the chosen threshold.",
+              "Call the model and store the result when there is no match.",
+              "Tune the threshold using production error cases and hit-rate data."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A vector embedding model",
+              "A cache or vector store",
+              "A workload with repeated questions or intents"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "prompt-caching",
+              "feedback-sentiment-dashboard"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "retrieval-systems",
+            "support-automation",
+            "inference-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Remove repeated wording from system prompts and keep only the rules that matter. Ask for a strict output format instead of open-ended prose when the task is structured. For retrieval-heavy systems, compress long context before sending it to the model. The article specifically points to LLMLingua for reducing retrieved context size. Use this approach before chasing more complex infrastructure changes.",
+          "caveats": "Compression can hurt quality if you remove information the model actually needs. The article\u2019s output-size examples are illustrative rather than controlled benchmarks, so savings should be validated on the target workload as of 2026-04-17.",
+          "confidence": 0.93,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Trim repeated language from system prompts.",
+            "Define constrained output schemas for structured tasks.",
+            "Shorten asks that do not need open-ended detail.",
+            "Compress retrieved context before it enters the prompt.",
+            "Check that answer quality stays within your target bar."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A task with a stable instruction set or structured output",
+            "A way to measure output quality",
+            "Optional: a context-compression tool for retrieval workflows"
+          ],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "prompt-engineering",
+            "context-engineering",
+            "retrieval-systems"
+          ],
+          "question_title": "Prompt Compression",
+          "related_howtos": [
+            "context-compaction",
+            "prompt-caching"
+          ],
+          "secondary_tag": "prompt-engineering",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Most system prompts have significant redundancy. A 2,000-token prompt often contains the same instruction restated three different ways.\"",
+          "value_level": "high",
+          "what_and_problem": "Prompt compression is about sending fewer tokens while keeping the information the model needs. It helps when long prompts, long retrieved passages, or verbose output formats are making every request more expensive than necessary. The problem is especially sharp because output tokens are described as costing more than input tokens. If you can say the same thing with less text, you reduce cost on every call. That makes compression one of the simplest ways to cut spend."
+        },
+        "notes": null,
+        "proposal_id": "1a5c1586-da8c-49ac-9fe9-6f7fc14b2a18",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Trim repeated language from system prompts.",
+              "Define constrained output schemas for structured tasks.",
+              "Shorten asks that do not need open-ended detail.",
+              "Compress retrieved context before it enters the prompt.",
+              "Check that answer quality stays within your target bar."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A task with a stable instruction set or structured output",
+              "A way to measure output quality",
+              "Optional: a context-compression tool for retrieval workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "context-compaction",
+              "prompt-caching"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "prompt-engineering",
+            "context-engineering",
+            "retrieval-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Classify incoming requests by difficulty before calling a model. Send simple tasks to a small or cheap model, medium tasks to a mid-tier model, and only the hardest tasks to a frontier model. Start conservatively so you do not misroute complex requests to weak models. Use signals such as request length, keywords, task type, and expected output length. Monitor quality carefully, because a bad routing decision is visible to users.",
+          "caveats": "The article explicitly says to start conservative because wrong routing can produce visibly bad output. The suggested tier splits and savings are workload-dependent and should be treated as guidance, not universal rules, as of 2026-04-17.",
+          "confidence": 0.96,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Define request features that correlate with complexity.",
+            "Build a simple classifier or rules layer.",
+            "Map simple, medium, and complex requests to different model tiers.",
+            "Start with conservative routing thresholds.",
+            "Review misroutes and adjust the classifier over time."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "Access to at least two model tiers",
+            "A routing signal or classifier",
+            "A quality evaluation loop"
+          ],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "inference-systems",
+            "orchestration",
+            "support-automation"
+          ],
+          "question_title": "Model Routing And Cascades",
+          "related_howtos": [
+            "semantic-caching",
+            "prompt-caching"
+          ],
+          "secondary_tag": "inference-systems",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Model routing classifies each incoming request and sends it to the appropriate model tier. Simple requests go to cheap models. Complex requests go to capable ones.\"",
+          "value_level": "high",
+          "what_and_problem": "Model routing sends each request to the cheapest model that can handle it well enough. It is useful when simple classification, extraction, or short answers are getting routed to expensive frontier models. The problem is overspending on easy requests while reserving high-cost models only for genuinely hard ones. Routing creates a tiered system instead of one expensive default model. That usually makes cost more proportional to task difficulty."
+        },
+        "notes": null,
+        "proposal_id": "80061588-ce45-45c7-be27-845d6632f97e",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Define request features that correlate with complexity.",
+              "Build a simple classifier or rules layer.",
+              "Map simple, medium, and complex requests to different model tiers.",
+              "Start with conservative routing thresholds.",
+              "Review misroutes and adjust the classifier over time."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "Access to at least two model tiers",
+              "A routing signal or classifier",
+              "A quality evaluation loop"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "semantic-caching",
+              "prompt-caching"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "inference-systems",
+            "orchestration",
+            "support-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Use a strong model to generate outputs for many representative examples. Train a smaller model on those outputs so it learns the behavior pattern, not just labels. Keep the task narrow and stable so the smaller model can specialize. Evaluate it against a test set before deploying it in production. This is usually a later-stage optimization after routing and caching have been tried.",
+          "caveats": "The article notes this is only worth it when the task is high-volume and stable enough to justify training effort. It also does not cover the full maintenance cost of retraining and dataset upkeep, which matters in production as of 2026-04-17.",
+          "confidence": 0.92,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Collect representative inputs from the target task.",
+            "Generate target outputs with a stronger model.",
+            "Train a smaller model on those outputs.",
+            "Evaluate the student model on a held-out test set.",
+            "Deploy only if quality and cost both meet the target."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "A narrow, high-volume task",
+            "A large set of representative examples",
+            "Engineering capacity for training and evaluation"
+          ],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "ai-research",
+            "inference-systems",
+            "ai-evaluation"
+          ],
+          "question_title": "Model Distillation",
+          "related_howtos": [
+            "model-routing-and-cascades",
+            "agent-evaluation-design"
+          ],
+          "secondary_tag": "ai-research",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Run your frontier model on thousands of representative inputs. Collect the outputs (including the probability distributions, not just the answers). Train a smaller model to replicate those outputs.\"",
+          "value_level": "medium",
+          "what_and_problem": "Model distillation is a way to teach a smaller model to imitate a larger one on a specific task. It is useful when you have a high-volume workflow that needs near-frontier quality but cannot pay frontier-model prices forever. The problem is not general intelligence; it is getting stable performance on one repeated task at lower cost. Distillation makes more sense when the task is well defined and the traffic is predictable. It is less attractive when the input variety is broad or the quality target is vague."
+        },
+        "notes": null,
+        "proposal_id": "2658cebd-eb87-4a08-8809-7f584bf85bac",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Collect representative inputs from the target task.",
+              "Generate target outputs with a stronger model.",
+              "Train a smaller model on those outputs.",
+              "Evaluate the student model on a held-out test set.",
+              "Deploy only if quality and cost both meet the target."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "A narrow, high-volume task",
+              "A large set of representative examples",
+              "Engineering capacity for training and evaluation"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "model-routing-and-cascades",
+              "agent-evaluation-design"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "ai-research",
+            "inference-systems",
+            "ai-evaluation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "For a self-hosted model, first reduce precision with quantization and then remove unnecessary connections with pruning. Move from 32-bit weights to 8-bit or 4-bit representations when quality allows. Use sparsity or pruning to cut more compute after that. Check memory use, throughput, latency, and task quality after each step. The article recommends these as infrastructure-level optimizations for teams that own the serving stack.",
+          "caveats": "These methods are only relevant if you self-host or otherwise control inference hardware. The exact memory and throughput gains depend on the model, serving stack, and acceptable quality loss as of 2026-04-17.",
+          "confidence": 0.9,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Measure the model\u2019s baseline memory and latency.",
+            "Apply quantization to reduce weight precision.",
+            "Test whether accuracy stays within tolerance.",
+            "Apply pruning or sparsity where supported.",
+            "Re-measure throughput, latency, and cost after each change."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "Self-hosted or controlled inference infrastructure",
+            "A benchmark set for quality checks",
+            "Serving hardware with memory pressure"
+          ],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "infrastructure",
+            "serving-infrastructure",
+            "inference-systems"
+          ],
+          "question_title": "Quantization And Pruning",
+          "related_howtos": [
+            "local-model-deployment",
+            "local-model-setup"
+          ],
+          "secondary_tag": "infrastructure",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Quantization reduces this to 8-bit or 4-bit integers... Pruning removes redundant connections in the neural network.\"",
+          "value_level": "high",
+          "what_and_problem": "Quantization and pruning reduce the compute cost of running self-hosted models. They are useful when model weights are too large for the available hardware or when serving costs are too high. The problem is that full-precision models can require too much memory and too many GPUs. Quantization shrinks numerical precision, and pruning removes redundant connections. Together they make local or self-hosted inference cheaper and more practical."
+        },
+        "notes": null,
+        "proposal_id": "94bec2b3-5cb2-447d-9913-8438ee7db449",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Measure the model\u2019s baseline memory and latency.",
+              "Apply quantization to reduce weight precision.",
+              "Test whether accuracy stays within tolerance.",
+              "Apply pruning or sparsity where supported.",
+              "Re-measure throughput, latency, and cost after each change."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "Self-hosted or controlled inference infrastructure",
+              "A benchmark set for quality checks",
+              "Serving hardware with memory pressure"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "local-model-deployment",
+              "local-model-setup"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "infrastructure",
+            "serving-infrastructure",
+            "inference-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "answer_summary": "Log token counts, model name, prompt category, and cost for each call. Aggregate the data to find the prompts and features that consume the most money. Watch cache hit rates and quality trends as you change the system. Add hard spending caps at the provider level so a looping agent cannot spend unchecked. Use tracing tools if you need faster visibility into complex workflows.",
+          "caveats": "The article treats hard caps as non-optional, but it does not discuss alert tuning or the operational details of false positives. The best observability stack depends on your provider and telemetry needs as of 2026-04-17.",
+          "confidence": 0.97,
+          "evidence_type": null,
+          "implementation_steps": [
+            "Instrument each LLM call with model, input tokens, output tokens, and estimated cost.",
+            "Classify prompts into categories for analysis.",
+            "Track cache-hit rates and quality metrics over time.",
+            "Identify the top cost-driving prompts and features.",
+            "Set provider-side hard spending limits and alerts."
+          ],
+          "match_candidates": [],
+          "prerequisites": [
+            "Basic application logging",
+            "A cost calculator or provider pricing data",
+            "Access to provider usage limits or budget caps"
+          ],
+          "primary_tag": "ai-economics",
+          "proposed_tags": [
+            "ai-economics",
+            "ai-evaluation",
+            "auditability",
+            "infrastructure"
+          ],
+          "question_title": "LLM Cost Observability",
+          "related_howtos": [
+            "agent-evaluation-design",
+            "prompt-caching"
+          ],
+          "secondary_tag": "ai-evaluation",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"You cannot optimize what you cannot see.\"",
+          "value_level": "high",
+          "what_and_problem": "LLM cost observability is the practice of measuring which prompts, users, and features are actually driving spend. It solves the common problem of teams knowing only their monthly bill, not the source of that bill. Without this visibility, it is hard to decide what to cache, compress, route, or cap. It also helps catch runaway agent loops before they become expensive. This is the foundation for any serious cost-optimization work."
+        },
+        "notes": null,
+        "proposal_id": "2e2d5c83-dedc-48df-b468-e75a53be37d1",
+        "proposal_status": "approved",
+        "sections": {
+          "answer_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "caveats": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implementation_steps": {
+            "final_list": null,
+            "llm_list": [
+              "Instrument each LLM call with model, input tokens, output tokens, and estimated cost.",
+              "Classify prompts into categories for analysis.",
+              "Track cache-hit rates and quality metrics over time.",
+              "Identify the top cost-driving prompts and features.",
+              "Set provider-side hard spending limits and alerts."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "prerequisites": {
+            "final_list": null,
+            "llm_list": [
+              "Basic application logging",
+              "A cost calculator or provider pricing data",
+              "Access to provider usage limits or budget caps"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "question_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_howtos": {
+            "final_list": null,
+            "llm_list": [
+              "agent-evaluation-design",
+              "prompt-caching"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_and_problem": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-economics",
+            "ai-evaluation",
+            "auditability",
+            "infrastructure"
+          ]
+        }
+      }
+    ],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is an independent explanatory guide by a named writer, not a vendor post or formal study.",
+          "It mixes general pricing explanations, practitioner-style examples, and cited product/benchmark claims without a single formal research method.",
+          "Most recommendations are framed as author guidance on cost optimization rather than as experimentally validated results."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Repeated prefixes are a major hidden cost; placing static prompt content first improves prefix-cache hit rates.",
+          "Semantic caching can skip the model entirely when different user phrasings map to the same intent, but similarity thresholds need calibration.",
+          "Output control matters because output tokens are described as costing 2\u20134x more than input tokens.",
+          "Model routing is safest when conservative; wrong cheap-model routing can degrade visible quality fast.",
+          "For self-hosted models, quantization and pruning are positioned as infrastructure-level cost levers, not just model-compression tricks."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://pub.towardsai.net/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-edf7339d0c9a"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.95,
+        "detected_source_type": "how_to_roundup",
+        "reasoning": [
+          "The article is primarily a numbered list of eight distinct techniques/practices for reducing LLM spend.",
+          "Its structure is procedural and comparative, not a single tutorial or a product roundup.",
+          "The decision matrix and implementation order further reinforce a techniques guide format."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Divy Yadav",
+    "canonical_url": "https://pub.towardsai.net/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-edf7339d0c9a",
+    "content_sha256": "7e589cffab7fa8acc9cb2f3d1a2ffe0eb7e21ca1ce8e7f809504d6a56ebb0a56",
+    "publication": "Medium",
+    "published_date": "2026-04-17",
+    "raw_html_rel_path": "raw/readwise/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9.html",
+    "raw_md_rel_path": "raw/readwise/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9.md",
+    "source_id": "8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9",
+    "title": "8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)"
+  }
+}

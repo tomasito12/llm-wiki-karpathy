@@ -6,264 +6,538 @@ category: diagnostics
 # Knowledge Graph Diagnostics
 
 - Tool version: `1`
-- Taxonomy version: `0557b8847364`
-- Sources: 126
-- Knowledge pages: 287
-- Signals: 43
-- Interview insights: 20
-- Implementation studies: 5
+- Taxonomy version: `27539b556704`
+- Sources: 357
+- Knowledge pages: 613
+- Signals: 160
+- Interview insights: 97
+- Implementation studies: 18
 
 ## All topics
 
+- [[topics/ai-adoption-as-behavior-change|AI Adoption as Behavior Change]] — sources: 1, evidence: 8
 - [[topics/ai-architect-role|AI Architect Role]] — sources: 1, evidence: 7
+- [[topics/ai-governance-as-product-surface|AI Governance as Product Surface]] — sources: 1, evidence: 7
+- [[topics/ai-jobs-risks-and-safety-nets|AI Jobs Risk and Safety Nets]] — sources: 1, evidence: 8
 - [[topics/ai-model-differentiation-shifts-to-distribution|AI Model Differentiation Shifts to Distribution]] — sources: 1, evidence: 7
 - [[topics/ai-orchestration-over-model-tuning|AI Orchestration Over Model Tuning]] — sources: 2, evidence: 15
+- [[topics/ai-production-readiness-contracts-and-controls|AI Production Readiness Controls]] — sources: 1, evidence: 7
+- [[topics/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — sources: 2, evidence: 14
+- [[topics/ai-program-ownership|AI Program Ownership]] — sources: 1, evidence: 8
 - [[topics/ai-redistribution-through-taxation-and-ownership|AI Redistribution Through Taxation And Ownership]] — sources: 1, evidence: 7
+- [[topics/ai-redistribution-and-rent-capture|AI Redistribution and Rent Capture]] — sources: 1, evidence: 8
+- [[topics/ai-workflow-bottleneck-shift-to-review|AI Workflow Bottleneck Shift to Review]] — sources: 1, evidence: 7
+- [[topics/ai-workflow-restructuring|AI Workflow Restructuring]] — sources: 5, evidence: 38
 - [[topics/ai-assisted-knowledge-compilation|AI-Assisted Knowledge Compilation]] — sources: 1, evidence: 9
-- [[topics/agent-infrastructure|Agent Infrastructure]] — sources: 1, evidence: 8
+- [[topics/ai-assisted-structured-writing-workflows|AI-Assisted Structured Writing Workflows]] — sources: 1, evidence: 8
+- [[topics/ai-native-delivery-methodology|AI-Native Delivery Methodology]] — sources: 1, evidence: 8
+- [[topics/adaptive-rag-orchestration|Adaptive RAG Orchestration]] — sources: 1, evidence: 9
+- [[topics/adoption-as-ai-product|Adoption as AI Product]] — sources: 1, evidence: 9
+- [[topics/agent-connectivity-layering|Agent Connectivity Layering]] — sources: 3, evidence: 25
+- [[topics/agent-contract-programming|Agent Contract Programming]] — sources: 1, evidence: 8
+- [[topics/agent-deployment-in-customer-environments|Agent Deployment in Customer Environments]] — sources: 1, evidence: 9
+- [[topics/agent-infrastructure|Agent Infrastructure]] — sources: 2, evidence: 17
 - [[topics/agent-memory|Agent Memory]] — sources: 1, evidence: 9
-- [[topics/agent-memory-architecture|Agent Memory Architecture]] — sources: 1, evidence: 8
-- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]] — sources: 2, evidence: 15
+- [[topics/agent-memory-architecture|Agent Memory Architecture]] — sources: 4, evidence: 32
+- [[topics/agent-reliability|Agent Reliability]] — sources: 1, evidence: 8
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]] — sources: 3, evidence: 24
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]] — sources: 4, evidence: 30
 - [[topics/agent-self-verification|Agent Self-Verification]] — sources: 1, evidence: 8
-- [[topics/agent-workspace-layering|Agent Workspace Layering]] — sources: 2, evidence: 15
+- [[topics/agent-skill-optimization|Agent Skill Optimization]] — sources: 1, evidence: 9
+- [[topics/agent-specification-bidirectionality|Agent Specification Bidirectionality]] — sources: 1, evidence: 8
+- [[topics/agent-tool-wrapper-overhead|Agent Tool Wrapper Overhead]] — sources: 1, evidence: 7
+- [[topics/agent-workflow-vs-workflow-orchestration|Agent Workflow vs Workflow Orchestration]] — sources: 1, evidence: 8
+- [[topics/agent-workspace-layering|Agent Workspace Layering]] — sources: 7, evidence: 54
 - [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]] — sources: 1, evidence: 8
-- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]] — sources: 1, evidence: 8
-- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — sources: 1, evidence: 9
-- [[topics/agentic-coding-workflows|Agentic Coding Workflows]] — sources: 1, evidence: 7
-- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — sources: 3, evidence: 25
+- [[topics/agent-generated-product-pulses|Agent-Generated Product Pulses]] — sources: 1, evidence: 7
+- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]] — sources: 3, evidence: 24
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — sources: 8, evidence: 66
+- [[topics/agent-native-auditability|Agent-Native Auditability]] — sources: 4, evidence: 32
+- [[topics/agent-native-product-management|Agent-Native Product Management]] — sources: 1, evidence: 7
+- [[topics/agentic-coding-workflow-shape|Agentic Coding Workflow Shape]] — sources: 1, evidence: 8
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]] — sources: 8, evidence: 61
+- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — sources: 9, evidence: 71
 - [[topics/agentic-workflow-latency-optimization|Agentic Workflow Latency Optimization]] — sources: 1, evidence: 7
 - [[topics/agentic-workflows|Agentic Workflows]] — sources: 7, evidence: 52
 - [[topics/answer-concision-as-product-quality|Answer Concision as Product Quality]] — sources: 2, evidence: 14
-- [[topics/approval-based-agent-actions|Approval-Based Agent Actions]] — sources: 1, evidence: 8
-- [[topics/approval-based-coding-workflows|Approval-Based Coding Workflows]] — sources: 1, evidence: 8
+- [[topics/answer-inference-vs-agentic-inference|Answer Inference vs Agentic Inference]] — sources: 1, evidence: 8
+- [[topics/approval-based-agent-actions|Approval-Based Agent Actions]] — sources: 2, evidence: 16
+- [[topics/approval-based-coding-workflows|Approval-Based Coding Workflows]] — sources: 3, evidence: 24
+- [[topics/artifact-first-ai-workflows|Artifact-First AI Workflows]] — sources: 2, evidence: 14
 - [[topics/atomic-binary-evaluation-judges|Atomic Binary Evaluation Judges]] — sources: 1, evidence: 8
+- [[topics/attention-hungry-ai-workflows|Attention-Hungry AI Workflows]] — sources: 1, evidence: 7
+- [[topics/audit-ready-cloud-compliance|Audit-Ready Cloud Compliance]] — sources: 1, evidence: 7
 - [[topics/behavioral-audits-for-model-style-drift|Behavioral Audits for Model Style Drift]] — sources: 1, evidence: 7
 - [[topics/behavioral-blast-radius-evaluation|Behavioral Blast Radius Evaluation]] — sources: 1, evidence: 9
-- [[topics/behavioral-instruction-layers-for-agents|Behavioral Instruction Layers]] — sources: 1, evidence: 7
+- [[topics/behavioral-instruction-layers-for-agents|Behavioral Instruction Layers]] — sources: 3, evidence: 24
+- [[topics/bounded-corpus-synthesis|Bounded Corpus Synthesis]] — sources: 1, evidence: 8
+- [[topics/bounded-text-updates-with-validation-gates|Bounded Text Updates With Validation Gates]] — sources: 1, evidence: 5
 - [[topics/chain-of-thought-as-externalized-depth|Chain-of-Thought as Externalized Depth]] — sources: 1, evidence: 7
+- [[topics/citation-backed-personal-retrieval|Citation-Backed Personal Retrieval]] — sources: 1, evidence: 8
 - [[topics/citation-locked-ai-documentation|Citation-Locked AI Documentation]] — sources: 1, evidence: 8
+- [[topics/cognitive-debt-in-ai-workflows|Cognitive Debt in AI Workflows]] — sources: 3, evidence: 23
 - [[topics/commit-driven-documentation-generation|Commit-Driven Documentation Generation]] — sources: 1, evidence: 8
 - [[topics/compute-supply-becomes-the-ai-bottleneck|Compute Supply Becomes the AI Bottleneck]] — sources: 1, evidence: 8
-- [[topics/context-engineering|Context Engineering]] — sources: 12, evidence: 87
+- [[topics/compute-supply-and-capex-in-ai|Compute Supply and Capex in AI]] — sources: 1, evidence: 7
+- [[topics/conflict-forecasting-models|Conflict Forecasting Models]] — sources: 1, evidence: 9
+- [[topics/consumer-ai-distribution|Consumer AI Distribution]] — sources: 2, evidence: 15
+- [[topics/consumer-ai-monetization-under-load|Consumer AI Monetization Under Load]] — sources: 1, evidence: 7
+- [[topics/context-engineering|Context Engineering]] — sources: 14, evidence: 99
 - [[topics/context-and-backend-sensitivity-in-local-inference|Context and Backend Sensitivity in Local Inference]] — sources: 1, evidence: 7
 - [[topics/contextual-operations-summarization|Contextual Operations Summarization]] — sources: 1, evidence: 8
+- [[topics/continuous-improvement-for-ai-support-systems|Continuous Improvement for AI Support Systems]] — sources: 1, evidence: 9
 - [[topics/control-group-based-service-experimentation|Control-Group Based Service Experimentation]] — sources: 1, evidence: 7
-- [[topics/dense-vs-moe-model-consistency|Dense Versus MoE Model Consistency]] — sources: 1, evidence: 8
+- [[topics/country-specific-ai-partnerships|Country-Specific AI Partnerships]] — sources: 1, evidence: 8
+- [[topics/customer-isolation-and-tenant-fairness|Customer Isolation and Tenant Fairness]] — sources: 1, evidence: 8
+- [[topics/customer-signal-productization-pipeline|Customer Signal Productization Pipeline]] — sources: 1, evidence: 7
+- [[topics/defensive-acceleration-in-biology|Defensive Acceleration in Biology]] — sources: 1, evidence: 9
+- [[topics/prompt-injection-defensive-context-handling|Defensive Context Handling]] — sources: 1, evidence: 7
+- [[topics/dense-vs-moe-model-consistency|Dense Versus MoE Model Consistency]] — sources: 2, evidence: 15
+- [[topics/development-cost-amortization|Development Cost Amortization]] — sources: 1, evidence: 8
+- [[topics/diffusion-as-sequence-generation|Diffusion as Sequence Generation]] — sources: 1, evidence: 7
+- [[topics/domain-expertise-as-verification|Domain Expertise as Verification]] — sources: 1, evidence: 8
+- [[topics/eu-ai-act-three-clock-compliance|EU AI Act Three-Clock Compliance]] — sources: 1, evidence: 7
 - [[topics/early-fusion-multimodal-models|Early Fusion Multimodal Models]] — sources: 1, evidence: 8
+- [[topics/enterprise-ai-layer|Enterprise AI Layer]] — sources: 1, evidence: 8
+- [[topics/enterprise-conversational-ai-integration|Enterprise Conversational AI Integration]] — sources: 3, evidence: 23
 - [[topics/file-grammar-skills-for-ai|File Grammar Skills for AI]] — sources: 2, evidence: 16
-- [[topics/file-native-ai-workflows|File-Native AI Workflows]] — sources: 3, evidence: 21
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]] — sources: 8, evidence: 59
+- [[topics/file-native-agent-workflows|File-Native Agent Workflows]] — sources: 3, evidence: 24
+- [[topics/forecasting-with-noisy-public-signals|Forecasting With Noisy Public Signals]] — sources: 1, evidence: 9
+- [[topics/frontier-model-serving|Frontier Model Serving]] — sources: 1, evidence: 7
 - [[topics/frontier-models-as-national-infrastructure|Frontier Models as National Infrastructure]] — sources: 1, evidence: 9
 - [[topics/geopolitics-of-ai-safety|Geopolitics of AI Safety]] — sources: 1, evidence: 9
-- [[topics/governance-as-enabler-for-enterprise-ai|Governance as an Enabler for Enterprise AI]] — sources: 1, evidence: 6
+- [[topics/governance-as-enabler-for-enterprise-ai|Governance as an Enabler for Enterprise AI]] — sources: 2, evidence: 14
 - [[topics/governed-cyber-model-access|Governed Cyber Model Access]] — sources: 1, evidence: 7
-- [[topics/graph-grounding-for-ai|Graph Grounding for AI Systems]] — sources: 1, evidence: 9
+- [[topics/government-led-ai-adoption-programs|Government-Led AI Adoption Programs]] — sources: 1, evidence: 8
+- [[topics/graph-grounding-for-ai|Graph Grounding for AI]] — sources: 2, evidence: 18
+- [[topics/graph-grounding-for-agent-simulation|Graph Grounding for Agent Simulation]] — sources: 1, evidence: 8
+- [[topics/hallucination-propagation-in-multi-agent-systems|Hallucination Propagation in Multi-Agent Systems]] — sources: 1, evidence: 8
 - [[topics/harness-decay|Harness Decay]] — sources: 2, evidence: 16
 - [[topics/harness-engineering|Harness Engineering]] — sources: 3, evidence: 23
+- [[topics/human-feedback-loops-in-support-operations|Human Feedback Loops in Support Operations]] — sources: 1, evidence: 9
 - [[topics/human-handoff-design-for-ai-support|Human Handoff Design for AI Support]] — sources: 1, evidence: 7
+- [[topics/human-in-the-loop-advisor-systems|Human-in-the-Loop Advisor Systems]] — sources: 1, evidence: 8
 - [[topics/hybrid-human-ai-workflows-for-expert-review|Hybrid Human-AI Workflows for Expert Review]] — sources: 1, evidence: 6
-- [[topics/hybrid-retrieval|Hybrid Retrieval]] — sources: 1, evidence: 8
+- [[topics/hybrid-retrieval|Hybrid Retrieval]] — sources: 3, evidence: 25
+- [[topics/incremental-and-reversible-infrastructure-changes|Incremental and Reversible Infrastructure Changes]] — sources: 1, evidence: 8
 - [[topics/intent-driven-chaos-engineering|Intent-Driven Chaos Engineering]] — sources: 1, evidence: 10
-- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]] — sources: 3, evidence: 23
+- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]] — sources: 4, evidence: 32
 - [[topics/interactive-ai|Interactive AI]] — sources: 1, evidence: 8
-- [[topics/kv-cache-compression|KV Cache Compression]] — sources: 2, evidence: 14
+- [[topics/internal-proofing-before-productization|Internal Proofing Before Productization]] — sources: 1, evidence: 7
+- [[topics/kv-cache-compression|KV Cache Compression]] — sources: 3, evidence: 22
 - [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]] — sources: 1, evidence: 7
 - [[topics/knowledge-base-maintenance|Knowledge Base Maintenance]] — sources: 1, evidence: 8
+- [[topics/knowledge-systems-shift-toward-compilation-over-retrieval|Knowledge Compilation Over Retrieval]] — sources: 1, evidence: 7
+- [[topics/knowledge-graph-grounding-for-note-vaults|Knowledge Graph Grounding for Note Vaults]] — sources: 1, evidence: 8
 - [[topics/knowledge-layer-architecture|Knowledge Layer Architecture]] — sources: 2, evidence: 17
 - [[topics/knowledge-management|Knowledge Management]] — sources: 5, evidence: 38
 - [[topics/llm-wiki|LLM Wiki]] — sources: 1, evidence: 9
-- [[topics/llm-assisted-knowledge-compilation|LLM-Assisted Knowledge Compilation]] — sources: 1, evidence: 9
+- [[topics/llm-assisted-knowledge-compilation|LLM-Assisted Knowledge Compilation]] — sources: 2, evidence: 17
+- [[topics/llm-maintained-knowledge-bases|LLM-Maintained Knowledge Bases]] — sources: 1, evidence: 8
 - [[topics/llm-maintained-knowledge-compilation|LLM-Maintained Knowledge Compilation]] — sources: 2, evidence: 18
+- [[topics/latency-as-a-conversation-constraint|Latency as a Conversation Constraint]] — sources: 1, evidence: 8
 - [[topics/latent-reasoning-architectures|Latent Reasoning Architectures]] — sources: 1, evidence: 7
+- [[topics/layer-wise-attention-budgeting|Layer-Wise Attention Budgeting]] — sources: 1, evidence: 7
 - [[topics/layered-ai-architecture|Layered AI Architecture]] — sources: 1, evidence: 7
-- [[topics/layered-agent-architecture|Layered Agent Architecture]] — sources: 1, evidence: 8
+- [[topics/layered-agent-architecture|Layered Agent Architecture]] — sources: 2, evidence: 16
+- [[topics/layered-local-and-cloud-inference|Layered Local and Cloud Inference]] — sources: 2, evidence: 16
+- [[topics/lightweight-typing-in-note-apps|Lightweight Typing in Note Apps]] — sources: 1, evidence: 7
 - [[topics/local-model-deployment|Local Model Deployment]] — sources: 4, evidence: 29
 - [[topics/multimodal-local-inference|Local Multimodal Inference]] — sources: 1, evidence: 7
-- [[topics/local-pii-redaction|Local PII Redaction]] — sources: 1, evidence: 7
+- [[topics/local-pii-redaction|Local PII Redaction]] — sources: 2, evidence: 15
 - [[topics/local-voice-api|Local Voice API]] — sources: 1, evidence: 8
+- [[topics/mcp-production-governance|MCP Production Governance]] — sources: 1, evidence: 8
 - [[topics/mcp-enabled-agent-voice-output|MCP-Enabled Agent Voice Output]] — sources: 1, evidence: 8
+- [[topics/maintenance-aware-ai-evaluation|Maintenance-Aware AI Evaluation]] — sources: 2, evidence: 15
+- [[topics/manager-workflow-augmentation|Manager Workflow Augmentation]] — sources: 1, evidence: 7
+- [[topics/manual-capture-friction|Manual Capture Friction]] — sources: 3, evidence: 22
 - [[topics/langgraph-message-reducers|Message Reducers for Chat State]] — sources: 1, evidence: 9
 - [[topics/model-risk-assessment-for-cyber-capability|Model Risk Assessment for Cyber Capability]] — sources: 1, evidence: 7
 - [[topics/models-becoming-execution-layers|Models Becoming Execution Layers]] — sources: 1, evidence: 7
+- [[topics/models-as-commodity-components|Models as Commodity Components]] — sources: 1, evidence: 7
+- [[topics/multi-channel-agent-orchestration|Multi-Channel Agent Orchestration]] — sources: 1, evidence: 7
 - [[topics/native-audio-models-for-voice|Native Audio Models for Voice]] — sources: 1, evidence: 7
+- [[topics/non-nvidia-ai-hardware-thesis|Non-NVIDIA AI Hardware Thesis]] — sources: 1, evidence: 7
 - [[topics/ontology-driven-extraction|Ontology-Driven Extraction]] — sources: 3, evidence: 23
+- [[topics/open-agent-platform-integration|Open Agent Platform Integration]] — sources: 1, evidence: 8
 - [[topics/open-formats-as-ai-integration-boundaries|Open Formats as AI Integration Boundaries]] — sources: 1, evidence: 8
-- [[topics/openai-compatible-local-endpoints|OpenAI-Compatible Local Endpoints]] — sources: 1, evidence: 7
+- [[topics/open-model-ecosystems|Open Model Ecosystems]] — sources: 1, evidence: 8
+- [[topics/openai-compatible-local-endpoints|OpenAI-Compatible Local Endpoints]] — sources: 2, evidence: 14
 - [[topics/ops-artifact-generation|Operational Artifact Generation]] — sources: 1, evidence: 8
-- [[topics/outcome-based-pricing-for-ai-agents|Outcome-Based Pricing for AI Agents]] — sources: 1, evidence: 8
+- [[topics/organizational-ai-readiness|Organizational AI Readiness]] — sources: 2, evidence: 16
+- [[topics/outcome-based-pricing-for-ai-agents|Outcome-Based Pricing for AI Agents]] — sources: 2, evidence: 16
+- [[topics/passive-context-capture|Passive Context Capture]] — sources: 1, evidence: 7
+- [[topics/permission-aware-retrieval|Permission-Aware Retrieval]] — sources: 1, evidence: 7
 - [[topics/persistent-connection-response-state-reuse|Persistent Connection Response State Reuse]] — sources: 1, evidence: 7
-- [[topics/personalized-conversational-ai|Personalized Conversational AI]] — sources: 1, evidence: 7
+- [[topics/personalized-conversational-ai|Personalized Conversational AI]] — sources: 2, evidence: 15
+- [[topics/practitioner-feedback-loops-for-agents|Practitioner Feedback Loops for Agents]] — sources: 1, evidence: 8
+- [[topics/pricing-model-validation-for-ai-products|Pricing Model Validation for AI Products]] — sources: 1, evidence: 8
 - [[topics/privacy-controls-for-ai-products|Privacy Controls for AI Products]] — sources: 1, evidence: 7
-- [[topics/progressive-disclosure-skill-design|Progressive Disclosure in Skill Design]] — sources: 1, evidence: 8
-- [[topics/prompt-engineering|Prompt Engineering]] — sources: 1, evidence: 8
+- [[topics/procedural-knowledge-for-agents|Procedural Knowledge for Agents]] — sources: 2, evidence: 16
+- [[topics/production-debt-in-ai-systems|Production Debt in AI Systems]] — sources: 2, evidence: 15
+- [[topics/production-traceability-for-agent-improvement|Production Traceability for Agent Improvement]] — sources: 1, evidence: 7
+- [[topics/progressive-disclosure-skill-design|Progressive Disclosure in Skill Design]] — sources: 3, evidence: 24
+- [[topics/project-scoped-memory-boundaries|Project-Scoped Memory Boundaries]] — sources: 1, evidence: 8
+- [[topics/prompt-engineering|Prompt Engineering]] — sources: 2, evidence: 16
+- [[topics/prompt-driven-structured-document-generation|Prompt-Driven Structured Document Generation]] — sources: 1, evidence: 7
 - [[topics/prompts-as-workflows|Prompts as Small Workflows]] — sources: 1, evidence: 7
-- [[topics/proprietary-evals|Proprietary Evals]] — sources: 1, evidence: 7
-- [[topics/provenance-tracking|Provenance Tracking]] — sources: 1, evidence: 7
+- [[topics/proprietary-evals|Proprietary Evals]] — sources: 2, evidence: 15
+- [[topics/provenance-tracking|Provenance Tracking]] — sources: 2, evidence: 15
+- [[topics/rag-evaluation-workflows|RAG Evaluation Workflows]] — sources: 1, evidence: 7
+- [[topics/rag-orchestration-patterns|RAG Orchestration Patterns]] — sources: 1, evidence: 7
+- [[topics/real-time-rl-for-agent-improvement|Real-Time RL for Agent Improvement]] — sources: 1, evidence: 8
 - [[topics/realtime-ai|Realtime AI]] — sources: 2, evidence: 14
 - [[topics/realtime-ai-evaluation|Realtime AI Evaluation]] — sources: 2, evidence: 15
 - [[topics/realtime-multimodal-interaction|Realtime Multimodal Interaction]] — sources: 2, evidence: 14
+- [[topics/realtime-voice-integration-for-enterprise-workflows|Realtime Voice Integration for Enterprise Workflows]] — sources: 1, evidence: 7
+- [[topics/regex-search-indexing|Regex Search Indexing]] — sources: 1, evidence: 8
+- [[topics/retrieval-systems|Retrieval Systems]] — sources: 1, evidence: 8
+- [[topics/rag-as-grounded-retrieval|Retrieval-Grounded Generation]] — sources: 1, evidence: 8
 - [[topics/reward-generalization-effects|Reward Generalization Effects]] — sources: 1, evidence: 8
+- [[topics/reward-hacking-in-production-agent-loops|Reward Hacking in Production Agent Loops]] — sources: 1, evidence: 8
+- [[topics/runtime-architecture|Runtime Architecture]] — sources: 1, evidence: 7
 - [[topics/sales-metrics-for-agent-frontlines|Sales Metrics for Agent Frontlines]] — sources: 1, evidence: 8
+- [[topics/scheduler-driven-assistant-runtime|Scheduler-Driven Assistant Runtime]] — sources: 1, evidence: 7
+- [[topics/self-hosted-agent-execution|Self-Hosted Agent Execution]] — sources: 2, evidence: 17
+- [[topics/shared-agent-across-lifecycle|Shared Agent Across the Customer Lifecycle]] — sources: 1, evidence: 8
+- [[topics/software-control-strategies|Software Control Strategies]] — sources: 1, evidence: 8
 - [[topics/software-moat-compression|Software Moat Compression]] — sources: 2, evidence: 15
+- [[topics/sparse-n-grams|Sparse N-Grams]] — sources: 1, evidence: 8
 - [[topics/state-control-over-ai-supply-chains|State Control Over AI Supply Chains]] — sources: 1, evidence: 7
 - [[topics/stateless-chatbot-architecture|Stateless Chatbot Architecture]] — sources: 1, evidence: 9
+- [[topics/structured-drafting-for-human-review|Structured Drafting for Human Review]] — sources: 3, evidence: 24
+- [[topics/structured-drafting-for-rereadable-notes|Structured Drafting for Rereadable Notes]] — sources: 1, evidence: 8
+- [[topics/structured-page-extraction-with-llms|Structured Page Extraction With LLMs]] — sources: 1, evidence: 8
+- [[topics/structured-specification-for-agentic-development|Structured Specification for Agentic Development]] — sources: 4, evidence: 34
+- [[topics/super-app-agent-integration|Super-App Agent Integration]] — sources: 1, evidence: 9
 - [[topics/support-automation-operations|Support Automation Operations]] — sources: 1, evidence: 10
-- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — sources: 3, evidence: 23
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — sources: 7, evidence: 55
+- [[topics/support-operations-as-agent-workflow|Support Operations as Agent Workflow]] — sources: 1, evidence: 8
+- [[topics/synthetic-content-provenance|Synthetic Content Provenance]] — sources: 1, evidence: 7
+- [[topics/systems-language-feedback-loops|Systems Language Feedback Loops]] — sources: 1, evidence: 8
+- [[topics/task-model-fit-in-support-automation|Task Model Fit in Support Automation]] — sources: 1, evidence: 8
 - [[topics/tax-base-shift-from-labor-to-capital|Tax Base Shift From Labor To Capital]] — sources: 1, evidence: 8
+- [[topics/tech-skills-spread-across-the-economy|Tech Skills Spread Across the Economy]] — sources: 1, evidence: 7
+- [[topics/technopoly-and-tech-hegemony|Technopoly and Tech Hegemony]] — sources: 1, evidence: 8
 - [[topics/telephony-integration-for-voice-agents|Telephony Integration for Voice Agents]] — sources: 1, evidence: 7
 - [[topics/model-evaluation-with-terminal-benchmarks|Terminal-Centric Model Evaluation]] — sources: 1, evidence: 7
-- [[topics/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]] — sources: 3, evidence: 21
-- [[topics/token-classification-for-redaction|Token Classification for Redaction]] — sources: 1, evidence: 7
+- [[topics/text-diffusion-models|Text Diffusion Models]] — sources: 1, evidence: 7
+- [[topics/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]] — sources: 4, evidence: 30
+- [[topics/time-boxed-ai-writing-routines|Time-Boxed AI Writing Routines]] — sources: 1, evidence: 8
+- [[topics/token-classification-for-redaction|Token Classification for Redaction]] — sources: 2, evidence: 15
 - [[topics/token-efficient-agent-instructions|Token-Efficient Agent Instructions]] — sources: 2, evidence: 15
+- [[topics/tool-discipline-in-agent-loops|Tool Discipline in Agent Loops]] — sources: 2, evidence: 15
 - [[topics/transcription-as-evaluation-bottleneck|Transcription as an Evaluation Bottleneck]] — sources: 1, evidence: 8
+- [[topics/transformer-llm-architecture|Transformer LLM Architecture]] — sources: 1, evidence: 8
+- [[topics/translation-layer-ai-architecture|Translation Layer AI Architecture]] — sources: 1, evidence: 8
 - [[topics/two-step-document-ingest|Two-Step Document Ingest]] — sources: 1, evidence: 8
-- [[topics/use-case-specific-local-model-selection|Use-Case-Specific Local Model Selection]] — sources: 2, evidence: 15
-- [[topics/verifiable-ai-governance|Verifiable AI Governance]] — sources: 1, evidence: 8
-- [[topics/vertical-models|Vertical Models]] — sources: 1, evidence: 7
+- [[topics/type-i-vs-type-ii-audit-assurance|Type I vs Type II Audit Assurance]] — sources: 1, evidence: 7
+- [[topics/use-case-specific-local-model-selection|Use-Case-Specific Local Model Selection]] — sources: 4, evidence: 30
+- [[topics/verifiable-ai-governance|Verifiable AI Governance]] — sources: 2, evidence: 15
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — sources: 9, evidence: 70
+- [[topics/verification-loops-in-agentic-coding|Verification Loops in Agentic Coding]] — sources: 1, evidence: 8
+- [[topics/vertical-models|Vertical Models]] — sources: 2, evidence: 14
 - [[topics/visual-specifications-for-ai-systems|Visual Specifications for AI Systems]] — sources: 2, evidence: 15
-- [[topics/wiki-schema-governance|Wiki Schema Governance]] — sources: 2, evidence: 17
+- [[topics/voice-agents-shift-toward-workflow-completion|Voice Agents Shift Toward Workflow Completion]] — sources: 1, evidence: 8
+- [[topics/voice-prompting-for-conversational-systems|Voice Prompting for Conversational Systems]] — sources: 1, evidence: 8
+- [[topics/voice-and-text-agent-workflows|Voice and Text Agent Workflows]] — sources: 1, evidence: 7
+- [[topics/whatsapp-service-automation|WhatsApp Service Automation]] — sources: 1, evidence: 7
+- [[topics/wiki-schema-governance|Wiki Schema Governance]] — sources: 4, evidence: 32
+- [[topics/workflow-restructuring-around-ai-agents|Workflow Restructuring Around AI Agents]] — sources: 1, evidence: 7
+- [[topics/workflow-based-agent-evaluation|Workflow-Based Agent Evaluation]] — sources: 1, evidence: 8
+- [[topics/workflow-based-automation-selection|Workflow-Based Automation Selection]] — sources: 1, evidence: 9
+- [[topics/workflow-based-support-resolution|Workflow-Based Support Resolution]] — sources: 1, evidence: 8
 
 ## All trends
 
-- [[industry-trends/workflow-based-evaluation|AI Adoption Shifts Toward Workflow Output Quality]] — sources: 1, evidence: 6
+- [[industry-trends/ai-adoption-moves-toward-government-mediated-access|AI Adoption Moves Toward Government-Mediated Access]] — sources: 1, evidence: 8
+- [[industry-trends/ai-coding-moves-from-prompting-to-persistent-specs|AI Coding Moves from Prompts to Persistent Specs]] — sources: 1, evidence: 8
+- [[industry-trends/ai-development-shifts-toward-model-assisted-automation|AI Development Shifts Toward Model-Assisted Automation]] — sources: 1, evidence: 8
 - [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]] — sources: 3, evidence: 24
+- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]] — sources: 2, evidence: 14
+- [[industry-trends/agent-evaluation-shifts-toward-workflow-based-tool-use|AI Evaluation Shifts Toward Workflow-Based Tool Use]] — sources: 1, evidence: 10
+- [[industry-trends/ai-forecasting-shifts-toward-operational-risk-monitoring|AI Forecasting Shifts Toward Operational Risk Monitoring]] — sources: 1, evidence: 9
+- [[industry-trends/ai-governance-moves-toward-enforceable-media-controls|AI Governance Moves Toward Enforceable Media Controls]] — sources: 1, evidence: 9
+- [[industry-trends/provenance-becomes-layered-and-verifiable|AI Governance Shifts Toward Layered Verification]] — sources: 1, evidence: 8
+- [[industry-trends/ai-governance-shifts-toward-verification-mechanisms|AI Governance Shifts Toward Verification Mechanisms]] — sources: 1, evidence: 8
 - [[industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus|AI Infrastructure Scarcity Spreads Beyond GPUs]] — sources: 1, evidence: 10
-- [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]] — sources: 1, evidence: 8
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — sources: 4, evidence: 32
+- [[industry-trends/ai-product-feature-gating-moves-toward-generalization-tests|AI Product Gating Moves Toward Generalization Tests]] — sources: 1, evidence: 8
+- [[industry-trends/ai-product-pricing-shifts-toward-measured-outcomes|AI Product Pricing Shifts Toward Measured Outcomes]] — sources: 1, evidence: 8
+- [[industry-trends/ai-products-shift-toward-agentic-commerce-interfaces|AI Products Shift Toward Agentic Commerce Interfaces]] — sources: 1, evidence: 9
+- [[industry-trends/ai-products-shift-toward-ambient-computing|AI Products Shift Toward Ambient Computing]] — sources: 1, evidence: 8
+- [[industry-trends/ai-products-shift-toward-customer-specific-deployment|AI Products Shift Toward Customer-Specific Deployment]] — sources: 1, evidence: 8
+- [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]] — sources: 3, evidence: 25
+- [[industry-trends/ai-products-shift-from-demos-to-grounded-workflows|AI Products Shift from Demos to Grounded Workflows]] — sources: 1, evidence: 5
+- [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]] — sources: 1, evidence: 8
+- [[industry-trends/ai-products-shift-from-models-to-grounded-systems|AI Products Shift from Models to Grounded Systems]] — sources: 1, evidence: 8
+- [[industry-trends/ai-simulation-moves-from-demo-scale-to-evaluation-grade-systems|AI Simulation Moves Toward Evaluation-Grade Systems]] — sources: 1, evidence: 9
+- [[industry-trends/ai-specification-moves-toward-explicit-constraints|AI Specification Moves Toward Explicit Constraints]] — sources: 1, evidence: 9
+- [[industry-trends/ai-support-improvement-becomes-continuous|AI Support Improvement Becomes Continuous]] — sources: 1, evidence: 8
+- [[industry-trends/ai-workflows-shift-toward-supervised-friction|AI Workflows Shift Toward Supervised Friction]] — sources: 1, evidence: 8
+- [[industry-trends/ai-workflows-shift-toward-verification-loops|AI Workflows Shift Toward Verification Loops]] — sources: 2, evidence: 16
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]] — sources: 22, evidence: 178
+- [[industry-trends/agent-runtime-centralization|AI products shift toward managed agent runtimes]] — sources: 1, evidence: 8
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]] — sources: 5, evidence: 43
 - [[industry-trends/ai-assisted-file-native-workflows|AI-Assisted File-Native Workflows]] — sources: 1, evidence: 8
-- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]] — sources: 2, evidence: 16
+- [[industry-trends/ai-jobs-risk-looks-more-distributed-than-disappearing|AI-Related Job Disruption Looks More Distributed Than Disappearing]] — sources: 1, evidence: 5
+- [[industry-trends/agent-evaluation-shifts-toward-readiness|Agent Evaluation Shifts Toward Organizational Readiness]] — sources: 1, evidence: 8
+- [[industry-trends/agent-evaluation-shifts-toward-reliability-and-tool-discipline|Agent Evaluation Shifts Toward Reliability and Tool Discipline]] — sources: 1, evidence: 8
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]] — sources: 3, evidence: 26
+- [[industry-trends/agent-search-moves-toward-local-text-indexes|Agent Search Moves Toward Local Text Indexes]] — sources: 1, evidence: 8
+- [[industry-trends/agent-workflows-shift-toward-reviewable-contracts|Agent Workflows Shift Toward Reviewable Contracts]] — sources: 1, evidence: 8
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]] — sources: 8, evidence: 66
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]] — sources: 5, evidence: 39
 - [[industry-trends/agentic-commerce-interfaces|Agentic Commerce Interfaces]] — sources: 2, evidence: 16
-- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]] — sources: 1, evidence: 8
+- [[industry-trends/agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops|Agents Are Shifting from Stateless Chat to Persistent Work Loops]] — sources: 3, evidence: 24
+- [[industry-trends/agents-move-toward-persistent-memory-backed-workflows|Agents Move Toward Persistent Memory-Backed Workflows]] — sources: 3, evidence: 24
+- [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]] — sources: 2, evidence: 17
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]] — sources: 2, evidence: 18
+- [[industry-trends/apple-silicon-local-inference-becomes-practical|Apple Silicon Local Inference Becomes Practical]] — sources: 2, evidence: 17
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]] — sources: 2, evidence: 16
 - [[industry-trends/automation-pressures-governments-to-tax-capital-instead-of-labor|Automation Pressures Governments to Tax Capital Instead of Labor]] — sources: 1, evidence: 9
 - [[industry-trends/behavioral-regressions-need-qualitative-audits|Behavioral Regressions Need Qualitative Audits]] — sources: 1, evidence: 9
+- [[industry-trends/chat-products-move-toward-persistent-workspaces|Chat Products Move Toward Persistent Workspaces]] — sources: 2, evidence: 17
+- [[industry-trends/coding-agents-diverge-into-workflow-specific-products|Coding Agents Diverge Into Workflow-Specific Products]] — sources: 2, evidence: 17
 - [[industry-trends/coding-models-shift-toward-agentic-execution|Coding Models Shift Toward Agentic Execution]] — sources: 2, evidence: 18
+- [[industry-trends/coding-shifts-toward-supervised-agent-workflows|Coding Shifts Toward Supervised Agent Workflows]] — sources: 1, evidence: 8
+- [[industry-trends/consumer-ai-adoption-broadens-beyond-early-adopters|Consumer AI Adoption Broadens Beyond Early Adopters]] — sources: 1, evidence: 8
+- [[industry-trends/consumer-ai-shifts-toward-distribution-led-products|Consumer AI Shifts Toward Distribution-Led Products]] — sources: 1, evidence: 8
 - [[industry-trends/efficiency-gains-become-product-capabilities|Efficiency Gains Become Product Capabilities]] — sources: 1, evidence: 9
-- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]] — sources: 1, evidence: 8
+- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]] — sources: 4, evidence: 37
+- [[industry-trends/enterprise-ai-shifts-toward-governed-human-oversight-workflows|Enterprise AI Shifts Toward Governed Human Oversight Workflows]] — sources: 3, evidence: 25
+- [[industry-trends/enterprise-agent-platforms-centralize-support-workflows|Enterprise Agent Platforms Centralize Support Workflows]] — sources: 1, evidence: 8
+- [[industry-trends/enterprise-agents-need-layered-connectivity-stacks|Enterprise Agents Depend More on Layered Connectivity]] — sources: 1, evidence: 8
+- [[industry-trends/enterprise-agents-move-into-customer-infrastructure|Enterprise Agents Move Into Customer Infrastructure]] — sources: 3, evidence: 26
 - [[industry-trends/entry-level-technical-hiring-softens-under-ai-pressure|Entry-Level Technical Hiring Softens Under AI Pressure]] — sources: 1, evidence: 10
+- [[industry-trends/fine-tuning-revives-memorized-copyright-text|Fine-tuning can revive memorized text the base model had suppressed]] — sources: 1, evidence: 9
 - [[industry-trends/frontier-ai-governance-requires-verification-mechanisms|Frontier AI Governance Requires Verification Mechanisms]] — sources: 1, evidence: 9
-- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Harness Design Becomes More Important for Agent Reliability]] — sources: 3, evidence: 25
-- [[industry-trends/high-risk-models-move-to-gated-access|High-Risk Models Move to Gated Access]] — sources: 3, evidence: 25
-- [[industry-trends/inference-efficiency-moves-toward-low-precision-hardware|Inference Efficiency Moves Toward Low-Precision Hardware]] — sources: 1, evidence: 9
+- [[industry-trends/frontier-inference-hardware-gains-strategic-value|Frontier Inference Hardware Gains Strategic Value]] — sources: 1, evidence: 8
+- [[industry-trends/ai-governments-prepare-safety-nets-before-labor-disruption-is-visible|Governments Prepare Safety Nets Before Labor Disruption Is Visible]] — sources: 1, evidence: 8
+- [[industry-trends/high-risk-models-move-to-gated-access|High-Risk Models Move to Gated Access]] — sources: 4, evidence: 33
+- [[industry-trends/inference-efficiency-moves-toward-low-precision-hardware|Inference Efficiency Moves Toward Low-Precision Hardware]] — sources: 2, evidence: 19
+- [[industry-trends/inference-hardware-becomes-more-heterogeneous|Inference Hardware Becomes More Heterogeneous]] — sources: 1, evidence: 9
+- [[industry-trends/inference-demand-outgrows-training-as-the-practical-bottleneck|Inference demand overtakes training as the practical bottleneck]] — sources: 1, evidence: 9
 - [[industry-trends/knowledge-architectures-converge-into-hybrid-systems|Knowledge Architectures Converge into Hybrid Systems]] — sources: 1, evidence: 8
 - [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]] — sources: 4, evidence: 35
+- [[industry-trends/knowledge-base-becomes-maintained-workspace|Knowledge Bases Become Maintained Workspaces]] — sources: 1, evidence: 8
+- [[industry-trends/knowledge-systems-shift-toward-agent-friendliness|Knowledge Systems Shift Toward Agent Friendliness]] — sources: 2, evidence: 17
+- [[industry-trends/knowledge-systems-shift-toward-compilation-over-retrieval|Knowledge Systems Shift Toward Compilation Over Retrieval]] — sources: 2, evidence: 17
+- [[industry-trends/knowledge-systems-shift-toward-passive-capture|Knowledge Systems Shift Toward Passive Capture]] — sources: 3, evidence: 24
+- [[industry-trends/knowledge-systems-shift-toward-persistent-workspaces|Knowledge Systems Shift Toward Persistent Workspaces]] — sources: 1, evidence: 8
+- [[industry-trends/knowledge-tools-shift-toward-file-native-control|Knowledge Tools Shift Toward File-Native Control]] — sources: 1, evidence: 8
+- [[industry-trends/knowledge-work-moves-toward-agentic-workflow-completion|Knowledge Work Moves Toward Agentic Workflow Completion]] — sources: 2, evidence: 17
 - [[industry-trends/llm-maintained-knowledge-bases|LLM-Maintained Knowledge Bases]] — sources: 1, evidence: 8
 - [[industry-trends/latent-reasoning-replaces-token-chain-of-thought|Latent Reasoning Replaces Token-Chain-Of-Thought]] — sources: 1, evidence: 8
 - [[industry-trends/local-specialist-models-for-preprocessing|Local Specialist Models for Preprocessing]] — sources: 1, evidence: 10
 - [[industry-trends/local-speaker-and-dictation-substitution|Local Voice Tool Substitution]] — sources: 1, evidence: 8
+- [[industry-trends/long-context-efficiency-becomes-an-architecture-priority|Long-Context Efficiency Becomes an Architecture Priority]] — sources: 1, evidence: 9
 - [[industry-trends/machine-readable-testing-intent|Machine-Readable Testing Intent]] — sources: 1, evidence: 8
 - [[industry-trends/model-breakthroughs-become-harder-to-sustain|Model Breakthroughs Become Harder to Sustain]] — sources: 1, evidence: 8
-- [[industry-trends/models-becoming-execution-layers|Models Becoming Execution Layers]] — sources: 6, evidence: 48
-- [[industry-trends/models-as-commodity-components|Models as Commodity Components]] — sources: 1, evidence: 8
+- [[industry-trends/models-as-commodity-components|Models Become Commodity Components]] — sources: 2, evidence: 16
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]] — sources: 9, evidence: 69
+- [[industry-trends/open-model-pressure|Open Model Ecosystems Become More Strategically Important]] — sources: 2, evidence: 17
 - [[industry-trends/open-weight-models-become-good-enough-for-local-multimodal-work|Open-Weight Models Become Good Enough for Local Multimodal Work]] — sources: 1, evidence: 10
-- [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-Weight Models Become Viable on Consumer Hardware]] — sources: 2, evidence: 17
-- [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Pricing and harness control are becoming core agent product levers]] — sources: 1, evidence: 8
+- [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-weight multimodal models are becoming viable on consumer hardware]] — sources: 8, evidence: 69
+- [[industry-trends/production-ai-tooling-moves-toward-governed-gateways|Production AI Tooling Moves Toward Governed Gateways]] — sources: 1, evidence: 8
+- [[industry-trends/production-feedback-becomes-a-core-agent-training-loop|Production Feedback Becomes a Core Agent Training Loop]] — sources: 1, evidence: 8
+- [[industry-trends/programming-language-choice-shifts-toward-agent-friendliness|Programming Language Choice Shifts Toward Agent-Friendliness]] — sources: 1, evidence: 5
+- [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Provider pricing and harness control are becoming core agent product levers]] — sources: 4, evidence: 34
+- [[industry-trends/rag-moves-from-fixed-pipelines-to-adaptive-agent-loops|RAG Moves from Fixed Pipelines to Adaptive Agent Loops]] — sources: 1, evidence: 8
 - [[industry-trends/realtime-voice-agents-shift-to-integration-work|Realtime Voice Agents Shift Toward Integration Work]] — sources: 1, evidence: 8
-- [[industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake|Sales Moves from Fast Follow-Up to Agent-Led Intake]] — sources: 1, evidence: 9
-- [[industry-trends/software-differentiation-shifts-from-engineering-to-distribution|Software Differentiation Shifts from Engineering to Distribution]] — sources: 1, evidence: 9
-- [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]] — sources: 1, evidence: 10
+- [[industry-trends/regulated-enterprise-ai-demand-for-audit-ready-evidence|Regulated Enterprise AI Demands Audit-Ready Evidence]] — sources: 1, evidence: 5
+- [[industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake|Sales Moves from Fast Follow-Up to Agent-Led Intake]] — sources: 3, evidence: 25
+- [[industry-trends/software-differentiation-shifts-from-engineering-to-distribution|Software Differentiation Shifts from Engineering to Distribution]] — sources: 2, evidence: 17
+- [[industry-trends/software-work-moves-toward-domain-verified-ai-output|Software Work Moves Toward Domain-Verified AI Output]] — sources: 1, evidence: 8
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — sources: 12, evidence: 103
+- [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]] — sources: 3, evidence: 26
 - [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]] — sources: 2, evidence: 16
+- [[industry-trends/support-automation-moves-toward-agentic-operations-layers|Support Automation Moves Toward Agentic Operations Layers]] — sources: 1, evidence: 9
+- [[industry-trends/support-automation-shifts-toward-agentic-workflow-completion|Support Automation Shifts Toward Workflow Completion]] — sources: 3, evidence: 21
 - [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]] — sources: 1, evidence: 8
-- [[industry-trends/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]] — sources: 1, evidence: 8
+- [[industry-trends/text-generation-moves-beyond-left-to-right-decoding|Text Generation Moves Beyond Left-to-Right Decoding]] — sources: 1, evidence: 8
+- [[industry-trends/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]] — sources: 3, evidence: 25
 - [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]] — sources: 1, evidence: 9
 - [[industry-trends/transport-layer-optimization-becomes-critical-for-agent-latency|Transport-Layer Optimization Becomes Critical for Agent Latency]] — sources: 1, evidence: 8
-- [[industry-trends/verification-loops-become-central-to-ai-workflows|Verification Loops Become Central to AI Workflows]] — sources: 2, evidence: 18
 - [[industry-trends/vertical-models|Vertical Models]] — sources: 1, evidence: 8
-- [[industry-trends/voice-agents-shift-toward-workflow-completion|Voice Agents Shift Toward Workflow Completion]] — sources: 1, evidence: 8
+- [[industry-trends/voice-assistant-quality-shifts-toward-conversational-flow|Voice Assistant Quality Shifts Toward Conversational Flow]] — sources: 1, evidence: 8
+- [[industry-trends/voice-agents-shift-toward-workflow-completion|Voice agents shift from speech interfaces to workflow completion]] — sources: 4, evidence: 32
+- [[industry-trends/writing-workflows-shift-toward-ai-assisted-structured-output|Writing Workflows Shift Toward AI-Assisted Structured Output]] — sources: 1, evidence: 8
 
 ## All tools
 
-- [[tools/1password|1Password]] — sources: 1, evidence: 13
+- [[tools/1password|1Password]] — sources: 2, evidence: 24
+- [[tools/ai-renamer|AI Renamer]] — sources: 1, evidence: 14
 - [[tools/agents-sdk|Agents SDK]] — sources: 1, evidence: 13
+- [[tools/altstore|AltStore]] — sources: 1, evidence: 10
 - [[tools/alttab|AltTab]] — sources: 1, evidence: 9
+- [[tools/apple-notes|Apple Notes]] — sources: 1, evidence: 9
+- [[tools/arc-browser|Arc Browser]] — sources: 1, evidence: 9
+- [[tools/arckit|ArcKit]] — sources: 1, evidence: 11
+- [[tools/atlassian-rovo|Atlassian Rovo]] — sources: 1, evidence: 13
 - [[tools/blip|Blip]] — sources: 1, evidence: 10
+- [[tools/boring-notch|Boring Notch]] — sources: 1, evidence: 14
+- [[tools/cal-com|Cal.com]] — sources: 1, evidence: 11
 - [[tools/calendar|Calendar]] — sources: 1, evidence: 11
 - [[tools/caveman|Caveman]] — sources: 1, evidence: 11
-- [[tools/claude-code|Claude Code]] — sources: 7, evidence: 86
+- [[tools/claude|Claude]] — sources: 2, evidence: 24
+- [[tools/claude-code|Claude Code]] — sources: 18, evidence: 206
+- [[tools/claude-desktop|Claude Desktop]] — sources: 1, evidence: 11
+- [[tools/cleanshot-x|CleanShot X]] — sources: 2, evidence: 22
+- [[tools/cleanupbuddy|CleanUpBuddy]] — sources: 1, evidence: 10
+- [[tools/codex|Codex]] — sources: 2, evidence: 25
 - [[tools/codex-security|Codex Security]] — sources: 1, evidence: 11
-- [[tools/cognigy-ai|Cognigy.AI]] — sources: 1, evidence: 12
+- [[tools/cognigy-ai|Cognigy.AI]] — sources: 5, evidence: 55
 - [[tools/command-x|Command X]] — sources: 1, evidence: 8
+- [[tools/copilot-tasks|Copilot Tasks]] — sources: 1, evidence: 9
 - [[tools/cotypist|Cotypist]] — sources: 1, evidence: 8
-- [[tools/cursor|Cursor]] — sources: 2, evidence: 23
+- [[tools/cursor|Cursor]] — sources: 4, evidence: 48
 - [[tools/deskin|DeskIn]] — sources: 1, evidence: 10
-- [[tools/dictaflow|DictaFlow]] — sources: 1, evidence: 8
+- [[tools/dictaflow|DictaFlow]] — sources: 2, evidence: 19
+- [[tools/dockdoor|DockDoor]] — sources: 1, evidence: 11
 - [[tools/dropover|Dropover]] — sources: 1, evidence: 10
 - [[tools/e2b-mcp|E2B MCP]] — sources: 1, evidence: 11
+- [[tools/fin|Fin]] — sources: 2, evidence: 25
+- [[tools/fin-api-platform|Fin API platform]] — sources: 1, evidence: 13
+- [[tools/fin-voice-2|Fin Voice 2]] — sources: 1, evidence: 10
 - [[tools/fin-for-ecommerce|Fin for Ecommerce]] — sources: 1, evidence: 14
-- [[tools/fin-for-sales|Fin for Sales]] — sources: 1, evidence: 16
+- [[tools/fin-for-sales|Fin for Sales]] — sources: 2, evidence: 31
+- [[tools/final-cut-pro|Final Cut Pro]] — sources: 1, evidence: 10
 - [[tools/firecrawl-mcp|Firecrawl MCP]] — sources: 1, evidence: 11
+- [[tools/flix-fixer|Flix Fixer]] — sources: 1, evidence: 11
 - [[tools/folder-preview|Folder Preview]] — sources: 1, evidence: 8
-- [[tools/ghostty|Ghostty]] — sources: 1, evidence: 14
+- [[tools/folder-quick-look|Folder Quick Look]] — sources: 1, evidence: 11
+- [[tools/forklift-4|ForkLift 4]] — sources: 1, evidence: 11
+- [[tools/gbrain|GBrain]] — sources: 1, evidence: 14
+- [[tools/gamma|Gamma]] — sources: 1, evidence: 9
+- [[tools/gemini-canvas|Gemini Canvas]] — sources: 1, evidence: 11
+- [[tools/ghostty|Ghostty]] — sources: 2, evidence: 25
 - [[tools/github-mcp|GitHub MCP]] — sources: 1, evidence: 11
+- [[tools/github-spec-kit|GitHub Spec Kit]] — sources: 1, evidence: 10
 - [[tools/granola|Granola]] — sources: 1, evidence: 11
 - [[tools/graphify|Graphify]] — sources: 1, evidence: 12
+- [[tools/hermes-agent|Hermes Agent]] — sources: 2, evidence: 25
 - [[tools/hidden-bar|Hidden Bar]] — sources: 1, evidence: 8
 - [[tools/higgsfield|Higgsfield]] — sources: 1, evidence: 11
 - [[tools/ice|Ice]] — sources: 1, evidence: 9
+- [[tools/idlemac|IdleMac]] — sources: 1, evidence: 12
 - [[tools/imageoptim|ImageOptim]] — sources: 1, evidence: 8
 - [[tools/keepingyouawake|KeepingYouAwake]] — sources: 1, evidence: 8
 - [[tools/kimi-code-cli|Kimi Code CLI]] — sources: 1, evidence: 11
-- [[tools/langgraph|LangGraph]] — sources: 1, evidence: 11
+- [[tools/klokki-slim|Klokki Slim]] — sources: 1, evidence: 11
+- [[tools/langgraph|LangGraph]] — sources: 3, evidence: 28
 - [[tools/launchy|Launchy]] — sources: 1, evidence: 8
+- [[tools/lemonade-server|Lemonade Server]] — sources: 1, evidence: 12
 - [[tools/linter|Linter]] — sources: 1, evidence: 11
 - [[tools/loop|Loop]] — sources: 1, evidence: 9
 - [[tools/lovable|Lovable]] — sources: 1, evidence: 11
+- [[tools/lungo|Lungo]] — sources: 1, evidence: 11
+- [[tools/mlx|MLX]] — sources: 1, evidence: 14
+- [[tools/macwhisper|MacWhisper]] — sources: 1, evidence: 13
 - [[tools/make-md|Make.md]] — sources: 1, evidence: 11
+- [[tools/mimestream|Mimestream]] — sources: 1, evidence: 11
 - [[tools/monle|Monle]] — sources: 1, evidence: 9
 - [[tools/msty|Msty]] — sources: 1, evidence: 10
+- [[tools/music-decoy|Music Decoy]] — sources: 1, evidence: 10
+- [[tools/nano-banana-2|Nano Banana 2]] — sources: 1, evidence: 9
 - [[tools/neo4j|Neo4j]] — sources: 1, evidence: 12
 - [[tools/notchnook|NotchNook]] — sources: 1, evidence: 9
-- [[tools/obsidian|Obsidian]] — sources: 7, evidence: 80
-- [[tools/ollama|Ollama]] — sources: 7, evidence: 81
+- [[tools/notebooklm|NotebookLM]] — sources: 2, evidence: 21
+- [[tools/notion-3-0|Notion 3.0]] — sources: 1, evidence: 14
+- [[tools/notion-calendar|Notion Calendar]] — sources: 1, evidence: 11
+- [[tools/notion-custom-agents|Notion custom agents]] — sources: 1, evidence: 14
+- [[tools/oasis|OASIS]] — sources: 1, evidence: 13
+- [[tools/obsidian|Obsidian]] — sources: 12, evidence: 136
+- [[tools/obsidian-starter-kit-plugin|Obsidian Starter Kit plugin]] — sources: 1, evidence: 14
+- [[tools/ollama|Ollama]] — sources: 11, evidence: 131
 - [[tools/omnisearch|Omnisearch]] — sources: 1, evidence: 11
 - [[tools/one-thing|One Thing]] — sources: 1, evidence: 8
 - [[tools/openai-realtime-api|OpenAI Realtime API]] — sources: 1, evidence: 10
 - [[tools/openclaw|OpenClaw]] — sources: 1, evidence: 11
-- [[tools/operator|Operator]] — sources: 1, evidence: 13
+- [[tools/openprose|OpenProse]] — sources: 1, evidence: 12
+- [[tools/operator|Operator]] — sources: 2, evidence: 28
+- [[tools/paste|Paste]] — sources: 1, evidence: 11
 - [[tools/pearcleaner|Pearcleaner]] — sources: 1, evidence: 9
+- [[tools/photopea|Photopea]] — sources: 1, evidence: 10
 - [[tools/pomelli|Pomelli]] — sources: 1, evidence: 11
+- [[tools/privacy-filter|Privacy Filter]] — sources: 1, evidence: 12
 - [[tools/publora-mcp|Publora MCP]] — sources: 1, evidence: 11
 - [[tools/purepaste|PurePaste]] — sources: 1, evidence: 8
 - [[tools/quickadd|QuickAdd]] — sources: 1, evidence: 11
+- [[tools/quiver-ai|Quiver AI]] — sources: 1, evidence: 9
+- [[tools/raycast|Raycast]] — sources: 1, evidence: 11
+- [[tools/recall-2-0|Recall 2.0]] — sources: 1, evidence: 15
 - [[tools/rectangle|Rectangle]] — sources: 1, evidence: 8
+- [[tools/remind-me-faster|Remind Me Faster]] — sources: 1, evidence: 11
 - [[tools/screenfloat-2|ScreenFloat 2]] — sources: 1, evidence: 10
 - [[tools/shottr|Shottr]] — sources: 1, evidence: 9
+- [[tools/soda|Soda]] — sources: 1, evidence: 11
 - [[tools/substage|Substage]] — sources: 1, evidence: 9
 - [[tools/supabase-mcp|Supabase MCP]] — sources: 1, evidence: 11
 - [[tools/taskade-mcp|Taskade MCP]] — sources: 1, evidence: 11
+- [[tools/termix|Termix]] — sources: 1, evidence: 11
+- [[tools/things-3|Things 3]] — sources: 1, evidence: 11
+- [[tools/ticktick|TickTick]] — sources: 1, evidence: 11
+- [[tools/tolaria|Tolaria]] — sources: 1, evidence: 6
+- [[tools/tot|Tot]] — sources: 1, evidence: 11
+- [[tools/touchretouch|TouchRetouch]] — sources: 1, evidence: 10
+- [[tools/ultimate-vocal-remover|Ultimate Vocal Remover]] — sources: 1, evidence: 11
+- [[tools/userscripts|Userscripts]] — sources: 1, evidence: 11
+- [[tools/velja|Velja]] — sources: 1, evidence: 11
+- [[tools/vesta|Vesta]] — sources: 1, evidence: 11
+- [[tools/wailbrew|WailBrew]] — sources: 1, evidence: 12
+- [[tools/wallper|Wallper]] — sources: 1, evidence: 11
+- [[tools/wipr-2|Wipr 2]] — sources: 1, evidence: 11
 - [[tools/wispr-flow|Wispr Flow]] — sources: 1, evidence: 11
 - [[tools/yubico|Yubico]] — sources: 1, evidence: 10
-- [[tools/llama-cpp|llama.cpp]] — sources: 1, evidence: 12
+- [[tools/zen-browser|Zen Browser]] — sources: 1, evidence: 11
+- [[tools/zipic|Zipic]] — sources: 1, evidence: 11
+- [[tools/ia-writer|iA Writer]] — sources: 1, evidence: 11
+- [[tools/llama-cpp|llama.cpp]] — sources: 2, evidence: 24
+- [[tools/n8n|n8n]] — sources: 1, evidence: 10
 
 ## All models
 
-- [[foundation-models/apex-1-0|Apex 1.0]] — sources: 2, evidence: 26
-- [[foundation-models/composer-2|Composer 2]] — sources: 1, evidence: 15
-- [[foundation-models/deepseek-v4|DeepSeek V4]] — sources: 2, evidence: 29
+- [[foundation-models/apex-1-0|Apex 1.0]] — sources: 4, evidence: 48
+- [[foundation-models/apex-flash|Apex Flash]] — sources: 1, evidence: 11
+- [[foundation-models/apple-foundation-models|Apple Foundation Models]] — sources: 1, evidence: 14
+- [[foundation-models/claude|Claude]] — sources: 1, evidence: 17
+- [[foundation-models/claude-opus-4-6|Claude Opus 4.6]] — sources: 1, evidence: 12
+- [[foundation-models/claude-opus-4-7|Claude Opus 4.7]] — sources: 1, evidence: 14
+- [[foundation-models/claude-opus-4-8|Claude Opus 4.8]] — sources: 1, evidence: 19
+- [[foundation-models/composer-2|Composer 2]] — sources: 2, evidence: 24
+- [[foundation-models/deepseek-v4|DeepSeek V4]] — sources: 3, evidence: 43
 - [[foundation-models/gpt-5-4-cyber|GPT-5.4-Cyber]] — sources: 1, evidence: 12
 - [[foundation-models/gpt-5-5|GPT-5.5]] — sources: 2, evidence: 26
 - [[foundation-models/gpt-5-5-instant|GPT-5.5 Instant]] — sources: 1, evidence: 15
 - [[foundation-models/gpt-5-5-cyber|GPT-5.5-Cyber]] — sources: 1, evidence: 14
 - [[foundation-models/gpt-image-2|GPT-Image-2]] — sources: 1, evidence: 15
 - [[foundation-models/gpt-realtime-2-high|GPT-Realtime-2 (High)]] — sources: 1, evidence: 16
+- [[foundation-models/gpt-rosalind|GPT-Rosalind]] — sources: 1, evidence: 7
 - [[foundation-models/gemini-3-pro|Gemini 3 Pro]] — sources: 1, evidence: 11
 - [[foundation-models/gemini-3-1-flash-live|Gemini 3.1 Flash Live]] — sources: 1, evidence: 14
-- [[foundation-models/gemma-4|Gemma 4]] — sources: 3, evidence: 46
+- [[foundation-models/gemini-3-5-flash|Gemini 3.5 Flash]] — sources: 1, evidence: 14
+- [[foundation-models/gemma-4|Gemma 4]] — sources: 4, evidence: 58
 - [[foundation-models/grok-voice-think-fast-1-0|Grok Voice Think Fast 1.0]] — sources: 1, evidence: 16
 - [[foundation-models/kimi-2-5|Kimi 2.5]] — sources: 2, evidence: 28
 - [[foundation-models/kimi-2-6|Kimi 2.6]] — sources: 2, evidence: 25
 - [[foundation-models/kimi-k2-5|Kimi K2.5]] — sources: 1, evidence: 18
 - [[foundation-models/llama-4|Llama 4]] — sources: 1, evidence: 8
+- [[foundation-models/mercury|Mercury]] — sources: 1, evidence: 7
 - [[foundation-models/mercury-2|Mercury 2]] — sources: 1, evidence: 16
-- [[foundation-models/opus-4-6|Opus 4.6]] — sources: 1, evidence: 11
-- [[foundation-models/privacy-filter|Privacy Filter]] — sources: 1, evidence: 17
+- [[foundation-models/opus-4-6|Opus 4.6]] — sources: 3, evidence: 36
+- [[foundation-models/privacy-filter|Privacy Filter]] — sources: 2, evidence: 33
 - [[foundation-models/qwen-3-5|Qwen 3.5]] — sources: 1, evidence: 10
-- [[foundation-models/qwen-3-5-9b|Qwen 3.5 9B]] — sources: 1, evidence: 12
+- [[foundation-models/qwen-3-5-9b|Qwen 3.5 9B]] — sources: 2, evidence: 24
+- [[foundation-models/qwen-3-6-35b-a3b|Qwen 3.6-35B-A3B]] — sources: 1, evidence: 7
 - [[foundation-models/qwen3-coder-next|Qwen3-Coder-Next]] — sources: 1, evidence: 16
 - [[foundation-models/qwen3-6-27b|Qwen3.6–27B]] — sources: 1, evidence: 19
-- [[foundation-models/sonnet-4-6|Sonnet 4.6]] — sources: 1, evidence: 11
+- [[foundation-models/sonnet-4-6|Sonnet 4.6]] — sources: 2, evidence: 23
 - [[foundation-models/tml-interaction-small|TML-Interaction-Small]] — sources: 1, evidence: 17
 - [[foundation-models/voxtral-tts|Voxtral TTS]] — sources: 1, evidence: 14
-- [[foundation-models/gpt-5-4|gpt-5.4]] — sources: 1, evidence: 10
+- [[foundation-models/gpt-5-4|gpt-5.4]] — sources: 2, evidence: 24
 - [[foundation-models/gpt-realtime-1-5|gpt-realtime-1.5]] — sources: 1, evidence: 11
+- [[foundation-models/qwen3-30b-a3b|qwen3:30b-a3b]] — sources: 1, evidence: 12
 
 ## Duplicate candidates
 
@@ -271,80 +545,159 @@ No duplicate candidates captured.
 
 ## Sources without derived knowledge pages
 
+- [[sources/6-mistakes-quietly-killing-your-macbook-01ktkyw1nm2151tafd34k6b9f8|6 Mistakes Quietly Killing Your MacBook]]
+- [[sources/8-crazy-things-claude-ai-can-do-that-chatgpt-can-t-01kqfzr3pa89hbe3smekz5bn7c|8 Crazy Things Claude AI Can Do (That ChatGPT Can’t)]]
+- [[sources/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-01krbnbbbpznzgbeefqnzapsz3|95% of Devs Are Using AI Agents Completely Wrong: A Hermes Guide]]
 - [[sources/a-glimpse-into-cyber-security-s-ai-driven-future-01krh9cas9dx8e4k37fjhd2w2n|A glimpse into cyber-security’s AI-driven future]]
+- [[sources/accelerating-the-next-phase-of-ai-01knec6kjts48t4gyq7vh5fe69|Accelerating the next phase of AI]]
+- [[sources/ai-101-from-prompt-engineering-to-skill-engineering-01ktte6tg010d5ayfzf7f4e90k|AI 101: From Prompt Engineering to Skill Engineering]]
 - [[sources/ai-and-the-danger-of-cognitive-surrender-01krh9befsnqjcqx2prdsxmy1d|AI and the danger of cognitive surrender]]
 - [[sources/ainews-founders-and-forward-deployed-engineers-01ksv9r20gcn5b1t2hh2ahxpj3|[AINews] Founders and Forward Deployed Engineers]]
+- [[sources/ainews-frontiercode-benchmarking-for-code-quality-over-slop-01ktng9n5ssr6wnr1zmz2b5r4s|[AINews] FrontierCode: Benchmarking for Code Quality over Slop]]
+- [[sources/ainews-new-ai-infra-decacorns-fireworks-baseten-with-openrouter-on-the-way-01kskrtd56c1fgw54vw8gae184|[AINews] New AI Infra decacorns: Fireworks, Baseten (with OpenRouter on the way)]]
+- [[sources/ainews-openai-gpt-next-disproves-80-year-old-erd-s-planar-unit-distance-problem-for-under-1000-01ks4q3akgtgx0fbah0rez80eh|[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000]]
 - [[sources/announcing-monitors-opening-the-ai-black-box-01knemav345zvryfag6rvzng8z|Announcing Monitors: Opening the AI black box]]
+- [[sources/artificial-intelligence-is-creeping-into-american-lawmaking-01krh9d62z8fvggw0kt132x4xk|Artificial intelligence is creeping into American lawmaking]]
+- [[sources/best-chatbot-for-customer-service-why-boundbot-is-the-best-ai-chatbot-for-website-in-2026-01ktpkxjardkverec0d17qhd10|Best Chatbot for Customer Service: Why BoundBot Is the Best AI Chatbot for Website in 2026]]
+- [[sources/enterprises-power-agentic-workflows-in-cloudflare-agent-cloud-with-openai-01kp3ezdp3sph9tehfvhebtbhn|Enterprises power agentic workflows in Cloudflare Agent Cloud with OpenAI]]
 - [[sources/esmfold2-the-bitter-lesson-is-coming-for-proteins-alex-rives-biohub-01ksn8the62x1rdy5sz97gc2rj|🔬ESMFold2: The Bitter Lesson is Coming for Proteins - Alex Rives, BioHub]]
+- [[sources/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-01kr436s5krwpk8bnp91x1z081|Essential Checklist for Setting up Your New Apple M3 MacBook Pro]]
 - [[sources/fable-studio-launches-generative-ai-tv-show-production-platform-for-custom-streaming-content-01knemkvst3xp8zzm6jmj2gmy8|Fable Studio Launches Generative AI TV Show Production Platform for Custom Streaming Content]]
+- [[sources/hack-your-mac-less-friction-more-flow-01ktkytmegqhsajvn3bh9kjfa6|Hack Your Mac: Less Friction, More Flow]]
 - [[sources/healthcare-01knw8fhms8jzjhwed2hbbfhbm|Healthcare]]
 - [[sources/how-frontier-enterprises-are-building-an-ai-advantage-01kqyx957j2tv7mr8b4762vqbw|How frontier enterprises are building an AI advantage]]
+- [[sources/how-to-stop-shipping-low-quality-rl-environments-with-examples-01ktcj1239z92gaxmh0xyvfg97|How to Stop Shipping Low-Quality RL Environments (with Examples)]]
+- [[sources/how-to-turn-obsidian-into-notion-using-just-3-plugins-01kqz043jpzb1gwc542w6zfsne|How to Turn Obsidian Into Notion Using Just 3 Plugins]]
+- [[sources/langgraph-memorysaver-concept-internals-and-byte-size-proof-01kqfgwydn88n3v54mj6ypwa9y|LangGraph MemorySaver — Concept, Internals and Byte Size Proof]]
+- [[sources/learning-on-the-shop-floor-01krv8e47g986qdzdmbcdny96n|Learning on the Shop floor]]
 - [[sources/lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj|Lessons From Breaking Down Obsidian’s CEO’s Personal Vault Template]]
 - [[sources/mcdonald-s-abandons-drive-through-ai-for-order-taking-01knemkvn8e8hhtxdjk47vt2tf|McDonald’s Abandons Drive Through AI for Order Taking]]
+- [[sources/openai-is-doomed-and-postgresql-is-the-reason-why-01kts1cynp7n0m8wnh0w3yx0wf|OpenAI is Doomed (And PostgreSQL is the Reason Why)]]
 - [[sources/openai-models-codex-and-managed-agents-come-to-aws-01kqahjbfrdxmxktyerhsy6wcc|OpenAI models, Codex, and Managed Agents come to AWS]]
+- [[sources/pewdiepie-released-his-trillion-dollar-ai-project-for-free-01ktpg789t4ma9vmfc1h1dh8gd|PewDiePie Released His “Trillion-Dollar” AI Project for Free]]
+- [[sources/prc-linked-influence-operations-are-targeting-ai-debates-in-the-us-01ktxmx5xkym51qcgjf60d7zns|PRC-Linked Influence Operations Are Targeting AI Debates In The US]]
 - [[sources/the-ai-supply-crunch-is-here-01krh9bpdvngmkty7s2mdnxs6h|The AI supply crunch is here]]
 - [[sources/the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks|The jobs apocalypse: a (very) short history]]
+- [[sources/the-must-know-topics-for-an-llm-engineer-01kt148b3g2c0z4q4ykbxxxxqg|The Must-Know Topics for an LLM Engineer]]
+- [[sources/the-sequence-ai-of-the-week-834-google-s-amazing-turboquant-for-building-more-efficient-ai-01knem855q1dtzs9zx8gq06kkp|The Sequence AI of the Week #834: Google's AMAZING TurboQuant for Building More Efficient AI]]
 - [[sources/the-sequence-ai-of-the-week-839-gemma-4-and-the-compression-of-intelligence-01knpcfs8756awtb886gx6qrpb|The Sequence AI of the Week #839: Gemma 4 and the Compression of Intelligence]]
 - [[sources/the-sequence-ai-of-the-week-847-everything-you-need-to-know-about-claude-opus-4-7-01kpteczbrm3736wyth0w10nfk|The Sequence AI of the Week #847: Everything You Need to Know About Claude Opus 4.7]]
+- [[sources/the-sequence-ai-of-the-week-855-inside-nemotron-omni-nvidia-s-new-multimodal-brain-for-agents-01kqye82567q7y5hyfeh2bqn0a|The Sequence AI of the Week #855: Inside Nemotron Omni: NVIDIA’s New Multimodal Brain for Agents]]
+- [[sources/the-sequence-ai-of-the-week-859-reading-claude-s-mind-in-english-a-note-on-natural-language-autoencoders-01krgkfg7n5119eqwfpk7x090j|The Sequence AI of the Week #859: Reading Claude’s Mind in English: A Note on Natural Language Autoencoders]]
+- [[sources/the-sequence-ai-of-the-week-863-the-model-is-the-interface-inside-thinking-machines-interactive-models-01ks2hmn3zsq6emgx6m9pxtyfv|The Sequence AI of the Week #863: The Model is the Interface: Inside Thinking Machines' Interactive Models]]
+- [[sources/the-sequence-knowledge-858-how-state-space-models-went-from-curiosity-to-serious-transformer-competitor-01krdxwybq2fzyy5apfc5trb7a|The Sequence Knowledge #858: How State Space Models Went from Curiosity to Serious Transformer Competitor]]
+- [[sources/the-sequence-knowledge-870-liquid-models-and-the-search-for-a-post-transformer-architecture-01kt40mmp6jfk5e6rygkxsxh9d|The Sequence Knowledge #870: Liquid Models and the Search for a Post-Transformer Architecture]]
+- [[sources/the-sequence-opinion-868-recursion-is-the-new-scaling-law-01ksq47hh22tkq91xgw0nfk1y5|The Sequence Opinion #868: Recursion Is the New Scaling Law]]
+- [[sources/the-sequence-opinion-872-the-cake-is-a-battlefield-who-really-controls-the-ai-stack-01kt95p63r51rfyja4z4rxckgw|The Sequence Opinion #872: The Cake Is a Battlefield: Who Really Controls the AI Stack]]
+- [[sources/the-sequence-radar-845-last-week-in-ai-anthropic-and-openai-enter-a-new-phase-01kpjprf9n4srve88km5cbycj7|The Sequence Radar #845: Last Week in AI: Anthropic and OpenAI Enter a New Phase]]
+- [[sources/the-war-between-businesses-and-hackers-enters-a-perilous-new-phase-01krjzgpm35mgsws0fz2rpc80q|The war between businesses and hackers enters a perilous new phase]]
 - [[sources/top-5-ways-to-effectively-use-notebooklm-01kr43jze72s6hyk8gbjfvvx2j|🚀 Top 5 Ways to Effectively Use NotebookLM]]
+- [[sources/what-really-matters-when-evaluating-ai-agents-for-customer-service-01ks89tke8b3dsrzc527zcqr3w|What really matters when evaluating AI Agents for customer service?]]
 
 ## Most-used tags
 
-- ai-engineering: 60
-- agent-systems: 36
-- runtime-architecture: 34
-- knowledge-systems: 27
-- enterprise-ai: 26
-- workflow-automation: 23
-- local-first: 23
-- runtime-systems: 17
-- ai-operationalization: 17
-- ai-economics: 15
-- inference-systems: 14
-- support-automation: 14
-- multimodal-ai: 14
-- ai-evaluation: 13
-- ai-governance: 13
-- context-engineering: 11
-- runtime-centralization: 11
-- tool-use-capable: 10
-- orchestration: 9
-- workflow-design: 9
-- enterprise-workflows: 9
-- execution-oriented-agents: 9
-- agent-memory: 8
-- verification-systems: 8
-- infrastructure: 8
+- ai-engineering: 126
+- agent-systems: 94
+- enterprise-ai: 87
+- workflow-automation: 78
+- workflow-design: 66
+- local-first: 60
+- runtime-systems: 57
+- knowledge-systems: 56
+- runtime-architecture: 49
+- enterprise-workflows: 46
+- ai-economics: 44
+- ai-operationalization: 43
+- ai-governance: 42
+- context-engineering: 41
+- workflow-restructuring: 37
+- support-automation: 35
+- human-ai-workflows: 33
+- inference-systems: 30
+- orchestration: 29
+- agent-orchestration: 29
+- infrastructure: 28
+- ai-evaluation: 27
+- retrieval-systems: 26
+- verification-systems: 25
+- open-source: 25
 
 ## Pages with contradictions
 
 - [[how-to/accessible-chatbot-widget|Accessible Chatbot Widget]]
+- [[how-to/agent-evaluation-design|Agent Evaluation Design]]
+- [[how-to/agent-integration-scoping|Agent Integration Scoping]]
+- [[how-to/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 - [[how-to/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]]
+- [[how-to/chatgpt-projects-setup|ChatGPT Projects Setup]]
 - [[how-to/claude-skills-setup|Claude Skills Setup]]
 - [[how-to/commit-driven-documentation-sync|Commit-Driven Documentation Sync]]
+- [[how-to/competitor-change-monitoring|Competitor Change Monitoring]]
+- [[how-to/content-repurposing-pipeline|Content Repurposing Pipeline]]
 - [[how-to/context-compaction|Context Compaction]]
 - [[how-to/cross-harness-agent-memory|Cross-Harness Agent Memory]]
+- [[how-to/evaluation-of-a-rag-system|Evaluation of a RAG System]]
+- [[how-to/feedback-sentiment-dashboard|Feedback Sentiment Dashboard]]
+- [[how-to/file-native-ai-workspace|File-Native AI Workspace]]
+- [[how-to/inbox-triage-automation|Inbox Triage Automation]]
+- [[how-to/internal-knowledge-chatbot|Internal Knowledge Chatbot]]
+- [[how-to/keep-macos-updated|Keep macOS Updated]]
+- [[how-to/keep-sufficient-free-storage|Keep Sufficient Free Storage]]
 - [[how-to/keyboard-first-mac-workflow|Keyboard-First Mac Workflow]]
 - [[how-to/keyboard-window-management|Keyboard Window Management]]
 - [[how-to/knowledge-base-ingestion-pipeline|Knowledge Base Ingestion Pipeline]]
 - [[how-to/lazy-loading-tools|Lazy-Loading Tools]]
+- [[how-to/learn-mac-trackpad-gestures|Learn Mac Trackpad Gestures]]
+- [[how-to/llm-cost-observability|LLM Cost Observability]]
 - [[how-to/local-coding-model-setup|Local Coding Model Setup]]
 - [[how-to/local-model-deployment|Local Model Deployment]]
 - [[how-to/local-model-setup|Local Model Setup]]
+- [[how-to/manager-drafting-workflows|Manager Drafting Workflows]]
+- [[how-to/model-distillation|Model Distillation]]
 - [[how-to/model-routing-and-cascades|Model Routing And Cascades]]
+- [[how-to/multi-agent-system-design|Multi-Agent System Design]]
+- [[how-to/narrow-support-automation-rollout|Narrow Support Automation Rollout]]
 - [[how-to/obsidian-skills-setup|Obsidian Skills Setup]]
 - [[how-to/pii-redaction-pipeline|PII Redaction Pipeline]]
 - [[how-to/procedural-support-automation|Procedural Support Automation]]
+- [[how-to/production-ai-agent-architecture|Production AI Agent Architecture]]
+- [[how-to/progressive-discovery-for-agent-tools|Progressive Discovery for Agent Tools]]
 - [[how-to/prompt-caching|Prompt Caching]]
+- [[how-to/prompt-compression|Prompt Compression]]
+- [[how-to/prompt-engineering-fundamentals|Prompt Engineering Fundamentals]]
+- [[how-to/quantization-and-pruning|Quantization And Pruning]]
+- [[how-to/quit-apps-properly|Quit Apps Properly]]
+- [[how-to/reading-transformer-model-cards|Reading Transformer Model Cards]]
+- [[how-to/search-then-fetch-browser-agent|Search-Then-Fetch Browser Agent]]
 - [[how-to/self-verification-for-agent-workflows|Self-Verification for Agent Workflows]]
 - [[how-to/semantic-caching|Semantic Caching]]
+- [[how-to/sms-support-concierge|SMS Support Concierge]]
+- [[how-to/spec-anchored-development|Spec Anchored Development]]
 - [[how-to/spotlight-command-center|Spotlight Command Center]]
 - [[how-to/stateless-chatbot|Stateless Chatbot]]
+- [[how-to/structured-specification-for-agentic-development|Structured Specification for Agentic Development]]
 - [[how-to/two-pass-document-ingestion|Two-Pass Document Ingestion]]
+- [[how-to/two-step-document-ingestion|Two-Step Document Ingestion]]
+- [[how-to/use-built-in-mac-security|Use Built-In Mac Security]]
+- [[how-to/use-finder-tags|Use Finder Tags]]
+- [[how-to/use-icloud-on-mac|Use ICloud On Mac]]
+- [[how-to/use-keyboard-shortcuts-on-mac|Use Keyboard Shortcuts On Mac]]
+- [[how-to/use-mission-control-and-stage-manager|Use Mission Control And Stage Manager]]
+- [[how-to/use-preview-for-common-tasks|Use Preview For Common Tasks]]
+- [[how-to/use-safari-on-mac|Use Safari On Mac]]
+- [[how-to/use-spotlight-as-a-launcher|Use Spotlight As A Launcher]]
+- [[how-to/voice-note-to-tasks-pipeline|Voice Note To Tasks Pipeline]]
 - [[foundation-models/apex-1-0|Apex 1.0]]
+- [[foundation-models/apex-flash|Apex Flash]]
+- [[foundation-models/apple-foundation-models|Apple Foundation Models]]
+- [[foundation-models/claude|Claude]]
+- [[foundation-models/claude-opus-4-6|Claude Opus 4.6]]
+- [[foundation-models/claude-opus-4-7|Claude Opus 4.7]]
+- [[foundation-models/claude-opus-4-8|Claude Opus 4.8]]
 - [[foundation-models/composer-2|Composer 2]]
 - [[foundation-models/deepseek-v4|DeepSeek V4]]
 - [[foundation-models/gemini-3-1-flash-live|Gemini 3.1 Flash Live]]
+- [[foundation-models/gemini-3-5-flash|Gemini 3.5 Flash]]
 - [[foundation-models/gemini-3-pro|Gemini 3 Pro]]
 - [[foundation-models/gemma-4|Gemma 4]]
 - [[foundation-models/gpt-5-4|gpt-5.4]]
@@ -355,16 +708,20 @@ No duplicate candidates captured.
 - [[foundation-models/gpt-image-2|GPT-Image-2]]
 - [[foundation-models/gpt-realtime-1-5|gpt-realtime-1.5]]
 - [[foundation-models/gpt-realtime-2-high|GPT-Realtime-2 (High)]]
+- [[foundation-models/gpt-rosalind|GPT-Rosalind]]
 - [[foundation-models/grok-voice-think-fast-1-0|Grok Voice Think Fast 1.0]]
 - [[foundation-models/kimi-2-5|Kimi 2.5]]
 - [[foundation-models/kimi-2-6|Kimi 2.6]]
 - [[foundation-models/kimi-k2-5|Kimi K2.5]]
 - [[foundation-models/llama-4|Llama 4]]
+- [[foundation-models/mercury|Mercury]]
 - [[foundation-models/mercury-2|Mercury 2]]
 - [[foundation-models/opus-4-6|Opus 4.6]]
 - [[foundation-models/privacy-filter|Privacy Filter]]
 - [[foundation-models/qwen-3-5|Qwen 3.5]]
 - [[foundation-models/qwen-3-5-9b|Qwen 3.5 9B]]
+- [[foundation-models/qwen-3-6-35b-a3b|Qwen 3.6-35B-A3B]]
+- [[foundation-models/qwen3-30b-a3b|qwen3:30b-a3b]]
 - [[foundation-models/qwen3-6-27b|Qwen3.6–27B]]
 - [[foundation-models/qwen3-coder-next|Qwen3-Coder-Next]]
 - [[foundation-models/sonnet-4-6|Sonnet 4.6]]
@@ -372,165 +729,301 @@ No duplicate candidates captured.
 - [[foundation-models/voxtral-tts|Voxtral TTS]]
 - [[tools/1password|1Password]]
 - [[tools/agents-sdk|Agents SDK]]
+- [[tools/ai-renamer|AI Renamer]]
+- [[tools/altstore|AltStore]]
 - [[tools/alttab|AltTab]]
+- [[tools/apple-notes|Apple Notes]]
+- [[tools/arc-browser|Arc Browser]]
+- [[tools/arckit|ArcKit]]
+- [[tools/atlassian-rovo|Atlassian Rovo]]
 - [[tools/blip|Blip]]
+- [[tools/boring-notch|Boring Notch]]
+- [[tools/cal-com|Cal.com]]
 - [[tools/calendar|Calendar]]
 - [[tools/caveman|Caveman]]
+- [[tools/claude|Claude]]
 - [[tools/claude-code|Claude Code]]
+- [[tools/claude-desktop|Claude Desktop]]
+- [[tools/cleanshot-x|CleanShot X]]
+- [[tools/cleanupbuddy|CleanUpBuddy]]
+- [[tools/codex|Codex]]
 - [[tools/codex-security|Codex Security]]
 - [[tools/cognigy-ai|Cognigy.AI]]
 - [[tools/command-x|Command X]]
+- [[tools/copilot-tasks|Copilot Tasks]]
 - [[tools/cotypist|Cotypist]]
 - [[tools/cursor|Cursor]]
 - [[tools/deskin|DeskIn]]
 - [[tools/dictaflow|DictaFlow]]
+- [[tools/dockdoor|DockDoor]]
 - [[tools/dropover|Dropover]]
 - [[tools/e2b-mcp|E2B MCP]]
+- [[tools/fin|Fin]]
+- [[tools/fin-api-platform|Fin API platform]]
 - [[tools/fin-for-ecommerce|Fin for Ecommerce]]
 - [[tools/fin-for-sales|Fin for Sales]]
+- [[tools/fin-voice-2|Fin Voice 2]]
+- [[tools/final-cut-pro|Final Cut Pro]]
 - [[tools/firecrawl-mcp|Firecrawl MCP]]
+- [[tools/flix-fixer|Flix Fixer]]
 - [[tools/folder-preview|Folder Preview]]
+- [[tools/folder-quick-look|Folder Quick Look]]
+- [[tools/forklift-4|ForkLift 4]]
+- [[tools/gamma|Gamma]]
+- [[tools/gbrain|GBrain]]
+- [[tools/gemini-canvas|Gemini Canvas]]
 - [[tools/ghostty|Ghostty]]
 - [[tools/github-mcp|GitHub MCP]]
+- [[tools/github-spec-kit|GitHub Spec Kit]]
 - [[tools/granola|Granola]]
 - [[tools/graphify|Graphify]]
+- [[tools/hermes-agent|Hermes Agent]]
 - [[tools/hidden-bar|Hidden Bar]]
 - [[tools/higgsfield|Higgsfield]]
+- [[tools/ia-writer|iA Writer]]
 - [[tools/ice|Ice]]
+- [[tools/idlemac|IdleMac]]
 - [[tools/imageoptim|ImageOptim]]
 - [[tools/keepingyouawake|KeepingYouAwake]]
 - [[tools/kimi-code-cli|Kimi Code CLI]]
+- [[tools/klokki-slim|Klokki Slim]]
 - [[tools/langgraph|LangGraph]]
 - [[tools/launchy|Launchy]]
+- [[tools/lemonade-server|Lemonade Server]]
 - [[tools/linter|Linter]]
 - [[tools/llama-cpp|llama.cpp]]
 - [[tools/loop|Loop]]
 - [[tools/lovable|Lovable]]
+- [[tools/lungo|Lungo]]
+- [[tools/macwhisper|MacWhisper]]
 - [[tools/make-md|Make.md]]
+- [[tools/mimestream|Mimestream]]
+- [[tools/mlx|MLX]]
 - [[tools/monle|Monle]]
 - [[tools/msty|Msty]]
+- [[tools/music-decoy|Music Decoy]]
+- [[tools/n8n|n8n]]
+- [[tools/nano-banana-2|Nano Banana 2]]
 - [[tools/neo4j|Neo4j]]
 - [[tools/notchnook|NotchNook]]
+- [[tools/notebooklm|NotebookLM]]
+- [[tools/notion-3-0|Notion 3.0]]
+- [[tools/notion-calendar|Notion Calendar]]
+- [[tools/notion-custom-agents|Notion custom agents]]
+- [[tools/oasis|OASIS]]
 - [[tools/obsidian|Obsidian]]
+- [[tools/obsidian-starter-kit-plugin|Obsidian Starter Kit plugin]]
 - [[tools/ollama|Ollama]]
 - [[tools/omnisearch|Omnisearch]]
 - [[tools/one-thing|One Thing]]
 - [[tools/openai-realtime-api|OpenAI Realtime API]]
 - [[tools/openclaw|OpenClaw]]
+- [[tools/openprose|OpenProse]]
 - [[tools/operator|Operator]]
+- [[tools/paste|Paste]]
 - [[tools/pearcleaner|Pearcleaner]]
+- [[tools/photopea|Photopea]]
 - [[tools/pomelli|Pomelli]]
+- [[tools/privacy-filter|Privacy Filter]]
 - [[tools/publora-mcp|Publora MCP]]
 - [[tools/purepaste|PurePaste]]
 - [[tools/quickadd|QuickAdd]]
+- [[tools/quiver-ai|Quiver AI]]
+- [[tools/raycast|Raycast]]
+- [[tools/recall-2-0|Recall 2.0]]
 - [[tools/rectangle|Rectangle]]
+- [[tools/remind-me-faster|Remind Me Faster]]
 - [[tools/screenfloat-2|ScreenFloat 2]]
 - [[tools/shottr|Shottr]]
+- [[tools/soda|Soda]]
 - [[tools/substage|Substage]]
 - [[tools/supabase-mcp|Supabase MCP]]
 - [[tools/taskade-mcp|Taskade MCP]]
+- [[tools/termix|Termix]]
+- [[tools/things-3|Things 3]]
+- [[tools/ticktick|TickTick]]
+- [[tools/tolaria|Tolaria]]
+- [[tools/tot|Tot]]
+- [[tools/touchretouch|TouchRetouch]]
+- [[tools/ultimate-vocal-remover|Ultimate Vocal Remover]]
+- [[tools/userscripts|Userscripts]]
+- [[tools/velja|Velja]]
+- [[tools/vesta|Vesta]]
+- [[tools/wailbrew|WailBrew]]
+- [[tools/wallper|Wallper]]
+- [[tools/wipr-2|Wipr 2]]
 - [[tools/wispr-flow|Wispr Flow]]
 - [[tools/yubico|Yubico]]
+- [[tools/zen-browser|Zen Browser]]
+- [[tools/zipic|Zipic]]
+- [[industry-trends/agent-evaluation-shifts-toward-readiness|Agent Evaluation Shifts Toward Organizational Readiness]]
+- [[industry-trends/agent-evaluation-shifts-toward-reliability-and-tool-discipline|Agent Evaluation Shifts Toward Reliability and Tool Discipline]]
+- [[industry-trends/agent-evaluation-shifts-toward-workflow-based-tool-use|AI Evaluation Shifts Toward Workflow-Based Tool Use]]
 - [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]]
+- [[industry-trends/agent-runtime-centralization|AI products shift toward managed agent runtimes]]
+- [[industry-trends/agent-search-moves-toward-local-text-indexes|Agent Search Moves Toward Local Text Indexes]]
 - [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
+- [[industry-trends/agent-workflows-shift-toward-reviewable-contracts|Agent Workflows Shift Toward Reviewable Contracts]]
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 - [[industry-trends/agentic-commerce-interfaces|Agentic Commerce Interfaces]]
+- [[industry-trends/agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops|Agents Are Shifting from Stateless Chat to Persistent Work Loops]]
+- [[industry-trends/agents-move-toward-persistent-memory-backed-workflows|Agents Move Toward Persistent Memory-Backed Workflows]]
+- [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]]
+- [[industry-trends/ai-adoption-moves-toward-government-mediated-access|AI Adoption Moves Toward Government-Mediated Access]]
 - [[industry-trends/ai-assisted-file-native-workflows|AI-Assisted File-Native Workflows]]
+- [[industry-trends/ai-coding-moves-from-prompting-to-persistent-specs|AI Coding Moves from Prompts to Persistent Specs]]
+- [[industry-trends/ai-development-shifts-toward-model-assisted-automation|AI Development Shifts Toward Model-Assisted Automation]]
+- [[industry-trends/ai-forecasting-shifts-toward-operational-risk-monitoring|AI Forecasting Shifts Toward Operational Risk Monitoring]]
+- [[industry-trends/ai-governance-moves-toward-enforceable-media-controls|AI Governance Moves Toward Enforceable Media Controls]]
+- [[industry-trends/ai-governance-shifts-toward-verification-mechanisms|AI Governance Shifts Toward Verification Mechanisms]]
+- [[industry-trends/ai-governments-prepare-safety-nets-before-labor-disruption-is-visible|Governments Prepare Safety Nets Before Labor Disruption Is Visible]]
 - [[industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus|AI Infrastructure Scarcity Spreads Beyond GPUs]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/ai-jobs-risk-looks-more-distributed-than-disappearing|AI-Related Job Disruption Looks More Distributed Than Disappearing]]
+- [[industry-trends/ai-product-feature-gating-moves-toward-generalization-tests|AI Product Gating Moves Toward Generalization Tests]]
+- [[industry-trends/ai-product-pricing-shifts-toward-measured-outcomes|AI Product Pricing Shifts Toward Measured Outcomes]]
+- [[industry-trends/ai-products-shift-from-demos-to-grounded-workflows|AI Products Shift from Demos to Grounded Workflows]]
+- [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]]
+- [[industry-trends/ai-products-shift-from-models-to-grounded-systems|AI Products Shift from Models to Grounded Systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-toward-agentic-commerce-interfaces|AI Products Shift Toward Agentic Commerce Interfaces]]
+- [[industry-trends/ai-products-shift-toward-ambient-computing|AI Products Shift Toward Ambient Computing]]
+- [[industry-trends/ai-products-shift-toward-customer-specific-deployment|AI Products Shift Toward Customer-Specific Deployment]]
+- [[industry-trends/ai-simulation-moves-from-demo-scale-to-evaluation-grade-systems|AI Simulation Moves Toward Evaluation-Grade Systems]]
+- [[industry-trends/ai-specification-moves-toward-explicit-constraints|AI Specification Moves Toward Explicit Constraints]]
+- [[industry-trends/ai-support-improvement-becomes-continuous|AI Support Improvement Becomes Continuous]]
+- [[industry-trends/ai-workflows-shift-toward-supervised-friction|AI Workflows Shift Toward Supervised Friction]]
+- [[industry-trends/ai-workflows-shift-toward-verification-loops|AI Workflows Shift Toward Verification Loops]]
+- [[industry-trends/apple-silicon-local-inference-becomes-practical|Apple Silicon Local Inference Becomes Practical]]
 - [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
 - [[industry-trends/automation-pressures-governments-to-tax-capital-instead-of-labor|Automation Pressures Governments to Tax Capital Instead of Labor]]
 - [[industry-trends/behavioral-regressions-need-qualitative-audits|Behavioral Regressions Need Qualitative Audits]]
+- [[industry-trends/chat-products-move-toward-persistent-workspaces|Chat Products Move Toward Persistent Workspaces]]
+- [[industry-trends/coding-agents-diverge-into-workflow-specific-products|Coding Agents Diverge Into Workflow-Specific Products]]
 - [[industry-trends/coding-models-shift-toward-agentic-execution|Coding Models Shift Toward Agentic Execution]]
+- [[industry-trends/coding-shifts-toward-supervised-agent-workflows|Coding Shifts Toward Supervised Agent Workflows]]
+- [[industry-trends/consumer-ai-adoption-broadens-beyond-early-adopters|Consumer AI Adoption Broadens Beyond Early Adopters]]
+- [[industry-trends/consumer-ai-shifts-toward-distribution-led-products|Consumer AI Shifts Toward Distribution-Led Products]]
 - [[industry-trends/efficiency-gains-become-product-capabilities|Efficiency Gains Become Product Capabilities]]
+- [[industry-trends/enterprise-agent-platforms-centralize-support-workflows|Enterprise Agent Platforms Centralize Support Workflows]]
+- [[industry-trends/enterprise-agents-move-into-customer-infrastructure|Enterprise Agents Move Into Customer Infrastructure]]
+- [[industry-trends/enterprise-agents-need-layered-connectivity-stacks|Enterprise Agents Depend More on Layered Connectivity]]
 - [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
+- [[industry-trends/enterprise-ai-shifts-toward-governed-human-oversight-workflows|Enterprise AI Shifts Toward Governed Human Oversight Workflows]]
 - [[industry-trends/entry-level-technical-hiring-softens-under-ai-pressure|Entry-Level Technical Hiring Softens Under AI Pressure]]
+- [[industry-trends/fine-tuning-revives-memorized-copyright-text|Fine-tuning can revive memorized text the base model had suppressed]]
 - [[industry-trends/frontier-ai-governance-requires-verification-mechanisms|Frontier AI Governance Requires Verification Mechanisms]]
-- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Harness Design Becomes More Important for Agent Reliability]]
+- [[industry-trends/frontier-inference-hardware-gains-strategic-value|Frontier Inference Hardware Gains Strategic Value]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 - [[industry-trends/high-risk-models-move-to-gated-access|High-Risk Models Move to Gated Access]]
+- [[industry-trends/inference-demand-outgrows-training-as-the-practical-bottleneck|Inference demand overtakes training as the practical bottleneck]]
 - [[industry-trends/inference-efficiency-moves-toward-low-precision-hardware|Inference Efficiency Moves Toward Low-Precision Hardware]]
+- [[industry-trends/inference-hardware-becomes-more-heterogeneous|Inference Hardware Becomes More Heterogeneous]]
 - [[industry-trends/knowledge-architectures-converge-into-hybrid-systems|Knowledge Architectures Converge into Hybrid Systems]]
+- [[industry-trends/knowledge-base-becomes-maintained-workspace|Knowledge Bases Become Maintained Workspaces]]
 - [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[industry-trends/knowledge-systems-shift-toward-agent-friendliness|Knowledge Systems Shift Toward Agent Friendliness]]
+- [[industry-trends/knowledge-systems-shift-toward-compilation-over-retrieval|Knowledge Systems Shift Toward Compilation Over Retrieval]]
+- [[industry-trends/knowledge-systems-shift-toward-passive-capture|Knowledge Systems Shift Toward Passive Capture]]
+- [[industry-trends/knowledge-systems-shift-toward-persistent-workspaces|Knowledge Systems Shift Toward Persistent Workspaces]]
+- [[industry-trends/knowledge-tools-shift-toward-file-native-control|Knowledge Tools Shift Toward File-Native Control]]
+- [[industry-trends/knowledge-work-moves-toward-agentic-workflow-completion|Knowledge Work Moves Toward Agentic Workflow Completion]]
 - [[industry-trends/latent-reasoning-replaces-token-chain-of-thought|Latent Reasoning Replaces Token-Chain-Of-Thought]]
 - [[industry-trends/llm-maintained-knowledge-bases|LLM-Maintained Knowledge Bases]]
 - [[industry-trends/local-speaker-and-dictation-substitution|Local Voice Tool Substitution]]
 - [[industry-trends/local-specialist-models-for-preprocessing|Local Specialist Models for Preprocessing]]
+- [[industry-trends/long-context-efficiency-becomes-an-architecture-priority|Long-Context Efficiency Becomes an Architecture Priority]]
 - [[industry-trends/machine-readable-testing-intent|Machine-Readable Testing Intent]]
 - [[industry-trends/model-breakthroughs-become-harder-to-sustain|Model Breakthroughs Become Harder to Sustain]]
-- [[industry-trends/models-as-commodity-components|Models as Commodity Components]]
-- [[industry-trends/models-becoming-execution-layers|Models Becoming Execution Layers]]
+- [[industry-trends/models-as-commodity-components|Models Become Commodity Components]]
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/open-model-pressure|Open Model Ecosystems Become More Strategically Important]]
 - [[industry-trends/open-weight-models-become-good-enough-for-local-multimodal-work|Open-Weight Models Become Good Enough for Local Multimodal Work]]
-- [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-Weight Models Become Viable on Consumer Hardware]]
-- [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-weight multimodal models are becoming viable on consumer hardware]]
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
+- [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Provider pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/production-ai-tooling-moves-toward-governed-gateways|Production AI Tooling Moves Toward Governed Gateways]]
+- [[industry-trends/production-feedback-becomes-a-core-agent-training-loop|Production Feedback Becomes a Core Agent Training Loop]]
+- [[industry-trends/programming-language-choice-shifts-toward-agent-friendliness|Programming Language Choice Shifts Toward Agent-Friendliness]]
+- [[industry-trends/provenance-becomes-layered-and-verifiable|AI Governance Shifts Toward Layered Verification]]
+- [[industry-trends/rag-moves-from-fixed-pipelines-to-adaptive-agent-loops|RAG Moves from Fixed Pipelines to Adaptive Agent Loops]]
 - [[industry-trends/realtime-voice-agents-shift-to-integration-work|Realtime Voice Agents Shift Toward Integration Work]]
+- [[industry-trends/regulated-enterprise-ai-demand-for-audit-ready-evidence|Regulated Enterprise AI Demands Audit-Ready Evidence]]
 - [[industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake|Sales Moves from Fast Follow-Up to Agent-Led Intake]]
 - [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]]
 - [[industry-trends/software-differentiation-shifts-from-engineering-to-distribution|Software Differentiation Shifts from Engineering to Distribution]]
+- [[industry-trends/software-work-moves-toward-domain-verified-ai-output|Software Work Moves Toward Domain-Verified AI Output]]
 - [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]]
 - [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]
 - [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]]
+- [[industry-trends/support-automation-moves-toward-agentic-operations-layers|Support Automation Moves Toward Agentic Operations Layers]]
+- [[industry-trends/support-automation-shifts-toward-agentic-workflow-completion|Support Automation Shifts Toward Workflow Completion]]
+- [[industry-trends/text-generation-moves-beyond-left-to-right-decoding|Text Generation Moves Beyond Left-to-Right Decoding]]
 - [[industry-trends/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]]
 - [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]]
 - [[industry-trends/transport-layer-optimization-becomes-critical-for-agent-latency|Transport-Layer Optimization Becomes Critical for Agent Latency]]
-- [[industry-trends/verification-loops-become-central-to-ai-workflows|Verification Loops Become Central to AI Workflows]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 - [[industry-trends/vertical-models|Vertical Models]]
-- [[industry-trends/voice-agents-shift-toward-workflow-completion|Voice Agents Shift Toward Workflow Completion]]
-- [[industry-trends/workflow-based-evaluation|AI Adoption Shifts Toward Workflow Output Quality]]
+- [[industry-trends/voice-agents-shift-toward-workflow-completion|Voice agents shift from speech interfaces to workflow completion]]
+- [[industry-trends/voice-assistant-quality-shifts-toward-conversational-flow|Voice Assistant Quality Shifts Toward Conversational Flow]]
+- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/writing-workflows-shift-toward-ai-assisted-structured-output|Writing Workflows Shift Toward AI-Assisted Structured Output]]
 
 ## Highest source-count pages
 
-- [[topics/context-engineering|Context Engineering]] — 12
-- [[tools/claude-code|Claude Code]] — 7
-- [[tools/obsidian|Obsidian]] — 7
-- [[tools/ollama|Ollama]] — 7
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]] — 22
+- [[tools/claude-code|Claude Code]] — 18
+- [[topics/context-engineering|Context Engineering]] — 14
+- [[tools/obsidian|Obsidian]] — 12
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 12
+- [[tools/ollama|Ollama]] — 11
+- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 9
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — 9
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]] — 9
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — 8
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]] — 8
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]] — 8
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]] — 8
+- [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-weight multimodal models are becoming viable on consumer hardware]] — 8
+- [[topics/agent-workspace-layering|Agent Workspace Layering]] — 7
 - [[topics/agentic-workflows|Agentic Workflows]] — 7
-- [[industry-trends/models-becoming-execution-layers|Models Becoming Execution Layers]] — 6
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — 7
+- [[glossary/model-context-protocol|Model Context Protocol]] — 6
+- [[glossary/mixture-of-experts|Mixture-of-Experts]] — 5
 - [[glossary/retrieval-augmented-generation|Retrieval-Augmented Generation]] — 5
+- [[tools/cognigy-ai|Cognigy.AI]] — 5
+- [[topics/ai-workflow-restructuring|AI Workflow Restructuring]] — 5
 - [[topics/knowledge-management|Knowledge Management]] — 5
-- [[glossary/knowledge-management|Knowledge Management]] — 4
-- [[glossary/mixture-of-experts|Mixture-of-Experts]] — 4
-- [[topics/local-model-deployment|Local Model Deployment]] — 4
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 4
-- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]] — 4
-- [[glossary/feedforward-controls|Feedforward Controls]] — 3
-- [[glossary/harness|Harness]] — 3
-- [[glossary/ontology|Ontology]] — 3
-- [[how-to/local-coding-model-setup|Local Coding Model Setup]] — 3
-- [[how-to/local-model-setup|Local Model Setup]] — 3
-- [[foundation-models/gemma-4|Gemma 4]] — 3
-- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 3
-- [[topics/file-native-ai-workflows|File-Native AI Workflows]] — 3
-- [[topics/harness-engineering|Harness Engineering]] — 3
-- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]] — 3
-- [[topics/ontology-driven-extraction|Ontology-Driven Extraction]] — 3
-- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — 3
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]] — 5
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]] — 5
 
 ## Highest evidence-count pages
 
-- [[topics/context-engineering|Context Engineering]] — 87
-- [[tools/claude-code|Claude Code]] — 86
-- [[tools/ollama|Ollama]] — 81
-- [[tools/obsidian|Obsidian]] — 80
+- [[tools/claude-code|Claude Code]] — 206
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]] — 178
+- [[tools/obsidian|Obsidian]] — 136
+- [[tools/ollama|Ollama]] — 131
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 103
+- [[topics/context-engineering|Context Engineering]] — 99
+- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 71
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — 70
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]] — 69
+- [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-weight multimodal models are becoming viable on consumer hardware]] — 69
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — 66
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]] — 66
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]] — 61
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]] — 59
+- [[foundation-models/gemma-4|Gemma 4]] — 58
+- [[tools/cognigy-ai|Cognigy.AI]] — 55
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — 55
+- [[topics/agent-workspace-layering|Agent Workspace Layering]] — 54
 - [[topics/agentic-workflows|Agentic Workflows]] — 52
-- [[industry-trends/models-becoming-execution-layers|Models Becoming Execution Layers]] — 48
-- [[foundation-models/gemma-4|Gemma 4]] — 46
+- [[foundation-models/apex-1-0|Apex 1.0]] — 48
+- [[tools/cursor|Cursor]] — 48
+- [[how-to/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — 43
+- [[how-to/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 43
 - [[how-to/local-model-setup|Local Model Setup]] — 43
-- [[how-to/local-coding-model-setup|Local Coding Model Setup]] — 40
-- [[topics/knowledge-management|Knowledge Management]] — 38
-- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]] — 35
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 32
-- [[how-to/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 29
-- [[foundation-models/deepseek-v4|DeepSeek V4]] — 29
-- [[topics/local-model-deployment|Local Model Deployment]] — 29
-- [[how-to/claude-skills-setup|Claude Skills Setup]] — 28
-- [[foundation-models/kimi-2-5|Kimi 2.5]] — 28
-- [[foundation-models/apex-1-0|Apex 1.0]] — 26
-- [[foundation-models/gpt-5-5|GPT-5.5]] — 26
-- [[foundation-models/kimi-2-6|Kimi 2.6]] — 25
-- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 25
-- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Harness Design Becomes More Important for Agent Reliability]] — 25
-- [[industry-trends/high-risk-models-move-to-gated-access|High-Risk Models Move to Gated Access]] — 25
-- [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]] — 24
-- [[tools/cursor|Cursor]] — 23
+- [[foundation-models/deepseek-v4|DeepSeek V4]] — 43
 
 ## Thinly-supported pages
 

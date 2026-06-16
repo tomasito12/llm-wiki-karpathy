@@ -1,0 +1,1051 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-09T18:22:32+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DovNH8NuNCHaKLXByrDdnBU5t5tEc",
+          "token_usage": {
+            "completion_tokens": 204,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6854,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7058
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DovNJGflgar1kFGFDUNfuAKAqYS4w",
+          "token_usage": {
+            "completion_tokens": 1204,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6472,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7676
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-DovNVXRjiDrPOaYnypUeEA0sSPTxB",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2528,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 37829,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 40357
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DovNVXRjiDrPOaYnypUeEA0sSPTxB",
+    "token_usage": {
+      "completion_tokens": 3936,
+      "prompt_tokens": 51155,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 55091
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "ai_model_observations": "This case suggests AI is most useful when the hard part is assembling and normalizing information spread across many weakly structured sources.",
+        "business_objective": "To turn scattered public information into usable institutional knowledge and do work that would otherwise require much larger groups of technologists and researchers.",
+        "company": "GroundVue",
+        "confidence": 0.25,
+        "deployment_context": "The workflow operates across roughly 90,000 government bodies, with information scattered across videos, websites, and local platforms.",
+        "evidence_snippets": [
+          {
+            "claim": "GroundVue uses Codex to search for public sources and build continuous collection systems.",
+            "provenance": "stated",
+            "snippet": "\"GroundVue uses Codex to find hard-to-reach public sources and build systems that continuously collect and organize them.\""
+          },
+          {
+            "claim": "The work spans a very large fragmented public-information surface.",
+            "provenance": "stated",
+            "snippet": "\"Across roughly 90,000 government bodies, critical information is scattered across videos, websites, and local platforms.\""
+          },
+          {
+            "claim": "The workflow compresses work from days or weeks to minutes.",
+            "provenance": "stated",
+            "snippet": "\"Tasks that once took days or weeks now take minutes\""
+          }
+        ],
+        "evidence_type": "implementation_case",
+        "implications_for_service_automation": "Indirect but relevant: similar methods could support public-sector service operations, record search, and internal knowledge retrieval, but the source does not describe a direct customer-support deployment.",
+        "industry": "government information services",
+        "key_lessons": [
+          "Fragmented public data becomes more tractable when the tool can search and organize across many source types.",
+          "The biggest win is not just drafting, but building a continuous collection pipeline.",
+          "One small team can cover a much larger information surface when the workflow is automated."
+        ],
+        "match_candidates": [],
+        "open_questions": [
+          "How reliable is the collected data across changing public platforms?",
+          "What human review is needed before the information is used operationally?"
+        ],
+        "operational_constraints": "The main constraint is source fragmentation across many public platforms and formats, which makes manual collection slow and expensive.",
+        "outcome_status": "Ongoing as described; the source says tasks that once took days or weeks now take minutes.",
+        "overview": "GroundVue uses Codex to search across public meeting videos, websites, and local platforms, then continuously collect and organize information at scale. The company frames this as a way to help governments learn from one another by making dispersed public records searchable and comparable.",
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "knowledge-systems",
+          "workflow-automation",
+          "human-ai-workflows"
+        ],
+        "related_sources": [
+          "https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf"
+        ],
+        "secondary_tag": "knowledge-systems",
+        "strategic_signals": "Small teams can use agentic tools to replace labor-intensive information compilation work, especially in public-sector-adjacent knowledge systems.",
+        "success_or_failure_factors": "It appears to work because Codex helps bridge fragmented public sources and automate collection and organization work that is otherwise time-consuming.",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "technical_approach": "The source says GroundVue uses Codex to find hard-to-reach public sources and build systems that continuously collect and organize them.",
+        "title": "GroundVue's Public-Meeting Knowledge Collection Workflow",
+        "value_level": "low",
+        "what_was_implemented": "A Codex-assisted workflow for finding hard-to-reach public sources and building systems that continuously collect and organize them."
+      }
+    ],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-06-02",
+        "confidence": 0.86,
+        "evidence_from_source": "OpenAI frames Codex as a redesign for fragmented digital work and says it can do more than draft: it can find inputs, coordinate work, produce deliverables, check quality, and chase approvals. The article also reports rapid growth in knowledge-worker usage and parallel tasking, which supports the idea that users are treating the tool as a workflow layer rather than a single-purpose assistant.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "enterprise-ai",
+        "proposed_tags": [
+          "enterprise-ai",
+          "human-ai-collaboration",
+          "workflow-restructuring",
+          "workflow-based-evaluation"
+        ],
+        "related_trends": [
+          "artifact-first-ai-workflows"
+        ],
+        "secondary_tag": "human-ai-collaboration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "\"more than 5 million weekly active users\"",
+          "\"up more than 6x since the launch of the desktop app in February\"",
+          "\"knowledge workers are now adopting Codex >3x faster than developers\"",
+          "\"Roughly 50 percent of users now have more than one Codex task running simultaneously\""
+        ],
+        "supporting_snippet": "\"Codex can find the inputs, coordinate the workflow, produce the deliverables, check their quality and chase down the necessary approvals.\"",
+        "time_sensitivity": "Actionable as of 2026-06-02; the product telemetry is time-bound, but the workflow shift it points to is likely relevant through at least the medium term if agentic tools keep expanding across non-software work.",
+        "trend_description": "Knowledge-work tools are shifting from isolated drafting assistants toward systems that can help complete an entire workflow. The relevant unit is increasingly the chain from finding inputs to coordinating tasks, producing artifacts, checking quality, and securing approval. This matters because the real bottleneck in many organizations is handoff friction, not raw generation speed.",
+        "trend_slug": "knowledge-work-moves-toward-agentic-workflow-completion",
+        "trend_title": "Knowledge Work Moves Toward Agentic Workflow Completion",
+        "uncertainty_note": "The evidence is vendor-authored and selective, so it does not prove that all knowledge-work settings will benefit equally or that the workflow shift is already widespread outside OpenAI's user base.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "Uses OpenAI/Codex usage metrics and growth figures as internal product evidence.",
+        "Includes implementation anecdotes from GroundVue, Proaction, Taiyo Inoue, and Luke Xing to illustrate use cases.",
+        "Also advances strategic and policy arguments that go beyond a single empirical study or benchmark."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article says knowledge work is still slowed by scattered files, approvals, and handoffs, even though software made writing and analysis faster. OpenAI argues that Codex helps by acting more like a collaborator that can search, draft, code, and verify pieces of work across different tools. The main idea is not \u201cAI replaces workers,\u201d but \u201cAI lets one person do more of the full workflow without waiting on other teams.\u201d The piece supports that claim with usage numbers and stories from government data collection, startups, teaching, and personal software projects. It also argues that organizations and governments should train people to use these tools and buy them based on outcomes, not just licenses. As of June 2, 2026, the message is practical but still vendor-authored, so the evidence is persuasive but not independent.",
+      "assessed_as_of": "2026-06-02",
+      "contradictions_and_skepticism": "The article argues that Codex reduces coordination and approval friction, but any system that can draft, code, and act across tools can also create new review burden unless oversight is designed carefully. The piece emphasizes user empowerment, yet many of the examples still depend on the surrounding organization being willing to accept AI-generated artifacts and custom tools. The strongest claims are based on OpenAI\u2019s own usage data, so they may reflect product distribution and packaging as much as underlying technical superiority. The narrative about replacing bottlenecks is plausible, but the article does not prove that these workflows scale safely or economically outside the showcased cases.",
+      "key_insights": [
+        "The article\u2019s durable framing is that the real bottleneck in knowledge work is not drafting alone, but search, coordination, and approval across fragmented systems.",
+        "Codex is presented as a workflow layer that can span artifact creation, quality checks, and follow-up actions, which is more operationally useful than a narrow coding-only framing.",
+        "The strongest usage signal is that knowledge-worker tasks are growing faster than developer use, suggesting the product is finding value outside its original audience.",
+        "Parallel task execution is highlighted as a meaningful behavior change because it lets one worker orchestrate multiple streams of work at once.",
+        "The policy recommendations are concrete enough to reuse: fund AI fluency, support worker-led adoption, and procure tools for measurable outcomes rather than generic software licenses."
+      ],
+      "limitations_and_open_questions": "The evidence is mostly internal product telemetry plus anecdotal examples, so it does not establish causal productivity gains or generalize across organizations. The article gives growth percentages and task shares but no methodology, baseline definition, cohort controls, or retention data. It also does not quantify failure modes, error rates, security risks, or the cost of supervision when Codex is used across non-software work. The policy section is aspirational and does not explain how procurement, privacy, and auditability would work in detail across different institutions. It is unclear how much of the cited value depends on already well-structured workflows versus messy real-world settings with weaker data hygiene and governance. The article does not compare Codex against other agentic tools or conventional automation approaches on the same tasks.",
+      "sources": [
+        "https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf"
+      ],
+      "summary": "This piece argues that Codex is being used as a general-purpose work redesign tool, not just a coding assistant. It frames modern knowledge work as fragmented by search, coordination, and approval costs, then claims those frictions persist because earlier office software made artifact production cheaper without integrating the workflow around it. OpenAI positions Codex as an agentic layer that can find inputs, coordinate tasks, produce deliverables, check quality, and help secure approvals, so the person closest to the work can build and delegate more directly. The article backs this with product metrics and examples: more than 5 million weekly active users, >6x growth since the desktop app launched in February, and knowledge workers adopting it more than 3x faster than developers. It says the fastest-growing knowledge-worker tasks are data analysis, research, and knowledge artifacts, and that many users are running multiple tasks in parallel. The examples from GroundVue, Proaction, Taiyo Inoue, and Luke Xing are meant to show Codex helping small teams and individuals build custom tools, automate administrative work, and create task-specific software without waiting on a formal engineering roadmap. The policy section argues for broad access, AI fluency training, worker-led adoption, and procurement rules that buy outcomes rather than just licenses. The article\u2019s central claim is that agentic tools become most valuable when they let the person closest to the work assemble and verify the workflow themselves.",
+      "why_it_matters": "The piece matters because it gives a concrete product narrative for agentic AI in everyday knowledge work, not just software engineering. Its most useful claim is that the high-value opportunity is in reducing the friction between finding information, moving decisions across teams, and getting work verified, which maps to real workflow pain in organizations. The article also supplies usage signals that can help an AI engineer think about where a general agent has product pull: data analysis, research, and knowledge artifacts are the leading task categories for knowledge workers, and many users are already running multiple tasks in parallel. The case studies are operational rather than abstract: GroundVue uses Codex to collect and organize dispersed public records, Proaction uses it to turn customer conversations into proposals and demos, a professor uses it to automate LMS upkeep, and an individual builds a hearing-related utility. That said, this is still a vendor-authored article with selective anecdotes and internal metrics, so it is better as directional product evidence than as a neutral benchmark. The policy section is useful mainly as a checklist for adoption environments: training, worker involvement, sandboxed pilots, and procurement for outcomes. As of June 2, 2026, it is actionable as a product and adoption signal, but the claims about broad productivity gains should be treated as provisional until independent evidence accumulates."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single cohesive essay/report centered on one argument about knowledge work and Codex, not a bundle of unrelated items.",
+        "Contains embedded case examples and policy recommendations, but no numbered tool list, roundup structure, or transcript format.",
+        "The piece is a vendor-authored publication on openai.com, structured as a narrative article with supporting usage metrics and anecdotes."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.93,
+        "core_capabilities": [
+          "It can support data analysis, research, and knowledge-artifact creation in the same workflow.",
+          "It can run multiple tasks in parallel, which helps a single user orchestrate several streams of work at once.",
+          "It is used to help find inputs, coordinate work, produce deliverables, and check quality across fragmented systems."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source explicitly mentions use across documents, PDFs, spreadsheets, web research, and internal knowledge, so the product fits mixed file-and-search workflows.",
+          "It is also described as spanning software development and knowledge-work tasks, which implies broad compatibility with both technical and non-technical work patterns."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source says Codex has more than 5 million weekly active users and has grown more than 6x since the desktop app launched in February. That is a strong adoption signal, but it is still internal product telemetry rather than third-party validation. The article also says knowledge workers are adopting it more than 3x as fast as developers, which suggests demand beyond the original coding audience.",
+        "name": "Codex",
+        "operational_relevance": "As of 2026-06-02, Codex is positioned as a workflow tool rather than a narrow coding assistant. It appears useful anywhere a single worker needs to move between research, document production, lightweight scripting, and review without handing work across teams. The source emphasizes knowledge work, but the same pattern matters for service automation because the tool is framed as helping find inputs, coordinate tasks, produce deliverables, check quality, and chase approvals.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "agentic",
+          "workflow-automation",
+          "research",
+          "writing"
+        ],
+        "proposed_types": [
+          "ai-application"
+        ],
+        "related_tools": [],
+        "short_description": "A general-purpose AI workspace and agent tool from OpenAI that can help people search, draft, code, analyze, and verify work across fragmented tasks.",
+        "strengths": "- Supports multiple task types in one workspace, which matters when the bottleneck is moving between search, drafting, and verification rather than only code generation.\n- The source says knowledge workers are using it for data analysis, research, and knowledge artifacts, which suggests it fits non-developer workflows as well as developer ones.\n- Parallel task execution is highlighted, which is operationally useful when one person needs to orchestrate several workstreams at once instead of working sequentially.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Codex now has more than 5 million weekly active users, up more than 6x since the launch of the desktop app in February. While it began as a tool for software development, faster growth is increasingly coming from a broader category: knowledge work.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article does not provide independent evaluation, failure rates, or cost data, so the productivity claims should be treated as vendor-authored and provisional. It also does not show how well Codex handles noisy real-world workflows, governance constraints, or the review burden that can come with agent-generated outputs."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "The important bottleneck is often workflow fragmentation, not raw drafting speed.",
+          "AI adds more value when it spans search, coordination, production, verification, and approval.",
+          "Parallel task handling can change how much work one operator can manage at once."
+        ],
+        "knowledge_summary": "Knowledge work becomes more effective when AI is inserted into the full workflow, not only into draft generation. The useful unit of design is the chain from finding inputs to coordinating actions, producing artifacts, checking quality, and getting approval. Fragmented tools create handoff costs, so the biggest gains come from reducing cross-system movement and making the person closest to the work able to complete more of the loop. This is especially relevant when a single user must manage several workstreams in parallel.",
+        "match_candidates": [],
+        "operational_insight": "Design AI systems around workflow completion, not isolated output generation. If the product only drafts text or code, it may save typing but leave coordination, verification, and approval untouched; if it can span those steps, it can reduce the real cost of work.",
+        "primary_tag": "workflow-design",
+        "proposed_tags": [
+          "workflow-design",
+          "orchestration",
+          "enterprise-workflows",
+          "agent-systems"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows"
+        ],
+        "relevance_note": "This is a durable design pattern for AI systems in enterprise work: the highest leverage usually comes from reducing handoffs across search, drafting, verification, and approval. It applies to support operations, analyst workflows, internal tools, and agentic systems that need to complete work rather than just generate content.",
+        "secondary_tag": "orchestration",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Codex can find the inputs, coordinate the workflow, produce the deliverables, check their quality and chase down the necessary approvals.\"",
+        "topic_slug": "ai-workflow-restructuring",
+        "topic_title": "AI Workflow Restructuring",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.92,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Reviewable outputs are central in enterprise AI because they can be checked before use.",
+          "File types such as documents, spreadsheets, and PDFs remain core AI work products.",
+          "Artifact production often becomes the bridge between conversational input and operational execution."
+        ],
+        "knowledge_summary": "Many AI use cases center on producing reviewable artifacts: documents, reports, memos, contracts, spreadsheets, images, audio, video, and internal tools. In these workflows, the key output is not a chat response but an artifact that can be inspected, revised, and approved by humans. Artifact-first systems matter because they align better with enterprise work, where outputs must survive review and fit into existing file-centric processes. They also make it easier for one person to produce work that would otherwise require multiple specialists.",
+        "match_candidates": [],
+        "operational_insight": "When the work ends in a document, spreadsheet, or internal tool, optimize the AI system for producing a clean, reviewable artifact and for attaching the checks needed before handoff. That usually beats trying to keep the interaction purely conversational.",
+        "primary_tag": "workflow-design",
+        "proposed_tags": [
+          "workflow-design",
+          "enterprise-workflows",
+          "ai-engineering",
+          "agent-systems"
+        ],
+        "related_topics": [
+          "ai-workflow-restructuring"
+        ],
+        "relevance_note": "Artifact-first design is useful anywhere AI has to fit existing business processes, especially document-heavy service operations, research, finance, legal work, and internal reporting. It helps explain why many practical systems end up looking like file-native workflows rather than open-ended chat.",
+        "secondary_tag": "enterprise-workflows",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Each week, 72 percent of these users produce artifacts: text documents such as reports, memos, and contracts; multimedia assets such as images, audio, and video; and, increasingly, PDFs and spreadsheets.\"",
+        "topic_slug": "artifact-first-ai-workflows",
+        "topic_title": "Artifact-First AI Workflows",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [
+      {
+        "llm_item": {
+          "ai_model_observations": "This case suggests AI is most useful when the hard part is assembling and normalizing information spread across many weakly structured sources.",
+          "business_objective": "To turn scattered public information into usable institutional knowledge and do work that would otherwise require much larger groups of technologists and researchers.",
+          "company": "GroundVue",
+          "confidence": 0.25,
+          "deployment_context": "The workflow operates across roughly 90,000 government bodies, with information scattered across videos, websites, and local platforms.",
+          "evidence_snippets": [
+            {
+              "claim": "GroundVue uses Codex to search for public sources and build continuous collection systems.",
+              "provenance": "stated",
+              "snippet": "\"GroundVue uses Codex to find hard-to-reach public sources and build systems that continuously collect and organize them.\""
+            },
+            {
+              "claim": "The work spans a very large fragmented public-information surface.",
+              "provenance": "stated",
+              "snippet": "\"Across roughly 90,000 government bodies, critical information is scattered across videos, websites, and local platforms.\""
+            },
+            {
+              "claim": "The workflow compresses work from days or weeks to minutes.",
+              "provenance": "stated",
+              "snippet": "\"Tasks that once took days or weeks now take minutes\""
+            }
+          ],
+          "evidence_type": "implementation_case",
+          "implications_for_service_automation": "Indirect but relevant: similar methods could support public-sector service operations, record search, and internal knowledge retrieval, but the source does not describe a direct customer-support deployment.",
+          "industry": "government information services",
+          "key_lessons": [
+            "Fragmented public data becomes more tractable when the tool can search and organize across many source types.",
+            "The biggest win is not just drafting, but building a continuous collection pipeline.",
+            "One small team can cover a much larger information surface when the workflow is automated."
+          ],
+          "match_candidates": [],
+          "open_questions": [
+            "How reliable is the collected data across changing public platforms?",
+            "What human review is needed before the information is used operationally?"
+          ],
+          "operational_constraints": "The main constraint is source fragmentation across many public platforms and formats, which makes manual collection slow and expensive.",
+          "outcome_status": "Ongoing as described; the source says tasks that once took days or weeks now take minutes.",
+          "overview": "GroundVue uses Codex to search across public meeting videos, websites, and local platforms, then continuously collect and organize information at scale. The company frames this as a way to help governments learn from one another by making dispersed public records searchable and comparable.",
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "knowledge-systems",
+            "workflow-automation",
+            "human-ai-workflows"
+          ],
+          "related_sources": [
+            "https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf"
+          ],
+          "secondary_tag": "knowledge-systems",
+          "strategic_signals": "Small teams can use agentic tools to replace labor-intensive information compilation work, especially in public-sector-adjacent knowledge systems.",
+          "success_or_failure_factors": "It appears to work because Codex helps bridge fragmented public sources and automate collection and organization work that is otherwise time-consuming.",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "technical_approach": "The source says GroundVue uses Codex to find hard-to-reach public sources and build systems that continuously collect and organize them.",
+          "title": "GroundVue's Public-Meeting Knowledge Collection Workflow",
+          "value_level": "low",
+          "what_was_implemented": "A Codex-assisted workflow for finding hard-to-reach public sources and building systems that continuously collect and organize them."
+        },
+        "notes": null,
+        "proposal_id": "f9e8100b-a58a-46f0-b541-91c97cccce76",
+        "proposal_status": "approved",
+        "sections": {
+          "ai_model_observations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "business_objective": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "company": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_context": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "implications_for_service_automation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "industry": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_lessons": {
+            "final_list": null,
+            "llm_list": [
+              "Fragmented public data becomes more tractable when the tool can search and organize across many source types.",
+              "The biggest win is not just drafting, but building a continuous collection pipeline.",
+              "One small team can cover a much larger information surface when the workflow is automated."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "open_questions": {
+            "final_list": null,
+            "llm_list": [
+              "How reliable is the collected data across changing public platforms?",
+              "What human review is needed before the information is used operationally?"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_constraints": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "outcome_status": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "overview": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_sources": {
+            "final_list": null,
+            "llm_list": [
+              "https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "strategic_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "success_or_failure_factors": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "technical_approach": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "what_was_implemented": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "knowledge-systems",
+            "workflow-automation",
+            "human-ai-workflows"
+          ]
+        }
+      }
+    ],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-02",
+          "confidence": 0.86,
+          "evidence_from_source": "OpenAI frames Codex as a redesign for fragmented digital work and says it can do more than draft: it can find inputs, coordinate work, produce deliverables, check quality, and chase approvals. The article also reports rapid growth in knowledge-worker usage and parallel tasking, which supports the idea that users are treating the tool as a workflow layer rather than a single-purpose assistant.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "enterprise-ai",
+          "proposed_tags": [
+            "enterprise-ai",
+            "human-ai-collaboration",
+            "workflow-restructuring",
+            "workflow-based-evaluation"
+          ],
+          "related_trends": [
+            "artifact-first-ai-workflows"
+          ],
+          "secondary_tag": "human-ai-collaboration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "\"more than 5 million weekly active users\"",
+            "\"up more than 6x since the launch of the desktop app in February\"",
+            "\"knowledge workers are now adopting Codex >3x faster than developers\"",
+            "\"Roughly 50 percent of users now have more than one Codex task running simultaneously\""
+          ],
+          "supporting_snippet": "\"Codex can find the inputs, coordinate the workflow, produce the deliverables, check their quality and chase down the necessary approvals.\"",
+          "time_sensitivity": "Actionable as of 2026-06-02; the product telemetry is time-bound, but the workflow shift it points to is likely relevant through at least the medium term if agentic tools keep expanding across non-software work.",
+          "trend_description": "Knowledge-work tools are shifting from isolated drafting assistants toward systems that can help complete an entire workflow. The relevant unit is increasingly the chain from finding inputs to coordinating tasks, producing artifacts, checking quality, and securing approval. This matters because the real bottleneck in many organizations is handoff friction, not raw generation speed.",
+          "trend_slug": "knowledge-work-moves-toward-agentic-workflow-completion",
+          "trend_title": "Knowledge Work Moves Toward Agentic Workflow Completion",
+          "uncertainty_note": "The evidence is vendor-authored and selective, so it does not prove that all knowledge-work settings will benefit equally or that the workflow shift is already widespread outside OpenAI's user base.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "1efcf672-eb23-40ee-be1a-4783558d0948",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "artifact-first-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "\"more than 5 million weekly active users\"",
+              "\"up more than 6x since the launch of the desktop app in February\"",
+              "\"knowledge workers are now adopting Codex >3x faster than developers\"",
+              "\"Roughly 50 percent of users now have more than one Codex task running simultaneously\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "enterprise-ai",
+            "human-ai-collaboration",
+            "workflow-restructuring",
+            "workflow-based-evaluation"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "Uses OpenAI/Codex usage metrics and growth figures as internal product evidence.",
+          "Includes implementation anecdotes from GroundVue, Proaction, Taiyo Inoue, and Luke Xing to illustrate use cases.",
+          "Also advances strategic and policy arguments that go beyond a single empirical study or benchmark."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The article\u2019s durable framing is that the real bottleneck in knowledge work is not drafting alone, but search, coordination, and approval across fragmented systems.",
+          "Codex is presented as a workflow layer that can span artifact creation, quality checks, and follow-up actions, which is more operationally useful than a narrow coding-only framing.",
+          "The strongest usage signal is that knowledge-worker tasks are growing faster than developer use, suggesting the product is finding value outside its original audience.",
+          "Parallel task execution is highlighted as a meaningful behavior change because it lets one worker orchestrate multiple streams of work at once.",
+          "The policy recommendations are concrete enough to reuse: fund AI fluency, support worker-led adoption, and procure tools for measurable outcomes rather than generic software licenses."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single cohesive essay/report centered on one argument about knowledge work and Codex, not a bundle of unrelated items.",
+          "Contains embedded case examples and policy recommendations, but no numbered tool list, roundup structure, or transcript format.",
+          "The piece is a vendor-authored publication on openai.com, structured as a narrative article with supporting usage metrics and anecdotes."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "core_capabilities": [
+            "It can support data analysis, research, and knowledge-artifact creation in the same workflow.",
+            "It can run multiple tasks in parallel, which helps a single user orchestrate several streams of work at once.",
+            "It is used to help find inputs, coordinate work, produce deliverables, and check quality across fragmented systems."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The source explicitly mentions use across documents, PDFs, spreadsheets, web research, and internal knowledge, so the product fits mixed file-and-search workflows.",
+            "It is also described as spanning software development and knowledge-work tasks, which implies broad compatibility with both technical and non-technical work patterns."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source says Codex has more than 5 million weekly active users and has grown more than 6x since the desktop app launched in February. That is a strong adoption signal, but it is still internal product telemetry rather than third-party validation. The article also says knowledge workers are adopting it more than 3x as fast as developers, which suggests demand beyond the original coding audience.",
+          "name": "Codex",
+          "operational_relevance": "As of 2026-06-02, Codex is positioned as a workflow tool rather than a narrow coding assistant. It appears useful anywhere a single worker needs to move between research, document production, lightweight scripting, and review without handing work across teams. The source emphasizes knowledge work, but the same pattern matters for service automation because the tool is framed as helping find inputs, coordinate tasks, produce deliverables, check quality, and chase approvals.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "agentic",
+            "workflow-automation",
+            "research",
+            "writing"
+          ],
+          "proposed_types": [
+            "ai-application"
+          ],
+          "related_tools": [],
+          "short_description": "A general-purpose AI workspace and agent tool from OpenAI that can help people search, draft, code, analyze, and verify work across fragmented tasks.",
+          "strengths": "- Supports multiple task types in one workspace, which matters when the bottleneck is moving between search, drafting, and verification rather than only code generation.\n- The source says knowledge workers are using it for data analysis, research, and knowledge artifacts, which suggests it fits non-developer workflows as well as developer ones.\n- Parallel task execution is highlighted, which is operationally useful when one person needs to orchestrate several workstreams at once instead of working sequentially.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Codex now has more than 5 million weekly active users, up more than 6x since the launch of the desktop app in February. While it began as a tool for software development, faster growth is increasingly coming from a broader category: knowledge work.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article does not provide independent evaluation, failure rates, or cost data, so the productivity claims should be treated as vendor-authored and provisional. It also does not show how well Codex handles noisy real-world workflows, governance constraints, or the review burden that can come with agent-generated outputs."
+        },
+        "notes": null,
+        "proposal_id": "35cce1ce-9c27-4e81-b300-a0a5497c33c1",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can support data analysis, research, and knowledge-artifact creation in the same workflow.",
+              "It can run multiple tasks in parallel, which helps a single user orchestrate several streams of work at once.",
+              "It is used to help find inputs, coordinate work, produce deliverables, and check quality across fragmented systems."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source explicitly mentions use across documents, PDFs, spreadsheets, web research, and internal knowledge, so the product fits mixed file-and-search workflows.",
+              "It is also described as spanning software development and knowledge-work tasks, which implies broad compatibility with both technical and non-technical work patterns."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic",
+            "workflow-automation",
+            "research",
+            "writing"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "The important bottleneck is often workflow fragmentation, not raw drafting speed.",
+            "AI adds more value when it spans search, coordination, production, verification, and approval.",
+            "Parallel task handling can change how much work one operator can manage at once."
+          ],
+          "knowledge_summary": "Knowledge work becomes more effective when AI is inserted into the full workflow, not only into draft generation. The useful unit of design is the chain from finding inputs to coordinating actions, producing artifacts, checking quality, and getting approval. Fragmented tools create handoff costs, so the biggest gains come from reducing cross-system movement and making the person closest to the work able to complete more of the loop. This is especially relevant when a single user must manage several workstreams in parallel.",
+          "match_candidates": [],
+          "operational_insight": "Design AI systems around workflow completion, not isolated output generation. If the product only drafts text or code, it may save typing but leave coordination, verification, and approval untouched; if it can span those steps, it can reduce the real cost of work.",
+          "primary_tag": "workflow-design",
+          "proposed_tags": [
+            "workflow-design",
+            "orchestration",
+            "enterprise-workflows",
+            "agent-systems"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows"
+          ],
+          "relevance_note": "This is a durable design pattern for AI systems in enterprise work: the highest leverage usually comes from reducing handoffs across search, drafting, verification, and approval. It applies to support operations, analyst workflows, internal tools, and agentic systems that need to complete work rather than just generate content.",
+          "secondary_tag": "orchestration",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Codex can find the inputs, coordinate the workflow, produce the deliverables, check their quality and chase down the necessary approvals.\"",
+          "topic_slug": "ai-workflow-restructuring",
+          "topic_title": "AI Workflow Restructuring",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "ae985e7f-7f58-4a37-98ab-40568214fd55",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "The important bottleneck is often workflow fragmentation, not raw drafting speed.",
+              "AI adds more value when it spans search, coordination, production, verification, and approval.",
+              "Parallel task handling can change how much work one operator can manage at once."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-design",
+            "orchestration",
+            "enterprise-workflows",
+            "agent-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Reviewable outputs are central in enterprise AI because they can be checked before use.",
+            "File types such as documents, spreadsheets, and PDFs remain core AI work products.",
+            "Artifact production often becomes the bridge between conversational input and operational execution."
+          ],
+          "knowledge_summary": "Many AI use cases center on producing reviewable artifacts: documents, reports, memos, contracts, spreadsheets, images, audio, video, and internal tools. In these workflows, the key output is not a chat response but an artifact that can be inspected, revised, and approved by humans. Artifact-first systems matter because they align better with enterprise work, where outputs must survive review and fit into existing file-centric processes. They also make it easier for one person to produce work that would otherwise require multiple specialists.",
+          "match_candidates": [],
+          "operational_insight": "When the work ends in a document, spreadsheet, or internal tool, optimize the AI system for producing a clean, reviewable artifact and for attaching the checks needed before handoff. That usually beats trying to keep the interaction purely conversational.",
+          "primary_tag": "workflow-design",
+          "proposed_tags": [
+            "workflow-design",
+            "enterprise-workflows",
+            "ai-engineering",
+            "agent-systems"
+          ],
+          "related_topics": [
+            "ai-workflow-restructuring"
+          ],
+          "relevance_note": "Artifact-first design is useful anywhere AI has to fit existing business processes, especially document-heavy service operations, research, finance, legal work, and internal reporting. It helps explain why many practical systems end up looking like file-native workflows rather than open-ended chat.",
+          "secondary_tag": "enterprise-workflows",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Each week, 72 percent of these users produce artifacts: text documents such as reports, memos, and contracts; multimedia assets such as images, audio, and video; and, increasingly, PDFs and spreadsheets.\"",
+          "topic_slug": "artifact-first-ai-workflows",
+          "topic_title": "Artifact-First AI Workflows",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "8674bda5-6f43-4bfd-baa3-e8b427970b15",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Reviewable outputs are central in enterprise AI because they can be checked before use.",
+              "File types such as documents, spreadsheets, and PDFs remain core AI work products.",
+              "Artifact production often becomes the bridge between conversational input and operational execution."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "ai-workflow-restructuring"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-design",
+            "enterprise-workflows",
+            "ai-engineering",
+            "agent-systems"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Codex",
+    "canonical_url": "https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf",
+    "content_sha256": "2d7dc90ae4d594dba3a81cf1f3d14d4de38be9b206ddd900e56154d1122f231c",
+    "publication": "openai.com",
+    "published_date": null,
+    "raw_html_rel_path": "raw/readwise/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm.html",
+    "raw_md_rel_path": "raw/readwise/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm.md",
+    "source_id": "the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm",
+    "title": "The Next Era Of Knowledge Work"
+  }
+}

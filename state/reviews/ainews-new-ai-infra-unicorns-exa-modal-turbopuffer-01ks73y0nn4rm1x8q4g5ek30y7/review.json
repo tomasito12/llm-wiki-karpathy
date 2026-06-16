@@ -300,7 +300,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -322,7 +322,7 @@
               "LangChain introduced a sandbox Auth Proxy and a typed streaming protocol"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -332,27 +332,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -417,7 +417,7 @@
               "The notable nuance is that GPT 5.5 Pro itself did not benefit from the harness, suggesting model-specific absorption of scaffolding tricks."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "mentioned_entities": {
             "final_list": null,
@@ -428,32 +428,32 @@
               "mini-swe-agent"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "service_automation_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_strength": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_type": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "suggested_destinations": {
             "final_list": null,
@@ -461,27 +461,27 @@
               "trends/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "time_horizon": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "why_it_matters": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "wiki_worthiness": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -536,77 +536,77 @@
         "proposal_status": "approved",
         "sections": {
           "evidence_snippets": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "OpenAI\u2019s \u201cCodex Thursday\u201d updates matter less as standalone features than as signs of where coding agents are going.",
               "OpenAIDevs launched Appshots, which capture both screenshot and text from Mac app windows for richer working context",
               "OpenAIDevs says Codex can now securely use apps on your Mac from your phone even when the Mac is locked"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "mentioned_entities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "OpenAI",
               "Codex",
               "Appshots"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "service_automation_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_strength": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_type": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "suggested_destinations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "trends/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "summary": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "time_horizon": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "why_it_matters": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "wiki_worthiness": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -705,19 +705,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "mixed": 3
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 3,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 3,
+    "review_duration_seconds": 105.9,
+    "review_finished_at": "2026-06-09T16:50:04.930969+00:00",
+    "review_started_at": "2026-06-09T16:48:19+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-06-09T16:50:05+00:00",
     "saved_by": null
   },
   "source": {

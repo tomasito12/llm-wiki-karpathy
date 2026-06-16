@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-16T00:32:46+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrC1DApTxsh5QceEg8bDy6o0hc9uq",
+          "token_usage": {
+            "completion_tokens": 268,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7807,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8075
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrC1GO48F0RqKcFzZnC5gJrmkyfVu",
+          "token_usage": {
+            "completion_tokens": 1082,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7492,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8574
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DrC1GO48F0RqKcFzZnC5gJrmkyfVu",
+    "token_usage": {
+      "completion_tokens": 1350,
+      "prompt_tokens": 15299,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 16649
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "The source is a vendor-authored threat report with narrow, time-bound incident analysis and limited durable wiki value at triage stage; the most reusable knowledge is the general pattern of AI-enabled influence operations, but that is thinly supported here and better handled in later curation if needed.",
+      "skip_recommended": true,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The source combines OpenAI's internal analysis of account activity, platform behavior, and enforcement actions with concrete examples from prompts and posts.",
+        "It relies on observed operational details and screenshots, but also includes strategic interpretation about what the campaigns may indicate.",
+        "Some conclusions are based on OpenAI's assessment rather than externally verified measurements or independent benchmarking."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This report is about two influence campaigns that used ChatGPT to generate social posts, cartoons, and editing work for pro-China messaging. One pushed the idea that AI data centers drive up power bills; the other attacked U.S. tariffs and tech policy. OpenAI says it banned the accounts and saw little real-world spread. The interesting part is not that the posts went viral, but that the operators used AI to scale a covert propaganda workflow and to test narratives around AI infrastructure and U.S.-China competition. It also shows that private AI companies can become targets in these information operations.",
+      "assessed_as_of": "2026-06-01",
+      "contradictions_and_skepticism": "The report argues that the campaigns matter even though they had little authentic engagement, which is plausible for threat analysis but weak as evidence of influence impact. Several interpretations rely on inference from prompt language, persona choices, and post patterns rather than confirmed operator identity. The comparison to earlier rare-earths campaigns is suggestive, but the article itself says the overlap is not conclusive. The strongest evidence in the piece is about abuse of the model and platform workflow, not about actual persuasion of audiences.",
+      "key_insights": [
+        "Influence operators used ChatGPT not just for text generation but for workflow support: account management code, text processing, image editing, and report drafting.",
+        "The campaigns were aimed at two different audiences: U.S. users with energy-price narratives and overseas Chinese audiences with harassment and anti-dissident messaging.",
+        "The report treats AI infrastructure, especially data centers, as a high-value narrative target because it can be linked to everyday costs and local concerns.",
+        "A separate network used false claims about ChatGPT user data being compromised, suggesting reputational attacks on the AI provider itself can be part of the same operation.",
+        "OpenAI\u2019s own assessment is that the activity had little authentic engagement and no observed breakout beyond X, so the practical impact appears limited as of June 2026."
+      ],
+      "limitations_and_open_questions": "The report is based on OpenAI\u2019s internal assessment of banned account clusters, so the public evidence is filtered through a vendor\u2019s enforcement lens rather than an independent forensic review. It does not establish the operators\u2019 exact institutional affiliation, only that the behavior was likely PRC-origin and consistent with aligned interests. The report also does not quantify how much of the generated content was actually posted, how much engagement each post received beyond broad low-engagement claims, or whether any off-platform effects occurred. The narrative about commercial Chinese firms supporting provincial public-opinion work is suggestive but not fully substantiated in the text. It is also unclear how generalizable these tactics are across platforms beyond X and Facebook, since the report gives examples but not comparative measurements.",
+      "sources": [
+        "https://readwise.io/reader/document_raw_content/464635099"
+      ],
+      "summary": "OpenAI\u2019s June 2026 Threat Report describes two PRC-linked clusters of ChatGPT accounts that it banned after assessing they were used to support covert influence operations aimed at U.S. AI and tech debates. One campaign, labeled \u201cData Center Bandwagon,\u201d generated comments and images arguing that AI data center buildouts raise electricity prices for ordinary families; the other, \u201cTech and Tariffs,\u201d produced comments and cartoons attacking U.S. tariffs and framing U.S.-China tech competition as American domination. The report says the accounts used Simplified Chinese prompts, VPN access, and inauthentic personas, and also used ChatGPT for workflow automation, image editing, report drafting, and operational planning for social media manipulation. OpenAI says the activity had little authentic reach and no evidence of breakout beyond X, but it is notable because it tests narratives around AI infrastructure, energy costs, and U.S. policy debates. The report also says one network targeted OpenAI directly with false claims about ChatGPT user data being compromised, and that some accounts overlapped with prior PRC-origin influence activity. The broader claim is that AI tools can be used to scale covert influence operations even when engagement is low, and that private AI companies may become targets when they sit in strategically sensitive sectors.",
+      "why_it_matters": "The piece is useful because it shows concrete ways AI tools can be embedded inside covert influence workflows: content generation, persona management, image manipulation, operational documentation, and even basic automation for posting and record handling. That is more operationally relevant than a generic warning about \u201cAI propaganda,\u201d because the report names specific tactics the operators used and the kinds of narratives they tried to test. The most durable takeaway is that AI systems can lower the cost of producing tailored political messaging while also helping operators manage scale and persistence across platforms. The report also highlights that the target can be the AI company itself, not just political institutions or election discourse, which matters for threat modeling and trust/safety monitoring. For product teams, the practical lesson is to watch for abuse patterns that combine language generation with account automation, bulk persona fabrication, and image/post transformation rather than looking only for overt prompt abuse. The report is less convincing as evidence of audience persuasion, because OpenAI says the campaigns had little engagement and no breakout beyond X, so the strongest claim is about capability and intent, not impact. As of June 2026, this is actionable mainly as a threat-modeling and abuse-detection reference, not as proof of broad downstream influence."
+    },
+    "source_type_detection": {
+      "confidence": 0.79,
+      "detected_source_type": "research_paper_or_report",
+      "reasoning": [
+        "The document is structured as a formal threat report with sections, campaign naming, and impact assessment.",
+        "Claims are presented as analytical findings about observed account behavior and enforcement actions, not as a product update or interview.",
+        "It has report-like framing and evidence discussion, though it is not an academic paper in the strict sense."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The source combines OpenAI's internal analysis of account activity, platform behavior, and enforcement actions with concrete examples from prompts and posts.",
+          "It relies on observed operational details and screenshots, but also includes strategic interpretation about what the campaigns may indicate.",
+          "Some conclusions are based on OpenAI's assessment rather than externally verified measurements or independent benchmarking."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Influence operators used ChatGPT not just for text generation but for workflow support: account management code, text processing, image editing, and report drafting.",
+          "The campaigns were aimed at two different audiences: U.S. users with energy-price narratives and overseas Chinese audiences with harassment and anti-dissident messaging.",
+          "The report treats AI infrastructure, especially data centers, as a high-value narrative target because it can be linked to everyday costs and local concerns.",
+          "A separate network used false claims about ChatGPT user data being compromised, suggesting reputational attacks on the AI provider itself can be part of the same operation.",
+          "OpenAI\u2019s own assessment is that the activity had little authentic engagement and no observed breakout beyond X, so the practical impact appears limited as of June 2026."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://readwise.io/reader/document_raw_content/464635099"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.79,
+        "detected_source_type": "research_paper_or_report",
+        "reasoning": [
+          "The document is structured as a formal threat report with sections, campaign naming, and impact assessment.",
+          "Claims are presented as analytical findings about observed account behavior and enforcement actions, not as a product update or interview.",
+          "It has report-like framing and evidence discussion, though it is not an academic paper in the strict sense."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "OpenAI",
+    "canonical_url": "https://readwise.io/reader/document_raw_content/464635099",
+    "content_sha256": "cf92bdefa68d6e7319c8acf2598f79757a87a9a69df23cb8a8bcb46bbb90f11e",
+    "publication": "readwise-upload-pdf",
+    "published_date": null,
+    "raw_html_rel_path": "raw/readwise/prc-linked-influence-operations-are-targeting-ai-debates-in-the-us-01ktxmx5xkym51qcgjf60d7zns.html",
+    "raw_md_rel_path": "raw/readwise/prc-linked-influence-operations-are-targeting-ai-debates-in-the-us-01ktxmx5xkym51qcgjf60d7zns.md",
+    "source_id": "prc-linked-influence-operations-are-targeting-ai-debates-in-the-us-01ktxmx5xkym51qcgjf60d7zns",
+    "title": "PRC-Linked Influence Operations Are Targeting AI Debates In The US"
+  }
+}

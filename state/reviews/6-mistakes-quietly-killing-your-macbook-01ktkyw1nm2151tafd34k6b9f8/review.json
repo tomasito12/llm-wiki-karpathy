@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-10T14:08:44+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DpDtZy4vwlCHBizEpqwR0GTcjk2aI",
+          "token_usage": {
+            "completion_tokens": 226,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6448,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6674
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DpDtbqFMRJzRvsibpmAvDuIQQk4Bh",
+          "token_usage": {
+            "completion_tokens": 985,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6087,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7072
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DpDtbqFMRJzRvsibpmAvDuIQQk4Bh",
+    "token_usage": {
+      "completion_tokens": 1211,
+      "prompt_tokens": 12535,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 13746
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "light",
+      "skip_reason": "General opinion/list article about MacBook maintenance habits, but it offers no durable AI-engineering knowledge for this wiki and no source-specific extraction is warranted at triage.",
+      "skip_recommended": true,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "user_report",
+      "reasoning": [
+        "The author speaks from personal experience ('I have an old MacBook...', 'I used to do it too', 'I have seen that happen').",
+        "Claims are framed as anecdotal observations about laptop behavior rather than benchmarks or formal analysis.",
+        "No citations, experiments, or vendor documentation are used as the main support."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece is a simple maintenance guide for MacBooks. Its main point is that laptops usually do not fail all at once; they wear down from small habits that build damage over time. The article focuses on heat, battery charging habits, software updates, storage space, cheap accessories, and screen protection. It also suggests a few easy routines, like restarting the machine, closing unused apps, and cleaning dust. The basic idea is that a little care can keep a laptop fast and usable for much longer.",
+      "assessed_as_of": "2026-05-26",
+      "contradictions_and_skepticism": "The article is persuasive in tone but mostly relies on common-sense claims and personal anecdotes. Some recommendations are simplified, such as treating all long charging sessions as broadly harmful without discussing modern battery management nuances in detail. The warning about cheap accessories is reasonable, but the piece does not separate low-cost certified products from genuinely unsafe generic hardware. The storage advice is directionally sound, yet the exact free-space threshold is presented as a rule of thumb rather than a tested limit. Overall, the skepticism level should be moderate: useful maintenance advice, weak empirical support.",
+      "key_insights": [
+        "Heat management is the most important hidden factor: soft surfaces can trap heat and stress both performance and battery health.",
+        "Keeping a lithium-ion battery at 100% charge for long stretches is presented as a slow wear factor, especially when combined with heat.",
+        "A nearly full SSD can make macOS feel much slower because the system needs storage headroom for caching and swap.",
+        "Cheap chargers and cables are framed as a hardware risk, not just an inconvenience, because unstable power can damage ports or batteries.",
+        "Display damage is often caused by tiny, repeated pressure rather than one obvious accident, so checking the keyboard before closing the lid matters."
+      ],
+      "limitations_and_open_questions": "The article does not provide measurements, failure rates, or controlled comparisons for any of its recommendations. It assumes the reader can generalize from anecdotal experience with one MacBook to broader laptop behavior. The advice on battery charging limits, storage thresholds, and accessory safety is plausible, but the article does not quantify tradeoffs or show how much each habit changes lifespan. It also does not distinguish between model generations, battery management features, or whether some recommendations matter more for older machines than newer ones. The update section mentions security and performance fixes, but it does not analyze update regressions or compatibility risks beyond brief acknowledgement. No evidence is provided for the relative importance of the six mistakes.",
+      "sources": [
+        "https://medium.com/@simpleandkind788/6-mistakes-quietly-killing-your-macbook-40aa562661f9"
+      ],
+      "summary": "The article argues that MacBook longevity is mostly determined by small, repeated habits rather than one dramatic failure. It identifies six main problem areas: using the laptop on soft surfaces that trap heat, leaving it plugged in at full charge for long periods, ignoring software updates, running storage nearly full, using cheap chargers or cables, and neglecting display care. The author adds a few supporting maintenance habits such as restarting occasionally, limiting browser extensions and tabs, checking Activity Monitor for runaway processes, cleaning dust with a microfiber cloth or compressed air, and using a proper sleeve for travel. The core claim is that heat, battery stress, low storage headroom, and physical pressure accumulate slowly and make a premium laptop feel old long before its hardware should. The piece is practical but largely anecdotal, leaning on personal observation rather than benchmarks or formal testing. As of 2026-05-26, the advice is straightforward and low-risk, but the evidence level is mostly experiential rather than measured.",
+      "why_it_matters": "The article is useful as a compact reminder that laptop reliability is often a maintenance problem, not a spec problem. It ties common failure modes to concrete behaviors: blocked airflow, prolonged full-charge storage, deferred updates, full disks, low-quality power accessories, and pressure on the display. For a technical reader, the durable lesson is that thermal load, battery chemistry, storage headroom, and physical handling interact over time, so basic operating habits can materially affect machine lifespan. The claims are operationally relevant because they map to low-cost behaviors rather than specialized tools or expensive upgrades. The piece also highlights a familiar productivity edge case: a machine can feel sluggish because of background pressure on memory and storage, not because its CPU has become obsolete. The update advice is sensible but not novel; it mainly reinforces routine patching as hygiene rather than a deep systems insight. The broader significance is limited because the article is a consumer maintenance list, not a benchmarked teardown or a technical study. As of 2026-05-26, it is actionable as a practical checklist, but the evidence is mostly anecdotal and should be treated as common-sense guidance rather than measured proof."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent advice article with six maintenance mistakes, not a roundup of AI tools or industry news.",
+        "No interview structure, research methodology, or step-by-step technical tutorial beyond general consumer advice.",
+        "Primary content is opinionated experience-based guidance about laptop care."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "user_report",
+        "reasoning": [
+          "The author speaks from personal experience ('I have an old MacBook...', 'I used to do it too', 'I have seen that happen').",
+          "Claims are framed as anecdotal observations about laptop behavior rather than benchmarks or formal analysis.",
+          "No citations, experiments, or vendor documentation are used as the main support."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Heat management is the most important hidden factor: soft surfaces can trap heat and stress both performance and battery health.",
+          "Keeping a lithium-ion battery at 100% charge for long stretches is presented as a slow wear factor, especially when combined with heat.",
+          "A nearly full SSD can make macOS feel much slower because the system needs storage headroom for caching and swap.",
+          "Cheap chargers and cables are framed as a hardware risk, not just an inconvenience, because unstable power can damage ports or batteries.",
+          "Display damage is often caused by tiny, repeated pressure rather than one obvious accident, so checking the keyboard before closing the lid matters."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@simpleandkind788/6-mistakes-quietly-killing-your-macbook-40aa562661f9"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent advice article with six maintenance mistakes, not a roundup of AI tools or industry news.",
+          "No interview structure, research methodology, or step-by-step technical tutorial beyond general consumer advice.",
+          "Primary content is opinionated experience-based guidance about laptop care."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Zeeshan Saghir",
+    "canonical_url": "https://medium.com/@simpleandkind788/6-mistakes-quietly-killing-your-macbook-40aa562661f9",
+    "content_sha256": "7468025e8a072ac37a969665c1aec7809c1fdc1264be65608ebffbad6803e8f1",
+    "publication": "Medium",
+    "published_date": "2026-05-26",
+    "raw_html_rel_path": "raw/readwise/6-mistakes-quietly-killing-your-macbook-01ktkyw1nm2151tafd34k6b9f8.html",
+    "raw_md_rel_path": "raw/readwise/6-mistakes-quietly-killing-your-macbook-01ktkyw1nm2151tafd34k6b9f8.md",
+    "source_id": "6-mistakes-quietly-killing-your-macbook-01ktkyw1nm2151tafd34k6b9f8",
+    "title": "6 Mistakes Quietly Killing Your MacBook"
+  }
+}

@@ -12,17 +12,30 @@ from time import monotonic
 from playwright.async_api import async_playwright
 
 from src.ingest_review.paths import load_repo_dotenv
+from src.medium_to_readwise.article_loader import (
+    DEFAULT_MIN_ARTICLE_CHARS,
+    DEFAULT_SCROLL_STEPS,
+    PartialArticleContent,
+)
+from src.medium_to_readwise.brave_launcher import (
+    brave_binary_for_app_name,
+    default_brave_binary,
+    prepare_brave_cdp_session,
+)
 from src.medium_to_readwise.browser import connect_over_cdp
 from src.medium_to_readwise.collect import collect_reading_list_urls
 from src.medium_to_readwise.human_guard import (
+    DEFAULT_VERIFICATION_WAIT_SECONDS,
     HourlyRateLimiter,
     HumanVerificationRequired,
     RateLimitReached,
     ensure_no_human_verification,
     sleep_with_jitter,
 )
+from src.medium_to_readwise.medium_session import MediumLoginRequired, ensure_medium_logged_in
 from src.medium_to_readwise.process import process_article_with_retries
 from src.medium_to_readwise.progress import format_progress_line
+from src.medium_to_readwise.readwise_confirm import DEFAULT_READWISE_CONFIRM_MODE
 from src.medium_to_readwise.shortcut import (
     DEFAULT_BROWSER_APP_NAME,
     DEFAULT_READWISE_SHORTCUT,
@@ -57,6 +70,37 @@ def build_parser() -> argparse.ArgumentParser:
         description="Save Medium Reading List articles to Readwise through Brave automation.",
     )
     parser.add_argument("--cdp-url", default=DEFAULT_CDP_URL, help="Brave CDP endpoint URL.")
+    parser.add_argument(
+        "--launch-brave",
+        dest="launch_brave",
+        action="store_true",
+        default=os.environ.get("MEDIUM_LAUNCH_BRAVE", "true").lower() in {"1", "true", "yes"},
+        help=(
+            "When CDP is unavailable, quit Brave and relaunch it with remote debugging "
+            "(default). Requires macOS."
+        ),
+    )
+    parser.add_argument(
+        "--no-launch-brave",
+        dest="launch_brave",
+        action="store_false",
+        help="Fail instead of auto-launching Brave when CDP is unavailable.",
+    )
+    parser.add_argument(
+        "--brave-binary",
+        type=Path,
+        default=None,
+        help=(
+            "Brave executable for auto-launch "
+            f"(default: {default_brave_binary()} or derived from --browser-app-name)."
+        ),
+    )
+    parser.add_argument(
+        "--brave-startup-timeout",
+        type=float,
+        default=float(os.environ.get("MEDIUM_BRAVE_STARTUP_TIMEOUT", "30")),
+        help="Seconds to wait for CDP after auto-launching Brave (default: 30).",
+    )
     parser.add_argument(
         "--reading-list-url",
         default=default_reading_list_url(),
@@ -155,6 +199,33 @@ def build_parser() -> argparse.ArgumentParser:
         help="Seconds to wait for visible Readwise save confirmation before failing.",
     )
     parser.add_argument(
+        "--readwise-confirm-mode",
+        choices=("text", "extension", "relaxed"),
+        default=os.environ.get("READWISE_CONFIRM_MODE", DEFAULT_READWISE_CONFIRM_MODE),
+        help=(
+            "How to detect a successful Readwise save. "
+            "'relaxed' accepts toolbar checkmarks after the wait (default)."
+        ),
+    )
+    parser.add_argument(
+        "--article-min-chars",
+        type=int,
+        default=int(os.environ.get("MEDIUM_ARTICLE_MIN_CHARS", str(DEFAULT_MIN_ARTICLE_CHARS))),
+        help=(
+            "Minimum rendered article length before saving to Readwise "
+            f"(default: {DEFAULT_MIN_ARTICLE_CHARS})."
+        ),
+    )
+    parser.add_argument(
+        "--article-scroll-steps",
+        type=int,
+        default=int(os.environ.get("MEDIUM_ARTICLE_SCROLL_STEPS", str(DEFAULT_SCROLL_STEPS))),
+        help=(
+            "How many scroll steps to use while lazy-loading Medium article bodies "
+            f"(default: {DEFAULT_SCROLL_STEPS})."
+        ),
+    )
+    parser.add_argument(
         "--jitter",
         type=float,
         default=float(os.environ.get("MEDIUM_DELAY_JITTER", "3")),
@@ -171,6 +242,25 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         default=int(os.environ.get("MEDIUM_MAX_PER_HOUR", "20")),
         help="Maximum articles to process per hour (0 disables the cap).",
+    )
+    parser.add_argument(
+        "--verification-wait",
+        type=float,
+        default=float(
+            os.environ.get("MEDIUM_VERIFICATION_WAIT", str(DEFAULT_VERIFICATION_WAIT_SECONDS))
+        ),
+        metavar="SECONDS",
+        help=(
+            "When Medium shows human verification, pause this long for manual completion "
+            f"in Brave (default: {DEFAULT_VERIFICATION_WAIT_SECONDS:.0f})."
+        ),
+    )
+    parser.add_argument(
+        "--no-verification-wait",
+        dest="verification_wait",
+        action="store_const",
+        const=0.0,
+        help="Stop immediately on human verification instead of waiting for manual input.",
     )
     return parser
 
@@ -206,10 +296,35 @@ async def collect_urls_if_needed(args: argparse.Namespace, page: object) -> list
     return merged
 
 
+def resolve_brave_binary(args: argparse.Namespace) -> Path:
+    """Return the Brave executable path for auto-launch."""
+    if args.brave_binary is not None:
+        return args.brave_binary.expanduser().resolve()
+    env_binary = os.environ.get("MEDIUM_BRAVE_BINARY")
+    if env_binary:
+        return Path(env_binary).expanduser().resolve()
+    return brave_binary_for_app_name(args.browser_app_name)
+
+
 async def run(args: argparse.Namespace) -> int:
     """Run the Medium to Readwise automation workflow."""
     ensure_state_dir(args.state_dir)
     append_run_log(args.state_dir, "run started")
+
+    def log_step(message: str) -> None:
+        """Print and persist one run step."""
+        append_run_log(args.state_dir, message)
+        print(message, flush=True)
+
+    prepare_brave_cdp_session(
+        args.cdp_url,
+        launch_brave=args.launch_brave,
+        browser_app_name=args.browser_app_name,
+        brave_binary=resolve_brave_binary(args),
+        startup_timeout_seconds=args.brave_startup_timeout,
+        log=log_step,
+    )
+
     playwright = await async_playwright().start()
     try:
         session = await connect_over_cdp(playwright, cdp_url=args.cdp_url)
@@ -226,7 +341,13 @@ async def run(args: argparse.Namespace) -> int:
             append_run_log(args.state_dir, f"planned {len(todo)} urls dry_run={args.dry_run}")
             return 0
 
-        await ensure_no_human_verification(session.page)
+        log_step("checking Medium login on the connected Brave tab")
+        await ensure_medium_logged_in(session.page)
+        await ensure_no_human_verification(
+            session.page,
+            verification_wait_seconds=args.verification_wait,
+            log=log_step,
+        )
         rate_limiter = HourlyRateLimiter(max_per_hour=args.max_per_hour)
         started = monotonic()
         total = len(todo)
@@ -238,6 +359,7 @@ async def run(args: argparse.Namespace) -> int:
                 print(str(exc), file=sys.stderr)
                 return 0
             rate_limiter.record_start()
+            log_step(f"[{index}/{total}] starting {url}")
             try:
                 result = await process_article_with_retries(
                     session.page,
@@ -251,11 +373,23 @@ async def run(args: argparse.Namespace) -> int:
                     retry_delay_seconds=args.retry_delay,
                     remove_from_list=args.remove_from_list,
                     readwise_confirm_timeout=args.readwise_confirm_timeout,
+                    readwise_confirm_mode=args.readwise_confirm_mode,
+                    article_min_chars=args.article_min_chars,
+                    article_scroll_steps=args.article_scroll_steps,
+                    verification_wait_seconds=args.verification_wait,
                     readwise_shortcut=args.readwise_shortcut,
                     shortcut_mode=args.shortcut_mode,
                     browser_app_name=args.browser_app_name,
-                    log=lambda message: append_run_log(args.state_dir, message),
+                    log=log_step,
                 )
+            except PartialArticleContent as exc:
+                append_run_log(args.state_dir, f"partial article content: {exc}")
+                print(f"medium-to-readwise stopped:\n{exc}", file=sys.stderr)
+                return 2
+            except MediumLoginRequired as exc:
+                append_run_log(args.state_dir, f"medium login required: {exc}")
+                print(f"medium-to-readwise stopped:\n{exc}", file=sys.stderr)
+                return 2
             except HumanVerificationRequired as exc:
                 append_run_log(args.state_dir, f"human verification required: {exc}")
                 print(f"medium-to-readwise stopped:\n{exc}", file=sys.stderr)

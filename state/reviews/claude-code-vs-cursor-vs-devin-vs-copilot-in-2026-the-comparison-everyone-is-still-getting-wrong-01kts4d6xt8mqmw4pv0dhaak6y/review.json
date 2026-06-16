@@ -1,0 +1,1044 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T22:06:59+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Dr9jlOJ0PaXEZ0wXM9xxBNJQaMSa9",
+          "token_usage": {
+            "completion_tokens": 215,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7450,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7665
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Dr9joJEEenRZ94RWA3LImwBWFoYlv",
+          "token_usage": {
+            "completion_tokens": 1166,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 7079,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 8245
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-Dr9jznApRuLXj2TjS1FtJM4jF1pEI",
+          "route": "standard_article",
+          "token_usage": {
+            "completion_tokens": 2526,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 38942,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 41468
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dr9jznApRuLXj2TjS1FtJM4jF1pEI",
+    "token_usage": {
+      "completion_tokens": 3907,
+      "prompt_tokens": 53471,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 57378
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 4
+    },
+    "foundation_models": [
+      {
+        "benchmark_observations": [
+          "The source says tools using the same underlying model, including Opus 4.6, can still show significant performance gaps on standard problem sets.",
+          "It uses this observation to argue that benchmark outcomes depend heavily on the agent framework rather than only the model."
+        ],
+        "comparative_observations": [
+          "Compared with the surrounding agent frameworks, the model is presented as only the engine rather than the whole product.",
+          "The source implies that differences between tools can be larger than differences attributable to the model alone."
+        ],
+        "confidence": 0.76,
+        "core_capabilities": [
+          "It serves as a high-capability coding model baseline in agent evaluations.",
+          "It is used as an example showing that wrapper design can materially affect practical performance."
+        ],
+        "deployment_implications": "When the same underlying model runs inside different products, the surrounding harness can change practical output quality enough that model choice alone is insufficient for procurement. For production agent systems, that means evaluation must include the wrapper, worktree handling, review loop, and execution environment, not just the model endpoint. The article uses Opus 4.6 to support the idea that orchestration can dominate apparent capability.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "maturity_signals": "The model is referenced as a concrete baseline inside a live comparison of coding agents, which implies broad enough recognition to serve as a shared reference point. The article does not present release notes or benchmark methodology for the model itself, so maturity should be read only from its use as a comparison anchor.",
+        "model_name": "Opus 4.6",
+        "operational_profile": "The source treats Opus 4.6 as a strong base model whose performance can vary materially depending on the agent wrapper around it. It is used as the example for why the surrounding tool framework matters as much as the raw model. That makes it useful as a reference point for comparing agent systems, not just model quality.",
+        "pricing_inference_implications": "No model-specific pricing detail is given. The only operational inference is that model cost cannot be judged in isolation from the wrapper because different tools built around the same model still perform differently.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "proprietary-model",
+          "coding-model",
+          "developer-focused",
+          "tool-use-capable"
+        ],
+        "proposed_types": [
+          "proprietary-model",
+          "coding-model"
+        ],
+        "provider": "Anthropic",
+        "related_models": [
+          "Sonnet 4.6"
+        ],
+        "service_automation_implications": "No direct service-automation implication is stated beyond the general lesson that workflow wrapper quality affects outcomes more than raw model scores.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"When different tools run the exact same underlying model like Opus 4.6, we still see significant performance gaps across standard problem sets. The model is just the engine. The agent framework is the actual car.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The source does not provide a detailed model-level failure analysis. Its main limitation, as presented here, is that raw model strength is not enough to predict shipped-code performance when the agent framework changes."
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-05-04",
+        "confidence": 0.92,
+        "evidence_from_source": "The article says the four tools \"have diverged into distinct identities\" and maps them to different workflows: Claude Code for terminal-native autonomy, Cursor for IDE orchestration, Devin for remote delegation, and Copilot for GitHub-native review.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "workflow-restructuring",
+        "proposed_tags": [
+          "workflow-restructuring"
+        ],
+        "related_trends": [
+          "workflow-restructuring-around-ai-agents",
+          "ai-products-shift-from-models-to-systems"
+        ],
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "coding-agents",
+        "suggested_new_tags": [
+          "coding-agents",
+          "developer-tools",
+          "agent-orchestration"
+        ],
+        "supporting_data_points": [
+          "Claude Code is described as terminal-first and best for cross-cutting refactors.",
+          "Cursor is described as an agent-first IDE with parallel execution windows.",
+          "Devin is described as a remote autonomous engineer with its own desktop environment.",
+          "Copilot is described as GitHub-native, with local, background, and cloud agent surfaces."
+        ],
+        "supporting_snippet": "\"These four tools are no longer competing to be the exact same product. They have diverged into distinct identities that cater to completely different workflows.\"",
+        "time_sensitivity": "Actionable as of 2026-05-04; the specific product lineup and feature splits may change, but the workflow-specific differentiation is the core observation.",
+        "trend_description": "Coding agents are shifting from interchangeable general assistants toward specialized products optimized for distinct control surfaces and review paths. The relevant differentiation is increasingly terminal versus IDE versus remote desktop versus GitHub-native workflow, not raw model score alone. This matters because procurement and adoption depend on where the work happens and how much autonomy the team is willing to delegate.",
+        "trend_slug": "coding-agents-diverge-into-workflow-specific-products",
+        "trend_title": "Coding Agents Diverge Into Workflow-Specific Products",
+        "uncertainty_note": "This is a snapshot from one comparative article, not a controlled market study. Product boundaries in coding agents can shift quickly, so the exact lineup may age faster than the workflow pattern itself.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The article is mainly the author's strategic interpretation of how Claude Code, Cursor, Devin, and Copilot differ for shipping software.",
+        "It references benchmark figures and product features, but uses them to support a comparative opinion rather than present original measurement.",
+        "Recommendations are framed as judgment calls across workloads, team shape, and workflow, which fits expert opinion more than a research or benchmark report."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This piece compares four coding agents by how they fit real work, not by who tops a benchmark. The main idea is that a model score does not tell you whether a tool will get a change reviewed, merged, and deployed with little supervision. Claude Code is framed as best for terminal-heavy refactors, Cursor for interactive IDE work with parallel agents, Devin for fully delegated multi-hour tasks, and Copilot for GitHub-centered teams that want PR-based review. The author also argues that pricing and workflow fit matter as much as raw capability. As of 2026-05-04, the practical question is which tool matches your team\u2019s interface, autonomy, and compliance needs.",
+      "assessed_as_of": "2026-05-04",
+      "contradictions_and_skepticism": "The article treats the tools as if their identities are already distinct and stable, but product boundaries in this category can change quickly. It also leans on benchmark figures while arguing benchmarks are insufficient, which is directionally fair but still leaves the reader with mostly qualitative judgment. Claims like Devin being best for brute-force work or Copilot being the default for enterprise compliance are plausible but not proven in the text. The strongest skeptical note is that the article\u2019s recommendations depend heavily on the author\u2019s workflow assumptions, so teams with different repos, review norms, or security constraints may see different results.",
+      "key_insights": [
+        "SWE-bench is useful only as a capability floor; it does not measure real shipping speed, merge time, or rework from architectural disagreement.",
+        "The article\u2019s core selection rule is workflow fit: terminal, IDE, remote desktop, or GitHub-native review each maps to a different tool.",
+        "Cursor\u2019s parallel worktrees and /best-of-n flow are positioned as a way to test multiple model outputs quickly on the same task.",
+        "Devin\u2019s value rises when a task can be handed off for hours, especially for test-gap closure and legacy code with low coverage.",
+        "Copilot\u2019s main advantage in the article is not raw coding power but fitting normal PR and compliance workflows in larger teams."
+      ],
+      "limitations_and_open_questions": "The article relies on vendor claims, product positioning, and informal benchmark references rather than a controlled head-to-head evaluation. SWE-bench numbers are acknowledged as limited, but the alternative measures proposed first-try success rate, regression rate, merge latency, and babysitting time are not reported with data. Several claims about product capabilities, pricing tiers, and feature behavior are time-sensitive and may age quickly after 2026-05-04. The comparison does not quantify total cost of ownership, security risk, or governance burden beyond broad statements. It also assumes a fairly mature engineering organization with GitHub, CI, and established review practices.",
+      "sources": [
+        "https://medium.com/data-science-collective/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-5afd6ceff3e7"
+      ],
+      "summary": "The article argues that Claude Code, Cursor, Devin, and GitHub Copilot should be compared by workflow fit, not by benchmark rank. It uses SWE-bench as a floor for capability, but says leaderboard scores do not predict real delivery because they ignore review cycles, merge time, regression risk, and the amount of human babysitting required. Claude Code is presented as the strongest terminal-native choice for cross-cutting refactors and deep local work, Cursor as the IDE-centered option for parallel agent execution and interactive editing, Devin as the remote autonomous engineer for long-running delegated tasks and test-gap closure, and Copilot as the GitHub-native agent fleet best suited to PR-centric, compliance-heavy teams. The piece also emphasizes that the tools have diverged in interface, autonomy, and workflow integration rather than competing as direct substitutes. Pricing changes are treated as operationally important: Devin\u2019s removed entry barrier, Cursor\u2019s higher-tier cloud features, Claude Code\u2019s token-based billing, and Copilot\u2019s procurement-friendly bundling all affect ROI. The article ends with a workload grid and team-shape guidance that recommends choosing by where work lives, how much autonomy is acceptable, and what governance requirements apply.",
+      "why_it_matters": "The piece is useful because it replaces a simplistic model leaderboard comparison with a more operational lens: how much human effort the agent still consumes before code lands. That framing matters for AI engineering because the limiting factor is often not whether an agent can produce a patch, but whether it can survive review, CI, and team workflow with minimal babysitting. The article also highlights that different products have hardened around different interfaces and autonomy levels: Claude Code for terminal-native loops, Cursor for IDE orchestration, Devin for remote delegation, and Copilot for GitHub-native PR flows. That division is durable enough to change buying decisions, especially where teams care about auditability, PR hygiene, or parallel experimentation. The pricing discussion adds a practical filter: cost should be judged against hours saved and how quickly a tool burns compute or token budget on the wrong task. The article is most convincing when it argues that benchmark scores are a screening tool, not a procurement decision. It is less convincing where it generalizes from a narrow comparison to broad claims about what teams should prefer, because the evidence is mostly author judgment and product description rather than controlled measurement. As of 2026-05-04, the guidance is actionable for teams choosing among these tools, but it should be treated as a workload-specific snapshot rather than a permanent ranking. The closing implications for service automation are indirect only: the same workflow-fit logic would matter for back-office or review-heavy automation, but the article itself stays focused on code shipping rather than support or voice systems."
+    },
+    "source_type_detection": {
+      "confidence": 0.94,
+      "detected_source_type": "standard_article",
+      "reasoning": [
+        "Single coherent comparative argument about four named developer tools, not a bundle of unrelated news items.",
+        "Structured as an editorial analysis with workload-based recommendations and pricing discussion, rather than a product roundup list.",
+        "Contains vendor/product claims and benchmark references, but the article's form is still a standard comparative article."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.94,
+        "core_capabilities": [
+          "It can ingest large amounts of project state and use that context to drive multi-file changes across a codebase.",
+          "It can run in a terminal loop that reads errors and retries until the build passes.",
+          "It has direct access to local files, grep, and the local test suite, which makes it useful for repo-native debugging and refactoring."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It works through the terminal and therefore integrates naturally with local shell commands, grep, and test runners.",
+          "Its workflow is described around Plan mode, subagents, Skills, and a larger context window, which indicates a terminal-native execution environment rather than an IDE plugin.",
+          "The source contrasts it with GUI-first workflows rather than naming explicit third-party integrations."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes it as a serious, established coding agent with enough capability to be the leading choice for hard terminal-native refactors. The mention of GA-scale context and feature additions suggests a product that has matured into a broader autonomous loop rather than a narrow command-line helper. The article treats it as one of four distinct workflow products, not an experimental side project.",
+        "name": "Claude Code",
+        "operational_relevance": "Best fit for terminal-centered engineering workflows where the agent needs direct access to the file system, grep, and local tests. It is positioned for complex refactors, cross-cutting changes, and cases where the human is comfortable reviewing terminal output rather than a GUI. For service automation teams, it is more relevant as a deep implementation tool than as a review or coordination layer.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cli-tool",
+          "coding",
+          "autonomous",
+          "software-development"
+        ],
+        "proposed_types": [
+          "coding-agent",
+          "terminal"
+        ],
+        "related_tools": [
+          "Cursor",
+          "Devin",
+          "GitHub Copilot"
+        ],
+        "short_description": "A terminal-first coding agent for deep local software work. It operates directly in the shell, reads project state, and iterates on code until tests and builds pass.",
+        "strengths": "- Handles large, cross-cutting changes well because it can ingest substantial project state and keep iterating against compiler or test failures.\n- Lives in the terminal, so it has direct access to local files, grep, and test execution, which matters when the work depends on the full local repo context.\n- The recent additions cited in the source \u2014 Plan mode, subagents, Skills, and a larger context window \u2014 support longer autonomous loops on harder tasks.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [
+          "terminal"
+        ],
+        "supporting_snippet": "\"Anthropic built a terminal-first agent designed to ingest large amounts of project state and execute complex changes without a graphical support. With the recent updates to Plan mode, subagents, Skills, and the bigger context window, it operates as a non-stop loop that reads errors and tries again until the build passes.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "- It assumes the user is comfortable with the command line as the primary interface, which makes it a poor fit for GUI-first teams.\n- The source explicitly notes there is no visual parallel-execution story, so it is weaker when a team wants side-by-side comparison of multiple candidate changes.\n- The article also frames it as best for deep infrastructural work, not for visually driven UI iteration."
+      }
+    ],
+    "topics": [
+      {
+        "confidence": 0.97,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Benchmarks can act as capability floors, but they do not predict shipping speed.",
+          "First-try success rate on real internal issues is more informative than leaderboard rank for agent selection.",
+          "Regression rate after CI and PR merge latency are practical metrics for supervised coding agents.",
+          "Human babysitting time is a first-class cost and should be measured explicitly."
+        ],
+        "knowledge_summary": "Agent evaluation is more useful when it measures end-to-end delivery work rather than isolated benchmark tasks. The relevant unit is not just whether a model can solve a small problem, but whether it can get reviewed, merged, and deployed with low supervision. Good evaluation includes first-try success on real internal issues, regression rate after CI, PR cycle time, and the amount of human babysitting required. This shifts selection from leaderboard rank toward operational fit.",
+        "match_candidates": [],
+        "operational_insight": "Measure agents on the work that actually consumes engineering time: getting from prompt to reviewed change with minimal rework. If the evaluation omits review cost, CI fallout, or supervision burden, it can overstate practical value.",
+        "primary_tag": "ai-evaluation",
+        "proposed_tags": [
+          "ai-evaluation",
+          "agent-evals",
+          "software-engineering",
+          "coding-agents",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "verification-loops-in-ai-workflows",
+          "harness-engineering"
+        ],
+        "relevance_note": "This matters because production AI systems are judged by workflow outcomes, not isolated task completion. In coding, support, and other operational settings, the hidden cost is often human review and cleanup, so evaluation has to track the whole loop.",
+        "secondary_tag": "agent-evals",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"SWE-bench measures how well an agent solves an isolated issue in a controlled environment. It does not measure the time it takes to get a reviewed and merged change deployed to production or the rework cycles required when a senior engineer tells the agent its architectural choice was completely wrong.\"",
+        "topic_slug": "workflow-based-agent-evaluation",
+        "topic_title": "Workflow-Based Agent Evaluation",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.95,
+        "evidence_type": null,
+        "examples": "",
+        "key_points": [
+          "Terminal-native agents are strongest when local repo access and iterative shell execution matter.",
+          "IDE orchestration helps when a developer wants to stay hands-on while delegating background work in parallel.",
+          "Remote autonomous agents are best for well-scoped tasks that can run for hours with limited supervision.",
+          "GitHub-native agents fit teams that want reviewable pull requests and audit trails."
+        ],
+        "knowledge_summary": "Coding agents differ most in the workflow shape they optimize for: terminal-native autonomy, IDE-centered parallel execution, remote delegation, or GitHub-native review. Those interface and autonomy choices change where the human stays involved, how changes are validated, and how work is handed off. The practical selection problem is not which tool is best in the abstract, but which workflow boundary matches the task and team. This makes agent choice a systems-design decision rather than a model-ranking decision.",
+        "match_candidates": [],
+        "operational_insight": "Choose the interface and autonomy level before choosing the model. When the work lives in a terminal, IDE, remote desktop, or GitHub PR, the best agent is the one that matches that control surface and review path.",
+        "primary_tag": "agent-systems",
+        "proposed_tags": [
+          "agent-systems",
+          "coding-agents",
+          "agent-orchestration",
+          "developer-tools",
+          "workflow-design"
+        ],
+        "related_topics": [
+          "workflow-based-agent-evaluation",
+          "approval-based-coding-workflows",
+          "agent-first-ide-orchestration"
+        ],
+        "relevance_note": "This is durable because many AI tools become useful only when they fit the surrounding workflow. For engineering and service automation, the control surface often determines adoption, reviewability, and governance more than raw model quality.",
+        "secondary_tag": "coding-agents",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"These four tools are no longer competing to be the exact same product. They have diverged into distinct identities that cater to completely different workflows.\"",
+        "topic_slug": "agentic-coding-workflow-shape",
+        "topic_title": "Agentic Coding Workflow Shape",
+        "value_level": "high"
+      }
+    ]
+  },
+  "review": {
+    "foundation_models": [
+      {
+        "llm_item": {
+          "benchmark_observations": [
+            "The source says tools using the same underlying model, including Opus 4.6, can still show significant performance gaps on standard problem sets.",
+            "It uses this observation to argue that benchmark outcomes depend heavily on the agent framework rather than only the model."
+          ],
+          "comparative_observations": [
+            "Compared with the surrounding agent frameworks, the model is presented as only the engine rather than the whole product.",
+            "The source implies that differences between tools can be larger than differences attributable to the model alone."
+          ],
+          "confidence": 0.76,
+          "core_capabilities": [
+            "It serves as a high-capability coding model baseline in agent evaluations.",
+            "It is used as an example showing that wrapper design can materially affect practical performance."
+          ],
+          "deployment_implications": "When the same underlying model runs inside different products, the surrounding harness can change practical output quality enough that model choice alone is insufficient for procurement. For production agent systems, that means evaluation must include the wrapper, worktree handling, review loop, and execution environment, not just the model endpoint. The article uses Opus 4.6 to support the idea that orchestration can dominate apparent capability.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "maturity_signals": "The model is referenced as a concrete baseline inside a live comparison of coding agents, which implies broad enough recognition to serve as a shared reference point. The article does not present release notes or benchmark methodology for the model itself, so maturity should be read only from its use as a comparison anchor.",
+          "model_name": "Opus 4.6",
+          "operational_profile": "The source treats Opus 4.6 as a strong base model whose performance can vary materially depending on the agent wrapper around it. It is used as the example for why the surrounding tool framework matters as much as the raw model. That makes it useful as a reference point for comparing agent systems, not just model quality.",
+          "pricing_inference_implications": "No model-specific pricing detail is given. The only operational inference is that model cost cannot be judged in isolation from the wrapper because different tools built around the same model still perform differently.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "proprietary-model",
+            "coding-model",
+            "developer-focused",
+            "tool-use-capable"
+          ],
+          "proposed_types": [
+            "proprietary-model",
+            "coding-model"
+          ],
+          "provider": "Anthropic",
+          "related_models": [
+            "Sonnet 4.6"
+          ],
+          "service_automation_implications": "No direct service-automation implication is stated beyond the general lesson that workflow wrapper quality affects outcomes more than raw model scores.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"When different tools run the exact same underlying model like Opus 4.6, we still see significant performance gaps across standard problem sets. The model is just the engine. The agent framework is the actual car.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The source does not provide a detailed model-level failure analysis. Its main limitation, as presented here, is that raw model strength is not enough to predict shipped-code performance when the agent framework changes."
+        },
+        "notes": null,
+        "proposal_id": "a8b76725-083f-4342-ac4a-631df476aa44",
+        "proposal_status": "approved",
+        "sections": {
+          "benchmark_observations": {
+            "final_list": null,
+            "llm_list": [
+              "The source says tools using the same underlying model, including Opus 4.6, can still show significant performance gaps on standard problem sets.",
+              "It uses this observation to argue that benchmark outcomes depend heavily on the agent framework rather than only the model."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "comparative_observations": {
+            "final_list": null,
+            "llm_list": [
+              "Compared with the surrounding agent frameworks, the model is presented as only the engine rather than the whole product.",
+              "The source implies that differences between tools can be larger than differences attributable to the model alone."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It serves as a high-capability coding model baseline in agent evaluations.",
+              "It is used as an example showing that wrapper design can materially affect practical performance."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "deployment_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "model_name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_profile": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "pricing_inference_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "provider": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_models": {
+            "final_list": null,
+            "llm_list": [
+              "Sonnet 4.6"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_implications": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "proprietary-model",
+            "coding-model",
+            "developer-focused",
+            "tool-use-capable"
+          ]
+        }
+      }
+    ],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-05-04",
+          "confidence": 0.92,
+          "evidence_from_source": "The article says the four tools \"have diverged into distinct identities\" and maps them to different workflows: Claude Code for terminal-native autonomy, Cursor for IDE orchestration, Devin for remote delegation, and Copilot for GitHub-native review.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "workflow-restructuring",
+          "proposed_tags": [
+            "workflow-restructuring"
+          ],
+          "related_trends": [
+            "workflow-restructuring-around-ai-agents",
+            "ai-products-shift-from-models-to-systems"
+          ],
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "coding-agents",
+          "suggested_new_tags": [
+            "coding-agents",
+            "developer-tools",
+            "agent-orchestration"
+          ],
+          "supporting_data_points": [
+            "Claude Code is described as terminal-first and best for cross-cutting refactors.",
+            "Cursor is described as an agent-first IDE with parallel execution windows.",
+            "Devin is described as a remote autonomous engineer with its own desktop environment.",
+            "Copilot is described as GitHub-native, with local, background, and cloud agent surfaces."
+          ],
+          "supporting_snippet": "\"These four tools are no longer competing to be the exact same product. They have diverged into distinct identities that cater to completely different workflows.\"",
+          "time_sensitivity": "Actionable as of 2026-05-04; the specific product lineup and feature splits may change, but the workflow-specific differentiation is the core observation.",
+          "trend_description": "Coding agents are shifting from interchangeable general assistants toward specialized products optimized for distinct control surfaces and review paths. The relevant differentiation is increasingly terminal versus IDE versus remote desktop versus GitHub-native workflow, not raw model score alone. This matters because procurement and adoption depend on where the work happens and how much autonomy the team is willing to delegate.",
+          "trend_slug": "coding-agents-diverge-into-workflow-specific-products",
+          "trend_title": "Coding Agents Diverge Into Workflow-Specific Products",
+          "uncertainty_note": "This is a snapshot from one comparative article, not a controlled market study. Product boundaries in coding agents can shift quickly, so the exact lineup may age faster than the workflow pattern itself.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "8cdb4fc8-86c2-4a8f-a07f-254e6ed66267",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-restructuring-around-ai-agents",
+              "ai-products-shift-from-models-to-systems"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "Claude Code is described as terminal-first and best for cross-cutting refactors.",
+              "Cursor is described as an agent-first IDE with parallel execution windows.",
+              "Devin is described as a remote autonomous engineer with its own desktop environment.",
+              "Copilot is described as GitHub-native, with local, background, and cloud agent surfaces."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-restructuring"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The article is mainly the author's strategic interpretation of how Claude Code, Cursor, Devin, and Copilot differ for shipping software.",
+          "It references benchmark figures and product features, but uses them to support a comparative opinion rather than present original measurement.",
+          "Recommendations are framed as judgment calls across workloads, team shape, and workflow, which fits expert opinion more than a research or benchmark report."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "SWE-bench is useful only as a capability floor; it does not measure real shipping speed, merge time, or rework from architectural disagreement.",
+          "The article\u2019s core selection rule is workflow fit: terminal, IDE, remote desktop, or GitHub-native review each maps to a different tool.",
+          "Cursor\u2019s parallel worktrees and /best-of-n flow are positioned as a way to test multiple model outputs quickly on the same task.",
+          "Devin\u2019s value rises when a task can be handed off for hours, especially for test-gap closure and legacy code with low coverage.",
+          "Copilot\u2019s main advantage in the article is not raw coding power but fitting normal PR and compliance workflows in larger teams."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/data-science-collective/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-5afd6ceff3e7"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.94,
+        "detected_source_type": "standard_article",
+        "reasoning": [
+          "Single coherent comparative argument about four named developer tools, not a bundle of unrelated news items.",
+          "Structured as an editorial analysis with workload-based recommendations and pricing discussion, rather than a product roundup list.",
+          "Contains vendor/product claims and benchmark references, but the article's form is still a standard comparative article."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.94,
+          "core_capabilities": [
+            "It can ingest large amounts of project state and use that context to drive multi-file changes across a codebase.",
+            "It can run in a terminal loop that reads errors and retries until the build passes.",
+            "It has direct access to local files, grep, and the local test suite, which makes it useful for repo-native debugging and refactoring."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "It works through the terminal and therefore integrates naturally with local shell commands, grep, and test runners.",
+            "Its workflow is described around Plan mode, subagents, Skills, and a larger context window, which indicates a terminal-native execution environment rather than an IDE plugin.",
+            "The source contrasts it with GUI-first workflows rather than naming explicit third-party integrations."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes it as a serious, established coding agent with enough capability to be the leading choice for hard terminal-native refactors. The mention of GA-scale context and feature additions suggests a product that has matured into a broader autonomous loop rather than a narrow command-line helper. The article treats it as one of four distinct workflow products, not an experimental side project.",
+          "name": "Claude Code",
+          "operational_relevance": "Best fit for terminal-centered engineering workflows where the agent needs direct access to the file system, grep, and local tests. It is positioned for complex refactors, cross-cutting changes, and cases where the human is comfortable reviewing terminal output rather than a GUI. For service automation teams, it is more relevant as a deep implementation tool than as a review or coordination layer.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cli-tool",
+            "coding",
+            "autonomous",
+            "software-development"
+          ],
+          "proposed_types": [
+            "coding-agent",
+            "terminal"
+          ],
+          "related_tools": [
+            "Cursor",
+            "Devin",
+            "GitHub Copilot"
+          ],
+          "short_description": "A terminal-first coding agent for deep local software work. It operates directly in the shell, reads project state, and iterates on code until tests and builds pass.",
+          "strengths": "- Handles large, cross-cutting changes well because it can ingest substantial project state and keep iterating against compiler or test failures.\n- Lives in the terminal, so it has direct access to local files, grep, and test execution, which matters when the work depends on the full local repo context.\n- The recent additions cited in the source \u2014 Plan mode, subagents, Skills, and a larger context window \u2014 support longer autonomous loops on harder tasks.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [
+            "terminal"
+          ],
+          "supporting_snippet": "\"Anthropic built a terminal-first agent designed to ingest large amounts of project state and execute complex changes without a graphical support. With the recent updates to Plan mode, subagents, Skills, and the bigger context window, it operates as a non-stop loop that reads errors and tries again until the build passes.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "- It assumes the user is comfortable with the command line as the primary interface, which makes it a poor fit for GUI-first teams.\n- The source explicitly notes there is no visual parallel-execution story, so it is weaker when a team wants side-by-side comparison of multiple candidate changes.\n- The article also frames it as best for deep infrastructural work, not for visually driven UI iteration."
+        },
+        "notes": null,
+        "proposal_id": "1915a69f-dab5-4b2b-a058-e95b32a2cea0",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It can ingest large amounts of project state and use that context to drive multi-file changes across a codebase.",
+              "It can run in a terminal loop that reads errors and retries until the build passes.",
+              "It has direct access to local files, grep, and the local test suite, which makes it useful for repo-native debugging and refactoring."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It works through the terminal and therefore integrates naturally with local shell commands, grep, and test runners.",
+              "Its workflow is described around Plan mode, subagents, Skills, and a larger context window, which indicates a terminal-native execution environment rather than an IDE plugin.",
+              "The source contrasts it with GUI-first workflows rather than naming explicit third-party integrations."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Cursor",
+              "Devin",
+              "GitHub Copilot"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cli-tool",
+            "coding",
+            "autonomous",
+            "software-development"
+          ]
+        }
+      }
+    ],
+    "topics": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Benchmarks can act as capability floors, but they do not predict shipping speed.",
+            "First-try success rate on real internal issues is more informative than leaderboard rank for agent selection.",
+            "Regression rate after CI and PR merge latency are practical metrics for supervised coding agents.",
+            "Human babysitting time is a first-class cost and should be measured explicitly."
+          ],
+          "knowledge_summary": "Agent evaluation is more useful when it measures end-to-end delivery work rather than isolated benchmark tasks. The relevant unit is not just whether a model can solve a small problem, but whether it can get reviewed, merged, and deployed with low supervision. Good evaluation includes first-try success on real internal issues, regression rate after CI, PR cycle time, and the amount of human babysitting required. This shifts selection from leaderboard rank toward operational fit.",
+          "match_candidates": [],
+          "operational_insight": "Measure agents on the work that actually consumes engineering time: getting from prompt to reviewed change with minimal rework. If the evaluation omits review cost, CI fallout, or supervision burden, it can overstate practical value.",
+          "primary_tag": "ai-evaluation",
+          "proposed_tags": [
+            "ai-evaluation",
+            "agent-evals",
+            "software-engineering",
+            "coding-agents",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "verification-loops-in-ai-workflows",
+            "harness-engineering"
+          ],
+          "relevance_note": "This matters because production AI systems are judged by workflow outcomes, not isolated task completion. In coding, support, and other operational settings, the hidden cost is often human review and cleanup, so evaluation has to track the whole loop.",
+          "secondary_tag": "agent-evals",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"SWE-bench measures how well an agent solves an isolated issue in a controlled environment. It does not measure the time it takes to get a reviewed and merged change deployed to production or the rework cycles required when a senior engineer tells the agent its architectural choice was completely wrong.\"",
+          "topic_slug": "workflow-based-agent-evaluation",
+          "topic_title": "Workflow-Based Agent Evaluation",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "3272cbbf-93e3-4339-abab-ec02af879dcb",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Benchmarks can act as capability floors, but they do not predict shipping speed.",
+              "First-try success rate on real internal issues is more informative than leaderboard rank for agent selection.",
+              "Regression rate after CI and PR merge latency are practical metrics for supervised coding agents.",
+              "Human babysitting time is a first-class cost and should be measured explicitly."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-in-ai-workflows",
+              "harness-engineering"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "ai-evaluation",
+            "agent-evals",
+            "software-engineering",
+            "coding-agents",
+            "workflow-design"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "evidence_type": null,
+          "examples": "",
+          "key_points": [
+            "Terminal-native agents are strongest when local repo access and iterative shell execution matter.",
+            "IDE orchestration helps when a developer wants to stay hands-on while delegating background work in parallel.",
+            "Remote autonomous agents are best for well-scoped tasks that can run for hours with limited supervision.",
+            "GitHub-native agents fit teams that want reviewable pull requests and audit trails."
+          ],
+          "knowledge_summary": "Coding agents differ most in the workflow shape they optimize for: terminal-native autonomy, IDE-centered parallel execution, remote delegation, or GitHub-native review. Those interface and autonomy choices change where the human stays involved, how changes are validated, and how work is handed off. The practical selection problem is not which tool is best in the abstract, but which workflow boundary matches the task and team. This makes agent choice a systems-design decision rather than a model-ranking decision.",
+          "match_candidates": [],
+          "operational_insight": "Choose the interface and autonomy level before choosing the model. When the work lives in a terminal, IDE, remote desktop, or GitHub PR, the best agent is the one that matches that control surface and review path.",
+          "primary_tag": "agent-systems",
+          "proposed_tags": [
+            "agent-systems",
+            "coding-agents",
+            "agent-orchestration",
+            "developer-tools",
+            "workflow-design"
+          ],
+          "related_topics": [
+            "workflow-based-agent-evaluation",
+            "approval-based-coding-workflows",
+            "agent-first-ide-orchestration"
+          ],
+          "relevance_note": "This is durable because many AI tools become useful only when they fit the surrounding workflow. For engineering and service automation, the control surface often determines adoption, reviewability, and governance more than raw model quality.",
+          "secondary_tag": "coding-agents",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"These four tools are no longer competing to be the exact same product. They have diverged into distinct identities that cater to completely different workflows.\"",
+          "topic_slug": "agentic-coding-workflow-shape",
+          "topic_title": "Agentic Coding Workflow Shape",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "9fe17f31-0524-45ca-80c4-4a28f66789d9",
+        "proposal_status": "approved",
+        "sections": {
+          "examples": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "key_points": {
+            "final_list": null,
+            "llm_list": [
+              "Terminal-native agents are strongest when local repo access and iterative shell execution matter.",
+              "IDE orchestration helps when a developer wants to stay hands-on while delegating background work in parallel.",
+              "Remote autonomous agents are best for well-scoped tasks that can run for hours with limited supervision.",
+              "GitHub-native agents fit teams that want reviewable pull requests and audit trails."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "knowledge_summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_insight": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_topics": {
+            "final_list": null,
+            "llm_list": [
+              "workflow-based-agent-evaluation",
+              "approval-based-coding-workflows",
+              "agent-first-ide-orchestration"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "topic_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "coding-agents",
+            "agent-orchestration",
+            "developer-tools",
+            "workflow-design"
+          ]
+        }
+      }
+    ]
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Anubhav",
+    "canonical_url": "https://medium.com/data-science-collective/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-5afd6ceff3e7",
+    "content_sha256": "db5fe457df8d6a9074665ede9bf5ce010fdea8bf92b32f725082762dab8e2668",
+    "publication": "Medium",
+    "published_date": "2026-05-04",
+    "raw_html_rel_path": "raw/readwise/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y.html",
+    "raw_md_rel_path": "raw/readwise/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y.md",
+    "source_id": "claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y",
+    "title": "Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong"
+  }
+}

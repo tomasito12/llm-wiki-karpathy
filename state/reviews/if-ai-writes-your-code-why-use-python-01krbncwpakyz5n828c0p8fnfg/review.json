@@ -98,10 +98,10 @@
     "implementation_studies": [],
     "industry_trends": [
       {
-        "assessed_as_of": "",
-        "confidence": 0.88,
-        "evidence_from_source": "The source argues that the old tradeoff of \"fast-to-ship\" versus \"fast-to-run\" has changed because \"AI got good at the hard languages,\" and cites agent-assisted work in Rust and Go as evidence that harder languages are becoming practical defaults.",
-        "evidence_type": null,
+        "assessed_as_of": "2026-04-28",
+        "confidence": 0.96,
+        "evidence_from_source": "The source says the old bargain of choosing Python or TypeScript for ease is \"over because AI got good at the hard languages.\" It cites 2026 agent-assisted work in Rust and Go, including Rust compilers, language ports, and Microsoft\u2019s TypeScript compiler rewrite in Go, as evidence that harder languages are becoming practical defaults.",
+        "evidence_type": "mixed",
         "match_candidates": [],
         "primary_tag": "",
         "proposed_tags": [],
@@ -118,15 +118,17 @@
         ],
         "supporting_data_points": [
           "Claude Opus 4.7, GPT-5.5, Gemini 3.1, and DeepSeek V4 are described as having cleared 80% on SWE-bench Verified by April 2026.",
-          "The article cites Microsoft rewriting the TypeScript compiler in Go and describes several agent-assisted Rust ports and compilers.",
-          "The article says Rust and Go benefit from tight compile-and-check loops that help agents self-correct."
+          "Microsoft rewrote the TypeScript compiler in Go, with the article saying the effort calculus changed under agent assistance.",
+          "Nicholas Carlini orchestrated 16 parallel Claude agents to write a production C compiler in Rust for just under $20,000.",
+          "Steve Klabnik and Andreas Kling are described as using Claude Code/Codex to port or build substantial Rust systems in days or weeks.",
+          "The article says Rust and Go benefit from tight compile-and-check loops that help agents self-correct in real time."
         ],
         "supporting_snippet": "\"The human's job shifted from 'writing the code' to 'architecting the system and reviewing the output.'\"",
-        "time_sensitivity": "Actionable as of 2026-04-28; the observation is time-sensitive because it depends on the current state of coding-agent capability and compiler/toolchain feedback quality.",
-        "trend_description": "Language selection for new software projects is increasingly influenced by how well coding agents can work in that language, not only by human onboarding speed. Strong compiler feedback, type systems, and toolchain ergonomics can make a harder language cheaper to use when an agent does much of the implementation. As of 2026-04-28, the result is a re-ranking of defaults: languages that were once chosen mainly for human convenience may lose ground when agent supervision is the main bottleneck.",
-        "trend_slug": "agent-assisted-language-choice",
-        "trend_title": "Language Choice Shifts Toward Agent-Friendliness",
-        "uncertainty_note": "The claim is directionally plausible but based on selective examples and opinion rather than a controlled cross-language study, so the crossover point may vary by team, codebase, and reliability requirements.",
+        "time_sensitivity": "Highly time-sensitive as of 2026-04-28; the pattern depends on current model capability, compiler feedback quality, and the relative cost of supervising agents versus writing code by hand.",
+        "trend_description": "Programming language choice for new projects is increasingly influenced by how well AI coding agents can write, debug, and port code in that language. The article\u2019s narrower point is that languages with strong compiler feedback, fast compile-and-check loops, and good systems ergonomics can become more attractive even if they are harder for humans, because agents absorb much of the implementation burden. It frames this as a reordering of defaults: Python and TypeScript no longer win purely on human convenience, while Rust and Go gain ground when the main constraint is agent supervision rather than manual coding speed.",
+        "trend_slug": "programming-language-choice-shifts-toward-agent-friendliness",
+        "trend_title": "Programming Language Choice Shifts Toward Agent-Friendliness",
+        "uncertainty_note": "This is a directionally supported but not yet controlled claim. The article relies on selective examples, vendor/model performance snapshots, and practitioner anecdotes, so the strength of the shift may vary by team, codebase, and operational constraints.",
         "value_level": "high"
       }
     ],
@@ -241,10 +243,10 @@
     "industry_trends": [
       {
         "llm_item": {
-          "assessed_as_of": "",
-          "confidence": 0.88,
-          "evidence_from_source": "The source argues that the old tradeoff of \"fast-to-ship\" versus \"fast-to-run\" has changed because \"AI got good at the hard languages,\" and cites agent-assisted work in Rust and Go as evidence that harder languages are becoming practical defaults.",
-          "evidence_type": null,
+          "assessed_as_of": "2026-04-28",
+          "confidence": 0.96,
+          "evidence_from_source": "The source says the old bargain of choosing Python or TypeScript for ease is \"over because AI got good at the hard languages.\" It cites 2026 agent-assisted work in Rust and Go, including Rust compilers, language ports, and Microsoft\u2019s TypeScript compiler rewrite in Go, as evidence that harder languages are becoming practical defaults.",
+          "evidence_type": "mixed",
           "match_candidates": [],
           "primary_tag": "",
           "proposed_tags": [],
@@ -261,73 +263,70 @@
           ],
           "supporting_data_points": [
             "Claude Opus 4.7, GPT-5.5, Gemini 3.1, and DeepSeek V4 are described as having cleared 80% on SWE-bench Verified by April 2026.",
-            "The article cites Microsoft rewriting the TypeScript compiler in Go and describes several agent-assisted Rust ports and compilers.",
-            "The article says Rust and Go benefit from tight compile-and-check loops that help agents self-correct."
+            "Microsoft rewrote the TypeScript compiler in Go, with the article saying the effort calculus changed under agent assistance.",
+            "Nicholas Carlini orchestrated 16 parallel Claude agents to write a production C compiler in Rust for just under $20,000.",
+            "Steve Klabnik and Andreas Kling are described as using Claude Code/Codex to port or build substantial Rust systems in days or weeks.",
+            "The article says Rust and Go benefit from tight compile-and-check loops that help agents self-correct in real time."
           ],
           "supporting_snippet": "\"The human's job shifted from 'writing the code' to 'architecting the system and reviewing the output.'\"",
-          "time_sensitivity": "Actionable as of 2026-04-28; the observation is time-sensitive because it depends on the current state of coding-agent capability and compiler/toolchain feedback quality.",
-          "trend_description": "Language selection for new software projects is increasingly influenced by how well coding agents can work in that language, not only by human onboarding speed. Strong compiler feedback, type systems, and toolchain ergonomics can make a harder language cheaper to use when an agent does much of the implementation. As of 2026-04-28, the result is a re-ranking of defaults: languages that were once chosen mainly for human convenience may lose ground when agent supervision is the main bottleneck.",
-          "trend_slug": "agent-assisted-language-choice",
-          "trend_title": "Language Choice Shifts Toward Agent-Friendliness",
-          "uncertainty_note": "The claim is directionally plausible but based on selective examples and opinion rather than a controlled cross-language study, so the crossover point may vary by team, codebase, and reliability requirements.",
+          "time_sensitivity": "Highly time-sensitive as of 2026-04-28; the pattern depends on current model capability, compiler feedback quality, and the relative cost of supervising agents versus writing code by hand.",
+          "trend_description": "Programming language choice for new projects is increasingly influenced by how well AI coding agents can write, debug, and port code in that language. The article\u2019s narrower point is that languages with strong compiler feedback, fast compile-and-check loops, and good systems ergonomics can become more attractive even if they are harder for humans, because agents absorb much of the implementation burden. It frames this as a reordering of defaults: Python and TypeScript no longer win purely on human convenience, while Rust and Go gain ground when the main constraint is agent supervision rather than manual coding speed.",
+          "trend_slug": "programming-language-choice-shifts-toward-agent-friendliness",
+          "trend_title": "Programming Language Choice Shifts Toward Agent-Friendliness",
+          "uncertainty_note": "This is a directionally supported but not yet controlled claim. The article relies on selective examples, vendor/model performance snapshots, and practitioner anecdotes, so the strength of the shift may vary by team, codebase, and operational constraints.",
           "value_level": "high"
         },
         "notes": null,
         "proposal_id": "f8f15115-f3d9-49bf-87f2-a4b0acfccf25",
+        "proposal_regeneration_meta": {
+          "last_regen_at": "2026-06-09T16:57:27+00:00",
+          "model": "gpt-5.4-mini-2026-03-17",
+          "prompt_version": "41",
+          "regen_count": 1
+        },
         "proposal_status": "approved",
         "sections": {
           "evidence_from_source": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
-          },
-          "related_trends": {
-            "final_list": null,
-            "llm_list": [
-              "agentic-coding-shifts-toward-higher-supervision-costs"
-            ],
-            "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_data_points": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Claude Opus 4.7, GPT-5.5, Gemini 3.1, and DeepSeek V4 are described as having cleared 80% on SWE-bench Verified by April 2026.",
-              "The article cites Microsoft rewriting the TypeScript compiler in Go and describes several agent-assisted Rust ports and compilers.",
-              "The article says Rust and Go benefit from tight compile-and-check loops that help agents self-correct."
+              "Microsoft rewrote the TypeScript compiler in Go, with the article saying the effort calculus changed under agent assistance.",
+              "Nicholas Carlini orchestrated 16 parallel Claude agents to write a production C compiler in Rust for just under $20,000.",
+              "Steve Klabnik and Andreas Kling are described as using Claude Code/Codex to port or build substantial Rust systems in days or weeks.",
+              "The article says Rust and Go benefit from tight compile-and-check loops that help agents self-correct in real time."
             ],
             "notes": null,
-            "status": "pending"
-          },
-          "supporting_snippet": {
-            "final_text": null,
-            "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "time_sensitivity": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "trend_description": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "trend_slug": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "trend_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "uncertainty_note": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -459,7 +458,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -470,28 +469,28 @@
               "Large code generation tasks are operationally bounded by supervision and verification, not just model capability."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -501,12 +500,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -558,7 +557,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -569,17 +568,17 @@
               "Systems languages with strong static checks can be easier for agents than they were for humans."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -587,12 +586,12 @@
               "agentic-coding-workflows"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -602,12 +601,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -623,19 +622,22 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "expert_opinion": 2,
+      "mixed": 1
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 3,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 3,
+    "review_duration_seconds": 2246.2,
+    "review_finished_at": "2026-06-09T17:33:45.227472+00:00",
+    "review_started_at": "2026-06-09T16:56:19+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-06-09T17:33:45+00:00",
     "saved_by": null
   },
   "source": {

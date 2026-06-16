@@ -6,10 +6,15 @@ import json
 from pathlib import Path
 from typing import Any
 
+import pytest
+
 from src.ingest_batch.preanalyze import (
     PreanalyzeProgress,
+    close_ingestion_provider,
+    create_ingestion_provider,
     preanalyze_pending,
     select_pending_items,
+    wait_between_articles,
 )
 from src.ingest_review.review_queue_status import status_for_source
 from src.ingest_review.skipped_sources import mark_source_skipped
@@ -164,3 +169,110 @@ def test_preanalyze_pending_skip_existing_is_idempotent(tmp_path: Path) -> None:
 
     assert result.selected == 0
     assert result.processed == []
+
+
+def test_create_ingestion_provider_returns_injected_provider_without_ownership() -> None:
+    """Injected providers are reused and not owned by the batch loop."""
+    injected = object()
+    provider, owns_provider = create_ingestion_provider(injected)
+    assert provider is injected
+    assert owns_provider is False
+
+
+def test_close_ingestion_provider_only_closes_owned_providers() -> None:
+    """Owned providers with ``close`` are released; injected providers are left alone."""
+
+    class ClosableProvider:
+        def __init__(self) -> None:
+            self.closed = False
+
+        def close(self) -> None:
+            self.closed = True
+
+    owned = ClosableProvider()
+    close_ingestion_provider(owned, owns_provider=True)
+    assert owned.closed is True
+
+    injected = ClosableProvider()
+    close_ingestion_provider(injected, owns_provider=False)
+    assert injected.closed is False
+
+
+def test_wait_between_articles_emits_progress_and_sleeps(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Between-article pauses are visible to progress callbacks and honor the delay."""
+    slept: list[float] = []
+    events: list[PreanalyzeProgress] = []
+    monkeypatch.setattr("src.ingest_batch.preanalyze.sleep", slept.append)
+
+    wait_between_articles(
+        600.0,
+        source_id="source-a",
+        index=1,
+        total=3,
+        on_progress=events.append,
+    )
+
+    assert slept == [600.0]
+    assert events[0].status == "waiting"
+    assert "600" in events[0].message
+
+
+def test_preanalyze_pending_creates_and_closes_provider_per_article(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Each article uses a fresh provider that is closed before the next pause."""
+    raw_dir = tmp_path / "raw"
+    reviews_root = tmp_path / "reviews"
+    wiki_root = tmp_path / "wiki"
+    _write_raw_pair(raw_dir, "one")
+    _write_raw_pair(raw_dir, "two")
+    created: list[object] = []
+    closed: list[object] = []
+    waits: list[float] = []
+
+    class FakeProvider:
+        def close(self) -> None:
+            closed.append(self)
+
+    def fake_provider_ctor() -> FakeProvider:
+        provider = FakeProvider()
+        created.append(provider)
+        return provider
+
+    monkeypatch.setattr(
+        "src.ingest_batch.preanalyze.OpenAIIngestionProvider",
+        fake_provider_ctor,
+    )
+    monkeypatch.setattr(
+        "src.ingest_batch.preanalyze.wait_between_articles",
+        lambda seconds, **_kwargs: waits.append(seconds),
+    )
+
+    def runner(provider: Any, document: Any, **_kwargs: Any) -> tuple[dict[str, object], None]:
+        return _artifact(document.source_id), None
+
+    result = preanalyze_pending(
+        raw_dir=raw_dir,
+        reviews_root=reviews_root,
+        wiki_root=wiki_root,
+        tool_types=[],
+        howto_tags=[],
+        impl_study_tags=[],
+        glossary_tags=[],
+        topic_tags=[],
+        trend_tags=[],
+        model_types=[],
+        tool_tags=[],
+        model_tags=[],
+        extraction_budgets={},
+        model="test-model",
+        limit=10,
+        between_articles_seconds=600.0,
+        runner=runner,
+    )
+
+    assert result.processed == ["one", "two"]
+    assert len(created) == 2
+    assert len(closed) == 2
+    assert waits == [600.0]

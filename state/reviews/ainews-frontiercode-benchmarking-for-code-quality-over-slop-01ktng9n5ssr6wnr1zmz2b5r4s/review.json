@@ -1,0 +1,241 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-10T14:38:00+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "skipped_stages": [
+        "entities"
+      ],
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DpELsUZs0hMH1YHIqsS845sT00xLP",
+          "token_usage": {
+            "completion_tokens": 248,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6566,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6814
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DpELuXGEIyGv38BP8xwWB5GirIcdC",
+          "token_usage": {
+            "completion_tokens": 1112,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6231,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7343
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DpELuXGEIyGv38BP8xwWB5GirIcdC",
+    "token_usage": {
+      "completion_tokens": 1360,
+      "prompt_tokens": 12797,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 14157
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "heavy",
+      "skip_reason": "This is a multi-topic AI industry roundup/newsletter issue; at triage stage there is no single durable, wiki-worthy claim to extract without the later entity pass, and the source is mainly a bundle of news items rather than one coherent article.",
+      "skip_recommended": true,
+      "total_candidates_considered": 8
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "Claims draw from a mix of vendor announcements, benchmark numbers, practitioner commentary, and third-party analysis across many items.",
+        "No single evidence basis dominates the whole source because each roundup item uses a different support style.",
+        "Several headline claims rely on product launch posts or benchmark summaries rather than independent reporting alone."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This issue is about a new coding benchmark called FrontierCode and why it matters. The benchmark tries to measure whether AI-generated code would actually be acceptable to merge, not just whether it passes unit tests. That is important because passing tests can hide bad code quality, weak scope control, or risky changes. The roundup also connects this to agent workflows, where clear goals, verification, and good harnesses matter a lot. In plain terms: better evaluation is becoming as important as better models. As of 2026-06-09, the article\u2019s main message is that coding agents still need much stronger evaluation and workflow discipline than many simple benchmarks imply.",
+      "assessed_as_of": "2026-06-09",
+      "contradictions_and_skepticism": "The roundup criticizes the illusion of solved coding, but it also relies on a single benchmark release to support a broader claim about model capability. That is directionally persuasive but not definitive. The article suggests that loops, verification, and harnesses can dramatically improve outcomes, yet it also acknowledges pushback against na\u00efve loop hype and the need for human checkpoints in harder domains. The result may therefore reflect benchmark design as much as genuine model limitation. The safest reading is that FrontierCode exposes an evaluation gap, not that all code agents are uniformly poor.",
+      "key_insights": [
+        "FrontierCode shifts evaluation from test passing to mergeability, which is a more operationally relevant target for code agents.",
+        "The hardest subset is reported to be much harder than common SWE-bench-style scores suggest, with the best model around 13% on that slice.",
+        "The benchmark was built with open-source maintainers and includes rubrics for regression safety, cleanliness, scope, test correctness, and maintainability.",
+        "The roundup treats harness design and workflow choices as major determinants of agent performance, not just model quality.",
+        "Real-world telemetry and causal evaluation are gaining traction as complements to static benchmarks."
+      ],
+      "limitations_and_open_questions": "The benchmark is new, and the article does not provide enough detail to validate its scoring rubric, task sampling, or inter-rater reliability. The 13% headline is attention-grabbing, but without full methodology it is hard to know how comparable it is to other evals or how sensitive it is to harness choices. The piece itself notes concerns about variance and reproducibility, which matters because benchmark noise can be mistaken for model weakness. It is also unclear how well mergeability rubrics transfer across repositories, languages, and team norms. More broadly, any benchmark that depends on maintainability judgments may be harder to standardize than pure test-based evals.",
+      "sources": [
+        "mailto:reader-forwarded-email/98e2f8be286023f9a92d1b669dce76ee"
+      ],
+      "summary": "This roundup centers on FrontierCode, Cognition\u2019s new benchmark aimed at measuring whether code is actually mergeable rather than merely passing tests. The piece argues that earlier code evals, including SWE-bench-style benchmarks, have not captured maintainability, regression safety, scope discipline, and mergeability well enough, and that FrontierCode tries to correct that with rubrics built with open-source maintainers and tasks that reportedly take 40+ hours each to construct. The reported headline result is that the best model, Opus 4.8, reaches only about 13% on the hardest subset, which the article uses to argue that coding is less solved than popular benchmarks suggest. Around that core, the roundup connects several related themes: more structured agent control via goals, verification, and loops; growing demand for observability and sandboxed environments; stronger open-weight and local deployment tooling; and a push toward evaluation methods that use real-world telemetry and measurable outcomes. The article also highlights new products and benchmarks from Google, Apple, Anthropic, Hugging Face, and others, but it repeatedly frames benchmark design and harness quality as the key engineering issue. As of 2026-06-09, the most durable takeaway is that benchmark choice and workflow design remain central to judging coding agents, and the FrontierCode result is a strong signal that \u201cpasses tests\u201d is not enough for merge-ready software.",
+      "why_it_matters": "The piece matters because it identifies a concrete weakness in how coding agents are judged: unit-test success can overstate usefulness if the resulting patch would not be merged. FrontierCode is presented as an attempt to encode maintainability and mergeability into evaluation, which is more useful for teams that care about production code quality than raw benchmark wins. The article also ties this to a broader engineering point: agent behavior depends heavily on goals, verification criteria, loop structure, and harness behavior, so deployment quality cannot be inferred from model scores alone. That makes benchmark design itself an engineering lever, not just a measurement exercise. The reported 13% result on the hardest subset is a sharp reminder, as of 2026-06-09, that coding is still not \u201csolved\u201d in the operational sense implied by easier evals. The roundup\u2019s other launch notes reinforce the same lesson: observability, sandboxes, and structured workflows are becoming first-class parts of agent systems. For service automation and back-office use cases, the implication is similar: if the output must be trustworthy and reviewable, evaluation should reflect downstream acceptance criteria, not just local task success. As of 2026-06-09, FrontierCode looks actionable as a benchmark reference point, but it is still early evidence rather than settled doctrine."
+    },
+    "source_type_detection": {
+      "confidence": 0.98,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "The piece explicitly says it is an issue of AINews with multiple sections and recap items.",
+        "It bundles many loosely related AI news blurbs across coding evals, models, platforms, benchmarks, research, and tweets.",
+        "The structure is digest-style rather than a single coherent argument or tutorial."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "Claims draw from a mix of vendor announcements, benchmark numbers, practitioner commentary, and third-party analysis across many items.",
+          "No single evidence basis dominates the whole source because each roundup item uses a different support style.",
+          "Several headline claims rely on product launch posts or benchmark summaries rather than independent reporting alone."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "FrontierCode shifts evaluation from test passing to mergeability, which is a more operationally relevant target for code agents.",
+          "The hardest subset is reported to be much harder than common SWE-bench-style scores suggest, with the best model around 13% on that slice.",
+          "The benchmark was built with open-source maintainers and includes rubrics for regression safety, cleanliness, scope, test correctness, and maintainability.",
+          "The roundup treats harness design and workflow choices as major determinants of agent performance, not just model quality.",
+          "Real-world telemetry and causal evaluation are gaining traction as complements to static benchmarks."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "mailto:reader-forwarded-email/98e2f8be286023f9a92d1b669dce76ee"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.98,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "The piece explicitly says it is an issue of AINews with multiple sections and recap items.",
+          "It bundles many loosely related AI news blurbs across coding evals, models, platforms, benchmarks, research, and tweets.",
+          "The structure is digest-style rather than a single coherent argument or tutorial."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "AINews",
+    "canonical_url": "mailto:reader-forwarded-email/98e2f8be286023f9a92d1b669dce76ee",
+    "content_sha256": "9f8232885dbbc0ad3fd1a7a256c8f59ee17959a4cb326c469bee75061bd014b5",
+    "publication": "Substack",
+    "published_date": "2026-06-09",
+    "raw_html_rel_path": "raw/readwise/ainews-frontiercode-benchmarking-for-code-quality-over-slop-01ktng9n5ssr6wnr1zmz2b5r4s.html",
+    "raw_md_rel_path": "raw/readwise/ainews-frontiercode-benchmarking-for-code-quality-over-slop-01ktng9n5ssr6wnr1zmz2b5r4s.md",
+    "source_id": "ainews-frontiercode-benchmarking-for-code-quality-over-slop-01ktng9n5ssr6wnr1zmz2b5r4s",
+    "title": "[AINews] FrontierCode: Benchmarking for Code Quality over Slop"
+  }
+}

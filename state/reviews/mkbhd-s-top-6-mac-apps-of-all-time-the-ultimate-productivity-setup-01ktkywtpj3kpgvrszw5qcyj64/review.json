@@ -1,0 +1,1156 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-10T16:04:57+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DpFhftANdPPuqLVSop0A5KRH8kEjR",
+          "token_usage": {
+            "completion_tokens": 184,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4827,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5011
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DpFhhYTvYI6bLn1TYRbvvCkknwzuZ",
+          "token_usage": {
+            "completion_tokens": 1037,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 4427,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 5464
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-ai_tools_roundup",
+          "request_id": "chatcmpl-DpFhrKSjqQbuorincTpYYXvzul9Vz",
+          "route": "ai_tools_roundup",
+          "token_usage": {
+            "completion_tokens": 3292,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 18823,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 22115
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DpFhrKSjqQbuorincTpYYXvzul9Vz",
+    "token_usage": {
+      "completion_tokens": 4513,
+      "prompt_tokens": 28077,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 32590
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "The piece is an independent third-party recommendation article, not a vendor or research publication.",
+        "Claims are presented as the author's evaluative judgments about app usefulness and workflow fit.",
+        "No formal benchmarks, citations, or implementation evidence are provided beyond descriptive assertions."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This article is a ranked list of six Mac apps that the author says power MKBHD\u2019s workflow. The common idea is simple: each app removes friction from a different part of desktop work, like launching commands, dictating text, taking screenshots, organizing tabs, managing tasks, or editing video. The interesting part is that the list is not about novelty for its own sake; it is about tools that save time by making everyday actions feel more direct. One app uses AI for dictation, while others focus on keyboard control, cleaner captures, and better organization. The result is a snapshot of a highly optimized creator setup as of May 2026.",
+      "assessed_as_of": "2026-05-28",
+      "contradictions_and_skepticism": "The piece leans heavily on promotional language and celebrity association, so its strongest claims should be read as enthusiasm rather than proof. Calling Raycast a complete Spotlight replacement or TickTick the undisputed champion is rhetorical, not analytical. The claim that DictaFlow \u201ccompletely changes the paradigm\u201d is especially strong relative to the evidence provided. The article also implies a universal best-in-class workflow stack, but the actual utility depends heavily on whether a reader shares MKBHD\u2019s Mac-first creator environment.",
+      "key_insights": [
+        "Raycast is treated as a full replacement for Spotlight, not just a nicer launcher, because the article emphasizes extensions, clipboard history, and command-driven control.",
+        "DictaFlow\u2019s distinguishing claim is mid-sentence correction during dictation, which the article presents as the key fix for messy human speech.",
+        "CleanShot X is valuable here because it combines capture, scrolling screenshots, recording, annotation, and capture pinning into one workflow.",
+        "Arc Browser is framed less as a browser add-on and more as an opinionated organization system built around vertical tabs, Spaces, Profiles, and tab archiving.",
+        "Final Cut Pro\u2019s relevance in the article depends on Apple Silicon performance for very large video files, not on generic editing features."
+      ],
+      "limitations_and_open_questions": "The article provides no benchmarks, no side-by-side testing methodology, and no pricing comparison beyond DictaFlow\u2019s $7 per month claim. Several assertions are subjective, especially phrases like \u201ccomplete replacement,\u201d \u201cundisputed champion,\u201d and \u201coutclasses,\u201d which are not supported with evidence in the text. The roundup does not explain what criteria were used to rank the apps or how repeatable the workflow gains are across different users. DictaFlow\u2019s claims about handling locked-down environments, acronyms, and code terms are plausible but unverified here. The article also does not address privacy, security, or reliability tradeoffs for AI dictation or browser/task integration.",
+      "sources": [
+        "https://medium.com/@ryanshrott/mkbhds-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-565bd7a060d7"
+      ],
+      "summary": "This roundup ranks six Mac apps that the author says define Marques Brownlee\u2019s desktop workflow: Raycast, DictaFlow, CleanShot X, Arc Browser, TickTick, and Final Cut Pro. The article\u2019s core argument is that these tools matter because they replace or compress standard macOS workflows into faster, keyboard-first, and more automated routines. Raycast is presented as a Spotlight replacement with deep launcher, clipboard, conversion, and extension features. DictaFlow is framed as a locally built AI dictation app that can handle corrections mid-sentence and type into restrictive environments. CleanShot X is positioned as a superior capture tool with scrolling screenshots, recording, annotation, and capture management. Arc Browser and TickTick are described as organization tools for tabs, browsing context, tasks, and calendar-like scheduling, while Final Cut Pro is the video-editing anchor that benefits from Apple Silicon performance for large 8K RAW files.",
+      "why_it_matters": "The piece is useful mainly as a compact, opinionated map of the kinds of desktop tools a high-output creator workflow can be built from. Raycast, CleanShot X, Arc Browser, TickTick, and Final Cut Pro are not presented as isolated utilities; they are framed as parts of a stack that reduces mouse use, keeps context organized, and moves common actions into faster primitives. For AI and productivity tooling readers, the most durable signal is not the specific celebrity endorsement but the recurring product patterns: keyboard-first command surfaces, capture tools that shorten handoff friction, browsers that manage context explicitly, and task systems that accept natural-language input. DictaFlow is the most AI-specific item, but the article\u2019s evidence is promotional and anecdotal rather than benchmarked, so the claim that it outclasses legacy dictation software should be treated as a vendor-style assertion, not a proven result. The list is also narrow: it reflects one creator\u2019s Mac-centric workflow, so it is best read as a curated example of tool composition rather than a general prescription. As of May 2026, the roundup is actionable as a shopping list for reviewers who want to inspect individual workflow tools, but it is not strong enough on its own to justify broader product conclusions."
+    },
+    "source_type_detection": {
+      "confidence": 0.97,
+      "detected_source_type": "ai_tools_roundup",
+      "reasoning": [
+        "The article is structured as a numbered list of named apps/products with individual blurbs.",
+        "Its primary purpose is to review and recommend tools, not to develop one continuous argument.",
+        "The title and body both emphasize a 'Top 6 Mac Apps' roundup format."
+      ]
+    },
+    "tools": [
+      {
+        "confidence": 0.93,
+        "core_capabilities": [
+          "It provides a keyboard-first launcher for executing common Mac actions without relying on the mouse.",
+          "It exposes utility actions such as time-zone conversion, crypto conversion, clipboard history, and Zoom launching in one interface.",
+          "It uses extensions to expand beyond search into broader workflow control."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source explicitly mentions Zoom call launching as a supported workflow.",
+          "The source says the app has a massive ecosystem of extensions, which is the main integration surface described here."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article treats Raycast as a mature default for power users rather than an experimental app. Its described extension ecosystem suggests a broad developer surface, but the source does not provide adoption metrics or enterprise-readiness evidence. As of 2026-05-28, the main signal is strong workflow fit, not validated market dominance.",
+        "name": "Raycast",
+        "operational_relevance": "This fits as a desktop command surface for users who want to reduce mouse-driven navigation and compress routine actions into a few keystrokes. In the article, it is treated as the primary hub for conversions, clipboard history, Zoom access, and extension-driven workflows. For service automation readers, the durable takeaway is that launcher tools can become a control plane for everyday productivity, not just app search.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "cli-tool",
+          "workflow-automation",
+          "tool-use"
+        ],
+        "proposed_types": [
+          "app",
+          "productivity"
+        ],
+        "related_tools": [
+          "Spotlight",
+          "Alfred"
+        ],
+        "short_description": "A keyboard-first Mac launcher that replaces Spotlight and centralizes command execution, search, and shortcuts.",
+        "strengths": "- The article frames it as a full Spotlight replacement, which matters because a launcher only becomes workflow-critical when it covers many small repeated actions.\n- It can handle time-zone conversion, crypto conversion, clipboard history, and Zoom launch flows, so it reduces context switching across separate utilities.\n- The extension ecosystem is presented as large enough to control \u201calmost your entire digital life,\u201d which implies broad reuse across tasks rather than a single narrow use case.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Spotlight is fine, but Raycast is a complete replacement that supercharges your Mac. It\u2019s a beautifully designed, keyboard-first launcher that lets you do everything from converting time zones and calculating crypto conversions, to managing your clipboard history and jumping into Zoom calls. It has a massive ecosystem of extensions, meaning you can control almost your entire digital life without ever touching your mouse.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source gives no benchmark, no reliability data, and no concrete comparison against Spotlight beyond the author\u2019s preference. The claim that it can control \u201calmost your entire digital life\u201d is rhetorical and should not be read as evidence of completeness or enterprise suitability."
+      },
+      {
+        "confidence": 0.89,
+        "core_capabilities": [
+          "It converts speech to text with a hold-to-talk, release-to-type interaction that keeps the workflow simple.",
+          "It accepts mid-sentence self-correction and cleans up the resulting text automatically.",
+          "It is described as working with acronyms, complex code terms, and restrictive desktop environments such as Citrix and Remote Desktop."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source explicitly says it types into locked-down environments like Citrix and Remote Desktop.",
+          "No broader API, plugin, or platform integration is described in the source."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes it as locally built in Toronto, but does not give adoption numbers, enterprise references, or ecosystem depth. The product is presented as a focused modern dictation app rather than a proven category leader. As of 2026-05-28, the main maturity signal is product specificity, not broad validation.",
+        "name": "DictaFlow",
+        "operational_relevance": "This is relevant for anyone trying to replace rigid voice input with faster text entry on desktop workflows. The article emphasizes mid-sentence correction, support for acronyms and code terms, and the ability to type into restrictive environments like Citrix or Remote Desktop. That makes it a plausible fit for support and operations workflows where text entry speed matters, but the evidence here is promotional rather than benchmarked.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "voice",
+          "local-first",
+          "writing"
+        ],
+        "proposed_types": [
+          "app",
+          "speach"
+        ],
+        "related_tools": [
+          "Wispr Flow",
+          "Nuance Dragon"
+        ],
+        "short_description": "An AI dictation app for macOS that uses a hold-to-talk, release-to-type interaction to turn speech into cleaned-up text.",
+        "strengths": "- The hold-to-talk, release-to-type interaction is simple and low-friction, which matters because dictation tools fail when the interaction model feels heavier than typing.\n- Mid-sentence correction is the key differentiator in the source; it reduces the editing burden that usually makes dictation impractical for messy human speech.\n- The article claims it handles acronyms, code terms, and locked-down environments such as Citrix and Remote Desktop, which expands its utility beyond casual note-taking.\n- A $7 monthly price point is mentioned, which suggests a relatively low-friction adoption path if the claims hold up.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"DictaFlow completely changes the paradigm. It\u2019s an AI-powered dictation tool that operates on a simple \u201chold-to-talk, release-to-type\u201d mechanic. What makes it essential is how it handles the messy parts of human speech. You can correct yourself mid-sentence ... and it instantly cleans up the formatting as it drops the text right where your cursor is. Built locally up in Toronto, Canada, it easily handles acronyms, complex code terms, and even types directly into stubborn, locked-down environments like Citrix or Remote Desktop. At $7 a month, it completely outclasses enterprise legacy software like Nuance Dragon or Wispr Flow.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The article provides no independent testing, no latency data, and no privacy or security assessment. Claims that it \u201ccompletely outclasses\u201d legacy dictation software are strong and should be treated as the author\u2019s opinion, not established fact. The source also does not show how well it performs across accents, noisy environments, or long-form editing sessions."
+      },
+      {
+        "confidence": 0.95,
+        "core_capabilities": [
+          "It captures scrolling screenshots so long pages and interfaces can be documented in one image.",
+          "It records screen activity as GIF or MP4 for lightweight demos and troubleshooting.",
+          "It hides desktop icons before capture and provides annotation tools for cleaner handoff.",
+          "It can pin captures on screen, keeping reference images visible while working."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The article presents CleanShot X as a polished utility rather than a niche prototype. No ecosystem or enterprise data is provided, so maturity can only be inferred from the breadth of capture features described. As of 2026-05-28, it reads as a mature desktop utility with a clear audience.",
+        "name": "CleanShot X",
+        "operational_relevance": "This is useful wherever teams need to capture UI states, annotate issues, or produce lightweight walkthroughs without jumping between tools. In the article it stands out because it reduces the friction around screenshots, scrolling captures, GIFs, and screen recordings. For service automation work, tools like this often support support tickets, bug reports, and internal documentation.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "image-generation",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "screenshot"
+        ],
+        "related_tools": [
+          "macOS Screenshot",
+          "Shottr"
+        ],
+        "short_description": "A Mac screenshot and screen-recording tool that combines capture, annotation, and capture management into one utility.",
+        "strengths": "- It supports scrolling screenshots, which matters when workflows need full-page documentation instead of cropped fragments.\n- It can record the screen as GIF or MP4, which makes it useful for quick demonstrations and troubleshooting clips.\n- It can hide desktop icons automatically before capture, reducing cleanup work before sharing.\n- It includes annotation tools and pinned captures, which helps keep visual assets close to the workflow instead of buried in a folder.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"It allows you to take scrolling screenshots, record your screen as a GIF or an MP4, hide your messy desktop icons automatically before capturing, and annotate images with gorgeous, highly polished design tools. It pins your captures to the screen so you can drag them directly into your workflow.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not compare it against other screenshot tools with benchmarks or workflow tests. Its value is largely about convenience and polish, so the gain may be incremental rather than transformational for users already satisfied with native macOS capture tools."
+      },
+      {
+        "confidence": 0.9,
+        "core_capabilities": [
+          "It moves tabs into a vertical sidebar to improve visual organization of active work.",
+          "It offers Spaces and Profiles to separate contexts and accounts.",
+          "It automatically archives old tabs to reduce clutter in the working set."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [],
+        "match_candidates": [],
+        "maturity_signals": "The article treats Arc as established enough to be the browser of choice for The Studio, which is a useful adoption signal but still anecdotal. There is no data on enterprise deployment or long-term support in the source. As of 2026-05-28, the maturity signal is strong product identity, not independently validated maturity.",
+        "name": "Arc Browser",
+        "operational_relevance": "The article positions Arc as a context-management tool rather than just a browser. That matters for practitioners whose work depends on keeping many threads, accounts, and projects separated without losing focus. It is relevant to AI and operations workflows because browser organization often becomes the bottleneck once research, dashboards, docs, and admin tabs accumulate.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "browser-use",
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "browser",
+          "app"
+        ],
+        "related_tools": [
+          "Chrome",
+          "Safari",
+          "Sidekick"
+        ],
+        "short_description": "A browser that reorganizes tab management around a vertical sidebar, Spaces, Profiles, and automatic tab archiving.",
+        "strengths": "- Vertical tabs and sidebar organization make browser state easier to scan, which matters when many tabs represent active workstreams.\n- Spaces and Profiles create explicit context separation, which helps avoid account confusion and cross-project clutter.\n- Automatic archiving of old tabs keeps the working set smaller, reducing tab sprawl over time.\n- The article emphasizes a fluid modern UI, which may lower friction for users who spend much of the day in the browser.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"By moving tabs to a vertical sidebar and introducing features like \u201cSpaces\u201d and \u201cProfiles,\u201d it forces you to keep your web life organized. It automatically archives old tabs to keep your workspace clean and features a gorgeous, fluid UI that feels distinctly modern. It is the browser of choice for The Studio.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not provide performance measurements, extension compatibility details, or stability data. Its appeal is highly opinionated and may depend on users wanting a redesigned browser rather than a conventional one. The article also does not show whether the organizational features remain valuable at scale across many tabs and teams."
+      },
+      {
+        "confidence": 0.88,
+        "core_capabilities": [
+          "It accepts natural-language task input and converts it into scheduled items.",
+          "It combines task management with calendar-like scheduling so deadlines and recurring items stay visible.",
+          "It syncs across the Apple ecosystem for consistent personal productivity across devices."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source explicitly mentions syncing across the Apple ecosystem.",
+          "No third-party integrations are described in the article."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The article presents TickTick as a well-established utility rather than a new entrant. The lack of technical detail suggests a mature product whose differentiator is usability, not novelty. As of 2026-05-28, the main signal is stable everyday utility.",
+        "name": "TickTick",
+        "operational_relevance": "This is relevant wherever task capture needs to be fast enough to survive real work. The article highlights its natural-language scheduling and cross-Apple sync, which are the kinds of features that reduce friction in personal and team productivity systems. For service automation readers, it is a reminder that the best task tools often succeed by making recurring work easy to enter and trust.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "workflow-automation"
+        ],
+        "proposed_types": [
+          "app",
+          "productivity"
+        ],
+        "related_tools": [
+          "Todoist",
+          "Apple Reminders",
+          "Calendar"
+        ],
+        "short_description": "A task manager that bridges to-do lists and calendar-style scheduling with natural-language input.",
+        "strengths": "- Natural-language task entry lowers the cost of capturing recurring tasks, which matters because manual date parsing is where many users drop tasks.\n- The article positions it between a simple to-do list and a calendar, which is useful for people who want one place for scheduling and reminders.\n- It is described as fast and reliable, which matters more than feature depth when a task manager must become the system of record.\n- Cross-Apple sync suggests it fits users already living in that ecosystem, reducing friction across devices.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"It bridges the gap between a simple task manager and a full-blown calendar tool. It has natural language processing, meaning you can type \u201cBuy groceries every other Friday at 4 PM\u201d and it perfectly understands and schedules it. It\u2019s incredibly fast, deeply reliable, and syncs flawlessly across the entire Apple ecosystem.\"",
+        "value_level": "medium",
+        "weaknesses_limitations": "The source does not provide evidence beyond the author\u2019s praise, so claims like \u201cundisputed champion\u201d are rhetorical. No information is given on team collaboration, advanced automation, or enterprise governance, so the article supports personal productivity more than organizational deployment."
+      },
+      {
+        "confidence": 0.92,
+        "core_capabilities": [
+          "It supports editing workflows for very large video files, including 8K RAW material.",
+          "It benefits from Apple Silicon performance in a way that materially affects scrubbing responsiveness."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "The source explicitly ties its performance benefits to Apple Silicon hardware.",
+          "No plugin, API, or team collaboration integrations are discussed in the source."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "Final Cut Pro is presented as an established professional tool with long-running use in creator production. The article\u2019s confidence comes from workflow fit and Apple Silicon performance rather than any benchmark or enterprise adoption data. As of 2026-05-28, it reads as mature, specialized software with clear platform dependence.",
+        "name": "Final Cut Pro",
+        "operational_relevance": "This matters to creator workflows that depend on fast scrubbing and editing of large media files on Apple hardware. The article uses it as the anchor example for why a Mac setup can feel optimized for high-throughput video work. For service automation readers, it is a reminder that creator tooling choices often hinge on hardware-software coupling, not just feature checklists.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "video"
+        ],
+        "proposed_types": [
+          "video-creation",
+          "app"
+        ],
+        "related_tools": [
+          "Premiere Pro",
+          "DaVinci Resolve"
+        ],
+        "short_description": "Apple\u2019s video editor, positioned here as the core editing tool for a Mac-based creator workflow.",
+        "strengths": "- The source claims Apple Silicon makes scrubbing through massive 8K RAW files \u201cbuttery smooth,\u201d which is important because timeline responsiveness shapes editing throughput.\n- It is framed as the editing core of a media production stack, suggesting it has operational value when the workflow is already centered on Apple hardware.\n- The article treats it as durable enough that MKBHD\u2019s team built an \u201centire media empire\u201d on it, which signals strong fit for a creator-first workflow.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "\"Thanks to Apple Silicon, scrubbing through massive 8K raw files in Final Cut is buttery smooth. It\u2019s the ultimate anchor to his Mac experience.\"",
+        "value_level": "high",
+        "weaknesses_limitations": "The source does not compare Final Cut Pro against Premiere Pro or DaVinci Resolve with evidence, so the superiority claim is anecdotal. Its value may be much narrower for teams outside the Apple ecosystem or for workflows that need cross-platform collaboration."
+      }
+    ],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "The piece is an independent third-party recommendation article, not a vendor or research publication.",
+          "Claims are presented as the author's evaluative judgments about app usefulness and workflow fit.",
+          "No formal benchmarks, citations, or implementation evidence are provided beyond descriptive assertions."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Raycast is treated as a full replacement for Spotlight, not just a nicer launcher, because the article emphasizes extensions, clipboard history, and command-driven control.",
+          "DictaFlow\u2019s distinguishing claim is mid-sentence correction during dictation, which the article presents as the key fix for messy human speech.",
+          "CleanShot X is valuable here because it combines capture, scrolling screenshots, recording, annotation, and capture pinning into one workflow.",
+          "Arc Browser is framed less as a browser add-on and more as an opinionated organization system built around vertical tabs, Spaces, Profiles, and tab archiving.",
+          "Final Cut Pro\u2019s relevance in the article depends on Apple Silicon performance for very large video files, not on generic editing features."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://medium.com/@ryanshrott/mkbhds-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-565bd7a060d7"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.97,
+        "detected_source_type": "ai_tools_roundup",
+        "reasoning": [
+          "The article is structured as a numbered list of named apps/products with individual blurbs.",
+          "Its primary purpose is to review and recommend tools, not to develop one continuous argument.",
+          "The title and body both emphasize a 'Top 6 Mac Apps' roundup format."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "core_capabilities": [
+            "It provides a keyboard-first launcher for executing common Mac actions without relying on the mouse.",
+            "It exposes utility actions such as time-zone conversion, crypto conversion, clipboard history, and Zoom launching in one interface.",
+            "It uses extensions to expand beyond search into broader workflow control."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The source explicitly mentions Zoom call launching as a supported workflow.",
+            "The source says the app has a massive ecosystem of extensions, which is the main integration surface described here."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article treats Raycast as a mature default for power users rather than an experimental app. Its described extension ecosystem suggests a broad developer surface, but the source does not provide adoption metrics or enterprise-readiness evidence. As of 2026-05-28, the main signal is strong workflow fit, not validated market dominance.",
+          "name": "Raycast",
+          "operational_relevance": "This fits as a desktop command surface for users who want to reduce mouse-driven navigation and compress routine actions into a few keystrokes. In the article, it is treated as the primary hub for conversions, clipboard history, Zoom access, and extension-driven workflows. For service automation readers, the durable takeaway is that launcher tools can become a control plane for everyday productivity, not just app search.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "cli-tool",
+            "workflow-automation",
+            "tool-use"
+          ],
+          "proposed_types": [
+            "app",
+            "productivity"
+          ],
+          "related_tools": [
+            "Spotlight",
+            "Alfred"
+          ],
+          "short_description": "A keyboard-first Mac launcher that replaces Spotlight and centralizes command execution, search, and shortcuts.",
+          "strengths": "- The article frames it as a full Spotlight replacement, which matters because a launcher only becomes workflow-critical when it covers many small repeated actions.\n- It can handle time-zone conversion, crypto conversion, clipboard history, and Zoom launch flows, so it reduces context switching across separate utilities.\n- The extension ecosystem is presented as large enough to control \u201calmost your entire digital life,\u201d which implies broad reuse across tasks rather than a single narrow use case.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Spotlight is fine, but Raycast is a complete replacement that supercharges your Mac. It\u2019s a beautifully designed, keyboard-first launcher that lets you do everything from converting time zones and calculating crypto conversions, to managing your clipboard history and jumping into Zoom calls. It has a massive ecosystem of extensions, meaning you can control almost your entire digital life without ever touching your mouse.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source gives no benchmark, no reliability data, and no concrete comparison against Spotlight beyond the author\u2019s preference. The claim that it can control \u201calmost your entire digital life\u201d is rhetorical and should not be read as evidence of completeness or enterprise suitability."
+        },
+        "notes": null,
+        "proposal_id": "897dd665-db20-45e1-a968-f44e4939fa99",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It provides a keyboard-first launcher for executing common Mac actions without relying on the mouse.",
+              "It exposes utility actions such as time-zone conversion, crypto conversion, clipboard history, and Zoom launching in one interface.",
+              "It uses extensions to expand beyond search into broader workflow control."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source explicitly mentions Zoom call launching as a supported workflow.",
+              "The source says the app has a massive ecosystem of extensions, which is the main integration surface described here."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Spotlight",
+              "Alfred"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "cli-tool",
+            "workflow-automation",
+            "tool-use"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.89,
+          "core_capabilities": [
+            "It converts speech to text with a hold-to-talk, release-to-type interaction that keeps the workflow simple.",
+            "It accepts mid-sentence self-correction and cleans up the resulting text automatically.",
+            "It is described as working with acronyms, complex code terms, and restrictive desktop environments such as Citrix and Remote Desktop."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The source explicitly says it types into locked-down environments like Citrix and Remote Desktop.",
+            "No broader API, plugin, or platform integration is described in the source."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes it as locally built in Toronto, but does not give adoption numbers, enterprise references, or ecosystem depth. The product is presented as a focused modern dictation app rather than a proven category leader. As of 2026-05-28, the main maturity signal is product specificity, not broad validation.",
+          "name": "DictaFlow",
+          "operational_relevance": "This is relevant for anyone trying to replace rigid voice input with faster text entry on desktop workflows. The article emphasizes mid-sentence correction, support for acronyms and code terms, and the ability to type into restrictive environments like Citrix or Remote Desktop. That makes it a plausible fit for support and operations workflows where text entry speed matters, but the evidence here is promotional rather than benchmarked.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "voice",
+            "local-first",
+            "writing"
+          ],
+          "proposed_types": [
+            "app",
+            "speach"
+          ],
+          "related_tools": [
+            "Wispr Flow",
+            "Nuance Dragon"
+          ],
+          "short_description": "An AI dictation app for macOS that uses a hold-to-talk, release-to-type interaction to turn speech into cleaned-up text.",
+          "strengths": "- The hold-to-talk, release-to-type interaction is simple and low-friction, which matters because dictation tools fail when the interaction model feels heavier than typing.\n- Mid-sentence correction is the key differentiator in the source; it reduces the editing burden that usually makes dictation impractical for messy human speech.\n- The article claims it handles acronyms, code terms, and locked-down environments such as Citrix and Remote Desktop, which expands its utility beyond casual note-taking.\n- A $7 monthly price point is mentioned, which suggests a relatively low-friction adoption path if the claims hold up.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"DictaFlow completely changes the paradigm. It\u2019s an AI-powered dictation tool that operates on a simple \u201chold-to-talk, release-to-type\u201d mechanic. What makes it essential is how it handles the messy parts of human speech. You can correct yourself mid-sentence ... and it instantly cleans up the formatting as it drops the text right where your cursor is. Built locally up in Toronto, Canada, it easily handles acronyms, complex code terms, and even types directly into stubborn, locked-down environments like Citrix or Remote Desktop. At $7 a month, it completely outclasses enterprise legacy software like Nuance Dragon or Wispr Flow.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The article provides no independent testing, no latency data, and no privacy or security assessment. Claims that it \u201ccompletely outclasses\u201d legacy dictation software are strong and should be treated as the author\u2019s opinion, not established fact. The source also does not show how well it performs across accents, noisy environments, or long-form editing sessions."
+        },
+        "notes": null,
+        "proposal_id": "45422652-4d3a-46a6-b785-ff4e3c0a44c5",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It converts speech to text with a hold-to-talk, release-to-type interaction that keeps the workflow simple.",
+              "It accepts mid-sentence self-correction and cleans up the resulting text automatically.",
+              "It is described as working with acronyms, complex code terms, and restrictive desktop environments such as Citrix and Remote Desktop."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source explicitly says it types into locked-down environments like Citrix and Remote Desktop.",
+              "No broader API, plugin, or platform integration is described in the source."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Wispr Flow",
+              "Nuance Dragon"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "voice",
+            "local-first",
+            "writing"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.95,
+          "core_capabilities": [
+            "It captures scrolling screenshots so long pages and interfaces can be documented in one image.",
+            "It records screen activity as GIF or MP4 for lightweight demos and troubleshooting.",
+            "It hides desktop icons before capture and provides annotation tools for cleaner handoff.",
+            "It can pin captures on screen, keeping reference images visible while working."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The article presents CleanShot X as a polished utility rather than a niche prototype. No ecosystem or enterprise data is provided, so maturity can only be inferred from the breadth of capture features described. As of 2026-05-28, it reads as a mature desktop utility with a clear audience.",
+          "name": "CleanShot X",
+          "operational_relevance": "This is useful wherever teams need to capture UI states, annotate issues, or produce lightweight walkthroughs without jumping between tools. In the article it stands out because it reduces the friction around screenshots, scrolling captures, GIFs, and screen recordings. For service automation work, tools like this often support support tickets, bug reports, and internal documentation.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "image-generation",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "screenshot"
+          ],
+          "related_tools": [
+            "macOS Screenshot",
+            "Shottr"
+          ],
+          "short_description": "A Mac screenshot and screen-recording tool that combines capture, annotation, and capture management into one utility.",
+          "strengths": "- It supports scrolling screenshots, which matters when workflows need full-page documentation instead of cropped fragments.\n- It can record the screen as GIF or MP4, which makes it useful for quick demonstrations and troubleshooting clips.\n- It can hide desktop icons automatically before capture, reducing cleanup work before sharing.\n- It includes annotation tools and pinned captures, which helps keep visual assets close to the workflow instead of buried in a folder.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"It allows you to take scrolling screenshots, record your screen as a GIF or an MP4, hide your messy desktop icons automatically before capturing, and annotate images with gorgeous, highly polished design tools. It pins your captures to the screen so you can drag them directly into your workflow.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not compare it against other screenshot tools with benchmarks or workflow tests. Its value is largely about convenience and polish, so the gain may be incremental rather than transformational for users already satisfied with native macOS capture tools."
+        },
+        "notes": null,
+        "proposal_id": "57575b2b-f7fe-4881-a3cd-2b4f36fc5202",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It captures scrolling screenshots so long pages and interfaces can be documented in one image.",
+              "It records screen activity as GIF or MP4 for lightweight demos and troubleshooting.",
+              "It hides desktop icons before capture and provides annotation tools for cleaner handoff.",
+              "It can pin captures on screen, keeping reference images visible while working."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "macOS Screenshot",
+              "Shottr"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "image-generation",
+            "workflow-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.9,
+          "core_capabilities": [
+            "It moves tabs into a vertical sidebar to improve visual organization of active work.",
+            "It offers Spaces and Profiles to separate contexts and accounts.",
+            "It automatically archives old tabs to reduce clutter in the working set."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [],
+          "match_candidates": [],
+          "maturity_signals": "The article treats Arc as established enough to be the browser of choice for The Studio, which is a useful adoption signal but still anecdotal. There is no data on enterprise deployment or long-term support in the source. As of 2026-05-28, the maturity signal is strong product identity, not independently validated maturity.",
+          "name": "Arc Browser",
+          "operational_relevance": "The article positions Arc as a context-management tool rather than just a browser. That matters for practitioners whose work depends on keeping many threads, accounts, and projects separated without losing focus. It is relevant to AI and operations workflows because browser organization often becomes the bottleneck once research, dashboards, docs, and admin tabs accumulate.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "browser-use",
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "browser",
+            "app"
+          ],
+          "related_tools": [
+            "Chrome",
+            "Safari",
+            "Sidekick"
+          ],
+          "short_description": "A browser that reorganizes tab management around a vertical sidebar, Spaces, Profiles, and automatic tab archiving.",
+          "strengths": "- Vertical tabs and sidebar organization make browser state easier to scan, which matters when many tabs represent active workstreams.\n- Spaces and Profiles create explicit context separation, which helps avoid account confusion and cross-project clutter.\n- Automatic archiving of old tabs keeps the working set smaller, reducing tab sprawl over time.\n- The article emphasizes a fluid modern UI, which may lower friction for users who spend much of the day in the browser.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"By moving tabs to a vertical sidebar and introducing features like \u201cSpaces\u201d and \u201cProfiles,\u201d it forces you to keep your web life organized. It automatically archives old tabs to keep your workspace clean and features a gorgeous, fluid UI that feels distinctly modern. It is the browser of choice for The Studio.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not provide performance measurements, extension compatibility details, or stability data. Its appeal is highly opinionated and may depend on users wanting a redesigned browser rather than a conventional one. The article also does not show whether the organizational features remain valuable at scale across many tabs and teams."
+        },
+        "notes": null,
+        "proposal_id": "f826b589-4d76-4f97-b3de-95ece65f4931",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It moves tabs into a vertical sidebar to improve visual organization of active work.",
+              "It offers Spaces and Profiles to separate contexts and accounts.",
+              "It automatically archives old tabs to reduce clutter in the working set."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Chrome",
+              "Safari",
+              "Sidekick"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "browser-use",
+            "workflow-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.88,
+          "core_capabilities": [
+            "It accepts natural-language task input and converts it into scheduled items.",
+            "It combines task management with calendar-like scheduling so deadlines and recurring items stay visible.",
+            "It syncs across the Apple ecosystem for consistent personal productivity across devices."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The source explicitly mentions syncing across the Apple ecosystem.",
+            "No third-party integrations are described in the article."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The article presents TickTick as a well-established utility rather than a new entrant. The lack of technical detail suggests a mature product whose differentiator is usability, not novelty. As of 2026-05-28, the main signal is stable everyday utility.",
+          "name": "TickTick",
+          "operational_relevance": "This is relevant wherever task capture needs to be fast enough to survive real work. The article highlights its natural-language scheduling and cross-Apple sync, which are the kinds of features that reduce friction in personal and team productivity systems. For service automation readers, it is a reminder that the best task tools often succeed by making recurring work easy to enter and trust.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "workflow-automation"
+          ],
+          "proposed_types": [
+            "app",
+            "productivity"
+          ],
+          "related_tools": [
+            "Todoist",
+            "Apple Reminders",
+            "Calendar"
+          ],
+          "short_description": "A task manager that bridges to-do lists and calendar-style scheduling with natural-language input.",
+          "strengths": "- Natural-language task entry lowers the cost of capturing recurring tasks, which matters because manual date parsing is where many users drop tasks.\n- The article positions it between a simple to-do list and a calendar, which is useful for people who want one place for scheduling and reminders.\n- It is described as fast and reliable, which matters more than feature depth when a task manager must become the system of record.\n- Cross-Apple sync suggests it fits users already living in that ecosystem, reducing friction across devices.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"It bridges the gap between a simple task manager and a full-blown calendar tool. It has natural language processing, meaning you can type \u201cBuy groceries every other Friday at 4 PM\u201d and it perfectly understands and schedules it. It\u2019s incredibly fast, deeply reliable, and syncs flawlessly across the entire Apple ecosystem.\"",
+          "value_level": "medium",
+          "weaknesses_limitations": "The source does not provide evidence beyond the author\u2019s praise, so claims like \u201cundisputed champion\u201d are rhetorical. No information is given on team collaboration, advanced automation, or enterprise governance, so the article supports personal productivity more than organizational deployment."
+        },
+        "notes": null,
+        "proposal_id": "5d2059c3-46b3-49b8-8505-2a7b6d510ca4",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It accepts natural-language task input and converts it into scheduled items.",
+              "It combines task management with calendar-like scheduling so deadlines and recurring items stay visible.",
+              "It syncs across the Apple ecosystem for consistent personal productivity across devices."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source explicitly mentions syncing across the Apple ecosystem.",
+              "No third-party integrations are described in the article."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Todoist",
+              "Apple Reminders",
+              "Calendar"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "workflow-automation"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.92,
+          "core_capabilities": [
+            "It supports editing workflows for very large video files, including 8K RAW material.",
+            "It benefits from Apple Silicon performance in a way that materially affects scrubbing responsiveness."
+          ],
+          "evidence_type": null,
+          "integration_ecosystem": [
+            "The source explicitly ties its performance benefits to Apple Silicon hardware.",
+            "No plugin, API, or team collaboration integrations are discussed in the source."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "Final Cut Pro is presented as an established professional tool with long-running use in creator production. The article\u2019s confidence comes from workflow fit and Apple Silicon performance rather than any benchmark or enterprise adoption data. As of 2026-05-28, it reads as mature, specialized software with clear platform dependence.",
+          "name": "Final Cut Pro",
+          "operational_relevance": "This matters to creator workflows that depend on fast scrubbing and editing of large media files on Apple hardware. The article uses it as the anchor example for why a Mac setup can feel optimized for high-throughput video work. For service automation readers, it is a reminder that creator tooling choices often hinge on hardware-software coupling, not just feature checklists.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "video"
+          ],
+          "proposed_types": [
+            "video-creation",
+            "app"
+          ],
+          "related_tools": [
+            "Premiere Pro",
+            "DaVinci Resolve"
+          ],
+          "short_description": "Apple\u2019s video editor, positioned here as the core editing tool for a Mac-based creator workflow.",
+          "strengths": "- The source claims Apple Silicon makes scrubbing through massive 8K RAW files \u201cbuttery smooth,\u201d which is important because timeline responsiveness shapes editing throughput.\n- It is framed as the editing core of a media production stack, suggesting it has operational value when the workflow is already centered on Apple hardware.\n- The article treats it as durable enough that MKBHD\u2019s team built an \u201centire media empire\u201d on it, which signals strong fit for a creator-first workflow.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "\"Thanks to Apple Silicon, scrubbing through massive 8K raw files in Final Cut is buttery smooth. It\u2019s the ultimate anchor to his Mac experience.\"",
+          "value_level": "high",
+          "weaknesses_limitations": "The source does not compare Final Cut Pro against Premiere Pro or DaVinci Resolve with evidence, so the superiority claim is anecdotal. Its value may be much narrower for teams outside the Apple ecosystem or for workflows that need cross-platform collaboration."
+        },
+        "notes": null,
+        "proposal_id": "032c9bfe-a563-474b-9bcf-1e714db2f3b0",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It supports editing workflows for very large video files, including 8K RAW material.",
+              "It benefits from Apple Silicon performance in a way that materially affects scrubbing responsiveness."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "The source explicitly ties its performance benefits to Apple Silicon hardware.",
+              "No plugin, API, or team collaboration integrations are discussed in the source."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Premiere Pro",
+              "DaVinci Resolve"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "video"
+          ]
+        }
+      }
+    ],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Ryan Shrott",
+    "canonical_url": "https://medium.com/@ryanshrott/mkbhds-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-565bd7a060d7",
+    "content_sha256": "14c2ddb8a39510440f6087359f89f0394e53ce6d9137accd26d767e980c9b511",
+    "publication": "Medium",
+    "published_date": "2026-05-28",
+    "raw_html_rel_path": "raw/readwise/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64.html",
+    "raw_md_rel_path": "raw/readwise/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64.md",
+    "source_id": "mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64",
+    "title": "MKBHD\u2019s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup"
+  }
+}

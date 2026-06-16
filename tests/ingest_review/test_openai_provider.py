@@ -73,6 +73,16 @@ def test_openai_provider_parses_json_response(tmp_path: Path) -> None:
     assert meta["request_id"] == "cmpl-test"
 
 
+def test_openai_provider_close_closes_underlying_client() -> None:
+    """Closing a provider releases the underlying OpenAI HTTP client."""
+    fake_client = MagicMock()
+    provider = OpenAIIngestionProvider(client=fake_client)
+
+    provider.close()
+
+    fake_client.close.assert_called_once_with()
+
+
 def test_openai_prompt_contains_source_type_rubrics(tmp_path: Path) -> None:
     """Prompt includes source type detection, roundup signals, and interview insights rubrics."""
     raw = tmp_path / "raw"

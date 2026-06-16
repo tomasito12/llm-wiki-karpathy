@@ -6,20 +6,27 @@ category: tool
 tags:
 - agentic
 - cli-tool
+- cloud-hosted
 - coding
 - ide-integrated
+- real-time
 - software-development
+- tool-use
 first_seen: '2026-03-19'
 last_seen: '2026-04-07'
-source_count: 2
-evidence_count: 23
+source_count: 4
+evidence_count: 48
 source_ids:
 - i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee
+- improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd
 - introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1
+- run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy
 value_level: high
-confidence: 0.875
+confidence: 0.9225
 synthesis_state: stage1-placeholder
 types:
+- ai-application
+- ai-orchestration
 - app
 - coding-agent
 ---
@@ -36,6 +43,13 @@ Cursor is an IDE-centered coding product that can use Composer 2 as its built-in
 - It provides an IDE-integrated environment where a coding model can be used for practical software work.
 - It exposes a faster variant of the same model family so users can choose throughput versus cost.
 - It organizes Composer usage into a standalone usage pool for individual plans.
+- It runs cloud agents inside customer-owned infrastructure so execution can stay behind an internal network boundary.
+- It gives each session an isolated remote machine with a terminal, browser, and full desktop for autonomous task execution.
+- It supports multiple models, including Composer 2 and other frontier-lab models with custom agent harnesses.
+- It can be scaled with Kubernetes through a Helm chart and operator, or monitored through a fleet-management API.
+- It turns live user interactions into training signal for a coding agent.
+- It supports a rapid checkpoint-to-production loop so model updates can ship multiple times per day.
+- It uses production evals before deployment to catch regressions in model behavior.
 - It can read an instruction document and translate it into a project structure.
 - It can create folders, schema files, and starter pages in one guided session.
 - It can run setup tasks for adjacent tools such as Obsidian from the same workflow.
@@ -44,6 +58,12 @@ Cursor is an IDE-centered coding product that can use Composer 2 as its built-in
 
 - It is integrated with Cursor's own model offering, including Composer 2 and its fast variant.
 - It includes model documentation and plan-level usage packaging inside the Cursor product surface.
+- The worker connects outbound to Cursor’s cloud over HTTPS, so it fits environments where inbound connectivity is restricted.
+- The product integrates with Kubernetes through a Helm chart and a WorkerDeployment resource for automated scaling and lifecycle management.
+- It supports browser, terminal, and desktop-based agent execution inside the worker environment.
+- It depends on client-side instrumentation to collect interaction signals from the editor workflow.
+- It depends on backend data pipelines to transform those signals into training rewards.
+- It depends on an eval layer, including CursorBench, before redeploying a checkpoint.
 - It works with markdown repositories and file-based knowledge bases.
 - It is used alongside Obsidian so generated wiki pages can be reviewed visually while the agent edits them.
 - It can consume a schema file such as CLAUDE.md as part of the agent context.
@@ -56,6 +76,8 @@ Cursor is presented as an actively evolving developer product with model updates
 
 - Claude Code
 - GitHub MCP
+- Agents SDK
+- Copilot Tasks
 - Obsidian
 
 ## Strengths
@@ -87,6 +109,24 @@ The source is a vendor announcement, so the evidence is self-reported and not in
 - “I opened Cursor (an AI-powered code editor), dropped Karpathy’s llm-wiki.md file into an empty project folder, and started talking to the AI.” (`6b5c4873eac8` · supporting · supporting_snippet; [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]])
 - The source is a single build narrative, so it does not establish how reliable Cursor is under repeated maintenance, conflicting instructions, or large-scale repo changes. The article also does not show guardrails for preventing incorrect schema edits or bad AI-generated page updates. (`4550a7b8f88a` · uncertainty · weaknesses_limitations; [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]])
 
+### Improving Composer through real-time RL (2026-03-26)
+
+- It depends on client-side instrumentation to collect interaction signals from the editor workflow. (`f5780bc523ef` · neutral · integration_ecosystem[0]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- It depends on backend data pipelines to transform those signals into training rewards. (`13802a03acc3` · neutral · integration_ecosystem[1]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- It depends on an eval layer, including CursorBench, before redeploying a checkpoint. (`147e1787311d` · neutral · integration_ecosystem[2]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- Cursor appears to have a production-grade internal loop rather than a lab demo: the article describes live checkpoints, automated reward aggregation, eval checks, and rapid deployment. The presence of concrete A/B results and named internal tooling suggests an operationally mature engineering environment, even though the evidence is first-party and limited to one product. As of 2026-03-26, this is best read as a serious vendor system with real deployment practice, not as a generic template that every team can copy directly. (`821314720f6d` · neutral · maturity_signals; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- Cursor is operationally relevant because it combines the coding surface, telemetry, eval loop, and deployment path needed to turn model usage into product improvement. For teams building coding agents or agentic IDE features, it is an example of a product where model behavior is continuously shaped by production feedback rather than only offline training. The article’s details are most useful for practitioners thinking about how to wire instrumentation, reward extraction, and fast redeployment into one loop. (`3965a59c88e5` · neutral · operational_relevance; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- An AI-first coding environment that supports agentic development workflows inside the editor. In this article, it is used as the production surface for Composer checkpoints that are trained from real user interactions. (`1ef3ac7e5080` · neutral · short_description; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- - Uses production interactions as training signal, which makes the model improve from real user behavior instead of simulated proxies.
+- Ships updated Composer checkpoints behind Auto as often as every five hours, showing a tight feedback loop between product usage and deployment.
+- Includes eval gating with CursorBench before rollout, which reduces the chance of shipping regressions after each training cycle.
+- The setup can surface reward-hacking bugs as operational issues in the training pipeline, which can be fixed from real user feedback. (`1b2924f3e21f` · neutral · strengths; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- It turns live user interactions into training signal for a coding agent. (`0e317bc3edf3` · supporting · core_capabilities[0]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- It supports a rapid checkpoint-to-production loop so model updates can ship multiple times per day. (`1f79c82cda2d` · supporting · core_capabilities[1]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- It uses production evals before deployment to catch regressions in model behavior. (`42846d6745d5` · supporting · core_capabilities[2]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- "The infrastructure for real-time RL depends on many distinct layers of the Cursor stack. The process to produce a new checkpoint starts with client-side instrumentation to translate user interactions into signal, extends through backend data pipelines to feed that signal in our training loop, and ends with a fast deployment path to get the updated checkpoint live." (`e3d147fc7296` · supporting · supporting_snippet; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+- The article also makes clear that this is a demanding system, not a simple feature toggle. It depends on client-side instrumentation, backend data pipelines, reward design, evals, and a fast deployment path; small teams may struggle to reproduce that stack. The piece does not provide enough detail to judge cost, reliability at scale, or how robust the system is against subtler manipulation over time. (`50aff88b3a9a` · uncertainty · weaknesses_limitations; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
+
 ### Introducing Composer 2 (2026-03-19)
 
 - It is integrated with Cursor's own model offering, including Composer 2 and its fast variant. (`55d1689d02ed` · neutral · integration_ecosystem[0]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
@@ -103,18 +143,43 @@ The source is a vendor announcement, so the evidence is self-reported and not in
 - "Composer 2 is now available in Cursor." (`2d472321c5fd` · supporting · supporting_snippet; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
 - The source is a vendor announcement, so the evidence is self-reported and not independently validated. It does not give enough detail to judge behavior on real repositories, failure modes, or how well benchmark gains translate into day-to-day coding workflows. (`14b6a3cb8d1d` · uncertainty · weaknesses_limitations; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
 
+### Run cloud agents in your own infrastructure (2026-03-25)
+
+- The worker connects outbound to Cursor’s cloud over HTTPS, so it fits environments where inbound connectivity is restricted. (`1f3d7bf73001` · neutral · integration_ecosystem[0]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- The product integrates with Kubernetes through a Helm chart and a WorkerDeployment resource for automated scaling and lifecycle management. (`7a60beadd73e` · neutral · integration_ecosystem[1]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- It supports browser, terminal, and desktop-based agent execution inside the worker environment. (`8ce182e285a8` · neutral · integration_ecosystem[2]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- Cursor presents the feature as generally available and cites named customers using it, which is a stronger maturity signal than a prototype announcement. The presence of Kubernetes and fleet-management support suggests the product is aimed at enterprise deployment rather than a small developer-only workflow. The announcement still reads as early enterprise platforming as of 2026-03-25 because the article does not provide operational benchmarks or independent rollout evidence. (`03843e2671e2` · neutral · maturity_signals; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- This is relevant for teams that want autonomous coding agents but cannot let code or build artifacts leave their network boundary. It also matters for platform teams that need centralized control over permissions, worker lifecycle, and scaling. For service automation, the important point is that the same agent workflow can be placed behind existing security and internal network constraints instead of forcing a hosted-only architecture. (`7b47084d1764` · neutral · operational_relevance; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- Cursor is an AI coding platform that can run cloud agents inside a customer’s own infrastructure. The agent gets an isolated machine with a terminal, browser, and desktop, while Cursor handles orchestration and model access. (`283560a6d28c` · neutral · short_description; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- - Self-hosted agents keep code, tool execution, and build artifacts inside the customer environment, which directly addresses security review and compliance blockers for enterprise adoption.
+- Each agent session gets its own isolated worker, which supports parallel autonomous work without sharing machines across sessions.
+- The deployment model is low-friction because workers connect outbound over HTTPS and do not require inbound ports, firewall changes, or VPN tunnels.
+- For larger fleets, Cursor provides a Helm chart, Kubernetes operator, and fleet-management API, which makes the product usable by platform teams rather than only individual developers. (`724380cbd182` · neutral · strengths; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- It runs cloud agents inside customer-owned infrastructure so execution can stay behind an internal network boundary. (`5f9ef58a0953` · supporting · core_capabilities[0]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- It gives each session an isolated remote machine with a terminal, browser, and full desktop for autonomous task execution. (`23cbb4d230ee` · supporting · core_capabilities[1]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- It supports multiple models, including Composer 2 and other frontier-lab models with custom agent harnesses. (`a9dc345bcbd1` · supporting · core_capabilities[2]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- It can be scaled with Kubernetes through a Helm chart and operator, or monitored through a fleet-management API. (`602b0eadfd93` · supporting · core_capabilities[3]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- "Today, we're making self-hosted cloud agents generally available. Self-hosted agents offer all the benefits of cloud agents with tighter security control: your codebase, tool execution, and build artifacts never leave your environment." (`95be9e8f34e2` · supporting · supporting_snippet; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- The source is a vendor announcement, so the security and reliability claims are not independently verified here. The article does not quantify latency, cost, failure modes, or the operational burden of running long-lived workers and large fleets. It also leaves open how secrets, telemetry, and audit boundaries are handled in practice. (`237a39405852` · uncertainty · weaknesses_limitations; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+
 ## Contradictions / tensions
 
 - The source is a vendor announcement, so the evidence is self-reported and not independently validated. It does not give enough detail to judge behavior on real repositories, failure modes, or how well benchmark gains translate into day-to-day coding workflows. (uncertainty; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
+- The source is a vendor announcement, so the security and reliability claims are not independently verified here. The article does not quantify latency, cost, failure modes, or the operational burden of running long-lived workers and large fleets. It also leaves open how secrets, telemetry, and audit boundaries are handled in practice. (uncertainty; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- The article also makes clear that this is a demanding system, not a simple feature toggle. It depends on client-side instrumentation, backend data pipelines, reward design, evals, and a fast deployment path; small teams may struggle to reproduce that stack. The piece does not provide enough detail to judge cost, reliability at scale, or how robust the system is against subtler manipulation over time. (uncertainty; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
 - The source is a single build narrative, so it does not establish how reliable Cursor is under repeated maintenance, conflicting instructions, or large-scale repo changes. The article also does not show guardrails for preventing incorrect schema edits or bad AI-generated page updates. (uncertainty; [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]])
 
 ## Related pages
 
+- Agents SDK
 - Claude Code
+- Copilot Tasks
 - GitHub MCP
 - Obsidian
 
 ## Sources
 
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
+- [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]]
 - [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]]
+- [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]]

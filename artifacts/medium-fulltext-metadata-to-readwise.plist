@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>WFWorkflowActions</key>
+	<array>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.gettext</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>139A55CA-3250-4E01-BAC9-785CBDB731A2</string>
+				<key>WFTextActionText</key>
+				<string>PASTE_READWISE_TOKEN</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.runjavascriptonwebpage</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>71A24AD8-7498-4F08-81DE-83D032C94D0A</string>
+				<key>WFInput</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>Type</key>
+						<string>ExtensionInput</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenAttachment</string>
+				</dict>
+				<key>WFJavaScript</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{24, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Text</string>
+								<key>OutputUUID</key>
+								<string>139A55CA-3250-4E01-BAC9-785CBDB731A2</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>const READWISE_TOKEN = "￼".trim();
+
+const content = selector =&gt; document.querySelector(selector)?.content?.trim() || "";
+const contents = selector =&gt; [...document.querySelectorAll(selector)]
+  .map(element =&gt; element.content?.trim())
+  .filter(Boolean);
+const unique = values =&gt; [...new Set(values.map(value =&gt; String(value).trim()).filter(Boolean))];
+
+const jsonLdNodes = [...document.querySelectorAll('script[type="application/ld+json"]')]
+  .flatMap(script =&gt; {
+    try {
+      const parsed = JSON.parse(script.textContent);
+      const nodes = Array.isArray(parsed) ? parsed : [parsed];
+      return nodes.flatMap(node =&gt; node?.["@graph"] || node);
+    } catch {
+      return [];
+    }
+  });
+
+const articleTypes = new Set(["Article", "NewsArticle", "BlogPosting", "ReportageNewsArticle"]);
+const articleData = jsonLdNodes.find(node =&gt; {
+  const types = Array.isArray(node?.["@type"]) ? node["@type"] : [node?.["@type"]];
+  return types.some(type =&gt; articleTypes.has(type));
+}) || {};
+
+const names = value =&gt; {
+  const entries = Array.isArray(value) ? value : value ? [value] : [];
+  return unique(entries.flatMap(entry =&gt; {
+    if (typeof entry === "string") return [entry];
+    return [entry?.name, entry?.givenName &amp;&amp; entry?.familyName
+      ? `${entry.givenName} ${entry.familyName}`
+      : ""];
+  }));
+};
+
+const imageUrl = value =&gt; {
+  const entry = Array.isArray(value) ? value[0] : value;
+  return typeof entry === "string" ? entry : entry?.url || entry?.contentUrl || "";
+};
+
+const isoDate = value =&gt; {
+  if (!value) return "";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "" : date.toISOString();
+};
+
+const canonical = document.querySelector('link[rel="canonical"]')?.href || location.href;
+const title = articleData.headline || content('meta[property="og:title"]') || document.title;
+const author = names(articleData.author).join(", ") ||
+  content('meta[name="author"]') ||
+  content('meta[name="parsely-author"]');
+const summary = articleData.description ||
+  content('meta[name="description"]') ||
+  content('meta[property="og:description"]') ||
+  content('meta[name="twitter:description"]');
+const publishedDate = isoDate(
+  articleData.datePublished ||
+  content('meta[property="article:published_time"]') ||
+  content('meta[name="parsely-pub-date"]') ||
+  document.querySelector("time[datetime]")?.dateTime
+);
+const coverImage = imageUrl(articleData.image) ||
+  content('meta[property="og:image"]') ||
+  content('meta[name="twitter:image"]') ||
+  content('meta[name="parsely-image-url"]');
+const publication = names(articleData.publisher).join(", ") ||
+  content('meta[property="og:site_name"]');
+
+const keywordValues = [
+  ...(Array.isArray(articleData.keywords)
+    ? articleData.keywords
+    : String(articleData.keywords || "").split(",")),
+  ...contents('meta[property="article:tag"]'),
+  ...content('meta[name="keywords"]').split(",")
+];
+const tags = unique(["medium", ...keywordValues]).slice(0, 20);
+
+if (!READWISE_TOKEN || READWISE_TOKEN === "PASTE_READWISE_TOKEN") {
+  completion("Readwise-Token fehlt. Öffne den Kurzbefehl und trage ihn in der ersten Text-Aktion ein.");
+} else {
+  const payload = {
+    url: canonical,
+    html: document.documentElement.outerHTML,
+    should_clean_html: true,
+    title,
+    category: "article",
+    location: "new",
+    saved_using: "iOS Safari Full HTML + Metadata"
+  };
+
+  if (author) payload.author = author;
+  if (summary) payload.summary = summary;
+  if (publishedDate) payload.published_date = publishedDate;
+  if (coverImage) payload.image_url = coverImage;
+  if (tags.length) payload.tags = tags;
+  if (publication) payload.notes = `Publication: ${publication}`;
+
+  fetch("https://readwise.io/api/v3/save/", {
+    method: "POST",
+    headers: {
+      "Authorization": `Token ${READWISE_TOKEN}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(async response =&gt; {
+    const text = await response.text();
+    if (!response.ok) {
+      completion(`Readwise-Fehler ${response.status}: ${text}`);
+      return;
+    }
+    completion(`Artikel mit Metadaten gespeichert.\nAutor: ${author || "nicht gefunden"}\nDatum: ${publishedDate || "nicht gefunden"}\nTags: ${tags.length}`);
+  })
+  .catch(error =&gt; completion(`Übertragung fehlgeschlagen: ${error.message}`));
+}</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.showresult</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict/>
+		</dict>
+	</array>
+	<key>WFWorkflowClientRelease</key>
+	<string>3.0</string>
+	<key>WFWorkflowClientVersion</key>
+	<string>1200</string>
+	<key>WFWorkflowHiddenInComplication</key>
+	<true/>
+	<key>WFWorkflowIcon</key>
+	<dict>
+		<key>WFWorkflowIconEndColor</key>
+		<integer>4282601983</integer>
+		<key>WFWorkflowIconGlyphNumber</key>
+		<integer>59765</integer>
+		<key>WFWorkflowIconStartColor</key>
+		<integer>4282601983</integer>
+	</dict>
+	<key>WFWorkflowImportQuestions</key>
+	<array>
+		<dict>
+			<key>ActionIndex</key>
+			<integer>0</integer>
+			<key>Category</key>
+			<string>Parameter</string>
+			<key>DefaultValue</key>
+			<string>PASTE_READWISE_TOKEN</string>
+			<key>ParameterKey</key>
+			<string>WFTextActionText</string>
+			<key>Text</key>
+			<string>Füge deinen Readwise API-Token ein. Nur die Zeichenfolge, ohne das Wort „Token“ und ohne Leerzeichen.</string>
+		</dict>
+	</array>
+	<key>WFWorkflowInputContentItemClasses</key>
+	<array>
+		<string>WFSafariWebPageContentItem</string>
+	</array>
+	<key>WFWorkflowMinimumClientVersion</key>
+	<integer>411</integer>
+	<key>WFWorkflowName</key>
+	<string>Medium mit Metadaten in Readwise</string>
+	<key>WFWorkflowTypes</key>
+	<array>
+		<string>ActionExtension</string>
+	</array>
+</dict>
+</plist>

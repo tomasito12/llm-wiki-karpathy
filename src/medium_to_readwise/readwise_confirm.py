@@ -14,31 +14,102 @@ READWISE_SUCCESS_PHRASES: tuple[str, ...] = (
     "added to readwise",
     "successfully saved",
     "saved!",
+    "already saved",
+    "already in reader",
+    "already in your library",
+    "in your library",
 )
+
+READWISE_EXTENSION_BAR_PHRASES: tuple[str, ...] = (
+    "open in reader",
+    "open in readwise",
+    "hide the extension bar",
+    "move the document",
+)
+
+READWISE_EXTENSION_SELECTORS: tuple[str, ...] = (
+    '[class*="readwise"]',
+    '[class*="Readwise"]',
+    '[id*="readwise"]',
+    '[class*="rwreader"]',
+    "[data-rw]",
+)
+
+VALID_READWISE_CONFIRM_MODES: frozenset[str] = frozenset(
+    {"text", "extension", "relaxed"},
+)
+DEFAULT_READWISE_CONFIRM_MODE = "relaxed"
+
+
+def normalize_readwise_confirm_mode(mode: str) -> str:
+    """Return a supported Readwise confirmation mode."""
+    normalized = mode.strip().lower()
+    if normalized not in VALID_READWISE_CONFIRM_MODES:
+        supported = ", ".join(sorted(VALID_READWISE_CONFIRM_MODES))
+        msg = f"Unsupported Readwise confirm mode: {mode}. Use one of: {supported}"
+        raise ValueError(msg)
+    return normalized
 
 
 def page_text_indicates_readwise_save(text: str) -> bool:
     """Return whether visible page text indicates a successful Readwise save."""
     lowered = text.lower()
-    return any(phrase in lowered for phrase in READWISE_SUCCESS_PHRASES)
+    if any(phrase in lowered for phrase in READWISE_SUCCESS_PHRASES):
+        return True
+    return any(phrase in lowered for phrase in READWISE_EXTENSION_BAR_PHRASES)
 
 
-async def wait_for_readwise_save(page: Page, *, timeout_seconds: float = 15.0) -> bool:
-    """Poll the page until Readwise save confirmation becomes visible."""
+async def detect_readwise_extension_ui(page: Page) -> bool:
+    """Return whether Readwise extension UI is visible inside the page."""
+    for selector in READWISE_EXTENSION_SELECTORS:
+        locator = page.locator(selector)
+        try:
+            if await locator.count() > 0 and await locator.first.is_visible():
+                return True
+        except Exception:
+            continue
+    return False
+
+
+async def detect_readwise_save_confirmation(
+    page: Page,
+    *,
+    mode: str = DEFAULT_READWISE_CONFIRM_MODE,
+) -> bool:
+    """Return whether the current page indicates a successful Readwise save."""
+    confirm_mode = normalize_readwise_confirm_mode(mode)
+    for phrase in (*READWISE_SUCCESS_PHRASES, *READWISE_EXTENSION_BAR_PHRASES):
+        locator = page.get_by_text(phrase, exact=False)
+        try:
+            if await locator.count() > 0 and await locator.first.is_visible():
+                return True
+        except Exception:
+            continue
+    if confirm_mode in {"extension", "relaxed"}:
+        if await detect_readwise_extension_ui(page):
+            return True
+    try:
+        body_text = await page.locator("body").inner_text()
+    except Exception:
+        body_text = ""
+    return page_text_indicates_readwise_save(body_text)
+
+
+async def wait_for_readwise_save(
+    page: Page,
+    *,
+    timeout_seconds: float = 15.0,
+    mode: str = DEFAULT_READWISE_CONFIRM_MODE,
+    trust_after_timeout: bool = False,
+) -> tuple[bool, str]:
+    """Poll until Readwise save confirmation is visible or relaxed mode times out."""
+    confirm_mode = normalize_readwise_confirm_mode(mode)
+    allow_trust = trust_after_timeout or confirm_mode == "relaxed"
     deadline = monotonic() + timeout_seconds
     while monotonic() < deadline:
-        for phrase in READWISE_SUCCESS_PHRASES:
-            locator = page.get_by_text(phrase, exact=False)
-            try:
-                if await locator.count() > 0 and await locator.first.is_visible():
-                    return True
-            except Exception:
-                continue
-        try:
-            body_text = await page.locator("body").inner_text()
-        except Exception:
-            body_text = ""
-        if page_text_indicates_readwise_save(body_text):
-            return True
+        if await detect_readwise_save_confirmation(page, mode=confirm_mode):
+            return True, "visible"
         await asyncio.sleep(0.5)
-    return False
+    if allow_trust:
+        return True, "relaxed_timeout"
+    return False, "none"

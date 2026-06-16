@@ -6,14 +6,17 @@ category: topic
 tags:
 - ai-evaluation
 - ai-governance
+- auditability
+- verification-systems
 first_seen: '2026-05-09'
-last_seen: '2026-05-09'
-source_count: 1
-evidence_count: 8
+last_seen: '2026-06-10'
+source_count: 2
+evidence_count: 15
 source_ids:
 - ai-creates-a-fearsome-cold-war-style-dilemma-01krh9atdn780hyc3ess9ff903
+- from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs
 value_level: high
-confidence: 0.97
+confidence: 0.96
 synthesis_state: stage1-placeholder
 ---
 
@@ -30,6 +33,9 @@ Verifiable AI governance uses common tests, audits, inspections, and other evide
 - Verification can focus on model safety tests, not just general policy statements.
 - Sharing results may require stronger mechanisms such as inspections or third-party monitoring.
 - Safety data can be hard to separate from information that matters to development, so disclosure design is itself a governance problem.
+- Model evaluation should be paired with human review for critical outputs.
+- Privacy and security controls need to be part of the first rollout, not an afterthought.
+- Governance can increase adoption if it helps teams move faster with confidence.
 
 ## Operational Insight
 
@@ -54,6 +60,16 @@ Design governance so claims can be checked with the minimum necessary exposure: 
 - Safety data can be hard to separate from information that matters to development, so disclosure design is itself a governance problem. (`adb488ff4065` · supporting · key_points[3]; [[sources/ai-creates-a-fearsome-cold-war-style-dilemma-01krh9atdn780hyc3ess9ff903|AI creates a fearsome cold-war-style dilemma]])
 - “Second, America and China could agree on how to test the safety of models. Without sharing their findings, both sides could adhere to common measures of dangerous behaviour or ways to spot motives that do not align with those of their human creators.” (`668b0e93ad01` · supporting · supporting_snippet; [[sources/ai-creates-a-fearsome-cold-war-style-dilemma-01krh9atdn780hyc3ess9ff903|AI creates a fearsome cold-war-style dilemma]])
 
+### From data to decisions: how LSEG is scaling trusted AI (2026-06-10)
+
+- Verifiable AI governance is the practice of making AI use safer and more trustworthy through explicit evaluation, human review, and data controls. Instead of relying on broad principles alone, teams build concrete checks into the workflow so outputs can be reviewed, constrained, and audited where it matters. This approach is especially important in regulated or customer-facing environments where model mistakes have real operational consequences. Governance is most useful when it is designed as an enabler for scale, not as a separate compliance layer that arrives after deployment. (`c1859ef69a7b` · neutral · knowledge_summary; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
+- Use governance artifacts as part of the delivery system: evaluation frameworks, human-in-the-loop review, and privacy/security controls should be embedded before broad rollout, especially for outputs that influence customers or regulated decisions. (`207ad81677a2` · neutral · operational_insight; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
+- This pattern matters long term because enterprise AI systems often fail at the boundary between model capability and operational trust. Practical governance is what lets organizations scale AI into research, support, and product workflows without turning every output into an unsupervised decision. (`70089a27bdd3` · neutral · relevance_note; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
+- Model evaluation should be paired with human review for critical outputs. (`665a4318c425` · supporting · key_points[0]; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
+- Privacy and security controls need to be part of the first rollout, not an afterthought. (`a43561421c0a` · supporting · key_points[1]; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
+- Governance can increase adoption if it helps teams move faster with confidence. (`07dc1c9b49d8` · supporting · key_points[2]; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
+- "At the same time, LSEG embedded governance from the outset. This included model evaluation frameworks, human-in-the-loop review for critical outputs, and strict data privacy and security controls." (`51bb9e9cdbe0` · supporting · supporting_snippet; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
+
 ## Contradictions / tensions
 
 No contradictions captured in current sources.
@@ -67,3 +83,4 @@ No contradictions captured in current sources.
 ## Sources
 
 - [[sources/ai-creates-a-fearsome-cold-war-style-dilemma-01krh9atdn780hyc3ess9ff903|AI creates a fearsome cold-war-style dilemma]]
+- [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]]

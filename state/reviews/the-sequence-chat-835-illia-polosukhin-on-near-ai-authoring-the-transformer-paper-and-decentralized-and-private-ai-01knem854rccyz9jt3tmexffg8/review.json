@@ -1,0 +1,1132 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-09T18:43:16+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DovhMLNqD3V0pJLniNtTsLRsCdtxG",
+          "token_usage": {
+            "completion_tokens": 193,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6633,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6826
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DovhP2CPsnC4yqlZ7xt7Aq1mgmlWR",
+          "token_usage": {
+            "completion_tokens": 1200,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6243,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7443
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-interview_or_transcript",
+          "request_id": "chatcmpl-DovhZyKimnEbqxqwRqhNKmRq1O4jj",
+          "route": "interview_or_transcript",
+          "token_usage": {
+            "completion_tokens": 2727,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 19930,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 22657
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-DovhZyKimnEbqxqwRqhNKmRq1O4jj",
+    "token_usage": {
+      "completion_tokens": 4120,
+      "prompt_tokens": 32806,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 36926
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 6
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "assessed_as_of": "2026-04-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "FHE and similar approaches are too slow for a practical privacy stack at this stage."
+        ],
+        "durability_estimate": "medium_term",
+        "evidence_snippets": [
+          "\"Currently TEEs are the only feasible solution. We use MPC as a component of our TEE setup to ensure that there is a robust key generation process that is not dependent on an individual machine or specific hardware provider. This setup also allows users to control their encryption keys. FHE and similar approaches are way too slow from a performance perspective.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "TEEs are the practical privacy layer for AI workloads as of 2026-04-02",
+        "insight_type": "privacy_security",
+        "mentioned_entities": [
+          "NEAR AI",
+          "MPC",
+          "FHE",
+          "Trusted Execution Environments"
+        ],
+        "operational_relevance": "Bias privacy architecture toward TEE-backed confidential compute for inference and key handling. Treat FHE/MPC as supporting components or long-horizon options rather than the core runtime for latency-sensitive serving.",
+        "primary_tag": "execution-environments",
+        "proposed_tags": [
+          "execution-environments",
+          "inference-systems",
+          "infrastructure"
+        ],
+        "secondary_tag": "inference-systems",
+        "service_automation_relevance": "Directly relevant for service automation that handles sensitive user data: chat histories, account details, and enterprise support cases can be routed through confidential inference designs if latency and hardware trust assumptions are acceptable.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "privacy-controls-for-ai-products",
+        "suggested_new_tags": [
+          "privacy-controls-for-ai-products"
+        ],
+        "summary": "Polosukhin says trusted execution environments are the only feasible solution for private AI at this point. He adds that FHE and similar approaches are too slow for performance-sensitive inference and that MPC is being used as a component of the TEE setup for key generation. The operational takeaway is that private AI infrastructure should be designed around TEEs first, not around cryptographic schemes that are still too slow for production use.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-02, this is a concrete boundary on private-AI architecture: if you need usable latency, TEEs are the path he considers workable. The claim is opinionated, not benchmark-backed, but it is still useful as a deployment filter for teams choosing between TEE-based systems and slower cryptographic alternatives.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Fine tuning would be the next step, and pretraining beyond that, but multi-node confidential pretraining is not yet effective."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"At NEAR AI we are building confidential computing infrastructure that should work for the full workflow. That said, currently there are limitations to how confidential computing works for multi-node systems. Which means that it is very ineffective to do pretraining. We have started by offering confidential inference because it\u2019s the most direct and has immediate value for customers, from enterprises to privacy-focused prosumers.\"",
+          "\"Confidential inference also is not limited to open weight models. Our platform can host closed weight models in such a way that neither hardware providers or consumers are accessing the weights directly, while the model builders don\u2019t get access to consumer data.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Confidential inference is the first useful entry point for private AI",
+        "insight_type": "service_automation",
+        "mentioned_entities": [
+          "NEAR AI",
+          "confidential computing",
+          "NEAR AI Cloud"
+        ],
+        "operational_relevance": "Design roadmaps around confidential inference first, then fine-tuning, then pretraining only if multi-node confidentiality becomes viable. For enterprise deployments, this suggests focusing on serving-time privacy guarantees and key ownership workflows before attempting full private training pipelines.",
+        "primary_tag": "inference-systems",
+        "proposed_tags": [
+          "inference-systems",
+          "enterprise-ai",
+          "serving-infrastructure"
+        ],
+        "secondary_tag": "enterprise-ai",
+        "service_automation_relevance": "Strongly relevant for support automation and agent assistants that must protect customer data. A confidential inference layer can support private chat, private knowledge access, and controlled access to model weights while limiting exposure on both sides of the interaction.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "privacy-controls-for-ai-products",
+        "suggested_new_tags": [
+          "privacy-controls-for-ai-products"
+        ],
+        "summary": "NEAR AI is described as building confidential computing for the full model lifecycle, but Polosukhin says multi-node limits make private pretraining ineffective for now. Because of that, the first product focus is confidential inference, which he says has immediate value for enterprises and privacy-focused prosumers. He also notes that the platform can host closed-weight models without exposing weights to providers or consumers, while keeping model builders away from consumer data.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-02, this is a practical prioritization rule for private-AI product strategy: start with inference, not pretraining. It is especially relevant for teams trying to monetize privacy claims without waiting for cluster-scale confidential training to mature.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Distributed model training is not compelling unless it beats centralized alternatives on the metric users actually care about."
+        ],
+        "durability_estimate": "medium_term",
+        "evidence_snippets": [
+          "\"Things that definitely work today: data collection and inference compute aggregation. Various tooling like verifiable benchmarks and incentivizing RL environments & other components of the stack also provide value.\"",
+          "\"One practical challenge for these is that most people don\u2019t care if you can train a model in a distributed way. They actually just want the best model.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Pragmatic decentralized AI favors data, inference aggregation, and verification over distributed training",
+        "insight_type": "infrastructure",
+        "mentioned_entities": [
+          "Prime Intellect",
+          "Nous",
+          "Pluralis"
+        ],
+        "operational_relevance": "Prioritize infrastructure that improves data acquisition, aggregated inference capacity, benchmark verifiability, and rewardable training environments. Treat distributed model training as a specialized technique that must clear a high bar on performance and demand.",
+        "primary_tag": "infrastructure",
+        "proposed_tags": [
+          "infrastructure",
+          "verification-systems",
+          "ai-evaluation",
+          "inference-systems"
+        ],
+        "secondary_tag": "verification-systems",
+        "service_automation_relevance": "Indirect but relevant: service systems can borrow the same logic by emphasizing measurable task completion, verification, and incentive design instead of celebrating distributed architecture for its own sake.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "Polosukhin says the pieces of decentralized AI that work today are practical ones: data collection, inference compute aggregation, verifiable benchmarks, and incentivized RL environments. He is skeptical that distributed training is the main value proposition because most users care about the best model, not where it was trained. The useful takeaway is that decentralized AI should be evaluated by whether it improves concrete infrastructure tasks, not by whether it sounds decentralized.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-02, this is a useful filter for separating durable infrastructure work from decentralization theater. It suggests that teams building in this space should optimize for measurable utility and verification rather than treating distributed training as the end goal.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "The agent harness will change how people interact with computing in general."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"There is definitely a growing understanding that the harness is as important as the model. There was recently an example that improved a smaller model\u2019s performance on coding tasks by 10x by just changing how it was editing files. I think the agent harness will change how we interact with computing in general.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "The execution harness can matter as much as the model",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "OpenClaw"
+        ],
+        "operational_relevance": "Focus on file operations, tool boundaries, and execution environments when improving agent performance. For coding or workflow agents, changes to the harness may produce larger gains than model swaps, so evaluation should isolate harness effects from model effects.",
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "coding-agents"
+        ],
+        "secondary_tag": "coding-agents",
+        "service_automation_relevance": "Highly relevant for chatbots and voicebots: the surrounding workflow, handoffs, and tool access can determine service quality as much as the language model. Better harness design may improve resolution rates and reduce brittle behavior in customer-facing automation.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "harness-engineering",
+        "suggested_new_tags": [
+          "harness-engineering",
+          "agent-reliability"
+        ],
+        "summary": "Across the interview, Polosukhin returns to the idea that the harness around a model is crucial. He points to examples where a smaller model improved coding performance by 10x just by changing how it edited files, and he says the agent harness will change how people interact with computing. The core point is that agent reliability and usefulness can be dominated by workflow design, tool discipline, and execution context rather than parameter count alone.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-02, this is one of the most reusable engineering lessons in the transcript. It supports investing in orchestration, tool use, and environment design as first-class product surfaces, especially for local and privacy-preserving agents.",
+        "wiki_worthiness": "strong_candidate"
+      },
+      {
+        "assessed_as_of": "2026-04-02",
+        "confidence": "high",
+        "contrarian_or_speculative_claims": [
+          "Most commerce will happen via agents rather than as a direct user-facing UX.",
+          "Agents and organizations will increasingly use blockchains as trust rails for commerce."
+        ],
+        "durability_estimate": "long_term",
+        "evidence_snippets": [
+          "\"An intent is a declaration of a desired outcome with constraints.\"",
+          "\"A few weeks ago we also launched an expansion called Agent Market where users and agents can post natural language requests for various kinds of information or work. Those are matched to AI agents for fulfillment.\""
+        ],
+        "evidence_type": null,
+        "insight_title": "Intents are a declarative interface for cross-chain and agent commerce",
+        "insight_type": "orchestration",
+        "mentioned_entities": [
+          "NEAR Intents",
+          "CrossPay",
+          "Zodl",
+          "Agent Market"
+        ],
+        "operational_relevance": "For workflow and payment design, treat intents as a declarative abstraction over routing, matching, and settlement. This can simplify cross-chain interactions, agent marketplaces, and task fulfillment systems by replacing imperative steps with constraint-based requests.",
+        "primary_tag": "agent-orchestration",
+        "proposed_tags": [
+          "agent-orchestration",
+          "workflow-design",
+          "multi-agent-systems"
+        ],
+        "secondary_tag": "workflow-design",
+        "service_automation_relevance": "Relevant to support and commerce automation because it frames requests as outcomes rather than scripts. That can reduce user friction in complex service flows where an assistant needs to coordinate multiple systems, assets, or counterparties.",
+        "suggested_destinations": [
+          "topics/"
+        ],
+        "suggested_new_tag": "intent-driven-commerce-interfaces",
+        "suggested_new_tags": [
+          "intent-driven-commerce-interfaces"
+        ],
+        "summary": "NEAR Intents is described as a system where a user declares a desired outcome with constraints, and matching logic finds someone who can fulfill it at the right cost and requirements. Polosukhin says this began with crypto-to-crypto transfers, expanded into wallet interactions like CrossPay, and now extends to Agent Market for natural-language work requests. The reusable idea is that intent-based interfaces compress complex multi-step commerce into outcome declarations and matching.",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-04-02, this is a durable pattern for agent-native commerce and payments. It suggests a product shape where users specify outcomes instead of procedures, and where matching, settlement, and fulfillment are pushed into infrastructure.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "primary_evidence_type": "expert_opinion",
+      "reasoning": [
+        "Claims are primarily Polosukhin's judgments and predictions about AI, privacy, decentralization, and agents.",
+        "The piece includes first-person product context from NEAR AI, but most substantive statements are strategic interpretation rather than measured results.",
+        "No formal benchmarks, experiments, or citations are provided in the transcript."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This interview is about how one of the transformer paper\u2019s coauthors thinks about AI after the model itself. He says the most useful ideas today are not just bigger models, but better infrastructure around them: private execution, decentralized coordination, and agent-friendly payment rails. The core privacy answer in the piece is trusted execution environments, not fully homomorphic encryption. The core decentralization answer is more modest: data sharing, inference aggregation, and verification tools matter more than distributed training hype. He also argues that \u201cintents\u201d can make wallets and agents work through desired outcomes instead of step-by-step commands.",
+      "assessed_as_of": "2026-04-02",
+      "contradictions_and_skepticism": "Several claims are strong opinions presented without empirical backing, especially that TEEs are the only feasible privacy path and that FHE is too slow for some time. The interview also assumes users will not value decentralized training unless it improves raw performance, which may be true for many buyers but is not demonstrated here. The idea that blockchains are naturally the easiest rails for agents is plausible, but the transcript does not compare them against other machine-payment systems or identity layers. The predictions about nationalization proposals for AI labs and agent-driven global trade are provocative but remain speculative.",
+      "key_insights": [
+        "Trusted execution environments are presented as the only practical privacy layer for AI workloads as of 2026-04-02; fully homomorphic encryption is described as too slow.",
+        "Confidential inference is the first commercially useful entry point for private AI because multi-node confidential pretraining is still limited.",
+        "In decentralized AI, the interview favors pragmatic components like data collection, inference aggregation, and verifiable benchmarks over distributed training as the headline use case.",
+        "Polosukhin treats blockchains as machine-native trust rails for agents because they already solve payment, Sybil resistance, reputation, and multi-party confirmation problems.",
+        "The interview\u2019s recurring strategic claim is that the execution harness can matter as much as the model, especially for local and privacy-preserving agents."
+      ],
+      "limitations_and_open_questions": "The interview offers no benchmarks, cost numbers, latency measurements, or failure-mode analysis for TEEs, MPC, confidential inference, or NEAR Intents. Claims about \u201cthe only feasible solution\u201d for privacy and \u201cbest model\u201d incentives are judgments, not comparative evaluations. Multi-node confidential computing is acknowledged as limited, but the exact technical constraints, security assumptions, and roadmap for confidential pretraining are not detailed. The discussion of decentralized AI mentions early signals and recent initiatives, but does not establish durability or adoption. The prediction that agents will facilitate global trade and pay via stablecoins is speculative and unsupported by evidence in the transcript.",
+      "sources": [
+        "https://thesequence.substack.com/p/the-sequence-chat-835-illia-polosukhin"
+      ],
+      "summary": "Illia Polosukhin argues that the transformer paper\u2019s biggest legacy is not a specific modality trick but the broad usefulness of attention and the continued importance of scale. He says he did not anticipate attention extending cleanly beyond text, and he is still looking for a better answer to data efficiency and the learning process itself. On decentralized AI, he says the pieces that work today are practical ones: data collection, inference compute aggregation, verifiable benchmarks, incentivized RL environments, and some early autoresearch experiments. He is skeptical of distributed model training as a primary goal because users mostly care about the best model, not where it was trained, and because open-source/verifiability benefits have not yet outweighed performance. For privacy, he says trusted execution environments are the only feasible path for now; fully homomorphic encryption and similar methods are still too slow, and confidential inference is the first useful product because multi-node confidential pretraining is limited. He also frames NEAR Intents as a declarative matching layer for outcomes across chains and agents, and argues that blockchains are the easiest trust rail for machine-to-machine commerce because they already handle machine-native payments, Sybil resistance, reputation, and multi-party confirmation. Across the interview, he returns to one recurring theme: the harness, not just the model, matters, especially for local agents and privacy-preserving assistants. As of 2026-04-02, the piece is most useful as a practitioner\u2019s map of where decentralization and private-AI infrastructure seem real versus where they remain aspirational.",
+      "why_it_matters": "The piece is useful because it separates durable infrastructure ideas from more speculative decentralized-AI rhetoric. Polosukhin is explicit that the transformer story is still about scale plus attention, but he also says the field has not solved data efficiency or a better learning procedure, which keeps the door open for post-next-token training changes. On decentralized AI, the article is narrowly practical: data collection, inference compute aggregation, verifiable benchmarks, and incentivized environments are the parts he says work, while distributed training is framed as hard and not obviously demanded by users. That makes the interview relevant as a filter for what to build around AI models rather than what to claim about model sovereignty. The privacy discussion is similarly concrete: he says TEEs are the only feasible option for now, uses MPC as a key-management component, and treats confidential inference as the first real product, with fine-tuning and pretraining deferred because of multi-node limits. The NEAR Intents discussion adds a clean mental model for agent commerce: declare an outcome, match providers, and settle across heterogeneous networks. As of 2026-04-02, the article is actionable mainly as a design compass for private inference, agent harnesses, and intent-based coordination; it is less useful as evidence that distributed training or FHE is ready for broad adoption. For voice, meetings, and back-office-style automation, the interview\u2019s most relevant point is that agent harnesses and machine-native payment rails may matter more than raw model size when agents are expected to carry out end-to-end tasks."
+    },
+    "source_type_detection": {
+      "confidence": 0.99,
+      "detected_source_type": "interview_or_transcript",
+      "reasoning": [
+        "Structured as a long-form Q&A with interviewer prompts and direct answers from Illia Polosukhin.",
+        "Primary content is interview dialogue rather than a single narrative article or list roundup.",
+        "Multiple topic areas are discussed conversationally across the transcript."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [],
+    "interview_insights": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "FHE and similar approaches are too slow for a practical privacy stack at this stage."
+          ],
+          "durability_estimate": "medium_term",
+          "evidence_snippets": [
+            "\"Currently TEEs are the only feasible solution. We use MPC as a component of our TEE setup to ensure that there is a robust key generation process that is not dependent on an individual machine or specific hardware provider. This setup also allows users to control their encryption keys. FHE and similar approaches are way too slow from a performance perspective.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "TEEs are the practical privacy layer for AI workloads as of 2026-04-02",
+          "insight_type": "privacy_security",
+          "mentioned_entities": [
+            "NEAR AI",
+            "MPC",
+            "FHE",
+            "Trusted Execution Environments"
+          ],
+          "operational_relevance": "Bias privacy architecture toward TEE-backed confidential compute for inference and key handling. Treat FHE/MPC as supporting components or long-horizon options rather than the core runtime for latency-sensitive serving.",
+          "primary_tag": "execution-environments",
+          "proposed_tags": [
+            "execution-environments",
+            "inference-systems",
+            "infrastructure"
+          ],
+          "secondary_tag": "inference-systems",
+          "service_automation_relevance": "Directly relevant for service automation that handles sensitive user data: chat histories, account details, and enterprise support cases can be routed through confidential inference designs if latency and hardware trust assumptions are acceptable.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "privacy-controls-for-ai-products",
+          "suggested_new_tags": [
+            "privacy-controls-for-ai-products"
+          ],
+          "summary": "Polosukhin says trusted execution environments are the only feasible solution for private AI at this point. He adds that FHE and similar approaches are too slow for performance-sensitive inference and that MPC is being used as a component of the TEE setup for key generation. The operational takeaway is that private AI infrastructure should be designed around TEEs first, not around cryptographic schemes that are still too slow for production use.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-02, this is a concrete boundary on private-AI architecture: if you need usable latency, TEEs are the path he considers workable. The claim is opinionated, not benchmark-backed, but it is still useful as a deployment filter for teams choosing between TEE-based systems and slower cryptographic alternatives.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "082538e9-b032-43bd-bc00-e7a74bd5ff7b",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "FHE and similar approaches are too slow for a practical privacy stack at this stage."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"Currently TEEs are the only feasible solution. We use MPC as a component of our TEE setup to ensure that there is a robust key generation process that is not dependent on an individual machine or specific hardware provider. This setup also allows users to control their encryption keys. FHE and similar approaches are way too slow from a performance perspective.\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "NEAR AI",
+              "MPC",
+              "FHE",
+              "Trusted Execution Environments"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "execution-environments",
+            "inference-systems",
+            "infrastructure"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Fine tuning would be the next step, and pretraining beyond that, but multi-node confidential pretraining is not yet effective."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"At NEAR AI we are building confidential computing infrastructure that should work for the full workflow. That said, currently there are limitations to how confidential computing works for multi-node systems. Which means that it is very ineffective to do pretraining. We have started by offering confidential inference because it\u2019s the most direct and has immediate value for customers, from enterprises to privacy-focused prosumers.\"",
+            "\"Confidential inference also is not limited to open weight models. Our platform can host closed weight models in such a way that neither hardware providers or consumers are accessing the weights directly, while the model builders don\u2019t get access to consumer data.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Confidential inference is the first useful entry point for private AI",
+          "insight_type": "service_automation",
+          "mentioned_entities": [
+            "NEAR AI",
+            "confidential computing",
+            "NEAR AI Cloud"
+          ],
+          "operational_relevance": "Design roadmaps around confidential inference first, then fine-tuning, then pretraining only if multi-node confidentiality becomes viable. For enterprise deployments, this suggests focusing on serving-time privacy guarantees and key ownership workflows before attempting full private training pipelines.",
+          "primary_tag": "inference-systems",
+          "proposed_tags": [
+            "inference-systems",
+            "enterprise-ai",
+            "serving-infrastructure"
+          ],
+          "secondary_tag": "enterprise-ai",
+          "service_automation_relevance": "Strongly relevant for support automation and agent assistants that must protect customer data. A confidential inference layer can support private chat, private knowledge access, and controlled access to model weights while limiting exposure on both sides of the interaction.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "privacy-controls-for-ai-products",
+          "suggested_new_tags": [
+            "privacy-controls-for-ai-products"
+          ],
+          "summary": "NEAR AI is described as building confidential computing for the full model lifecycle, but Polosukhin says multi-node limits make private pretraining ineffective for now. Because of that, the first product focus is confidential inference, which he says has immediate value for enterprises and privacy-focused prosumers. He also notes that the platform can host closed-weight models without exposing weights to providers or consumers, while keeping model builders away from consumer data.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-02, this is a practical prioritization rule for private-AI product strategy: start with inference, not pretraining. It is especially relevant for teams trying to monetize privacy claims without waiting for cluster-scale confidential training to mature.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "eb79345a-fbb4-4c47-a4a8-a6a88e75e3d6",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Fine tuning would be the next step, and pretraining beyond that, but multi-node confidential pretraining is not yet effective."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"At NEAR AI we are building confidential computing infrastructure that should work for the full workflow. That said, currently there are limitations to how confidential computing works for multi-node systems. Which means that it is very ineffective to do pretraining. We have started by offering confidential inference because it\u2019s the most direct and has immediate value for customers, from enterprises to privacy-focused prosumers.\"",
+              "\"Confidential inference also is not limited to open weight models. Our platform can host closed weight models in such a way that neither hardware providers or consumers are accessing the weights directly, while the model builders don\u2019t get access to consumer data.\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "NEAR AI",
+              "confidential computing",
+              "NEAR AI Cloud"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "inference-systems",
+            "enterprise-ai",
+            "serving-infrastructure"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Distributed model training is not compelling unless it beats centralized alternatives on the metric users actually care about."
+          ],
+          "durability_estimate": "medium_term",
+          "evidence_snippets": [
+            "\"Things that definitely work today: data collection and inference compute aggregation. Various tooling like verifiable benchmarks and incentivizing RL environments & other components of the stack also provide value.\"",
+            "\"One practical challenge for these is that most people don\u2019t care if you can train a model in a distributed way. They actually just want the best model.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Pragmatic decentralized AI favors data, inference aggregation, and verification over distributed training",
+          "insight_type": "infrastructure",
+          "mentioned_entities": [
+            "Prime Intellect",
+            "Nous",
+            "Pluralis"
+          ],
+          "operational_relevance": "Prioritize infrastructure that improves data acquisition, aggregated inference capacity, benchmark verifiability, and rewardable training environments. Treat distributed model training as a specialized technique that must clear a high bar on performance and demand.",
+          "primary_tag": "infrastructure",
+          "proposed_tags": [
+            "infrastructure",
+            "verification-systems",
+            "ai-evaluation",
+            "inference-systems"
+          ],
+          "secondary_tag": "verification-systems",
+          "service_automation_relevance": "Indirect but relevant: service systems can borrow the same logic by emphasizing measurable task completion, verification, and incentive design instead of celebrating distributed architecture for its own sake.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "Polosukhin says the pieces of decentralized AI that work today are practical ones: data collection, inference compute aggregation, verifiable benchmarks, and incentivized RL environments. He is skeptical that distributed training is the main value proposition because most users care about the best model, not where it was trained. The useful takeaway is that decentralized AI should be evaluated by whether it improves concrete infrastructure tasks, not by whether it sounds decentralized.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-02, this is a useful filter for separating durable infrastructure work from decentralization theater. It suggests that teams building in this space should optimize for measurable utility and verification rather than treating distributed training as the end goal.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "555599c6-85aa-4555-a476-388760165142",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Distributed model training is not compelling unless it beats centralized alternatives on the metric users actually care about."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"Things that definitely work today: data collection and inference compute aggregation. Various tooling like verifiable benchmarks and incentivizing RL environments & other components of the stack also provide value.\"",
+              "\"One practical challenge for these is that most people don\u2019t care if you can train a model in a distributed way. They actually just want the best model.\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Prime Intellect",
+              "Nous",
+              "Pluralis"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "infrastructure",
+            "verification-systems",
+            "ai-evaluation",
+            "inference-systems"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "The agent harness will change how people interact with computing in general."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"There is definitely a growing understanding that the harness is as important as the model. There was recently an example that improved a smaller model\u2019s performance on coding tasks by 10x by just changing how it was editing files. I think the agent harness will change how we interact with computing in general.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "The execution harness can matter as much as the model",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "OpenClaw"
+          ],
+          "operational_relevance": "Focus on file operations, tool boundaries, and execution environments when improving agent performance. For coding or workflow agents, changes to the harness may produce larger gains than model swaps, so evaluation should isolate harness effects from model effects.",
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "coding-agents"
+          ],
+          "secondary_tag": "coding-agents",
+          "service_automation_relevance": "Highly relevant for chatbots and voicebots: the surrounding workflow, handoffs, and tool access can determine service quality as much as the language model. Better harness design may improve resolution rates and reduce brittle behavior in customer-facing automation.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "harness-engineering",
+          "suggested_new_tags": [
+            "harness-engineering",
+            "agent-reliability"
+          ],
+          "summary": "Across the interview, Polosukhin returns to the idea that the harness around a model is crucial. He points to examples where a smaller model improved coding performance by 10x just by changing how it edited files, and he says the agent harness will change how people interact with computing. The core point is that agent reliability and usefulness can be dominated by workflow design, tool discipline, and execution context rather than parameter count alone.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-02, this is one of the most reusable engineering lessons in the transcript. It supports investing in orchestration, tool use, and environment design as first-class product surfaces, especially for local and privacy-preserving agents.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "bdf64678-ece4-4148-b718-4324cf5e892b",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "The agent harness will change how people interact with computing in general."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"There is definitely a growing understanding that the harness is as important as the model. There was recently an example that improved a smaller model\u2019s performance on coding tasks by 10x by just changing how it was editing files. I think the agent harness will change how we interact with computing in general.\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "OpenClaw"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "coding-agents"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-04-02",
+          "confidence": "high",
+          "contrarian_or_speculative_claims": [
+            "Most commerce will happen via agents rather than as a direct user-facing UX.",
+            "Agents and organizations will increasingly use blockchains as trust rails for commerce."
+          ],
+          "durability_estimate": "long_term",
+          "evidence_snippets": [
+            "\"An intent is a declaration of a desired outcome with constraints.\"",
+            "\"A few weeks ago we also launched an expansion called Agent Market where users and agents can post natural language requests for various kinds of information or work. Those are matched to AI agents for fulfillment.\""
+          ],
+          "evidence_type": null,
+          "insight_title": "Intents are a declarative interface for cross-chain and agent commerce",
+          "insight_type": "orchestration",
+          "mentioned_entities": [
+            "NEAR Intents",
+            "CrossPay",
+            "Zodl",
+            "Agent Market"
+          ],
+          "operational_relevance": "For workflow and payment design, treat intents as a declarative abstraction over routing, matching, and settlement. This can simplify cross-chain interactions, agent marketplaces, and task fulfillment systems by replacing imperative steps with constraint-based requests.",
+          "primary_tag": "agent-orchestration",
+          "proposed_tags": [
+            "agent-orchestration",
+            "workflow-design",
+            "multi-agent-systems"
+          ],
+          "secondary_tag": "workflow-design",
+          "service_automation_relevance": "Relevant to support and commerce automation because it frames requests as outcomes rather than scripts. That can reduce user friction in complex service flows where an assistant needs to coordinate multiple systems, assets, or counterparties.",
+          "suggested_destinations": [
+            "topics/"
+          ],
+          "suggested_new_tag": "intent-driven-commerce-interfaces",
+          "suggested_new_tags": [
+            "intent-driven-commerce-interfaces"
+          ],
+          "summary": "NEAR Intents is described as a system where a user declares a desired outcome with constraints, and matching logic finds someone who can fulfill it at the right cost and requirements. Polosukhin says this began with crypto-to-crypto transfers, expanded into wallet interactions like CrossPay, and now extends to Agent Market for natural-language work requests. The reusable idea is that intent-based interfaces compress complex multi-step commerce into outcome declarations and matching.",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-04-02, this is a durable pattern for agent-native commerce and payments. It suggests a product shape where users specify outcomes instead of procedures, and where matching, settlement, and fulfillment are pushed into infrastructure.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "3a3b656e-b7c8-4373-b7f9-232bfc32ae51",
+        "proposal_status": "approved",
+        "sections": {
+          "confidence": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "contrarian_or_speculative_claims": {
+            "final_list": null,
+            "llm_list": [
+              "Most commerce will happen via agents rather than as a direct user-facing UX.",
+              "Agents and organizations will increasingly use blockchains as trust rails for commerce."
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "durability_estimate": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"An intent is a declaration of a desired outcome with constraints.\"",
+              "\"A few weeks ago we also launched an expansion called Agent Market where users and agents can post natural language requests for various kinds of information or work. Those are matched to AI agents for fulfillment.\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "insight_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "NEAR Intents",
+              "CrossPay",
+              "Zodl",
+              "Agent Market"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "topics/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-orchestration",
+            "workflow-design",
+            "multi-agent-systems"
+          ]
+        }
+      }
+    ],
+    "roundup_signals": [],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "expert_opinion",
+        "reasoning": [
+          "Claims are primarily Polosukhin's judgments and predictions about AI, privacy, decentralization, and agents.",
+          "The piece includes first-person product context from NEAR AI, but most substantive statements are strategic interpretation rather than measured results.",
+          "No formal benchmarks, experiments, or citations are provided in the transcript."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "Trusted execution environments are presented as the only practical privacy layer for AI workloads as of 2026-04-02; fully homomorphic encryption is described as too slow.",
+          "Confidential inference is the first commercially useful entry point for private AI because multi-node confidential pretraining is still limited.",
+          "In decentralized AI, the interview favors pragmatic components like data collection, inference aggregation, and verifiable benchmarks over distributed training as the headline use case.",
+          "Polosukhin treats blockchains as machine-native trust rails for agents because they already solve payment, Sybil resistance, reputation, and multi-party confirmation problems.",
+          "The interview\u2019s recurring strategic claim is that the execution harness can matter as much as the model, especially for local and privacy-preserving agents."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "https://thesequence.substack.com/p/the-sequence-chat-835-illia-polosukhin"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.99,
+        "detected_source_type": "interview_or_transcript",
+        "reasoning": [
+          "Structured as a long-form Q&A with interviewer prompts and direct answers from Illia Polosukhin.",
+          "Primary content is interview dialogue rather than a single narrative article or list roundup.",
+          "Multiple topic areas are discussed conversationally across the transcript."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "Jesus Rodriguez",
+    "canonical_url": "https://thesequence.substack.com/p/the-sequence-chat-835-illia-polosukhin",
+    "content_sha256": "6cdf5b8efa350054631607e809e2b3546833e8e5b4709cc41114284e6c7495c5",
+    "publication": "Substack",
+    "published_date": "2026-04-02",
+    "raw_html_rel_path": "raw/readwise/the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-paper-and-decentralized-and-private-ai-01knem854rccyz9jt3tmexffg8.html",
+    "raw_md_rel_path": "raw/readwise/the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-paper-and-decentralized-and-private-ai-01knem854rccyz9jt3tmexffg8.md",
+    "source_id": "the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-paper-and-decentralized-and-private-ai-01knem854rccyz9jt3tmexffg8",
+    "title": "The Sequence Chat #835: Illia Polosukhin on NEAR AI, Authoring the Transformer Paper and Decentralized and Private AI"
+  }
+}

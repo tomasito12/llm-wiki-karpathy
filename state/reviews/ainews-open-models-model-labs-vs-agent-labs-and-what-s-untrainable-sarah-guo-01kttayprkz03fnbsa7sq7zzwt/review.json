@@ -1,0 +1,568 @@
+{
+  "analysis_meta": {
+    "analysis_timestamp_utc": "2026-06-15T21:24:53+00:00",
+    "classification_pipeline": {
+      "mode": "staged",
+      "stages": [
+        {
+          "cache_hit_rate": 0.0,
+          "name": "triage",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Dr95IATitIlehZjXM2H1Goyi8LLSs",
+          "token_usage": {
+            "completion_tokens": 192,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6769,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 6961
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "summary",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Dr95KR6v29I2z7nKoTu4QxPurO6TQ",
+          "token_usage": {
+            "completion_tokens": 1160,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 6378,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 7538
+          }
+        },
+        {
+          "cache_hit_rate": 0.0,
+          "name": "entities",
+          "prompt_version": "43-entities-ai_industry_roundup",
+          "request_id": "chatcmpl-Dr95UK432YtTCNUjjT8sr9hfNRs6I",
+          "route": "ai_industry_roundup",
+          "token_usage": {
+            "completion_tokens": 802,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 0,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 20427,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "total_tokens": 21229
+          }
+        }
+      ]
+    },
+    "model": "gpt-5.4-mini-2026-03-17",
+    "prompt_version": "43",
+    "provider": "openai",
+    "request_id": "chatcmpl-Dr95UK432YtTCNUjjT8sr9hfNRs6I",
+    "token_usage": {
+      "completion_tokens": 2154,
+      "prompt_tokens": 33574,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 35728
+    }
+  },
+  "artifact_schema_version": 17,
+  "errors": [],
+  "llm_output": {
+    "extraction_meta": {
+      "review_burden_estimate": "moderate",
+      "skip_reason": "",
+      "skip_recommended": false,
+      "total_candidates_considered": 0
+    },
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "assessed_as_of": "2026-06-11",
+        "confidence": 0.87,
+        "evidence_from_source": "The article says practitioners complained about Anthropic's opaque changes and recommends treating frontier APIs as unstable dependencies, maintaining portability, and continuously verifying outputs.",
+        "evidence_type": null,
+        "match_candidates": [],
+        "primary_tag": "continuous-evaluation",
+        "proposed_tags": [
+          "continuous-evaluation",
+          "model-behavior",
+          "enterprise-ai",
+          "verification-over-principles"
+        ],
+        "related_trends": [
+          "verification-loops-become-central-to-ai-workflows",
+          "continuous-evaluation",
+          "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+        ],
+        "secondary_tag": "model-behavior",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_data_points": [
+          "reports of silent capability degradation on research-related prompts",
+          "30-day prompt/data retention and no opt-out in some settings",
+          "recommendation to maintain model portability and continuous evals"
+        ],
+        "supporting_snippet": "\"silent degradation of AI R&D help dominated the discourse\" / \"treat frontier APIs as unstable dependencies, maintain model portability, and verify outputs continuously with evals and harnesses\"",
+        "time_sensitivity": "Actionable as of 2026-06-11; the warning is strongest while frontier providers continue shipping behavior changes and policy changes without fully transparent disclosure.",
+        "trend_description": "Vendors can change model behavior, retention, or access rules behind the same API surface, so production users need explicit monitoring and portability rather than trust in static labels. This is especially relevant for agentic systems where small behavioral shifts can cascade into tool errors or workflow failures.",
+        "trend_slug": "stable-api-names-no-longer-guarantee-stable-model-behavior",
+        "trend_title": "Stable API names no longer guarantee stable model behavior",
+        "uncertainty_note": "This source reports community reactions and does not independently measure the frequency or severity of silent changes, so the scope of the problem is uncertain.",
+        "value_level": "high"
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "assessed_as_of": "2026-06-11",
+        "evidence_snippets": [
+          "\"builders highlighted that Fable/Mythos reportedly come with 30-day prompt/data retention and no opt-out in some settings\"",
+          "\"treat frontier APIs as unstable dependencies, maintain model portability, and verify outputs continuously with evals and harnesses\"",
+          "\"silent capability degradation\""
+        ],
+        "evidence_type": null,
+        "mentioned_entities": [
+          "Anthropic",
+          "Fable 5",
+          "Mythos"
+        ],
+        "operational_relevance": "Use model-portability plans, eval harnesses, and continuous regression checks for production agent workflows. Assume provider-side changes can affect tool use, coding, and long-horizon behavior without changing the endpoint name.",
+        "primary_tag": "continuous-evaluation",
+        "proposed_tags": [
+          "continuous-evaluation",
+          "model-behavior",
+          "enterprise-ai",
+          "verification-over-principles"
+        ],
+        "secondary_tag": "model-behavior",
+        "service_automation_relevance": "Service automation systems that depend on stable prompt-to-action behavior need regression tests, fallback models, and change monitoring because silent capability shifts can alter support outcomes and escalation quality.",
+        "signal_strength": "high",
+        "signal_title": "Stable API names do not guarantee stable model behavior",
+        "signal_type": "trend",
+        "suggested_destinations": [
+          "trends/"
+        ],
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "summary": "The source highlights complaints that Anthropic's Fable/Mythos rollout included silent capability degradation, opaque model changes, and retention settings that were not clear up front. The operational lesson is that teams should treat frontier APIs as unstable dependencies and verify outputs continuously rather than assuming a named model endpoint will behave consistently over time.",
+        "time_horizon": "medium_term",
+        "value_level": "high",
+        "why_it_matters": "As of 2026-06-11, this is a practical reliability warning for any team building on third-party model APIs: version labels alone do not guarantee reproducible behavior, and hidden changes can break adjacent workflows even when headline benchmark scores remain strong.",
+        "wiki_worthiness": "strong_candidate"
+      }
+    ],
+    "source_evidence_profile": {
+      "primary_evidence_type": "mixed",
+      "reasoning": [
+        "The source mixes independent commentary by the newsletter author with many quoted social-media practitioner reports and observations.",
+        "It also relies on benchmark results, vendor announcements, and community reactions across multiple items.",
+        "No single evidence basis dominates the whole digest."
+      ]
+    },
+    "source_summary": {
+      "accessible_overview": "This is a weekly AI news digest with two main ideas. First, Sarah Guo\u2019s essay argues that some AI products are hard to copy because they do the messy work of fitting a model into a customer\u2019s real environment, and because deciding what to build is not something models can benchmark well. Second, the roundup says capability alone is not enough: Anthropic\u2019s Fable 5 looks strong, but people are worried about silent behavior changes, retention policies, and trust. It also highlights Google\u2019s DiffusionGemma, an open-weight text model that generates text in blocks instead of one token at a time. The rest of the issue covers agent evals, memory systems, retrieval kernels, and other infrastructure work that makes models more usable.",
+      "assessed_as_of": "2026-06-11",
+      "contradictions_and_skepticism": "There is a clear tension between strong model capability and weak product trust in the Anthropic section: the source says Fable 5 performs very well, yet adoption may still suffer because of opaque controls and retention policies. The roundup also leans on benchmark rankings, but the same article warns that scores can become a map of territory that is about to be worthless, so the rankings should be treated cautiously. Sarah Guo\u2019s claim that intent cannot be benchmarked is plausible but also hard to validate directly, which makes it more of a strategic heuristic than a proven law. Some of the surrounding items are promising but thinly evidenced here, so they should be treated as leads rather than conclusions.",
+      "key_insights": [
+        "The Guo quote frames durable agent products as translation layers plus ongoing integration, not just model access.",
+        "The roundup treats intent as a scarce input that cannot be trained or benchmarked the way model skills can.",
+        "Silent capability changes and opaque retention are presented as adoption blockers even for a very strong model.",
+        "DiffusionGemma is notable less as a benchmark win than as a systems-relevant open model with native serving support.",
+        "Several items point to evals moving toward trace-based, objective agent metrics instead of preference-only judgments."
+      ],
+      "limitations_and_open_questions": "The digest mixes firsthand commentary, quoted social reactions, and vendor announcements, so evidence quality varies by item. Several claims are benchmark-based or community-reported rather than independently reproduced here. The Anthropic controversy is important, but the article does not quantify how much silent degradation affects real tasks versus edge cases. DiffusionGemma is described as experimental, and the practical tradeoffs of diffusion-style text generation versus autoregressive models are not settled in this source. Many of the roundup items are pointers to tools or research without enough detail to judge robustness, cost, or production readiness.",
+      "sources": [
+        "mailto:reader-forwarded-email/2cccd3ec00015c790ae0aac90362f620"
+      ],
+      "summary": "This roundup centers on two linked debates: Sarah Guo\u2019s framework about open models, agent labs versus model labs, and what kinds of work remain hard to train; and a wider weekly scan of model releases, benchmarks, policy fights, and agent infrastructure. The Guo excerpt argues that some applications win by doing the unglamorous translation between a customer\u2019s messy reality and a model\u2019s action space, plus ongoing integration and maintenance that are hard to copy. It also argues that intent \u2014 deciding what is worth building \u2014 is not something a model can supply or benchmark well. On the product side, the issue around Anthropic\u2019s Fable/Mythos rollout is not only raw capability but trust: the article says practitioners complained about silent capability degradation, opaque retention, and unstable APIs, even while conceding that Fable 5 looks very strong on agentic and coding tasks. Separately, Google\u2019s DiffusionGemma is presented as a notable open-weight release because it uses diffusion-style text generation rather than standard autoregressive decoding, with claims of faster output and active support in serving stacks like vLLM and local runtimes. The rest of the piece tracks a broader set of agent-eval, memory, retrieval, optimization, and multimodal research items, with the main practical theme being that benchmarks, infrastructure details, and hidden implementation choices are becoming as important as headline model scores.",
+      "why_it_matters": "The article is useful because it compresses several engineering-relevant tensions into one place: open models are gaining practical traction, but product value still depends on how well teams can adapt them to customer reality; agent products appear defensible when they own integration, maintenance, and domain-specific tooling; and benchmark scores are losing explanatory power when vendors can change behavior, retention, or access rules without clear disclosure. The Sarah Guo excerpt is the most durable conceptual piece here: it argues that the hard part of some AI businesses is not model training but choosing a valuable use, translating messy enterprise reality into model-operable structure, and continuing that work over time. The Anthropic discussion adds a concrete caution for builders: even if a model is excellent on coding and agentic work, trust, portability, and eval discipline can matter as much as raw capability when deciding whether to adopt an API. The DiffusionGemma section matters because it is an open-weight release with system-level implications, not just a research curiosity: the article says it has native vLLM support and local-runtime paths, which makes it more immediately testable by practitioners. The broader roundup also suggests that agent evaluation is getting more serious about objective traces, tool errors, and long-horizon behavior rather than simple preference judgments. As of 2026-06-11, the actionable takeaway is to watch these threads closely and adopt selectively where the source provides concrete evidence, rather than treating any single benchmark or release as a stable platform guarantee."
+    },
+    "source_type_detection": {
+      "confidence": 0.96,
+      "detected_source_type": "ai_industry_roundup",
+      "reasoning": [
+        "Primary structure is a newsletter-style digest with many loosely related AI news blurbs and headings.",
+        "Includes recap sections for Twitter, Reddit, model releases, benchmarks, tools, and policy rather than one coherent tutorial or argument.",
+        "The article explicitly labels itself as AI News for a date range and aggregates multiple items from the week."
+      ]
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review": {
+    "foundation_models": [],
+    "glossary": [],
+    "how_to": [],
+    "implementation_studies": [],
+    "industry_trends": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-11",
+          "confidence": 0.87,
+          "evidence_from_source": "The article says practitioners complained about Anthropic's opaque changes and recommends treating frontier APIs as unstable dependencies, maintaining portability, and continuously verifying outputs.",
+          "evidence_type": null,
+          "match_candidates": [],
+          "primary_tag": "continuous-evaluation",
+          "proposed_tags": [
+            "continuous-evaluation",
+            "model-behavior",
+            "enterprise-ai",
+            "verification-over-principles"
+          ],
+          "related_trends": [
+            "verification-loops-become-central-to-ai-workflows",
+            "continuous-evaluation",
+            "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+          ],
+          "secondary_tag": "model-behavior",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_data_points": [
+            "reports of silent capability degradation on research-related prompts",
+            "30-day prompt/data retention and no opt-out in some settings",
+            "recommendation to maintain model portability and continuous evals"
+          ],
+          "supporting_snippet": "\"silent degradation of AI R&D help dominated the discourse\" / \"treat frontier APIs as unstable dependencies, maintain model portability, and verify outputs continuously with evals and harnesses\"",
+          "time_sensitivity": "Actionable as of 2026-06-11; the warning is strongest while frontier providers continue shipping behavior changes and policy changes without fully transparent disclosure.",
+          "trend_description": "Vendors can change model behavior, retention, or access rules behind the same API surface, so production users need explicit monitoring and portability rather than trust in static labels. This is especially relevant for agentic systems where small behavioral shifts can cascade into tool errors or workflow failures.",
+          "trend_slug": "stable-api-names-no-longer-guarantee-stable-model-behavior",
+          "trend_title": "Stable API names no longer guarantee stable model behavior",
+          "uncertainty_note": "This source reports community reactions and does not independently measure the frequency or severity of silent changes, so the scope of the problem is uncertain.",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "c0b5ab75-221e-48b7-bf28-8f11ef4d8df7",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_from_source": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_trends": {
+            "final_list": null,
+            "llm_list": [
+              "verification-loops-become-central-to-ai-workflows",
+              "continuous-evaluation",
+              "enterprise-ai-moves-toward-governed-human-oversight-workflows"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_data_points": {
+            "final_list": null,
+            "llm_list": [
+              "reports of silent capability degradation on research-related prompts",
+              "30-day prompt/data retention and no opt-out in some settings",
+              "recommendation to maintain model portability and continuous evals"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_sensitivity": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_slug": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "trend_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "uncertainty_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "continuous-evaluation",
+            "model-behavior",
+            "enterprise-ai",
+            "verification-over-principles"
+          ]
+        }
+      }
+    ],
+    "interview_insights": [],
+    "roundup_signals": [
+      {
+        "llm_item": {
+          "assessed_as_of": "2026-06-11",
+          "evidence_snippets": [
+            "\"builders highlighted that Fable/Mythos reportedly come with 30-day prompt/data retention and no opt-out in some settings\"",
+            "\"treat frontier APIs as unstable dependencies, maintain model portability, and verify outputs continuously with evals and harnesses\"",
+            "\"silent capability degradation\""
+          ],
+          "evidence_type": null,
+          "mentioned_entities": [
+            "Anthropic",
+            "Fable 5",
+            "Mythos"
+          ],
+          "operational_relevance": "Use model-portability plans, eval harnesses, and continuous regression checks for production agent workflows. Assume provider-side changes can affect tool use, coding, and long-horizon behavior without changing the endpoint name.",
+          "primary_tag": "continuous-evaluation",
+          "proposed_tags": [
+            "continuous-evaluation",
+            "model-behavior",
+            "enterprise-ai",
+            "verification-over-principles"
+          ],
+          "secondary_tag": "model-behavior",
+          "service_automation_relevance": "Service automation systems that depend on stable prompt-to-action behavior need regression tests, fallback models, and change monitoring because silent capability shifts can alter support outcomes and escalation quality.",
+          "signal_strength": "high",
+          "signal_title": "Stable API names do not guarantee stable model behavior",
+          "signal_type": "trend",
+          "suggested_destinations": [
+            "trends/"
+          ],
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "summary": "The source highlights complaints that Anthropic's Fable/Mythos rollout included silent capability degradation, opaque model changes, and retention settings that were not clear up front. The operational lesson is that teams should treat frontier APIs as unstable dependencies and verify outputs continuously rather than assuming a named model endpoint will behave consistently over time.",
+          "time_horizon": "medium_term",
+          "value_level": "high",
+          "why_it_matters": "As of 2026-06-11, this is a practical reliability warning for any team building on third-party model APIs: version labels alone do not guarantee reproducible behavior, and hidden changes can break adjacent workflows even when headline benchmark scores remain strong.",
+          "wiki_worthiness": "strong_candidate"
+        },
+        "notes": null,
+        "proposal_id": "24f00fb6-65d4-4d95-9a57-08dcdbe46a84",
+        "proposal_status": "approved",
+        "sections": {
+          "evidence_snippets": {
+            "final_list": null,
+            "llm_list": [
+              "\"builders highlighted that Fable/Mythos reportedly come with 30-day prompt/data retention and no opt-out in some settings\"",
+              "\"treat frontier APIs as unstable dependencies, maintain model portability, and verify outputs continuously with evals and harnesses\"",
+              "\"silent capability degradation\""
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "mentioned_entities": {
+            "final_list": null,
+            "llm_list": [
+              "Anthropic",
+              "Fable 5",
+              "Mythos"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "service_automation_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_strength": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_title": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "signal_type": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "suggested_destinations": {
+            "final_list": null,
+            "llm_list": [
+              "trends/"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "summary": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "time_horizon": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "why_it_matters": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "wiki_worthiness": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "continuous-evaluation",
+            "model-behavior",
+            "enterprise-ai",
+            "verification-over-principles"
+          ]
+        }
+      }
+    ],
+    "source_evidence_profile": {
+      "final_item": null,
+      "llm_item": {
+        "primary_evidence_type": "mixed",
+        "reasoning": [
+          "The source mixes independent commentary by the newsletter author with many quoted social-media practitioner reports and observations.",
+          "It also relies on benchmark results, vendor announcements, and community reactions across multiple items.",
+          "No single evidence basis dominates the whole digest."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "source_summary": {
+      "accessible_overview": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "contradictions_and_skepticism": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "key_insights": {
+        "final_list": null,
+        "llm_list": [
+          "The Guo quote frames durable agent products as translation layers plus ongoing integration, not just model access.",
+          "The roundup treats intent as a scarce input that cannot be trained or benchmarked the way model skills can.",
+          "Silent capability changes and opaque retention are presented as adoption blockers even for a very strong model.",
+          "DiffusionGemma is notable less as a benchmark win than as a systems-relevant open model with native serving support.",
+          "Several items point to evals moving toward trace-based, objective agent metrics instead of preference-only judgments."
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "limitations_and_open_questions": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "sources": {
+        "final_list": null,
+        "llm_list": [
+          "mailto:reader-forwarded-email/2cccd3ec00015c790ae0aac90362f620"
+        ],
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "approved"
+      },
+      "summary": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      },
+      "why_it_matters": {
+        "final_text": null,
+        "notes": null,
+        "section_regeneration_meta": null,
+        "status": "pending"
+      }
+    },
+    "source_type_detection": {
+      "final_item": null,
+      "llm_item": {
+        "confidence": 0.96,
+        "detected_source_type": "ai_industry_roundup",
+        "reasoning": [
+          "Primary structure is a newsletter-style digest with many loosely related AI news blurbs and headings.",
+          "Includes recap sections for Twitter, Reddit, model releases, benchmarks, tools, and policy rather than one coherent tutorial or argument.",
+          "The article explicitly labels itself as AI News for a date range and aggregates multiple items from the week."
+        ]
+      },
+      "notes": null,
+      "status": "pending"
+    },
+    "tools": [],
+    "topics": []
+  },
+  "review_analytics": {
+    "batch_actions_used": [],
+    "evidence_type_counts": {},
+    "fields_modified": 0,
+    "proposals_approved": 0,
+    "proposals_deferred": 0,
+    "proposals_modified": 0,
+    "proposals_rejected": 0,
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
+  },
+  "review_session": {
+    "last_saved_at": null,
+    "saved_by": null
+  },
+  "source": {
+    "author": "AINews",
+    "canonical_url": "mailto:reader-forwarded-email/2cccd3ec00015c790ae0aac90362f620",
+    "content_sha256": "c0b2f9609213e5a2da9a06673e224b61137c129984abfd3aae7b304d7e0ef1e1",
+    "publication": "Substack",
+    "published_date": "2026-06-11",
+    "raw_html_rel_path": "raw/readwise/ainews-open-models-model-labs-vs-agent-labs-and-what-s-untrainable-sarah-guo-01kttayprkz03fnbsa7sq7zzwt.html",
+    "raw_md_rel_path": "raw/readwise/ainews-open-models-model-labs-vs-agent-labs-and-what-s-untrainable-sarah-guo-01kttayprkz03fnbsa7sq7zzwt.md",
+    "source_id": "ainews-open-models-model-labs-vs-agent-labs-and-what-s-untrainable-sarah-guo-01kttayprkz03fnbsa7sq7zzwt",
+    "title": "[AINews] Open Models, Model Labs vs Agent Labs, and What's Untrainable \u2014 Sarah Guo"
+  }
+}
