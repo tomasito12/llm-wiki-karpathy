@@ -80,6 +80,12 @@ wiki-render = [
 wiki-synthesis-indexes = [
   "python -m src.wiki_synthesis.indexes_cli {args}",
 ]
+wiki-synthesis-cache-lint = [
+  "python -m src.wiki_synthesis.cache_lint_cli {args}",
+]
+wiki-synthesis-doctor = [
+  "python -m src.wiki_synthesis.doctor_cli {args}",
+]
 wiki-synthesis-plan = [
   "python -m src.wiki_synthesis {args}",
 ]

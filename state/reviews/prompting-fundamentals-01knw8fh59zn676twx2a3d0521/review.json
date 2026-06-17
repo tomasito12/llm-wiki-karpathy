@@ -255,17 +255,17 @@
         "proposal_status": "approved",
         "sections": {
           "answer_summary": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "caveats": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "implementation_steps": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "State the task with an action verb and include the audience and purpose.",
               "Provide useful background, files, documents, or other context.",
@@ -276,22 +276,22 @@
               "Revise the prompt after reviewing the first response."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "prerequisites": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "A clear goal for what the AI should produce.",
               "Any relevant background material or source files.",
               "A basic idea of the format or tone you want."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "question_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_howtos": {
             "final_list": null,
@@ -307,9 +307,9 @@
             "status": "pending"
           },
           "what_and_problem": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -447,7 +447,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -458,28 +458,28 @@
               "Iterate on the prompt instead of expecting a one-shot perfect result."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -489,12 +489,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -510,19 +510,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "vendor_claim": 2
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 2,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 2,
+    "review_duration_seconds": 28.7,
+    "review_finished_at": "2026-06-17T15:48:49.692083+00:00",
+    "review_started_at": "2026-06-17T15:48:21+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-06-17T15:48:49+00:00",
     "saved_by": null
   },
   "source": {

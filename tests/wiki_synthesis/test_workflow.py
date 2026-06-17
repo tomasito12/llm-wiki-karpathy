@@ -8,7 +8,7 @@ from typing import Any
 
 from src.wiki_synthesis.cache import cache_file_path
 from src.wiki_synthesis.prompts import PromptBundle
-from src.wiki_synthesis.workflow import run_synthesis_workflow
+from src.wiki_synthesis.workflow import run_synthesis_workflow, write_workflow_audit_report
 
 
 def test_workflow_dry_run_plans_without_preview(tmp_path: Path) -> None:
@@ -56,6 +56,32 @@ def test_workflow_real_run_writes_cache_and_review_preview(tmp_path: Path) -> No
     assert "synthesis_state: synthesized" in preview_path.read_text(encoding="utf-8")
 
 
+def test_write_workflow_audit_report(tmp_path: Path) -> None:
+    """Audit reports should preserve run, review, and option metadata."""
+    report = run_synthesis_workflow(
+        _graph(),
+        cache_dir=tmp_path / "cache",
+        preview_dir=tmp_path / "previews",
+        provider=StaticProvider(_provider_payload()),
+        model="test-model",
+        entity="topic:local-models",
+        dry_run=False,
+    )
+
+    path = write_workflow_audit_report(
+        report,
+        report_dir=tmp_path / "runs",
+        options={"entity": "topic:local-models", "model": "test-model"},
+    )
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    assert payload["created_at"].endswith("Z")
+    assert payload["options"]["entity"] == "topic:local-models"
+    assert payload["run"]["written"] == 1
+    assert payload["run"]["items"][0]["token_usage"] == {"total_tokens": 123}
+    assert payload["reviews"][0]["rendered_synthesis_state"] == "synthesized"
+
+
 class StaticProvider:
     """Provider returning a predefined payload."""
 
@@ -67,7 +93,10 @@ class StaticProvider:
         self, bundle: PromptBundle, *, model: str
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         """Return the stored payload."""
-        return self.payload, {"request_id": f"test-{bundle.entity_id}-{model}"}
+        return self.payload, {
+            "request_id": f"test-{bundle.entity_id}-{model}",
+            "token_usage": {"total_tokens": 123},
+        }
 
 
 class RaisingProvider:

@@ -284,9 +284,9 @@
         "proposal_status": "approved",
         "sections": {
           "evidence_from_source": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "pending"
           },
           "related_trends": {
             "final_list": null,
@@ -298,14 +298,14 @@
             "status": "pending"
           },
           "supporting_data_points": {
-            "final_list": [],
+            "final_list": null,
             "llm_list": [
               "The author describes long chats where the useful answer is buried in a transcript of attempts.",
               "The article says chat history is searchable but not navigable.",
               "The recommended end state is a summary, saved snapshot, or actual deliverable."
             ],
             "notes": null,
-            "status": "modified"
+            "status": "pending"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -313,29 +313,29 @@
             "status": "pending"
           },
           "time_sensitivity": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "pending"
           },
           "trend_description": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "pending"
           },
           "trend_slug": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "pending"
           },
           "trend_title": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "pending"
           },
           "uncertainty_note": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "pending"
           }
         },
         "tags": {
@@ -473,7 +473,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "key_points": {
             "final_list": null,
@@ -483,17 +483,17 @@
               "End-of-conversation design should produce something the user can keep or export."
             ],
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "related_topics": {
             "final_list": null,
@@ -501,12 +501,12 @@
               "knowledge-systems-shift-toward-persistent-workspaces"
             ],
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -516,12 +516,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           }
         },
         "tags": {
@@ -572,7 +572,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "key_points": {
             "final_list": null,
@@ -582,17 +582,17 @@
               "The most fragile step is deciding who the user is and what the frame should be."
             ],
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "related_topics": {
             "final_list": null,
@@ -600,12 +600,12 @@
               "artifact-first-ai-workflows"
             ],
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -615,12 +615,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           }
         },
         "tags": {
@@ -636,22 +636,19 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {
-      "expert_opinion": 1,
-      "mixed": 2
-    },
+    "evidence_type_counts": {},
     "fields_modified": 0,
-    "proposals_approved": 3,
+    "proposals_approved": 0,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 3,
-    "review_duration_seconds": 80.0,
-    "review_finished_at": "2026-06-17T15:57:30.003269+00:00",
-    "review_started_at": "2026-06-17T15:56:10+00:00"
+    "proposals_total": 0,
+    "review_duration_seconds": null,
+    "review_finished_at": null,
+    "review_started_at": null
   },
   "review_session": {
-    "last_saved_at": "2026-06-17T15:57:30+00:00",
+    "last_saved_at": null,
     "saved_by": null
   },
   "source": {

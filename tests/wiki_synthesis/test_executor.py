@@ -90,6 +90,9 @@ def test_run_synthesis_writes_validated_cache(tmp_path: Path) -> None:
     assert payload["synthesis_input_hash"] == report.items[0].current_input_hash
     assert payload["last_synthesized_at"] == "2026-06-16T12:00:00Z"
     assert payload["executive_synthesis"] == "Local models make inference controllable."
+    assert report.items[0].model == "test-model"
+    assert report.items[0].provider_request_id == "test-topic:local-models-test-model"
+    assert report.items[0].token_usage == {"total_tokens": 123}
 
 
 def test_run_synthesis_rejects_incomplete_provider_payload(tmp_path: Path) -> None:
@@ -137,7 +140,10 @@ class StaticProvider:
         self, bundle: PromptBundle, *, model: str
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         """Return the stored payload."""
-        return self.payload, {"request_id": f"test-{bundle.entity_id}-{model}"}
+        return self.payload, {
+            "request_id": f"test-{bundle.entity_id}-{model}",
+            "token_usage": {"total_tokens": 123},
+        }
 
 
 class RaisingProvider:

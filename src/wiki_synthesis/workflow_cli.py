@@ -11,7 +11,11 @@ from pathlib import Path
 from src.ingest_review.paths import load_repo_dotenv
 from src.wiki_synthesis.openai_provider import OpenAISynthesisProvider
 from src.wiki_synthesis.planner import load_graph_export
-from src.wiki_synthesis.workflow import SynthesisWorkflowReport, run_synthesis_workflow
+from src.wiki_synthesis.workflow import (
+    SynthesisWorkflowReport,
+    run_synthesis_workflow,
+    write_workflow_audit_report,
+)
 
 LOGGER = logging.getLogger(__name__)
 
@@ -40,6 +44,12 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=root / "state" / "synthesis_previews",
         help="Directory for rendered review previews.",
+    )
+    parser.add_argument(
+        "--report-dir",
+        type=Path,
+        default=root / "state" / "synthesis_runs",
+        help="Directory for real-run audit reports.",
     )
     parser.add_argument(
         "--model",
@@ -84,6 +94,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--no-review",
         action="store_true",
         help="Skip preview rendering after successful cache writes.",
+    )
+    parser.add_argument(
+        "--no-audit-log",
+        action="store_true",
+        help="Skip writing a real-run audit report.",
     )
     parser.add_argument(
         "--json",
@@ -140,10 +155,21 @@ def main() -> int:
             )
         finally:
             provider.close()
+    audit_path = ""
+    if not args.dry_run and not args.no_audit_log:
+        audit_path = str(
+            write_workflow_audit_report(
+                report,
+                report_dir=args.report_dir.resolve(),
+                options=_audit_options(args),
+            )
+        )
     if args.json:
-        print(json.dumps(report.to_dict(), indent=2, sort_keys=True))
+        payload = report.to_dict()
+        payload["audit_report_path"] = audit_path
+        print(json.dumps(payload, indent=2, sort_keys=True))
     else:
-        _print_text_report(report)
+        _print_text_report(report, audit_path=audit_path)
     LOGGER.info(
         "wiki-synthesis-workflow complete planned=%d called=%d written=%d reviews=%d dry_run=%s",
         report.run.planned,
@@ -155,7 +181,7 @@ def main() -> int:
     return 0
 
 
-def _print_text_report(report: SynthesisWorkflowReport) -> None:
+def _print_text_report(report: SynthesisWorkflowReport, *, audit_path: str = "") -> None:
     """Print a human-readable workflow report."""
     run = report.run
     print(
@@ -173,6 +199,23 @@ def _print_text_report(report: SynthesisWorkflowReport) -> None:
             f"review\t{review.validation_state}\t{review.rendered_synthesis_state}\t"
             f"{review.entity_id}\t{review.preview_path}"
         )
+    if audit_path:
+        print(f"audit_report\t{audit_path}")
+
+
+def _audit_options(args: argparse.Namespace) -> dict[str, object]:
+    """Return CLI options worth preserving in audit reports."""
+    return {
+        "graph_path": str(args.graph_path),
+        "cache_dir": str(args.cache_dir),
+        "preview_dir": str(args.preview_dir),
+        "model": str(args.model),
+        "category": args.category,
+        "entity": args.entity,
+        "limit": args.limit,
+        "include_single_source": bool(args.include_single_source),
+        "review": not bool(args.no_review),
+    }
 
 
 class _DryRunProvider:

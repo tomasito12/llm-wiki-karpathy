@@ -475,12 +475,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -493,7 +493,7 @@
               "Review and schedule the outputs."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -505,12 +505,12 @@
               "A clear brand voice prompt"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -529,7 +529,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -591,12 +591,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -609,7 +609,7 @@
               "Escalate sensitive or uncertain cases to a human."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -621,12 +621,12 @@
               "A review step for approvals"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -645,7 +645,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -707,12 +707,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -725,7 +725,7 @@
               "Post the brief into a team channel."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -737,12 +737,12 @@
               "A delivery channel such as Slack"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -761,7 +761,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -822,12 +822,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -840,7 +840,7 @@
               "Update the content when policies change."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -851,12 +851,12 @@
               "A process for keeping source material current"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -875,7 +875,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -937,12 +937,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -955,7 +955,7 @@
               "Add context so each task can be understood later."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -967,12 +967,12 @@
               "A review habit for extracted tasks"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -991,7 +991,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1049,17 +1049,17 @@
         "proposal_status": "approved",
         "sections": {
           "answer_summary": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "caveats": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "implementation_steps": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Collect feedback through a form.",
               "Send each response to a language model for sentiment and category labeling.",
@@ -1068,10 +1068,10 @@
               "Use the dashboard to route product fixes or follow-up work."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "prerequisites": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "A feedback collection form",
               "A spreadsheet destination",
@@ -1079,12 +1079,12 @@
               "A simple category scheme"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "question_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_howtos": {
             "final_list": null,
@@ -1101,9 +1101,9 @@
             "status": "pending"
           },
           "what_and_problem": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -1165,12 +1165,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -1183,7 +1183,7 @@
               "Hand off edge cases to a human agent."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -1195,12 +1195,12 @@
               "A list of supported question types"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -1219,7 +1219,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1323,19 +1323,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "implementation_case": 7
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 7,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 7,
+    "review_duration_seconds": 269.0,
+    "review_finished_at": "2026-06-17T15:48:19.966878+00:00",
+    "review_started_at": "2026-06-17T15:43:51+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-06-17T15:48:19+00:00",
     "saved_by": null
   },
   "source": {

@@ -14,6 +14,10 @@ def test_hatch_scripts_include_local_clis() -> None:
     assert scripts["wiki-lint"] == ["python -m src.wiki_lint {args}"]
     assert scripts["wiki-render"] == ["python -m src.wiki_render {args}"]
     assert scripts["wiki-synthesis-indexes"] == ["python -m src.wiki_synthesis.indexes_cli {args}"]
+    assert scripts["wiki-synthesis-cache-lint"] == [
+        "python -m src.wiki_synthesis.cache_lint_cli {args}"
+    ]
+    assert scripts["wiki-synthesis-doctor"] == ["python -m src.wiki_synthesis.doctor_cli {args}"]
     assert scripts["wiki-synthesis-plan"] == ["python -m src.wiki_synthesis {args}"]
     assert scripts["wiki-synthesis-prompt"] == ["python -m src.wiki_synthesis.prompt_cli {args}"]
     assert scripts["wiki-synthesis-run"] == ["python -m src.wiki_synthesis.run_cli {args}"]

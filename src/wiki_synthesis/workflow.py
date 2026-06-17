@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+from src.pipeline.atomic import atomic_write_json
 from src.wiki_synthesis.executor import SynthesisProvider, SynthesisRunReport, run_synthesis
 from src.wiki_synthesis.review import SynthesisReviewPreview, build_review_preview
 
@@ -65,3 +67,29 @@ def run_synthesis_workflow(
             )
             reviews.append(review_report)
     return SynthesisWorkflowReport(run=run_report, reviews=reviews)
+
+
+def write_workflow_audit_report(
+    report: SynthesisWorkflowReport,
+    *,
+    report_dir: Path,
+    options: dict[str, Any] | None = None,
+    now: datetime | None = None,
+) -> Path:
+    """Write a timestamped audit report for a real synthesis workflow run."""
+    timestamp = _timestamp(now or datetime.now(UTC))
+    path = report_dir / f"{timestamp}.json"
+    payload = {
+        "created_at": timestamp,
+        "options": options or {},
+        **report.to_dict(),
+    }
+    atomic_write_json(path, payload)
+    return path
+
+
+def _timestamp(value: datetime) -> str:
+    """Return a filesystem-safe UTC timestamp."""
+    if value.tzinfo is None:
+        value = value.replace(tzinfo=UTC)
+    return value.astimezone(UTC).replace(microsecond=0).strftime("%Y%m%dT%H%M%SZ")

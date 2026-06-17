@@ -1,16 +1,16 @@
 {
   "analysis_meta": {
-    "analysis_timestamp_utc": "2026-06-06T20:41:56+00:00",
+    "analysis_timestamp_utc": "2026-06-17T15:49:51+00:00",
     "classification_pipeline": {
       "mode": "staged",
       "stages": [
         {
           "cache_hit_rate": 0.0,
           "name": "triage",
-          "prompt_version": "42-triage",
-          "request_id": "chatcmpl-Dns7hR9LkWQFp695qqXw6rer6fWkS",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-DrmnraTa9Gr4o3ChLUjL74URnDjyJ",
           "token_usage": {
-            "completion_tokens": 222,
+            "completion_tokens": 219,
             "completion_tokens_details": {
               "accepted_prediction_tokens": 0,
               "audio_tokens": 0,
@@ -22,65 +22,65 @@
               "audio_tokens": 0,
               "cached_tokens": 0
             },
-            "total_tokens": 28047
+            "total_tokens": 28044
           }
         },
         {
           "cache_hit_rate": 0.0,
           "name": "summary",
-          "prompt_version": "42-summary",
-          "request_id": "chatcmpl-Dns7kf3vE2CznyE6aGy7eSO5vOPbW",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-Drmnwg4E9wUgqu6TF0L66yKuLNlwg",
           "token_usage": {
-            "completion_tokens": 1135,
+            "completion_tokens": 1254,
             "completion_tokens_details": {
               "accepted_prediction_tokens": 0,
               "audio_tokens": 0,
               "reasoning_tokens": 0,
               "rejected_prediction_tokens": 0
             },
-            "prompt_tokens": 27461,
+            "prompt_tokens": 27458,
             "prompt_tokens_details": {
               "audio_tokens": 0,
               "cached_tokens": 0
             },
-            "total_tokens": 28596
+            "total_tokens": 28712
           }
         },
         {
           "cache_hit_rate": 0.0,
           "name": "entities",
-          "prompt_version": "42-entities-standard_article",
-          "request_id": "chatcmpl-Dns7uhhBtfI9kXepqISIAWF4qBTYU",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-Drmo86qNq4e0wEBUytc7Ahia16Egp",
           "route": "standard_article",
           "token_usage": {
-            "completion_tokens": 1448,
+            "completion_tokens": 2472,
             "completion_tokens_details": {
               "accepted_prediction_tokens": 0,
               "audio_tokens": 0,
               "reasoning_tokens": 0,
               "rejected_prediction_tokens": 0
             },
-            "prompt_tokens": 54677,
+            "prompt_tokens": 60087,
             "prompt_tokens_details": {
               "audio_tokens": 0,
               "cached_tokens": 0
             },
-            "total_tokens": 56125
+            "total_tokens": 62559
           }
         }
       ]
     },
     "model": "gpt-5.4-mini-2026-03-17",
-    "prompt_version": "42",
+    "prompt_version": "43",
     "provider": "openai",
-    "request_id": "chatcmpl-Dns7uhhBtfI9kXepqISIAWF4qBTYU",
+    "request_id": "chatcmpl-Drmo86qNq4e0wEBUytc7Ahia16Egp",
     "token_usage": {
-      "completion_tokens": 2805,
-      "prompt_tokens": 109963,
+      "completion_tokens": 3945,
+      "prompt_tokens": 115370,
       "prompt_tokens_details": {
         "cached_tokens": 0
       },
-      "total_tokens": 112768
+      "total_tokens": 119315
     }
   },
   "artifact_schema_version": 17,
@@ -93,40 +93,87 @@
       "total_candidates_considered": 0
     },
     "foundation_models": [],
-    "glossary": [],
+    "glossary": [
+      {
+        "confidence": 0.98,
+        "evidence_type": null,
+        "extended_explanation": "Passkeys are designed to remove the shared secret that makes passwords and one-time codes vulnerable to interception. Because the credential is bound to the origin, a lookalike site cannot use it the way it can steal a password or intercept an SMS code. In practice, passkeys reduce login friction and can improve sign-in success rates when implemented well. They are especially useful when an organization wants stronger account security without forcing users through awkward extra steps.",
+        "match_candidates": [],
+        "primary_tag": "governance",
+        "proposed_definition": "A passkey is a phishing-resistant authentication credential based on public-key cryptography that can replace passwords. The private key stays on the user's device or in a credential manager, while the public key is registered with the service.",
+        "proposed_tags": [
+          "governance"
+        ],
+        "related_terms": [],
+        "relevance_note": "Passkeys matter because authentication is one of the highest-value control points in AI-powered products and admin tooling. Phishing-resistant login reduces account takeover risk for support agents, operators, and end users who interact with conversational systems and internal automation.",
+        "secondary_tag": "",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "passkeys have matured into Adopt. They are FIDO2 credentials that can replace passwords using asymmetric public-key cryptography. The private key is stored in a hardware-backed secure enclave on the user's device, protected by biometrics or a PIN, and never leaves it. Each credential is origin-bound to its relying-party domain, making passkeys structurally phishing-resistant",
+        "term": "Passkey",
+        "value_level": "high"
+      },
+      {
+        "confidence": 0.93,
+        "evidence_type": null,
+        "extended_explanation": "MCP gives agents a common way to discover and call tools without bespoke integrations for every vendor or app. That standardization is useful when teams want governed access to data, OAuth boundaries, or multi-tenant workflows. The tradeoff is abstraction overhead: not every API benefits from another protocol layer, and a simpler CLI or direct API may be better for some tasks. MCP is most valuable when interoperability and governance matter more than raw simplicity.",
+        "match_candidates": [],
+        "primary_tag": "agent-systems",
+        "proposed_definition": "Model Context Protocol (MCP) is a protocol for connecting AI applications and agents to external tools and data sources through a standardized interface. It is used to define structured tool access, authentication boundaries, and interoperable integrations between models and systems.",
+        "proposed_tags": [
+          "agent-systems",
+          "tool-use"
+        ],
+        "related_terms": [
+          "Passkey"
+        ],
+        "relevance_note": "MCP is important for agentic systems because it creates a standard integration boundary for tools, retrieval, and governed access. That makes it a recurring building block for conversational AI, support automation, and internal agents that need controlled action surfaces.",
+        "secondary_tag": "tool-use",
+        "suggested_action": "ignore",
+        "suggested_new_tag": "",
+        "suggested_new_tags": [],
+        "supporting_snippet": "MCP adds real value for structured tool contracts, OAuth-based authentication boundaries and governed multi-tenant access. It also introduces what Justin Poehnelt calls an \"abstraction tax\": every protocol layer between an agent and an API loses fidelity, and for complex APIs those losses compound.",
+        "term": "Model Context Protocol",
+        "value_level": "high"
+      }
+    ],
     "how_to": [],
     "implementation_studies": [],
     "industry_trends": [
       {
         "assessed_as_of": "2026-04-13",
-        "confidence": 0.95,
-        "evidence_from_source": "The report repeatedly frames agent reliability as a systems problem, citing context engineering, curated instructions, feedback sensors, sandboxing, zero trust, and traceability as the important layers around agents. It also warns that broad autonomy without these controls produces cognitive debt, security risk, and brittle workflows.",
+        "confidence": 0.97,
+        "evidence_from_source": "Thoughtworks repeatedly emphasizes feedback sensors, mutation testing, collaboration quality metrics, and deterministic quality gates as the right response to AI-assisted development. The source also warns that throughput alone is misleading and that teams should use DORA metrics and review-burden signals instead.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "enterprise-ai",
+        "primary_tag": "ai-operationalization",
         "proposed_tags": [
-          "enterprise-ai",
           "ai-operationalization",
-          "runtime-systems"
+          "workflow-based-evaluation",
+          "verification-over-principles"
         ],
-        "related_trends": [],
-        "secondary_tag": "ai-operationalization",
+        "related_trends": [
+          "agentic-coding-shifts-toward-higher-supervision-costs",
+          "verification-loops-become-central-to-ai-workflows"
+        ],
+        "secondary_tag": "workflow-based-evaluation",
         "suggested_action": "ignore",
-        "suggested_new_tag": "",
-        "suggested_new_tags": [],
-        "supporting_data_points": [
-          "Adopted practices include context engineering, structured output, zero trust architecture, and DORA metrics.",
-          "Trial and assess items include agent skills, feedback sensors, sandboxed execution, and durable execution.",
-          "The report explicitly warns about codebase cognitive debt and model unpredictability.],",
-          "related_trends",
-          "ai-products-shift-from-models-to-grounded-systems"
+        "suggested_new_tag": "coding-agents",
+        "suggested_new_tags": [
+          "coding-agents"
         ],
-        "supporting_snippet": "\"AI-assisted software development represents a fundamental shift in engineering practice, requiring us to rethink \u2014 and in some cases discard \u2014 longheld assumptions.\"",
-        "time_sensitivity": "Actionable as of 2026-04-13; the system-level framing is likely to remain relevant through at least the next product cycle even as individual tools change.",
-        "trend_description": "AI products are increasingly differentiated by the surrounding system: context management, guardrails, retrieval, evaluation, traceability, and execution controls matter more than raw model access alone. The practical question shifts from which model is strongest to which operating stack keeps the model useful, safe, and measurable in production. This pattern affects how teams design agentic software, support automation, and internal AI platforms.",
-        "trend_slug": "ai-products-shift-from-models-to-systems",
-        "trend_title": "AI Products Shift from Models to Systems",
-        "uncertainty_note": "The source is an opinionated advisory report, not a controlled study, so the relative importance of each system layer may vary by organization and workload.",
+        "supporting_data_points": [
+          "The Radar promotes feedback sensors for coding agents as a Trial item.",
+          "The Radar says DORA metrics remain important and that lines of code is a misleading productivity measure.",
+          "The Radar links collaboration quality metrics to review burden, failed builds, and rework rate."
+        ],
+        "supporting_snippet": "To make coding agents more effective and reduce the load on human reviewers, teams need feedback loops that agents can directly access. These feedback sensors for coding agents act as a form of feedback backpressure, increasing trust in generated results.",
+        "time_sensitivity": "Actionable as of 2026-04-13; the source treats this as a live operating shift rather than a settled norm.",
+        "trend_description": "AI-assisted engineering is moving away from trust in raw generation and toward workflows that continuously verify outputs before they are accepted. The shift is driven by the need to catch model errors, regression risk, and agent misbehavior with deterministic or structured checks. This trend matters because the bottleneck is increasingly review and validation, not generation speed.",
+        "trend_slug": "ai-workflows-shift-toward-verification-loops",
+        "trend_title": "AI Workflows Shift Toward Verification Loops",
+        "uncertainty_note": "The evidence is strong inside the source, but it is still opinionated and based on practitioner judgment rather than broad empirical benchmarking across industries.",
         "value_level": "high"
       }
     ],
@@ -135,102 +182,140 @@
     "source_evidence_profile": {
       "primary_evidence_type": "expert_opinion",
       "reasoning": [
-        "The report is framed as Thoughtworks' advisory judgment: the Technology Advisory Board discusses trends and produces recommendations.",
-        "Claims are largely evaluative and opinionated, with rings like Adopt/Trial/Assess/Caution reflecting expert assessment rather than primary research.",
-        "Some entries cite cases or benchmarks, but the source as a whole is a strategic expert guide to technology choices."
+        "The Radar is created by Thoughtworks' Technology Advisory Board as an opinionated guide to the technology landscape.",
+        "Claims are framed as advisory judgments, recommendations, and assessments rather than as experimental results or a vendor announcement.",
+        "Where evidence appears, it is mainly practitioner experience and expert interpretation from Thoughtworks teams."
       ]
     },
     "source_summary": {
-      "accessible_overview": "This report is Thoughtworks\u2019 quarterly opinionated guide to which AI and software tools deserve attention. The main idea is that AI is making software development faster, but also harder to understand, secure, and maintain. So the Radar puts a lot of weight on context, guardrails, testing, and observability. It also revisits older practices like DORA metrics, mutation testing, and clean code because they help keep AI-generated complexity under control. As of 2026-04-13, the practical takeaway is to favor constrained, measurable, and reviewable uses of AI over loose autonomy.",
+      "accessible_overview": "This is Thoughtworks\u2019 April 2026 map of what they think matters in software and AI engineering. It sorts ideas and products into adopt, trial, assess, and caution, so the point is not just what exists, but how much trust they put in it. The big idea is that AI is making software work faster, but also making it easier to lose control of context, quality, and understanding. So the Radar keeps coming back to things like better instructions, stronger tests, safer agent sandboxing, and security boundaries. It also warns that some new agent tools are too young, too risky, or too hard to maintain. In plain English: use AI, but engineer the guardrails very carefully.",
       "assessed_as_of": "2026-04-13",
-      "contradictions_and_skepticism": "The Radar is useful, but it sometimes reads more like a disciplined practitioner\u2019s judgment than a claim backed by broad empirical proof. A few entries risk overfitting to Thoughtworks-style engineering environments where teams already value architecture discipline, observability, and strong testing. The report is also careful to avoid treating agent swarms, MCP, or autonomous coding tools as universally superior; that caution is warranted because many examples rely on detailed specs or controlled environments that are not typical product conditions. Some platform writeups are necessarily promotional in tone, so their practical stakes are thinner than the stronger technique entries.",
+      "contradictions_and_skepticism": "The piece is careful, but there is still a tension between its enthusiasm for fast-moving agent tooling and its repeated warnings that the space is immature, security-sensitive, and hard to evaluate. Several recommendations lean on Thoughtworks team experience rather than hard comparative evidence, so they are useful heuristics rather than proof. The Radar also risks overweighting internal visibility into a few tools and underweighting the long-term maintenance burden of adopting many niche platforms. Its strongest skepticism is aimed inward: it warns that AI can create cognitive debt, and that more code or more autonomous agents can make systems harder to understand, not easier.",
       "key_insights": [
-        "AI makes technology evaluation harder because terms, tools, and practices evolve faster than shared definitions can stabilize.",
-        "Context engineering is treated as a foundational architectural concern, not just prompt tuning, because raw context leads to degradation and hallucination.",
-        "The report repeatedly favors constrained agent workflows: skills, sandboxes, progressive disclosure, deterministic feedback gates, and durable execution.",
-        "Security guidance is central for agent adoption: least privilege, zero trust, toxic flow analysis, and traceability are presented as non-negotiable defaults.",
-        "The Radar argues that AI-assisted coding increases the need for traditional engineering signals like DORA metrics, mutation testing, and accessibility checks."
+        "Thoughtworks treats context engineering as a foundational design problem for AI systems, not just a prompt-writing tweak.",
+        "The Radar says AI-assisted development makes deterministic feedback loops more valuable, especially tests, linters, type checks, and mutation testing.",
+        "Several items target agent safety directly: zero trust, sandboxed execution, role-based retrieval isolation, toxic flow analysis, and traceability.",
+        "The authors distinguish small deliberate agent teams from large swarms, implying that complexity should be introduced cautiously rather than by default.",
+        "The report frames codebase cognitive debt as a real risk when AI increases change velocity faster than human understanding can keep up."
       ],
-      "limitations_and_open_questions": "The report is opinionated and often cites examples from Thoughtworks teams, but many entries are still early-stage and the evidence base varies from internal experience to benchmarks to vendor or project claims. Several tools are new or pre-1.0, so long-term maintenance, ecosystem maturity, and cost of ownership remain open questions. For agentic techniques, the article repeatedly notes unresolved issues around prompt injection, inconsistent model behavior, instruction bloat, and the difficulty of safely granting access to private data and external systems. Some recommendations depend on a strong underlying spec, test suite, or deterministic checks; those conditions may not exist in many real projects. Platform suggestions also trade convenience for vendor lock-in or operational overhead in several cases.",
+      "limitations_and_open_questions": "The Radar is intentionally opinionated, so its recommendations reflect Thoughtworks\u2019 internal experience and judgment rather than neutral benchmarking. Many items are early-stage, and several are described as too young, too new, or not yet mature enough for confident adoption. For multiple tools and platforms, the article gives limited detail on cost, ecosystem depth, long-term support, and failure modes under production load. Security guidance is directionally strong, but several recommendations still depend on unresolved questions around prompt injection, tool poisoning, supply chain risk, and untrusted skills. Some claims, especially around agent productivity and collaboration quality, need team-specific validation because the article repeatedly notes that superficial throughput metrics can be misleading. The report also acknowledges that shared terminology is unstable, which makes it harder to know whether some named techniques are genuinely distinct or just relabelings of the same practice.",
       "sources": [
         "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/technology-radar/1269.pdf"
       ],
-      "summary": "Thoughtworks\u2019 April 2026 Technology Radar is an opinionated map of tools, techniques, platforms, and languages/frameworks that the Technology Advisory Board believes deserve attention. The strongest theme is that AI is changing both software delivery and the way technologies should be evaluated: semantic drift makes terms unstable, new tools arrive too quickly to mature, and AI-generated code increases the risk of codebase cognitive debt. In response, the report emphasizes context engineering, curated shared instructions, progressive context disclosure, feedback sensors, durable execution, zero trust, and other control mechanisms that keep agents constrained and observable. It also revisits older engineering disciplines\u2014pair programming, mutation testing, DORA metrics, clean code, testability, accessibility, and the command line\u2014as counterweights to AI-driven complexity. Several entries focus on secure and governable agent use: sandboxed execution, role-based contextual isolation in RAG, toxic flow analysis, agent traceability, and caution against defaulting to MCP or broad agent access. The Radar also highlights practical platform and tool choices for observability, dev environments, agent orchestration, and model serving, but the overall message is that AI makes discipline, provenance, and feedback loops more important than raw coding speed.",
-      "why_it_matters": "This Radar is useful because it compresses a large set of 2026-era AI engineering judgments into a single operating map: what Thoughtworks thinks is mature enough to adopt, what is worth trialing, what needs more evidence, and what should be treated with caution. Its most durable contribution is the framing of AI development as a systems problem rather than a prompt problem. The report argues that teams need explicit context management, curated instructions, feedback sensors, and durable execution because agentic tools can otherwise amplify complexity, hidden coupling, and review burden. It also grounds several practical patterns in concrete mechanisms: structured outputs for reliable machine consumption, role-based retrieval for access control, sandboxed execution for safer autonomy, and code-intelligence tooling to reduce hallucinated edits. The emphasis on DORA metrics and mutation testing is especially useful because it pushes teams away from vanity measures like lines of code and toward delivery stability and actual fault detection. The platform/tool sections are a catalog rather than a unified thesis, but they still provide near-term candidates for observability, agent orchestration, and model serving. As of 2026-04-13, the most actionable guidance is to adopt the control surfaces and measurement practices first, and treat broad agent autonomy as assess/trial territory unless the workflow is tightly bounded. The article\u2019s closing implication for support, meeting, and back-office automation is indirect but important: the same constraints, traceability, and feedback loops will likely be required if those workflows are delegated to agents, or the operational risk will rise quickly."
+      "summary": "This Technology Radar is Thoughtworks\u2019 opinionated assessment of software and AI-related techniques, platforms, tools, and languages as of April 13, 2026. The core theme is that AI is changing both how software is built and how technologies should be evaluated: terminology is proliferating, tools appear and vanish quickly, and teams need better ways to judge whether something is a durable engineering practice or just a fast-moving wrapper around familiar ideas. The Radar argues that AI-assisted development makes context management, team-wide instructions, security controls, and feedback loops more important, while also reviving older software craftsmanship concerns such as testability, clean design, zero trust, and command-line workflows. It repeatedly distinguishes between techniques that should be adopted now, those worth trialing, and those that warrant caution because of immature ecosystems, security risks, or poor durability. A second major thread is that agentic systems create new operational problems: permission-hungry agents, prompt injection, cognitive debt, and the need for stronger observability, attribution, and durability in workflows. The article also highlights a large set of concrete tools and platforms the authors see as useful for agentic coding, testing, observability, sandboxing, and enterprise AI infrastructure. Overall, it is less a neutral survey than a curated field guide for teams deciding what to standardize, what to experiment with, and what to avoid as of April 2026.",
+      "why_it_matters": "This piece matters because it gives a practical, opinionated snapshot of what a mature engineering organization thinks is worth standardizing versus merely watching in April 2026. Its durable value is in the abstractions it repeats across many items: treat context as an engineered pipeline, not a text blob; make agent behavior observable and controllable; and prefer deterministic guardrails when AI systems become nondeterministic. The Radar is especially useful because it does not collapse everything into \u201cAI tools\u201d as one bucket. It separates workflow design, retrieval, security, testing, sandboxing, and attribution into distinct engineering problems, which is the right level of granularity for teams building real systems. It also makes clear that many promising agent ideas create new attack surfaces rather than removing old ones, so adoption has to be paired with stricter permissions, monitoring, and recovery mechanisms. The strongest recurring operational message is that faster code generation is not the same as better delivery, which is why DORA metrics, rework rate, and collaboration quality remain central. For teams building conversational systems, agentic tooling, or internal developer platforms, the article is useful mainly as a shortlist of practices and products to pilot rather than as a broad market forecast. For service automation, voice, meetings, and back-office work, the article only touches these indirectly through agents, conversational platforms like Dialogflow CX, and document parsing; the practical implication is to treat those use cases as workflow-engineering problems with security and durability constraints, not as a simple UI layer. Actionable as of April 13, 2026; several items are adopt/trial-worthy, but the article itself repeatedly says caution is still warranted for immature agent ecosystems."
     },
     "source_type_detection": {
-      "confidence": 0.97,
+      "confidence": 0.95,
       "detected_source_type": "standard_article",
       "reasoning": [
-        "The document is a single coherent report with sections, not a bundle of loosely related news items.",
-        "Its structure matches an opinionated technology analysis report with themes and categorized recommendations rather than a curated tools roundup or how-to list.",
-        "Although it contains many items, they are organized as one Radar report from one authoring body, not as an external news digest."
+        "This is a long-form report/opinion piece with a single coherent frame, not a bundle of unrelated news blurbs or a numbered tools roundup.",
+        "The structure is a Technology Radar with curated themes and categorized items, which fits a standard article/report rather than interview or tutorial.",
+        "It contains many item entries, but the dominant purpose is Thoughtworks' assessment and guidance, not aggregation of news headlines."
       ]
     },
-    "tools": [],
+    "tools": [
+      {
+        "confidence": 0.97,
+        "core_capabilities": [
+          "It plans and executes complex multi-step workflows from a CLI interface.",
+          "It extends beyond code generation into specifications, stories, infrastructure, documentation, and markdown-defined business processes.",
+          "It supports newer agent workflows such as skills, subagents, remote control, and agentic team patterns."
+        ],
+        "evidence_type": null,
+        "integration_ecosystem": [
+          "It works alongside broader coding-agent practices such as curated shared instructions and harness engineering.",
+          "Its feature set is described alongside skills and subagents, which implies integration with reusable agent workflows and team orchestration.",
+          "The source references its /insights command and /review-style workflows for collaboration analysis."
+        ],
+        "match_candidates": [],
+        "maturity_signals": "The source describes strong day-to-day use in production software delivery, both inside and outside Thoughtworks. It is treated as a benchmark for capability and usability rather than a niche experiment. The surrounding ecosystem is moving quickly, but Claude Code remains one of the most established references in the category as of April 2026.",
+        "name": "Claude Code",
+        "operational_relevance": "It fits teams that want an agent to carry out coding, documentation, configuration, and workflow changes with human review around the edges. The source positions it as a day-to-day production tool, which makes it relevant for teams standardizing agent-assisted delivery. It also matters because other tools in the space are borrowing features it introduced, including skills, subagents, remote control, and agent team workflows.",
+        "proposed_new_type": null,
+        "proposed_tags": [
+          "agentic",
+          "cli-tool",
+          "coding",
+          "software-development",
+          "multi-step-execution"
+        ],
+        "proposed_types": [
+          "coding-agent",
+          "terminal"
+        ],
+        "related_tools": [
+          "Cursor",
+          "OpenAI Codex",
+          "OpenCode"
+        ],
+        "short_description": "Claude Code is an agentic coding tool that plans and executes multi-step software tasks from the command line. It is used as a general workflow executor, not just a code-completion assistant.",
+        "strengths": "- Handles multi-step work beyond code authoring, including specifications, stories, infrastructure, documentation, and markdown-defined business processes.\n- Introduces features that others follow, such as skills, subagents, remote control, and agentic team workflows, which suggests a strong influence on the coding-agent category.\n- Works well enough that teams inside and outside Thoughtworks use it day-to-day in production delivery, which is a meaningful maturity signal.",
+        "suggested_action": "ignore",
+        "suggested_new_tags": [],
+        "supporting_snippet": "We're moving Claude Code to Adopt because teams inside and outside Thoughtworks now use it day-to-day in production software delivery, where it's widely treated as a benchmark for capability and usability. ... Claude Code continues to introduce features that other tools follow, such as skills, subagents, remote control and agentic team workflows.",
+        "value_level": "high",
+        "weaknesses_limitations": "- The source warns that agentic coding increases complacency risk with AI-generated code, so the tool needs disciplined review and testing rather than trust-by-default.\n- Like other autonomous coding tools, it can amplify hidden debt if teams do not keep tight guardrails around intent, constraints, and acceptance criteria."
+      }
+    ],
     "topics": [
       {
         "confidence": 0.98,
         "evidence_type": null,
         "examples": "",
         "key_points": [
-          "Context is a design surface, not just a prompt field.",
-          "Progressive disclosure keeps the model from being flooded with irrelevant instructions.",
-          "Dynamic retrieval can select tools or MCP servers only when needed.",
-          "Stateful compression and sub-agents can keep long workflows from accumulating noise."
+          "Raw context dumping leads to context rot and degraded reasoning.",
+          "Progressive context disclosure keeps the signal-to-noise ratio sharp by loading only what is relevant.",
+          "Context graphs and stateful compression are emerging ways to preserve institutional reasoning across longer workflows."
         ],
-        "knowledge_summary": "Context engineering treats the model context window as a managed system rather than a passive prompt box. The practice is to decide what information should enter the context, when it should appear, and how much should be revealed at each step so the model can reason with a sharper signal-to-noise ratio. It often combines structured instructions, progressive disclosure, retrieval, caching, and stateful compression to avoid context rot. The point is to reduce hallucinations, wasted tokens, and brittle behavior in long-running workflows.",
+        "knowledge_summary": "Context engineering is the practice of treating the model context window as an engineered system rather than a passive text bucket. It focuses on deciding what information the model sees, when it sees it, and how that information is loaded, compressed, retrieved, or refreshed over time. The goal is to preserve signal, reduce confusion, and keep reasoning stable as tasks become longer and more agentic. In production systems, this becomes a design problem that spans prompts, retrieval, tools, memory, and state management.",
         "match_candidates": [],
-        "operational_insight": "For agentic systems, design context flow explicitly: load only what is needed, when it is needed, and prefer modular context sources over monolithic instruction blobs.",
+        "operational_insight": "The durable lesson is to design context as a pipeline: start with discovery, load details only when needed, and prevent long prompts from accreting conflicting instructions and stale facts.",
         "primary_tag": "context-engineering",
         "proposed_tags": [
           "context-engineering",
           "agent-systems",
-          "orchestration"
+          "runtime-architecture"
         ],
         "related_topics": [
-          "progressive-disclosure-skill-design",
-          "harness-engineering"
+          "progressive-disclosure-skill-design"
         ],
-        "relevance_note": "As of 2026-04-13, this is a durable design concern for AI systems that need to behave consistently across multi-step tasks, especially chatbots, voicebots, and service agents that must combine instructions, policies, and live retrieval without overwhelming the model.",
+        "relevance_note": "This matters because most production AI failures are often context failures: the model had the wrong inputs, too much noise, or stale instructions. For conversational AI and service automation, disciplined context design improves reliability, reduces hallucinations, and makes agent behavior easier to govern.",
         "secondary_tag": "agent-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
-        "supporting_snippet": "\"Context engineering has evolved from an optimization tactic into a foundational architectural concern for modern AI systems. Unlike prompt engineering, which focuses on wording, context engineering treats the context window as a design surface and intentionally constructs the AI's information environment.\"",
+        "supporting_snippet": "Context engineering has evolved from an optimization tactic into a foundational architectural concern for modern AI systems. Unlike prompt engineering, which focuses on wording, context engineering treats the context window as a design surface and intentionally constructs the AI's information environment.",
         "topic_slug": "context-engineering",
         "topic_title": "Context Engineering",
         "value_level": "high"
       },
       {
-        "confidence": 0.97,
+        "confidence": 0.95,
         "evidence_type": null,
         "examples": "",
         "key_points": [
-          "Deterministic checks are more reliable than subjective review alone.",
-          "Feedback loops should happen during the coding or task session, not only after the fact.",
-          "Verification can be used to reduce human steering work, not just to catch final defects.",
-          "Quality gates are more useful when they trigger self-correction automatically."
+          "Deterministic gates are more useful than throughput metrics for judging agent output.",
+          "Mutation testing is valuable because it checks whether tests actually fail when behavior breaks.",
+          "Review burden, failed builds, and rework are practical signals that a verification loop is working or failing."
         ],
-        "knowledge_summary": "Verification loops are control systems that make AI outputs checkable before humans have to inspect them manually. They rely on deterministic gates such as compilers, linters, type checkers, tests, and structured evaluators to catch errors early and trigger correction. In AI-assisted development, these loops are more important because generated output can look plausible while still being wrong or incomplete. Strong verification loops reduce review burden, improve reliability, and make autonomous or semi-autonomous workflows safer to operate.",
+        "knowledge_summary": "Verification loops are control systems that check AI output against deterministic or structured signals before the result is accepted. They reduce the risk that fast generation will outrun correctness by adding checks such as tests, linters, type systems, mutation testing, or structured review steps. In AI-assisted workflows, these loops are increasingly important because generated output can be fluent but wrong, and the cost of review grows as autonomy increases. The practical effect is to shift trust from model confidence to observable failure signals.",
         "match_candidates": [],
-        "operational_insight": "Treat verification as part of the workflow architecture itself, not as an afterthought at commit time. The best loops run during generation and return actionable failure signals the agent can correct.",
+        "operational_insight": "Treat output quality as something to verify continuously, not something to infer from output volume or apparent fluency.",
         "primary_tag": "verification-systems",
         "proposed_tags": [
           "verification-systems",
           "test-and-verification",
+          "software-engineering",
           "coding-agents"
         ],
-        "related_topics": [
-          "agentic-coding-workflows",
-          "harness-engineering"
-        ],
-        "relevance_note": "As of 2026-04-13, verification loops are a core operating pattern for AI systems that generate code, documents, or actions. They are especially relevant to service automation because they provide the guardrails needed before an agent changes state, sends messages, or commits work.",
+        "related_topics": [],
+        "relevance_note": "Verification loops matter whenever AI systems are allowed to draft, transform, or execute work that humans will later rely on. In conversational systems, they are the difference between a fluent response and a dependable one, especially in regulated or high-stakes workflows.",
         "secondary_tag": "test-and-verification",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
-        "supporting_snippet": "\"Feedback sensors for coding agents act as a form of feedback backpressure, increasing trust in generated results. Developers have long relied on deterministic quality gates such as compilers, linters, structural tests and test suites; here, they're wired into agentic workflows so that failures trigger timely self-correction.\"",
+        "supporting_snippet": "Feedback sensors for coding agents act as a form of feedback backpressure, increasing trust in generated results. Developers have long relied on deterministic quality gates such as compilers, linters, structural tests and test suites; here, they're wired into agentic workflows so that failures trigger timely self-correction.",
         "topic_slug": "verification-loops-in-ai-workflows",
         "topic_title": "Verification Loops in AI Workflows",
         "value_level": "high"
@@ -239,69 +324,208 @@
   },
   "review": {
     "foundation_models": [],
-    "glossary": [],
+    "glossary": [
+      {
+        "llm_item": {
+          "confidence": 0.98,
+          "evidence_type": null,
+          "extended_explanation": "Passkeys are designed to remove the shared secret that makes passwords and one-time codes vulnerable to interception. Because the credential is bound to the origin, a lookalike site cannot use it the way it can steal a password or intercept an SMS code. In practice, passkeys reduce login friction and can improve sign-in success rates when implemented well. They are especially useful when an organization wants stronger account security without forcing users through awkward extra steps.",
+          "match_candidates": [],
+          "primary_tag": "governance",
+          "proposed_definition": "A passkey is a phishing-resistant authentication credential based on public-key cryptography that can replace passwords. The private key stays on the user's device or in a credential manager, while the public key is registered with the service.",
+          "proposed_tags": [
+            "governance"
+          ],
+          "related_terms": [],
+          "relevance_note": "Passkeys matter because authentication is one of the highest-value control points in AI-powered products and admin tooling. Phishing-resistant login reduces account takeover risk for support agents, operators, and end users who interact with conversational systems and internal automation.",
+          "secondary_tag": "",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "passkeys have matured into Adopt. They are FIDO2 credentials that can replace passwords using asymmetric public-key cryptography. The private key is stored in a hardware-backed secure enclave on the user's device, protected by biometrics or a PIN, and never leaves it. Each credential is origin-bound to its relying-party domain, making passkeys structurally phishing-resistant",
+          "term": "Passkey",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f60cdd05-db10-48bd-aa16-b19fa184bdb2",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "governance"
+          ]
+        }
+      },
+      {
+        "llm_item": {
+          "confidence": 0.93,
+          "evidence_type": null,
+          "extended_explanation": "MCP gives agents a common way to discover and call tools without bespoke integrations for every vendor or app. That standardization is useful when teams want governed access to data, OAuth boundaries, or multi-tenant workflows. The tradeoff is abstraction overhead: not every API benefits from another protocol layer, and a simpler CLI or direct API may be better for some tasks. MCP is most valuable when interoperability and governance matter more than raw simplicity.",
+          "match_candidates": [],
+          "primary_tag": "agent-systems",
+          "proposed_definition": "Model Context Protocol (MCP) is a protocol for connecting AI applications and agents to external tools and data sources through a standardized interface. It is used to define structured tool access, authentication boundaries, and interoperable integrations between models and systems.",
+          "proposed_tags": [
+            "agent-systems",
+            "tool-use"
+          ],
+          "related_terms": [
+            "Passkey"
+          ],
+          "relevance_note": "MCP is important for agentic systems because it creates a standard integration boundary for tools, retrieval, and governed access. That makes it a recurring building block for conversational AI, support automation, and internal agents that need controlled action surfaces.",
+          "secondary_tag": "tool-use",
+          "suggested_action": "ignore",
+          "suggested_new_tag": "",
+          "suggested_new_tags": [],
+          "supporting_snippet": "MCP adds real value for structured tool contracts, OAuth-based authentication boundaries and governed multi-tenant access. It also introduces what Justin Poehnelt calls an \"abstraction tax\": every protocol layer between an agent and an API loses fidelity, and for complex APIs those losses compound.",
+          "term": "Model Context Protocol",
+          "value_level": "high"
+        },
+        "notes": null,
+        "proposal_id": "f647fb71-6b3a-41d7-a489-6862950e7550",
+        "proposal_status": "approved",
+        "sections": {
+          "extended_explanation": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "proposed_definition": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "related_terms": {
+            "final_list": null,
+            "llm_list": [
+              "Passkey"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "relevance_note": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "term": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agent-systems",
+            "tool-use"
+          ]
+        }
+      }
+    ],
     "how_to": [],
     "implementation_studies": [],
     "industry_trends": [
       {
         "llm_item": {
           "assessed_as_of": "2026-04-13",
-          "confidence": 0.95,
-          "evidence_from_source": "The report repeatedly frames agent reliability as a systems problem, citing context engineering, curated instructions, feedback sensors, sandboxing, zero trust, and traceability as the important layers around agents. It also warns that broad autonomy without these controls produces cognitive debt, security risk, and brittle workflows.",
+          "confidence": 0.97,
+          "evidence_from_source": "Thoughtworks repeatedly emphasizes feedback sensors, mutation testing, collaboration quality metrics, and deterministic quality gates as the right response to AI-assisted development. The source also warns that throughput alone is misleading and that teams should use DORA metrics and review-burden signals instead.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "enterprise-ai",
+          "primary_tag": "ai-operationalization",
           "proposed_tags": [
-            "enterprise-ai",
             "ai-operationalization",
-            "runtime-systems"
+            "workflow-based-evaluation",
+            "verification-over-principles"
           ],
-          "related_trends": [],
-          "secondary_tag": "ai-operationalization",
+          "related_trends": [
+            "agentic-coding-shifts-toward-higher-supervision-costs",
+            "verification-loops-become-central-to-ai-workflows"
+          ],
+          "secondary_tag": "workflow-based-evaluation",
           "suggested_action": "ignore",
-          "suggested_new_tag": "",
-          "suggested_new_tags": [],
-          "supporting_data_points": [
-            "Adopted practices include context engineering, structured output, zero trust architecture, and DORA metrics.",
-            "Trial and assess items include agent skills, feedback sensors, sandboxed execution, and durable execution.",
-            "The report explicitly warns about codebase cognitive debt and model unpredictability.],",
-            "related_trends",
-            "ai-products-shift-from-models-to-grounded-systems"
+          "suggested_new_tag": "coding-agents",
+          "suggested_new_tags": [
+            "coding-agents"
           ],
-          "supporting_snippet": "\"AI-assisted software development represents a fundamental shift in engineering practice, requiring us to rethink \u2014 and in some cases discard \u2014 longheld assumptions.\"",
-          "time_sensitivity": "Actionable as of 2026-04-13; the system-level framing is likely to remain relevant through at least the next product cycle even as individual tools change.",
-          "trend_description": "AI products are increasingly differentiated by the surrounding system: context management, guardrails, retrieval, evaluation, traceability, and execution controls matter more than raw model access alone. The practical question shifts from which model is strongest to which operating stack keeps the model useful, safe, and measurable in production. This pattern affects how teams design agentic software, support automation, and internal AI platforms.",
-          "trend_slug": "ai-products-shift-from-models-to-systems",
-          "trend_title": "AI Products Shift from Models to Systems",
-          "uncertainty_note": "The source is an opinionated advisory report, not a controlled study, so the relative importance of each system layer may vary by organization and workload.",
+          "supporting_data_points": [
+            "The Radar promotes feedback sensors for coding agents as a Trial item.",
+            "The Radar says DORA metrics remain important and that lines of code is a misleading productivity measure.",
+            "The Radar links collaboration quality metrics to review burden, failed builds, and rework rate."
+          ],
+          "supporting_snippet": "To make coding agents more effective and reduce the load on human reviewers, teams need feedback loops that agents can directly access. These feedback sensors for coding agents act as a form of feedback backpressure, increasing trust in generated results.",
+          "time_sensitivity": "Actionable as of 2026-04-13; the source treats this as a live operating shift rather than a settled norm.",
+          "trend_description": "AI-assisted engineering is moving away from trust in raw generation and toward workflows that continuously verify outputs before they are accepted. The shift is driven by the need to catch model errors, regression risk, and agent misbehavior with deterministic or structured checks. This trend matters because the bottleneck is increasingly review and validation, not generation speed.",
+          "trend_slug": "ai-workflows-shift-toward-verification-loops",
+          "trend_title": "AI Workflows Shift Toward Verification Loops",
+          "uncertainty_note": "The evidence is strong inside the source, but it is still opinionated and based on practitioner judgment rather than broad empirical benchmarking across industries.",
           "value_level": "high"
         },
         "notes": null,
-        "proposal_id": "2dd45e6c-afb9-4862-ac6f-43fb71736c79",
+        "proposal_id": "26c112b2-e4ec-4934-b791-da80c252fb09",
         "proposal_status": "approved",
         "sections": {
           "evidence_from_source": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
-            "llm_list": [],
+            "llm_list": [
+              "agentic-coding-shifts-toward-higher-supervision-costs",
+              "verification-loops-become-central-to-ai-workflows"
+            ],
             "notes": null,
             "status": "pending"
           },
           "supporting_data_points": {
-            "final_list": [],
+            "final_list": null,
             "llm_list": [
-              "Adopted practices include context engineering, structured output, zero trust architecture, and DORA metrics.",
-              "Trial and assess items include agent skills, feedback sensors, sandboxed execution, and durable execution.",
-              "The report explicitly warns about codebase cognitive debt and model unpredictability.],",
-              "related_trends",
-              "ai-products-shift-from-models-to-grounded-systems"
+              "The Radar promotes feedback sensors for coding agents as a Trial item.",
+              "The Radar says DORA metrics remain important and that lines of code is a misleading productivity measure.",
+              "The Radar links collaboration quality metrics to review burden, failed builds, and rework rate."
             ],
             "notes": null,
-            "status": "modified"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -309,37 +533,37 @@
             "status": "pending"
           },
           "time_sensitivity": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "approved"
           },
           "trend_description": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "approved"
           },
           "trend_slug": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "approved"
           },
           "trend_title": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "approved"
           },
           "uncertainty_note": {
-            "final_text": "",
+            "final_text": null,
             "notes": null,
-            "status": "modified"
+            "status": "approved"
           }
         },
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "enterprise-ai",
             "ai-operationalization",
-            "runtime-systems"
+            "workflow-based-evaluation",
+            "verification-over-principles"
           ]
         }
       }
@@ -351,9 +575,9 @@
       "llm_item": {
         "primary_evidence_type": "expert_opinion",
         "reasoning": [
-          "The report is framed as Thoughtworks' advisory judgment: the Technology Advisory Board discusses trends and produces recommendations.",
-          "Claims are largely evaluative and opinionated, with rings like Adopt/Trial/Assess/Caution reflecting expert assessment rather than primary research.",
-          "Some entries cite cases or benchmarks, but the source as a whole is a strategic expert guide to technology choices."
+          "The Radar is created by Thoughtworks' Technology Advisory Board as an opinionated guide to the technology landscape.",
+          "Claims are framed as advisory judgments, recommendations, and assessments rather than as experimental results or a vendor announcement.",
+          "Where evidence appears, it is mainly practitioner experience and expert interpretation from Thoughtworks teams."
         ]
       },
       "notes": null,
@@ -375,11 +599,11 @@
       "key_insights": {
         "final_list": null,
         "llm_list": [
-          "AI makes technology evaluation harder because terms, tools, and practices evolve faster than shared definitions can stabilize.",
-          "Context engineering is treated as a foundational architectural concern, not just prompt tuning, because raw context leads to degradation and hallucination.",
-          "The report repeatedly favors constrained agent workflows: skills, sandboxes, progressive disclosure, deterministic feedback gates, and durable execution.",
-          "Security guidance is central for agent adoption: least privilege, zero trust, toxic flow analysis, and traceability are presented as non-negotiable defaults.",
-          "The Radar argues that AI-assisted coding increases the need for traditional engineering signals like DORA metrics, mutation testing, and accessibility checks."
+          "Thoughtworks treats context engineering as a foundational design problem for AI systems, not just a prompt-writing tweak.",
+          "The Radar says AI-assisted development makes deterministic feedback loops more valuable, especially tests, linters, type checks, and mutation testing.",
+          "Several items target agent safety directly: zero trust, sandboxed execution, role-based retrieval isolation, toxic flow analysis, and traceability.",
+          "The authors distinguish small deliberate agent teams from large swarms, implying that complexity should be introduced cautiously rather than by default.",
+          "The report frames codebase cognitive debt as a real risk when AI increases change velocity faster than human understanding can keep up."
         ],
         "notes": null,
         "section_regeneration_meta": null,
@@ -416,18 +640,151 @@
     "source_type_detection": {
       "final_item": null,
       "llm_item": {
-        "confidence": 0.97,
+        "confidence": 0.95,
         "detected_source_type": "standard_article",
         "reasoning": [
-          "The document is a single coherent report with sections, not a bundle of loosely related news items.",
-          "Its structure matches an opinionated technology analysis report with themes and categorized recommendations rather than a curated tools roundup or how-to list.",
-          "Although it contains many items, they are organized as one Radar report from one authoring body, not as an external news digest."
+          "This is a long-form report/opinion piece with a single coherent frame, not a bundle of unrelated news blurbs or a numbered tools roundup.",
+          "The structure is a Technology Radar with curated themes and categorized items, which fits a standard article/report rather than interview or tutorial.",
+          "It contains many item entries, but the dominant purpose is Thoughtworks' assessment and guidance, not aggregation of news headlines."
         ]
       },
       "notes": null,
       "status": "pending"
     },
-    "tools": [],
+    "tools": [
+      {
+        "llm_item": {
+          "confidence": 0.97,
+          "core_capabilities": [
+            "It plans and executes complex multi-step workflows from a CLI interface.",
+            "It extends beyond code generation into specifications, stories, infrastructure, documentation, and markdown-defined business processes.",
+            "It supports newer agent workflows such as skills, subagents, remote control, and agentic team patterns."
+          ],
+          "integration_ecosystem": [
+            "It works alongside broader coding-agent practices such as curated shared instructions and harness engineering.",
+            "Its feature set is described alongside skills and subagents, which implies integration with reusable agent workflows and team orchestration.",
+            "The source references its /insights command and /review-style workflows for collaboration analysis."
+          ],
+          "match_candidates": [],
+          "maturity_signals": "The source describes strong day-to-day use in production software delivery, both inside and outside Thoughtworks. It is treated as a benchmark for capability and usability rather than a niche experiment. The surrounding ecosystem is moving quickly, but Claude Code remains one of the most established references in the category as of April 2026.",
+          "name": "Claude Code",
+          "operational_relevance": "It fits teams that want an agent to carry out coding, documentation, configuration, and workflow changes with human review around the edges. The source positions it as a day-to-day production tool, which makes it relevant for teams standardizing agent-assisted delivery. It also matters because other tools in the space are borrowing features it introduced, including skills, subagents, remote control, and agent team workflows.",
+          "proposed_new_type": null,
+          "proposed_tags": [
+            "agentic",
+            "cli-tool",
+            "coding",
+            "software-development",
+            "multi-step-execution"
+          ],
+          "proposed_types": [
+            "coding-agent",
+            "terminal"
+          ],
+          "related_tools": [
+            "Cursor",
+            "OpenAI Codex",
+            "OpenCode"
+          ],
+          "short_description": "Claude Code is an agentic coding tool that plans and executes multi-step software tasks from the command line. It is used as a general workflow executor, not just a code-completion assistant.",
+          "strengths": "- Handles multi-step work beyond code authoring, including specifications, stories, infrastructure, documentation, and markdown-defined business processes.\n- Introduces features that others follow, such as skills, subagents, remote control, and agentic team workflows, which suggests a strong influence on the coding-agent category.\n- Works well enough that teams inside and outside Thoughtworks use it day-to-day in production delivery, which is a meaningful maturity signal.",
+          "suggested_action": "ignore",
+          "suggested_new_tags": [],
+          "supporting_snippet": "We're moving Claude Code to Adopt because teams inside and outside Thoughtworks now use it day-to-day in production software delivery, where it's widely treated as a benchmark for capability and usability. ... Claude Code continues to introduce features that other tools follow, such as skills, subagents, remote control and agentic team workflows.",
+          "value_level": "high",
+          "weaknesses_limitations": "- The source warns that agentic coding increases complacency risk with AI-generated code, so the tool needs disciplined review and testing rather than trust-by-default.\n- Like other autonomous coding tools, it can amplify hidden debt if teams do not keep tight guardrails around intent, constraints, and acceptance criteria."
+        },
+        "notes": null,
+        "proposal_id": "38508922-3832-4e48-b2c0-13de8922c63f",
+        "proposal_status": "approved",
+        "sections": {
+          "core_capabilities": {
+            "final_list": null,
+            "llm_list": [
+              "It plans and executes complex multi-step workflows from a CLI interface.",
+              "It extends beyond code generation into specifications, stories, infrastructure, documentation, and markdown-defined business processes.",
+              "It supports newer agent workflows such as skills, subagents, remote control, and agentic team patterns."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "integration_ecosystem": {
+            "final_list": null,
+            "llm_list": [
+              "It works alongside broader coding-agent practices such as curated shared instructions and harness engineering.",
+              "Its feature set is described alongside skills and subagents, which implies integration with reusable agent workflows and team orchestration.",
+              "The source references its /insights command and /review-style workflows for collaboration analysis."
+            ],
+            "notes": null,
+            "status": "approved"
+          },
+          "maturity_signals": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "name": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "operational_relevance": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "related_tools": {
+            "final_list": null,
+            "llm_list": [
+              "Cursor",
+              "OpenAI Codex",
+              "OpenCode"
+            ],
+            "notes": null,
+            "status": "pending"
+          },
+          "short_description": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "strengths": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          },
+          "supporting_snippet": {
+            "final_text": null,
+            "notes": null,
+            "status": "pending"
+          },
+          "weaknesses_limitations": {
+            "final_text": null,
+            "notes": null,
+            "status": "approved"
+          }
+        },
+        "tags": {
+          "approved_new_tags": [],
+          "final_tags": [
+            "agentic",
+            "cli-tool",
+            "coding",
+            "software-development",
+            "multi-step-execution"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent",
+            "terminal"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
+        }
+      }
+    ],
     "topics": [
       {
         "llm_item": {
@@ -435,36 +792,34 @@
           "evidence_type": null,
           "examples": "",
           "key_points": [
-            "Context is a design surface, not just a prompt field.",
-            "Progressive disclosure keeps the model from being flooded with irrelevant instructions.",
-            "Dynamic retrieval can select tools or MCP servers only when needed.",
-            "Stateful compression and sub-agents can keep long workflows from accumulating noise."
+            "Raw context dumping leads to context rot and degraded reasoning.",
+            "Progressive context disclosure keeps the signal-to-noise ratio sharp by loading only what is relevant.",
+            "Context graphs and stateful compression are emerging ways to preserve institutional reasoning across longer workflows."
           ],
-          "knowledge_summary": "Context engineering treats the model context window as a managed system rather than a passive prompt box. The practice is to decide what information should enter the context, when it should appear, and how much should be revealed at each step so the model can reason with a sharper signal-to-noise ratio. It often combines structured instructions, progressive disclosure, retrieval, caching, and stateful compression to avoid context rot. The point is to reduce hallucinations, wasted tokens, and brittle behavior in long-running workflows.",
+          "knowledge_summary": "Context engineering is the practice of treating the model context window as an engineered system rather than a passive text bucket. It focuses on deciding what information the model sees, when it sees it, and how that information is loaded, compressed, retrieved, or refreshed over time. The goal is to preserve signal, reduce confusion, and keep reasoning stable as tasks become longer and more agentic. In production systems, this becomes a design problem that spans prompts, retrieval, tools, memory, and state management.",
           "match_candidates": [],
-          "operational_insight": "For agentic systems, design context flow explicitly: load only what is needed, when it is needed, and prefer modular context sources over monolithic instruction blobs.",
+          "operational_insight": "The durable lesson is to design context as a pipeline: start with discovery, load details only when needed, and prevent long prompts from accreting conflicting instructions and stale facts.",
           "primary_tag": "context-engineering",
           "proposed_tags": [
             "context-engineering",
             "agent-systems",
-            "orchestration"
+            "runtime-architecture"
           ],
           "related_topics": [
-            "progressive-disclosure-skill-design",
-            "harness-engineering"
+            "progressive-disclosure-skill-design"
           ],
-          "relevance_note": "As of 2026-04-13, this is a durable design concern for AI systems that need to behave consistently across multi-step tasks, especially chatbots, voicebots, and service agents that must combine instructions, policies, and live retrieval without overwhelming the model.",
+          "relevance_note": "This matters because most production AI failures are often context failures: the model had the wrong inputs, too much noise, or stale instructions. For conversational AI and service automation, disciplined context design improves reliability, reduces hallucinations, and makes agent behavior easier to govern.",
           "secondary_tag": "agent-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
-          "supporting_snippet": "\"Context engineering has evolved from an optimization tactic into a foundational architectural concern for modern AI systems. Unlike prompt engineering, which focuses on wording, context engineering treats the context window as a design surface and intentionally constructs the AI's information environment.\"",
+          "supporting_snippet": "Context engineering has evolved from an optimization tactic into a foundational architectural concern for modern AI systems. Unlike prompt engineering, which focuses on wording, context engineering treats the context window as a design surface and intentionally constructs the AI's information environment.",
           "topic_slug": "context-engineering",
           "topic_title": "Context Engineering",
           "value_level": "high"
         },
         "notes": null,
-        "proposal_id": "d1c5aed5-8bf0-400e-86a0-9739bf955c1b",
+        "proposal_id": "eb0933cf-6add-43fe-b336-a8375ab8ce29",
         "proposal_status": "approved",
         "sections": {
           "examples": {
@@ -475,10 +830,9 @@
           "key_points": {
             "final_list": null,
             "llm_list": [
-              "Context is a design surface, not just a prompt field.",
-              "Progressive disclosure keeps the model from being flooded with irrelevant instructions.",
-              "Dynamic retrieval can select tools or MCP servers only when needed.",
-              "Stateful compression and sub-agents can keep long workflows from accumulating noise."
+              "Raw context dumping leads to context rot and degraded reasoning.",
+              "Progressive context disclosure keeps the signal-to-noise ratio sharp by loading only what is relevant.",
+              "Context graphs and stateful compression are emerging ways to preserve institutional reasoning across longer workflows."
             ],
             "notes": null,
             "status": "approved"
@@ -496,8 +850,7 @@
           "related_topics": {
             "final_list": null,
             "llm_list": [
-              "progressive-disclosure-skill-design",
-              "harness-engineering"
+              "progressive-disclosure-skill-design"
             ],
             "notes": null,
             "status": "approved"
@@ -528,87 +881,80 @@
           "final_tags": [
             "context-engineering",
             "agent-systems",
-            "orchestration"
+            "runtime-architecture"
           ]
         }
       },
       {
         "llm_item": {
-          "confidence": 0.97,
+          "confidence": 0.95,
           "evidence_type": null,
           "examples": "",
           "key_points": [
-            "Deterministic checks are more reliable than subjective review alone.",
-            "Feedback loops should happen during the coding or task session, not only after the fact.",
-            "Verification can be used to reduce human steering work, not just to catch final defects.",
-            "Quality gates are more useful when they trigger self-correction automatically."
+            "Deterministic gates are more useful than throughput metrics for judging agent output.",
+            "Mutation testing is valuable because it checks whether tests actually fail when behavior breaks.",
+            "Review burden, failed builds, and rework are practical signals that a verification loop is working or failing."
           ],
-          "knowledge_summary": "Verification loops are control systems that make AI outputs checkable before humans have to inspect them manually. They rely on deterministic gates such as compilers, linters, type checkers, tests, and structured evaluators to catch errors early and trigger correction. In AI-assisted development, these loops are more important because generated output can look plausible while still being wrong or incomplete. Strong verification loops reduce review burden, improve reliability, and make autonomous or semi-autonomous workflows safer to operate.",
+          "knowledge_summary": "Verification loops are control systems that check AI output against deterministic or structured signals before the result is accepted. They reduce the risk that fast generation will outrun correctness by adding checks such as tests, linters, type systems, mutation testing, or structured review steps. In AI-assisted workflows, these loops are increasingly important because generated output can be fluent but wrong, and the cost of review grows as autonomy increases. The practical effect is to shift trust from model confidence to observable failure signals.",
           "match_candidates": [],
-          "operational_insight": "Treat verification as part of the workflow architecture itself, not as an afterthought at commit time. The best loops run during generation and return actionable failure signals the agent can correct.",
+          "operational_insight": "Treat output quality as something to verify continuously, not something to infer from output volume or apparent fluency.",
           "primary_tag": "verification-systems",
           "proposed_tags": [
             "verification-systems",
             "test-and-verification",
+            "software-engineering",
             "coding-agents"
           ],
-          "related_topics": [
-            "agentic-coding-workflows",
-            "harness-engineering"
-          ],
-          "relevance_note": "As of 2026-04-13, verification loops are a core operating pattern for AI systems that generate code, documents, or actions. They are especially relevant to service automation because they provide the guardrails needed before an agent changes state, sends messages, or commits work.",
+          "related_topics": [],
+          "relevance_note": "Verification loops matter whenever AI systems are allowed to draft, transform, or execute work that humans will later rely on. In conversational systems, they are the difference between a fluent response and a dependable one, especially in regulated or high-stakes workflows.",
           "secondary_tag": "test-and-verification",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
-          "supporting_snippet": "\"Feedback sensors for coding agents act as a form of feedback backpressure, increasing trust in generated results. Developers have long relied on deterministic quality gates such as compilers, linters, structural tests and test suites; here, they're wired into agentic workflows so that failures trigger timely self-correction.\"",
+          "supporting_snippet": "Feedback sensors for coding agents act as a form of feedback backpressure, increasing trust in generated results. Developers have long relied on deterministic quality gates such as compilers, linters, structural tests and test suites; here, they're wired into agentic workflows so that failures trigger timely self-correction.",
           "topic_slug": "verification-loops-in-ai-workflows",
           "topic_title": "Verification Loops in AI Workflows",
           "value_level": "high"
         },
         "notes": null,
-        "proposal_id": "44ef3d78-f588-4822-b397-cf5a5edb6099",
+        "proposal_id": "f80a4cfe-b959-4e04-a637-c9c7db7f5c68",
         "proposal_status": "approved",
         "sections": {
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "key_points": {
             "final_list": null,
             "llm_list": [
-              "Deterministic checks are more reliable than subjective review alone.",
-              "Feedback loops should happen during the coding or task session, not only after the fact.",
-              "Verification can be used to reduce human steering work, not just to catch final defects.",
-              "Quality gates are more useful when they trigger self-correction automatically."
+              "Deterministic gates are more useful than throughput metrics for judging agent output.",
+              "Mutation testing is valuable because it checks whether tests actually fail when behavior breaks.",
+              "Review burden, failed builds, and rework are practical signals that a verification loop is working or failing."
             ],
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "related_topics": {
             "final_list": null,
-            "llm_list": [
-              "agentic-coding-workflows",
-              "harness-engineering"
-            ],
+            "llm_list": [],
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -618,12 +964,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "approved"
+            "status": "pending"
           }
         },
         "tags": {
@@ -631,6 +977,7 @@
           "final_tags": [
             "verification-systems",
             "test-and-verification",
+            "software-engineering",
             "coding-agents"
           ]
         }
@@ -648,10 +995,10 @@
     "proposals_total": 0,
     "review_duration_seconds": null,
     "review_finished_at": null,
-    "review_started_at": "2026-06-06T20:41:56+00:00"
+    "review_started_at": "2026-06-17T15:49:52+00:00"
   },
   "review_session": {
-    "last_saved_at": "2026-06-06T20:51:16+00:00",
+    "last_saved_at": "2026-06-17T15:50:09+00:00",
     "saved_by": null
   },
   "source": {

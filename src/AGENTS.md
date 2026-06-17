@@ -107,12 +107,45 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 - This is the preferred day-to-day wrapper once the individual steps are understood.
 - Dry-run mode makes **no LLM calls**, writes no cache files, and writes no preview files.
 - Real mode requires `--yes`, writes validated cache entries, and renders review previews unless `--no-review` is passed.
+- Real mode writes an audit report to `state/synthesis_runs/<timestamp>.json` unless `--no-audit-log` is passed.
 - It intentionally does **not** run `wiki-render`; inspect previews first, then run `hatch run wiki-render --dry-run`.
 - Useful examples:
   - `hatch run wiki-synthesis-workflow --dry-run --entity glossary:fine-tuning --json`
   - `hatch run wiki-synthesis-workflow --entity glossary:fine-tuning --yes`
   - `hatch run wiki-synthesis-workflow --category glossary --limit 5 --yes`
   - `hatch run wiki-synthesis-workflow --entity glossary:example --include-single-source --yes`
+  - `hatch run wiki-synthesis-workflow --entity glossary:fine-tuning --yes --no-audit-log`
+
+## Wiki synthesis doctor (Stage 2 preflight)
+
+- Run: `hatch run wiki-synthesis-doctor --entity glossary:fine-tuning`
+- This command makes **no LLM calls** and writes no files.
+- Purpose: check whether a target is ready for the synthesis workflow before running a paid API call.
+- Checks:
+  - graph path exists
+  - cache/preview/report parent directories are usable
+  - model value is set
+  - `OPENAI_API_KEY` is present or missing
+  - target has executable `new`/`stale` work
+  - existing cache files have no blocking lint errors
+- Useful examples:
+  - `hatch run wiki-synthesis-doctor --entity glossary:fine-tuning --json`
+  - `hatch run wiki-synthesis-doctor --entity glossary:fine-tuning --require-api-key`
+
+## Wiki synthesis cache lint (Stage 2 pre-render check)
+
+- Run: `hatch run wiki-synthesis-cache-lint`
+- This command makes **no LLM calls** and writes no files.
+- It validates existing cache files against `state/wiki_render_graph.json`.
+- Results:
+  - `ok` — cache is fresh and renderable.
+  - `warning` — cache is stale but renderable.
+  - `error` — cache is missing when required, invalid, or orphaned.
+- Use before `wiki-render` after real synthesis runs.
+- Useful examples:
+  - `hatch run wiki-synthesis-cache-lint --entity glossary:fine-tuning --json`
+  - `hatch run wiki-synthesis-cache-lint --category glossary`
+  - `hatch run wiki-synthesis-cache-lint --entity glossary:fine-tuning --include-missing`
 
 ## Wiki synthesis indexes (Stage 2 routing)
 

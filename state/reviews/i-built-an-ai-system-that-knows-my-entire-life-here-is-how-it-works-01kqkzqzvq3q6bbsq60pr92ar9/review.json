@@ -1,16 +1,16 @@
 {
   "analysis_meta": {
-    "analysis_timestamp_utc": "2026-06-06T21:55:06+00:00",
+    "analysis_timestamp_utc": "2026-06-17T15:54:48+00:00",
     "classification_pipeline": {
       "mode": "staged",
       "stages": [
         {
           "cache_hit_rate": 0.0,
           "name": "triage",
-          "prompt_version": "42-triage",
-          "request_id": "chatcmpl-DntGUtSYsjYLyrINm6txJAVBMI7tM",
+          "prompt_version": "43-triage",
+          "request_id": "chatcmpl-Drmsl05MRwNNXYRHInlmPqMvmbEqx",
           "token_usage": {
-            "completion_tokens": 215,
+            "completion_tokens": 212,
             "completion_tokens_details": {
               "accepted_prediction_tokens": 0,
               "audio_tokens": 0,
@@ -22,65 +22,65 @@
               "audio_tokens": 0,
               "cached_tokens": 0
             },
-            "total_tokens": 9352
+            "total_tokens": 9349
           }
         },
         {
           "cache_hit_rate": 0.0,
           "name": "summary",
-          "prompt_version": "42-summary",
-          "request_id": "chatcmpl-DntGWAUxI6TlJ1JI7JSARg15qdpk5",
+          "prompt_version": "43-summary",
+          "request_id": "chatcmpl-DrmsoFf4gwfxSh5fa2QonHRs8nrVK",
           "token_usage": {
-            "completion_tokens": 1191,
+            "completion_tokens": 1218,
             "completion_tokens_details": {
               "accepted_prediction_tokens": 0,
               "audio_tokens": 0,
               "reasoning_tokens": 0,
               "rejected_prediction_tokens": 0
             },
-            "prompt_tokens": 8766,
+            "prompt_tokens": 8763,
             "prompt_tokens_details": {
               "audio_tokens": 0,
               "cached_tokens": 0
             },
-            "total_tokens": 9957
+            "total_tokens": 9981
           }
         },
         {
           "cache_hit_rate": 0.0,
           "name": "entities",
-          "prompt_version": "42-entities-standard_article",
-          "request_id": "chatcmpl-DntGgKSour4UVAzEar3y7upAGkMHh",
+          "prompt_version": "43-entities-standard_article",
+          "request_id": "chatcmpl-Drmszg3w8gyj1UStliF7KfIJas1MN",
           "route": "standard_article",
           "token_usage": {
-            "completion_tokens": 1800,
+            "completion_tokens": 1664,
             "completion_tokens_details": {
               "accepted_prediction_tokens": 0,
               "audio_tokens": 0,
               "reasoning_tokens": 0,
               "rejected_prediction_tokens": 0
             },
-            "prompt_tokens": 38527,
+            "prompt_tokens": 41419,
             "prompt_tokens_details": {
               "audio_tokens": 0,
               "cached_tokens": 0
             },
-            "total_tokens": 40327
+            "total_tokens": 43083
           }
         }
       ]
     },
     "model": "gpt-5.4-mini-2026-03-17",
-    "prompt_version": "42",
+    "prompt_version": "43",
     "provider": "openai",
-    "request_id": "chatcmpl-DntGgKSour4UVAzEar3y7upAGkMHh",
+    "request_id": "chatcmpl-Drmszg3w8gyj1UStliF7KfIJas1MN",
     "token_usage": {
-      "completion_tokens": 3206,
-      "prompt_tokens": 56430,
+      "completion_tokens": 3094,
+      "prompt_tokens": 59319,
       "prompt_tokens_details": {
         "cached_tokens": 0
       },
-      "total_tokens": 59636
+      "total_tokens": 62413
     }
   },
   "artifact_schema_version": 17,
@@ -100,36 +100,35 @@
       {
         "assessed_as_of": "2026-04-01",
         "confidence": 0.88,
-        "evidence_from_source": "The source describes specialist agents with persistent memory files, a coaching layer that tracks taught concepts over time, and workflows that get smarter with repeated use. It frames the system as compounding because every interaction is captured and reused later.",
+        "evidence_from_source": "The source argues that the useful unit is a \"personal intelligence system\" built from SQLite, skills, agents, and integrations, not a chatbot or note app.",
         "evidence_type": null,
         "match_candidates": [],
-        "primary_tag": "persistent-agents",
-        "proposed_tags": [
-          "persistent-agents",
-          "knowledge-systems",
-          "runtime-systems"
-        ],
+        "primary_tag": "",
+        "proposed_tags": [],
         "related_trends": [
-          "knowledge-bases-become-maintained-workspaces"
+          "workflow-restructuring-around-ai-agents",
+          "agent-memory"
         ],
-        "secondary_tag": "knowledge-systems",
+        "secondary_tag": "",
         "suggested_action": "ignore",
-        "suggested_new_tag": "agent-systems",
+        "suggested_new_tag": "ai-engineering",
         "suggested_new_tags": [
-          "agent-systems"
+          "ai-engineering",
+          "agent-systems",
+          "workflow-design"
         ],
         "supporting_data_points": [
+          "152 database tables",
           "17 specialist AI agents",
-          "Persistent memory files stored in Git",
-          "296 coaching sessions",
-          "3,000+ journal entries"
+          "over 40 skills in production",
+          "3,000 journal entries"
         ],
-        "supporting_snippet": "\"Every one of these agents has persistent memory files that travel with the project through Git. When I work from my home iMac, the agents have the same accumulated wisdom as when I work from the office iMac. Nothing gets lost. Everything compounds.\"",
-        "time_sensitivity": "Actionable as of 2026-04-01; the source suggests this is an active design direction for agent systems that need durable context, though it remains highly implementation-dependent.",
-        "trend_description": "AI agents are moving from stateless chat interactions toward workflows that retain memory, history, and reusable context across sessions. The operational shift matters because repeated work becomes less about re-explaining context and more about accumulating durable state that can improve routing, coaching, and follow-up. This trend shows up most clearly in systems where memory is stored outside the model and tied to a structured workflow or database.",
-        "trend_slug": "agents-shift-toward-persistent-memory-backed-workflows",
-        "trend_title": "Agents Shift Toward Persistent Memory-Backed Workflows",
-        "uncertainty_note": "Evidence is a single self-reported build, so it shows a plausible pattern rather than proving broad adoption or superiority over simpler designs.",
+        "supporting_snippet": "\"This is not a feature list. This is a different category of tool.\"",
+        "time_sensitivity": "Actionable as of 2026-04-01; the source presents this as a live build pattern rather than a future prediction.",
+        "trend_description": "AI value is moving from standalone model access toward integrated systems that combine storage, workflows, memory, routing, and review. In this pattern, the model is just one component inside a larger operational layer that decides what to capture, how to route it, and how to verify output. The differentiator becomes system design rather than model novelty alone.",
+        "trend_slug": "ai-products-shift-from-models-to-systems",
+        "trend_title": "AI Products Shift from Models to Systems",
+        "uncertainty_note": "This is supported by one heavily customized personal build, so it is best read as a strong design example rather than proof that all AI products must become systems.",
         "value_level": "high"
       }
     ],
@@ -138,61 +137,60 @@
     "source_evidence_profile": {
       "primary_evidence_type": "implementation_case",
       "reasoning": [
-        "The article is a first-person build report describing how the author created Mindset with Claude Code, SQLite, React, and GitHub.",
-        "Most claims are supported by concrete implementation details such as 152 tables, 17 agents, and specific workflows/integrations.",
-        "The article mixes anecdote and opinion, but the dominant basis is a concrete personal deployment case."
+        "The article centers on a concrete system the author says he built himself, with specific components and workflows.",
+        "Claims are supported by implementation details such as SQLite, Claude Code, React, GitHub sync, agents, tables, and integrations.",
+        "Most assertions are practitioner experience and described operation of the system, not external benchmarks or research."
       ]
     },
     "source_summary": {
-      "accessible_overview": "This article is about a personal AI system that acts like an external memory and coaching layer for one founder\u2019s life. Instead of using a normal notes app, he built a database plus AI agents that capture, sort, and connect everything he does. The interesting part is that the system learns from repeated use, so it can spot patterns across business, learning, fitness, and creative work. In plain terms, he is trying to make his own thinking searchable and reusable. The article is less about a product and more about a custom way to turn daily activity into structured intelligence.",
+      "accessible_overview": "This article is about a custom AI system the author built to remember and organize his work, learning, and personal life. Instead of using a normal notes app, he created a database plus a set of specialist AI agents that capture information, spot patterns, and give coaching. The key idea is that the system does the busywork after a short natural-language input. Over time, it gets more useful because it keeps adding context and remembers prior sessions. The article is interesting because it treats AI less like a chatbot and more like a personal operating layer for one person\u2019s life. The basic mechanism is structured data, persistent memory, and workflow automation tied to his own methodology.",
       "assessed_as_of": "2026-04-01",
-      "contradictions_and_skepticism": "The article presents a strong anti-app argument, but that claim is based on one highly customized use case, so it does not prove generic products are inherently insufficient. The repeated emphasis on scale metrics like 152 tables and 17 agents may signal complexity as much as capability; the article does not show that simpler designs would fail. Claims that the system \u2018knows\u2019 patterns across life are plausible in spirit, but the evidence provided is descriptive rather than measured. The idea that no SaaS product can provide this compounding effect is more rhetorical than demonstrated, since the article does not test comparable systems over time. Still, the core workflow concept is coherent and not obviously hype: capture once, structure consistently, and let downstream agents reuse the same history.",
+      "contradictions_and_skepticism": "The article presents a highly customized, labor-intensive system as evidence that generic tools are insufficient, but that conclusion may reflect the author\u2019s unusually complex life more than a general product gap. Claims like \u201cnothing gets lost\u201d and \u201cthe system knows more about my decision patterns than any human advisor ever could\u201d are persuasive rhetorically but not independently validated. The system\u2019s success depends heavily on the author\u2019s own methodology, habits, and willingness to design around it, which limits portability. The argument that this should not become an app is coherent, but it also sidesteps whether parts of the approach could be productized for narrower use cases. Overall, the skepticism is less about the architecture and more about the extrapolation from a polished personal build to a general principle.",
       "key_insights": [
-        "A durable personal AI system depends more on structured data and repeatable workflows than on a chat interface.",
-        "Persistent agent memory only matters if the system also stores the underlying history in a queryable database.",
-        "Cross-domain coaching is the article\u2019s main differentiator: the system connects business, chess, music, fitness, and writing instead of treating them as separate silos.",
-        "The author\u2019s strongest operational claim is that natural-language input can trigger multi-step capture and routing with little manual filing.",
-        "The article argues for a methodology-first approach: the system is built around ICOR\u00ae, not around a generic note-taking product."
+        "The system\u2019s main design principle is to remove manual maintenance from personal knowledge work by making natural-language input the only required user action.",
+        "Persistent agent memory is treated as a first-class feature: each specialist reads prior context, teaches one concept per session, and builds on earlier sessions.",
+        "The author\u2019s strongest claim is compounding value from density: thousands of structured entries plus recurring concepts and themes enable cross-domain pattern recognition.",
+        "A local-first SQLite design with GitHub-synced files is presented as a way to keep the system private, durable, and under user control.",
+        "The article argues that a generic product would lose much of the value because the real advantage comes from a methodology and data model tailored to one person\u2019s life and work."
       ],
-      "limitations_and_open_questions": "The evidence is entirely self-reported, with no benchmarks, comparison against alternative systems, or independent validation of time saved, error reduction, or decision quality. The article gives impressive counts, but it does not show failure rates, maintenance overhead, schema evolution costs, or how often the system breaks under real usage. Security and privacy are asserted by saying the data stays on the author\u2019s machine, but there is no discussion of backup risk, access control, or what happens when integrations sync data to external services. The piece also assumes a very high personal willingness to maintain a highly customized system, which may not transfer to most users. It is unclear how much of the value comes from the AI layer versus the author\u2019s own discipline, methodology, and domain expertise. The article does not explain how the 17 agents are evaluated, how memory quality is managed, or how hallucinations are prevented beyond workflow verification steps.",
+      "limitations_and_open_questions": "The evidence is entirely self-reported and comes from one user\u2019s experience, with no comparative benchmarks against other PKM or AI workflow systems. The article does not quantify failure rates, retrieval quality, maintenance burden, or the time required to keep 152 tables and 17 agents healthy over longer periods. It is unclear how robust the system is under schema changes, agent drift, memory corruption, or tool changes outside the author\u2019s controlled setup. Privacy is asserted because the system runs locally, but the piece does not discuss backup strategy, disaster recovery, or the risks of Git-synced memory files. The claimed benefit of \u201cteaching\u201d agents is interesting, but the article does not evaluate whether that improves outcomes versus simpler summarization or retrieval. The author also assumes that most professionals can or should build a methodology-specific system, which may underestimate setup cost and ongoing cognitive overhead.",
       "sources": [
         "https://medium.com/datadriveninvestor/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-4597c1fc44a6"
       ],
-      "summary": "The article describes a custom personal intelligence system called Mindset that the author built for running four companies without losing decisions, reflections, or follow-up. It is centered on a SQLite database, a set of documented workflow skills, and 17 specialist AI agents with persistent memory files stored in Git. The system captures and structures journals, meetings, people, business decisions, chess games, piano practice, fitness, French learning, content production, and social publishing, then uses those records to surface patterns and teach concepts over time. The author argues that this differs from ordinary note-taking or chatbot tools because it minimizes manual tagging and review while making each interaction compound into future insight. The technical stack is deliberately local and practical: Claude Code, SQLite, React, Express, GitHub sync, and integrations with tools like Tana, Day One, Typefully, Linear, Google Calendar, Gmail, and Readwise Reader. The core claim is that a methodology-driven system built around one person\u2019s life can become more valuable as it accumulates context, because the agents can coach, route work, and connect domains in ways a generic app cannot. The piece also frames this as a build-your-own approach rather than a product to ship generically.",
-      "why_it_matters": "The piece is useful because it shows a concrete design pattern for personal AI that goes beyond prompt wrappers: a local database, explicit workflow definitions, specialist agents, and persistent memory files tied together by a repeatable methodology. That combination is more durable than a chatbot alone because the value comes from structured context, not from conversational novelty. The article also gives rare implementation detail: 152 tables, 17 agents, over 40 skills, Git-synced memories, and integrations that move data between capture, coaching, publishing, and review. For AI builders, the main lesson is that compounding behavior requires both storage design and operational discipline; without those, \u201cmemory\u201d is just a label. The article\u2019s product conclusion is also important: the author explicitly rejects turning this into a generic app, which is a useful reminder that some AI systems are only compelling when they are deeply personalized. The evidence is anecdotal and self-reported, so the operational value should be read as a strong case study rather than a benchmarked result. As of 2026-04-01, this is actionable as an architecture pattern to study, but not as proof that this design will generalize broadly without substantial customization. The closing implication for support, meetings, and back-office work is narrow but real: the same capture-and-routing pattern could help with structured intake and follow-up, though the article does not evaluate those use cases beyond the author\u2019s own workflow."
+      "summary": "The article describes a personally built \u201cpersonal intelligence system\u201d called Mindset that the author uses to manage decisions, learning, relationships, and content across four companies. The core claim is that conventional PKM and productivity tools fail because they still require the user to manually tag, file, review, and maintain information, whereas Mindset is designed so the user can speak naturally and the system handles capture, routing, analysis, and follow-up. Technically, it is a local-first stack built with Claude Code, SQLite, React, GitHub sync, and the ICOR\u00ae methodology, with 152 database tables, over 40 workflow \u201cskills,\u201d and 17 specialist AI agents with persistent memory. The agents are not general chatbots; they are domain-specific coaches and operators that teach concepts, track patterns over time, and feed cross-domain observations back into the user\u2019s workflows. The article argues that the real value comes from compounding: dense structured data plus persistent agent memory leads to better pattern recognition, better coaching, and more reliable execution over time. It also claims the system runs entirely on the author\u2019s iMacs with no cloud dependency, which the author presents as a privacy and control advantage. The broader prescription is not to turn this into a generic app, but to teach professionals to build their own methodology-driven systems around their own lives and tools.",
+      "why_it_matters": "The piece is useful as a concrete implementation case for agentic personal knowledge systems, because it goes beyond abstract \u201cAI productivity\u201d claims and describes the actual stack, data model, and workflow logic. Its durable contribution is the idea that the unit of value is not a note or a chat, but a structured, searchable, continuously updated personal intelligence layer. The article also makes a strong case that workflow definitions (\u201cskills\u201d) and specialist agents are more useful when they are treated as contracts with verification and persistent memory, rather than as ad hoc prompts. For AI engineers, the most reusable lesson is the separation between capture, routing, analysis, teaching, and review, with each layer explicitly encoded. The local SQLite plus markdown-memory design is a practical pattern worth noting for users who want ownership and offline control, though the article does not benchmark reliability, portability, or maintenance cost. The author\u2019s case is compelling as a bespoke system for one heavy user, but the evidence is still anecdotal and deeply personalized, so general product conclusions remain limited. As of 2026-04-01, the article is actionable as a design reference, but its broader claims about a new category should be treated as a single-user case study rather than established practice."
     },
     "source_type_detection": {
       "confidence": 0.98,
       "detected_source_type": "standard_article",
       "reasoning": [
-        "Single coherent first-person article about one system, not a bundle of unrelated items or a Q&A transcript.",
-        "The structure is narrative plus implementation details for a personal AI system, which fits a standard article rather than a roundup.",
-        "No step-by-step tutorial flow dominates the piece, even though it includes some build details."
+        "Single coherent first-person article about one self-built system, not a bundle of unrelated news items or tool reviews.",
+        "Structure is narrative/argumentative with implementation details, not step-by-step tutorial sections or interview turns.",
+        "Primary purpose is to describe a personal system and its architecture, which fits a standard article more than a roundup or transcript."
       ]
     },
     "tools": [
       {
-        "confidence": 0.9,
+        "confidence": 0.89,
         "core_capabilities": [
-          "It can be used from the terminal to drive development work in a file-based codebase.",
-          "It supports iterative software construction in short sessions rather than requiring a traditional engineering team."
+          "It can be used from a terminal to build software interactively from natural-language instructions.",
+          "It can support full-stack local application development, including databases, agents, and workflow files.",
+          "It can be used for iterative development sessions in short chunks between meetings."
         ],
         "evidence_type": null,
         "integration_ecosystem": [
-          "The source shows it being used with SQLite as the data store.",
-          "The source shows it being used alongside React, Express, and GitHub-based synchronization."
+          "The source associates it with SQLite for storage, React and Express for the frontend, and GitHub for sync.",
+          "The source also describes it as the build environment for a system that integrates Tana, Day One, Typefully, Linear, Google Calendar, Gmail, and Readwise Reader."
         ],
         "match_candidates": [],
-        "maturity_signals": "The article treats Claude Code as a practical, available development tool rather than an experimental concept, but it gives no adoption statistics. Its maturity signal here is simply that a non-engineer with prior coding experience was able to use it to assemble a working multi-agent system locally.",
+        "maturity_signals": "As of 2026-04-01, the source treats Claude Code as mature enough for serious personal software building, not just experimentation. The article presents it as a practical tool that can replace a small development team for custom internal systems, but that claim is anecdotal and not independently validated here.",
         "name": "Claude Code",
-        "operational_relevance": "Useful when the workflow is not just chatting about code, but actually creating and maintaining a multi-component system. The source shows it being used to build a SQLite-backed application, define workflows, and run development sessions in short blocks between meetings. For practitioners, the relevant lesson is that Claude Code fits as a hands-on coding agent in a system where the developer wants to keep control of data, files, and execution locally.",
+        "operational_relevance": "It fits as the development engine for building custom AI workflows, especially when the work involves schema design, file-based workflows, and iterative automation. In this source, it is the tool that made a non-engineer return to coding and ship a full-stack local system with agents, a database, and workflow skills. For AI engineers, the practical takeaway is that Claude Code can serve as the builder layer for bespoke, local-first agent systems rather than just a code-completion assistant.",
         "proposed_new_type": null,
         "proposed_tags": [
           "cli-tool",
           "coding",
-          "agentic",
-          "software-development",
-          "local-first"
+          "software-development"
         ],
         "proposed_types": [
           "coding-agent",
@@ -200,86 +198,81 @@
         ],
         "related_tools": [
           "Cursor",
-          "Codex"
+          "Claude Desktop"
         ],
-        "short_description": "A terminal-first coding assistant that can execute development tasks, inspect files, and help build software through iterative agentic workflows. In this article it is used as the build environment for a local personal intelligence system.",
-        "strengths": "- Supports terminal-centric development, which matters when the work involves real files, database schemas, and iterative debugging rather than isolated prompts.\n- Fits agentic build loops well because it can be used in short sessions to add features, test workflows, and keep the system evolving without a full engineering team.",
+        "short_description": "A terminal-based coding agent used to build software with natural-language instructions and code execution in the same loop.",
+        "strengths": "- It can drive end-to-end implementation work from a terminal, which matters when the goal is to build a real system rather than draft snippets.\n- It supports rapid iteration on local projects, making it useful for custom databases, workflow files, and agent orchestration that evolve over time.\n- It is presented as sufficient to build a 152-table application with multiple agents and integrations without a development team, which suggests unusually strong leverage for solo builders.",
         "suggested_action": "ignore",
         "suggested_new_tags": [],
-        "supporting_snippet": "\"So I opened a terminal, installed Claude Code, and started building. Two days later, I had a working database...\"",
+        "supporting_snippet": "\"So I opened a terminal, installed Claude Code, and started building.\"",
         "value_level": "high",
-        "weaknesses_limitations": "The source does not provide comparative benchmarks, pricing detail beyond the author's stated API cost, or evidence about failure modes. It also does not show how well the tool scales beyond a highly customized personal build, so the operational value here is specific to one advanced user workflow."
+        "weaknesses_limitations": "The source does not provide benchmarked reliability, cost breakdowns beyond a rough monthly API spend, or evidence that the approach scales beyond a single motivated builder. The value depends heavily on the user\u2019s willingness to design the workflow and maintain the system; this is not a low-friction turnkey product."
       }
     ],
     "topics": [
       {
-        "confidence": 0.93,
+        "confidence": 0.95,
         "evidence_type": null,
-        "examples": "The source describes a system where \"every thought, every decision, every interaction is captured, connected, and compounding\" and where natural-language input like \"Brief me\" triggers routing, summaries, and follow-up actions across journals, tasks, and calendars.",
+        "examples": "The source describes a system where the user says \"Brief me\" and a workflow pulls calendar, email, tasks, and prior coaching themes, or where \"I type three sentences. Mindset does 15 steps.\"",
         "key_points": [
-          "A personal knowledge system needs a data model, not just a notes app.",
-          "Capture should be low-friction enough that the user can describe what happened and let the system handle the rest.",
-          "Persistent memory works best when the same structure is reused across journals, people, meetings, and tasks.",
-          "Cross-domain connections are a major source of value when the system spans business, learning, and personal life."
+          "Manual tagging and filing do not scale for high-volume personal context.",
+          "Structured databases make later retrieval and cross-domain linking possible.",
+          "Persistent memory is more useful when it accumulates across sessions and workflows.",
+          "The system should handle routing and follow-up after a small natural-language input."
         ],
-        "knowledge_summary": "Personal knowledge systems become more useful when they do more than store notes. The durable pattern is to combine structured capture, repeatable workflows, and agentic processing so that incoming information is classified, linked, reviewed, and reused with minimal manual maintenance. The system should preserve enough context to support later search, pattern detection, and coaching or decision support. Persistent agent memory is only valuable when it is backed by a queryable history and a consistent schema. This makes the knowledge layer an active runtime component rather than a passive archive.",
+        "knowledge_summary": "Personal knowledge systems can be designed so that capture, routing, analysis, and follow-up happen through automation rather than manual note maintenance. The durable unit is not a note or chat thread, but a structured workspace where entries are linked to people, projects, decisions, and recurring themes. Persistent memory and workflow contracts let the system improve as the corpus grows, instead of resetting every session. This pattern is most valuable when the user generates high-volume, heterogeneous context that would otherwise be lost between tools.",
         "match_candidates": [],
-        "operational_insight": "Design personal AI around structured capture plus reusable workflows, not around a chat box with ad hoc memory. The practical win comes from reducing manual filing while preserving enough structure for future retrieval and cross-domain analysis.",
+        "operational_insight": "Treat personal knowledge management as an operational system: define structured capture, automated routing, and durable memory before worrying about interface polish.",
         "primary_tag": "knowledge-systems",
         "proposed_tags": [
           "knowledge-systems",
-          "agent-systems",
-          "workflow-design",
-          "context-engineering",
-          "enterprise-workflows"
+          "agent-memory",
+          "workflow-design"
         ],
         "related_topics": [
           "agent-memory-architecture",
-          "knowledge-base-becomes-runtime-infrastructure"
+          "file-native-ai-workspace"
         ],
-        "relevance_note": "This pattern matters because many real AI assistant systems fail when context is scattered across notes, chats, and inboxes. A structured personal knowledge layer is a durable building block for executive assistants, founder workflows, and high-volume knowledge work where retrieval and follow-up matter more than generic chat.",
-        "secondary_tag": "agent-systems",
+        "relevance_note": "This matters wherever professionals need a durable memory layer across work, learning, and relationships. It is especially relevant for AI-assisted knowledge work, where the engineering challenge is less about generation and more about preserving context, retrieval quality, and follow-through over time.",
+        "secondary_tag": "agent-memory",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
-        "supporting_snippet": "\"It is a personal intelligence system. A living database of everything I think, decide, learn, and build, connected by AI that understands my context at a depth no human assistant could match.\"",
+        "supporting_snippet": "\"A living database of everything I think, decide, learn, and build, connected by AI that understands my context at a depth no human assistant could match.\"",
         "topic_slug": "agentic-personal-knowledge-management",
         "topic_title": "Agentic Personal Knowledge Management",
         "value_level": "high"
       },
       {
-        "confidence": 0.9,
+        "confidence": 0.94,
         "evidence_type": null,
-        "examples": "The source says the agents use \"persistent memory stored in markdown files synced through Git\" and that skills are also \"markdown files that define exactly what happens, in what order, with what verification steps.\"",
+        "examples": "",
         "key_points": [
-          "Markdown files can function as portable workflow contracts for agents.",
-          "Git sync can make local memory and behavior portable across machines.",
-          "Separating workflow definition from execution helps with verification and maintenance.",
-          "File-native design favors reproducibility over black-box convenience."
+          "Memory should be readable at the start of each interaction so the agent can resume with context.",
+          "Memory files can travel with the project, making the agent state portable across machines.",
+          "Role-specific memories are more useful than a single undifferentiated chat log.",
+          "Persistent memory is what makes repeated coaching or domain specialization possible."
         ],
-        "knowledge_summary": "A file-native workflow treats markdown files, configuration files, and other durable local artifacts as the control surface for AI behavior. This makes the workflow inspectable, versionable, and easier to move across machines or environments. The practical advantage is that agent instructions, memory, and verification steps can travel with the repository instead of being trapped inside a proprietary interface. This approach also makes it easier to audit what the agent is supposed to do and how it should behave. File-native systems tend to fit developers who want reproducibility and local control more than polished consumer UX.",
+        "knowledge_summary": "Persistent agent memory is an architecture in which each specialist agent keeps a durable record of prior sessions, learned patterns, and user-specific context. This memory allows the agent to build on previous interactions rather than restarting from scratch. The design is especially effective when agents are role-specific and their memories are stored in portable files or another durable medium. It turns an agent from a stateless responder into a compounding specialist.",
         "match_candidates": [],
-        "operational_insight": "If you want AI workflows to survive tool churn, encode the workflow in files and Git rather than in opaque UI state. That makes the system easier to version, inspect, and move between machines.",
-        "primary_tag": "workflow-design",
+        "operational_insight": "If an agent is supposed to coach, route, or critique over time, its memory needs to store prior themes, decisions, and teaching history in a way that can survive tool restarts and project moves.",
+        "primary_tag": "agent-memory",
         "proposed_tags": [
-          "workflow-design",
+          "agent-memory",
           "agent-systems",
-          "runtime-architecture",
-          "developer-tools",
           "context-engineering"
         ],
         "related_topics": [
-          "agent-memory-architecture",
-          "agent-runtime-architecture"
+          "agentic-personal-knowledge-management"
         ],
-        "relevance_note": "This is useful anywhere AI behavior needs to be portable, reviewable, or shared across environments. It is especially relevant for agent systems, knowledge workflows, and developer tooling where version control and traceability matter.",
+        "relevance_note": "Persistent memory is central to long-running assistants, coaching agents, and service workflows that must remember preferences, prior resolutions, or recurring issues. Without it, systems keep re-solving the same problem and lose the compounding effect that makes agent workflows worthwhile.",
         "secondary_tag": "agent-systems",
         "suggested_action": "ignore",
         "suggested_new_tag": "",
         "suggested_new_tags": [],
         "supporting_snippet": "\"The agents are Claude Code subprocesses with persistent memory stored in markdown files synced through Git.\"",
-        "topic_slug": "file-native-agent-workflows",
-        "topic_title": "File-Native Agent Workflows",
+        "topic_slug": "persistent-agent-memory-architecture",
+        "topic_title": "Persistent Agent Memory Architecture",
         "value_level": "high"
       }
     ]
@@ -294,51 +287,51 @@
         "llm_item": {
           "assessed_as_of": "2026-04-01",
           "confidence": 0.88,
-          "evidence_from_source": "The source describes specialist agents with persistent memory files, a coaching layer that tracks taught concepts over time, and workflows that get smarter with repeated use. It frames the system as compounding because every interaction is captured and reused later.",
+          "evidence_from_source": "The source argues that the useful unit is a \"personal intelligence system\" built from SQLite, skills, agents, and integrations, not a chatbot or note app.",
           "evidence_type": null,
           "match_candidates": [],
-          "primary_tag": "persistent-agents",
-          "proposed_tags": [
-            "persistent-agents",
-            "knowledge-systems",
-            "runtime-systems"
-          ],
+          "primary_tag": "",
+          "proposed_tags": [],
           "related_trends": [
-            "knowledge-bases-become-maintained-workspaces"
+            "workflow-restructuring-around-ai-agents",
+            "agent-memory"
           ],
-          "secondary_tag": "knowledge-systems",
+          "secondary_tag": "",
           "suggested_action": "ignore",
-          "suggested_new_tag": "agent-systems",
+          "suggested_new_tag": "ai-engineering",
           "suggested_new_tags": [
-            "agent-systems"
+            "ai-engineering",
+            "agent-systems",
+            "workflow-design"
           ],
           "supporting_data_points": [
+            "152 database tables",
             "17 specialist AI agents",
-            "Persistent memory files stored in Git",
-            "296 coaching sessions",
-            "3,000+ journal entries"
+            "over 40 skills in production",
+            "3,000 journal entries"
           ],
-          "supporting_snippet": "\"Every one of these agents has persistent memory files that travel with the project through Git. When I work from my home iMac, the agents have the same accumulated wisdom as when I work from the office iMac. Nothing gets lost. Everything compounds.\"",
-          "time_sensitivity": "Actionable as of 2026-04-01; the source suggests this is an active design direction for agent systems that need durable context, though it remains highly implementation-dependent.",
-          "trend_description": "AI agents are moving from stateless chat interactions toward workflows that retain memory, history, and reusable context across sessions. The operational shift matters because repeated work becomes less about re-explaining context and more about accumulating durable state that can improve routing, coaching, and follow-up. This trend shows up most clearly in systems where memory is stored outside the model and tied to a structured workflow or database.",
-          "trend_slug": "agents-shift-toward-persistent-memory-backed-workflows",
-          "trend_title": "Agents Shift Toward Persistent Memory-Backed Workflows",
-          "uncertainty_note": "Evidence is a single self-reported build, so it shows a plausible pattern rather than proving broad adoption or superiority over simpler designs.",
+          "supporting_snippet": "\"This is not a feature list. This is a different category of tool.\"",
+          "time_sensitivity": "Actionable as of 2026-04-01; the source presents this as a live build pattern rather than a future prediction.",
+          "trend_description": "AI value is moving from standalone model access toward integrated systems that combine storage, workflows, memory, routing, and review. In this pattern, the model is just one component inside a larger operational layer that decides what to capture, how to route it, and how to verify output. The differentiator becomes system design rather than model novelty alone.",
+          "trend_slug": "ai-products-shift-from-models-to-systems",
+          "trend_title": "AI Products Shift from Models to Systems",
+          "uncertainty_note": "This is supported by one heavily customized personal build, so it is best read as a strong design example rather than proof that all AI products must become systems.",
           "value_level": "high"
         },
         "notes": null,
-        "proposal_id": "30a0fb43-7969-4b11-a833-40ff021c052b",
+        "proposal_id": "0ee1e313-f6ca-40bc-bea5-d1b7f6c506a7",
         "proposal_status": "approved",
         "sections": {
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
             "llm_list": [
-              "knowledge-bases-become-maintained-workspaces"
+              "workflow-restructuring-around-ai-agents",
+              "agent-memory"
             ],
             "notes": null,
             "status": "pending"
@@ -346,13 +339,13 @@
           "supporting_data_points": {
             "final_list": null,
             "llm_list": [
+              "152 database tables",
               "17 specialist AI agents",
-              "Persistent memory files stored in Git",
-              "296 coaching sessions",
-              "3,000+ journal entries"
+              "over 40 skills in production",
+              "3,000 journal entries"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -362,36 +355,32 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
           "approved_new_tags": [],
-          "final_tags": [
-            "persistent-agents",
-            "knowledge-systems",
-            "runtime-systems"
-          ]
+          "final_tags": []
         }
       }
     ],
@@ -402,9 +391,9 @@
       "llm_item": {
         "primary_evidence_type": "implementation_case",
         "reasoning": [
-          "The article is a first-person build report describing how the author created Mindset with Claude Code, SQLite, React, and GitHub.",
-          "Most claims are supported by concrete implementation details such as 152 tables, 17 agents, and specific workflows/integrations.",
-          "The article mixes anecdote and opinion, but the dominant basis is a concrete personal deployment case."
+          "The article centers on a concrete system the author says he built himself, with specific components and workflows.",
+          "Claims are supported by implementation details such as SQLite, Claude Code, React, GitHub sync, agents, tables, and integrations.",
+          "Most assertions are practitioner experience and described operation of the system, not external benchmarks or research."
         ]
       },
       "notes": null,
@@ -426,11 +415,11 @@
       "key_insights": {
         "final_list": null,
         "llm_list": [
-          "A durable personal AI system depends more on structured data and repeatable workflows than on a chat interface.",
-          "Persistent agent memory only matters if the system also stores the underlying history in a queryable database.",
-          "Cross-domain coaching is the article\u2019s main differentiator: the system connects business, chess, music, fitness, and writing instead of treating them as separate silos.",
-          "The author\u2019s strongest operational claim is that natural-language input can trigger multi-step capture and routing with little manual filing.",
-          "The article argues for a methodology-first approach: the system is built around ICOR\u00ae, not around a generic note-taking product."
+          "The system\u2019s main design principle is to remove manual maintenance from personal knowledge work by making natural-language input the only required user action.",
+          "Persistent agent memory is treated as a first-class feature: each specialist reads prior context, teaches one concept per session, and builds on earlier sessions.",
+          "The author\u2019s strongest claim is compounding value from density: thousands of structured entries plus recurring concepts and themes enable cross-domain pattern recognition.",
+          "A local-first SQLite design with GitHub-synced files is presented as a way to keep the system private, durable, and under user control.",
+          "The article argues that a generic product would lose much of the value because the real advantage comes from a methodology and data model tailored to one person\u2019s life and work."
         ],
         "notes": null,
         "section_regeneration_meta": null,
@@ -470,9 +459,9 @@
         "confidence": 0.98,
         "detected_source_type": "standard_article",
         "reasoning": [
-          "Single coherent first-person article about one system, not a bundle of unrelated items or a Q&A transcript.",
-          "The structure is narrative plus implementation details for a personal AI system, which fits a standard article rather than a roundup.",
-          "No step-by-step tutorial flow dominates the piece, even though it includes some build details."
+          "Single coherent first-person article about one self-built system, not a bundle of unrelated news items or tool reviews.",
+          "Structure is narrative/argumentative with implementation details, not step-by-step tutorial sections or interview turns.",
+          "Primary purpose is to describe a personal system and its architecture, which fits a standard article more than a roundup or transcript."
         ]
       },
       "notes": null,
@@ -481,27 +470,25 @@
     "tools": [
       {
         "llm_item": {
-          "confidence": 0.9,
+          "confidence": 0.89,
           "core_capabilities": [
-            "It can be used from the terminal to drive development work in a file-based codebase.",
-            "It supports iterative software construction in short sessions rather than requiring a traditional engineering team."
+            "It can be used from a terminal to build software interactively from natural-language instructions.",
+            "It can support full-stack local application development, including databases, agents, and workflow files.",
+            "It can be used for iterative development sessions in short chunks between meetings."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
-            "The source shows it being used with SQLite as the data store.",
-            "The source shows it being used alongside React, Express, and GitHub-based synchronization."
+            "The source associates it with SQLite for storage, React and Express for the frontend, and GitHub for sync.",
+            "The source also describes it as the build environment for a system that integrates Tana, Day One, Typefully, Linear, Google Calendar, Gmail, and Readwise Reader."
           ],
           "match_candidates": [],
-          "maturity_signals": "The article treats Claude Code as a practical, available development tool rather than an experimental concept, but it gives no adoption statistics. Its maturity signal here is simply that a non-engineer with prior coding experience was able to use it to assemble a working multi-agent system locally.",
+          "maturity_signals": "As of 2026-04-01, the source treats Claude Code as mature enough for serious personal software building, not just experimentation. The article presents it as a practical tool that can replace a small development team for custom internal systems, but that claim is anecdotal and not independently validated here.",
           "name": "Claude Code",
-          "operational_relevance": "Useful when the workflow is not just chatting about code, but actually creating and maintaining a multi-component system. The source shows it being used to build a SQLite-backed application, define workflows, and run development sessions in short blocks between meetings. For practitioners, the relevant lesson is that Claude Code fits as a hands-on coding agent in a system where the developer wants to keep control of data, files, and execution locally.",
+          "operational_relevance": "It fits as the development engine for building custom AI workflows, especially when the work involves schema design, file-based workflows, and iterative automation. In this source, it is the tool that made a non-engineer return to coding and ship a full-stack local system with agents, a database, and workflow skills. For AI engineers, the practical takeaway is that Claude Code can serve as the builder layer for bespoke, local-first agent systems rather than just a code-completion assistant.",
           "proposed_new_type": null,
           "proposed_tags": [
             "cli-tool",
             "coding",
-            "agentic",
-            "software-development",
-            "local-first"
+            "software-development"
           ],
           "proposed_types": [
             "coding-agent",
@@ -509,71 +496,72 @@
           ],
           "related_tools": [
             "Cursor",
-            "Codex"
+            "Claude Desktop"
           ],
-          "short_description": "A terminal-first coding assistant that can execute development tasks, inspect files, and help build software through iterative agentic workflows. In this article it is used as the build environment for a local personal intelligence system.",
-          "strengths": "- Supports terminal-centric development, which matters when the work involves real files, database schemas, and iterative debugging rather than isolated prompts.\n- Fits agentic build loops well because it can be used in short sessions to add features, test workflows, and keep the system evolving without a full engineering team.",
+          "short_description": "A terminal-based coding agent used to build software with natural-language instructions and code execution in the same loop.",
+          "strengths": "- It can drive end-to-end implementation work from a terminal, which matters when the goal is to build a real system rather than draft snippets.\n- It supports rapid iteration on local projects, making it useful for custom databases, workflow files, and agent orchestration that evolve over time.\n- It is presented as sufficient to build a 152-table application with multiple agents and integrations without a development team, which suggests unusually strong leverage for solo builders.",
           "suggested_action": "ignore",
           "suggested_new_tags": [],
-          "supporting_snippet": "\"So I opened a terminal, installed Claude Code, and started building. Two days later, I had a working database...\"",
+          "supporting_snippet": "\"So I opened a terminal, installed Claude Code, and started building.\"",
           "value_level": "high",
-          "weaknesses_limitations": "The source does not provide comparative benchmarks, pricing detail beyond the author's stated API cost, or evidence about failure modes. It also does not show how well the tool scales beyond a highly customized personal build, so the operational value here is specific to one advanced user workflow."
+          "weaknesses_limitations": "The source does not provide benchmarked reliability, cost breakdowns beyond a rough monthly API spend, or evidence that the approach scales beyond a single motivated builder. The value depends heavily on the user\u2019s willingness to design the workflow and maintain the system; this is not a low-friction turnkey product."
         },
         "notes": null,
-        "proposal_id": "f0a07b01-1467-4c47-80e9-ef68843f5bfe",
-        "proposal_status": "approved",
+        "proposal_id": "5b7bb6f7-7786-4dee-83d4-8aac1b5272a1",
+        "proposal_status": "rejected",
         "sections": {
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
-              "It can be used from the terminal to drive development work in a file-based codebase.",
-              "It supports iterative software construction in short sessions rather than requiring a traditional engineering team."
+              "It can be used from a terminal to build software interactively from natural-language instructions.",
+              "It can support full-stack local application development, including databases, agents, and workflow files.",
+              "It can be used for iterative development sessions in short chunks between meetings."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "integration_ecosystem": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
-              "The source shows it being used with SQLite as the data store.",
-              "The source shows it being used alongside React, Express, and GitHub-based synchronization."
+              "The source associates it with SQLite for storage, React and Express for the frontend, and GitHub for sync.",
+              "The source also describes it as the build environment for a system that integrates Tana, Day One, Typefully, Linear, Google Calendar, Gmail, and Readwise Reader."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_tools": {
             "final_list": null,
             "llm_list": [
               "Cursor",
-              "Codex"
+              "Claude Desktop"
             ],
             "notes": null,
             "status": "pending"
           },
           "short_description": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "strengths": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -581,9 +569,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -591,93 +579,98 @@
           "final_tags": [
             "cli-tool",
             "coding",
-            "agentic",
-            "software-development",
-            "local-first"
+            "software-development"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent",
+            "terminal"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
     "topics": [
       {
         "llm_item": {
-          "confidence": 0.93,
+          "confidence": 0.95,
           "evidence_type": null,
-          "examples": "The source describes a system where \"every thought, every decision, every interaction is captured, connected, and compounding\" and where natural-language input like \"Brief me\" triggers routing, summaries, and follow-up actions across journals, tasks, and calendars.",
+          "examples": "The source describes a system where the user says \"Brief me\" and a workflow pulls calendar, email, tasks, and prior coaching themes, or where \"I type three sentences. Mindset does 15 steps.\"",
           "key_points": [
-            "A personal knowledge system needs a data model, not just a notes app.",
-            "Capture should be low-friction enough that the user can describe what happened and let the system handle the rest.",
-            "Persistent memory works best when the same structure is reused across journals, people, meetings, and tasks.",
-            "Cross-domain connections are a major source of value when the system spans business, learning, and personal life."
+            "Manual tagging and filing do not scale for high-volume personal context.",
+            "Structured databases make later retrieval and cross-domain linking possible.",
+            "Persistent memory is more useful when it accumulates across sessions and workflows.",
+            "The system should handle routing and follow-up after a small natural-language input."
           ],
-          "knowledge_summary": "Personal knowledge systems become more useful when they do more than store notes. The durable pattern is to combine structured capture, repeatable workflows, and agentic processing so that incoming information is classified, linked, reviewed, and reused with minimal manual maintenance. The system should preserve enough context to support later search, pattern detection, and coaching or decision support. Persistent agent memory is only valuable when it is backed by a queryable history and a consistent schema. This makes the knowledge layer an active runtime component rather than a passive archive.",
+          "knowledge_summary": "Personal knowledge systems can be designed so that capture, routing, analysis, and follow-up happen through automation rather than manual note maintenance. The durable unit is not a note or chat thread, but a structured workspace where entries are linked to people, projects, decisions, and recurring themes. Persistent memory and workflow contracts let the system improve as the corpus grows, instead of resetting every session. This pattern is most valuable when the user generates high-volume, heterogeneous context that would otherwise be lost between tools.",
           "match_candidates": [],
-          "operational_insight": "Design personal AI around structured capture plus reusable workflows, not around a chat box with ad hoc memory. The practical win comes from reducing manual filing while preserving enough structure for future retrieval and cross-domain analysis.",
+          "operational_insight": "Treat personal knowledge management as an operational system: define structured capture, automated routing, and durable memory before worrying about interface polish.",
           "primary_tag": "knowledge-systems",
           "proposed_tags": [
             "knowledge-systems",
-            "agent-systems",
-            "workflow-design",
-            "context-engineering",
-            "enterprise-workflows"
+            "agent-memory",
+            "workflow-design"
           ],
           "related_topics": [
             "agent-memory-architecture",
-            "knowledge-base-becomes-runtime-infrastructure"
+            "file-native-ai-workspace"
           ],
-          "relevance_note": "This pattern matters because many real AI assistant systems fail when context is scattered across notes, chats, and inboxes. A structured personal knowledge layer is a durable building block for executive assistants, founder workflows, and high-volume knowledge work where retrieval and follow-up matter more than generic chat.",
-          "secondary_tag": "agent-systems",
+          "relevance_note": "This matters wherever professionals need a durable memory layer across work, learning, and relationships. It is especially relevant for AI-assisted knowledge work, where the engineering challenge is less about generation and more about preserving context, retrieval quality, and follow-through over time.",
+          "secondary_tag": "agent-memory",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
-          "supporting_snippet": "\"It is a personal intelligence system. A living database of everything I think, decide, learn, and build, connected by AI that understands my context at a depth no human assistant could match.\"",
+          "supporting_snippet": "\"A living database of everything I think, decide, learn, and build, connected by AI that understands my context at a depth no human assistant could match.\"",
           "topic_slug": "agentic-personal-knowledge-management",
           "topic_title": "Agentic Personal Knowledge Management",
           "value_level": "high"
         },
         "notes": null,
-        "proposal_id": "2dad3a19-ebcc-44b7-9b2b-236f35f91175",
+        "proposal_id": "d4381009-a235-4453-81f0-111e1c4b31e7",
         "proposal_status": "approved",
         "sections": {
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
             "llm_list": [
-              "A personal knowledge system needs a data model, not just a notes app.",
-              "Capture should be low-friction enough that the user can describe what happened and let the system handle the rest.",
-              "Persistent memory works best when the same structure is reused across journals, people, meetings, and tasks.",
-              "Cross-domain connections are a major source of value when the system spans business, learning, and personal life."
+              "Manual tagging and filing do not scale for high-volume personal context.",
+              "Structured databases make later retrieval and cross-domain linking possible.",
+              "Persistent memory is more useful when it accumulates across sessions and workflows.",
+              "The system should handle routing and follow-up after a small natural-language input."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
             "llm_list": [
               "agent-memory-architecture",
-              "knowledge-base-becomes-runtime-infrastructure"
+              "file-native-ai-workspace"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -687,104 +680,98 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
             "knowledge-systems",
-            "agent-systems",
-            "workflow-design",
-            "context-engineering",
-            "enterprise-workflows"
+            "agent-memory",
+            "workflow-design"
           ]
         }
       },
       {
         "llm_item": {
-          "confidence": 0.9,
+          "confidence": 0.94,
           "evidence_type": null,
-          "examples": "The source says the agents use \"persistent memory stored in markdown files synced through Git\" and that skills are also \"markdown files that define exactly what happens, in what order, with what verification steps.\"",
+          "examples": "",
           "key_points": [
-            "Markdown files can function as portable workflow contracts for agents.",
-            "Git sync can make local memory and behavior portable across machines.",
-            "Separating workflow definition from execution helps with verification and maintenance.",
-            "File-native design favors reproducibility over black-box convenience."
+            "Memory should be readable at the start of each interaction so the agent can resume with context.",
+            "Memory files can travel with the project, making the agent state portable across machines.",
+            "Role-specific memories are more useful than a single undifferentiated chat log.",
+            "Persistent memory is what makes repeated coaching or domain specialization possible."
           ],
-          "knowledge_summary": "A file-native workflow treats markdown files, configuration files, and other durable local artifacts as the control surface for AI behavior. This makes the workflow inspectable, versionable, and easier to move across machines or environments. The practical advantage is that agent instructions, memory, and verification steps can travel with the repository instead of being trapped inside a proprietary interface. This approach also makes it easier to audit what the agent is supposed to do and how it should behave. File-native systems tend to fit developers who want reproducibility and local control more than polished consumer UX.",
+          "knowledge_summary": "Persistent agent memory is an architecture in which each specialist agent keeps a durable record of prior sessions, learned patterns, and user-specific context. This memory allows the agent to build on previous interactions rather than restarting from scratch. The design is especially effective when agents are role-specific and their memories are stored in portable files or another durable medium. It turns an agent from a stateless responder into a compounding specialist.",
           "match_candidates": [],
-          "operational_insight": "If you want AI workflows to survive tool churn, encode the workflow in files and Git rather than in opaque UI state. That makes the system easier to version, inspect, and move between machines.",
-          "primary_tag": "workflow-design",
+          "operational_insight": "If an agent is supposed to coach, route, or critique over time, its memory needs to store prior themes, decisions, and teaching history in a way that can survive tool restarts and project moves.",
+          "primary_tag": "agent-memory",
           "proposed_tags": [
-            "workflow-design",
+            "agent-memory",
             "agent-systems",
-            "runtime-architecture",
-            "developer-tools",
             "context-engineering"
           ],
           "related_topics": [
-            "agent-memory-architecture",
-            "agent-runtime-architecture"
+            "agentic-personal-knowledge-management"
           ],
-          "relevance_note": "This is useful anywhere AI behavior needs to be portable, reviewable, or shared across environments. It is especially relevant for agent systems, knowledge workflows, and developer tooling where version control and traceability matter.",
+          "relevance_note": "Persistent memory is central to long-running assistants, coaching agents, and service workflows that must remember preferences, prior resolutions, or recurring issues. Without it, systems keep re-solving the same problem and lose the compounding effect that makes agent workflows worthwhile.",
           "secondary_tag": "agent-systems",
           "suggested_action": "ignore",
           "suggested_new_tag": "",
           "suggested_new_tags": [],
           "supporting_snippet": "\"The agents are Claude Code subprocesses with persistent memory stored in markdown files synced through Git.\"",
-          "topic_slug": "file-native-agent-workflows",
-          "topic_title": "File-Native Agent Workflows",
+          "topic_slug": "persistent-agent-memory-architecture",
+          "topic_title": "Persistent Agent Memory Architecture",
           "value_level": "high"
         },
         "notes": null,
-        "proposal_id": "0fa902b7-c406-47e5-b7b2-53447986e780",
+        "proposal_id": "40d9f8f7-b170-42a7-9875-8a5e59544206",
         "proposal_status": "approved",
         "sections": {
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
             "llm_list": [
-              "Markdown files can function as portable workflow contracts for agents.",
-              "Git sync can make local memory and behavior portable across machines.",
-              "Separating workflow definition from execution helps with verification and maintenance.",
-              "File-native design favors reproducibility over black-box convenience."
+              "Memory should be readable at the start of each interaction so the agent can resume with context.",
+              "Memory files can travel with the project, making the agent state portable across machines.",
+              "Role-specific memories are more useful than a single undifferentiated chat log.",
+              "Persistent memory is what makes repeated coaching or domain specialization possible."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
             "llm_list": [
-              "agent-memory-architecture",
-              "agent-runtime-architecture"
+              "agentic-personal-knowledge-management"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -794,21 +781,19 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "workflow-design",
+            "agent-memory",
             "agent-systems",
-            "runtime-architecture",
-            "developer-tools",
             "context-engineering"
           ]
         }
@@ -817,19 +802,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "implementation_case": 4
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 3,
     "proposals_deferred": 0,
     "proposals_modified": 0,
-    "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_rejected": 1,
+    "proposals_total": 4,
+    "review_duration_seconds": 71.6,
+    "review_finished_at": "2026-06-17T15:55:59.613509+00:00",
+    "review_started_at": "2026-06-17T15:54:48+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-06-17T15:55:59+00:00",
     "saved_by": null
   },
   "source": {

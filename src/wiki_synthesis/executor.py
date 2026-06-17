@@ -17,6 +17,16 @@ from src.wiki_synthesis.planner import plan_from_graph
 from src.wiki_synthesis.prompts import PromptBundle, build_prompt_bundle
 
 RUN_TARGET_STATES = {"new", "stale"}
+SYNTHESIS_CONTENT_TEXT_FIELDS: tuple[str, ...] = (
+    "executive_synthesis",
+    "practical_takeaway",
+)
+SYNTHESIS_CONTENT_LIST_FIELDS: tuple[str, ...] = (
+    "what_to_remember",
+    "consensus",
+    "tensions",
+    "evidence_quality",
+)
 
 
 class SynthesisProvider(Protocol):
@@ -42,7 +52,9 @@ class SynthesisRunItem:
     cache_path: str
     current_input_hash: str
     cached_input_hash: str
+    model: str = ""
     provider_request_id: str = ""
+    token_usage: dict[str, Any] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         """Return a JSON-serializable representation."""
@@ -99,7 +111,9 @@ def run_synthesis(
     for entry in targets:
         cache_path = cache_file_path(cache_dir, category=entry.category, slug=entry.slug)
         if dry_run:
-            items.append(_item_for_entry(entry, action="planned", cache_path=cache_path))
+            items.append(
+                _item_for_entry(entry, action="planned", cache_path=cache_path, model=model)
+            )
             continue
         previous_cache = load_cache_entry(cache_dir, category=entry.category, slug=entry.slug)
         bundle = build_prompt_bundle(
@@ -128,7 +142,9 @@ def run_synthesis(
                 entry,
                 action="written",
                 cache_path=cache_path,
+                model=model,
                 provider_request_id=str(meta.get("request_id") or ""),
+                token_usage=_token_usage(meta),
             )
         )
     return SynthesisRunReport(
@@ -167,6 +183,74 @@ def normalize_synthesis_payload(
     return normalized
 
 
+def validate_synthesis_content_payload(payload: dict[str, Any]) -> None:
+    """Validate provider-generated synthesis content fields."""
+    for key in SYNTHESIS_CONTENT_TEXT_FIELDS:
+        _required_text(payload, key)
+    for key in SYNTHESIS_CONTENT_LIST_FIELDS:
+        _required_text_list(payload, key)
+
+
+def synthesis_response_json_schema() -> dict[str, Any]:
+    """Return the JSON schema requested from the synthesis provider."""
+    string_array = {"type": "array", "items": {"type": "string"}}
+    return {
+        "type": "object",
+        "additionalProperties": False,
+        "properties": {
+            "entity_id": {"type": "string"},
+            "category": {"type": "string"},
+            "slug": {"type": "string"},
+            "title": {"type": "string"},
+            "synthesis_schema_version": {"type": "integer"},
+            "synthesis_prompt_version": {"type": "integer"},
+            "synthesis_input_hash": {"type": "string"},
+            "last_synthesized_at": {"type": "string"},
+            "executive_synthesis": {"type": "string"},
+            "what_to_remember": string_array,
+            "consensus": string_array,
+            "tensions": string_array,
+            "evidence_quality": string_array,
+            "practical_takeaway": {"type": "string"},
+            "context_card": {
+                "type": "object",
+                "additionalProperties": False,
+                "properties": {
+                    "use_this_page_when": {"type": "string"},
+                    "best_for_questions_about": string_array,
+                    "not_enough_for": string_array,
+                    "strongest_sources": string_array,
+                    "related_tags": string_array,
+                },
+                "required": [
+                    "use_this_page_when",
+                    "best_for_questions_about",
+                    "not_enough_for",
+                    "strongest_sources",
+                    "related_tags",
+                ],
+            },
+        },
+        "required": [
+            "entity_id",
+            "category",
+            "slug",
+            "title",
+            "synthesis_schema_version",
+            "synthesis_prompt_version",
+            "synthesis_input_hash",
+            "last_synthesized_at",
+            "executive_synthesis",
+            "what_to_remember",
+            "consensus",
+            "tensions",
+            "evidence_quality",
+            "practical_takeaway",
+            "context_card",
+        ],
+    }
+
+
 def parse_json_object(text: str) -> dict[str, Any]:
     """Parse a JSON object from provider text."""
     data = json.loads(text)
@@ -188,7 +272,9 @@ def _item_for_entry(
     *,
     action: str,
     cache_path: Path,
+    model: str = "",
     provider_request_id: str = "",
+    token_usage: dict[str, Any] | None = None,
 ) -> SynthesisRunItem:
     """Return a run item for one plan entry."""
     return SynthesisRunItem(
@@ -202,8 +288,16 @@ def _item_for_entry(
         cache_path=str(cache_path),
         current_input_hash=entry.current_input_hash,
         cached_input_hash=entry.cached_input_hash,
+        model=model,
         provider_request_id=provider_request_id,
+        token_usage=token_usage,
     )
+
+
+def _token_usage(meta: dict[str, Any]) -> dict[str, Any] | None:
+    """Return token usage metadata when provided."""
+    value = meta.get("token_usage")
+    return value if isinstance(value, dict) else None
 
 
 def _required_text(payload: dict[str, Any], key: str) -> str:
