@@ -50,6 +50,17 @@ def test_build_prompt_bundle_includes_previous_synthesis_as_continuity_only() ->
     assert "Old synthesis text." in bundle.user_prompt
 
 
+def test_build_prompt_bundle_warns_for_single_source_pages() -> None:
+    """Single-source prompts should not ask the model to imply consensus."""
+    graph = _graph(source_count=1)
+
+    bundle = build_prompt_bundle(graph, entity_id="topic:local-models")
+
+    assert "SINGLE-SOURCE MODE" in bundle.user_prompt
+    assert "Do not imply consensus across sources." in bundle.user_prompt
+    assert "source-grounded readable summary" in bundle.user_prompt
+
+
 def test_prompt_bundle_messages_are_chat_ready() -> None:
     """Prompt bundles should expose system/user chat messages."""
     messages = build_prompt_bundle(_graph(), entity_id="topic:local-models").messages()
@@ -65,8 +76,9 @@ def test_find_knowledge_page_raises_for_missing_entity() -> None:
         find_knowledge_page(_graph(), entity_id="topic:missing")
 
 
-def _graph() -> dict[str, Any]:
+def _graph(*, source_count: int = 2) -> dict[str, Any]:
     """Return a minimal graph export with one knowledge page."""
+    source_ids = ["source-a", "source-b"][:source_count]
     return {
         "sources": [
             {
@@ -94,8 +106,8 @@ def _graph() -> dict[str, Any]:
                 "aliases": [],
                 "tags": ["ai-engineering"],
                 "types": [],
-                "source_ids": ["source-a", "source-b"],
-                "source_count": 2,
+                "source_ids": source_ids,
+                "source_count": source_count,
                 "evidence_count": 1,
                 "value_level": "high",
                 "confidence": 0.9,

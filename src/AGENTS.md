@@ -101,6 +101,19 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
   - `--include-single-source` — include candidate/thin single-source pages.
   - `--json` — print machine-readable output.
 
+## Wiki synthesis workflow (Stage 2 primary command)
+
+- Run: `hatch run wiki-synthesis-workflow --dry-run --entity glossary:fine-tuning`
+- This is the preferred day-to-day wrapper once the individual steps are understood.
+- Dry-run mode makes **no LLM calls**, writes no cache files, and writes no preview files.
+- Real mode requires `--yes`, writes validated cache entries, and renders review previews unless `--no-review` is passed.
+- It intentionally does **not** run `wiki-render`; inspect previews first, then run `hatch run wiki-render --dry-run`.
+- Useful examples:
+  - `hatch run wiki-synthesis-workflow --dry-run --entity glossary:fine-tuning --json`
+  - `hatch run wiki-synthesis-workflow --entity glossary:fine-tuning --yes`
+  - `hatch run wiki-synthesis-workflow --category glossary --limit 5 --yes`
+  - `hatch run wiki-synthesis-workflow --entity glossary:example --include-single-source --yes`
+
 ## Wiki synthesis indexes (Stage 2 routing)
 
 - Run: `hatch run wiki-synthesis-indexes`
@@ -137,12 +150,32 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
   - Default `--limit 1`; raise it deliberately for batches.
   - Only `new` and `stale` plan entries are executable.
   - Single-source pages are skipped by default via the planner.
+  - Use `--include-single-source` only when you want a source-grounded readable summary for thin pages; the prompt must not imply multi-source consensus.
   - Provider output is normalized with local entity metadata, prompt version, schema version, timestamp, and current input hash before writing.
   - Invalid provider JSON or incomplete synthesis content must fail without writing a cache file.
 - Useful examples:
   - `hatch run wiki-synthesis-run --dry-run --entity glossary:fine-tuning`
+  - `hatch run wiki-synthesis-run --dry-run --entity glossary:example --include-single-source`
   - `hatch run wiki-synthesis-run --entity glossary:fine-tuning --yes`
   - `hatch run wiki-synthesis-run --category glossary --limit 5 --yes`
+
+## Wiki synthesis review (Stage 2 human QA)
+
+- Run: `hatch run wiki-synthesis-review --entity glossary:fine-tuning`
+- This command makes **no LLM calls** and does **not** write to the Obsidian vault.
+- Inputs: `state/wiki_render_graph.json` and `state/synthesis/<category>/<slug>.json`.
+- Output: rendered preview markdown under `state/synthesis_previews/<category>/<slug>.md`.
+- Purpose: inspect a single synthesized page before running `wiki-render`.
+- Review flow:
+  - `hatch run wiki-synthesis-run --entity glossary:fine-tuning --yes`
+  - `hatch run wiki-synthesis-review --entity glossary:fine-tuning`
+  - inspect `state/synthesis_previews/glossary/fine-tuning.md`
+  - `hatch run wiki-render --dry-run`
+  - `hatch run wiki-render`
+- Useful options:
+  - `--dry-run` — validate and render in memory without writing a preview file.
+  - `--json` — print validation state, cache path, target wiki path, and preview path as JSON.
+  - `--preview-dir`, `--graph-path`, `--cache-dir` — override default paths.
 
 ## Readwise Reader export
 

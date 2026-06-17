@@ -89,6 +89,12 @@ wiki-synthesis-prompt = [
 wiki-synthesis-run = [
   "python -m src.wiki_synthesis.run_cli {args}",
 ]
+wiki-synthesis-review = [
+  "python -m src.wiki_synthesis.review_cli {args}",
+]
+wiki-synthesis-workflow = [
+  "python -m src.wiki_synthesis.workflow_cli {args}",
+]
 wiki-reset = [
   "python -m src.wiki_reset {args}",
 ]

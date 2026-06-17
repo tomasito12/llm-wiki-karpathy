@@ -1,4 +1,4 @@
-"""CLI for executing Stage 2 synthesis calls."""
+"""Primary CLI for the controlled Stage 2 synthesis workflow."""
 
 from __future__ import annotations
 
@@ -9,19 +9,19 @@ import os
 from pathlib import Path
 
 from src.ingest_review.paths import load_repo_dotenv
-from src.wiki_synthesis.executor import SynthesisRunReport, run_synthesis
 from src.wiki_synthesis.openai_provider import OpenAISynthesisProvider
 from src.wiki_synthesis.planner import load_graph_export
+from src.wiki_synthesis.workflow import SynthesisWorkflowReport, run_synthesis_workflow
 
 LOGGER = logging.getLogger(__name__)
 
 
 def build_parser() -> argparse.ArgumentParser:
-    """Build the wiki-synthesis-run argument parser."""
+    """Build the wiki-synthesis-workflow argument parser."""
     root = load_repo_dotenv()
     parser = argparse.ArgumentParser(
-        prog="wiki-synthesis-run",
-        description="Run controlled Stage 2 synthesis calls and write cache entries.",
+        prog="wiki-synthesis-workflow",
+        description="Plan, run, and review Stage 2 synthesis with one safe command.",
     )
     parser.add_argument(
         "--graph-path",
@@ -34,6 +34,12 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=root / "state" / "synthesis",
         help="Directory for Stage 2 synthesis cache entries.",
+    )
+    parser.add_argument(
+        "--preview-dir",
+        type=Path,
+        default=root / "state" / "synthesis_previews",
+        help="Directory for rendered review previews.",
     )
     parser.add_argument(
         "--model",
@@ -67,7 +73,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Plan calls without making API requests or writing cache files.",
+        help="Plan without API calls, cache writes, or preview writes.",
     )
     parser.add_argument(
         "--yes",
@@ -75,19 +81,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="Required for real API calls and cache writes.",
     )
     parser.add_argument(
+        "--no-review",
+        action="store_true",
+        help="Skip preview rendering after successful cache writes.",
+    )
+    parser.add_argument(
         "--json",
         action="store_true",
-        help="Print the run report as JSON.",
+        help="Print the workflow report as JSON.",
     )
     return parser
 
 
 def main() -> int:
-    """Run controlled Stage 2 synthesis."""
+    """Run the primary Stage 2 synthesis workflow."""
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     args = build_parser().parse_args()
     if not args.dry_run and not args.yes:
-        LOGGER.error("Refusing real synthesis run without --yes. Use --dry-run to preview.")
+        LOGGER.error("Refusing real synthesis workflow without --yes. Use --dry-run to preview.")
         return 2
     if args.limit < 1:
         LOGGER.error("--limit must be at least 1")
@@ -95,9 +106,10 @@ def main() -> int:
     graph = load_graph_export(args.graph_path.resolve())
     if args.dry_run:
         provider = _DryRunProvider()
-        report = run_synthesis(
+        report = run_synthesis_workflow(
             graph,
             cache_dir=args.cache_dir.resolve(),
+            preview_dir=args.preview_dir.resolve(),
             provider=provider,
             model=args.model,
             category=args.category,
@@ -105,6 +117,7 @@ def main() -> int:
             include_single_source=args.include_single_source,
             limit=args.limit,
             dry_run=True,
+            review=not args.no_review,
         )
     else:
         if not os.environ.get("OPENAI_API_KEY"):
@@ -112,9 +125,10 @@ def main() -> int:
             return 2
         provider = OpenAISynthesisProvider()
         try:
-            report = run_synthesis(
+            report = run_synthesis_workflow(
                 graph,
                 cache_dir=args.cache_dir.resolve(),
+                preview_dir=args.preview_dir.resolve(),
                 provider=provider,
                 model=args.model,
                 category=args.category,
@@ -122,6 +136,7 @@ def main() -> int:
                 include_single_source=args.include_single_source,
                 limit=args.limit,
                 dry_run=False,
+                review=not args.no_review,
             )
         finally:
             provider.close()
@@ -130,13 +145,34 @@ def main() -> int:
     else:
         _print_text_report(report)
     LOGGER.info(
-        "wiki-synthesis-run complete planned=%d called=%d written=%d dry_run=%s",
-        report.planned,
-        report.called,
-        report.written,
-        report.dry_run,
+        "wiki-synthesis-workflow complete planned=%d called=%d written=%d reviews=%d dry_run=%s",
+        report.run.planned,
+        report.run.called,
+        report.run.written,
+        len(report.reviews),
+        report.run.dry_run,
     )
     return 0
+
+
+def _print_text_report(report: SynthesisWorkflowReport) -> None:
+    """Print a human-readable workflow report."""
+    run = report.run
+    print(
+        "wiki-synthesis-workflow "
+        f"planned={run.planned} called={run.called} written={run.written} "
+        f"reviews={len(report.reviews)} dry_run={run.dry_run}"
+    )
+    for item in run.items:
+        print(
+            f"run\t{item.action}\t{item.state}\t{item.entity_id}\t"
+            f"{item.current_input_hash}\t{item.cache_path}"
+        )
+    for review in report.reviews:
+        print(
+            f"review\t{review.validation_state}\t{review.rendered_synthesis_state}\t"
+            f"{review.entity_id}\t{review.preview_path}"
+        )
 
 
 class _DryRunProvider:
@@ -148,21 +184,6 @@ class _DryRunProvider:
         """Raise if a dry-run unexpectedly tries to call a provider."""
         msg = "Dry-run provider should not be called"
         raise RuntimeError(msg)
-
-
-def _print_text_report(report: SynthesisRunReport) -> None:
-    """Print a human-readable run report."""
-    data = report.to_dict()
-    print(
-        "wiki-synthesis-run "
-        f"planned={data['planned']} called={data['called']} "
-        f"written={data['written']} dry_run={data['dry_run']}"
-    )
-    for item in data["items"]:
-        print(
-            f"{item['action']}\t{item['state']}\t{item['entity_id']}\t"
-            f"{item['current_input_hash']}\t{item['cache_path']}"
-        )
 
 
 if __name__ == "__main__":

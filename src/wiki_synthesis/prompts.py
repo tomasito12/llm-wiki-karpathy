@@ -124,6 +124,7 @@ def build_prompt_bundle(
         [
             _entity_block(page, current_hash),
             _page_purpose_block(),
+            _single_source_block(page),
             _source_overview_block(graph, page),
             _evidence_block(page),
             _previous_synthesis_block(previous_cache),
@@ -193,6 +194,17 @@ It should answer:
 - Where are the tensions, caveats, or uncertainty?
 - How strong is the evidence?
 - What is the practical takeaway?"""
+
+
+def _single_source_block(page: dict[str, Any]) -> str:
+    """Return a warning block when the entity has only one source."""
+    if _int_value(page.get("source_count")) != 1:
+        return ""
+    return """SINGLE-SOURCE MODE
+This entity currently has evidence from only one source.
+Do not imply consensus across sources.
+Treat this as a source-grounded readable summary, not as a multi-source synthesis.
+Clearly state in evidence_quality that the evidence is single-source and thin."""
 
 
 def _source_overview_block(graph: dict[str, Any], page: dict[str, Any]) -> str:
@@ -321,3 +333,12 @@ def _inline_value(value: Any) -> str:
     if value is None:
         return "unknown"
     return str(value)
+
+
+def _int_value(value: Any) -> int:
+    """Return an integer value for prompt condition checks."""
+    if isinstance(value, bool):
+        return int(value)
+    if isinstance(value, int | float):
+        return int(value)
+    return 0

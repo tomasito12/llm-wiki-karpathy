@@ -78,6 +78,7 @@ def run_synthesis(
     model: str,
     category: str | None = None,
     entity: str | None = None,
+    include_single_source: bool = False,
     limit: int = 1,
     dry_run: bool = True,
     now_fn: Callable[[], datetime] | None = None,
@@ -88,7 +89,7 @@ def run_synthesis(
         cache_dir=cache_dir,
         category=category,
         entity=entity,
-        include_single_source=False,
+        include_single_source=include_single_source,
         changed_only=True,
     )
     targets = _target_entries(plan.entries, limit=limit)

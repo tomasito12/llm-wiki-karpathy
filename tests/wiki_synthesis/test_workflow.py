@@ -1,129 +1,59 @@
-"""Tests for Stage 2 synthesis execution."""
+"""Tests for the high-level Stage 2 synthesis workflow."""
 
 from __future__ import annotations
 
 import json
-from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-import pytest
-
 from src.wiki_synthesis.cache import cache_file_path
-from src.wiki_synthesis.executor import (
-    normalize_synthesis_payload,
-    run_synthesis,
-)
-from src.wiki_synthesis.prompts import PromptBundle, build_prompt_bundle
+from src.wiki_synthesis.prompts import PromptBundle
+from src.wiki_synthesis.workflow import run_synthesis_workflow
 
 
-def test_run_synthesis_dry_run_plans_without_calling_provider(tmp_path: Path) -> None:
-    """Dry-run should select executable targets without calling the provider."""
-    provider = RaisingProvider()
-
-    report = run_synthesis(
+def test_workflow_dry_run_plans_without_preview(tmp_path: Path) -> None:
+    """Dry-run should plan work without calling a provider or writing previews."""
+    report = run_synthesis_workflow(
         _graph(),
         cache_dir=tmp_path / "cache",
-        provider=provider,
-        model="test-model",
-        entity="topic:local-models",
-        dry_run=True,
-    )
-
-    assert report.planned == 1
-    assert report.called == 0
-    assert report.written == 0
-    assert report.items[0].action == "planned"
-
-
-def test_run_synthesis_skips_single_source_by_default(tmp_path: Path) -> None:
-    """Single-source pages should remain skipped unless explicitly included."""
-    report = run_synthesis(
-        _graph(source_count=1),
-        cache_dir=tmp_path / "cache",
+        preview_dir=tmp_path / "previews",
         provider=RaisingProvider(),
         model="test-model",
         entity="topic:local-models",
         dry_run=True,
     )
 
-    assert report.planned == 0
-    assert report.items == []
+    assert report.run.planned == 1
+    assert report.run.called == 0
+    assert report.run.written == 0
+    assert report.reviews == []
+    assert not (tmp_path / "previews").exists()
 
 
-def test_run_synthesis_can_include_single_source_pages(tmp_path: Path) -> None:
-    """The executor should plan single-source pages when explicitly requested."""
-    report = run_synthesis(
-        _graph(source_count=1),
-        cache_dir=tmp_path / "cache",
-        provider=RaisingProvider(),
-        model="test-model",
-        entity="topic:local-models",
-        include_single_source=True,
-        dry_run=True,
-    )
-
-    assert report.planned == 1
-    assert report.items[0].state == "new"
-
-
-def test_run_synthesis_writes_validated_cache(tmp_path: Path) -> None:
-    """A valid provider response should become a cache file."""
-    graph = _graph()
+def test_workflow_real_run_writes_cache_and_review_preview(tmp_path: Path) -> None:
+    """A real workflow run should write cache and render a review preview."""
     cache_dir = tmp_path / "cache"
+    preview_dir = tmp_path / "previews"
 
-    report = run_synthesis(
-        graph,
+    report = run_synthesis_workflow(
+        _graph(),
         cache_dir=cache_dir,
+        preview_dir=preview_dir,
         provider=StaticProvider(_provider_payload()),
         model="test-model",
         entity="topic:local-models",
         dry_run=False,
-        now_fn=lambda: datetime(2026, 6, 16, 12, 0, tzinfo=UTC),
     )
 
     cache_path = cache_file_path(cache_dir, category="topic", slug="local-models")
-    payload = json.loads(cache_path.read_text(encoding="utf-8"))
-    assert report.called == 1
-    assert report.written == 1
-    assert payload["entity_id"] == "topic:local-models"
-    assert payload["synthesis_input_hash"] == report.items[0].current_input_hash
-    assert payload["last_synthesized_at"] == "2026-06-16T12:00:00Z"
-    assert payload["executive_synthesis"] == "Local models make inference controllable."
-
-
-def test_run_synthesis_rejects_incomplete_provider_payload(tmp_path: Path) -> None:
-    """Incomplete provider output should fail before writing cache."""
-    with pytest.raises(ValueError, match="Missing required text field"):
-        run_synthesis(
-            _graph(),
-            cache_dir=tmp_path / "cache",
-            provider=StaticProvider({"what_to_remember": ["x"]}),
-            model="test-model",
-            entity="topic:local-models",
-            dry_run=False,
-        )
-
-    cache_path = cache_file_path(tmp_path / "cache", category="topic", slug="local-models")
-    assert not cache_path.exists()
-
-
-def test_normalize_synthesis_payload_overwrites_untrusted_metadata() -> None:
-    """Provider metadata should not override locally trusted cache metadata."""
-    bundle = build_prompt_bundle(_graph(), entity_id="topic:local-models")
-
-    payload = normalize_synthesis_payload(
-        {
-            **_provider_payload(),
-            "entity_id": "topic:wrong",
-            "synthesis_input_hash": "wronghash",
-        },
-        bundle=bundle,
-        now=datetime(2026, 6, 16, 12, 0, tzinfo=UTC),
-    )
-
-    assert payload["entity_id"] == "topic:local-models"
-    assert payload["synthesis_input_hash"] == bundle.synthesis_input_hash
+    preview_path = preview_dir / "topic" / "local-models.md"
+    assert report.run.called == 1
+    assert report.run.written == 1
+    assert len(report.reviews) == 1
+    assert cache_path.exists()
+    assert preview_path.exists()
+    assert json.loads(cache_path.read_text(encoding="utf-8"))["entity_id"] == "topic:local-models"
+    assert "synthesis_state: synthesized" in preview_path.read_text(encoding="utf-8")
 
 
 class StaticProvider:
@@ -170,23 +100,22 @@ def _provider_payload() -> dict[str, Any]:
     }
 
 
-def _graph(*, source_count: int = 2) -> dict[str, Any]:
+def _graph() -> dict[str, Any]:
     """Return a minimal graph export with one executable knowledge page."""
-    source_ids = ["source-a", "source-b"][:source_count]
     return {
         "sources": [
             {
                 "source_id": "source-a",
                 "title": "Source A",
                 "published_date": "2026-01-01",
-                "assessed_as_of": "2026-06-16",
+                "assessed_as_of": "2026-06-17",
                 "tags": ["ai-engineering"],
             },
             {
                 "source_id": "source-b",
                 "title": "Source B",
                 "published_date": "2026-02-01",
-                "assessed_as_of": "2026-06-16",
+                "assessed_as_of": "2026-06-17",
                 "tags": ["inference-systems"],
             },
         ],
@@ -200,8 +129,10 @@ def _graph(*, source_count: int = 2) -> dict[str, Any]:
                 "aliases": [],
                 "tags": ["ai-engineering"],
                 "types": [],
-                "source_ids": source_ids,
-                "source_count": source_count,
+                "first_seen": "2026-01-01",
+                "last_seen": "2026-06-17",
+                "source_ids": ["source-a", "source-b"],
+                "source_count": 2,
                 "evidence_count": 1,
                 "value_level": "high",
                 "confidence": 0.9,
@@ -209,6 +140,7 @@ def _graph(*, source_count: int = 2) -> dict[str, Any]:
                 "counter_count": 0,
                 "uncertainty_count": 0,
                 "neutral_count": 0,
+                "evidence_set_hash": "hash",
                 "evidence": [
                     {
                         "evidence_id": "evidence-a",
@@ -217,7 +149,8 @@ def _graph(*, source_count: int = 2) -> dict[str, Any]:
                         "source_title": "Source A",
                         "source_date": "2026-01-01",
                         "published_date": "2026-01-01",
-                        "assessed_as_of": "2026-06-16",
+                        "assessed_as_of": "2026-06-17",
+                        "ingested_at": "2026-06-17T00:00:00Z",
                         "category": "topic",
                         "entity_slug": "local-models",
                         "confidence": 0.9,
