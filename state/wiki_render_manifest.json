@@ -163,7 +163,7 @@
     },
     {
       "path": "glossary/amdahl-s-law.md",
-      "sha256": "521e8c2646b0023f511cfd76743fabc1f7194b0e8f92e49e7658a94473877a39"
+      "sha256": "630dd8bfaf05e3960b3da5f66f5831c53b280f94b7f5bbd45d2f8a0151714b1e"
     },
     {
       "path": "glossary/aria-live-region.md",
@@ -203,7 +203,7 @@
     },
     {
       "path": "glossary/feedforward-controls.md",
-      "sha256": "6fbb4aac48f7f68962369854ea72e125de15e6ea7a97f0c7e7bf5bf57a149c25"
+      "sha256": "b79777299bdd060af53a332689c94965a0ed091fbed0ed1d889bd1c2889478b5"
     },
     {
       "path": "glossary/fido-compliant-security-key.md",
@@ -219,7 +219,7 @@
     },
     {
       "path": "glossary/grouped-query-attention.md",
-      "sha256": "ca684b4f54f77b3c04469128bc21a6088d9db46ce639ee5ad21990c2b2684e56"
+      "sha256": "41cf269556600bcf20a0465a278cff6af4da8c373e9e4b51ff96fd95b7e66b9f"
     },
     {
       "path": "glossary/hallucinations.md",

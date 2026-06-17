@@ -78,7 +78,7 @@ Before adding more agents or parallelizing work, ask which step is still serial.
 
 ## Related pages
 
-- Harness
+No related pages captured.
 
 ## Sources
 
