@@ -223,11 +223,11 @@
     },
     {
       "path": "glossary/hallucinations.md",
-      "sha256": "a0be0542d524f643736188763304416b5192dfbbefb17ac789a5d2f0f3fb22d8"
+      "sha256": "2b4d1de98fe213fcade26e7cdf87d13f78a74313bd10586f752c4ad94cb43ae8"
     },
     {
       "path": "glossary/harness.md",
-      "sha256": "5473228967f87d818d47af3dd519ef7659b5e1b3dece6fc93fcbc2beeed3ac35"
+      "sha256": "ac9062e991e9039b394056d4366cd94247cc2041aaf4a491bb1c9e5ac16ac06a"
     },
     {
       "path": "glossary/hooks.md",
@@ -239,7 +239,7 @@
     },
     {
       "path": "glossary/knowledge-management.md",
-      "sha256": "2b76633dd7d970bd1ce12d080571ba57989aeff75f6b67f332b329730323468e"
+      "sha256": "d9f6c8ca4e6246bcce0bdceae5e95f4aa4842629f8549ee604b3788e250ce01d"
     },
     {
       "path": "glossary/kv-cache.md",
