@@ -13,7 +13,11 @@ from src.wiki_contract.categories import (
     spec_for_frontmatter,
 )
 from src.wiki_contract.frontmatter import required_fields_for
-from src.wiki_contract.headings import EVIDENCE_SECTION_HEADING, required_h2_headings_for
+from src.wiki_contract.headings import (
+    EVIDENCE_SECTION_HEADING,
+    SYNTHESIS_EVIDENCE_INDEX_HEADING,
+    required_h2_headings_for,
+)
 from src.wiki_contract.layout import is_lint_skipped_path
 
 WIKILINK_RE = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]")
@@ -220,14 +224,22 @@ def _validate_merged_sections(page: WikiPage) -> list[WikiLintIssue]:
     if graph_category not in MERGED_GRAPH_CATEGORIES:
         return []
     issues: list[WikiLintIssue] = []
-    if EVIDENCE_SECTION_HEADING not in page.body:
-        issues.append(WikiLintIssue(page.relpath, f"missing section: {EVIDENCE_SECTION_HEADING}"))
+    required_evidence_heading = _required_evidence_heading(page)
+    if required_evidence_heading not in page.body:
+        issues.append(WikiLintIssue(page.relpath, f"missing section: {required_evidence_heading}"))
     source_count = page.frontmatter.get("source_count")
     source_ids = page.frontmatter.get("source_ids")
     if isinstance(source_count, int) and source_count >= 1:
         if not isinstance(source_ids, list) or not source_ids:
             issues.append(WikiLintIssue(page.relpath, "source_ids required when source_count >= 1"))
     return issues
+
+
+def _required_evidence_heading(page: WikiPage) -> str:
+    """Return the evidence heading expected for a merged knowledge page."""
+    if page.frontmatter.get("synthesis_state") in {"synthesized", "stale"}:
+        return SYNTHESIS_EVIDENCE_INDEX_HEADING
+    return EVIDENCE_SECTION_HEADING
 
 
 def validate_wikilinks(page: WikiPage, pages: dict[str, WikiPage]) -> list[WikiLintIssue]:

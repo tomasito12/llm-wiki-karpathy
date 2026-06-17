@@ -7,8 +7,8 @@ category: diagnostics
 
 - Tool version: `1`
 - Taxonomy version: `27539b556704`
-- Sources: 357
-- Knowledge pages: 613
+- Sources: 360
+- Knowledge pages: 614
 - Signals: 160
 - Interview insights: 97
 - Implementation studies: 18
@@ -45,7 +45,7 @@ category: diagnostics
 - [[topics/agent-self-verification|Agent Self-Verification]] — sources: 1, evidence: 8
 - [[topics/agent-skill-optimization|Agent Skill Optimization]] — sources: 1, evidence: 9
 - [[topics/agent-specification-bidirectionality|Agent Specification Bidirectionality]] — sources: 1, evidence: 8
-- [[topics/agent-tool-wrapper-overhead|Agent Tool Wrapper Overhead]] — sources: 1, evidence: 7
+- [[topics/agent-tool-wrapper-overhead|Agent Tool Wrapper Overhead]] — sources: 2, evidence: 16
 - [[topics/agent-workflow-vs-workflow-orchestration|Agent Workflow vs Workflow Orchestration]] — sources: 1, evidence: 8
 - [[topics/agent-workspace-layering|Agent Workspace Layering]] — sources: 7, evidence: 54
 - [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]] — sources: 1, evidence: 8
@@ -82,7 +82,7 @@ category: diagnostics
 - [[topics/conflict-forecasting-models|Conflict Forecasting Models]] — sources: 1, evidence: 9
 - [[topics/consumer-ai-distribution|Consumer AI Distribution]] — sources: 2, evidence: 15
 - [[topics/consumer-ai-monetization-under-load|Consumer AI Monetization Under Load]] — sources: 1, evidence: 7
-- [[topics/context-engineering|Context Engineering]] — sources: 14, evidence: 99
+- [[topics/context-engineering|Context Engineering]] — sources: 14, evidence: 98
 - [[topics/context-and-backend-sensitivity-in-local-inference|Context and Backend Sensitivity in Local Inference]] — sources: 1, evidence: 7
 - [[topics/contextual-operations-summarization|Contextual Operations Summarization]] — sources: 1, evidence: 8
 - [[topics/continuous-improvement-for-ai-support-systems|Continuous Improvement for AI Support Systems]] — sources: 1, evidence: 9
@@ -102,7 +102,7 @@ category: diagnostics
 - [[topics/enterprise-conversational-ai-integration|Enterprise Conversational AI Integration]] — sources: 3, evidence: 23
 - [[topics/file-grammar-skills-for-ai|File Grammar Skills for AI]] — sources: 2, evidence: 16
 - [[topics/file-native-ai-workflows|File-Native AI Workflows]] — sources: 8, evidence: 59
-- [[topics/file-native-agent-workflows|File-Native Agent Workflows]] — sources: 3, evidence: 24
+- [[topics/file-native-agent-workflows|File-Native Agent Workflows]] — sources: 2, evidence: 15
 - [[topics/forecasting-with-noisy-public-signals|Forecasting With Noisy Public Signals]] — sources: 1, evidence: 9
 - [[topics/frontier-model-serving|Frontier Model Serving]] — sources: 1, evidence: 7
 - [[topics/frontier-models-as-national-infrastructure|Frontier Models as National Infrastructure]] — sources: 1, evidence: 9
@@ -161,7 +161,7 @@ category: diagnostics
 - [[topics/non-nvidia-ai-hardware-thesis|Non-NVIDIA AI Hardware Thesis]] — sources: 1, evidence: 7
 - [[topics/ontology-driven-extraction|Ontology-Driven Extraction]] — sources: 3, evidence: 23
 - [[topics/open-agent-platform-integration|Open Agent Platform Integration]] — sources: 1, evidence: 8
-- [[topics/open-formats-as-ai-integration-boundaries|Open Formats as AI Integration Boundaries]] — sources: 1, evidence: 8
+- [[topics/open-formats-as-ai-integration-boundaries|Open Formats as AI Integration Boundaries]] — sources: 2, evidence: 17
 - [[topics/open-model-ecosystems|Open Model Ecosystems]] — sources: 1, evidence: 8
 - [[topics/openai-compatible-local-endpoints|OpenAI-Compatible Local Endpoints]] — sources: 2, evidence: 14
 - [[topics/ops-artifact-generation|Operational Artifact Generation]] — sources: 1, evidence: 8
@@ -169,6 +169,7 @@ category: diagnostics
 - [[topics/outcome-based-pricing-for-ai-agents|Outcome-Based Pricing for AI Agents]] — sources: 2, evidence: 16
 - [[topics/passive-context-capture|Passive Context Capture]] — sources: 1, evidence: 7
 - [[topics/permission-aware-retrieval|Permission-Aware Retrieval]] — sources: 1, evidence: 7
+- [[topics/persistent-agent-memory-architecture|Persistent Agent Memory Architecture]] — sources: 1, evidence: 8
 - [[topics/persistent-connection-response-state-reuse|Persistent Connection Response State Reuse]] — sources: 1, evidence: 7
 - [[topics/personalized-conversational-ai|Personalized Conversational AI]] — sources: 2, evidence: 15
 - [[topics/practitioner-feedback-loops-for-agents|Practitioner Feedback Loops for Agents]] — sources: 1, evidence: 8
@@ -235,7 +236,7 @@ category: diagnostics
 - [[topics/type-i-vs-type-ii-audit-assurance|Type I vs Type II Audit Assurance]] — sources: 1, evidence: 7
 - [[topics/use-case-specific-local-model-selection|Use-Case-Specific Local Model Selection]] — sources: 4, evidence: 30
 - [[topics/verifiable-ai-governance|Verifiable AI Governance]] — sources: 2, evidence: 15
-- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — sources: 9, evidence: 70
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — sources: 10, evidence: 77
 - [[topics/verification-loops-in-agentic-coding|Verification Loops in Agentic Coding]] — sources: 1, evidence: 8
 - [[topics/vertical-models|Vertical Models]] — sources: 2, evidence: 14
 - [[topics/visual-specifications-for-ai-systems|Visual Specifications for AI Systems]] — sources: 2, evidence: 15
@@ -271,12 +272,12 @@ category: diagnostics
 - [[industry-trends/ai-products-shift-from-demos-to-grounded-workflows|AI Products Shift from Demos to Grounded Workflows]] — sources: 1, evidence: 5
 - [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]] — sources: 1, evidence: 8
 - [[industry-trends/ai-products-shift-from-models-to-grounded-systems|AI Products Shift from Models to Grounded Systems]] — sources: 1, evidence: 8
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — sources: 22, evidence: 182
 - [[industry-trends/ai-simulation-moves-from-demo-scale-to-evaluation-grade-systems|AI Simulation Moves Toward Evaluation-Grade Systems]] — sources: 1, evidence: 9
 - [[industry-trends/ai-specification-moves-toward-explicit-constraints|AI Specification Moves Toward Explicit Constraints]] — sources: 1, evidence: 9
 - [[industry-trends/ai-support-improvement-becomes-continuous|AI Support Improvement Becomes Continuous]] — sources: 1, evidence: 8
 - [[industry-trends/ai-workflows-shift-toward-supervised-friction|AI Workflows Shift Toward Supervised Friction]] — sources: 1, evidence: 8
-- [[industry-trends/ai-workflows-shift-toward-verification-loops|AI Workflows Shift Toward Verification Loops]] — sources: 2, evidence: 16
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]] — sources: 22, evidence: 178
+- [[industry-trends/ai-workflows-shift-toward-verification-loops|AI Workflows Shift Toward Verification Loops]] — sources: 4, evidence: 29
 - [[industry-trends/agent-runtime-centralization|AI products shift toward managed agent runtimes]] — sources: 1, evidence: 8
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]] — sources: 5, evidence: 43
 - [[industry-trends/ai-assisted-file-native-workflows|AI-Assisted File-Native Workflows]] — sources: 1, evidence: 8
@@ -287,17 +288,17 @@ category: diagnostics
 - [[industry-trends/agent-search-moves-toward-local-text-indexes|Agent Search Moves Toward Local Text Indexes]] — sources: 1, evidence: 8
 - [[industry-trends/agent-workflows-shift-toward-reviewable-contracts|Agent Workflows Shift Toward Reviewable Contracts]] — sources: 1, evidence: 8
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]] — sources: 8, evidence: 66
-- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]] — sources: 5, evidence: 39
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]] — sources: 4, evidence: 31
 - [[industry-trends/agentic-commerce-interfaces|Agentic Commerce Interfaces]] — sources: 2, evidence: 16
 - [[industry-trends/agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops|Agents Are Shifting from Stateless Chat to Persistent Work Loops]] — sources: 3, evidence: 24
 - [[industry-trends/agents-move-toward-persistent-memory-backed-workflows|Agents Move Toward Persistent Memory-Backed Workflows]] — sources: 3, evidence: 24
-- [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]] — sources: 2, evidence: 17
+- [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]] — sources: 1, evidence: 8
 - [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]] — sources: 2, evidence: 18
 - [[industry-trends/apple-silicon-local-inference-becomes-practical|Apple Silicon Local Inference Becomes Practical]] — sources: 2, evidence: 17
 - [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]] — sources: 2, evidence: 16
 - [[industry-trends/automation-pressures-governments-to-tax-capital-instead-of-labor|Automation Pressures Governments to Tax Capital Instead of Labor]] — sources: 1, evidence: 9
 - [[industry-trends/behavioral-regressions-need-qualitative-audits|Behavioral Regressions Need Qualitative Audits]] — sources: 1, evidence: 9
-- [[industry-trends/chat-products-move-toward-persistent-workspaces|Chat Products Move Toward Persistent Workspaces]] — sources: 2, evidence: 17
+- [[industry-trends/chat-products-move-toward-persistent-workspaces|Chat Products Move Toward Persistent Workspaces]] — sources: 2, evidence: 14
 - [[industry-trends/coding-agents-diverge-into-workflow-specific-products|Coding Agents Diverge Into Workflow-Specific Products]] — sources: 2, evidence: 17
 - [[industry-trends/coding-models-shift-toward-agentic-execution|Coding Models Shift Toward Agentic Execution]] — sources: 2, evidence: 18
 - [[industry-trends/coding-shifts-toward-supervised-agent-workflows|Coding Shifts Toward Supervised Agent Workflows]] — sources: 1, evidence: 8
@@ -329,6 +330,7 @@ category: diagnostics
 - [[industry-trends/knowledge-work-moves-toward-agentic-workflow-completion|Knowledge Work Moves Toward Agentic Workflow Completion]] — sources: 2, evidence: 17
 - [[industry-trends/llm-maintained-knowledge-bases|LLM-Maintained Knowledge Bases]] — sources: 1, evidence: 8
 - [[industry-trends/latent-reasoning-replaces-token-chain-of-thought|Latent Reasoning Replaces Token-Chain-Of-Thought]] — sources: 1, evidence: 8
+- [[industry-trends/local-inference-stacks-shift-toward-direct-engine-access|Local Inference Stacks Shift Toward Direct Engine Access]] — sources: 1, evidence: 8
 - [[industry-trends/local-specialist-models-for-preprocessing|Local Specialist Models for Preprocessing]] — sources: 1, evidence: 10
 - [[industry-trends/local-speaker-and-dictation-substitution|Local Voice Tool Substitution]] — sources: 1, evidence: 8
 - [[industry-trends/long-context-efficiency-becomes-an-architecture-priority|Long-Context Efficiency Becomes an Architecture Priority]] — sources: 1, evidence: 9
@@ -349,7 +351,7 @@ category: diagnostics
 - [[industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake|Sales Moves from Fast Follow-Up to Agent-Led Intake]] — sources: 3, evidence: 25
 - [[industry-trends/software-differentiation-shifts-from-engineering-to-distribution|Software Differentiation Shifts from Engineering to Distribution]] — sources: 2, evidence: 17
 - [[industry-trends/software-work-moves-toward-domain-verified-ai-output|Software Work Moves Toward Domain-Verified AI Output]] — sources: 1, evidence: 8
-- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — sources: 12, evidence: 103
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — sources: 13, evidence: 112
 - [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]] — sources: 3, evidence: 26
 - [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]] — sources: 2, evidence: 16
 - [[industry-trends/support-automation-moves-toward-agentic-operations-layers|Support Automation Moves Toward Agentic Operations Layers]] — sources: 1, evidence: 9
@@ -380,8 +382,8 @@ category: diagnostics
 - [[tools/cal-com|Cal.com]] — sources: 1, evidence: 11
 - [[tools/calendar|Calendar]] — sources: 1, evidence: 11
 - [[tools/caveman|Caveman]] — sources: 1, evidence: 11
-- [[tools/claude|Claude]] — sources: 2, evidence: 24
-- [[tools/claude-code|Claude Code]] — sources: 18, evidence: 206
+- [[tools/claude|Claude]] — sources: 1, evidence: 12
+- [[tools/claude-code|Claude Code]] — sources: 18, evidence: 208
 - [[tools/claude-desktop|Claude Desktop]] — sources: 1, evidence: 11
 - [[tools/cleanshot-x|CleanShot X]] — sources: 2, evidence: 22
 - [[tools/cleanupbuddy|CleanUpBuddy]] — sources: 1, evidence: 10
@@ -449,7 +451,7 @@ category: diagnostics
 - [[tools/oasis|OASIS]] — sources: 1, evidence: 13
 - [[tools/obsidian|Obsidian]] — sources: 12, evidence: 136
 - [[tools/obsidian-starter-kit-plugin|Obsidian Starter Kit plugin]] — sources: 1, evidence: 14
-- [[tools/ollama|Ollama]] — sources: 11, evidence: 131
+- [[tools/ollama|Ollama]] — sources: 12, evidence: 143
 - [[tools/omnisearch|Omnisearch]] — sources: 1, evidence: 11
 - [[tools/one-thing|One Thing]] — sources: 1, evidence: 8
 - [[tools/openai-realtime-api|OpenAI Realtime API]] — sources: 1, evidence: 10
@@ -460,7 +462,6 @@ category: diagnostics
 - [[tools/pearcleaner|Pearcleaner]] — sources: 1, evidence: 9
 - [[tools/photopea|Photopea]] — sources: 1, evidence: 10
 - [[tools/pomelli|Pomelli]] — sources: 1, evidence: 11
-- [[tools/privacy-filter|Privacy Filter]] — sources: 1, evidence: 12
 - [[tools/publora-mcp|Publora MCP]] — sources: 1, evidence: 11
 - [[tools/purepaste|PurePaste]] — sources: 1, evidence: 8
 - [[tools/quickadd|QuickAdd]] — sources: 1, evidence: 11
@@ -525,7 +526,7 @@ category: diagnostics
 - [[foundation-models/llama-4|Llama 4]] — sources: 1, evidence: 8
 - [[foundation-models/mercury|Mercury]] — sources: 1, evidence: 7
 - [[foundation-models/mercury-2|Mercury 2]] — sources: 1, evidence: 16
-- [[foundation-models/opus-4-6|Opus 4.6]] — sources: 3, evidence: 36
+- [[foundation-models/opus-4-6|Opus 4.6]] — sources: 3, evidence: 31
 - [[foundation-models/privacy-filter|Privacy Filter]] — sources: 2, evidence: 33
 - [[foundation-models/qwen-3-5|Qwen 3.5]] — sources: 1, evidence: 10
 - [[foundation-models/qwen-3-5-9b|Qwen 3.5 9B]] — sources: 2, evidence: 24
@@ -593,19 +594,20 @@ No duplicate candidates captured.
 - [[sources/the-war-between-businesses-and-hackers-enters-a-perilous-new-phase-01krjzgpm35mgsws0fz2rpc80q|The war between businesses and hackers enters a perilous new phase]]
 - [[sources/top-5-ways-to-effectively-use-notebooklm-01kr43jze72s6hyk8gbjfvvx2j|🚀 Top 5 Ways to Effectively Use NotebookLM]]
 - [[sources/what-really-matters-when-evaluating-ai-agents-for-customer-service-01ks89tke8b3dsrzc527zcqr3w|What really matters when evaluating AI Agents for customer service?]]
+- [[sources/you-can-t-regulate-programming-how-the-eu-ai-act-may-kill-software-01ktpkt6181ebx0pkpc1rppkmn|You Can’t Regulate Programming: How the EU AI Act May Kill Software]]
 
 ## Most-used tags
 
-- ai-engineering: 126
-- agent-systems: 94
+- ai-engineering: 127
+- agent-systems: 97
 - enterprise-ai: 87
 - workflow-automation: 78
-- workflow-design: 66
-- local-first: 60
-- runtime-systems: 57
-- knowledge-systems: 56
+- workflow-design: 65
+- runtime-systems: 59
+- local-first: 59
+- knowledge-systems: 55
 - runtime-architecture: 49
-- enterprise-workflows: 46
+- enterprise-workflows: 45
 - ai-economics: 44
 - ai-operationalization: 43
 - ai-governance: 42
@@ -613,10 +615,10 @@ No duplicate candidates captured.
 - workflow-restructuring: 37
 - support-automation: 35
 - human-ai-workflows: 33
-- inference-systems: 30
-- orchestration: 29
-- agent-orchestration: 29
-- infrastructure: 28
+- inference-systems: 31
+- agent-orchestration: 30
+- infrastructure: 29
+- orchestration: 28
 - ai-evaluation: 27
 - retrieval-systems: 26
 - verification-systems: 25
@@ -824,7 +826,6 @@ No duplicate candidates captured.
 - [[tools/pearcleaner|Pearcleaner]]
 - [[tools/photopea|Photopea]]
 - [[tools/pomelli|Pomelli]]
-- [[tools/privacy-filter|Privacy Filter]]
 - [[tools/publora-mcp|Publora MCP]]
 - [[tools/purepaste|PurePaste]]
 - [[tools/quickadd|QuickAdd]]
@@ -884,7 +885,7 @@ No duplicate candidates captured.
 - [[industry-trends/ai-products-shift-from-demos-to-grounded-workflows|AI Products Shift from Demos to Grounded Workflows]]
 - [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]]
 - [[industry-trends/ai-products-shift-from-models-to-grounded-systems|AI Products Shift from Models to Grounded Systems]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/ai-products-shift-toward-agentic-commerce-interfaces|AI Products Shift Toward Agentic Commerce Interfaces]]
 - [[industry-trends/ai-products-shift-toward-ambient-computing|AI Products Shift Toward Ambient Computing]]
 - [[industry-trends/ai-products-shift-toward-customer-specific-deployment|AI Products Shift Toward Customer-Specific Deployment]]
@@ -929,6 +930,7 @@ No duplicate candidates captured.
 - [[industry-trends/knowledge-work-moves-toward-agentic-workflow-completion|Knowledge Work Moves Toward Agentic Workflow Completion]]
 - [[industry-trends/latent-reasoning-replaces-token-chain-of-thought|Latent Reasoning Replaces Token-Chain-Of-Thought]]
 - [[industry-trends/llm-maintained-knowledge-bases|LLM-Maintained Knowledge Bases]]
+- [[industry-trends/local-inference-stacks-shift-toward-direct-engine-access|Local Inference Stacks Shift Toward Direct Engine Access]]
 - [[industry-trends/local-speaker-and-dictation-substitution|Local Voice Tool Substitution]]
 - [[industry-trends/local-specialist-models-for-preprocessing|Local Specialist Models for Preprocessing]]
 - [[industry-trends/long-context-efficiency-becomes-an-architecture-priority|Long-Context Efficiency Becomes an Architecture Priority]]
@@ -971,42 +973,42 @@ No duplicate candidates captured.
 
 ## Highest source-count pages
 
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]] — 22
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 22
 - [[tools/claude-code|Claude Code]] — 18
 - [[topics/context-engineering|Context Engineering]] — 14
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 13
 - [[tools/obsidian|Obsidian]] — 12
-- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 12
-- [[tools/ollama|Ollama]] — 11
+- [[tools/ollama|Ollama]] — 12
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — 10
 - [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 9
-- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — 9
 - [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]] — 9
 - [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — 8
 - [[topics/agentic-coding-workflows|Agentic Coding Workflows]] — 8
 - [[topics/file-native-ai-workflows|File-Native AI Workflows]] — 8
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]] — 8
 - [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-weight multimodal models are becoming viable on consumer hardware]] — 8
+- [[glossary/model-context-protocol|Model Context Protocol]] — 7
 - [[topics/agent-workspace-layering|Agent Workspace Layering]] — 7
 - [[topics/agentic-workflows|Agentic Workflows]] — 7
 - [[topics/support-automation-as-operating-model|Support Automation as Operating Model]] — 7
-- [[glossary/model-context-protocol|Model Context Protocol]] — 6
 - [[glossary/mixture-of-experts|Mixture-of-Experts]] — 5
 - [[glossary/retrieval-augmented-generation|Retrieval-Augmented Generation]] — 5
 - [[tools/cognigy-ai|Cognigy.AI]] — 5
 - [[topics/ai-workflow-restructuring|AI Workflow Restructuring]] — 5
 - [[topics/knowledge-management|Knowledge Management]] — 5
-- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]] — 5
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]] — 5
+- [[glossary/harness|Harness]] — 4
 
 ## Highest evidence-count pages
 
-- [[tools/claude-code|Claude Code]] — 206
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]] — 178
+- [[tools/claude-code|Claude Code]] — 208
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 182
+- [[tools/ollama|Ollama]] — 143
 - [[tools/obsidian|Obsidian]] — 136
-- [[tools/ollama|Ollama]] — 131
-- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 103
-- [[topics/context-engineering|Context Engineering]] — 99
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 112
+- [[topics/context-engineering|Context Engineering]] — 98
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — 77
 - [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 71
-- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]] — 70
 - [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]] — 69
 - [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-weight multimodal models are becoming viable on consumer hardware]] — 69
 - [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — 66

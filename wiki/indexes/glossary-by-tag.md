@@ -8,6 +8,7 @@ category: index
 ## agent-systems
 
 - [[glossary/amdahl-s-law|Amdahl's law]]
+- [[glossary/harness|Harness]]
 - [[glossary/llm-wikis|LLM Wikis]]
 - [[glossary/living-specification|Living Specification]]
 - [[glossary/model-context-protocol|Model Context Protocol]]
@@ -123,6 +124,7 @@ category: index
 
 - [[glossary/behavior-driven-development|Behavior-Driven Development]]
 - [[glossary/gherkin|Gherkin]]
+- [[glossary/harness|Harness]]
 - [[glossary/mixture-of-experts|Mixture-of-Experts]]
 - [[glossary/model-context-protocol|Model Context Protocol]]
 - [[glossary/transport-layer-security-gap|Transport Layer Security Gap]]

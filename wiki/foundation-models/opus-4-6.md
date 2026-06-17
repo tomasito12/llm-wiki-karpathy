@@ -12,7 +12,7 @@ tags:
 first_seen: '2026-04-16'
 last_seen: '2026-06-05'
 source_count: 3
-evidence_count: 36
+evidence_count: 31
 source_ids:
 - antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03
 - claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y
@@ -46,8 +46,6 @@ types:
 - It is implicitly contrasted with Antigravity’s multi-model flexibility, where model choice can vary by agent and task.
 - Compared with the surrounding agent frameworks, the model is presented as only the engine rather than the whole product.
 - The source implies that differences between tools can be larger than differences attributable to the model alone.
-- It is positioned above Sonnet for difficult tasks that justify higher token consumption.
-- It is described as stronger than Haiku for anything beyond lightweight summarization.
 
 ## Core Capabilities
 
@@ -55,9 +53,6 @@ types:
 - It is the higher-capability Anthropic option inside Claude Code’s model lineup.
 - It serves as a high-capability coding model baseline in agent evaluations.
 - It is used as an example showing that wrapper design can materially affect practical performance.
-- It is used for complex synthesis tasks that need stronger judgment and integration.
-- It is the preferred model for deep research work in the described workflow.
-- It provides the highest-quality response path inside the user's model ladder.
 
 ## Maturity signals
 
@@ -122,8 +117,6 @@ The article does not provide a separate performance evaluation for Opus 4.6. Its
 
 ### How I Use Obsidian + Claude Cowork to Run My Life (2026-06-05)
 
-- It is positioned above Sonnet for difficult tasks that justify higher token consumption. (`0691e8b3ee97` · neutral · comparative_observations[0]; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- It is described as stronger than Haiku for anything beyond lightweight summarization. (`606c8e704594` · neutral · comparative_observations[1]; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
 - In a deployed workflow, Opus acts as the escalation model for tasks where answer quality matters more than efficiency. That means the orchestration layer should identify synthesis-heavy tasks and route them upward rather than using Opus everywhere. The source implies higher token cost, so careful gating matters for sustainable use. (`060fe17b7c7f` · neutral · deployment_implications; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
 - The model is treated as a top-tier option inside an established product workflow, which suggests stable availability and practical trust. No external adoption or benchmark evidence is provided. The source presents it as the quality-first choice in a model routing ladder. (`6ab9db182c89` · neutral · maturity_signals; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
 - Opus 4.6 is the high-capability model in the workflow and is reserved for complex synthesis and deep research tasks.
@@ -132,9 +125,6 @@ The article does not provide a separate performance evaluation for Opus 4.6. Its
 - It is not the default because it burns tokens faster, so the workflow uses it selectively. (`87e3f2608c4a` · neutral · operational_profile; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
 - The source explicitly says it "uses tokens faster," so the economic implication is that it should be reserved for the hardest tasks. That makes it a premium tier in a routing cascade rather than the default operating point. (`6fe98b8211c1` · neutral · pricing_inference_implications; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
 - For service automation, this kind of model is best reserved for escalations, complex case synthesis, and tasks that need stronger judgment than a routine support model can provide. It is less suitable as the default model in high-volume automation because of cost pressure. (`d6852250ab3b` · neutral · service_automation_implications; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- It is used for complex synthesis tasks that need stronger judgment and integration. (`f4ee10384fae` · supporting · core_capabilities[0]; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- It is the preferred model for deep research work in the described workflow. (`d1db30fcda07` · supporting · core_capabilities[1]; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- It provides the highest-quality response path inside the user's model ladder. (`da23226684b6` · supporting · core_capabilities[2]; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
 - "When something is meteor, a complex synthesis, a deep research task, something where the quality really matters, that's when I'll switch to Opus. It uses tokens faster, but it does the best job possible right now." (`7d9d338e2565` · supporting · supporting_snippet; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
 - Its main limitation in the source is cost: it uses tokens faster, so it is not efficient for routine work. The source does not provide benchmark numbers or concrete failure modes. (`e96fec58de02` · uncertainty · weaknesses_limitations; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
 

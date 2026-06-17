@@ -5,14 +5,17 @@ entity_id: topic:open-formats-as-ai-integration-boundaries
 category: topic
 tags:
 - ai-engineering
+- infrastructure
+- runtime-systems
 first_seen: '2026-01-16'
-last_seen: '2026-01-16'
-source_count: 1
-evidence_count: 8
+last_seen: '2026-05-23'
+source_count: 2
+evidence_count: 17
 source_ids:
 - obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk
+- why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd
 value_level: high
-confidence: 0.87
+confidence: 0.855
 synthesis_state: stage1-placeholder
 ---
 
@@ -32,6 +35,10 @@ The source explicitly points to local Markdown, Bases, and JSON Canvas as the fo
 - The system of record should remain in open, inspectable files where possible.
 - AI integration is more maintainable when it respects existing file boundaries.
 - Portability is a product decision as much as a technical one.
+- Model-file portability is part of system resilience.
+- Opaque registries can create lock-in even when a product is branded as open source.
+- Open formats make it easier to compare engines and recover from tool churn.
+- Artifact portability matters for both local experimentation and production migration.
 
 ## Operational Insight
 
@@ -40,6 +47,8 @@ Design AI features around durable file boundaries rather than proprietary app st
 ## Related Topics
 
 - file-grammar-skills-for-ai
+- local-model-deployment
+- knowledge-base-becomes-runtime-infrastructure
 
 ## Evidence / supporting sources
 
@@ -54,6 +63,18 @@ Design AI features around durable file boundaries rather than proprietary app st
 - Portability is a product decision as much as a technical one. (`174e1d8a5e9a` · supporting · key_points[2]; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
 - "The key point: Skills are not plugins. They don't require migrating your data into a proprietary app database." (`782c0e5d0dd7` · supporting · supporting_snippet; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
 
+### Why You Should Completely Avoid Ollama in 2026 (2026-05-23)
+
+- The source says Ollama used a "proprietary model storage format" and that "You couldn’t just point llama.cpp, LM Studio, or any other inference framework at those files." (`a9c42d1a5f36` · neutral · examples; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- Open file and model formats make it easier to move workloads between runtimes, tools, and deployment environments. When model artifacts are stored in proprietary or opaque formats, the operational cost of switching rises and the system becomes harder to audit, test, and reuse. Open formats are especially important in model-serving stacks, where portability determines whether teams can migrate to faster engines or safer workflows without reprocessing artifacts. This is a design issue, not just a licensing issue. (`5877dd11425e` · neutral · knowledge_summary; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- Use open formats when the same artifacts may need to move across local runners, GUIs, and production servers. Portability is an operational safeguard: it lowers switching cost and reduces the chance that a tool choice traps the team inside one ecosystem. (`4842b3a7792d` · neutral · operational_insight; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- This is durable for AI systems because model and artifact portability affects model serving, evaluation, and recovery from vendor or tool changes. Teams building service automation benefit when model files, configs, and outputs are inspectable and transferable across runtimes. (`01eae205b09c` · neutral · relevance_note; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- Model-file portability is part of system resilience. (`88663b3ad1d2` · supporting · key_points[0]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- Opaque registries can create lock-in even when a product is branded as open source. (`bf25f6777d90` · supporting · key_points[1]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- Open formats make it easier to compare engines and recover from tool churn. (`87d873c0f6cf` · supporting · key_points[2]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- Artifact portability matters for both local experimentation and production migration. (`58214ec51150` · supporting · key_points[3]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- "You couldn’t just point llama.cpp, LM Studio, or any other inference framework at those files." (`9e15e670e5cd` · supporting · supporting_snippet; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+
 ## Contradictions / tensions
 
 No contradictions captured in current sources.
@@ -61,7 +82,10 @@ No contradictions captured in current sources.
 ## Related pages
 
 - file-grammar-skills-for-ai
+- knowledge-base-becomes-runtime-infrastructure
+- local-model-deployment
 
 ## Sources
 
 - [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]

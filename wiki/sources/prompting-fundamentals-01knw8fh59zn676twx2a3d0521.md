@@ -13,7 +13,7 @@ author: OpenAI Blog
 publication: OpenAI
 published_date: '2026-04-10'
 assessed_as_of: '2026-04-10'
-ingested_at: '2026-06-06T22:04:09+00:00'
+ingested_at: '2026-06-17T15:48:49.692083+00:00'
 canonical_url: https://openai.com/academy/prompting
 content_sha256: 438ab597904a482c2bce91a13b54a8f6ff34a2eb7aced7c1e57c365ee8f43aaf
 derived_how_to:

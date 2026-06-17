@@ -94,6 +94,80 @@ Lead.
     assert validate_wiki(wiki) == []
 
 
+def test_synthesized_knowledge_page_accepts_evidence_index(tmp_path: Path) -> None:
+    """Synthesized knowledge pages use a compact evidence index instead of full evidence."""
+    wiki = tmp_path / "wiki"
+    write(
+        wiki / "topics" / "local-models.md",
+        """---
+title: Local Models
+category: topic
+slug: local-models
+entity_id: topic:local-models
+synthesis_state: synthesized
+source_count: 1
+source_ids:
+  - source-a
+tags:
+  - infrastructure
+---
+
+# Local Models
+
+## Executive synthesis
+
+Summary.
+
+## Evidence index
+
+- Sources: 1
+- Evidence items: 2
+
+## Sources
+
+- [[sources/source-a|Source A]]
+""",
+    )
+    write(
+        wiki / "sources" / "source-a.md",
+        """---
+title: Source A
+category: source
+source_id: source-a
+tags:
+  - ai-engineering
+---
+
+# Source A
+
+## Key insights
+
+None.
+
+## Derived knowledge pages
+
+- [[topics/local-models]]
+
+## Why it matters
+
+It matters.
+
+## Limitations / open questions
+
+None.
+
+## Contradictions / unverified claims
+
+None.
+
+## Source metadata
+
+None.
+""",
+    )
+    assert validate_wiki(wiki) == []
+
+
 def test_missing_category_reports_issue(tmp_path: Path) -> None:
     """Pages without category frontmatter fail validation."""
     wiki = tmp_path / "wiki"

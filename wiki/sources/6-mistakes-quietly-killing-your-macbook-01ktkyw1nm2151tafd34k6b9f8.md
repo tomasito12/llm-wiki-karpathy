@@ -7,7 +7,7 @@ author: Zeeshan Saghir
 publication: Medium
 published_date: '2026-05-26'
 assessed_as_of: '2026-05-26'
-ingested_at: '2026-06-10T14:08:44+00:00'
+ingested_at: '2026-06-16T16:13:25.907467+00:00'
 canonical_url: https://medium.com/@simpleandkind788/6-mistakes-quietly-killing-your-macbook-40aa562661f9
 content_sha256: 7468025e8a072ac37a969665c1aec7809c1fdc1264be65608ebffbad6803e8f1
 ---

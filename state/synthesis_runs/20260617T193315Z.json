@@ -1,0 +1,68 @@
+{
+  "created_at": "20260617T193315Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": null,
+    "entity": "glossary:fine-tuning",
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 1,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/glossary/fine-tuning.json",
+      "cached_input_hash": "62cdb343e43306e7",
+      "category": "glossary",
+      "current_input_hash": "62cdb343e43306e7",
+      "entity_id": "glossary:fine-tuning",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/glossary/fine-tuning.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "fine-tuning",
+      "target_path": "glossary/fine-tuning.md",
+      "title": "Fine-tuning",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 1,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/glossary/fine-tuning.json",
+        "cached_input_hash": "",
+        "category": "glossary",
+        "current_input_hash": "62cdb343e43306e7",
+        "entity_id": "glossary:fine-tuning",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DrqIVuxlYnbHRuqZq2kYOkT0W7dLu",
+        "reason": "no synthesis cache entry exists",
+        "slug": "fine-tuning",
+        "state": "new",
+        "title": "Fine-tuning",
+        "token_usage": {
+          "completion_tokens": 775,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 2310,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 3085
+        }
+      }
+    ],
+    "planned": 1,
+    "written": 1
+  }
+}

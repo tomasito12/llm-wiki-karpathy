@@ -31,6 +31,7 @@ category: index
 - [[sources/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-01kqkyhgefymbv50vnchz4b8w0|Hermes Agent: The Open-Source AI Agent That Actually Remembers What It Learned Yesterday]]
 - [[sources/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3|How We Built an AI Second Brain for 60K Knowledge Workers]]
 - [[sources/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4|I Built a Personal AI Operating System. It Now Knows More About My Week Than I Do.]]
+- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-01kqz05cbff09t9k3w39ea9n7q|I Tried Every “Second Brain” App. The Concept Is the Problem, Not the Tools.]]
 - [[sources/karpathy-s-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-01kqktnemtp7dbmtzfbef6h1hr|Karpathy’s LLM Wiki: How to Actually Use AI So It Stops Starting Over]]
 - [[sources/llm-wiki-is-not-a-magic-knowledge-machine-01kr3260161c3pjnj82vv448g4|LLM Wiki Is Not a Magic Knowledge Machine]]
@@ -97,6 +98,7 @@ category: index
 - [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]]
 - [[sources/unified-agentic-memory-across-harnesses-using-hooks-01kr7bk2d0hagq604nt14zrqcv|Unified Agentic Memory Across Harnesses Using Hooks]]
 - [[sources/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f|Why Video Agent models are next — Ethan He, xAI Grok Imagine Lead]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 
 ## agent-systems
 
@@ -182,6 +184,7 @@ category: index
 - [[sources/the-inference-shift-01krv8c6tf3rv57w8qyesagyzp|The Inference Shift]]
 - [[sources/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm|The Next Era Of Knowledge Work]]
 - [[sources/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf|The next evolution of the Agents SDK]]
+- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/the-sequence-ai-of-the-week-871-inside-the-loop-with-claude-opus-4-8-01kt6k06q53j06qn9kns9a2zsa|The Sequence AI of the Week #871: Inside the Loop with Claude Opus 4.8]]
 - [[sources/the-sequence-knowledge-842-everything-you-need-to-know-about-world-models-01kp5qd0xgkfcps3m19v7ggdvg|The Sequence Knowledge #842: Everything You Need to Know About World Models]]
 - [[sources/the-sequence-opinion-844-harness-engineering-the-operating-system-for-agentic-software-01kpazg4xdw7fnnebga7hdkbqn|The Sequence Opinion #844: Harness Engineering: The Operating System for Agentic Software]]
@@ -197,6 +200,7 @@ category: index
 - [[sources/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b|Why I Stopped Using Gemma 4 and Switched to Qwen 3.6]]
 - [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]]
 - [[sources/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f|Why Video Agent models are next — Ethan He, xAI Grok Imagine Lead]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]
 - [[sources/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-01kqfz6p0jfhx9r1y4rd3x27sa|ZeeSpec: How to Write a Complete System Specification for AI in 1 Hour]]
 
@@ -212,7 +216,6 @@ category: index
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]
 - [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]]
 - [[sources/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3|How We Built an AI Second Brain for 60K Knowledge Workers]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
 - [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]]
@@ -225,6 +228,7 @@ category: index
 - [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]]
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 - [[sources/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj|The Best RAG Architectures for AI Agents Every Developer Must Know]]
 - [[sources/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm|The Next Era Of Knowledge Work]]
@@ -257,7 +261,6 @@ category: index
 - [[sources/if-ai-writes-your-code-why-use-python-01krbncwpakyz5n828c0p8fnfg|If AI Writes Your Code, Why Use Python?]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
 - [[sources/the-ai-paradox-more-automation-more-humans-more-work-dan-shipper-01kszj69rss5rpdzwn529h88y1|The AI paradox: More automation, more humans, more work | Dan Shipper]]
-- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 
 ## ai-economics
 
@@ -358,6 +361,7 @@ category: index
 - [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]]
 - [[sources/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm|How To Run an Open-Source LLM on Your Personal Computer]]
 - [[sources/how-we-develop-pricing-and-packaging-at-fin-01ks2ns7k02qfhbcgkc41wqe3v|How we develop pricing and packaging at Fin]]
+- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght|I Deleted Notion and Obsidian. Here’s What Replaced Them — and Why I’m Never Going Back.]]
 - [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]]
 - [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]]
@@ -405,7 +409,6 @@ category: index
 - [[sources/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm|The Next Era Of Knowledge Work]]
 - [[sources/the-next-frontier-of-ai-in-production-is-chaos-engineering-01krkb7np7mz3q1weya69wvnvv|The Next Frontier of AI in Production Is Chaos Engineering]]
 - [[sources/the-next-war-is-already-here-the-west-isn-t-ready-yaroslav-azhnyuk-the-fourth-law-guest-host-noah-smith-noahpinion-01krxnjr3kahc7g5tfebwzxc5a|The Next War Is Already Here. The West Isn't Ready. — Yaroslav Azhnyuk, The Fourth Law & Guest Host Noah Smith, Noahpinion]]
-- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/the-sequence-ai-of-the-week-867-thinking-in-latents-why-sapient-s-hrm-text-is-a-quiet-rebuke-to-chain-of-thought-01ksmjcfkpncwjvnnrtg06p87d|The Sequence AI of the Week #867: Thinking in Latents: Why Sapient's HRM-Text Is a Quiet Rebuke to Chain-of-Thought]]
 - [[sources/the-sequence-ai-of-the-week-871-inside-the-loop-with-claude-opus-4-8-01kt6k06q53j06qn9kns9a2zsa|The Sequence AI of the Week #871: Inside the Loop with Claude Opus 4.8]]
 - [[sources/the-sequence-knowledge-842-everything-you-need-to-know-about-world-models-01kp5qd0xgkfcps3m19v7ggdvg|The Sequence Knowledge #842: Everything You Need to Know About World Models]]
@@ -430,6 +433,7 @@ category: index
 - [[sources/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5|Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026]]
 - [[sources/why-deepseek-s-sequel-failed-to-impress-01krh9chzbaznrrnht7s6d540b|Why DeepSeek’s sequel failed to impress]]
 - [[sources/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f|Why Video Agent models are next — Ethan He, xAI Grok Imagine Lead]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]
 - [[sources/why-your-ai-demo-will-die-in-production-01kta1acsrqmjtnagm52h6f8pw|Why Your AI Demo Will Die in Production]]
 - [[sources/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj|You Need AI That Reduces Maintenance Costs]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]
@@ -691,7 +695,6 @@ category: index
 - [[sources/extending-fin-as-the-most-open-agent-platform-01ktpp7k8sthayjgk3vd9ezxr6|Extending Fin as the most open Agent platform]]
 - [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]]
 - [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]]
-- [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]]
 - [[sources/never-stop-disrupting-yourself-introducing-the-fin-api-platform-01knematzwtvhs80k0zszqge55|Never stop disrupting yourself; introducing the Fin API platform]]
 - [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 - [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]]
@@ -797,7 +800,6 @@ category: index
 - [[sources/announcing-fin-for-sales-a-new-role-for-fin-customer-agent-01kpv1kfp3y4qs3dhz4fwpy238|Announcing Fin for Sales: A new role for Fin Customer Agent]]
 - [[sources/e-on-s-ai-agents-provide-best-in-class-service-01krxb2edwbr7tb7hadmsrnbye|E.ON's AI Agents Provide Best-in-Class Service]]
 - [[sources/give-your-ai-unlimited-updated-context-01krkap6426ped2hk2anmke10k|Give Your AI Unlimited Updated Context]]
-- [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]]
 - [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-don-t-want-to-build-one-01kqz01mwjpdmw10d64fwahpq9|Recall 2.0: An AI Second Brain for People Who Need One But Don’t Want to Build One]]
 - [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]]
@@ -815,7 +817,6 @@ category: index
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]
 - [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]]
 - [[sources/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3|How We Built an AI Second Brain for 60K Knowledge Workers]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x|I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
@@ -827,10 +828,12 @@ category: index
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
 - [[sources/spec-driven-development-three-maturity-levels-every-ai-team-should-know-01kr432t128r5x0bvxwskbtd1w|Spec Driven Development — Three Maturity Levels Every AI Team Should Know]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 - [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
 - [[sources/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5|Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]
 
 ## cloud-hosted
@@ -838,7 +841,6 @@ category: index
 - [[sources/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-01krjqv65fws03dx3ga13t0mzc|1Password vs Apple Passwords: The Only Comparison You Need Before Your Next Renewal]]
 - [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]]
 - [[sources/gemini-notebook-meets-notebooklm-01kts4esadxc3j0bjn932ng6mr|Gemini Notebook Meets NotebookLM]]
-- [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]]
 - [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]]
 - [[sources/macos-is-good-these-9-apps-make-it-perfect-01kqz025faecd3dw9ncsa39t0q|macOS is Good. These 9 Apps Make It Perfect.]]
 - [[sources/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-don-t-want-to-build-one-01kqz01mwjpdmw10d64fwahpq9|Recall 2.0: An AI Second Brain for People Who Need One But Don’t Want to Build One]]
@@ -856,7 +858,6 @@ category: index
 - [[sources/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s|Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter]]
 - [[sources/how-openprose-makes-ai-agent-behavior-repeatable-01ktb3ceq8be6weh8yt0k73z4f|How OpenProse Makes AI Agent Behavior Repeatable]]
 - [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]]
 - [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]]
@@ -864,6 +865,7 @@ category: index
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
 - [[sources/spec-driven-development-three-maturity-levels-every-ai-team-should-know-01kr432t128r5x0bvxwskbtd1w|Spec Driven Development — Three Maturity Levels Every AI Team Should Know]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf|The next evolution of the Agents SDK]]
 - [[sources/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5|Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]
@@ -891,10 +893,10 @@ category: index
 - [[sources/spec-driven-development-three-maturity-levels-every-ai-team-should-know-01kr432t128r5x0bvxwskbtd1w|Spec Driven Development — Three Maturity Levels Every AI Team Should Know]]
 - [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-age-of-async-agents-cognition-s-walden-yan-openinspect-s-cole-murray-01ksqydx2j6fv1xvpkw7kf8ft0|The Age of Async Agents — Cognition's Walden Yan & OpenInspect's Cole Murray]]
-- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-paper-and-decentralized-and-private-ai-01knem854rccyz9jt3tmexffg8|The Sequence Chat #835: Illia Polosukhin on NEAR AI, Authoring the Transformer Paper and Decentralized and Private AI]]
 - [[sources/unified-agentic-memory-across-harnesses-using-hooks-01kr7bk2d0hagq604nt14zrqcv|Unified Agentic Memory Across Harnesses Using Hooks]]
 - [[sources/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b|Why I Stopped Using Gemma 4 and Switched to Qwen 3.6]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 
 ## coding-model
 
@@ -1045,12 +1047,12 @@ category: index
 - [[sources/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb|Giving Agents Computers — Ivan Burazin, Daytona]]
 - [[sources/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s|Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter]]
 - [[sources/how-llms-actually-work-01kv4tanr9r0k17sysdm6cv45b|How LLMs Actually Work]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/railway-the-agent-native-cloud-jake-cooper-01ks3rzdab018xpv32xt3fg4c7|Railway: The Agent-Native Cloud — Jake Cooper]]
 - [[sources/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr|Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]
 
 ## distribution
@@ -1076,7 +1078,6 @@ category: index
 - [[sources/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s|Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter]]
 - [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]]
 - [[sources/i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght|I Deleted Notion and Obsidian. Here’s What Replaced Them — and Why I’m Never Going Back.]]
-- [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]]
 - [[sources/macos-is-good-these-9-apps-make-it-perfect-01kqz025faecd3dw9ncsa39t0q|macOS is Good. These 9 Apps Make It Perfect.]]
 
 ## edge-deployment
@@ -1178,7 +1179,6 @@ category: index
 - [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 - [[sources/stop-using-llms-like-giant-problem-solvers-01kta19b01w75cp072qdrvrh3q|Stop Using LLMs Like Giant Problem Solvers]]
 - [[sources/strengthening-societal-resilience-with-rosalind-biodefense-openai-01kssnct9yf4qe7sfryvn72dsn|Strengthening societal resilience with Rosalind Biodefense | OpenAI]]
-- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-age-of-async-agents-cognition-s-walden-yan-openinspect-s-cole-murray-01ksqydx2j6fv1xvpkw7kf8ft0|The Age of Async Agents — Cognition's Walden Yan & OpenInspect's Cole Murray]]
 - [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]]
 - [[sources/the-eu-banned-an-entire-ai-product-category-yesterday-most-builders-missed-it-01ktpg6qdsggfve2y5bp9zk5kq|The EU Banned an Entire AI Product Category Yesterday. Most Builders Missed It.]]
@@ -1275,7 +1275,6 @@ category: index
 - [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]]
 - [[sources/how-we-develop-pricing-and-packaging-at-fin-01ks2ns7k02qfhbcgkc41wqe3v|How we develop pricing and packaging at Fin]]
 - [[sources/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve|How we turned support into a revenue engine at Intercom]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]]
 - [[sources/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13|Lippert's AI Agent Cuts Costs by 80% and Boosts Sales]]
 - [[sources/mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-01ktkysg8zyd6yfnw3dgy7738g|MCP Is Dead: Why This Protocol Breaks in Production(And How to Fix It)]]
@@ -1399,6 +1398,7 @@ category: index
 - [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]]
 - [[sources/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy|Introducing Advanced Account Security]]
 - [[sources/mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-01ktkysg8zyd6yfnw3dgy7738g|MCP Is Dead: Why This Protocol Breaks in Production(And How to Fix It)]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-next-frontier-of-ai-in-production-is-chaos-engineering-01krkb7np7mz3q1weya69wvnvv|The Next Frontier of AI in Production Is Chaos Engineering]]
 - [[sources/trusted-access-for-the-next-era-of-cyber-defense-01kp6svpv90410gkqh95k962t0|Trusted access for the next era of cyber defense]]
 
@@ -1426,7 +1426,6 @@ category: index
 - [[sources/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-don-t-want-to-build-one-01kqz01mwjpdmw10d64fwahpq9|Recall 2.0: An AI Second Brain for People Who Need One But Don’t Want to Build One]]
 - [[sources/tech-habits-what-a-70-pocket-ereader-revealed-about-notes-ai-and-what-actually-matters-01krbndenzat583sf5chesgda8|Tech Habits: What a $70 Pocket eReader Revealed About Notes, AI, and What Actually Matters]]
 - [[sources/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm|The Next Era Of Knowledge Work]]
-- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dreams-01krttfdzf801rjfeteqjnv2zd|The Sequence Radar #861: Last Week in AI: IPOs, Interactive Models, and Recursive Dreams]]
 - [[sources/the-solution-might-be-cancelling-my-ai-subscription-01ktjza3q91sx1nzsgss3fhgwg|the solution might be cancelling my AI subscription]]
 - [[sources/travelers-deploys-ai-powered-claims-countrywide-with-openai-01kt4dsxth67ejb2f632ta4ry6|Travelers deploys AI-powered claims countrywide with OpenAI]]
@@ -1496,6 +1495,7 @@ category: index
 - [[sources/how-llms-actually-work-01kv4tanr9r0k17sysdm6cv45b|How LLMs Actually Work]]
 - [[sources/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x|I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.]]
 - [[sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf|Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention]]
+- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp|When AI builds itself]]
 
 ## inference-efficiency
@@ -1569,6 +1569,7 @@ category: index
 - [[sources/voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg|Voice AI vs Data AI]]
 - [[sources/wcag-compliance-for-ai-chatbots-01kr435rbmf29nsyxqtzppzs9k|WCAG compliance for AI chatbots]]
 - [[sources/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b|Why I Stopped Using Gemma 4 and Switched to Qwen 3.6]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]
 
 ## infrastructure
 
@@ -1606,6 +1607,7 @@ category: index
 - [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
 - [[sources/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f|Why Video Agent models are next — Ethan He, xAI Grok Imagine Lead]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]
 
 ## infrastructure-economics
 
@@ -1730,14 +1732,12 @@ category: index
 - [[sources/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-01kqkyhgefymbv50vnchz4b8w0|Hermes Agent: The Open-Source AI Agent That Actually Remembers What It Learned Yesterday]]
 - [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]]
 - [[sources/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4|I Built a Personal AI Operating System. It Now Knows More About My Week Than I Do.]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]]
 - [[sources/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x|I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.]]
 - [[sources/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q|I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found.]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-01kqz05cbff09t9k3w39ea9n7q|I Tried Every “Second Brain” App. The Concept Is the Problem, Not the Tools.]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
-- [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]]
 - [[sources/karpathy-s-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-01kqktnemtp7dbmtzfbef6h1hr|Karpathy’s LLM Wiki: How to Actually Use AI So It Stops Starting Over]]
 - [[sources/macos-is-good-these-9-apps-make-it-perfect-01kqz025faecd3dw9ncsa39t0q|macOS is Good. These 9 Apps Make It Perfect.]]
 - [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]]
@@ -1753,6 +1753,7 @@ category: index
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
 - [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]]
 - [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]
 
 ## local-model-deployment
@@ -1880,6 +1881,7 @@ category: index
 
 - [[sources/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-01krjqnzqb7dn9yzte5mexgksp|99% of People Use AI Wrong — How I Use AI to Do 10+ Hours of Work in Minutes]]
 - [[sources/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-01kqg04cw3fx7h5w108h6vsq77|MiroFish: Swarm-Intelligence with 1M Agents That Can Predict Everything]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj|The Best RAG Architectures for AI Agents Every Developer Must Know]]
 - [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]]
 
@@ -1967,11 +1969,11 @@ category: index
 - [[sources/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58|Tolaria: The Local‑First, Open‑Source Note App That Blends the Best of Obsidian and Notion]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
 - [[sources/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5|Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]
 
 ## open-weight
 
 - [[sources/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x|I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.]]
-- [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]]
 - [[sources/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr|Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits]]
 
 ## open-weight-model
@@ -2021,13 +2023,13 @@ category: index
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
 - [[sources/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system-01krkb4v6z0k80j5vrx35bb0hg|Single Agent vs Multi-Agent: When to Build a Multi-Agent System]]
 - [[sources/stop-using-llms-like-giant-problem-solvers-01kta19b01w75cp072qdrvrh3q|Stop Using LLMs Like Giant Problem Solvers]]
-- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-agent-wars-why-i-m-trading-my-openclaw-setup-for-hermes-01krbnd5x8h4xphg9ga77n8hkw|The Agent Wars: Why I’m Trading my OpenClaw Setup for Hermes]]
 - [[sources/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj|The Best RAG Architectures for AI Agents Every Developer Must Know]]
 - [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]]
 - [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]]
 - [[sources/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm|The Next Era Of Knowledge Work]]
 - [[sources/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf|The next evolution of the Agents SDK]]
+- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/the-sequence-ai-of-the-week-871-inside-the-loop-with-claude-opus-4-8-01kt6k06q53j06qn9kns9a2zsa|The Sequence AI of the Week #871: Inside the Loop with Claude Opus 4.8]]
 - [[sources/travelers-deploys-ai-powered-claims-countrywide-with-openai-01kt4dsxth67ejb2f632ta4ry6|Travelers deploys AI-powered claims countrywide with OpenAI]]
 - [[sources/what-is-an-ai-contact-center-01krxb3f32t1081mt5z1jz13q5|What is an AI Contact Center?]]
@@ -2066,6 +2068,7 @@ category: index
 - [[sources/the-sequence-radar-857-last-week-in-ai-inside-the-machine-outside-the-text-box-01kr8st5etzxtx29bs2wc1447d|The Sequence Radar #857: Last Week in AI: Inside the Machine, Outside the Text Box]]
 - [[sources/the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dreams-01krttfdzf801rjfeteqjnv2zd|The Sequence Radar #861: Last Week in AI: IPOs, Interactive Models, and Recursive Dreams]]
 - [[sources/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5|The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 
 ## organizational-design
 
@@ -2093,7 +2096,6 @@ category: index
 - [[sources/satya-nadella-no-priors-x-latent-space-crossover-special-at-microsoft-build-01kt77r92zb5bp6zgsgq2vvs4f|⚡️Satya Nadella: No Priors x Latent Space Crossover Special at Microsoft Build]]
 - [[sources/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp|Speed-to-lead is a solved problem]]
 - [[sources/the-ai-paradox-more-automation-more-humans-more-work-dan-shipper-01kszj69rss5rpdzwn529h88y1|The AI paradox: More automation, more humans, more work | Dan Shipper]]
-- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58|Tolaria: The Local‑First, Open‑Source Note App That Blends the Best of Obsidian and Notion]]
 - [[sources/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp|When AI builds itself]]
 - [[sources/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5|Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026]]
@@ -2115,7 +2117,6 @@ category: index
 - [[sources/fw-hermes-vs-openclaw-cybersecurity-alarms-ring-more-interactive-conversations-can-agents-do-human-work-01ks7ks0wqwd854cq3nhhnj2c6|Fw: Hermes vs. OpenClaw, Cybersecurity Alarms Ring, More-Interactive Conversations, Can Agents Do Human Work?]]
 - [[sources/github-garrytan-gbrain-garry-s-opinionated-openclaw-brain-github-01kqh0a0ndw29gjtjmft53j486|GitHub - garrytan/gbrain: Garry's Opinionated OpenClaw Brain · GitHub]]
 - [[sources/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-01kqkyhgefymbv50vnchz4b8w0|Hermes Agent: The Open-Source AI Agent That Actually Remembers What It Learned Yesterday]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/mythos-begets-fable-cursor-s-composer-2-5-agents-building-agents-01ktxm9yka45ht6v4236w9yszr|Mythos Begets Fable, Cursor's Composer 2.5, Agents Building Agents]]
 - [[sources/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7|Obsidian Starter Kit v4 Is Live: The AI-Native Release Is Here]]
@@ -2316,7 +2317,6 @@ category: index
 - [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]]
 - [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]]
 - [[sources/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm|How To Run an Open-Source LLM on Your Personal Computer]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m|I Finally Have My Dream Local AI Stack (and it runs on AMD)]]
 - [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
@@ -2336,6 +2336,7 @@ category: index
 - [[sources/satya-nadella-no-priors-x-latent-space-crossover-special-at-microsoft-build-01kt77r92zb5bp6zgsgq2vvs4f|⚡️Satya Nadella: No Priors x Latent Space Crossover Special at Microsoft Build]]
 - [[sources/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system-01krkb4v6z0k80j5vrx35bb0hg|Single Agent vs Multi-Agent: When to Build a Multi-Agent System]]
 - [[sources/speeding-up-agentic-workflows-with-websockets-in-the-responses-api-01kpv0wxjnsv9gk1qw36wa3z1x|Speeding up agentic workflows with WebSockets in the Responses API]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-agent-wars-why-i-m-trading-my-openclaw-setup-for-hermes-01krbnd5x8h4xphg9ga77n8hkw|The Agent Wars: Why I’m Trading my OpenClaw Setup for Hermes]]
 - [[sources/the-ai-paradox-more-automation-more-humans-more-work-dan-shipper-01kszj69rss5rpdzwn529h88y1|The AI paradox: More automation, more humans, more work | Dan Shipper]]
 - [[sources/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz|The Complete Guide To Building Skills For Claude]]
@@ -2430,7 +2431,6 @@ category: index
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]
 - [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]]
 - [[sources/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4|I Built a Personal AI Operating System. It Now Knows More About My Week Than I Do.]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x|I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/if-ai-writes-your-code-why-use-python-01krbncwpakyz5n828c0p8fnfg|If AI Writes Your Code, Why Use Python?]]
@@ -2448,7 +2448,6 @@ category: index
 - [[sources/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr|Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits]]
 - [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]]
 - [[sources/shopify-s-ai-phase-transition-2026-usage-explosion-unlimited-opus-4-6-token-budget-tangle-tangent-simgym-with-mikhail-parakhin-shopify-cto-01kpvbfa6cdva1b08psggsea8q|Shopify’s AI Phase Transition: 2026 Usage Explosion, Unlimited Opus-4.6 Token Budget, Tangle, Tangent, SimGym — with Mikhail Parakhin, Shopify CTO]]
-- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-agent-wars-why-i-m-trading-my-openclaw-setup-for-hermes-01krbnd5x8h4xphg9ga77n8hkw|The Agent Wars: Why I’m Trading my OpenClaw Setup for Hermes]]
 - [[sources/the-inference-shift-01krv8c6tf3rv57w8qyesagyzp|The Inference Shift]]
 - [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]]
@@ -2467,6 +2466,8 @@ category: index
 - [[sources/voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg|Voice AI vs Data AI]]
 - [[sources/what-is-conversational-ai-01krxatcsstvh8etwgrmwqh7af|What Is Conversational AI?]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 
 ## search-automation
 
@@ -2509,10 +2510,10 @@ category: index
 
 - [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]]
 - [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
 - [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]]
 - [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 
 ## software-engineering
 
@@ -2533,6 +2534,7 @@ category: index
 - [[sources/railway-the-agent-native-cloud-jake-cooper-01ks3rzdab018xpv32xt3fg4c7|Railway: The Agent-Native Cloud — Jake Cooper]]
 - [[sources/ready-for-your-busiest-day-how-we-scale-01ks0e1b38y1emnqkewpcvbhzb|Ready for your busiest day: How we scale]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]]
 - [[sources/the-age-of-async-agents-cognition-s-walden-yan-openinspect-s-cole-murray-01ksqydx2j6fv1xvpkw7kf8ft0|The Age of Async Agents — Cognition's Walden Yan & OpenInspect's Cole Murray]]
 - [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
@@ -2542,6 +2544,7 @@ category: index
 - [[sources/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b|Why I Stopped Using Gemma 4 and Switched to Qwen 3.6]]
 - [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]]
 - [[sources/why-your-ai-demo-will-die-in-production-01kta1acsrqmjtnagm52h6f8pw|Why Your AI Demo Will Die in Production]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 - [[sources/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj|You Need AI That Reduces Maintenance Costs]]
 
 ## spreadsheets
@@ -2610,6 +2613,7 @@ category: index
 - [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]]
 - [[sources/the-age-of-async-agents-cognition-s-walden-yan-openinspect-s-cole-murray-01ksqydx2j6fv1xvpkw7kf8ft0|The Age of Async Agents — Cognition's Walden Yan & OpenInspect's Cole Murray]]
 - [[sources/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp|When AI builds itself]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 
 ## tool-centric-agents
 
@@ -2652,9 +2656,11 @@ category: index
 - [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]]
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-agent-wars-why-i-m-trading-my-openclaw-setup-for-hermes-01krbnd5x8h4xphg9ga77n8hkw|The Agent Wars: Why I’m Trading my OpenClaw Setup for Hermes]]
 - [[sources/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj|The Best RAG Architectures for AI Agents Every Developer Must Know]]
 - [[sources/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf|The next evolution of the Agents SDK]]
+- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58|Tolaria: The Local‑First, Open‑Source Note App That Blends the Best of Obsidian and Notion]]
 - [[sources/what-is-conversational-ai-01krxatcsstvh8etwgrmwqh7af|What Is Conversational AI?]]
 - [[sources/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb|Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)]]
@@ -2714,6 +2720,7 @@ category: index
 - [[sources/mistral-s-open-tts-anthropic-s-activation-translator-and-matt-pocock-s-skills-repo-tokenizer-28-01ks0hkbaqjfmjt0d06dbjby2a|Mistral's Open TTS, Anthropic's Activation Translator, and Matt Pocock's Skills Repo: Tokenizer #28]]
 - [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]]
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-sequence-radar-837-last-week-in-ai-from-model-releases-to-market-structure-01knenmsmq683r0kk1nx30hfz6|The Sequence Radar #837: Last Week in AI: From Model Releases to Market Structure]]
 - [[sources/the-sequence-radar-841-three-model-releases-three-futures-01kp0p31ztwnw3nqxdh9e38k1j|The Sequence Radar #841: Three Model Releases, Three Futures]]
 - [[sources/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-while-improving-cx-01knemav6qx29wcp2jbje3wjan|Transformation in action: What it takes to automate 81% of your customer service while improving CX]]
@@ -2757,6 +2764,7 @@ category: index
 - [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]]
 - [[sources/trusted-access-for-the-next-era-of-cyber-defense-01kp6svpv90410gkqh95k962t0|Trusted access for the next era of cyber defense]]
 - [[sources/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp|When AI builds itself]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 
 ## video
 
@@ -2819,7 +2827,6 @@ category: index
 - [[sources/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s|Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter]]
 - [[sources/how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2|How Endava is redesigning software delivery around AI agents]]
 - [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]]
-- [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]]
 - [[sources/how-openprose-makes-ai-agent-behavior-repeatable-01ktb3ceq8be6weh8yt0k73z4f|How OpenProse Makes AI Agent Behavior Repeatable]]
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]
 - [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]]
@@ -2874,6 +2881,7 @@ category: index
 - [[sources/fw-qwen3-7-max-challenges-google-for-third-place-ai-saves-whales-fine-tuning-breaks-copyright-alignment-01ktc7y2va1qsw7r5ej6aq5f0q|Fw: Qwen3.7-Max Challenges Google for Third Place, AI Saves Whales, Fine-Tuning Breaks Copyright Alignment]]
 - [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]]
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]]
 - [[sources/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm|The Next Era Of Knowledge Work]]
 - [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]]
@@ -2947,7 +2955,6 @@ category: index
 - [[sources/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb|The 3 Claude Prompts Worth Stealing Today]]
 - [[sources/the-ai-paradox-more-automation-more-humans-more-work-dan-shipper-01kszj69rss5rpdzwn529h88y1|The AI paradox: More automation, more humans, more work | Dan Shipper]]
 - [[sources/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm|The Next Era Of Knowledge Work]]
-- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-paper-and-decentralized-and-private-ai-01knem854rccyz9jt3tmexffg8|The Sequence Chat #835: Illia Polosukhin on NEAR AI, Authoring the Transformer Paper and Decentralized and Private AI]]
 - [[sources/the-shortest-boom-in-history-why-the-ai-era-will-end-sooner-than-you-think-01ktpm1319ma2vsncrkbqrxsmw|The shortest boom in history: why the “AI Era” will end sooner than you think.]]
 - [[sources/the-solution-might-be-cancelling-my-ai-subscription-01ktjza3q91sx1nzsgss3fhgwg|the solution might be cancelling my AI subscription]]
@@ -3040,6 +3047,7 @@ category: index
 - [[sources/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-while-improving-cx-01knemav6qx29wcp2jbje3wjan|Transformation in action: What it takes to automate 81% of your customer service while improving CX]]
 - [[sources/travelers-deploys-ai-powered-claims-countrywide-with-openai-01kt4dsxth67ejb2f632ta4ry6|Travelers deploys AI-powered claims countrywide with OpenAI]]
 - [[sources/using-projects-in-chatgpt-01knw8fhqktagvstg6j6xzk4xq|Using projects in ChatGPT]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]
 - [[sources/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r|You Probably Don’t Need a Graph Database for Your Knowledge Graph]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]
 

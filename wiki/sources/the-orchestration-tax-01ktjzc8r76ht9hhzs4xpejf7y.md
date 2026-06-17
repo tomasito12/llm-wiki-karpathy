@@ -4,63 +4,65 @@ slug: the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y
 category: source
 tags:
 - agent-orchestration
-- ai-assisted-development
-- ai-engineering
-- coding-agents
-- human-ai-collaboration
+- agent-systems
 - human-ai-workflows
-- organizational-design
+- inference
+- orchestration
 - software-engineering
-- workflow-design
+- tool-use
 - workflow-restructuring
 source_id: the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y
 author: Addy Osmani
 publication: X (formerly Twitter)
 published_date: '2026-05-28'
 assessed_as_of: '2026-05-28'
-ingested_at: '2026-06-16T01:25:20+00:00'
+ingested_at: '2026-06-17T15:54:02.846021+00:00'
 canonical_url: https://x.com/addyosmani/status/2059844244907696186/?rw_tt_thread=True
 content_sha256: 564c021f3c26d82b4d89ab858e6ea5908f0a83317f1c67a3df9e7899541ac368
+derived_glossary:
+- glossary/amdahl-s-law.md
+- glossary/harness.md
 derived_topics:
-- topics/agentic-coding-workflows.md
 - topics/cognitive-debt-in-ai-workflows.md
 derived_trends:
-- industry-trends/agentic-coding-shifts-toward-higher-supervision-costs.md
+- industry-trends/ai-workflows-shift-toward-verification-loops.md
 derived_pages:
-- industry-trends/agentic-coding-shifts-toward-higher-supervision-costs.md
-- topics/agentic-coding-workflows.md
+- glossary/amdahl-s-law.md
+- glossary/harness.md
+- industry-trends/ai-workflows-shift-toward-verification-loops.md
 - topics/cognitive-debt-in-ai-workflows.md
 ---
 
 # The Orchestration Tax
 
-This piece says that agent tools can make you feel much busier than you really are. You can start many agents, but you still have to review, judge, and merge their work yourself. That review step is the slow part, so it becomes the bottleneck. The author calls this the "orchestration tax." The basic fix is to treat your attention like a scarce system resource: keep agent count low enough that you can review well, batch your checks, and use agents to verify simple things while you focus on the hard decisions.
+This piece says the hard part of using lots of AI agents is not launching them. It is keeping up with their output. One person still has to read, judge, and merge the results, and that creates a bottleneck. The author calls this the “orchestration tax.” He uses computer systems ideas like single-threaded execution and bottlenecks to explain why more agents can make you feel productive without making you more productive. The practical advice is to limit agents to the amount you can really review, batch the checks, and save your best attention for the decisions that only a human can make.
 
 ## Key insights
 
-- Starting more agents does not create more human attention; it only increases the amount of work queued for review.
-- The true bottleneck in agentic workflows is often judgment and integration, not generation.
-- Busy dashboards can hide low throughput if the serial review step cannot keep up.
-- Batching reviews and reducing context switches can materially lower the cognitive cost of orchestrating agents.
-- Use agents to prove the boring 80% themselves, so human attention is spent on the 20% that requires judgment.
+- The real limit in agent-heavy workflows is the human review loop, not agent creation.
+- More parallel agents can increase context-switching and shallow reviews without increasing shipped output.
+- Treat attention as a serial production resource and size agent concurrency to review capacity, not to UI convenience.
+- Split work into low-judgment delegation and high-judgment tasks; only the former benefits cleanly from background agents.
+- Offload verifiable substeps to agents with tests or screenshots so human attention goes only to the irreducible judgment calls.
 
 ## Derived knowledge pages
 
-- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs]]
-- [[topics/agentic-coding-workflows]]
+- [[glossary/amdahl-s-law]]
+- [[glossary/harness]]
+- [[industry-trends/ai-workflows-shift-toward-verification-loops]]
 - [[topics/cognitive-debt-in-ai-workflows]]
 
 ## Why it matters
 
-The article is useful because it reframes agentic coding as a systems-design problem instead of a productivity contest. That is a durable mental model for AI engineering: the limiting resource is often not model output, but the human process that validates, merges, and understands it. The concurrency analogies are concrete and operationally relevant as of 2026-05-28 because they translate well into everyday workflow choices: cap parallelism to review capacity, separate delegation-friendly tasks from judgment-heavy tasks, and use backpressure instead of letting queues expand unchecked. The piece is strongest where it describes the failure mode of shallow reviews and cognitive surrender, because those are realistic risks when agent volume rises faster than human inspection time. It is weaker as evidence for any broad productivity claim, since it is mostly expert opinion and personal experience rather than measurement. Still, the guidance is practical enough to adopt as a working heuristic: treat attention as the scarce serial resource and design around it. For conversational AI, chatbots, voicebots, and service automation work, the same logic applies to handoff quality, review gates, and avoiding over-automation of complex judgment steps.
+The piece is useful because it reframes agentic development as a systems-design problem with a human bottleneck, not as a matter of working harder or spawning more copilots. That framing is durable as of 2026-05-28 because it is grounded in a concrete workflow failure mode the author describes from practice: multiple agents can increase surface activity while the review step stays single-threaded. The concurrency analogies are not research results, but they are operationally helpful because they force a review of where work is actually serial. The most actionable guidance is to match agent count to review throughput, batch checks to reduce context switching, and reserve human effort for cases where judgment is the work. The article also points to a real quality risk: if orchestration overhead is ignored, teams may accept code they have not really understood and accumulate cognitive debt. Its value is strongest for people already using multiple agents in coding workflows and trying to avoid a false sense of productivity. For service automation, support, voice, meetings, or back-office workflows, the implication is only indirect: any system that adds AI workers without respecting the human review bottleneck will feel busier than it is productive, but the article does not analyze those domains in depth. Actionable as of 2026-05-28; the guidance is practical rather than speculative, but it remains an opinion essay without benchmarks.
 
 ## Limitations / open questions
 
-The piece does not provide benchmarks, experiments, or case studies showing how much throughput changes under different agent counts or review patterns. The advice is directionally strong but leaves open how to set the right review threshold for different task types, team sizes, or codebase complexity. It also does not quantify the cost of batching versus immediate feedback, or discuss how tooling, pair review, or automated checks could change the serial bottleneck. The concurrency metaphors are helpful, but they can oversimplify workflows where humans and agents have different error modes or where partial automation is safe. There is also no discussion of security, privacy, or organizational controls around agent-generated code.
+The argument is persuasive but anecdotal; it relies on the author’s experience and concurrency metaphors rather than measurements of throughput, defect rates, or review latency. It does not quantify where the optimal agent count lands for different tasks, teams, or levels of reviewer expertise. The piece assumes a human remains the final gate for meaningful judgment, which may not hold for all workflows or for future automation levels. It also does not discuss failure modes like security review, auditability, or how to structure multi-agent systems when no single reviewer can understand all output. The recommendation to batch reviews or give agents a long leash may improve efficiency in some settings, but the article does not show tradeoffs with urgency, deadline pressure, or risk-sensitive work.
 
 ## Contradictions / unverified claims
 
-The argument is persuasive, but it is still a conceptual essay, not evidence that agentic development is broadly bottlenecked exactly this way in every team. The claim that the right number of parallel agents is usually a low single digit is presented as experience-based guidance, not a general result. The GIL and Amdahl’s Law analogies are useful, but they can encourage overconfidence in the neatness of the mapping; human judgment is less deterministic than CPU scheduling. The warning about cognitive surrender is plausible, though the article does not show how often it happens in practice or how to measure it reliably.
+The essay’s main tension is that it borrows hard systems language while offering no hard data; the analogies are useful, but they can overstate precision. The claim that the right agent count is a “low single digit” for most people is presented as experience, not evidence. There is also an implicit assumption that review quality scales linearly with uninterrupted attention, which may not always be true. Still, the core warning is coherent: orchestration can become the hidden cost of agentic work, and feeling busy is not proof of productivity.
 
 ## Source metadata
 

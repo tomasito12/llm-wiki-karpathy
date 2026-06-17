@@ -20,7 +20,7 @@ author: Marcellinus Prevailer
 publication: How To Profit AI
 published_date: '2026-05-18'
 assessed_as_of: '2026-05-18'
-ingested_at: '2026-06-15T20:32:51+00:00'
+ingested_at: '2026-06-17T15:48:19.966878+00:00'
 canonical_url: https://blog.howtoprofitai.com/ai-projects-you-can-build-this-week-ae701ebbf485
 content_sha256: d404faf60330f1c6ea3ac220b6f36acbeba0bce985e8a56a4282ea08ce55e2a0
 derived_how_to:

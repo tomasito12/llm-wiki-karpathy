@@ -19,7 +19,7 @@ author: Latent Space
 publication: Latent
 published_date: '2026-04-07'
 assessed_as_of: '2026-04-07'
-ingested_at: '2026-06-06T21:35:59+00:00'
+ingested_at: '2026-06-16T16:26:54.993609+00:00'
 canonical_url: https://www.latent.space/p/ainews-gemma-4-crosses-2-million
 content_sha256: 252f8a806b5fa517de0b241fffb24dfcc583e54885a91c18a65ea8d11eb64f5f
 derived_signals:

@@ -31,7 +31,6 @@ category: index
 - [[tools/fin-for-ecommerce|Fin for Ecommerce]]
 - [[tools/lemonade-server|Lemonade Server]]
 - [[tools/ollama|Ollama]]
-- [[tools/privacy-filter|Privacy Filter]]
 - [[tools/tolaria|Tolaria]]
 - [[tools/llama-cpp|llama.cpp]]
 - [[tools/n8n|n8n]]
@@ -84,7 +83,6 @@ category: index
 - [[tools/atlassian-rovo|Atlassian Rovo]]
 - [[tools/blip|Blip]]
 - [[tools/cal-com|Cal.com]]
-- [[tools/claude|Claude]]
 - [[tools/cursor|Cursor]]
 - [[tools/deskin|DeskIn]]
 - [[tools/notebooklm|NotebookLM]]
@@ -131,7 +129,6 @@ category: index
 - [[tools/graphify|Graphify]]
 - [[tools/notebooklm|NotebookLM]]
 - [[tools/obsidian|Obsidian]]
-- [[tools/privacy-filter|Privacy Filter]]
 - [[tools/screenfloat-2|ScreenFloat 2]]
 
 ## enterprise-managed
@@ -205,7 +202,6 @@ category: index
 - [[tools/ollama|Ollama]]
 - [[tools/one-thing|One Thing]]
 - [[tools/paste|Paste]]
-- [[tools/privacy-filter|Privacy Filter]]
 - [[tools/purepaste|PurePaste]]
 - [[tools/recall-2-0|Recall 2.0]]
 - [[tools/rectangle|Rectangle]]
@@ -246,6 +242,7 @@ category: index
 
 ## multi-step-execution
 
+- [[tools/claude-code|Claude Code]]
 - [[tools/langgraph|LangGraph]]
 - [[tools/notion-custom-agents|Notion custom agents]]
 - [[tools/oasis|OASIS]]
@@ -288,7 +285,6 @@ category: index
 ## open-weight
 
 - [[tools/ollama|Ollama]]
-- [[tools/privacy-filter|Privacy Filter]]
 
 ## real-time
 

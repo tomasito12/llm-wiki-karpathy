@@ -13,7 +13,7 @@ author: Chelsey (Jiahui) Qiu
 publication: Medium
 published_date: '2026-05-18'
 assessed_as_of: '2026-05-18'
-ingested_at: '2026-06-16T15:02:18+00:00'
+ingested_at: '2026-06-17T15:57:30.003269+00:00'
 canonical_url: https://medium.com/design-bootcamp/what-we-lost-in-the-ai-chat-stream-2f96a22a6b80
 content_sha256: 6635559daaec55364a96db86c558607ad29298f250661fba8bcab8141a071f9a
 derived_topics:

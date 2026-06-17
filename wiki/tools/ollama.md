@@ -15,8 +15,8 @@ tags:
 - tool-use
 first_seen: '2025-11-11'
 last_seen: '2026-05-23'
-source_count: 11
-evidence_count: 131
+source_count: 12
+evidence_count: 143
 source_ids:
 - build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt
 - choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj
@@ -29,11 +29,13 @@ source_ids:
 - run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14
 - the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71
 - what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z
+- why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd
 value_level: high
-confidence: 0.9145454545454544
+confidence: 0.9149999999999999
 synthesis_state: stage1-placeholder
 types:
 - ai-infrastructure
+- app
 - cloud-saas
 - library
 - model-serving
@@ -80,6 +82,9 @@ Ollama is a local model runner that installs on a personal computer and provides
 - It serves a local tool-capable model for the agent loop so the browser and search servers can be orchestrated without a remote dependency.
 - It can be used with JSON-constrained output for structured extraction, which helps turn web pages into clean records.
 - It supports a local-first deployment style that fits privacy-sensitive or offline workflows.
+- It provides a one-command way to run a local language model, which reduces setup friction for experimentation.
+- It acts as a packaging and abstraction layer over local inference, which can simplify first-time usage at the cost of extra indirection.
+- It supports a local-first model workflow, although the article argues that this promise was weakened by later cloud and platform moves.
 - It can pull and serve a local Gemma 4 model with a single command.
 - It can handle text generation and tool calling in the described GB10 setup.
 - It can be used as a local endpoint that Codex CLI reaches through an SSH tunnel or localhost forwarding.
@@ -114,6 +119,9 @@ Ollama is a local model runner that installs on a personal computer and provides
 - It is used together with MCP servers, including the browser server and the SearXNG search server.
 - It is accessed from Python through the Ollama client library in the agent and extraction code.
 - It is configured through a shared config.toml file so model choice can be swapped without editing each stage.
+- It is compared directly with llama.cpp as the underlying engine that users can access more directly.
+- It is positioned against LM Studio for GUI-oriented local usage.
+- It is contrasted with vLLM, SGLang, and MLX as alternatives for production or Apple Silicon workflows.
 - The article uses it with Codex CLI via the `--oss` mode and `-m gemma4:31b` model selection.
 - It can serve over port 11434, which is convenient for local forwarding and tunnel-based access.
 - It works with NVIDIA Blackwell hardware in the described setup, but the source does not claim broader hardware compatibility.
@@ -139,6 +147,8 @@ The article describes Ollama as widely supported and easy to install, which sugg
 - Model Context Protocol
 - SearXNG
 - camofox-browser
+- vLLM
+- SGLang
 - Codex CLI
 
 ## Strengths
@@ -355,6 +365,25 @@ ollama run gemma4:26b-a3b-q3_K_M (`9036414eb806` · supporting · supporting_sni
 - "Ollama is currently the default choice for most developers. It wraps the complex inference engines into a simple command-line tool." (`72763bd1de49` · supporting · supporting_snippet; [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]])
 - The source frames it as only one part of the stack; the runtime does not solve hardware limits, quantization tradeoffs, or editor latency on its own. The article also implies that if the chosen model is too large for the machine, the experience can still freeze or swap, so the runtime is not a substitute for capacity planning. (`bfbb66524376` · uncertainty · weaknesses_limitations; [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]])
 
+### Why You Should Completely Avoid Ollama in 2026 (2026-05-23)
+
+- It is compared directly with llama.cpp as the underlying engine that users can access more directly. (`3e88fd1f712e` · neutral · integration_ecosystem[0]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- It is positioned against LM Studio for GUI-oriented local usage. (`624a6608dba9` · neutral · integration_ecosystem[1]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- It is contrasted with vLLM, SGLang, and MLX as alternatives for production or Apple Silicon workflows. (`ae05496d410d` · neutral · integration_ecosystem[2]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- The source describes Ollama as widely recommended and familiar to newcomers, which suggests strong mindshare. At the same time, it also portrays the project as moving into a platform-and-cloud phase that introduced controversy and user complaints. As of 2026-05-23, the maturity signal here is mixed: popular and easy to start, but questioned on performance and trust. (`2271e758b2fa` · neutral · maturity_signals; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- Useful when a team wants an easy on-ramp to local model use, especially for experimentation or lightweight developer workflows. The article frames it as less attractive when speed, portability, and transparency matter more than convenience. For service automation, the main question is whether the wrapper adds avoidable latency or operational friction compared with running the underlying engine directly. (`14e406a73f54` · neutral · operational_relevance; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- A local model runner and packaging layer for open-weight language models. It provides a simple way to start and serve models on a local machine, with an abstraction layer over lower-level inference engines. (`581e666c0ace` · neutral · short_description; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- - Low-friction local model startup makes it easy to try models without compiling from source, which lowers adoption cost for individual developers.
+- Packages model access behind a simple command-line workflow, which can help teams prototype quickly before deciding on a more specialized serving stack.
+- The source credits Ollama for making local LLM use accessible to people who did not want to deal with C++ builds or configuration complexity. (`424f77e69c4e` · neutral · strengths; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- It provides a one-command way to run a local language model, which reduces setup friction for experimentation. (`1491b9d4f3a1` · supporting · core_capabilities[0]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- It acts as a packaging and abstraction layer over local inference, which can simplify first-time usage at the cost of extra indirection. (`b190e3feba2f` · supporting · core_capabilities[1]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- It supports a local-first model workflow, although the article argues that this promise was weakened by later cloud and platform moves. (`c00d5f6e4b28` · supporting · core_capabilities[2]; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- "When I first started playing with local AI, Ollama was my go-to. It was simple. It was user-friendly. You typed ollama run llama3 and boom — you had a running LLM." (`3b7024c9e611` · supporting · supporting_snippet; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+- - The article claims Ollama can be materially slower than llama.cpp, with reported gaps of 30–70% tokens per second in some cases, which matters if latency or throughput is important.
+- It also claims that earlier proprietary storage and backend choices created lock-in, reducing portability across other runtimes.
+- The article argues that trust and transparency issues around naming, attribution, and cloud positioning weaken its fit for teams that care about inspectable, swappable infrastructure. (`ea3d27a41e24` · uncertainty · weaknesses_limitations; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
+
 ## Contradictions / tensions
 
 - - Performance depends heavily on local hardware; the article notes that larger models need more powerful GPUs or high-end CPUs.
@@ -378,6 +407,9 @@ ollama run gemma4:26b-a3b-q3_K_M (`9036414eb806` · supporting · supporting_sni
 - The performance claims in the source are benchmark-based and may vary by workload, model, and hardware. (uncertainty; [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]])
 - The source frames it as only one part of the stack; the runtime does not solve hardware limits, quantization tradeoffs, or editor latency on its own. The article also implies that if the chosen model is too large for the machine, the experience can still freeze or swap, so the runtime is not a substitute for capacity planning. (uncertainty; [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]])
 - The source gives no evidence of benchmark performance, latency, or cost characteristics beyond the fact that a 9B model is used. The setup is still model-dependent: the agent can fail to chain tools, return empty turns, or misread structured page data, so Ollama does not make the system deterministic. (uncertainty; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
+- - The article claims Ollama can be materially slower than llama.cpp, with reported gaps of 30–70% tokens per second in some cases, which matters if latency or throughput is important.
+- It also claims that earlier proprietary storage and backend choices created lock-in, reducing portability across other runtimes.
+- The article argues that trust and transparency issues around naming, attribution, and cloud positioning weaken its fit for teams that care about inspectable, swappable infrastructure. (uncertainty; [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]])
 
 ## Related pages
 
@@ -393,10 +425,12 @@ ollama run gemma4:26b-a3b-q3_K_M (`9036414eb806` · supporting · supporting_sni
 - MLX direct
 - Model Context Protocol
 - Msty
+- SGLang
 - SearXNG
 - camofox-browser
 - llama.cpp
 - macMLX
+- vLLM
 
 ## Sources
 
@@ -411,3 +445,4 @@ ollama run gemma4:26b-a3b-q3_K_M (`9036414eb806` · supporting · supporting_sni
 - [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]]
 - [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
+- [[sources/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd|Why You Should Completely Avoid Ollama in 2026]]

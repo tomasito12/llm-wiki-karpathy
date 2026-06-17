@@ -15,14 +15,15 @@ tags:
 - verification-over-principles
 - workflow-restructuring
 aliases:
+- AI Workflows Shift Toward Orchestrated Loops
 - AI workflows are shifting toward parallel subagent orchestration
 - AI workflows are shifting toward systems that act over time
 - AI workflows shift from prompting to orchestrated loops
 - Workflow Restructuring Around AI Agents
 first_seen: '2026-04-16'
 last_seen: '2026-06-12'
-source_count: 12
-evidence_count: 103
+source_count: 13
+evidence_count: 112
 source_ids:
 - a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn
 - ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33
@@ -36,8 +37,9 @@ source_ids:
 - from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs
 - how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2
 - the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye
+- wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9
 value_level: high
-confidence: 0.8933333333333334
+confidence: 0.8961538461538462
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---
@@ -98,6 +100,10 @@ AI workflows are moving away from single-turn prompting and toward orchestrated 
 - Stratix Cup frames evaluation around simulated soccer and multi-agent behavior.
 - Microsoft's MAI releases are described alongside tighter integration with Copilot, agents, and devices.
 - OpenAI's memory work and NVIDIA's Cosmos 3 both emphasize longer-horizon model operation.
+- ReAct is described as the stage-one loop pattern in 2022.
+- AutoGPT is described as an earlier self-prompting stage in 2023.
+- The newer pattern includes supervision of other loops, scheduling, and restart durability.
+- Claude Code and Codex are described as shipping /goal or /loop commands in spring 2026.
 - Teams across product, engineering, research, and operations used AI to draft reports, synthesize market data, prototype products, and streamline workflows.
 - The company says it is expanding beyond individual productivity gains to workflow-level AI applications.
 - Product release cycles reportedly fell from 3-6 months to 2 weeks.
@@ -257,6 +263,18 @@ The source is a roundup of launches and commentary, so it shows convergence in p
 - As of 2026-06-07, this is an active product and evaluation direction in the source; its relevance should persist if agentic deployments keep expanding beyond chat UI use cases. (`8b334d681fc7` · uncertainty · time_sensitivity; [[sources/the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye|The Sequence Radar #873: Last Week in AI: Soccer, S-1s, and Supermodels]])
 - The source is a roundup, so the evidence is heterogeneous and mostly announcement-level. It supports the direction of change, but not the maturity or broad adoption of any single implementation. (`f3c89ae00e2f` · uncertainty · uncertainty_note; [[sources/the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye|The Sequence Radar #873: Last Week in AI: Soccer, S-1s, and Supermodels]])
 
+### WTF Is a Loop? Peter Steinberger vs. Boris Cherny (2026-06-08)
+
+- AI use in coding is moving from single prompts toward orchestrated loops that keep prompting, checking, and re-routing work over time. The structural change is that the agent is no longer just a response generator; it becomes one component inside a larger runtime with scheduling, state, and supervision. This raises the importance of verification, halting conditions, and durable state because the workflow can continue without direct human presence. The shift is most visible in coding automation, but the pattern generalizes to other repeatable knowledge-work tasks. (`3e05e87857d1` · neutral · trend_description; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- The source contrasts direct prompting with writing loops, then distinguishes a newer orchestration layer where loops supervise other loops, run on schedules, and survive restarts with durable state. (`d0384af92045` · supporting · evidence_from_source; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- ReAct is described as the stage-one loop pattern in 2022. (`4452414133b9` · supporting · supporting_data_points[0]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- AutoGPT is described as an earlier self-prompting stage in 2023. (`9a46a9ba9469` · supporting · supporting_data_points[1]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- The newer pattern includes supervision of other loops, scheduling, and restart durability. (`5d990af6d67c` · supporting · supporting_data_points[2]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Claude Code and Codex are described as shipping /goal or /loop commands in spring 2026. (`9deef6aebc19` · supporting · supporting_data_points[3]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- “Stage five is what Boris and Steinberger actually mean, and it is genuinely new, not just renamed. Four things changed. The loop became the unit of work, not the task. Loops started supervising other loops, concurrently and on a schedule.” (`d0ac2da34385` · supporting · supporting_snippet; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Actionable as of 2026-06-08; the source presents this as an emerging 2026 pattern rather than a settled norm. (`a41a3b1bc81f` · uncertainty · time_sensitivity; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- The evidence is discourse-heavy and largely practitioner anecdote rather than controlled adoption data, so the breadth of the shift is suggestive rather than proven. (`551e03882378` · uncertainty · uncertainty_note; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+
 ## Contradictions / tensions
 
 - Actionable as of 2026-04-16; this is a live architecture pattern in the source, but the roundup does not quantify how broadly it has been adopted. (uncertainty; [[sources/ainews-rip-pull-requests-2005-2026-01kpagqv8ysqr6n4axvvh6xpcz|[AINews] RIP Pull Requests (2005-2026)]])
@@ -279,6 +297,8 @@ The source is a roundup of launches and commentary, so it shows convergence in p
 - The evidence is a roundup synthesis of tweets and product launches, not a controlled comparative study, so it shows direction more than measured causality. (uncertainty; [[sources/ainews-not-much-happened-today-01ktb8kxqz1915aaav17340cgh|[AINews] not much happened today]])
 - As of 2026-06-07, this is an active product and evaluation direction in the source; its relevance should persist if agentic deployments keep expanding beyond chat UI use cases. (uncertainty; [[sources/the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye|The Sequence Radar #873: Last Week in AI: Soccer, S-1s, and Supermodels]])
 - The source is a roundup, so the evidence is heterogeneous and mostly announcement-level. It supports the direction of change, but not the maturity or broad adoption of any single implementation. (uncertainty; [[sources/the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye|The Sequence Radar #873: Last Week in AI: Soccer, S-1s, and Supermodels]])
+- Actionable as of 2026-06-08; the source presents this as an emerging 2026 pattern rather than a settled norm. (uncertainty; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- The evidence is discourse-heavy and largely practitioner anecdote rather than controlled adoption data, so the breadth of the shift is suggestive rather than proven. (uncertainty; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
 - Actionable as of 2026-06-10; this observation reflects a live enterprise adoption pattern in the source and is likely relevant while organizations are still moving from chatbot use to embedded workflow design. (uncertainty; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
 - This is based on one vendor case study, so it does not prove the pattern is universal or quantify how often workflow redesign outperforms simpler task-level adoption. (uncertainty; [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]])
 - Actionable as of 2026-06-12; this is a live engineering pattern in the source, but the exact tooling and best practices may evolve as models improve. (uncertainty; [[sources/ainews-loopcraft-the-art-of-stacking-loops-01ktx5ag5dag2znp3fdp4c7c5y|[AINews] Loopcraft: The Art of Stacking Loops]])
@@ -311,3 +331,4 @@ The source is a roundup of launches and commentary, so it shows convergence in p
 - [[sources/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs|From data to decisions: how LSEG is scaling trusted AI]]
 - [[sources/how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2|How Endava is redesigning software delivery around AI agents]]
 - [[sources/the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye|The Sequence Radar #873: Last Week in AI: Soccer, S-1s, and Supermodels]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]

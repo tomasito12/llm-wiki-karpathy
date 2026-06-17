@@ -25,10 +25,10 @@ category: diagnostics
 
 - AI Adoption Shifts Toward Workflow Output Quality
 
-## AI products are shifting from models to integrated systems
+## AI Products Shift from Models to Systems
 
-- AI Products Shift from Models to Systems
 - AI products are being sold as integrated systems, not standalone models
+- AI products are shifting from models to integrated systems
 - AI products are shifting from standalone models to integrated platform systems
 - AI products are shifting from standalone models to interaction-heavy systems
 - AI products are shifting from standalone models to operational systems
@@ -94,6 +94,7 @@ category: diagnostics
 
 ## Software workflows are restructuring around durable agents
 
+- AI Workflows Shift Toward Orchestrated Loops
 - AI workflows are shifting toward parallel subagent orchestration
 - AI workflows are shifting toward systems that act over time
 - AI workflows shift from prompting to orchestrated loops

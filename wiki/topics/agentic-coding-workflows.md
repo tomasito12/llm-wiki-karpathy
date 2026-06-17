@@ -15,7 +15,7 @@ tags:
 - test-and-verification
 - workflow-design
 first_seen: '2026-03-18'
-last_seen: '2026-05-30'
+last_seen: '2026-06-08'
 source_count: 8
 evidence_count: 61
 source_ids:
@@ -25,10 +25,10 @@ source_ids:
 - if-ai-writes-your-code-why-use-python-01krbncwpakyz5n828c0p8fnfg
 - introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1
 - setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0
-- the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y
 - why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b
+- wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9
 value_level: high
-confidence: 0.925
+confidence: 0.92625
 synthesis_state: stage1-placeholder
 ---
 
@@ -62,14 +62,14 @@ Agentic coding workflows move implementation work from direct authoring toward d
 - Parallel worktrees let multiple agents operate without colliding on the same branch.
 - Human review remains important even when the agent does most of the implementation.
 - The most useful agent setup is often repository-local rather than chat-first.
-- Starting an agent is cheap; closing the loop is expensive.
-- The serial review step, not generation, often determines throughput.
-- Parallel agent work can increase apparent activity without increasing shipped work.
-- Verification gates and human review capacity should shape workflow design.
 - Pre-agent programming tied code production to deep domain understanding; agentic tools decouple those steps.
 - Generated code can pass tests and still be wrong if the tests do not encode the right domain rule.
 - The best outcomes come from combining code-generation help with human review that knows the target domain.
 - In high-stakes domains, the engineering bottleneck becomes correctness judgment rather than typing speed.
+- A coding loop can read model output, test it, and re-prompt until the task is done.
+- The loop becomes the unit of work, while the model becomes a subroutine.
+- Verification and halting rules are central to making the workflow trustworthy.
+- Reusable skills inside the loop compound value better than repeated free-form prompting.
 
 ## Operational Insight
 
@@ -84,7 +84,6 @@ Keep enough manual implementation in the loop to preserve debugging skill and ar
 - verification-loops-in-ai-workflows
 - tool-discipline-in-agent-loops
 - workflow-restructuring-around-ai-agents
-- cognitive-debt-in-ai-workflows
 - domain-expertise-as-verification
 
 ## Evidence / supporting sources
@@ -153,17 +152,6 @@ Keep enough manual implementation in the loop to preserve debugging skill and ar
 - The most useful agent setup is often repository-local rather than chat-first. (`c9bf801cd2eb` · supporting · key_points[2]; [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]])
 - "Codex for long, delegated work. Parallel worktrees, multiple agents on different branches" and "The wt helper became essential once I started running multiple agents in parallel. Each one gets its own worktree." (`a5eb8c757cd0` · supporting · supporting_snippet; [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]])
 
-### The Orchestration Tax (2026-05-28)
-
-- Agentic coding workflows are development setups where one or more AI agents generate, edit, or inspect code while a human remains responsible for judgment, integration, and final approval. The main operational issue is not generation speed but the human review bottleneck that limits safe throughput. These workflows work best when the human role is narrowed to high-value decisions and the agents handle verifiable or isolated tasks. They become risky when parallelism grows faster than the reviewer’s ability to understand, reconcile, and trust the output. (`f01b2ff660e6` · neutral · knowledge_summary; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- Treat agent count as a function of review capacity, not enthusiasm for automation. A workflow that creates more code than a person can understand just moves the bottleneck downstream and increases shallow reviews. (`2155cc66f075` · neutral · operational_insight; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- This is durable for AI engineering as of 2026-05-28 because many coding teams are adding agents faster than they are redesigning review and merge workflows. The pattern matters wherever humans must still validate outputs before shipping, including service automation systems where incorrect automation can compound quickly. (`c2ac3aeccaa5` · neutral · relevance_note; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- Starting an agent is cheap; closing the loop is expensive. (`e3980c87fb37` · supporting · key_points[0]; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- The serial review step, not generation, often determines throughput. (`218c7b76095d` · supporting · key_points[1]; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- Parallel agent work can increase apparent activity without increasing shipped work. (`71947c79e49a` · supporting · key_points[2]; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- Verification gates and human review capacity should shape workflow design. (`19b29b76f240` · supporting · key_points[3]; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- "Starting more AI agents is easy now. However, more agents running doesn’t mean there's more of you available - your cognitive bandwidth doesn’t parallelize." (`50a81db53969` · supporting · supporting_snippet; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-
 ### Why I Stopped Using Gemma 4 and Switched to Qwen 3.6 (2026-04-25)
 
 - Agentic coding workflows are software-development loops where a model does more than answer a prompt: it reads files, calls tools, edits code, runs checks, and recovers from mistakes across multiple turns. These workflows place a premium on state tracking, tool discipline, and stopping behavior, because the hard part is often not code generation but completing the task without looping or losing context. Single-turn benchmark performance can be a weak proxy for this kind of work. Practical evaluation should emphasize end-to-end task completion, error recovery, and correct tool sequencing. (`b328243af783` · neutral · knowledge_summary; [[sources/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b|Why I Stopped Using Gemma 4 and Switched to Qwen 3.6]])
@@ -174,6 +162,17 @@ Keep enough manual implementation in the loop to preserve debugging skill and ar
 - One-shot coding benchmarks do not capture the full difficulty of agentic execution. (`d89b92cd17fd` · supporting · key_points[2]; [[sources/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b|Why I Stopped Using Gemma 4 and Switched to Qwen 3.6]])
 - "Agent work is not that. Agent work is twenty turns of tool calls, state management, and recovery from errors." (`dcf2a9fc7dee` · supporting · supporting_snippet; [[sources/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b|Why I Stopped Using Gemma 4 and Switched to Qwen 3.6]])
 
+### WTF Is a Loop? Peter Steinberger vs. Boris Cherny (2026-06-08)
+
+- Agentic coding workflows are setups where a model does not just answer prompts, but participates in a larger program that iterates on code, checks results, and decides whether to continue. The important shift is from one-off prompting to a repeatable control flow with explicit stopping conditions, verification, and reuse of intermediate work. These workflows become more useful when the loop is backed by durable state and tested skills rather than ad hoc prompting. They are especially relevant when code generation, review, and repair need to run with limited human attention. (`1c74c7321614` · neutral · knowledge_summary; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Treat the model as one step inside a managed workflow, not as the workflow itself. The control logic, feedback checks, and halting rules are the real engineering surface. (`0ba987116890` · neutral · operational_insight; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- This is a durable pattern for AI-assisted development and service automation because many production tasks need iteration, validation, and safe stopping rather than a single prompt. It matters wherever teams want agents to make code changes, review output, or run maintenance tasks with limited supervision. (`b2193e75c9d6` · neutral · relevance_note; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- A coding loop can read model output, test it, and re-prompt until the task is done. (`e8901ad513b4` · supporting · key_points[0]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- The loop becomes the unit of work, while the model becomes a subroutine. (`3cad3cae0540` · supporting · key_points[1]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Verification and halting rules are central to making the workflow trustworthy. (`b7f92ffd9844` · supporting · key_points[2]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Reusable skills inside the loop compound value better than repeated free-form prompting. (`7cba4073dac0` · supporting · key_points[3]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- “A loop is a small program you write that prompts the coding agent for you, reads what it produced, decides whether it is done, and if not, prompts it again.” (`ce45916d088b` · supporting · supporting_snippet; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+
 ## Contradictions / tensions
 
 No contradictions captured in current sources.
@@ -183,7 +182,6 @@ No contradictions captured in current sources.
 - agent-runtime-architecture
 - agent-runtime-architecture-for-voice
 - approval-based-coding-workflows
-- cognitive-debt-in-ai-workflows
 - domain-expertise-as-verification
 - harness-decay
 - tool-discipline-in-agent-loops
@@ -198,5 +196,5 @@ No contradictions captured in current sources.
 - [[sources/if-ai-writes-your-code-why-use-python-01krbncwpakyz5n828c0p8fnfg|If AI Writes Your Code, Why Use Python?]]
 - [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
-- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b|Why I Stopped Using Gemma 4 and Switched to Qwen 3.6]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]

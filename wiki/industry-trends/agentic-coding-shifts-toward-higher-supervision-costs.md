@@ -16,16 +16,15 @@ aliases:
 - Agentic coding is becoming a supervised workflow, not a hands-off feature
 first_seen: '2026-03-18'
 last_seen: '2026-05-28'
-source_count: 5
-evidence_count: 39
+source_count: 4
+evidence_count: 31
 source_ids:
 - agentic-coding-is-a-trap-01krv8ckkgpcbaz9tn6ryd5vy9
 - ai-s-second-moment-the-explosion-that-changed-everything-01kr4pq886wnqdq05t20rejy0f
 - ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1
-- the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y
 - you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj
 value_level: high
-confidence: 0.916
+confidence: 0.9125000000000001
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---
@@ -57,9 +56,6 @@ As coding agents are used more heavily, the bottleneck moves from typing code to
 - LangSmith Engine was described as automating the eval → diagnosis → fix loop.
 - OpenAI added private MCP connectivity, Workload Identity Federation, and expanded Admin API controls.
 - Cognition reported >$1B raised, a $26B valuation, >10× YTD enterprise usage, and $492M run-rate revenue.
-- Starting agents is described as cheap.
-- Judgment and merge decisions remain serial.
-- The author says the right number of parallel agents is usually a low single digit for most people.
 
 ## Time sensitivity
 
@@ -106,17 +102,6 @@ The evidence in the source is largely observational and anecdotal, so the size o
 - Actionable as of 2026-05-28; the evidence is tied to active product launches and platform changes in this newsletter issue. (`396af2ff386e` · uncertainty · time_sensitivity; [[sources/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1|[AINews] Cognition raises $1B in $26B Series D]])
 - The article is a roundup, so the signal is directionally strong but based on vendor posts and community summaries rather than a single independent study. (`a31d3a6676ae` · uncertainty · uncertainty_note; [[sources/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1|[AINews] Cognition raises $1B in $26B Series D]])
 
-### The Orchestration Tax (2026-05-28)
-
-- As AI agents take on more coding tasks, the practical bottleneck shifts toward human supervision, review, and merge decisions. Parallel generation can grow faster than the person responsible for validation, so total throughput is constrained by the serial human step. This makes agentic coding less like fully automated production and more like supervised workflow design. (`2b36bbb2bcf9` · neutral · trend_description; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- The source argues that the review and reconciliation step remains single-threaded even when many agents run in parallel, so more agents increase queue depth more than shipped output. (`94be52e5b247` · supporting · evidence_from_source; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- Starting agents is described as cheap. (`c9795a98d3dd` · supporting · supporting_data_points[0]; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- Judgment and merge decisions remain serial. (`a27bfcefd0b2` · supporting · supporting_data_points[1]; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- The author says the right number of parallel agents is usually a low single digit for most people. (`bfd2f1a985c6` · supporting · supporting_data_points[2]; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- "Spawning 8 agents doesn’t speed up your judgement time. It just makes the queue of things feeding into it much deeper." (`228414f4e8fd` · supporting · supporting_snippet; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- Actionable as of 2026-05-28; the claim is tied to present-day agentic coding workflows where human review remains required. (`ede25f3c6d5d` · uncertainty · time_sensitivity; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- This is a strong conceptual framing, but the source provides no measurement across teams or task types, so the size of the effect remains uncertain. (`ab3b2c7e01c2` · uncertainty · uncertainty_note; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-
 ### You Need AI That Reduces Maintenance Costs (2026-05-05)
 
 - As coding agents are used to produce more software faster, the practical burden of reviewing, understanding, and maintaining generated code becomes a larger part of the workflow. The central tradeoff is that raw output acceleration can be offset by higher downstream supervision and maintenance costs. This trend matters when teams judge coding agents by throughput alone instead of total cost of ownership. (`87131ecfda4a` · neutral · trend_description; [[sources/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj|You Need AI That Reduces Maintenance Costs]])
@@ -135,8 +120,6 @@ The evidence in the source is largely observational and anecdotal, so the size o
 - The evidence is a stylized model and author interpretation, not controlled empirical data. The exact size of supervision-cost increases will vary by team discipline, codebase architecture, and review rigor. (uncertainty; [[sources/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj|You Need AI That Reduces Maintenance Costs]])
 - Actionable as of 2026-05-28; the evidence is tied to active product launches and platform changes in this newsletter issue. (uncertainty; [[sources/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1|[AINews] Cognition raises $1B in $26B Series D]])
 - The article is a roundup, so the signal is directionally strong but based on vendor posts and community summaries rather than a single independent study. (uncertainty; [[sources/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1|[AINews] Cognition raises $1B in $26B Series D]])
-- Actionable as of 2026-05-28; the claim is tied to present-day agentic coding workflows where human review remains required. (uncertainty; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
-- This is a strong conceptual framing, but the source provides no measurement across teams or task types, so the size of the effect remains uncertain. (uncertainty; [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]])
 
 ## Related pages
 
@@ -150,5 +133,4 @@ The evidence in the source is largely observational and anecdotal, so the size o
 - [[sources/agentic-coding-is-a-trap-01krv8ckkgpcbaz9tn6ryd5vy9|Agentic Coding is a Trap]]
 - [[sources/ai-s-second-moment-the-explosion-that-changed-everything-01kr4pq886wnqdq05t20rejy0f|AI’s Second Moment: The Explosion That Changed Everything]]
 - [[sources/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1|[AINews] Cognition raises $1B in $26B Series D]]
-- [[sources/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y|The Orchestration Tax]]
 - [[sources/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj|You Need AI That Reduces Maintenance Costs]]

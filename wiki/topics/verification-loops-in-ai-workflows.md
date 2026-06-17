@@ -16,8 +16,8 @@ tags:
 - verification-systems
 first_seen: '2026-03-18'
 last_seen: May 2026
-source_count: 9
-evidence_count: 70
+source_count: 10
+evidence_count: 77
 source_ids:
 - advancing-content-provenance-for-a-safer-more-transparent-ai-ecosystem-openai-01ks0nrqpbxdbvmyfr5p0r4kcm
 - ai-s-second-moment-the-explosion-that-changed-everything-01kr4pq886wnqdq05t20rejy0f
@@ -28,8 +28,9 @@ source_ids:
 - technology-radar-01krc5f8a8a6x35ke2kdjn5d9w
 - the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x
 - when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp
+- wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9
 value_level: high
-confidence: 0.922222222222222
+confidence: 0.923
 synthesis_state: stage1-placeholder
 ---
 
@@ -53,10 +54,9 @@ The source gives a concrete pattern: “Write test: password change → old sess
 - Self-improvement loops still depend on some evaluation criterion, even if the loop is automated.
 - Verification is becoming a first-class system component rather than a final manual step.
 - The more autonomous the agent, the more important the surrounding checks become.
-- Deterministic checks are more reliable than subjective review alone.
-- Feedback loops should happen during the coding or task session, not only after the fact.
-- Verification can be used to reduce human steering work, not just to catch final defects.
-- Quality gates are more useful when they trigger self-correction automatically.
+- Deterministic gates are more useful than throughput metrics for judging agent output.
+- Mutation testing is valuable because it checks whether tests actually fail when behavior breaks.
+- Review burden, failed builds, and rework are practical signals that a verification loop is working or failing.
 - Success criteria should be explicit before execution starts.
 - Each loop should end with a check that can fail or pass.
 - Verification reduces reliance on vague self-assessment from the model.
@@ -75,6 +75,10 @@ The source gives a concrete pattern: “Write test: password change → old sess
 - Absent evidence should often be treated as inconclusive, not as a confident negative.
 - The loop matters because origin checks are only useful if downstream users can act on them.
 - Verification is a workflow layer, not just a model feature.
+- Self-checking is more important than raw generation speed.
+- No-progress detection and iteration caps prevent runaway loops.
+- Background review can catch bad commits while context is still fresh.
+- Validation can be done by tests, rules, or separate checker models.
 - Define acceptance criteria before expansion.
 - Use targeted tests to surface edge cases early.
 - Delay launches when quality thresholds are not met.
@@ -88,7 +92,6 @@ Treat verification as a first-class workflow stage, not a postscript. The source
 
 - agentic-coding-workflows
 - agent-self-verification
-- harness-engineering
 - behavioral-instruction-layers-for-agents
 - structured-specification-for-agentic-development
 - agent-runtime-architecture
@@ -165,14 +168,13 @@ Treat verification as a first-class workflow stage, not a postscript. The source
 
 ### Technology Radar (2026-04-13)
 
-- Verification loops are control systems that make AI outputs checkable before humans have to inspect them manually. They rely on deterministic gates such as compilers, linters, type checkers, tests, and structured evaluators to catch errors early and trigger correction. In AI-assisted development, these loops are more important because generated output can look plausible while still being wrong or incomplete. Strong verification loops reduce review burden, improve reliability, and make autonomous or semi-autonomous workflows safer to operate. (`b8e1daf78149` · neutral · knowledge_summary; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Treat verification as part of the workflow architecture itself, not as an afterthought at commit time. The best loops run during generation and return actionable failure signals the agent can correct. (`a2fb1104bba3` · neutral · operational_insight; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- As of 2026-04-13, verification loops are a core operating pattern for AI systems that generate code, documents, or actions. They are especially relevant to service automation because they provide the guardrails needed before an agent changes state, sends messages, or commits work. (`94647ed2e17c` · neutral · relevance_note; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Deterministic checks are more reliable than subjective review alone. (`5afb47f35cdb` · supporting · key_points[0]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Feedback loops should happen during the coding or task session, not only after the fact. (`49205ef84154` · supporting · key_points[1]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Verification can be used to reduce human steering work, not just to catch final defects. (`03ae63902fab` · supporting · key_points[2]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Quality gates are more useful when they trigger self-correction automatically. (`8ea21e8c7b7f` · supporting · key_points[3]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- "Feedback sensors for coding agents act as a form of feedback backpressure, increasing trust in generated results. Developers have long relied on deterministic quality gates such as compilers, linters, structural tests and test suites; here, they're wired into agentic workflows so that failures trigger timely self-correction." (`375635b86f5b` · supporting · supporting_snippet; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Verification loops are control systems that check AI output against deterministic or structured signals before the result is accepted. They reduce the risk that fast generation will outrun correctness by adding checks such as tests, linters, type systems, mutation testing, or structured review steps. In AI-assisted workflows, these loops are increasingly important because generated output can be fluent but wrong, and the cost of review grows as autonomy increases. The practical effect is to shift trust from model confidence to observable failure signals. (`90f36b89ff97` · neutral · knowledge_summary; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Treat output quality as something to verify continuously, not something to infer from output volume or apparent fluency. (`321b852f6dbd` · neutral · operational_insight; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Verification loops matter whenever AI systems are allowed to draft, transform, or execute work that humans will later rely on. In conversational systems, they are the difference between a fluent response and a dependable one, especially in regulated or high-stakes workflows. (`bac14546968c` · neutral · relevance_note; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Deterministic gates are more useful than throughput metrics for judging agent output. (`9a22d8b14712` · supporting · key_points[0]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Mutation testing is valuable because it checks whether tests actually fail when behavior breaks. (`b01e6bdbe410` · supporting · key_points[1]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Review burden, failed builds, and rework are practical signals that a verification loop is working or failing. (`efa653274e4a` · supporting · key_points[2]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Feedback sensors for coding agents act as a form of feedback backpressure, increasing trust in generated results. Developers have long relied on deterministic quality gates such as compilers, linters, structural tests and test suites; here, they're wired into agentic workflows so that failures trigger timely self-correction. (`07c6868d2dc5` · supporting · supporting_snippet; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
 
 ### The 4 Lines Every CLAUDE.md Needs (2026-04-27)
 
@@ -196,6 +198,17 @@ Treat verification as a first-class workflow stage, not a postscript. The source
 - The bottleneck often moves from generation to validation once automation is strong enough. (`524878225945` · supporting · key_points[2]; [[sources/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp|When AI builds itself]])
 - Proposed changes to our codebase are now read by an automated Claude reviewer that looks for bugs, security flaws, and other defects before it can merge. (`72f677b320cf` · supporting · supporting_snippet; [[sources/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp|When AI builds itself]])
 
+### WTF Is a Loop? Peter Steinberger vs. Boris Cherny (2026-06-08)
+
+- Verification loops are workflows where each model action is checked against a result, rule, or validator before the next step is allowed. They reduce the risk of confident mistakes by adding feedback after generation instead of trusting the first output. In agent systems, verification can mean tests, linters, reviewers, or a second model acting as a checker. The practical challenge is that the loop is only as reliable as its verification step and its stopping criteria. (`b35d397ee7d5` · neutral · knowledge_summary; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Use feedback gates as a first-class design element. A loop that writes without checking is cheap to start and expensive to fix. (`cd3896c5590b` · neutral · operational_insight; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Verification loops are central to durable agent systems because unattended automation needs trust boundaries. They matter for code generation, support automation, and any workflow where wrong output can cascade into larger operational cost. (`66805dc08e4d` · neutral · relevance_note; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Self-checking is more important than raw generation speed. (`228fead2cfa2` · supporting · key_points[0]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- No-progress detection and iteration caps prevent runaway loops. (`56297a210cf0` · supporting · key_points[1]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Background review can catch bad commits while context is still fresh. (`bc40db8a39a0` · supporting · key_points[2]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- Validation can be done by tests, rules, or separate checker models. (`cf28c329b33f` · supporting · key_points[3]; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+- “Tip five is the one the hype skips and the practitioners obsess over: a loop is only as trustworthy as its ability to check its own work.” (`38cb36d7f467` · supporting · supporting_snippet; [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]])
+
 ## Contradictions / tensions
 
 No contradictions captured in current sources.
@@ -208,7 +221,6 @@ No contradictions captured in current sources.
 - agent-self-verification
 - agentic-coding-workflows
 - behavioral-instruction-layers-for-agents
-- harness-engineering
 - organizational-ai-readiness
 - provenance-tracking
 - structured-specification-for-agentic-development
@@ -224,3 +236,4 @@ No contradictions captured in current sources.
 - [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]]
 - [[sources/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp|When AI builds itself]]
+- [[sources/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9|WTF Is a Loop? Peter Steinberger vs. Boris Cherny]]

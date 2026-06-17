@@ -10,7 +10,7 @@ tags:
 first_seen: '2026-04-10'
 last_seen: '2026-05-18'
 source_count: 2
-evidence_count: 17
+evidence_count: 14
 source_ids:
 - using-projects-in-chatgpt-01knw8fhqktagvstg6j6xzk4xq
 - what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0
@@ -39,9 +39,6 @@ Chat products increasingly package chats, files, instructions, and history into 
 - Project-only memory limits chat context to that project.
 - Shared projects let collaborators work from the same files, instructions, and conversation history.
 - Enterprise admins can manage shared projects at the workspace level.
-- The author describes long chats where the useful answer is buried in a transcript of attempts.
-- The article says chat history is searchable but not navigable.
-- The recommended end state is a summary, saved snapshot, or actual deliverable.
 
 ## Time sensitivity
 
@@ -69,9 +66,6 @@ The source is vendor guidance, so it shows product direction but not adoption sc
 
 - Chat-first AI products become less useful when the transcript is only a temporary interaction log. Durable value shifts toward products that attach conversation to a persistent workspace where outputs can be reviewed, pinned, exported, or edited later. The key change is not the model; it is the surrounding interface that turns iteration into a retained artifact. (`7455aab7d92a` · neutral · trend_description; [[sources/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0|What we lost in the AI chat stream]])
 - The article argues that chat history is searchable but not navigable, and recommends pairing conversation with a persistent surface such as a doc, canvas, summary, or export. (`7b9895a6ab5e` · supporting · evidence_from_source; [[sources/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0|What we lost in the AI chat stream]])
-- The author describes long chats where the useful answer is buried in a transcript of attempts. (`8d5966d5b6d1` · supporting · supporting_data_points[0]; [[sources/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0|What we lost in the AI chat stream]])
-- The article says chat history is searchable but not navigable. (`6bae47bbedd4` · supporting · supporting_data_points[1]; [[sources/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0|What we lost in the AI chat stream]])
-- The recommended end state is a summary, saved snapshot, or actual deliverable. (`22bf7ccb755b` · supporting · supporting_data_points[2]; [[sources/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0|What we lost in the AI chat stream]])
 - "Don't ship pure chat. Pair the conversation with a persistent surface — a doc, a canvas, a generated artifact. Without it, the user is left with a scroll of attempts and nothing to return to." (`2dfd5439d95a` · supporting · supporting_snippet; [[sources/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0|What we lost in the AI chat stream]])
 - Actionable as of 2026-05-18; relevant for products that still rely on chat as the primary interface and need a durable handoff layer. (`734173f68d16` · uncertainty · time_sensitivity; [[sources/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0|What we lost in the AI chat stream]])
 - This is a directional product pattern, not a measured market shift. The source is an essay with selective evidence, so the trend should be treated as a design hypothesis that fits many workflows rather than a universal rule. (`6d580a915668` · uncertainty · uncertainty_note; [[sources/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0|What we lost in the AI chat stream]])

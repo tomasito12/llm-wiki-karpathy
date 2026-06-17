@@ -13,17 +13,18 @@ tags:
 - tool-use
 first_seen: '2026-01-16'
 last_seen: '2026-06-07'
-source_count: 6
-evidence_count: 24
+source_count: 7
+evidence_count: 28
 source_ids:
 - give-your-ai-unlimited-updated-context-01krkap6426ped2hk2anmke10k
 - how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2
 - mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-01ktkysg8zyd6yfnw3dgy7738g
 - obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk
 - obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7
+- technology-radar-01krc5f8a8a6x35ke2kdjn5d9w
 - the-sequence-opinion-848-the-agent-s-hands-cli-or-mcp-01kpx19wnknk0ms9zpszqvv62b
 value_level: high
-confidence: 0.8649999999999999
+confidence: 0.8742857142857142
 synthesis_state: stage1-placeholder
 ---
 
@@ -32,16 +33,17 @@ synthesis_state: stage1-placeholder
 ## Current understanding
 
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-A protocol for connecting AI agents to external tools and resources through a structured, typed interface. It is designed to make available tools discoverable, permissioned, and easier to integrate across clients and servers.
+Model Context Protocol (MCP) is a protocol for connecting AI applications and agents to external tools and data sources through a standardized interface. It is used to define structured tool access, authentication boundaries, and interoperable integrations between models and systems.
 
 ## Related Terms
 
+- Passkey
 - Agentic Workflows
 - Harness
 
 ## Relevance Note
 
-This is a durable concept for agent tooling because it shapes how assistants discover and invoke external capabilities. It matters in conversational AI and service automation when multiple systems, permissions, and tool schemas must be exposed in a controlled way.
+MCP is important for agentic systems because it creates a standard integration boundary for tools, retrieval, and governed access. That makes it a recurring building block for conversational AI, support automation, and internal agents that need controlled action surfaces.
 
 ## Evidence / supporting sources
 
@@ -81,6 +83,13 @@ This is a durable concept for agent tooling because it shapes how assistants dis
 - Useful wherever teams want multiple AI tools to share a consistent integration layer with local or enterprise systems. It is especially relevant to agent workflows, tool governance, and service automation because one protocol can expose structured context without bespoke connectors for every model client. (`e18718bdea2f` · neutral · relevance_note; [[sources/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7|Obsidian Starter Kit v4 Is Live: The AI-Native Release Is Here]])
 - “It also includes a Command Line Interface (CLI) (osk-cli) for scripting and a Model Context Protocol (MCP) server so any AI tool (like Claude Code, Claude Cowork, Codex, etc) can talk to your vault directly with full understanding about the whole system.” (`33b8d6676a34` · supporting · supporting_snippet; [[sources/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7|Obsidian Starter Kit v4 Is Live: The AI-Native Release Is Here]])
 
+### Technology Radar (2026-04-13)
+
+- MCP gives agents a common way to discover and call tools without bespoke integrations for every vendor or app. That standardization is useful when teams want governed access to data, OAuth boundaries, or multi-tenant workflows. The tradeoff is abstraction overhead: not every API benefits from another protocol layer, and a simpler CLI or direct API may be better for some tasks. MCP is most valuable when interoperability and governance matter more than raw simplicity. (`4b9852541016` · neutral · extended_explanation; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Model Context Protocol (MCP) is a protocol for connecting AI applications and agents to external tools and data sources through a standardized interface. It is used to define structured tool access, authentication boundaries, and interoperable integrations between models and systems. (`da87d4daeb20` · neutral · proposed_definition; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- MCP is important for agentic systems because it creates a standard integration boundary for tools, retrieval, and governed access. That makes it a recurring building block for conversational AI, support automation, and internal agents that need controlled action surfaces. (`170611ae01c9` · neutral · relevance_note; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- MCP adds real value for structured tool contracts, OAuth-based authentication boundaries and governed multi-tenant access. It also introduces what Justin Poehnelt calls an "abstraction tax": every protocol layer between an agent and an API loses fidelity, and for complex APIs those losses compound. (`f6a0e630578c` · supporting · supporting_snippet; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+
 ### The Sequence Opinion #848: The Agent’s Hands: CLI or MCP? (2026-04-23)
 
 - Model Context Protocol is a way to present tools to an AI system in a consistent format so the system can inspect what exists, understand how to call it, and respect access rules. Instead of treating each tool as an ad hoc special case, the protocol aims to make tool use more standardized. That can help when agents need to work across many systems, because the tool descriptions, inputs, and permissions travel with the interface. In practice, this matters when teams want model-driven workflows to be safer and easier to wire up than direct one-off integrations. (`1d21df16f52c` · neutral · extended_explanation; [[sources/the-sequence-opinion-848-the-agent-s-hands-cli-or-mcp-01kpx19wnknk0ms9zpszqvv62b|The Sequence Opinion #848: The Agent’s Hands: CLI or MCP?]])
@@ -96,6 +105,7 @@ No contradictions captured in current sources.
 
 - Agentic Workflows
 - Harness
+- Passkey
 
 ## Sources
 
@@ -104,4 +114,5 @@ No contradictions captured in current sources.
 - [[sources/mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-01ktkysg8zyd6yfnw3dgy7738g|MCP Is Dead: Why This Protocol Breaks in Production(And How to Fix It)]]
 - [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]]
 - [[sources/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7|Obsidian Starter Kit v4 Is Live: The AI-Native Release Is Here]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-sequence-opinion-848-the-agent-s-hands-cli-or-mcp-01kpx19wnknk0ms9zpszqvv62b|The Sequence Opinion #848: The Agent’s Hands: CLI or MCP?]]

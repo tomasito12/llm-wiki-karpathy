@@ -8,14 +8,13 @@ tags:
 - ai-engineering
 - context-engineering
 - enterprise-workflows
-- orchestration
 - prompt-engineering
 - runtime-architecture
 - runtime-systems
 first_seen: '2025-11-17'
 last_seen: '2026-05-11'
 source_count: 14
-evidence_count: 99
+evidence_count: 98
 source_ids:
 - 15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1
 - 6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8
@@ -55,10 +54,9 @@ When an AI system is constrained to a source set, the main performance lever bec
 - Large agent system prompts can consume most of the usable context window.
 - Quantizing the key-value cache can be the difference between fitting a model and crashing it.
 - Context failures often look like model failures even when the root cause is the serving configuration.
-- Context is a design surface, not just a prompt field.
-- Progressive disclosure keeps the model from being flooded with irrelevant instructions.
-- Dynamic retrieval can select tools or MCP servers only when needed.
-- Stateful compression and sub-agents can keep long workflows from accumulating noise.
+- Raw context dumping leads to context rot and degraded reasoning.
+- Progressive context disclosure keeps the signal-to-noise ratio sharp by loading only what is relevant.
+- Context graphs and stateful compression are emerging ways to preserve institutional reasoning across longer workflows.
 - Only request information when the workflow actually needs it.
 - Structured summaries make human review easier during checkpoints.
 - Context quality affects whether the agent can complete a workflow end to end.
@@ -100,7 +98,6 @@ Treat corpus design as an engineering task: curate source boundaries, reduce noi
 - agentic-workflows
 - retrieval-augmented-generation
 - progressive-disclosure-skill-design
-- harness-engineering
 - layered-ai-architecture
 
 ## Evidence / supporting sources
@@ -204,14 +201,13 @@ What is scaffolding? (`b1f17e58ad3d` · supporting · supporting_snippet; [[sour
 
 ### Technology Radar (2026-04-13)
 
-- Context engineering treats the model context window as a managed system rather than a passive prompt box. The practice is to decide what information should enter the context, when it should appear, and how much should be revealed at each step so the model can reason with a sharper signal-to-noise ratio. It often combines structured instructions, progressive disclosure, retrieval, caching, and stateful compression to avoid context rot. The point is to reduce hallucinations, wasted tokens, and brittle behavior in long-running workflows. (`5775a6b48371` · neutral · knowledge_summary; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- For agentic systems, design context flow explicitly: load only what is needed, when it is needed, and prefer modular context sources over monolithic instruction blobs. (`9a0c5f51b534` · neutral · operational_insight; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- As of 2026-04-13, this is a durable design concern for AI systems that need to behave consistently across multi-step tasks, especially chatbots, voicebots, and service agents that must combine instructions, policies, and live retrieval without overwhelming the model. (`58c37ac248a5` · neutral · relevance_note; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Context is a design surface, not just a prompt field. (`e6e984e8c836` · supporting · key_points[0]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Progressive disclosure keeps the model from being flooded with irrelevant instructions. (`d8c7b6256248` · supporting · key_points[1]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Dynamic retrieval can select tools or MCP servers only when needed. (`04961f7b31f2` · supporting · key_points[2]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- Stateful compression and sub-agents can keep long workflows from accumulating noise. (`1ee38b73b1ab` · supporting · key_points[3]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
-- "Context engineering has evolved from an optimization tactic into a foundational architectural concern for modern AI systems. Unlike prompt engineering, which focuses on wording, context engineering treats the context window as a design surface and intentionally constructs the AI's information environment." (`c4f89ea4ebb7` · supporting · supporting_snippet; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Context engineering is the practice of treating the model context window as an engineered system rather than a passive text bucket. It focuses on deciding what information the model sees, when it sees it, and how that information is loaded, compressed, retrieved, or refreshed over time. The goal is to preserve signal, reduce confusion, and keep reasoning stable as tasks become longer and more agentic. In production systems, this becomes a design problem that spans prompts, retrieval, tools, memory, and state management. (`ad838bdfb224` · neutral · knowledge_summary; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- The durable lesson is to design context as a pipeline: start with discovery, load details only when needed, and prevent long prompts from accreting conflicting instructions and stale facts. (`0b85d3b3cba1` · neutral · operational_insight; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- This matters because most production AI failures are often context failures: the model had the wrong inputs, too much noise, or stale instructions. For conversational AI and service automation, disciplined context design improves reliability, reduces hallucinations, and makes agent behavior easier to govern. (`25ff3f2fd80b` · neutral · relevance_note; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Raw context dumping leads to context rot and degraded reasoning. (`4c85e6545572` · supporting · key_points[0]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Progressive context disclosure keeps the signal-to-noise ratio sharp by loading only what is relevant. (`b38624d02204` · supporting · key_points[1]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Context graphs and stateful compression are emerging ways to preserve institutional reasoning across longer workflows. (`a1252e91b045` · supporting · key_points[2]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Context engineering has evolved from an optimization tactic into a foundational architectural concern for modern AI systems. Unlike prompt engineering, which focuses on wording, context engineering treats the context window as a design surface and intentionally constructs the AI's information environment. (`87a519bcdc59` · supporting · supporting_snippet; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
 
 ### The 3 Claude Prompts Worth Stealing Today (2026-04-24)
 
@@ -260,7 +256,6 @@ No contradictions captured in current sources.
 ## Related pages
 
 - agentic-workflows
-- harness-engineering
 - knowledge-management
 - layered-ai-architecture
 - progressive-disclosure-skill-design

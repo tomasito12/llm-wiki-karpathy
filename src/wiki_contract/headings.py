@@ -12,6 +12,7 @@ SOURCE_H2_HEADINGS: tuple[str, ...] = (
 )
 
 EVIDENCE_SECTION_HEADING = "Evidence / supporting sources"
+SYNTHESIS_EVIDENCE_INDEX_HEADING = "Evidence index"
 
 MERGED_KNOWLEDGE_SECTION_HEADINGS: tuple[str, ...] = (
     "Current understanding",

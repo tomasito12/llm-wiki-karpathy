@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
-from datetime import UTC, datetime
 from typing import TypeAlias
 
 from src.wiki_render import TOOL_VERSION, layout
@@ -144,7 +143,7 @@ def _monthly_index(name: str, items: list[IndividualPage]) -> RenderedFile:
 
 def _system_status_index(graph: KnowledgeGraph) -> RenderedFile:
     """Render lightweight system diagnostics for operators."""
-    rendered_at = datetime.now(tz=UTC).isoformat()
+    graph_snapshot_at = _graph_snapshot_timestamp(graph)
     topic_count = len(_category_pages(graph, "topic"))
     trend_count = len(_category_pages(graph, "trend"))
     tool_count = len(_category_pages(graph, "tool"))
@@ -158,7 +157,7 @@ def _system_status_index(graph: KnowledgeGraph) -> RenderedFile:
     body = heading(1, "System Status")
     body += bullet_list(
         [
-            f"Last render: `{rendered_at}`",
+            f"Graph snapshot: `{graph_snapshot_at}`",
             f"Tool version: `{TOOL_VERSION}`",
             f"Taxonomy version: `{graph.taxonomy_version}`",
             f"Sources: {len(graph.sources)}",
@@ -181,12 +180,26 @@ def _system_status_index(graph: KnowledgeGraph) -> RenderedFile:
             {
                 "title": "System Status",
                 "category": "diagnostics",
-                "rendered_at": rendered_at,
+                "graph_snapshot_at": graph_snapshot_at,
                 "taxonomy_version": graph.taxonomy_version,
             },
             body,
         ),
     )
+
+
+def _graph_snapshot_timestamp(graph: KnowledgeGraph) -> str:
+    """Return a stable timestamp that represents the current graph inputs."""
+    ingested_timestamps = [source.ingested_at for source in graph.sources if source.ingested_at]
+    if ingested_timestamps:
+        return max(ingested_timestamps)
+    fallback_timestamps = [
+        timestamp
+        for source in graph.sources
+        for timestamp in (source.assessed_as_of, source.published_date)
+        if timestamp
+    ]
+    return max(fallback_timestamps) if fallback_timestamps else "unknown"
 
 
 def _aliases_index(graph: KnowledgeGraph) -> RenderedFile:

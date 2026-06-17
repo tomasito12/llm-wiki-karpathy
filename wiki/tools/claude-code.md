@@ -10,13 +10,14 @@ tags:
 - cli-tool
 - coding
 - local-first
+- multi-step-execution
 - software-development
 - tool-use
 - workflow-automation
 first_seen: '2026-03-25'
 last_seen: '2026-05-20'
 source_count: 18
-evidence_count: 206
+evidence_count: 208
 source_ids:
 - a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn
 - building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s
@@ -26,7 +27,6 @@ source_ids:
 - how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn
 - how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe
 - how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3
-- i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9
 - i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj
 - i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb
 - i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769
@@ -34,10 +34,11 @@ source_ids:
 - obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft
 - sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj
 - setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0
+- technology-radar-01krc5f8a8a6x35ke2kdjn5d9w
 - the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3
 - your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn
 value_level: high
-confidence: 0.916111111111111
+confidence: 0.9199999999999997
 synthesis_state: stage1-placeholder
 types:
 - ai-application
@@ -59,11 +60,12 @@ Claude Code is the environment the article uses to load and run Claude Skills fr
 - It loads the appropriate Skill when a user request matches the Skill metadata, which is useful for repeatable workflows.
 - It can manage skills through plugins and a marketplace, which makes distribution and installation more structured.
 - It supports a file-based Skill format centered on SKILL.md, which keeps reusable instructions outside the chat transcript.
-- It can be used from the terminal to drive development work in a file-based codebase.
-- It supports iterative software construction in short sessions rather than requiring a traditional engineering team.
 - It can operate as a terminal-based agent that reads repository files and writes changes back to disk.
 - It can update multiple related markdown artifacts in a single operation, which is useful for keeping derived notes synchronized.
 - It can be scripted through command-line invocations, making scheduled maintenance loops possible.
+- It plans and executes complex multi-step workflows from a CLI interface.
+- It extends beyond code generation into specifications, stories, infrastructure, documentation, and markdown-defined business processes.
+- It supports newer agent workflows such as skills, subagents, remote control, and agentic team patterns.
 - It can read and write files directly, which is the core requirement for maintaining a persistent markdown knowledge base.
 - It can act on schema instructions stored in a project file so the workflow persists across sessions.
 - It can update multiple related files in one ingestion pass, which is useful for cross-linked knowledge systems.
@@ -114,11 +116,12 @@ Claude Code is the environment the article uses to load and run Claude Skills fr
 - It is integrated with the anthropics/skills marketplace for installing official and example skill sets.
 - It works with the /plugin command flow for adding, listing, updating, and deleting plugins.
 - It is described as the execution environment for Claude Skills rather than a standalone document editor.
-- The source shows it being used with SQLite as the data store.
-- The source shows it being used alongside React, Express, and GitHub-based synchronization.
 - The article uses it with a local Obsidian vault as the file-backed knowledge base.
 - The workflow relies on command-line access with Bash, Read, and Write permissions.
 - It is framed as compatible with cron-style scheduled jobs on the operating system.
+- It works alongside broader coding-agent practices such as curated shared instructions and harness engineering.
+- Its feature set is described alongside skills and subagents, which implies integration with reusable agent workflows and team orchestration.
+- The source references its /insights command and /review-style workflows for collaboration analysis.
 - It works with local filesystem projects, which is why it can maintain an Obsidian vault and a CLAUDE.md instruction file.
 - The article says the same approach could work with other file-editing agents such as OpenAI’s Codex and OpenCode.
 - It is used alongside Obsidian rather than as a standalone app, which makes it part of a file-native workflow stack.
@@ -166,9 +169,11 @@ The article presents Claude Code as the working environment for official skills,
 
 - Claude Skills
 - Skill-creator
-- Cursor
-- Codex
 - Obsidian
+- Cursor
+- OpenAI Codex
+- OpenCode
+- Codex
 - MCPVault
 - TurboVault
 - obsidian-claude-code-mcp
@@ -341,20 +346,6 @@ The article does not provide evidence about robustness, failure modes, or produc
 - “At time of writing, our deployment runs on Claude Code with the latest Anthropic model; the architecture is harness-agnostic.” (`a3f5105af0ef` · supporting · supporting_snippet; [[sources/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3|How We Built an AI Second Brain for 60K Knowledge Workers]])
 - The article does not provide benchmarked reliability, security controls, or failure rates for the Claude Code deployment. It also does not show how well the harness behaves when workflows become larger, noisier, or more permission-sensitive. The description is operationally useful, but the evidence is still a single-company implementation story rather than comparative validation. (`758c5282de62` · uncertainty · weaknesses_limitations; [[sources/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3|How We Built an AI Second Brain for 60K Knowledge Workers]])
 
-### I Built an AI System That Knows My Entire Life. Here Is How It Works. (2026-04-01)
-
-- The source shows it being used with SQLite as the data store. (`172730950d7a` · neutral · integration_ecosystem[0]; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- The source shows it being used alongside React, Express, and GitHub-based synchronization. (`e0928d18d592` · neutral · integration_ecosystem[1]; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- The article treats Claude Code as a practical, available development tool rather than an experimental concept, but it gives no adoption statistics. Its maturity signal here is simply that a non-engineer with prior coding experience was able to use it to assemble a working multi-agent system locally. (`bbc0ef7e99f0` · neutral · maturity_signals; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- Useful when the workflow is not just chatting about code, but actually creating and maintaining a multi-component system. The source shows it being used to build a SQLite-backed application, define workflows, and run development sessions in short blocks between meetings. For practitioners, the relevant lesson is that Claude Code fits as a hands-on coding agent in a system where the developer wants to keep control of data, files, and execution locally. (`58aab843477a` · neutral · operational_relevance; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- A terminal-first coding assistant that can execute development tasks, inspect files, and help build software through iterative agentic workflows. In this article it is used as the build environment for a local personal intelligence system. (`ee7205c7649e` · neutral · short_description; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- - Supports terminal-centric development, which matters when the work involves real files, database schemas, and iterative debugging rather than isolated prompts.
-- Fits agentic build loops well because it can be used in short sessions to add features, test workflows, and keep the system evolving without a full engineering team. (`c523158cca00` · neutral · strengths; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- It can be used from the terminal to drive development work in a file-based codebase. (`fa114fdf5f06` · supporting · core_capabilities[0]; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- It supports iterative software construction in short sessions rather than requiring a traditional engineering team. (`17ab1233862b` · supporting · core_capabilities[1]; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- "So I opened a terminal, installed Claude Code, and started building. Two days later, I had a working database..." (`98c99d505400` · supporting · supporting_snippet; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-- The source does not provide comparative benchmarks, pricing detail beyond the author's stated API cost, or evidence about failure modes. It also does not show how well the tool scales beyond a highly customized personal build, so the operational value here is specific to one advanced user workflow. (`729917c4370e` · uncertainty · weaknesses_limitations; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
-
 ### I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked. (2026-04-25)
 
 - It is shown working with GitHub Actions for nightly evaluation and draft pull request automation. (`e4c032e96a7e` · neutral · integration_ecosystem[0]; [[sources/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj|I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked.]])
@@ -476,6 +467,24 @@ The article does not provide evidence about robustness, failure modes, or produc
 - "Claude Code is my default for anything I want to stay in the loop on. Lives in the repo, plays well with MCP servers, fits the “agent operating inside my project” mode." (`a3f5fc0befa1` · supporting · supporting_snippet; [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]])
 - The article does not provide benchmarks, pricing, or reliability data. The recommendation is personal and workflow-specific, so it may not fit teams that do not use terminal-first development or that prefer a GUI editor as the primary workspace. (`7641ea2a049c` · uncertainty · weaknesses_limitations; [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]])
 
+### Technology Radar (2026-04-13)
+
+- It works alongside broader coding-agent practices such as curated shared instructions and harness engineering. (`64e6f738e71c` · neutral · integration_ecosystem[0]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Its feature set is described alongside skills and subagents, which implies integration with reusable agent workflows and team orchestration. (`66009bd025e8` · neutral · integration_ecosystem[1]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- The source references its /insights command and /review-style workflows for collaboration analysis. (`63b92d7a361c` · neutral · integration_ecosystem[2]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- The source describes strong day-to-day use in production software delivery, both inside and outside Thoughtworks. It is treated as a benchmark for capability and usability rather than a niche experiment. The surrounding ecosystem is moving quickly, but Claude Code remains one of the most established references in the category as of April 2026. (`356dcc3ea657` · neutral · maturity_signals; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- It fits teams that want an agent to carry out coding, documentation, configuration, and workflow changes with human review around the edges. The source positions it as a day-to-day production tool, which makes it relevant for teams standardizing agent-assisted delivery. It also matters because other tools in the space are borrowing features it introduced, including skills, subagents, remote control, and agent team workflows. (`d215684af8d0` · neutral · operational_relevance; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Claude Code is an agentic coding tool that plans and executes multi-step software tasks from the command line. It is used as a general workflow executor, not just a code-completion assistant. (`36389bd1e134` · neutral · short_description; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- - Handles multi-step work beyond code authoring, including specifications, stories, infrastructure, documentation, and markdown-defined business processes.
+- Introduces features that others follow, such as skills, subagents, remote control, and agentic team workflows, which suggests a strong influence on the coding-agent category.
+- Works well enough that teams inside and outside Thoughtworks use it day-to-day in production delivery, which is a meaningful maturity signal. (`719e1d84589d` · neutral · strengths; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- It plans and executes complex multi-step workflows from a CLI interface. (`f12179d8f20a` · supporting · core_capabilities[0]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- It extends beyond code generation into specifications, stories, infrastructure, documentation, and markdown-defined business processes. (`2cd58bae045c` · supporting · core_capabilities[1]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- It supports newer agent workflows such as skills, subagents, remote control, and agentic team patterns. (`a0ad343ecf40` · supporting · core_capabilities[2]; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- We're moving Claude Code to Adopt because teams inside and outside Thoughtworks now use it day-to-day in production software delivery, where it's widely treated as a benchmark for capability and usability. ... Claude Code continues to introduce features that other tools follow, such as skills, subagents, remote control and agentic team workflows. (`69db3151c07e` · supporting · supporting_snippet; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- - The source warns that agentic coding increases complacency risk with AI-generated code, so the tool needs disciplined review and testing rather than trust-by-default.
+- Like other autonomous coding tools, it can amplify hidden debt if teams do not keep tight guardrails around intent, constraints, and acceptance criteria. (`1f9a72bede76` · uncertainty · weaknesses_limitations; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+
 ### The Automated Obsidian Intelligence Vault That Gets Smarter Every Day (2026-05-15)
 
 - It is used with Obsidian as the corpus it reads. (`79cea381d8ee` · neutral · integration_ecosystem[0]; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
@@ -509,8 +518,9 @@ claude
 ## Contradictions / tensions
 
 - The article does not provide evidence about robustness, failure modes, or production-scale reliability. The workflow depends heavily on accurate metadata and on users installing the right plugins, so misclassification or trust issues could reduce usefulness, but the source only hints at that indirectly. (uncertainty; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
-- The source does not provide comparative benchmarks, pricing detail beyond the author's stated API cost, or evidence about failure modes. It also does not show how well the tool scales beyond a highly customized personal build, so the operational value here is specific to one advanced user workflow. (uncertainty; [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]])
 - The article does not provide evidence about reliability, conflict resolution, or how often the agent makes incorrect edits. The workflow still depends on disciplined prompts and human review, so the operational savings may be smaller than the rhetoric implies. No cost, latency, or enterprise-readiness data is given. (uncertainty; [[sources/how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y|How Claude Code and Obsidian Broke Personal Knowledge Management]])
+- - The source warns that agentic coding increases complacency risk with AI-generated code, so the tool needs disciplined review and testing rather than trust-by-default.
+- Like other autonomous coding tools, it can amplify hidden debt if teams do not keep tight guardrails around intent, constraints, and acceptance criteria. (uncertainty; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
 - The source does not provide evidence of failure modes, pricing, or long-term reliability beyond a short personal build. The setup still requires schema design and early course correction, so the automation reduces manual maintenance rather than eliminating it. (uncertainty; [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]])
 - The article notes that Claude Code requires a Max subscription or API usage, so cost is a real consideration. It also depends heavily on the quality of the vault structure and the clarity of the instructions; stale context or missing conventions can steer it badly. Safety still relies on git, drafts, and human review because agentic edits can be wrong or destructive if unconstrained. (uncertainty; [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]])
 - The article reports that the workflow depends on schema discipline and git diff review, so the agent is not a set-and-forget system. It also concentrates most cost in ingest, and the author notes that the approach begins to strain around 100-200 sources, at which point a more robust retrieval or governance layer may be needed. (uncertainty; [[sources/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769|I Used Karpathy’s LLM Wiki to Build a Research Brain That Updates Itself. Here’s What Two Weeks Taught Me.]])
@@ -547,6 +557,8 @@ claude
 - MCPVault
 - Obsidian
 - Ollama
+- OpenAI Codex
+- OpenCode
 - QMD
 - Skill-creator
 - TurboVault
@@ -566,7 +578,6 @@ claude
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]
 - [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]]
 - [[sources/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3|How We Built an AI Second Brain for 60K Knowledge Workers]]
-- [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj|I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked.]]
 - [[sources/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb|I Stopped Taking Notes and Built a Second Brain That Maintains Itself]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769|I Used Karpathy’s LLM Wiki to Build a Research Brain That Updates Itself. Here’s What Two Weeks Taught Me.]]
@@ -574,5 +585,6 @@ claude
 - [[sources/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft|Obsidian + Claude Code is your 24×7 AI Agent: Here is how to build yours]]
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]

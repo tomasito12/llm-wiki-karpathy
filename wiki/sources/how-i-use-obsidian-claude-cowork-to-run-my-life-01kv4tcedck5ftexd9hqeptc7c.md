@@ -4,21 +4,18 @@ slug: how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c
 category: source
 tags:
 - ai-engineering
-- chat-interface
-- cloud-hosted
 - frontier-model
 - knowledge-systems
 - orchestration
 - proprietary-model
 - runtime-architecture
-- workflow-automation
 - workflow-design
 source_id: how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c
 author: Linking Your Thinking with Nick Milo
 publication: YouTube
 published_date: '2026-06-05'
 assessed_as_of: '2026-06-05'
-ingested_at: '2026-06-15T22:59:17+00:00'
+ingested_at: '2026-06-16T16:25:09.060312+00:00'
 canonical_url: https://youtube.com/watch/?v=rRa9td4oe7k
 content_sha256: b11009e9d0c68900341b74b9f22c219810357d7d9186cf11581dcb57536b131b
 derived_how_to:
@@ -26,8 +23,6 @@ derived_how_to:
 derived_models:
 - foundation-models/opus-4-6.md
 - foundation-models/sonnet-4-6.md
-derived_tools:
-- tools/claude.md
 derived_topics:
 - topics/file-native-ai-workflows.md
 - topics/translation-layer-ai-architecture.md
@@ -35,7 +30,6 @@ derived_pages:
 - foundation-models/opus-4-6.md
 - foundation-models/sonnet-4-6.md
 - how-to/file-native-ai-workspace.md
-- tools/claude.md
 - topics/file-native-ai-workflows.md
 - topics/translation-layer-ai-architecture.md
 ---
@@ -57,7 +51,6 @@ This video explains a way to connect personal notes to an AI tool without lockin
 - [[foundation-models/opus-4-6]]
 - [[foundation-models/sonnet-4-6]]
 - [[how-to/file-native-ai-workspace]]
-- [[tools/claude]]
 - [[topics/file-native-ai-workflows]]
 - [[topics/translation-layer-ai-architecture]]
 

@@ -6,17 +6,13 @@ tags:
 - ai-engineering
 - ai-evaluation
 - ai-operationalization
-- api-first
 - compliance-systems
-- document-analysis
 - enterprise-ai
 - enterprise-workflows
 - inference-efficient
 - infrastructure
-- local-first
 - long-context-model
 - open-model-pressure
-- open-weight
 - open-weight-model
 - runtime-systems
 - tool-use-capable
@@ -25,13 +21,11 @@ author: OpenAI Blog
 publication: OpenAI
 published_date: '2026-04-22'
 assessed_as_of: '2026-04-22'
-ingested_at: '2026-06-06T21:57:42+00:00'
+ingested_at: '2026-06-16T16:30:21.232967+00:00'
 canonical_url: https://openai.com/index/introducing-openai-privacy-filter
 content_sha256: f829a93c626baf32b0ea79180fec32e3e7827b2ef9abcae3db5bb5e5431296e6
 derived_models:
 - foundation-models/privacy-filter.md
-derived_tools:
-- tools/privacy-filter.md
 derived_topics:
 - topics/local-pii-redaction.md
 - topics/token-classification-for-redaction.md
@@ -40,7 +34,6 @@ derived_trends:
 derived_pages:
 - foundation-models/privacy-filter.md
 - industry-trends/open-model-pressure.md
-- tools/privacy-filter.md
 - topics/local-pii-redaction.md
 - topics/token-classification-for-redaction.md
 ---
@@ -61,7 +54,6 @@ This is a release of a model that finds and redacts private information in text.
 
 - [[foundation-models/privacy-filter]]
 - [[industry-trends/open-model-pressure]]
-- [[tools/privacy-filter]]
 - [[topics/local-pii-redaction]]
 - [[topics/token-classification-for-redaction]]
 

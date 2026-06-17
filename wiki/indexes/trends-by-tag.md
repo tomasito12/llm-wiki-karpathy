@@ -11,6 +11,7 @@ category: index
 
 ## agent-systems
 
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 - [[industry-trends/coding-models-shift-toward-agentic-execution|Coding Models Shift Toward Agentic Execution]]
 - [[industry-trends/rag-moves-from-fixed-pipelines-to-adaptive-agent-loops|RAG Moves from Fixed Pipelines to Adaptive Agent Loops]]
@@ -27,7 +28,7 @@ category: index
 
 - [[industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus|AI Infrastructure Scarcity Spreads Beyond GPUs]]
 - [[industry-trends/ai-product-pricing-shifts-toward-measured-outcomes|AI Product Pricing Shifts Toward Measured Outcomes]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/ai-jobs-risk-looks-more-distributed-than-disappearing|AI-Related Job Disruption Looks More Distributed Than Disappearing]]
 - [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 - [[industry-trends/apple-silicon-local-inference-becomes-practical|Apple Silicon Local Inference Becomes Practical]]
@@ -45,6 +46,10 @@ category: index
 - [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]]
 - [[industry-trends/support-automation-shifts-toward-agentic-workflow-completion|Support Automation Shifts Toward Workflow Completion]]
 - [[industry-trends/token-metering-becomes-the-ai-business-unit|Token metering becomes the AI business unit]]
+
+## ai-engineering
+
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## ai-governance
 
@@ -80,11 +85,11 @@ category: index
 - [[industry-trends/ai-products-shift-toward-customer-specific-deployment|AI Products Shift Toward Customer-Specific Deployment]]
 - [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]]
 - [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/ai-specification-moves-toward-explicit-constraints|AI Specification Moves Toward Explicit Constraints]]
 - [[industry-trends/ai-support-improvement-becomes-continuous|AI Support Improvement Becomes Continuous]]
 - [[industry-trends/ai-workflows-shift-toward-supervised-friction|AI Workflows Shift Toward Supervised Friction]]
 - [[industry-trends/ai-workflows-shift-toward-verification-loops|AI Workflows Shift Toward Verification Loops]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 - [[industry-trends/ai-assisted-file-native-workflows|AI-Assisted File-Native Workflows]]
 - [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
@@ -158,7 +163,7 @@ category: index
 
 ## distribution-over-production
 
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/consumer-ai-adoption-broadens-beyond-early-adopters|Consumer AI Adoption Broadens Beyond Early Adopters]]
 
 ## edge-deployment
@@ -181,8 +186,8 @@ category: index
 - [[industry-trends/ai-products-shift-from-demos-to-grounded-workflows|AI Products Shift from Demos to Grounded Workflows]]
 - [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]]
 - [[industry-trends/ai-products-shift-from-models-to-grounded-systems|AI Products Shift from Models to Grounded Systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/ai-workflows-shift-toward-verification-loops|AI Workflows Shift Toward Verification Loops]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 - [[industry-trends/agent-evaluation-shifts-toward-readiness|Agent Evaluation Shifts Toward Organizational Readiness]]
 - [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
@@ -227,7 +232,7 @@ category: index
 ## execution-oriented-agents
 
 - [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 - [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
@@ -250,9 +255,9 @@ category: index
 ## human-ai-collaboration
 
 - [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/ai-support-improvement-becomes-continuous|AI Support Improvement Becomes Continuous]]
 - [[industry-trends/ai-workflows-shift-toward-supervised-friction|AI Workflows Shift Toward Supervised Friction]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
 - [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 - [[industry-trends/agents-move-toward-persistent-memory-backed-workflows|Agents Move Toward Persistent Memory-Backed Workflows]]
 - [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]]
@@ -291,9 +296,8 @@ category: index
 ## knowledge-systems
 
 - [[industry-trends/ai-products-shift-from-models-to-grounded-systems|AI Products Shift from Models to Grounded Systems]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/agents-move-toward-persistent-memory-backed-workflows|Agents Move Toward Persistent Memory-Backed Workflows]]
-- [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]]
 - [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
 - [[industry-trends/knowledge-base-becomes-maintained-workspace|Knowledge Bases Become Maintained Workspaces]]
 - [[industry-trends/knowledge-systems-shift-toward-agent-friendliness|Knowledge Systems Shift Toward Agent Friendliness]]
@@ -329,7 +333,7 @@ category: index
 
 ## orchestration-layer-growth
 
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/agent-runtime-centralization|AI products shift toward managed agent runtimes]]
 - [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
@@ -366,7 +370,7 @@ category: index
 
 ## runtime-centralization
 
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/ai-assisted-file-native-workflows|AI-Assisted File-Native Workflows]]
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 - [[industry-trends/efficiency-gains-become-product-capabilities|Efficiency Gains Become Product Capabilities]]
@@ -381,14 +385,13 @@ category: index
 ## runtime-systems
 
 - [[industry-trends/ai-products-shift-toward-ambient-computing|AI Products Shift Toward Ambient Computing]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/agent-runtime-centralization|AI products shift toward managed agent runtimes]]
 - [[industry-trends/agent-evaluation-shifts-toward-reliability-and-tool-discipline|Agent Evaluation Shifts Toward Reliability and Tool Discipline]]
 - [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
 - [[industry-trends/agent-search-moves-toward-local-text-indexes|Agent Search Moves Toward Local Text Indexes]]
 - [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 - [[industry-trends/agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops|Agents Are Shifting from Stateless Chat to Persistent Work Loops]]
-- [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]]
 - [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
 - [[industry-trends/apple-silicon-local-inference-becomes-practical|Apple Silicon Local Inference Becomes Practical]]
 - [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
@@ -398,6 +401,7 @@ category: index
 - [[industry-trends/inference-demand-outgrows-training-as-the-practical-bottleneck|Inference demand overtakes training as the practical bottleneck]]
 - [[industry-trends/knowledge-tools-shift-toward-file-native-control|Knowledge Tools Shift Toward File-Native Control]]
 - [[industry-trends/latent-reasoning-replaces-token-chain-of-thought|Latent Reasoning Replaces Token-Chain-Of-Thought]]
+- [[industry-trends/local-inference-stacks-shift-toward-direct-engine-access|Local Inference Stacks Shift Toward Direct Engine Access]]
 - [[industry-trends/long-context-efficiency-becomes-an-architecture-priority|Long-Context Efficiency Becomes an Architecture Priority]]
 - [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 - [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-weight multimodal models are becoming viable on consumer hardware]]
@@ -407,7 +411,7 @@ category: index
 
 ## software-commoditization
 
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 - [[industry-trends/agentic-commerce-interfaces|Agentic Commerce Interfaces]]
 - [[industry-trends/efficiency-gains-become-product-capabilities|Efficiency Gains Become Product Capabilities]]
@@ -457,6 +461,10 @@ category: index
 - [[industry-trends/knowledge-work-moves-toward-agentic-workflow-completion|Knowledge Work Moves Toward Agentic Workflow Completion]]
 - [[industry-trends/voice-agents-shift-toward-workflow-completion|Voice agents shift from speech interfaces to workflow completion]]
 
+## workflow-design
+
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+
 ## workflow-restructuring
 
 - [[industry-trends/ai-coding-moves-from-prompting-to-persistent-specs|AI Coding Moves from Prompts to Persistent Specs]]
@@ -465,9 +473,9 @@ category: index
 - [[industry-trends/ai-products-shift-toward-agentic-commerce-interfaces|AI Products Shift Toward Agentic Commerce Interfaces]]
 - [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]]
 - [[industry-trends/ai-products-shift-from-demos-to-grounded-workflows|AI Products Shift from Demos to Grounded Workflows]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 - [[industry-trends/ai-support-improvement-becomes-continuous|AI Support Improvement Becomes Continuous]]
 - [[industry-trends/ai-workflows-shift-toward-verification-loops|AI Workflows Shift Toward Verification Loops]]
-- [[industry-trends/ai-products-shift-from-models-to-systems|AI products are shifting from models to integrated systems]]
 - [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 - [[industry-trends/agent-workflows-shift-toward-reviewable-contracts|Agent Workflows Shift Toward Reviewable Contracts]]
 - [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]

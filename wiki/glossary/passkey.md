@@ -5,15 +5,16 @@ entity_id: glossary:passkey
 category: glossary
 tags:
 - governance
-first_seen: '2026-04-14'
+first_seen: '2026-04-13'
 last_seen: '2026-04-30'
-source_count: 2
-evidence_count: 8
+source_count: 3
+evidence_count: 12
 source_ids:
 - introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy
+- technology-radar-01krc5f8a8a6x35ke2kdjn5d9w
 - trusted-access-for-the-next-era-of-cyber-defense-01kp6svpv90410gkqh95k962t0
 value_level: high
-confidence: 0.67
+confidence: 0.7733333333333334
 synthesis_state: stage1-placeholder
 ---
 
@@ -22,7 +23,7 @@ synthesis_state: stage1-placeholder
 ## Current understanding
 
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-A passkey is a phishing-resistant login method that uses cryptographic keys stored on a device or security platform instead of a password. It is designed to reduce account takeover risk by making it harder for attackers to steal reusable credentials.
+A passkey is a phishing-resistant authentication credential based on public-key cryptography that can replace passwords. The private key stays on the user's device or in a credential manager, while the public key is registered with the service.
 
 ## Related Terms
 
@@ -31,7 +32,7 @@ A passkey is a phishing-resistant login method that uses cryptographic keys stor
 
 ## Relevance Note
 
-Passkeys are increasingly important for securing AI accounts, admin consoles, and workflow tools that can expose private prompts, documents, or connected systems. For conversational AI and service automation stacks, phishing-resistant login reduces the chance that an attacker can hijack a support agent console, admin panel, or automation workspace.
+Passkeys matter because authentication is one of the highest-value control points in AI-powered products and admin tooling. Phishing-resistant login reduces account takeover risk for support agents, operators, and end users who interact with conversational systems and internal automation.
 
 ## Evidence / supporting sources
 
@@ -41,6 +42,13 @@ Passkeys are increasingly important for securing AI accounts, admin consoles, an
 - A passkey is a phishing-resistant login method that uses cryptographic keys stored on a device or security platform instead of a password. It is designed to reduce account takeover risk by making it harder for attackers to steal reusable credentials. (`d1d9ec95b7c0` · neutral · proposed_definition; [[sources/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy|Introducing Advanced Account Security]])
 - Passkeys are increasingly important for securing AI accounts, admin consoles, and workflow tools that can expose private prompts, documents, or connected systems. For conversational AI and service automation stacks, phishing-resistant login reduces the chance that an attacker can hijack a support agent console, admin panel, or automation workspace. (`5ac2bc715a12` · neutral · relevance_note; [[sources/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy|Introducing Advanced Account Security]])
 - "Advanced Account Security requires passkeys or physical security keys while disabling password-based login, helping make phishing-resistant sign-in the default for people who need it most." (`b45f9308a41a` · supporting · supporting_snippet; [[sources/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy|Introducing Advanced Account Security]])
+
+### Technology Radar (2026-04-13)
+
+- Passkeys are designed to remove the shared secret that makes passwords and one-time codes vulnerable to interception. Because the credential is bound to the origin, a lookalike site cannot use it the way it can steal a password or intercept an SMS code. In practice, passkeys reduce login friction and can improve sign-in success rates when implemented well. They are especially useful when an organization wants stronger account security without forcing users through awkward extra steps. (`803971ca77ec` · neutral · extended_explanation; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- A passkey is a phishing-resistant authentication credential based on public-key cryptography that can replace passwords. The private key stays on the user's device or in a credential manager, while the public key is registered with the service. (`ef24d8e0cd5d` · neutral · proposed_definition; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- Passkeys matter because authentication is one of the highest-value control points in AI-powered products and admin tooling. Phishing-resistant login reduces account takeover risk for support agents, operators, and end users who interact with conversational systems and internal automation. (`860da6f4114e` · neutral · relevance_note; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
+- passkeys have matured into Adopt. They are FIDO2 credentials that can replace passwords using asymmetric public-key cryptography. The private key is stored in a hardware-backed secure enclave on the user's device, protected by biometrics or a PIN, and never leaves it. Each credential is origin-bound to its relying-party domain, making passkeys structurally phishing-resistant (`bd5a8d2471ec` · supporting · supporting_snippet; [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]])
 
 ### Trusted access for the next era of cyber defense (2026-04-14)
 
@@ -61,4 +69,5 @@ No contradictions captured in current sources.
 ## Sources
 
 - [[sources/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy|Introducing Advanced Account Security]]
+- [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
 - [[sources/trusted-access-for-the-next-era-of-cyber-defense-01kp6svpv90410gkqh95k962t0|Trusted access for the next era of cyber defense]]
